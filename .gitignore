@@ -1,0 +1,8 @@
+build
+dist
+*.egg-info
+**/__pycache__/
+*.log
+**/*.lic
+.vscode
+.editorconfig
