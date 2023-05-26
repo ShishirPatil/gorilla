@@ -11,8 +11,8 @@ _Join our Discord!_ [https://discord.gg/3apqwwME](https://discord.gg/3apqwwME)
 
 ## Repository Organization
 
-We include the `APIBench` dataset created by self-instruct in `data/apibench`. All the 1640 API documentation is in `data/api`. We convert this into a LLM-friendly chat format for evaluation, and the questions are in `eval/eval-data/questions`, and the corresponding responces are in `eval/eval-data/responses`.  We have also included the evaluation scripts are in `eval/eval-scripts`. This would be entirely sufficient to train Gorilla yourself, and reproduce our results.
-Additionally, to make it more accessible, we will also release the model weights soon! Eitherways, if you run into any issues please feel free to reach out to us either through Discord or email or raise a Github issue.
+We include the `APIBench` dataset created by self-instruct in `data/apibench`. All the 1640 API documentation is in `data/api`. We convert this into a LLM-friendly chat format for evaluation, and the questions are in `eval/eval-data/questions`, and the corresponding responses are in `eval/eval-data/responses`.  We have also included the evaluation scripts are in `eval/eval-scripts`. This would be entirely sufficient to train Gorilla yourself, and reproduce our results.
+Additionally, to make it more accessible, we will also release the model weights soon! Either way, if you run into any issues please feel free to reach out to us either through Discord or email or raise a Github issue.
 
 ## Abstract
 
