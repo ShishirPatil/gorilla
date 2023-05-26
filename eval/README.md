@@ -4,18 +4,6 @@
 
 ## Get Started
 
-### Install Dependencies
-
-Use the following command to install dependencies: 
-
-```bash
-conda create -n gorilla python=3.8
-conda activate gorilla
-pip install tree_sitter
-pip install openai
-pip install anthropic
-```
-
 ### Getting GPT-3.5-turbo, GPT-4 and Claude Responses
 
 If you want to get LLM response for the API call, use the following command to get the responses:
