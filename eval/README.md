@@ -9,7 +9,7 @@
 If you want to get LLM response for the API call, use the following command to get the responses:
 
 ```bash
-python get_llm_responses.py --model gpt-3.5-turbo --api_key $API_KEY --output_file gpt-3.5-turbo_torchhub_0_shot.jsonl --question_data ../data/questions/questions_0_shot_torchhub.jsonl --api_name torchhub
+python get_llm_responses.py --model gpt-3.5-turbo --api_key $API_KEY --output_file gpt-3.5-turbo_torchhub_0_shot.jsonl --question_data eval-data/questions/torchhub/questions_torchhub_0_shot.jsonl --api_name torchhub
 ```
 
 ### Evaluate the Response with AST tree matching
