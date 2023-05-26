@@ -11,8 +11,40 @@ _Join our Discord!_ [https://discord.gg/3apqwwME](https://discord.gg/3apqwwME)
 
 ## Repository Organization
 
-We include the `APIBench` dataset created by self-instruct in `data/apibench`. All the 1640 API documentation is in `data/api`. We convert this into a LLM-friendly chat format for evaluation, and the questions are in `eval/eval-data/questions`, and the corresponding responses are in `eval/eval-data/responses`.  We have also included the evaluation scripts are in `eval/eval-scripts`. This would be entirely sufficient to train Gorilla yourself, and reproduce our results.
-Additionally, to make it more accessible, we will also release the model weights soon! Either way, if you run into any issues please feel free to reach out to us either through Discord or email or raise a Github issue.
+Our repository organization is shown below. 
+
+  - The `data` folder contains all the dataset we collected
+  - The `eval` folder contains all our evaluation code as well as the Gorilla outputs
+  - [Coming Soon!] The `train` folder contains all the training code associated with Gorilla finetuning
+
+For our dataset collections, all the 1640 API documentation is in `data/api`. We also include the `APIBench` dataset created by self-instruct in `data/apibench`. 
+
+For evaluation, we convert this into a LLM-friendly chat format for evaluation, and the questions are in `eval/eval-data/questions`, and the corresponding responces are in `eval/eval-data/responses`.  We have also included the evaluation scripts are in `eval/eval-scripts`. This would be entirely sufficient to train Gorilla yourself, and reproduce our results. Please see [evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval) for the details on how to use our evaluation pipeline.
+
+Additionally, to make it more accessible, we will also release the model weights soon! Eitherways, if you run into any issues please feel free to reach out to us either through Discord or email or raise a Github issue.
+
+```
+gorilla
+├── data
+│   ├── api
+│   │   ├── {api_name}_api.jsonl
+│   ├── api_bench
+│   │   ├── {api_name}_train.jsonl, {api_name}_eval.jsonl
+├── eval
+│   ├── README.md
+│   ├── get_llm_responses.py
+│   ├── eval-scripts
+│   │   ├── ast_eval_{api_name}.py
+│   ├── eval-data
+│   │   ├── questions
+│   │   │   ├── API name
+│   │   │   │   ├── questions_{api_name}_{eval_metric}.jsonl
+│   │   ├── responses
+│   │   │   ├── API name
+│   │   │   │   ├── responses_{api_name}_Gorilla_FT_{eval_metric}.jsonl
+│   │   │   │   ├── responses_{api_name}_Gorilla_RT_{eval_metric}.jsonl
+├── train
+```
 
 ## Get Started 
 
