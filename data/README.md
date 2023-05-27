@@ -2,7 +2,7 @@
 
 <img src="https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/img/logo.png" width=50% height=50%>
 
-Wants Gorilla to use your API? Wants to train your own Gorilla with the dataset? Learn about the entire workflow and how to contribute to Gorilla API App Store! Gorilla API App Store intends to enhance LLM's capability to use tools through API calls. We appreciate everyone's effort and contribution!
+Teach Gorilla how to use your API! Learn about the entire workflow, and how to contribute to Gorilla API Store! Gorilla API Store intends to enhance LLM's capability to use tools through API calls. We appreciate everyone's effort and contributions! THIS WILL ALWAYS REMAIN OPEN SOURCE.
 
 ## How to Contribute?
 
@@ -11,29 +11,29 @@ Contribute to Gorilla API Store is very easy!
 1. **JSON Contribution**: It only takes two steps
 
 - Step 1: Submit an API JSON file or a URL JSON file following our cirteria. 
-- Step 2: Put up a Pull Request.
+- Step 2: Raise a Pull Request.
 
-2. **Website Contribution**: We will provide a website and you only need to put in your API url. We will provide a draft API JSON file to you and you can either choose to **Submit** or **Edit & Submit**. 
+2. **Website Assisted** [Coming Soon]: If you need help writing an API json, we will provide a website and you only need to type in your API documentation url. We will return a draft API JSON file (you guessed it, using an LLM) and you can either choose to **Submit** or **Edit & Submit**. 
 
 ## Repository Organization
  
-Once we approve your merge, your data will be merged to a file under your username! Our repository organization is as follows: 
+Post merge, your APIs will reside under your username, organized as follows: 
 
 ```
 gorilla_api_store
-├── dataset
-│   │   ├── APIBench (Evaluating LLM models) v-0.1
-│   │   │   ├── {api_name}_train.jsonl, {api_name}_eval.jsonl
-│   │   ├── APIZoo (Contributed by our Community)
-│   │   │   ├── username1.jsonl
-│   │   │   ├── username2.jsonl
-│   │   │   ├── username3.jsonl
-│   │   │   ├── ...
+├── data
+│   ├── apibench (Evaluating LLM models) v-0.1
+│   │   ├── {api_name}_train.jsonl, {api_name}_eval.jsonl
+│   ├── apizoo (Contributed by our Community)
+│   |   ├── username1.jsonl
+│   │   ├── username2.jsonl
+│   │   ├── username3.jsonl
+│   │   ├── ...
 ```
 
 ## JSON Contribution
 
-We make the contribution to Gorilla API Store as easy as possible. You could either submit following the API JSON format or URL JSON format. 
+We make the contribution to Gorilla API Store as easy as possible. We provide two alternatives: You could either submit following the API JSON format {or} URL JSON format. 
 
 ### API JSON
 
@@ -56,9 +56,9 @@ Community members can submit to Gorilla API Zoo using the following JSON format:
 
 ```python
 {
-  "user_name": "tianjun_z",
-  "api_name": "Torch Hub Model Load",
-  "api_call": torch.hub.load(repo_or_dir=['snakers4/silero-models'], model=['silero_stt'], *args, source, trust_repo, force_reload, verbose, skip_validation, **kwargs), 
+  "user_name": "example_username_api",
+  "api_name": "Torch Hub Model snakers4-silero",
+  "api_call": "torch.hub.load(repo_or_dir=['snakers4/silero-models'], model=['silero_stt'], *args, source, trust_repo, force_reload, verbose, skip_validation, **kwargs)", 
   "api_version": 2.0, 
   "api_arguments": {
     "repo_or_dir": "snakers4/silero-models", 
@@ -67,10 +67,10 @@ Community members can submit to Gorilla API Zoo using the following JSON format:
   },
   "functionality": "Speech to Text",
   "env_requirements": ["torchaudio", "torch", "omegaconf", "soundfile"],
-  "example_code": "import torch
-                   model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
-                   imgs = ['https://ultralytics.com/images/zidane.jpg']
-                   results = model(imgs)",
+  "example_code": "import torch \n \
+                  model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True) \n \
+                  imgs = ['https://ultralytics.com/images/zidane.jpg'] \n \
+                  results = model(imgs)",
   "meta_data": {
     "description": "Silero Speech-To-Text models provide enterprise grade STT in a compact form-factor for several commonly spoken languages. The models are robust to a variety of dialects, codecs, domains, noises, and lower sampling rates. They consume a normalized audio in the form of samples and output frames with token probabilities. A decoder utility is provided for simplicity.", 
     "performance": {"dataset": "imagenet", "accuracy": "80.4\%"}
@@ -84,7 +84,9 @@ Community members can submit to Gorilla API Zoo using the following JSON format:
 
 ### URL JSON
 
-We also provide you another much simpler approach for you to contribute! Provide a simple url to your API documentation, we'll process for you. For this, submit a JSON file containing the URL: 
+We also provide you with a much simpler approach for you to contribute! Provide a simple url to your API documentation, we'll process it for you. Keep in mind, there might be some errors that can creep in with this process and hence we recommend the approach above, or atleast come back to verify if the api documentation we generated for these url's are accurate! They API document generated from the urls will be stored as mentined in the directory structure above.
+
+Submit a JSON file containing the URL: 
 
 | Field      |  Type  | Description/Options     | Required |
 | :---       | :----: |          :----         |   :---:   |
@@ -97,8 +99,8 @@ We also provide you another much simpler approach for you to contribute! Provide
 
 ```python
 {
-  "user_name": "tianjun_z",
-  "api_name": "Torch Hub Model Load",
+  "user_name": "example_username_url",
+  "api_name": "Torch Hub ultralytics_yolov5",
   "url": "https://pytorch.org/hub/ultralytics_yolov5/",
   "questions": [
     "I am a doctor and I want to dictate what my patient is saying and put it into a text doc in my computer.",
@@ -107,6 +109,6 @@ We also provide you another much simpler approach for you to contribute! Provide
 }
 ```
 
-## Website Contribution
+## Website assited
 
-Visit our [website][Coming Soon!], type in the API URL and we'll output an example submission for you! You can choose to submit or edit an then submit. Easy and quick!
+Visit our [website][Coming Soon!], where you can type in the API URL and we'll output an API submission for you! You can choose to submit or edit and then submit. Easy and quick!
