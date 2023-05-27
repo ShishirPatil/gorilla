@@ -16,8 +16,9 @@ _Join our Discord!_ [https://discord.gg/3apqwwME](https://discord.gg/3apqwwME)
 - [Repository Organization](##Repository-Organization)
 - [Contributing Your API](##Contributing-Your-API)
 - [Evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval)
-- [Project Roadmap](##PROJECT-ROADMAP)
 - [FAQ(s)](##FAQ(s))
+- [Project Roadmap](##PROJECT-ROADMAP)
+
 
 ## Get Started 
 
@@ -96,16 +97,16 @@ Now, when it comes to ToolFormer, Toolformer zeroes in on a select set of tools,
 The beauty of these tools truly shines when they collaborate, complementing each other's strengths and capabilities to create an even more powerful and comprehensive solution. This is where your contribution can make a difference. We enthusiastically welcome any inputs to further refine and enhance these tools. 
 
 
-## PROJECT ROADMAP
+## Project Roadmap
 
-[X] Dataset and Eval Code
-[X] Opening up the API Zoo for contributions from community
-[] Hosted Gorilla LLM chat for HF model APIs [May 27, 2023]
-[] Release weights for HF model APIs [May 27, 2023]
-[] Run Gorilla LLM locally [May 27, 2023]
-[] Release weights for all APIs from APIBench [May 28, 2023]
-[] Train a model with first batch of community contributed APIs from API Zoo [May 30, 2023]
-[] Release training code [May 31, 2023]
+- [X] Dataset and Eval Code
+- [X] Opening up the API Zoo for contributions from community
+- [] Hosted Gorilla LLM chat for HF model APIs [May 27, 2023]
+- [] Release weights for HF model APIs [May 27, 2023]
+- [] Run Gorilla LLM locally [May 27, 2023]
+- [] Release weights for all APIs from APIBench [May 28, 2023]
+- [] Train a model with first batch of community contributed APIs from API Zoo [May 30, 2023]
+- [] Release training code [May 31, 2023]
 
 Propose a new task you would like to work on :star_struck:
 
