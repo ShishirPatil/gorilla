@@ -18,7 +18,7 @@ Contribute to Gorilla API Store is very easy!
 Post merge, your APIs will reside under your username, organized as follows: 
 
 ```
-gorilla_api_store
+gorilla
 ├── data
 │   ├── apibench (Evaluating LLM models) v-0.1
 │   │   ├── {api_name}_train.jsonl, {api_name}_eval.jsonl
@@ -35,7 +35,7 @@ We make the contribution to Gorilla API Store as easy as possible. We provide tw
 
 ### Option 1: API JSON (Preferred)
  
-Community members can submit to Gorilla API Zoo using the following JSON format:
+Community members can submit to Gorilla API Zoo using the following JSON list format:
 
 | Field      |  Type  | Description/Options     | Required |
 | :---       | :----: |          :----         |   :---:   |
@@ -53,38 +53,41 @@ Community members can submit to Gorilla API Zoo using the following JSON format:
 **Example Submission**:
 
 ```python
-[{
-  "user_name": "example_username_api",
-  "api_name": "Torch Hub Model snakers4-silero",
-  "api_call": "torch.hub.load(repo_or_dir=['snakers4/silero-models'], model=['silero_stt'], *args, source, trust_repo, force_reload, verbose, skip_validation, **kwargs)", 
-  "api_version": 2.0, 
-  "api_arguments": {
-    "repo_or_dir": "snakers4/silero-models", 
-    "model": "silero_stt", 
-    "language": ["en", "de", "es"]
+[ 
+  {
+    "user_name": "example_username_api",
+    "api_name": "Torch Hub Model snakers4-silero",
+    "api_call": "torch.hub.load(repo_or_dir=['snakers4/silero-models'], model=['silero_stt'], *args, source, trust_repo, force_reload, verbose, skip_validation, **kwargs)", 
+    "api_version": 2.0, 
+    "api_arguments": {
+      "repo_or_dir": "snakers4/silero-models", 
+      "model": "silero_stt", 
+      "language": ["en", "de", "es"]
+    },
+    "functionality": "Speech to Text",
+    "env_requirements": ["torchaudio", "torch", "omegaconf", "soundfile"],
+    "example_code": "import torch \n \
+                    model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True) \n \
+                    imgs = ['https://ultralytics.com/images/zidane.jpg'] \n \
+                    results = model(imgs)",
+    "meta_data": {
+      "description": "Silero Speech-To-Text models provide enterprise grade STT in a compact form-factor for several commonly spoken languages. The models are robust to a variety of dialects, codecs, domains, noises, and lower sampling rates. They consume a normalized audio in the form of samples and output frames with token probabilities. A decoder utility is provided for simplicity.", 
+      "performance": {"dataset": "imagenet", "accuracy": "80.4\%"}
+    },
+    "questions": [
+      "I am a doctor and I want to dictate what my patient is saying and put it into a text doc in my computer.",
+      "My students in math class is having trouble following up my content. He needs an API to write down what I am saying for reviewing.",
+    ],
   },
-  "functionality": "Speech to Text",
-  "env_requirements": ["torchaudio", "torch", "omegaconf", "soundfile"],
-  "example_code": "import torch \n \
-                  model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True) \n \
-                  imgs = ['https://ultralytics.com/images/zidane.jpg'] \n \
-                  results = model(imgs)",
-  "meta_data": {
-    "description": "Silero Speech-To-Text models provide enterprise grade STT in a compact form-factor for several commonly spoken languages. The models are robust to a variety of dialects, codecs, domains, noises, and lower sampling rates. They consume a normalized audio in the form of samples and output frames with token probabilities. A decoder utility is provided for simplicity.", 
-    "performance": {"dataset": "imagenet", "accuracy": "80.4\%"}
-  },
-  "questions": [
-    "I am a doctor and I want to dictate what my patient is saying and put it into a text doc in my computer.",
-    "My students in math class is having trouble following up my content. He needs an API to write down what I am saying for reviewing.",
-  ],
-},]
+  ...
+]
 ```
 
 ### Option 2: URL JSON
 
 We also provide you with a much simpler approach for you to contribute! Provide a simple url to your API documentation, we'll process it for you. Keep in mind, there might be some errors that can creep in with this process and hence we recommend the approach above, or atleast come back to verify if the api documentation we generated for these url's are accurate! They API document generated from the urls will be stored as mentined in the directory structure above.
 
-Submit a JSON file containing the URL: 
+Submit a json file containing the list of json objects: 
 
 | Field      |  Type  | Description/Options     | Required |
 | :---       | :----: |          :----         |   :---:   |
@@ -96,17 +99,20 @@ Submit a JSON file containing the URL:
 **Example Submission**:
 
 ```python
-[{
-  "user_name": "example_username_url",
-  "api_name": "Torch Hub ultralytics_yolov5",
-  "url": "https://pytorch.org/hub/ultralytics_yolov5/",
-  "questions": [
-    "I am a doctor and I want to dictate what my patient is saying and put it into a text doc in my computer.",
-    "My students in math class is having trouble following up my content. He needs an API to write down what I am saying for reviewing.",
-  ],
-},]
+[
+  {
+    "user_name": "example_username_url",
+    "api_name": "Torch Hub ultralytics_yolov5",
+    "url": "https://pytorch.org/hub/ultralytics_yolov5/",
+    "questions": [
+      "I am a doctor and I want to dictate what my patient is saying and put it into a text doc in my computer.",
+      "My students in math class is having trouble following up my content. He needs an API to write down what I am saying for reviewing.",
+    ],
+  },
+...
+]
 ```
 
-**Website assited**:
+**LLM assistance for LLM API dataset :wink:**:
 
-Visit our [website][Coming Soon!], where you can type in the API URL and we'll output an API submission for you! You can choose to submit or edit and then submit. Easy and quick!
+Visit our website [Coming Soon!], where you can type in the API URL and we'll output an API submission for you! You can choose to submit or edit before and submitting. Easy and quick!

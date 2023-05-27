@@ -50,7 +50,7 @@ Additionally, to make it more accessible, we will also release the model weights
 ```
 gorilla
 ├── data
-│   ├── api
+│   ├── api (TF/HF/TH APIs used in generating apibench)
 │   │   ├── {api_name}_api.jsonl
 │   ├── apibench (Evaluating LLM models) v-0.1
 │   │   ├── {api_name}_train.jsonl, {api_name}_eval.jsonl
