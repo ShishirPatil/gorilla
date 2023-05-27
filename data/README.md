@@ -109,4 +109,4 @@ We also provide you another much simpler approach for you to contribute! Provide
 
 ## Website Contribution
 
-Visit our [website](), type in the API URL and we'll output an example submission for you! You can choose to submit or edit an then submit. Easy and quick!
+Visit our [website][Coming Soon!], type in the API URL and we'll output an example submission for you! You can choose to submit or edit an then submit. Easy and quick!
