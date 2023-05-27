@@ -7,12 +7,13 @@ _See the paper!_ [https://arxiv.org/abs/2305.15334](https://arxiv.org/abs/2305.1
 
 _Join our Discord!_ [https://discord.gg/3apqwwME](https://discord.gg/3apqwwME) 
 
-`Gorilla` enables LLMs to use tools by invoking APIs. Given a natural language query, Gorilla comes up with the semantically- and syntactically- correct API to invoke. With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (and growing) API calls accurately while reducing hallucination. Join us, as we try to build the API store for LLMs! Hop on our Discord, or open a PR, or email us if you would like to have your API incorporated as well.
+`Gorilla` enables LLMs to use tools by invoking APIs. Given a natural language query, Gorilla comes up with the semantically- and syntactically- correct API to invoke. With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (and growing) API calls accurately while reducing hallucination. We also release APIBench, the largest collection of APIs, curated and easy to be trained on! Join us, as we try to expand the largest API store and teach LLMs how to write them! Hop on our Discord, or open a PR, or email us if you would like to have your API incorporated as well.
 
 ## News
 - :fire: [05/25] We release the APIBench dataset and the evaluation code of Gorilla!
 
 ## Content
+- [Get Started](##GET-STARTED)
 - [Repository Organization](##Repository-Organization)
 - [Contributing Your API](##Contributing-Your-API)
 - [Evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval)
@@ -53,12 +54,11 @@ gorilla
 ├── data
 │   ├── api (TF/HF/TH APIs used in generating apibench)
 │   │   ├── {api_name}_api.jsonl
-│   ├── apibench (Evaluating LLM models) v-0.1
+│   ├── apibench (Evaluating LLM models) v-1.0
 │   │   ├── {api_name}_train.jsonl, {api_name}_eval.jsonl
 |   |── apizoo (Contributed by the community - evolving)
 │   |   ├── username1.json
 │   │   ├── username2.json
-│   │   ├── username3.json
 │   │   ├── ...
 ├── eval
 │   ├── README.md
@@ -99,18 +99,24 @@ The beauty of these tools truly shines when they collaborate, complementing each
 
 ## Project Roadmap
 
+In the near future, we plan to release the following:
+
 - [X] Dataset and Eval Code
-- [X] Opening up the API Zoo for contributions from community
+- [X] Opening up the APIZoo for contributions from community
 - [] Hosted Gorilla LLM chat for HF model APIs [May 27, 2023]
 - [] Release weights for HF model APIs [May 27, 2023]
-- [] Run Gorilla LLM locally [May 27, 2023]
+- [] Run Gorilla LLM locally [May 28, 2023]
 - [] Release weights for all APIs from APIBench [May 28, 2023]
-- [] Train a model with first batch of community contributed APIs from API Zoo [May 30, 2023]
-- [] Release training code [May 31, 2023]
+- [] Train a model with first batch of community contributed APIs from APIZoo [Jun 5, 2023]
+- [] Release training code [Jun 5, 2023]
+- [] Train SOTA Gorilla LLM with expanded APIBench and APIZoo :rocket:
 
 Propose a new task you would like to work on :star_struck:
 
 ## Citation
+
+If you use Gorilla or APIBench, please cite our paper:
+
 ```text
 @article{patil2023gorilla,
   title={Gorilla: Large Language Model Connected with Massive APIs},

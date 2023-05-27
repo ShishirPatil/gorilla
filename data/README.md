@@ -20,7 +20,7 @@ Post merge, your APIs will reside under your username, organized as follows:
 ```
 gorilla
 ├── data
-│   ├── apibench (Evaluating LLM models) v-0.1
+│   ├── apibench (Evaluating LLM models) v-1.0
 │   │   ├── {api_name}_train.jsonl, {api_name}_eval.jsonl
 │   ├── apizoo (Contributed by our Community)
 │   |   ├── username1.json
