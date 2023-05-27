@@ -3,29 +3,24 @@ By Shishir G. Patil, Tianjun Zhang, Xin Wang, and Joseph E. Gonzalez  ([Project 
 
 <img src="https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/img/logo.png" width=50% height=50%>
 
-**Checkout our paper!** [![arXiv](https://img.shields.io/badge/arXiv-2305.15334-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334)
+**:newspaper_roll: Checkout our paper!** [![arXiv](https://img.shields.io/badge/arXiv-2305.15334-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334)
 
-**Join our Discord!** [![Discord](https://img.shields.io/discord/1111172801899012102?label=Discord&logo=discord&logoColor=green&style=flat-square)](https://discord.gg/3apqwwME)
+**:wave: Join our Discord!** [![Discord](https://img.shields.io/discord/1111172801899012102?label=Discord&logo=discord&logoColor=green&style=flat-square)](https://discord.gg/3apqwwME)
+
+**:rocket: Try Gorilla in 60s** [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing)
 
 `Gorilla` enables LLMs to use tools by invoking APIs. Given a natural language query, Gorilla comes up with the semantically- and syntactically- correct API to invoke. With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (and growing) API calls accurately while reducing hallucination. We also release APIBench, the largest collection of APIs, curated and easy to be trained on! Join us, as we try to expand the largest API store and teach LLMs how to write them! Hop on our Discord, or open a PR, or email us if you would like to have your API incorporated as well.
 
 ## News
+- :rocket: [05/27] Released the first Gorilla model! [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing) and [:hugs:](https://huggingface.co/gorilla-llm/gorilla-7b-hf-delta-v0)!
+- :fire: [05/27] We released the APIZoo contribution guide for community API contributions!
 - :fire: [05/25] We release the APIBench dataset and the evaluation code of Gorilla!
-
-## Content
-- [Get Started](##GET-STARTED)
-- [Repository Organization](##Repository-Organization)
-- [Contributing Your API](##Contributing-Your-API)
-- [Evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval)
-- [FAQ(s)](##FAQ(s))
-- [Project Roadmap](##PROJECT-ROADMAP)
-
 
 ## Get Started 
 
 ### Install Dependencies
 
-Use the following command to install dependencies: 
+Use the following command to install dependencies. These are only for evaluation, additional dependencies for inference and training are in their respective sub-directories.
 
 ```bash
 conda create -n gorilla python=3.8
@@ -41,13 +36,13 @@ Our repository organization is shown below.
 
   - The `data` folder contains all the evaluation APIs `(APIBench)` and the community contributed APIs.
   - The `eval` folder contains all our evaluation code as well as the Gorilla outputs.
-  - <span style="color:hr">[Coming Soon!]</span>  The `inference` folder contains all the inference code associated with running Gorilla locally.
+  - The `inference` folder contains all the inference code for running Gorilla locally.
   - <span style="color:hr">[Coming Soon!]</span>  The `train` folder contains all the training code associated with Gorilla finetuning.
 
 
 For our dataset collections, all the 1640 API documentation is in `data/api`. We also include the `APIBench` dataset created by self-instruct in `data/apibench`. For evaluation, we convert this into a LLM-friendly chat format, and the questions are in `eval/eval-data/questions`, and the corresponding responces are in `eval/eval-data/responses`.  We have also included the evaluation scripts are in `eval/eval-scripts`. This would be entirely sufficient to train Gorilla yourself, and reproduce our results. Please see [evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval) for the details on how to use our evaluation pipeline.
 
-Additionally, to make it more accessible, we will also release the model weights soon, and a hosted Gorilla chat completion API! Eitherways, if you run into any issues please feel free to reach out to us either through Discord or email or raise a Github issue.
+Additionally, to make it more accessible, we have also released the model weights `gorilla-7b-hf-v0` that lets you invoke over 925 HuggingFace APIs. We will release TorchHub, TensorFlow, all three combined with generic chat capability and community contributed APIs as soon as we can scale infrastructure. You can run it locally from isntructions in the `inference/` sub-directory, or we also provide a hosted Gorilla chat completion API! If you have any suggestions, or if you run into any issues please feel free to reach out to us either through Discord or email or raise a Github issue.
 
 ```
 gorilla
@@ -73,7 +68,7 @@ gorilla
 │   │   │   ├── API name
 │   │   │   │   ├── responses_{api_name}_Gorilla_FT_{eval_metric}.jsonl
 │   │   │   │   ├── responses_{api_name}_Gorilla_RT_{eval_metric}.jsonl
-├── inference (Coming Soon!)
+├── inference
 ├── train (Coming Soon!)
 
 ```
@@ -99,13 +94,13 @@ The beauty of these tools truly shines when they collaborate, complementing each
 
 ## Project Roadmap
 
-In the near future, we plan to release the following:
+In the immediate future, we plan to release the following:
 
 - [X] Dataset and Eval Code
 - [X] Opening up the APIZoo for contributions from community
-- [] Hosted Gorilla LLM chat for HF model APIs [May 27, 2023]
-- [] Release weights for HF model APIs [May 27, 2023]
-- [] Run Gorilla LLM locally [May 28, 2023]
+- [X] Hosted Gorilla LLM chat for HF model APIs [May 27, 2023]
+- [X] Release weights for HF model APIs [May 27, 2023]
+- [X] Run Gorilla LLM locally [May 28, 2023]
 - [] Release weights for all APIs from APIBench [May 28, 2023]
 - [] Train a model with first batch of community contributed APIs from APIZoo [Jun 5, 2023]
 - [] Release training code [Jun 5, 2023]
