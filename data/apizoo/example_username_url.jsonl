@@ -1,9 +1,0 @@
-{
-  "user_name": "example_username_url",
-  "api_name": "Torch Hub ultralytics_yolov5",
-  "url": "https://pytorch.org/hub/ultralytics_yolov5/",
-  "questions": [
-    "I am a doctor and I want to dictate what my patient is saying and put it into a text doc in my computer.",
-    "My students in math class is having trouble following up my content. He needs an API to write down what I am saying for reviewing."
-  ]
-}

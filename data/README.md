@@ -1,7 +1,5 @@
 # Gorilla API Store 
 
-<img src="https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/img/logo.png" width=50% height=50%>
-
 Teach Gorilla how to use your API! Learn about the entire workflow, and how to contribute to Gorilla API Store! Gorilla API Store intends to enhance LLM's capability to use tools through API calls. We appreciate everyone's effort and contributions! THIS WILL ALWAYS REMAIN OPEN SOURCE.
 
 ## How to Contribute?
@@ -10,7 +8,7 @@ Contribute to Gorilla API Store is very easy!
 
 1. **JSON Contribution**: It only takes two steps
 
-- Step 1: Submit an API JSON file or a URL JSON file following our cirteria. 
+- Step 1: Submit an API JSON file or a URL JSON file following our format. 
 - Step 2: Raise a Pull Request.
 
 2. **Website Assisted** [Coming Soon]: If you need help writing an API json, we will provide a website and you only need to type in your API documentation url. We will return a draft API JSON file (you guessed it, using an LLM) and you can either choose to **Submit** or **Edit & Submit**. 
@@ -25,18 +23,18 @@ gorilla_api_store
 │   ├── apibench (Evaluating LLM models) v-0.1
 │   │   ├── {api_name}_train.jsonl, {api_name}_eval.jsonl
 │   ├── apizoo (Contributed by our Community)
-│   |   ├── username1.jsonl
-│   │   ├── username2.jsonl
-│   │   ├── username3.jsonl
+│   |   ├── username1.json
+│   │   ├── username2.json
+│   │   ├── username3.json
 │   │   ├── ...
 ```
 
-## JSON Contribution
+## Two ways to contribute APIs
 
 We make the contribution to Gorilla API Store as easy as possible. We provide two alternatives: You could either submit following the API JSON format {or} URL JSON format. 
 
-### API JSON
-
+### Option 1: API JSON (Preferred)
+ 
 Community members can submit to Gorilla API Zoo using the following JSON format:
 
 | Field      |  Type  | Description/Options     | Required |
@@ -55,7 +53,7 @@ Community members can submit to Gorilla API Zoo using the following JSON format:
 **Example Submission**:
 
 ```python
-{
+[{
   "user_name": "example_username_api",
   "api_name": "Torch Hub Model snakers4-silero",
   "api_call": "torch.hub.load(repo_or_dir=['snakers4/silero-models'], model=['silero_stt'], *args, source, trust_repo, force_reload, verbose, skip_validation, **kwargs)", 
@@ -79,10 +77,10 @@ Community members can submit to Gorilla API Zoo using the following JSON format:
     "I am a doctor and I want to dictate what my patient is saying and put it into a text doc in my computer.",
     "My students in math class is having trouble following up my content. He needs an API to write down what I am saying for reviewing.",
   ],
-}
+},]
 ```
 
-### URL JSON
+### Option 2: URL JSON
 
 We also provide you with a much simpler approach for you to contribute! Provide a simple url to your API documentation, we'll process it for you. Keep in mind, there might be some errors that can creep in with this process and hence we recommend the approach above, or atleast come back to verify if the api documentation we generated for these url's are accurate! They API document generated from the urls will be stored as mentined in the directory structure above.
 
@@ -98,7 +96,7 @@ Submit a JSON file containing the URL:
 **Example Submission**:
 
 ```python
-{
+[{
   "user_name": "example_username_url",
   "api_name": "Torch Hub ultralytics_yolov5",
   "url": "https://pytorch.org/hub/ultralytics_yolov5/",
@@ -106,9 +104,9 @@ Submit a JSON file containing the URL:
     "I am a doctor and I want to dictate what my patient is saying and put it into a text doc in my computer.",
     "My students in math class is having trouble following up my content. He needs an API to write down what I am saying for reviewing.",
   ],
-}
+},]
 ```
 
-## Website assited
+**Website assited**:
 
 Visit our [website][Coming Soon!], where you can type in the API URL and we'll output an API submission for you! You can choose to submit or edit and then submit. Easy and quick!

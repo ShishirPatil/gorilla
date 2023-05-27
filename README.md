@@ -1,7 +1,7 @@
 # Gorilla: Large Language Model Connected with Massive APIs
 By Shishir G. Patil, Tianjun Zhang, Xin Wang, and Joseph E. Gonzalez  ([Project Website](https://shishirpatil.github.io/gorilla/))
 
-<img src=“https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/img/logo.png” width=30% height=30%>
+<img src="https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/img/logo.png" width=50% height=50%>
 
 _See the paper!_ [https://arxiv.org/abs/2305.15334](https://arxiv.org/abs/2305.15334)
 
@@ -55,9 +55,9 @@ gorilla
 │   ├── apibench (Evaluating LLM models) v-0.1
 │   │   ├── {api_name}_train.jsonl, {api_name}_eval.jsonl
 |   |── apizoo (Contributed by the community - evolving)
-│   |   ├── username1.jsonl
-│   │   ├── username2.jsonl
-│   │   ├── username3.jsonl
+│   |   ├── username1.json
+│   │   ├── username2.json
+│   │   ├── username3.json
 │   │   ├── ...
 ├── eval
 │   ├── README.md
