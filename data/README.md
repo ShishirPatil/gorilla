@@ -94,7 +94,7 @@ Submit a json file containing the list of json objects:
 | user_name     | String       | Name of User   | ✅ |
 | api_name      | String       | Name of API (maximum 20 words)   | ✅ |
 | api_url      | String       | URL to API documentation   | ✅ |
-| Questions | List[String] | A question describing a real-life scenario that uses this API. Please donnot include specific API name. | [Optional]:fire: |
+| Questions | List[String] | A question describing a real-life scenario that uses this API. Please do not include specific API name. | [Optional]:fire: |
 
 **Example Submission**:
 
