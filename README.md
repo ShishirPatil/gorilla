@@ -1,50 +1,25 @@
 # Gorilla: Large Language Model Connected with Massive APIs
 By Shishir G. Patil, Tianjun Zhang, Xin Wang, and Joseph E. Gonzalez  ([Project Website](https://shishirpatil.github.io/gorilla/))
 
-![](https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/img/logo.png)
+<img src="https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/img/logo.png" width=50% height=50%>
 
-_See the paper!_ [https://arxiv.org/abs/2305.15334](https://arxiv.org/abs/2305.15334)
+**Checkout our paper!** [![arXiv](https://img.shields.io/badge/arXiv-2305.15334-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334)
 
-_Join our Discord!_ [https://discord.gg/3apqwwME](https://discord.gg/3apqwwME) 
+**Join our Discord!** [![Discord](https://img.shields.io/discord/1111172801899012102?label=Discord&logo=discord&logoColor=green&style=flat-square)](https://discord.gg/3apqwwME)
 
-`Gorilla` enables LLMs to use tools by invoking APIs. Given a natural language query, Gorilla comes up with the semantically- and syntactically- correct API to invoke. With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (and growing) API calls accurately while reducing hallucination. Join us, as we try to build the API store for LLMs! Hop on our Discord, or open a PR, or email us if you would like to have your API incorporated as well.
+`Gorilla` enables LLMs to use tools by invoking APIs. Given a natural language query, Gorilla comes up with the semantically- and syntactically- correct API to invoke. With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (and growing) API calls accurately while reducing hallucination. We also release APIBench, the largest collection of APIs, curated and easy to be trained on! Join us, as we try to expand the largest API store and teach LLMs how to write them! Hop on our Discord, or open a PR, or email us if you would like to have your API incorporated as well.
 
-## Repository Organization
+## News
+- :fire: [05/25] We release the APIBench dataset and the evaluation code of Gorilla!
 
-Our repository organization is shown below. 
+## Content
+- [Get Started](##GET-STARTED)
+- [Repository Organization](##Repository-Organization)
+- [Contributing Your API](##Contributing-Your-API)
+- [Evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval)
+- [FAQ(s)](##FAQ(s))
+- [Project Roadmap](##PROJECT-ROADMAP)
 
-  - The `data` folder contains all the dataset we collected
-  - The `eval` folder contains all our evaluation code as well as the Gorilla outputs
-  - [Coming Soon!] The `train` folder contains all the training code associated with Gorilla finetuning
-
-For our dataset collections, all the 1640 API documentation is in `data/api`. We also include the `APIBench` dataset created by self-instruct in `data/apibench`. 
-
-For evaluation, we convert this into a LLM-friendly chat format for evaluation, and the questions are in `eval/eval-data/questions`, and the corresponding responces are in `eval/eval-data/responses`.  We have also included the evaluation scripts are in `eval/eval-scripts`. This would be entirely sufficient to train Gorilla yourself, and reproduce our results. Please see [evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval) for the details on how to use our evaluation pipeline.
-
-Additionally, to make it more accessible, we will also release the model weights soon! Eitherways, if you run into any issues please feel free to reach out to us either through Discord or email or raise a Github issue.
-
-```
-gorilla
-├── data
-│   ├── api
-│   │   ├── {api_name}_api.jsonl
-│   ├── api_bench
-│   │   ├── {api_name}_train.jsonl, {api_name}_eval.jsonl
-├── eval
-│   ├── README.md
-│   ├── get_llm_responses.py
-│   ├── eval-scripts
-│   │   ├── ast_eval_{api_name}.py
-│   ├── eval-data
-│   │   ├── questions
-│   │   │   ├── API name
-│   │   │   │   ├── questions_{api_name}_{eval_metric}.jsonl
-│   │   ├── responses
-│   │   │   ├── API name
-│   │   │   │   ├── responses_{api_name}_Gorilla_FT_{eval_metric}.jsonl
-│   │   │   │   ├── responses_{api_name}_Gorilla_RT_{eval_metric}.jsonl
-├── train
-```
 
 ## Get Started 
 
@@ -58,26 +33,54 @@ conda activate gorilla
 pip install -r requirements.txt
 ```
 
-## Abstract
+We have included prompts and responces for the APIBench with and without retrievers along with the Abstract Syntax Tree (AST) matching evaluation script at [evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval).
 
-From our [paper](https://arxiv.org/abs/2305.15334):
+## Repository Organization
 
-```text
-Large Language Models (LLMs) have seen an impressive wave of advances recently, with models 
-now excelling in a variety of tasks, such as mathematical reasoning and program synthesis. 
-However, their potential to effectively use tools via API calls remains unfulfilled. 
-This is a challenging task even for today's state-of-the-art LLMs such as GPT-4, largely 
-due to their inability to generate accurate input arguments and their tendency to hallucinate 
-the wrong usage of an API call. We release Gorilla, a finetuned LLaMA-based model that surpasses 
-the performance of GPT-4 on writing API calls. When combined with a document retriever, 
-Gorilla demonstrates a strong capability to adapt to test-time document changes, enabling 
-flexible user updates or version changes. It also substantially mitigates the issue of 
-hallucination, commonly encountered when prompting LLMs directly. To evaluate the model's 
-ability, we introduce APIBench, a comprehensive dataset consisting of HuggingFace, TorchHub, 
-and TensorHub APIs. The successful integration of the retrieval system with Gorilla demonstrates 
-the potential for LLMs to use tools more accurately, keep up with frequently updated documentation, 
-and consequently increase the reliability and applicability of their outputs. 
+Our repository organization is shown below. 
+
+  - The `data` folder contains all the evaluation APIs `(APIBench)` and the community contributed APIs.
+  - The `eval` folder contains all our evaluation code as well as the Gorilla outputs.
+  - <span style="color:hr">[Coming Soon!]</span>  The `inference` folder contains all the inference code associated with running Gorilla locally.
+  - <span style="color:hr">[Coming Soon!]</span>  The `train` folder contains all the training code associated with Gorilla finetuning.
+
+
+For our dataset collections, all the 1640 API documentation is in `data/api`. We also include the `APIBench` dataset created by self-instruct in `data/apibench`. For evaluation, we convert this into a LLM-friendly chat format, and the questions are in `eval/eval-data/questions`, and the corresponding responces are in `eval/eval-data/responses`.  We have also included the evaluation scripts are in `eval/eval-scripts`. This would be entirely sufficient to train Gorilla yourself, and reproduce our results. Please see [evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval) for the details on how to use our evaluation pipeline.
+
+Additionally, to make it more accessible, we will also release the model weights soon, and a hosted Gorilla chat completion API! Eitherways, if you run into any issues please feel free to reach out to us either through Discord or email or raise a Github issue.
+
 ```
+gorilla
+├── data
+│   ├── api (TF/HF/TH APIs used in generating apibench)
+│   │   ├── {api_name}_api.jsonl
+│   ├── apibench (Evaluating LLM models) v-1.0
+│   │   ├── {api_name}_train.jsonl, {api_name}_eval.jsonl
+|   |── apizoo (Contributed by the community - evolving)
+│   |   ├── username1.json
+│   │   ├── username2.json
+│   │   ├── ...
+├── eval
+│   ├── README.md
+│   ├── get_llm_responses.py
+│   ├── eval-scripts
+│   │   ├── ast_eval_{api_name}.py
+│   ├── eval-data
+│   │   ├── questions
+│   │   │   ├── API name
+│   │   │   │   ├── questions_{api_name}_{eval_metric}.jsonl
+│   │   ├── responses
+│   │   │   ├── API name
+│   │   │   │   ├── responses_{api_name}_Gorilla_FT_{eval_metric}.jsonl
+│   │   │   │   ├── responses_{api_name}_Gorilla_RT_{eval_metric}.jsonl
+├── inference (Coming Soon!)
+├── train (Coming Soon!)
+
+```
+
+## Contributing Your API
+We aim to build an open-source, one-stop-shop for all APIs, LLMs can interact with! Any suggestions and contributions are welcome! Please see the details on [how to contribute](https://github.com/ShishirPatil/gorilla/tree/main/data/README.md). THIS WILL ALWAYS REMAIN OPEN SOURCE.
+
 
 ## FAQ(s)
 
@@ -93,7 +96,27 @@ Now, when it comes to ToolFormer, Toolformer zeroes in on a select set of tools,
 
 The beauty of these tools truly shines when they collaborate, complementing each other's strengths and capabilities to create an even more powerful and comprehensive solution. This is where your contribution can make a difference. We enthusiastically welcome any inputs to further refine and enhance these tools. 
 
+
+## Project Roadmap
+
+In the near future, we plan to release the following:
+
+- [X] Dataset and Eval Code
+- [X] Opening up the APIZoo for contributions from community
+- [] Hosted Gorilla LLM chat for HF model APIs [May 27, 2023]
+- [] Release weights for HF model APIs [May 27, 2023]
+- [] Run Gorilla LLM locally [May 28, 2023]
+- [] Release weights for all APIs from APIBench [May 28, 2023]
+- [] Train a model with first batch of community contributed APIs from APIZoo [Jun 5, 2023]
+- [] Release training code [Jun 5, 2023]
+- [] Train SOTA Gorilla LLM with expanded APIBench and APIZoo :rocket:
+
+Propose a new task you would like to work on :star_struck:
+
 ## Citation
+
+If you use Gorilla or APIBench, please cite our paper:
+
 ```text
 @article{patil2023gorilla,
   title={Gorilla: Large Language Model Connected with Massive APIs},
