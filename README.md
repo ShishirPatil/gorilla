@@ -79,7 +79,12 @@ We aim to build an open-source, one-stop-shop for all APIs, LLMs can interact wi
 
 ## FAQ(s)
 
-Can we use Gorilla with Langchain, Toolformer, AutoGPT etc?
+1. I would like to use Gorilla commercially. Is there going to be a Apache 2.0 licensed version?
+
+Yes! We are actively working on it. We will release a Gorilla model with Apache 2.0 license by Jun 5. Please stay tuned, and let us know if you are interested. 
+
+
+2. Can we use Gorilla with Langchain, Toolformer, AutoGPT etc?
 
 Absolutely! You've highlighted a great aspect of our tools. Gorilla is  an  end-to-end model, specifically tailored to serve correct API calls without requiring any additional coding. It's designed to work as part of a wider ecosystem and can be flexibly integrated with other tools.
 
@@ -102,6 +107,7 @@ In the immediate future, we plan to release the following:
 - [X] Release weights for HF model APIs [May 27, 2023]
 - [X] Run Gorilla LLM locally [May 28, 2023]
 - [] Release weights for all APIs from APIBench [May 28, 2023]
+- [] Release a commercially usable, Apache 2.0 licensed Gorilla model [Jun 5, 2023] 
 - [] Train a model with first batch of community contributed APIs from APIZoo [Jun 5, 2023]
 - [] Release training code [Jun 5, 2023]
 - [] Train SOTA Gorilla LLM with expanded APIBench and APIZoo :rocket:
