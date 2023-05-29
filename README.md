@@ -12,23 +12,16 @@ By Shishir G. Patil, Tianjun Zhang, Xin Wang, and Joseph E. Gonzalez  ([Project 
 `Gorilla` enables LLMs to use tools by invoking APIs. Given a natural language query, Gorilla comes up with the semantically- and syntactically- correct API to invoke. With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (and growing) API calls accurately while reducing hallucination. We also release APIBench, the largest collection of APIs, curated and easy to be trained on! Join us, as we try to expand the largest API store and teach LLMs how to write them! Hop on our Discord, or open a PR, or email us if you would like to have your API incorporated as well.
 
 ## News
+- :rocket: [05/28] Released Torch Hub and TensorFlow Hub Models!
 - :rocket: [05/27] Released the first Gorilla model! [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing) and [:hugs:](https://huggingface.co/gorilla-llm/gorilla-7b-hf-delta-v0)!
 - :fire: [05/27] We released the APIZoo contribution guide for community API contributions!
 - :fire: [05/25] We release the APIBench dataset and the evaluation code of Gorilla!
 
 ## Get Started 
 
-### Install Dependencies
+Inference: Run Gorilla locally [`inference/README.md`](inference/README.md)
 
-Use the following command to install dependencies. These are only for evaluation, additional dependencies for inference and training are in their respective sub-directories.
-
-```bash
-conda create -n gorilla python=3.8
-conda activate gorilla
-pip install -r requirements.txt
-```
-
-We have included prompts and responces for the APIBench with and without retrievers along with the Abstract Syntax Tree (AST) matching evaluation script at [evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval).
+Evaluation: We have included prompts and responces for the APIBench with and without retrievers along with the Abstract Syntax Tree (AST) matching evaluation script at [evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval).
 
 ## Repository Organization
 
@@ -106,7 +99,7 @@ In the immediate future, we plan to release the following:
 - [X] Hosted Gorilla LLM chat for HF model APIs [May 27, 2023]
 - [X] Release weights for HF model APIs [May 27, 2023]
 - [X] Run Gorilla LLM locally [May 28, 2023]
-- [] Release weights for all APIs from APIBench [May 28, 2023]
+- [X] Release weights for all APIs from APIBench [May 28, 2023]
 - [] Release a commercially usable, Apache 2.0 licensed Gorilla model [Jun 5, 2023] 
 - [] Train a model with first batch of community contributed APIs from APIZoo [Jun 5, 2023]
 - [] Release training code [Jun 5, 2023]
