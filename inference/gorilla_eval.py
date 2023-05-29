@@ -43,8 +43,6 @@ def load_model(
                 kwargs["max_memory"] = {i: max_gpu_memory for i in range(num_gpus)}
     elif device == "mps":
         kwargs = {"torch_dtype": torch.float16}
-        # Avoid bugs in mps backend by not using in-place operations.
-        replace_llama_attn_with_non_inplace_operations()
     else:
         raise ValueError(f"Invalid device: {device}")
 
