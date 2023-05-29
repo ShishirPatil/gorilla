@@ -8,6 +8,8 @@ You can either run Gorilla through our hosted [![Colab](https://colab.research.g
 
 `gorilla-7b-hf-v0` is the first set of weights we released :tada: It chooses from 925 HF APIs in a 0-shot fashion (without any retrieval). Update: We released `gorilla-7b-th-v0` with 94 (exhaustive) APIs from Torch Hub and `gorilla-7b-tf-v0` with 626 (exhaustive) APIs from Tensorflow. In spirit of openess, we do not filter, nor carry out any post processing either to the prompt nor response :gift: Keep in mind that the current `gorilla-7b-*` models do not have any geenric chat capability.  We do have a model with all the 1600+ APIs which also has chat capability, which we release slowly to accomodate server demand. 
 
+All delta weights hosted at [https://huggingface.co/gorilla-llm/](https://huggingface.co/gorilla-llm/). 
+
 ### Install Dependencies
 
 You should install dependencies using the following command: 
