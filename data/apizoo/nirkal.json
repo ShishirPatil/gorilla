@@ -1,0 +1,11 @@
+[
+  {
+    "user_name": "example_username_url",
+    "api_name": "Kubernetes API",
+    "url": "https://raw.githubusercontent.com/kubernetes/kubernetes/release-1.27/api/openapi-spec/swagger.json",
+    "questions": [
+      "I am a Kubenetes DevOps Engineer and I want to get the list of pods running in a given namespace",
+      "My application running in a given Kubernetes cluster is returning HTTP 500, I want to see the logs from the application pods.",
+    ],
+  }
+]
