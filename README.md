@@ -12,6 +12,7 @@ By Shishir G. Patil, Tianjun Zhang, Xin Wang, and Joseph E. Gonzalez  ([Project 
 `Gorilla` enables LLMs to use tools by invoking APIs. Given a natural language query, Gorilla comes up with the semantically- and syntactically- correct API to invoke. With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (and growing) API calls accurately while reducing hallucination. We also release APIBench, the largest collection of APIs, curated and easy to be trained on! Join us, as we try to expand the largest API store and teach LLMs how to write them! Hop on our Discord, or open a PR, or email us if you would like to have your API incorporated as well.
 
 ## News
+- :rocket: [05/30] Provided the [CLI interface](inference/README.md) to chat with Gorilla!
 - :rocket: [05/28] Released Torch Hub and TensorFlow Hub Models!
 - :rocket: [05/27] Released the first Gorilla model! [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing) and [:hugs:](https://huggingface.co/gorilla-llm/gorilla-7b-hf-delta-v0)!
 - :fire: [05/27] We released the APIZoo contribution guide for community API contributions!
@@ -62,6 +63,10 @@ gorilla
 │   │   │   │   ├── responses_{api_name}_Gorilla_FT_{eval_metric}.jsonl
 │   │   │   │   ├── responses_{api_name}_Gorilla_RT_{eval_metric}.jsonl
 ├── inference
+│   ├── README.md
+│   ├── serve
+│   │   ├── gorilla_cli.py
+│   │   ├── conv_template.py
 ├── train (Coming Soon!)
 
 ```
@@ -119,7 +124,3 @@ If you use Gorilla or APIBench, please cite our paper:
   journal={arXiv preprint arXiv:2305.15334},
 } 
 ```
-
-
-
-
