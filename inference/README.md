@@ -43,8 +43,7 @@ python3 apply_delta.py
 Simply run the command below to start chatting with Gorilla: 
 
 ```bash 
-cd serve
-python3 gorilla_cli.py --model path/to/gorilla-7b-{hf,th,tf}-v0
+python3 serve/gorilla_cli.py --model-path path/to/gorilla-7b-{hf,th,tf}-v0
 ```
 
 ### [Optional] Batch Inference on a Prompt File
