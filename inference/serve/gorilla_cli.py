@@ -2,7 +2,7 @@
 Chat with a model with command line interface.
 
 Usage:
-python3 gorilla_cli --model path/to/gorilla-7b-hf-v0
+python3 gorilla_cli.py --model path/to/gorilla-7b-hf-v0
 
 Thanks to LMSYS for the template of this code.
 """
