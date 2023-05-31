@@ -105,10 +105,10 @@ In the immediate future, we plan to release the following:
 - [X] Release weights for HF model APIs [May 27, 2023]
 - [X] Run Gorilla LLM locally [May 28, 2023]
 - [X] Release weights for all APIs from APIBench [May 28, 2023]
-- [] Release a commercially usable, Apache 2.0 licensed Gorilla model [Jun 5, 2023] 
-- [] Train a model with first batch of community contributed APIs from APIZoo [Jun 5, 2023]
-- [] Release training code [Jun 5, 2023]
-- [] Train SOTA Gorilla LLM with expanded APIBench and APIZoo :rocket:
+- [ ] Release a commercially usable, Apache 2.0 licensed Gorilla model [Jun 5, 2023] 
+- [ ] Train a model with first batch of community contributed APIs from APIZoo [Jun 5, 2023]
+- [ ] Release training code [Jun 5, 2023]
+- [ ] Train SOTA Gorilla LLM with expanded APIBench and APIZoo :rocket:
 
 Propose a new task you would like to work on :star_struck:
 
