@@ -4,7 +4,7 @@
 
 ## Get Started
 
-You can either run Gorilla through our hosted [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing) or run it locally on your machine. Here, are the instructions to run it locally.
+You can either run Gorilla through our hosted [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing) or [chat with it using cli](#inference-using-cli). We also provide instructions for [evaluating batched prompts](#optional-batch-inference-on-a-prompt-file). Here, are the instructions to run it locally.
 
 `gorilla-7b-hf-v0` is the first set of weights we released :tada: It chooses from 925 HF APIs in a 0-shot fashion (without any retrieval). Update: We released `gorilla-7b-th-v0` with 94 (exhaustive) APIs from Torch Hub and `gorilla-7b-tf-v0` with 626 (exhaustive) APIs from Tensorflow. In spirit of openess, we do not filter, nor carry out any post processing either to the prompt nor response :gift: Keep in mind that the current `gorilla-7b-*` models do not have any geenric chat capability.  We do have a model with all the 1600+ APIs which also has chat capability, which we release slowly to accomodate server demand. 
 
@@ -38,7 +38,15 @@ python3 apply_delta.py
 --delta-path path/to/models--gorilla-llm--gorilla-7b-hf-delta-v0
 ```
 
-### Inference on user prompts
+### Inference using CLI
+
+Simply run the command below to start chatting with Gorilla: 
+
+```bash 
+python3 serve/gorilla_cli.py --model-path path/to/gorilla-7b-{hf,th,tf}-v0
+```
+
+### [Optional] Batch Inference on a Prompt File
 
 After downloading the model, you need to make a jsonl file containing all the question you want to inference through Gorilla. Here is [one example](https://github.com/ShishirPatil/gorilla/tree/main/inference/questions/example.jsonl): 
 
