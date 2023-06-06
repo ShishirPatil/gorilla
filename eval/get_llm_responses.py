@@ -29,7 +29,7 @@ def encode_question(question, api_name):
         print("Error: API name is not supported.")
 
     prompt = question + "\nWrite a python program in 1 to 2 lines to call API in " + api_name + ".\n\nThe answer should follow the format: <<<domain>>> $DOMAIN, <<<api_call>>>: $API_CALL, <<<api_provider>>>: $API_PROVIDER, <<<explanation>>>: $EXPLANATION, <<<code>>>: $CODE}. Here are the requirements:\n" + domains + "\n2. The $API_CALL should have only 1 line of code that calls api.\n3. The $API_PROVIDER should be the programming framework used.\n4. $EXPLANATION should be a step-by-step explanation.\n5. The $CODE is the python code.\n6. Do not repeat the format in your answer."
-    prompts.append({"role": "system", "content": "You are a helpful API write to write API based the requirements."})
+    prompts.append({"role": "system", "content": "You are a helpful API writer who can write APIs based on requirements."})
     prompts.append({"role": "user", "content": prompt})
     return prompts
 
