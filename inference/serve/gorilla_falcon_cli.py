@@ -2,7 +2,7 @@
 Chat with a model with command line interface.
 
 Usage:
-python3 gorilla_cli.py --model-path path/to/gorilla-7b-hf-v0
+python3 -m gorilla_cli --model path/to/gorilla-7b-hf-v0
 
 Thanks to LMSYS for the template of this code.
 """
@@ -22,13 +22,6 @@ from transformers import (
     LlamaTokenizer,
     LlamaForCausalLM,
     T5Tokenizer,
-)
-from transformers.generation.logits_process import (
-    LogitsProcessorList,
-    RepetitionPenaltyLogitsProcessor,
-    TemperatureLogitsWarper,
-    TopKLogitsWarper,
-    TopPLogitsWarper,
 )
 
 from prompt_toolkit import PromptSession
@@ -93,6 +86,8 @@ def load_model(
             )
   
     tokenizer = AutoTokenizer.from_pretrained(model_path)
+    tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.pad_token_id = 11
     model = AutoModelForCausalLM.from_pretrained(
         model_path,
         trust_remote_code=True,
@@ -102,86 +97,21 @@ def load_model(
 
     return model, tokenizer
 
-def prepare_logits_processor(
-    temperature: float, repetition_penalty: float, top_p: float, top_k: int
-):
-    processor_list = LogitsProcessorList()
-
-    if temperature >= 1e-5 and temperature != 1.0:
-        processor_list.append(TemperatureLogitsWarper(temperature))
-    if repetition_penalty > 1.0:
-        processor_list.append(RepetitionPenaltyLogitsProcessor(repetition_penalty))
-    if 1e-8 <= top_p < 1.0:
-        processor_list.append(TopPLogitsWarper(top_p))
-    if top_k > 0:
-        processor_list.append(TopKLogitsWarper(top_k))
-    return processor_list
-
 @torch.inference_mode()
 def get_response(prompt, model, tokenizer, device):
-
-    logits_processor = prepare_logits_processor(
-        0.1, 0.0, 1.0, -1
+    input_ids = tokenizer([prompt]).input_ids
+    output_ids = model.generate(
+        torch.as_tensor(input_ids).to(device),
+        do_sample=True,
+        temperature=0.7,
+        max_new_tokens=1024,
     )
+    output_ids = output_ids[0][len(input_ids[0]) :]
+    outputs = tokenizer.decode(output_ids, skip_special_tokens=True).strip()
 
-    context_len = 2048
-    max_new_tokens = 1024
-    stream_interval=2
-    input_ids = tokenizer(prompt).input_ids
-    input_echo_len = len(input_ids)
-    output_ids = list(input_ids)
-    max_src_len = context_len - max_new_tokens - 8
-    input_ids = input_ids[-max_src_len:]
-    stop_token_ids = [tokenizer.eos_token_id]
-    
-    past_key_values = out = None
-    for i in range(max_new_tokens):
-        if i == 0:
-            out = model(torch.as_tensor([input_ids], device=device),
-                use_cache=True)
-            logits = out.logits
-            past_key_values = out.past_key_values
-        else:
-            out = model(
-                input_ids=torch.as_tensor([[token]], device=device),
-                use_cache=True,
-                past_key_values=past_key_values,
-            )
-            logits = out.logits
-            past_key_values = out.past_key_values
-
-        tmp_output_ids = None
-        last_token_logits = logits_processor(tmp_output_ids, logits[:, -1, :])[0]
-        probs = torch.softmax(last_token_logits, dim=-1)
-        token = int(torch.multinomial(probs, num_samples=1))
-        output_ids.append(token)
-
-        if token in stop_token_ids:
-            stopped = True
-        else:
-            stopped = False
-
-        if i % stream_interval == 0 or i == max_new_tokens - 1 or stopped:
-            tmp_output_ids = output_ids[input_echo_len:]
-            rfind_start = 0
-
-            output = tokenizer.decode(
-                tmp_output_ids,
-                skip_special_tokens=True,
-                spaces_between_special_tokens=False,
-            )
-
-            yield {
-                "text": output
-            }
-
-        if stopped:
-            break
-
-    yield {"text": output}
+    yield {"text": outputs}
 
     # clean
-    del past_key_values, out
     gc.collect()
     torch.cuda.empty_cache()
 
@@ -222,10 +152,13 @@ def chat_loop(
 
     while True:
         # Chat
-        if "mpt" in model_path:
+        if "falcon" in model_path:
+            conv = get_conv_template("falcon")
+        elif "mpt" in model_path:
             conv = get_conv_template("mpt")
-        elif "gorilla" in model_path:
+        else:
             conv = get_conv_template("gorilla_v0")
+        
         try:
             inp = chatio.prompt_for_input(conv.roles[0])
         except EOFError:

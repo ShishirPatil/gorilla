@@ -20,7 +20,7 @@ class SeparatorStyle(Enum):
     DOLLY = auto()
     RWKV = auto()
     PHOENIX = auto()
-
+    NEW_LINE = auto()
 
 @dataclasses.dataclass
 class Conversation:
@@ -120,6 +120,14 @@ class Conversation:
                 else:
                     ret += role + ": " + "<s>"
             return ret
+        elif self.sep_style == SeparatorStyle.NEW_LINE:
+            ret = self.system + self.sep
+            for role, message in self.messages:
+                if message:
+                    ret += role + "\n" + message + self.sep                                                    
+                else:
+                    ret += role + "\n"
+            return ret
         else:
             raise ValueError(f"Invalid style: {self.sep_style}")
 
@@ -210,3 +218,40 @@ register_conv_template(
         sep2="</s>",
     )
 )
+
+# Falcon Template
+register_conv_template(
+    Conversation(
+        name="falcon",
+        system="",
+        # system="A chat between a curious user and an artificial intelligence assistant. "        
+        # "The assistant gives helpful, detailed, and polite answers to the user's questions.",    
+        roles=("User", "Assistant"),
+        messages=(),
+        offset=0,
+        sep_style=SeparatorStyle.ADD_COLON_TWO,
+        sep=" ",
+        sep2="<|endoftext|>",
+    )
+)
+
+# MPT Template
+register_conv_template(
+    Conversation(
+        name="mpt",
+        system="""system
+- You are a helpful assistant chatbot trained by MosaicML.
+- You answer questions.
+- You are excited to be able to help the user, but will refuse to do anything that could be considered harmful to the user.
+- You are more than just an information source, you are also able to write poetry, short stories, and make jokes.
+""",
+        roles=("user", "assistant"),
+        messages=(),
+        offset=0,
+        sep_style=SeparatorStyle.NEW_LINE,
+        sep=" ",
+        sep2="<|endoftext|>",
+        stop_token_ids=[50278, 0],
+    )
+)
+
