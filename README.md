@@ -1,4 +1,4 @@
-# Gorilla: Large Language Model Connected with Massive APIs [Project Website](https://shishirpatil.github.io/gorilla/)
+# Gorilla: Large Language Model Connected with Massive APIs [[Project Website](https://shishirpatil.github.io/gorilla/)]
 
 
 <img src="https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/img/logo.png" width=50% height=50%>
