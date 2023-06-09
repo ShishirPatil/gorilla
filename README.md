@@ -83,7 +83,7 @@ We aim to build an open-source, one-stop-shop for all APIs, LLMs can interact wi
 
 1. I would like to use Gorilla commercially. Is there going to be a Apache 2.0 licensed version?
 
-Yes! We are actively working on it. We will release a Gorilla model with Apache 2.0 license by Jun 5. Please stay tuned, and let us know if you are interested. 
+Yes! We now have models that you can use commercially without any obligations.
 
 
 2. Can we use Gorilla with Langchain, Toolformer, AutoGPT etc?
@@ -98,6 +98,10 @@ Now, when it comes to ToolFormer, Toolformer zeroes in on a select set of tools,
 
 The beauty of these tools truly shines when they collaborate, complementing each other's strengths and capabilities to create an even more powerful and comprehensive solution. This is where your contribution can make a difference. We enthusiastically welcome any inputs to further refine and enhance these tools. 
 
+3. How to train your own Gorilla models? 
+
+We will release the training code as soon as we can get GPUs to test and finalize the pipeline. Given the demand for our hosted end-points, we have dedicated all of our GPUs to serve the models. If you would like to help with resources get in touch!
+
 
 ## Project Roadmap
 
@@ -110,8 +114,8 @@ In the immediate future, we plan to release the following:
 - [X] Run Gorilla LLM locally [May 28, 2023]
 - [X] Release weights for all APIs from APIBench [May 28, 2023]
 - [X] Release a commercially usable, Apache 2.0 licensed Gorilla model [Jun 5, 2023] 
-- [ ] Train a model with first batch of community contributed APIs from APIZoo [Jun 7, 2023]
-- [ ] Release training code [Jun 7, 2023]
+- [ ] Train a model with first batch of community contributed APIs from APIZoo
+- [ ] Release training code
 - [ ] Train SOTA Gorilla LLM with expanded APIBench and APIZoo :rocket:
 
 Propose a new task you would like to work on :star_struck:
