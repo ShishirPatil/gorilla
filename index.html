@@ -38,7 +38,6 @@
                         <a class="text-center" href="https://xinw.ai/">Xin Wang</a>, 
                         <a class="text-center" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a></h4>
                     <h4></h4>
-                    <h6 class="text-center">*Equal Contribution</h6>
                     <h5 class="text-center">UC Berkeley, Microsoft Research</h5>
                     <h6 class="text-center">sgp@berkeley.edu, tianjunz@berkeley.edu</h6>
                 </div>
@@ -46,6 +45,7 @@
         </div>
         <div><p></p></div>
         <div class="buttons" style="margin-bottom: 8px;">
+            <a class="btn btn-primary" role="button" href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">Colab</a>
             <a class="btn btn-primary" role="button" href="https://github.com/ShishirPatil/gorilla">GitHub</a>
             <a class="btn btn-primary" role="button" href="https://arxiv.org/abs/2305.15334">Paper</a>
             <a class="btn btn-primary" role="button" href="https://drive.google.com/file/d/1E0k5mG1mTiaz0kukyK1PdeohJipTFh6j/view?usp=share_link">Demo Video</a>
@@ -71,7 +71,8 @@
                     style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
                 </div>
                 <em>Gorilla is a LLM that can provide the appropriate API calls. 
-                    It is trained on three massive machine learning hub datasets: Torch Hub, TensorFlow Hub and HuggingFace.
+                    It is trained on three massive machine learning hub datasets: Torch Hub, TensorFlow Hub and HuggingFace. 
+                    We are rapidly adding more domains, including Kubernetes, GCP, AWS, OpenAPI, and more.
                     Zero-shot Gorilla outperforms GPT-4, Chat-GPT and Claude. 
                     Gorilla is extremely reliable, and significantly reduces the hallucination errors.</em>
             </div>
@@ -83,8 +84,23 @@
     <div class="container" style="max-width: 768px;">
         <div class="row">
             <div class="col-md-12">
-                <h5>We are excited to hear your feedback and we welcome API contributions as we build this open-source project. 
+                <h5> 🚀 <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">Try Gorilla in 60s!</a> No sing-ups, no installs, just colab!</h5>
+                <h5> 🤩 With Apache 2.0 licensed LLM models, you can use Gorilla comercially without any obligations!</h5>
+                <h5> 📣 We are excited to hear your feedback and we welcome API contributions as we build this open-source project. 
                     Join us on <a href="https://discord.gg/3apqwwME">Discord</a> or feel free to email us! </h5>                
+            </div>
+        </div>
+    </div>
+
+    <!-- Gorilla Spotlight -->
+    <hr style="max-width: 768px;">
+    <div class="container" style="max-width: 768px;">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Gorilla powered Spotlight Search</h2>
+            </div>
+            <div class="col-md-12 text-center"><img src="assets/img/results.png" 
+                style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
             </div>
         </div>
     </div>
@@ -103,12 +119,12 @@
                     This is a challenging task even for today's state-of-the-art LLMs such as GPT-4, 
                     largely due to their inability to generate accurate input arguments and their tendency to hallucinate the wrong usage of an API call. 
                     We release Gorilla, a finetuned LLaMA-based model that surpasses the performance of GPT-4 on writing API calls. 
-                    When combined with a document retriever, Gorilla demonstrates a strong capability to adapt to test-time document changes, enabling flexible user updates or version changes. 
-                    It also substantially mitigates the issue of hallucination, commonly encountered when prompting LLMs directly. 
+                    When combined with a document retriever, Gorilla demonstrates a strong capability to adapt to test-time document changes, enabling flexible API updates and version changes. 
+                    Gorilla also substantially mitigates the issue of hallucination, commonly encountered when prompting LLMs directly. 
                     To evaluate the model's ability, we introduce APIBench, a comprehensive dataset consisting of HuggingFace, TorchHub, and TensorHub APIs. 
                     The successful integration of the retrieval system with Gorilla demonstrates the potential for LLMs to use tools more accurately, keep up with frequently updated documentation, 
                     and consequently increase the reliability and applicability of their outputs. 
-                    The model and code of Gorilla are available at <a href="https://github.com/ShishirPatil/gorilla">https://github.com/ShishirPatil/gorilla</a>.
+                    Gorilla models and code are available at <a href="https://github.com/ShishirPatil/gorilla">https://github.com/ShishirPatil/gorilla</a>.
                 <br>
                 </p>
             </div>
