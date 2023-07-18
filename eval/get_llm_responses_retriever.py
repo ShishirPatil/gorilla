@@ -114,9 +114,9 @@ if __name__ == '__main__':
     parser.add_argument("--api_dataset", type=str, default=None, help="path to the api data")
     args = parser.parse_args()
 
-    assert args.retriever in ["bm25", "gpt_index"]
-    if args.retriever == "gpt_index":
-        retriever = GPTIndexRetriever(query_kwargs={"similarity_top_k": args.num_doc})
+    assert args.retriever in ["bm25", "gpt"]
+    if args.retriever == "gpt":
+        retriever = GPTRetriever(query_kwargs={"similarity_top_k": args.num_doc})
         if os.path.exists(args.retriever + '_dataset_index.json'):
             print('data index already saved')
             os.environ["OPENAI_API_KEY"] = args.api_key
