@@ -4,12 +4,18 @@
 
 ## Get Started
 
-### Getting GPT-3.5-turbo, GPT-4 and Claude Responses
+### Getting GPT-3.5-turbo, GPT-4 and Claude Responses (0-Shot)
 
 To get LLM responses for the API calls, use the following command:
 
 ```bash
 python get_llm_responses.py --model gpt-3.5-turbo --api_key $API_KEY --output_file gpt-3.5-turbo_torchhub_0_shot.jsonl --question_data eval-data/questions/torchhub/questions_torchhub_0_shot.jsonl --api_name torchhub
+```
+
+### Getting Responses with Retrievers (BM25 or GPTIndex)
+
+```bash
+python get_llm_responses_retriever.py --model gpt-3.5-turbo --api_key $API_KEY --output_file gpt-3.5-turbo_torchhub_0_shot.jsonl --question_data eval-data/questions/torchhub/questions_torchhub_0_shot.jsonl --api_name torchhub --api_dataset ../data/api/torchhub_api.jsonl
 ```
 
 ### Evaluate the Response with AST tree matching

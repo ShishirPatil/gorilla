@@ -130,7 +130,7 @@ def process_response(response, api_database, qa_pairs, ast_database):
     try:
         output = response["text"]
     except:
-        print("Error: cannot parse line ", response["index"])
+        print("Error: cannot parse line ", response)
         return False, False
 
     # Index the "api_call" domain
