@@ -14,33 +14,9 @@
 
 import argparse
 import json
-from codebleu.parser import (
-    DFG_python,
-    DFG_java,
-    DFG_ruby,
-    DFG_go,
-    DFG_php,
-    DFG_javascript,
-    DFG_csharp,
-)
-from codebleu.parser import (
-    remove_comments_and_docstrings,
-    tree_to_token_index,
-    index_to_code_token,
-    tree_to_variable_index,
-)
 from tree_sitter import Language, Parser
 import concurrent.futures
 
-dfg_function = {
-    "python": DFG_python,
-    "java": DFG_java,
-    "ruby": DFG_ruby,
-    "go": DFG_go,
-    "php": DFG_php,
-    "javascript": DFG_javascript,
-    "c_sharp": DFG_csharp,
-}
 
 # Get all the subtrees given a root_node
 def get_all_sub_trees(root_node):
