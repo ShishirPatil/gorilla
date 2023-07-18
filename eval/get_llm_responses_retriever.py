@@ -18,7 +18,10 @@ import json
 import openai
 import anthropic
 import multiprocessing as mp
+import os
 import time
+from retrievers import *
+from retrievers.build_json_index import JSONLReader
 
 def encode_question(question, api_name):
     """Encode multiple prompt instructions into a single string."""
@@ -48,8 +51,11 @@ def encode_question(question, api_name):
     return prompts
 
 def get_response(get_response_input, api_key):
-    question, question_id, api_name, model = get_response_input
+    question, question_id, api_name, model, retrieved_doc = get_response_input
     question = encode_question(question, api_name)
+    question[-1]["content"] = question[-1]["content"] + "\nHere are some reference docs:"
+    for i, doc in enumerate(retrieved_doc): 
+        question[-1]["content"] = question[-1]["content"] + "\nAPI " + str(i) + ": " + str(doc)
     
     try:
         if "gpt" in model:
@@ -80,8 +86,9 @@ def get_response(get_response_input, api_key):
     return {'text': response, "question_id": question_id, "answer_id": "None", "model_id": model, "metadata": {}}
 
 def process_entry(entry, api_key):
-    question, question_id, api_name, model = entry
-    result = get_response((question, question_id, api_name, model), api_key)
+    question, question_id, api_name, model, retriever = entry
+    retrieved_doc = retriever.get_relevant_documents(question)
+    result = get_response((question, question_id, api_name, model, retrieved_doc), api_key)
     return result
 
 def write_result_to_file(result, output_file):
@@ -102,7 +109,35 @@ if __name__ == '__main__':
     parser.add_argument("--output_file", type=str, default=None, help="the output file this script writes to")
     parser.add_argument("--question_data", type=str, default=None, help="path to the questions data file")
     parser.add_argument("--api_name", type=str, default=None, help="this will be the api dataset name you are testing, only support ['torchhub', 'tensorhun', 'huggingface'] now")
+    parser.add_argument("--retriever", type=str, default="bm25", help="which retriever to use")
+    parser.add_argument("--num_doc", type=int, default=1, help="top k docs to use")
+    parser.add_argument("--api_dataset", type=str, default=None, help="path to the api data")
     args = parser.parse_args()
+
+    assert args.retriever in ["bm25", "gpt"]
+    if args.retriever == "gpt":
+        retriever = GPTRetriever(query_kwargs={"similarity_top_k": args.num_doc})
+        if os.path.exists(args.retriever + '_dataset_index.json'):
+            print('data index already saved')
+            os.environ["OPENAI_API_KEY"] = args.api_key
+            index = retriever.load_from_disk(args.retriever + '_dataset_index.json')
+        else:
+            print('data index being created')
+            os.environ["OPENAI_API_KEY"] = args.api_key
+            documents = JSONLReader().load_data(args.api_dataset)
+            index = retriever.from_documents(documents)
+            retriever.save_to_disk(index, args.retriever + '_dataset_index.json')
+    elif args.retriever == "bm25":
+        from rank_bm25 import BM25Okapi
+        corpus = []
+        with open(args.api_dataset, 'r') as f:
+            for line in f:
+                corpus.append(json.loads(line))
+        tokenized_corpus = [str(doc).split(" ") for doc in corpus]
+        bm25 = BM25Okapi(tokenized_corpus)
+        retriever = BM25Retriever(index=bm25, corpus=corpus, query_kwargs={"similarity_top_k": args.num_doc})
+    else:
+        assert False
 
     start_time = time.time()
     # Read the question file
@@ -119,7 +154,7 @@ if __name__ == '__main__':
         for idx, (question, question_id) in enumerate(zip(questions, question_ids)):
             result = pool.apply_async(
                 process_entry,
-                args=((question, question_id, args.api_name, args.model), args.api_key),
+                args=((question, question_id, args.api_name, args.model, retriever), args.api_key),
                 callback=lambda result: write_result_to_file(result, args.output_file),
             )
             results.append(result)

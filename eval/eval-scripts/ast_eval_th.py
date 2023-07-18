@@ -1,32 +1,22 @@
+# Copyright 2023 https://github.com/ShishirPatil/gorilla
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import argparse
 import json
-from codebleu.parser import (
-    DFG_python,
-    DFG_java,
-    DFG_ruby,
-    DFG_go,
-    DFG_php,
-    DFG_javascript,
-    DFG_csharp,
-)
-from codebleu.parser import (
-    remove_comments_and_docstrings,
-    tree_to_token_index,
-    index_to_code_token,
-    tree_to_variable_index,
-)
 from tree_sitter import Language, Parser
 import concurrent.futures
 
-dfg_function = {
-    "python": DFG_python,
-    "java": DFG_java,
-    "ruby": DFG_ruby,
-    "go": DFG_go,
-    "php": DFG_php,
-    "javascript": DFG_javascript,
-    "c_sharp": DFG_csharp,
-}
 
 # Get all the subtrees given a root_node
 def get_all_sub_trees(root_node):
@@ -130,7 +120,7 @@ def process_response(response, api_database, qa_pairs, ast_database):
     try:
         output = response["text"]
     except:
-        print("Error: cannot parse line ", response["index"])
+        print("Error: cannot parse line ", response)
         return False, False
 
     # Index the "api_call" domain
