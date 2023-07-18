@@ -116,3 +116,16 @@ Submit a json file containing the list of json objects:
 **LLM assistance for LLM API dataset :wink:**:
 
 Visit our website [Coming Soon!], where you can type in the API URL and we'll output an API submission for you! You can choose to submit or edit before and submitting. Easy and quick!
+
+## Citation
+
+If you use Gorilla or APIBench, please cite our paper:
+
+```text
+@article{patil2023gorilla,
+  title={Gorilla: Large Language Model Connected with Massive APIs},
+  author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},
+  year={2023},
+  journal={arXiv preprint arXiv:2305.15334},
+} 
+```
