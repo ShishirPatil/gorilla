@@ -62,14 +62,14 @@ def get_response(get_response_input, api_key):
             )
             response = responses['choices'][0]['message']['content']
         elif "claude" in model:
-            client = anthropic.Client(api_key)
-            responses = client.completion(
+            client = anthropic.Anthropic(api_key=api_key)
+            responses = client.completions.create(
                 prompt=f"{anthropic.HUMAN_PROMPT} {question[0]['content']}{question[1]['content']}{anthropic.AI_PROMPT}",
                 stop_sequences=[anthropic.HUMAN_PROMPT],
                 model="claude-v1",
                 max_tokens_to_sample=2048,
             )
-            response = responses["completion"].strip()
+            response = responses.completion.strip()
         else:
             print("Error: Model is not supported.")
     except Exception as e:
