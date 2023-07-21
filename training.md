@@ -48,29 +48,11 @@ Above data represents a conversation between a human and a language model (GPT).
 5. The first message is from the human participant and contains an instruction, The second message is from the language model participant and provides a response. You can see [this link](https://github.com/ShishirPatil/gorilla/blob/main/data/apibench/huggingface_eval.json) to see example format for gorilla dataset.
 
 ### Deepspeed Config
-Deepspeed can be use to speed up fine tuning, you need to navigate to the FastChat script directory and create a DeepSpeed configuration. Below is an example configuration, but you need to adjust it according to the hardware components you have:
+Deepspeed can be use to speed up fine tuning, you need to navigate to the FastChat script directory and create a DeepSpeed configuration. Below is an example configuration for 2 nodes with 2 P40 GPU (120 GB RAM ) each node for CPU offloading :
 ```json
 {  
 	"train_micro_batch_size_per_gpu":  "auto",  
-	"gradient_accumulation_steps":  "auto",  
-	"steps_per_print":  50,  
-	"gradient_clipping":  1.0,  
-	"zero_optimization":  {  
-		"stage":  2,  
-		"offload_optimizer":  {  
-			"device":  "cpu"  
-		},  
-		"contiguous_gradients":  true,  
-		"overlap_comm":  true  
-	},  
-	"zero_allow_untested_optimizer":  true,  
-	"fp16":  {  
-		"enabled":  true,  
-		"loss_scale":  0,  
-		"loss_scale_window":  1000,  
-		"hysteresis":  2,  
-		"min_loss_scale":  1  
-	},  
+	"gradient_accumulation_steps":  "auto",    
 	"optimizer":  {  
 		"type":  "Adam",  
 		"params":  {  
@@ -80,6 +62,30 @@ Deepspeed can be use to speed up fine tuning, you need to navigate to the FastCh
 			"weight_decay":  "auto"  
 		}  
 	},  
+	"fp16":  {  
+		"enabled":  true,  
+		"loss_scale":  0,  
+		"loss_scale_window":  1000,  
+		"hysteresis":  2,  
+		"min_loss_scale":  1  
+	},
+	  "scheduler": {
+	    "type": "WarmupLR",
+	    "params": {
+	      "warmup_min_lr": 0,
+	      "warmup_max_lr": "auto",
+	      "warmup_num_steps": "auto"
+	    }
+	  },
+	"zero_optimization":  {  
+		"stage":  2,  
+		"offload_optimizer":  {  
+			"device":  "cpu"  
+		},  
+		"contiguous_gradients":  true,  
+		"overlap_comm":  true  
+	},  
+	"zero_allow_untested_optimizer":  true,  
 	"activation_checkpointing":  {  
 		"partition_activations":  true,  
 		"contiguous_memory_optimization":  true  
@@ -87,10 +93,19 @@ Deepspeed can be use to speed up fine tuning, you need to navigate to the FastCh
 	"wall_clock_breakdown":  false  
 }
 ```
+### Multi Node 
+To perform training using multi-nodes, you need a hostfile with the following format:
+```bash
+machine1 slots=2 
+machine2 slots=2
+```
+After that, you need to include the `--hostfile` argument in the deepspeed script that will be used.
+
 ### Fastchat Training
 You need to modify the `test_train.sh` script to make it compatible with DeepSpeed. Here is an example of the modified script:
 ```bash
 deepspeed \  
+	--hostfile /path/to/hostfile
 	--master_port=20001 ../fastchat/train/train.py \  
 	--save_total_limit 2 \  
 	--model_name_or_path /path/to/model/llama-7b \  
