@@ -91,30 +91,64 @@
         </div>
     </div>
 
-    <!-- Gorilla Spotlight --> 
+    <!-- Gorilla CLI and Spotlight --> 
+
+    <style>
+    .responsive-iframe-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        overflow: hidden;
+    }
+    
+    .responsive-iframe-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    </style>
 
     <hr style="max-width: 768px;">
     <div class="container" style="max-width: 768px;">
         <div class="row">
             <div class="col-md-12">
-                <h2>Gorilla Powered Spotlight-Search</h2>
+                <h2>Gorilla for your CLI and Spotlight Search</h2>
             </div>
-            <div class="col-md-12">
-                <iframe width="700" height="480"
-                    src="https://www.youtube.com/embed/RMgM3tPTpXI">
-                </iframe>
+            <div class="col-md-6">
+                <div class="responsive-iframe-container">
+                    <iframe src="https://www.youtube.com/embed/4EdyWkcddPc" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="text-center">Gorilla powered CLI<br>
+                    Get started with <code>pip install gorilla-cli</code></p>
+            </div>
+            <div class="col-md-6">
+                <div class="responsive-iframe-container">
+                    <iframe src="https://www.youtube.com/embed/RMgM3tPTpXI" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="text-center">Gorilla Powered Spotlight Search<br>
+                    <a href="https://docs.google.com/forms/d/1iuWrfQbTb8_T5s4J75HNftPF-w1Jg1Aeg-gB64X8MJg/edit">Gorilla-Spotlight Signup</a> </p>
             </div>
         </div>
     </div>
+        
 
-    
     <!-- Abstract -->
     <hr style="max-width: 768px;">
     <div class="container" style="max-width: 768px;">
         <div class="row">
             <div class="col-md-12">
                 <h2>Abstract</h2>
-                <p>
+                <p style="text-align: justify;">
                     Large Language Models (LLMs) have seen an impressive wave of advances recently, 
                     with models now excelling in a variety of tasks, such as mathematical reasoning and program synthesis. 
                     However, their potential to effectively use tools via API calls remains unfulfilled. 
