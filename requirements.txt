@@ -1,4 +1,5 @@
 openai
+litellm
 anthropic
 tree_sitter
 tenacity==8.2.2
