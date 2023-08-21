@@ -27,7 +27,8 @@
 
 ## Gradio WebUI: 
 **Try the easy to use in Gradio WebUI (Public URL)** [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1ktnVWPJOgqTC9hLW8lJPVZszuIddMy7y?usp=sharing) :rocket: 
-![Gorilla_webUI](https://github.com/TanmayDoesAI/gorilla/assets/85993243/a44f8aa6-b5b6-432e-b0f6-a68dff6da6d4)
+![gorilla_webUI_2](https://github.com/TanmayDoesAI/gorilla/assets/85993243/f30645bf-6798-4bd2-ac6e-6943840ae095)
+
 
 ## Get Started 
 
