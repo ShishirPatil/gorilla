@@ -70,6 +70,17 @@ def split_files(model_path, tmp_path, split_size):
 
 
 def apply_delta_low_cpu_mem(base_model_path, target_model_path, delta_path):
+    """
+    Applies a delta to a base model's weights to create a target model, with memory-efficient processing.
+
+    Args:
+        base_model_path (str): Path to the base model directory.
+        target_model_path (str): Path to the directory where the target model will be saved.
+        delta_path (str): Path to the directory containing the delta weights.
+
+    Returns:
+        None
+    """
     delta_tokenizer = AutoTokenizer.from_pretrained(delta_path, use_fast=False)
     delta_config = AutoConfig.from_pretrained(delta_path)
 
