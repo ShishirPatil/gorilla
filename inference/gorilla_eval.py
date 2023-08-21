@@ -28,16 +28,16 @@ from transformers import (
     T5Tokenizer,
 )
 
+
 # Load Gorilla Model from HF
 def load_model(
-        model_path: str,
-        device: str,
-        num_gpus: int,
-        max_gpu_memory: str = None,
-        load_8bit: bool = False,
-        cpu_offloading: bool = False,
-    ):
- 
+    model_path: str,
+    device: str,
+    num_gpus: int,
+    max_gpu_memory: str = None,
+    load_8bit: bool = False,
+    cpu_offloading: bool = False,
+):
     if device == "cpu":
         kwargs = {"torch_dtype": torch.float32}
     elif device == "cuda":
@@ -79,7 +79,7 @@ def load_model(
             return load_compress_model(
                 model_path=model_path, device=device, torch_dtype=kwargs["torch_dtype"]
             )
-  
+
     tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False)
     model = AutoModelForCausalLM.from_pretrained(
         model_path,
@@ -89,8 +89,8 @@ def load_model(
 
     return model, tokenizer
 
+
 def get_questions(question_file):
- 
     # Load questions file
     question_jsons = []
     with open(question_file, "r") as ques_file:
@@ -99,12 +99,20 @@ def get_questions(question_file):
 
     return question_jsons
 
+
 def run_eval(args, question_jsons):
     # Evaluate the model for answers
     model, tokenizer = load_model(
-        args.model_path, args.device, args.num_gpus, args.max_gpu_memory, args.load_8bit, args.cpu_offloading
+        args.model_path,
+        args.device,
+        args.num_gpus,
+        args.max_gpu_memory,
+        args.load_8bit,
+        args.cpu_offloading,
     )
-    if (args.device == "cuda" and args.num_gpus == 1 and not args.cpu_offloading) or args.device == "mps":
+    if (
+        args.device == "cuda" and args.num_gpus == 1 and not args.cpu_offloading
+    ) or args.device == "mps":
         model.to(args.device)
     # model = model.to(args.device)
 
@@ -138,18 +146,13 @@ def run_eval(args, question_jsons):
 
     return ans_jsons
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument("--model-path", type=str, required=True)
+    parser.add_argument("--question-file", type=str, required=True)
     parser.add_argument(
-        "--model-path", 
-        type=str, 
-        required=True)
-    parser.add_argument(
-        "--question-file", 
-        type=str, 
-        required=True)
-    parser.add_argument(
-        "--device", 
+        "--device",
         type=str,
         choices=["cpu", "cuda", "mps"],
         default="cuda",
@@ -161,30 +164,16 @@ if __name__ == "__main__":
         help="The maximum memory per gpu. A string like '13Gib'",
     )
     parser.add_argument(
-        "--load-8bit", 
-        action="store_true", 
-        help="Use 8-bit quantization"
+        "--load-8bit", action="store_true", help="Use 8-bit quantization"
     )
     parser.add_argument(
         "--cpu-offloading",
         action="store_true",
         help="Only when using 8-bit quantization: Offload excess weights to the CPU that don't fit on the GPU",
     )
-    parser.add_argument(
-        "--answer-file", 
-        type=str, 
-        default="answer.jsonl"
-    )
-    parser.add_argument(
-        "--num-gpus", 
-        type=int, 
-        default=1
-    )
+    parser.add_argument("--answer-file", type=str, default="answer.jsonl")
+    parser.add_argument("--num-gpus", type=int, default=1)
     args = parser.parse_args()
 
     questions_json = get_questions(args.question_file)
-    run_eval(
-        args,
-        questions_json
-    )
- 
+    run_eval(args, questions_json)

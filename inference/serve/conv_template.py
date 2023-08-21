@@ -22,6 +22,7 @@ class SeparatorStyle(Enum):
     PHOENIX = auto()
     NEW_LINE = auto()
 
+
 @dataclasses.dataclass
 class Conversation:
     """A class that keeps all conversation history."""
@@ -124,7 +125,7 @@ class Conversation:
             ret = self.system + self.sep
             for role, message in self.messages:
                 if message:
-                    ret += role + "\n" + message + self.sep                                                    
+                    ret += role + "\n" + message + self.sep
                 else:
                     ret += role + "\n"
             return ret
@@ -204,6 +205,7 @@ def get_conv_template(name: str) -> Conversation:
     """Get a conversation template."""
     return conv_templates[name].copy()
 
+
 # Gorilla v0 template
 register_conv_template(
     Conversation(
@@ -224,8 +226,8 @@ register_conv_template(
     Conversation(
         name="falcon",
         system="",
-        # system="A chat between a curious user and an artificial intelligence assistant. "        
-        # "The assistant gives helpful, detailed, and polite answers to the user's questions.",    
+        # system="A chat between a curious user and an artificial intelligence assistant. "
+        # "The assistant gives helpful, detailed, and polite answers to the user's questions.",
         roles=("User", "Assistant"),
         messages=(),
         offset=0,
@@ -254,4 +256,3 @@ register_conv_template(
         stop_token_ids=[50278, 0],
     )
 )
-

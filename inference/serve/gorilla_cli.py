@@ -38,18 +38,19 @@ from prompt_toolkit.history import InMemoryHistory
 from conv_template import get_conv_template
 
 import warnings
-warnings.filterwarnings('ignore')
+
+warnings.filterwarnings("ignore")
+
 
 # Load Gorilla Model from HF
 def load_model(
-        model_path: str,
-        device: str,
-        num_gpus: int,
-        max_gpu_memory: str = None,
-        load_8bit: bool = False,
-        cpu_offloading: bool = False,
-    ):
- 
+    model_path: str,
+    device: str,
+    num_gpus: int,
+    max_gpu_memory: str = None,
+    load_8bit: bool = False,
+    cpu_offloading: bool = False,
+):
     if device == "cpu":
         kwargs = {"torch_dtype": torch.float32}
     elif device == "cuda":
@@ -93,7 +94,7 @@ def load_model(
             return load_compress_model(
                 model_path=model_path, device=device, torch_dtype=kwargs["torch_dtype"]
             )
-  
+
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     model = AutoModelForCausalLM.from_pretrained(
         model_path,
@@ -104,9 +105,22 @@ def load_model(
 
     return model, tokenizer
 
+
 def prepare_logits_processor(
     temperature: float, repetition_penalty: float, top_p: float, top_k: int
 ):
+    """
+    Prepares a list of logits processors based on specified parameters.
+
+    Args:
+        temperature (float): The temperature to apply to the logits.
+        repetition_penalty (float): The penalty to apply to repeated tokens.
+        top_p (float): The cumulative probability for top-p sampling.
+        top_k (int): The number of top-k tokens to consider during sampling.
+
+    Returns:
+        LogitsProcessorList: A list of configured logits processors.
+    """
     processor_list = LogitsProcessorList()
 
     if temperature >= 1e-5 and temperature != 1.0:
@@ -119,28 +133,25 @@ def prepare_logits_processor(
         processor_list.append(TopKLogitsWarper(top_k))
     return processor_list
 
+
 @torch.inference_mode()
 def get_response(prompt, model, tokenizer, device):
-
-    logits_processor = prepare_logits_processor(
-        0.1, 0.0, 1.0, -1
-    )
+    logits_processor = prepare_logits_processor(0.1, 0.0, 1.0, -1)
 
     context_len = 2048
     max_new_tokens = 1024
-    stream_interval=2
+    stream_interval = 2
     input_ids = tokenizer(prompt).input_ids
     input_echo_len = len(input_ids)
     output_ids = list(input_ids)
     max_src_len = context_len - max_new_tokens - 8
     input_ids = input_ids[-max_src_len:]
     stop_token_ids = [tokenizer.eos_token_id]
-    
+
     past_key_values = out = None
     for i in range(max_new_tokens):
         if i == 0:
-            out = model(torch.as_tensor([input_ids], device=device),
-                use_cache=True)
+            out = model(torch.as_tensor([input_ids], device=device), use_cache=True)
             logits = out.logits
             past_key_values = out.past_key_values
         else:
@@ -173,9 +184,7 @@ def get_response(prompt, model, tokenizer, device):
                 spaces_between_special_tokens=False,
             )
 
-            yield {
-                "text": output
-            }
+            yield {"text": output}
 
         if stopped:
             break
@@ -186,6 +195,7 @@ def get_response(prompt, model, tokenizer, device):
     del past_key_values, out
     gc.collect()
     torch.cuda.empty_cache()
+
 
 class SimpleChatIO(abc.ABC):
     def prompt_for_input(self, role) -> str:
@@ -206,6 +216,7 @@ class SimpleChatIO(abc.ABC):
         print(" ".join(output_text[pre:]), flush=True)
         return " ".join(output_text)
 
+
 def chat_loop(
     model_path: str,
     device: str,
@@ -219,7 +230,9 @@ def chat_loop(
     model, tokenizer = load_model(
         model_path, device, num_gpus, max_gpu_memory, load_8bit, cpu_offloading
     )
-    if (args.device == "cuda" and args.num_gpus == 1 and not args.cpu_offloading) or args.device == "mps":
+    if (
+        args.device == "cuda" and args.num_gpus == 1 and not args.cpu_offloading
+    ) or args.device == "mps":
         model.to(args.device)
 
     while True:
@@ -245,6 +258,7 @@ def chat_loop(
         outputs = chatio.stream_output(output_stream)
         conv.update_last_message(outputs.strip())
 
+
 def main(args):
     if args.gpus:
         if len(args.gpus.split(",")) < args.num_gpus:
@@ -254,7 +268,7 @@ def main(args):
         os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus
 
     chatio = SimpleChatIO()
-    
+
     try:
         chat_loop(
             args.model_path,
@@ -273,20 +287,20 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
-        "--model-path", type=str, default=None, 
-        help="Model path to the pretrained model."
+        "--model-path",
+        type=str,
+        default=None,
+        help="Model path to the pretrained model.",
     )
     parser.add_argument(
-        "--gpus", type=str, default=None,
-        help="A single GPU like 1 or multiple GPUs like 0,2."
+        "--gpus",
+        type=str,
+        default=None,
+        help="A single GPU like 1 or multiple GPUs like 0,2.",
     )
+    parser.add_argument("--num-gpus", type=int, default=1)
     parser.add_argument(
-        "--num-gpus", 
-        type=int, 
-        default=1)
-    parser.add_argument(
-        "--device", type=str, default='cuda',
-        help="Which device to use."
+        "--device", type=str, default="cuda", help="Which device to use."
     )
     parser.add_argument(
         "--max-gpu-memory",

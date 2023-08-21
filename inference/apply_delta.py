@@ -25,6 +25,17 @@ GB = 1 << 30
 
 
 def split_files(model_path, tmp_path, split_size):
+    """
+    Splits large model files into smaller parts based on a given split size and saves them in a temporary directory.
+
+    Args:
+        model_path (str): Path to the directory containing the model files.
+        tmp_path (str): Path to the temporary directory where the split model parts will be saved.
+        split_size (int): Maximum size (in bytes) for each split part.
+
+    Returns:
+        None
+    """
     if not os.path.exists(model_path):
         model_path = snapshot_download(repo_id=model_path)
     if not os.path.exists(tmp_path):
@@ -136,6 +147,17 @@ def apply_delta_low_cpu_mem(base_model_path, target_model_path, delta_path):
 
 
 def apply_delta(base_model_path, target_model_path, delta_path):
+    """
+    Applies a delta to a base model's weights to create a target model.
+
+    Args:
+        base_model_path (str): Path to the directory containing the base model.
+        target_model_path (str): Path to the directory where the target model will be saved.
+        delta_path (str): Path to the directory containing the delta weights.
+
+    Returns:
+        None
+    """
     print(f"Loading the delta weights from {delta_path}")
     delta_tokenizer = AutoTokenizer.from_pretrained(delta_path, use_fast=False)
     delta = AutoModelForCausalLM.from_pretrained(

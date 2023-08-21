@@ -31,18 +31,19 @@ from prompt_toolkit.history import InMemoryHistory
 from conv_template import get_conv_template
 
 import warnings
-warnings.filterwarnings('ignore')
+
+warnings.filterwarnings("ignore")
+
 
 # Load Gorilla Model from HF
 def load_model(
-        model_path: str,
-        device: str,
-        num_gpus: int,
-        max_gpu_memory: str = None,
-        load_8bit: bool = False,
-        cpu_offloading: bool = False,
-    ):
- 
+    model_path: str,
+    device: str,
+    num_gpus: int,
+    max_gpu_memory: str = None,
+    load_8bit: bool = False,
+    cpu_offloading: bool = False,
+):
     if device == "cpu":
         kwargs = {"torch_dtype": torch.float32}
     elif device == "cuda":
@@ -84,7 +85,7 @@ def load_model(
             return load_compress_model(
                 model_path=model_path, device=device, torch_dtype=kwargs["torch_dtype"]
             )
-  
+
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     tokenizer.pad_token = tokenizer.eos_token
     tokenizer.pad_token_id = 11
@@ -96,6 +97,7 @@ def load_model(
     )
 
     return model, tokenizer
+
 
 @torch.inference_mode()
 def get_response(prompt, model, tokenizer, device):
@@ -114,6 +116,7 @@ def get_response(prompt, model, tokenizer, device):
     # clean
     gc.collect()
     torch.cuda.empty_cache()
+
 
 class SimpleChatIO(abc.ABC):
     def prompt_for_input(self, role) -> str:
@@ -134,6 +137,7 @@ class SimpleChatIO(abc.ABC):
         print(" ".join(output_text[pre:]), flush=True)
         return " ".join(output_text)
 
+
 def chat_loop(
     model_path: str,
     device: str,
@@ -147,7 +151,9 @@ def chat_loop(
     model, tokenizer = load_model(
         model_path, device, num_gpus, max_gpu_memory, load_8bit, cpu_offloading
     )
-    if (args.device == "cuda" and args.num_gpus == 1 and not args.cpu_offloading) or args.device == "mps":
+    if (
+        args.device == "cuda" and args.num_gpus == 1 and not args.cpu_offloading
+    ) or args.device == "mps":
         model.to(args.device)
 
     while True:
@@ -158,7 +164,7 @@ def chat_loop(
             conv = get_conv_template("mpt")
         else:
             conv = get_conv_template("gorilla_v0")
-        
+
         try:
             inp = chatio.prompt_for_input(conv.roles[0])
         except EOFError:
@@ -176,6 +182,7 @@ def chat_loop(
         outputs = chatio.stream_output(output_stream)
         conv.update_last_message(outputs.strip())
 
+
 def main(args):
     if args.gpus:
         if len(args.gpus.split(",")) < args.num_gpus:
@@ -185,7 +192,7 @@ def main(args):
         os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus
 
     chatio = SimpleChatIO()
-    
+
     try:
         chat_loop(
             args.model_path,
@@ -204,20 +211,20 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
-        "--model-path", type=str, default=None, 
-        help="Model path to the pretrained model."
+        "--model-path",
+        type=str,
+        default=None,
+        help="Model path to the pretrained model.",
     )
     parser.add_argument(
-        "--gpus", type=str, default=None,
-        help="A single GPU like 1 or multiple GPUs like 0,2."
+        "--gpus",
+        type=str,
+        default=None,
+        help="A single GPU like 1 or multiple GPUs like 0,2.",
     )
+    parser.add_argument("--num-gpus", type=int, default=1)
     parser.add_argument(
-        "--num-gpus", 
-        type=int, 
-        default=1)
-    parser.add_argument(
-        "--device", type=str, default='cuda',
-        help="Which device to use."
+        "--device", type=str, default="cuda", help="Which device to use."
     )
     parser.add_argument(
         "--max-gpu-memory",
