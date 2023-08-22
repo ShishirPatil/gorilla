@@ -26,7 +26,7 @@
 - :fire: [05/25] We release the APIBench dataset and the evaluation code of Gorilla!
 
 ## Gorilla Gradio
-**Try Gorill LLM models in [HF Spaces](https://huggingface.co/spaces/gorilla-llm/gradio-demo) or [![Gradio Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1ktnVWPJOgqTC9hLW8lJPVZszuIddMy7y?usp=sharing)**
+**Try Gorill LLM models in [HF Spaces](https://huggingface.co/spaces/gorilla-llm/gorilla-demo/) or [![Gradio Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1ktnVWPJOgqTC9hLW8lJPVZszuIddMy7y?usp=sharing)**
 ![gorilla_webUI_2](https://github.com/TanmayDoesAI/gorilla/assets/85993243/f30645bf-6798-4bd2-ac6e-6943840ae095)
 
 
