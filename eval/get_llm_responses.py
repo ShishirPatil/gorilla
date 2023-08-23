@@ -17,8 +17,11 @@ import sys
 import json
 import openai
 import anthropic
+import litellm
+from litellm import completion
 import multiprocessing as mp
 import time
+import os
 
 def encode_question(question, api_name):
     """Encode multiple prompt instructions into a single string."""
@@ -52,24 +55,15 @@ def get_response(get_response_input, api_key):
     question = encode_question(question, api_name)
     
     try:
-        if "gpt" in model:
+        if model in litellm.model_list:
             openai.api_key = api_key
-            responses = openai.ChatCompletion.create(
+            responses = completion(
                 model=model,
                 messages=question,
                 n=1,
                 temperature=0,
             )
             response = responses['choices'][0]['message']['content']
-        elif "claude" in model:
-            client = anthropic.Anthropic(api_key=api_key)
-            responses = client.completions.create(
-                prompt=f"{anthropic.HUMAN_PROMPT} {question[0]['content']}{question[1]['content']}{anthropic.AI_PROMPT}",
-                stop_sequences=[anthropic.HUMAN_PROMPT],
-                model="claude-v1",
-                max_tokens_to_sample=2048,
-            )
-            response = responses.completion.strip()
         else:
             print("Error: Model is not supported.")
     except Exception as e:
