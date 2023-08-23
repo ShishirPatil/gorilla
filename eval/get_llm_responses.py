@@ -19,6 +19,8 @@ import openai
 import anthropic
 import multiprocessing as mp
 import time
+import wandb
+from tenacity import retry, wait_exponential
 
 def encode_question(question, api_name):
     """Encode multiple prompt instructions into a single string."""
@@ -47,6 +49,7 @@ def encode_question(question, api_name):
     prompts.append({"role": "user", "content": prompt})
     return prompts
 
+@retry(wait=wait_exponential(multiplier=1, min=10, max=120), reraise=True)
 def get_response(get_response_input, api_key):
     question, question_id, api_name, model = get_response_input
     question = encode_question(question, api_name)
@@ -82,6 +85,7 @@ def get_response(get_response_input, api_key):
 def process_entry(entry, api_key):
     question, question_id, api_name, model = entry
     result = get_response((question, question_id, api_name, model), api_key)
+    wandb.log({"question_id_completed":question_id})
     return result
 
 def write_result_to_file(result, output_file):
@@ -102,7 +106,22 @@ if __name__ == '__main__':
     parser.add_argument("--output_file", type=str, default=None, help="the output file this script writes to")
     parser.add_argument("--question_data", type=str, default=None, help="path to the questions data file")
     parser.add_argument("--api_name", type=str, default=None, help="this will be the api dataset name you are testing, only support ['torchhub', 'tensorhun', 'huggingface'] now")
+    parser.add_argument("--use_wandb", action='store_true', help="pass this argument to turn on Weights & Biases logging of the LLM responses")
+    parser.add_argument("--wandb_project", type=str, default="gorilla-api", help="Weights & Biases project name")
+    parser.add_argument("--wandb_entity", type=str, default=None, help="Weights & Biases entity name")
     args = parser.parse_args()
+
+    if args.use_wandb:
+        wandb.init(
+            project=args.wandb_project, 
+            entity=args.wandb_entity,
+            config={
+                "api_name":args.api_name,
+                "model":args.model,
+                "question_data":args.question_data,
+                "output_file": args.output_file
+                }
+            )
 
     start_time = time.time()
     # Read the question file
@@ -127,4 +146,31 @@ if __name__ == '__main__':
         pool.join()
 
     end_time = time.time()
-    print("Total time used: ", end_time - start_time)
+    elapsed_time = end_time - start_time
+    print("Total time used: ", elapsed_time)
+    
+    if args.use_wandb:
+        print("\nSaving all responses to Weights & Biases...\n")
+
+        wandb.summary["elapsed_time_s"] = elapsed_time
+
+        line_count = 0 
+        with open(args.output_file, 'r') as file:
+            for i,line in enumerate(file):
+                data = json.loads(line.strip())
+
+                if i == 0:
+                    tbl = wandb.Table(columns=list(data.keys()))
+                tbl.add_data(*list(data.values()))
+                line_count+=1
+        
+        # Log the Tale to W&B
+        wandb.log({"llm_eval_responses": tbl})
+        wandb.summary["response_count"] = line_count
+
+        # Also log results file as W&B Artifact
+        wandb.log_artifact(args.output_file, 
+            name=f"{args.api_name}-{args._model}-eval-results", 
+            type=f"eval-results", 
+            aliases=[f"{line_count}-responses"]
+        )

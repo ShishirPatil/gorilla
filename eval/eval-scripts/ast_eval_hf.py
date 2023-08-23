@@ -161,6 +161,15 @@ def main(args):
         else:
             pass
 
+    if use_wandb:
+        if args.wandb_run_id is not None: 
+            wandb.init(project=args.wandb_project, entity=args.wandb_entity, id=args.wandb_run_id, resume="must") 
+        else:
+            wandb.init(project=args.wandb_project, entity=args.wandb_entity)
+
+        wandb.summary['final_functionality_accuracy': total_correct / len(llm_responses)]
+        wandb.summary['final_hallucination':  total_hallucination/len(llm_responses)]
+
     print('Final Functionality accuracy: ', total_correct / len(llm_responses))
     print('Final hallucination: ', total_hallucination/len(llm_responses))
 
@@ -169,5 +178,9 @@ if __name__ == "__main__":
     parser.add_argument("--api_dataset", type=str, default=None, help="path to your api dataset")
     parser.add_argument("--apibench", type=str, default=None, help="path to your apibench dataset including the question and answer pairs")
     parser.add_argument("--llm_responses", type=str, default=None, help="path to the language model responses")
+    parser.add_argument("--use_wandb", action='store_true', help="pass this argument to turn on Weights & Biases logging of the LLM responses")
+    parser.add_argument("--wandb_project", type=str, default="gorilla-api", help="Weights & Biases project name")
+    parser.add_argument("--wandb_entity", type=str, default=None, help="Weights & Biases entity name")
+    parser.add_argument("--wandb_run_id", type=str, default=None, help="pass W&B run id to append results to that run, otherwise a new W&B run is logged")
     args = parser.parse_args()
     main(args)
