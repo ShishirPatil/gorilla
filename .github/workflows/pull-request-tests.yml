@@ -1,0 +1,71 @@
+name: Pull Request Tests
+
+on:
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  pull-request-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8  # Replace with your desired Python version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # Adjust for your project's requirements
+
+      - name: Run Flake8 (Linting)
+        run: |
+          pip install flake8
+          flake8
+
+      - name: Run pytest (Unit Tests)
+        run: |
+          pip install pytest
+          pytest
+
+      - name: Run Black (Code Formatting Check)
+        run: |
+          pip install black
+          black --check .  # This checks for code formatting issues without modifying files
+
+      - name: Run Mypy (Type Checking)
+        run: |
+          pip install mypy
+          mypy --strict .
+
+      - name: Generate Coverage Report
+        run: |
+          pip install coverage pytest-cov
+          pytest --cov-report term-missing --cov=your_module tests/
+
+      - name: Check Dependencies for Updates
+        run: |
+          pip install pip-tools
+          pip-compile --generate-hashes --output-file=requirements.txt requirements.in
+
+      - name: Check for Security Vulnerabilities
+        run: |
+          pip install safety
+          safety check -r requirements.txt
+
+      - name: Publish Test Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: pytest.xml  # Replace with the actual path to your test results XML file
+
+      - name: Publish Coverage Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: htmlcov/  # Replace with the actual path to your coverage report directory
