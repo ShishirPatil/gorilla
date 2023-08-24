@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import argparse
+import os 
 import sys
 import json
 import openai
@@ -132,6 +133,12 @@ if __name__ == '__main__':
             questions.append(json.loads(line)["text"])
             question_ids.append(json.loads(line)["question_id"])
 
+            if idx > 5: break
+
+    if os.path.exists(args.output_file):
+        print(f"\nExisting responses file found at: {args.output_file}, deleting it ...\n")
+        os.remove(args.output_file)
+
     file_write_lock = mp.Lock()
     with mp.Pool(1) as pool:
         results = []
@@ -153,6 +160,7 @@ if __name__ == '__main__':
         print("\nSaving all responses to Weights & Biases...\n")
 
         wandb.summary["elapsed_time_s"] = elapsed_time
+        wandb.log({"elapsed_time_s":elapsed_time})
 
         line_count = 0 
         with open(args.output_file, 'r') as file:
@@ -170,7 +178,7 @@ if __name__ == '__main__':
 
         # Also log results file as W&B Artifact
         wandb.log_artifact(args.output_file, 
-            name=f"{args.api_name}-{args._model}-eval-results", 
-            type=f"eval-results", 
+            name=f"{args.api_name}-{args.model}-eval-responses", 
+            type=f"eval-responses", 
             aliases=[f"{line_count}-responses"]
         )
