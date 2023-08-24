@@ -154,9 +154,19 @@ if __name__ == '__main__':
     elapsed_time = end_time - start_time
     print("Total time used: ", elapsed_time)
     
+    wandb.init(
+        project=args.wandb_project, 
+        entity=args.wandb_entity,
+        config={
+            "api_name":args.api_name,
+            "model":args.model,
+            "question_data":args.question_data,
+            "output_file": args.output_file
+            }
+        )
+
     if args.use_wandb:
         print("\nSaving all responses to Weights & Biases...\n")
-
         wandb.summary["elapsed_time_s"] = elapsed_time
         wandb.log({"elapsed_time_s":elapsed_time})
 
@@ -167,8 +177,9 @@ if __name__ == '__main__':
 
                 if i == 0:
                     tbl = wandb.Table(columns=list(data.keys()))
-                tbl.add_data(*list(data.values()))
-                line_count+=1
+                if data is not None:
+                    tbl.add_data(*list(data.values()))
+                    line_count+=1
         
         # Log the Tale to W&B
         wandb.log({"llm_eval_responses": tbl})
