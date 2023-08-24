@@ -133,8 +133,6 @@ if __name__ == '__main__':
             questions.append(json.loads(line)["text"])
             question_ids.append(json.loads(line)["question_id"])
 
-            if idx > 5: break
-
     if os.path.exists(args.output_file):
         print(f"\nExisting responses file found at: {args.output_file}, deleting it ...\n")
         os.remove(args.output_file)
