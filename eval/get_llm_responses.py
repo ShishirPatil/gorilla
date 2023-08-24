@@ -13,6 +13,7 @@
 # limitations under the License.
 
 import argparse
+import re
 import os 
 import sys
 import json
@@ -153,17 +154,6 @@ if __name__ == '__main__':
     end_time = time.time()
     elapsed_time = end_time - start_time
     print("Total time used: ", elapsed_time)
-    
-    wandb.init(
-        project=args.wandb_project, 
-        entity=args.wandb_entity,
-        config={
-            "api_name":args.api_name,
-            "model":args.model,
-            "question_data":args.question_data,
-            "output_file": args.output_file
-            }
-        )
 
     if args.use_wandb:
         print("\nSaving all responses to Weights & Biases...\n")
@@ -186,8 +176,9 @@ if __name__ == '__main__':
         wandb.summary["response_count"] = line_count
 
         # Also log results file as W&B Artifact
+        artifact_model_name = re.sub(r'[^a-zA-Z0-9-_.]', '-', args.model)
         wandb.log_artifact(args.output_file, 
-            name=f"{args.api_name}-{args.model}-eval-responses", 
+            name=f"{args.api_name}-{artifact_model_name}-eval-responses", 
             type=f"eval-responses", 
             aliases=[f"{line_count}-responses"]
         )
