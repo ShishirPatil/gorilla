@@ -162,13 +162,14 @@ def main(args):
             pass
 
     if args.use_wandb:
+        import wandb
         if args.wandb_run_id is not None: 
             wandb.init(project=args.wandb_project, entity=args.wandb_entity, id=args.wandb_run_id, resume="must") 
         else:
             wandb.init(project=args.wandb_project, entity=args.wandb_entity)
 
-        wandb.summary['final_functionality_accuracy': total_correct / len(llm_responses)]
-        wandb.summary['final_hallucination':  total_hallucination/len(llm_responses)]
+        wandb.summary['final_functionality_accuracy'] = total_correct / len(llm_responses)
+        wandb.summary['final_hallucination'] = total_hallucination/len(llm_responses)
 
     print('Final Functionality accuracy: ', total_correct / len(llm_responses))
     print('Final hallucination: ', total_hallucination/len(llm_responses))
