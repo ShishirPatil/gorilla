@@ -161,7 +161,7 @@ def main(args):
         else:
             pass
 
-    if use_wandb:
+    if args.use_wandb:
         if args.wandb_run_id is not None: 
             wandb.init(project=args.wandb_project, entity=args.wandb_entity, id=args.wandb_run_id, resume="must") 
         else:
