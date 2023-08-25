@@ -51,14 +51,9 @@ def load_model(
         if num_gpus != 1:
             kwargs["device_map"] = "auto"
             if max_gpu_memory is None:
-                kwargs[
-                    "device_map"
-                ] = "sequential"  # This is important for not the same VRAM sizes
+                kwargs["device_map"] = "sequential"  # This is important for not the same VRAM sizes
                 available_gpu_memory = get_gpu_memory(num_gpus)
-                kwargs["max_memory"] = {
-                    i: str(int(available_gpu_memory[i] * 0.85)) + "GiB"
-                    for i in range(num_gpus)
-                }
+                kwargs["max_memory"] = {i: str(int(available_gpu_memory[i] * 0.85)) + "GiB" for i in range(num_gpus)}
             else:
                 kwargs["max_memory"] = {i: max_gpu_memory for i in range(num_gpus)}
     else:
@@ -69,22 +64,14 @@ def load_model(
         from transformers import BitsAndBytesConfig
 
         if "max_memory" in kwargs:
-            kwargs["max_memory"]["cpu"] = (
-                str(math.floor(psutil.virtual_memory().available / 2**20)) + "Mib"
-            )
-        kwargs["quantization_config"] = BitsAndBytesConfig(
-            load_in_8bit_fp32_cpu_offload=cpu_offloading
-        )
+            kwargs["max_memory"]["cpu"] = str(math.floor(psutil.virtual_memory().available / 2**20)) + "Mib"
+        kwargs["quantization_config"] = BitsAndBytesConfig(load_in_8bit_fp32_cpu_offload=cpu_offloading)
         kwargs["load_in_8bit"] = load_8bit
     elif load_8bit:
         if num_gpus != 1:
-            warnings.warn(
-                "8-bit quantization is not supported for multi-gpu inference."
-            )
+            warnings.warn("8-bit quantization is not supported for multi-gpu inference.")
         else:
-            return load_compress_model(
-                model_path=model_path, device=device, torch_dtype=kwargs["torch_dtype"]
-            )
+            return load_compress_model(model_path=model_path, device=device, torch_dtype=kwargs["torch_dtype"])
 
     tokenizer = AutoTokenizer.from_pretrained(model_path)
     tokenizer.pad_token = tokenizer.eos_token
@@ -148,12 +135,8 @@ def chat_loop(
     chatio: abc.ABC,
 ):
     # Model
-    model, tokenizer = load_model(
-        model_path, device, num_gpus, max_gpu_memory, load_8bit, cpu_offloading
-    )
-    if (
-        args.device == "cuda" and args.num_gpus == 1 and not args.cpu_offloading
-    ) or args.device == "mps":
+    model, tokenizer = load_model(model_path, device, num_gpus, max_gpu_memory, load_8bit, cpu_offloading)
+    if (args.device == "cuda" and args.num_gpus == 1 and not args.cpu_offloading) or args.device == "mps":
         model.to(args.device)
 
     while True:
@@ -186,9 +169,7 @@ def chat_loop(
 def main(args):
     if args.gpus:
         if len(args.gpus.split(",")) < args.num_gpus:
-            raise ValueError(
-                f"Larger --num-gpus ({args.num_gpus}) than --gpus {args.gpus}!"
-            )
+            raise ValueError(f"Larger --num-gpus ({args.num_gpus}) than --gpus {args.gpus}!")
         os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus
 
     chatio = SimpleChatIO()
@@ -223,17 +204,13 @@ if __name__ == "__main__":
         help="A single GPU like 1 or multiple GPUs like 0,2.",
     )
     parser.add_argument("--num-gpus", type=int, default=1)
-    parser.add_argument(
-        "--device", type=str, default="cuda", help="Which device to use."
-    )
+    parser.add_argument("--device", type=str, default="cuda", help="Which device to use.")
     parser.add_argument(
         "--max-gpu-memory",
         type=str,
         help="The maximum memory per gpu. Use a string like '13Gib'",
     )
-    parser.add_argument(
-        "--load-8bit", action="store_true", help="Use 8-bit quantization"
-    )
+    parser.add_argument("--load-8bit", action="store_true", help="Use 8-bit quantization")
     parser.add_argument(
         "--cpu-offloading",
         action="store_true",

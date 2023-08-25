@@ -13,8 +13,9 @@
 # limitations under the License.
 
 import argparse
-import json 
+import json
 from tree_sitter import Language, Parser
+
 
 # Get all the subtrees given a root_node
 def get_all_sub_trees(root_node):
@@ -35,14 +36,16 @@ def get_all_sub_trees(root_node):
                 node_stack.append([child_node, depth])
     return sub_tree_sexp_list
 
+
 # Parse the program into AST trees
-def ast_parse(candidate, lang='python'):
-    LANGUAGE = Language('codebleu/parser/my-languages.so', lang)
+def ast_parse(candidate, lang="python"):
+    LANGUAGE = Language("codebleu/parser/my-languages.so", lang)
     parser = Parser()
     parser.set_language(LANGUAGE)
-    
-    candidate_tree = parser.parse(bytes(candidate,'utf8')).root_node
+
+    candidate_tree = parser.parse(bytes(candidate, "utf8")).root_node
     return candidate_tree
+
 
 # Get all the arguments in the ast tree
 def get_args(node):
@@ -50,13 +53,14 @@ def get_args(node):
         return []
     args_list = []
     for child in node.children[0].children[0].children[1].children:
-        if 'model=' in child.text.decode() or 'model =' in child.text.decode():
+        if "model=" in child.text.decode() or "model =" in child.text.decode():
             args_list.append(child.children[2].text)
         elif child.text.decode() != "(" and child.text.decode() != ")" and child.text.decode() != ",":
             args_list.append(child.text)
     return args_list
 
-# Check if there is an api match 
+
+# Check if there is an api match
 def ast_check(candidate_subtree_list, base_tree_list):
     for idx, base_tree in enumerate(base_tree_list):
         if base_tree.children[0].children[0].child_count == 0:
@@ -79,33 +83,35 @@ def ast_check(candidate_subtree_list, base_tree_list):
             return idx
     return -1
 
+
 # Parse the dataset
 def parse_dataset(args):
     # Read the api datasest
     api_database = []
-    with open(args.api_dataset, 'r') as f:
+    with open(args.api_dataset, "r") as f:
         for line in f:
             api_database.append(json.loads(line))
 
     # Read the question answer pair datasest
     qa_pairs = []
-    with open(args.apibench, 'r') as f:
+    with open(args.apibench, "r") as f:
         for line in f:
             qa_pairs.append(json.loads(line)["api_data"])
-    
+
     # Read the language model response datasest
     llm_responses = []
-    with open(args.llm_responses, 'r') as f:
+    with open(args.llm_responses, "r") as f:
         for line in f:
             llm_responses.append(json.loads(line))
 
     # Parse all apis to ast trees
     ast_database = []
     for data in api_database:
-        ast_tree = ast_parse(data['api_call'])
+        ast_tree = ast_parse(data["api_call"])
         ast_database.append(ast_tree)
 
     return api_database, qa_pairs, llm_responses, ast_database
+
 
 def main(args):
     # Read datsets
@@ -116,9 +122,9 @@ def main(args):
     total_hallucination = 0
     for idx, response in enumerate(llm_responses):
         try:
-            output = response['text']
+            output = response["text"]
         except:
-            print('Error: cannot parse line ', idx)
+            print("Error: cannot parse line ", idx)
             continue
 
         # Index the "api_call" domain
@@ -138,8 +144,7 @@ def main(args):
                 end = -2
             else:
                 end = output.rindex(")")
-            api_call = output[start+2:end+1]
-
+            api_call = output[start + 2 : end + 1]
 
         # Parse the api_call into AST tree
         ast_tree = ast_parse(api_call)
@@ -148,19 +153,20 @@ def main(args):
         # Check which ast tree is matching
         database_index = ast_check(ast_subtree_list, ast_database)
         # We cannot index this ast in our database
-        if database_index == -1: 
+        if database_index == -1:
             total_hallucination += 1
             continue
         # We index our reference api_call
         ref_api_call = api_database[database_index]
         # Check for functionality
-        if ref_api_call['domain'] == qa_pairs[response['question_id'] - 1]['domain']:
+        if ref_api_call["domain"] == qa_pairs[response["question_id"] - 1]["domain"]:
             total_correct += 1
         else:
             pass
 
-    print('Final Functionality accuracy: ', total_correct / len(llm_responses))
-    print('Final hallucination: ', total_hallucination/len(llm_responses))
+    print("Final Functionality accuracy: ", total_correct / len(llm_responses))
+    print("Final hallucination: ", total_hallucination / len(llm_responses))
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

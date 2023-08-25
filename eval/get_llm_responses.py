@@ -14,7 +14,7 @@
 
 import argparse
 import re
-import os 
+import os
 import sys
 import json
 import openai
@@ -24,9 +24,10 @@ import time
 import wandb
 from tenacity import retry, wait_exponential
 
+
 def encode_question(question, api_name):
     """Encode multiple prompt instructions into a single string."""
-    
+
     prompts = []
     if api_name == "torchhub":
         domains = "1. $DOMAIN is inferred from the task description and should include one of {Classification, Semantic Segmentation, Object Detection, Audio Separation, Video Classification, Text-to-Speech}."
@@ -46,16 +47,24 @@ def encode_question(question, api_name):
     else:
         print("Error: API name is not supported.")
 
-    prompt = question + "\nWrite a python program in 1 to 2 lines to call API in " + api_name + ".\n\nThe answer should follow the format: <<<domain>>> $DOMAIN, <<<api_call>>>: $API_CALL, <<<api_provider>>>: $API_PROVIDER, <<<explanation>>>: $EXPLANATION, <<<code>>>: $CODE}. Here are the requirements:\n" + domains + "\n2. The $API_CALL should have only 1 line of code that calls api.\n3. The $API_PROVIDER should be the programming framework used.\n4. $EXPLANATION should be a step-by-step explanation.\n5. The $CODE is the python code.\n6. Do not repeat the format in your answer."
+    prompt = (
+        question
+        + "\nWrite a python program in 1 to 2 lines to call API in "
+        + api_name
+        + ".\n\nThe answer should follow the format: <<<domain>>> $DOMAIN, <<<api_call>>>: $API_CALL, <<<api_provider>>>: $API_PROVIDER, <<<explanation>>>: $EXPLANATION, <<<code>>>: $CODE}. Here are the requirements:\n"
+        + domains
+        + "\n2. The $API_CALL should have only 1 line of code that calls api.\n3. The $API_PROVIDER should be the programming framework used.\n4. $EXPLANATION should be a step-by-step explanation.\n5. The $CODE is the python code.\n6. Do not repeat the format in your answer."
+    )
     prompts.append({"role": "system", "content": "You are a helpful API writer who can write APIs based on requirements."})
     prompts.append({"role": "user", "content": prompt})
     return prompts
+
 
 @retry(wait=wait_exponential(multiplier=1, min=10, max=120), reraise=True)
 def get_response(get_response_input, api_key):
     question, question_id, api_name, model = get_response_input
     question = encode_question(question, api_name)
-    
+
     try:
         if "gpt" in model:
             openai.api_key = api_key
@@ -65,7 +74,7 @@ def get_response(get_response_input, api_key):
                 n=1,
                 temperature=0,
             )
-            response = responses['choices'][0]['message']['content']
+            response = responses["choices"][0]["message"]["content"]
         elif "claude" in model:
             client = anthropic.Anthropic(api_key=api_key)
             responses = client.completions.create(
@@ -80,15 +89,19 @@ def get_response(get_response_input, api_key):
     except Exception as e:
         print("Error:", e)
         return None
-        
-    print("=>",)
-    return {'text': response, "question_id": question_id, "answer_id": "None", "model_id": model, "metadata": {}}
+
+    print(
+        "=>",
+    )
+    return {"text": response, "question_id": question_id, "answer_id": "None", "model_id": model, "metadata": {}}
+
 
 def process_entry(entry, api_key):
     question, question_id, api_name, model = entry
     result = get_response((question, question_id, api_name, model), api_key)
-    wandb.log({"question_id_completed":question_id})
+    wandb.log({"question_id_completed": question_id})
     return result
+
 
 def write_result_to_file(result, output_file):
     global file_write_lock
@@ -97,39 +110,45 @@ def write_result_to_file(result, output_file):
             json.dump(result, outfile)
             outfile.write("\n")
 
+
 def callback_with_lock(result, output_file):
     global file_write_lock
     write_result_to_file(result, output_file, file_write_lock)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", type=str, default=None, help="which model you want to use for eval, only support ['gpt*', 'claude*'] now")
+    parser.add_argument(
+        "--model", type=str, default=None, help="which model you want to use for eval, only support ['gpt*', 'claude*'] now"
+    )
     parser.add_argument("--api_key", type=str, default=None, help="the api key provided for calling")
     parser.add_argument("--output_file", type=str, default=None, help="the output file this script writes to")
     parser.add_argument("--question_data", type=str, default=None, help="path to the questions data file")
-    parser.add_argument("--api_name", type=str, default=None, help="this will be the api dataset name you are testing, only support ['torchhub', 'tensorhun', 'huggingface'] now")
-    parser.add_argument("--use_wandb", action='store_true', help="pass this argument to turn on Weights & Biases logging of the LLM responses")
+    parser.add_argument(
+        "--api_name",
+        type=str,
+        default=None,
+        help="this will be the api dataset name you are testing, only support ['torchhub', 'tensorhun', 'huggingface'] now",
+    )
+    parser.add_argument(
+        "--use_wandb", action="store_true", help="pass this argument to turn on Weights & Biases logging of the LLM responses"
+    )
     parser.add_argument("--wandb_project", type=str, default="gorilla-api", help="Weights & Biases project name")
     parser.add_argument("--wandb_entity", type=str, default=None, help="Weights & Biases entity name")
     args = parser.parse_args()
 
     if args.use_wandb:
         wandb.init(
-            project=args.wandb_project, 
+            project=args.wandb_project,
             entity=args.wandb_entity,
-            config={
-                "api_name":args.api_name,
-                "model":args.model,
-                "question_data":args.question_data,
-                "output_file": args.output_file
-                }
-            )
+            config={"api_name": args.api_name, "model": args.model, "question_data": args.question_data, "output_file": args.output_file},
+        )
 
     start_time = time.time()
     # Read the question file
     questions = []
     question_ids = []
-    with open(args.question_data, 'r') as f:
+    with open(args.question_data, "r") as f:
         for idx, line in enumerate(f):
             questions.append(json.loads(line)["text"])
             question_ids.append(json.loads(line)["question_id"])
@@ -158,27 +177,28 @@ if __name__ == '__main__':
     if args.use_wandb:
         print("\nSaving all responses to Weights & Biases...\n")
         wandb.summary["elapsed_time_s"] = elapsed_time
-        wandb.log({"elapsed_time_s":elapsed_time})
+        wandb.log({"elapsed_time_s": elapsed_time})
 
-        line_count = 0 
-        with open(args.output_file, 'r') as file:
-            for i,line in enumerate(file):
+        line_count = 0
+        with open(args.output_file, "r") as file:
+            for i, line in enumerate(file):
                 data = json.loads(line.strip())
 
                 if i == 0:
                     tbl = wandb.Table(columns=list(data.keys()))
                 if data is not None:
                     tbl.add_data(*list(data.values()))
-                    line_count+=1
-        
+                    line_count += 1
+
         # Log the Tale to W&B
         wandb.log({"llm_eval_responses": tbl})
         wandb.summary["response_count"] = line_count
 
         # Also log results file as W&B Artifact
-        artifact_model_name = re.sub(r'[^a-zA-Z0-9-_.]', '-', args.model)
-        wandb.log_artifact(args.output_file, 
-            name=f"{args.api_name}-{artifact_model_name}-eval-responses", 
-            type=f"eval-responses", 
-            aliases=[f"{line_count}-responses"]
+        artifact_model_name = re.sub(r"[^a-zA-Z0-9-_.]", "-", args.model)
+        wandb.log_artifact(
+            args.output_file,
+            name=f"{args.api_name}-{artifact_model_name}-eval-responses",
+            type=f"eval-responses",
+            aliases=[f"{line_count}-responses"],
         )

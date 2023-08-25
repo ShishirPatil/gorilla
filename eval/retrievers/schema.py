@@ -9,9 +9,7 @@ from typing import Any, Dict, Generic, List, NamedTuple, Optional, TypeVar, Unio
 from pydantic import BaseModel, Extra, Field, root_validator
 
 
-def get_buffer_string(
-    messages: List[BaseMessage], human_prefix: str = "Human", ai_prefix: str = "AI"
-) -> str:
+def get_buffer_string(messages: List[BaseMessage], human_prefix: str = "Human", ai_prefix: str = "AI") -> str:
     """Get buffer string of messages."""
     string_messages = []
     for m in messages:
@@ -175,15 +173,11 @@ class PromptValue(BaseModel, ABC):
 
 class BaseLanguageModel(BaseModel, ABC):
     @abstractmethod
-    def generate_prompt(
-        self, prompts: List[PromptValue], stop: Optional[List[str]] = None
-    ) -> LLMResult:
+    def generate_prompt(self, prompts: List[PromptValue], stop: Optional[List[str]] = None) -> LLMResult:
         """Take in a list of prompt values and return an LLMResult."""
 
     @abstractmethod
-    async def agenerate_prompt(
-        self, prompts: List[PromptValue], stop: Optional[List[str]] = None
-    ) -> LLMResult:
+    async def agenerate_prompt(self, prompts: List[PromptValue], stop: Optional[List[str]] = None) -> LLMResult:
         """Take in a list of prompt values and return an LLMResult."""
 
     def get_num_tokens(self, text: str) -> int:
