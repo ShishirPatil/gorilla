@@ -60,6 +60,16 @@ def get_args(node):
 
 # Check if there is an api match 
 def ast_check(candidate_subtree_list, base_tree_list):
+    """
+    Check if there is an API match between candidate subtrees and base trees.
+
+    Args:
+        candidate_subtree_list (list): A list of candidate subtrees with their depths and text contents.
+        base_tree_list (list): A list of base trees to compare against.
+
+    Returns:
+        int: The index of the matching base tree in base_tree_list if a match is found, -1 otherwise.
+    """
     for idx, base_tree in enumerate(base_tree_list):
         if base_tree.children[0].children[0].child_count == 0:
             continue
