@@ -19,9 +19,31 @@ dfg_function={
 }
 
 def calc_syntax_match(references, candidate, lang):
+    """
+    Calculate the syntax match score for a candidate code against references.
+    
+    Args:
+        references (list): A list of reference code samples.
+        candidate (str): The candidate code to be evaluated.
+        lang (str): The programming language of the code samples.
+
+    Returns:
+        float: The syntax match score.
+    """
     return corpus_syntax_match([references], [candidate], lang)
 
 def corpus_syntax_match(references, candidates, lang):   
+    """
+    Calculate the corpus-level syntax match score for candidates against references.
+    
+    Args:
+        references (list): A list of lists of reference code samples.
+        candidates (list): A list of candidate code samples.
+        lang (str): The programming language of the code samples.
+
+    Returns:
+        float: The corpus-level syntax match score.
+    """
     '''
     Language.build_library(# Store the library in the `build` directory
         'build/my-languages.so',
@@ -67,6 +89,15 @@ def corpus_syntax_match(references, candidates, lang):
             total_match = 0
 
             def get_all_sub_trees(root_node):
+                """
+                Get all sub-trees of a given root node.
+                
+                Args:
+                    root_node: The root node of the syntax tree.
+
+                Returns:
+                    list: List of sub-tree sexps and their depths.
+                """
                 node_stack = []
                 sub_tree_sexp_list = []
                 depth = 1
