@@ -19,10 +19,9 @@ import abc
 
 from retrievers.schema import Document
 
+
 class JSONLReader(abc.ABC):
-    def __init__(
-        self, levels_back: Optional[int] = None, collapse_length: Optional[int] = None
-    ) -> None:
+    def __init__(self, levels_back: Optional[int] = None, collapse_length: Optional[int] = None) -> None:
         """Initialize with arguments."""
         super().__init__()
         self.levels_back = levels_back
@@ -37,9 +36,5 @@ class JSONLReader(abc.ABC):
         if self.levels_back is None:
             return [Document(page_content=_data) for _data in data]
         elif self.levels_back is not None:
-            lines = [
-                *_depth_first_yield(
-                    data, self.levels_back, self.collapse_length, []
-                )
-            ]
+            lines = [*_depth_first_yield(data, self.levels_back, self.collapse_length, [])]
             return [Document(page_content="\n".join(lines))]

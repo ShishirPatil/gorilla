@@ -83,9 +83,7 @@ def sentence_bleu(
     :return: The sentence-level BLEU score.
     :rtype: float
     """
-    return corpus_bleu(
-        [references], [hypothesis], weights, smoothing_function, auto_reweigh
-    )
+    return corpus_bleu([references], [hypothesis], weights, smoothing_function, auto_reweigh)
 
 
 def corpus_bleu(
@@ -147,9 +145,7 @@ def corpus_bleu(
     p_denominators = Counter()  # Key = ngram order, and value = no. of ngram in ref.
     hyp_lengths, ref_lengths = 0, 0
 
-    assert len(list_of_references) == len(hypotheses), (
-        "The number of hypotheses and their reference(s) should be the " "same "
-    )
+    assert len(list_of_references) == len(hypotheses), "The number of hypotheses and their reference(s) should be the " "same "
 
     # Iterate through each hypothesis and their corresponding references.
     for references, hypothesis in zip(list_of_references, hypotheses):
@@ -176,10 +172,7 @@ def corpus_bleu(
             weights = (1 / hyp_lengths,) * hyp_lengths
 
     # Collects the various precision values for the different ngram orders.
-    p_n = [
-        Fraction(p_numerators[i], p_denominators[i], _normalize=False)
-        for i, _ in enumerate(weights, start=1)
-    ]
+    p_n = [Fraction(p_numerators[i], p_denominators[i], _normalize=False) for i, _ in enumerate(weights, start=1)]
 
     # Returns 0 if there's no matching n-grams
     # We only need to check for p_numerators[1] == 0, since if there's
@@ -194,9 +187,7 @@ def corpus_bleu(
     # Note: smoothing_function() may convert values into floats;
     #       it tries to retain the Fraction object as much as the
     #       smoothing method allows.
-    p_n = smoothing_function(
-        p_n, references=references, hypothesis=hypothesis, hyp_len=hyp_lengths
-    )
+    p_n = smoothing_function(p_n, references=references, hypothesis=hypothesis, hyp_len=hyp_lengths)
     s = (w_i * math.log(p_i) for w_i, p_i in zip(weights, p_n))
     s = bp * math.exp(math.fsum(s))
     return s
@@ -281,16 +272,12 @@ def modified_precision(references, hypothesis, n):
     # max_counts = reduce(or_, [Counter(ngrams(ref, n)) for ref in references])
     max_counts = {}
     for reference in references:
-        reference_counts = (
-            Counter(ngrams(reference, n)) if len(reference) >= n else Counter()
-        )
+        reference_counts = Counter(ngrams(reference, n)) if len(reference) >= n else Counter()
         for ngram in counts:
             max_counts[ngram] = max(max_counts.get(ngram, 0), reference_counts[ngram])
 
     # Assigns the intersection between hypothesis and references' counts.
-    clipped_counts = {
-        ngram: min(count, max_counts[ngram]) for ngram, count in counts.items()
-    }
+    clipped_counts = {ngram: min(count, max_counts[ngram]) for ngram, count in counts.items()}
 
     numerator = sum(clipped_counts.values())
     # Ensures that denominator is minimum 1 to avoid ZeroDivisionError.
@@ -313,9 +300,7 @@ def closest_ref_length(references, hyp_len):
     :rtype: int
     """
     ref_lens = (len(reference) for reference in references)
-    closest_ref_len = min(
-        ref_lens, key=lambda ref_len: (abs(ref_len - hyp_len), ref_len)
-    )
+    closest_ref_len = min(ref_lens, key=lambda ref_len: (abs(ref_len - hyp_len), ref_len))
     return closest_ref_len
 
 
@@ -477,12 +462,7 @@ class SmoothingFunction:
         """
         Smoothing method 1: Add *epsilon* counts to precision with 0 counts.
         """
-        return [
-            (p_i.numerator + self.epsilon) / p_i.denominator
-            if p_i.numerator == 0
-            else p_i
-            for p_i in p_n
-        ]
+        return [(p_i.numerator + self.epsilon) / p_i.denominator if p_i.numerator == 0 else p_i for p_i in p_n]
 
     def method2(self, p_n, *args, **kwargs):
         """
@@ -491,10 +471,7 @@ class SmoothingFunction:
         machine translation quality using longest common subsequence and
         skip-bigram statistics. In ACL04.
         """
-        return [
-            Fraction(p_i.numerator + 1, p_i.denominator + 1, _normalize=False)
-            for p_i in p_n
-        ]
+        return [Fraction(p_i.numerator + 1, p_i.denominator + 1, _normalize=False) for p_i in p_n]
 
     def method3(self, p_n, *args, **kwargs):
         """
@@ -514,7 +491,7 @@ class SmoothingFunction:
         incvnt = 1  # From the mteval-v13a.pl, it's referred to as k.
         for i, p_i in enumerate(p_n):
             if p_i.numerator == 0:
-                p_n[i] = 1 / (2 ** incvnt * p_i.denominator)
+                p_n[i] = 1 / (2**incvnt * p_i.denominator)
                 incvnt += 1
         return p_n
 
@@ -529,9 +506,7 @@ class SmoothingFunction:
         hyp_len = hyp_len if hyp_len else len(hypothesis)
         for i, p_i in enumerate(p_n):
             if p_i.numerator == 0 and hyp_len != 0:
-                incvnt = i + 1 * self.k / math.log(
-                    hyp_len
-                )  # Note that this K is different from the K from NIST.
+                incvnt = i + 1 * self.k / math.log(hyp_len)  # Note that this K is different from the K from NIST.
                 p_n[i] = incvnt / p_i.denominator
         return p_n
 

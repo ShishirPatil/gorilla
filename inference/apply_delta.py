@@ -25,6 +25,17 @@ GB = 1 << 30
 
 
 def split_files(model_path, tmp_path, split_size):
+    """
+    Splits large model files into smaller parts based on a given split size and saves them in a temporary directory.
+
+    Args:
+        model_path (str): Path to the directory containing the model files.
+        tmp_path (str): Path to the temporary directory where the split model parts will be saved.
+        split_size (int): Maximum size (in bytes) for each split part.
+
+    Returns:
+        None
+    """
     if not os.path.exists(model_path):
         model_path = snapshot_download(repo_id=model_path)
     if not os.path.exists(tmp_path):
@@ -70,6 +81,17 @@ def split_files(model_path, tmp_path, split_size):
 
 
 def apply_delta_low_cpu_mem(base_model_path, target_model_path, delta_path):
+    """
+    Applies a delta to a base model's weights to create a target model, with memory-efficient processing.
+
+    Args:
+        base_model_path (str): Path to the base model directory.
+        target_model_path (str): Path to the directory where the target model will be saved.
+        delta_path (str): Path to the directory containing the delta weights.
+
+    Returns:
+        None
+    """
     delta_tokenizer = AutoTokenizer.from_pretrained(delta_path, use_fast=False)
     delta_config = AutoConfig.from_pretrained(delta_path)
 
@@ -112,12 +134,8 @@ def apply_delta_low_cpu_mem(base_model_path, target_model_path, delta_path):
                 gc.collect()
             torch.save(state_dict, os.path.join(target_model_path, file_name))
 
-        with open(
-            os.path.join(target_model_path, "pytorch_model.bin.index.json"), "w"
-        ) as f:
-            json.dump(
-                {"weight_map": weight_map, "metadata": {"total_size": total_size}}, f
-            )
+        with open(os.path.join(target_model_path, "pytorch_model.bin.index.json"), "w") as f:
+            json.dump({"weight_map": weight_map, "metadata": {"total_size": total_size}}, f)
 
     print(f"Saving the target model to {target_model_path}")
     delta_tokenizer.save_pretrained(target_model_path)
@@ -125,16 +143,23 @@ def apply_delta_low_cpu_mem(base_model_path, target_model_path, delta_path):
 
 
 def apply_delta(base_model_path, target_model_path, delta_path):
+    """
+    Applies a delta to a base model's weights to create a target model.
+
+    Args:
+        base_model_path (str): Path to the directory containing the base model.
+        target_model_path (str): Path to the directory where the target model will be saved.
+        delta_path (str): Path to the directory containing the delta weights.
+
+    Returns:
+        None
+    """
     print(f"Loading the delta weights from {delta_path}")
     delta_tokenizer = AutoTokenizer.from_pretrained(delta_path, use_fast=False)
-    delta = AutoModelForCausalLM.from_pretrained(
-        delta_path, torch_dtype=torch.float16, low_cpu_mem_usage=True
-    )
+    delta = AutoModelForCausalLM.from_pretrained(delta_path, torch_dtype=torch.float16, low_cpu_mem_usage=True)
 
     print(f"Loading the base model from {base_model_path}")
-    base = AutoModelForCausalLM.from_pretrained(
-        base_model_path, torch_dtype=torch.float16, low_cpu_mem_usage=True
-    )
+    base = AutoModelForCausalLM.from_pretrained(base_model_path, torch_dtype=torch.float16, low_cpu_mem_usage=True)
 
     print("Applying the delta")
     for name, param in tqdm(base.state_dict().items(), desc="Applying delta"):
@@ -154,14 +179,11 @@ if __name__ == "__main__":
     parser.add_argument(
         "--low-cpu-mem",
         action="store_true",
-        help="Lower the cpu memory usage. This will split large files and use "
-        "disk as swap to reduce the memory usage below 10GB.",
+        help="Lower the cpu memory usage. This will split large files and use " "disk as swap to reduce the memory usage below 10GB.",
     )
     args = parser.parse_args()
 
     if args.low_cpu_mem:
-        apply_delta_low_cpu_mem(
-            args.base_model_path, args.target_model_path, args.delta_path
-        )
+        apply_delta_low_cpu_mem(args.base_model_path, args.target_model_path, args.delta_path)
     else:
         apply_delta(args.base_model_path, args.target_model_path, args.delta_path)
