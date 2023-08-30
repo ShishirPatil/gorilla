@@ -17,7 +17,7 @@ disable_error_code = ["attr-defined"]
 
 [[tool.mypy.overrides]]
 # Add all the modules with missing type stubs here.
-module = []
+module = ["torch", "transormers", "huggingace_hub"]
 ignore_missing_imports = true
 
 [tool.ruff]

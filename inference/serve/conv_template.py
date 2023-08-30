@@ -39,11 +39,11 @@ class Conversation:
     # Separators
     sep_style: SeparatorStyle
     sep: str
-    sep2: str = None
+    sep2: str | None = None
     # Stop criteria (the default one is EOS token)
-    stop_str: str = None
+    stop_str: str | None = None
     # Stops generation if meeting any token in this list
-    stop_token_ids: list[int] = None
+    stop_token_ids: list[int] = []
 
     def get_prompt(self) -> str:
         """Get the prompt for generation."""
@@ -193,12 +193,14 @@ class Conversation:
 conv_templates: dict[str, Conversation] = {}
 
 
-def register_conv_template(template: Conversation, override: bool = False):
+def register_conv_template(
+    template: Conversation, override: bool = False
+) -> Conversation:
     """Register a new conversation template."""
     if not override:
         assert (
             template.name not in conv_templates
-        ), f"{name} has been registered."
+        ), f"{template.name} has been registered."
     conv_templates[template.name] = template
 
 
@@ -213,8 +215,8 @@ register_conv_template(
         name="gorilla_v0",
         system="A chat between a curious user and an artificial intelligence assistant. "
         "The assistant gives helpful, detailed, and polite answers to the user's questions.",
-        roles=("USER", "ASSISTANT"),
-        messages=(),
+        roles=["USER", "ASSISTANT"],
+        messages=[],
         offset=0,
         sep_style=SeparatorStyle.ADD_COLON_TWO,
         sep="\n",
@@ -229,8 +231,8 @@ register_conv_template(
         system="",
         # system="A chat between a curious user and an artificial intelligence assistant. "
         # "The assistant gives helpful, detailed, and polite answers to the user's questions.",
-        roles=("User", "Assistant"),
-        messages=(),
+        roles=["User", "Assistant"],
+        messages=[],
         offset=0,
         sep_style=SeparatorStyle.ADD_COLON_TWO,
         sep=" ",
@@ -248,8 +250,8 @@ register_conv_template(
 - You are excited to be able to help the user, but will refuse to do anything that could be considered harmful to the user.
 - You are more than just an information source, you are also able to write poetry, short stories, and make jokes.
 """,
-        roles=("user", "assistant"),
-        messages=(),
+        roles=["user", "assistant"],
+        messages=[],
         offset=0,
         sep_style=SeparatorStyle.NEW_LINE,
         sep=" ",
