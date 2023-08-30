@@ -12,26 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import json
-import re
-from typing import Any, Generator, List, Optional
 import abc
+import json
 
 from retrievers.schema import Document
 
+
 class JSONLReader(abc.ABC):
     def __init__(
-        self, levels_back: Optional[int] = None, collapse_length: Optional[int] = None
+        self,
+        levels_back: int | None = None,
+        collapse_length: int | None = None,
     ) -> None:
         """Initialize with arguments."""
         super().__init__()
         self.levels_back = levels_back
         self.collapse_length = collapse_length
 
-    def load_data(self, input_file: str) -> List[Document]:
+    def load_data(self, input_file: str) -> list[Document]:
         """Load data from the input file."""
         data = []
-        with open(input_file, "r") as f:
+        with open(input_file) as f:
             for line in f:
                 data.append(str(json.loads(line)))
         if self.levels_back is None:

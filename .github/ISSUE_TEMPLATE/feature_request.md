@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 **Is the feature request related to a problem?**
-Ex. I'm like to see [...] 
+Ex. I'm like to see [...]
 
 **Describe the solution you'd like**
 When I run [X], I want to see [Y]

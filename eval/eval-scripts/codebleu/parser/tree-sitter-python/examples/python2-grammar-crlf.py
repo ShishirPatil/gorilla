@@ -8,11 +8,13 @@
 # regression test, the filterwarnings() call has been added to
 # regrtest.py.
 
-from test.test_support import run_unittest, check_syntax_error
-import unittest
 import sys
+import unittest
+
 # testing import *
 from sys import *
+from test.test_support import check_syntax_error, run_unittest
+
 
 class TokenTests(unittest.TestCase):
 
@@ -457,15 +459,14 @@ hello world
     def testImport(self):
         # 'import' dotted_as_names
         import sys
-        import time, sys
-        # 'from' dotted_name 'import' ('*' | '(' import_as_names ')' | import_as_names)
-        from time import time
-        from time import (time)
+        import time
+
         # not testable inside a function, but already done at top of the module
         # from sys import *
-        from sys import path, argv
-        from sys import (path, argv)
-        from sys import (path, argv,)
+        from sys import argv, path
+
+        # 'from' dotted_name 'import' ('*' | '(' import_as_names ')' | import_as_names)
+        from time import time
 
     def testGlobal(self):
         # 'global' NAME (',' NAME)*
@@ -679,7 +680,8 @@ hello world
         ### trailer: '(' [testlist] ')' | '[' subscript ']' | '.' NAME
         ### subscript: expr | [expr] ':' [expr]
 
-        import sys, time
+        import sys
+        import time
         c = sys.path[0]
         x = time.time()
         x = sys.modules['time'].time()

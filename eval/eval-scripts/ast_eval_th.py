@@ -13,9 +13,10 @@
 # limitations under the License.
 
 import argparse
-import json
-from tree_sitter import Language, Parser
 import concurrent.futures
+import json
+
+from tree_sitter import Language, Parser
 
 
 # Get all the subtrees given a root_node
@@ -23,16 +24,22 @@ def get_all_sub_trees(root_node):
     node_stack = []
     sub_tree_sexp_list = []
     depth = 1
-    text = root_node.text
     node_stack.append([root_node, depth])
     while len(node_stack) != 0:
         cur_node, cur_depth = node_stack.pop()
         if cur_node.child_count > 0:
             sub_tree_sexp_list.append(
-                [cur_node.sexp(), cur_depth, cur_node, cur_node.children[0].text]
+                [
+                    cur_node.sexp(),
+                    cur_depth,
+                    cur_node,
+                    cur_node.children[0].text,
+                ]
             )
         else:
-            sub_tree_sexp_list.append([cur_node.sexp(), cur_depth, cur_node, None])
+            sub_tree_sexp_list.append(
+                [cur_node.sexp(), cur_depth, cur_node, None]
+            )
         for child_node in cur_node.children:
             if len(child_node.children) != 0:
                 depth = cur_depth + 1
@@ -56,7 +63,10 @@ def get_args(node):
         return []
     args_list = []
     for child in node.children[0].children[0].children[1].children:
-        if "repo_or_dir" in child.text.decode() or "model" in child.text.decode():
+        if (
+            "repo_or_dir" in child.text.decode()
+            or "model" in child.text.decode()
+        ):
             args_list.append(child.children[2].text)
     return args_list
 
@@ -77,7 +87,10 @@ def ast_check(candidate_subtree_list, base_tree_list):
             continue
         ast_match = True
         for arg in args_list:
-            if arg.decode().lstrip("'").rstrip("'") not in candidate_tree.text.decode():
+            if (
+                arg.decode().lstrip("'").rstrip("'")
+                not in candidate_tree.text.decode()
+            ):
                 ast_match = False
                 break
         if ast_match:
@@ -89,26 +102,28 @@ def ast_check(candidate_subtree_list, base_tree_list):
 def parse_dataset(args):
     # Read the api dataset
     api_database = []
-    with open(args.api_dataset, "r") as f:
+    with open(args.api_dataset) as f:
         for line in f:
             api_database.append(json.loads(line))
 
     # Read the question answer pair dataset
     qa_pairs = []
-    with open(args.apibench, "r") as f:
+    with open(args.apibench) as f:
         for line in f:
             qa_pairs.append(json.loads(line)["api_data"])
 
     # Read the language model response dataset
     llm_responses = []
-    with open(args.llm_responses, "r") as f:
+    with open(args.llm_responses) as f:
         for line in f:
             llm_responses.append(json.loads(line))
 
     # Parse all APIs to AST trees
     ast_database = []
     with concurrent.futures.ThreadPoolExecutor() as executor:
-        ast_trees = executor.map(ast_parse, (data["api_call"] for data in api_database))
+        ast_trees = executor.map(
+            ast_parse, (data["api_call"] for data in api_database)
+        )
         for ast_tree in ast_trees:
             ast_database.append(ast_tree)
 
@@ -151,7 +166,10 @@ def process_response(response, api_database, qa_pairs, ast_database):
     # We index our reference api_call
     ref_api_call = api_database[database_index]
     # Check for functionality
-    if ref_api_call["domain"] == qa_pairs[response["question_id"] - 1]["domain"]:
+    if (
+        ref_api_call["domain"]
+        == qa_pairs[response["question_id"] - 1]["domain"]
+    ):
         return True, False
     else:
         return False, False
@@ -191,13 +209,23 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--api_dataset", type=str, default=None, help="path to your api dataset")
+    parser.add_argument(
+        "--api_dataset",
+        type=str,
+        default=None,
+        help="path to your api dataset",
+    )
     parser.add_argument(
         "--apibench",
         type=str,
         default=None,
         help="path to your apibench dataset including the question and answer pairs",
     )
-    parser.add_argument("--llm_responses", type=str, default=None, help="path to the language model responses")
+    parser.add_argument(
+        "--llm_responses",
+        type=str,
+        default=None,
+        help="path to the language model responses",
+    )
     args = parser.parse_args()
     main(args)

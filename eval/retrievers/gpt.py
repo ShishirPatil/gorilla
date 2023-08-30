@@ -12,40 +12,47 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from typing import Any, Dict, List, cast, Optional
-
-from pydantic import BaseModel, Field
-from tenacity import retry, stop_after_attempt, wait_random_exponential
-from retrievers.schema import BaseRetriever, Document
-import openai
-import numpy as np
-import os
-import copy
 import json
+import os
+from typing import Any
+
+import numpy as np
+import openai
+from pydantic import BaseModel
+from retrievers.schema import BaseRetriever, Document
+from tenacity import retry, stop_after_attempt, wait_random_exponential
+
 
 class GPTRetriever(BaseRetriever, BaseModel):
-
     index: Any
-    query_kwargs: Dict = dict(similarity_top_k = 5)
+    query_kwargs: dict = {"similarity_top_k": 5}
 
-    @retry(wait=wait_random_exponential(min=1, max=20), stop=stop_after_attempt(6))
+    @retry(
+        wait=wait_random_exponential(min=1, max=20), stop=stop_after_attempt(6)
+    )
     def get_embeddings(
         self,
-	list_of_text: List[str],
-	engine: Optional[str] = None,
-    ) -> List[List[float]]:
-        assert len(list_of_text) <= 2048, "The number of docs should be <= 2048"
+        list_of_text: list[str],
+        engine: str | None = None,
+    ) -> list[list[float]]:
+        assert (
+            len(list_of_text) <= 2048
+        ), "The number of docs should be <= 2048"
         list_of_text = [text.replace("\n", " ") for text in list_of_text]
         openai.api_key = os.environ["OPENAI_API_KEY"]
-        data = openai.Embedding.create(input=list_of_text, engine="text-embedding-ada-002").data
-        data = sorted(data, key=lambda x: x["index"])  # maintain the same order as input.
+        data = openai.Embedding.create(
+            input=list_of_text, engine="text-embedding-ada-002"
+        ).data
+        data = sorted(
+            data, key=lambda x: x["index"]
+        )  # maintain the same order as input.
         return [d["embedding"] for d in data]
-  
-    def from_documents(self, documents: List):
+
+    def from_documents(self, documents: list):
         contents = [document.page_content for document in documents]
         embeddings = self.get_embeddings(list_of_text=contents)
         self.index = []
-        for i, (embedding, document) in enumerate(zip(embeddings, documents)):
+        for _i, (embedding, document) in enumerate(zip(embeddings, documents)):
             new_node = {}
             new_node["embedding"] = embedding
             new_node["text"] = document.page_content
@@ -57,28 +64,32 @@ class GPTRetriever(BaseRetriever, BaseModel):
             json.dump(self.index, outfile)
 
     def load_from_disk(self, load_path):
-        with open(load_path, "r") as loadfile:
+        with open(load_path) as loadfile:
             self.index = json.load(loadfile)
-        
-    def get_relevant_documents(self, query: str) -> List[Document]:
+
+    def get_relevant_documents(self, query: str) -> list[Document]:
         docs_embeddings = np.array([doc["embedding"] for doc in self.index])
 
         query_embedding = np.array(self.get_embeddings([query])[0])
 
         # get cos similarity
-        docs_embeddings = docs_embeddings / np.linalg.norm(docs_embeddings, axis=-1, keepdims=True)
-        query_embedding = query_embedding / np.linalg.norm(query_embedding, axis=-1, keepdims=True)
+        docs_embeddings = docs_embeddings / np.linalg.norm(
+            docs_embeddings, axis=-1, keepdims=True
+        )
+        query_embedding = query_embedding / np.linalg.norm(
+            query_embedding, axis=-1, keepdims=True
+        )
         logits = np.sum(query_embedding[None, :] * docs_embeddings, axis=-1)
-        top_k = logits.argsort()[-self.query_kwargs["similarity_top_k"]:][::-1]
+        top_k = logits.argsort()[-self.query_kwargs["similarity_top_k"] :][
+            ::-1
+        ]
         top_k_docs = [self.index[i]["text"] for i in top_k]
 
         # parse source nodes
         docs = []
         for source_node in top_k_docs:
-            docs.append(
-                Document(page_content=source_node, metadata="")
-            )
+            docs.append(Document(page_content=source_node, metadata=""))
         return docs
 
-    async def aget_relevant_documents(self, query: str) -> List[Document]:
+    async def aget_relevant_documents(self, query: str) -> list[Document]:
         raise NotImplementedError("LlamaIndexRetriever does not support async")

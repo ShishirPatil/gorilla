@@ -7,19 +7,3 @@ def hi():
 
 def bye():
     print "bye"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -22,8 +22,7 @@ python get_llm_responses_retriever.py --retriever bm25 --model gpt-3.5-turbo --a
 
 After the responses of the LLM is generated, we can start to evaluate the generated responses with respect to our dataset:
 
-```bash 
+```bash
 cd eval-scripts
 python ast_eval_th.py --api_dataset ../../data/api/torchhub_api.jsonl --apibench ../../data/apibench/torchhub_eval.json --llm_responses ../eval-data/responses/torchhub/response_torchhub_Gorilla_FT_0_shot.jsonl
 ```
-

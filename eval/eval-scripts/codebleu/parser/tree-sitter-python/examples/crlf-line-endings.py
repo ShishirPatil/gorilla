@@ -1,6 +1,6 @@
 print a
 
-if b:    
+if b:
     if c:
         d
     e
