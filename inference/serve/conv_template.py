@@ -5,8 +5,7 @@ Thanks to LMSYS for the template of this code.
 """
 
 import dataclasses
-from enum import auto, Enum
-from typing import List, Any, Dict
+from enum import Enum, auto
 
 
 class SeparatorStyle(Enum):
@@ -22,6 +21,7 @@ class SeparatorStyle(Enum):
     PHOENIX = auto()
     NEW_LINE = auto()
 
+
 @dataclasses.dataclass
 class Conversation:
     """A class that keeps all conversation history."""
@@ -31,9 +31,9 @@ class Conversation:
     # The system prompt
     system: str
     # Two roles
-    roles: List[str]
+    roles: list[str]
     # All messages. Each item is (role, message).
-    messages: List[List[str]]
+    messages: list[list[str]]
     # The number of few shot examples
     offset: int
     # Separators
@@ -43,7 +43,7 @@ class Conversation:
     # Stop criteria (the default one is EOS token)
     stop_str: str = None
     # Stops generation if meeting any token in this list
-    stop_token_ids: List[int] = None
+    stop_token_ids: list[int] = None
 
     def get_prompt(self) -> str:
         """Get the prompt for generation."""
@@ -124,7 +124,7 @@ class Conversation:
             ret = self.system + self.sep
             for role, message in self.messages:
                 if message:
-                    ret += role + "\n" + message + self.sep                                                    
+                    ret += role + "\n" + message + self.sep
                 else:
                     ret += role + "\n"
             return ret
@@ -146,7 +146,7 @@ class Conversation:
     def to_gradio_chatbot(self):
         """Convert the conversation to gradio chatbot format"""
         ret = []
-        for i, (role, msg) in enumerate(self.messages[self.offset :]):
+        for i, (_role, msg) in enumerate(self.messages[self.offset :]):
             if i % 2 == 0:
                 ret.append([msg, None])
             else:
@@ -190,19 +190,22 @@ class Conversation:
 
 
 # A global registry for all conversation templates
-conv_templates: Dict[str, Conversation] = {}
+conv_templates: dict[str, Conversation] = {}
 
 
 def register_conv_template(template: Conversation, override: bool = False):
     """Register a new conversation template."""
     if not override:
-        assert template.name not in conv_templates, f"{name} has been registered."
+        assert (
+            template.name not in conv_templates
+        ), f"{name} has been registered."
     conv_templates[template.name] = template
 
 
 def get_conv_template(name: str) -> Conversation:
     """Get a conversation template."""
     return conv_templates[name].copy()
+
 
 # Gorilla v0 template
 register_conv_template(
@@ -224,8 +227,8 @@ register_conv_template(
     Conversation(
         name="falcon",
         system="",
-        # system="A chat between a curious user and an artificial intelligence assistant. "        
-        # "The assistant gives helpful, detailed, and polite answers to the user's questions.",    
+        # system="A chat between a curious user and an artificial intelligence assistant. "
+        # "The assistant gives helpful, detailed, and polite answers to the user's questions.",
         roles=("User", "Assistant"),
         messages=(),
         offset=0,
@@ -254,4 +257,3 @@ register_conv_template(
         stop_token_ids=[50278, 0],
     )
 )
-

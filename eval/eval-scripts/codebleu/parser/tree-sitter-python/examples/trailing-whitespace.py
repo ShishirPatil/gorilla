@@ -1,6 +1,6 @@
-print a    
+print a
 
-if b:    
-    if c:    
+if b:
+    if c:
         d
-    e     
+    e

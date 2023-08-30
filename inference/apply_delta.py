@@ -14,12 +14,10 @@ import os
 import shutil
 import tempfile
 
-from huggingface_hub import snapshot_download
 import torch
-from torch import nn
+from huggingface_hub import snapshot_download
 from tqdm import tqdm
-from transformers import AutoTokenizer, AutoModelForCausalLM, AutoConfig
-
+from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer
 
 GB = 1 << 30
 
@@ -113,10 +111,15 @@ def apply_delta_low_cpu_mem(base_model_path, target_model_path, delta_path):
             torch.save(state_dict, os.path.join(target_model_path, file_name))
 
         with open(
-            os.path.join(target_model_path, "pytorch_model.bin.index.json"), "w"
+            os.path.join(target_model_path, "pytorch_model.bin.index.json"),
+            "w",
         ) as f:
             json.dump(
-                {"weight_map": weight_map, "metadata": {"total_size": total_size}}, f
+                {
+                    "weight_map": weight_map,
+                    "metadata": {"total_size": total_size},
+                },
+                f,
             )
 
     print(f"Saving the target model to {target_model_path}")
@@ -164,4 +167,6 @@ if __name__ == "__main__":
             args.base_model_path, args.target_model_path, args.delta_path
         )
     else:
-        apply_delta(args.base_model_path, args.target_model_path, args.delta_path)
+        apply_delta(
+            args.base_model_path, args.target_model_path, args.delta_path
+        )

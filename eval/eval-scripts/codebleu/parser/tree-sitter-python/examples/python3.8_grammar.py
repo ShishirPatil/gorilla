@@ -1,20 +1,21 @@
 # Python test set -- part 1, grammar.
 # This just tests whether the parser accepts them all.
 
-from test.support import check_syntax_error
 import inspect
-import unittest
 import sys
-# testing import *
-from sys import *
+import test
 
 # different import patterns to check that __annotations__ does not interfere
 # with import machinery
 import test.ann_module as ann_module
 import typing
+import unittest
 from collections import ChainMap
+
+# testing import *
+from sys import *
 from test import ann_module2
-import test
+from test.support import check_syntax_error
 
 # These are shared with test_tokenize and other test modules.
 #
@@ -365,7 +366,7 @@ class GrammarTests(unittest.TestCase):
     def test_var_annot_in_module(self):
         # check that functions fail the same way when executed
         # outside of module where they were defined
-        from test.ann_module3 import f_bad_ann, g_bad_ann, D_bad_ann
+        from test.ann_module3 import D_bad_ann, f_bad_ann, g_bad_ann
         with self.assertRaises(NameError):
             f_bad_ann()
         with self.assertRaises(NameError):
@@ -1007,15 +1008,14 @@ class GrammarTests(unittest.TestCase):
     def test_import(self):
         # 'import' dotted_as_names
         import sys
-        import time, sys
-        # 'from' dotted_name 'import' ('*' | '(' import_as_names ')' | import_as_names)
-        from time import time
-        from time import (time)
+        import time
+
         # not testable inside a function, but already done at top of the module
         # from sys import *
-        from sys import path, argv
-        from sys import (path, argv)
-        from sys import (path, argv,)
+        from sys import argv, path
+
+        # 'from' dotted_name 'import' ('*' | '(' import_as_names ')' | import_as_names)
+        from time import time
 
     def test_global(self):
         # 'global' NAME (',' NAME)*
@@ -1223,7 +1223,8 @@ class GrammarTests(unittest.TestCase):
         ### trailer: '(' [testlist] ')' | '[' subscript ']' | '.' NAME
         ### subscript: expr | [expr] ':' [expr]
 
-        import sys, time
+        import sys
+        import time
         c = sys.path[0]
         x = time.time()
         x = sys.modules['time'].time()

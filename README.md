@@ -3,9 +3,9 @@
 
 <img src="https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/img/logo.png" width=50% height=50%>
 
-**🟢 Gorilla is Apache 2.0** With Gorilla being fine-tuned on MPT, and Falcon, you can use Gorilla commercially with no obligations! :golf:  
+**🟢 Gorilla is Apache 2.0** With Gorilla being fine-tuned on MPT, and Falcon, you can use Gorilla commercially with no obligations! :golf:
 
-**:rocket: Try Gorilla in 60s** [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing) 
+**:rocket: Try Gorilla in 60s** [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing)
 
 :computer: Use [Gorilla in your CLI](https://github.com/gorilla-llm/gorilla-cli) with `pip install gorilla-cli`
 
@@ -30,7 +30,7 @@
 ![gorilla_webUI_2](https://github.com/TanmayDoesAI/gorilla/assets/85993243/f30645bf-6798-4bd2-ac6e-6943840ae095)
 
 
-## Get Started 
+## Get Started
 
 Inference: Run Gorilla locally [`inference/README.md`](inference/README.md)
 
@@ -38,7 +38,7 @@ Evaluation: We have included prompts and responses for the APIBench with and wit
 
 ## Repository Organization
 
-Our repository organization is shown below. 
+Our repository organization is shown below.
 
   - The `data` folder contains all the evaluation APIs `(APIBench)` and the community contributed APIs.
   - The `eval` folder contains all our evaluation code as well as the Gorilla outputs.
@@ -104,9 +104,9 @@ AutoGPT, on the other hand, concentrates on the art of prompting GPT series mode
 
 Now, when it comes to ToolFormer, Toolformer zeroes in on a select set of tools, providing specialized functionalities. Gorilla, in contrast, has the capacity to manage thousands of API calls, offering a broader coverage over a more extensive range of tools.
 
-The beauty of these tools truly shines when they collaborate, complementing each other's strengths and capabilities to create an even more powerful and comprehensive solution. This is where your contribution can make a difference. We enthusiastically welcome any inputs to further refine and enhance these tools. 
+The beauty of these tools truly shines when they collaborate, complementing each other's strengths and capabilities to create an even more powerful and comprehensive solution. This is where your contribution can make a difference. We enthusiastically welcome any inputs to further refine and enhance these tools.
 
-3. How to train your own Gorilla models? 
+3. How to train your own Gorilla models?
 
 We will release the training code as soon as we can get GPUs to test and finalize the pipeline. Given the demand for our hosted end-points, we have dedicated all of our GPUs to serve the models. If you would like to help with resources get in touch!
 
@@ -121,7 +121,7 @@ In the immediate future, we plan to release the following:
 - [X] Release weights for HF model APIs [May 27, 2023]
 - [X] Run Gorilla LLM locally [May 28, 2023]
 - [X] Release weights for all APIs from APIBench [May 28, 2023]
-- [X] Release a commercially usable, Apache 2.0 licensed Gorilla model [Jun 5, 2023] 
+- [X] Release a commercially usable, Apache 2.0 licensed Gorilla model [Jun 5, 2023]
 - [ ] Train a model with first batch of community contributed APIs from APIZoo
 - [ ] Release training code
 - [ ] Train SOTA Gorilla LLM with expanded APIBench and APIZoo :rocket:
@@ -138,5 +138,5 @@ If you use Gorilla or APIBench, please cite our paper:
   author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},
   year={2023},
   journal={arXiv preprint arXiv:2305.15334},
-} 
+}
 ```

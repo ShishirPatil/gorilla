@@ -1,12 +1,12 @@
 if foo():
-# <- keyword
+    # <- keyword
     pass
     # <- keyword
 elif bar():
-# <- keyword
+    # <- keyword
     pass
 else:
-# <- keyword
+    # <- keyword
     foo
 
 return
@@ -14,11 +14,11 @@ return
 raise e
 # ^ keyword
 
-for i in foo():
-# <- keyword
-#   ^ variable
-#     ^ operator
-#        ^ function
+for _i in foo():
+    # <- keyword
+    #   ^ variable
+    #     ^ operator
+    #        ^ function
     continue
     # <- keyword
     break

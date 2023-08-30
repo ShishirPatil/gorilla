@@ -1,21 +1,21 @@
-# Gorilla API Store 
+# Gorilla API Store
 
 Teach Gorilla how to use your API! Learn about the entire workflow, and how to contribute to Gorilla API Store! Gorilla API Store intends to enhance LLM's capability to use tools through API calls. We appreciate everyone's effort and contributions! THIS WILL ALWAYS REMAIN OPEN SOURCE.
 
 ## How to Contribute?
 
-Contribute to Gorilla API Store is very easy! 
+Contribute to Gorilla API Store is very easy!
 
 1. **JSON Contribution**: It only takes two steps
 
-- Step 1: Submit an API JSON file or a URL JSON file following our format. 
+- Step 1: Submit an API JSON file or a URL JSON file following our format.
 - Step 2: Raise a Pull Request.
 
-2. **Website Assisted** [Coming Soon]: If you need help writing an API json, we will provide a website and you only need to type in your API documentation url. We will return a draft API JSON file (you guessed it, using an LLM) and you can either choose to **Submit** or **Edit & Submit**. 
+2. **Website Assisted** [Coming Soon]: If you need help writing an API json, we will provide a website and you only need to type in your API documentation url. We will return a draft API JSON file (you guessed it, using an LLM) and you can either choose to **Submit** or **Edit & Submit**.
 
 ## Repository Organization
- 
-Post merge, your APIs will reside under your username, organized as follows: 
+
+Post merge, your APIs will reside under your username, organized as follows:
 
 ```
 gorilla
@@ -31,10 +31,10 @@ gorilla
 
 ## Two ways to contribute APIs
 
-We make the contribution to Gorilla API Store as easy as possible. We provide two alternatives: You could either submit following the API JSON format {or} URL JSON format. 
+We make the contribution to Gorilla API Store as easy as possible. We provide two alternatives: You could either submit following the API JSON format {or} URL JSON format.
 
 ### Option 1: API JSON (Preferred)
- 
+
 Community members can submit to Gorilla API Zoo using the following JSON list format:
 
 | Field      |  Type  | Description/Options     | Required |
@@ -53,15 +53,15 @@ Community members can submit to Gorilla API Zoo using the following JSON list fo
 **Example Submission**:
 
 ```python
-[ 
+[
   {
     "user_name": "example_username_api",
     "api_name": "Torch Hub Model snakers4-silero",
-    "api_call": "torch.hub.load(repo_or_dir=['snakers4/silero-models'], model=['silero_stt'], *args, source, trust_repo, force_reload, verbose, skip_validation, **kwargs)", 
-    "api_version": 2.0, 
+    "api_call": "torch.hub.load(repo_or_dir=['snakers4/silero-models'], model=['silero_stt'], *args, source, trust_repo, force_reload, verbose, skip_validation, **kwargs)",
+    "api_version": 2.0,
     "api_arguments": {
-      "repo_or_dir": "snakers4/silero-models", 
-      "model": "silero_stt", 
+      "repo_or_dir": "snakers4/silero-models",
+      "model": "silero_stt",
       "language": ["en", "de", "es"]
     },
     "functionality": "Speech to Text",
@@ -71,7 +71,7 @@ Community members can submit to Gorilla API Zoo using the following JSON list fo
                     imgs = ['https://ultralytics.com/images/zidane.jpg'] \n \
                     results = model(imgs)",
     "meta_data": {
-      "description": "Silero Speech-To-Text models provide enterprise grade STT in a compact form-factor for several commonly spoken languages. The models are robust to a variety of dialects, codecs, domains, noises, and lower sampling rates. They consume a normalized audio in the form of samples and output frames with token probabilities. A decoder utility is provided for simplicity.", 
+      "description": "Silero Speech-To-Text models provide enterprise grade STT in a compact form-factor for several commonly spoken languages. The models are robust to a variety of dialects, codecs, domains, noises, and lower sampling rates. They consume a normalized audio in the form of samples and output frames with token probabilities. A decoder utility is provided for simplicity.",
       "performance": {"dataset": "imagenet", "accuracy": "80.4\%"}
     },
     "questions": [
@@ -87,7 +87,7 @@ Community members can submit to Gorilla API Zoo using the following JSON list fo
 
 We also provide you with a much simpler approach for you to contribute! Provide a simple url to your API documentation, we'll process it for you. Keep in mind, there might be some errors that can creep in with this process and hence we recommend the approach above, or atleast come back to verify if the api documentation we generated for these url's are accurate! They API document generated from the urls will be stored as mentined in the directory structure above.
 
-Submit a json file containing the list of json objects: 
+Submit a json file containing the list of json objects:
 
 | Field      |  Type  | Description/Options     | Required |
 | :---       | :----: |          :----         |   :---:   |
@@ -127,5 +127,5 @@ If you use Gorilla or APIBench, please cite our paper:
   author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},
   year={2023},
   journal={arXiv preprint arXiv:2305.15334},
-} 
+}
 ```

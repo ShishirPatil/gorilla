@@ -7,6 +7,7 @@
 
 from itertools import chain
 
+
 def pad_sequence(
     sequence,
     n,

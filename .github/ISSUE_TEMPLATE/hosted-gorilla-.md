@@ -12,7 +12,7 @@ A clear and concise description of what the bug is.
 
 **To Reproduce**
 Steps to reproduce the behavior:
-1. I tried '...' on <data> and <time> 
+1. I tried '...' on <data> and <time>
 2. I was expecting '...'
 3. But encountered '...'
 4. How frequent is this error '...'
@@ -22,7 +22,7 @@ Steps to reproduce the behavior:
 If applicable, add screenshots to help explain your problem.
 
 **Proposed Solution**
-If you want to suggest a proposed solution or an idea for one? 
+If you want to suggest a proposed solution or an idea for one?
 
 **Additional context**
 Add any other context about the problem here.

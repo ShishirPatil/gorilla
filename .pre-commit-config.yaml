@@ -1,0 +1,49 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+    -   id: check-merge-conflict
+    -   id: check-added-large-files
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+    -   id: check-ast
+        language_version: python3.10
+        exclude: "eval/.*"
+    -   id: check-case-conflict
+    -   id: check-symlinks
+    -   id: debug-statements
+        language_version: python3.10
+        exclude: "eval/.*"
+    -   id: detect-private-key
+-   repo: https://github.com/psf/black
+    rev: 23.1.0
+    hooks:
+    -   id: black
+        args: [--config=pyproject.toml]
+        exclude: "eval/.*"
+-   repo: https://github.com/hadialqattan/pycln
+    rev: v2.1.3
+    hooks:
+    -   id: pycln
+        args: [--config=pyproject.toml]
+        exclude: "eval/.*"
+-   repo: https://github.com/PyCQA/isort
+    rev: 5.12.0
+    hooks:
+    -   id: isort
+        files: "\\.(py)$"
+        args: [--settings-path=pyproject.toml]
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.0.0
+    hooks:
+      - id: mypy
+        language_version: python3.10
+        args: [--config-file=pyproject.toml]
+        exclude: "eval/.*"
+-   repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: "v0.0.246"
+    hooks:
+      - id: ruff
+        language_version: python3.10
+        args: [--fix, --exit-non-zero-on-fix]

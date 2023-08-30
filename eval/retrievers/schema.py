@@ -4,13 +4,15 @@ Thanks to llama-index for the template of this code.
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Generic, List, NamedTuple, Optional, TypeVar, Union
+from typing import Any, Generic, NamedTuple, TypeVar
 
 from pydantic import BaseModel, Extra, Field, root_validator
 
 
 def get_buffer_string(
-    messages: List[BaseMessage], human_prefix: str = "Human", ai_prefix: str = "AI"
+    messages: list[BaseMessage],
+    human_prefix: str = "Human",
+    ai_prefix: str = "AI",
 ) -> str:
     """Get buffer string of messages."""
     string_messages = []
@@ -33,7 +35,7 @@ class AgentAction(NamedTuple):
     """Agent's action to take."""
 
     tool: str
-    tool_input: Union[str, dict]
+    tool_input: str | dict
     log: str
 
 
@@ -50,7 +52,7 @@ class Generation(BaseModel):
     text: str
     """Generated text output."""
 
-    generation_info: Optional[Dict[str, Any]] = None
+    generation_info: dict[str, Any] | None = None
     """Raw generation info response from the provider"""
     """May include things like reason for finishing (e.g. in OpenAI)"""
     # TODO: add log probs
@@ -110,7 +112,7 @@ def _message_to_dict(message: BaseMessage) -> dict:
     return {"type": message.type, "data": message.dict()}
 
 
-def messages_to_dict(messages: List[BaseMessage]) -> List[dict]:
+def messages_to_dict(messages: list[BaseMessage]) -> list[dict]:
     return [_message_to_dict(m) for m in messages]
 
 
@@ -128,7 +130,7 @@ def _message_from_dict(message: dict) -> BaseMessage:
         raise ValueError(f"Got unexpected type: {_type}")
 
 
-def messages_from_dict(messages: List[dict]) -> List[BaseMessage]:
+def messages_from_dict(messages: list[dict]) -> list[BaseMessage]:
     return [_message_from_dict(m) for m in messages]
 
 
@@ -139,7 +141,7 @@ class ChatGeneration(Generation):
     message: BaseMessage
 
     @root_validator
-    def set_text(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+    def set_text(cls, values: dict[str, Any]) -> dict[str, Any]:
         values["text"] = values["message"].content
         return values
 
@@ -147,19 +149,19 @@ class ChatGeneration(Generation):
 class ChatResult(BaseModel):
     """Class that contains all relevant information for a Chat Result."""
 
-    generations: List[ChatGeneration]
+    generations: list[ChatGeneration]
     """List of the things generated."""
-    llm_output: Optional[dict] = None
+    llm_output: dict | None = None
     """For arbitrary LLM provider specific output."""
 
 
 class LLMResult(BaseModel):
     """Class that contains all relevant information for an LLM Result."""
 
-    generations: List[List[Generation]]
+    generations: list[list[Generation]]
     """List of the things generated. This is List[List[]] because
     each input could have multiple generations."""
-    llm_output: Optional[dict] = None
+    llm_output: dict | None = None
     """For arbitrary LLM provider specific output."""
 
 
@@ -169,20 +171,20 @@ class PromptValue(BaseModel, ABC):
         """Return prompt as string."""
 
     @abstractmethod
-    def to_messages(self) -> List[BaseMessage]:
+    def to_messages(self) -> list[BaseMessage]:
         """Return prompt as messages."""
 
 
 class BaseLanguageModel(BaseModel, ABC):
     @abstractmethod
     def generate_prompt(
-        self, prompts: List[PromptValue], stop: Optional[List[str]] = None
+        self, prompts: list[PromptValue], stop: list[str] | None = None
     ) -> LLMResult:
         """Take in a list of prompt values and return an LLMResult."""
 
     @abstractmethod
     async def agenerate_prompt(
-        self, prompts: List[PromptValue], stop: Optional[List[str]] = None
+        self, prompts: list[PromptValue], stop: list[str] | None = None
     ) -> LLMResult:
         """Take in a list of prompt values and return an LLMResult."""
 
@@ -207,9 +209,11 @@ class BaseLanguageModel(BaseModel, ABC):
         # calculate the number of tokens in the tokenized text
         return len(tokenized_text)
 
-    def get_num_tokens_from_messages(self, messages: List[BaseMessage]) -> int:
+    def get_num_tokens_from_messages(self, messages: list[BaseMessage]) -> int:
         """Get the number of tokens in the message."""
-        return sum([self.get_num_tokens(get_buffer_string([m])) for m in messages])
+        return sum(
+            [self.get_num_tokens(get_buffer_string([m])) for m in messages]
+        )
 
 
 class BaseMemory(BaseModel, ABC):
@@ -223,18 +227,20 @@ class BaseMemory(BaseModel, ABC):
 
     @property
     @abstractmethod
-    def memory_variables(self) -> List[str]:
+    def memory_variables(self) -> list[str]:
         """Input keys this memory class will load dynamically."""
 
     @abstractmethod
-    def load_memory_variables(self, inputs: Dict[str, Any]) -> Dict[str, Any]:
+    def load_memory_variables(self, inputs: dict[str, Any]) -> dict[str, Any]:
         """Return key-value pairs given the text input to the chain.
 
         If None, return all memories
         """
 
     @abstractmethod
-    def save_context(self, inputs: Dict[str, Any], outputs: Dict[str, str]) -> None:
+    def save_context(
+        self, inputs: dict[str, Any], outputs: dict[str, str]
+    ) -> None:
         """Save the context of this model run to memory."""
 
     @abstractmethod
@@ -254,31 +260,31 @@ class BaseChatMessageHistory(ABC):
             class FileChatMessageHistory(BaseChatMessageHistory):
                 storage_path:  str
                 session_id: str
-               
+
                @property
                def messages(self):
                    with open(os.path.join(storage_path, session_id), 'r:utf-8') as f:
                        messages = json.loads(f.read())
-                    return messages_from_dict(messages)     
-                
+                    return messages_from_dict(messages)
+
                def add_user_message(self, message: str):
                    message_ = HumanMessage(content=message)
                    messages = self.messages.append(_message_to_dict(_message))
                    with open(os.path.join(storage_path, session_id), 'w') as f:
                        json.dump(f, messages)
-               
+
                def add_ai_message(self, message: str):
                    message_ = AIMessage(content=message)
                    messages = self.messages.append(_message_to_dict(_message))
                    with open(os.path.join(storage_path, session_id), 'w') as f:
                        json.dump(f, messages)
-                       
+
                def clear(self):
                    with open(os.path.join(storage_path, session_id), 'w') as f:
                        f.write("[]")
     """
 
-    messages: List[BaseMessage]
+    messages: list[BaseMessage]
 
     @abstractmethod
     def add_user_message(self, message: str) -> None:
@@ -302,7 +308,7 @@ class Document(BaseModel):
 
 class BaseRetriever(ABC):
     @abstractmethod
-    def get_relevant_documents(self, query: str) -> List[Document]:
+    def get_relevant_documents(self, query: str) -> list[Document]:
         """Get documents relevant for a query.
 
         Args:
@@ -313,7 +319,7 @@ class BaseRetriever(ABC):
         """
 
     @abstractmethod
-    async def aget_relevant_documents(self, query: str) -> List[Document]:
+    async def aget_relevant_documents(self, query: str) -> list[Document]:
         """Get documents relevant for a query.
 
         Args:
@@ -377,7 +383,7 @@ class BaseOutputParser(BaseModel, ABC, Generic[T]):
         """Return the type key."""
         raise NotImplementedError
 
-    def dict(self, **kwargs: Any) -> Dict:
+    def dict(self, **kwargs: Any) -> dict:
         """Return dictionary representation of output parser."""
         output_parser_dict = super().dict()
         output_parser_dict["_type"] = self._type
