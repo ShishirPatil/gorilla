@@ -24,12 +24,12 @@
 </head>
 
 <body>
-    <div class="highlight-clean" style="padding-bottom: 10px;">
-        <div class="container">
+    <div class="highlight-clean" style="padding-bottom: 10px; background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(74,74,179,1) 31%, rgba(107,129,255,1) 79%);">
+        <div class="container" style="background: linear-gradient(90deg, rgba(8,128,240,1) 37%, rgba(38,155,223,1) 89%);">
             <h1 class="text-center"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
         </div>
         <div><p></p></div>
-        <div class="container" style="max-width: 768px;">
+        <div class="container" style="max-width: 768px; background: linear-gradient(90deg, rgba(99,177,255,1) 37%, rgba(90,194,255,1) 89%);">
             <div class="row">
                 <div class="col-md-12">
                     <h4 class="text-center" style="margin: 0px;">
@@ -53,7 +53,7 @@
         </div>
         <div><p></p></div>
         <div>
-            <div class="container" style="max-width: 768px;">
+            <div class="container" style="max-width: 768px;background: linear-gradient(90deg, rgba(102,212,202,1) 31%, rgba(8,230,240,1) 40%);">
                 <div class="row">
                     <div class="col-md-12">
                         <h3 class="text-center">An API Appstore for LLMs</h3>
@@ -64,7 +64,7 @@
         </div>
         <!-- Figure -->
         <div><p></p></div>
-        <div class="container" style="max-width: 768px;">
+        <div class="container" style="max-width: 768px; background-color: #f0f7ff;" >
             <div class="row">
                 <div class="col-md-12 text-center"><img src="assets/img/gorilla_method.png" 
                     style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
@@ -94,115 +94,164 @@
     <!-- Gorilla CLI and Spotlight --> 
 
     <style>
-    .responsive-iframe-container {
-        position: relative;
-        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-        height: 0;
-        overflow: hidden;
-    }
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 31%, rgba(0,212,255,1) 79%);
+        }
     
-    .responsive-iframe-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
+        .container {
+            padding: 20px;
+            margin: 0 auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background: linear-gradient(90deg, rgba(126,119,255,1) 0%, rgba(145,145,222,1) 31%, rgba(181,192,255,1) 79%);
+        }
+    
+        h1, h2, h4, h5, h6 {
+            color: #333;
+        }
+    
+        h3 {
+            color: white;
+        }
+    
+        /* Button Gradient Background */
+        .btn-primary {
+            background: linear-gradient(to bottom, #007bff, #0056b3);
+            border-color: #007bff;
+        }
+    
+        .btn-primary:hover {
+            background: linear-gradient(to bottom, #0056b3,#9fcdff );
+            border-color: #0056b3;
+        }
+    
+        /* Footer Gradient Background */
+        .container:last-child {
+            background: linear-gradient(90deg, rgba(102,212,202,1) 31%, rgba(8,230,240,1) 40%); 
+            color: white;
+        }
+    
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    
+        em {
+            font-style: italic;
+            color: black;
+        }
+    
+        .responsive-iframe-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+        }
+    
+        .responsive-iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 
-    <hr style="max-width: 768px;">
-    <div class="container" style="max-width: 768px;">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Gorilla for your CLI and Spotlight Search</h2>
+<hr style="max-width: 768px;">
+<div class="container" style="max-width: 768px;">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Gorilla for your CLI and Spotlight Search</h2>
+        </div>
+        <div class="col-md-6">
+            <div class="responsive-iframe-container">
+                <iframe src="https://www.youtube.com/embed/4EdyWkcddPc"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
             </div>
-            <div class="col-md-6">
-                <div class="responsive-iframe-container">
-                    <iframe src="https://www.youtube.com/embed/4EdyWkcddPc" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <p class="text-center">Gorilla powered CLI<br>
-                    Get started with <code>pip install gorilla-cli</code></p>
+            <p class="text-center">Gorilla powered CLI<br>
+                Get started with <code>pip install gorilla-cli</code></p>
+        </div>
+        <div class="col-md-6">
+            <div class="responsive-iframe-container">
+                <iframe src="https://www.youtube.com/embed/RMgM3tPTpXI"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
             </div>
-            <div class="col-md-6">
-                <div class="responsive-iframe-container">
-                    <iframe src="https://www.youtube.com/embed/RMgM3tPTpXI" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <p class="text-center">Gorilla Powered Spotlight Search<br>
-                    <a href="https://docs.google.com/forms/d/1iuWrfQbTb8_T5s4J75HNftPF-w1Jg1Aeg-gB64X8MJg/edit">Gorilla-Spotlight Signup</a> </p>
-            </div>
+            <p class="text-center">Gorilla Powered Spotlight Search<br>
+                <a
+                    href="https://docs.google.com/forms/d/1iuWrfQbTb8_T5s4J75HNftPF-w1Jg1Aeg-gB64X8MJg/edit">Gorilla-Spotlight Signup</a> </p>
         </div>
     </div>
-        
+</div>
 
-    <!-- Abstract -->
-    <hr style="max-width: 768px;">
-    <div class="container" style="max-width: 768px;">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Abstract</h2>
-                <p style="text-align: justify;">
-                    Large Language Models (LLMs) have seen an impressive wave of advances recently, 
-                    with models now excelling in a variety of tasks, such as mathematical reasoning and program synthesis. 
-                    However, their potential to effectively use tools via API calls remains unfulfilled. 
-                    This is a challenging task even for today's state-of-the-art LLMs such as GPT-4, 
-                    largely due to their inability to generate accurate input arguments and their tendency to hallucinate the wrong usage of an API call. 
-                    We release Gorilla, a finetuned LLaMA-based model that surpasses the performance of GPT-4 on writing API calls. 
-                    When combined with a document retriever, Gorilla demonstrates a strong capability to adapt to test-time document changes, enabling flexible API updates and version changes. 
-                    Gorilla also substantially mitigates the issue of hallucination, commonly encountered when prompting LLMs directly. 
-                    To evaluate the model's ability, we introduce APIBench, a comprehensive dataset consisting of HuggingFace, TorchHub, and TensorHub APIs. 
-                    The successful integration of the retrieval system with Gorilla demonstrates the potential for LLMs to use tools more accurately, keep up with frequently updated documentation, 
-                    and consequently increase the reliability and applicability of their outputs. 
-                    Gorilla models and code are available at <a href="https://github.com/ShishirPatil/gorilla">https://github.com/ShishirPatil/gorilla</a>.
+<!-- Abstract -->
+<hr style="max-width: 768px;">
+<div class="container" style="max-width: 768px; background: linear-gradient(90deg, rgba(99,177,255,1) 37%, rgba(90,194,255,1) 89%);">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Abstract</h2>
+            <p style="text-align: justify;">
+                Large Language Models (LLMs) have seen an impressive wave of advances recently,
+                with models now excelling in a variety of tasks, such as mathematical reasoning and program synthesis.
+                However, their potential to effectively use tools via API calls remains unfulfilled.
+                This is a challenging task even for today's state-of-the-art LLMs such as GPT-4,
+                largely due to their inability to generate accurate input arguments and their tendency to hallucinate the wrong usage of an API call.
+                We release Gorilla, a fine-tuned LLaMA-based model that surpasses the performance of GPT-4 on writing API calls.
+                When combined with a document retriever, Gorilla demonstrates a strong capability to adapt to test-time document changes, enabling flexible API updates and version changes.
+                Gorilla also substantially mitigates the issue of hallucination, commonly encountered when prompting LLMs directly.
+                To evaluate the model's ability, we introduce APIBench, a comprehensive dataset consisting of HuggingFace, TorchHub, and TensorHub APIs.
+                The successful integration of the retrieval system with Gorilla demonstrates the potential for LLMs to use tools more accurately, keep up with frequently updated documentation,
+                and consequently increase the reliability and applicability of their outputs.
+                Gorilla models and code are available at <a href="https://github.com/ShishirPatil/gorilla">https://github.com/ShishirPatil/gorilla</a>.
                 <br>
-                </p>
-            </div>
+            </p>
         </div>
     </div>
+</div>
 
-
-    <!-- Result -->
-    <hr style="max-width: 768px;">
-    <div class="container" style="max-width: 768px;">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Example</h2>
-            </div>
-            <div class="col-md-12 text-center"><img src="assets/img/results.png" 
+<!-- Result -->
+<hr style="max-width: 768px;">
+<div class="container" style="max-width: 768px; background: linear-gradient(90deg, rgba(102,212,202,1) 31%, rgba(8,230,240,1) 40%);">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Example</h2>
+        </div>
+        <div class="col-md-12 text-center"><img src="assets/img/results.png"
                 style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
-            </div>
-            <em>Example API calls generated by GPT-4, Claude, and Gorilla for the
-                given prompt. In this example, GPT-4 presents a model that doesn’t exist, and Claude 
-                picks an incorrect library. In contrast, our model, Gorilla, can identify the task correctly 
-                and suggest a fully-qualified API call.</em>
+        </div>
+        <em>Example API calls generated by GPT-4, Claude, and Gorilla for the
+            given prompt. In this example, GPT-4 presents a model that doesn’t exist, and Claude
+            picks an incorrect library. In contrast, our model, Gorilla, can identify the task correctly
+            and suggest a fully-qualified API call.</em>
+    </div>
+</div>
+
+<!-- Citation -->
+<hr style="max-width: 768px;">
+<div class="container" style="max-width: 768px;">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Citation</h2>
+            <code>
+                @article{patil2023gorilla,<br>
+                    &nbsp;  title={Gorilla: Large Language Model Connected with Massive APIs}, <br>
+                    &nbsp;  author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},<br>
+                    &nbsp;  journal={arXiv preprint arXiv:2305.15334},<br>
+                    &nbsp;  year={2023},<br>
+                }
+            </code>
         </div>
     </div>
-
-
-    <!-- Citation -->
-    <hr style="max-width: 768px;">
-    <div class="container" style="max-width: 768px;">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Citation</h2>
-                <code>
-                    @article{patil2023gorilla,<br>
-                        &nbsp; 	title={Gorilla: Large Language Model Connected with Massive APIs}, <br>
-                        &nbsp; 	author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},<br>
-                        &nbsp;  journal={arXiv preprint arXiv:2305.15334},<br>
-                        &nbsp; 	year={2023},<br>
-                    }
-                </code>
-            </div>
-        </div>
-    </div>
+</div>
 
 </body>
 
