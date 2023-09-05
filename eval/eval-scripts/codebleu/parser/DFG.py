@@ -9,6 +9,18 @@ from .utils import (remove_comments_and_docstrings,
 
 
 def DFG_python(root_node,index_to_code,states):
+    """
+    Generate a Data Flow Graph (DFG) for Python code based on the given AST root node.
+
+    Args:
+        root_node (Node): The root node of the Abstract Syntax Tree (AST).
+        index_to_code (dict): A dictionary mapping token indices to their corresponding code snippets.
+        states (dict): A dictionary to keep track of variable states.
+
+    Returns:
+        list: A list of tuples representing edges in the DFG and their associated information.
+        dict: Updated variable states after processing the AST.
+    """
     assignment=['assignment','augmented_assignment','for_in_clause']
     if_statement=['if_statement']
     for_statement=['for_statement']

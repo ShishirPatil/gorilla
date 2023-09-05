@@ -14,9 +14,31 @@ dfg_function={
 }
 
 def calc_dataflow_match(references, candidate, lang):
+    """
+    Calculate the dataflow match score for a candidate code against references.
+    
+    Args:
+        references (list): A list of reference code samples.
+        candidate (str): The candidate code to be evaluated.
+        lang (str): The programming language of the code samples.
+
+    Returns:
+        float: The dataflow match score.
+    """
     return corpus_dataflow_match([references], [candidate], lang)
 
-def corpus_dataflow_match(references, candidates, lang):   
+def corpus_dataflow_match(references, candidates, lang):  
+    """
+    Calculate the corpus-level dataflow match score for candidates against references.
+    
+    Args:
+        references (list): A list of lists of reference code samples.
+        candidates (list): A list of candidate code samples.
+        lang (str): The programming language of the code samples.
+
+    Returns:
+        float: The corpus-level dataflow match score.
+    """
     LANGUAGE = Language('codebleu/parser/my-languages.so', lang)
     parser = Parser()
     parser.set_language(LANGUAGE)
@@ -57,6 +79,16 @@ def corpus_dataflow_match(references, candidates, lang):
     return score
 
 def get_data_flow(code, parser):
+    """
+    Extract the dataflow graph (DFG) from the given code using the parser.
+
+    Args:
+        code (str): The code from which to extract the DFG.
+        parser (list): A list containing the language parser and DFG function.
+
+    Returns:
+        list: The extracted dataflow graph.
+    """
     try:
         tree = parser[0].parse(bytes(code,'utf8'))    
         root_node = tree.root_node  
@@ -100,6 +132,15 @@ def get_data_flow(code, parser):
     return dfg
 
 def normalize_dataflow_item(dataflow_item):
+    """
+    Normalize a single dataflow item.
+
+    Args:
+        dataflow_item (tuple): A dataflow item tuple.
+
+    Returns:
+        tuple: The normalized dataflow item.
+    """
     var_name = dataflow_item[0]
     var_pos = dataflow_item[1]
     relationship = dataflow_item[2]
@@ -118,6 +159,15 @@ def normalize_dataflow_item(dataflow_item):
     return (norm_var_name, relationship, norm_par_vars_name_list)
 
 def normalize_dataflow(dataflow):
+    """
+    Normalize a list of dataflow items.
+
+    Args:
+        dataflow (list): A list of dataflow items.
+
+    Returns:
+        list: The normalized list of dataflow items.
+    """
     var_dict = {}
     i = 0
     normalized_dataflow = []
