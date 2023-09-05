@@ -17,25 +17,28 @@ def pad_sequence(
 ):
     """
     Returns a padded sequence of items before ngram extraction.
-        >>> list(pad_sequence([1,2,3,4,5], 2, pad_left=True, pad_right=True, left_pad_symbol='<s>', right_pad_symbol='</s>'))
+
+    Args:
+        sequence (sequence or iter): The source data to be padded.
+        n (int): The degree of the ngrams.
+        pad_left (bool): Whether the ngrams should be left-padded.
+        pad_right (bool): Whether the ngrams should be right-padded.
+        left_pad_symbol (any): The symbol to use for left padding (default is None).
+        right_pad_symbol (any): The symbol to use for right padding (default is None).
+
+    Yields:
+        sequence or iter: Padded sequence of items.
+
+    Examples:
+        >>> list(pad_sequence([1, 2, 3, 4, 5], 2, pad_left=True, pad_right=True, left_pad_symbol='<s>', right_pad_symbol='</s>'))
         ['<s>', 1, 2, 3, 4, 5, '</s>']
-        >>> list(pad_sequence([1,2,3,4,5], 2, pad_left=True, left_pad_symbol='<s>'))
+        >>> list(pad_sequence([1, 2, 3, 4, 5], 2, pad_left=True, left_pad_symbol='<s>'))
         ['<s>', 1, 2, 3, 4, 5]
-        >>> list(pad_sequence([1,2,3,4,5], 2, pad_right=True, right_pad_symbol='</s>'))
+        >>> list(pad_sequence([1, 2, 3, 4, 5], 2, pad_right=True, right_pad_symbol='</s>'))
         [1, 2, 3, 4, 5, '</s>']
-    :param sequence: the source data to be padded
-    :type sequence: sequence or iter
-    :param n: the degree of the ngrams
-    :type n: int
-    :param pad_left: whether the ngrams should be left-padded
-    :type pad_left: bool
-    :param pad_right: whether the ngrams should be right-padded
-    :type pad_right: bool
-    :param left_pad_symbol: the symbol to use for left padding (default is None)
-    :type left_pad_symbol: any
-    :param right_pad_symbol: the symbol to use for right padding (default is None)
-    :type right_pad_symbol: any
-    :rtype: sequence or iter
+
+    Returns:
+        sequence or iter: Padded sequence of items.
     """
     sequence = iter(sequence)
     if pad_left:
@@ -57,34 +60,35 @@ def ngrams(
     right_pad_symbol=None,
 ):
     """
-    Return the ngrams generated from a sequence of items, as an iterator.
-    For example:
+    Generate ngrams from a sequence of items.
+
+    Args:
+        sequence (sequence or iter): The source data to be converted into ngrams.
+        n (int): The degree of the ngrams.
+        pad_left (bool, optional): Whether the ngrams should be left-padded.
+        pad_right (bool, optional): Whether the ngrams should be right-padded.
+        left_pad_symbol (any, optional): The symbol to use for left padding (default is None).
+        right_pad_symbol (any, optional): The symbol to use for right padding (default is None).
+
+    Yields:
+        sequence or iter: Ngrams generated from the sequence.
+
+    Examples:
         >>> from nltk.util import ngrams
-        >>> list(ngrams([1,2,3,4,5], 3))
+        >>> list(ngrams([1, 2, 3, 4, 5], 3))
         [(1, 2, 3), (2, 3, 4), (3, 4, 5)]
-    Wrap with list for a list version of this function.  Set pad_left
-    or pad_right to true in order to get additional ngrams:
-        >>> list(ngrams([1,2,3,4,5], 2, pad_right=True))
+        
+        >>> list(ngrams([1, 2, 3, 4, 5], 2, pad_right=True))
         [(1, 2), (2, 3), (3, 4), (4, 5), (5, None)]
-        >>> list(ngrams([1,2,3,4,5], 2, pad_right=True, right_pad_symbol='</s>'))
+        
+        >>> list(ngrams([1, 2, 3, 4, 5], 2, pad_right=True, right_pad_symbol='</s>'))
         [(1, 2), (2, 3), (3, 4), (4, 5), (5, '</s>')]
-        >>> list(ngrams([1,2,3,4,5], 2, pad_left=True, left_pad_symbol='<s>'))
+        
+        >>> list(ngrams([1, 2, 3, 4, 5], 2, pad_left=True, left_pad_symbol='<s>'))
         [('<s>', 1), (1, 2), (2, 3), (3, 4), (4, 5)]
-        >>> list(ngrams([1,2,3,4,5], 2, pad_left=True, pad_right=True, left_pad_symbol='<s>', right_pad_symbol='</s>'))
+        
+        >>> list(ngrams([1, 2, 3, 4, 5], 2, pad_left=True, pad_right=True, left_pad_symbol='<s>', right_pad_symbol='</s>'))
         [('<s>', 1), (1, 2), (2, 3), (3, 4), (4, 5), (5, '</s>')]
-    :param sequence: the source data to be converted into ngrams
-    :type sequence: sequence or iter
-    :param n: the degree of the ngrams
-    :type n: int
-    :param pad_left: whether the ngrams should be left-padded
-    :type pad_left: bool
-    :param pad_right: whether the ngrams should be right-padded
-    :type pad_right: bool
-    :param left_pad_symbol: the symbol to use for left padding (default is None)
-    :type left_pad_symbol: any
-    :param right_pad_symbol: the symbol to use for right padding (default is None)
-    :type right_pad_symbol: any
-    :rtype: sequence or iter
     """
     sequence = pad_sequence(
         sequence, n, pad_left, pad_right, left_pad_symbol, right_pad_symbol
