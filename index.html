@@ -24,12 +24,15 @@
 </head>
 
 <body>
-    <div class="highlight-clean" style="padding-bottom: 10px; background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(74,74,179,1) 31%, rgba(107,129,255,1) 79%);">
-        <div class="container" style="background: linear-gradient(90deg, rgba(8,128,240,1) 37%, rgba(38,155,223,1) 89%);">
+       <!-- Navigation Bar -->
+    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;">
+        <a href="index.html">Home </a>&nbsp;&nbsp;&nbsp;     
+        <a href="blog.html"> Blog</a>
+    </div>
+    <div class="highlight-clean" style="padding-bottom: 10px;">
             <h1 class="text-center"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
-        </div>
         <div><p></p></div>
-        <div class="container" style="max-width: 768px; background: linear-gradient(90deg, rgba(99,177,255,1) 37%, rgba(90,194,255,1) 89%);">
+        <div class="container" style="max-width: 768px;background:white;">
             <div class="row">
                 <div class="col-md-12">
                     <h4 class="text-center" style="margin: 0px;">
@@ -52,19 +55,27 @@
             <a class="btn btn-primary" role="button" href="https://discord.gg/SwTyuTAxX3"> Discord</a>
         </div>
         <div><p></p></div>
-        <div>
-            <div class="container" style="max-width: 768px;background: linear-gradient(90deg, rgba(102,212,202,1) 31%, rgba(8,230,240,1) 40%);">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="text-center">An API Appstore for LLMs</h3>
+        <div class="container" style="max-width: 768px; background: #f0f7ff;">
+            <div class="row">
+                <div class="col-md-12 api-appstore">
+                    <h3 class="text-center">An API Appstore for LLMs</h3>
+                </div>
+                
+                <div class="col-md-12">
+                    <div class="spinner">
+                        <h3 class="text-center">Gorilla is Used by
+                            <div class="spinner__text">
+                                <span class="spinner__text--top" data-texts="Microsoft, Google, Apple"></span>
+                                <span class="spinner__text--bottom" data-texts="Microsoft, Google, Apple"></span>
+                            </div>
+                        </h3>
                     </div>
                 </div>
-            
             </div>
         </div>
         <!-- Figure -->
         <div><p></p></div>
-        <div class="container" style="max-width: 768px; background-color: #f0f7ff;" >
+        <div class="container" style="max-width: 768px;" >
             <div class="row">
                 <div class="col-md-12 text-center"><img src="assets/img/gorilla_method.png" 
                     style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
@@ -80,7 +91,7 @@
 
     <!-- Contributions -->
     <hr style="max-width: 768px;">
-    <div class="container" style="max-width: 768px;">
+    <div class="container" style="max-width: 768px;background: #f0f7ff;">
         <div class="row">
             <div class="col-md-12">
                 <h5> 🚀 <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">Try Gorilla in 60s!</a> No sign-ups, no installs, just colab!</h5>
@@ -89,16 +100,33 @@
                     Join us on <a href="https://discord.gg/3apqwwME">Discord</a> or feel free to email us! </h5>                
             </div>
         </div>
-    </div>
+    </div>    
 
-    <!-- Gorilla CLI and Spotlight --> 
+    <script>
+        const spinnerTexts = document.querySelectorAll('[class^="spinner__text--"]')
+const texts = spinnerTexts[0].dataset.texts.split(',')
+const textPositions = [0, 1]
 
+function initializeSpinnerTexts() {
+  spinnerTexts.forEach((spinnerText, index) => {
+    // Initialize the spinner texts' text
+    spinnerText.innerText = texts[textPositions[index]]
+    
+    // Change text after every animation iteration
+    spinnerText.addEventListener('animationiteration', e => {
+      e.target.innerText = texts[++textPositions[index] % texts.length]
+    })
+  })
+}
+
+window.onload = initializeSpinnerTexts
+    </script>
     <style>
         body {
             font-family: 'Source Sans Pro', sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 31%, rgba(0,212,255,1) 79%);
+            background: white;
         }
     
         .container {
@@ -106,31 +134,27 @@
             margin: 0 auto;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            background: linear-gradient(90deg, rgba(126,119,255,1) 0%, rgba(145,145,222,1) 31%, rgba(181,192,255,1) 79%);
+            background: white;
         }
     
-        h1, h2, h4, h5, h6 {
+        h1, h2, h3, h4, h5, h6 {
             color: #333;
         }
     
-        h3 {
-            color: white;
-        }
-    
-        /* Button Gradient Background */
+        /* Button Background */
         .btn-primary {
-            background: linear-gradient(to bottom, #007bff, #0056b3);
-            border-color: #007bff;
+            background:white;
+            border-color: white;
         }
     
         .btn-primary:hover {
-            background: linear-gradient(to bottom, #0056b3,#9fcdff );
-            border-color: #0056b3;
+            background: white;
+            border-color: white;
         }
     
         /* Footer Gradient Background */
         .container:last-child {
-            background: linear-gradient(90deg, rgba(102,212,202,1) 31%, rgba(8,230,240,1) 40%); 
+            background: white; 
             color: white;
         }
     
@@ -144,22 +168,62 @@
             font-style: italic;
             color: black;
         }
-    
-        .responsive-iframe-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
+
+        .api-appstore {
+            margin-bottom: 20px;
         }
-    
-        .responsive-iframe-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+
+
+        .spinner {
+  position: relative; /* Change to relative for responsiveness */
+  overflow: hidden;
+}
+
+.spinner__text {
+  position: relative;
+  display: inline-block;
+  width: 50px; /* Adjust the width as needed */
+  text-align: center;
+}
+
+.spinner__text--top,
+.spinner__text--bottom {
+  display: inline-block;
+  animation: 1s ease 1.05s infinite running none;
+}
+
+.spinner__text--top {
+  animation-name: spinTop;
+}
+
+/* Bottom text spinner has to be configured so that it is positioned
+right at the same position as the top one */
+.spinner__text--bottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  animation-name: spinBottom;
+}
+
+@keyframes spinTop {
+  from { transform: translateY(0%); }
+  to { transform: translateY(-100%); }
+}
+
+@keyframes spinBottom {
+  from {
+    opacity: 1;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
     </style>
+<!-- Gorilla CLI and Spotlight -->
 
 <hr style="max-width: 768px;">
 <div class="container" style="max-width: 768px;">
@@ -195,7 +259,7 @@
 
 <!-- Abstract -->
 <hr style="max-width: 768px;">
-<div class="container" style="max-width: 768px; background: linear-gradient(90deg, rgba(99,177,255,1) 37%, rgba(90,194,255,1) 89%);">
+<div class="container" style="max-width: 768px;background: #f0f7ff">
     <div class="row">
         <div class="col-md-12">
             <h2>Abstract</h2>
@@ -220,7 +284,7 @@
 
 <!-- Result -->
 <hr style="max-width: 768px;">
-<div class="container" style="max-width: 768px; background: linear-gradient(90deg, rgba(102,212,202,1) 31%, rgba(8,230,240,1) 40%);">
+<div class="container" style="max-width: 768px;">
     <div class="row">
         <div class="col-md-12">
             <h2>Example</h2>
@@ -237,7 +301,7 @@
 
 <!-- Citation -->
 <hr style="max-width: 768px;">
-<div class="container" style="max-width: 768px;">
+<div class="container" style="max-width: 768px; background: #f0f7ff">
     <div class="row">
         <div class="col-md-12">
             <h2>Citation</h2>
