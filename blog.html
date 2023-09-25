@@ -25,12 +25,27 @@
 
 <body>
        <!-- Navigation Bar -->
-    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;">
+    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;font-size: 18px;">
         <a href="index.html">Home </a>&nbsp;&nbsp;&nbsp;     
         <a href=""> Blog</a>
     </div>
-    <div class="highlight-clean-blog" style="padding-bottom: 10px;">
-        <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+
+    <!-- Add this inside the "highlight-clean-blog" div -->
+<div class="box-index">
+    <h3>Index</h3>
+    <ul>
+        <li><a href="blogs/blog_post_1.html">Blog Post Title 1</a></li>
+        <li><a href="blogs/blog_post_2.html">Blog Post Title 2</a></li>
+        <!-- Add more entries as needed -->
+    </ul>
+</div>
+
+<div class="highlight-clean-blog" style="padding-bottom: 10px;">
+    <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+    <!-- Rest of your content -->
+</div>
+
+    <div class="highlight-clean-blog" style="padding-bottom: 10px;">        
         <div class="blog-container">
             <div class="blog-post">
                 <h2 class="blog-title">Blog Post Title 1</h2>
@@ -136,6 +151,43 @@
         text-justify: inter-word; 
     }
 
+  
+    .box-index {
+    position: fixed;
+    top: 50%; 
+    left: 20px; 
+    transform: translateY(-50%);
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 250px;
+    }
+
+    .box-index h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    }
+
+    .box-index ul {
+    list-style-type: disc;
+    padding: 0;
+    }
+
+    .box-index ul li {
+    margin-bottom: 10px;
+    }
+
+    .box-index ul li a {
+    text-decoration: none;
+    color: #333;
+    }
+
+    .box-index ul li a:hover {
+    color: #1E90FF;
+    }
+
+
     @media screen and (max-width: 768px) {
     .blog-post {
         padding: 10px; /* Adjust spacing for smaller screens */
@@ -144,8 +196,11 @@
         max-width: 80%; /* Reduce image size for smaller screens */
     }
 
-
+    .box-index {
+        display: none; /* Hide the index on smaller screens */
+    }
 }
+
 </style>
 </body>
 

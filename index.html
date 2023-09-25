@@ -25,7 +25,7 @@
 
 <body>
        <!-- Navigation Bar -->
-    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;">
+    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;; font-size: 18px;">
         <a href="index.html">Home </a>&nbsp;&nbsp;&nbsp;     
         <a href="blog.html"> Blog</a>
     </div>
@@ -65,8 +65,8 @@
                     <div class="spinner">
                         <h3 class="text-center">Gorilla is Used by
                             <div class="spinner__text">
-                                <span class="spinner__text--top" data-texts="Microsoft, Google, Apple"></span>
-                                <span class="spinner__text--bottom" data-texts="Microsoft, Google, Apple"></span>
+                                <span class="spinner__text--top" data-texts="Microsoft, NVIDIA, Tesla, Linkedin, Adobe, Netflix, Anaconda, MIT, CMU, Cisco, Cloudera, Dropbox, UCLA, GNU, IBM, Intel, Intuit, Siemens, Samsung, UCSD"></span>
+                                <span class="spinner__text--bottom" data-texts="Microsoft, NVIDIA, Tesla, Linkedin, Adobe, Netflix, Anaconda, MIT, CMU, Cisco, Cloudera, Dropbox, UCLA, GNU, IBM, Intel, Intuit, Siemens, Samsung, UCSD"></span>
                             </div>
                         </h3>
                     </div>
@@ -90,9 +90,11 @@
     </div>
 
     <!-- Contributions -->
-    <hr style="max-width: 768px;">
-    <div class="container" style="max-width: 768px;background: #f0f7ff;">
+    <div class="container news-container" style="max-width: 768px;background: #f0f7ff;">
         <div class="row">
+            <div class="col-md-12">
+                <h2>News</h2>
+            </div>
             <div class="col-md-12">
                 <h5> 🚀 <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">Try Gorilla in 60s!</a> No sign-ups, no installs, just colab!</h5>
                 <h5> 🤩 With Apache 2.0 licensed LLM models, you can use Gorilla comercially without any obligations!</h5>
@@ -100,7 +102,8 @@
                     Join us on <a href="https://discord.gg/3apqwwME">Discord</a> or feel free to email us! </h5>                
             </div>
         </div>
-    </div>    
+    </div>
+    
 
     <script>
         const spinnerTexts = document.querySelectorAll('[class^="spinner__text--"]')
@@ -135,6 +138,12 @@ window.onload = initializeSpinnerTexts
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             background: white;
+            margin-bottom: 30px;
+        }
+
+        .news-container {
+            max-height: 200px; 
+            overflow-y: auto; 
         }
     
         h1, h2, h3, h4, h5, h6 {
@@ -225,7 +234,6 @@ right at the same position as the top one */
     </style>
 <!-- Gorilla CLI and Spotlight -->
 
-<hr style="max-width: 768px;">
 <div class="container" style="max-width: 768px;">
     <div class="row">
         <div class="col-md-12">
@@ -258,7 +266,6 @@ right at the same position as the top one */
 </div>
 
 <!-- Abstract -->
-<hr style="max-width: 768px;">
 <div class="container" style="max-width: 768px;background: #f0f7ff">
     <div class="row">
         <div class="col-md-12">
@@ -283,7 +290,6 @@ right at the same position as the top one */
 </div>
 
 <!-- Result -->
-<hr style="max-width: 768px;">
 <div class="container" style="max-width: 768px;">
     <div class="row">
         <div class="col-md-12">
@@ -300,7 +306,6 @@ right at the same position as the top one */
 </div>
 
 <!-- Citation -->
-<hr style="max-width: 768px;">
 <div class="container" style="max-width: 768px; background: #f0f7ff">
     <div class="row">
         <div class="col-md-12">
