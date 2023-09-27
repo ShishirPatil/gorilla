@@ -1,22 +1,12 @@
 [
   {
-    "user_name": "example_username_api",
-    "api_name": "Gmail API drafts.create",
-    "api_call": "create(userId='me', body",
-    "api_version": "v1",
-    "api_arguments": {
-      "userId": 'me'
-    },
-    "functionality": "Creates new Gmail draft",
-    "env_requirements": ["googleapiclient, google.auth, base64, email"],
-    "example_code": "import base64\nfrom email.message import EmailMessage\nimport google.auth\nfrom googleapiclient.discovery import build\nfrom googleapiclient.errors import HttpError\n\ncreds, _ = google.auth.default()\nservice = build('gmail', 'v1', credentials=creds)\nmessage = EmailMessage()\nmessage.set_content('This is an automated draft email')\nmessage['To'] = 'testuser@test.com'\nmessage['From'] = 'testuser@test.com'\nmessage['Subject'] = 'Automated Draft'\n\nencoded_message = base64.urlsafe_b64_encode(message.as_bytes()).decode()\ncreate_message={'message':{'raw':encoded_message}}\n\ndraft = service.users().drafts().create(userId='me', body=create_message).execute()",
-    "meta_data": {
-      "description": "To use the drafts.create method, the general process is to (1) create a MIME message that complies with RFC 2822, (2) convert the message to a base64url encoded string, and (3) create a draft, setting the value of the drafts.message.raw field to the encoded string.",
-    },
+    "user_name": "example_username_url",
+    "api_name": "Gmail API",
+    "url": "https://developers.google.com/gmail/api/reference/rest",
     "questions": [
       "I am a student and want to send an email to my professor asking for an extension on my assignment",
       "I need help creating an email invitation for an upcoming corporate event",
-      "I want to send an email to Joe to schedule a meeting next week"
-    ]
-  }
+      "I want to send an email to Joe to schedule a meeting next week",
+    ],
+  },
 ]
