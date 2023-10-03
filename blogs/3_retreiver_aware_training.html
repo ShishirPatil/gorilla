@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-NRZJLJCSH6');
+    </script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Introduction to Gorilla LLM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Team-Clean.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;">
+        <a href="../index.html">Home </a>&nbsp;&nbsp;&nbsp;     
+        <a href="../blog.html"> Blog</a>
+    </div>
+    <div class="highlight-clean-blog" style="padding-bottom: 10px;">
+        <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+        <div class="blog-container">
+            <div class="blog-post">
+                <h2 class="blog-title">Introduction to Gorilla LLM</h2>
+                <div class="author-date">
+                    <p class="author"> <a href="https://www.lisabdunlap.com/">Lisa Dunlap</a> </p>
+                    <p class="date">Oct 3, 2023</p>
+                </div>
+                    <img src="../assets/img/blog_post_1_teaser.gif" alt="Gorilla introductory image" style="width: 95%;">
+                    <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                        <i style="font-size: 0.9em;">
+                            Gorilla LLM can write accurate API calls, including Kubernetes, GCP, AWS, Azure, OpenAPI, and more. (Salesforce, servicenow, and datadog coming soon!) Gorilla outperforms GPT-4, Chat-GPT and Claude, significantly reducing hallucination errors. 
+                        </i>
+                    </p>
+
+                <div class="preview">
+                    <p>
+                        Gorilla is designed to connect large language models (LLMs) with a wide range of tools, services, and applications exposed through APIs. Imagine if ChatGPT could interact with thousands of services ranging from Instagram and Doordash to tools like Google Calendar and Stripe to help you accomplish tasks.  You could ask to book a meeting for your collaborators, order their favorite foods, and pay for it. This may be how we interact with computers and even the web in the future.
+
+                        Gorilla is an LLM that we train using a concept we call - retriever-aware training, that can pick the right API to perform a task, that a user can specify in natural language. We also introduce an Abstract Syntax Tree (AST) based sub-tree algorithm, which for the first time can measure hallucination of LLMs! 
+                    </p>
+                        
+                    <p>
+                        The use of API's and Large Language Models(LLMs) has changed what it means to program. 
+                        Previously, building complex models required extensive time and specialized skills. 
+                        Now with tools like the HuggingFace API, an engineer can set up a deep learning pipeline 
+                        with a few lines of code. Instead of searching through StackOverflow and sifting through documentation, 
+                        developers can ask models like GPT for solutions and receive immediate, actionable code with docstrings. 
+                        Yet, employing off-the-shelf LLMs to generate precise API calls is impractical as there are millions 
+                        of available API's which are frequently updated.
+
+                        Gorilla connects LLM's with API's, a system which takes in an instruction like "build me a classifier 
+                        for medical images" and outputs the corresponding imports and API calls, along with a step-by-step 
+                        explanation of the process. Gorilla uses self-instruct fine-tuning and retrieval to enable LLMs to 
+                        accurately select from a large, overlapping, and changing set tools expressed using their APIs and 
+                        API documentation. With the development of API generation methods comes a question of how to evaluate, 
+                        as many APIs will have overlapping functionality with nuanced limitations and constraints. Thus, we 
+                        construct APIBench, a large corpus of APIs including Kubernetes, AWS, GCP, Azure, GitHub, Conda, Curl, 
+                        Sed, Huggingface, Tensorflow, Torch Hub, and develop a novel evaluation framework which uses sub-tree 
+                        matching to check functional correctness and measures hallucination. 
+                       
+                    </p>
+                </div>
+
+                <div class="body">
+                    <p>
+                        Using APIBench, we trained Gorilla, an Apache 2.0 licensed, 7B LLM model with document retrieval and show that it significantly 
+                        outperforms both open-source and closed-source models like Claude and GPT-4 in terms of API functionality 
+                        accuracy as well as a reduction in API argument hallucination errors. 
+                    </p>
+                </div>
+
+                <!-- APIs change frequently -->
+                <p style="text-align: center; margin-bottom: 0">
+                    <img src="../assets/img/blog_post_1_apichange.png" alt="APIs change frequently" width="95%">
+                    <br>
+                </p>
+                <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                    <i style="font-size: 0.9em;">
+                        APIs evolve frequently! For example, there were 31 API modifications for AWS APIs just yesterday.
+                    </i>
+                </p>
+                
+
+                <h4> Keeping up with frequently evolving APIs</h4>
+                <div class="body">
+                    <p>
+                        APIs are known to evolve frequently - more freuquently than it is possible to re-train LLMs. So, how can LLMs keep up with this, and not serve the user out-lawed APIs? To handle this, Gorilla, can be used for inference in two modes: <em>zero-shot</em> and <em>with retrieval</em>. In zero-shot, during inference, user provides the prompt in natural language. This can be for a simple task (e.g, "I would like to identify the objects in an image"), or you can specify a vague goal, (e.g, "I am going to the zoo, and would like to track animals"). This prompt (with NO further prompt tuning) is fed to the Gorilla LLM model which then returns the API call that will help in accomplishing the task and/or goal. 
+                        In retrieval mode, the retriever first retrieves the most up-to-date API documentation stored in APIZoo, an API Database for LLMs.
+                        Before being sent to Gorilla, the API documentation is concatenated to the user prompt along with the message "Use this API documentation for reference:"  The output of Gorilla is an API to be invoked. The retriever aware inference mode, enables Gorilla to be robust to frequent changes in APIs! We have open-sourced our APIZoo, and welcome contributions from the community!   
+                    </p>
+
+                </div>
+
+                <!-- Retrievers and LLMs  -->
+                <p style="text-align: center; margin-bottom: 0">
+                    <img src="../assets/img/blog_post_1_inference.jpg" alt="Gorilla can be used in zero-shot and with retrievers" width="95%">
+                    <br>
+                </p>
+                <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                    <i style="font-size: 0.9em;">
+                        Gorilla, can be used for inference in two modes: <em>zero-shot</em> and <em>with retrieval</em>. In zero-shot, the prompt is directly fed to the Gorilla LLM model. 
+                        In retrieval mode, the retriever first retrieves the most up-to-date API documentation stored in APIZoo. 
+                    </i>
+                </p>
+
+                <h4>Love at First Query: The Untold Bond of LLMs and Retrievers</h4>
+                <div class="body">
+                    <p>
+                        If you are deploying LLMs in production today, you might be
+                        augmenting your model with retrievers such as in Retriever Augmented Generation (RAG) paradigms. Given, most LLMs today are used with retrievers, shouldn't the training recipie for the LLM consider this!! In Gorilla, we consider retrievers to be first class citizens, and train our models to be <em>retreiver aware</em>. If you are thinking about integrating LLMs with llamaindex, vector databases such as Weviate, etc check out our blog post on <a class="continue-link" href="blogs/blog_post_2_rat.html"> Retrieval Aware Training (RAT)</a> where we teach LLMs to "work-together" with retrievers! 
+                    </p>
+                </div>
+                
+                <!-- Gorilla side by side comparison -->
+                <p style="text-align: center; margin-bottom: 0">
+                    <img src="../assets/img/blog_post_1_result.png" alt="How well does Gorilla perform" width="65%">
+                    <br>
+                </p>
+                <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                    <i style="font-size: 0.9em;">
+                        Examples of API calls. In this example, for the given prompt GPT-4 presents a model that doesn't exist, and Claude picks an incorrect library. In contrast, our Gorilla model can identify the task correctly and suggest a fully-qualified API call.
+                    </i>
+                </p>
+
+                <h4>Reality Bytes: When LLMs See Things That Aren't There</h4>
+                <div class="body">
+                    <p>
+                        Hallucination is the center of discussions for all things LLMs. In the context of API generation, hallucination can be defined as the model generating API calls that do not exist. An LLM generation can be in-accurate or it could be hallucinated. One does not mean the other. For example, if the user asks for a classifier for medical images, if the model generates a Stripe API call for a image classifier - it is hallucination, since it doesn't exist! On the other hand, if the model recommends to use the Stripe API for checking your balance, it is an incorrect usage of the API, but atleast not made up (noh-hallucinated). In our blog <a href=""></a> we describe Gorilla's innovative approach of using Abstract Syntax Trees (ASTs) to measure hallucination of the generated API calls. 
+                        Though not generalizable to all tasks, to the best of our knowledge, Gorilla is the first to measure and quantify hallucination for LLM generations! 
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: white;
+            justify-content: center;
+            align-items: center;
+        }
+        .blog-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .blog-post {
+            margin: 20px;
+            padding: 20px;
+            max-width: 1000px; 
+            justify-content: center;
+        }
+        .blog-post img {
+            display: block;
+            margin: 0 auto;
+        }
+        .blog-title{
+            color: #055ada;
+            text-align: center;
+        }
+
+        .author-date {
+                display: flex;
+                margin-bottom: 0px;
+                justify-content: center; 
+        }
+        .author {
+                font-size: 16px;
+                color: #1E90FF;
+                margin-right: 20px;
+        }
+
+        .date {
+            font-size: 16px;
+            color: #7e8790;
+        }
+
+        .preview {
+            text-align: justify; 
+            text-justify: inter-word; 
+        }
+
+        .highlight-clean-blog {
+            color: #313437;
+            background-color: #fff;
+            padding: 50px 0;
+        }
+
+        @media screen and (max-width: 768px) {
+        .blog-post {
+            padding: 10px; /* Adjust spacing for smaller screens */
+        }
+        .blog-post img {
+            max-width: 80%; /* Reduce image size for smaller screens */
+        }
+    }
+
+    </style>
+</body>
+</html>
