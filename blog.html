@@ -34,7 +34,7 @@
 <div class="box-index">
     <h3>Index</h3>
     <ul>
-        <li><a href="blogs/blog_post_1.html">Blog Post Title 1</a></li>
+        <li><a href="blogs/blog_post_1.html">Introduction to Gorilla LLM</a></li>
         <li><a href="blogs/blog_post_2.html">Blog Post Title 2</a></li>
         <!-- Add more entries as needed -->
     </ul>
@@ -48,18 +48,24 @@
     <div class="highlight-clean-blog" style="padding-bottom: 10px;">        
         <div class="blog-container">
             <div class="blog-post">
-                <h2 class="blog-title">Blog Post Title 1</h2>
+                <h2 class="blog-title">Introduction to Gorilla LLM</h2>
                 <div class="author-date">
-                    <p class="author">Author Name 1  </p>
-                    <p class="date">Date 1</p>
+                    <p class="author"> <a href="https://www.lisabdunlap.com/">Lisa Dunlap</a>  </p>
+                    <p class="date">Oct 3, 2023</p>
                 </div>      
-                <img src="assets/img/blog_post_2_image.jpg" alt="Blog Post 1 Image">
+                <img src="assets/img/blog_post_1_teaser.gif" alt="Gorilla introductory image" style="width: 100%;">
                 <div class="preview">
-                    <p>Diffusion models have recently emerged as the de facto standard for generating complex, high-dimensional outputs. You may know them for their ability to produce stunning AI art and hyper-realistic synthetic images, but they have also found success in other applications such as drug design and continuous control. The key idea behind diffusion models is to iteratively transform random noise into a sample, such as an image or protein structure. This is typically motivated as a maximum likelihood estimation problem, where the model is trained to generate samples that match the training data as closely as possible.</p>
+                    <p> 
+                        Gorilla is designed to connect large language models (LLMs) with a wide range of tools, services, and applications exposed through APIs. Imagine if ChatGPT could interact with thousands of services ranging from Instagram and Doordash to tools like Google Calendar and Stripe to help you accomplish tasks.  You could ask to book a meeting for your collaborators, order their favorite foods, and pay for it. This may be how we interact with computers and even the web in the future.
+                    </p>
+                    
+                    <p>
+                        Gorilla is an LLM that we train using a concept we call - retriever-aware training, that can pick the right API to perform a task, that a user can specify in natural language. We also introduce an Abstract Syntax Tree (AST) based sub-tree algorithm, which for the first time can measure hallucination of LLMs! 
+                    </p>
 
-                    <p>However, most use cases of diffusion models are not directly concerned with matching the training data, but instead with a downstream objective. We don’t just want an image that looks like existing images, but one that has a specific type of appearance; we don’t just want a drug molecule that is physically plausible, but one that is as effective as possible. In this post, we show how diffusion models can be trained on these downstream objectives directly using reinforcement learning (RL). To do this, we finetune Stable Diffusion on a variety of objectives, including image compressibility, human-perceived aesthetic quality, and prompt-image alignment. The last of these objectives uses feedback from a large vision-language model to improve the model’s performance on unusual prompts, demonstrating how powerful AI models can be used to improve each other without any humans in the loop.</p>
+
                 </div>
-                <a class="continue-link" href="blogs/blog_post_1.html">Continue</a>
+                <a class="continue-link" href="blogs/blog_post_1.html">Continue Reading ...</a>
                 <hr class="post-separator">
             </div>
         
@@ -67,8 +73,8 @@
             <div class="blog-post">
                 <h2 class="blog-title">Blog Post Title 2</h2>
                 <div class="author-date">
-                    <p class="author">Author Name 1  </p>
-                    <p class="date">Date 1</p>
+                    <p class="author"> <a href="https://people.eecs.berkeley.edu/~wong.justin/"> Justin Wong </a>  </p>
+                    <p class="date">Oct 3, 2023</p>
                 </div>
                 <img src="assets/img/blog_post_2_image.jpg" alt="Blog Post 2 Image">
                 <div class="preview">
