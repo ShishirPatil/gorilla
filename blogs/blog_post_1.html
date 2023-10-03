@@ -25,12 +25,28 @@
 
 <body>
     <!-- Navigation Bar -->
-    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;">
+    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;font-size: 18px;">
         <a href="../index.html">Home </a>&nbsp;&nbsp;&nbsp;     
         <a href="../blog.html"> Blog</a>
     </div>
+    
     <div class="highlight-clean-blog" style="padding-bottom: 10px;">
         <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+        
+        <div class="box-index">
+            <h3>Blog1: Gorilla LLM</h3>
+            <ul>
+                <ul>
+                        <li><a href="blog_post_1.html#evolving-apis">Keeping up with frequently evolving data</a></li>
+                        <li><a href="blog_post_1.html#llm-and-retrievers">LLMs and Retrievers</a></li>
+                        <li><a href="blog_post_1.html#hallucination">Hallucination</a></li>
+                    
+                </ul>
+                <!-- Add more entries as needed -->
+            </ul>
+        </div>
+        
+        
         <div class="blog-container">
             <div class="blog-post">
                 <h2 class="blog-title">Introduction to Gorilla LLM</h2>
@@ -51,7 +67,7 @@
 
                         Gorilla is an LLM that we train using a concept we call - retriever-aware training, that can pick the right API to perform a task, that a user can specify in natural language. We also introduce an Abstract Syntax Tree (AST) based sub-tree algorithm, which for the first time can measure hallucination of LLMs! 
                     </p>
-                        
+ 
                     <p>
                         The use of API's and Large Language Models(LLMs) has changed what it means to program. 
                         Previously, building complex models required extensive time and specialized skills. 
@@ -94,12 +110,12 @@
                 </p>
                 
 
-                <h4> Keeping up with frequently evolving APIs</h4>
+                <h4 id="evolving-apis"> Keeping up with frequently evolving data</h4>
                 <div class="body">
                     <p>
                         APIs are known to evolve frequently - more freuquently than it is possible to re-train LLMs. So, how can LLMs keep up with this, and not serve the user out-lawed APIs? To handle this, Gorilla, can be used for inference in two modes: <em>zero-shot</em> and <em>with retrieval</em>. In zero-shot, during inference, user provides the prompt in natural language. This can be for a simple task (e.g, "I would like to identify the objects in an image"), or you can specify a vague goal, (e.g, "I am going to the zoo, and would like to track animals"). This prompt (with NO further prompt tuning) is fed to the Gorilla LLM model which then returns the API call that will help in accomplishing the task and/or goal. 
                         In retrieval mode, the retriever first retrieves the most up-to-date API documentation stored in APIZoo, an API Database for LLMs.
-                        Before being sent to Gorilla, the API documentation is concatenated to the user prompt along with the message "Use this API documentation for reference:"  The output of Gorilla is an API to be invoked. The retriever aware inference mode, enables Gorilla to be robust to frequent changes in APIs! We have open-sourced our APIZoo, and welcome contributions from the community!   
+                        Before being sent to Gorilla, the API documentation is concatenated to the user prompt along with the message "Use this API documentation for reference:"  The output of Gorilla is an API to be invoked. The retriever aware inference mode, enables Gorilla to be robust to frequent changes in APIs! We have open-sourced our APIZoo, and in our continued commitment to the open-source community, today we've released an additional ~20k meticulously documented APIs including KubeCtl, GCP, Azure, AWS, GitHub, etc. We will continue to add more APIs to APIZoo, and welcome contributions from the community!
                     </p>
 
                 </div>
@@ -116,7 +132,7 @@
                     </i>
                 </p>
 
-                <h4>Love at First Query: The Untold Bond of LLMs and Retrievers</h4>
+                <h4 id="llm-and-retrievers">Love at First Query: The Untold Bond of LLMs and Retrievers</h4>
                 <div class="body">
                     <p>
                         If you are deploying LLMs in production today, you might be
@@ -135,7 +151,7 @@
                     </i>
                 </p>
 
-                <h4>Reality Bytes: When LLMs See Things That Aren't There</h4>
+                <h4 id="hallucination">Reality Bytes: When LLMs See Things That Aren't There</h4>
                 <div class="body">
                     <p>
                         Hallucination is the center of discussions for all things LLMs. In the context of API generation, hallucination can be defined as the model generating API calls that do not exist. An LLM generation can be in-accurate or it could be hallucinated. One does not mean the other. For example, if the user asks for a classifier for medical images, if the model generates a Stripe API call for a image classifier - it is hallucination, since it doesn't exist! On the other hand, if the model recommends to use the Stripe API for checking your balance, it is an incorrect usage of the API, but atleast not made up (noh-hallucinated). In our blog <a href=""></a> we describe Gorilla's innovative approach of using Abstract Syntax Trees (ASTs) to measure hallucination of the generated API calls. 
@@ -204,12 +220,50 @@
             padding: 50px 0;
         }
 
+        .box-index {
+        position: fixed;
+        top: 50%; 
+        left: 20px; 
+        transform: translateY(-50%);
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 250px;
+        }
+
+        .box-index h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        }
+
+        .box-index ul {
+        list-style-type: disc;
+        padding: 0;
+        }
+
+        .box-index ul li {
+        margin-bottom: 10px;
+        }
+
+        .box-index ul li a {
+        text-decoration: none;
+        color: #333;
+        }
+
+        .box-index ul li a:hover {
+        color: #1E90FF;
+        }
+
         @media screen and (max-width: 768px) {
         .blog-post {
             padding: 10px; /* Adjust spacing for smaller screens */
         }
         .blog-post img {
             max-width: 80%; /* Reduce image size for smaller screens */
+        }
+        .box-index {
+        display: none; /* Hide the index on smaller screens */
         }
     }
 
