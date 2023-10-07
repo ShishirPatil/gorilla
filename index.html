@@ -24,12 +24,15 @@
 </head>
 
 <body>
+       <!-- Navigation Bar -->
+    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;; font-size: 18px;">
+        <a href="index.html">Home </a>&nbsp;&nbsp;&nbsp;     
+        <!-- <a href="blog.html"> Blog</a> -->
+    </div>
     <div class="highlight-clean" style="padding-bottom: 10px;">
-        <div class="container">
             <h1 class="text-center"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
-        </div>
         <div><p></p></div>
-        <div class="container" style="max-width: 768px;">
+        <div class="container" style="max-width: 768px;background:white;">
             <div class="row">
                 <div class="col-md-12">
                     <h4 class="text-center" style="margin: 0px;">
@@ -52,19 +55,27 @@
             <a class="btn btn-primary" role="button" href="https://discord.gg/SwTyuTAxX3"> Discord</a>
         </div>
         <div><p></p></div>
-        <div>
-            <div class="container" style="max-width: 768px;">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="text-center">An API Appstore for LLMs</h3>
+        <div class="container" style="max-width: 768px; background: #f0f7ff;">
+            <div class="row">
+                <div class="col-md-12 api-appstore">
+                    <h3 class="text-center">An API Appstore for LLMs</h3>
+                </div>
+                
+                <div class="col-md-12">
+                    <div class="spinner">
+                        <h3 class="text-center">Gorilla Used at
+                            <div class="spinner__text">
+                                <span class="spinner__text--top" data-texts="Microsoft, Nvidia, Tesla, Linkedin, Netflix, MIT, CMU, Cisco, Weaviate"></span>
+                                <span class="spinner__text--bottom" data-texts="Microsoft, Nvidia, Tesla, Linkedin, Netflix, MIT, CMU, Cisco, Weaviate"></span>
+                            </div>
+                        </h3>
                     </div>
                 </div>
-            
             </div>
         </div>
         <!-- Figure -->
         <div><p></p></div>
-        <div class="container" style="max-width: 768px;">
+        <div class="container" style="max-width: 768px;" >
             <div class="row">
                 <div class="col-md-12 text-center"><img src="assets/img/gorilla_method.png" 
                     style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
@@ -79,9 +90,11 @@
     </div>
 
     <!-- Contributions -->
-    <hr style="max-width: 768px;">
-    <div class="container" style="max-width: 768px;">
+    <div class="container news-container" style="max-width: 768px;background: #f0f7ff;">
         <div class="row">
+            <div class="col-md-12">
+                <h2>News</h2>
+            </div>
             <div class="col-md-12">
                 <h5> 🚀 <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">Try Gorilla in 60s!</a> No sign-ups, no installs, just colab!</h5>
                 <h5> 🤩 With Apache 2.0 licensed LLM models, you can use Gorilla comercially without any obligations!</h5>
@@ -90,119 +103,224 @@
             </div>
         </div>
     </div>
-
-    <!-- Gorilla CLI and Spotlight --> 
-
-    <style>
-    .responsive-iframe-container {
-        position: relative;
-        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-        height: 0;
-        overflow: hidden;
-    }
     
-    .responsive-iframe-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
+
+    <script>
+        const spinnerTexts = document.querySelectorAll('[class^="spinner__text--"]')
+const texts = spinnerTexts[0].dataset.texts.split(',')
+const textPositions = [0, 1]
+
+function initializeSpinnerTexts() {
+  spinnerTexts.forEach((spinnerText, index) => {
+    // Initialize the spinner texts' text
+    spinnerText.innerText = texts[textPositions[index]]
+    
+    // Change text after every animation iteration
+    spinnerText.addEventListener('animationiteration', e => {
+      e.target.innerText = texts[++textPositions[index] % texts.length]
+    })
+  })
+}
+
+window.onload = initializeSpinnerTexts
+    </script>
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: white;
+        }
+    
+        .container {
+            padding: 20px;
+            margin: 0 auto;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background: white;
+            margin-bottom: 30px;
+        }
+
+        .news-container {
+            max-height: 200px; 
+            overflow-y: auto; 
+        }
+    
+        h1, h2, h3, h4, h5, h6 {
+            color: #333;
+        }
+    
+        /* Button Background */
+        .btn-primary {
+            background:white;
+            border-color: white;
+        }
+    
+        .btn-primary:hover {
+            background: white;
+            border-color: white;
+        }
+    
+        /* Footer Gradient Background */
+        .container:last-child {
+            background: white; 
+            color: white;
+        }
+    
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    
+        em {
+            font-style: italic;
+            color: black;
+        }
+
+        .api-appstore {
+            margin-bottom: 20px;
+        }
+
+
+        .spinner {
+  position: relative; /* Change to relative for responsiveness */
+  overflow: hidden;
+}
+
+.spinner__text {
+  position: relative;
+  display: inline-block;
+  width: 50px; /* Adjust the width as needed */
+  text-align: center;
+}
+
+.spinner__text--top,
+.spinner__text--bottom {
+  display: inline-block;
+  animation: 1s ease 1.05s infinite running none;
+}
+
+.spinner__text--top {
+  animation-name: spinTop;
+}
+
+/* Bottom text spinner has to be configured so that it is positioned
+right at the same position as the top one */
+.spinner__text--bottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  animation-name: spinBottom;
+}
+
+@keyframes spinTop {
+  from { transform: translateY(0%); }
+  to { transform: translateY(-100%); }
+}
+
+@keyframes spinBottom {
+  from {
+    opacity: 1;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
     </style>
+<!-- Gorilla CLI and Spotlight -->
 
-    <hr style="max-width: 768px;">
-    <div class="container" style="max-width: 768px;">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Gorilla for your CLI and Spotlight Search</h2>
+<div class="container" style="max-width: 768px;">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Gorilla for your CLI and Spotlight Search</h2>
+        </div>
+        <div class="col-md-6">
+            <div class="responsive-iframe-container">
+                <iframe src="https://www.youtube.com/embed/4EdyWkcddPc"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
             </div>
-            <div class="col-md-6">
-                <div class="responsive-iframe-container">
-                    <iframe src="https://www.youtube.com/embed/4EdyWkcddPc" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <p class="text-center">Gorilla powered CLI<br>
-                    Get started with <code>pip install gorilla-cli</code></p>
+            <p class="text-center">Gorilla powered CLI<br>
+                Get started with <code>pip install gorilla-cli</code></p>
+        </div>
+        <div class="col-md-6">
+            <div class="responsive-iframe-container">
+                <iframe src="https://www.youtube.com/embed/RMgM3tPTpXI"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
             </div>
-            <div class="col-md-6">
-                <div class="responsive-iframe-container">
-                    <iframe src="https://www.youtube.com/embed/RMgM3tPTpXI" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <p class="text-center">Gorilla Powered Spotlight Search<br>
-                    <a href="https://docs.google.com/forms/d/1iuWrfQbTb8_T5s4J75HNftPF-w1Jg1Aeg-gB64X8MJg/edit">Gorilla-Spotlight Signup</a> </p>
-            </div>
+            <p class="text-center">Gorilla Powered Spotlight Search<br>
+                <a
+                    href="https://docs.google.com/forms/d/1iuWrfQbTb8_T5s4J75HNftPF-w1Jg1Aeg-gB64X8MJg/edit">Gorilla-Spotlight Signup</a> </p>
         </div>
     </div>
-        
+</div>
 
-    <!-- Abstract -->
-    <hr style="max-width: 768px;">
-    <div class="container" style="max-width: 768px;">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Abstract</h2>
-                <p style="text-align: justify;">
-                    Large Language Models (LLMs) have seen an impressive wave of advances recently, 
-                    with models now excelling in a variety of tasks, such as mathematical reasoning and program synthesis. 
-                    However, their potential to effectively use tools via API calls remains unfulfilled. 
-                    This is a challenging task even for today's state-of-the-art LLMs such as GPT-4, 
-                    largely due to their inability to generate accurate input arguments and their tendency to hallucinate the wrong usage of an API call. 
-                    We release Gorilla, a finetuned LLaMA-based model that surpasses the performance of GPT-4 on writing API calls. 
-                    When combined with a document retriever, Gorilla demonstrates a strong capability to adapt to test-time document changes, enabling flexible API updates and version changes. 
-                    Gorilla also substantially mitigates the issue of hallucination, commonly encountered when prompting LLMs directly. 
-                    To evaluate the model's ability, we introduce APIBench, a comprehensive dataset consisting of HuggingFace, TorchHub, and TensorHub APIs. 
-                    The successful integration of the retrieval system with Gorilla demonstrates the potential for LLMs to use tools more accurately, keep up with frequently updated documentation, 
-                    and consequently increase the reliability and applicability of their outputs. 
-                    Gorilla models and code are available at <a href="https://github.com/ShishirPatil/gorilla">https://github.com/ShishirPatil/gorilla</a>.
+<!-- Abstract -->
+<div class="container" style="max-width: 768px;background: #f0f7ff">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Abstract</h2>
+            <p style="text-align: justify;">
+                Large Language Models (LLMs) have seen an impressive wave of advances recently,
+                with models now excelling in a variety of tasks, such as mathematical reasoning and program synthesis.
+                However, their potential to effectively use tools via API calls remains unfulfilled.
+                This is a challenging task even for today's state-of-the-art LLMs such as GPT-4,
+                largely due to their inability to generate accurate input arguments and their tendency to hallucinate the wrong usage of an API call.
+                We release Gorilla, a fine-tuned LLaMA-based model that surpasses the performance of GPT-4 on writing API calls.
+                When combined with a document retriever, Gorilla demonstrates a strong capability to adapt to test-time document changes, enabling flexible API updates and version changes.
+                Gorilla also substantially mitigates the issue of hallucination, commonly encountered when prompting LLMs directly.
+                To evaluate the model's ability, we introduce APIBench, a comprehensive dataset consisting of HuggingFace, TorchHub, and TensorHub APIs.
+                The successful integration of the retrieval system with Gorilla demonstrates the potential for LLMs to use tools more accurately, keep up with frequently updated documentation,
+                and consequently increase the reliability and applicability of their outputs.
+                Gorilla models and code are available at <a href="https://github.com/ShishirPatil/gorilla">https://github.com/ShishirPatil/gorilla</a>.
                 <br>
-                </p>
-            </div>
+            </p>
         </div>
     </div>
+</div>
 
-
-    <!-- Result -->
-    <hr style="max-width: 768px;">
-    <div class="container" style="max-width: 768px;">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Example</h2>
-            </div>
-            <div class="col-md-12 text-center"><img src="assets/img/results.png" 
+<!-- Result -->
+<div class="container" style="max-width: 768px;">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Example</h2>
+        </div>
+        <div class="col-md-12 text-center"><img src="assets/img/results.png"
                 style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
-            </div>
-            <em>Example API calls generated by GPT-4, Claude, and Gorilla for the
-                given prompt. In this example, GPT-4 presents a model that doesn’t exist, and Claude 
-                picks an incorrect library. In contrast, our model, Gorilla, can identify the task correctly 
-                and suggest a fully-qualified API call.</em>
+        </div>
+        <em>Example API calls generated by GPT-4, Claude, and Gorilla for the
+            given prompt. In this example, GPT-4 presents a model that doesn’t exist, and Claude
+            picks an incorrect library. In contrast, our model, Gorilla, can identify the task correctly
+            and suggest a fully-qualified API call.</em>
+    </div>
+</div>
+
+<!-- Citation -->
+<div class="container" style="max-width: 768px; background: #f0f7ff">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Citation</h2>
+            <code>
+                @article{patil2023gorilla,<br>
+                    &nbsp;  title={Gorilla: Large Language Model Connected with Massive APIs}, <br>
+                    &nbsp;  author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},<br>
+                    &nbsp;  journal={arXiv preprint arXiv:2305.15334},<br>
+                    &nbsp;  year={2023},<br>
+                }
+            </code>
         </div>
     </div>
-
-
-    <!-- Citation -->
-    <hr style="max-width: 768px;">
-    <div class="container" style="max-width: 768px;">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>Citation</h2>
-                <code>
-                    @article{patil2023gorilla,<br>
-                        &nbsp; 	title={Gorilla: Large Language Model Connected with Massive APIs}, <br>
-                        &nbsp; 	author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},<br>
-                        &nbsp;  journal={arXiv preprint arXiv:2305.15334},<br>
-                        &nbsp; 	year={2023},<br>
-                    }
-                </code>
-            </div>
-        </div>
-    </div>
+</div>
 
 </body>
 
