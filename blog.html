@@ -59,7 +59,7 @@
                 <h2 class="blog-title">Introduction to Gorilla LLM</h2>
                 <div class="author-date">
                     <p class="author"> <a href="https://www.lisabdunlap.com/">Lisa Dunlap</a>  </p>
-                    <p class="date">Oct 3, 2023</p>
+                    <p class="date">Oct 4, 2023</p>
                 </div>      
                 <img src="assets/img/blog_post_1_teaser.gif" alt="Gorilla introductory image" style="width: 100%;">
                 <div class="preview">
@@ -79,21 +79,42 @@
         
             <!-- Blog Post 2 -->
             <div class="blog-post">
-                <h2 class="blog-title">Blog Post Title 2</h2>
+                <h2 class="blog-title">Reality Bytes: How to Measure Hallucinations in LLMs</h2>
                 <div class="author-date">
                     <p class="author"> <a href="https://people.eecs.berkeley.edu/~wong.justin/"> Justin Wong </a>  </p>
-                    <p class="date">Oct 3, 2023</p>
+                    <p class="date">Oct 4, 2023</p>
                 </div>
                 <img src="assets/img/blog_post_2_image.jpg" alt="Blog Post 2 Image">
                 <div class="preview">
-                    <p>Diffusion models have recently emerged as the de facto standard for generating complex, high-dimensional outputs. You may know them for their ability to produce stunning AI art and hyper-realistic synthetic images, but they have also found success in other applications such as drug design and continuous control. The key idea behind diffusion models is to iteratively transform random noise into a sample, such as an image or protein structure. This is typically motivated as a maximum likelihood estimation problem, where the model is trained to generate samples that match the training data as closely as possible.</p>
+                    <p>
+                        Imagine you ask your grandmother for her famous strawberry rhubarb pie recipe. She misspeaks occasionally and tells you to “break the strawberry” when she likely meant to say “cut the strawberries”.  Unlike casual stories about her college days, you need accurate information in order to actually bake the pie this weekend, so you recognize that she misspoke and ask her to clarify. 
 
-                    <p>However, most use cases of diffusion models are not directly concerned with matching the training data, but instead with a downstream objective. We don’t just want an image that looks like existing images, but one that has a specific type of appearance; we don’t just want a drug molecule that is physically plausible, but one that is as effective as possible. In this post, we show how diffusion models can be trained on these downstream objectives directly using reinforcement learning (RL). To do this, we finetune Stable Diffusion on a variety of objectives, including image compressibility, human-perceived aesthetic quality, and prompt-image alignment. The last of these objectives uses feedback from a large vision-language model to improve the model’s performance on unusual prompts, demonstrating how powerful AI models can be used to improve each other without any humans in the loop.</p>
+
+                        Language models have the similar tendency to “misspeak” or hallucinate, which leads to challenges in API usage since concrete actions must be taken. In Gorilla, imagine we ask the LLM “generate an API call for a vision model to identify ripe strawberries”.
+                    </p>
                 </div>
                 <a class="continue-link" href="blogs/2_hallucination.html">Continue</a>
                 <hr class="post-separator">
             </div>
+
+            <!-- Blog Post 3 -->
+            <div class="blog-post">
+                <h2 class="blog-title">Retriever-Aware Training (RAT): Are LLMs memorizing or understanding?</h2>
+                <div class="author-date">
+                    <p class="author"> <a href="https://hqjenny.com/"> Qijing Huang </a>  </p>
+                    <p class="date">Oct 4, 2023</p>
+                </div>
+                <img src="assets/img/blog_post_2_image.jpg" alt="Blog Post 2 Image">
+                <div class="preview">
+                    <p>
+                        Pretrained Language Models (LLMs) need instruction tuning to better align with human incentives. These methods both improve the model's behavior and accuracy when they are trying to answer questions for a specific domain. However, traditional instruction tuning has limitations regarding adaptability, dependency on the in-context examples, and the potential to hallucinate. We introduce "retriever-aware training," a new methodology that holds the promise of addressing some of these challenges. Let's dive into the details of that.
+
+                    </p>
+                </div>
+                <a class="continue-link" href="blogs/3_retreiver_aware_training.html">Continue</a>
+                <hr class="post-separator">
             </div>
+        </div>
     </div>
 
 <style>

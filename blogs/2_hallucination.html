@@ -49,9 +49,9 @@
         
         <div class="blog-container">
             <div class="blog-post">
-                <h2 class="blog-title">Introduction to Gorilla LLM</h2>
+                <h2 class="blog-title">Reality Bytes: How to Measure Hallucinations in LLMs</h2>
                 <div class="author-date">
-                    <p class="author"> <a href="https://www.lisabdunlap.com/">Lisa Dunlap</a> </p>
+                    <p class="author"> <a href="https://people.eecs.berkeley.edu/~wong.justin/">Justin Wong</a> </p>
                     <p class="date">Oct 3, 2023</p>
                 </div>
                     <img src="../assets/img/blog_post_1_teaser.gif" alt="Gorilla introductory image" style="width: 95%;">
@@ -63,64 +63,50 @@
 
                 <div class="preview">
                     <p>
-                        Gorilla is designed to connect large language models (LLMs) with a wide range of tools, services, and applications exposed through APIs. Imagine if ChatGPT could interact with thousands of services ranging from Instagram and Doordash to tools like Google Calendar and Stripe to help you accomplish tasks.  You could ask to book a meeting for your collaborators, order their favorite foods, and pay for it. This may be how we interact with computers and even the web in the future.
+                        Imagine you ask your grandmother for her famous strawberry rhubarb pie recipe. She misspeaks occasionally and tells you to “break the strawberry” when she likely meant to say “cut the strawberries”.  Unlike casual stories about her college days, you need accurate information in order to actually bake the pie this weekend, so you recognize that she misspoke and ask her to clarify. 
 
-                        Gorilla is an LLM that we train using a concept we call - retriever-aware training, that can pick the right API to perform a task, that a user can specify in natural language. We also introduce an Abstract Syntax Tree (AST) based sub-tree algorithm, which for the first time can measure hallucination of LLMs! 
-                    </p>
- 
-                    <p>
-                        The use of API's and Large Language Models(LLMs) has changed what it means to program. 
-                        Previously, building complex models required extensive time and specialized skills. 
-                        Now with tools like the HuggingFace API, an engineer can set up a deep learning pipeline 
-                        with a few lines of code. Instead of searching through StackOverflow and sifting through documentation, 
-                        developers can ask models like GPT for solutions and receive immediate, actionable code with docstrings. 
-                        Yet, employing off-the-shelf LLMs to generate precise API calls is impractical as there are millions 
-                        of available API's which are frequently updated.
 
-                        Gorilla connects LLM's with API's, a system which takes in an instruction like "build me a classifier 
-                        for medical images" and outputs the corresponding imports and API calls, along with a step-by-step 
-                        explanation of the process. Gorilla uses self-instruct fine-tuning and retrieval to enable LLMs to 
-                        accurately select from a large, overlapping, and changing set tools expressed using their APIs and 
-                        API documentation. With the development of API generation methods comes a question of how to evaluate, 
-                        as many APIs will have overlapping functionality with nuanced limitations and constraints. Thus, we 
-                        construct APIBench, a large corpus of APIs including Kubernetes, AWS, GCP, Azure, GitHub, Conda, Curl, 
-                        Sed, Huggingface, Tensorflow, Torch Hub, and develop a novel evaluation framework which uses sub-tree 
-                        matching to check functional correctness and measures hallucination. 
-                       
+                        Language models have the similar tendency to “misspeak” or hallucinate, which leads to challenges in API usage since concrete actions must be taken. In Gorilla, imagine we ask the LLM “generate an API call for a vision model to identify ripe strawberries”. One of the following may happen
+
+                        <ul>
+                            <li> We get lucky! The API call picks the state-of-the-art classifier: CLIP. `torch.hub.load('pytorch/vision:v0.10.0', 'CLIP')</li>
+                            <li> We called a valid API but the wrong one :(The LLM is inaccurate. By this, we mean it did not accurately understand the user's specification. For example, the model might be a text-embedding model: `torch.hub.load('pytorch/vision:v0.10.0', 'RoBERTa') </li>
+                            <li> Wishful thinking! The LLM hallucinates a nonexistent model: BerryPicker. `torch.hub.load('pytorch/vision:v0.10.0', 'BerryPicker')</li>
+                        </ul>    
+
+                        For non-task-driven applications, hallucinations can only be detected if a falsifiable claim is made, for instance “Charles Dickens wrote MacBeth”. In contrast, LLM generated API calls must complete a specific task thus is falsifiable. This allows us to measure hallucinations!
+
+                        We discuss in this blog post how to measure hallucination by identifying cases when the LLM provides API calls or arguments that are not defined or supported by the API. 
+
                     </p>
                 </div>
 
-                <div class="body">
-                    <p>
-                        Using APIBench, we trained Gorilla, an Apache 2.0 licensed, 7B LLM model with document retrieval and show that it significantly 
-                        outperforms both open-source and closed-source models like Claude and GPT-4 in terms of API functionality 
-                        accuracy as well as a reduction in API argument hallucination errors. 
-                    </p>
-                </div>
 
-                <!-- APIs change frequently -->
+
+                <!-- Represent API -->
                 <p style="text-align: center; margin-bottom: 0">
                     <img src="../assets/img/blog_post_1_apichange.png" alt="APIs change frequently" width="95%">
                     <br>
                 </p>
                 <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
                     <i style="font-size: 0.9em;">
-                        APIs evolve frequently! For example, there were 31 API modifications for AWS APIs just yesterday.
+                        ASTs allow us to define equivalence preserving rewrites such as populating default arguments (⇒). This is helpful in checking differently expressed programs or API calls are equivalent. 
+
                     </i>
                 </p>
-                
 
-                <h4 id="evolving-apis"> Keeping up with frequently evolving data</h4>
+                <h4 id="represent-api"> How do computers represent API calls</h4>
                 <div class="body">
                     <p>
-                        APIs are known to evolve frequently - more freuquently than it is possible to re-train LLMs. So, how can LLMs keep up with this, and not serve the user out-lawed APIs? To handle this, Gorilla, can be used for inference in two modes: <em>zero-shot</em> and <em>with retrieval</em>. In zero-shot, during inference, user provides the prompt in natural language. This can be for a simple task (e.g, "I would like to identify the objects in an image"), or you can specify a vague goal, (e.g, "I am going to the zoo, and would like to track animals"). This prompt (with NO further prompt tuning) is fed to the Gorilla LLM model which then returns the API call that will help in accomplishing the task and/or goal. 
-                        In retrieval mode, the retriever first retrieves the most up-to-date API documentation stored in APIZoo, an API Database for LLMs.
-                        Before being sent to Gorilla, the API documentation is concatenated to the user prompt along with the message "Use this API documentation for reference:"  The output of Gorilla is an API to be invoked. The retriever aware inference mode, enables Gorilla to be robust to frequent changes in APIs! We have open-sourced our APIZoo, and in our continued commitment to the open-source community, today we've released an additional ~20k meticulously documented APIs including KubeCtl, GCP, Azure, AWS, GitHub, etc. We will continue to add more APIs to APIZoo, and welcome contributions from the community!
-                    </p>
+                        At its core, API calls are a type of function invocation. The question on how to represent a program dates back to the 1960s when Donald Knuth (the inventor of TEX) introduced Abstract Syntax Trees (AST)[1]. Since then, ASTs have been a powerful program representation for checking programs are equivalent and applying automatic program optimizations. Compiler designers can define rewrites on ASTs and be confident program correctness is not impacted by writing equivalence proofs [2].
 
+
+                        We illustrate this process with desugaring default arguments. Suppose the `pretrained` argument is by default true. Then, `API_Function(my_model, pretrained=True)` and `API_Function(my_model)` are intuitively equivalent. However, the computer sees two strings of characters that are clearly different. By representing as an AST, we can apply an equivalence preserving rewrite that populates the tree with default arguments. Now, it’s easy to check the ASTs representing the function calls are equivalent implying the original function calls are equivalent.
+
+                    </p>
                 </div>
 
-                <!-- Retrievers and LLMs  -->
+                <!-- Measuring Hallucination  -->
                 <p style="text-align: center; margin-bottom: 0">
                     <img src="../assets/img/blog_post_1_inference.jpg" alt="Gorilla can be used in zero-shot and with retrievers" width="95%">
                     <br>
@@ -132,11 +118,20 @@
                     </i>
                 </p>
 
-                <h4 id="llm-and-retrievers">Love at First Query: The Untold Bond of LLMs and Retrievers</h4>
+                <h4 id="measuring-hallucination">Measuring Hallucinations in LLMs</h4>
                 <div class="body">
                     <p>
-                        If you are deploying LLMs in production today, you might be
-                        augmenting your model with retrievers such as in Retriever Augmented Generation (RAG) paradigms. Given, most LLMs today are used with retrievers, shouldn't the training recipie for the LLM consider this!! In Gorilla, we consider retrievers to be first class citizens, and train our models to be <em>retreiver aware</em>. If you are thinking about integrating LLMs with llamaindex, vector databases such as Weviate, etc check out our blog post on <a class="continue-link" href="blogs/blog_post_2_rat.html"> Retrieval Aware Training (RAT)</a> where we teach LLMs to "work-together" with retrievers! 
+                        Any individual API call can be parsed or expressed uniquely as an abstract syntax tree (AST). In the AST, nodes represent each argument or class function. For instance, the image below shows a generated AST for loading `ResNet50` with `torch.hub.load`: 
+                        ```torch.hub.load(‘pytorch/vision:v0.10.0’, ‘ResNet50’, pretrained=True)``` 
+                        We note however that `pretrained` is an auxiliary argument not crucial to the API validity.
+
+
+                        We can check for hallucinations by carefully curating all base API function calls such as `torch.hub.load(‘pytorch/vision:v0.10.0’, ‘ResNet50’)`. These base API function calls can be standardized to ```API_name(API_arg1, API_arg2, ..., API_argk)``` Standardization allows us to check that generated AST invokes one of the base API function calls. Particularly for deep learning APIs strings/paths are used to represent models and repositories. This free-text format lowers the friction for adding new models, but limits the program analysis that can be done.
+
+                        For deep learning APIs, a key validity check is that the model exists in the repository. In the case of torch.hub API which supports a list of 94 models, we check if the API call invokes one of the existing models. The AST subtree matching easily checks if the model and repository are a valid pair in the curated list of API calls. ASTs are a standard yet powerful structured representation that allows us to do subtree matching to efficiently check if an API call is hallucinated. 
+
+
+
                     </p>
                 </div>
                 
@@ -157,6 +152,29 @@
                         Hallucination is the center of discussions for all things LLMs. In the context of API generation, hallucination can be defined as the model generating API calls that do not exist. An LLM generation can be in-accurate or it could be hallucinated. One does not mean the other. For example, if the user asks for a classifier for medical images, if the model generates a Stripe API call for a image classifier - it is hallucination, since it doesn't exist! On the other hand, if the model recommends to use the Stripe API for checking your balance, it is an incorrect usage of the API, but atleast not made up (noh-hallucinated). In our blog <a href=""></a> we describe Gorilla's innovative approach of using Abstract Syntax Trees (ASTs) to measure hallucination of the generated API calls. 
                         Though not generalizable to all tasks, to the best of our knowledge, Gorilla is the first to measure and quantify hallucination for LLM generations! 
 
+                    </p>
+                </div>
+
+                <h4 id="hallucination">Gorilla Hallucinations</h4>
+                <div class="body">
+                    <p>
+                        Good retrievers reduce hallucinations. The outlined AST subtree matching method highlights the importance of quality retrieval in reducing hallucinations. We evaluate Gorilla on three retrieval settings: 1) BM-25, a classic keyword retriever, 2) GPT-Index, a nearest neighbor search over gpt document embeddings, and 3) Oracle, ground truth. Each retriever appends the documentation of one API call to the context. With the improvement in retrieval accuracy from BM-25 to GPT-index we see Gorilla virtually eliminate hallucinations. GPT-4 also shows strong benefit from retriever quality leading to a 91% reduction to hallucination. Remarkably, GPT-4 benefits more from retrieval than Claude suggesting models can be optimized to make better use of retrieved documentation! Learn more about our retriever-augmented generation here.
+                    </p>
+                </div>
+
+                <h4 id="Takeaways">Takeaways</h4>
+                <div class="body">
+                    <p>
+                        Language models just like humans will hallucinate and non-maliciously make false statements. Though our focus is on LLM APIs, to the best of our knowledge, Gorilla is the first to measure and quantify hallucination for LLM generations! 
+
+                        “Though our focus is on LLM APIs, to the best of our knowledge, Gorilla is the first to measure and quantify hallucination for LLM generations! ”
+
+                        These are some takeaways on measuring hallucinations:
+                        <ul>
+                            <li>Use ASTs to measure API hallucination. For LLM APIs, we introduce a novel approach to check for hallucinations using subtree matching of Abstract Syntax Trees (AST).Retrievers reduce hallucinations. We find that improving the retriever reduces hallucinations!</li>
+
+                            <li>The first step in solving a problem is recognizing there is one. We are excited by the potential of automatically fixing and self-healing when API calls are hallucinated. Just as you would ask if grandmother meant to suggest cutting the strawberries, we envision future language model powered API calls will ask targeted clarifying questions.</li>
+                        </ul> 
                     </p>
                 </div>
             </div>

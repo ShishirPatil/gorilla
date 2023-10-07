@@ -33,53 +33,72 @@
         <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
         <div class="blog-container">
             <div class="blog-post">
-                <h2 class="blog-title">Introduction to Gorilla LLM</h2>
+                <h2 class="blog-title">Retriever-Aware Training (RAT): Are LLMs memorizing or understanding?</h2>
                 <div class="author-date">
-                    <p class="author"> <a href="https://www.lisabdunlap.com/">Lisa Dunlap</a> </p>
-                    <p class="date">Oct 3, 2023</p>
+                    <p class="author"> <a href="https://hqjenny.com/"> Qijing Huang </a>  </p>
+                    <p class="date">Oct 4, 2023</p>
                 </div>
-                    <img src="../assets/img/blog_post_1_teaser.gif" alt="Gorilla introductory image" style="width: 95%;">
-                    <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
-                        <i style="font-size: 0.9em;">
-                            Gorilla LLM can write accurate API calls, including Kubernetes, GCP, AWS, Azure, OpenAPI, and more. (Salesforce, servicenow, and datadog coming soon!) Gorilla outperforms GPT-4, Chat-GPT and Claude, significantly reducing hallucination errors. 
-                        </i>
-                    </p>
-
+                <!-- Image here -->
                 <div class="preview">
                     <p>
-                        Gorilla is designed to connect large language models (LLMs) with a wide range of tools, services, and applications exposed through APIs. Imagine if ChatGPT could interact with thousands of services ranging from Instagram and Doordash to tools like Google Calendar and Stripe to help you accomplish tasks.  You could ask to book a meeting for your collaborators, order their favorite foods, and pay for it. This may be how we interact with computers and even the web in the future.
-
-                        Gorilla is an LLM that we train using a concept we call - retriever-aware training, that can pick the right API to perform a task, that a user can specify in natural language. We also introduce an Abstract Syntax Tree (AST) based sub-tree algorithm, which for the first time can measure hallucination of LLMs! 
-                    </p>
-                        
+                        Pretrained Language Models (LLMs) need instruction tuning to better align with human incentives. These methods both improve the model’s behavior and accuracy when they are trying to answer questions for a specific domain. However, traditional instruction tuning has limitations regarding adaptability, dependency on the in-context examples, and the potential to hallucinate. We introduce "retriever-aware training," a new methodology that holds the promise of addressing some of these challenges. Let's dive into the details of that.
+                    </p>  
+                    <h4>The Drawbacks of Traditional Instruction Tuning</h4>
                     <p>
-                        The use of API's and Large Language Models(LLMs) has changed what it means to program. 
-                        Previously, building complex models required extensive time and specialized skills. 
-                        Now with tools like the HuggingFace API, an engineer can set up a deep learning pipeline 
-                        with a few lines of code. Instead of searching through StackOverflow and sifting through documentation, 
-                        developers can ask models like GPT for solutions and receive immediate, actionable code with docstrings. 
-                        Yet, employing off-the-shelf LLMs to generate precise API calls is impractical as there are millions 
-                        of available API's which are frequently updated.
+                        At its core, instruction tuning allows LLMs to generate responses based on specific instructions embedded within the prompts. However, this approach has its limitations:
+                        <ul>
+                            <li>Limited Adaptability: Traditional LLMs may struggle when faced with real-time changes or updates in the information. This can be particularly concerning when using evolving data sources, such as API documentation.
+                            </li>
+                            <li>Dependence on In-Context Learning: Instruction tuning relies heavily on in-context learning, which can be restrictive. Without the ability to pivot based on fresh or updated data, the model might produce outdated or inaccurate outputs.
+                            </li>
+                            <li>Potential for Hallucination: One of the significant challenges with LLMs is their tendency to "hallucinate" or generate incorrect or unrelated information. Traditional tuning methods have been known to exacerbate this issue.
+                            </li>
+                        </ul>
+                    </p>
+                    
+                    <h4>Embracing Retriever-Aware Training</h4>
+                    <p>
+                        With the above challenges in mind, retriever-aware training was introduced. 
+                        The principle behind this method is to append additional supporting documentation to the user's prompt, 
+                        such as "Use this API documentation for reference: <retrieved_API_doc_JSON>." 
+                        The goal is to teach the LLM to utilize the supporting documents provided 
+                        (the reference to API documentation) to generate a more informed answer to the first half.
 
-                        Gorilla connects LLM's with API's, a system which takes in an instruction like "build me a classifier 
-                        for medical images" and outputs the corresponding imports and API calls, along with a step-by-step 
-                        explanation of the process. Gorilla uses self-instruct fine-tuning and retrieval to enable LLMs to 
-                        accurately select from a large, overlapping, and changing set tools expressed using their APIs and 
-                        API documentation. With the development of API generation methods comes a question of how to evaluate, 
-                        as many APIs will have overlapping functionality with nuanced limitations and constraints. Thus, we 
-                        construct APIBench, a large corpus of APIs including Kubernetes, AWS, GCP, Azure, GitHub, Conda, Curl, 
-                        Sed, Huggingface, Tensorflow, Torch Hub, and develop a novel evaluation framework which uses sub-tree 
-                        matching to check functional correctness and measures hallucination. 
-                       
+                        The advantages of this approach are manifold:
+                        
+                        <ul>
+                            <li>Adaptability: The model becomes more adaptable to changes in API documentation at test-time. This means that even if an API undergoes changes, the model can reference the latest documentation to provide accurate responses.
+                            </li>
+                            <li>Improved In-Context Learning: By referencing external documentation, the LLM can go beyond its inherent knowledge and pull from real-time data, leading to more accurate and updated responses.
+                            </li>
+                            <li>Reduction in Hallucination: A key benefit noted was the reduction in hallucination errors. By grounding responses in real-time data, the chances of the LLM generating false or unrelated information diminish.
+                            </li>
+                        </ul>
                     </p>
                 </div>
 
                 <div class="body">
+                    <h4>A free lunch for RAT?</h4>
                     <p>
-                        Using APIBench, we trained Gorilla, an Apache 2.0 licensed, 7B LLM model with document retrieval and show that it significantly 
-                        outperforms both open-source and closed-source models like Claude and GPT-4 in terms of API functionality 
-                        accuracy as well as a reduction in API argument hallucination errors. 
+                        However, the promise of retriever-aware training is not fully utilized yet in reality. 
+                        This is mainly because the accuracy of the retriever is not good enough. In other words, 
+                        the recall for the retriever has become a bottleneck for the final performance of the LLM. 
+                        Imagine the model would easily get confused if it got the question to 
+                        “look up whether in Berkeley” but with the supporting documents of “biography of 
+                        Albert Einstein”. Thus, balancing between the recall of the retriever and the frequency 
+                        of updating LLMs is a choice to make.
                     </p>
+
+                    <p>
+                        Wrapping Up
+
+                        As with all innovations, retriever-aware training comes with its set of pros and cons. 
+                        But its introduction marks an exciting shift towards creating LLMs that are more adaptable, 
+                        accurate, and less prone to errors. As we continue to refine this methodology, there's 
+                        no doubt that the future of LLM training is brimming with potential.
+
+                    </p>
+
                 </div>
 
                 <!-- APIs change frequently -->
