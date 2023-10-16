@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-NRZJLJCSH6');
+    </script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Introduction to Gorilla LLM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Team-Clean.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;font-size: 18px;">
+        <a href="../index.html">Home </a>&nbsp;&nbsp;&nbsp;     
+        <a href="../blog.html"> Blog</a>
+    </div>
+
+    <div class="highlight-clean-blog" style="padding-bottom: 10px;">
+        <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+
+        <div class="box-index">
+            <h3>Blog 2: Hallucination</h3>
+            <ul>
+                <ul>
+                        <li><a href="2_hallucination.html#represent-api">Keeping up with frequently evolving data</a></li>
+                        <li><a href="2_hallucination.html#measuring-hallucination">Measuring Hallucination</a></li>
+                        <li><a href="2_hallucination.html#hallucination">Gorilla Hallucination</a></li>
+                        <li><a href="2_hallucination.html#Takeaways">Takeaways</a></li>
+                        <li class="more-blogs">
+                            <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span class="caret">&#9654;</span></a>
+                            <ul class="sub-menu">
+                                <li><a href="1_gorilla_intro.html">Introduction to Gorilla LLM</a></li>
+                                <li><a href="3_retreiver_aware_training.html">Retrieval Aware Training (RAT)</a></li>
+                                <!-- Add more blog entries as needed -->
+                            </ul>
+                        </li>  
+                </ul>
+                <!-- Add more entries as needed -->
+            </ul>
+        </div>
+
+
+        <div class="blog-container">
+            <div class="blog-post">
+                <h2 class="blog-title">Reality Bytes: How to Measure Hallucinations in LLMs</h2>
+                <div class="author-date">
+                    <p class="author"> <a href="https://people.eecs.berkeley.edu/~wong.justin/">Justin Wong</a> </p>
+                    <p class="date">Oct 3, 2023</p>
+                </div>
+                    <img src="../assets/img/blog_post_1_teaser.gif" alt="Gorilla introductory image" style="width: 95%;">
+                    <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                        <i style="font-size: 0.9em;">
+                            Gorilla LLM can write accurate API calls, including Kubernetes, GCP, AWS, Azure, OpenAPI, and more. (Salesforce, servicenow, and datadog coming soon!) Gorilla outperforms GPT-4, Chat-GPT and Claude, significantly reducing hallucination errors. 
+                        </i>
+                    </p>
+
+                <div class="preview">
+                    <p>
+                        Imagine you ask your grandmother for her famous strawberry rhubarb pie recipe. She misspeaks occasionally and tells you to “break the strawberry” when she likely meant to say “cut the strawberries”.  Unlike casual stories about her college days, you need accurate information in order to actually bake the pie this weekend, so you recognize that she misspoke and ask her to clarify. 
+
+
+                        Language models have the similar tendency to “misspeak” or hallucinate, which leads to challenges in API usage since concrete actions must be taken. In Gorilla, imagine we ask the LLM “generate an API call for a vision model to identify ripe strawberries”. One of the following may happen
+
+                        <ul>
+                            <li> We get lucky! The API call picks the state-of-the-art classifier: CLIP. `torch.hub.load('pytorch/vision:v0.10.0', 'CLIP')</li>
+                            <li> We called a valid API but the wrong one :(The LLM is inaccurate. By this, we mean it did not accurately understand the user's specification. For example, the model might be a text-embedding model: `torch.hub.load('pytorch/vision:v0.10.0', 'RoBERTa') </li>
+                            <li> Wishful thinking! The LLM hallucinates a nonexistent model: BerryPicker. `torch.hub.load('pytorch/vision:v0.10.0', 'BerryPicker')</li>
+                        </ul>    
+
+                        For non-task-driven applications, hallucinations can only be detected if a falsifiable claim is made, for instance “Charles Dickens wrote MacBeth”. In contrast, LLM generated API calls must complete a specific task thus is falsifiable. This allows us to measure hallucinations!
+
+                        We discuss in this blog post how to measure hallucination by identifying cases when the LLM provides API calls or arguments that are not defined or supported by the API. 
+
+                    </p>
+                </div>
+
+
+
+                <!-- Represent API -->
+                <p style="text-align: center; margin-bottom: 0">
+                    <img src="../assets/img/blog_post_1_apichange.png" alt="APIs change frequently" width="95%">
+                    <br>
+                </p>
+                <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                    <i style="font-size: 0.9em;">
+                        ASTs allow us to define equivalence preserving rewrites such as populating default arguments (⇒). This is helpful in checking differently expressed programs or API calls are equivalent. 
+
+                    </i>
+                </p>
+
+                <h4 id="represent-api"> How do computers represent API calls</h4>
+                <div class="body">
+                    <p>
+                        At its core, API calls are a type of function invocation. The question on how to represent a program dates back to the 1960s when Donald Knuth (the inventor of TEX) introduced Abstract Syntax Trees (AST)[1]. Since then, ASTs have been a powerful program representation for checking programs are equivalent and applying automatic program optimizations. Compiler designers can define rewrites on ASTs and be confident program correctness is not impacted by writing equivalence proofs [2].
+
+
+                        We illustrate this process with desugaring default arguments. Suppose the `pretrained` argument is by default true. Then, `API_Function(my_model, pretrained=True)` and `API_Function(my_model)` are intuitively equivalent. However, the computer sees two strings of characters that are clearly different. By representing as an AST, we can apply an equivalence preserving rewrite that populates the tree with default arguments. Now, it’s easy to check the ASTs representing the function calls are equivalent implying the original function calls are equivalent.
+
+                    </p>
+                </div>
+
+                <!-- Measuring Hallucination  -->
+                <p style="text-align: center; margin-bottom: 0">
+                    <img src="../assets/img/blog_post_1_inference.jpg" alt="Gorilla can be used in zero-shot and with retrievers" width="95%">
+                    <br>
+                </p>
+                <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                    <i style="font-size: 0.9em;">
+                        Gorilla, can be used for inference in two modes: <em>zero-shot</em> and <em>with retrieval</em>. In zero-shot, the prompt is directly fed to the Gorilla LLM model. 
+                        In retrieval mode, the retriever first retrieves the most up-to-date API documentation stored in APIZoo. 
+                    </i>
+                </p>
+
+                <h4 id="measuring-hallucination">Measuring Hallucinations in LLMs</h4>
+                <div class="body">
+                    <p>
+                        Any individual API call can be parsed or expressed uniquely as an abstract syntax tree (AST). In the AST, nodes represent each argument or class function. For instance, the image below shows a generated AST for loading `ResNet50` with `torch.hub.load`: 
+                        ```torch.hub.load(‘pytorch/vision:v0.10.0’, ‘ResNet50’, pretrained=True)``` 
+                        We note however that `pretrained` is an auxiliary argument not crucial to the API validity.
+
+
+                        We can check for hallucinations by carefully curating all base API function calls such as `torch.hub.load(‘pytorch/vision:v0.10.0’, ‘ResNet50’)`. These base API function calls can be standardized to ```API_name(API_arg1, API_arg2, ..., API_argk)``` Standardization allows us to check that generated AST invokes one of the base API function calls. Particularly for deep learning APIs strings/paths are used to represent models and repositories. This free-text format lowers the friction for adding new models, but limits the program analysis that can be done.
+
+                        For deep learning APIs, a key validity check is that the model exists in the repository. In the case of torch.hub API which supports a list of 94 models, we check if the API call invokes one of the existing models. The AST subtree matching easily checks if the model and repository are a valid pair in the curated list of API calls. ASTs are a standard yet powerful structured representation that allows us to do subtree matching to efficiently check if an API call is hallucinated. 
+
+
+
+                    </p>
+                </div>
+
+                <!-- Gorilla side by side comparison -->
+                <p style="text-align: center; margin-bottom: 0">
+                    <img src="../assets/img/blog_post_1_result.png" alt="How well does Gorilla perform" width="65%">
+                    <br>
+                </p>
+                <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                    <i style="font-size: 0.9em;">
+                        Examples of API calls. In this example, for the given prompt GPT-4 presents a model that doesn't exist, and Claude picks an incorrect library. In contrast, our Gorilla model can identify the task correctly and suggest a fully-qualified API call.
+                    </i>
+                </p>
+
+                <h4 id="hallucination">Reality Bytes: When LLMs See Things That Aren't There</h4>
+                <div class="body">
+                    <p>
+                        Hallucination is the center of discussions for all things LLMs. In the context of API generation, hallucination can be defined as the model generating API calls that do not exist. An LLM generation can be in-accurate or it could be hallucinated. One does not mean the other. For example, if the user asks for a classifier for medical images, if the model generates a Stripe API call for a image classifier - it is hallucination, since it doesn't exist! On the other hand, if the model recommends to use the Stripe API for checking your balance, it is an incorrect usage of the API, but atleast not made up (noh-hallucinated). In our blog <a href=""></a> we describe Gorilla's innovative approach of using Abstract Syntax Trees (ASTs) to measure hallucination of the generated API calls. 
+                        Though not generalizable to all tasks, to the best of our knowledge, Gorilla is the first to measure and quantify hallucination for LLM generations! 
+
+                    </p>
+                </div>
+
+                <h4 id="hallucination">Gorilla Hallucinations</h4>
+                <div class="body">
+                    <p>
+                        Good retrievers reduce hallucinations. The outlined AST subtree matching method highlights the importance of quality retrieval in reducing hallucinations. We evaluate Gorilla on three retrieval settings: 1) BM-25, a classic keyword retriever, 2) GPT-Index, a nearest neighbor search over gpt document embeddings, and 3) Oracle, ground truth. Each retriever appends the documentation of one API call to the context. With the improvement in retrieval accuracy from BM-25 to GPT-index we see Gorilla virtually eliminate hallucinations. GPT-4 also shows strong benefit from retriever quality leading to a 91% reduction to hallucination. Remarkably, GPT-4 benefits more from retrieval than Claude suggesting models can be optimized to make better use of retrieved documentation! Learn more about our retriever-augmented generation here.
+                    </p>
+                </div>
+
+                <h4 id="Takeaways">Takeaways</h4>
+                <div class="body">
+                    <p>
+                        Language models just like humans will hallucinate and non-maliciously make false statements. Though our focus is on LLM APIs, to the best of our knowledge, Gorilla is the first to measure and quantify hallucination for LLM generations! 
+
+                        “Though our focus is on LLM APIs, to the best of our knowledge, Gorilla is the first to measure and quantify hallucination for LLM generations! ”
+
+                        These are some takeaways on measuring hallucinations:
+                        <ul>
+                            <li>Use ASTs to measure API hallucination. For LLM APIs, we introduce a novel approach to check for hallucinations using subtree matching of Abstract Syntax Trees (AST).Retrievers reduce hallucinations. We find that improving the retriever reduces hallucinations!</li>
+
+                            <li>The first step in solving a problem is recognizing there is one. We are excited by the potential of automatically fixing and self-healing when API calls are hallucinated. Just as you would ask if grandmother meant to suggest cutting the strawberries, we envision future language model powered API calls will ask targeted clarifying questions.</li>
+                        </ul> 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: white;
+            justify-content: center;
+            align-items: center;
+        }
+        .blog-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .blog-post {
+            margin: 20px;
+            padding: 20px;
+            max-width: 1000px; 
+            justify-content: center;
+        }
+        .blog-post img {
+            display: block;
+            margin: 0 auto;
+        }
+        .blog-title{
+            color: #055ada;
+            text-align: center;
+        }
+
+        .author-date {
+                display: flex;
+                margin-bottom: 0px;
+                justify-content: center; 
+        }
+        .author {
+                font-size: 16px;
+                color: #1E90FF;
+                margin-right: 20px;
+        }
+
+        .date {
+            font-size: 16px;
+            color: #7e8790;
+        }
+
+        .preview {
+            text-align: justify; 
+            text-justify: inter-word; 
+        }
+
+        .highlight-clean-blog {
+            color: #313437;
+            background-color: #fff;
+            padding: 50px 0;
+        }
+
+        .box-index {
+        position: fixed;
+        top: 50%; 
+        left: 20px; 
+        transform: translateY(-50%);
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 200px;
+        }
+
+        .box-index h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        }
+
+        .box-index ul {
+        list-style-type: disc;
+        padding: 0;
+        }
+
+        .box-index ul li {
+        margin-bottom: 10px;
+        }
+
+        .box-index ul li a {
+        text-decoration: none;
+        color: #333;
+        }
+
+        .box-index ul li a:hover {
+        color: #1E90FF;
+        }
+
+        .more-blogs .sub-menu {
+            display: none;
+        }
+
+        .more-blogs .sub-menu.expanded {
+            display: block;
+            max-height: 200px; /* Adjust the max height as needed */
+            overflow-y: auto;
+        }
+
+        .more-blogs .sub-menu li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .more-blogs .sub-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .more-blogs .caret {
+            transition: transform 0.3s ease-in-out;
+            display: inline-block;
+            transform: rotate(0deg);
+            font-size: 12px; /* Adjust the font size to change the caret size */
+        }
+
+        .more-blogs.expanded .caret {
+            transform: rotate(90deg);
+        }
+
+        @media screen and (max-width: 768px) {
+        .blog-post {
+            padding: 10px; /* Adjust spacing for smaller screens */
+        }
+        .blog-post img {
+            max-width: 80%; /* Reduce image size for smaller screens */
+        }
+        .box-index {
+        display: none; /* Hide the index on smaller screens */
+        }
+    }
+
+    </style>
+</body>
+</html>
+
+<script>
+    function toggleMoreBlogs() {
+        var subMenu = document.querySelector('.more-blogs .sub-menu');
+        var parentItem = document.querySelector('.more-blogs');
+        subMenu.classList.toggle('expanded');
+        parentItem.classList.toggle('expanded');
+    }
+</script>

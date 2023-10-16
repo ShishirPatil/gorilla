@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-NRZJLJCSH6');
+    </script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Gorilla</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Team-Clean.css">
+</head>
+
+<body>
+       <!-- Navigation Bar -->
+    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;font-size: 18px;">
+        <a href="index.html">Home </a>&nbsp;&nbsp;&nbsp;     
+        <a href=""> Blog</a>
+    </div>
+
+    <!-- Add this inside the "highlight-clean-blog" div -->
+<div class="box-index">
+    <h3>Blogs</h3>
+    <ul>
+        <li><a href="blogs/1_gorilla_intro.html">Introduction to Gorilla LLM</a></li>
+        <li><a href="blogs/2_hallucination.html">How to Measure Hallucination?</a></li>
+        <li><a href="blogs/3_retreiver_aware_training.html">Retrieval Aware Training (RAT)</a></li>
+        <!-- Add more entries as needed -->
+    </ul>
+</div>
+
+<div class="highlight-clean-blog" style="padding-bottom: 0px;">
+    <h1 class="text-center" style="padding-bottom: 0px;"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+    <!-- Rest of your content -->
+</div>
+
+    <div class="highlight-clean-blog" style="padding-bottom: 10px;">        
+        <div class="blog-container">
+            <div class="blog-post">
+                <p>
+                    Since the initial release of Gorilla LLM on May 25, 2023, we're incredibly grateful for your overwhelming response. The Gorilla project is loved by developers worldwide. Through our integrations with an evergrowing set of API calls, we've close to serving ~500k user requests all from our small node at UC Berkeley. Some of you have gone ahead to train your own Gorilla's for your custom use-cases, and we love to see the community grow.
+
+                    To enhance the support for individual developers and enterprises looking to adopt, or train their own Gorilla models, we're collaborating with our colleagues to launch a comprehensive blog series. In this series will delve deeper into the intricacies of Gorilla and outline our strategic vision and roadmap for the future.
+                </p>
+                <br>
+
+                <h2 class="blog-title">Introduction to Gorilla LLM</h2>
+                <div class="author-date">
+                    <p class="author"> <a href="https://www.lisabdunlap.com/">Lisa Dunlap</a>  </p>
+                    <p class="date">Oct 4, 2023</p>
+                </div>      
+                <img src="assets/img/blog_post_1_teaser.gif" alt="Gorilla introductory image" style="width: 100%;">
+                <div class="preview">
+                    <p> 
+                        Gorilla is designed to connect large language models (LLMs) with a wide range of tools, services, and applications exposed through APIs. Imagine if ChatGPT could interact with thousands of services ranging from Instagram and Doordash to tools like Google Calendar and Stripe to help you accomplish tasks.  You could ask to book a meeting for your collaborators, order their favorite foods, and pay for it. This may be how we interact with computers and even the web in the future.
+                    </p>
+
+                    <p>
+                        Gorilla is an LLM that we train using a concept we call - retriever-aware training, that can pick the right API to perform a task, that a user can specify in natural language. We also introduce an Abstract Syntax Tree (AST) based sub-tree algorithm, which for the first time can measure hallucination of LLMs! 
+                    </p>
+
+
+                </div>
+                <a class="continue-link" href="blogs/1_gorilla_intro.html">Continue Reading ...</a>
+                <hr class="post-separator">
+            </div>
+
+            <!-- Blog Post 2 -->
+            <div class="blog-post">
+                <h2 class="blog-title">Reality Bytes: How to Measure Hallucinations in LLMs</h2>
+                <div class="author-date">
+                    <p class="author"> <a href="https://people.eecs.berkeley.edu/~wong.justin/"> Justin Wong </a>  </p>
+                    <p class="date">Oct 4, 2023</p>
+                </div>
+                <img src="assets/img/blog_post_2_image.jpg" alt="Blog Post 2 Image">
+                <div class="preview">
+                    <p>
+                        Imagine you ask your grandmother for her famous strawberry rhubarb pie recipe. She misspeaks occasionally and tells you to “break the strawberry” when she likely meant to say “cut the strawberries”.  Unlike casual stories about her college days, you need accurate information in order to actually bake the pie this weekend, so you recognize that she misspoke and ask her to clarify. 
+
+
+                        Language models have the similar tendency to “misspeak” or hallucinate, which leads to challenges in API usage since concrete actions must be taken. In Gorilla, imagine we ask the LLM “generate an API call for a vision model to identify ripe strawberries”.
+                    </p>
+                </div>
+                <a class="continue-link" href="blogs/2_hallucination.html">Continue</a>
+                <hr class="post-separator">
+            </div>
+
+            <!-- Blog Post 3 -->
+            <div class="blog-post">
+                <h2 class="blog-title">Retriever-Aware Training (RAT): Are LLMs memorizing or understanding?</h2>
+                <div class="author-date">
+                    <p class="author"> <a href="https://hqjenny.com/"> Qijing Huang </a>  </p>
+                    <p class="date">Oct 4, 2023</p>
+                </div>
+                <img src="assets/img/blog_post_2_image.jpg" alt="Blog Post 2 Image">
+                <div class="preview">
+                    <p>
+                        Pretrained Language Models (LLMs) need instruction tuning to better align with human incentives. These methods both improve the model's behavior and accuracy when they are trying to answer questions for a specific domain. However, traditional instruction tuning has limitations regarding adaptability, dependency on the in-context examples, and the potential to hallucinate. We introduce "retriever-aware training," a new methodology that holds the promise of addressing some of these challenges. Let's dive into the details of that.
+
+                    </p>
+                </div>
+                <a class="continue-link" href="blogs/3_retreiver_aware_training.html">Continue</a>
+                <hr class="post-separator">
+            </div>
+        </div>
+    </div>
+
+<style>
+    body {
+        font-family: 'Source Sans Pro', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: white;
+        justify-content: center;
+        align-items: center;
+    }
+    .blog-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .blog-post {
+        margin: 20px;
+        padding: 20px;
+        max-width: 1000px; 
+        justify-content: center;
+    }
+    .blog-post img {
+        display: block;
+        margin: 0 auto;
+    }
+    .blog-title{
+        color: #055ada;
+        text-align: center;
+    }
+
+    .author-date {
+            display: flex;
+            margin-bottom: 0px;
+            justify-content: center; 
+    }
+    .author {
+            font-size: 16px;
+            color: #1E90FF;
+            margin-right: 20px;
+    }
+
+    .date {
+        font-size: 16px;
+        color: #7e8790;
+    }
+
+    .continue-link {
+        display: block;
+        margin-top: 10px; 
+        text-align: left;
+    }
+
+    .highlight-clean-blog {
+        color: #313437;
+        background-color: #fff;
+        padding: 50px 0;
+    }
+
+    .post-separator {
+        border: 0.5px solid #e8e8e8; 
+        margin: 20px 0; 
+    }
+
+
+    .preview {
+        text-align: justify; 
+        text-justify: inter-word; 
+    }
+
+
+    .box-index {
+    position: fixed;
+    top: 50%; 
+    left: 20px; 
+    transform: translateY(-50%);
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 200px;
+    }
+
+    .box-index h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    }
+
+    .box-index ul {
+    list-style-type: disc;
+    padding: 0;
+    }
+
+    .box-index ul li {
+    margin-bottom: 10px;
+    }
+
+    .box-index ul li a {
+    text-decoration: none;
+    color: #333;
+    }
+
+    .box-index ul li a:hover {
+    color: #1E90FF;
+    }
+
+
+    @media screen and (max-width: 768px) {
+    .blog-post {
+        padding: 10px; /* Adjust spacing for smaller screens */
+    }
+    .blog-post img {
+        max-width: 80%; /* Reduce image size for smaller screens */
+    }
+
+    .box-index {
+        display: none; /* Hide the index on smaller screens */
+    }
+}
+
+</style>
+</body>
+
+</html>
