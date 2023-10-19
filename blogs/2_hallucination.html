@@ -37,9 +37,10 @@
             <h3>Blog 2: Hallucination</h3>
             <ul>
                 <ul>
-                        <li><a href="2_hallucination.html#represent-api">Keeping up with frequently evolving data</a></li>
+                        <li><a href="2_hallucination.html#represent-api">How do computers represent API calls</a></li>
                         <li><a href="2_hallucination.html#measuring-hallucination">Measuring Hallucination</a></li>
-                        <li><a href="2_hallucination.html#hallucination">Gorilla Hallucination</a></li>
+                        <li><a href="2_hallucination.html#gorilla-hallucination">Hallucinations</a></li>
+                        <li><a href="2_hallucination.html#gorilla-hallucination">Gorilla Hallucination</a></li>
                         <li><a href="2_hallucination.html#Takeaways">Takeaways</a></li>
                         <li class="more-blogs">
                             <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span class="caret">&#9654;</span></a>
@@ -163,7 +164,7 @@
                     </p>
                 </div>
 
-                <h4 id="hallucination">Gorilla Hallucinations</h4>
+                <h4 id="gorilla-hallucination">Gorilla Hallucinations</h4>
                 <div class="body">
                     <p>
                         Good retrievers reduce hallucinations. The outlined AST subtree matching method highlights the importance of quality retrieval in reducing hallucinations. We evaluate Gorilla on three retrieval settings: 1) BM-25, a classic keyword retriever, 2) GPT-Index, a nearest neighbor search over gpt document embeddings, and 3) Oracle, ground truth. Each retriever appends the documentation of one API call to the context. With the improvement in retrieval accuracy from BM-25 to GPT-index we see Gorilla virtually eliminate hallucinations. GPT-4 also shows strong benefit from retriever quality leading to a 91% reduction to hallucination. Remarkably, GPT-4 benefits more from retrieval than Claude suggesting models can be optimized to make better use of retrieved documentation! Learn more about our retriever-augmented generation here.
