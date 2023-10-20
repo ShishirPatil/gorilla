@@ -182,8 +182,7 @@ window.onload = initializeSpinnerTexts
             margin-bottom: 20px;
         }
 
-
-        .spinner {
+.spinner {
   position: relative; /* Change to relative for responsiveness */
   overflow: hidden;
 }
@@ -231,6 +230,12 @@ right at the same position as the top one */
   }
 }
 
+@media screen and (max-width: 768px) {
+        .spinner__text {
+            width: 20px; /* Further reduce the width for very small screens if necessary */
+            font-size: 10px; /* Further decrease font size for very small screens */
+        }
+    }
     </style>
 <!-- Gorilla CLI and Spotlight -->
 
