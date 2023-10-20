@@ -183,7 +183,7 @@ window.onload = initializeSpinnerTexts
         }
 
 
- .spinner {
+        .spinner {
   position: relative; /* Change to relative for responsiveness */
   overflow: hidden;
 }
@@ -230,57 +230,6 @@ right at the same position as the top one */
     transform: translateY(0%);
   }
 }
-
-@media screen and (max-width: 768px) {
-    .spinner {
-    position: relative; /* Change to relative for responsiveness */
-    overflow: hidden;
-    }
-
-    .spinner__text {
-    position: relative;
-    display: inline-block;
-    width: 50px; /* Adjust the width as needed */
-    text-align: center;
-    }
-
-    .spinner__text--top,
-    .spinner__text--bottom {
-    display: inline-block;
-    animation: 2s ease 2.05s infinite running none;
-    }
-
-    .spinner__text--top {
-    animation-name: spinTop;
-    }
-
-    /* Bottom text spinner has to be configured so that it is positioned
-    right at the same position as the top one */
-    .spinner__text--bottom {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    animation-name: spinBottom;
-    }
-
-    @keyframes spinTop {
-    from { transform: translateY(0%); }
-    to { transform: translateY(-100%); }
-    }
-
-    @keyframes spinBottom {
-    from {
-        opacity: 1;
-        transform: translateY(100%);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0%);
-    }
-    }
-}
-
 
     </style>
 <!-- Gorilla CLI and Spotlight -->
