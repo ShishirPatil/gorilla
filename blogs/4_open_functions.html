@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-NRZJLJCSH6');
+    </script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Introduction to Gorilla LLM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Team-Clean.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;font-size: 18px;">
+        <a href="../index.html">Home </a>&nbsp;&nbsp;&nbsp;     
+        <a href="../blog.html"> Blog</a>
+    </div>
+
+    <div class="highlight-clean-blog" style="padding-bottom: 10px;">
+        <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+
+        <div class="box-index">
+            <h3>Blog 4: Open Functions</h3>
+            <ul>
+                <ul>
+                        <li><a href="4_open_functions.html#function_vs_rest">Function Calling API vs. REST API</a></li>
+                        <li><a href="4_open_functions.html#rat">Retrieval Aware Training</a></li>
+                        <li><a href="4_open_functions.html#how_to_use_open_functions">How to use Open Functions</a></li>
+                        <li class="more-blogs">
+                            <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span class="caret">&#9654;</span></a>
+                            <ul class="sub-menu">
+                                <li><a href="1_gorilla_intro.html">Introduction to Gorilla LLM</a></li>
+                                <li><a href="2_hallucination.html">Hallucination</a></li>
+                                <li><a href="3_retreiver_aware_training.html">Retrieval Aware Training (RAT)</a></li>
+                                <!-- Add more blog entries as needed -->
+                            </ul>
+                        </li>  
+                </ul>
+                <!-- Add more entries as needed -->
+            </ul>
+        </div>
+
+
+        <div class="blog-container">
+            <div class="blog-post">
+                <h2 class="blog-title">Gorilla Open Functions: Convert natural language into API calls</h2>
+                <div class="author-date">
+                    <p class="author"> <a>Adam Lee</a> </p>
+                    <p class="author"> <a>Fanjia Yan</a> </p>
+                    <p class="author"> <a href="https://tianjunz.github.io">Tianjun Zhang</a> </p>
+                    <p class="date">Oct 20, 2023</p>
+                </div>
+                    <img src="../assets/img/blog_post_1_teaser.gif" alt="Gorilla introductory image" style="width: 95%;">
+                    <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                        <i style="font-size: 0.9em;">
+                            Gorilla LLM can write accurate API calls, including Kubernetes, GCP, AWS, Azure, OpenAPI, and more. (Salesforce, servicenow, and datadog coming soon!) Gorilla outperforms GPT-4, Chat-GPT and Claude, significantly reducing hallucination errors. 
+                        </i>
+                    </p>
+
+                <div class="preview">
+                    <p>
+                        Open Functions is designed to extend Large Language Model(LLM) Chat Completion feature to formulate executable APIs call given natural language instructions and API context. Imagine if LLM could fill in parameters for a variety of service ranging from Instagram and Doordash to tools like Google Calendar and Stripe. Even users who are less familiar with API calling procedure and programming could use the model to generate APIs call to desired function. Open Function is an LLM that we train using a curated set of API documentations and Question Answer pairs generated from the API documentations. We have continued to expand on the Gorilla Paradigm and sought to improve the quality and accuracy of valid function calling generation.
+                    </p>
+                </div>
+
+
+
+                <!-- Represent API -->
+                <p style="text-align: center; margin-bottom: 0">
+                    <img src="../assets/img/blog_post_4_gorilla_open_function_calling.png" alt="Open functions calling" width="95%">
+                    <br>
+                </p>
+
+                <h4 id="function_vs_rest"> Function Calling API vs. REST API</h4>
+                <div class="body">
+                    <p>
+                        During the data collection process, we have observed that general API calling can be divided into 2 categories: 
+                    </p>
+                    <ul>
+                        <li>Function Calling APIs </li>
+                        <li>REST APIs</li>
+                    </ul>
+                    <p>    
+                        First, the Function Calling APIs are typically seen in external python packages like Numpy, Sklearn. Those APIs are well-defined and easily formatted. In anther word, knowing the 'api_name' e.g. <code>numpy.sum()</code> and the 'arguments' specification, we are able to extrapolate an executable function API. Due to its stable format and fixed locality, it takes relatively few data to fine-tune the model. 
+                    </p>
+                    <p> 
+                        On the other hand, the REST APIs also accounts for a significant portion of the APIs in the market. Those APIs are typically provided by third-party hosting and offer a variety of functionality ranging from financial service to weather forecasting. Often time, REST APIs contain three parameter metadata: <code>url</code>, <code>header</code>, and <code>params</code>. Url contains the API endpoints, header usually contains authentication information, and paramters contain information query to the API endpoint. Using <code>requests.get</code> we are able to properly query to the endpoint. However, REST APIs' parameters can exist in different locations. For example, the parameters can be embedded within the URL e.g. <code>gorilla.berkeley.edu/{param1}/{param2}</code>. Another way to represent parameters embedding can be <code>gorilla.berkeley.edu/?query=param1</code>. Different ways of calling REST API make it difficult for our model to handle complex REST API call. As a result, we have explored different sources of REST APIs such as RapidAPI, Postman API to diversify our API Database and generate more accuracte REST API.
+
+                    </p>
+                </div>
+
+                <!-- Retrieval Aware Training  -->
+                <p style="text-align: center; margin-bottom: 0">
+                    <img src="../assets/img/blog_post_4_rat.png" alt="Open functions calling" width="95%">
+                    <br>
+                </p>
+                <h4 id="rat">Retrieval Aware Training</h4>
+                <div class="body">
+                    <p>One of the key training strategies we employed for Gorilla Open Functions is Retrieval Aware Training (RAT). In this approach, during the training phase, we provide the model with both user queries and retrieved API JSON descriptions. This method enables the model to comprehend the information contained in the API description and accurately generate a corresponding Python function call based on the user's query.</p>
+                    <p>The beauty of RAT lies in its ability to simulate real-world scenarios where a developer might look up an API documentation before formulating a function call. By exposing our model to this process during training, we enhance its ability to understand and use the provided APIs correctly. This not only results in more accurate function calls but also improves the model's adaptability when faced with APIs it hasn't seen before.</p>
+                    <p>Moreover, by integrating retrieval into our training pipeline, we ensure that Gorilla Open Functions can handle rapidly evolving APIs and stay updated with their latest versions. This makes it a reliable tool for developers navigating through ever-changing landscapes of APIs. With Retrieval Aware Training at its core, Gorilla Open Functions represents a significant leap towards making AI models more context-aware and responsive to users' needs.</p>
+                </div>
+
+                <!-- How to use Open Functions -->
+
+                <h4 id="how_to_use_open_functions">How to use Open Functions</h4>
+                <p style="text-align: center; margin-bottom: 0">
+                    <img src="../assets/img/blog_post_4_main_image.png" alt="Gorilla Input and Output" width="65%">
+                    <br>
+                </p>
+                <div class="body">
+                    <p>Using Gorilla Open Functions is straightforward:
+                        <ol>
+                        <li>Define Your Functions: Provide a JSON file containing descriptions of your custom functions. Each function should contains field: <code>name</code>, the name of the API, <code>api_call</code>, the way we should invoke this API, <code>description</code>, the functionality of the API, and lastly <code>parameters</code>, which is a list of parameters pretains to the API call. Below is an example of sufficent API documentation that can feed into Open Function.</li>
+                        <pre><code>
+    function_documentaion = {  
+        "name" : "Order Food on Uber",
+        "api_call": "uber.eat.order",
+        "description": "Order food on uber eat given a list of items and the quantity of items respectively",
+        "parameters": 
+            [
+                {
+                    "name": "restaurants", 
+                    "description": "The restaurants user wants to order from" 
+                }, 
+                {
+                    "name": "items", 
+                    "description": "A list of order user wants to order from restaurants"
+                },
+                {
+                    "name": "quantities", 
+                    "description": "A list of quantities corresponding to the items ordered"
+                }
+            ]
+        }
+                        </code></pre>
+                        <li>Ask Your Question: Describe what you want as if talking to another person.</li>
+                        <code>I want to order five burgers and six chicken wings from McDonlad.</code>
+                        <li>Get Your Function Call: The model will return a Python function call based on your request.</li>
+                        This opens up possibilities for developers and non-developers alike, allowing them to leverage complex functionalities without writing extensive code.</p>
+                        <p>Input:</p>
+                        <pre><code>
+    get_gorilla_response(prompt="I want to order five burgers and six chicken wings from McDonlad.", 
+                         functions=[function_documentaion])</code></pre>
+                        <p>Output:</p>
+                        <pre><code>
+    uber.eat.order(restaurants="McDonald",item=["chicken wings", "burgers"], quantity=[6,5])</code></pre></ol></p>
+                </div>
+
+                <h4 id="gorilla-hallucination">Gorilla Hallucinations</h4>
+                <div class="body">
+                    <p>
+                        Good retrievers reduce hallucinations. The outlined AST subtree matching method highlights the importance of quality retrieval in reducing hallucinations. We evaluate Gorilla on three retrieval settings: 1) BM-25, a classic keyword retriever, 2) GPT-Index, a nearest neighbor search over gpt document embeddings, and 3) Oracle, ground truth. Each retriever appends the documentation of one API call to the context. With the improvement in retrieval accuracy from BM-25 to GPT-index we see Gorilla virtually eliminate hallucinations. GPT-4 also shows strong benefit from retriever quality leading to a 91% reduction to hallucination. Remarkably, GPT-4 benefits more from retrieval than Claude suggesting models can be optimized to make better use of retrieved documentation! Learn more about our retriever-augmented generation here.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: white;
+            justify-content: center;
+            align-items: center;
+        }
+        .blog-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .blog-post {
+            margin: 20px;
+            padding: 20px;
+            max-width: 1000px; 
+            justify-content: center;
+        }
+        .blog-post img {
+            display: block;
+            margin: 0 auto;
+        }
+        .blog-title{
+            color: #055ada;
+            text-align: center;
+        }
+
+        .author-date {
+                display: flex;
+                margin-bottom: 0px;
+                justify-content: center; 
+        }
+        .author {
+                font-size: 16px;
+                color: #1E90FF;
+                margin-right: 20px;
+        }
+
+        .date {
+            font-size: 16px;
+            color: #7e8790;
+        }
+
+        .preview {
+            text-align: justify; 
+            text-justify: inter-word; 
+        }
+
+        .highlight-clean-blog {
+            color: #313437;
+            background-color: #fff;
+            padding: 50px 0;
+        }
+
+        .box-index {
+        position: fixed;
+        top: 50%; 
+        left: 20px; 
+        transform: translateY(-50%);
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 200px;
+        }
+
+        .box-index h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        }
+
+        .box-index ul {
+        list-style-type: disc;
+        padding: 0;
+        }
+
+        .box-index ul li {
+        margin-bottom: 10px;
+        }
+
+        .box-index ul li a {
+        text-decoration: none;
+        color: #333;
+        }
+
+        .box-index ul li a:hover {
+        color: #1E90FF;
+        }
+
+        .more-blogs .sub-menu {
+            display: none;
+        }
+
+        .more-blogs .sub-menu.expanded {
+            display: block;
+            max-height: 200px; /* Adjust the max height as needed */
+            overflow-y: auto;
+        }
+
+        .more-blogs .sub-menu li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .more-blogs .sub-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .more-blogs .caret {
+            transition: transform 0.3s ease-in-out;
+            display: inline-block;
+            transform: rotate(0deg);
+            font-size: 12px; /* Adjust the font size to change the caret size */
+        }
+
+        .more-blogs.expanded .caret {
+            transform: rotate(90deg);
+        }
+
+        @media screen and (max-width: 768px) {
+        .blog-post {
+            padding: 10px; /* Adjust spacing for smaller screens */
+        }
+        .blog-post img {
+            max-width: 80%; /* Reduce image size for smaller screens */
+        }
+        .box-index {
+        display: none; /* Hide the index on smaller screens */
+        }
+    }
+
+    </style>
+</body>
+</html>
+
+<script>
+    function toggleMoreBlogs() {
+        var subMenu = document.querySelector('.more-blogs .sub-menu');
+        var parentItem = document.querySelector('.more-blogs');
+        subMenu.classList.toggle('expanded');
+        parentItem.classList.toggle('expanded');
+    }
+</script>
