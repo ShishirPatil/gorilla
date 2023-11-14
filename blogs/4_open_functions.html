@@ -37,9 +37,11 @@
             <h3>Blog 4: Open Functions</h3>
             <ul>
                 <ul>
+                        <li><a href="4_open_functions.html#how_to_use_open_functions">How to use Open Functions</a></li>
+                        <li><a href="4_open_functions.html#benchmarking">Open Functions Benchmarking</a></li>
+                        <li><a href="4_open_functions.html#data_composition">Open Functions Data Composition</a></li>
                         <li><a href="4_open_functions.html#function_vs_rest">Function Calling API vs. REST API</a></li>
                         <li><a href="4_open_functions.html#rat">Retrieval Aware Training</a></li>
-                        <li><a href="4_open_functions.html#how_to_use_open_functions">How to use Open Functions</a></li>
                         <li class="more-blogs">
                             <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span class="caret">&#9654;</span></a>
                             <ul class="sub-menu">
@@ -62,9 +64,9 @@
                     <p class="author"> <a>Adam Lee</a> </p>
                     <p class="author"> <a>Fanjia Yan</a> </p>
                     <p class="author"> <a href="https://tianjunz.github.io">Tianjun Zhang</a> </p>
-                    <p class="date">Oct 20, 2023</p>
+                    <p class="date">Nov 13, 2023</p>
                 </div>
-                    <img src="../assets/img/blog_post_1_teaser.gif" alt="Gorilla introductory image" style="width: 95%;">
+                    <img src="../assets/img/blog_post_4_new_api_page.png" alt="Gorilla introductory image" style="width: 95%;">
                     <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
                         <i style="font-size: 0.9em;">
                             Gorilla LLM can write accurate API calls, including Kubernetes, GCP, AWS, Azure, OpenAPI, and more. (Salesforce, servicenow, and datadog coming soon!) Gorilla outperforms GPT-4, Chat-GPT and Claude, significantly reducing hallucination errors. 
@@ -75,44 +77,6 @@
                     <p>
                         Open Functions is designed to extend Large Language Model(LLM) Chat Completion feature to formulate executable APIs call given natural language instructions and API context. Imagine if LLM could fill in parameters for a variety of service ranging from Instagram and Doordash to tools like Google Calendar and Stripe. Even users who are less familiar with API calling procedure and programming could use the model to generate APIs call to desired function. Open Function is an LLM that we train using a curated set of API documentations and Question Answer pairs generated from the API documentations. We have continued to expand on the Gorilla Paradigm and sought to improve the quality and accuracy of valid function calling generation.
                     </p>
-                </div>
-
-
-
-                <!-- Represent API -->
-                <p style="text-align: center; margin-bottom: 0">
-                    <img src="../assets/img/blog_post_4_main_image.png" alt="Open functions calling" width="95%">
-                    <br>
-                </p>
-
-                <h4 id="function_vs_rest"> Function Calling API vs. REST API</h4>
-                <div class="body">
-                    <p>
-                        During the data collection process, we have observed that general API calling can be divided into 2 categories: 
-                    </p>
-                    <ul>
-                        <li>Function Calling APIs </li>
-                        <li>REST APIs</li>
-                    </ul>
-                    <p>    
-                        First, the Function Calling APIs are typically seen in external python packages like Numpy, Sklearn. Those APIs are well-defined and easily formatted. In anther word, knowing the 'api_name' e.g. <code>numpy.sum()</code> and the 'arguments' specification, we are able to extrapolate an executable function API. Due to its stable format and fixed locality, it takes relatively few data to fine-tune the model. 
-                    </p>
-                    <p> 
-                        On the other hand, the REST APIs also accounts for a significant portion of the APIs in the market. Those APIs are typically provided by third-party hosting and offer a variety of functionality ranging from financial service to weather forecasting. Often time, REST APIs contain three parameter metadata: <code>url</code>, <code>header</code>, and <code>params</code>. Url contains the API endpoints, header usually contains authentication information, and paramters contain information query to the API endpoint. Using <code>requests.get</code> we are able to properly query to the endpoint. However, REST APIs' parameters can exist in different locations. For example, the parameters can be embedded within the URL e.g. <code>gorilla.berkeley.edu/{param1}/{param2}</code>. Another way to represent parameters embedding can be <code>gorilla.berkeley.edu/?query=param1</code>. Different ways of calling REST API make it difficult for our model to handle complex REST API call. As a result, we have explored different sources of REST APIs such as RapidAPI, Postman API to diversify our API Database and generate more accuracte REST API.
-
-                    </p>
-                </div>
-
-                <!-- Retrieval Aware Training  -->
-                <h4 id="rat">Retrieval Aware Training</h4>
-                <p style="text-align: center; margin-bottom: 0">
-                    <img src="../assets/img/blog_post_4_rat.png" alt="Open functions calling" width="95%">
-                    <br>
-                </p>
-                <div class="body">
-                    <p>One of the key training strategies we employed for Gorilla Open Functions is Retrieval Aware Training (RAT). In this approach, during the training phase, we provide the model with both user queries and retrieved API JSON descriptions. This method enables the model to comprehend the information contained in the API description and accurately generate a corresponding Python function call based on the user's query.</p>
-                    <p>The beauty of RAT lies in its ability to simulate real-world scenarios where a developer might look up an API documentation before formulating a function call. By exposing our model to this process during training, we enhance its ability to understand and use the provided APIs correctly. This not only results in more accurate function calls but also improves the model's adaptability when faced with APIs it hasn't seen before.</p>
-                    <p>Moreover, by integrating retrieval into our training pipeline, we ensure that Gorilla Open Functions can handle rapidly evolving APIs and stay updated with their latest versions. This makes it a reliable tool for developers navigating through ever-changing landscapes of APIs. With Retrieval Aware Training at its core, Gorilla Open Functions represents a significant leap towards making AI models more context-aware and responsive to users' needs.</p>
                 </div>
 
                 <!-- How to use Open Functions -->
@@ -161,11 +125,81 @@
     uber.eat.order(restaurants="McDonald",item=["chicken wings", "burgers"], quantity=[6,5])</code></pre></ol></p>
                 </div>
 
-                <h4 id="gorilla-hallucination">Gorilla Hallucinations</h4>
+                <!-- OpenFunction BenchMarking  -->
+                <h4 id="benchmarking">Open Functions Performance Benchmarking</h4>
+                <div class="body">
+                    <p>We are benchmarking our model against current state-of-art model GPT-4-0613 as well as  GPT-4 and GPT-3.5-turbo function calling features. Our testing dataset consists of 116 distinct query, API documentation pairs and are crafted by feeding few shot examples into GPT-3.5-turbo and asking the model to generate APIs from different domains including travel, finance, meeting scheduling.</p>
+                    <div class="image-container">
+                        <img src="../assets/img/openfunctions_benchmark.png" alt="Open functions types of data" width="85%" >
+                        <br>
+                    </div>
+                    <p> To evalate the quality of the ouput, we perform side-by-side examination between the model output and gold answer. From the graph above, we can see that GPT-4 and GPT-3.5-Turbo performs function callings with a higher success rate around 95% than GPT-4 function callings. Our llama-based OpenFunction model is following GPT-4 function calling with a 86% success rate. Below is an example of GPT-4 fails to extract parameters correctly.</p>
+                    <div class="image-container">
+                        <img src="../assets/img/mistake_incomplete_success.png" alt="GPT-failure" width="85%" >
+                        <br>
+                    <div class="image-container">
+                        <img src="../assets/img/mistake_incomplete_success.png" alt="Open functions types of service providers" width="85%" >
+                        <br>
+                    </div>
+                    <p> When calling to OpenAI's function calling models, if required parameters are not supplied within instruction. This leads the function calling models to output "follow-up" questions requesting the required parameters which results in "incomplete" status as displayed in above graph. 
+                        We treat "incomplete" execution as "success" during our accuracy calculation because the model recognize the missing parameters successfully. 
+                        Our Open Function model as well as regular GPT-4, due to its chat complete nature, will fill up the required parameters with place holder or default value which allows undisturbed generation. </p>
+
+                </div>
+                <!-- Open Functions Data Composition -->
+
+                <h4 id="data_composition"> Open Functions Data Composition</h4>
                 <div class="body">
                     <p>
-                        Good retrievers reduce hallucinations. The outlined AST subtree matching method highlights the importance of quality retrieval in reducing hallucinations. We evaluate Gorilla on three retrieval settings: 1) BM-25, a classic keyword retriever, 2) GPT-Index, a nearest neighbor search over gpt document embeddings, and 3) Oracle, ground truth. Each retriever appends the documentation of one API call to the context. With the improvement in retrieval accuracy from BM-25 to GPT-index we see Gorilla virtually eliminate hallucinations. GPT-4 also shows strong benefit from retriever quality leading to a 91% reduction to hallucination. Remarkably, GPT-4 benefits more from retrieval than Claude suggesting models can be optimized to make better use of retrieved documentation! Learn more about our retriever-augmented generation here.
+                        The dataset we trained our model on consists of 14189 API documentations 14189 question-answer pairs. The API documentations are collected from 3 sources: 
+                        
                     </p>
+                    <ul>
+                        <li><strong>Python packages</strong>: The Python packages are collected from the official documentation of the packages. We intentionally chose packages that are clean and well-documented and those packages typically belong to scientific computing and machine learning domains.</li>
+                        <li><strong>RapidAPI</strong>: The RapidAPI documents are collected from the API marketplace. Since RapidAPI typically makes requests to an API endpoint. We format the API documentation to have function <code>requests.get</code> with properties: <code>url</code>, <code>headers</code>, <code>params</code>. Completing this function will enable the user to call <code>requests.get</code> successfully to the API endpoint.</li>
+                        <li><strong>Command Line Tool from various cloud provider</strong>: Lastly we relies on CLI documentation from AWS, Azure, and etc. We use those documentation to construct python-like function calling.</li>
+                    </ul>
+                    <p>
+                        For each API documentation, we generate three distinct instruction and model answer as our training data. The instruction and model answer pairs are self-generated using few shots examples of correctly utilizing API documentations to extrapolate the function callings. We explicitly prompt the model to take advantage of features like complex value type and more parameters if the specific API has the feature. 
+                    <div class="image-container">
+                        <img src="../assets/img/OpenFunction_API_Type.png" alt="Open functions types of data" width="45%" >
+                        <img src="../assets/img/OpenFunction_API_Service.png" alt="Open functions types of service providers" width="45%" >
+                        <br>
+                    </div>
+                    <p>    
+                        
+                    </p>
+
+                </div>
+
+                <h4 id="function_vs_rest"> Function Calling API vs. REST API</h4>
+                <div class="body">
+                    <p>
+                        During the data collection process, we have observed that general API calling can be divided into 2 categories: 
+                    </p>
+                    <ul>
+                        <li>Function Calling APIs </li>
+                        <li>REST APIs</li>
+                    </ul>
+                    <p>    
+                        First, the Function Calling APIs are typically seen in external python packages like Numpy, Sklearn. Those APIs are well-defined and easily formatted. In anther word, knowing the 'api_name' e.g. <code>numpy.sum()</code> and the 'arguments' specification, we are able to extrapolate an executable function API. Due to its stable format and fixed locality, it takes relatively few data to fine-tune the model. 
+                    </p>
+                    <p> 
+                        On the other hand, the REST APIs also accounts for a significant portion of the APIs in the market. Those APIs are typically provided by third-party hosting and offer a variety of functionality ranging from financial service to weather forecasting. Often time, REST APIs contain three parameter metadata: <code>url</code>, <code>header</code>, and <code>params</code>. Url contains the API endpoints, header usually contains authentication information, and paramters contain information query to the API endpoint. Using <code>requests.get</code> we are able to properly query to the endpoint. However, REST APIs' parameters can exist in different locations. For example, the parameters can be embedded within the URL e.g. <code>gorilla.berkeley.edu/{param1}/{param2}</code>. Another way to represent parameters embedding can be <code>gorilla.berkeley.edu/?query=param1</code>. Different ways of calling REST API make it difficult for our model to handle complex REST API call. As a result, we have explored different sources of REST APIs such as RapidAPI, Postman API to diversify our API Database and generate more accuracte REST API.
+
+                    </p>
+                </div>
+
+                <!-- Retrieval Aware Training  -->
+                <h4 id="rat">Retrieval Aware Training</h4>
+                <p style="text-align: center; margin-bottom: 0">
+                    <img src="../assets/img/blog_post_4_rat.png" alt="Open functions calling" width="95%">
+                    <br>
+                </p>
+                <div class="body">
+                    <p>One of the key training strategies we employed for Gorilla Open Functions is Retrieval Aware Training (RAT). In this approach, during the training phase, we provide the model with both user queries and retrieved API JSON descriptions. This method enables the model to comprehend the information contained in the API description and accurately generate a corresponding Python function call based on the user's query.</p>
+                    <p>The beauty of RAT lies in its ability to simulate real-world scenarios where a developer might look up an API documentation before formulating a function call. By exposing our model to this process during training, we enhance its ability to understand and use the provided APIs correctly. This not only results in more accurate function calls but also improves the model's adaptability when faced with APIs it hasn't seen before.</p>
+                    <p>Moreover, by integrating retrieval into our training pipeline, we ensure that Gorilla Open Functions can handle rapidly evolving APIs and stay updated with their latest versions. This makes it a reliable tool for developers navigating through ever-changing landscapes of APIs. With Retrieval Aware Training at its core, Gorilla Open Functions represents a significant leap towards making AI models more context-aware and responsive to users' needs.</p>
                 </div>
             </div>
         </div>
@@ -179,6 +213,13 @@
             background: white;
             justify-content: center;
             align-items: center;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+        }
+        .image-container img {
+            margin: 10px;
         }
         .blog-container {
             display: flex;
