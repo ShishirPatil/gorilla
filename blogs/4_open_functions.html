@@ -41,7 +41,7 @@
                         <li><a href="4_open_functions.html#benchmarking">OpenFunctions Benchmarking</a></li>
                         <li><a href="4_open_functions.html#data_composition">OpenFunctions Data Composition</a></li>
                         <li><a href="4_open_functions.html#function_vs_rest">Code Function Calling API vs. REST API</a></li>
-                        <li><a href="4_open_functions.html#rat">Retrieval Aware Training</a></li>
+                        <li><a href="4_open_functions.html#models">Models and Capabilities</a></li>
                         <li class="more-blogs">
                             <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span class="caret">&#9654;</span></a>
                             <ul class="sub-menu">
@@ -72,13 +72,23 @@
                     <img src="../assets/img/blog_post_4_new_api_page.png" alt="Gorilla introductory image" style="width: 95%;">
                     <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
                         <i style="font-size: 0.9em;">
-                            Gorilla LLM can write accurate API calls, including Kubernetes, GCP, AWS, Azure, OpenAPI, and more. (Salesforce, servicenow, and datadog coming soon!) Gorilla outperforms GPT-4, Chat-GPT and Claude, significantly reducing hallucination errors. 
+                            Gorilla OpenFunctions is a drop-in open-source alternative. Given a prompt and API, Gorilla returns the correctly formatted function call. 
+                            With Apache 2.0 licensed models, you can integrate OpenFunctions into your applications directly! 
                         </i>
                     </p>
 
                 <div class="preview">
                     <p>
                         OpenFunctions is designed to extend Large Language Model(LLM) Chat Completion feature to formulate executable APIs call given natural language instructions and API context. Imagine if LLM could fill in parameters for a variety of service ranging from Instagram and Doordash to tools like Google Calendar and Stripe. Even users who are less familiar with API calling procedure and programming could use the model to generate APIs call to desired function. Open Function is an LLM that we train using a curated set of API documentations and Question Answer pairs generated from the API documentations. We have continued to expand on the Gorilla Paradigm and sought to improve the quality and accuracy of valid function calling generation.
+
+                    </p>
+                    <p>
+                        Quick Links:
+                        <ul>
+                            <li>Colab Notebook: <a href="https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd?usp=sharing">OpenFunctions</a></li>
+                            <li>Dataset: <a href="https://github.com/ShishirPatil/gorilla/tree/main/openfunctions">GitHub</a></li>
+                            <li>Models on HuggingFace: <a href="https://huggingface.co/gorilla-llm/gorilla-openfunctions-v1">gorilla-llm/gorilla-openfunctions-v1</a></li>
+                        </ul>
                     </p>
                 </div>
 
@@ -87,7 +97,7 @@
                 <h4 id="how_to_use_open_functions">How to use OpenFunctions</h4>
                 <p style="text-align: center; margin-bottom: 0">
                     <img src="../assets/img/blog_post_4_gorilla_open_function_calling.png" alt="Gorilla Input and Output" width="65%">
-                    <br>
+        
                 </p>
                 <div class="body">
                     <p>Using Gorilla OpenFunctions is straightforward:
@@ -237,16 +247,32 @@
                     </p>
                 </div>
 
-                <!-- Retrieval Aware Training  -->
-                <h4 id="rat">Retrieval Aware Training</h4>
-                <p style="text-align: center; margin-bottom: 0">
-                    <img src="../assets/img/blog_post_4_rat.png" alt="Open functions calling" width="95%">
-                    <br>
-                </p>
+                <!-- Parallel Functions  -->
+                <h4 id="models">Models and Capabilities!</h4>
+
                 <div class="body">
-                    <p>One of the key training strategies we employed for Gorilla OpenFunctions is Retrieval Aware Training (RAT). In this approach, during the training phase, we provide the model with both user queries and retrieved API JSON descriptions. This method enables the model to comprehend the information contained in the API description and accurately generate a corresponding Python function call based on the user's query.</p>
-                    <p>The beauty of RAT lies in its ability to simulate real-world scenarios where a developer might look up an API documentation before formulating a function call. By exposing our model to this process during training, we enhance its ability to understand and use the provided APIs correctly. This not only results in more accurate function calls but also improves the model's adaptability when faced with APIs it hasn't seen before.</p>
-                    <p>Moreover, by integrating retrieval into our training pipeline, we ensure that Gorilla OpenFunctions can handle rapidly evolving APIs and stay updated with their latest versions. This makes it a reliable tool for developers navigating through ever-changing landscapes of APIs. With Retrieval Aware Training at its core, Gorilla OpenFunctions represents a significant leap towards making AI models more context-aware and responsive to users' needs.</p>
+                    <p>We are happy to release two models: <code>gorilla-openfunctions-v0</code> and  <code>gorilla-openfunctions-v1</code>. 
+                    <code>gorilla-openfunctions-v0</code> is a 13B parameter model trained on top of the 7B LLaMA-v2-chat instruction-tuned model. 
+                    It takes-in the users prompt along with a SINGLE API call and returns the function with the right arguments.
+                    <code>gorilla-openfunctions-v0</code> is a 7B paramter model trained on top of the 7B LLaMA-v2 pre-trained model. <code>gorilla-openfunctions-v0</code> 
+                    is our advanced model that takes-in the users prompt along with MULTIPLE API calls and returns the function with the right arguments. 
+                    It also supports paralle functions! <code>gorilla-openfunctions-v1</code> is in early pre-view and you can expect it to get much better over the next few days! 
+                    All of the results in the blog are generated using <code>gorilla-openfunctions-v0</code>.
+                    </p>
+
+                    <hr class="post-separator">
+
+                    <p>
+                        We hope you enjoyed this blog post. We would love to hear from you on <a href="https://discord.gg/3apqwwME">Discord</a>, Twitter (#GorillaLLM), and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br> 
+                    </p>
+                    <p id="gorilla-bibtex">
+                        If you would like to cite Gorilla:<br>
+                        @inproceedings{patil2023gorilla,
+                        &nbsp; 	title={Gorilla: Large Language Model Connected with Massive APIs},
+                        &nbsp; 	author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},
+                        &nbsp; 	year={2023},
+                        &nbsp;	journal={arXiv preprint arXiv:2305.15334}
+                    }</p>
                 </div>
             </div>
         </div>
@@ -328,13 +354,13 @@
         .box-index {
         position: fixed;
         top: 50%; 
-        left: 20px; 
+        left: 0px; 
         transform: translateY(-50%);
         background-color: #f9f9f9;
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        max-width: 200px;
+        max-width: 150px;
         }
 
         .box-index h3 {
