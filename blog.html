@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-NRZJLJCSH6');
+    </script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Gorilla</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Team-Clean.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100; font-size: 18px;">
+        <a href="index.html">Home</a>&nbsp;&nbsp;&nbsp;
+        <a href="">Blog</a>
+    </div>
+
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: white;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .blog-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px;
+            justify-content: space-between;
+        }
+
+        .blog-post {
+            flex-basis: calc(33.33% - 20px); /* Set the width of each blog post (one-third of the container with spacing) */
+            background: #fff;
+            border: 3px solid #e8e8e8;
+            padding: 10px;
+            transition: transform 0.2s;
+            margin-bottom: 20px; /* Add margin at the bottom for spacing */
+            cursor: pointer; /* Change cursor to a pointer to indicate clickability */
+        }
+
+        .blog-post:hover {
+            transform: scale(1.05);
+        }
+
+        .blog-title {
+            color: #055ada;
+            text-align: center;
+        }
+
+        .author-date {
+            display: flex;
+            justify-content: center;
+        }
+
+        .author {
+            font-size: 16px;
+            color: #1E90FF;
+            margin-right: 20px;
+        }
+
+        .date {
+            font-size: 16px;
+            color: #7e8790;
+        }
+
+        .highlight-clean-blog {
+            color: #313437;
+            background-color: #fff;
+            padding: 50px 0;
+        }
+
+        .post-separator {
+            border: 0.5px solid #e8e8e8;
+            margin: 20px 0;
+        }
+
+        .preview {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .box-index {
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 200px;
+        }
+
+        .box-index h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .box-index ul {
+            list-style-type: disc;
+            padding: 0;
+        }
+
+        .box-index ul li {
+            margin-bottom: 10px;
+        }
+
+        .box-index ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .box-index ul li a:hover {
+            color: #1E90FF;
+        }
+
+        @media screen and (max-width: 768px) {
+            .blog-post {
+                flex-basis: calc(50% - 20px);
+            }
+        }
+
+.highlighted-blog {
+    flex-basis: calc(50% - 20px);
+    background: #fff;
+    border: 3px solid #e8e8e8;
+    padding: 20px;
+    transition: transform 0.2s;
+    margin-bottom: 20px;
+    cursor: pointer;
+    position: relative; /* Ensure the banner is positioned relative to this element */
+}
+
+.highlighted-tall-blog {
+    flex-basis: calc(50% - 20px);
+    background: #fff;
+    border: 3px solid #e8e8e8;
+    padding: 10px;
+    transition: transform 0.2s;
+    margin-bottom: 20px;
+    cursor: pointer;
+    position: relative; /* Ensure the banner is positioned relative to this element */
+}
+
+.highlighted-blogs{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.highlighted-blog,
+.highlighted-tall-blog {
+    position: relative;
+}
+
+.highlighted-blog::before,
+.highlighted-tall-blog::before {
+    content: "New";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 18px; /* Adjust the height of the banner */
+    line-height: 18px; /* Center the text vertically */
+
+    background-color: #ffd700; /* Yellow color */
+    text-align: center; /* Center the text horizontally */
+    color: black; /* Text color */
+    font-weight: bold; /* Optionally, make the text bold */
+}
+
+
+.highlighted-blog:hover,
+.highlighted-tall-blog:hover {
+    transform: scale(1.05);
+}
+    </style>
+
+    <div class="highlight-clean-blog">
+        <h1 class="text-center">🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+    </div>
+
+    <div class="container intro-container" style="padding: 20px;">
+        <div class="intro">
+            <p>
+                Since the initial release of Gorilla LLM on May 25, 2023, we're incredibly grateful for your overwhelming response. The Gorilla project is loved by developers worldwide. Through our integrations with an ever-growing set of API calls, we've come close to serving ~500k user requests, all from our small node at UC Berkeley. Some of you have gone ahead to train your own Gorilla models for your custom use-cases, and we love to see the community grow.
+    
+                To enhance the support for individual developers and enterprises looking to adopt or train their own Gorilla models, we're collaborating with our colleagues to launch a comprehensive blog series. In this series, we will delve deeper into the intricacies of Gorilla and outline our strategic vision and roadmap for the future.
+            </p>
+            <br>
+        </div>
+    </div>
+
+    <div class="highlighted-blogs">
+
+    <!-- Wider Highlighted Blog -->
+    <div class="highlighted-blog">
+        <a href="blogs/1_gorilla_intro.html">
+            <div class="blog-content">
+                <h2 class="blog-title">Introduction to Gorilla LLM</h2>
+                <div class="author-date">
+                    <p class="author"><a href="https://www.lisabdunlap.com/">Lisa Dunlap</a></p>
+                    <p class="date">Oct 4, 2023</p>
+                </div>
+                <a href="blogs/1_gorilla_intro.html">
+                    <img src="assets/img/blog_post_1_teaser.gif" alt="Gorilla introductory image" style="width: 100%;">
+                </a>
+            </div>
+        </a>
+    </div>
+
+    <!-- Taller but Narrower Highlighted Blog -->
+    <div class="highlighted-tall-blog">
+        <a href="blogs/2_hallucination.html">
+            <div class="blog-content">
+                <h2 class="blog-title">Reality Bytes: How to Measure Hallucinations in LLMs</h2>
+                <div class="author-date">
+                    <p class="author"><a href="https://people.eecs.berkeley.edu/~wong.justin/">Justin Wong</a></p>
+                    <p class="date">Oct 4, 2023</p>
+                </div>
+                <a href="blogs/2_hallucination.html">
+                    <img src="assets/img/blog_post_1_result.png" alt="Blog Post 2 Image" style="width: 100%;">
+                </a>
+            </div>
+        </a>
+    </div>
+
+    <!-- Add more posts using the same structure as above -->
+    </div>
+
+    <div class="blog-container">
+        <!-- Blog Post 1 -->
+        <div class="blog-post">
+            <a href="blogs/1_gorilla_intro.html">
+                <div class="blog-content">
+                    <h2 class="blog-title">Introduction to Gorilla LLM</h2>
+                    <div class="author-date">
+                        <p class="author"><a href="https://www.lisabdunlap.com/">Lisa Dunlap</a></p>
+                        <p class="date">Oct 4, 2023</p>
+                    </div>
+                    <a href="blogs/1_gorilla_intro.html">
+                        <img src="assets/img/blog_post_1_teaser.gif" alt="Gorilla introductory image" style="width: 100%;">
+                    </a>
+                </div>
+            </a>
+        </div>
+    
+        <!-- Blog Post 2 -->
+        <div class="blog-post">
+            <a href="blogs/2_hallucination.html">
+                <div class="blog-content">
+                    <h2 class="blog-title">Reality Bytes: How to Measure Hallucinations in LLMs</h2>
+                    <div class="author-date">
+                        <p class="author"><a href="https://people.eecs.berkeley.edu/~wong.justin/">Justin Wong</a></p>
+                        <p class="date">Oct 4, 2023</p>
+                    </div>
+                    <a href="blogs/2_hallucination.html">
+                        <img src="assets/img/blog_post_1_result.png" alt="Blog Post 2 Image" style="width: 100%;">
+                    </a>
+                </div>
+            </a>
+        </div>
+    
+        <!-- Blog Post 3 -->
+        <div class="blog-post">
+            <a href="blogs/3_retriever_ware_training.html">
+                <div class="blog-content">
+                    <h2 class="blog-title">Retriever-Aware Training (RAT): Are LLMs memorizing or understanding?</h2>
+                    <div class="author-date">
+                        <p class="author"><a href="https://hqjenny.com/">Qijing Huang</a></p>
+                        <p class="date">Oct 4, 2023</p>
+                    </div>
+                    <a href="blogs/3_retreiver_aware_training.html">
+                        <img src="assets/img/blog_post_1_inference.jpg" alt="Blog Post 3 Image" style="width: 100%;">
+                    </a>
+                </div>
+            </a>
+        </div>
+        <!-- Add more posts using the same structure as above -->
+    </div>
+</body>
+</html>
+

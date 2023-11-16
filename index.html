@@ -27,7 +27,7 @@
        <!-- Navigation Bar -->
     <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;; font-size: 18px;">
         <a href="index.html">Home </a>&nbsp;&nbsp;&nbsp;     
-        <!-- <a href="blog.html"> Blog</a> -->
+        <a href="blog.html"> Blog</a>
     </div>
     <div class="highlight-clean" style="padding-bottom: 10px;">
             <h1 class="text-center"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
@@ -229,6 +229,56 @@ right at the same position as the top one */
     opacity: 1;
     transform: translateY(0%);
   }
+}
+
+@media screen and (max-width: 768px) {
+    .spinner {
+  position: relative; /* Change to relative for responsiveness */
+  overflow: hidden;
+}
+
+.spinner__text {
+  position: relative;
+  display: inline-block;
+  width: 50px; /* Adjust the width as needed */
+  text-align: center;
+}
+
+.spinner__text--top,
+.spinner__text--bottom {
+  display: inline-block;
+  animation: 1.5s ease 2s infinite running none;
+}
+
+.spinner__text--top {
+  animation-name: spinTop;
+}
+
+/* Bottom text spinner has to be configured so that it is positioned
+right at the same position as the top one */
+.spinner__text--bottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  animation-name: spinBottom;
+}
+
+@keyframes spinTop {
+  from { transform: translateY(0%); }
+  to { transform: translateY(-100%); }
+}
+
+@keyframes spinBottom {
+  from {
+    opacity: 1;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
 }
 
     </style>
