@@ -136,31 +136,67 @@
             }
         }
 
-        .highlighted-blog {
-    flex-basis: calc(50% - 20px); /* Set the width to 50% of the container */
+.highlighted-blog {
+    flex-basis: calc(50% - 20px);
     background: #fff;
     border: 1px solid #e8e8e8;
-    padding: 10px;
+    padding: 20px;
     transition: transform 0.2s;
-    margin-bottom: 20px; /* Add margin at the bottom for spacing */
-    cursor: pointer; /* Change cursor to a pointer to indicate clickability */
+    margin-bottom: 20px;
+    cursor: pointer;
+    position: relative; /* Ensure the banner is positioned relative to this element */
 }
 
 .highlighted-tall-blog {
-    flex-basis: calc(50% - 20px); /* Set the width to 50% of the container */
+    flex-basis: calc(50% - 20px);
     background: #fff;
     border: 1px solid #e8e8e8;
     padding: 10px;
     transition: transform 0.2s;
-    margin-bottom: 20px; /* Add margin at the bottom for spacing */
-    cursor: pointer; /* Change cursor to a pointer to indicate clickability */
+    margin-bottom: 20px;
+    cursor: pointer;
+    position: relative; /* Ensure the banner is positioned relative to this element */
 }
 
 .highlighted-blogs{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding: 20px;
 }
+
+.highlighted-blog:hover::before,
+.highlighted-tall-blog:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px; /* Adjust the height of the banner */
+    background-color: #ffd700; /* Yellow color */
+}
+
+/*Diagonal Approach*/
+
+/* .highlighted-blog:hover::before,
+.highlighted-tall-blog:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -70%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom left, transparent 48%, #ffd700 48%, #ffd700 52%, transparent 52%),
+                linear-gradient(to top right, transparent 48%, #ffd700 48%, #ffd700 52%, transparent 52%);
+    background-size: 30% 30%;
+    background-repeat: no-repeat;
+} */
+
+
+
+
+
+
 
 
     </style>
@@ -169,13 +205,15 @@
         <h1 class="text-center">🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
     </div>
 
-    <div class="intro">
-        <p>
-            Since the initial release of Gorilla LLM on May 25, 2023, we're incredibly grateful for your overwhelming response. The Gorilla project is loved by developers worldwide. Through our integrations with an ever-growing set of API calls, we've come close to serving ~500k user requests, all from our small node at UC Berkeley. Some of you have gone ahead to train your own Gorilla models for your custom use-cases, and we love to see the community grow.
-
-            To enhance the support for individual developers and enterprises looking to adopt or train their own Gorilla models, we're collaborating with our colleagues to launch a comprehensive blog series. In this series, we will delve deeper into the intricacies of Gorilla and outline our strategic vision and roadmap for the future.
-        </p>
-        <br>
+    <div class="container intro-container" style="padding: 20px;">
+        <div class="intro">
+            <p>
+                Since the initial release of Gorilla LLM on May 25, 2023, we're incredibly grateful for your overwhelming response. The Gorilla project is loved by developers worldwide. Through our integrations with an ever-growing set of API calls, we've come close to serving ~500k user requests, all from our small node at UC Berkeley. Some of you have gone ahead to train your own Gorilla models for your custom use-cases, and we love to see the community grow.
+    
+                To enhance the support for individual developers and enterprises looking to adopt or train their own Gorilla models, we're collaborating with our colleagues to launch a comprehensive blog series. In this series, we will delve deeper into the intricacies of Gorilla and outline our strategic vision and roadmap for the future.
+            </p>
+            <br>
+        </div>
     </div>
 
     <div class="highlighted-blogs">
