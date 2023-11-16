@@ -25,87 +25,105 @@
 
 <body>
     <!-- Navigation Bar -->
-    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;font-size: 18px;">
+    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;">
         <a href="../index.html">Home </a>&nbsp;&nbsp;&nbsp;     
         <a href="../blog.html"> Blog</a>
     </div>
-
     <div class="highlight-clean-blog" style="padding-bottom: 10px;">
         <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
 
         <div class="box-index">
-            <h3>Blog 1: Gorilla LLM</h3>
+            <h3>Blog 3: Retrieval Aware Training (RAT)</h3>
             <ul>
                 <ul>
-                    <li><a href="1_gorilla_intro.html#evolving-apis">Keeping up with frequently evolving data</a></li> 
-                    <li><a href="1_gorilla_intro.html#llm-and-retrievers">LLMs and Retrievers</a></li> 
-                    <li><a href="1_gorilla_intro.html#hallucination">Hallucination</a></li> 
-                    <li><a href="1_gorilla_intro.html#try-gorilla">How to use Gorilla</a></li>
-                    <li class="more-blogs">
-                        <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span class="caret">&#9654;</span></a>
-                        <ul class="sub-menu">
-                            <li><a href="2_hallucination.html">How to Measure Hallucination?</a></li>
-                            <li><a href="3_retreiver_aware_training.html">Retrieval Aware Training (RAT)</a></li>
-                            <!-- Add more blog entries as needed -->
-                        </ul>
-                    </li>                    
+                        <li><a href="3_retreiver_aware_training.html#traditional-drawbacks">Drawbacks of Traditional Tuning</a></li>
+                        <li><a href="3_retreiver_aware_training.html#retriever-aware">Embracing Retriever-Aware Training</a></li>
+                        <li><a href="3_retreiver_aware_training.html#free-lunch">A free lunch for RAT?</a></li>
+                        <li><a href="3_retreiver_aware_training.html#evolving-api">Keeping up with frequently evolving APIs</a></li>
+                        <li><a href="3_retreiver_aware_training.html#llm-and-retrievers">LLMs and Retrievers</a></li>
+                        <li><a href="3_retreiver_aware_training.html#hallucinations">Hallucinations</a></li>
+                        <li class="more-blogs">
+                            <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span class="caret">&#9654;</span></a>
+                            <ul class="sub-menu">
+                                <li><a href="1_gorilla_intro.html">Introduction to Gorilla LLM</a></li>
+                                <li><a href="2_hallucination.html">How to Measure Hallucination?</a></li>
+                                <!-- Add more blog entries as needed -->
+                            </ul>
+                        </li>  
                 </ul>
                 <!-- Add more entries as needed -->
             </ul>
         </div>
 
-
         <div class="blog-container">
             <div class="blog-post">
-                <h2 class="blog-title">Introduction to Gorilla LLM</h2>
+                <h2 class="blog-title">Retriever-Aware Training (RAT): Are LLMs memorizing or understanding?</h2>
                 <div class="author-date">
-                    <p class="author"> <a href="https://www.lisabdunlap.com/">Lisa Dunlap</a> </p>
-                    <p class="date">Oct 3, 2023</p>
+                    <p class="author"> <a href="https://hqjenny.com/"> Qijing Huang </a>  </p>
+                    <p class="date">Oct 4, 2023</p>
                 </div>
-                    <img src="../assets/img/blog_post_1_teaser.gif" alt="Gorilla introductory image" style="width: 95%;">
-                    <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
-                        <i style="font-size: 0.9em;">
-                            Gorilla LLM can write accurate API calls, including Kubernetes, GCP, AWS, Azure, OpenAPI, and more. (Salesforce, servicenow, and datadog coming soon!) Gorilla outperforms GPT-4, Chat-GPT and Claude, significantly reducing hallucination errors. 
-                        </i>
-                    </p>
-
+                <!-- Image here -->
                 <div class="preview">
                     <p>
-                        Gorilla is designed to connect large language models (LLMs) with a wide range of tools, services, and applications exposed through APIs. Imagine if ChatGPT could interact with thousands of services ranging from Instagram and Doordash to tools like Google Calendar and Stripe to help you accomplish tasks.  You could ask to book a meeting for your collaborators, order their favorite foods, and pay for it. This may be how we interact with computers and even the web in the future.
-
-                        Gorilla is an LLM that we train using a concept we call - retriever-aware training, that can pick the right API to perform a task, that a user can specify in natural language. We also introduce an Abstract Syntax Tree (AST) based sub-tree algorithm, which for the first time can measure hallucination of LLMs! 
+                        Pretrained Language Models (LLMs) need instruction tuning to better align with human incentives. These methods both improve the model’s behavior and accuracy when they are trying to answer questions for a specific domain. However, traditional instruction tuning has limitations regarding adaptability, dependency on the in-context examples, and the potential to hallucinate. We introduce "retriever-aware training," a new methodology that holds the promise of addressing some of these challenges. Let's dive into the details of that.
+                    </p>  
+                    <h4 id="traditional-drawbacks">The Drawbacks of Traditional Instruction Tuning</h4>
+                    <p>
+                        At its core, instruction tuning allows LLMs to generate responses based on specific instructions embedded within the prompts. However, this approach has its limitations:
+                        <ul>
+                            <li>Limited Adaptability: Traditional LLMs may struggle when faced with real-time changes or updates in the information. This can be particularly concerning when using evolving data sources, such as API documentation.
+                            </li>
+                            <li>Dependence on In-Context Learning: Instruction tuning relies heavily on in-context learning, which can be restrictive. Without the ability to pivot based on fresh or updated data, the model might produce outdated or inaccurate outputs.
+                            </li>
+                            <li>Potential for Hallucination: One of the significant challenges with LLMs is their tendency to "hallucinate" or generate incorrect or unrelated information. Traditional tuning methods have been known to exacerbate this issue.
+                            </li>
+                        </ul>
                     </p>
 
+                    <h4 id="retriever-aware">Embracing Retriever-Aware Training</h4>
                     <p>
-                        The use of API's and Large Language Models(LLMs) has changed what it means to program. 
-                        Previously, building complex models required extensive time and specialized skills. 
-                        Now with tools like the HuggingFace API, an engineer can set up a deep learning pipeline 
-                        with a few lines of code. Instead of searching through StackOverflow and sifting through documentation, 
-                        developers can ask models like GPT for solutions and receive immediate, actionable code with docstrings. 
-                        Yet, employing off-the-shelf LLMs to generate precise API calls is impractical as there are millions 
-                        of available API's which are frequently updated.
+                        With the above challenges in mind, retriever-aware training was introduced. 
+                        The principle behind this method is to append additional supporting documentation to the user's prompt, 
+                        such as "Use this API documentation for reference: <retrieved_API_doc_JSON>." 
+                        The goal is to teach the LLM to utilize the supporting documents provided 
+                        (the reference to API documentation) to generate a more informed answer to the first half.
 
-                        Gorilla connects LLM's with API's, a system which takes in an instruction like "build me a classifier 
-                        for medical images" and outputs the corresponding imports and API calls, along with a step-by-step 
-                        explanation of the process. Gorilla uses self-instruct fine-tuning and retrieval to enable LLMs to 
-                        accurately select from a large, overlapping, and changing set tools expressed using their APIs and 
-                        API documentation. With the development of API generation methods comes a question of how to evaluate, 
-                        as many APIs will have overlapping functionality with nuanced limitations and constraints. Thus, we 
-                        construct APIBench, a large corpus of APIs including Kubernetes, AWS, GCP, Azure, GitHub, Conda, Curl, 
-                        Sed, Huggingface, Tensorflow, Torch Hub, and develop a novel evaluation framework which uses sub-tree 
-                        matching to check functional correctness and measures hallucination. 
+                        The advantages of this approach are manifold:
 
+                        <ul>
+                            <li>Adaptability: The model becomes more adaptable to changes in API documentation at test-time. This means that even if an API undergoes changes, the model can reference the latest documentation to provide accurate responses.
+                            </li>
+                            <li>Improved In-Context Learning: By referencing external documentation, the LLM can go beyond its inherent knowledge and pull from real-time data, leading to more accurate and updated responses.
+                            </li>
+                            <li>Reduction in Hallucination: A key benefit noted was the reduction in hallucination errors. By grounding responses in real-time data, the chances of the LLM generating false or unrelated information diminish.
+                            </li>
+                        </ul>
                     </p>
                 </div>
 
                 <div class="body">
+                    <h4 id="free-lunch">A free lunch for RAT?</h4>
                     <p>
-                        Using APIBench, we trained Gorilla, an Apache 2.0 licensed, 7B LLM model with document retrieval and show that it significantly 
-                        outperforms both open-source and closed-source models like Claude and GPT-4 in terms of API functionality 
-                        accuracy as well as a reduction in API argument hallucination errors. 
+                        However, the promise of retriever-aware training is not fully utilized yet in reality. 
+                        This is mainly because the accuracy of the retriever is not good enough. In other words, 
+                        the recall for the retriever has become a bottleneck for the final performance of the LLM. 
+                        Imagine the model would easily get confused if it got the question to 
+                        “look up whether in Berkeley” but with the supporting documents of “biography of 
+                        Albert Einstein”. Thus, balancing between the recall of the retriever and the frequency 
+                        of updating LLMs is a choice to make.
                     </p>
-                </div>
 
+                    <p>
+                        Wrapping Up
+
+                        As with all innovations, retriever-aware training comes with its set of pros and cons. 
+                        But its introduction marks an exciting shift towards creating LLMs that are more adaptable, 
+                        accurate, and less prone to errors. As we continue to refine this methodology, there's 
+                        no doubt that the future of LLM training is brimming with potential.
+
+                    </p>
+
+                </div>
 
                 <!-- APIs change frequently -->
                 <p style="text-align: center; margin-bottom: 0">
@@ -118,16 +136,16 @@
                     </i>
                 </p>
 
-                <h4 id="evolving-apis"> Keeping up with frequently evolving data</h4>
+
+                <h4 id="evolving-api"> Keeping up with frequently evolving APIs</h4>
                 <div class="body">
                     <p>
                         APIs are known to evolve frequently - more freuquently than it is possible to re-train LLMs. So, how can LLMs keep up with this, and not serve the user out-lawed APIs? To handle this, Gorilla, can be used for inference in two modes: <em>zero-shot</em> and <em>with retrieval</em>. In zero-shot, during inference, user provides the prompt in natural language. This can be for a simple task (e.g, "I would like to identify the objects in an image"), or you can specify a vague goal, (e.g, "I am going to the zoo, and would like to track animals"). This prompt (with NO further prompt tuning) is fed to the Gorilla LLM model which then returns the API call that will help in accomplishing the task and/or goal. 
                         In retrieval mode, the retriever first retrieves the most up-to-date API documentation stored in APIZoo, an API Database for LLMs.
-                        Before being sent to Gorilla, the API documentation is concatenated to the user prompt along with the message "Use this API documentation for reference:"  The output of Gorilla is an API to be invoked. The retriever aware inference mode, enables Gorilla to be robust to frequent changes in APIs! We have open-sourced our APIZoo, and in our continued commitment to the open-source community, today we've released an additional ~20k meticulously documented APIs including KubeCtl, GCP, Azure, AWS, GitHub, etc. We will continue to add more APIs to APIZoo, and welcome contributions from the community!
+                        Before being sent to Gorilla, the API documentation is concatenated to the user prompt along with the message "Use this API documentation for reference:"  The output of Gorilla is an API to be invoked. The retriever aware inference mode, enables Gorilla to be robust to frequent changes in APIs! We have open-sourced our APIZoo, and welcome contributions from the community!   
                     </p>
 
                 </div>
-
 
                 <!-- Retrievers and LLMs  -->
                 <p style="text-align: center; margin-bottom: 0">
@@ -149,7 +167,6 @@
                     </p>
                 </div>
 
-
                 <!-- Gorilla side by side comparison -->
                 <p style="text-align: center; margin-bottom: 0">
                     <img src="../assets/img/blog_post_1_result.png" alt="How well does Gorilla perform" width="65%">
@@ -161,34 +178,13 @@
                     </i>
                 </p>
 
-                <h4 id="hallucination">Reality Bytes: When LLMs See Things That Aren't There</h4>
+                <h4 id="hallucinations">Reality Bytes: When LLMs See Things That Aren't There</h4>
                 <div class="body">
                     <p>
                         Hallucination is the center of discussions for all things LLMs. In the context of API generation, hallucination can be defined as the model generating API calls that do not exist. An LLM generation can be in-accurate or it could be hallucinated. One does not mean the other. For example, if the user asks for a classifier for medical images, if the model generates a Stripe API call for a image classifier - it is hallucination, since it doesn't exist! On the other hand, if the model recommends to use the Stripe API for checking your balance, it is an incorrect usage of the API, but atleast not made up (noh-hallucinated). In our blog <a href=""></a> we describe Gorilla's innovative approach of using Abstract Syntax Trees (ASTs) to measure hallucination of the generated API calls. 
                         Though not generalizable to all tasks, to the best of our knowledge, Gorilla is the first to measure and quantify hallucination for LLM generations! 
 
                     </p>
-                </div>
-                <h4 id="try-gorilla">How to use Gorilla?</h4>
-                <div class="body">
-                    <p>
-                        Gorilla is a open-source artifact from UC Berkeley! You can try Gorilla in a few different ways. The easiest is through our <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing" >Colab notebook</a>. Our hosted Gorilla model can be a drop in replacement for your OpenAI Chatcompletion API calls. Here is a <a href="https://colab.research.google.com/drive/11HJWR3ylG1HSE2v78W1gRK-dKkSA0pHe?usp=sharing">Colab notebook</a> notebook, demonstrating how you could use Gorilla along with Langchain agents. For those of you who are interested in playing around with our models, or would like to host it yourself, the Gorilla models are open-sourced and available on <a href="https://huggingface.co/gorilla-llm">HuggingFace</a>. You can also try Gorilla in your CLI - the most popular way to use Gorilla! Just <em>pip install gorilla-cli</em> to talk to your command line in plane english and  have Gorilla come up with the right CLI command for you!
-                    </p>
-                    <hr class="post-separator">
-
-                    <p>
-                        We hope you enjoyed this blog post. We would love to hear from you on <a href="https://discord.gg/3apqwwME">Discord</a>, Twitter (#GorillaLLM), and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br> 
-
-                        This post was authored by Lisa Dunlap, who is a PhD student at UC Berkeley advised by Joey Gonzalez in Sky Computing Lab and Trevor Darrell in BAIR. Lisa's research focuses on evaluating, advising, and monitoring vision models from a data-centric angle, and is currently working on making vision models more robust with language, training on low-quality datasets, and discovering concepts in large scale datasets. 
-                    </p>
-                    <p id="gorilla-bibtex">
-                        If you would like to cite Gorilla:<br>
-                        @inproceedings{patil2023gorilla,
-                        &nbsp; 	title={Gorilla: Large Language Model Connected with Massive APIs},
-                        &nbsp; 	author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},
-                        &nbsp; 	year={2023},
-                        &nbsp;	journal={arXiv preprint arXiv:2305.15334}
-                    }</p>
                 </div>
             </div>
         </div>
@@ -286,6 +282,7 @@
         color: #1E90FF;
         }
 
+        
         .more-blogs .sub-menu {
             display: none;
         }
@@ -310,7 +307,6 @@
             display: inline-block;
             transform: rotate(0deg);
             font-size: 12px; /* Adjust the font size to change the caret size */
-
         }
 
         .more-blogs.expanded .caret {
@@ -325,7 +321,7 @@
             max-width: 80%; /* Reduce image size for smaller screens */
         }
         .box-index {
-            display: none; /* Hide the index on smaller screens */
+        display: none; /* Hide the index on smaller screens */
         }
     }
 
