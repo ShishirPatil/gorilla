@@ -97,7 +97,9 @@
                 <h4 id="how_to_use_open_functions">How to use OpenFunctions</h4>
                 <p style="text-align: center; margin-bottom: 0">
                     <img src="../assets/img/blog_post_4_gorilla_open_function_calling.png" alt="Gorilla Input and Output" width="65%">
-        
+                        <i style="font-size: 0.9em;">
+                            OpenFunctions can write accurate API calls. This applies not just the popular python package and cloud CLI but also any callable functions with API documentations!
+                        </i>
                 </p>
                 <div class="body">
                     <p>Using Gorilla OpenFunctions is straightforward:
@@ -142,10 +144,11 @@
                 <h4 id="benchmarking">OpenFunctions Performance Benchmarking</h4>
                 <div class="body">
                     <p>We are benchmarking our model against current state-of-art model GPT-4-0613 as well as  GPT-4 and GPT-3.5-turbo function calling features. Our testing dataset consists of 116 distinct query, API documentation pairs and are crafted by feeding few shot examples into GPT-3.5-turbo and asking the model to generate APIs from different domains including travel, finance, meeting scheduling.</p>
-                    <div class="image-container">
                         <img src="../assets/img/blog_post_4_OpenFunctions_Distribution.png" alt="Open functions types of data" width="85%" >
+                            <i class="centered-text" style="font-size: 0.9em;" width="85%">
+                                Suprisingly, we observe that GPT-4 and GPT-3.5 function calling perform better than the State of the Art GPT-4-Turbo model. Our OpenFunctions model is closely behind with tiny margin.
+                            </i>
                         <br>
-                    </div>
                     <p> To evalate the quality of the ouput, we perform side-by-side examination between the model output and gold answer. From the graph above, we can see that GPT-4 and GPT-3.5-Turbo performs function callings with a higher success rate around 95% than GPT-4 function callings. Our llama-based OpenFunction model is following GPT-4 function calling with a 86% success rate. Below is an example of GPT-4 fails to extract parameters correctly.</p>
                     <p> Below are two examples of GPT-4 generate unsatisfied results:</p>
                     <div class="container">
@@ -194,10 +197,11 @@
                         </div>
                     </div>
                     <p>As we can see from the above mistakes that even using GPT-4 function calling isn't able to guarantee us on satisfactory result on analysis of function parameters. Here, we have a detailed breakdown of the percentage of success, failure of our testing data:</p>
-                    <div class="image-container">
                         <img src="../assets/img/blog_post_4_OpenFunctions_Mistake.png" alt="GPT-failure" width="85%" >
+                        <i class="centered-text" style="font-size: 0.9em;" width="85%">
+                            While the standard GPT model is able to produce definitive results, OpenAI's function calling model will ask follow up question if required parameters are not supplied, which results in a state of no result.
+                        </i>
                         <br>
-                    </div>
                     <p> When calling to OpenAI's function calling models, if required parameters are not supplied within instruction. This leads the function calling models to output "follow-up" questions requesting the required parameters which results in "incomplete" status as displayed in above graph. 
                         We treat "incomplete" execution as "success" during our accuracy calculation because the model recognize the missing parameters successfully. 
                         Our Open Function model as well as regular GPT-4, due to its chat complete nature, will fill up the required parameters with place holder or default value which allows undisturbed generation. </p>
@@ -223,6 +227,9 @@
                         <img src="../assets/img/blog_post_4_OpenFunctions_Data_Detail.png" alt="Open functions types of service providers" width="45%" >
                         <br>
                     </div>
+                        <i class="centered-text" style="font-size: 0.9em;" width="85%">
+                            OpenFunctions's Data is collected through a variety of service and domain.
+                        </i>
                     <p>    
                         
                     </p>
@@ -286,6 +293,11 @@
             background: white;
             justify-content: center;
             align-items: center;
+        }
+        .centered-text {
+            text-align: center;
+            display: block; /* Ensure the <i> element takes up the full width available */
+            margin: 0 auto; /* Center the element horizontally */
         }
         .container {
             display: flex;
