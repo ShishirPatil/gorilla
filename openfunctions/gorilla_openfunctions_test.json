@@ -1,0 +1,2984 @@
+[
+    {
+        "question": "Find a coffee shop near me with free Wi-Fi in San Francisco.",
+        "function": {
+            "name": "Coffee Shop Locator",
+            "api_call": "coffee_shop.find_nearby",
+            "description": "Locate nearby coffee shops based on specific criteria like Wi-Fi availability.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                "location": {
+                    "type": "string",
+                    "description": "The city and state, e.g. San Francisco, CA"
+                },
+                "amenities": {
+                    "type": "array",
+                    "items": {
+                    "type": "string",
+                    "enum": ["Wi-Fi", "Outdoor Seating", "Bakery", "Vegetarian Options"]
+                    },
+                    "description": "Preferred amenities."
+                }
+                },
+                "required": ["location"]
+            }
+        },
+        "model_answer": "coffee_shop.find_nearby(location=\"San Francisco\", amenities=\"Wi-Fi\")"
+    },
+    {
+        "question": "Book a flight from Los Angeles to New York for two people on June 15th.",
+        "function": {
+          "name": "Flight Booking",
+          "api_call": "flight.book",
+          "description": "Book a flight for a specified number of passengers and travel date.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "origin": {
+                "type": "string",
+                "description": "Departure city or airport."
+              },
+              "destination": {
+                "type": "string",
+                "description": "Arrival city or airport."
+              },
+              "passengers": {
+                "type": "integer",
+                "description": "Number of passengers."
+              },
+              "date": {
+                "type": "string",
+                "description": "Preferred travel date (e.g., YYYY-MM-DD)."
+              }
+            },
+            "required": ["origin", "destination", "passengers"]
+          }
+        },
+        "model_answer": "flight.book(origin=\"Los Angeles\", destination=\"New York\", passengers=2, date=\"June 15th\")"
+      },
+      {
+        "question": "Book a table for two at an Italian restaurant in Manhattan, New York for tonight at 7 PM.",
+        "function": {
+          "name": "Restaurant Reservation",
+          "api_call": "restaurant.book_table",
+          "description": "Reserve a table at a specific restaurant for a given date and time.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "restaurant": {
+                "type": "string",
+                "description": "Name of the restaurant."
+              },
+              "location": {
+                "type": "string",
+                "description": "Location for the reservation."
+              },
+              "party_size": {
+                "type": "integer",
+                "description": "Number of people in the party."
+              },
+              "reservation_time": {
+                "type": "string",
+                "format": "date-time",
+                "description": "Date and time of the reservation (ISO 8601 format)."
+              }
+            },
+            "required": ["restaurant", "location", "party_size", "reservation_time"]
+          }
+        },
+        "model_answer": "restaurant.book_table(restaurant=\"Italiano's\", location=\"Manhattan, New York\", party_size=2, reservation_time=\"2023-10-23 19:00\")"
+      },
+      {
+        "question": "Get weather information for Paris, France for the next 5 days.",
+        "function": {
+          "name": "Weather Forecast",
+          "api_call": "weather.forecast",
+          "description": "Retrieve a weather forecast for a specific location and time frame.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "string",
+                "description": "City or location for the forecast."
+              },
+              "days": {
+                "type": "integer",
+                "description": "Number of days for the forecast."
+              }
+            },
+            "required": ["location", "days"]
+          }
+        },
+        "model_answer": "weather.forecast(location=\"Paris, France\", days=5)"
+      },
+      {
+        "question": "Find a 24/7 pharmacy near San Diego, California with a drive-thru option.",
+        "function": {
+          "name": "Pharmacy Locator",
+          "api_call": "pharmacy.find_nearby",
+          "description": "Locate nearby pharmacies with specific features as parameters.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "string",
+                "description": "Current location for the search."
+              },
+              "feature": {
+                "type": "string",
+                "enum": ["24/7", "Drive-thru", "Flu Shots"],
+                "description": "Desired features of the pharmacy."
+              }
+            },
+            "required": ["location"]
+          }
+        },
+        "model_answer": "pharmacy.find_nearby(location=\"San Diego, California\", feature=\"Drive-thru\")"
+      },
+      {
+        "question": "Order me six pack of potato chips and eight pack of chocolate from target near Berkeley.",
+        "function": {
+          "name": "Uber carpool",
+          "api_call": "target.order",
+          "description": "Order items from target given the item and quantity",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "loc": {
+                "type": "string",
+                "description": "Location of the nearest Target."
+              },
+              "item": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "description": "Ordered items in a list."
+                }
+              },
+              "quantity": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "description": "Quantity of the order corresponding to the previous item variable."
+                }
+              }
+            },
+            "required": ["loc", "item", "quantity"]
+          }
+        },
+        "model_answer": "target.order(loc=Berkeley,item=[\"potato\", \"chocolate\"], quantity=[6,8])"
+      },
+      {
+        "question": "Find me a list of Berkeley Computer Science classes that are undergraduate levels that still have an open seat.",
+        "function": {
+          "name": "Find classes",
+          "api_call": "classes.find",
+          "description": "Find a list of classes at given school, given discipline, levels, and status",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "school": {
+                "type": "string",
+                "description": "Refine which school the query is searching."
+              },
+              "discipline": {
+                "type": "string",
+                "description": "The discipline of the courses one is looking for."
+              },
+              "level": {
+                "type": "string",
+                "enum": ["lower division", "upper division", "graduate"],
+                "description": "The level of the courses."
+              },
+              "status": {
+                "type": "string",
+                "description": "The status of classes one wants to look for."
+              }
+            },
+            "required": ["school", "discipline", "level", "status"]
+          }
+        },
+        "model_answer": "classes.find(school='Berkeley', discipline='computer science', level='undergraduate', status='open')"
+      },
+      {
+        "question": "Find the nearest gas station to my current location.",
+        "function": {
+            "name": "Gas Station Locator",
+            "api_call": "gas_station.find_nearby",
+            "description": "Locate nearby gas stations based on current location.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "Current location for the search."
+                    }
+                },
+                "required": [
+                    "location"
+                ]
+            }
+        },
+        "model_answer": "gas_station.find_nearby(location=\"current\")"
+    },
+    {
+        "question": "Find the top-rated restaurants in San Francisco with outdoor seating.",
+        "function": {
+            "name": "Restaurant Finder",
+            "api_call": "restaurant.find_top_rated",
+            "description": "Find top-rated restaurants based on location and specific criteria.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The city, e.g. San Francisco"
+                    },
+                    "amenities": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "Outdoor Seating",
+                                "Vegetarian Options",
+                                "Live Music"
+                            ]
+                        },
+                        "description": "Preferred amenities."
+                    }
+                },
+                "required": [
+                    "location"
+                ]
+            }
+        },
+        "model_answer": "restaurant.find_top_rated(location=\"San Francisco\", amenities=[\"Outdoor Seating\"])"
+    },
+    {
+        "question": "Get the current time in New York.",
+        "function": {
+            "name": "Timezone Converter",
+            "api_call": "timezone.get_current_time",
+            "description": "Retrieve the current time in a specific timezone.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "timezone": {
+                        "type": "string",
+                        "description": "The timezone, e.g. America/New_York"
+                    }
+                },
+                "required": [
+                    "timezone"
+                ]
+            }
+        },
+        "model_answer": "timezone.get_current_time(timezone=\"America/New_York\")"
+    },
+    {
+        "question": "Find the lyrics of the song 'Shape of You' by Ed Sheeran.",
+        "function": {
+            "name": "Lyrics Finder",
+            "api_call": "lyrics.find",
+            "description": "Retrieve the lyrics of a specific song.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "song": {
+                        "type": "string",
+                        "description": "The name of the song."
+                    },
+                    "artist": {
+                        "type": "string",
+                        "description": "The name of the artist."
+                    }
+                },
+                "required": [
+                    "song",
+                    "artist"
+                ]
+            }
+        },
+        "model_answer": "lyrics.find(song=\"Shape of You\", artist=\"Ed Sheeran\")"
+    },
+    {
+        "question": "Get the latest news headlines from CNN.",
+        "function": {
+            "name": "News Headlines",
+            "api_call": "news.get_headlines",
+            "description": "Retrieve the latest news headlines from a specific news source.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "source": {
+                        "type": "string",
+                        "description": "The news source, e.g. CNN"
+                    }
+                },
+                "required": [
+                    "source"
+                ]
+            }
+        },
+        "model_answer": "news.get_headlines(source=\"CNN\")"
+    },
+    {
+        "question": "Find the definition of the word 'serendipity'.",
+        "function": {
+            "name": "Dictionary",
+            "api_call": "dictionary.get_definition",
+            "description": "Retrieve the definition of a specific word.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "word": {
+                        "type": "string",
+                        "description": "The word to get the definition for."
+                    }
+                },
+                "required": [
+                    "word"
+                ]
+            }
+        },
+        "model_answer": "dictionary.get_definition(word=\"serendipity\")"
+    },
+    {
+        "question": "Convert 10 miles to kilometers.",
+        "function": {
+            "name": "Unit Converter",
+            "api_call": "unit_conversion.convert",
+            "description": "Convert a value from one unit to another.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "number",
+                        "description": "The value to be converted."
+                    },
+                    "from_unit": {
+                        "type": "string",
+                        "description": "The unit to convert from."
+                    },
+                    "to_unit": {
+                        "type": "string",
+                        "description": "The unit to convert to."
+                    }
+                },
+                "required": [
+                    "value",
+                    "from_unit",
+                    "to_unit"
+                ]
+            }
+        },
+        "model_answer": "unit_conversion.convert(value=10, from_unit=\"miles\", to_unit=\"kilometers\")"
+    },
+    {
+        "question": "Get the current exchange rate between US dollars and Euros.",
+        "function": {
+            "name": "Currency Converter",
+            "api_call": "currency_conversion.get_exchange_rate",
+            "description": "Retrieve the current exchange rate between two currencies.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "base_currency": {
+                        "type": "string",
+                        "description": "The base currency."
+                    },
+                    "target_currency": {
+                        "type": "string",
+                        "description": "The target currency."
+                    }
+                },
+                "required": [
+                    "base_currency",
+                    "target_currency"
+                ]
+            }
+        },
+        "model_answer": "currency_conversion.get_exchange_rate(base_currency=\"USD\", target_currency=\"EUR\")"
+    },
+    {
+        "question": "Search for a movie with the title 'The Shawshank Redemption'.",
+        "function": {
+            "name": "Movie Search",
+            "api_call": "movie.search",
+            "description": "Search for a movie by its title.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "description": "The title of the movie."
+                    }
+                },
+                "required": [
+                    "title"
+                ]
+            }
+        },
+        "model_answer": "movie.search(title=\"The Shawshank Redemption\")"
+    },
+    {
+        "question": "Get the current stock price of Apple Inc.",
+        "function": {
+            "name": "Stock Price",
+            "api_call": "stock.get_price",
+            "description": "Retrieve the current stock price of a specific company.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "company": {
+                        "type": "string",
+                        "description": "The name of the company."
+                    }
+                },
+                "required": [
+                    "company"
+                ]
+            }
+        },
+        "model_answer": "stock.get_price(company=\"Apple Inc.\")"
+    },
+    {
+        "question": "Find a park with a playground and picnic area near me in Chicago, Illinois.",
+        "function": {
+          "name": "Park Locator",
+          "api_call": "park.find_nearby",
+          "description": "Locate nearby parks with specific features like playgrounds and picnic areas.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "string",
+                "description": "The city and state, e.g., Chicago, IL"
+              },
+              "features": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["Playground", "Picnic Area", "Basketball Court"]
+                },
+                "description": "Preferred park features."
+              }
+            },
+            "required": ["location"]
+          }
+        },
+        "model_answer": "park.find_nearby(location=\"Chicago, Illinois\", features=[\"Playground\", \"Picnic Area\"])"
+      },
+      {
+        "question": "Translate 'Hello, world!' into Spanish.",
+        "function": {
+          "name": "Translation Service",
+          "api_call": "translation.translate",
+          "description": "Translate text from one language to another.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "text": {
+                "type": "string",
+                "description": "The text to be translated."
+              },
+              "target_language": {
+                "type": "string",
+                "description": "The target language for translation."
+              }
+            },
+            "required": ["text", "target_language"]
+          }
+        },
+        "model_answer": "translation.translate(text=\"Hello, world!\", target_language=\"Spanish\")"
+      },
+      {
+        "question": "Find a dog-friendly hiking trail in Los Angeles, California.",
+        "function": {
+          "name": "Hiking Trail Finder",
+          "api_call": "trail.find_nearby",
+          "description": "Locate nearby hiking trails with specific features like dog-friendliness.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "string",
+                "description": "The city and state, e.g., Los Angeles, CA"
+              },
+              "features": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["Dog-Friendly", "Scenic Views", "Waterfall"]
+                },
+                "description": "Preferred trail features."
+              }
+            },
+            "required": ["location"]
+          }
+        },
+        "model_answer": "trail.find_nearby(location=\"Los Angeles, California\", features=[\"Dog-Friendly\"])"
+      },
+      {
+        "question": "Find a nearby hardware store in San Jose, California that's open on Sundays.",
+        "function": {
+          "name": "Hardware Store Locator",
+          "api_call": "store.find_nearby",
+          "description": "Locate nearby hardware stores with specific criteria, such as open status.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "string",
+                "description": "The city and state, e.g., San Jose, CA"
+              },
+              "open_on_sundays": {
+                "type": "boolean",
+                "description": "Whether the store should be open on Sundays."
+              }
+            },
+            "required": ["location"]
+          }
+        },
+        "model_answer": "store.find_nearby(location=\"San Jose, California\", open_on_sundays=true)"
+      },
+      {
+        "question": "Find me a vegan restaurant in Austin, Texas that's open for dinner on weekdays.",
+        "function": {
+          "name": "Restaurant Finder",
+          "api_call": "restaurant.find_nearby",
+          "description": "Find a suitable restaurant given the location, type of cuisine, and open status as parameters.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "string",
+                "description": "The city and state, e.g., Austin, TX"
+              },
+              "cuisine": {
+                "type": "string",
+                "enum": ["Vegan", "Italian", "Mexican"]
+              },
+              "open_for_dinner": {
+                "type": "boolean",
+                "description": "Whether the restaurant should be open for dinner on weekdays."
+              }
+            },
+            "required": ["location"]
+          }
+        },
+        "model_answer": "restaurant.find_nearby(location=\"Austin, Texas\", cuisine=\"Vegan\", open_for_dinner=true)"
+      },
+      {
+        "question": "Set a timer for 20 minutes to remind me to check the oven.",
+        "function": {
+          "name": "Timer",
+          "api_call": "timer.set",
+          "description": "Set a timer for a specific duration with a reminder message.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "duration": {
+                "type": "integer",
+                "description": "Duration of the timer in minutes."
+              },
+              "message": {
+                "type": "string",
+                "description": "Reminder message."
+              }
+            },
+            "required": ["duration", "message"]
+          }
+        },
+        "model_answer": "timer.set(duration=20, message=\"Check the oven\")"
+      },
+      {
+        "question": "Search for available parking spots near the Golden Gate Bridge in San Francisco.",
+        "function": {
+          "name": "Parking Spot Finder",
+          "api_call": "parking.find_nearby",
+          "description": "Find available parking spots in the vicinity of a specific location.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "string",
+                "description": "The area or landmark, e.g., Golden Gate Bridge, San Francisco"
+              }
+            },
+            "required": ["location"]
+          }
+        },
+        "model_answer": "parking.find_nearby(location=\"Golden Gate Bridge, San Francisco\")"
+      },
+      {
+        "question": "Recommend a good book to read based on my interest in science fiction.",
+        "function": {
+          "name": "Book Recommendation",
+          "api_call": "book.recommend",
+          "description": "Get a book recommendation based on the user's interests or preferences.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "interest": {
+                "type": "string",
+                "description": "User's interest or preferred genre, e.g., 'Science Fiction'"
+              }
+            },
+            "required": ["interest"]
+          }
+        },
+        "model_answer": "book.recommend(interest=\"Science Fiction\")"
+      },
+    {
+        "question": "Find the current exchange rate between USD and EUR.",
+        "function": {
+            "name": "Exchange Rate",
+            "api_call": "exchange_rate.get",
+            "description": "Retrieve the current exchange rate between two currencies.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "base_currency": {
+                        "type": "string",
+                        "description": "The base currency for conversion."
+                    },
+                    "target_currency": {
+                        "type": "string",
+                        "description": "The target currency for conversion."
+                    }
+                },
+                "required": [
+                    "base_currency",
+                    "target_currency"
+                ]
+            }
+        },
+        "model_answer": "exchange_rate.get(base_currency=\"USD\", target_currency=\"EUR\")"
+    },
+    {
+        "question": "Search for available rental cars in Los Angeles for a specific date range.",
+        "function": {
+            "name": "Car Rental Search",
+            "api_call": "car_rental.search",
+            "description": "Search for available rental cars based on location and date range.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The city or location for the car rental search."
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "The start date of the rental period."
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "The end date of the rental period."
+                    }
+                },
+                "required": [
+                    "location",
+                    "start_date",
+                    "end_date"
+                ]
+            }
+        },
+        "model_answer": "car_rental.search(location=\"Los Angeles\", start_date=\"2023-09-01\", end_date=\"2023-09-10\")"
+    },
+    {
+        "question": "Find the current time in Tokyo, Japan.",
+        "function": {
+            "name": "Timezone Converter",
+            "api_call": "timezone.convert",
+            "description": "Convert the current time between different time zones.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The city or location for the time conversion."
+                    },
+                    "timezone": {
+                        "type": "string",
+                        "description": "The target timezone for the conversion."
+                    }
+                },
+                "required": [
+                    "location",
+                    "timezone"
+                ]
+            }
+        },
+        "model_answer": "timezone.convert(location=\"Tokyo, Japan\", timezone=\"Asia/Tokyo\")"
+    },
+    {
+        "question": "Get the latest news articles related to technology.",
+        "function": {
+            "name": "News Search",
+            "api_call": "news.search",
+            "description": "Search for news articles based on specific topics or categories.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "topic": {
+                        "type": "string",
+                        "description": "The specific topic or category for the news search."
+                    }
+                },
+                "required": [
+                    "topic"
+                ]
+            }
+        },
+        "model_answer": "news.search(topic=\"technology\")"
+    },
+    {
+        "question": "Find the nearest ATM to my current location that supports cash deposits.",
+        "function": {
+            "name": "ATM Locator",
+            "api_call": "atm.find_nearby",
+            "description": "Locate the nearest ATM based on the current location and specific features.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "Current location for the search."
+                    },
+                    "feature": {
+                        "type": "string",
+                        "enum": [
+                            "Cash Deposits",
+                            "24/7 Access",
+                            "Wheelchair Accessible"
+                        ],
+                        "description": "Desired features of the ATM."
+                    }
+                },
+                "required": [
+                    "location"
+                ]
+            }
+        },
+        "model_answer": "atm.find_nearby(location=\"current_location\", feature=\"Cash Deposits\")"
+    },
+    {
+        "question": "Find the top-rated hiking trails near San Francisco.",
+        "function": {
+            "name": "Hiking Trail Search",
+            "api_call": "hiking_trail.search",
+            "description": "Search for top-rated hiking trails based on location.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The city or location for the hiking trail search."
+                    }
+                },
+                "required": [
+                    "location"
+                ]
+            }
+        },
+        "model_answer": "hiking_trail.search(location=\"San Francisco\")"
+    },
+    {
+        "question": "Get the current exchange rate between USD and EUR.",
+        "function": {
+            "name": "Currency Exchange",
+            "api_call": "exchange_rate.get",
+            "description": "Retrieve the current exchange rate between two currencies.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "base_currency": {
+                        "type": "string",
+                        "description": "The base currency for conversion."
+                    },
+                    "target_currency": {
+                        "type": "string",
+                        "description": "The target currency for conversion."
+                    }
+                },
+                "required": [
+                    "base_currency",
+                    "target_currency"
+                ]
+            }
+        },
+        "model_answer": "exchange_rate.get(base_currency=\"USD\", target_currency=\"EUR\")"
+    },
+    {
+        "question": "Search for a hotel in Miami, Florida with a pool and gym facilities.",
+        "function": {
+            "name": "Hotel Search",
+            "api_call": "hotel.search",
+            "description": "Search for hotels based on specific criteria like amenities.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The city and state, e.g. Miami, FL"
+                    },
+                    "amenities": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "Pool",
+                                "Gym",
+                                "Spa",
+                                "Restaurant"
+                            ]
+                        },
+                        "description": "Preferred amenities."
+                    }
+                },
+                "required": [
+                    "location"
+                ]
+            }
+        },
+        "model_answer": "hotel.search(location=\"Miami, Florida\", amenities=[\"Pool\", \"Gym\"])"
+    },
+    {
+        "question": "Get the current time in Tokyo, Japan.",
+        "function": {
+            "name": "Timezone Converter",
+            "api_call": "timezone.convert",
+            "description": "Convert the current time from one timezone to another.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The city and country, e.g. Tokyo, Japan"
+                    },
+                    "target_timezone": {
+                        "type": "string",
+                        "description": "The target timezone for conversion."
+                    }
+                },
+                "required": [
+                    "location",
+                    "target_timezone"
+                ]
+            }
+        },
+        "model_answer": "timezone.convert(location=\"Tokyo, Japan\", target_timezone=\"Asia/Tokyo\")"
+    },
+    {
+        "question": "Get the latest news headlines from CNN.",
+        "function": {
+            "name": "News Headlines",
+            "api_call": "news.get_headlines",
+            "description": "Retrieve the latest news headlines from a specific news source.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "news_source": {
+                        "type": "string",
+                        "description": "The news source, e.g. CNN"
+                    },
+                    "category": {
+                        "type": "string",
+                        "description": "The category of news, e.g. politics, sports"
+                    }
+                },
+                "required": [
+                    "news_source"
+                ]
+            }
+        },
+        "model_answer": "news.get_headlines(news_source=\"CNN\")"
+    },
+    {
+        "question": "Search for a recipe for spaghetti carbonara.",
+        "function": {
+            "name": "Recipe Search",
+            "api_call": "recipe.search",
+            "description": "Search for recipes based on specific keywords or ingredients.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "keywords": {
+                        "type": "string",
+                        "description": "Keywords related to the recipe."
+                    },
+                    "dietary_restrictions": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "Vegetarian",
+                                "Vegan",
+                                "Gluten-free"
+                            ]
+                        },
+                        "description": "Dietary restrictions for the recipe."
+                    }
+                }
+            }
+        },
+        "model_answer": "recipe.search(keywords=\"spaghetti carbonara\", dietary_restrictions=[\"Vegetarian\"])"
+    },
+    {
+        "question": "Search for a movie theater in Los Angeles that is showing the latest blockbuster movie.",
+        "function": {
+            "name": "Movie Theater Search",
+            "api_call": "movie_theater.search",
+            "description": "Search for movie theaters based on location and movie availability.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The city or area, e.g. Los Angeles"
+                    },
+                    "movie_title": {
+                        "type": "string",
+                        "description": "The title of the movie."
+                    }
+                },
+                "required": [
+                    "location",
+                    "movie_title"
+                ]
+            }
+        },
+        "model_answer": "movie_theater.search(location=\"Los Angeles\", movie_title=\"Avengers: Endgame\")"
+    },
+    {
+        "question": "Calculate the compound interest for a principal amount of $5000, an interest rate of 5%, and a time period of 3 years.",
+        "function": {
+            "name": "Compound Interest Calculator",
+            "api_call": "finance.calculate_compound_interest",
+            "description": "Calculate the compound interest for a given principal amount, interest rate, and time period.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "principal": {
+                        "type": "number",
+                        "description": "The principal amount."
+                    },
+                    "interest_rate": {
+                        "type": "number",
+                        "description": "The interest rate."
+                    },
+                    "time_period": {
+                        "type": "integer",
+                        "description": "The time period in years."
+                    }
+                },
+                "required": [
+                    "principal",
+                    "interest_rate",
+                    "time_period"
+                ]
+            }
+        },
+        "model_answer": "finance.calculate_compound_interest(principal=5000, interest_rate=0.05, time_period=3)"
+    },
+    {
+        "question": "Determine the monthly mortgage payment for a loan amount of $200,000, an interest rate of 4%, and a loan term of 30 years.",
+        "function": {
+            "name": "Mortgage Payment Calculator",
+            "api_call": "finance.calculate_mortgage_payment",
+            "description": "Calculate the monthly mortgage payment for a given loan amount, interest rate, and loan term.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "loan_amount": {
+                        "type": "number",
+                        "description": "The loan amount."
+                    },
+                    "interest_rate": {
+                        "type": "number",
+                        "description": "The interest rate."
+                    },
+                    "loan_term": {
+                        "type": "integer",
+                        "description": "The loan term in years."
+                    }
+                },
+                "required": [
+                    "loan_amount",
+                    "interest_rate",
+                    "loan_term"
+                ]
+            }
+        },
+        "model_answer": "finance.calculate_mortgage_payment(loan_amount=200000, interest_rate=0.04, loan_term=30)"
+    },
+    {
+        "question": "Calculate the return on investment (ROI) for an investment of $10,000 with a profit of $2,500.",
+        "function": {
+            "name": "ROI Calculator",
+            "api_call": "finance.calculate_roi",
+            "description": "Calculate the return on investment (ROI) for a given investment amount and profit.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "investment_amount": {
+                        "type": "number",
+                        "description": "The investment amount."
+                    },
+                    "profit": {
+                        "type": "number",
+                        "description": "The profit amount."
+                    }
+                },
+                "required": [
+                    "investment_amount",
+                    "profit"
+                ]
+            }
+        },
+        "model_answer": "finance.calculate_roi(investment_amount=10000, profit=2500)"
+    },
+    {
+        "question": "Calculate the present value of a future cash flow of $5000 with a discount rate of 8% and a time period of 5 years.",
+        "function": {
+            "name": "Present Value Calculator",
+            "api_call": "finance.calculate_present_value",
+            "description": "Calculate the present value of a future cash flow based on a discount rate and time period.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "future_cash_flow": {
+                        "type": "number",
+                        "description": "The future cash flow amount."
+                    },
+                    "discount_rate": {
+                        "type": "number",
+                        "description": "The discount rate."
+                    },
+                    "time_period": {
+                        "type": "integer",
+                        "description": "The time period in years."
+                    }
+                },
+                "required": [
+                    "future_cash_flow",
+                    "discount_rate",
+                    "time_period"
+                ]
+            }
+        },
+        "model_answer": "finance.calculate_present_value(future_cash_flow=5000, discount_rate=0.08, time_period=5)"
+    },
+    {
+        "question": "Calculate the monthly car loan payment for a loan amount of $20,000, an interest rate of 6%, and a loan term of 5 years.",
+        "function": {
+            "name": "Car Loan Payment Calculator",
+            "api_call": "finance.calculate_car_loan_payment",
+            "description": "Calculate the monthly car loan payment for a given loan amount, interest rate, and loan term.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "loan_amount": {
+                        "type": "number",
+                        "description": "The loan amount."
+                    },
+                    "interest_rate": {
+                        "type": "number",
+                        "description": "The interest rate."
+                    },
+                    "loan_term": {
+                        "type": "integer",
+                        "description": "The loan term in years."
+                    }
+                },
+                "required": [
+                    "loan_amount",
+                    "interest_rate",
+                    "loan_term"
+                ]
+            }
+        },
+        "model_answer": "finance.calculate_car_loan_payment(loan_amount=20000, interest_rate=0.06, loan_term=5)"
+    },
+    {
+        "question": "Calculate the future value of an investment of $5000 with an annual interest rate of 3% and a time period of 10 years.",
+        "function": {
+            "name": "Future Value Calculator",
+            "api_call": "finance.calculate_future_value",
+            "description": "Calculate the future value of an investment based on an annual interest rate and time period.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "investment_amount": {
+                        "type": "number",
+                        "description": "The investment amount."
+                    },
+                    "interest_rate": {
+                        "type": "number",
+                        "description": "The annual interest rate."
+                    },
+                    "time_period": {
+                        "type": "integer",
+                        "description": "The time period in years."
+                    }
+                },
+                "required": [
+                    "investment_amount",
+                    "interest_rate",
+                    "time_period"
+                ]
+            }
+        },
+        "model_answer": "finance.calculate_future_value(investment_amount=5000, interest_rate=0.03, time_period=10)"
+    },
+    {
+        "question": "Calculate the minimum monthly payment for a credit card balance of $5000 with an annual interest rate of 18%.",
+        "function": {
+            "name": "Minimum Payment Calculator",
+            "api_call": "finance.calculate_minimum_payment",
+            "description": "Calculate the minimum monthly payment for a credit card balance based on the balance amount and annual interest rate.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "balance": {
+                        "type": "number",
+                        "description": "The credit card balance."
+                    },
+                    "interest_rate": {
+                        "type": "number",
+                        "description": "The annual interest rate."
+                    }
+                },
+                "required": [
+                    "balance",
+                    "interest_rate"
+                ]
+            }
+        },
+        "model_answer": "finance.calculate_minimum_payment(balance=5000, interest_rate=0.18)"
+    },
+    {
+        "question": "Calculate the return on equity (ROE) for a company with a net income of $1,000,000 and shareholder's equity of $10,000,000.",
+        "function": {
+            "name": "ROE Calculator",
+            "api_call": "finance.calculate_roe",
+            "description": "Calculate the return on equity (ROE) for a company based on net income and shareholder's equity.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "net_income": {
+                        "type": "number",
+                        "description": "The net income of the company."
+                    },
+                    "shareholders_equity": {
+                        "type": "number",
+                        "description": "The shareholder's equity of the company."
+                    }
+                },
+                "required": [
+                    "net_income",
+                    "shareholders_equity"
+                ]
+            }
+        },
+        "model_answer": "finance.calculate_roe(net_income=1000000, shareholders_equity=10000000)"
+    },
+    {
+        "question": "Calculate the monthly payment for a personal loan of $10,000 with an interest rate of 8% and a loan term of 2 years.",
+        "function": {
+            "name": "Personal Loan Payment Calculator",
+            "api_call": "finance.calculate_personal_loan_payment",
+            "description": "Calculate the monthly payment for a personal loan based on the loan amount, interest rate, and loan term.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "loan_amount": {
+                        "type": "number",
+                        "description": "The loan amount."
+                    },
+                    "interest_rate": {
+                        "type": "number",
+                        "description": "The interest rate."
+                    },
+                    "loan_term": {
+                        "type": "integer",
+                        "description": "The loan term in years."
+                    }
+                },
+                "required": [
+                    "loan_amount",
+                    "interest_rate",
+                    "loan_term"
+                ]
+            }
+        },
+        "model_answer": "finance.calculate_personal_loan_payment(loan_amount=10000, interest_rate=0.08, loan_term=2)"
+    },
+    {
+        "question": "Calculate the average stock price of Apple for the past month.",
+        "function": {
+            "name": "Stock Price Average",
+            "api_call": "stock.average_price",
+            "description": "Calculate the average price of a stock for a specified time period.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "symbol": {
+                        "type": "string",
+                        "description": "Stock symbol, e.g., AAPL for Apple."
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "Start date of the time period (YYYY-MM-DD)."
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "End date of the time period (YYYY-MM-DD)."
+                    }
+                },
+                "required": [
+                    "symbol",
+                    "start_date",
+                    "end_date"
+                ]
+            }
+        },
+        "model_answer": "stock.average_price(symbol=\"AAPL\", start_date=\"2022-01-01\", end_date=\"2022-01-31\")"
+    },
+    {
+        "question": "Simulate a random walk of a stock price for the next 10 days.",
+        "function": {
+            "name": "Stock Price Simulation",
+            "api_call": "stock.simulate_walk",
+            "description": "Generate a random walk of a stock price for a specified number of days.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "symbol": {
+                        "type": "string",
+                        "description": "Stock symbol, e.g., AAPL for Apple."
+                    },
+                    "days": {
+                        "type": "integer",
+                        "description": "Number of days for the simulation."
+                    }
+                },
+                "required": [
+                    "symbol",
+                    "days"
+                ]
+            }
+        },
+        "model_answer": "stock.simulate_walk(symbol=\"AAPL\", days=10)"
+    },
+    {
+        "question": "Calculate the correlation between the stock prices of Apple and Microsoft for the past year.",
+        "function": {
+            "name": "Stock Price Correlation",
+            "api_call": "stock.correlation",
+            "description": "Calculate the correlation between two stock prices for a specified time period.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "symbol1": {
+                        "type": "string",
+                        "description": "Stock symbol for the first company."
+                    },
+                    "symbol2": {
+                        "type": "string",
+                        "description": "Stock symbol for the second company."
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "Start date of the time period (YYYY-MM-DD)."
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "End date of the time period (YYYY-MM-DD)."
+                    }
+                },
+                "required": [
+                    "symbol1",
+                    "symbol2",
+                    "start_date",
+                    "end_date"
+                ]
+            }
+        },
+        "model_answer": "stock.correlation(symbol1=\"AAPL\", symbol2=\"MSFT\", start_date=\"2021-01-01\", end_date=\"2021-12-31\")"
+    },
+    {
+        "question": "Calculate the average daily trading volume of a stock for the past month.",
+        "function": {
+            "name": "Trading Volume Average",
+            "api_call": "trading.average_volume",
+            "description": "Calculate the average daily trading volume of a stock for a specified time period.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "symbol": {
+                        "type": "string",
+                        "description": "Stock symbol, e.g., AAPL for Apple."
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "Start date of the time period (YYYY-MM-DD)."
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "End date of the time period (YYYY-MM-DD)."
+                    }
+                },
+                "required": [
+                    "symbol",
+                    "start_date",
+                    "end_date"
+                ]
+            }
+        },
+        "model_answer": "trading.average_volume(symbol=\"AAPL\", start_date=\"2022-01-01\", end_date=\"2022-01-31\")"
+    },
+    {
+        "question": "Calculate the moving average of a stock price for the past 30 days.",
+        "function": {
+            "name": "Moving Average",
+            "api_call": "stock.moving_average",
+            "description": "Calculate the moving average of a stock price for a specified time period.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "symbol": {
+                        "type": "string",
+                        "description": "Stock symbol, e.g., AAPL for Apple."
+                    },
+                    "days": {
+                        "type": "integer",
+                        "description": "Number of days for the moving average calculation."
+                    }
+                },
+                "required": [
+                    "symbol",
+                    "days"
+                ]
+            }
+        },
+        "model_answer": "stock.moving_average(symbol=\"AAPL\", days=30)"
+    },
+    {
+        "question": "Calculate the standard deviation of a stock price for the past 90 days.",
+        "function": {
+            "name": "Stock Price Standard Deviation",
+            "api_call": "stock.standard_deviation",
+            "description": "Calculate the standard deviation of a stock price for a specified time period.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "symbol": {
+                        "type": "string",
+                        "description": "Stock symbol, e.g., AAPL for Apple."
+                    },
+                    "days": {
+                        "type": "integer",
+                        "description": "Number of days for the standard deviation calculation."
+                    }
+                },
+                "required": [
+                    "symbol",
+                    "days"
+                ]
+            }
+        },
+        "model_answer": "stock.standard_deviation(symbol=\"AAPL\", days=90)"
+    },
+    {
+        "question": "Calculate the exponential moving average of a stock price for the past 50 days.",
+        "function": {
+            "name": "Exponential Moving Average",
+            "api_call": "stock.exponential_moving_average",
+            "description": "Calculate the exponential moving average of a stock price for a specified time period.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "symbol": {
+                        "type": "string",
+                        "description": "Stock symbol, e.g., AAPL for Apple."
+                    },
+                    "days": {
+                        "type": "integer",
+                        "description": "Number of days for the exponential moving average calculation."
+                    }
+                },
+                "required": [
+                    "symbol",
+                    "days"
+                ]
+            }
+        },
+        "model_answer": "stock.exponential_moving_average(symbol=\"AAPL\", days=50)"
+    },
+    {
+        "question": "Calculate the relative strength index (RSI) of a stock for the past 14 days.",
+        "function": {
+            "name": "Relative Strength Index",
+            "api_call": "stock.relative_strength_index",
+            "description": "Calculate the relative strength index (RSI) of a stock for a specified time period.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "symbol": {
+                        "type": "string",
+                        "description": "Stock symbol, e.g., AAPL for Apple."
+                    },
+                    "days": {
+                        "type": "integer",
+                        "description": "Number of days for the RSI calculation."
+                    }
+                },
+                "required": [
+                    "symbol",
+                    "days"
+                ]
+            }
+        },
+        "model_answer": "stock.relative_strength_index(symbol=\"AAPL\", days=14)"
+    },
+    {
+        "question": "Calculate the average trading volume of a stock for the past 6 months.",
+        "function": {
+            "name": "Trading Volume Average",
+            "api_call": "trading.average_volume",
+            "description": "Calculate the average trading volume of a stock for a specified time period.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "symbol": {
+                        "type": "string",
+                        "description": "Stock symbol, e.g., AAPL for Apple."
+                    },
+                    "start_date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "Start date of the time period (YYYY-MM-DD)."
+                    },
+                    "end_date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "End date of the time period (YYYY-MM-DD)."
+                    }
+                },
+                "required": [
+                    "symbol",
+                    "start_date",
+                    "end_date"
+                ]
+            }
+        },
+        "model_answer": "trading.average_volume(symbol=\"AAPL\", start_date=\"2021-07-01\", end_date=\"2021-12-31\")"
+    },
+    {
+        "question": "Calculate the square root of a given number.",
+        "function": {
+            "name": "Square Root",
+            "api_call": "math.sqrt",
+            "description": "Calculate the square root of a given number.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "number": {
+                        "type": "number",
+                        "description": "The number for which square root needs to be calculated."
+                    }
+                },
+                "required": [
+                    "number"
+                ]
+            }
+        },
+        "model_answer": "math.sqrt(number=16)"
+    },
+    {
+        "question": "Convert a temperature from Celsius to Fahrenheit.",
+        "function": {
+            "name": "Temperature Conversion",
+            "api_call": "temperature.celsius_to_fahrenheit",
+            "description": "Convert a temperature from Celsius to Fahrenheit.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "celsius": {
+                        "type": "number",
+                        "description": "The temperature in Celsius."
+                    }
+                },
+                "required": [
+                    "celsius"
+                ]
+            }
+        },
+        "model_answer": "temperature.celsius_to_fahrenheit(celsius=25)"
+    },
+    {
+        "question": "Calculate the factorial of a given number.",
+        "function": {
+            "name": "Factorial Calculation",
+            "api_call": "math.factorial",
+            "description": "Calculate the factorial of a given number.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "number": {
+                        "type": "integer",
+                        "description": "The number for which factorial needs to be calculated."
+                    }
+                },
+                "required": [
+                    "number"
+                ]
+            }
+        },
+        "model_answer": "math.factorial(number=5)"
+    },
+    {
+        "question": "Generate a random number between a given range.",
+        "function": {
+            "name": "Random Number Generator",
+            "api_call": "random.randint",
+            "description": "Generate a random number between a given range.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "min": {
+                        "type": "integer",
+                        "description": "The minimum value of the range."
+                    },
+                    "max": {
+                        "type": "integer",
+                        "description": "The maximum value of the range."
+                    }
+                },
+                "required": [
+                    "min",
+                    "max"
+                ]
+            }
+        },
+        "model_answer": "random.randint(min=1, max=10)"
+    },
+    {
+        "question": "Calculate the exponential value of a given number.",
+        "function": {
+            "name": "Exponential Calculation",
+            "api_call": "math.exp",
+            "description": "Calculate the exponential value of a given number.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "number": {
+                        "type": "number",
+                        "description": "The number for which exponential value needs to be calculated."
+                    }
+                },
+                "required": [
+                    "number"
+                ]
+            }
+        },
+        "model_answer": "math.exp(number=2)"
+    },
+    {
+        "question": "Calculate the sine value of a given angle in radians.",
+        "function": {
+            "name": "Sine Calculation",
+            "api_call": "math.sin",
+            "description": "Calculate the sine value of a given angle in radians.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "angle": {
+                        "type": "number",
+                        "description": "The angle in radians."
+                    }
+                },
+                "required": [
+                    "angle"
+                ]
+            }
+        },
+        "model_answer": "math.sin(angle=0.5)"
+    },
+    {
+        "question": "Calculate the sum of two given numbers.",
+        "function": {
+            "name": "Addition",
+            "api_call": "math.add",
+            "description": "Calculate the sum of two given numbers.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "num1": {
+                        "type": "number",
+                        "description": "The first number."
+                    },
+                    "num2": {
+                        "type": "number",
+                        "description": "The second number."
+                    }
+                },
+                "required": [
+                    "num1",
+                    "num2"
+                ]
+            }
+        },
+        "model_answer": "math.add(num1=5, num2=3)"
+    },
+    {
+        "question": "Calculate the logarithm of a given number.",
+        "function": {
+            "name": "Logarithm Calculation",
+            "api_call": "math.log",
+            "description": "Calculate the logarithm of a given number.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "number": {
+                        "type": "number",
+                        "description": "The number for which logarithm needs to be calculated."
+                    },
+                    "base": {
+                        "type": "number",
+                        "description": "The base of the logarithm. Default is e (natural logarithm)."
+                    }
+                },
+                "required": [
+                    "number"
+                ]
+            }
+        },
+        "model_answer": "math.log(number=10, base=2)"
+    },
+    {
+        "question": "Calculate the mean of a given set of numbers.",
+        "function": {
+            "name": "Mean Calculation",
+            "api_call": "statistics.mean",
+            "description": "Calculate the mean of a given set of numbers.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "numbers": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        },
+                        "description": "The set of numbers."
+                    }
+                },
+                "required": [
+                    "numbers"
+                ]
+            }
+        },
+        "model_answer": "statistics.mean(numbers=[2, 4, 6, 8, 10])"
+    },{
+        "question": "Find the highest scoring player in a multiplayer online game.",
+        "function": {
+            "name": "Player Leaderboard",
+            "api_call": "game.get_leaderboard",
+            "description": "Retrieve the leaderboard for a multiplayer online game.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "game_id": {
+                        "type": "integer",
+                        "description": "ID of the game."
+                    },
+                    "sort_by": {
+                        "type": "string",
+                        "enum": [
+                            "score",
+                            "level",
+                            "kills"
+                        ],
+                        "description": "Parameter to sort the leaderboard by."
+                    },
+                    "limit": {
+                        "type": "integer",
+                        "description": "Number of top players to retrieve."
+                    }
+                },
+                "required": [
+                    "game_id",
+                    "sort_by",
+                    "limit"
+                ]
+            }
+        },
+        "model_answer": "game.get_leaderboard(game_id=123, sort_by='score', limit=1)"
+    },
+    {
+        "question": "Retrieve the list of available weapons in a role-playing game.",
+        "function": {
+            "name": "Weapon Catalog",
+            "api_call": "game.get_weapons",
+            "description": "Get a list of weapons available in a role-playing game.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "game_id": {
+                        "type": "integer",
+                        "description": "ID of the game."
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "sword",
+                            "axe",
+                            "bow",
+                            "staff"
+                        ],
+                        "description": "Type of weapons to retrieve."
+                    },
+                    "rarity": {
+                        "type": "string",
+                        "enum": [
+                            "common",
+                            "rare",
+                            "epic",
+                            "legendary"
+                        ],
+                        "description": "Rarity of weapons to retrieve."
+                    }
+                },
+                "required": [
+                    "game_id",
+                    "type",
+                    "rarity"
+                ]
+            }
+        },
+        "model_answer": "game.get_weapons(game_id=456, type='sword', rarity='legendary')"
+    },
+    {
+        "question": "Retrieve the list of available maps in a first-person shooter game.",
+        "function": {
+            "name": "Map Catalog",
+            "api_call": "game.get_maps",
+            "description": "Get a list of maps available in a first-person shooter game.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "game_id": {
+                        "type": "integer",
+                        "description": "ID of the game."
+                    },
+                    "game_mode": {
+                        "type": "string",
+                        "enum": [
+                            "team_deathmatch",
+                            "capture_the_flag",
+                            "free_for_all"
+                        ],
+                        "description": "Game mode to filter the maps by."
+                    },
+                    "player_count": {
+                        "type": "integer",
+                        "description": "Number of players supported by the maps."
+                    }
+                },
+                "required": [
+                    "game_id",
+                    "game_mode",
+                    "player_count"
+                ]
+            }
+        },
+        "model_answer": "game.get_maps(game_id=789, game_mode='team_deathmatch', player_count=10)"
+    },
+    {
+        "question": "Retrieve the list of available quests in a fantasy RPG game.",
+        "function": {
+            "name": "Quest Catalog",
+            "api_call": "game.get_quests",
+            "description": "Get a list of quests available in a fantasy RPG game.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "game_id": {
+                        "type": "integer",
+                        "description": "ID of the game."
+                    },
+                    "difficulty": {
+                        "type": "string",
+                        "enum": [
+                            "easy",
+                            "medium",
+                            "hard"
+                        ],
+                        "description": "Difficulty level of the quests."
+                    },
+                    "reward_type": {
+                        "type": "string",
+                        "enum": [
+                            "experience",
+                            "gold",
+                            "item"
+                        ],
+                        "description": "Type of reward offered by the quests."
+                    }
+                },
+                "required": [
+                    "game_id",
+                    "difficulty",
+                    "reward_type"
+                ]
+            }
+        },
+        "model_answer": "game.get_quests(game_id=987, difficulty='medium', reward_type='gold')"
+    },
+    {
+        "question": "Retrieve the list of available characters in a fighting game.",
+        "function": {
+            "name": "Character Catalog",
+            "api_call": "game.get_characters",
+            "description": "Get a list of characters available in a fighting game.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "game_id": {
+                        "type": "integer",
+                        "description": "ID of the game."
+                    },
+                    "combat_style": {
+                        "type": "string",
+                        "enum": [
+                            "melee",
+                            "ranged",
+                            "hybrid"
+                        ],
+                        "description": "Combat style of the characters."
+                    },
+                    "tier": {
+                        "type": "string",
+                        "enum": [
+                            "S",
+                            "A",
+                            "B",
+                            "C"
+                        ],
+                        "description": "Tier ranking of the characters."
+                    }
+                },
+                "required": [
+                    "game_id",
+                    "combat_style",
+                    "tier"
+                ]
+            }
+        },
+        "model_answer": "game.get_characters(game_id=654, combat_style='melee', tier='A')"
+    },
+    {
+        "question": "Schedule a meeting with John and Jane for tomorrow at 2 PM.",
+        "function": {
+            "name": "Meeting Scheduler",
+            "api_call": "meeting.schedule",
+            "description": "Schedule a meeting with specified participants at a given time.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "participants": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "description": "Names of the participants."
+                        }
+                    },
+                    "date": {
+                        "type": "string",
+                        "description": "Preferred meeting date (e.g., YYYY-MM-DD)."
+                    },
+                    "time": {
+                        "type": "string",
+                        "description": "Preferred meeting time (e.g., HH:MM AM/PM)."
+                    }
+                },
+                "required": [
+                    "participants",
+                    "date",
+                    "time"
+                ]
+            }
+        },
+        "model_answer": "meeting.schedule(participants=['John', 'Jane'], date='2023-10-24', time='2:00 PM')"
+    },
+    {
+        "question": "Reschedule the team meeting to next week on Wednesday at 10 AM.",
+        "function": {
+            "name": "Meeting Rescheduler",
+            "api_call": "meeting.reschedule",
+            "description": "Reschedule a meeting to a new date and time.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "meeting_id": {
+                        "type": "string",
+                        "description": "Unique identifier of the meeting."
+                    },
+                    "new_date": {
+                        "type": "string",
+                        "description": "New meeting date (e.g., YYYY-MM-DD)."
+                    },
+                    "new_time": {
+                        "type": "string",
+                        "description": "New meeting time (e.g., HH:MM AM/PM)."
+                    }
+                },
+                "required": [
+                    "meeting_id",
+                    "new_date",
+                    "new_time"
+                ]
+            }
+        },
+        "model_answer": "meeting.reschedule(meeting_id='12345', new_date='2023-10-25', new_time='10:00 AM')"
+    },
+    {
+        "question": "Find a meeting room available for tomorrow's presentation from 1 PM to 3 PM.",
+        "function": {
+            "name": "Meeting Room Finder",
+            "api_call": "meeting_room.find_available",
+            "description": "Find an available meeting room for a specified time slot.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "date": {
+                        "type": "string",
+                        "description": "Preferred meeting date (e.g., YYYY-MM-DD)."
+                    },
+                    "start_time": {
+                        "type": "string",
+                        "description": "Preferred start time of the meeting (e.g., HH:MM AM/PM)."
+                    },
+                    "end_time": {
+                        "type": "string",
+                        "description": "Preferred end time of the meeting (e.g., HH:MM AM/PM)."
+                    }
+                },
+                "required": [
+                    "date",
+                    "start_time",
+                    "end_time"
+                ]
+            }
+        },
+        "model_answer": "meeting_room.find_available(date='2023-10-24', start_time='1:00 PM', end_time='3:00 PM')"
+    },
+    {
+        "question": "Invite all team members to a brainstorming session next Monday at 9 AM.",
+        "function": {
+            "name": "Meeting Inviter",
+            "api_call": "meeting.invite",
+            "description": "Invite participants to a meeting at a specified time.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "participants": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "description": "Names of the participants."
+                        }
+                    },
+                    "date": {
+                        "type": "string",
+                        "description": "Meeting date (e.g., YYYY-MM-DD)."
+                    },
+                    "time": {
+                        "type": "string",
+                        "description": "Meeting time (e.g., HH:MM AM/PM)."
+                    }
+                },
+                "required": [
+                    "participants",
+                    "date",
+                    "time"
+                ]
+            }
+        },
+        "model_answer": "meeting.invite(participants=['John', 'Jane', 'Mike', 'Sarah'], date='2023-10-30', time='9:00 AM')"
+    },
+    {
+        "question": "Check the availability of the conference room for next Friday's board meeting at 2 PM.",
+        "function": {
+            "name": "Conference Room Availability Checker",
+            "api_call": "conference_room.check_availability",
+            "description": "Check the availability of a conference room for a specified meeting.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "meeting_type": {
+                        "type": "string",
+                        "description": "Type or purpose of the meeting."
+                    },
+                    "date": {
+                        "type": "string",
+                        "description": "Meeting date (e.g., YYYY-MM-DD)."
+                    },
+                    "time": {
+                        "type": "string",
+                        "description": "Meeting time (e.g., HH:MM AM/PM)."
+                    }
+                },
+                "required": [
+                    "meeting_type",
+                    "date",
+                    "time"
+                ]
+            }
+        },
+        "model_answer": "conference_room.check_availability(meeting_type='Board Meeting', date='2023-10-27', time='2:00 PM')"
+    },
+    {
+        "question": "Schedule a video conference call with the remote team members on Thursday at 11 AM.",
+        "function": {
+            "name": "Video Conference Scheduler",
+            "api_call": "video_conference.schedule",
+            "description": "Schedule a video conference call at a specified time.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "participants": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "description": "Names of the remote team members."
+                        }
+                    },
+                    "date": {
+                        "type": "string",
+                        "description": "Preferred video conference date (e.g., YYYY-MM-DD)."
+                    },
+                    "time": {
+                        "type": "string",
+                        "description": "Preferred video conference time (e.g., HH:MM AM/PM)."
+                    }
+                },
+                "required": [
+                    "participants",
+                    "date",
+                    "time"
+                ]
+            }
+        },
+        "model_answer": "video_conference.schedule(participants=['John', 'Jane', 'Mike', 'Sarah'], date='2023-10-26', time='11:00 AM')"
+    },
+    {
+        "question": "Reschedule the client meeting to next month on the 5th at 3 PM.",
+        "function": {
+            "name": "Client Meeting Rescheduler",
+            "api_call": "client_meeting.reschedule",
+            "description": "Reschedule a client meeting to a new date and time.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "meeting_id": {
+                        "type": "string",
+                        "description": "Unique identifier of the client meeting."
+                    },
+                    "new_date": {
+                        "type": "string",
+                        "description": "New meeting date (e.g., YYYY-MM-DD)."
+                    },
+                    "new_time": {
+                        "type": "string",
+                        "description": "New meeting time (e.g., HH:MM AM/PM)."
+                    }
+                },
+                "required": [
+                    "meeting_id",
+                    "new_date",
+                    "new_time"
+                ]
+            }
+        },
+        "model_answer": "client_meeting.reschedule(meeting_id='67890', new_date='2023-11-05', new_time='3:00 PM')"
+    },
+    {
+        "question": "Find an available meeting slot for a team discussion on the project next week.",
+        "function": {
+            "name": "Meeting Slot Finder",
+            "api_call": "meeting_slot.find_available",
+            "description": "Find an available meeting slot for a team discussion on a specific project.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "project": {
+                        "type": "string",
+                        "description": "Name or ID of the project."
+                    },
+                    "date": {
+                        "type": "string",
+                        "description": "Preferred meeting date (e.g., YYYY-MM-DD)."
+                    }
+                },
+                "required": [
+                    "project",
+                    "date"
+                ]
+            }
+        },
+        "model_answer": "meeting_slot.find_available(project='Project X', date='2023-10-31')"
+    },
+    {
+        "question": "Schedule a lunch meeting with the marketing team members on Friday at 12:30 PM.",
+        "function": {
+            "name": "Lunch Meeting Scheduler",
+            "api_call": "lunch_meeting.schedule",
+            "description": "Schedule a lunch meeting with specified team members at a given time.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "team_members": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "description": "Names of the marketing team members."
+                        }
+                    },
+                    "date": {
+                        "type": "string",
+                        "description": "Preferred lunch meeting date (e.g., YYYY-MM-DD)."
+                    },
+                    "time": {
+                        "type": "string",
+                        "description": "Preferred lunch meeting time (e.g., HH:MM AM/PM)."
+                    }
+                },
+                "required": [
+                    "team_members",
+                    "date",
+                    "time"
+                ]
+            }
+        },
+        "model_answer": "lunch_meeting.schedule(team_members=['John', 'Jane', 'Mike', 'Sarah'], date='2023-10-27', time='12:30 PM')"
+    },
+    {
+        "question": "Find a guided tour in Rome, Italy for a group of 10 people.",
+        "function": {
+            "name": "Tour Booking",
+            "api_call": "tour.book",
+            "description": "Book a guided tour for a specified number of participants and destination.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "destination": {
+                        "type": "string",
+                        "description": "The city or location of the tour."
+                    },
+                    "group_size": {
+                        "type": "integer",
+                        "description": "Number of participants in the group."
+                    },
+                    "date": {
+                        "type": "string",
+                        "description": "Preferred tour date (e.g., YYYY-MM-DD)."
+                    }
+                },
+                "required": [
+                    "destination",
+                    "group_size"
+                ]
+            }
+        },
+        "model_answer": "tour.book(destination=\"Rome, Italy\", group_size=10)"
+    },
+    {
+        "question": "Find the best hiking trails near Vancouver, Canada with scenic views.",
+        "function": {
+            "name": "Hiking Trail Locator",
+            "api_call": "hiking_trail.find_nearby",
+            "description": "Locate nearby hiking trails based on specific criteria like scenic views.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The city and country, e.g. Vancouver, Canada"
+                    },
+                    "criteria": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "Scenic Views",
+                                "Waterfalls",
+                                "Wildlife",
+                                "Difficulty Level"
+                            ]
+                        },
+                        "description": "Preferred criteria for hiking trails."
+                    }
+                },
+                "required": [
+                    "location"
+                ]
+            }
+        },
+        "model_answer": "hiking_trail.find_nearby(location=\"Vancouver, Canada\", criteria=[\"Scenic Views\"])"
+    },
+    {
+        "question": "Find a museum in Paris, France with a guided tour available in English.",
+        "function": {
+            "name": "Museum Locator",
+            "api_call": "museum.find_nearby",
+            "description": "Locate nearby museums based on specific criteria like guided tours in English.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The city and country, e.g. Paris, France"
+                    },
+                    "criteria": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "Guided Tours",
+                                "English Language",
+                                "Art Collections",
+                                "Historical Exhibits"
+                            ]
+                        },
+                        "description": "Preferred criteria for museums."
+                    }
+                },
+                "required": [
+                    "location"
+                ]
+            }
+        },
+        "model_answer": "museum.find_nearby(location=\"Paris, France\", criteria=[\"Guided Tours\", \"English Language\"])"
+    },
+    {
+        "question": "Find a beach resort in Cancun, Mexico with all-inclusive amenities.",
+        "function": {
+            "name": "Resort Locator",
+            "api_call": "resort.find_nearby",
+            "description": "Locate nearby beach resorts based on specific amenities like all-inclusive packages.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The city and country, e.g. Cancun, Mexico"
+                    },
+                    "amenities": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "All-Inclusive",
+                                "Private Beach",
+                                "Spa",
+                                "Water Sports"
+                            ]
+                        },
+                        "description": "Preferred amenities for beach resorts."
+                    }
+                },
+                "required": [
+                    "location"
+                ]
+            }
+        },
+        "model_answer": "resort.find_nearby(location=\"Cancun, Mexico\", amenities=[\"All-Inclusive\"])"
+    },
+    {
+        "question": "Find the summary of a book by its ISBN number.",
+        "function": {
+            "name": "Book Summary",
+            "api_call": "book.get_summary",
+            "description": "Retrieve the summary of a book based on its ISBN number.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "isbn": {
+                        "type": "string",
+                        "description": "ISBN number of the book."
+                    }
+                },
+                "required": [
+                    "isbn"
+                ]
+            }
+        },
+        "model_answer": "book.get_summary(isbn=\"978-3-16-148410-0\")"
+    },
+    {
+        "question": "Get a list of classic novels written by Jane Austen.",
+        "function": {
+            "name": "Classic Novels",
+            "api_call": "novels.get_classics",
+            "description": "Retrieve a list of classic novels written by a specific author.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "author": {
+                        "type": "string",
+                        "description": "Name of the author."
+                    }
+                },
+                "required": [
+                    "author"
+                ]
+            }
+        },
+        "model_answer": "novels.get_classics(author=\"Jane Austen\")"
+    },
+    {
+        "question": "Search for poems written in the Romantic era.",
+        "function": {
+            "name": "Poem Search",
+            "api_call": "poems.search",
+            "description": "Search for poems based on a specific era or time period.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "era": {
+                        "type": "string",
+                        "description": "Era or time period of the poems."
+                    }
+                },
+                "required": [
+                    "era"
+                ]
+            }
+        },
+        "model_answer": "poems.search(era=\"Romantic\")"
+    },
+    {
+        "question": "Get the list of Pulitzer Prize-winning novels from the past decade.",
+        "function": {
+            "name": "Pulitzer Prize Novels",
+            "api_call": "novels.get_pulitzer_winners",
+            "description": "Retrieve a list of novels that have won the Pulitzer Prize within a specific time frame.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "start_year": {
+                        "type": "integer",
+                        "description": "Start year of the time frame."
+                    },
+                    "end_year": {
+                        "type": "integer",
+                        "description": "End year of the time frame."
+                    }
+                },
+                "required": [
+                    "start_year",
+                    "end_year"
+                ]
+            }
+        },
+        "model_answer": "novels.get_pulitzer_winners(start_year=2011, end_year=2021)"
+    },
+    {
+        "question": "Find the author of a specific poem.",
+        "function": {
+            "name": "Poem Author",
+            "api_call": "poem.get_author",
+            "description": "Retrieve the author of a specific poem.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "description": "Title of the poem."
+                    }
+                },
+                "required": [
+                    "title"
+                ]
+            }
+        },
+        "model_answer": "poem.get_author(title=\"The Raven\")"
+    },
+    {
+        "question": "Search for plays written by William Shakespeare.",
+        "function": {
+            "name": "Play Search",
+            "api_call": "plays.search",
+            "description": "Search for plays written by a specific playwright.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "playwright": {
+                        "type": "string",
+                        "description": "Name of the playwright."
+                    }
+                },
+                "required": [
+                    "playwright"
+                ]
+            }
+        },
+        "model_answer": "plays.search(playwright=\"William Shakespeare\")"
+    },
+    {
+        "question": "Get the list of New York Times best-selling non-fiction books.",
+        "function": {
+            "name": "Best-Selling Non-Fiction",
+            "api_call": "books.get_best_sellers",
+            "description": "Retrieve the list of best-selling non-fiction books.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "genre": {
+                        "type": "string",
+                        "description": "Genre of the books."
+                    }
+                },
+                "required": [
+                    "genre"
+                ]
+            }
+        },
+        "model_answer": "books.get_best_sellers(genre=\"Non-Fiction\")"
+    },
+    {
+        "question": "Find the publication year of a specific novel.",
+        "function": {
+            "name": "Publication Year",
+            "api_call": "novel.get_publication_year",
+            "description": "Retrieve the publication year of a specific novel.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "description": "Title of the novel."
+                    }
+                },
+                "required": [
+                    "title"
+                ]
+            }
+        },
+        "model_answer": "novel.get_publication_year(title=\"To Kill a Mockingbird\")"
+    },
+    {
+        "question": "Search for literary magazines that accept poetry submissions.",
+        "function": {
+            "name": "Literary Magazine Search",
+            "api_call": "magazines.search",
+            "description": "Search for literary magazines that accept submissions in a specific genre.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "genre": {
+                        "type": "string",
+                        "description": "Genre of the submissions."
+                    }
+                },
+                "required": [
+                    "genre"
+                ]
+            }
+        },
+        "model_answer": "magazines.search(genre=\"Poetry\")"
+    },
+    {
+        "question": "Get the list of Nobel Prize-winning authors in Literature.",
+        "function": {
+            "name": "Nobel Prize Winners",
+            "api_call": "authors.get_nobel_winners",
+            "description": "Retrieve the list of authors who have won the Nobel Prize in Literature.",
+            "parameters": {},
+            "required": []
+        },
+        "model_answer": "authors.get_nobel_winners()"
+    },
+    {
+        "question": "Find the population of Tokyo, Japan.",
+        "function": {
+            "name": "Population Finder",
+            "api_call": "population.find",
+            "description": "Retrieve the population of a specific city or region.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "City or region to find the population of."
+                    }
+                },
+                "required": [
+                    "location"
+                ]
+            }
+        },
+        "model_answer": "population.find(location=\"Tokyo, Japan\")"
+    },
+    {
+        "question": "Find the distance between London, UK and Paris, France.",
+        "function": {
+            "name": "Distance Calculator",
+            "api_call": "distance.calculate",
+            "description": "Calculate the distance between two locations.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "origin": {
+                        "type": "string",
+                        "description": "Starting location."
+                    },
+                    "destination": {
+                        "type": "string",
+                        "description": "Destination location."
+                    }
+                },
+                "required": [
+                    "origin",
+                    "destination"
+                ]
+            }
+        },
+        "model_answer": "distance.calculate(origin=\"London, UK\", destination=\"Paris, France\")"
+    },
+    {
+        "question": "Find the highest mountain in the world.",
+        "function": {
+            "name": "Mountain Finder",
+            "api_call": "mountain.find_highest",
+            "description": "Find the highest mountain in the world.",
+            "parameters": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        },
+        "model_answer": "mountain.find_highest()"
+    },
+    {
+        "question": "Find the capital city of Australia.",
+        "function": {
+            "name": "Capital City Finder",
+            "api_call": "capital.find",
+            "description": "Find the capital city of a specific country.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "country": {
+                        "type": "string",
+                        "description": "Name of the country."
+                    }
+                },
+                "required": [
+                    "country"
+                ]
+            }
+        },
+        "model_answer": "capital.find(country=\"Australia\")"
+    },
+    {
+        "question": "Find the time zone of New York City.",
+        "function": {
+            "name": "Time Zone Finder",
+            "api_call": "timezone.find",
+            "description": "Find the time zone of a specific location.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "City or region to find the time zone of."
+                    }
+                },
+                "required": [
+                    "location"
+                ]
+            }
+        },
+        "model_answer": "timezone.find(location=\"New York City\")"
+    },
+    {
+        "question": "Find the area of the Great Barrier Reef.",
+        "function": {
+            "name": "Area Calculator",
+            "api_call": "area.calculate",
+            "description": "Calculate the area of a specific region or landmark.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "City or region to calculate the area of."
+                    }
+                },
+                "required": [
+                    "location"
+                ]
+            }
+        },
+        "model_answer": "area.calculate(location=\"Great Barrier Reef\")"
+    },
+    {
+        "question": "Find the average temperature of Antarctica.",
+        "function": {
+            "name": "Temperature Finder",
+            "api_call": "temperature.find_average",
+            "description": "Find the average temperature of a specific location.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "City or region to find the average temperature of."
+                    }
+                },
+                "required": [
+                    "location"
+                ]
+            }
+        },
+        "model_answer": "temperature.find_average(location=\"Antarctica\")"
+    },
+    {
+        "question": "Find the currency used in Brazil.",
+        "function": {
+            "name": "Currency Finder",
+            "api_call": "currency.find",
+            "description": "Find the currency used in a specific country.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "country": {
+                        "type": "string",
+                        "description": "Name of the country."
+                    }
+                },
+                "required": [
+                    "country"
+                ]
+            }
+        },
+        "model_answer": "currency.find(country=\"Brazil\")"
+    },
+    {
+        "question": "Find the highest waterfall in the world.",
+        "function": {
+            "name": "Waterfall Finder",
+            "api_call": "waterfall.find_highest",
+            "description": "Find the highest waterfall in the world.",
+            "parameters": {
+                "type": "object",
+                "properties": {},
+                "required": []
+            }
+        },
+        "model_answer": "waterfall.find_highest()"
+    },
+    {
+        "question": "Find the official language of China.",
+        "function": {
+            "name": "Language Finder",
+            "api_call": "language.find_official",
+            "description": "Find the official language of a specific country.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "country": {
+                        "type": "string",
+                        "description": "Name of the country."
+                    }
+                },
+                "required": [
+                    "country"
+                ]
+            }
+        },
+        "model_answer": "language.find_official(country=\"China\")"
+    },
+    {
+        "question": "Find the scientific name of a rose.",
+        "function": {
+            "name": "Plant Information",
+            "api_call": "plant.get_scientific_name",
+            "description": "Retrieve the scientific name of a plant based on its common name.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "common_name": {
+                        "type": "string",
+                        "description": "The common name of the plant."
+                    }
+                },
+                "required": [
+                    "common_name"
+                ]
+            }
+        },
+        "model_answer": "plant.get_scientific_name(common_name=\"rose\")"
+    },
+    {
+        "question": "Calculate the body mass index (BMI) given weight and height.",
+        "function": {
+            "name": "BMI Calculator",
+            "api_call": "bmi.calculate",
+            "description": "Calculate the body mass index (BMI) using weight and height measurements.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "weight": {
+                        "type": "number",
+                        "description": "Weight in kilograms."
+                    },
+                    "height": {
+                        "type": "number",
+                        "description": "Height in meters."
+                    }
+                },
+                "required": [
+                    "weight",
+                    "height"
+                ]
+            }
+        },
+        "model_answer": "bmi.calculate(weight=70, height=1.75)"
+    },
+    {
+        "question": "Identify the dominant eye color in a given population.",
+        "function": {
+            "name": "Eye Color Analyzer",
+            "api_call": "population.analyze_eye_color",
+            "description": "Analyze the distribution of eye colors in a population and identify the dominant eye color.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "population": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "enum": [
+                                "Blue",
+                                "Brown",
+                                "Green",
+                                "Hazel"
+                            ]
+                        },
+                        "description": "Eye colors of individuals in the population."
+                    }
+                },
+                "required": [
+                    "population"
+                ]
+            }
+        },
+        "model_answer": "population.analyze_eye_color(population=[\"Blue\", \"Brown\", \"Brown\", \"Green\", \"Green\", \"Hazel\", \"Hazel\", \"Hazel\"])"
+    },
+    {
+        "question": "Retrieve the DNA sequence of a specific gene.",
+        "function": {
+            "name": "Gene Sequence Retrieval",
+            "api_call": "gene.get_sequence",
+            "description": "Retrieve the DNA sequence of a specific gene based on its identifier.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "gene_id": {
+                        "type": "string",
+                        "description": "Identifier of the gene."
+                    }
+                },
+                "required": [
+                    "gene_id"
+                ]
+            }
+        },
+        "model_answer": "gene.get_sequence(gene_id=\"ABC123\")"
+    },
+    {
+        "question": "Calculate the probability of inheriting a specific trait based on parental genotypes.",
+        "function": {
+            "name": "Trait Inheritance Probability",
+            "api_call": "genetics.calculate_inheritance_probability",
+            "description": "Calculate the probability of inheriting a specific trait based on the genotypes of the parents.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "parent1_genotype": {
+                        "type": "string",
+                        "description": "Genotype of parent 1."
+                    },
+                    "parent2_genotype": {
+                        "type": "string",
+                        "description": "Genotype of parent 2."
+                    },
+                    "trait": {
+                        "type": "string",
+                        "description": "Trait of interest."
+                    }
+                },
+                "required": [
+                    "parent1_genotype",
+                    "parent2_genotype",
+                    "trait"
+                ]
+            }
+        },
+        "model_answer": "genetics.calculate_inheritance_probability(parent1_genotype=\"AA\", parent2_genotype=\"Aa\", trait=\"Tall\")"
+    },
+    {
+        "question": "Identify the species of a given bird based on its characteristics.",
+        "function": {
+            "name": "Bird Species Identification",
+            "api_call": "bird.identify_species",
+            "description": "Identify the species of a bird based on its physical characteristics and behaviors.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "characteristics": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "description": "Physical characteristics of the bird."
+                        }
+                    },
+                    "behaviors": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "description": "Behaviors exhibited by the bird."
+                        }
+                    }
+                },
+                "required": [
+                    "characteristics",
+                    "behaviors"
+                ]
+            }
+        },
+        "model_answer": "bird.identify_species(characteristics=[\"Red head\", \"Long beak\"], behaviors=[\"Nesting in trees\", \"Migratory\"])"
+    },
+    {
+        "question": "Calculate the energy required to break a chemical bond.",
+        "function": {
+            "name": "Bond Energy Calculation",
+            "api_call": "chemistry.calculate_bond_energy",
+            "description": "Calculate the energy required to break a chemical bond based on the bond type and atoms involved.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "bond_type": {
+                        "type": "string",
+                        "enum": [
+                            "Covalent",
+                            "Ionic",
+                            "Metallic"
+                        ],
+                        "description": "Type of chemical bond."
+                    },
+                    "atoms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "description": "Atoms participating in the bond."
+                        }
+                    }
+                },
+                "required": [
+                    "bond_type",
+                    "atoms"
+                ]
+            }
+        },
+        "model_answer": "chemistry.calculate_bond_energy(bond_type=\"Covalent\", atoms=[\"H\", \"O\"])"
+    },
+    {
+        "question": "Retrieve the amino acid sequence of a protein.",
+        "function": {
+            "name": "Protein Sequence Retrieval",
+            "api_call": "protein.get_sequence",
+            "description": "Retrieve the amino acid sequence of a protein based on its identifier.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "protein_id": {
+                        "type": "string",
+                        "description": "Identifier of the protein."
+                    }
+                },
+                "required": [
+                    "protein_id"
+                ]
+            }
+        },
+        "model_answer": "protein.get_sequence(protein_id=\"P12345\")"
+    },
+    {
+        "question": "Calculate the population growth rate over a certain time period.",
+        "function": {
+            "name": "Population Growth Rate Calculator",
+            "api_call": "population.calculate_growth_rate",
+            "description": "Calculate the population growth rate based on initial and final population sizes and the time period.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "initial_population": {
+                        "type": "integer",
+                        "description": "Initial population size."
+                    },
+                    "final_population": {
+                        "type": "integer",
+                        "description": "Final population size."
+                    },
+                    "time_period": {
+                        "type": "string",
+                        "description": "Time period of population growth."
+                    }
+                },
+                "required": [
+                    "initial_population",
+                    "final_population",
+                    "time_period"
+                ]
+            }
+        },
+        "model_answer": "population.calculate_growth_rate(initial_population=1000, final_population=1500, time_period=\"10 years\")"
+    },
+    {
+        "question": "Identify the taxonomic classification of a given organism.",
+        "function": {
+            "name": "Taxonomic Classification Identifier",
+            "api_call": "taxonomy.identify_classification",
+            "description": "Identify the taxonomic classification (kingdom, phylum, class, etc.) of a given organism.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "organism_name": {
+                        "type": "string",
+                        "description": "Name of the organism."
+                    }
+                },
+                "required": [
+                    "organism_name"
+                ]
+            }
+        },
+        "model_answer": "taxonomy.identify_classification(organism_name=\"Homo sapiens\")"
+    }
+]

@@ -3,6 +3,8 @@
 
 <img src="https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/img/logo.png" width=50% height=50%>
 
+**:fire: Gorilla OpenFunctions** is a drop-in alternative for function calling! [Release Blog](https://gorilla.cs.berkeley.edu/blogs/4_open_functions.html)
+
 **🟢 Gorilla is Apache 2.0** With Gorilla being fine-tuned on MPT, and Falcon, you can use Gorilla commercially with no obligations! :golf:  
 
 **:rocket: Try Gorilla in 60s** [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing) 
@@ -17,6 +19,7 @@
 `Gorilla` enables LLMs to use tools by invoking APIs. Given a natural language query, Gorilla comes up with the semantically- and syntactically- correct API to invoke. With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (and growing) API calls accurately while reducing hallucination. We also release APIBench, the largest collection of APIs, curated and easy to be trained on! Join us, as we try to expand the largest API store and teach LLMs how to write them! Hop on our Discord, or open a PR, or email us if you would like to have your API incorporated as well.
 
 ## News
+- :fire: [11/16] Excited to release [Gorilla OpenFunctions](https://gorilla.cs.berkeley.edu/blogs/4_open_functions.html)
 - 💻 [06/29] Released [gorilla-cli](https://github.com/gorilla-llm/gorilla-cli), LLMs for your CLI!
 - 🟢 [06/06] Released Commercially usable, Apache 2.0 licensed Gorilla models
 - :rocket: [05/30] Provided the [CLI interface](inference/README.md) to chat with Gorilla!
