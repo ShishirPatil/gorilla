@@ -79,7 +79,14 @@
 
                 <div class="preview">
                     <p>
-                        OpenFunctions is designed to extend Large Language Model(LLM) Chat Completion feature to formulate executable APIs call given natural language instructions and API context. Imagine if LLM could fill in parameters for a variety of service ranging from Instagram and Doordash to tools like Google Calendar and Stripe. Even users who are less familiar with API calling procedure and programming could use the model to generate APIs call to desired function. Open Function is an LLM that we train using a curated set of API documentations and Question Answer pairs generated from the API documentations. We have continued to expand on the Gorilla Paradigm and sought to improve the quality and accuracy of valid function calling generation.
+                        OpenFunctions is designed to extend Large Language Model (LLM) Chat Completion feature to formulate 
+                        executable APIs call given natural language instructions and API context. Imagine if the LLM could 
+                        fill in parameters for a variety of services, ranging from Instagram and DoorDash to tools like 
+                        Google Calendar and Stripe. Even users who are less familiar with API calling procedures and 
+                        programming can use the model to generate API calls to the desired function. OpenFunctions is an LLM 
+                        that we train using a curated set of API documentation, and Question-Answer pairs generated 
+                        from the API documentations. We have continued to expand on the Gorilla Paradigm and sought to 
+                        improve the quality and accuracy of valid function calling generation.
 
                     </p>
                     <p>
@@ -98,13 +105,14 @@
                 <p style="text-align: center; margin-bottom: 0">
                     <img src="../assets/img/blog_post_4_new_api_page.png" alt="Gorilla Input and Output" width="65%">
                         <i style="font-size: 0.9em;">
-                            OpenFunctions can write accurate API calls. This applies not just the popular python package and cloud CLI but also any callable functions with API documentations!
+                            OpenFunctions can write accurate API calls. Beyond popular python packages and hyperscaler CLIs, it extends to any callable function with API documentation!
                         </i>
                 </p>
+                <p></p>
                 <div class="body">
                     <p>Using Gorilla OpenFunctions is straightforward:
                         <ol>
-                        <li>Define Your Functions: Provide a JSON file containing descriptions of your custom functions. Each function should contains field: <code>name</code>, the name of the API, <code>api_call</code>, the way we should invoke this API, <code>description</code>, the functionality of the API, and lastly <code>parameters</code>, which is a list of parameters pretains to the API call. Below is an example of sufficent API documentation that can feed into Open Function.</li>
+                        <li>Define Your Functions: Provide a JSON file containing descriptions of your custom functions. Each function should contain fields: <code>name</code> (the name of the API), <code>api_call</code> (how to invoke this API), <code>description</code> (which describes the functionality of the API), and lastly, <code>parameters</code> (a list of parameters pertaining to the API call). Below is an example of API documentation that can feed into OpenFunctions.</li>
                         <pre><code>
     function_documentaion = {  
         "name" : "Order Food on Uber",
@@ -143,14 +151,14 @@
                 <!-- OpenFunction BenchMarking  -->
                 <h4 id="benchmarking">OpenFunctions Performance Benchmarking</h4>
                 <div class="body">
-                    <p>We are benchmarking our model against current state-of-art model GPT-4-0613 as well as  GPT-4 and GPT-3.5-turbo function calling features. Our testing dataset consists of 116 distinct query, API documentation pairs and are crafted by feeding few shot examples into GPT-3.5-turbo and asking the model to generate APIs from different domains including travel, finance, meeting scheduling.</p>
+                    <p>We are benchmarking our model against current state-of-the-art model, GPT-4-0613, as well as  GPT-4's and GPT-3.5-turbo's function calling features. Our test dataset consists of 116 distinct query and API documentation pairs, crafted by feeding few-shot examples into GPT-3.5-turbo and asking the model to generate APIs from different domains, including travel, finance, scheduling meetings.</p>
                         <img src="../assets/img/blog_post_4_OpenFunctions_Distribution.png" alt="Open functions types of data" width="85%" >
                             <i class="centered-text" style="font-size: 0.9em;" width="85%">
-                                Suprisingly, we observe that GPT-4 and GPT-3.5 function calling perform better than the State of the Art GPT-4-Turbo model. Our OpenFunctions model is closely behind with tiny margin.
+                                Suprisingly, we observe that GPT-4 and GPT-3.5 function calling perform better than the state-of-the-art GPT-4-Turbo and GPT-4 model tailored for function calling. Our OpenFunctions model is closely behind with tiny margin.
                             </i>
                         <br>
-                    <p> To evalate the quality of the ouput, we perform side-by-side examination between the model output and gold answer. From the graph above, we can see that GPT-4 and GPT-3.5-Turbo performs function callings with a higher success rate around 95% than GPT-4 function callings. Our llama-based OpenFunction model is following GPT-4 function calling with a 86% success rate. Below is an example of GPT-4 fails to extract parameters correctly.</p>
-                    <p> Below are two examples of GPT-4 generate unsatisfied results:</p>
+                    <p> To evaluate the quality of the output, we perform a side-by-side examination between a model's output and the 'gold' answer. From the graph above, we can see that GPT-4 and GPT-3.5-Turbo return function calls with a higher success rate, around 95%, compared to GPT-4 function calls. Our llama-v2-based OpenFunctions model follows GPT-4 function calling with a 86% success rate.</p>
+                    <p> Below are two examples of GPT-4 generating unsatisfactory results:</p>
                     <div class="container">
                         <div class="code-block">
                             <!-- Your first code section goes here -->
@@ -196,15 +204,15 @@
                             </pre>
                         </div>
                     </div>
-                    <p>As we can see from the above mistakes that even using GPT-4 function calling isn't able to guarantee us on satisfactory result on analysis of function parameters. Here, we have a detailed breakdown of the percentage of success, failure of our testing data:</p>
+                    <p>As we can see from the above examples, even GPT-4's function calling isn't able to guarantee satisfactory results in the analysis of function parameters. Here, we have a detailed breakdown of the percentage of success and failure in our test data:</p>
                         <img src="../assets/img/blog_post_4_OpenFunctions_Mistake.png" alt="GPT-failure" width="85%" >
                         <i class="centered-text" style="font-size: 0.9em;" width="85%">
-                            While the standard GPT model is able to produce definitive results, OpenAI's function calling model will ask follow up question if required parameters are not supplied, which results in a state of no result.
+                            While the standard GPT-4 is able to produce definitive results, OpenAI's function calling model will often ask follow up question if the required parameters are not supplied, which results in a state of no result.
                         </i>
                         <br>
-                    <p> When calling to OpenAI's function calling models, if required parameters are not supplied within instruction. This leads the function calling models to output "follow-up" questions requesting the required parameters which results in "incomplete" status as displayed in above graph. 
-                        We treat "incomplete" execution as "success" during our accuracy calculation because the model recognize the missing parameters successfully. 
-                        Our Open Function model as well as regular GPT-4, due to its chat complete nature, will fill up the required parameters with place holder or default value which allows undisturbed generation. </p>
+                    <p> When calling to OpenAI's function calling models, if the required parameters are not supplied within the instruction, this leads the function calling models to output "follow-up" questions requesting the required parameters. This results in "incomplete" status as displayed in above graph. 
+                        We treat "incomplete" execution as "success" during our accuracy calculation because the model recognized the missing parameters successfully. 
+                        Our OpenFunctions model, as well as regular GPT-4, due to its chat completion nature, will fill up the required parameters with placeholders or default values, allowing undisturbed generation. </p>
 
                 </div>
                 <!-- OpenFunctions Data Composition -->
@@ -212,23 +220,22 @@
                 <h4 id="data_composition"> OpenFunctions Data Composition</h4>
                 <div class="body">
                     <p>
-                        The dataset we trained our model on consists of 14189 API documentations 14189 question-answer pairs. The API documentations are collected from 3 sources: 
-                        
+                        The dataset we trained our model on consists of 14,189 instruction-API pairs. We curated the API documentations from 3 sources: 
                     </p>
                     <ul>
-                        <li><strong>Python packages</strong>: The Python packages are collected from the official documentation of the packages. We intentionally chose packages that are clean and well-documented and those packages typically belong to scientific computing and machine learning domains.</li>
-                        <li><strong>RapidAPI</strong>: The RapidAPI documents are collected from the API marketplace. Since RapidAPI typically makes requests to an API endpoint. We format the API documentation to have function <code>requests.get</code> with properties: <code>url</code>, <code>headers</code>, <code>params</code>. Completing this function will enable the user to call <code>requests.get</code> successfully to the API endpoint.</li>
-                        <li><strong>Command Line Tool from various cloud provider</strong>: Lastly we relies on CLI documentation from AWS, Azure, and etc. We use those documentation to construct python-like function calling.</li>
+                        <li><strong>Python packages</strong>: We curated the python APIs from the official documentation of the packages. We intentionally chose packages that are clean and well-documented. We found that those packages typically belonged to scientific computing, and machine learning domains.</li>
+                        <li><strong>RapidAPI</strong>: We curated RapidAPI documents from the API marketplace. Since RapidAPI typically makes requests to an API endpoint, we format the API documentation to have function <code>requests.get</code> with properties: <code>url</code>, <code>headers</code>, <code>params</code>. Completing this function will enable the user to call <code>requests.get</code> successfully to the API endpoint.</li>
+                        <li><strong>Command line tools from cloud providers</strong>: Lastly we relied on CLI documentation from AWS, Azure, and other hyperscalers. We use these documents to construct python-like function calling.</li>
                     </ul>
                     <p>
-                        For each API documentation, we generate three distinct instruction and model answer as our training data. The instruction and model answer pairs are self-generated using few shots examples of correctly utilizing API documentations to extrapolate the function callings. We explicitly prompt the model to take advantage of features like complex value type and more parameters if the specific API has the feature. 
+                        For each API documentation, we generate three distinct instruction-API pairs as our training data. This instruction and "model" answer pairs are self-generated using few-shot examples of correctly utilizing the API documentations to make accurate function calls. We explicitly prompt the model to take advantage of features like complex value-type, and more parameters if the specific API has the feature. 
                     <div class="image-container">
                         <img src="../assets/img/blog_post_4_OpenFunctions_Data_Service.png" alt="Open functions types of data" width="55%" >
                         <img src="../assets/img/blog_post_4_OpenFunctions_Data_Detail.png" alt="Open functions types of service providers" width="45%" >
                         <br>
                     </div>
                         <i class="centered-text" style="font-size: 0.9em;" width="85%">
-                            OpenFunctions's Data is collected through a variety of service and domain.
+                            We curated data to train our OpenFunctions models from a variety of services, and domains.
                         </i>
                     <p>    
                         
@@ -236,20 +243,32 @@
 
                 </div>
 
-                <h4 id="function_vs_rest"> Code Function Calling API vs. REST API</h4>
+                <h4 id="function_vs_rest"> Code Function Calling APIs vs. REST APIs</h4>
                 <div class="body">
                     <p>
-                        During the data collection process, we have observed that general API calling can be divided into 2 categories: 
+                        When curating the dataset, we observed that API calling can be roughly divided into 2 categories: 
                     </p>
                     <ul>
                         <li>Code Function Calling APIs </li>
                         <li>REST APIs</li>
                     </ul>
                     <p>    
-                        First, the Code Function Calling APIs are typically seen in external python packages like Numpy, Sklearn. Those APIs are well-defined and easily formatted. In anther word, knowing the 'api_name' e.g. <code>numpy.sum()</code> and the 'arguments' specification, we are able to extrapolate an executable function API. Due to its stable format and fixed locality, it takes relatively few data to fine-tune the model. 
+                        First, the Code Function Calling APIs are typically seen in external python packages like Numpy, Sklearn, etc. These APIs are well-defined, and can be easily formatted. Therefore, by just knowing the 'api_name' e.g. <code>numpy.sum()</code>, and the 'arguments' specification, we can formulate an executable function API. Due to its stable format, and fixed locality, it takes relatively fewer datapoints to bake in the behavior for these APIs during training. This is reflected in how we chose the data-mixture for training.  
                     </p>
                     <p> 
-                        On the other hand, the REST APIs also accounts for a significant portion of the APIs in the market. Those APIs are typically provided by third-party hosting and offer a variety of functionality ranging from financial service to weather forecasting. Often time, REST APIs contain three parameter metadata: <code>url</code>, <code>header</code>, and <code>params</code>. Url contains the API endpoints, header usually contains authentication information, and paramters contain information query to the API endpoint. Using <code>requests.get</code> we are able to properly query to the endpoint. However, REST APIs' parameters can exist in different locations. For example, the parameters can be embedded within the URL e.g. <code>gorilla.berkeley.edu/{param1}/{param2}</code>. Another way to represent parameters embedding can be <code>gorilla.berkeley.edu/?query=param1</code>. Different ways of calling REST API make it difficult for our model to handle complex REST API call. As a result, we have explored different sources of REST APIs such as RapidAPI, Postman API to diversify our API Database and generate more accuracte REST API.
+                        The RESTful APIs account for a significant portion of the APIs on the internet, powering most services. 
+                        These APIs are typically hosted by third parties and offer a variety of functionalities ranging from 
+                        financial services to weather forecasting. Oftentimes, RESTful APIs contain three parameters in their metadata: 
+                        <code>url</code>, <code>header</code>, and <code>params</code>. 
+                        The url contains the API endpoints, header usually contains authentication information, and params contain 
+                        the 'information' queried to the API endpoint. 
+                        Using <code>requests.get</code>, we can properly query the endpoint. 
+                        However, the parameters of REST APIs can exist in different locations. 
+                        For example, parameters can be embedded within the URL, e.g., 
+                        <code>gorilla.berkeley.edu/{param1}/{param2}</code>. Another way to represent parameters 
+                        embedding can be <code>gorilla.berkeley.edu/?query=param1</code>. 
+                        The different methods of calling a REST API can make it challenging for our model to handle complex REST API calls.
+                        To account for this, we relied upon different sources of REST APIs, such as RapidAPI, Postman API, etc to diversify our API database and generate more accurate REST APIs.
 
                     </p>
                 </div>
@@ -259,18 +278,18 @@
 
                 <div class="body">
                     <p>We are happy to release two models: <code>gorilla-openfunctions-v0</code> and  <code>gorilla-openfunctions-v1</code>. 
-                    <code>gorilla-openfunctions-v0</code> is a 13B parameter model trained on top of the 7B LLaMA-v2-chat instruction-tuned model. 
+                    The <code>gorilla-openfunctions-v0</code> LLM is a 7B parameter model trained on top of the 7B LLaMA-v2-chat instruction-tuned model. 
                     It takes-in the users prompt along with a SINGLE API call and returns the function with the right arguments.
-                    <code>gorilla-openfunctions-v0</code> is a 7B paramter model trained on top of the 7B LLaMA-v2 pre-trained model. <code>gorilla-openfunctions-v0</code> 
+                    <code>gorilla-openfunctions-v1</code> is a 7B paramter model trained on top of the 7B LLaMA-v2 pre-trained model. <code>gorilla-openfunctions-v1</code> 
                     is our advanced model that takes-in the users prompt along with MULTIPLE API calls and returns the function with the right arguments. 
-                    It also supports paralle functions! <code>gorilla-openfunctions-v1</code> is in early pre-view and you can expect it to get much better over the next few days! 
-                    All of the results in the blog are generated using <code>gorilla-openfunctions-v0</code>.
+                    It also supports parallel functions! <code>gorilla-openfunctions-v1</code> is in early pre-view, and you can expect it to get much better over the next few days! 
+                    All of the results in this blog are generated using <code>gorilla-openfunctions-v0</code>.
                     </p>
 
                     <hr class="post-separator">
 
                     <p>
-                        We hope you enjoyed this blog post. We would love to hear from you on <a href="https://discord.gg/3apqwwME">Discord</a>, Twitter (#GorillaLLM), and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br> 
+                        We hope you enjoyed this blog post. We would love to hear from you on <a href="https://discord.gg/SwTyuTAxX3">Discord</a>, <a href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter (#GorillaLLM)</a>, and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br> 
                     </p>
                     <p id="gorilla-bibtex">
                         If you would like to cite Gorilla:<br>
