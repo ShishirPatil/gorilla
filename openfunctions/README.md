@@ -65,6 +65,20 @@ get_gorilla_response(query, functions=functions)
 uber.ride(loc="berkeley", type="plus", time=10)
 ```
 
+## Running OpenFunctions Locally
+
+If you want to Run OpenFunctions locally, here is the prompt format that we used: 
+
+```
+def get_prompt(user_query, functions=[]):
+  if len(functions) == 0:
+    return f"USER: <<question>> {user_query}\nASSISTANT: "
+  functions_string = json.dumps(functions)
+  return f"USER: <<question>> {user_query} <<function>> {functions_string}\nASSISTANT: "
+```
+
+Note: Use the `get_prompt` format only if you are hosting it Locally. If you are using the Berkeley hosted models through the Chat-completion API, we do this in the backend, so you don't have to do this. 
+
 ## Evaluation
 
 <img src="https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/img/blog_post_4_OpenFunctions_Distribution.png" width=50% height=50%>
