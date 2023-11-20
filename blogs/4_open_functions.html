@@ -78,15 +78,19 @@
                     </p>
 
                 <div class="preview">
-                    <p>
+                    <p>            
                         OpenFunctions is designed to extend Large Language Model (LLM) Chat Completion feature to formulate 
                         executable APIs call given natural language instructions and API context. Imagine if the LLM could 
                         fill in parameters for a variety of services, ranging from Instagram and DoorDash to tools like 
                         Google Calendar and Stripe. Even users who are less familiar with API calling procedures and 
-                        programming can use the model to generate API calls to the desired function. OpenFunctions is an LLM 
+                        programming can use the model to generate API calls to the desired function. Gorilla OpenFunctions is an LLM 
                         that we train using a curated set of API documentation, and Question-Answer pairs generated 
                         from the API documentations. We have continued to expand on the Gorilla Paradigm and sought to 
-                        improve the quality and accuracy of valid function calling generation.
+                        improve the quality and accuracy of valid function calling generation. This blog is about developing 
+                        an open-source alternative for function calling similar to features seen in proprietary models, 
+                        in particular, <a href="https://openai.com/blog/function-calling-and-other-api-updates">function 
+                        calling in OpenAI's GPT-4</a>. Our solution is based on the Gorilla recipe, and with a model with just 7B 
+                        parameters, its accuracy is, surprisingly, comparable to GPT-4.
 
                     </p>
                     <p>
@@ -157,7 +161,7 @@
                                 Suprisingly, we observe that GPT-4 and GPT-3.5 function calling perform better than the state-of-the-art GPT-4-Turbo and GPT-4 model tailored for function calling. Our OpenFunctions model is closely behind with tiny margin.
                             </i>
                         <br>
-                    <p> To evaluate the quality of the output, we perform a side-by-side examination between a model's output and the 'gold' answer. From the graph above, we can see that GPT-4 and GPT-3.5-Turbo return function calls with a higher success rate, around 95%, compared to GPT-4 function calls. Our llama-v2-based OpenFunctions model follows GPT-4 function calling with a 86% success rate.</p>
+                    <p> To evaluate the quality of the output, we perform a side-by-side examination between a model's output and the 'gold' answer. From the graph above, we can see that GPT-4 and GPT-3.5-Turbo return function calls with a higher success rate, around 95%, compared to GPT-4 function calls. Our 7B parameter llama-v2-based OpenFunctions model follows GPT-4 function calling with a 87.39% success rate.</p>
                     <p> Below are two examples of GPT-4 generating unsatisfactory results:</p>
                     <div class="container">
                         <div class="code-block">
