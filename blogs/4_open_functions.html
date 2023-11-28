@@ -97,7 +97,7 @@
                         <ul>
                             <li>Colab Notebook: <a href="https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd?usp=sharing">OpenFunctions</a></li>
                             <li>Dataset: <a href="https://github.com/ShishirPatil/gorilla/tree/main/openfunctions">GitHub</a></li>
-                            <li>Models on HuggingFace: <a href="https://huggingface.co/gorilla-llm/gorilla-openfunctions-v1">gorilla-llm/gorilla-openfunctions-v1</a></li>
+                            <li>Models on HuggingFace: <a href="https://huggingface.co/gorilla-llm/gorilla-openfunctions-v0">gorilla-llm/gorilla-openfunctions-v0</a></li>
                         </ul>
                     </p>
                 </div>
@@ -214,7 +214,7 @@
                         </i>
                         <br>
                     <p> When calling to OpenAI's function calling models, if the required parameters are not supplied within the instruction, this leads the function calling models to output "follow-up" questions requesting the required parameters. This results in "incomplete" status as displayed in above graph. 
-                        We treat "incomplete" execution as "success" during our accuracy calculation because the model recognized the missing parameters successfully. 
+                        We treat "incomplete" execution as "success" during our accuracy calculation because the model recognized the missing parameters successfully. Note that this is consistent across all evaluations. 
                         Our OpenFunctions model, as well as regular GPT-4, due to its chat completion nature, will fill up the required parameters with placeholders or default values, allowing undisturbed generation. </p>
 
                 </div>
