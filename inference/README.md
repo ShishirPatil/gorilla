@@ -59,6 +59,34 @@ python3 serve/gorilla_falcon_cli.py --model-path path/to/gorilla-falcon-7b-hf-v0
 > Add "--device mps" if you are running on your Mac with Apple silicon (M1, M2, etc)
 
 ### Inference Gorilla locally
+Demo
+
+My specs, M1 Macbook Air 2020
+```
+  Model Name: MacBook Air
+  Model Identifier:	MacBookAir10,1
+  Model Number:	Z125000NMCH/A
+  Chip:	Apple M1
+  Total Number of Cores: 8 (4 performance and 4 efficiency)
+  Memory: 16 GB
+  System Firmware Version: 10151.61.4
+  OS Loader Version: 10151.61.4
+```
+
+
+
+Step 1: Clone [text-generation-webui](https://github.com/oobabooga/text-generation-webui), it hides many complexities that llama.cpp original repo was having and generally have a well defined interface that is easy to use.
+
+`git clone https://github.com/oobabooga/text-generation-webui.git`
+
+Step 2: Follow [text-generation-webui](https://github.com/oobabooga/text-generation-webui) instructions to run the application locally.
+- Go to the cloned folder
+- ./start_macos.sh and it will opens a localhost interface.
+
+Step 3: 
+
+
+
 
 ### [Optional] Batch Inference on a Prompt File
 
