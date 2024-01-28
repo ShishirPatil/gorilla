@@ -147,7 +147,7 @@ print(output)
 
 ## Self-Hosting OpenFunctions
 
-This section provides a guide on how to self-host the OpenFunctions model on your local machine. The server code example enables the deployment of the OpenFunctions model using FastAPI and uvicorn, while the client code demonstrates how to interact with this local server using the OpenAI package.
+This section provides a guide on how to self-host the OpenFunctions model on your local machine. The example server enables the deployment of the OpenFunctions model using FastAPI and uvicorn, while the example client demonstrates how to interact with this local server using the OpenAI package.
 
 ### Setting Up Your Local Server
 
@@ -238,6 +238,53 @@ async def chat_completion(request: ChatCompletionRequest):
 # Run the server
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
+```
+
+### Setting Up the Client
+
+The example client below demonstrates how to interact with the locally hosted OpenFunctions model using `openai.ChatCompletion.create`, akin to using Gorilla hosted servers.
+
+```python
+import openai
+
+def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes", model="gorilla-openfunctions-v0", functions=[]):
+    openai.api_key = "EMPTY"
+    openai.api_base = "http://localhost:8000"  # Point to the local server
+    try:
+        completion = openai.ChatCompletion.create(
+            model="gorilla-openfunctions-v0",
+            temperature=0.0,
+            messages=[{"role": "user", "content": prompt}],
+            functions=functions,
+        )
+        return completion.choices[0].text
+    except Exception as e:
+        print(e, model, prompt)
+
+# Example usage
+query: str = "Get the latest news headlines from CNN."
+functions = [
+    {
+        "name": "News Headlines",
+        "api_call": "news.get_headlines",
+        "description": "Retrieve the latest news headlines from a specific news source.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "source": {
+                    "type": "string",
+                    "description": "The news source, e.g. CNN"
+                }
+            },
+            "required": [
+                "source"
+            ]
+        }
+    }
+]
+
+resp = get_gorilla_response(query, functions=functions)
+print(resp)
 ```
 
 ## Evaluation
