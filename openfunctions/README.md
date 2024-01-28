@@ -151,14 +151,14 @@ This section provides a guide on how to self-host the OpenFunctions model on you
 
 ### Setting Up Your Local Server
 
-The server API endpoint mirrors the interface of the `openai.ChatCompletion.create` API call, ensuring compatibility with clients using the OpenAI package.
+The server API endpoint mirrors the interface of the API call executed by `openai.ChatCompletion.create`, ensuring compatibility with clients using the OpenAI package.
 
 Ensure you have the required libraries:
 ```bash
 !pip install fastapi uvicorn transformers torch
 ```
 
-Similar to the process outlined in the "Running OpenFunctions Locally" section, the model is loaded from HuggingFace for local serving. 
+Similar to the process outlined in the "Running OpenFunctions Locally" section, the model is loaded from HuggingFace for local serving. Only use the `get_prompt` format if you are hosting locally.
 
 ```python
 from fastapi import FastAPI
@@ -241,6 +241,11 @@ if __name__ == "__main__":
 ```
 
 ### Setting Up the Client
+
+Ensure you have the required libraries:
+```bash
+!pip install openai==0.28.1
+```
 
 The example client below demonstrates how to interact with the locally hosted OpenFunctions model using `openai.ChatCompletion.create`, akin to using Gorilla hosted servers.
 
