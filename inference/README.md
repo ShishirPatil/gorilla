@@ -58,6 +58,8 @@ python3 serve/gorilla_falcon_cli.py --model-path path/to/gorilla-falcon-7b-hf-v0
 
 > Add "--device mps" if you are running on your Mac with Apple silicon (M1, M2, etc)
 
+### Inference Gorilla locally
+
 ### [Optional] Batch Inference on a Prompt File
 
 After downloading the model, you need to make a jsonl file containing all the question you want to inference through Gorilla. Here is [one example](https://github.com/ShishirPatil/gorilla/blob/main/inference/example_questions/example_questions.jsonl): 
