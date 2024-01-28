@@ -145,6 +145,101 @@ output = pipe(prompt)
 print(output)
 ```
 
+## Self-Hosting OpenFunctions
+
+This section provides a guide on how to self-host the OpenFunctions model on your local machine. The server code example enables the deployment of the OpenFunctions model using FastAPI and uvicorn, while the client code demonstrates how to interact with this local server using the OpenAI package.
+
+### Setting Up Your Local Server
+
+The server API endpoint mirrors the interface of the `openai.ChatCompletion.create` API call, ensuring compatibility with clients using the OpenAI package.
+
+Ensure you have the required libraries:
+```bash
+!pip install fastapi uvicorn transformers torch
+```
+
+Similar to the process outlined in the "Running OpenFunctions Locally" section, the model is loaded from HuggingFace for local serving. 
+
+```python
+from fastapi import FastAPI
+from pydantic import BaseModel
+import torch
+from transformers import pipeline, AutoModelForCausalLM, AutoTokenizer
+import uvicorn
+import json
+
+# Define the API request model
+class ChatCompletionRequest(BaseModel):
+    model: str
+    temperature: float
+    messages: list
+    functions: list = []
+
+# Initialize the FastAPI app
+app = FastAPI()
+
+# Device setup
+device = "cuda:0" if torch.cuda.is_available() else "cpu"
+torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
+
+# Model and tokenizer setup
+model_id = "gorilla-llm/gorilla-openfunctions-v0"
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=torch_dtype, low_cpu_mem_usage=True)
+
+# Move model to device
+model.to(device)
+
+# Pipeline setup
+pipe = pipeline(
+    "text-generation",
+    model=model,
+    tokenizer=tokenizer,
+    max_new_tokens=128,
+    batch_size=16,
+    torch_dtype=torch_dtype,
+    device=device,
+)
+
+# Function to generate prompt
+def get_prompt(user_query: str, functions: list) -> str:
+    """
+    Generates a conversation prompt based on the user's query and a list of functions.
+
+    Parameters:
+    - user_query (str): The user's query.
+    - functions (list): A list of functions to include in the prompt.
+
+    Returns:
+    - str: The formatted conversation prompt.
+    """
+    if len(functions) == 0:
+        return f"USER: <<question>> {user_query}\nASSISTANT: "
+    functions_string = json.dumps(functions)
+    return f"USER: <<question>> {user_query} <<function>> {functions_string}\nASSISTANT: "
+
+# API endpoint
+@app.post("/chat/completions")
+async def chat_completion(request: ChatCompletionRequest):
+    user_query = request.messages[0]['content']
+    prompt = get_prompt(user_query, request.functions)
+    output = pipe(prompt)
+    generated_text = output[0]['generated_text']
+
+    # Return in the format expected by OpenAI package
+    return {
+        "id": "0",
+        "object": "text_completion",
+        "created": 0,
+        "model": request.model,
+        "choices": [{"text": generated_text, "index": 0, "logprobs": None, "finish_reason": "length"}]
+    }
+
+# Run the server
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+```
+
 ## Evaluation
 
 <img src="https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/img/blog_post_4_OpenFunctions_Distribution.png" width=50% height=50%>
