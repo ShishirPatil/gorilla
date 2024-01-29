@@ -61,7 +61,7 @@ python3 serve/gorilla_falcon_cli.py --model-path path/to/gorilla-falcon-7b-hf-v0
 ### Inference Gorilla locally
 Demo
 
-Follow the instructions below for fast, pretty, and easy set up for local inference. Additionally, you can refer to this [colab notebook](https://colab.research.google.com/drive/1JP_MN-J1rODo9k_-dR_9c9EnZRCfcVNe?usp=sharing) for an in-depth tutorial on how to explicitly use llama.cpp to run inference on your CPU.
+Follow the instructions below for fast, pretty, and easy set up for local inference. Additionally, you can refer to this [colab notebook](https://colab.research.google.com/drive/1JP_MN-J1rODo9k_-dR_9c9EnZRCfcVNe?usp=sharing) for an in-depth tutorial on how to explicitly use llama.cpp to manually quantize Gorilla models and run inference on your CPU.
 
 
 My specs, M1 Macbook Air 2020
