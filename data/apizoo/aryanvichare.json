@@ -13,10 +13,7 @@
     },
     "functionality": "Retrieve current and forecast weather data",
     "env_requirements": ["requests"],
-    "example_code": "import requests \n \
-                    response = requests.get('https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={exclude}&appid={appid}') \n \
-                    weather_data = response.json() \n \
-                    print(weather_data)",
+    "example_code": "import requests \nresponse = requests.get('https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={exclude}&appid={appid}') \n weather_data = response.json() \n print(weather_data)",
     "meta_data": {
       "description": "The OpenWeatherMap API provides access to current and forecast weather data, including minute-by-minute, hourly, and daily forecasts, as well as government weather alerts.",
       "documentation_link": "https://openweathermap.org/api/one-call-3"
@@ -40,10 +37,7 @@
     },
     "functionality": "Retrieve historical weather data for a specific timestamp",
     "env_requirements": ["requests"],
-    "example_code": "import requests \n \
-                    response = requests.get('https://api.openweathermap.org/data/3.0/onecall/timemachine?lat={lat}&lon={lon}&dt={dt}&appid={appid}') \n \
-                    historical_data = response.json() \n \
-                    print(historical_data)",
+    "example_code": "import requests \n\nresponse = requests.get('https://api.openweathermap.org/data/3.0/onecall/timemachine?lat={lat}&lon={lon}&dt={dt}&appid={appid}') \n\nhistorical_data = response.json() \n print(historical_data)",
     "meta_data": {
       "description": "The OpenWeatherMap Time Machine API allows users to access historical weather data for a specific timestamp for a given location.",
       "documentation_link": "https://openweathermap.org/api/one-call-api#time_machine"
