@@ -96,7 +96,7 @@ Step 3: Select the quantization method you want to use, download the quantized m
 2. After downloading the model, you select the Model, `gorilla-7b-hf-v1-q3_K_M` for demonstration, and click `Load`. For settings, if you have laptop GPU available, increasing `n-gpu-layers` accelerates inference. ![Alt text](image-1.png)
 3. After loading, it will give a confirmation message as following. ![Alt text](image-3.png)
 4. Then go to `Chat` page, use default setting for llama based quantized models, ![Alt text](image-4.png)
-5. Real-time inference video demo
+5. *Real-time inference* video demo
 ![Alt text](Presentation1_final.gif)
 
 Integration with Gorilla-CLI coming soon ...
