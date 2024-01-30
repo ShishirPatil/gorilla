@@ -60,12 +60,12 @@ python3 serve/gorilla_falcon_cli.py --model-path path/to/gorilla-falcon-7b-hf-v0
 
 ### Inference Gorilla locally
 
-K-quantized gorilla models can be found here: [Llama-based](https://huggingface.co/gorilla-llm/gorilla-7b-hf-v1-gguf), [MPT-Based](https://huggingface.co/gorilla-llm/gorilla-mpt-7b-hf-v0-gguf), [Falcon-Based](https://huggingface.co/gorilla-llm/gorilla-falcon-7b-hf-v0-gguf)
+K-quantized gorilla models can be found on [Huggingface](https://huggingface.co/gorilla-llm): [Llama-based](https://huggingface.co/gorilla-llm/gorilla-7b-hf-v1-gguf), [MPT-Based](https://huggingface.co/gorilla-llm/gorilla-mpt-7b-hf-v0-gguf), [Falcon-Based](https://huggingface.co/gorilla-llm/gorilla-falcon-7b-hf-v0-gguf)
 
 For an in depth walkthrough on how this quantization was done, follow the tutorial in 
 this [colab notebook](https://colab.research.google.com/drive/1JP_MN-J1rODo9k_-dR_9c9EnZRCfcVNe?usp=sharing). This tutorial is a fully self-contained space to see an under-the-hood walkthrough of the quantization pipeline (using llama.cpp) and to test out your own prompts with different quantized versions of Gorilla. The models don't take up local space and utilize a CPU runtime. 
 
-Running local inference with Gorilla on a clean interface is simple. Follow the instructions below to set up [text-generation-webui](https://github.com/oobabooga/text-generation-webui), add the models, and run inference. 
+Running local inference with Gorilla on a clean interface is simple. Follow the instructions below to set up [text-generation-webui](https://github.com/oobabooga/text-generation-webui), add your desired models, and run inference. 
 
 
 My specs, M1 Macbook Air 2020
@@ -80,8 +80,7 @@ My specs, M1 Macbook Air 2020
   OS Loader Version: 10151.61.4
 ```
 
-Step 1: Clone [text-generation-webui](https://github.com/oobabooga/text-generation-webui), it's a
-A Gradio web UI for Large Language Models. Supports transformers, GPTQ, AWQ, EXL2, llama.cpp (GGUF), and Llama models. It hides many complexities that llama.cpp original repo was having and has a well defined interface that is easy to use.
+Step 1: Clone [text-generation-webui](https://github.com/oobabooga/text-generation-webui), a Gradio web UI for Large Language Models. It supports transformers, GPTQ, AWQ, EXL2, llama.cpp (GGUF), and Llama models. It hides many complexities of llama.cpp and has a well defined interface that is easy to use.
 
 `git clone https://github.com/oobabooga/text-generation-webui.git`
 
@@ -97,9 +96,10 @@ Step 3: Select the quantization method you want to use, download the quantized m
 2. After downloading the model, you select the Model, `gorilla-7b-hf-v1-q3_K_M` for demonstration, and click `Load`. For settings, if you have laptop GPU available, increasing `n-gpu-layers` accelerates inference. ![Alt text](image-1.png)
 3. After loading, it will give a confirmation message as following. ![Alt text](image-3.png)
 4. Then go to `Chat` page, use default setting for llama based quantized models, ![Alt text](image-4.png)
-5. Inference video demo
-![Alt text](<Screen Recording 2024-01-29 at 15.20.26.gif>)
+5. Real-time inference video demo
+![Alt text](Presentation1_final.gif)
 
+Integration with Gorilla-CLI coming soon ...
 
 ### [Optional] Batch Inference on a Prompt File
 
