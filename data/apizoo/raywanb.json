@@ -1,0 +1,127 @@
+[
+    {
+      "user_name": "your_username",
+      "api_name": "yfinance - Yahoo Finance Mass Download of Market Data API",
+      "api_call": "yf.download({tickers}, start={start_date}, end={end_date}, group_by={group_by})",
+      "api_version": "1.0",
+      "api_arguments": {
+        "tickers": "A list of stock tickers to download data for (separated by space)",
+        "start_date": "Start date for data retrieval (format: 'YYYY-MM-DD')",
+        "end_date": "End date for data retrieval (format: 'YYYY-MM-DD')",
+        "group_by": "Optional parameter to group data by 'ticker' (default) or 'column' (group data by column names)"
+      },
+      "functionality": "Mass download historical market data for multiple stocks from Yahoo Finance",
+      "env_requirements": ["Python library: yfinance"],
+      "example_code": "import yfinance as yf \n\ntickers = 'SPY AAPL' \nstart_date = '2017-01-01' \nend_date = '2017-04-30' \ndata = yf.download(tickers, start=start_date, end=end_date, group_by='ticker')",
+      "meta_data": {
+        "description": "yfinance is a Python library that allows you to download historical market data from Yahoo Finance in a reliable and Pythonic way. You can use it to mass download data for multiple stock tickers at once, specifying a start and end date. By default, data is grouped by ticker, but you can also choose to group it by column names."
+      },
+      "questions": [
+        "Mass download historical market data for SPY and AAPL from January 1, 2017, to April 30, 2017, grouping data by ticker."
+      ]
+    },
+    {
+      "user_name": "your_username",
+      "api_name": "yfinance - Yahoo Finance Historical Data API - Get History Metadata",
+      "api_call": "yfinance.Ticker({ticker}).history_metadata",
+      "api_version": "1.0",
+      "api_arguments": {
+        "ticker": "Stock ticker to download data for"
+      },
+      "functionality": "Get historical meta data from Yahoo Finance",
+      "env_requirements": ["Python library: yfinance"],
+      "example_code": "import yfinance as yf \n\nmsft = yf.Ticker('MSFT') \n\n# get historical market data \nhist = msft.history(period='1mo') \nprint(msft.history_metadata)",
+      "meta_data": {
+        "description": "yfinance is a Python library that allows you to download historical market data from Yahoo Finance in a reliable and Pythonic way. It provides access to historical data with up to 1-minute granularity."
+      },
+      "questions": [
+        "How can I reliably download historical market data using yfinance?",
+        "Download AAPL's historical metadata"
+      ]
+    },
+    {
+      "user_name": "your_username",
+      "api_name": "yfinance - Yahoo Finance Historical Data API - Dividends Data",
+      "api_call": "yfinance.Ticker({ticker}).dividends",
+      "api_version": "1.0",
+      "api_arguments": {
+        "ticker": "Stock ticker to download data for"
+      },
+      "functionality": "Get historical meta data from Yahoo Finance",
+      "env_requirements": ["Python library: yfinance"],
+      "example_code": "import yfinance as yf \n\nmsft = yf.Ticker('MSFT') \n\nprint(msft.dividends)",
+      "meta_data": {
+        "description": "yfinance is a Python library that allows you to download historical market data from Yahoo Finance in a reliable and Pythonic way. It provides access to historical data with up to 1-minute granularity."
+      },
+      "questions": ["Download MSFT's dividends data"]
+    },
+    {
+      "user_name": "your_username",
+      "api_name": "yfinance - Yahoo Finance Historical Data API - Splits Data",
+      "api_call": "yfinance.Ticker({ticker}).splits",
+      "api_version": "1.0",
+      "api_arguments": {
+        "ticker": "Stock ticker to download data for"
+      },
+      "functionality": "Get historical meta data from Yahoo Finance",
+      "env_requirements": ["Python library: yfinance"],
+      "example_code": "import yfinance as yf \n\nmsft = yf.Ticker('MSFT') \n\nprint(msft.splits)",
+      "meta_data": {
+        "description": "yfinance is a Python library that allows you to download historical market data from Yahoo Finance in a reliable and Pythonic way. It provides access to historical data with up to 1-minute granularity."
+      },
+      "questions": ["Download MSFT's split data"]
+    },
+    {
+      "user_name": "your_username",
+      "api_name": "yfinance - Yahoo Finance News API",
+      "api_call": "yfinance.Ticker({ticker}).news",
+      "api_version": "1.0",
+      "api_arguments": {
+        "ticker": "Stock ticker to retrieve news for"
+      },
+      "functionality": "Get the latest news articles related to a stock from Yahoo Finance",
+      "env_requirements": ["Python library: yfinance"],
+      "example_code": "import yfinance as yf \n\nmsft = yf.Ticker('MSFT') \n\nprint(msft.news)",
+      "meta_data": {
+        "description": "yfinance is a Python library that allows you to download historical market data from Yahoo Finance in a reliable and Pythonic way. It also provides access to the latest news articles related to a specific stock."
+      },
+      "questions": [
+        "Retrieve the latest news articles related to Microsoft (MSFT)"
+      ]
+    },
+    {
+      "user_name": "your_username",
+      "api_name": "yfinance - Yahoo Finance Options API",
+      "api_call": "yfinance.Ticker({ticker}).options",
+      "api_version": "1.0",
+      "api_arguments": {
+        "ticker": "Stock ticker to retrieve options data for"
+      },
+      "functionality": "Get information on available options contracts for a specific stock from Yahoo Finance",
+      "env_requirements": ["Python library: yfinance"],
+      "example_code": "import yfinance as yf \n\nmsft = yf.Ticker('MSFT') \n\nprint(msft.options)",
+      "meta_data": {
+        "description": "yfinance is a Python library that allows you to download historical market data from Yahoo Finance in a reliable and Pythonic way. It also provides access to information on available options contracts for a specific stock."
+      },
+      "questions": [
+        "Retrieve information on available options contracts for Microsoft (MSFT)"
+      ]
+    },
+    {
+      "user_name": "your_username",
+      "api_name": "yfinance - Yahoo Finance Income Statement API",
+      "api_call": "yfinance.Ticker({ticker}).financials",
+      "api_version": "1.0",
+      "api_arguments": {
+        "ticker": "Stock ticker to retrieve income statement data for"
+      },
+      "functionality": "Get the income statement data for a specific stock from Yahoo Finance",
+      "env_requirements": ["Python library: yfinance"],
+      "example_code": "import yfinance as yf \n\nmsft = yf.Ticker('MSFT') \n\nprint(msft.financials)",
+      "meta_data": {
+        "description": "yfinance is a Python library that allows you to download historical market data from Yahoo Finance in a reliable and Pythonic way. It also provides access to income statement data for a specific stock."
+      },
+      "questions": ["Retrieve the income statement data for Microsoft (MSFT)"]
+    }
+  ]
+  
