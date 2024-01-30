@@ -147,7 +147,7 @@ print(output)
 
 ## Self-Hosting OpenFunctions
 
-This section provides a guide on how to self-host the OpenFunctions model on your local machine. The example server enables the deployment of the OpenFunctions model using FastAPI and uvicorn, while the example client demonstrates how to interact with this local server using the OpenAI package.
+This section provides a guide on how to self-host the OpenFunctions model on your local machine or serve it locally for your enterprise. The server deploys the OpenFunctions-v0 model with uvicorn, while the client interacts with this local server using the OpenAI package (0.28.xx). 
 
 ### Setting Up Your Local Server
 
