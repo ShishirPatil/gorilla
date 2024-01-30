@@ -1,6 +1,6 @@
 [
     {
-      "user_name": "your_username",
+      "user_name": "raywanb",
       "api_name": "yfinance - Yahoo Finance Mass Download of Market Data API",
       "api_call": "yf.download({tickers}, start={start_date}, end={end_date}, group_by={group_by})",
       "api_version": "1.0",
@@ -21,8 +21,8 @@
       ]
     },
     {
-      "user_name": "your_username",
-      "api_name": "yfinance - Yahoo Finance Historical Data API - Get History Metadata",
+      "user_name": "raywanb",
+      "api_name": "yfinance - Yahoo Finance Get History Metadata API",
       "api_call": "yfinance.Ticker({ticker}).history_metadata",
       "api_version": "1.0",
       "api_arguments": {
@@ -40,8 +40,8 @@
       ]
     },
     {
-      "user_name": "your_username",
-      "api_name": "yfinance - Yahoo Finance Historical Data API - Dividends Data",
+      "user_name": "raywanb",
+      "api_name": "yfinance - Yahoo Finance Dividends Data API",
       "api_call": "yfinance.Ticker({ticker}).dividends",
       "api_version": "1.0",
       "api_arguments": {
@@ -56,8 +56,8 @@
       "questions": ["Download MSFT's dividends data"]
     },
     {
-      "user_name": "your_username",
-      "api_name": "yfinance - Yahoo Finance Historical Data API - Splits Data",
+      "user_name": "raywanb",
+      "api_name": "yfinance - Yahoo Finance Splits Data API",
       "api_call": "yfinance.Ticker({ticker}).splits",
       "api_version": "1.0",
       "api_arguments": {
@@ -72,7 +72,7 @@
       "questions": ["Download MSFT's split data"]
     },
     {
-      "user_name": "your_username",
+      "user_name": "raywanb",
       "api_name": "yfinance - Yahoo Finance News API",
       "api_call": "yfinance.Ticker({ticker}).news",
       "api_version": "1.0",
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "user_name": "your_username",
+      "user_name": "raywanb",
       "api_name": "yfinance - Yahoo Finance Options API",
       "api_call": "yfinance.Ticker({ticker}).options",
       "api_version": "1.0",
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "user_name": "your_username",
+      "user_name": "raywanb",
       "api_name": "yfinance - Yahoo Finance Income Statement API",
       "api_call": "yfinance.Ticker({ticker}).financials",
       "api_version": "1.0",
@@ -122,6 +122,86 @@
         "description": "yfinance is a Python library that allows you to download historical market data from Yahoo Finance in a reliable and Pythonic way. It also provides access to income statement data for a specific stock."
       },
       "questions": ["Retrieve the income statement data for Microsoft (MSFT)"]
-    }
+    },
+    {
+      "user_name": "raywanb",
+      "api_name": "yfinance - Yahoo Finance Actions API",
+      "api_call": "yfinance.Ticker({ticker}).actions",
+      "api_version": "1.0",
+      "api_arguments": {
+        "ticker": "Stock ticker to retrieve actions data for"
+      },
+      "functionality": "Get the actions data (dividends, stock splits) for a specific stock from Yahoo Finance",
+      "env_requirements": ["Python library: yfinance"],
+      "example_code": "import yfinance as yf \n\nmsft = yf.Ticker('MSFT') \n\nprint(msft.actions)",
+      "meta_data": {
+        "description": "yfinance is a Python library that allows you to download historical market data from Yahoo Finance in a reliable and Pythonic way. It also provides access to actions data (like dividends and stock splits) for a specific stock."
+      },
+      "questions": ["Retrieve the actions data for Microsoft (MSFT)"]
+    },
+    {
+      "user_name": "raywanb",
+      "api_name": "yfinance - Yahoo Finance Cash Flow API",
+      "api_call": "yfinance.Ticker({ticker}).cashflow",
+      "api_version": "1.0",
+      "api_arguments": {
+        "ticker": "Stock ticker to retrieve cash flow data for"
+      },
+      "functionality": "Get the cash flow data for a specific stock from Yahoo Finance",
+      "env_requirements": ["Python library: yfinance"],
+      "example_code": "import yfinance as yf \n\nmsft = yf.Ticker('MSFT') \n\nprint(msft.cashflow)",
+      "meta_data": {
+        "description": "yfinance is a Python library that allows you to download historical market data from Yahoo Finance in a reliable and Pythonic way. It also provides access to cash flow data for a specific stock."
+      },
+      "questions": ["Retrieve the cash flow data for Microsoft (MSFT)"]
+    },
+    {
+      "user_name": "raywanb",
+      "api_name": "yfinance - Yahoo Finance Balance Sheet API",
+      "api_call": "yfinance.Ticker({ticker}).balance_sheet",
+      "api_version": "1.0",
+      "api_arguments": {
+        "ticker": "Stock ticker to retrieve balance sheet data for"
+      },
+      "functionality": "Get the balance sheet data for a specific stock from Yahoo Finance",
+      "env_requirements": ["Python library: yfinance"],
+      "example_code": "import yfinance as yf \n\nmsft = yf.Ticker('MSFT') \n\nprint(msft.balance_sheet)",
+      "meta_data": {
+        "description": "yfinance is a Python library that allows you to download historical market data from Yahoo Finance in a reliable and Pythonic way. It also provides access to balance sheet data for a specific stock."
+      },
+      "questions": ["Retrieve the balance sheet data for Microsoft (MSFT)"]
+    },
+    {
+      "user_name": "raywanb",
+      "api_name": "yfinance - Yahoo Finance Recommendations API",
+      "api_call": "yfinance.Ticker({ticker}).recommendations",
+      "api_version": "1.0",
+      "api_arguments": {
+        "ticker": "Stock ticker to retrieve analyst recommendations data for"
+      },
+      "functionality": "Get the analyst recommendations data for a specific stock from Yahoo Finance",
+      "env_requirements": ["Python library: yfinance"],
+      "example_code": "import yfinance as yf \n\nmsft = yf.Ticker('MSFT') \n\nprint(msft.recommendations)",
+      "meta_data": {
+        "description": "yfinance is a Python library that allows you to download historical market data from Yahoo Finance in a reliable and Pythonic way. It also provides access to analyst recommendations for a specific stock."
+      },
+      "questions": ["Retrieve the analyst recommendations data for Microsoft (MSFT)"]
+    },
+    {
+      "user_name": "raywanb",
+      "api_name": "yfinance - Yahoo Finance Major Holders API",
+      "api_call": "yfinance.Ticker({ticker}).major_holders",
+      "api_version": "1.0",
+      "api_arguments": {
+        "ticker": "Stock ticker to retrieve major holders information for"
+      },
+      "functionality": "Get the major holders information for a specific stock from Yahoo Finance",
+      "env_requirements": ["Python library: yfinance"],
+      "example_code": "import yfinance as yf \n\nmsft = yf.Ticker('MSFT') \n\nprint(msft.major_holders)",
+      "meta_data": {
+        "description": "yfinance is a Python library that allows you to download historical market data from Yahoo Finance in a reliable and Pythonic way. It also provides access to major holders information for a specific stock."
+      },
+      "questions": ["Retrieve the major holders information for Microsoft (MSFT)"]
+    }                    
   ]
   
