@@ -155,7 +155,7 @@ The server API endpoint mirrors the interface of the API call executed by `opena
 
 Ensure you have the required libraries:
 ```bash
-!pip install fastapi uvicorn transformers torch
+pip install fastapi uvicorn transformers torch
 ```
 
 Similar to the process outlined in the "Running OpenFunctions Locally" section, the model is loaded from HuggingFace for local serving. Only use the `get_prompt` format if you are hosting locally.
@@ -308,6 +308,7 @@ functions = [
 resp = get_gorilla_response(query, functions=functions)
 print(resp)
 ```
+
 ### Try Out Self-Hosting OpenFunctions on Colab
 You can try out setting up a local server to self-host the OpenFunctions model using this [Colab notebook](https://colab.research.google.com/drive/1rKbWmz6IpzHenn2-LmEnt0Zy3Mu2xwbw?usp=sharing).
 Make sure you select an A100/V100 instance to run the notebook – smaller instances like T-4 do not suffice due to memory constraints.
