@@ -62,6 +62,8 @@ python3 serve/gorilla_falcon_cli.py --model-path path/to/gorilla-falcon-7b-hf-v0
 
 K-quantized gorilla models can be found on [Huggingface](https://huggingface.co/gorilla-llm): [Llama-based](https://huggingface.co/gorilla-llm/gorilla-7b-hf-v1-gguf), [MPT-Based](https://huggingface.co/gorilla-llm/gorilla-mpt-7b-hf-v0-gguf), [Falcon-Based](https://huggingface.co/gorilla-llm/gorilla-falcon-7b-hf-v0-gguf)
 
+K-quantized `gorilla-openfunctions-v0` and `gorilla-openfunctions-v1` models can be found on [Huggingface](https://huggingface.co/gorilla-llm): [`gorilla-openfunctions-v0-gguf`](https://huggingface.co/gorilla-llm/gorilla-openfunctions-v0-gguf), [`gorilla-openfunctions-v1-gguf`](https://huggingface.co/gorilla-llm/gorilla-openfunctions-v1-gguf)
+
 For an in depth walkthrough on how this quantization was done, follow the tutorial in 
 this [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1JP_MN-J1rODo9k_-dR_9c9EnZRCfcVNe?usp=sharing). This tutorial is a fully self-contained space to see an under-the-hood walkthrough of the quantization pipeline (using llama.cpp) and to test out your own prompts with different quantized versions of Gorilla. The models don't take up local space and utilize a CPU runtime. 
 
