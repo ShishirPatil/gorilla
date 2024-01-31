@@ -3,7 +3,7 @@
       "user_name": "raywanb",
       "api_name": "yfinance - Yahoo Finance Mass Download of Market Data API",
       "api_call": "yf.download({tickers}, start={start_date}, end={end_date}, group_by={group_by})",
-      "api_version": "1.0",
+      "api_version": "0.2.36",
       "api_arguments": {
         "tickers": "A list of stock tickers to download data for (separated by space)",
         "start_date": "Start date for data retrieval (format: 'YYYY-MM-DD')",
@@ -24,7 +24,7 @@
       "user_name": "raywanb",
       "api_name": "yfinance - Yahoo Finance Get History Metadata API",
       "api_call": "yfinance.Ticker({ticker}).history_metadata",
-      "api_version": "1.0",
+      "api_version": "0.2.36",
       "api_arguments": {
         "ticker": "Stock ticker to download data for"
       },
@@ -43,7 +43,7 @@
       "user_name": "raywanb",
       "api_name": "yfinance - Yahoo Finance Dividends Data API",
       "api_call": "yfinance.Ticker({ticker}).dividends",
-      "api_version": "1.0",
+      "api_version": "0.2.36",
       "api_arguments": {
         "ticker": "Stock ticker to download data for"
       },
@@ -59,7 +59,7 @@
       "user_name": "raywanb",
       "api_name": "yfinance - Yahoo Finance Splits Data API",
       "api_call": "yfinance.Ticker({ticker}).splits",
-      "api_version": "1.0",
+      "api_version": "0.2.36",
       "api_arguments": {
         "ticker": "Stock ticker to download data for"
       },
@@ -75,7 +75,7 @@
       "user_name": "raywanb",
       "api_name": "yfinance - Yahoo Finance News API",
       "api_call": "yfinance.Ticker({ticker}).news",
-      "api_version": "1.0",
+      "api_version": "0.2.36",
       "api_arguments": {
         "ticker": "Stock ticker to retrieve news for"
       },
@@ -93,7 +93,7 @@
       "user_name": "raywanb",
       "api_name": "yfinance - Yahoo Finance Options API",
       "api_call": "yfinance.Ticker({ticker}).options",
-      "api_version": "1.0",
+      "api_version": "0.2.36",
       "api_arguments": {
         "ticker": "Stock ticker to retrieve options data for"
       },
@@ -111,7 +111,7 @@
       "user_name": "raywanb",
       "api_name": "yfinance - Yahoo Finance Income Statement API",
       "api_call": "yfinance.Ticker({ticker}).financials",
-      "api_version": "1.0",
+      "api_version": "0.2.36",
       "api_arguments": {
         "ticker": "Stock ticker to retrieve income statement data for"
       },
@@ -127,7 +127,7 @@
       "user_name": "raywanb",
       "api_name": "yfinance - Yahoo Finance Actions API",
       "api_call": "yfinance.Ticker({ticker}).actions",
-      "api_version": "1.0",
+      "api_version": "0.2.36",
       "api_arguments": {
         "ticker": "Stock ticker to retrieve actions data for"
       },
@@ -143,7 +143,7 @@
       "user_name": "raywanb",
       "api_name": "yfinance - Yahoo Finance Cash Flow API",
       "api_call": "yfinance.Ticker({ticker}).cashflow",
-      "api_version": "1.0",
+      "api_version": "0.2.36",
       "api_arguments": {
         "ticker": "Stock ticker to retrieve cash flow data for"
       },
@@ -159,7 +159,7 @@
       "user_name": "raywanb",
       "api_name": "yfinance - Yahoo Finance Balance Sheet API",
       "api_call": "yfinance.Ticker({ticker}).balance_sheet",
-      "api_version": "1.0",
+      "api_version": "0.2.36",
       "api_arguments": {
         "ticker": "Stock ticker to retrieve balance sheet data for"
       },
@@ -175,7 +175,7 @@
       "user_name": "raywanb",
       "api_name": "yfinance - Yahoo Finance Recommendations API",
       "api_call": "yfinance.Ticker({ticker}).recommendations",
-      "api_version": "1.0",
+      "api_version": "0.2.36",
       "api_arguments": {
         "ticker": "Stock ticker to retrieve analyst recommendations data for"
       },
@@ -191,7 +191,7 @@
       "user_name": "raywanb",
       "api_name": "yfinance - Yahoo Finance Major Holders API",
       "api_call": "yfinance.Ticker({ticker}).major_holders",
-      "api_version": "1.0",
+      "api_version": "0.2.36",
       "api_arguments": {
         "ticker": "Stock ticker to retrieve major holders information for"
       },
