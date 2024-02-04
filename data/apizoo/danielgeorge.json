@@ -1,0 +1,150 @@
+[
+    {
+        "user_name": "dangeo773",
+        "api_name": "Stripe API - Charges",
+        "api_call": "stripe.Charge.create(amount={amount}, currency={currency}, source={source}, description={description})",
+        "api_version": "2023-10-16",
+        "api_arguments": {
+            "amount": "integer",
+            "currency": "string",
+            "source": "string",
+            "description": "string"
+        },
+        "functionality": "Create, retrieve, update, and delete charges.",
+  "env_requirements": ["stripe"],
+  "example_code": "stripe.Charge.create(amount=2000, currency='usd', source='tok_amex', description='Charge for jenny.rosen@example.com')",
+  "meta_data": {
+    "description": "The Stripe Charge API allows you to create, retrieve, update, and delete charges. This API is part of Stripe's suite for handling payments."
+  },
+  "questions": [
+    "Charge Jenny Rosen $2000 in USD.",
+    "Can you check how much I charged Sam Rosen?",
+    "Undo my charge to Ronald Samuels"
+  ]
+      },
+      {
+      "user_name": "dangeo773",
+  "api_name": "Stripe - Customers",
+  "api_call": "stripe.Customer.create(email='email', description='description')",
+  "api_version": "2023-10-16",
+  "api_arguments": {
+    "amount": "integer",
+    "currency": "string",
+    "source": "string",
+    "description": "string"
+  
+  },
+  "functionality": "Create, retrieve, update, and delete customers.",
+  "env_requirements": ["stripe"],
+  "example_code": "stripe.Customer.create(email='jenny.rosen@example.com', description='Customer for jenny.rosen@example.com')",
+  "meta_data": {
+    "description": "The Stripe Customer API allows you to create, retrieve, update, and delete customers. This API is part of Stripe's suite for handling customers."
+  },
+  "questions": [
+    "How do I create a new customer on Stripe?",
+    "Create a customer named Jimmy John, with email jimmyjohn@gmail.com",
+    "Delete the customer Jerry Joseph."
+  ]
+      },
+      {
+      "user_name": "dangeo773",
+  "api_name": "Stripe - Payment Intents",
+  "api_call": "stripe.PaymentIntent.create(amount={amount}, currency={usd}, payment_method_types={payment_method_types})",
+  "api_version": "2023-10-16",
+  "api_arguments": {
+    "amount": "integer",
+    "currency": "string",
+    "payment_method_types" : "list"
+  },
+  "functionality": "Create, retrieve, update, and handle payment intents.",
+  "env_requirements": ["stripe"],
+  "example_code": "stripe.PaymentIntent.create(amount=2000, currency='usd', payment_method_types=['card'])",
+  "meta_data": {
+    "description": "Stripe's Payment Intents API is used to handle complex payment flows. It is designed to manage the entire payment lifecycle, especially for businesses that need to handle complex payment scenarios."
+  },
+  "questions": [
+    "How can I create a PaymentIntent?",
+    "What's the process to confirm a PaymentIntent?",
+    "Create a payment intent of amount $3000 USD"
+  ]
+},
+{
+    "user_name": "dangeo773",
+    "api_name": "Stripe - Balance",
+    "api_call": "stripe.Balance.retrieve(id={id}, object={object}, amount={amount}, balance_transactions={balance_transactions}, charge={charge}, created={created}, currency={currency})",
+    "api_version": "2023-10-16",
+    "api_arguments": 
+    
+    {
+        "id": "string",
+        "object": "string",
+        "amount": "integer",
+        "balance_transactions": "list",
+        "charge": "string",
+        "created": "integer",
+        "currency": "string"
+
+
+    },
+    "functionality": "Retrieve your Stripe account's current balance.",
+    "env_requirements": ["stripe"],
+    "example_code": "stripe.Balance.retrieve()",
+    "meta_data": {
+      "description": "The Balance API is used to retrieve your account's current balance, showing both pending and available amounts."
+    },
+    "questions": [
+      "How can I check my current Stripe account balance?",
+      "What is the difference between pending and available amounts in my Stripe balance?"
+    ]
+  },
+  {
+    "user_name": "dangeo773",
+    "api_name": "Stripe - Refunds",
+    "api_call": "stripe.Refund.create(charge={charge})",
+    "api_version": "2023-10-16",
+    "api_arguments": {
+      "charge": "string",
+      "amount": "integer",
+      "reason": "string"
+      
+    },
+    "functionality": "Create, retrieve, update, and delete refunds.",
+    "env_requirements": ["stripe"],
+    "example_code": "stripe.Refund.create(charge='ch_1Iq5Pf2eZvKYlo2C2pZOdF4Q')",
+    "meta_data": {
+      "description": "The Refunds API allows you to refund charges made to your account, either in whole or in part, and to retrieve details of previous refunds."
+    },
+    "questions": [
+      "Refund charge 2891823.",
+      "Can I partially refund a transaction?",
+      "Refund my previous transaction for $1,000."
+    ]
+  },
+  {
+    "user_name": "dangeo773",
+    "api_name": "Stripe - Payouts",
+    "api_call": "stripe.Payout.create(amount={amount}, currency={currency}, destination={destination})",
+    "api_version": "2023-10-16",
+    "api_arguments": {
+      "amount": "integer",
+      "currency": "string",
+      "destination": "string"
+      
+    },
+    "functionality": "Create, retrieve, update, and delete payouts.",
+    "env_requirements": ["stripe"],
+    "example_code": "stripe.Payout.create(amount=1100, currency='usd', destination='bank_account')",
+    "meta_data": {
+      "description": "The Payouts API is used to manage the transfer of funds from your Stripe account balance to your bank account or debit card."
+    },
+    "questions": [
+      "Initiate a payout to my bank account.",
+      "Commit a payout of $2041 to my bank account.",
+      "How can I retrieve a specific payout transaction?"
+    ]
+  }
+
+
+
+
+]
