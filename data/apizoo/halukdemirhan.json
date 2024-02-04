@@ -190,28 +190,6 @@
           "How can I integrate an automated delivery system in my restaurant's app using DoorDash?",
           "What's the method for programmatically scheduling deliveries with specific instructions?"
         ]
-      },
-      {
-        "user_name": "halukdemirhan",
-        "api_name": "DoorDash API - Cancel Delivery",
-        "api_call": "requests.post(url={cancel_endpoint}, headers={headers}, json={cancel_request_body})",
-        "api_version": "v2",
-        "api_arguments": {
-          "cancel_endpoint": "Endpoint URL for cancelling deliveries",
-          "headers": "Headers including Authorization token and content type",
-          "cancel_request_body": "Details required to cancel the delivery, such as delivery ID"
-        },
-        "functionality": "Cancel an existing delivery request",
-        "env_requirements": ["requests"],
-        "example_code": "import requests \n token = 'your-token' \n cancel_endpoint = 'https://openapi.doordash.com/drive/v2/deliveries/cancel' \n headers = {'Accept-Encoding': 'application/json', 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json'} \n cancel_request_body = {'external_delivery_id': 'D-12345'} \n cancel_delivery = requests.post(cancel_endpoint, headers=headers, json=cancel_request_body)",
-        "meta_data": {
-          "description": "Hypothetical endpoint for DoorDash API to cancel a delivery. This would allow businesses to cancel a delivery request in cases like order cancellation or mistake in the delivery details.",
-          "documentation_link": "Hypothetical documentation link"
-        },
-        "questions": [
-          "Can I cancel a delivery order through my business application if the customer cancels their order?",
-          "What is the process for reversing a delivery request in case of an error?"
-        ]
       }
 ]
   
