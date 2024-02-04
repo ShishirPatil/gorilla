@@ -121,8 +121,6 @@ Step 3: Select the quantization method you want to use, download the quantized m
 5. *Real-time inference* video demo
 ![Alt text](Presentation1_final.gif)
 
-Integration with Gorilla-CLI coming soon ...
-
 
 ### 4. Private Inference using Gorilla hosted endpoint on Replicate
 
