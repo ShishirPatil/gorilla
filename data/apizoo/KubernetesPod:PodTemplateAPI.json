@@ -401,7 +401,7 @@
           "namespace": "string (Namespace for the PodTemplate)"
         },
         "spec": {
-          // Define the specification for the PodTemplate here
+          
         }
       },
     },
@@ -427,7 +427,7 @@
           "namespace": "string (Namespace for the PodTemplate)"
         },
         "spec": {
-          // Define the specification for the PodTemplate here
+          
         }
       },
     },  
