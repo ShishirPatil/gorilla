@@ -42,7 +42,7 @@ python3 apply_delta.py
 --delta-path path/to/models--gorilla-llm--gorilla-7b-hf-delta-v0
 ```
 
-### Inference using CLI
+### 1. Inference using CLI
 
 Simply run the command below to start chatting with Gorilla: 
 
@@ -58,7 +58,7 @@ python3 serve/gorilla_falcon_cli.py --model-path path/to/gorilla-falcon-7b-hf-v0
 
 > Add "--device mps" if you are running on your Mac with Apple silicon (M1, M2, etc)
 
-### [Optional] Batch Inference on a Prompt File
+### 2. Batch Inference on a Prompt File
 
 After downloading the model, you need to make a jsonl file containing all the question you want to inference through Gorilla. Here is [one example](https://github.com/ShishirPatil/gorilla/blob/main/inference/example_questions/example_questions.jsonl): 
 
@@ -77,7 +77,7 @@ python3 gorilla_eval.py --model-path path/to/gorilla-7b-hf-v0
 
 You could use your own questions and get Gorilla responses. We also provide a set of [questions](https://github.com/ShishirPatil/gorilla/tree/main/eval/eval-data/questions/huggingface) that we used for evaluation.
 
-### Private Inference using Gorilla hosted endpoint on Replicate
+### 3. Private Inference using Gorilla hosted endpoint on Replicate
 
 This section provides a guide for setting up a private inference endpoint for a Gorilla model hosted on Replicate, a cloud platform for running machine learning models. Replicate offers a secure and scalable alternative to the publicly hosted zanino.berkeley.edu endpoint, enabling private and controlled model deployment. Replicate's open source Cog tool is used for containerizing and deploying the Gorilla model, which streamlines the process of turning Gorilla models into scalable, production-ready services.
 
