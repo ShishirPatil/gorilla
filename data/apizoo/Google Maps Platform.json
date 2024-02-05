@@ -1,0 +1,287 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: geolocate",
+        "api_call": "https://www.googleapis.com/geolocation/v1/geolocate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"homeMobileCountryCode\": \"<integer>\",\n  \"homeMobileNetworkCode\": \"<integer>\",\n  \"radioType\": \"<string>\",\n  \"carrier\": \"<string>\",\n  \"considerIp\": \"<string>\",\n  \"cellTowers\": [\n    {\n      \"cellId\": \"<integer>\",\n      \"locationAreaCode\": \"<integer>\",\n      \"mobileCountryCode\": \"<integer>\",\n      \"mobileNetworkCode\": \"<integer>\",\n      \"age\": \"<integer>\",\n      \"signalStrength\": \"<number>\",\n      \"timingAdvance\": \"<number>\"\n    },\n    {\n      \"cellId\": \"<integer>\",\n      \"locationAreaCode\": \"<integer>\",\n      \"mobileCountryCode\": \"<integer>\",\n      \"mobileNetworkCode\": \"<integer>\",\n      \"age\": \"<integer>\",\n      \"signalStrength\": \"<number>\",\n      \"timingAdvance\": \"<number>\"\n    }\n  ],\n  \"wifiAccessPoints\": [\n    {\n      \"macAddress\": \"<string>\",\n      \"signalStrength\": \"<integer>\",\n      \"signalToNoiseRatio\": \"<integer>\",\n      \"age\": \"<integer>\",\n      \"channel\": \"<integer>\"\n    },\n    {\n      \"macAddress\": \"<string>\",\n      \"signalStrength\": \"<integer>\",\n      \"signalToNoiseRatio\": \"<integer>\",\n      \"age\": \"<integer>\",\n      \"channel\": \"<integer>\"\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Geolocation API returns a location and accuracy radius based on information about cell towers and WiFi nodes that the mobile"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: directions",
+        "api_call": "https://maps.googleapis.com/maps/api/directions/json?destination=<string>&origin=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "The Directions API is a web service that uses an HTTP request to return JSON or XML-formatted directions between locations."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: elevation",
+        "api_call": "https://maps.googleapis.com/maps/api/elevation/json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "The Elevation API provides a simple interface to query locations on the earth for elevation data. Additionally, you may request"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: geocode",
+        "api_call": "https://maps.googleapis.com/maps/api/geocode/json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "The Geocoding API is a service that provides geocoding and reverse geocoding of addresses.\n\n**Geocoding** is the process of converting addresses"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: timezone",
+        "api_call": "https://maps.googleapis.com/maps/api/timezone/json?location=<string>&timestamp=<number>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "The Time Zone API provides a simple interface to request the time zone for locations on the surface of the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: snap To Roads",
+        "api_call": "https://roads.googleapis.com/v1/snaptoroads?path=<string>|<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This service returns the best-fit road geometry for a given set of GPS coordinates. This service takes up to 100"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: nearest Roads",
+        "api_call": "https://roads.googleapis.com/v1/nearestRoads?points=<string>|<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This service returns individual road segments for a given set of GPS coordinates. This services takes up to 100 GPS"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: distance Matrix",
+        "api_call": "https://maps.googleapis.com/maps/api/distancematrix/json?destinations=<string>|<string>&origins=<string>|<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "The Distance Matrix API is a service that provides travel distance and time for a matrix of origins and destinations."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: place Details",
+        "api_call": "https://maps.googleapis.com/maps/api/place/details/json?place_id=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "The Places API is a service that returns information about places using HTTP requests. Places are defined within this API"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: find Place From Text",
+        "api_call": "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=<string>&inputtype=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "A Find Place request takes a text input and returns a place. The input can be any kind of Places"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: nearby Search",
+        "api_call": "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "A Nearby Search lets you search for places within a specified area. You can refine your search request by supplying"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: text Search",
+        "api_call": "https://maps.googleapis.com/maps/api/place/textsearch/json?query=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "The Google Places API Text Search Service is a web service that returns information about a set of places based"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: place Photo",
+        "api_call": "https://maps.googleapis.com/maps/api/place/photo?photo_reference=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "image/*"
+                }
+            ]
+        },
+        "functionality": "The Place Photo service, part of the Places API, is a read- only API that allows you to add high"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: query Autocomplete",
+        "api_call": "https://maps.googleapis.com/maps/api/place/queryautocomplete/json?input=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "The Query Autocomplete service can be used to provide a query prediction for text-based geographic searches, by returning suggested queries"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: autocomplete",
+        "api_call": "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "The Place Autocomplete service is a web service that returns place predictions in response to an HTTP request. The request"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: street View",
+        "api_call": "https://maps.googleapis.com/maps/api/streetview?size=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "image/*"
+                }
+            ]
+        },
+        "functionality": "The Street View Static API lets you embed a static (non-interactive) Street View panorama or thumbnail into your web page,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Google Maps Platform: street View Metadata",
+        "api_call": "https://maps.googleapis.com/maps/api/streetview/metadata",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "The Street View Static API metadata requests provide data about Street View panoramas. Using the metadata, you can find out"
+    }
+]

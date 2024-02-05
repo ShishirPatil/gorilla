@@ -1,0 +1,1449 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Show Comment",
+        "api_call": "//api/v2/community/posts/:post_id/comments/:post_comment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Shows information about the specified comment.\n\n#### Allowed for\n\n* Agents\n* End users\n\n#### Sideloads\n\nThe following sideloads are supported:\n\n| Name   |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Update Comment",
+        "api_call": "//api/v2/community/posts/:post_id/comments/:post_comment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Updates the specified comment.\n\n#### Allowed for\n\n* Agents\n* The end user who created the comment\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Delete Comment",
+        "api_call": "//api/v2/community/posts/:post_id/comments/:post_comment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes the specified comment.\n\n#### Allowed for\n\n* Agents\n* The end user who created the comment\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Comments",
+        "api_call": "//api/v2/community/posts/:post_id/comments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all comments on a specific post or all the comments created by a specific user.\nWhen listing comments by specific"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Post Comment",
+        "api_call": "//api/v2/community/posts/:post_id/comments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Adds a comment to the specified post.\n\n#### Allowed for\n\n* Agents\n* End users\n\nAgents with the Help Center manager role can optionally"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Show Post Subscription",
+        "api_call": "//api/v2/community/posts/:post_id/subscriptions/:subscription_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Agents\n* End-users\n\nFor end-users, the response will only show a subscription created by the requesting end-user.\n\n#### Sideloads\nThe following"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Delete Post Subscription",
+        "api_call": "//api/v2/community/posts/:post_id/subscriptions/:subscription_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Removes a subscription to a given [post](/api-reference/help_center/help-center-api/posts).\n\n#### Allowed for\n\n* End-users\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Post Subscriptions",
+        "api_call": "//api/v2/community/posts/:post_id/subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the subscriptions to a given post.\n\n#### Allowed for\n\n* Agents\n* End-users\n\nFor end-users, the response will list only the subscriptions created"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Post Subscription",
+        "api_call": "//api/v2/community/posts/:post_id/subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Creates a subscription to a given [post](/api-reference/help_center/help-center-api/posts).\n\n#### Allowed for\n\n* End-users\n\nAgents with the Help Center manager role can optionally supply a\n`subscription`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Show Post",
+        "api_call": "//api/v2/community/posts/:post_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Gets information about a given post.\n\n#### Allowed for\n\n* Agents\n* End users\n* Anonymous users\n\n#### Sideloads\nThe following sideloads are supported:\n\n| Name "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Update Post",
+        "api_call": "//api/v2/community/posts/:post_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Agents\n* The end user who created the post\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Delete Post",
+        "api_call": "//api/v2/community/posts/:post_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "#### Allowed for\n\n* Agents\n* The end user who created the post\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Posts",
+        "api_call": "//api/v2/community/posts?filter_by=none&sort_by=comments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Post",
+        "api_call": "//api/v2/community/posts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Adds a post to the specified [topic](/api-reference/help_center/help-center-api/topics).\n\n#### Allowed for\n\n* Agents\n* End users\n\nAgents with the Help Center manager role can optionally"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Show Topic Subscription",
+        "api_call": "//api/v2/community/topics/:topic_id/subscriptions/:subscription_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Agents\n* End-users\n\nFor end-users, the response will only show a subscription created by the requesting end-user.\n\n#### Sideloads\nThe following"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Update Topic Subscription",
+        "api_call": "//api/v2/community/topics/:topic_id/subscriptions/:subscription_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* End-users\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Delete Topic Subscription",
+        "api_call": "//api/v2/community/topics/:topic_id/subscriptions/:subscription_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Removes a subscription to a given [topic](/api-reference/help_center/help-center-api/topics).\n\n#### Allowed for\n\n* End-users\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Topic Subscriptions",
+        "api_call": "//api/v2/community/topics/:topic_id/subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the subscriptions to a given topic.\n\n#### Allowed for\n\n* Agents\n* End-users\n\nFor end-users, the response will list only the subscriptions created"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Topic Subscription",
+        "api_call": "//api/v2/community/topics/:topic_id/subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Creates a subscription to a given [topic](/api-reference/help_center/help-center-api/topics).\n\n#### Allowed for\n\n* End-users\n\nAgents with the Help Center manager role can optionally supply a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Show Topic",
+        "api_call": "//api/v2/community/topics/:topic_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Shows information about a single topic.\n\n#### Allowed for\n\n* Agents\n* End users\n* Anonymous users\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Update Topic",
+        "api_call": "//api/v2/community/topics/:topic_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Help Center managers\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Delete Topic",
+        "api_call": "//api/v2/community/topics/:topic_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "#### Allowed for\n\n* Help Center managers\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Topics",
+        "api_call": "//api/v2/community/topics",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all topics.\n\n#### Allowed for\n\n* Agents\n* End users\n* Anonymous users\n\n#### Pagination\n\n* Cursor pagination (recommended)\n* Offset pagination\n\nSee [Pagination](/api-reference/introduction/pagination/).\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Topic",
+        "api_call": "//api/v2/community/topics",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Help Center managers\n\nAgents with the Help Center Manager role can optionally supply a `created_at` as part of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Unified Search",
+        "api_call": "//api/v2/guide/search?query=<string>&filter[locales]=<string>&filter[category_ids]=<string>&filter[section_ids]=<string>&filter[topic_ids]=<string>&filter[external_source_ids]=<string>&filter[brand_ids]=<string>&filter[content_types]=<string>&page[after]=<string>&page[size]=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Image Upload URL and Token",
+        "api_call": "//api/v2/guide/user_images/uploads",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns an upload URL and token. Use the upload URL in a PUT request to upload the image to the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Image Path",
+        "api_call": "//api/v2/guide/user_images",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns the image path that you can use to display the image in a community post.\n\nYou should only use this"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Associate Attachments in Bulk to Article",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id/bulk_attachments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "You can associate attachments in bulk to only one article at a time,\nwith a maximum of 20 attachments per request.\n\nTo"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Show Comment",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id/comments/:comment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Shows the properties of the specified comment.\n\nThe `{locale}` is required only for end users and anomynous users. Admins and agents"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Update Comment",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id/comments/:comment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Agents\n* The end user who created the comment\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Delete Comment",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id/comments/:comment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "#### Allowed for\n\n* Agents\n* The end user who created the comment\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Comments",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id/comments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the comments created by a specific user, or all comments made by all users on\na specific article.\n\nThe `{locale}` for"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Comment",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id/comments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Adds a comment to the specified [article](/api-reference/help_center/help-center-api/articles). Because comments are associated\nwith a specific article translation, or locale, you must specify"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Delete Label from Article",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id/labels/:label_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Removes the label from the specified article's list of labels.\n\n#### Allowed for\n\n* Agents\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Article Labels",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id/labels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all the labels in a given article.\n\n#### Allowed for\n\n* Agents\n\n#### Pagination\n\n* Cursor pagination (recommended)\n* Offset pagination\n\nSee [Pagination](/api-reference/introduction/pagination/).\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Label",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id/labels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Agents\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Update Article Source Locale",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id/source_locale",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Updates the article's `source_locale` property. The source locale is the main language of the article. When you delete the article"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Show Article Subscription",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id/subscriptions/:subscription_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "**Note**: `{/locale}` is an optional parameter for admins and agents. End users and anonymous users must provide the parameter.\n\n#### Allowed"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Delete Article Subscription",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id/subscriptions/:subscription_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Removes the specified subscription from the specified [article](/api-reference/help_center/help-center-api/articles).\n\n#### Allowed for\n\n* End users\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Article Subscriptions",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id/subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the subscriptions to a given article.\n\n**Note**: `{/locale}` is an optional parameter for admins and agents. End users and anonymous"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Article Subscription",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id/subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Creates a subscription to a given [article](/api-reference/help_center/help-center-api/articles).\n\n#### Allowed for\n\n* End-users\n\nAgents with the Help Center manager role can optionally supply a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Vote",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id/up",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Creates an up or down vote for a given [article](/api-reference/help_center/help-center-api/articles), [article comment](/api-reference/help_center/help-center-api/article_comments/), [post](/api-reference/help_center/help-center-api/posts), or [post comment](/api-reference/help_center/help-center-api/post_comments).\nIf a vote already exists"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Show Article",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Shows the properties of an article.\n\n**Note**: `{/locale}` is an optional parameter for admins and agents. End users and anonymous users"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Update Article",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Archive Article",
+        "api_call": "//api/v2/help_center/:locale/articles/:article_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Archives the article. You can restore the article using the Help Center user interface. See [Viewing and restoring archived articles](https://support.zendesk.com/hc/en-us/articles/235721587).\n\n####"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Articles",
+        "api_call": "//api/v2/help_center/:locale/articles?sort_by=title&sort_order=desc&start_time=<integer>&label_names=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Section",
+        "api_call": "//api/v2/help_center/:locale/categories/:category_id/sections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Creates a section in a given [category](/api-reference/help_center/help-center-api/categories). You must\nspecify a section name and locale. The locale can be omitted if"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Update Category Source Locale",
+        "api_call": "//api/v2/help_center/:locale/categories/:category_id/source_locale",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "The endpoint updates the category `source_locale` property\n\n#### Allowed for\n\n* Agents\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Show Category",
+        "api_call": "//api/v2/help_center/:locale/categories/:category_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "**Note**: `{/locale}` is an optional parameter for admins and agents. End users and anonymous users must provide the parameter.\n\n#### Allowed"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Update Category",
+        "api_call": "//api/v2/help_center/:locale/categories/:category_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "These endpoints only update category-level metadata such as the sorting position.\nThey don't update category translations.\n\n#### Allowed for\n\n* Help Center managers\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Delete Category",
+        "api_call": "//api/v2/help_center/:locale/categories/:category_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "**WARNING: Every section and all articles in the category will also be deleted.**\n\n#### Allowed for\n\n* Help Center managers\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Categories",
+        "api_call": "//api/v2/help_center/:locale/categories?sort_by=created_at&sort_order=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "**Note**: `{/locale}` is an optional parameter for admins and agents. End users and anonymous users must provide the parameter.\n\n#### Allowed"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Category",
+        "api_call": "//api/v2/help_center/:locale/categories",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "You must specify a category name and locale. The locale can be omitted if it's specified\nin the URL. Optionally, you"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Article",
+        "api_call": "//api/v2/help_center/:locale/sections/:section_id/articles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"article\": {\n    \"title\": \"<string>\",\n    \"locale\": \"<string>\",\n    \"user_segment_id\": \"<integer>\",\n    \"permission_group_id\": 0,\n    \"body\": \"<string>\"\n  },\n  \"notify_subscribers\": \"<boolean>\"\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Update Section Source Locale",
+        "api_call": "//api/v2/help_center/:locale/sections/:section_id/source_locale",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint lets you set a section's source language to something other\nthan the default language of your Help Center. For"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Show Section Subscription",
+        "api_call": "//api/v2/help_center/:locale/sections/:section_id/subscriptions/:subscription_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "**Note**: `{/locale}` is an optional parameter for admins and agents. End users and anonymous users must provide the parameter.\n\n#### Allowed"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Delete Section Subscription",
+        "api_call": "//api/v2/help_center/:locale/sections/:section_id/subscriptions/:subscription_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Removes the specified subscription from the specified [section](/api-reference/help_center/help-center-api/sections).\n\n#### Allowed for\n\n* End users\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Section Subscriptions",
+        "api_call": "//api/v2/help_center/:locale/sections/:section_id/subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the subscriptions to a given [section](/api-reference/help_center/help-center-api/sections).\n\n**Note**: `{/locale}` is an optional parameter for admins and agents. End users and anonymous"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Section Subscription",
+        "api_call": "//api/v2/help_center/:locale/sections/:section_id/subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Creates a subscription to a given [section](/api-reference/help_center/help-center-api/sections).\n\n#### Allowed for\n\n* End-users\n\nAgents with the Help Center manager role can optionally supply a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Show Section",
+        "api_call": "//api/v2/help_center/:locale/sections/:section_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "**Note**: `{/locale}` is an optional parameter for admins and agents. End users and anonymous users must provide the parameter.\n\n#### Allowed"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Update Section",
+        "api_call": "//api/v2/help_center/:locale/sections/:section_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"section\": {\n    \"category_id\": \"<integer>\",\n    \"description\": \"<string>\",\n    \"name\": \"<string>\",\n    \"parent_section_id\": \"<integer>\",\n    \"position\": \"<integer>\",\n    \"sorting\": \"creation_asc\",\n    \"theme_template\": \"<string>\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Update section. This endpoint updates section-level data, specifically:\n\n* name (in the source locale)\n* description (in the source locale)\n* position\n* sorting\n*"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Delete Section",
+        "api_call": "//api/v2/help_center/:locale/sections/:section_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "**WARNING: All articles in the section will also be deleted.**\n\n#### Allowed for\n\n* Help Center managers\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Sections",
+        "api_call": "//api/v2/help_center/:locale/sections?sort_by=created_at&sort_order=desc",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all the sections in Help Center or in a specific [category](/api-reference/help_center/help-center-api/categories).\n\nThe `{locale}` is required only for end users and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Show Article Attachment",
+        "api_call": "//api/v2/help_center/articles/:article_id/attachments/:article_attachment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Shows the properties of the specified attachment.\n\n**Note**: Omit `{/article_id}` to access unassociated article attachments.\n\n#### Allowed for\n\n* Agents\n* End users, as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Article Block Attachments",
+        "api_call": "//api/v2/help_center/articles/:article_id/attachments/block",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all the article's block attachments. Block attachments are those that are not inline.\n\n#### Allowed for\n\n* Agents\n* End users, as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Article Inline Attachments",
+        "api_call": "//api/v2/help_center/articles/:article_id/attachments/inline",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all the article's inline attachments.\n\n#### Allowed for\n\n* Agents\n* End users, as long as they can view the associated article\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Article Attachments",
+        "api_call": "//api/v2/help_center/articles/:article_id/attachments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all the article's attachments.\n\n**Note**: By default the pagination returns the maximum attachments per page, which is 100.\n\n#### Allowed for\n\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Article Attachment",
+        "api_call": "//api/v2/help_center/articles/:article_id/attachments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Creates an attachment for the specified [article](/api-reference/help_center/help-center-api/articles). You can specify whether the\nattachment is `inline` or not. The default is false.\n\n####"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Show Translation",
+        "api_call": "//api/v2/help_center/articles/:article_id/translations/:locale",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Agents\n* End-users\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Update Translation",
+        "api_call": "//api/v2/help_center/articles/:article_id/translations/:locale",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "When updating a translation, any locale that you specify must be enabled for\nthe current Help Center. If you change the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Missing Translations",
+        "api_call": "//api/v2/help_center/articles/:article_id/translations/missing",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the locales that don't have a translation for a given [article](/api-reference/help_center/help-center-api/articles), [section](/api-reference/help_center/help-center-api/sections), or [category](/api-reference/help_center/help-center-api/categories).\n\n#### Allowed for\n\n* Agents\n\n#### Pagination\n\n* Cursor"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Translations",
+        "api_call": "//api/v2/help_center/articles/:article_id/translations?locales=<string>&outdated=<boolean>&draft=<boolean>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all translations for a given [article](/api-reference/help_center/help-center-api/articles), [section](/api-reference/help_center/help-center-api/sections), or [category](/api-reference/help_center/help-center-api/categories).\n\n#### Allowed for\n\n* Agents\n* End users\n\nFor end users, the response will"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Translation",
+        "api_call": "//api/v2/help_center/articles/:article_id/translations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Creates a translation for a given [article](/api-reference/help_center/help-center-api/articles), [section](/api-reference/help_center/help-center-api/sections), or [category](/api-reference/help_center/help-center-api/categories). Any locale\nthat you specify must be enabled for the current"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Delete Article Attachment",
+        "api_call": "//api/v2/help_center/articles/attachments/:article_attachment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "#### Allowed for\n\n* Agents\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create Unassociated Attachment",
+        "api_call": "//api/v2/help_center/articles/attachments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "You can use this endpoint for bulk imports. It lets you upload a file without associating it\nto an article until"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Show Label",
+        "api_call": "//api/v2/help_center/articles/labels/:label_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Shows the properties of the specified label.\n\n#### Allowed for\n\n* Agents\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Delete Label",
+        "api_call": "//api/v2/help_center/articles/labels/:label_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Removes the label from all articles and deletes it.\n\n#### Allowed for\n\n* Agents\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List All Labels",
+        "api_call": "//api/v2/help_center/articles/labels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all the labels in the articles in Help Center.\n\n#### Allowed for\n\n* Agents\n\n#### Pagination\n\n* Cursor pagination (recommended)\n* Offset pagination\n\nSee [Pagination](/api-reference/introduction/pagination/).\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Search Articles",
+        "api_call": "//api/v2/help_center/articles/search?query=<string>&category=<integer>&section=<integer>&label_names=<string>&locale=<string>&multibrand=<boolean>&brand_id=<integer>&created_before=<dateTime>&created_after=<dateTime>&created_at=<dateTime>&updated_before=<dateTime>&updated_after=<dateTime>&updated_at=<dateTime>&sort_by=<string>&sort_order=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a default number of 25 articles per page, up to a maximum of 1000 results. See [Pagination](/api-reference/introduction/pagination/). The `per_page`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Search Posts",
+        "api_call": "//api/v2/help_center/community_posts/search?query=<string>&topic=<integer>&created_before=<dateTime>&created_after=<dateTime>&created_at=<dateTime>&updated_before=<dateTime>&updated_after=<dateTime>&updated_at=<dateTime>&sort_by=<string>&sort_order=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a maximum of 25 posts per page, up to a maximum of 1000 results. See [Pagination](/api-reference/introduction/pagination/).\n\nThe results are sorted"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Enabled Locales and Default Locale",
+        "api_call": "//api/v2/help_center/locales",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n * Agents\n * End users\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Delete Translation",
+        "api_call": "//api/v2/help_center/translations/:translation_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a translation, provided it's not the only translation for the source object.\n\n#### Allowed for\n\n* Agents\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Sections with User Segment",
+        "api_call": "//api/v2/help_center/user_segments/:user_segment_id/sections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the sections that use the specified user segment.\n\nThis endpoint supports pagination as described in [Pagination](/api-reference/help_center/help-center-api/help-center-api/#pagination).\n\n#### Allowed for\n\n* Help Center"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Topics with User Segment",
+        "api_call": "//api/v2/help_center/user_segments/:user_segment_id/topics",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the topics that use the specified user segment.\n\nThis endpoint supports pagination as described in [Pagination](/api-reference/help_center/help-center-api/help-center-api/#pagination).\n\n#### Allowed for\n\n* Help Center"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Show User Segment",
+        "api_call": "//api/v2/help_center/user_segments/:user_segment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Help Center managers\n\n#### Pagination\n\n* Cursor pagination (recommended)\n* Offset pagination\n\nSee [Pagination](/api-reference/introduction/pagination/).\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Update User Segment",
+        "api_call": "//api/v2/help_center/user_segments/:user_segment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Help Center managers\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Delete User Segment",
+        "api_call": "//api/v2/help_center/user_segments/:user_segment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "#### Allowed for\n\n* Help Center managers\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List User Segments",
+        "api_call": "//api/v2/help_center/user_segments?built_in=<boolean>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Some user segments can only be applied to sections and topics on certain Guide plans. For instance, user segments with"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Create User Segment",
+        "api_call": "//api/v2/help_center/user_segments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Help Center managers\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Content Subscriptions By User",
+        "api_call": "//api/v2/help_center/users/:user_id/subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the content subscriptions of a given user. To list your own subscriptions,\nspecify `me` as the user id.\n\n#### Allowed for\n\n*"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List User Subscriptions By User",
+        "api_call": "//api/v2/help_center/users/:user_id/user_subscriptions?type=followers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the user subscriptions of a given user. To list your own subscriptions,\nspecify `me` as the user id.\n\n#### Allowed for\n\n*"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: List Votes",
+        "api_call": "//api/v2/help_center/users/:user_id/votes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists all votes cast by a given user, or all votes cast by all users for a given article, article"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Show Vote",
+        "api_call": "//api/v2/help_center/votes/:vote_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "#### Allowed for\n\n* Agents\n* End users\n\n#### Sideloads\nThe following sideloads are supported:\n\n| Name        "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Help Center API: Delete Vote",
+        "api_call": "//api/v2/help_center/votes/:vote_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "#### Allowed for\n\n* Agents\n* End users\n"
+    }
+]

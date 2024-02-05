@@ -1,0 +1,202 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Joint Quest Verifier: Verify Quest (ID: create-market)",
+        "api_call": "https://mint.joint.exchange/api/quests/verify",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"questId\": \"create-market\",\n    \"discord\": \"discord#2030\",\n    \"txHash\": \"0xfb7a4d7f1966760300e037892d9a92f65cfd9768a1f796dcb8a65c20444f60e6\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Joint Quest Verifier: Verify Quest (ID: create-market-base-local)",
+        "api_call": "https://mint.joint.exchange/api/quests/verify",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"questId\": \"create-market-base-local\",\n    \"discord\": \"discord#2030\",\n    \"txHash\": \"0x7c40796dd4874f062831d1be8888f1b7a98f4102ffc20ec9d2a8b7354e89bf76\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Joint Quest Verifier: Verify Quest (ID: create-market-quote-local)",
+        "api_call": "https://mint.joint.exchange/api/quests/verify",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"questId\": \"create-market-quote-local\",\n    \"discord\": \"discord#2030\",\n    \"txHash\": \"0x6473964c07b145419c1d0be30a1dfb9dfce66eb46d98c3f7193d4be4f50aac9d\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Joint Quest Verifier: Verify Quest (ID: create-market-base-quote-onchain)",
+        "api_call": "https://mint.joint.exchange/api/quests/verify",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"questId\": \"create-market-base-quote-onchain\",\n    \"discord\": \"discord#2030\",\n    \"txHash\": \"0xcbdfdca1b6889c41806e994a72b04bca503795d3f01ce77d1b98f32e415ba1a8\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Joint Quest Verifier: Verify Quest (ID: create-market-put-on)",
+        "api_call": "https://mint.joint.exchange/api/quests/verify",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"questId\": \"create-market-put-on\",\n    \"discord\": \"discord#2030\",\n    \"txHash\": \"0x61050eb614ddb55046e664049779445dd485998e29e342b9b3769999fbc27fd0\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Joint Quest Verifier: Verify Quest (ID: create-market-swap-on)",
+        "api_call": "https://mint.joint.exchange/api/quests/verify",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"questId\": \"create-market-swap-on\",\n    \"discord\": \"discord#2030\",\n    \"txHash\": \"0x0bd83ea23a39bc24d7baa7afbb8ca304ce95328cd34ea8f56e5b13403801b5a7\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Joint Quest Verifier: Verify Quest (ID: create-market-mediate-on)",
+        "api_call": "https://mint.joint.exchange/api/quests/verify",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"questId\": \"create-market-mediate-on\",\n    \"discord\": \"discord#2030\",\n    \"txHash\": \"0xb6e420a409a2e89d724c647c824ec578dc8c362546f8b8b6aa06b62321f7e721\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Joint Quest Verifier: Verify Quest (ID: create-market-ten-pct-com)",
+        "api_call": "https://mint.joint.exchange/api/quests/verify",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"questId\": \"create-market-ten-pct-com\",\n    \"discord\": \"discord#2030\",\n    \"txHash\": \"0xb6e420a409a2e89d724c647c824ec578dc8c362546f8b8b6aa06b62321f7e721\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Joint Quest Verifier: Verify Quest (ID: create-market-med-bond-10k)",
+        "api_call": "https://mint.joint.exchange/api/quests/verify",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"questId\": \"create-market-med-bond-10k\",\n    \"discord\": \"discord#2030\",\n    \"txHash\": \"0xfaceb61e4a0afcd02f27bfd9e034bd06903e2c8ac781714db76f0605ad880c29\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Joint Quest Verifier: Verify Quest (ID: create-market-min-med-five)",
+        "api_call": "https://mint.joint.exchange/api/quests/verify",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"questId\": \"create-market-min-med-five\",\n    \"discord\": \"discord#2030\",\n    \"txHash\": \"0xfaceb61e4a0afcd02f27bfd9e034bd06903e2c8ac781714db76f0605ad880c29\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

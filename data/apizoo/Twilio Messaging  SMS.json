@@ -1,0 +1,362 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Twilio Messaging / SMS: Find available phone numbers",
+        "api_call": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/AvailablePhoneNumbers/:CountryCode/Local.json?SmsEnabled=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{TWILIO_AUTH_TOKEN}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{TWILIO_ACCOUNT_SID}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "To send an SMS with Twilio you'll first need to buy a phone number. For that you have to search"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twilio Messaging / SMS: Buy a phone number",
+        "api_call": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/IncomingPhoneNumbers.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{TWILIO_AUTH_TOKEN}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{TWILIO_ACCOUNT_SID}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "PhoneNumber",
+                        "value": "+12513060906",
+                        "description": "The phone number to purchase specified in [E.164](https://www.twilio.com/docs/glossary/what-e164) format.  E.164 phone numbers consist of a + followed by the country code and subscriber number without punctuation characters. For example, +14155551234."
+                    },
+                    {
+                        "key": "AddressSid",
+                        "value": "<string>",
+                        "description": "The SID of the Address resource we should associate with the new phone number. Some regions require addresses to meet local regulations.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "ApiVersion",
+                        "value": "<string>",
+                        "description": "The API version to use for incoming calls made to the new phone number. The default is `2010-04-01`.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "AreaCode",
+                        "value": "<string>",
+                        "description": "The desired area code for your new incoming phone number. Can be any three-digit, US or Canada area code. We will provision an available phone number within this area code for you. **You must provide an `area_code` or a `phone_number`.** (US and Canada only).",
+                        "disabled": true
+                    },
+                    {
+                        "key": "BundleSid",
+                        "value": "<string>",
+                        "description": "The SID of the Bundle resource that you associate with the phone number. Some regions require a Bundle to meet local Regulations.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "EmergencyAddressSid",
+                        "value": "<string>",
+                        "description": "The SID of the emergency address configuration to use for emergency calling from the new phone number.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "EmergencyStatus",
+                        "value": "<string>",
+                        "description": "The configuration status parameter that determines whether the new phone number is enabled for emergency calling. (This can only be one of Active,Inactive)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "FriendlyName",
+                        "value": "<string>",
+                        "description": "A descriptive string that you created to describe the new phone number. It can be up to 64 characters long. By default, this is a formatted version of the new phone number.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "IdentitySid",
+                        "value": "<string>",
+                        "description": "The SID of the Identity resource that we should associate with the new phone number. Some regions require an identity to meet local regulations.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "SmsApplicationSid",
+                        "value": "<string>",
+                        "description": "The SID of the application that should handle SMS messages sent to the new phone number. If an `sms_application_sid` is present, we ignore all of the `sms_*_url` urls and use those set on the application.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "SmsFallbackMethod",
+                        "value": "<string>",
+                        "description": "The HTTP method that we should use to call `sms_fallback_url`. Can be: `GET` or `POST` and defaults to `POST`. (This can only be one of head,get,post,patch,put,delete,HEAD,GET,POST,PATCH,PUT,DELETE)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "SmsFallbackUrl",
+                        "value": "<uri>",
+                        "description": "The URL that we should call when an error occurs while requesting or executing the TwiML defined by `sms_url`.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "SmsMethod",
+                        "value": "<string>",
+                        "description": "The HTTP method that we should use to call `sms_url`. Can be: `GET` or `POST` and defaults to `POST`. (This can only be one of head,get,post,patch,put,delete,HEAD,GET,POST,PATCH,PUT,DELETE)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "SmsUrl",
+                        "value": "<uri>",
+                        "description": "The URL we should call when the new phone number receives an incoming SMS message.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "StatusCallback",
+                        "value": "<uri>",
+                        "description": "The URL we should call using the `status_callback_method` to send status information to your application.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "StatusCallbackMethod",
+                        "value": "<string>",
+                        "description": "The HTTP method we should use to call `status_callback`. Can be: `GET` or `POST` and defaults to `POST`. (This can only be one of head,get,post,patch,put,delete,HEAD,GET,POST,PATCH,PUT,DELETE)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "TrunkSid",
+                        "value": "<string>",
+                        "description": "The SID of the Trunk we should use to handle calls to the new phone number. If a `trunk_sid` is present, we ignore all of the voice urls and voice applications and use only those set on the Trunk. Setting a `trunk_sid` will automatically delete your `voice_application_sid` and vice versa.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "VoiceApplicationSid",
+                        "value": "<string>",
+                        "description": "The SID of the application we should use to handle calls to the new phone number. If a `voice_application_sid` is present, we ignore all of the voice urls and use only those set on the application. Setting a `voice_application_sid` will automatically delete your `trunk_sid` and vice versa.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "VoiceCallerIdLookup",
+                        "value": "<boolean>",
+                        "description": "Whether to lookup the caller's name from the CNAM database and post it to your app. Can be: `true` or `false` and defaults to `false`.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "VoiceFallbackMethod",
+                        "value": "<string>",
+                        "description": "The HTTP method that we should use to call `voice_fallback_url`. Can be: `GET` or `POST` and defaults to `POST`. (This can only be one of head,get,post,patch,put,delete,HEAD,GET,POST,PATCH,PUT,DELETE)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "VoiceFallbackUrl",
+                        "value": "<uri>",
+                        "description": "The URL that we should call when an error occurs retrieving or executing the TwiML requested by `url`.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "VoiceMethod",
+                        "value": "<string>",
+                        "description": "The HTTP method that we should use to call `voice_url`. Can be: `GET` or `POST` and defaults to `POST`. (This can only be one of head,get,post,patch,put,delete,HEAD,GET,POST,PATCH,PUT,DELETE)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "VoiceReceiveMode",
+                        "value": "<string>",
+                        "description": "The configuration parameter for the new phone number to receive incoming voice calls or faxes. Can be: `fax` or `voice` and defaults to `voice`. (This can only be one of voice,fax)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "VoiceUrl",
+                        "value": "<uri>",
+                        "description": "The URL that we should call to answer a call to the new phone number. The `voice_url` will not be called if a `voice_application_sid` or a `trunk_sid` is set.",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Purchase a phone-number for your Twilio account. Afterwards you can use this number to send or receive SMS and calls.\n\nRead"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twilio Messaging / SMS: Send an SMS",
+        "api_call": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Messages.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{TWILIO_AUTH_TOKEN}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{TWILIO_ACCOUNT_SID}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "Body",
+                        "value": "Hello World!",
+                        "description": "The text of the message you want to send. Can be up to 1,600 characters in length."
+                    },
+                    {
+                        "key": "To",
+                        "value": "{{MY_PHONE_NUMBER}}",
+                        "description": "The destination phone number in [E.164](https://www.twilio.com/docs/glossary/what-e164) format for SMS/MMS or [Channel user address](https://www.twilio.com/docs/sms/channels#channel-addresses) for other 3rd-party channels."
+                    },
+                    {
+                        "key": "From",
+                        "value": "{{TWILIO_PHONE_NUMBER}}",
+                        "description": "A Twilio phone number in [E.164](https://www.twilio.com/docs/glossary/what-e164) format, an [alphanumeric sender ID](https://www.twilio.com/docs/sms/send-messages#use-an-alphanumeric-sender-id), or a [Channel Endpoint address](https://www.twilio.com/docs/sms/channels#channel-addresses) that is enabled for the type of message you want to send. Phone numbers or [short codes](https://www.twilio.com/docs/sms/api/short-code) purchased from Twilio also work here. You cannot, for example, spoof messages from a private cell phone number. If you are using `messaging_service_sid`, this parameter must be empty."
+                    },
+                    {
+                        "key": "AddressRetention",
+                        "value": "<string>",
+                        "description": "Determines if the address can be stored or obfuscated based on privacy settings (This can only be one of retain)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "ApplicationSid",
+                        "value": "<string>",
+                        "description": "The SID of the application that should receive message status. We POST a `message_sid` parameter and a `message_status` parameter with a value of `sent` or `failed` to the [application](https://www.twilio.com/docs/usage/api/applications)'s `message_status_callback`. If a `status_callback` parameter is also passed, it will be ignored and the application's `message_status_callback` parameter will be used.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "Attempt",
+                        "value": "<integer>",
+                        "description": "Total number of attempts made ( including this ) to send out the message regardless of the provider used",
+                        "disabled": true
+                    },
+                    {
+                        "key": "ContentRetention",
+                        "value": "<string>",
+                        "description": "Determines if the message content can be stored or redacted based on privacy settings (This can only be one of retain)",
+                        "disabled": true
+                    },
+                    {
+                        "key": "ForceDelivery",
+                        "value": "<boolean>",
+                        "description": "Reserved",
+                        "disabled": true
+                    },
+                    {
+                        "key": "MaxPrice",
+                        "value": "<number>",
+                        "description": "The maximum total price in US dollars that you will pay for the message to be delivered. Can be a decimal value that has up to 4 decimal places. All messages are queued for delivery and the message cost is checked before the message is sent. If the cost exceeds `max_price`, the message will fail and a status of `Failed` is sent to the status callback. If `MaxPrice` is not set, the message cost is not checked.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "MediaUrl",
+                        "value": "[\"<uri>\",\"<uri>\"]",
+                        "description": "The URL of the media to send with the message. The media can be of type `gif`, `png`, and `jpeg` and will be formatted correctly on the recipient's device. The media size limit is 5MB for supported file types (JPEG, PNG, GIF) and 500KB for [other types](https://www.twilio.com/docs/sms/accepted-mime-types) of accepted media. To send more than one image in the message body, provide multiple `media_url` parameters in the POST request. You can include up to 10 `media_url` parameters per message. You can send images in an SMS message in only the US and Canada.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "MessagingServiceSid",
+                        "value": "<string>",
+                        "description": "The SID of the [Messaging Service](https://www.twilio.com/docs/sms/services#send-a-message-with-copilot) you want to associate with the Message. Set this parameter to use the [Messaging Service Settings and Copilot Features](https://www.twilio.com/console/sms/services) you have configured and leave the `from` parameter empty. When only this parameter is set, Twilio will use your enabled Copilot Features to select the `from` phone number for delivery.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "PersistentAction",
+                        "value": "[\"<string>\",\"<string>\"]",
+                        "description": "Rich actions for Channels Messages.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "ProvideFeedback",
+                        "value": "<boolean>",
+                        "description": "Whether to confirm delivery of the message. Set this value to `true` if you are sending messages that have a trackable user action and you intend to confirm delivery of the message using the [Message Feedback API](https://www.twilio.com/docs/sms/api/message-feedback-resource). This parameter is `false` by default.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "SmartEncoded",
+                        "value": "<boolean>",
+                        "description": "Whether to detect Unicode characters that have a similar GSM-7 character and replace them. Can be: `true` or `false`.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "StatusCallback",
+                        "value": "<uri>",
+                        "description": "The URL we should call using the `status_callback_method` to send status information to your application. If specified, we POST these message status changes to the URL: `queued`, `failed`, `sent`, `delivered`, or `undelivered`. Twilio will POST its [standard request parameters](https://www.twilio.com/docs/sms/twiml#request-parameters) as well as some additional parameters including `MessageSid`, `MessageStatus`, and `ErrorCode`. If you include this parameter with the `messaging_service_sid`, we use this URL instead of the Status Callback URL of the [Messaging Service](https://www.twilio.com/docs/sms/services/api). URLs must contain a valid hostname and underscores are not allowed.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "ValidityPeriod",
+                        "value": "<integer>",
+                        "description": "How long in seconds the message can remain in our outgoing message queue. After this period elapses, the message fails and we call your status callback. Can be between 1 and the default value of 14,400 seconds. After a message has been accepted by a carrier, however, we cannot guarantee that the message will not be queued after this period. We recommend that this value be at least 5 seconds.",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Send a message from the account used to make the request with the phone number you purchased from Twilio in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twilio Messaging / SMS: List all messages sent from your Twilio number",
+        "api_call": "https://api.twilio.com/2010-04-01/Accounts/:AccountSid/Messages.json?From={{TWILIO_PHONE_NUMBER}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "{{TWILIO_AUTH_TOKEN}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "{{TWILIO_ACCOUNT_SID}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieve a list of messages belonging to the account used to make the request. You can filter for example for"
+    }
+]
