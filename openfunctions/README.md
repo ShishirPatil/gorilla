@@ -67,6 +67,8 @@ uber.ride(loc="berkeley", type="plus", time=10)
 
 ## Running OpenFunctions Locally
 
+You can try this out on our [Local OpenFunctions Colab](https://colab.research.google.com/drive/1I9UJoKh9sngE2MfPfQD5kbn2-twq2xvY?usp=sharing) to see how it works!
+
 If you want to Run OpenFunctions locally, here is the prompt format that we used: 
 
 ```python
@@ -310,7 +312,7 @@ print(resp)
 ```
 
 ### Try Out Self-Hosting OpenFunctions on Colab
-You can try out setting up a local server to self-host the OpenFunctions model using this [Colab notebook](https://colab.research.google.com/drive/1rKbWmz6IpzHenn2-LmEnt0Zy3Mu2xwbw?usp=sharing).
+You can try out setting up a local server to self-host the OpenFunctions model using this [OpenFunctions Self-Hosted Colab notebook](https://colab.research.google.com/drive/1aBxYJ9VncxDRN1-DyMT3J-ozmCRRvSje?usp=sharing).
 Make sure you select an A100/V100 instance to run the notebook – smaller instances like T-4 do not suffice due to memory constraints.
 To remotely access the server running on the Colab instance from a local client, ngrok is used to tunnel the server ports from the Colab instance to public URLs. Instructions for setting up ngrok are provided in the notebook.
 
