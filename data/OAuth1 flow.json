@@ -1,0 +1,75 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "OAuth1 flow: 1. Get Request Token",
+        "api_call": "https://rest.{{is24.domain}}/restapi/security/oauth/request_token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth1",
+                "oauth1": [
+                    {
+                        "key": "callback",
+                        "value": "{{oauth1.callbackUrl}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerKey",
+                        "value": "{{oauth1.key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerSecret",
+                        "value": "{{oauth1.secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "signatureMethod",
+                        "value": "HMAC-SHA1",
+                        "type": "string"
+                    },
+                    {
+                        "key": "version",
+                        "value": "1.0",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addParamsToHeader",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "addEmptyParamsToSign",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Initiate OAuth1 flow\n\nWith this call we receive an itermediate token. We use this token to confirm access and to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OAuth1 flow: 2. Perform in browser! - Confirm access",
+        "api_call": "https://rest.{{is24.domain}}/restapi/security/oauth/confirm_access?oauth_token={{oauth1.token}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Confirm access\n\nUse this call to confirm the personalized token. \n\n## Instructions\n\n1. Go to the browser\n2. Login to [Sandbox](https://sso.sandbox-immobilienscout24.de/sso/login?appName=is24main&source=meinkontodropdown-login&sso_return=https://www.sandbox-immobilienscout24.de/sso/login.go?source%3Dmeinkontodropdown-login%26returnUrl%3D/geschlossenerbereich/start.html?source%253Dmeinkontodropdown-login) with"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OAuth1 flow: 3. Retrieve (long term) access token",
+        "api_call": "https://rest.{{is24.domain}}/restapi/security/oauth/access_token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Get access token\n\nThis call uses the intermediate request token to receive a long term access token.\n\n## Instructions\n\nNow replace the"
+    }
+]

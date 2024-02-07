@@ -1,0 +1,429 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: List all balances",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/balances",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves the balance of funds that are available for use."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: Create a payout",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/payouts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"idempotencyKey\": \"{{$guid}}\",\n  \"destination\": {\n    \"type\": \"wire\",\n    \"id\": \"b8627ae8-732b-4d25-b947-1df8f4007a29\"\n  },\n  \"amount\": {\n    \"amount\": \"3.14\",\n    \"currency\": \"EUR\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "\n#### Body Params\n\n**idempotencyKey** *string* (REQUIRED)\nUniversally unique identifier (UUID v4) idempotency key. This key is utilized to ensure exactly-once execution of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: List all payouts",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/payouts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: Get a payout",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/payouts/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: Create a Wire bank account",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/banks/wires",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"idempotencyKey\": \"{{$guid}}\",\n  \"accountNumber\": \"12340010\",\n  \"routingNumber\": \"121000248\",\n  \"billingDetails\": {\n    \"name\": \"Satoshi Nakamoto\",\n    \"city\": \"Boston\",\n    \"country\": \"US\",\n    \"line1\": \"100 Money Street\",\n    \"postalCode\": \"01234\",\n    \"line2\": \"Suite 1\",\n    \"district\": \"MA\"\n  },\n  \"bankAddress\": {\n    \"country\": \"US\",\n    \"bankName\": \"SAN FRANCISCO\",\n    \"city\": \"SAN FRANCISCO\",\n    \"line1\": \"100 Money Street\",\n    \"line2\": \"Suite 1\",\n    \"district\": \"CA\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "\n#### Body Params\n\nOption 1\n\n**idempotencyKey** *string* (REQUIRED)\nUniversally unique identifier (UUID v4) idempotency key. This key is utilized to ensure exactly-once execution"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: List all Wire bank accounts",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/banks/wires",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: Get a Wire bank account",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/banks/wires/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: Get Wire instructions",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/banks/wires/:id/instructions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get the wire transfer instructions into the Circle bank account given your bank account id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: Create a CBIT bank account",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/banks/cbit",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"idempotencyKey\": \"{{$guid}}\",\n  \"walletAddress\": \"0x7d8da35e03ef3a5ec5d5edbb961ef399dfb42d1e\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "\n#### Body Params\n\n**idempotencyKey** *string* (REQUIRED)\nUniversally unique identifier (UUID v4) idempotency key. This key is utilized to ensure exactly-once execution of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: List all CBIT bank accounts.",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/banks/cbit",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: Get a CBIT bank account",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/banks/cbit/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: Get CBIT instructions",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/banks/cbit/:id/instructions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get the CBIT transfer instructions into the Circle bank account given your bank account id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: Create a transfer",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/transfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"idempotencyKey\": \"{{$guid}}\",\n  \"destination\": {\n    \"type\": \"verified_blockchain\",\n    \"addressId\": \"f1f36b85-cafe-484e-a46b-02340bfdb927\"\n  },\n  \"amount\": {\n    \"amount\": \"3.14\",\n    \"currency\": \"USD\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "A transfer can be made from an existing business account to a blockchain location.\n#### Body Params\n\n**idempotencyKey** *string* (REQUIRED)\nUniversally unique identifier"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: List all transfers",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/transfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Searches for transfers from your business account. If the date parameters are omitted, returns the most recent transfers. This endpoint"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: Get a transfer",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/transfers/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: Create a deposit address",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/wallets/addresses/deposit",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"idempotencyKey\": \"{{$guid}}\",\n  \"currency\": \"USD\",\n  \"chain\": \"BASE\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Generates a new blockchain address for a wallet for a given currency/chain pair. Circle may reuse addresses on blockchains that"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: List all deposit addresses",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/wallets/addresses/deposit",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: Create a recipient address",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/wallets/addresses/recipient",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"idempotencyKey\": \"{{$guid}}\",\n  \"address\": \"0x8381470ED67C3802402dbbFa0058E8871F017A6F\",\n  \"chain\": \"HBAR\",\n  \"description\": \"My USDC address at a cryptocurrency exchange\",\n  \"addressTag\": \"123456789\",\n  \"currency\": \"ETH\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Stores an external blockchain address. Once added, the recipient address must be verified to ensure that you know and trust"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: List all recipient addresses",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/wallets/addresses/recipient",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of recipient addresses that have each been verified and are eligible for transfers. Any recipient addresses pending"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: List all deposits",
+        "api_call": "https://api-sandbox.circle.com/v1/businessAccount/deposits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Searches for deposits sent to your business account. If the date parameters are omitted, returns the most recent deposits. This"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Core Functionality: Create a mock Wire payment",
+        "api_call": "https://api-sandbox.circle.com/v1/mocks/payments/wire",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"trackingRef\": \"CIR13FB13A\",\n  \"amount\": {\n    \"amount\": \"3.14\",\n    \"currency\": \"USD\"\n  },\n  \"beneficiaryBank\": {\n    \"accountNumber\": \"11111111\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "In the sandbox environment, initiate a mock wire payment that mimics the behavior of funds sent through the bank (wire)"
+    }
+]

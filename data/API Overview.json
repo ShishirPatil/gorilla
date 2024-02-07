@@ -1,0 +1,143 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "API Overview: Ping",
+        "api_call": "https://api-sandbox.circle.com/ping",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Checks that the service is running."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API Overview: Get configuration info",
+        "api_call": "https://api-sandbox.circle.com/v1/configuration",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves general configuration information."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API Overview: Get public key",
+        "api_call": "https://api-sandbox.circle.com/v1/encryption/public",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves an RSA public key to be used in encrypting data sent to the API. Your public keys change infrequently,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API Overview: Create a notification subscription",
+        "api_call": "https://api-sandbox.circle.com/v1/notifications/subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"endpoint\": \"https://example.org/handler/for/notifications\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Subscribe to receiving notifications at a given endpoint. The endpoint should be able to handle AWS SNS subscription requests. For"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API Overview: List all notification subscriptions",
+        "api_call": "https://api-sandbox.circle.com/v1/notifications/subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a list of existing notification subscriptions with details."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API Overview: Remove a notification subscription",
+        "api_call": "https://api-sandbox.circle.com/v1/notifications/subscriptions/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "To remove a subscription, all its subscription requests' statuses must be either 'confirmed', 'deleted' or a combination of those. A"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API Overview: List all stablecoins",
+        "api_call": "https://api-sandbox.circle.com/v1/stablecoins",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves total circulating supply for supported stablecoins across all chains. This endpoint is rate limited to one call per minute"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API Overview: List all channels",
+        "api_call": "https://api-sandbox.circle.com/v1/channels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a list of channels with details (e.g. `cardDescriptor`, `achDescriptor`, etc.)."
+    }
+]

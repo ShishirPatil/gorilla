@@ -1,0 +1,1112 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all links",
+        "api_call": "{{baseUrl}}/api/links/?page=1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **List all links** call in our [API Reference](https://developers.belvo.com/reference/listlinks)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Register a new link",
+        "api_call": "{{baseUrl}}/api/links/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"institution\": \"erebor_mx_retail\",\n    \"username\": \"bnk100\",\n    \"password\": \"full\",\n    \"external_id\": \"security-testing\",\n    \"access_mode\": \"single\",\n    \"credentials_storage\": \"5d\",\n    \"stale_in\": \"30d\",\n    \"fetch_resources\": [\"ACCOUNTS\", \"OWNERS\", \"TRANSACTIONS\"]\n}"
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Register a new link** call in our [API Reference](https://developers.belvo.com/reference/registerlink)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Complete a links request",
+        "api_call": "{{baseUrl}}/api/links/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"session\": \"39cd6a88-8ee3-4e59-a861-b8a2187e0f4c\",\n    \"token\": \"1234ab\",\n    \"link\": \"683005d6-f45c-4adb-b289-f1a12f50f80c\"\n}"
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Complete a links request** call in our [API Reference](https://developers.belvo.com/reference/patchlinks)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get a link's details",
+        "api_call": "{{baseUrl}}/api/links/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Get a link's detail** call in our [API Reference](https://developers.belvo.com/reference/detaillink)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Update a link\u2019s credentials",
+        "api_call": "{{baseUrl}}/api/links/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"password\": \"password\",\n    \"password2\": \"pin\",\n    \"token\": \"1234ab\",\n    \"encryption_key\": \"customencryptionkey\",\n    \"username_type\": \"001\",\n    \"certificate\": \"1234567890abcd=\",\n    \"private_key\": \"1234567890abcd=\"\n}"
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Update a link\u2019s credentials** call in our [API Reference](https://developers.belvo.com/reference/updatelink)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Delete a link",
+        "api_call": "{{baseUrl}}/api/links/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Delete a link** call in our [API Reference](https://developers.belvo.com/reference/destroylink)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all institutions",
+        "api_call": "{{baseUrl}}/api/institutions/?page=1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **List all institutions** call in our [API Reference](https://developers.belvo.com/reference/listinstitutions)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get an institution's details",
+        "api_call": "{{baseUrl}}/api/institutions/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Get an institution's detail** call in our [API Reference](https://developers.belvo.com/reference/detailinstitution)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all accounts",
+        "api_call": "{{baseUrl}}/api/accounts/?page=1&link=uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **List all accounts** call in our [API Reference](https://developers.belvo.com/reference/listaccounts)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve accounts for a link",
+        "api_call": "{{baseUrl}}/api/accounts/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"link\": \"link_id_uuid\",\n    \"token\": \"1234ab\",\n    \"save_data\": true\n}"
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Retrieve accounts for a link** call in our [API Reference](https://developers.belvo.com/reference/retrieveaccounts)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Complete an accounts request",
+        "api_call": "{{baseUrl}}/api/accounts/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"session\": \"39cd6a88-8ee3-4e59-a861-b8a2187e0f4c\",\n    \"token\": \"1234ab\",\n    \"link\": \"683005d6-f45c-4adb-b289-f1a12f50f80c\",\n    \"save_data\": true\n}"
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Complete an accounts request** call in our [API Reference](https://developers.belvo.com/reference/patchaccounts)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get an account's details",
+        "api_call": "{{baseUrl}}/api/accounts/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Get an account's detail** call in our [API Reference](https://developers.belvo.com/reference/detailaccount)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Delete an account",
+        "api_call": "{{baseUrl}}/api/accounts/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Delete an account** call in our [API Reference](https://developers.belvo.com/reference/destroyaccount)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all transactions",
+        "api_call": "{{baseUrl}}/api/transactions/?page=1&link=uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **List all transactions** call in our [API Reference](https://developers.belvo.com/reference/listtransactions)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve transactions for a link",
+        "api_call": "{{baseUrl}}/api/transactions/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"link\": \"link_id_uuid\",\n    \"date_from\": \"YYYY-MM-DD\",\n    \"date_to\": \"YYYY-MM-DD\",\n    \"account\": \"account_id_uuid\",\n    \"token\": \"1234ab\",\n    \"save_data\": true\n}"
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Retrieve transactions for a link** call in our [API Reference](https://developers.belvo.com/reference/retrievetransactions)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Complete a transaction request",
+        "api_call": "{{baseUrl}}/api/transactions/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"session\": \"39cd6a88-8ee3-4e59-a861-b8a2187e0f4c\",\n    \"token\": \"1234ab\",\n    \"link\": \"683005d6-f45c-4adb-b289-f1a12f50f80c\",\n    \"save_data\": true\n}"
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Complete a transactions request** call in our [API Reference](https://developers.belvo.com/reference/patchtransactions)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get a transaction's details",
+        "api_call": "{{baseUrl}}/api/transactions/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Get a transaction's detail** call in our [API Reference](https://developers.belvo.com/reference/detailtransaction)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Delete a transaction",
+        "api_call": "{{baseUrl}}/api/transactions/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Delete a transaction** call in our [API Reference](https://developers.belvo.com/reference/destroytransaction)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all owners",
+        "api_call": "{{baseUrl}}/api/owners/?page=1&link=uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **List all owners** call in our [API Reference](https://developers.belvo.com/reference/listowners)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve owners for a link",
+        "api_call": "{{baseUrl}}/api/owners/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"link\": \"link_id_uuid\",\n    \"token\": \"1234ab\",\n    \"save_data\": true\n}"
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Retrieve owners for a link** call in our [API Reference](https://developers.belvo.com/reference/retrieveowners)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Complete an owners request",
+        "api_call": "{{baseUrl}}/api/owners/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"session\": \"39cd6a88-8ee3-4e59-a861-b8a2187e0f4c\",\n    \"token\": \"1234ab\",\n    \"link\": \"683005d6-f45c-4adb-b289-f1a12f50f80c\",\n    \"save_data\": true\n}"
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Complete an owners request** call in our [API Reference](https://developers.belvo.com/reference/patchowners)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get an owner's details",
+        "api_call": "{{baseUrl}}/api/owners/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Get an owner's detail** call in our [API Reference](https://developers.belvo.com/reference/detailowner)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Delete an owner",
+        "api_call": "{{baseUrl}}/api/owners/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Delete an owner** call in our [API Reference](https://developers.belvo.com/reference/destroyowner)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all bills",
+        "api_call": "{{baseUrl}}/api/bills/?page=1&link=uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **List all bills** call in our [API Reference](https://developers.belvo.com/reference/listbills)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve bills for a link",
+        "api_call": "{{baseUrl}}/api/bills/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"link\": \"link_id\",\n    \"save_data\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Retrieve bills for a link** call in our [API Reference](https://developers.belvo.com/reference/retrievebills)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get a bill's details",
+        "api_call": "{{baseUrl}}/api/bills/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Get a bill's details** call in our [API Reference](https://developers.belvo.com/reference/detailbills)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Delete a bill",
+        "api_call": "{{baseUrl}}/api/bills/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Delete a bill** call in our [API Reference](https://developers.belvo.com/reference/destroybills)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all incomes",
+        "api_call": "{{baseUrl}}/api/incomes/?page=1&link=uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **List all incomes** call in our [API Reference](https://developers.belvo.com/reference/listincomes)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve incomes for a link",
+        "api_call": "{{baseUrl}}/api/incomes/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"link\": \"link_id_uuid\",\n    \"allowed_income_types\": [\"SALARY\",\"FREELANCE\"],\n    \"minimum_confidence_level\": \"either_LOW/MEDIUM/HIGH\",\n    \"date_from\": \"YYYY-MM-DD\", \n    \"date_to\": \"YYYY-MM-DD\",\n    \"token\": \"1234ab\",\n    \"save_data\": true\n}"
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Retrieve incomes for a link** call in our [API Reference](https://developers.belvo.com/reference/retrieveincome)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Complete an incomes request",
+        "api_call": "{{baseUrl}}/api/incomes/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"session\": \"39cd6a88-8ee3-4e59-a861-b8a2187e0f4c\",\n    \"token\": \"1234ab\",\n    \"link\": \"683005d6-f45c-4adb-b289-f1a12f50f80c\",\n    \"save_data\": true\n}"
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Complete an incomes request** call in our [API Reference](https://developers.belvo.com/reference/patchincomes)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get an income's details",
+        "api_call": "{{baseUrl}}/api/incomes/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Get an income's detail** call in our [API Reference](https://developers.belvo.com/reference/detailincome)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Delete an income",
+        "api_call": "{{baseUrl}}/api/incomes/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Delete an income** call in our [API Reference](https://developers.belvo.com/reference/destroyincomes)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all recurring expenses",
+        "api_call": "{{baseUrl}}/api/recurring-expenses/?page=1&link=uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **List all recurring expenses** call in our [API Reference](https://developers.belvo.com/reference/listrecurringexpenses)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve recurring expenses for a link",
+        "api_call": "{{baseUrl}}/api/recurring-expenses/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"link\": \"<uuid>\",\n    \"token\": \"<string>\",\n    \"save_data\": true,\n    \"date_from\": \"YYYY-MM-DD\", \n    \"date_to\": \"YYYY-MM-DD\" \n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Retrieve recurring expenses for a link** call in our [API Reference](https://developers.belvo.com/reference/retrieverecurringexpenses)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Complete a recurring expense request",
+        "api_call": "{{baseUrl}}/api/recurring-expenses/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"session\": \"<uuid>\",\n    \"token\": \"<string>\",\n    \"link\": \"<uuid>\",\n    \"save_data\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Complete a recurring expense request** call in our [API Reference](https://developers.belvo.com/reference/patchrecurringexpenses)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get a recurring expense's details",
+        "api_call": "{{baseUrl}}/api/recurring-expenses/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Get a recurring expenses's detail** call in our [API Reference](https://developers.belvo.com/reference/detailrecurringexpense)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Delete a recurring expense",
+        "api_call": "{{baseUrl}}/api/recurring-expenses/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Delete a recurring expense** call in our [API Reference](https://developers.belvo.com/reference/destroyrecurringexpense)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all risk insights",
+        "api_call": "{{baseUrl}}/api/risk-insights/?page=integer&link=uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **List all risk insights** call in our [API Reference](https://developers.belvo.com/reference/listriskinsights)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve risk insights",
+        "api_call": "{{baseUrl}}/api/risk-insights/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"link\": \"link_id_uuid\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Retrieve risk insights for a link** call in our [API Reference](https://developers.belvo.com/reference/retrieveriskinsights)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Resume a risk insights session",
+        "api_call": "{{baseUrl}}/api/credit-metrics/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"session\": \"session_id\",\n    \"token\": \"token_information\",\n    \"link\": \"link_id\",\n    \"save_data\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Complete a risk insights request** call in our [API Reference](https://developers.belvo.com/reference/patchriskinsights)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get a risk insight's details",
+        "api_call": "{{baseUrl}}/api/risk-insights/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Get a risk insights's detail** call in our [API Reference](https://developers.belvo.com/reference/detailriskinsights)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Delete a risk insight",
+        "api_call": "{{baseUrl}}/api/risk-insights/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Delete a risk insights** call in our [API Reference](https://developers.belvo.com/reference/destroyriskinsights)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all employment metrics",
+        "api_call": "{{baseUrl}}/api/employment-metrics/?link=uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **List all employment metrics** call in our [API Reference](https://developers.belvo.com/reference/retrieveincome)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve employment metrics",
+        "api_call": "{{baseUrl}}/api/employment-metrics/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"link\": \"UUID\",\n    \"reference_date\": \"YYYY-MM-DD\",\n    \"save_data\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Retrieve employment metrics for a link** call in our [API Reference](https://developers.belvo.com/reference/retrieveincome).\n\n**\u2139\ufe0f Note**: You"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get an employment metric's details",
+        "api_call": "{{baseUrl}}/api/employment-metrics/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Get an employment metric's details** call in our [API Reference](https://developers.belvo.com/reference/retrieveincome)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Delete an employment metric",
+        "api_call": "{{baseUrl}}/api/employment-metrics/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Delete an employment metric** call in our [API Reference](https://developers.belvo.com/reference/retrieveincome)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Categorize transactions",
+        "api_call": "{{baseUrl}}/api/categorization/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"language\": \"pt\",\n    \"transactions\": [\n        {\n        \"transaction_id\": \"transaction_unique_id\",\n        \"account_holder_type\": \"INDIVIDUAL\",\n        \"account_holder_id\": \"account_holder_unique_id\",\n        \"account_id\": \"account_unique_id\",\n        \"account_category\": \"account_category_type\",\n        \"value_date\": \"YYYY-MM-DD\",\n        \"description\": \"transaction_description\",\n        \"type\": \"INFLOW\",\n        \"amount\": \"transaction_amount\",\n        \"currency\": \"BRL\",\n        \"institution\": \"Erebor Bank Brazil\",\n        \"mcc\": 1234 // required when account_category = CREDIT_CARD\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Categorize transactions** call in our [API Reference](https://developers.belvo.com/reference/categorizetransactions-1)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Verify incomes",
+        "api_call": "{{baseUrl}}/api/enrich/incomes/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"language\": \"pt\",\n    \"date_from\": \"YYYY-MM-DD\", \n    \"date_to\": \"YYYY-MM-DD\", \n    \"allowed_income_types\": [\"SALARY\",\"FREELANCE\"],\n    \"minimum_confidence_level\": \"MEDIUM\",\n    \"transactions\": [\n        {\n        \"transaction_id\": \"transaction_unique_id\",\n        \"account_holder_type\": \"INDIVIDUAL\",\n        \"account_holder_id\": \"account_holder_uuid\",\n        \"account_id\": \"account_unique_id\",\n        \"account_category\": \"either_CHECKING_ACCOUNT/SAVINGS_ACCOUNT\",\n        \"value_date\": \"YYYY-MM-DD\",\n        \"description\": \"transaction_description\",\n        \"type\": \"INFLOW\",\n        \"amount\": \"transaction_amount\",\n        \"currency\": \"BRL\",\n        \"institution\": \"Erebor Bank Brazil\"\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Documentation \ud83d\ude0d\n\nRead up on our [Income verification resource](https://developers.belvo.com/docs/enrich-your-own-data#income-verification) on our DevPortal! And for information about all the HTTP calls"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve Risk Insights (EYOD)",
+        "api_call": "{{baseUrl}}/api/enrich/risk-insights/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"user_id\": \"AGH7890098789087\",\n    \"reference_date\": \"2023-06-01\",\n    \"transactions_language\": \"pt\",\n    \"transactions\": [\n      {\n        \"transaction_id\": \"3CWE4927CF15355\",\n        \"account_id\": \"AGH7890098789087-Checking-Erebor\",\n        \"value_date\": \"2023-05-18\",\n        \"status\": \"PROCESSED\",\n        \"type\": \"INFLOW\",\n        \"amount\": 650.89,\n        \"currency\": \"BRL\",\n        \"description\": \"Pagamento Netflix Maio 2023\"\n      }\n    ],\n    \"accounts\": [\n      {\n        \"id\": \"AGH7890098789087-Checking-Erebor\",\n        \"category\": \"CHECKING_ACCOUNT\",\n        \"institution\": \"Erebor Retail Brasil\",\n        \"balance\": 12540.67,\n        \"balance_date\": \"2023-06-01\",\n        \"balance_currency\": \"BRL\",\n        \"overdraft\": 400.5\n      }\n    ]\n  }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Documentation \ud83d\ude0d\n\nRead up on our [Risk Insights (EYOD) resource](https://developers.belvo.com/docs/enrich-your-own-data#risk-insights) on our DevPortal! And for information about all the HTTP"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve Recurring Expenses (EYOD)",
+        "api_call": "{{baseUrl}}/api/enrich/recurring-expenses/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"language\": \"pt\",\n    \"transactions\": [\n      {\n        \"transaction_id\": \"your_unique_internal_id\",\n        \"account_holder_type\": \"INDIVIDUAL/BUSINESS\",\n        \"account_holder_id\": \"your_unique_id_for_account_holder\",\n        \"account_id\": \"your_unique_id_for_the_account\",\n        \"account_category\": \"CHECKING_ACCOUNT/CREDIT_CARD/LOAN_ACCOUNT/SAVINGS_ACCOUNT\",\n        \"value_date\": \"2023-05-18\",\n        \"description\": \"transaction_description\",\n        \"type\": \"INFLOW/OUTFLOW\",\n        \"amount\": 650.89,\n        \"currency\": \"BRL\",\n        \"institution\": \"your_internal_institution_name\",\n        \"mcc\": \"only_required_for_credit_card_accounts\"\n      }\n    ]\n  }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Documentation \ud83d\ude0d\n\nRead up on our [Risk Insights (EYOD) resource](https://developers.belvo.com/docs/enrich-your-own-data#risk-insights) on our DevPortal! And for information about all the HTTP"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all invoices",
+        "api_call": "{{baseUrl}}/api/invoices/?page=1&link=uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **List all invoices** call in our [API Reference](https://developers.belvo.com/reference/listinvoices)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve invoices for a link",
+        "api_call": "{{baseUrl}}/api/invoices/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"date_from\": \"2020-01-01\",\n    \"date_to\": \"2020-02-01\",\n    \"link\": \"d4617561-1c01-4b2f-83b6-a594f7b3bc57\",\n    \"type\": \"OUTFLOW\",\n    \"attach_xml\": false,\n    \"save_data\": true\n}"
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Retrieve invoices for a link** call in our [API Reference](https://developers.belvo.com/reference/retrieveinvoices)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get an invoice's details",
+        "api_call": "{{baseUrl}}/api/invoices/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Get an invoice's detail** call in our [API Reference](https://developers.belvo.com/reference/detailinvoice)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Delete an invoice",
+        "api_call": "{{baseUrl}}/api/invoices/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Delete an invoice** call in our [API Reference](https://developers.belvo.com/reference/destroyinvoice)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all tax returns",
+        "api_call": "{{baseUrl}}/api/tax-returns/?link=uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **List all tax returns** call in our [API Reference](https://developers.belvo.com/reference/listtaxreturns)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve tax returns for a link",
+        "api_call": "{{baseUrl}}/api/tax-returns/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"link\": \"d4617561-1c01-4b2f-83b6-a594f7b3bc57\",\n    \"year_from\": 2018,\n    \"year_to\": 2019,\n    \"type\": \"yearly\", // Note: Check the documentation to the right for more information.\n    \"attach_pdf\": false,\n    \"encryption_key\": \"customencryptionkey\",\n    \"save_data\": true\n}"
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Retrieve tax returns for a link** call in our [API Reference](https://developers.belvo.com/reference/retrievetaxreturns)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get a tax return's details",
+        "api_call": "{{baseUrl}}/api/tax-returns/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Get a tax returns's detail** call in our [API Reference](https://developers.belvo.com/reference/detailtaxreturn)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Delete a tax return",
+        "api_call": "{{baseUrl}}/api/tax-returns/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Delete a tax returns** call in our [API Reference](https://developers.belvo.com/reference/destroytaxreturn)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all tax statuses",
+        "api_call": "{{baseUrl}}/api/tax-status/?page=1&link=uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **List all tax statuses** call in our [API Reference](https://developers.belvo.com/reference/listtaxstatus)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve tax statuses for a link",
+        "api_call": "{{baseUrl}}/api/tax-status/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"link\": \"d4617561-1c01-4b2f-83b6-a594f7b3bc57\",\n    \"attach_pdf\": false,\n    \"save_data\": true\n}"
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Retrieve tax statuses for a link** call in our [API Reference](https://developers.belvo.com/reference/retrievetaxstatus)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get a tax status's details",
+        "api_call": "{{baseUrl}}/api/tax-status/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Get a tax status's detail** call in our [API Reference](https://developers.belvo.com/reference/detailtaxstatus)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Delete a tax status",
+        "api_call": "{{baseUrl}}/api/tax-status/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Delete a tax status** call in our [API Reference](https://developers.belvo.com/reference/destroytaxstatus)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all tax compliance statuses",
+        "api_call": "{{baseUrl}}/api/tax-compliance-status/?page=1&link=uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **List all tax compliance statuses** call in our [API Reference](https://developers.belvo.com/reference/listtaxcompliancestatus)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve tax compliance statuses for a link",
+        "api_call": "{{baseUrl}}/api/tax-compliance-status/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"link\": \"d4617561-1c01-4b2f-83b6-a594f7b3bc57\",\n    \"attach_pdf\": false,\n    \"save_data\": true\n}"
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Retrieve tax compliance statuses for a link** call in our [API Reference](https://developers.belvo.com/reference/retrievetaxcompliancestatus)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get a tax compliance status's details",
+        "api_call": "{{baseUrl}}/api/tax-compliance-status/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Get a tax compliance status's detail** call in our [API Reference](https://developers.belvo.com/reference/detailtaxcompliancestatus)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Delete a tax compliance status",
+        "api_call": "{{baseUrl}}/api/tax-compliance-status/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Delete a tax compliance status** call in our [API Reference](https://developers.belvo.com/reference/destroytaxcompliancestatus)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve tax retentions for a link",
+        "api_call": "{{baseUrl}}/api/tax-retentions/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"link\": \"link_id\",\n    \"date_from\": \"YYYY-MM-DD\",\n\t\"date_to\": \"YYYY-MM-DD\",\n    \"type\": \"INFLOW_OR_OUTFLOW\"\n\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Retrieve tax retentions for a link** call in our [API Reference](https://developers.belvo.com/reference/retrievetaxretentions)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all tax retentions",
+        "api_call": "{{baseUrl}}/api/tax-retentions/?page=1&link=uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get a tax retention's details",
+        "api_call": "{{baseUrl}}/api/tax-retentions/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Delete a tax retention",
+        "api_call": "{{baseUrl}}/api/tax-retentions/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all tax declarations",
+        "api_call": "{{baseUrl}}/api/tax-declarations/?page=1&link=uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **List all tax declarations** call in our [API Reference](https://developers.belvo.com/reference/listtaxdeclarations)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve tax declarations for a link",
+        "api_call": "{{baseUrl}}/api/tax-declarations/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"link\": \"link_id\",\n    \"year_from\": \"YYYY\",\n\t\"year_to\": \"YYYY\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Retrieve tax declarations for a link** call in our [API Reference](https://developers.belvo.com/reference/retrievetaxdeclarations)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get a tax declaration's details",
+        "api_call": "{{baseUrl}}/api/tax-declarations/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Get a tax declaration's details** call in our [API Reference](https://developers.belvo.com/reference/detailtaxdeclaration)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Delete a tax declaration",
+        "api_call": "{{baseUrl}}/api/tax-declarations/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "# Documentation \ud83d\udcd6\n\nSee detailed documentation for the **Delete a tax declaration** call in our [API Reference](https://developers.belvo.com/reference/destroytaxdeclaration)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: List all employment records",
+        "api_call": "{{baseUrl}}/api/employment-records/?page=1&link=uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Retrieve employment record details",
+        "api_call": "{{baseUrl}}/api/employment-records/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"link\": \"link_id\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Get an employment record's details",
+        "api_call": "{{baseUrl}}/api/employment-records/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Belvo API Docs: Delete an employment record",
+        "api_call": "{{baseUrl}}/api/employment-records/:id/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

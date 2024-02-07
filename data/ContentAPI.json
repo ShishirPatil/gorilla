@@ -1,0 +1,706 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: Hotels",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/hotels?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "This operation will bring up a list of hotels in a JSON or XML response."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: HotelDetails",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/hotels/{{hotelCode}}/details?language=ENG&useSecondaryLanguage=False",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "This operation will bring up all details of an specifc hotel in a JSON or XML response."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: Countries",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/locations/countries?fields=all&language=ENG&from=1&to=203",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "It will return the list of available countries."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: Destinations",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/locations/destinations?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "It will return the list of available destinations, zones and grouping zones."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: Accommodations",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/accommodations?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the list of available accommodation types."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: Boards",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/boards?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the list of available board types."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: Categories",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/categories?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the list of available categories."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: Chains",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/chains?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the list of available chains."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: Currencies",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/currencies?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the list of available currencies."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: Facilities",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/facilities?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the list of available facilities."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: FacilityGroups",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/facilitygroups?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the list of available facility groups."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: FacilityTypologies",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/facilitytypologies?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the list of available facility typologies."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: Issues",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/issues?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the list of available issues."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: Languages",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/languages?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the list of available languages."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: Promotions",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/promotions?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the list of available promotions."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: Rooms",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/rooms?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the list of available rooms."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: Segments",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/segments?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the list of available segments."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: Terminals",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/terminals?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the list of available terminals."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: ImageTypes",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/imagetypes?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the descriptions of the different image types."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: GroupCategories",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/groupcategories?fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the descriptions of the different category groups."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: RateComments",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/ratecomments?code={{rateCommentsId}}&fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the descriptions of the Rate Comments associated with the hotel that the hotelier wants the client to read before"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "ContentAPI: RateCommentDetails",
+        "api_call": "{{endpoint}}/hotel-content-api/1.0/types/ratecommentdetails?code={{rateCommentsId}}&fields=all&language=ENG&from=1&to=100&useSecondaryLanguage=True&date={{checkIn}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "{{format}}",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Returns the descriptions of the rate comments associated with the hotel that the hotelier wants the client to read before"
+    }
+]

@@ -1,0 +1,268 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: Get Audit Events",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/audit/auditEvents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: List Access Profiles",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/access-profiles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists the access profiles."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: Access Profiles - Create",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/access-profiles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"My Access Profile\",\n  \"description\": \"My Access Profile\",\n  \"ownerId\": 595826,\n  \"sourceId\": 62865,\n  \"entitlements\": [\n    \"2c9180845d1edece015d27ad1d653e3b\"\n  ],\n  \"approvalSchemes\": \"manager\",\n  \"revokeRequestApprovalSchemes\": \"manager\",\n  \"requestCommentsRequired\": true,\n  \"deniedCommentsRequired\": true,\n  \"disabled\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new access profile."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: Access Profiles - Delete",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/access-profiles/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "Deletes an access profile."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: Access Profiles - Get",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/access-profiles/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves an access profile."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: Access Profiles - Update (Partial)",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/access-profiles/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "Updates one or more access profile attributes."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: Access Profiles - Update (Full)",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/access-profiles/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "Updates an existing access profile."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: Access Profiles - Get Entitlements",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/access-profiles/:id/entitlements",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists all entitlements of an access profile."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: Accounts - Get Accounts",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: Accounts - Get Account (Single)",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/accounts/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: Accounts - Create Account",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"first\": \"Neil\",\n    \"groups\": [\"ADMIN\"],\n    \"last\": \"McGlennon\",\n    \"lastLogin\": \"2018-05-15\",\n    \"locked\": \"false\",\n    \"login\": \"neil.mcglennon\",\n    \"status\": \"active\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: Accounts - Modify Account",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/accounts/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"givenName\": \"JOhn\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: Accounts - Delete Account",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/accounts/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\"id\":\"test3\",\"firstName\":\"test3\",\"lastName\":\"test3\",\"email\":\"test3@gmail.com\"}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: Apps - Bulk Update All",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/apps/bulk-update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"launchpadEnabled\" : false\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: Get Identities",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/identities",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: Org - Get",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/org",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves your org settings."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "IdentityNow V2 APIs: Org - Update (Partial)",
+        "api_call": "https://{{tenant}}.api.{{domain}}.com/v2/org",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"passwordReplayState\": \"disabled\"\n}"
+            }
+        },
+        "functionality": "Updates one or more org attributes."
+    }
+]

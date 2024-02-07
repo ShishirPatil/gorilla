@@ -1,0 +1,1616 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Upload Media",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Media/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "src": "/Users/mohammedhuzaif/Downloads/image.png"
+                    }
+                ]
+            }
+        },
+        "functionality": "This API lets you upload media files which can be used to send MMS. Plivo supports up to a total"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve Media",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Media/{media_id}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This API lets you retrieve a media file uploaded, sent or received by the user. More information can be found"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: List Media",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Media/?limit=20&offset=0",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This API can be used to fetch a list of medias associated with a given auth. More information can be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Add a Number",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/NumberPool/{number_pool_uuid}/Number/{number}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"service\":\"sms\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This API enables you to add SMS/MMS enabled numbers to a numberpool resource via Plivo\u2019s SMS service. More information can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve a Number",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/NumberPool/{number_pool_uuid}/{number}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of the specified number from the number pool resource.\n[here](https://www.plivo.com/docs/sms/api/numberpool#retrieve-a-number)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: List all Numbers",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/NumberPool/{number_pool_uuid}/Number/?starts_with=&type=&service=&country_iso2=&limit=&offset=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This API can be used to fetch a list of numbers from the Number Pool based on number_pool_UUID specified in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Remove a Number",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/NumberPool/{number_pool_uuid}/Number/{number}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"unrent\":\"False\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Removes the number from the number pool resource. More information can be found [here](https://www.plivo.com/docs/sms/api/numberpool#remove-a-number)\n\n| Arguments   | Description |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Add a TollFree Number",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/NumberPool/{number_pool_uuid}/Tollfree/{tollfree_number}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "This API enables you to add existing SMS/MMS enabled tollfree numbers to a numberpool resource via Plivo\u2019s SMS service. More"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Remove a TollFree number",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/NumberPool/{number_pool_uuid}/Tollfree/{tollfree_number}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"unrent\":\"False\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Removes the tollfree number from the numberpool resource. More information can be found [here](https://www.plivo.com/docs/sms/api/numberpool#list-all-tollfree)\n\n| Arguments   | Description |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: List all TollFree Number",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/NumberPool/{numberpool_uuid}/Tollfree/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This API can be used to fetch a list of all tollfree numbers(presently only one tollfree) from the Number Pool"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve a Shortcode",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/NumberPool/{number_pool_uuid}/Shortcode/{shortcode}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of the specified shortcode from the number pool resource.More information can be found [here](https://www.plivo.com/docs/sms/api/numberpool#retrieve-a-shortcode)\n\n| Arguments  "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: List all Shortcodes",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/NumberPool/{number_pool_uuid}/Shortcode/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This API can be used to fetch a list of shortcodes from the Number Pool based on number_pool_UUID specified in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Remove a Shortcode",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/NumberPool/{number_pool_uuid}/Shortcode/{shortcode}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Removes the shortcode from the number pool resource. A shortcode can\u2019t be unrented using this. It is only unlinked from"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve a TollFree number",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/NumberPool/{numberpool_uuid}/Tollfree/{tolfree_number}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of the specified TollFree number from the number pool resource. More information can be found [here](https://www.plivo.com/docs/sms/api/numberpool#retrieve-a-tollfree)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Create a Powerpack",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Powerpack/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\":\"friendly_name\",\n    \"sticky_sender\":\"True\",\n    \"local_connect\":\"True\",\n    \"application_type\":\"XML\",\n    \"application_id\":\"application_id can be found from the dashboard\"\n\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This API lets you to create a Powerpack via Plivo\u2019s SMS service. Below is the list of arguments that can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve a Powerpack",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Powerpack/{powerpack_uuid}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of a Powerpack resource. More information can be found [here](https://www.plivo.com/docs/sms/api/powerpack#retrieve-a-powerpack)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: List all Powerpacks",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Powerpack/?limit=<integer>&offset=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This API can be used to fetch a list of Powerpacks, below is the list of arguments that can be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Update a Powerpack",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Powerpack/{powerpack_uuid}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\":\"friendly_name\",\n    \"sticky_sender\":\"True\",\n    \"local_connect\":\"True\",\n    \"application_type\":\"XML\",\n    \"application_id\":\"application_id can be found from the dashboard\"\n}\n",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Change the Powerpack\u2019s name, sticky_sender, local_connect or the application to it. Below is the list of arguments that can be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Delete a Powerpack",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Powerpack/{powerpack_uuid}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"unrent_numbers\":\"True\"\n\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Unrent the phone numbers in the Powerpack\u2019s NumberPool from your account. This operation cannot be undone. Below is the list"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Create a Powerpack Copy",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Powerpack/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\":\"friendly_name\",\n    \"sticky_sender\":\"True\",\n    \"local_connect\":\"True\",\n    \"application_type\":\"XML\",\n    \"application_id\":\"application_id can be found from the dashboard\"\n\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This API lets you to create a Powerpack via Plivo\u2019s SMS service. Below is the list of arguments that can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Send SMS",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Message/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"src\": \"+14152225555\",\n    \"dst\": \"+14152345678\",\n    \"text\": \"Hello, this is a sample text\",\n    \"type\": \"sms\",\n    \"url\": \"https://foo.com/sms status\",\n    \"method\": \"POST\",\n    \"log\": \"true\",\n    \"trackable\": false\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Send Message or MMS, below is the list of arguments that can be passed in this API request, more information"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Send MMS",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Message/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"src\": \"+14152225555\",\n    \"dst\": \"+14152223333\",\n    \"text\": \"Hello, this is a sample text\",\n    \"type\": \"mms\",\n    \"media_urls\": [\"https://media.giphy.com/media/26gscSULUcfKU7dHq/source.gif\"],\n    \"url\": \"http://foo.com/sms_status/\",\n    \"method\": \"POST\",\n    \"log\": \"true\",\n    \"trackable\": \"false\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Send Message or MMS, below is the list of arguments that can be passed in this API request, more information"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Send SMS/MMS using powerpack",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Message/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"powerpack_uuid\": \"your_powerpack_uuid\",\n    \"dst\": \"14152223333\",\n    \"text\": \"Hello, this is a sample text\",\n    \"type\": \"mms\",\n    \"media_urls\": \"https://media.giphy.com/media/26gscSULUcfKU7dHq/source.gif\",\n    \"url\": \"http://foo.com/sms_status/\",\n    \"method\": \"POST\",\n    \"log\": \"true\",\n    \"trackable\": \"false\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Send Message or MMS, below is the list of arguments that can be passed in this API request, more information"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve a message",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Message/{message_uuid}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieve details for a single message, more information can be found [here](https://www.plivo.com/docs/sms/api/message#retrieve-a-message)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: List all messages",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Message/?message_state=undelivered",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This API can be used to fetch a list of message detail records (MDRs) based on a filter criteria. More"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: List MMS Media",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Message/{message_uuid}/Media/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists the media files sent or received with an MMS message.More information can be found [here](https://www.plivo.com/docs/sms/api/message#list-mms-media)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Lookup a Phone Number",
+        "api_call": "https://lookup.plivo.com/v1/Number/13863877367?type=carrier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Returns phone number information matching the specified request. Formatting information is standard. Carrier, Portability Information (Only for the US &"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Hold a member",
+        "api_call": "https://phlorunner.plivo.com/v1/phlo/{phlo_id}/multi_party_call/{node_id}/members/{member_address}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"hold\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Places a member in the Multi-Party Call on hold. When a member places the call on hold, the member will"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Unhold a member",
+        "api_call": "https://phlorunner.plivo.com/v1/phlo/{phlo_id}/multi_party_call/{node_id}/members/{member_address}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"unhold\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Removes the hold placed by on a member of the Multi-Party Call. This method reverses the effects of the Hold"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Hangup a member",
+        "api_call": "https://phlorunner.plivo.com/v1/phlo/{phlo_id}/multi_party_call/{node_id}/members/{member_address}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"hangup\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Disconnects a member from the Multi-Party Call.\n\nBelow is the list of arguments that can be passed in this API request,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Resume call on warm transfer",
+        "api_call": "https://phlorunner.plivo.com/v1/phlo/{phlo_id}/multi_party_call/{node_id}/members/{member_address}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"resume_call\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Resumes the Multi-Party Call after a warm transfer. This action can be performed either by the initiator of the warm"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Abort a call transfer",
+        "api_call": "https://phlorunner.plivo.com/v1/phlo/{phlo_id}/multi_party_call/{node_id}/members/{member_address}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"abort_transfer\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Aborts a call transfer.\n\nBelow is the list of arguments that can be passed in this API request, more information can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Voicemail drop a member",
+        "api_call": "https://phlorunner.plivo.com/v1/phlo/{phlo_id}/multi_party_call/{node_id}/members/{member_address}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"voicemail_drop\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "When the call is answered by an answering machine (voicemail), this method allows you to play a message (pre-recorded audio"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Add user to a Multi-Party Call",
+        "api_call": "https://phlorunner.plivo.com/v1/phlo/{phlo_id}/multi_party_call/{node_id}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"call\",\n    \"to\": \"+14152225555\",\n    \"role\": \"agent\",\n    \"trigger_source\": \"+14152223333\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Dials a phone number or a SIP endpoint and adds the user to the Multi-Party Call. Below is the list"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Warm transfer a caller",
+        "api_call": "https://phlorunner.plivo.com/v1/phlo/{phlo_id}/multi_party_call/{node_id}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"warm_transfer\",\n    \"to\": \"+14152225555\",\n    \"role\": \"agent\",\n    \"trigger_source\": \"+14152223333\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "A User (U1) can transfer the call with a member (U2) of the Multi-Party Call to another user (U3). On"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Cold transfer a caller",
+        "api_call": "https://phlorunner.plivo.com/v1/phlo/{phlo_id}/multi_party_call/{node_id}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": \"cold_transfer\",\n    \"to\": \"+14152225555\",\n    \"role\": \"agent\",\n    \"trigger_source\": \"+14152223333\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "A User (U1) can transfer the call with a member (U2) on the Multi-Party Call to another user (U3). On"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve a Multi-Party Call",
+        "api_call": "https://phlorunner.plivo.com/v1/phlo/{phlo_id}/multi_party_call/{node_id}?phlo_id=<PHLO_ID>&node_id=<NODE_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "More information can be found [here](https://www.plivo.com/docs/phlo/api/phlo/multi-party-call#the-multipartycall-object)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve a PHLO Run",
+        "api_call": "https://phlorunner.plivo.com/v1/phlo/{phlo_id}/runs/{run_id}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "More infomration can be found [here](https://www.plivo.com/docs/phlo/api/phlo#retrieve-a-phlo-run)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Run a PHLO",
+        "api_call": "https://phlorunner.plivo.com/v1/account/<auth_id>/phlo/bf0b9d53-edc1-4120-a5fd-620d1f91c425",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"auth_id\": {{auth_id}},\n    \"Phlo_id\": \"c8934b39-2bf1-4d3e-ae9d-c80c780f0482\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Run a PHLO by triggering it via an API request to the PHLO URL. More information can be found [here](https://www.plivo.com/docs/phlo/api/phlo#run-a-phlo)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve a PHLO",
+        "api_call": "https://phlorunner.plivo.com/v1/phlo/{phlo_id}?phlo_id=<PHLO_ID>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "More information can be found [here](https://www.plivo.com/docs/phlo/api/phlo#retrieve-a-phlo)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Create a Subaccount",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Subaccount/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\":\"Name of SubAccount\", \n    \"enabled\":\"false\" \n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new Subaccount object.\n\nBelow is the list of arguments that can be passed in this API request, more information"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Update a Subaccount",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Subaccount/{subauth_id}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\":\"Name of SubAccount\", // A human-readable name for the subaccount.\n    \"enabled\":\"false\" // Specify if the subaccount should be enabled. Takes a value of true or false. Defaults to false.\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates the account object by setting the values of the parameters passed. Parameters which are not provided will remain unchanged.\n\nBelow"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve a Subaccount",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Subaccount/{subauth_id}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the detail of a specific Subaccount.\n\nBelow is the list of arguments that can be passed in this API request,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Delete a Subaccount",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Subaccount/{subauth_id}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Permanently delete a Subaccount. This also associates all Numbers, Endpoints and Applications that were linked to the deleted subaccount to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: List all Subaccounts",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Subaccount/?limit=5&offset=0",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of subaccounts. The subaccounts are returned sorted by creation date, with the most recently created subaccount appearing"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Create an Application",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Application/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"answer_url\": \"http://answer.url\",\n    \"app_name\": \"Test App\",\n    \"answer_method\": \"POST\",\n    \"hangup_url\": \"http://hangup.url\",\n    \"hangup_method\": \"POST\",\n    \"fallback_answer_url\": \"http://fallback.url\",\n    \"fallback_method\": \"POST\",\n    \"message_url\": \"http://message.url\",\n    \"message_method\": \"POST\",\n    \"default_number_app\": \"true\",\n    \"default_endpoint_app\": \"true\",\n    \"subaccount\": \"SAXXXXXXXXXXX\",\n    \"log_incoming_messages\": \"true\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates an Application. Creating an application is usually the first step, after which you would attach this application either to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Get Details of a Single Application",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Application/{app_id}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get details of an particular application by passing the app_id. This API returns all the information linked with the application.\n\nMore"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Update an Application",
+        "api_call": "https://api.plivo.com/v1/Account/{auth_id}/Application/{app_id}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"answer_url\": \"http://answer.url\",\n    \"answer_method\": \"POST\",\n    \"hangup_url\": \"http://hangup.url\",\n    \"hangup_method\": \"POST\",\n    \"fallback_answer_url\": \"http://fallback.url\",\n    \"fallback_method\": \"POST\",\n    \"message_url\": \"http://message.url\",\n    \"message_method\": \"POST\",\n    \"default_number_app\": \"true\",\n    \"default_endpoint_app\": \"true\",\n    \"subaccount\": \"SAXXXXXXXXXXX\",\n    \"log_incoming_messages\": \"true\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Modify an application using this API.\n\nBelow is the list of arguments that can be passed in this API request, more"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Delete an Application",
+        "api_call": "https://api.plivo.com/v1/Account/{auth_id}/Application/{app_id}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"cascade\":\"true\",\n    \"new_endpoint_application\":\"77506472664956327\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This API would delete the Application permanently.\n\nBelow is the list of arguments that can be passed in this API request,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Get Details of All Applications",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Application/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"subaccount\":\"SAZWM0YJBHZMY1ZTK4OG\",\n    \"limit\":\"20\",\n    \"offset\":\"0\"\n\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This API is used to get details of all the application that have been created under your Plivo account.\n\nBelow is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve pricing for a country",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Pricing/?country_iso=US",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves pricing for a specified country.\n\nBelow is the list of arguments that can be passed in this API request, more"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve account details",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of the account.\n\nMore information can be found [here](https://www.plivo.com/docs/account/api/account#retrieve-account-details)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Update the account details",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"address\": \"Test address\", // Postal address of the account which will be displayed in the invoices\n    \"name\": \"Test name\", // Name of the account holder.\n    \"city\": \"Test city\", // City of the account holder.\n    \"state\": \"Test state\", // State or region of the account.\n    \"timezone\": \"Test timezone\" // The time zone used in the Plivo dashboard for this account\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates the Account object by setting the values of the parameters passed. Parameters which are not provided will remain unchanged.\nThis"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Start recording a call",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Call/{call_uuid}/Record/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"time_limit\":\"60\",\n    \"file_format\":\"mp3\",\n    \"transcription_type\":\"auto\",\n    \"transcription_url\":\"https://transcription.url\",\n    \"transcription_method\":\"POST\",\n    \"callback_url\":\"https://callback.url\",\n    \"callback_method\":\"POST\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint allows you to start recording a call.\n\nBelow is the list of arguments that can be passed in this"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Stop currently active recording",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Call/{call_uuid}/Record/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"URL\":\"http://s3.amazonaws.com/recordings_2013/48dfaf60-3b2a-11e3.mp3\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Play audio on a call",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Call/{call_uuid}/Play/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"urls\":\"https://s3.amazonaws.com/plivocloud/music.mp3\",\n    \"length\":\"10\",\n    \"legs\":\"aleg\",\n    \"loop\":\"false\",\n    \"mix\":\"true\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint allows you to play an audio file during an active call. The audio file formats supported are .mp3"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Stop playing audio on a call",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Call/{call_uuid}/Play/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This endpoint allows you to stop an already playing audio file during an active call.\n\nMore information can be found [here](https://www.plivo.com/docs/voice/api/call/play-audio-on-calls#stop-playing-audio-on-calls)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Play Text During a Call",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Call/{call_uuid}/Speak/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"text\":\"Hello world\",\n    \"voice\":\"WOMAN\",\n    \"language\":\"en-US\",\n    \"legs\":\"aleg\",\n    \"loop\":\"false\",\n    \"mix\":\"true\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint allows you to speak text in an active call.\n\nBelow is the list of arguments that can be passed"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Stop speaking text during a call",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Call/{call_uuid}/Speak/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This endpoint allows for stopping active text that are being spoken in the call.\n\nMore information can be found [here](https://www.plivo.com/docs/voice/api/call/speak-text-on-calls#stop-speaking-text-on-a-call)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Send digits on an active call",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Call/{call_uuid}/DTMF/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"digits\":\"1234\",\n    \"leg\":\"aleg\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint allows you to send DTMF digits on an active call.\n\nBelow is the list of arguments that can be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Hangup a Member",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Conference/{conference_name}/Member/{member_id}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This method lets you hangup a particular member present in a conference. The member to be disconnected needs to be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Kick or disconnect a member from a conference",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Conference/{conference_name}/Member/{member_id}/Kick/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This method lets you disconnect a member in a conference. When the member is disconnected the next action would be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Mute Member",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Conference/{conference_name}/Member/{member_id}/Mute/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This API lets you mute members in a conference. When a member is muted, audio from their device will be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Unmute Member",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Conference/{conference_name}/Member/{member_id}/Mute/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This API lets you unmute members which have been muted by the Mute Member API.\n\nMore information can be found [here](https://www.plivo.com/docs/voice/api/conference/member#unmute-a-member)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Deaf a conference member",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Conference/{conference_name}/Member/{member_id}/Deaf/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This method allows you to deaf a particular member in the conference. When this operation is made on a conference"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Undeaf a conference member",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Conference/{conference_name}/Member/{member_id}/Deaf/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This method lets you un-deaf a member in a conference. When this operation is performed on a conference member it"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Play audio to a member",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Conference/{conference_name}/Member/{member_id}/Play/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "This API lets you play a mp3 or a wav file to a member in the conference.\n\nBelow is the list"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Stop play audio to a member",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Conference/{conference_name}/Member/{member_id}/Play/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This API will stop the file which is being played to a member initiated by the Play API\n\nMore information can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Play text to a member",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Conference/{conference_name}/Member/{member_id}/Speak/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"text\":\"Hello World\",\n    \"voice\":\"WOMAN\",\n    \"language\":\"en-US\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This API will play text to a member in a conference.\n\nBelow is the list of arguments that can be passed"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Stop playing text to a member",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Conference/{conference_name}/Member/{member_id}/Speak/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This API will stop playing text to a member in a conference which was initiated by the Play Text API\n\nMore"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Start Recording a Conference",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Conference/{conference_name}/Record/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"file_format\":\"mp3\",\n    \"transcription_type\":\"auto\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This API lets you start recording an ongoing conference. You can start recording the conference by using this API after"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Stop recording a conference",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Conference/{conference_name}/Record/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "If the recording was initiated by the above Record API method, you could use this method to stop recording the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve a conference",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Conference/{conference_name}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of a particular conference.\n\nMore information can be found [here](https://www.plivo.com/docs/voice/api/conference#retrieve-a-conference)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Hangup a specific conference",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Conference/{conference_name}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This method lets you hangup a particular conference using the conference name.\n\nMore information can be found [here](https://www.plivo.com/docs/voice/api/conference#hangup-a-conference)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: List all conferences",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Conference/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves a list of all conferences that are ongoing on your account. This method returns the names of all the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Hangup all conferences",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Conference/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This API lets you hangup all ongoing conferences running on your account.\n\nMore information can be found [here](https://www.plivo.com/docs/voice/api/conference#hangup-all-conferences)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Create an endpoint",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Endpoint/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"username\": \"testusername\",\n    \"password\": \"testpassword\",\n    \"alias\": \"Test Account\",\n    \"app_id\": \"77494029089751836\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new endpoint.\n\nBelow is the list of arguments that can be passed in this API request, more information can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve an endpoint",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Endpoint/{endpoint_id}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of an existing endpoint.\n\nBelow is the list of arguments that can be passed in this API request,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: List all endpoints",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Endpoint/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the details of all endpoints.\n\nMore information can be found [here](https://www.plivo.com/docs/voice/api/endpoint#list-all-endpoints)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Update an endpoint",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Endpoint/{endpoint_id}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"password\": \"testpassword\",\n    \"alias\": \"testalaias\",\n    \"app_id\": \"14659095951490\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates an endpoint\u2019s password, alias or the application attached to it.\n\nBelow is the list of arguments that can be passed"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Delete an Endpoint",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Endpoint/{endpoint_id}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Permanently delete an endpoint.\n\nMore information can be found [here](https://www.plivo.com/docs/voice/api/endpoint#delete-an-endpoint)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve a recording",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Recording/{recording_id}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The following API is used to retrieve a specific recording based on the \u2018recording_id\u2019.\n\nMore information can be found [here](https://www.plivo.com/docs/voice/api/recording#retrieve-a-recording)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: List All Recordings",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Recording/?limit=5&offset=0",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This method lists the recordings that are available in your account.\n\nBelow is the list of arguments that can be passed"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Delete a Specific Recording",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Recording/{recording_id}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This API lets you delete a recording from your Plivo account using the recording ID.\n\nMore information can be found [here](This"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Make an outbound call",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Call/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"from\":\"+14152224444\",\n    \"to\":\"+14152223333\",\n    \"answer_url\":\"https://s3.amazonaws.com/plivosamplexml/play_url.xml\",\n    \"answer_method\":\"GET\",\n    \"ring_url\":\"https://www.foo.com/ring.url\",\n    \"ring_method\":\"POST\",\n    \"hangup_url\":\"https://www.foo.com/hangup.url\",\n    \"hangup_method\":\"POST\",\n    \"fallback_url\":\"https://www.foo.com/fallback.url\",\n    \"fallback_method\":\"POST\",\n    \"caller_name\":\"friendly_name\",\n    \"send_digits\":\"1w2W3\",\n    \"send_on_preanswer\":\"true\",\n    \"time_limit\":\"300\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This method allows you to initiate an outbound call. The call can be made to a PSTN number or a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Get Call Detail Record (CDR) of a call",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Call/{call_uuid}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"legs\":\"aleg\",\n    \"aleg_url\":\"https://aleg.url\",\n    \"aleg_method\":\"POST\",\n    \"bleg_url\":\"https://aleg.url\",\n    \"bleg_method\":\"POST\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This method allows you to retrieve the Call Detail Record (CDR) of the call. More information can be found [here](https://www.plivo.com/docs/voice/api/call#retrieve-a-call)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve details of all calls",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Call/?subaccount=SAXXXXXXXXX&limit=5&offset=0",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This method allows you to retrieve details of all completed calls. The maximum number of results that can be fetched"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Get details of all ongoing calls",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Call/?status=live&call_direction\n=outbound&from_number=14152225555&to_number=14152223333",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This method allows you to retrieve details of all ongoing calls made from an account.\n\nBelow is the list of arguments"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Get details of a specific ongoing Call",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Call/{call_uuid}/?status=live",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This method allows you to retrieve details of a specific call that is ongoing.\n\nMore information can be found [here](https://www.plivo.com/docs/voice/api/call#retrieve-a-live-call)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve a queued call",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Call/{call_uuid}/?status=queued",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This method allows you to retrieve details of a specific queued call. The maximum number of results that can be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve all queued calls",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Call/?status=queued",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This method allows you to retrieve details of all queued calls. The maximum number of results that can be fetched"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Transfer a call",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Call/{call_uuid}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"legs\":\"both\",\n    \"aleg_url\":\"http://aleg.url\",\n    \"aleg_method\":\"GET\",\n    \"bleg_url\":\"http://bleg.url\",\n    \"bleg_method\":\"GET\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This API enables an in-progress or ongoing call to fetch and execute a XML from a different URL. If the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Hangup a specific call",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Call/{call_uuid}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This method allows you to hangup an ongoing call. It can also be used to cancel a queued outbound call."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Posting Call Quality Feedback Using API",
+        "api_call": "https://stats.plivo.com/v1/Call/{call_uuid}/Feedback/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"call_uuid\":\"9834029e-58b6-11e1-b8b7-a5bd0e4e126f\",\n    \"rating\":\"3\",\n    \"issues\":\"ECHO\",\n    \"Notes\":\"It's intermittent\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This method allows you to post feedback for calls. Call quality feedback information received through this API is accessible on"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Search Phone Numbers",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/PhoneNumber/?country_iso=US&type=local&limit=3",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns a list of phone numbers that are available for purchase. You can search for tollfree, mobile, local, national and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Buy a Phone Number",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/PhoneNumber/15418341850/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"app_id\": \"77543232947799695\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Buys the phone number and adds it to your account. Certain countries have address and identity verification requirements. Phone numbers"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Create an incoming carrier",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/IncomingCarrier/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"carrier_name\",\n    \"ip_set\": \"100.30.276.37\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This API lets you add a new incoming carrier to your Plivo account.\n\nBelow is the list of arguments that can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Retrieve an incoming carrier",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/IncomingCarrier/{carrier_id}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This API returns the details of an incoming carrier\n\nMore information can be found [here](https://www.plivo.com/docs/numbers/api/incoming-carrier#retrieve-an-incoming-carrier)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: List all incoming carriers",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/IncomingCarrier/?limit=5&offset=0",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Update an incoming carrier",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/IncomingCarrier/{carrier_id}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"updated_name\",\n    \"ip_set\": \"100.30.276.37\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This API lets you modify an existing incoming carrier set up on your account.\n\nBelow is the list of arguments that"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Delete an incoming carrier",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/IncomingCarrier/{carrier_id}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Get an account phone number",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Number/{number}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the details of an phone number that you\u2019ve rented from Plivo or [added from your carrier](https://www.plivo.com/docs/numbers/api/incoming-carrier/).\n\nMore information can be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: List account phone numbers",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Number/?limit=5&offset=0",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of phone numbers that you\u2019ve rented from Plivo or [added from your carrier](https://www.plivo.com/docs/numbers/api/account-phone-number/#docs-numbers-api-incoming-carrier).\n\n\nBelow is the list of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Update an account phone number",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Number/{number}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"app_id\": \"77494029089751836\",\n    \"subaccount\": \"SAXXXXXXXXXX\",\n    \"alias\": \"Updated Alias\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Change the application and sub-account associated to specified phone number from your account.\n\nBelow is the list of arguments that can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Unrent a Number",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Number/{number}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Unrent the phone number from your account. This operation cannot be undone.\n\nMore information can be found [here](https://www.plivo.com/docs/numbers/api/account-phone-number#unrent-a-number)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plivo REST API: Add a number from your own carrier",
+        "api_call": "https://api.plivo.com/v1/Account/<auth_id>/Number/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"numbers\": \"18554675486\",\n    \"carrier\": \"13455781930894\",\n    \"region\": \"California\",\n    \"number_type\": \"local\",\n    \"app_id\": \"77494029089751836\",\n    \"subaccount\": \"SAXXXXXXXXXXXXX\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Adds a phone number from your own carrier, to your account.\n\nBelow is the list of arguments that can be passed"
+    }
+]

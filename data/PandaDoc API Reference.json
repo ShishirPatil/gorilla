@@ -1,0 +1,2142 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Get API key at http://app.pandadoc.com/a/#/settings/integrations/api/",
+        "api_call": "Get API key from PandaDoc application at https://app.pandadoc.com/a/#/settings/api-dashboard/configuration",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Refresh Access Token",
+        "api_call": "https://api.pandadoc.com/oauth2/access_token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "refresh_token",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "{{client_id}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_secret",
+                        "value": "{{client_secret}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "scope",
+                        "value": "read+write",
+                        "type": "text"
+                    },
+                    {
+                        "key": "refresh_token",
+                        "value": "{{refresh_token}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#refresh-access_token](https://developers.pandadoc.com/v1/reference#refresh-access_token).\n\nFor details of authentication process go to [https://developers.pandadoc.com/v1/reference#authentication-process](https://developers.pandadoc.com/v1/reference#authentication-process)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Get Access Code",
+        "api_call": "https://app.pandadoc.com/oauth2/authorize?client_id={{client_id}}&redirect_uri={{redirect_uri}}&scope=read+write&response_type=code",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provide values to variables: client_id, redirect_url ([Postman environments](https://www.getpostman.com/docs/postman/environments_and_globals/manage_environments) is great for it).\n\nTest this link in a web browser.\n\nYou can get"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Create Access Token",
+        "api_call": "https://api.pandadoc.com/oauth2/access_token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "{{client_id}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_secret",
+                        "value": "{{client_secret}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "code",
+                        "value": "",
+                        "type": "text"
+                    },
+                    {
+                        "key": "scope",
+                        "value": "read+write",
+                        "type": "text"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "{{redirect_uri}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "Provide values to variables: client_id, client_secret ([Postman environments](https://www.getpostman.com/docs/postman/environments_and_globals/manage_environments) is great for it).\n\nProvide value for one-off variable code.\n\nFor details go to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Delete Linked Object",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/linked-objects/{{linked_object_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Create Linked Object",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/linked-objects",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"provider\": \"{{provider_name}}\",\n    \"entity_type\": \"{{entity_type}}\",\n    \"entity_id\": \"{{entity_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Linked Objects",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/linked-objects",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Create Attachment",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/attachments/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": null
+                    },
+                    {
+                        "key": "name",
+                        "value": "File Test Name",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Attachment Details",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/attachments/{{attachment_id}}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Attachments",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/attachments/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Delete Attachment",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/attachments/{{attachment_id}}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Download Attachment",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/attachments/{{attachment_id}}/download/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Create Document from PandaDoc Template (Full API Sample Document from PandaDoc Template)",
+        "api_call": "https://api.pandadoc.com/public/v1/documents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Full API Sample Document from PandaDoc Template\",\n    \"template_uuid\": \"{{template_id}}\",\n    \"owner\":{\n        \"membership_id\":\"{{membership_id}}\"\n    },\n    \"recipients\": [\n        {\n            \"email\": \"{{recipient_email}}\",\n            \"first_name\": \"Josh\",\n            \"last_name\": \"Ron\",\n            \"role\": \"user\",\n            \"signing_order\": 1\n        }\n    ],\n    \"tokens\": [\n        {\n            \"name\": \"Favorite.Pet\",\n            \"value\": \"Panda\"\n        }\n    ],\n    \"fields\": {\n        \"Favorite.Color\": {\n            \"value\": \"PandaDoc green\"\n        },\n        \"Delivery\": {\n            \"value\": \"Same Day Delivery\"\n        },\n        \"Like\": {\n            \"value\": true\n        },\n        \"Date\": {\n            \"value\": \"2019-12-31T00:00:00.000Z\"\n        }\n    },\n    \"metadata\": {\n        \"my_favorite_pet\": \"Panda\"\n    },\n    \"tags\": [\n        \"created_via_api\",\n        \"test_document\"\n    ],\n    \"images\": [\n        {\n            \"name\": \"Image 1\",\n            \"urls\": [\n                \"https://s3.amazonaws.com/pd-static-content/public-docs/pandadoc-panda-bear.png\"\n            ]\n        }\n    ],\n    \"pricing_tables\": [\n        {\n            \"name\": \"Pricing Table 1\",\n            \"data_merge\":true,\n            \"options\": {\n                \"Tax\": {  \n                    \"is_global\": true,\n                    \"type\": \"absolute\",\n                    \"name\": \"Tax\",\n                    \"value\": 10\n                }\n            },\n            \"sections\": [\n                {\n                    \"title\": \"Sample Section\",\n                    \"default\": true,\n                    \"rows\": [\n                        {\n                            \"options\": {\n                                \"optional\": true,\n                                \"optional_selected\": true,\n                                \"qty_editable\": true\n                            },\n                            \"data\": {\n                                \"Name\": \"Toy Panda\",\n                                \"Description\": \"Fluffy!\",\n                                \"Price\": 10,\n                                \"QTY\": 3,\n                                \"Tax\": {\n                                    \"value\": 20,\n                                    \"type\": \"percent\"\n                                }\n                            },\n                            \"custom_fields\": {\n                                \"Fluffiness\": \"5 / 5\"\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    ],\n    \"content_placeholders\": [\n        {\n            \"block_id\": \"{{block_id}}\",\n            \"content_library_items\": [\n                {\n                    \"id\": \"{{cli_id}}\",\n                    \"pricing_tables\": [\n                        {\n                            \"name\": \"Pricing Table 1\",\n                            \"data_merge\":false,\n                            \"options\": {  \n                                \"discount\": {  \n                                    \"type\": \"absolute\",\n                                    \"name\": \"Discount\",\n                                    \"value\": 2.26\n                                }\n                            },\n                            \"sections\": [\n                                {\n                                    \"title\": \"Sample Section\",\n                                    \"default\": true,\n                                    \"rows\": [\n                                        {\n                                            \"options\": {\n                                                \"optional\": true,\n                                                \"optional_selected\": true,\n                                                \"qty_editable\": true\n                                            },\n                                            \"data\": {\n                                                \"name\": \"Placeholder Panda\",\n                                                \"price\": 10,\n                                                \"qty\": 3\n                                            }\n                                        }\n                                    ]\n                                }\n                            ]\n                        }\n                    ]\n                },\n                {\n                    \"id\": \"{{cli_id_2}}\",\n                    \"recipients\": [\n                        {\n                            \"email\": \"john@example.com\",\n                            \"first_name\": \"John\",\n                            \"last_name\": \"Roe\",\n                            \"role\": \"Signer\",\n                            \"signing_order\": 2\n                        }\n                    ],\n                    \"fields\": {\n                        \"Date\": {\n        \t                \"value\": \"2019-12-31T00:00:00.000Z\"\n                        }\n                    }\n                }\n            ]\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "Provide value to variable: template_id ([Postman environments](https://www.getpostman.com/docs/postman/environments_and_globals/manage_environments) is great for it).\n\nFor details and the sample template go to [https://developers.pandadoc.com/v1/reference#create-document-from-pandadoc-template](https://developers.pandadoc.com/v1/reference#create-document-from-pandadoc-template).\n\nFor details"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Add CC Recipient",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/recipients/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"kind\": \"contact\",\n    \"id\": {{contact_id}}\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Remove Recipient",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/recipients/{{recipient_id}}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Edit Recipient",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/recipients/recipient/{{recipient_id}}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"test@pandadoc.com\",\n    \"phone\": \"+3511111111111\",\n    \"company\": \"pandadoc\",\n    \"title\": \"\",\n    \"street_address\": \"\",\n    \"city\": \"\",\n    \"state\": \"\",\n    \"postal_code\": \"\",\n    \"country\": \"\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Change Signer",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/recipients/{{recipient_id}}/reassign/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"kind\": \"contact\",\n    \"id\": {{contact_id}}\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Section Info",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/sections/{{section_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Upload section",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/sections/uploads",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "description": "Binary PDF File",
+                        "key": "file",
+                        "value": "<string>",
+                        "type": "text"
+                    },
+                    {
+                        "description": "JSON as a multipart/form-data string.",
+                        "key": "data",
+                        "value": "[object Object]",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Section details",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/sections/uploads/{{upload_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List sections",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/sections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Documents",
+        "api_call": "https://api.pandadoc.com/public/v1/documents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#list-documents](https://developers.pandadoc.com/v1/reference#list-documents)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Completed Documents",
+        "api_call": "https://api.pandadoc.com/public/v1/documents?status=2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#list-documents](https://developers.pandadoc.com/v1/reference#list-documents)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Deleted Documents",
+        "api_call": "https://api.pandadoc.com/public/v1/documents?deleted=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#list-documents](https://developers.pandadoc.com/v1/reference#list-documents)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Create Document from PandaDoc Template",
+        "api_call": "https://api.pandadoc.com/public/v1/documents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Simple API Sample Document from PandaDoc Template\",\n    \"template_uuid\": \"{{template_id}}\",\n    \"recipients\": [\n        {\n            \"email\": \"{{recipient_email}}\",\n            \"first_name\": \"Josh\",\n            \"last_name\": \"Ron\",\n            \"role\": \"user\"\n        }\n    ],\n    \"tokens\": [\n        {\n            \"name\": \"Favorite.Pet\",\n            \"value\": \"Panda\"\n        }\n    ],\n    \"fields\": {\n        \"Favorite.Color\": {\n            \"value\": \"PandaDoc green\"\n        },\n        \"Delivery\": {\n            \"value\": \"Same Day Delivery\"\n        },\n        \"Like\": {\n            \"value\": true\n        },\n        \"Date\": {\n            \"value\": \"2019-12-31T00:00:00.000Z\"\n        }\n    },\n    \"metadata\": {\n        \"my_favorite_pet\": \"Panda\"\n    },\n    \"tags\": [\n        \"created_via_api\",\n        \"test_document\"\n    ],\n    \"images\": [\n        {\n            \"name\": \"Image 1\",\n            \"urls\": [\n                \"https://s3.amazonaws.com/pd-static-content/public-docs/pandadoc-panda-bear.png\"\n            ]\n        }\n    ],\n    \"pricing_tables\": [\n        {\n            \"name\": \"Pricing Table 1\",\n            \"data_merge\":true,\n            \"options\": {\n                \"Tax\": {  \n                    \"is_global\": true,\n                    \"type\": \"absolute\",\n                    \"name\": \"Tax\",\n                    \"value\": 10\n                }\n            },\n            \"sections\": [\n                {\n                    \"title\": \"Sample Section\",\n                    \"default\": true,\n                    \"rows\": [\n                        {\n                            \"options\": {\n                                \"optional\": true,\n                                \"optional_selected\": true,\n                                \"qty_editable\": true\n                            },\n                            \"data\": {\n                                \"Name\": \"Toy Panda\",\n                                \"Description\": \"Fluffy!\",\n                                \"Price\": 10,\n                                \"QTY\": 3,\n                                \"Tax\": {\n                                    \"value\": 20,\n                                    \"type\": \"percent\"\n                                }\n                            },\n                            \"custom_fields\": {\n                                \"Fluffiness\": \"5 / 5\"\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "Provide value to variable: template_id ([Postman environments](https://www.getpostman.com/docs/postman/environments_and_globals/manage_environments) is great for it).\n\nFor details and the sample template go to [https://developers.pandadoc.com/v1/reference#create-document-from-pandadoc-template](https://developers.pandadoc.com/v1/reference#create-document-from-pandadoc-template).\n\nFor details"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Create Document from PDF (Form Fields)",
+        "api_call": "https://api.pandadoc.com/public/v1/documents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": ""
+                    },
+                    {
+                        "key": "data",
+                        "value": "{  \n    \"name\": \"Sample Document from PDF with Form Fields\",\n    \"recipients\": [  \n        {  \n            \"email\": \"{{recipient_email}}\",\n            \"first_name\": \"Josh\",\n            \"last_name\": \"Ron\",\n            \"role\": \"user\",\n            \"signing_order\": 1\n        },\n        {  \n            \"email\": \"john@example.com\",\n            \"first_name\": \"John\",\n            \"last_name\": \"Roe\",\n            \"signing_order\": 2\n        }\n    ],\n    \"fields\": {  \n        \"userName\": {  \n            \"value\": \"Jane\",\n            \"role\": \"user\"\n        },\n        \"homeAddress\": {\n            \"value\": \"\",\n            \"role\": \"user\"\n        },\n        \"like\": {  \n            \"value\": true,\n            \"role\": \"user\"\n        },\n        \"signature\": {  \n            \"value\": \"\",\n            \"role\": \"user\"\n        }\n    },\n    \"metadata\": {\n        \"salesforce.opportunity_id\": \"123456\",\n        \"my_favorite_pet\": \"Panda\"\n    },\n    \"tags\": [\n        \"created_via_api\",\n        \"test_document\"\n\t], \n    \"parse_form_fields\": true\n}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "For details and the sample PDF go to [https://developers.pandadoc.com/v1/reference#section-pdf-form-fields](https://developers.pandadoc.com/v1/reference#section-pdf-form-fields).\n\nFor details about document creation from PDF go to [https://developers.pandadoc.com/v1/reference#create-document-from-pdf](https://developers.pandadoc.com/v1/reference#create-document-from-pdf).\n\nFor details of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Create Document from File (Field Tags)",
+        "api_call": "https://api.pandadoc.com/public/v1/documents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": ""
+                    },
+                    {
+                        "key": "data",
+                        "value": "{  \n    \"name\": \"Sample Document from PDF with Field Tags\",\n    \"recipients\": [  \n        {  \n            \"email\": \"{{recipient_email}}\",\n            \"first_name\": \"Josh\",\n            \"last_name\": \"Ron\",\n            \"role\": \"user\",\n            \"signing_order\":1\n        },\n        {  \n            \"email\": \"john@example.com\",\n            \"first_name\": \"Jane\",\n            \"last_name\": \"Roe\",\n            \"signing_order\":2\n        }\n    ],\n    \"fields\": {  \n        \"name\": {  \n            \"value\": \"Jane\",\n            \"role\": \"user\"\n        },\n        \"like\": {  \n            \"value\": true,\n            \"role\": \"user\"\n        }\n    },\n    \"metadata\": {\n        \"salesforce.opportunity_id\": \"123456\",\n        \"my_favorite_pet\": \"Panda\"\n    },\n    \"tags\": [\n        \"created_via_api\",\n        \"test_document\"\n\t], \n    \"parse_form_fields\": false\n}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "For details and a file sample go to [https://developers.pandadoc.com/v1/reference#section-pdf-field-tags](https://developers.pandadoc.com/v1/reference#section-pdf-field-tags).\n\nFor details about document creation from File go to [https://developers.pandadoc.com/v1/reference#create-document-from-pdf](https://developers.pandadoc.com/v1/reference#create-document-from-pdf).\n\nFor details of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Update Document",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"recipients\": [\n        {\n            \"email\": \"test@test.com\",\n            \"first_name\": \"New\",\n            \"last_name\": \"Recipient\"\n        }\n    ],\n    \"tokens\": [\n        {\n            \"name\": \"Favorite.Pet\",\n            \"value\": \"New Panda\"\n        }\n    ],\n    \"fields\": {\n        \"Favorite.Color\": {\n            \"value\": \"PandaDoc red\"\n        },\n        \"Delivery\": {\n            \"value\": \"Pick Up\"\n        },\n        \"Like\": {\n            \"value\": false\n        },\n        \"Date\": {\n            \"value\": \"2022-08-24T00:00:00.000Z\"\n        }\n    },\n    \"metadata\": {\n        \"my_favorite_pet\": \"New Panda\"\n    },\n    \"tags\": [\n        \"created_via_api\",\n        \"test_document\"\n    ],\n    \"pricing_tables\": [\n        {\n            \"name\": \"Pricing Table 1\",\n            \"data_merge\":true,\n            \"options\": {\n                \"Tax\": {  \n                    \"is_global\": true,\n                    \"type\": \"absolute\",\n                    \"name\": \"Tax\",\n                    \"value\": 11\n                }\n            },\n            \"sections\": [\n                {\n                    \"title\": \"Sample Section\",\n                    \"default\": true,\n                    \"rows\": [\n                        {\n                            \"options\": {\n                                \"optional\": true,\n                                \"optional_selected\": true,\n                                \"qty_editable\": true\n                            },\n                            \"data\": {\n                                \"Name\": \"New Toy Panda\",\n                                \"Description\": \"New Fluffy!\",\n                                \"Price\": 11,\n                                \"QTY\": 4,\n                                \"Tax\": {\n                                    \"value\": 21,\n                                    \"type\": \"percent\"\n                                }\n                            },\n                            \"custom_fields\": {\n                                \"Fluffiness\": \"4 / 5\"\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "Provide value to variable: template_id ([Postman environments](https://www.getpostman.com/docs/postman/environments_and_globals/manage_environments) is great for it).\n\nFor details and the sample template go to [https://developers.pandadoc.com/v1/reference#create-document-from-pandadoc-template](https://developers.pandadoc.com/v1/reference#create-document-from-pandadoc-template).\n\nFor details"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Document Status",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#document-status](https://developers.pandadoc.com/v1/reference#document-status)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Document Details",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/details",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#document-details](https://developers.pandadoc.com/v1/reference#document-details)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Send Document",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/send",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"message\": \"Hello! This document was sent from the PandaDoc API.\",\n    \"silent\": true\n}"
+            }
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#send-document](https://developers.pandadoc.com/v1/reference#send-document)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Share Document (Session ID)",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/session",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"recipient\": \"{{recipient_email}}\",\n    \"lifetime\": 900\n}"
+            }
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#link-to-a-document](https://developers.pandadoc.com/v1/reference#link-to-a-document).\n\nFor details of document sharing go to [https://developers.pandadoc.com/v1/reference#share-document](https://developers.pandadoc.com/v1/reference#share-document)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Test sharable link",
+        "api_call": "https://app.pandadoc.com/s/{{session_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Test this link in a web browser.\n\nYou can get the URL by going to \"Code\" - \"cURL\".\n\nFor details go to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Download Document",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/download",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#download-document](https://developers.pandadoc.com/v1/reference#download-document)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Delete Document",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#delete-document](https://developers.pandadoc.com/v1/reference#delete-document)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Change Document Status (manually)",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": null
+                    },
+                    {
+                        "key": "data",
+                        "value": "{\n    \"status\": 2,\n    \"note\": \"A private note\",\n    \"notify_recipients\": false\n}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Update Document Ownership",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/ownership/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"membership_id\":\"{{membership_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Transfer All Documents Ownership",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/ownership/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"from_membership_id\": \"Dqsxp4jNnFcS63tJEgLJGN\",\n    \"to_membership_id\": \"radQBiBkU7MBk59NSgaGfd\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Template Details",
+        "api_call": "https://api.pandadoc.com/public/v1/templates/{{template_id}}/details",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#template-details](https://developers.pandadoc.com/v1/reference#template-details)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Templates",
+        "api_call": "https://api.pandadoc.com/public/v1/templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#list-templates](https://developers.pandadoc.com/v1/reference#list-templates)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Delete Template",
+        "api_call": "https://api.pandadoc.com/public/v1/templates/{{template_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#delete-template](https://developers.pandadoc.com/v1/reference#delete-template)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Content Library Items",
+        "api_call": "https://api.pandadoc.com/public/v1/content-library-items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Content Library Item Details",
+        "api_call": "https://api.pandadoc.com/public/v1/content-library-items/{{cli_id}}/details",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Create Contact",
+        "api_call": "https://api.pandadoc.com/public/v1/contacts/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"email\": \"nobody@example.com\",\n    \"first_name\": \"test\",\n    \"last_name\": \"test\",\n    \"company\": \"test\",\n    \"job_title\": \"test\",\n    \"phone\": \"test\",\n    \"country\":\"test\",\n    \"state\":\"test\",\n    \"street_address\":\"test\",\n    \"city\":\"test\",\n    \"postal_code\":\"test\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Contacts",
+        "api_call": "https://api.pandadoc.com/public/v1/contacts/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Contact Details",
+        "api_call": "https://api.pandadoc.com/public/v1/contacts/{{contact_id}}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Update Contact",
+        "api_call": "https://api.pandadoc.com/public/v1/contacts/{{contact_id}}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"first_name\": \"test1\",\n    \"last_name\": \"test1\",\n    \"company\": \"test1\",\n    \"job_title\": \"test1\",\n    \"phone\": \"test1\",\n    \"country\":\"test1\",\n    \"state\":\"test1\",\n    \"street_address\":\"test1\",\n    \"city\":\"test1\",\n    \"postal_code\":\"test1\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Delete Contact",
+        "api_call": "https://api.pandadoc.com/public/v1/contacts/{{contact_id}}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List API Logs",
+        "api_call": "https://api.pandadoc.com/public/v1/logs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: API log details",
+        "api_call": "https://api.pandadoc.com/public/v1/logs/{{eventId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Create Documents Folder",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/folders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "API-Key {{api_key}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"name\":\"A new documents folder\",\r\n    \"parent_uuid\": \"{{documents_folder_uuid}}\"\r\n}"
+            }
+        },
+        "functionality": "For details go to https://developers.pandadoc.com/reference#create-documents-folder"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Documents Folders",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/folders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "API-Key {{api_key}}"
+                }
+            ]
+        },
+        "functionality": "For details go to https://developers.pandadoc.com/reference#list-documents-folders"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Documents Subfolders",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/folders?parent_uuid={{documents_folder_uuid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "API-Key {{api_key}}"
+                }
+            ]
+        },
+        "functionality": "For details go to https://developers.pandadoc.com/reference#list-documents-folders"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Rename Documents Folder",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/folders/{{documents_folder_uuid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "API-Key {{api_key}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"name\":\"Another documents folder\"\r\n}"
+            }
+        },
+        "functionality": "For details go to https://developers.pandadoc.com/reference#rename-documents-folder"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Create Document in a Folder",
+        "api_call": "https://api.pandadoc.com/public/v1/documents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{  \n    \"name\": \"API Sample Document from PandaDoc Template\",\n    \"template_uuid\": \"{{template_id}}\",\n    \"folder_uuid\": \"{{documents_folder_uuid}}\",\n    \"recipients\": [  \n        {  \n            \"email\": \"{{recipient_email}}\",\n            \"first_name\": \"Jane\",\n            \"last_name\": \"Roe\",\n            \"role\": \"user\"\n        }\n    ],\n    \"tokens\": [  \n        {  \n            \"name\": \"Favorite.Pet\",\n            \"value\": \"Panda\"\n        }\n    ],\n    \"fields\": {  \n        \"Favorite.Color\": {  \n            \"value\": \"PandaDoc green\"\n        },\n        \"Delivery\": {\n        \t\"value\": \"Same Day Delivery\"\n        },\n        \"Like\": {\n        \t\"value\": true\n        },\n        \"Date\": {\n        \t\"value\": \"2019-12-31T00:00:00.000Z\"\n        }\n    },\n    \"metadata\":{  \n        \"opp_id\": \"123456\",\n        \"my_favorite_pet\": \"Panda\"\n    },\n    \"tags\": [\n        \"created_via_api\",\n        \"test_document\"\n\t], \n    \"pricing_tables\": [  \n        {  \n            \"name\": \"PricingTable1\",\n            \"options\": {  \n                \"currency\": \"USD\",\n                \"discount\": {  \n                    \"is_global\": true,\n                    \"type\": \"absolute\",\n                    \"name\": \"Global Discount\",\n                    \"value\": 2.26\n                }\n            },\n            \"sections\": [  \n                {  \n                    \"title\": \"Sample Section\",\n                    \"default\": true,\n                    \"rows\": [  \n                        {  \n                            \"options\": {  \n                                \"optional\": true,\n                                \"optional_selected\": true,\n                                \"qty_editable\": true\n                            },\n                            \"data\":{  \n                                \"name\": \"Toy Panda\",\n                                \"description\": \"Fluffy!\",\n                                \"price\": 10,\n                                \"qty\": 3,\n                                \"tax_first\": {  \n                                    \"value\": 7.5,\n                                    \"type\": \"percent\"\n                                }\n                            },\n                            \"custom_fields\": {  \n                                \"Fluffiness\": \"5 / 5\"\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "Provide value to variables: template_id and documents_folder_uuid ([Postman environments](https://www.getpostman.com/docs/postman/environments_and_globals/manage_environments) is great for it).\n\nFor details and the sample template go to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Documents in a Folder",
+        "api_call": "https://api.pandadoc.com/public/v1/documents?folder_uuid={{documents_folder_uuid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "API-Key {{api_key}}"
+                }
+            ]
+        },
+        "functionality": "For details go to https://developers.pandadoc.com/reference#list-documents"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Create Templates Folder",
+        "api_call": "https://api.pandadoc.com/public/v1/templates/folders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "API-Key {{api_key}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"name\":\"A new templates folder\",\r\n    \"parent_uuid\": \"{{templates_folder_uuid}}\"\r\n}"
+            }
+        },
+        "functionality": "For details go to https://developers.pandadoc.com/reference#create-templates-folder"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Templates Folders",
+        "api_call": "https://api.pandadoc.com/public/v1/templates/folders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "API-Key {{api_key}}"
+                }
+            ]
+        },
+        "functionality": "For details go to https://developers.pandadoc.com/reference#list-templates-folders"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Templates Subfolders",
+        "api_call": "https://api.pandadoc.com/public/v1/templates/folders?parent_uuid={{templates_folder_uuid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "API-Key {{api_key}}"
+                }
+            ]
+        },
+        "functionality": "For details go to https://developers.pandadoc.com/reference#list-templates-folders"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Rename Templates Folder",
+        "api_call": "https://api.pandadoc.com/public/v1/templates/folders/{{templates_folder_uuid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "API-Key {{api_key}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"name\":\"Another templates folder\"\r\n}"
+            }
+        },
+        "functionality": "For details go to https://developers.pandadoc.com/reference#rename-templates-folder"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Templates in a Folder",
+        "api_call": "https://api.pandadoc.com/public/v1/templates?folder_uuid={{templates_folder_uuid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "API-Key {{api_key}}"
+                }
+            ]
+        },
+        "functionality": "For details go to https://developers.pandadoc.com/reference#list-templates"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Members",
+        "api_call": "https://api.pandadoc.com/public/v1/members/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#send-document](https://developers.pandadoc.com/v1/reference#send-document)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Current Member Details",
+        "api_call": "https://api.pandadoc.com/public/v1/members/current/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#send-document](https://developers.pandadoc.com/v1/reference#send-document)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Member Details",
+        "api_call": "https://api.pandadoc.com/public/v1/members/{{membership_id}}/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#send-document](https://developers.pandadoc.com/v1/reference#send-document)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Webhooks Subscriptions",
+        "api_call": "https://api.pandadoc.com/public/v1/webhook-subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Webhooks Subscription Details",
+        "api_call": "https://api.pandadoc.com/public/v1/webhook-subscriptions/{{webhooks_subscription_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Create Webhooks Subscription",
+        "api_call": "https://api.pandadoc.com/public/v1/webhook-subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"PandaDoc\",\n    \"url\": \"https://pandadoc.requestcatcher.com/\",\n    \"active\": true,\n    \"payload\": [\n        \"fields\",\n        \"products\",\n        \"metadata\",\n        \"tokens\",\n        \"pricing\"\n    ],\n    \"triggers\": [\n        \"document_deleted\",\n        \"recipient_completed\",\n        \"document_updated\",\n        \"document_state_changed\",\n        \"document_creation_failed\"\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Update Webhooks Subscription",
+        "api_call": "https://api.pandadoc.com/public/v1/webhook-subscriptions/{{webhooks_subscription_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"PandaDoc\",\n    \"url\": \"https://pandadoc.requestcatcher.com/\",\n    \"active\": true,\n    \"payload\": [\n        \"fields\",\n        \"products\",\n        \"metadata\",\n        \"tokens\",\n        \"pricing\"\n    ],\n    \"triggers\": [\n        \"document_deleted\",\n        \"recipient_completed\",\n        \"document_updated\",\n        \"document_state_changed\",\n        \"document_creation_failed\"\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Delete Webhooks Subscription",
+        "api_call": "https://api.pandadoc.com/public/v1/webhook-subscriptions/{{webhooks_subscription_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Update Webhooks Subscription Shared Key",
+        "api_call": "https://api.pandadoc.com/public/v1/webhook-subscriptions/{{webhooks_subscription_id}}/shared-key",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Webhooks Events",
+        "api_call": "https://api.pandadoc.com/public/v1/webhook-events",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: List Forms",
+        "api_call": "https://api.pandadoc.com/public/v1/forms",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Search Catalog Items",
+        "api_call": "https://api.pandadoc.com/public/v2/product-catalog/items/search?page=<number>&per_page=<number>&query=<string>&order_by=sku&types=regular&types=regular&billing_types=recurring&billing_types=recurring&exclude_uuids=<string>&exclude_uuids=<string>&category_id=<string>&no_category=<boolean>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Create Notarization Request",
+        "api_call": "https://api.pandadoc.com/public/v2/notary/notarization-requests",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"document_id\": \"<string>\",\n  \"invitation\": {\n    \"message\": \"<string>\",\n    \"invitees\": [\n      {\n        \"email\": \"<email>\",\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\"\n      },\n      {\n        \"email\": \"<email>\",\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\"\n      }\n    ]\n  }\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Create Document from PandaDoc Template",
+        "api_call": "https://api.pandadoc.com/public/v1/documents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Simple API Sample Document from PandaDoc Template\",\n    \"template_uuid\": \"{{template_id}}\",\n    \"recipients\": [\n        {\n            \"email\": \"{{recipient_email}}\",\n            \"first_name\": \"Josh\",\n            \"last_name\": \"Ron\",\n            \"role\": \"user\"\n        }\n    ],\n    \"tokens\": [\n        {\n            \"name\": \"Favorite.Pet\",\n            \"value\": \"Panda\"\n        }\n    ],\n    \"fields\": {\n        \"Favorite.Color\": {\n            \"value\": \"PandaDoc green\"\n        },\n        \"Delivery\": {\n            \"value\": \"Same Day Delivery\"\n        },\n        \"Like\": {\n            \"value\": true\n        },\n        \"Date\": {\n            \"value\": \"2019-12-31T00:00:00.000Z\"\n        }\n    },\n    \"metadata\": {\n        \"my_favorite_pet\": \"Panda\"\n    },\n    \"tags\": [\n        \"created_via_api\",\n        \"test_document\"\n    ],\n    \"images\": [\n        {\n            \"name\": \"Image 1\",\n            \"urls\": [\n                \"https://s3.amazonaws.com/pd-static-content/public-docs/pandadoc-panda-bear.png\"\n            ]\n        }\n    ],\n    \"pricing_tables\": [\n        {\n            \"name\": \"Pricing Table 1\",\n            \"data_merge\":true,\n            \"options\": {\n                \"Tax\": {  \n                    \"is_global\": true,\n                    \"type\": \"absolute\",\n                    \"name\": \"Tax\",\n                    \"value\": 10\n                }\n            },\n            \"sections\": [\n                {\n                    \"title\": \"Sample Section\",\n                    \"default\": true,\n                    \"rows\": [\n                        {\n                            \"options\": {\n                                \"optional\": true,\n                                \"optional_selected\": true,\n                                \"qty_editable\": true\n                            },\n                            \"data\": {\n                                \"Name\": \"Toy Panda\",\n                                \"Description\": \"Fluffy!\",\n                                \"Price\": 10,\n                                \"QTY\": 3,\n                                \"Tax\": {\n                                    \"value\": 20,\n                                    \"type\": \"percent\"\n                                }\n                            },\n                            \"custom_fields\": {\n                                \"Fluffiness\": \"5 / 5\"\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "Provide value to variable: template_id ([Postman environments](https://www.getpostman.com/docs/postman/environments_and_globals/manage_environments) is great for it).\n\nFor details and the sample template go to [https://developers.pandadoc.com/v1/reference#create-document-from-pandadoc-template](https://developers.pandadoc.com/v1/reference#create-document-from-pandadoc-template).\n\nFor details"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Create Document from PDF (Form Fields)",
+        "api_call": "https://api.pandadoc.com/public/v1/documents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": ""
+                    },
+                    {
+                        "key": "data",
+                        "value": "{  \n    \"name\": \"Sample Document from PDF with Form Fields\",\n    \"recipients\": [  \n        {  \n            \"email\": \"{{recipient_email}}\",\n            \"first_name\": \"Josh\",\n            \"last_name\": \"Ron\",\n            \"role\": \"user\",\n            \"signing_order\": 1\n        },\n        {  \n            \"email\": \"john@example.com\",\n            \"first_name\": \"John\",\n            \"last_name\": \"Roe\",\n            \"signing_order\": 2\n        }\n    ],\n    \"fields\": {  \n        \"userName\": {  \n            \"value\": \"Jane\",\n            \"role\": \"user\"\n        },\n        \"homeAddress\": {\n            \"value\": \"\",\n            \"role\": \"user\"\n        },\n        \"like\": {  \n            \"value\": true,\n            \"role\": \"user\"\n        },\n        \"signature\": {  \n            \"value\": \"\",\n            \"role\": \"user\"\n        }\n    },\n    \"metadata\": {\n        \"salesforce.opportunity_id\": \"123456\",\n        \"my_favorite_pet\": \"Panda\"\n    },\n    \"tags\": [\n        \"created_via_api\",\n        \"test_document\"\n\t], \n    \"parse_form_fields\": true\n}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "For details and the sample PDF go to [https://developers.pandadoc.com/v1/reference#section-pdf-form-fields](https://developers.pandadoc.com/v1/reference#section-pdf-form-fields).\n\nFor details about document creation from PDF go to [https://developers.pandadoc.com/v1/reference#create-document-from-pdf](https://developers.pandadoc.com/v1/reference#create-document-from-pdf).\n\nFor details of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Create Document from File (Field Tags)",
+        "api_call": "https://api.pandadoc.com/public/v1/documents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": ""
+                    },
+                    {
+                        "key": "data",
+                        "value": "{  \n    \"name\": \"Sample Document from PDF with Field Tags\",\n    \"recipients\": [  \n        {  \n            \"email\": \"{{recipient_email}}\",\n            \"first_name\": \"Josh\",\n            \"last_name\": \"Ron\",\n            \"role\": \"user\",\n            \"signing_order\":1\n        },\n        {  \n            \"email\": \"john@example.com\",\n            \"first_name\": \"Jane\",\n            \"last_name\": \"Roe\",\n            \"signing_order\":2\n        }\n    ],\n    \"fields\": {  \n        \"name\": {  \n            \"value\": \"Jane\",\n            \"role\": \"user\"\n        },\n        \"like\": {  \n            \"value\": true,\n            \"role\": \"user\"\n        }\n    },\n    \"metadata\": {\n        \"salesforce.opportunity_id\": \"123456\",\n        \"my_favorite_pet\": \"Panda\"\n    },\n    \"tags\": [\n        \"created_via_api\",\n        \"test_document\"\n\t], \n    \"parse_form_fields\": false\n}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "For details and a file sample go to [https://developers.pandadoc.com/v1/reference#section-pdf-field-tags](https://developers.pandadoc.com/v1/reference#section-pdf-field-tags).\n\nFor details about document creation from File go to [https://developers.pandadoc.com/v1/reference#create-document-from-pdf](https://developers.pandadoc.com/v1/reference#create-document-from-pdf).\n\nFor details of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Step 2: Check Document Status",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#document-status](https://developers.pandadoc.com/v1/reference#document-status)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Step 3: Send Document",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/send",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"message\": \"Hello! This document was sent from the PandaDoc API.\",\n    \"silent\": true\n}"
+            }
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#send-document](https://developers.pandadoc.com/v1/reference#send-document)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "PandaDoc API Reference: Step 4: Share Document (Session ID)",
+        "api_call": "https://api.pandadoc.com/public/v1/documents/{{document_id}}/session",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "disabled": true
+                },
+                {
+                    "key": "Authorization",
+                    "value": "API-Key {{api_key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"recipient\": \"{{recipient_email}}\",\n    \"lifetime\": 900\n}"
+            }
+        },
+        "functionality": "For details go to [https://developers.pandadoc.com/v1/reference#link-to-a-document](https://developers.pandadoc.com/v1/reference#link-to-a-document).\n\nFor details of document sharing go to [https://developers.pandadoc.com/v1/reference#share-document](https://developers.pandadoc.com/v1/reference#share-document)."
+    }
+]

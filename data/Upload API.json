@@ -1,0 +1,1528 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Add Context",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/context",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "context",
+                        "value": "<yourContextKey>=<yourContextValue>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "command",
+                        "value": "add",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "<yourPublicId1>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "<yourPublicId2>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Remove Context",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/context",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "command",
+                        "value": "remove_all",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "emb-2",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "emb-3",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Create Collage - JSON",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/image/create_collage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"public_id\": \"collage_grid\",\n    \"resource_type\": \"image\",\n    \"upload_preset\": \"unsigned_for_image_collage\",\n    \"manifest_json\": {{manifest_json}}\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Create Collage - Form",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/image/create_collage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "public_id",
+                        "value": "collage_grid_rectangle",
+                        "type": "text"
+                    },
+                    {
+                        "key": "resource_type",
+                        "value": "image",
+                        "type": "text"
+                    },
+                    {
+                        "key": "upload_preset",
+                        "value": "unsigned_for_image_collage",
+                        "type": "text"
+                    },
+                    {
+                        "key": "manifest_json",
+                        "value": "{\"template\": \"grid\",\"width\": 600,\"height\": 400,\"columns\": 3,\"rows\": 2, \"spacing\": 10,\"color\": \"#FEB61F\",\"assetDefaults\": { \"kind\": \"upload\", \"crop\": \"fill\", \"gravity\": \"center\"},\"assets\": [{ \"media\": \"docs/sample\" }, { \"media\": \"docs/sample1\" },{ \"media\": \"docs/sample2\" }, { \"media\": \"docs/sample3\" },{ \"media\": \"docs/sample4\" },{ \"media\": \"docs/sample5\" }]}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Create Collage - Form Signed",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/image/create_collage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "public_id",
+                        "value": "docs-image-collage/collage_grid_portrait",
+                        "type": "text"
+                    },
+                    {
+                        "key": "resource_type",
+                        "value": "image",
+                        "type": "text"
+                    },
+                    {
+                        "key": "manifest_json",
+                        "value": "{\"template\": \"grid\",\"width\": 400,\"height\": 600,\"columns\": 2,\"rows\": 3, \"spacing\": 7,\"color\": \"brown\",\"assetDefaults\": { \"kind\": \"upload\", \"crop\": \"pad\", \"gravity\": \"center\"},\"assets\": [{ \"media\": \"docs/sample\" }, { \"media\": \"docs/sample1\" },{ \"media\": \"docs/sample2\" }, { \"media\": \"docs/sample3\" },{ \"media\": \"docs/sample4\" },{ \"media\": \"docs/sample5\" }]}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "notification_url",
+                        "value": "<notification url>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Create Collage -  Query",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/image/create_collage?public_id=collage_grid_sqaure&resource_type=image&upload_preset=unsigned_for_image_collage&manifest_json={\"template\": \"grid\",\"width\": 800,\"height\": 800,\"columns\": 2,\"rows\": 2, \"spacing\": 10,\"color\": \"red\",\"assetDefaults\": { \"kind\": \"upload\", \"crop\": \"fill\", \"gravity\": \"center\"},\"assets\": [{ \"media\": \"docs/sample1\", \"crop\": \"pad\", \"gravity\": \"center\", \"color\": \"auto\" },{ \"media\": \"docs/sample2\", \"crop\": \"pad\", \"gravity\": \"north\", \"color\": \"red\" },{ \"media\": \"docs/sample3\", \"crop\": \"pad\", \"gravity\": \"southwest\", \"color\": \"%23FEB61F\" },{ \"media\": \"docs/sample4\", \"type\": \"image\", \"gravity\": \"west\", \"color\": \"%23FEB61FC2\" }]}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Create Collage Custom Template - JSON",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/image/create_collage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"public_id\": \"collage_template\",\n    \"resource_type\": \"image\",\n    \"upload_preset\": \"unsigned_for_image_collage\",\n    \"manifest_json\": {{manifest_json}}\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Create Collage Custom Template - Form",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/image/create_collage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "public_id",
+                        "value": "collage_template_six",
+                        "type": "text"
+                    },
+                    {
+                        "key": "resource_type",
+                        "value": "image",
+                        "type": "text"
+                    },
+                    {
+                        "key": "upload_preset",
+                        "value": "unsigned_for_image_collage",
+                        "type": "text"
+                    },
+                    {
+                        "key": "manifest_json",
+                        "value": "{\"template\": [[1,2,3],[1,2,3],[6,5,4]],\"width\": 500,\"height\": 500,\"columns\": 3, \"rows\": 3,\"spacing\": 1,\"color\": \"blue\",\"assetDefaults\": { \"kind\": \"upload\", \"crop\": \"fill\", \"gravity\": \"center\"},\"assets\": [{ \"media\": \"docs/sample\" },{ \"media\": \"docs/sample1\" },{ \"media\": \"docs/sample2\"},{ \"media\": \"docs/sample3\" },{ \"media\": \"docs/sample4\" },{ \"media\": \"docs/sample5\"}] }",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Create Collage Custom Template - Form Signed",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/image/create_collage",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "public_id",
+                        "value": "docs-image-collage/collage_template_multi",
+                        "type": "text"
+                    },
+                    {
+                        "key": "resource_type",
+                        "value": "image",
+                        "type": "text"
+                    },
+                    {
+                        "key": "manifest_json",
+                        "value": "{\"template\": [[1,1,2,3,4,4],[1,1,5,5,4,4],[6,6,5,5,4,4],[6,6,7,7,4,4]],\"width\": 600,\"height\": 400,\"columns\": 6, \"rows\": 4,\"spacing\": 7,\"color\": \"brown\",\"assetDefaults\": { \"kind\": \"upload\", \"crop\": \"fill\", \"gravity\": \"center\"},\"assets\": [{ \"media\": \"docs/sample\" },{ \"media\": \"docs/sample1\" },{ \"media\": \"docs/sample2\"},{ \"media\": \"docs/sample3\" },{ \"media\": \"docs/sample4\" },{ \"media\": \"docs/sample5\"},{ \"media\": \"docs/sample6\"}]}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "notification_url",
+                        "value": "<notification url>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Create Collage Custom Template - Query",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/image/create_collage?public_id=collage_template_square&resource_type=image&upload_preset=unsigned_for_image_collage&manifest_json={\"template\": [[1,2,3],[4,5,6],[7,8,9]],\"width\": 500,\"height\": 500,\"columns\": 3, \"rows\": 3,\"spacing\": 1,\"color\": \"blue\",\"assetDefaults\": { \"kind\": \"upload\", \"crop\": \"fill\", \"gravity\": \"center\"},\"assets\": [{ \"media\": \"docs/sample\" },{ \"media\": \"docs/sample1\" },{ \"media\": \"docs/sample2\"},{ \"media\": \"docs/sample3\" },{ \"media\": \"docs/sample4\" },{ \"media\": \"docs/sample5\" },{ \"media\": \"docs/sample6\"},{ \"media\": \"docs/sample8\" },{ \"media\": \"docs/sample8\"}] }",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Delete File",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/destroy",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "public_id",
+                        "value": "<yourPublicId>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Download Backup",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/download_backup",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "asset_id",
+                        "value": "<yourAssetId>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "version_id",
+                        "value": "<yourVersionId>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Update File With Eager Transformations",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/image/explicit",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "public_id",
+                        "value": "<yourPublicId>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "type",
+                        "value": "<yourType>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "eager",
+                        "value": "<eagerTransformations>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Update Tags",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/image/explicit",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "public_id",
+                        "value": "<myPublicId>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "type",
+                        "value": "upload",
+                        "type": "text"
+                    },
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "tags",
+                        "value": "<myTags>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Explode PDF",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/explode",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_id",
+                        "value": "<yourPublicId>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "transformation",
+                        "value": "pg_all",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Generate Animated Image By Tag",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/multi",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "tag",
+                        "value": "<yourTag>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Generate Animated Image By URLs",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/multi",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "urls[]",
+                        "value": "<yourImageURL1>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "urls[]",
+                        "value": "<yourImageURL2>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Generate Archive By Tag",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/generate_archive",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "tags",
+                        "value": "<yourTag>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Generate Archive By Public Ids",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/generate_archive",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "<yourPublicId1>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "<yourPublicId2>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Generate Archive From Folder",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/generate_archive",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "prefixes",
+                        "value": "<yourFolder>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "target_public_id",
+                        "value": "<yourTargetPublicId>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Create Slideshow - JSON",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/video/create_slideshow",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"public_id\": \"test_slideshow4\",\n    \"resource_type\": \"video\",\n    \"upload_preset\": \"Default\",\n    \"manifest_json\": {{manifest_json}}\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Create Slideshow - Form",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/video/create_slideshow",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "public_id",
+                        "value": "test_slideshow7",
+                        "type": "text"
+                    },
+                    {
+                        "key": "resource_type",
+                        "value": "video",
+                        "type": "text"
+                    },
+                    {
+                        "key": "upload_preset",
+                        "value": "Default",
+                        "type": "text"
+                    },
+                    {
+                        "key": "manifest_transformation",
+                        "value": "fn_render:w_500;h_500;du_25;vars_(sdur_3000;tdur_1500;transition_s:circlecrop;slides_((media_i:sample);(media_i:sample2);(media_i:sample3);(media_i:sample4)))",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Create Slideshow - Form Signed",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/video/create_slideshow",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "public_id",
+                        "value": "test_slideshow25",
+                        "type": "text"
+                    },
+                    {
+                        "key": "resource_type",
+                        "value": "video",
+                        "type": "text"
+                    },
+                    {
+                        "key": "manifest_transformation",
+                        "value": "fn_render:w_500;h_500;du_25;vars_(sdur_3000;tdur_1500;transition_s:circlecrop;slides_((media_i:sample);(media_i:sample);(media_i:sample);(media_i:sample)))",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "notification_url",
+                        "value": "https://webhook.site/9a0fcfd6-4304-4bf2-b6eb-a03b3e6aedf7",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Create Slideshow -  Query",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/video/create_slideshow?public_id=test_slideshow12&resource_type=video&upload_preset=Default&manifest_json={\"w\":500,\"h\":500,\"du\":8,\"vars\":{\"sdur\":3000,\"tdur\":1500,\"slides\":[{\"media\":\"i:sample\"},{\"media\":\"i:sample\"}]}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Generate Sprite By Tag",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/sprite",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "tag",
+                        "value": "<yourTag>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Generate Sprite By URLs",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/sprite",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "urls[]",
+                        "value": "<yourImageURL1>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "urls[]",
+                        "value": "<yourImageURL2>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Create Video - JSON",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/video/create_video",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"public_id\": \"docs/video_generation/test_video\",\n    \"resource_type\": \"video\",\n    \"upload_preset\": \"unsigned_for_video_generation\",\n    \"manifest_json\": {{manifest_json}}\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Create Video - Form",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/video/create_video",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "public_id",
+                        "value": "docs/video_generation/test_video2",
+                        "type": "text"
+                    },
+                    {
+                        "key": "resource_type",
+                        "value": "video",
+                        "type": "text"
+                    },
+                    {
+                        "key": "upload_preset",
+                        "value": "unsigned_for_video_generation",
+                        "type": "text"
+                    },
+                    {
+                        "key": "manifest_json",
+                        "value": "{\n  \"type\": \"video\",\n  \"width\": 1280,\n  \"height\": 720,\n  \"duration\": 10,\n  \"fps\": 30,\n  \"vars\": {\n    \"bgColor\": \"#8e998a\",\n    \"imageUrl\": \"https://images.pexels.com/photos/133459/pexels-photo-133459.jpeg\",\n    \"sponsoredText\": \"Elder Care & Nursing Home\",\n    \"titleText\": \"The more we care, the  more beautiful life becomes.\",\n    \"ctaText\": \"Read more\"\n  },\n  \"tracks\": [\n    {\n      \"clips\": [\n        {\n          \"color\": \"{{bgColor}}\",\n          \"type\": \"color\"\n        }\n      ]\n    },\n    {\n      \"width\": 920,\n      \"height\": 720,\n      \"x\": 0,\n      \"y\": 0,\n      \"clipDefaults\": {\n        \"clipDuration\": 10000,\n        \"clipEffect\": {\n          \"name\": \"KenBurns\",\n          \"easing\": \"easeinout\",\n          \"zoom\": 1.2,\n          \"center\": [\n            0.5,\n            0.5\n          ],\n          \"direction\": \"backward\"\n        }\n      },\n      \"clips\": [\n        {\n          \"media\": [\n            \"{{imageUrl}}\",\n            \"image\",\n            \"fetch\"\n          ],\n          \"type\": \"image\",\n          \"transformation\": \"c_fill\"\n        }\n      ]\n    },\n    {\n      \"keyframes\": {\n        \"0\": {\n          \"y\": 430,\n          \"opacity\": 0\n        },\n        \"2000\": {\n          \"y\": 430,\n          \"opacity\": 0\n        },\n        \"3000\": {\n          \"y\": 470,\n          \"opacity\": 1\n        }\n      },\n      \"x\": 950,\n      \"width\": 300,\n      \"height\": 30,\n      \"radius\": \"15%\",\n      \"clips\": [\n        {\n          \"border\": 3,\n          \"borderColor\": \"white\",\n          \"type\": \"color\"\n        }\n      ]\n    },\n    {\n      \"keyframes\": {\n        \"0\": {\n          \"y\": 435,\n          \"opacity\": 0\n        },\n        \"2000\": {\n          \"y\": 435,\n          \"opacity\": 0\n        },\n        \"3000\": {\n          \"y\": 475,\n          \"opacity\": 1\n        }\n      },\n      \"x\": 950,\n      \"width\": 300,\n      \"clipDefaults\": {\n        \"fontSize\": 20,\n        \"fontColor\": \"white\",\n        \"textMaxWidth\": 300,\n        \"textAlign\": \"center\"\n      },\n      \"clips\": [\n        {\n          \"text\": \"{{ctaText}}\",\n          \"type\": \"text\"\n        }\n      ]\n    },\n    {\n      \"x\": 950,\n      \"keyframes\": {\n        \"0\": {\n          \"y\": 290,\n          \"opacity\": 0\n        },\n        \"1000\": {\n          \"y\": 290,\n          \"opacity\": 0\n        },\n        \"2000\": {\n          \"y\": 280,\n          \"opacity\": 1\n        }\n      },\n      \"clipDefaults\": {\n        \"fontSize\": 14,\n        \"fontColor\": \"white\"\n      },\n      \"clips\": [\n        {\n          \"text\": \"{{sponsoredText}}\",\n          \"type\": \"text\"\n        }\n      ]\n    },\n    {\n      \"x\": 950,\n      \"width\": 300,\n      \"height\": 300,\n      \"keyframes\": {\n        \"0\": {\n          \"y\": 290\n        },\n        \"1000\": {\n          \"y\": 300\n        }\n      },\n      \"clipDefaults\": {\n        \"textAlign\": \"left\",\n        \"fontSize\": 32,\n        \"fontType\": \"Merriweather\",\n        \"fontColor\": \"white\"\n      },\n      \"clips\": [\n        {\n          \"text\": \"{{titleText}}\",\n          \"type\": \"textArea\"\n        }\n      ]\n    }\n  ]\n}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Create Video - Form Signed",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/video/create_video",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "public_id",
+                        "value": "docs/video_generation/test_video3",
+                        "type": "text"
+                    },
+                    {
+                        "key": "resource_type",
+                        "value": "video",
+                        "type": "text"
+                    },
+                    {
+                        "key": "manifest_json",
+                        "value": "{\"type\": \"video\",\"width\": 1280,\"height\": 720,\"duration\": 10,\"fps\": 30,\"vars\": {\"bgColor\": \"#8e998a\",\"imageUrl\": \"https://images.pexels.com/photos/133459/pexels-photo-133459.jpeg\",\"sponsoredText\": \"Elder Care & Nursing Home\",\"titleText\": \"The more we care, the more beautiful life becomes.\",\"ctaText\": \"Read more\"},\"tracks\": [{\"clips\": [{\"color\": \"{{bgColor}}\",\"type\": \"color\"}]},{\"width\": 920,\"height\": 720,\"x\": 0,\"y\": 0,\"clipDefaults\": {\"clipDuration\": 10000,\"clipEffect\": {\"name\": \"KenBurns\",\"easing\": \"easeinout\",\"zoom\": 1.2,\"center\": [0.5,0.5],\"direction\": \"backward\"}},\"clips\": [{\"media\": [\"{{imageUrl}}\",\"image\",\"fetch\"],\"type\": \"image\",\"transformation\": \"c_fill\"}]},{\"keyframes\": {\"0\": {\"y\": 430,\"opacity\": 0},\"2000\": {\"y\": 430,\"opacity\": 0},\"3000\": {\"y\": 470,\"opacity\": 1}},\"x\": 950,\"width\": 300,\"height\": 30,\"radius\": \"15%\",\"clips\": [{\"border\": 3,\"borderColor\": \"white\",\"type\": \"color\"}]},{\"keyframes\": {\"0\": {\"y\": 435,\"opacity\": 0},\"2000\": {\"y\": 435,\"opacity\": 0},\"3000\": {\"y\": 475,\"opacity\": 1}},\"x\": 950,\"width\": 300,\"clipDefaults\": {\"fontSize\": 20,\"fontColor\": \"white\",\"textMaxWidth\": 300,\"textAlign\": \"center\"},\"clips\": [{\"text\": \"{{ctaText}}\",\"type\": \"text\"}]},{\"x\": 950,\"keyframes\": {\"0\": {\"y\": 290,\"opacity\": 0},\"1000\": {\"y\": 290,\"opacity\": 0},\"2000\": {\"y\": 280,\"opacity\": 1}},\"clipDefaults\": {\"fontSize\": 14,\"fontColor\": \"white\"},\"clips\": [{\"text\": \"{{sponsoredText}}\",\"type\": \"text\"}]},{\"x\": 950,\"width\": 300,\"height\": 300,\"keyframes\": {\"0\": {\"y\": 290},\"1000\": {\"y\": 300}},\"clipDefaults\": {\"textAlign\": \"left\",\"fontSize\": 32,\"fontType\": \"Merriweather\",\"fontColor\": \"white\"},\"clips\": [{\"text\": \"{{titleText}}\",\"type\": \"textArea\"}]}]}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "notification_url",
+                        "value": "https://webhook.site/f44a5d3e-2f01-4cc4-ae07-23a80c6f19d4",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Create Video -  Query",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/video/create_video?public_id=docs/video_generation/test_video5&resource_type=video&upload_preset=unsigned_for_video_generation&manifest_json={\"type\":\"video\",\"width\":1280,\"height\":720,\"duration\":10,\"fps\":30,\"vars\":{\"bgColor\":\"%238e998a\",\"imageUrl\":\"https://images.pexels.com/photos/133459/pexels-photo-133459.jpeg\",\"sponsoredText\":\"ElderCare%26NursingHome\",\"titleText\":\"Themorewecare,themorebeautifullifebecomes.\",\"ctaText\":\"Readmore\"},\"tracks\":[{\"clips\":[{\"color\":\"{{bgColor}}\",\"type\":\"color\"}]},{\"width\":920,\"height\":720,\"x\":0,\"y\":0,\"clipDefaults\":{\"clipDuration\":10000,\"clipEffect\":{\"name\":\"KenBurns\",\"easing\":\"easeinout\",\"zoom\":1.2,\"center\":[0.5,0.5],\"direction\":\"backward\"}},\"clips\":[{\"media\":[\"{{imageUrl}}\",\"image\",\"fetch\"],\"type\":\"image\",\"transformation\":\"c_fill\"}]},{\"keyframes\":{\"0\":{\"y\":430,\"opacity\":0},\"2000\":{\"y\":430,\"opacity\":0},\"3000\":{\"y\":470,\"opacity\":1}},\"x\":950,\"width\":300,\"height\":30,\"radius\":\"15%\",\"clips\":[{\"border\":3,\"borderColor\":\"white\",\"type\":\"color\"}]},{\"keyframes\":{\"0\":{\"y\":435,\"opacity\":0},\"2000\":{\"y\":435,\"opacity\":0},\"3000\":{\"y\":475,\"opacity\":1}},\"x\":950,\"width\":300,\"clipDefaults\":{\"fontSize\":20,\"fontColor\":\"white\",\"textMaxWidth\":300,\"textAlign\":\"center\"},\"clips\":[{\"text\":\"{{ctaText}}\",\"type\":\"text\"}]},{\"x\":950,\"keyframes\":{\"0\":{\"y\":290,\"opacity\":0},\"1000\":{\"y\":290,\"opacity\":0},\"2000\":{\"y\":280,\"opacity\":1}},\"clipDefaults\":{\"fontSize\":14,\"fontColor\":\"white\"},\"clips\":[{\"text\":\"{{sponsoredText}}\",\"type\":\"text\"}]},{\"x\":950,\"width\":300,\"height\":300,\"keyframes\":{\"0\":{\"y\":290},\"1000\":{\"y\":300}},\"clipDefaults\":{\"textAlign\":\"left\",\"fontSize\":32,\"fontType\":\"Merriweather\",\"fontColor\":\"white\"},\"clips\":[{\"text\":\"{{titleText}}\",\"type\":\"textArea\"}]}]}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Rename Asset",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/rename",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "from_public_id",
+                        "value": "<yourOriginalPublicId>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "to_public_id",
+                        "value": "<yourNewPublicId>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Add Tag",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "tag",
+                        "value": "<yourTag>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "command",
+                        "value": "add",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "<publicId1>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "<publicId2>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Remove All Tags",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "command",
+                        "value": "remove_all",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "<publicId1>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "<publicId2>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Remove Tag",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "tag",
+                        "value": "<yourTag>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "command",
+                        "value": "remove",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "<publicId1>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "<publicId2>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Replace All Tags",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "tag",
+                        "value": "<yourTag>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "command",
+                        "value": "replace",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "<publicId1>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_ids[]",
+                        "value": "<publicId2>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Generate Text Image",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/text",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": null
+                    },
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "text",
+                        "value": "<yourText>",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Generate Text Image With Custom Styling",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/text",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": null
+                    },
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "text",
+                        "value": "<yourText>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_id",
+                        "value": "<yourTargetPublicId>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "font_family",
+                        "value": "Roboto",
+                        "type": "text"
+                    },
+                    {
+                        "key": "font_size",
+                        "value": "42",
+                        "type": "text"
+                    },
+                    {
+                        "key": "font_color",
+                        "value": "red",
+                        "type": "text"
+                    },
+                    {
+                        "key": "font_weight",
+                        "value": "bold",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Upload File - Signed",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/upload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": null
+                    },
+                    {
+                        "key": "public_id",
+                        "value": "<yourPublicId>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "",
+                        "value": "",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Upload File - Unsigned",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/:resource_type/upload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": null
+                    },
+                    {
+                        "key": "upload_preset",
+                        "value": "<yourUploadPreset>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "public_id",
+                        "value": "<yourPublicId>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Upload API: Upload File With Eager Transformations - Signed",
+        "api_call": "https://api.cloudinary.com/v1_1/{{cloud_name}}/image/upload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": null
+                    },
+                    {
+                        "key": "public_id",
+                        "value": "<yourPublicId>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "eager",
+                        "value": "<eagerTransformations>",
+                        "type": "text"
+                    },
+                    {
+                        "key": "signature",
+                        "value": "{{signature}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "{{$timestamp}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
