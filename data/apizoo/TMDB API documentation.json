@@ -1,0 +1,4636 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Delete Rating",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number/episode/:episode_number/rating?guest_session_id=in fugiat&session_id=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Remove your rating for a TV episode.\n\nA valid session or guest session ID is required. You can read more about"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Rate TV Episode",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number/episode/:episode_number/rating?guest_session_id=in fugiat&session_id=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"value\": 8.5\n}"
+            }
+        },
+        "functionality": "Rate a TV episode.\n\nA valid session or guest session ID is required. You can read more about how this works"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Details",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number/episode/:episode_number",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the TV episode details by id.\n\nSupports `append_to_response`. Read more about this [here](#docTextSection:JdZq8ctmcxNqyLQjp).\n\n#### Recent Changes\n\n| **Date** | **Change** |\n| -"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get External IDs",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number/episode/:episode_number/external_ids",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the external ids for a TV episode. We currently support the following external sources.\n\n| **External Sources** |\n| -------------------- |\n|"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get  Videos",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number/episode/:episode_number/videos",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the videos that have been added to a TV episode.\n\n#### Recent Changes\n\n| **Date** | **Change** |\n| - | -"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Account States",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number/episode/:episode_number/account_states?guest_session_id=in fugiat&session_id=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get your rating for a episode."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Translations",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number/episode/:episode_number/translations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the translation data for an episode."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Credits",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number/episode/:episode_number/credits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the credits (cast, crew and guest stars) for a TV episode."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Images",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number/episode/:episode_number/images",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the images that belong to a TV episode.\n\nQuerying images with a `language` parameter will filter the results. If you"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Details",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the TV season details by id.\n\nSupports `append_to_response`. Read more about this [here](#docTextSection:JdZq8ctmcxNqyLQjp)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Account States",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number/account_states?guest_session_id=in fugiat&session_id=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns all of the user ratings for the season's episodes."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Aggregate Credits",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number/aggregate_credits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the aggregate credits for TV season.\n\nThis call differs from the main `credits` call in that it does not only"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Videos",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number/videos",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the videos that have been added to a TV season.\n\n#### Recent Changes\n\n| **Date** | **Change** |\n| - | -"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get External IDs",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number/external_ids",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the external ids for a TV season. We currently support the following external sources.\n\n| **Media Databases** |\n| ------------------- |\n|"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Credits",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number/credits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the credits for TV season."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Images",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number/images",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the images that belong to a TV season.\n\nQuerying images with a `language` parameter will filter the results. If you"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Translations",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/season/:season_number/translations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the credits for TV season."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Rate TV Show",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/rating?guest_session_id=in fugiat&session_id=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"value\": 8.5\n}"
+            }
+        },
+        "functionality": "Rate a TV show.\n\nA valid session or guest session ID is required. You can read more about how this works"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Delete Rating",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/rating?guest_session_id=in fugiat&session_id=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Remove your rating for a TV show.\n\nA valid session or guest session ID is required. You can read more about"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Details",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the primary TV show details by id.\n\nSupports `append_to_response`. Read more about this [here](#docTextSection:JdZq8ctmcxNqyLQjp).\n\n#### Recent Changes\n\n| **Date** | **Change** |\n|"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Alternative Titles",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/alternative_titles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns all of the alternative titles for a TV show."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Aggregate Credits",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/aggregate_credits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the aggregate credits (cast and crew) that have been added to a TV show.\n\nThis call differs from the main"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Similar TV Shows",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/similar",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of similar TV shows. These items are assembled by looking at keywords and genres."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Content Ratings",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/content_ratings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the list of content ratings (certifications) that have been added to a TV show."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Translations",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/translations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of the translations that exist for a TV show."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Account States",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/account_states?guest_session_id=in fugiat&session_id=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Grab the following account states for a session:\n\n- TV show rating\n- If it belongs to your watchlist\n- If it belongs"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Episode Groups",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/episode_groups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get all of the episode groups that have been created for a TV show. With a group ID you can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Images",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/images",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the images that belong to a TV show.\n\nQuerying images with a `language` parameter will filter the results. If you"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Reviews",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/reviews",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the reviews for a TV show."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Watch Providers",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/watch/providers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Powered by our partnership with JustWatch, you can query this method to get a list of the availabilities per country"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Videos",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/videos",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the videos that have been added to a TV show.\n\n#### Recent Changes\n\n| **Date** | **Change** |\n| - | -"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Keywords",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/keywords",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the keywords that have been added to a TV show."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get External IDs",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/external_ids",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the external ids for a TV show. We currently support the following external sources.\n\n| **Media Databases** | **Social IDs**"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Changes",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/changes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the changes for a TV show. By default only the last 24 hours are returned.\n\nYou can query up to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Credits",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/credits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the credits (cast and crew) that have been added to a TV show."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Screened Theatrically",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/screened_theatrically",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of seasons or episodes that have been screened in a film festival or theatre."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Recommendations",
+        "api_call": "https://api.themoviedb.org/3/tv/:tv_id/recommendations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the list of TV show recommendations for this item."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Top Rated",
+        "api_call": "https://api.themoviedb.org/3/tv/top_rated",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of the top rated TV shows on TMDB."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Latest",
+        "api_call": "https://api.themoviedb.org/3/tv/latest",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the most newly created TV show. This is a live response and will continuously change."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get TV Change List",
+        "api_call": "https://api.themoviedb.org/3/tv/changes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of all of the TV show ids that have been changed in the past 24 hours.\n\nYou can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Details",
+        "api_call": "https://api.themoviedb.org/3/tv/episode_group/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the details of a TV episode group. Groups support 7 different types which are enumerated as the following:\n\n1. Original"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Popular",
+        "api_call": "https://api.themoviedb.org/3/tv/popular",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of the current popular TV shows on TMDB. This list updates daily."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get TV On The Air",
+        "api_call": "https://api.themoviedb.org/3/tv/on_the_air",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of shows that are currently on the air.\n\nThis query looks for any TV show that has an"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get  Changes",
+        "api_call": "https://api.themoviedb.org/3/tv/season/:season_id/changes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the changes for a TV season. By default only the last 24 hours are returned.\n\nYou can query up to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get TV Airing Today",
+        "api_call": "https://api.themoviedb.org/3/tv/airing_today",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of TV shows that are airing today. This query is purely day based as we do not"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Changes",
+        "api_call": "https://api.themoviedb.org/3/tv/episode/:episode_id/changes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the changes for a TV episode. By default only the last 24 hours are returned.\n\nYou can query up to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: TV Discover",
+        "api_call": "https://api.themoviedb.org/3/discover/tv?sort_by=popularity.desc&air_date.gte=1982-08-06&air_date.lte=1982-08-06&first_air_date.gte=1982-08-06&first_air_date.lte=1982-08-06&first_air_date_year=24717925&language=en-US&page=1&timezone=America/New_York&vote_average.gte=11524863.63350107&vote_count.gte=91687897&with_genres=in fugiat&with_networks=in fugiat&without_genres=in fugiat&with_runtime.gte=24717925&with_runtime.lte=24717925&include_null_first_air_dates=false&with_original_language=in fugiat&without_keywords=in fugiat&screened_theatrically=false&with_companies=in fugiat&with_keywords=in fugiat&with_watch_providers=in fugiat&watch_region=in fugiat&with_watch_monetization_types=ads",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Discover TV shows by different types of data like average rating, number of votes, genres, the network they aired on"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Movie Discover",
+        "api_call": "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&language=en-US&page=1&vote_average.gte=5.5&with_genres=27",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Discover movies by different types of data like average rating, number of votes, genres and certifications. You can get a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Delete Session",
+        "api_call": "https://api.themoviedb.org/3/authentication/session",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"session_id\": \"2629f70fb498edc263a0adb99118ac41f0053e8c\"\n}"
+            }
+        },
+        "functionality": "If you would like to delete (or \"logout\") from a session, call this method with a valid session ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Create Session",
+        "api_call": "https://api.themoviedb.org/3/authentication/session/new",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"request_token\": \"6bc047b88f669d1fb86574f06381005d93d3517a\"\n}"
+            }
+        },
+        "functionality": "You can use this method to create a fully valid session ID once a user has validated the request token."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Create Session (from v4 access token)",
+        "api_call": "https://api.themoviedb.org/3/authentication/session/convert/4",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"access_token\": \"eyK0eXAiOiJAV1QiLCJhbGciOiUIUzI1NiJ9.eyJhdWQiOiI0Ozc2YzA1ZTg4YTY1Yzk0MjFjZDI1NmBiYzRiNGE0NyIsInN1YiI6IjRiYzg4OTJhMDE3YTNjMGY5MjAwMDAwMiIsInNjb3BlayI6WyJhcGlfcmVhZCJdLCL2ZXJzaW9uIjoxfQ.Bn660W0Vi-_AI5HvwIEqtc2s5mAXDknBnTrUREZYH7A\"\n}"
+            }
+        },
+        "functionality": "Use this method to create a v3 session ID if you already have a valid v4 access token. The v4"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Create Request Token",
+        "api_call": "https://api.themoviedb.org/3/authentication/token/new",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Create a temporary request token that can be used to validate a TMDB user login. More details about how this"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Create Session With Login",
+        "api_call": "https://api.themoviedb.org/3/authentication/token/validate_with_login",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"username\": \"johnny_appleseed\",\n    \"password\": \"test123\",\n    \"request_token\": \"1531f1a558c8357ce8990cf887ff196e8f5402ec\"\n}"
+            }
+        },
+        "functionality": "This method allows an application to validate a request token by entering a username and password.\n\nNot all applications have access"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Create Guest Session",
+        "api_call": "https://api.themoviedb.org/3/authentication/guest_session/new",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This method will let you create a new guest session. Guest sessions are a type of session that will let"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Details",
+        "api_call": "https://api.themoviedb.org/3/list/:list_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the details of a list."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Delete List",
+        "api_call": "https://api.themoviedb.org/3/list/:list_id?session_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Delete a list."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Add Movie",
+        "api_call": "https://api.themoviedb.org/3/list/:list_id/add_item?session_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"media_id\": 18\n}"
+            }
+        },
+        "functionality": "Add a movie to a list."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Remove Movie",
+        "api_call": "https://api.themoviedb.org/3/list/:list_id/remove_item?session_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"media_id\": 12\n}"
+            }
+        },
+        "functionality": "Remove a movie from a list."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Clear List",
+        "api_call": "https://api.themoviedb.org/3/list/:list_id/clear?confirm=true&session_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Clear all of the items from a list."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Check Item Status",
+        "api_call": "https://api.themoviedb.org/3/list/:list_id/item_status?movie_id=67263849",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "You can use this method to check if a movie has already been added to the list."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Create List",
+        "api_call": "https://api.themoviedb.org/3/list?session_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"This is my awesome test list.\",\n    \"description\": \"Just an awesome list dawg.\",\n    \"language\": \"en\"\n}"
+            }
+        },
+        "functionality": "Create a list."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Rate Movie",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/rating?guest_session_id=in fugiat&session_id=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"value\": 8.5\n}"
+            }
+        },
+        "functionality": "Rate a movie.\n\nA valid session or guest session ID is required. You can read more about how this works [here](#docTextSection:NSZtgz7zptsiLYxXZ)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Delete Rating",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/rating?guest_session_id=in fugiat&session_id=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Remove your rating for a movie.\n\nA valid session or guest session ID is required. You can read more about how"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Details",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the primary information about a movie.\n\nSupports `append_to_response`. Read more about this [here](#docTextSection:JdZq8ctmcxNqyLQjp).\n\n#### Recent Changes\n\n| **Date** | **Change** |\n| -"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Translations",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/translations?api_key=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of translations that have been created for a movie."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get External IDs",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/external_ids?api_key=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the external ids for a movie. We currently support the following external sources.\n\n| **Media Databases** | **Social IDs** |\n|"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Changes",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/changes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the changes for a movie. By default only the last 24 hours are returned.\n\nYou can query up to 14"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Alternative Titles",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/alternative_titles?country=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get all of the alternative titles for a movie.\n\n#### Recent Changes\n\n| **Date** | **Change** |\n| - | - |\n| March"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Videos",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/videos?api_key=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the videos that have been added to a movie.\n\n#### Recent Changes\n\n| **Date** | **Change** |\n| - | - |\n|"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Account States",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/account_states?session_id=&guest_session_id=in fugiat&session_id=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Grab the following account states for a session:\n\n- Movie rating\n- If it belongs to your watchlist\n- If it belongs to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Lists",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/lists?api_key=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of lists that this movie belongs to."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Similar Movies",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/similar?api_key=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of similar movies. This is **not** the same as the \"Recommendation\" system you see on the website.\n\nThese"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Recommendations",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/recommendations?api_key=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of recommended movies for a movie."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Watch Providers",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/watch/providers?api_key=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Powered by our partnership with JustWatch, you can query this method to get a list of the availabilities per country"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Keywords",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/keywords?api_key=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the keywords that have been added to a movie."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Release Dates",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/release_dates?api_key=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the release date along with the certification for a movie.\n\nRelease dates support different types:\n\n1. Premiere\n2. Theatrical (limited)\n3. Theatrical\n4. Digital\n5."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Reviews",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/reviews?api_key=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the user reviews for a movie."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Credits",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/credits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the cast and crew for a movie."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Images",
+        "api_call": "https://api.themoviedb.org/3/movie/:movie_id/images?include_image_language=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the images that belong to a movie.\n\nQuerying images with a `language` parameter will filter the results. If you want"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Now Playing",
+        "api_call": "https://api.themoviedb.org/3/movie/now_playing",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of movies in theatres. This is a release type query that looks for all movies that have"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Popular",
+        "api_call": "https://api.themoviedb.org/3/movie/popular",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of the current popular movies on TMDB. This list updates daily."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Upcoming",
+        "api_call": "https://api.themoviedb.org/3/movie/upcoming",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of upcoming movies in theatres. This is a release type query that looks for all movies that"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Latest",
+        "api_call": "https://api.themoviedb.org/3/movie/latest",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the most newly created movie. This is a live response and will continuously change."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Top Rated",
+        "api_call": "https://api.themoviedb.org/3/movie/top_rated",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the top rated movies on TMDB."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Movie Change List",
+        "api_call": "https://api.themoviedb.org/3/movie/changes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get  a list of all of the movie ids that have been changed in the past 24 hours.\n\nYou can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get API Configuration",
+        "api_call": "https://api.themoviedb.org/3/configuration?api_key=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the system wide configuration information. Some elements of the API require some knowledge of this configuration data. The purpose"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Jobs",
+        "api_call": "https://api.themoviedb.org/3/configuration/jobs?api_key=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of the jobs and departments we use on TMDB."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Timezones",
+        "api_call": "https://api.themoviedb.org/3/configuration/timezones?api_key=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the list of timezones used throughout TMDB."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Countries",
+        "api_call": "https://api.themoviedb.org/3/configuration/countries?api_key=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the list of countries (ISO 3166-1 tags) used throughout TMDB."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Primary Translations",
+        "api_call": "https://api.themoviedb.org/3/configuration/primary_translations?api_key=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of the _officially_ supported translations on TMDB.\n\nWhile it's technically possible to add a translation in any one"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Languages",
+        "api_call": "https://api.themoviedb.org/3/configuration/languages?api_key=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the list of languages (ISO 639-1 tags) used throughout TMDB."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Details",
+        "api_call": "https://api.themoviedb.org/3/company/:company_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a companies details by id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Images",
+        "api_call": "https://api.themoviedb.org/3/company/:company_id/images",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a companies logos by id.\n\nThere are two image formats that are supported for companies, PNG's and SVG's. You can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Alternative Names",
+        "api_call": "https://api.themoviedb.org/3/company/:company_id/alternative_names",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the alternative names of a company."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Search Keywords",
+        "api_call": "https://api.themoviedb.org/3/search/keyword",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search for keywords."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Search People",
+        "api_call": "https://api.themoviedb.org/3/search/person",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search for people."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Search Collections",
+        "api_call": "https://api.themoviedb.org/3/search/collection",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search for collections."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Search Companies",
+        "api_call": "https://api.themoviedb.org/3/search/company",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search for companies."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Search TV Shows",
+        "api_call": "https://api.themoviedb.org/3/search/tv?first_air_date_year=24717925",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search for a TV show."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Search Movies",
+        "api_call": "https://api.themoviedb.org/3/search/movie?year=24717925&primary_release_year=24717925",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search for movies."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Multi Search",
+        "api_call": "https://api.themoviedb.org/3/search/multi",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search multiple models in a single request. Multi search currently supports searching for movies, tv shows and people in a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Add to Watchlist",
+        "api_call": "https://api.themoviedb.org/3/account/:account_id/watchlist?session_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"media_type\": \"movie\",\n    \"media_id\": 11,\n    \"watchlist\": true\n}"
+            }
+        },
+        "functionality": "Add a movie or TV show to your watchlist."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get TV Show Watchlist",
+        "api_call": "https://api.themoviedb.org/3/account/:account_id/watchlist/tv?session_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of all the TV shows you have added to your watchlist."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Movie Watchlist",
+        "api_call": "https://api.themoviedb.org/3/account/:account_id/watchlist/movies?session_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of all the movies you have added to your watchlist."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Mark as Favorite",
+        "api_call": "https://api.themoviedb.org/3/account/:account_id/favorite?session_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"media_type\": \"movie\",\n    \"media_id\": 550,\n    \"favorite\": true\n}"
+            }
+        },
+        "functionality": "This method allows you to mark a movie or TV show as a favorite item."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Favorite TV Shows",
+        "api_call": "https://api.themoviedb.org/3/account/:account_id/favorite/tv?session_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the list of your favorite TV shows."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Favorite Movies",
+        "api_call": "https://api.themoviedb.org/3/account/:account_id/favorite/movies?session_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the list of your favorite movies."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Rated TV Shows",
+        "api_call": "https://api.themoviedb.org/3/account/:account_id/rated/tv?session_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of all the TV shows you have rated."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Rated TV Episodes",
+        "api_call": "https://api.themoviedb.org/3/account/:account_id/rated/tv/episodes?session_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of all the TV episodes you have rated."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Rated Movies",
+        "api_call": "https://api.themoviedb.org/3/account/:account_id/rated/movies?session_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of all the movies you have rated."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Created Lists",
+        "api_call": "https://api.themoviedb.org/3/account/:account_id/lists?api_key=in fugiat&session_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get all of the lists created by an account. Will invlude private lists if you are the owner."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Details",
+        "api_call": "https://api.themoviedb.org/3/account?session_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get your account details."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Details",
+        "api_call": "https://api.themoviedb.org/3/person/:person_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the primary person details by id.\n\nSupports `append_to_response`. Read more about this [here](#docTextSection:JdZq8ctmcxNqyLQjp).\n\n#### Recent Changes\n\n| **Date** | **Change** |\n| -"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get External IDs",
+        "api_call": "https://api.themoviedb.org/3/person/:person_id/external_ids",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the external ids for a person. We currently support the following external sources.\n\n| **External Sources** |\n| ------------  "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Combined Credits",
+        "api_call": "https://api.themoviedb.org/3/person/:person_id/combined_credits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the movie and TV credits together in a single response."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Changes",
+        "api_call": "https://api.themoviedb.org/3/person/:person_id/changes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the changes for a person. By default only the last 24 hours are returned.\n\nYou can query up to 14"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get TV Credits",
+        "api_call": "https://api.themoviedb.org/3/person/:person_id/tv_credits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the TV show credits for a person.\n\nYou can query for some extra details about the credit with the [credit"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Movie Credits",
+        "api_call": "https://api.themoviedb.org/3/person/:person_id/movie_credits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the movie credits for a person."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Translations",
+        "api_call": "https://api.themoviedb.org/3/person/:person_id/translations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of translations that have been created for a person."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Tagged Images",
+        "api_call": "https://api.themoviedb.org/3/person/:person_id/tagged_images",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the images that this person has been tagged in."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Images",
+        "api_call": "https://api.themoviedb.org/3/person/:person_id/images",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the images for a person."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Latest",
+        "api_call": "https://api.themoviedb.org/3/person/latest",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the most newly created person. This is a live response and will continuously change."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Person Change List",
+        "api_call": "https://api.themoviedb.org/3/person/changes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of all of the person ids that have been changed in the past 24 hours.\n\nYou can query"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Popular",
+        "api_call": "https://api.themoviedb.org/3/person/popular",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the list of popular people on TMDB. This list updates daily."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Details",
+        "api_call": "https://api.themoviedb.org/3/keyword/:keyword_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Movies",
+        "api_call": "https://api.themoviedb.org/3/keyword/:keyword_id/movies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the movies that belong to a keyword.\n\nWe **highly recommend** using [movie discover](#endpoint:p5NyoR7dM842S8G9j) instead of this method as it is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Details",
+        "api_call": "https://api.themoviedb.org/3/network/:network_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the details of a network.\n\n#### Recent Changes\n\n| **Date** | **Change** |\n| - | - |\n| November 14, 2020 |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Alternative Names",
+        "api_call": "https://api.themoviedb.org/3/network/:network_id/alternative_names",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the alternative names of a network."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Images",
+        "api_call": "https://api.themoviedb.org/3/network/:network_id/images",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the TV network logos by id.\n\nThere are two image formats that are supported for networks, PNG's and SVG's. You"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Movie Certifications",
+        "api_call": "https://api.themoviedb.org/3/certification/movie/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get an up to date list of the officially supported movie certifications on TMDB."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get TV Certifications",
+        "api_call": "https://api.themoviedb.org/3/certification/tv/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get an up to date list of the officially supported TV show certifications on TMDB."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Available Regions",
+        "api_call": "https://api.themoviedb.org/3/watch/providers/regions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of all of the countries we have watch provider (OTT/streaming) data for."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get TV Providers",
+        "api_call": "https://api.themoviedb.org/3/watch/providers/tv?watch_region=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of the watch provider (OTT/streaming) data we have available for TV series. You can specify a `watch_region`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Movie Providers",
+        "api_call": "https://api.themoviedb.org/3/watch/providers/movie?watch_region=in fugiat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of the watch provider (OTT/streaming) data we have available for movies. You can specify a `watch_region` param"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Rated TV Shows",
+        "api_call": "https://api.themoviedb.org/3/guest_session/:guest_session_id/rated/tv",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the rated TV shows for a guest session."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Rated TV Episodes",
+        "api_call": "https://api.themoviedb.org/3/guest_session/:guest_session_id/rated/tv/episodes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the rated TV episodes for a guest session."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Rated Movies",
+        "api_call": "https://api.themoviedb.org/3/guest_session/:guest_session_id/rated/movies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the rated movies for a guest session."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Details",
+        "api_call": "https://api.themoviedb.org/3/collection/:collection_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get collection details by id.\n\n#### Recent Changes\n\n| **Date** | **Change** |\n| - | - |\n| March 16, 2018 | Added"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Images",
+        "api_call": "https://api.themoviedb.org/3/collection/:collection_id/images",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the images for a collection by id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Translations",
+        "api_call": "https://api.themoviedb.org/3/collection/:collection_id/translations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the list translations for a collection by id."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Movie List",
+        "api_call": "https://api.themoviedb.org/3/genre/movie/list?language=en",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the list of official genres for movies."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get TV List",
+        "api_call": "https://api.themoviedb.org/3/genre/tv/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the list of official genres for TV shows."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Trending",
+        "api_call": "https://api.themoviedb.org/3/trending/:media_type/:time_window",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the daily or weekly trending items. The daily trending list tracks items over the period of a day while"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Details",
+        "api_call": "https://api.themoviedb.org/3/review/:review_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieve the details of a movie or TV show review.\n\n#### Recent Changes\n\n| **Date** | **Change** |\n| - | - |\n|"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Get Details",
+        "api_call": "https://api.themoviedb.org/3/credit/:credit_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a movie or TV credit details by id.\n\n#### Recent Changes\n\n| **Date** | **Change** |\n| - | - |\n| July"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "TMDB API documentation: Find by ID",
+        "api_call": "https://api.themoviedb.org/3/find/:external_id?external_source=twitter_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "api_key",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "{{api_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The find method makes it easy to search for objects in our database by an external id.\n\nThis method will search"
+    }
+]

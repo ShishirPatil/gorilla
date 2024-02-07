@@ -1,0 +1,283 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Fetch Assigned Users of WhatsApp Business Account",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Assigned-WABA-ID}}/assigned_users?business={{Business-ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Use this call to verify that a system user has been added to a WABA."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Add System User to WABA",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Assigned-WABA-ID}}/assigned_users?user={{User-ID}}&tasks=['<PERMISSIONS>']",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{Admin-System-User-Access-Token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "For full descriptions on each permission option, see [Manage System Users, Permissions](https://developers.facebook.com/docs/whatsapp/embedded-signup/manage-system-users#permissions)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Get IDs for the BSP's System Users",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Business-ID}}/system_users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "You need a system user's ID to be able to add it to a WhatsApp Business Account (WABA)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Subscribe App to WhatsApp Business Account",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Assigned-WABA-ID}}/subscribed_apps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Before you can subscribe to get updates on a specific WABA, you need to set up the webhooks product for"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Get the ID for your Business' Line of Credit",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Business-ID}}/extendedcredits?fields=id,legal_entity_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Attach Your Credit Line to the client's WABA",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Credit-Line-ID}}/whatsapp_credit_sharing_and_attach?waba_id={{Assigned-WABA-ID}}&waba_currency={{WABA-Currency}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Share the credit line with your client\u2019s business and attach it to the client\u2019s WhatsApp business account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Verify that the Line of Credit was Shared Correctly",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Allocation-Config-ID}}?fields=receiving_credential{id}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This is an optional step, but it helps with validation. In the API call, replace `allocation-config-id` with the ID returned"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Debug Token",
+        "api_call": "https://graph.facebook.com/{{Version}}/debug_token?input_token={{OAuth-User-Token}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "After a business finishes the embedded signup flow, you can fetch the shared WhatsApp business account ID using the returned"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Shared WABAs",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Business-ID}}/client_whatsapp_business_accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint retrieves a list of all the WhatsApp business accounts assigned to/shared with your Business Manager account once the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: WABA ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Assigned-WABA-ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Use this endpoint to get information about a specific WhatsApp Business Account (WABA).\n\n## Parameters\n\n| Name     "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Owned  and Client WABAs",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Business-ID}}/owned_whatsapp_business_accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Use this API call to get a list of owned WhatsApp Business Accounts (WABAs). You can also filter and sort"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Fetch Message Templates",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Assigned-WABA-ID}}/message_templates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Use this API request to fetch the pre-approved message templates for a specific WABA."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Fetch Message Template Namespace",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Assigned-WABA-ID}}?fields=message_template_namespace",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Extended Credits",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Business-ID}}/extendedcredits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Use the extended credits endpoint to retrieve your credit line ID.\n\n## Fields\n\nYou can request the following fields:\n\n| Name  "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Credit Line ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Credit-Line-ID}}/owning_credit_allocation_configs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Use this endpoint to get an ID for the credit sharing record between your line of credit and an end"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Credit Sharing Record ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Allocation-Config-ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Use this API call to get a credit sharing record ID. This is the ID that represents the credit sharing"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Credit Sharing Record ID",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Allocation-Config-ID}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Use this API call to revoke a credit sharing record ID. This is the ID that represents the credit sharing"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Subscribe to a WABA",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Assigned-WABA-ID}}/subscribed_apps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Subscribe an app to a WhatsApp Business Account. For more information about subscribing to a WhatsApp Business Account, see [Subscribe"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Get All Subscriptions for a WABA",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Assigned-WABA-ID}}/subscribed_apps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+                    "key": "Authorization",
+                    "value": "Bearer {{User-Access-Token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "To get a list of apps subscribed to Webhooks for a WABA, send a **GET** request to the **`subscribed_apps`** endpoint"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Unsubscribe from a WABA",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Assigned-WABA-ID}}/subscribed_apps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+                    "key": "Authorization",
+                    "value": "Bearer {{User-Access-Token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "To unsubscribe your app from webhooks for a WhatsApp Business Account, send a **DELETE** request to the `/subscribed_apps/` endpoint on"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Override Callback URL",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Assigned-WABA-ID}}/subscribed_apps",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{User-Access-Token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"override_callback_uri\": \"<ALTERNATE_WEBHOOK_ENDPOINT_URL>\",\n  \"verify_token\": \"<ALTERNATE_WEBOOK_ENDPOINT_VERIFICATION_TOKEN>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "If you want to subscribe to Webhooks for multiple WhatsApp Business Accounts but want messages field Webhooks notifications to be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Embedded Signup: Phone Numbers",
+        "api_call": "https://graph.facebook.com/{{Version}}/{{Assigned-WABA-ID}}/phone_numbers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Use this endpoint to get the phone numbers associated with a WhatsApp Business Account (WABA).\n\n## Parameters\n\n| Name   "
+    }
+]

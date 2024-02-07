@@ -1,0 +1,24 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenWeatherMap: Call current weather data for one location",
+        "api_call": "http://api.openweathermap.org/data/2.5//weather?q=<string>&id=<integer>&lat=<number>&lon=<number>&zip=<string>&units=<string>&lang=<string>&Mode=<string>&appid=<string>&No Name=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Access current weather data for any location on Earth including over 200,000 cities! Current weather is frequently updated based on"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "OpenWeatherMap: Forecasted Weather",
+        "api_call": "http://api.openweathermap.org/data/2.5//forecast?appid=<string>&q=<string>&id=<integer>&lat=<number>&lon=<number>&zip=<string>&units=<string>&lang=<string>&Mode=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Access forecasted weather data for any location on Earth including over 200,000 cities! Current weather is frequently updated based on"
+    }
+]

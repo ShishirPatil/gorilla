@@ -1,0 +1,650 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Append events to a tracker",
+        "api_call": "http://localhost:5005/conversations/:conversation_id/tracker/events?include_events=AFTER_RESTART&output_channel=slack&execute_side_effects=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"event\": \"slot\",\n    \"timestamp\": 1559744410\n}"
+            }
+        },
+        "functionality": "Appends one or multiple new events to the tracker state of the conversation. Any existing events will be kept and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Replace a trackers events",
+        "api_call": "http://localhost:5005/conversations/:conversation_id/tracker/events?include_events=AFTER_RESTART",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n    {\n        \"event\": \"slot\",\n        \"timestamp\": 1559744410\n    },\n    {\n        \"event\": \"slot\",\n        \"timestamp\": 1559744410\n    }\n]"
+            }
+        },
+        "functionality": "Replaces all events of a tracker with the passed list of events. This endpoint should not be used to modify"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Retrieve a conversations tracker",
+        "api_call": "http://localhost:5005/conversations/:conversation_id/tracker?include_events=AFTER_RESTART&until=1559744410",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The tracker represents the state of the conversation. The state of the tracker is created by applying a sequence of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Retrieve an end-to-end story corresponding to a conversation",
+        "api_call": "http://localhost:5005/conversations/:conversation_id/story?until=1559744410&all_sessions=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The story represents the whole conversation in end-to-end format. This can be posted to the '/test/stories' endpoint and used as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Run an action in a conversation",
+        "api_call": "http://localhost:5005/conversations/:conversation_id/execute?include_events=AFTER_RESTART&output_channel=slack",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"utter_greet\",\n    \"policy\": \"velit et ex incididunt\",\n    \"confidence\": 0.987232\n}"
+            }
+        },
+        "functionality": "DEPRECATED. Runs the action, calling the action server if necessary. Any responses sent by the executed action will be forwarded"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Inject an intent into a conversation",
+        "api_call": "http://localhost:5005/conversations/:conversation_id/trigger_intent?include_events=AFTER_RESTART&output_channel=slack",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"greet\",\n    \"entities\": {\n        \"temperature\": \"high\"\n    }\n}"
+            }
+        },
+        "functionality": "Sends a specified intent and list of entities in place of a user message. The bot then predicts and executes"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Predict the next action",
+        "api_call": "http://localhost:5005/conversations/:conversation_id/predict",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Runs the conversations tracker through the model's policies to predict the scores of all actions present in the model's domain."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Add a message to a tracker",
+        "api_call": "http://localhost:5005/conversations/:conversation_id/messages?include_events=AFTER_RESTART",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"text\": \"Hello!\",\n    \"sender\": \"user\",\n    \"parse_data\": {\n        \"text\": \"Hello!\",\n        \"entities\": [\n            {\n                \"start\": 90614158,\n                \"end\": -82356714,\n                \"value\": \"laboris\",\n                \"entity\": \"fugiat in reprehenderit do ut\",\n                \"confidence\": 19035428.291046947\n            },\n            {\n                \"start\": 31151510,\n                \"end\": -57462470,\n                \"value\": \"dolor laborum\",\n                \"entity\": \"id \",\n                \"confidence\": 37997686.79481104\n            }\n        ],\n        \"intent\": {\n            \"confidence\": 0.6323,\n            \"name\": \"greet\"\n        },\n        \"intent_ranking\": [\n            {\n                \"confidence\": 0.6323,\n                \"name\": \"greet\"\n            },\n            {\n                \"confidence\": 0.6323,\n                \"name\": \"greet\"\n            }\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "Adds a message to a tracker. This doesn't trigger the prediction loop. It will log the message on the tracker"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Evaluate stories",
+        "api_call": "http://localhost:5005/model/test/stories?e2e=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "text/yml"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "\"- story: happy path\\n  steps:\\n  - intent: greet\\n  - action: utter_greet\\n  - intent: mood_great\\n  - action: utter_happy\\n\\n- story: sad path 1\\n  steps:\\n  - intent: greet\\n  - action: utter_greet\\n  - intent: mood_unhappy\\n  - action: utter_cheer_up\\n  - action: utter_did_that_help\\n  - intent: affirm\\n  - action: utter_happy\\n\\n- story: sad path 2\\n  steps:\\n  - intent: greet\\n  - action: utter_greet\\n  - intent: mood_unhappy\\n  - action: utter_cheer_up\\n  - action: utter_did_that_help\\n  - intent: deny\\n  - action: utter_goodbye\\n\\n- story: say goodbye\\n  steps:\\n  - intent: goodbye\\n  - action: utter_goodbye\""
+            }
+        },
+        "functionality": "Evaluates one or multiple stories against the currently loaded Rasa model."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Perform an intent evaluation",
+        "api_call": "http://localhost:5005/model/test/intents?model=rasa-model.tar.gz&callback_url=https://example.com/rasa_evaluations&cross_validation_folds=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"rasa_nlu_data\": {\n        \"common_examples\": {}\n    }\n}"
+            }
+        },
+        "functionality": "Evaluates NLU model against a model or using cross-validation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Replace the currently loaded model",
+        "api_call": "http://localhost:5005/model",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"model_file\": \"/models/20190512.tar.gz\",\n    \"model_server\": {\n        \"url\": \"commodo Lorem dolor\",\n        \"params\": {},\n        \"headers\": {},\n        \"basic_auth\": {},\n        \"token\": \"qui in\",\n        \"token_name\": \"e\",\n        \"wait_time_between_pulls\": 44994371\n    },\n    \"remote_storage\": \"aws\"\n}"
+            }
+        },
+        "functionality": "Updates the currently loaded model. First, tries to load the model from the local storage system. Secondly, tries to load"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Unload the trained model",
+        "api_call": "http://localhost:5005/model",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Unloads the currently loaded trained model from the server."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Train a Rasa model",
+        "api_call": "http://localhost:5005/model/train?save_to_default_model_directory=true&force_training=false&augmentation=50&num_threads=1&callback_url=https://example.com/rasa_evaluations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"config\": \"language: en\\npipeline: supervised_embeddings\\npolicies:\\n  - name: MemoizationPolicy\\n  - name: TEDPolicy\",\n    \"domain\": \"intents:\\n  - greet\\n  - goodbye\\n  - affirm\\n  - deny\\n  - mood_great\\n  - mood_unhappy\\n\\nresponses:\\n  utter_greet:\\n  - text: \\\"Hey! How are you?\\\"\\n\\n  utter_cheer_up:\\n  - text: \\\"Here is something to cheer you up:\\\"\\n    image: \\\"https://i.imgur.com/nGF1K8f.jpg\\\"\\n\\n  utter_did_that_help:\\n  - text: \\\"Did that help you?\\\"\\n\\n  utter_happy:\\n  - text: \\\"Great carry on!\\\"\\n\\n  utter_goodbye:\\n  - text: \\\"Bye\\\"\",\n    \"nlu\": \"- intent: greet\\n  examples: |\\n    - hey\\n    - hello\\n    - hi\\n\\n- intent: goodbye\\n  examples: |\\n    - bye\\n    - goodbye\\n    - have a nice day\\n    - see you\\n\\n- intent: affirm\\n  examples: |\\n    - yes\\n    - indeed\\n\\n- intent: deny\\n  examples: |\\n    - no\\n    - never\\n\\n- intent: mood_great\\n  examples: |\\n    - perfect\\n    - very good\\n    - great\\n\\n- intent: mood_unhappy\\n  examples: |\\n    - sad\\n    - not good\\n    - unhappy\",\n    \"responses\": \"chitchat/ask_name: - text: my name is Sara, Rasa's documentation bot! chitchat/ask_weather: - text: it's always sunny where I live\",\n    \"stories\": \"- story: happy path\\n  steps:\\n  - intent: greet\\n  - action: utter_greet\\n  - intent: mood_great\\n  - action: utter_happy\\n\\n- story: sad path 1\\n  steps:\\n  - intent: greet\\n  - action: utter_greet\\n  - intent: mood_unhappy\\n  - action: utter_cheer_up\\n  - action: utter_did_that_help\\n  - intent: affirm\\n  - action: utter_happy\\n\\n- story: sad path 2\\n  steps:\\n  - intent: greet\\n  - action: utter_greet\\n  - intent: mood_unhappy\\n  - action: utter_cheer_up\\n  - action: utter_did_that_help\\n  - intent: deny\\n  - action: utter_goodbye\\n\\n- story: say goodbye\\n  steps:\\n  - intent: goodbye\\n  - action: utter_goodbye\",\n    \"force\": false,\n    \"save_to_default_model_directory\": false\n}"
+            }
+        },
+        "functionality": "Trains a new Rasa model. Depending on the data given only a dialogue model, only a NLU model, or a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Predict an action on a temporary state",
+        "api_call": "http://localhost:5005/model/predict?include_events=AFTER_RESTART",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n    {\n        \"event\": \"slot\",\n        \"timestamp\": 1559744410\n    },\n    {\n        \"event\": \"slot\",\n        \"timestamp\": 1559744410\n    }\n]"
+            }
+        },
+        "functionality": "Predicts the next action on the tracker state as it is posted to this endpoint. Rasa will create a temporary"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Parse a message using the Rasa model",
+        "api_call": "http://localhost:5005/model/parse?emulation_mode=LUIS",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"text\": \"Hello, I am Rasa!\",\n    \"message_id\": \"b2831e73-1407-4ba0-a861-0f30a42a2a5a\"\n}"
+            }
+        },
+        "functionality": "Predicts the intent and entities of the message posted to this endpoint. No messages will be stored to a conversation"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Health endpoint of Rasa Server",
+        "api_call": "http://localhost:5005/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This URL can be used as an endpoint to run health checks against. When the server is running this will"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Version of Rasa",
+        "api_call": "http://localhost:5005/version",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns the version of Rasa."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Status of the Rasa server",
+        "api_call": "http://localhost:5005/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Information about the server and the currently loaded Rasa model."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Rasa Open Source HTTP API: Retrieve the loaded domain",
+        "api_call": "http://localhost:5005/domain",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "in",
+                        "value": "query",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns the domain specification the currently loaded model is using."
+    }
+]

@@ -1,0 +1,2079 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Access Token",
+        "api_call": "https://auth.reloadly.com/oauth/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\":\"CLIENT_ID_GOES_HERE\",\n\t\"client_secret\":\"CLIENT_SECRET_GOES_HERE\",\n\t\"grant_type\":\"client_credentials\",\n\t\"audience\":\"https://topups.reloadly.com\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Account Balance",
+        "api_call": "https://topups.reloadly.com/accounts/balance",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Countries",
+        "api_call": "https://topups.reloadly.com/countries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Country By ISO",
+        "api_call": "https://topups.reloadly.com/countries/US",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Operators",
+        "api_call": "https://topups.reloadly.com/operators",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Operator for phone [auto-detect]",
+        "api_call": "https://topups.reloadly.com/operators/auto-detect/phone/03238482221/countries/PK",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Operator By Id",
+        "api_call": "https://topups.reloadly.com/operators/128",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Operators For ISO",
+        "api_call": "https://topups.reloadly.com/operators/countries/PK",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Fx-Rates",
+        "api_call": "https://topups.reloadly.com/operators/fx-rate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"operatorId\":\"1\",\n\t\"amount\":\"1\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Discounts",
+        "api_call": "https://topups.reloadly.com/operators/commissions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Discount By Operator Id",
+        "api_call": "https://topups.reloadly.com/operators/173/commissions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Promotions",
+        "api_call": "https://topups.reloadly.com/promotions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Promotion By Id",
+        "api_call": "https://topups.reloadly.com/promotions/12",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Promotion By Country's ISO",
+        "api_call": "https://topups.reloadly.com/promotions/country-codes/US",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Promotion By Operator Id",
+        "api_call": "https://topups.reloadly.com/promotions/operators/129",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Async Topup",
+        "api_call": "https://topups.reloadly.com/topups-async",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n\t\"operatorId\":\"444\",\r\n\t\"amount\":\"1\",\r\n\t\"useLocalAmount\": false,\r\n\t\"customIdentifier\": \"This is example identifier\",\r\n\t\"recipientPhone\": {\r\n\t\t\"countryCode\": \"ES\",\r\n\t\t\"number\": \"657228901\"\r\n\t},\r\n\t\"senderPhone\": {\r\n\t\t\"countryCode\": \"CA\",\r\n\t\t\"number\": \"1231231231\"\r\n\t}\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Topup",
+        "api_call": "https://topups.reloadly.com/topups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"operatorId\":\"444\",\n\t\"amount\":\"1\",\n\t\"useLocalAmount\": false,\n\t\"customIdentifier\": \"This is example identifier\",\n\t\"recipientPhone\": {\n\t\t\"countryCode\": \"ES\",\n\t\t\"number\": \"657228901\"\n\t},\n\t\"senderPhone\": {\n\t\t\"countryCode\": \"CA\",\n\t\t\"number\": \"1231231231\"\n\t}\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Status",
+        "api_call": "https://topups.reloadly.com/topups/12345/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Transactions",
+        "api_call": "https://topups.reloadly.com/topups/reports/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Transactions by ID",
+        "api_call": "https://topups.reloadly.com/topups/reports/transactions/{transactionid}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Access Token - Sandbox",
+        "api_call": "https://auth.reloadly.com/oauth/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\":\"   TEST_CLIENT_ID_GOES_HERE\",\n\t\"client_secret\":\"TEST_CLIENT_SECRET_GOES_HERE\",\n\t\"grant_type\":\"client_credentials\",\n\t\"audience\":\"https://topups-sandbox.reloadly.com\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Account Balance - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/accounts/balance",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Countries - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/countries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Country By ISO - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/countries/US",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Operators - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/operators",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Operator for phone [auto-detect] - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/operators/auto-detect/phone/03238482221/countries/PK",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Operator By Id - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/operators/128",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Operators For ISO - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/operators/countries/PK",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Fx-Rates - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/operators/fx-rate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"operatorId\":\"1\",\n\t\"amount\":\"1\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Discounts - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/operators/commissions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Discount By Operator Id - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/operators/173/commissions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Promotions - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/promotions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Promotion By Id - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/promotions/12",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Promotion By Country's ISO - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/promotions/country-codes/US",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Promotion By Operator Id - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/promotions/operators/129",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Async Topup - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/topups-async",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n\t\"operatorId\":\"444\",\r\n\t\"amount\":\"1\",\r\n\t\"useLocalAmount\": false,\r\n\t\"customIdentifier\": \"This is example identifier\",\r\n\t\"recipientPhone\": {\r\n\t\t\"countryCode\": \"ES\",\r\n\t\t\"number\": \"657228901\"\r\n\t},\r\n\t\"senderPhone\": {\r\n\t\t\"countryCode\": \"CA\",\r\n\t\t\"number\": \"1231231231\"\r\n\t}\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Topup - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/topups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"operatorId\":\"444\",\n\t\"amount\":\"1\",\n\t\"useLocalAmount\": false,\n\t\"customIdentifier\": \"This is example identifier\",\n\t\"recipientPhone\": {\n\t\t\"countryCode\": \"ES\",\n\t\t\"number\": \"657228901\"\n\t},\n\t\"senderPhone\": {\n\t\t\"countryCode\": \"CA\",\n\t\t\"number\": \"1231231231\"\n\t}\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Status - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/topups/12345/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Transactions - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/topups/reports/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Transactions by ID - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/topups/reports/transactions/{transactionid}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Access Token",
+        "api_call": "https://auth.reloadly.com/oauth/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n\t\"client_id\":\"CLIENT_ID_GOES_HERE\",\r\n\t\"client_secret\":\"CLIENT_SECRET_GOES_HERE\",\r\n\t\"grant_type\":\"client_credentials\",\r\n\t\"audience\":\"https://giftcards.reloadly.com\"\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Account Balance",
+        "api_call": "https://giftcards.reloadly.com/accounts/balance",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Countries",
+        "api_call": "https://giftcards.reloadly.com/countries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Country By ISO",
+        "api_call": "https://giftcards.reloadly.com/countries/US",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Products",
+        "api_call": "https://giftcards.reloadly.com/products",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Product By ID",
+        "api_call": "https://giftcards.reloadly.com/products/10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Product By ISO",
+        "api_call": "https://giftcards.reloadly.com/countries/es/products",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Redeem Instructions",
+        "api_call": "https://giftcards.reloadly.com/redeem-instructions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Redeem Instructions By Brand ID",
+        "api_call": "https://giftcards.reloadly.com/redeem-instructions/4",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Discounts",
+        "api_call": "https://giftcards.reloadly.com/discounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Discount By Product ID",
+        "api_call": "https://giftcards.reloadly.com/products/10/discounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Transactions",
+        "api_call": "https://giftcards.reloadly.com/reports/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Transaction By ID",
+        "api_call": "https://giftcards.reloadly.com/reports/transactions/10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Order",
+        "api_call": "https://giftcards.reloadly.com/orders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer YOUR_ACCESS_TOKEN_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"productId\": 120,\r\n    \"countryCode\": \"US\",\r\n    \"quantity\": 1,\r\n    \"unitPrice\": 1,\r\n    \"customIdentifier\": \"obucks10\",\r\n    \"senderName\": \"John Doe\",\r\n    \"recipientEmail\": \"anyone@email.com\",\r\n     \"recipientPhoneDetails\": {\r\n        \"countryCode\": \"ES\",\r\n        \"phoneNumber\": \"657228901\"\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Redeem Codes",
+        "api_call": "https://giftcards.reloadly.com/orders/transactions/2/cards",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Access Token - Sandbox",
+        "api_call": "https://auth.reloadly.com/oauth/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n\t\"client_id\":\"TEST_CLIENT_ID_GOES_HERE\",\r\n\t\"client_secret\":\"TEST_CLIENT_SECRET_GOES_HERE\",\r\n\t\"grant_type\":\"client_credentials\",\r\n\t\"audience\":\"https://giftcards-sandbox.reloadly.com\"\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Account Balance - Sandbox",
+        "api_call": "https://giftcards-sandbox.reloadly.com/accounts/balance",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Countries - Sandbox",
+        "api_call": "https://giftcards-sandbox.reloadly.com/countries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Country By ISO - Sandbox",
+        "api_call": "https://giftcards-sandbox.reloadly.com/countries/US",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Products - Sandbox",
+        "api_call": "https://giftcards-sandbox.reloadly.com/products",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Product By ID - Sandbox",
+        "api_call": "https://giftcards-sandbox.reloadly.com/products/10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Product By ISO - Sandbox",
+        "api_call": "https://giftcards-sandbox.reloadly.com/countries/es/products",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Redeem Instructions - Sandbox",
+        "api_call": "https://giftcards-sandbox.reloadly.com/redeem-instructions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Redeem Instructions By Brand ID - Sandbox",
+        "api_call": "https://giftcards-sandbox.reloadly.com/redeem-instructions/4",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Discounts - Sandbox",
+        "api_call": "https://giftcards-sandbox.reloadly.com/discounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Discount By Product ID - Sandbox",
+        "api_call": "https://giftcards-sandbox.reloadly.com/products/10/discounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Transactions - Sandbox",
+        "api_call": "https://giftcards-sandbox.reloadly.com/reports/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Transaction By ID - Sandbox",
+        "api_call": "https://giftcards-sandbox.reloadly.com/reports/transactions/10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Order - Sandbox",
+        "api_call": "https://giftcards-sandbox.reloadly.com/orders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer YOUR_ACCESS_TOKEN_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"productId\": 120,\r\n    \"countryCode\": \"US\",\r\n    \"quantity\": 1,\r\n    \"unitPrice\": 1,\r\n    \"customIdentifier\": \"obucks10\",\r\n    \"senderName\": \"John Doe\",\r\n    \"recipientEmail\": \"anyone@email.com\",\r\n     \"recipientPhoneDetails\": {\r\n        \"countryCode\": \"ES\",\r\n        \"phoneNumber\": \"657228901\"\r\n    }\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Redeem Codes - Sandbox",
+        "api_call": "https://giftcards-sandbox.reloadly.com/orders/transactions/2/cards",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.giftcards-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Number Lookup - GET",
+        "api_call": "https://topups.reloadly.com/operators/mnp-lookup/phone/0657829900/countries/ES",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Number Lookup - POST",
+        "api_call": "https://topups.reloadly.com/mnp-lookup/operators",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"number\": \"03238582221\",\r\n    \"countryCode\": \"PK\"\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Number Lookup - GET - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/operators/mnp-lookup/phone/0657829900/countries/ES",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Number Lookup - POST - Sandbox",
+        "api_call": "https://topups-sandbox.reloadly.com/mnp-lookup/operators",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Bearer ACCESS_TOKEN_GOES_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.topups-v1+json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"number\": \"03238582221\",\r\n    \"countryCode\": \"PK\"\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Access Token",
+        "api_call": "https://auth.reloadly.com/oauth/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"client_id\": \"YOUR_CLIENT_ID_HERE\",\r\n  \"client_secret\": \"YOUR_CLIENT_SECRET_HERE\",\r\n  \"grant_type\": \"client_credentials\",\r\n  \"audience\": \"https://utilities.reloadly.com\"\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Account Balance",
+        "api_call": "https://utilities.reloadly.com/accounts/balance",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.utilities-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer YOUR_ACCESS_TOKEN_HERE",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Billers",
+        "api_call": "https://utilities.reloadly.com/billers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.utilities-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer YOUR_ACCESSS_TOKEN_HERE",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Pay Bill",
+        "api_call": "https://utilities.reloadly.com/pay",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.utilities-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer YOUR_ACCESS_TOKEN_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"subscriberAccountNumber\": \"04223568280\",\r\n  \"amount\": 1000,\r\n  \"billerId\": 5,\r\n  \"useLocalAmount\": false\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Transactions",
+        "api_call": "https://utilities.reloadly.com/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.utilities-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer YOUR_ACCESS_TOKEN_HERE",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Transaction by ID",
+        "api_call": "https://utilities.reloadly.com/transactions/{id}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.utilities-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer YOUR_ACCESS_TOKEN_HERE",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Access Token - Sandbox",
+        "api_call": "https://auth.reloadly.com/oauth/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"client_id\": \"YOUR_CLIENT_ID_HERE\",\r\n  \"client_secret\": \"YOUR_CLIENT_SECRET_HERE\",\r\n  \"grant_type\": \"client_credentials\",\r\n  \"audience\": \"https://utilities-sandbox.reloadly.com\"\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Account Balance - Sandbox",
+        "api_call": "https://utilities-sandbox.reloadly.com/accounts/balance",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.utilities-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer YOUR_ACCESS_TOKEN_HERE",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Billers - Sandbox",
+        "api_call": "https://utilities-sandbox.reloadly.com/billers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.utilities-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer YOUR_ACCESSS_TOKEN_HERE",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Pay Bill - Sandbox",
+        "api_call": "https://utilities-sandbox.reloadly.com/pay",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.utilities-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer YOUR_ACCESS_TOKEN_HERE",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"subscriberAccountNumber\": \"04223568280\",\r\n  \"amount\": 1000,\r\n  \"billerId\": 5,\r\n  \"useLocalAmount\": false\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Transactions - Sandbox",
+        "api_call": "https://utilities-sandbox.reloadly.com/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/com.reloadly.utilities-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer YOUR_ACCESS_TOKEN_HERE",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Reloadly API: Transaction by ID - Sandbox",
+        "api_call": "https://utilities-sandbox.reloadly.com/transactions/{id}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": " application/com.reloadly.utilities-v1+json",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": " Bearer YOUR_ACCESS_TOKEN_HERE",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

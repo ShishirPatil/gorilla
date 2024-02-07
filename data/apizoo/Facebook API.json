@@ -1,0 +1,147 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Facebook API: Get Access Tokens of Pages You Manage",
+        "api_call": "https://graph.facebook.com/{{api_version}}/me/accounts?fields=name,access_token,tasks&access_token={{user_access_token}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "Postman/FacebookCollection"
+                }
+            ]
+        },
+        "functionality": "This request uses a **User Access Token** to get a list of all the pages managed by a User. Make"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Facebook API: Get Specific Page Access Token",
+        "api_call": "https://graph.facebook.com/{{api_version}}/{{page_id}}?fields=name,access_token&access_token={{user_access_token}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "Postman/FacebookCollection"
+                }
+            ]
+        },
+        "functionality": "If you already have the `page_id` available, you can query directly this endpoint to get the specific **Page Access Token**"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Facebook API: 1. Create Reel",
+        "api_call": "https://graph.facebook.com/{{api_version}}/me/video_reels?access_token={{page_access_token}}&upload_phase=start",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "Postman/FacebookCollection"
+                }
+            ]
+        },
+        "functionality": "This request initializes a video upload session. When successful the API response includes a **video_id** that will be used in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Facebook API: 2.A Upload Local Reel",
+        "api_call": "https://rupload.facebook.com/video-upload/{{api_version}}/{{video_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "OAuth {{page_access_token}}"
+                },
+                {
+                    "key": "offset",
+                    "value": "0",
+                    "description": "In case of resumable upload, replace this with the offset returned by /status"
+                },
+                {
+                    "key": "file_size",
+                    "value": "0",
+                    "description": "Replace with your local video file size"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/octet-stream"
+                },
+                {
+                    "key": "User-Agent",
+                    "value": "Postman/FacebookCollection"
+                }
+            ],
+            "body": {
+                "mode": "file",
+                "file": {
+                    "src": "/Users/stevekwak/Documents/videos/video-1649957375.mp4"
+                }
+            }
+        },
+        "functionality": "This method is used when the video source is a local file. The video must be included in the request"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Facebook API: 2.B Upload Hosted Reel",
+        "api_call": "https://rupload.facebook.com/video-upload/{{api_version}}/{{video_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "OAuth {{page_access_token}}"
+                },
+                {
+                    "key": "file_url",
+                    "value": "{{video_url}}",
+                    "description": "Replace with your own web hosted video URL"
+                },
+                {
+                    "key": "User-Agent",
+                    "value": "Postman/FacebookCollection"
+                }
+            ]
+        },
+        "functionality": "This method is used when the video source is hosted on a CDN. The video link must be included in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Facebook API: 3. (Optional) Get upload session status",
+        "api_call": "https://graph.facebook.com/{{api_version}}/{{video_id}}?fields=status&access_token={{page_access_token}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "Postman/FacebookCollection"
+                }
+            ]
+        },
+        "functionality": "Retrieves the status of the Reels publishing operation composed of three steps: uploading, processing and publishing."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Facebook API: 4. Publish Reel",
+        "api_call": "https://graph.facebook.com/{{api_version}}/me/video_reels?access_token={{page_access_token}}&video_id={{video_id}}&upload_phase=finish&video_state=PUBLISHED&description=Description text goes here&title=Title goes here",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "Postman/FacebookCollection"
+                }
+            ]
+        },
+        "functionality": "Ends the upload phase to start assembling and encoding the video. You can also customize the reel with the optional"
+    }
+]

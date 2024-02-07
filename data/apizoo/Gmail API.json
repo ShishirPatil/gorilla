@@ -1,0 +1,1188 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.drafts.delete",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/drafts/:id?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Immediately and permanently deletes the specified draft. Does not simply trash it."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.drafts.get",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/drafts/:id?format=<string>&$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets the specified draft."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.drafts.update",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/drafts/:id?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "message/cpim"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"id\": \"<string>\",\n    \"message\": {\n        \"historyId\": \"incididunt eu\",\n        \"id\": \"pro\",\n        \"internalDate\": \"dolor\",\n        \"labelIds\": [\n            \"est sed\",\n            \"sint commodo voluptate enim\"\n        ],\n        \"payload\": {\n            \"body\": {\n                \"attachmentId\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"size\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n            },\n            \"filename\": \"aute\",\n            \"headers\": [\n                {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n            ],\n            \"mimeType\": \"quis ut consectetur\",\n            \"partId\": \"fugiat exercitation esse et officia\",\n            \"parts\": [\n                {\n                    \"value\": \"<Circular reference to #/components/schemas/MessagePart detected>\"\n                },\n                {\n                    \"value\": \"<Circular reference to #/components/schemas/MessagePart detected>\"\n                }\n            ]\n        },\n        \"raw\": \"ipsum Lorem irure\",\n        \"sizeEstimate\": 55613833,\n        \"snippet\": \"exercitation in eiusmod\",\n        \"threadId\": \"labore dolore\"\n    }\n}"
+            }
+        },
+        "functionality": "Replaces a draft's content."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.drafts.list",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/drafts?includeSpamTrash=<boolean>&maxResults=<integer>&pageToken=<string>&q=<string>&$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists the drafts in the user's mailbox."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.drafts.create",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/drafts?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "message/cpim"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"id\": \"<string>\",\n    \"message\": {\n        \"historyId\": \"incididunt eu\",\n        \"id\": \"pro\",\n        \"internalDate\": \"dolor\",\n        \"labelIds\": [\n            \"est sed\",\n            \"sint commodo voluptate enim\"\n        ],\n        \"payload\": {\n            \"body\": {\n                \"attachmentId\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"size\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n            },\n            \"filename\": \"aute\",\n            \"headers\": [\n                {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n            ],\n            \"mimeType\": \"quis ut consectetur\",\n            \"partId\": \"fugiat exercitation esse et officia\",\n            \"parts\": [\n                {\n                    \"value\": \"<Circular reference to #/components/schemas/MessagePart detected>\"\n                },\n                {\n                    \"value\": \"<Circular reference to #/components/schemas/MessagePart detected>\"\n                }\n            ]\n        },\n        \"raw\": \"ipsum Lorem irure\",\n        \"sizeEstimate\": 55613833,\n        \"snippet\": \"exercitation in eiusmod\",\n        \"threadId\": \"labore dolore\"\n    }\n}"
+            }
+        },
+        "functionality": "Creates a new draft with the `DRAFT` label."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.drafts.send",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/drafts/send?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "message/cpim"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"id\": \"<string>\",\n    \"message\": {\n        \"historyId\": \"incididunt eu\",\n        \"id\": \"pro\",\n        \"internalDate\": \"dolor\",\n        \"labelIds\": [\n            \"est sed\",\n            \"sint commodo voluptate enim\"\n        ],\n        \"payload\": {\n            \"body\": {\n                \"attachmentId\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"data\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"size\": {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n            },\n            \"filename\": \"aute\",\n            \"headers\": [\n                {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n            ],\n            \"mimeType\": \"quis ut consectetur\",\n            \"partId\": \"fugiat exercitation esse et officia\",\n            \"parts\": [\n                {\n                    \"value\": \"<Circular reference to #/components/schemas/MessagePart detected>\"\n                },\n                {\n                    \"value\": \"<Circular reference to #/components/schemas/MessagePart detected>\"\n                }\n            ]\n        },\n        \"raw\": \"ipsum Lorem irure\",\n        \"sizeEstimate\": 55613833,\n        \"snippet\": \"exercitation in eiusmod\",\n        \"threadId\": \"labore dolore\"\n    }\n}"
+            }
+        },
+        "functionality": "Sends the specified, existing draft to the recipients in the `To`, `Cc`, and `Bcc` headers."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.labels.delete",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/labels/:id?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Immediately and permanently deletes the specified label and removes it from any messages and threads that it is applied to."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.labels.get",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/labels/:id?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets the specified label."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.labels.patch",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/labels/:id?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"color\": {\n        \"backgroundColor\": \"aliquip fugiat occaecat\",\n        \"textColor\": \"nulla laboris sed\"\n    },\n    \"id\": \"<string>\",\n    \"labelListVisibility\": \"<string>\",\n    \"messageListVisibility\": \"<string>\",\n    \"messagesTotal\": \"<integer>\",\n    \"messagesUnread\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"threadsTotal\": \"<integer>\",\n    \"threadsUnread\": \"<integer>\",\n    \"type\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Patch the specified label."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.labels.update",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/labels/:id?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"color\": {\n        \"backgroundColor\": \"aliquip fugiat occaecat\",\n        \"textColor\": \"nulla laboris sed\"\n    },\n    \"id\": \"<string>\",\n    \"labelListVisibility\": \"<string>\",\n    \"messageListVisibility\": \"<string>\",\n    \"messagesTotal\": \"<integer>\",\n    \"messagesUnread\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"threadsTotal\": \"<integer>\",\n    \"threadsUnread\": \"<integer>\",\n    \"type\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Updates the specified label."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.labels.list",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/labels?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists all labels in the user's mailbox."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.labels.create",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/labels?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"color\": {\n        \"backgroundColor\": \"aliquip fugiat occaecat\",\n        \"textColor\": \"nulla laboris sed\"\n    },\n    \"id\": \"<string>\",\n    \"labelListVisibility\": \"<string>\",\n    \"messageListVisibility\": \"<string>\",\n    \"messagesTotal\": \"<integer>\",\n    \"messagesUnread\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"threadsTotal\": \"<integer>\",\n    \"threadsUnread\": \"<integer>\",\n    \"type\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Creates a new label."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.messages.delete",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/messages/:id?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Immediately and permanently deletes the specified message. This operation cannot be undone. Prefer `messages.trash` instead."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.messages.get",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/messages/:id?format=<string>&metadataHeaders=<string>&metadataHeaders=<string>&$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets the specified message."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.messages.modify",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/messages/:id/modify?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"addLabelIds\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"removeLabelIds\": [\n        \"<string>\",\n        \"<string>\"\n    ]\n}"
+            }
+        },
+        "functionality": "Modifies the labels on the specified message."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.messages.trash",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/messages/:id/trash?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Moves the specified message to the trash."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.messages.untrash",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/messages/:id/untrash?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Removes the specified message from the trash."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.messages.list",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/messages?includeSpamTrash=<boolean>&labelIds=<string>&labelIds=<string>&maxResults=<integer>&pageToken=<string>&q=<string>&$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists the messages in the user's mailbox."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.messages.insert",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/messages?deleted=<boolean>&internalDateSource=<string>&$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "message/cpim"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"historyId\": \"<string>\",\n    \"id\": \"<string>\",\n    \"internalDate\": \"<string>\",\n    \"labelIds\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"payload\": {\n        \"body\": {\n            \"attachmentId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"data\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n        },\n        \"filename\": \"laborum cupidatat laboris dolore commodo\",\n        \"headers\": [\n            {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n        ],\n        \"mimeType\": \"pariatur consectetur culpa\",\n        \"partId\": \"nisi laboris cillum enim\",\n        \"parts\": [\n            {\n                \"value\": \"<Circular reference to #/components/schemas/MessagePart detected>\"\n            },\n            {\n                \"value\": \"<Circular reference to #/components/schemas/MessagePart detected>\"\n            }\n        ]\n    },\n    \"raw\": \"<string>\",\n    \"sizeEstimate\": \"<integer>\",\n    \"snippet\": \"<string>\",\n    \"threadId\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Directly inserts a message into only this user's mailbox similar to `IMAP APPEND`, bypassing most scanning and classification. Does not"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.messages.batch Delete",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/messages/batchDelete?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"ids\": [\n        \"<string>\",\n        \"<string>\"\n    ]\n}"
+            }
+        },
+        "functionality": "Deletes many messages by message ID. Provides no guarantees that messages were not already deleted or even existed at all."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.messages.batch Modify",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/messages/batchModify?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"addLabelIds\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"ids\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"removeLabelIds\": [\n        \"<string>\",\n        \"<string>\"\n    ]\n}"
+            }
+        },
+        "functionality": "Modifies the labels on the specified messages."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.messages.import",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/messages/import?deleted=<boolean>&internalDateSource=<string>&neverMarkSpam=<boolean>&processForCalendar=<boolean>&$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "message/cpim"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"historyId\": \"<string>\",\n    \"id\": \"<string>\",\n    \"internalDate\": \"<string>\",\n    \"labelIds\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"payload\": {\n        \"body\": {\n            \"attachmentId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"data\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n        },\n        \"filename\": \"laborum cupidatat laboris dolore commodo\",\n        \"headers\": [\n            {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n        ],\n        \"mimeType\": \"pariatur consectetur culpa\",\n        \"partId\": \"nisi laboris cillum enim\",\n        \"parts\": [\n            {\n                \"value\": \"<Circular reference to #/components/schemas/MessagePart detected>\"\n            },\n            {\n                \"value\": \"<Circular reference to #/components/schemas/MessagePart detected>\"\n            }\n        ]\n    },\n    \"raw\": \"<string>\",\n    \"sizeEstimate\": \"<integer>\",\n    \"snippet\": \"<string>\",\n    \"threadId\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Imports a message into only this user's mailbox, with standard email delivery scanning and classification similar to receiving via SMTP."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.messages.send",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/messages/send?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "message/cpim"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"historyId\": \"<string>\",\n    \"id\": \"<string>\",\n    \"internalDate\": \"<string>\",\n    \"labelIds\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"payload\": {\n        \"body\": {\n            \"attachmentId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"data\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n        },\n        \"filename\": \"laborum cupidatat laboris dolore commodo\",\n        \"headers\": [\n            {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n        ],\n        \"mimeType\": \"pariatur consectetur culpa\",\n        \"partId\": \"nisi laboris cillum enim\",\n        \"parts\": [\n            {\n                \"value\": \"<Circular reference to #/components/schemas/MessagePart detected>\"\n            },\n            {\n                \"value\": \"<Circular reference to #/components/schemas/MessagePart detected>\"\n            }\n        ]\n    },\n    \"raw\": \"<string>\",\n    \"sizeEstimate\": \"<integer>\",\n    \"snippet\": \"<string>\",\n    \"threadId\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Sends the specified message to the recipients in the `To`, `Cc`, and `Bcc` headers."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.messages.attachments.get",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/messages/:messageId/attachments/:id?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets the specified message attachment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.get Auto Forwarding",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/autoForwarding?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets the auto-forwarding setting for the specified account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.update Auto Forwarding",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/autoForwarding?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"disposition\": \"<string>\",\n    \"emailAddress\": \"<string>\",\n    \"enabled\": \"<boolean>\"\n}"
+            }
+        },
+        "functionality": "Updates the auto-forwarding setting for the specified account. A verified forwarding address must be specified when auto-forwarding is enabled. This"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.delegates.delete",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/delegates/:delegateEmail?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Removes the specified delegate (which can be of any verification status), and revokes any verification that may have been required"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.delegates.get",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/delegates/:delegateEmail?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets the specified delegate. Note that a delegate user must be referred to by their primary email address, and not"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.delegates.list",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/delegates?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists the delegates for the specified account. This method is only available to service account clients that have been delegated"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.delegates.create",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/delegates?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"delegateEmail\": \"<string>\",\n    \"verificationStatus\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Adds a delegate with its verification status set directly to `accepted`, without sending any verification email. The delegate user must"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.filters.delete",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/filters/:id?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a filter."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.filters.get",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/filters/:id?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets a filter."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.filters.list",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/filters?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists the message filters of a Gmail user."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.filters.create",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/filters?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"action\": {\n        \"addLabelIds\": [\n            \"cillum velit consequat\",\n            \"in deserunt\"\n        ],\n        \"forward\": \"labore occaecat mag\",\n        \"removeLabelIds\": [\n            \"in cupida\",\n            \"dolore in aliqua\"\n        ]\n    },\n    \"criteria\": {\n        \"excludeChats\": true,\n        \"from\": \"sint\",\n        \"hasAttachment\": true,\n        \"negatedQuery\": \"dolore elit\",\n        \"query\": \"officia reprehenderit Lorem\",\n        \"size\": -27945833,\n        \"sizeComparison\": \"larger\",\n        \"subject\": \"velit officia\",\n        \"to\": \"in laborum\"\n    },\n    \"id\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Creates a filter. Note: you can only create a maximum of 1,000 filters."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.forwarding Addresses.delete",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/forwardingAddresses/:forwardingEmail?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes the specified forwarding address and revokes any verification that may have been required. This method is only available to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.forwarding Addresses.get",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/forwardingAddresses/:forwardingEmail?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets the specified forwarding address."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.forwarding Addresses.list",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/forwardingAddresses?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists the forwarding addresses for the specified account."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.forwarding Addresses.create",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/forwardingAddresses?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"forwardingEmail\": \"<string>\",\n    \"verificationStatus\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Creates a forwarding address. If ownership verification is required, a message will be sent to the recipient and the resource's"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.get Imap",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/imap?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets IMAP settings."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.update Imap",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/imap?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"autoExpunge\": \"<boolean>\",\n    \"enabled\": \"<boolean>\",\n    \"expungeBehavior\": \"<string>\",\n    \"maxFolderSize\": \"<integer>\"\n}"
+            }
+        },
+        "functionality": "Updates IMAP settings."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.get Language",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/language?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets language settings."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.update Language",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/language?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"displayLanguage\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Updates language settings. If successful, the return object contains the `displayLanguage` that was saved for the user, which may differ"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.get Pop",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/pop?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets POP settings."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.update Pop",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/pop?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"accessWindow\": \"<string>\",\n    \"disposition\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Updates POP settings."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.send As.smime Info.delete",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/smimeInfo/:id?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes the specified S/MIME config for the specified send-as alias."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.send As.smime Info.get",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/smimeInfo/:id?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets the specified S/MIME config for the specified send-as alias."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.send As.smime Info.set Default",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/smimeInfo/:id/setDefault?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Sets the default S/MIME config for the specified send-as alias."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.send As.smime Info.list",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/smimeInfo?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists S/MIME configs for the specified send-as alias."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.send As.smime Info.insert",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/smimeInfo?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"encryptedKeyPassword\": \"<string>\",\n    \"expiration\": \"<string>\",\n    \"id\": \"<string>\",\n    \"isDefault\": \"<boolean>\",\n    \"issuerCn\": \"<string>\",\n    \"pem\": \"<string>\",\n    \"pkcs12\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Insert (upload) the given S/MIME config for the specified send-as alias. Note that pkcs12 format is required for the key."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.send As.delete",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/sendAs/:sendAsEmail?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes the specified send-as alias. Revokes any verification that may have been required for using it. This method is only"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.send As.get",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/sendAs/:sendAsEmail?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets the specified send-as alias. Fails with an HTTP 404 error if the specified address is not a member of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.send As.patch",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/sendAs/:sendAsEmail?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"displayName\": \"<string>\",\n    \"isDefault\": \"<boolean>\",\n    \"isPrimary\": \"<boolean>\",\n    \"replyToAddress\": \"<string>\",\n    \"sendAsEmail\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"smtpMsa\": {\n        \"host\": \"in est reprehenderit mollit adipisicing\",\n        \"password\": \"consequat ad\",\n        \"port\": -89662965,\n        \"securityMode\": \"ssl\",\n        \"username\": \"aute incididunt\"\n    },\n    \"treatAsAlias\": \"<boolean>\",\n    \"verificationStatus\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Patch the specified send-as alias."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.send As.update",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/sendAs/:sendAsEmail?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"displayName\": \"<string>\",\n    \"isDefault\": \"<boolean>\",\n    \"isPrimary\": \"<boolean>\",\n    \"replyToAddress\": \"<string>\",\n    \"sendAsEmail\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"smtpMsa\": {\n        \"host\": \"in est reprehenderit mollit adipisicing\",\n        \"password\": \"consequat ad\",\n        \"port\": -89662965,\n        \"securityMode\": \"ssl\",\n        \"username\": \"aute incididunt\"\n    },\n    \"treatAsAlias\": \"<boolean>\",\n    \"verificationStatus\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Updates a send-as alias. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.send As.verify",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/sendAs/:sendAsEmail/verify?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Sends a verification email to the specified send-as alias address. The verification status must be `pending`. This method is only"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.send As.list",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/sendAs?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists the send-as aliases for the specified account. The result includes the primary send-as address associated with the account as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.send As.create",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/sendAs?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"displayName\": \"<string>\",\n    \"isDefault\": \"<boolean>\",\n    \"isPrimary\": \"<boolean>\",\n    \"replyToAddress\": \"<string>\",\n    \"sendAsEmail\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"smtpMsa\": {\n        \"host\": \"in est reprehenderit mollit adipisicing\",\n        \"password\": \"consequat ad\",\n        \"port\": -89662965,\n        \"securityMode\": \"ssl\",\n        \"username\": \"aute incididunt\"\n    },\n    \"treatAsAlias\": \"<boolean>\",\n    \"verificationStatus\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Creates a custom \"from\" send-as alias. If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.get Vacation",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/vacation?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets vacation responder settings."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.settings.update Vacation",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/settings/vacation?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"enableAutoReply\": \"<boolean>\",\n    \"endTime\": \"<string>\",\n    \"responseBodyHtml\": \"<string>\",\n    \"responseBodyPlainText\": \"<string>\",\n    \"responseSubject\": \"<string>\",\n    \"restrictToContacts\": \"<boolean>\",\n    \"restrictToDomain\": \"<boolean>\",\n    \"startTime\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Updates vacation responder settings."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.threads.delete",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/threads/:id?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Immediately and permanently deletes the specified thread. This operation cannot be undone. Prefer `threads.trash` instead."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.threads.get",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/threads/:id?format=<string>&metadataHeaders=<string>&metadataHeaders=<string>&$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets the specified thread."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.threads.modify",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/threads/:id/modify?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"addLabelIds\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"removeLabelIds\": [\n        \"<string>\",\n        \"<string>\"\n    ]\n}"
+            }
+        },
+        "functionality": "Modifies the labels applied to the thread. This applies to all messages in the thread."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.threads.trash",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/threads/:id/trash?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Moves the specified thread to the trash."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.threads.untrash",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/threads/:id/untrash?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Removes the specified thread from the trash."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.threads.list",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/threads?includeSpamTrash=<boolean>&labelIds=<string>&labelIds=<string>&maxResults=<integer>&pageToken=<string>&q=<string>&$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists the threads in the user's mailbox."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.history.list",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/history?historyTypes=<string>&historyTypes=<string>&labelId=<string>&maxResults=<integer>&pageToken=<string>&startHistoryId=<string>&$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Lists the history of all changes to the given mailbox. History results are returned in chronological order (increasing `historyId`)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.get Profile",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/profile?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets the current user's Gmail profile."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.stop",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/stop?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Stop receiving push notifications for the given user mailbox."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Gmail API: gmail.users.watch",
+        "api_call": "https://gmail.googleapis.com//gmail/v1/users/:userId/watch?$.xgafv=<string>&access_token=<string>&alt=<string>&callback=<string>&fields=<string>&key=<string>&oauth_token=<string>&prettyPrint=<boolean>&quotaUser=<string>&upload_protocol=<string>&uploadType=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"labelFilterAction\": \"<string>\",\n    \"labelIds\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"topicName\": \"<string>\"\n}"
+            }
+        },
+        "functionality": "Set up or update a push notification watch on the given user mailbox."
+    }
+]

@@ -1,0 +1,750 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Daily Schedule **USE CURRENT DATE**",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//games/:year/:month/:day/schedule.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 1 - Play by Play",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 2 - Play by Play",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 3 - Play by Play",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 4 - Play by Play",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 5 - Play by Play",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 6 - Play by Play",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 7 - Play by Play",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 8 - Play by Play",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game Summary",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//games/:game_id/summary.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game Extended Summary",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//games/:game_id/extended_summary.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game Boxscore",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//games/:game_id/boxscore.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game Pitch Metrics",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//games/:game_id/pitch_metrics.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Injuries",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//league/injuries.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: League Depth Chart",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//league/depth_charts.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: League Hierarchy",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//league/hierarchy.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: League Leaders",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//seasons/:season_year/:season_type/leaders/statistics.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: League Schedule",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//seasons/:season_year/:season_type/leaders/statistics.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Player Profile",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//players/:player_id/profile.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Rankings",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//seasons/:season_year/:season_type/rankings.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Seasonal Pitch Metrics",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//players/:player_id/pitch_metrics.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Seasonal Splits",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//seasons/:season_year/:season_type/teams/:team_id/splits.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Seasonal Statistics",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//seasons/:season_year/:season_type/teams/:team_id/statistics.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Seasonal Transactions",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//league/:season_year/transactions.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Seasons",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//league/seasons.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Standings",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//seasons/:season_year/:season_type/standings.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Team Depth Chart",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//teams/:team_id/depth_chart.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Team Profile",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//teams/:team_id/profile.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Venues",
+        "api_call": "http://api.sportradar.us/mlb/simulation/v7/en//league/venues.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Schedule",
+        "api_call": "https://api.sportradar.us/nba/simulation/v7/en/games/:season_year/SIM/schedule.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 1 PBP",
+        "api_call": "https://api.sportradar.us/nba/simulation/v7/en/games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 2 PBP",
+        "api_call": "https://api.sportradar.us/nba/simulation/v7/en/games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 3 PBP",
+        "api_call": "https://api.sportradar.us/nba/simulation/v7/en/games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 4 PBP",
+        "api_call": "https://api.sportradar.us/nba/simulation/v7/en/games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 5 PBP",
+        "api_call": "https://api.sportradar.us/nba/simulation/v7/en/games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 6 PBP",
+        "api_call": "https://api.sportradar.us/nba/simulation/v7/en/games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Standings",
+        "api_call": "https://api.sportradar.us/nba/simulation/v7/en/seasons/:season_year/:season_type/standings.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Injuries",
+        "api_call": "https://api.sportradar.us/nba/simulation/v7/en/league/injuries.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Rankings",
+        "api_call": "https://api.sportradar.us/nba/simulation/v7/en/seasons/:season_year/:season_type/rankings.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Schedule",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/games/:season_year/:season_type/schedule.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 1 PBP",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 2 PBP",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 3 PBP",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 4 PBP",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 5 PBP",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 6 PBP",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 7 PBP",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 8 PBP",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game 9 PBP",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game Analytics",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/games/:game_id/analytics.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game Boxscore",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/games/:game_id/boxscore.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game Faceoffs",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/games/:game_id/faceoffs.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game Shot Zones",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/games/:game_id/shot_zones.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game Summary",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/games/:game_id/summary.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game Time on Ice",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/games/:game_id/time_on_ice.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: League Leaders - Goaltending",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/seasons/:season_year/:season_type/leaders/goaltending.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: League Leaders - Skaters",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/seasons/:season_year/:season_type/leaders/offense.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Seasonal Analytics",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/seasons/:season_year/:season_type/teams/:team_id/analytics.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Seasonal Faceoffs",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/seasons/:season_year/:season_type/teams/:team_id/faceoffs.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Seasonal Shot Zones",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/players/:player_id/shot_zones.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Standings",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/seasons/:season_year/:season_type/standings.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Team Profile",
+        "api_call": "https://api.sportradar.us/nhl/simulation/v7/en/teams/:team_id/profile.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Season Schedule",
+        "api_call": "http://api.sportradar.us/ncaafb/simulation/v7/en/games/2022/REG/schedule.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Play by Play",
+        "api_call": "http://api.sportradar.us/ncaafb/simulation/v7/en/games/:game_id/pbp.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game Boxscore",
+        "api_call": "http://api.sportradar.us/ncaafb/simulation/v7/en/games/:game_id/statistics.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game Roster",
+        "api_call": "http://api.sportradar.us/ncaafb/simulation/v7/en/games/:game_id/statistics.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Game Statistics",
+        "api_call": "http://api.sportradar.us/ncaafb/simulation/v7/en/games/:game_id/statistics.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Simulations: Weekly Schedule",
+        "api_call": "http://api.sportradar.us/ncaafb/simulation/v7/en/games/2022/REG/:ncaafb_season_week/schedule.xml",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

@@ -1,0 +1,387 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: List of all drivers",
+        "api_call": "http://ergast.com/api/f1/drivers?=123",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "To obtain a list of all drivers.\n\nDriver lists can be refined by adding one or more of the following criteria:\n\n/circuits/<circuitId>\n/constructors/<constructorId>\n/drivers/<driverId>\n/grid/<position>\n/results/<position>\n/fastest/<rank>\n/status/<statusId>\n\nFor"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: List of all drivers within a year",
+        "api_call": "http://ergast.com/api/f1/{{year}}/drivers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint is to obtain a list of all drivers in a particular season (year)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: List of all drivers within a race in a year",
+        "api_call": "http://ergast.com/api/f1/{{year}}/{{round}}/drivers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint is to obtain a list of all drivers in a particular race(round) of a season(year)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Driver Information",
+        "api_call": "http://ergast.com/api/f1/drivers/{{driverid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Each driver listed in the response is identified by a unique driverId which is used to identify the driver throughout"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: List of all constructors",
+        "api_call": "http://ergast.com/api/f1/constructors",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint is to obtain a list of all constructors.\n\nConstructor lists can be refined by adding one or more of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: List of all constructors within a year",
+        "api_call": "http://ergast.com/api/f1/{{year}}/constructors",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint is to obtain a list of all constructors in a particular season (year)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: List of all constructors within a race in a year",
+        "api_call": "http://ergast.com/api/f1/{{year}}/{{round}}/constructors",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint is to obtain a list of all constructors in a particular race(round) of a season(year)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Constructor Information",
+        "api_call": "http://ergast.com/api/f1/constructors/{{constructorid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Each constructor listed in the response is identified by a unique constructorId which is used to identify the constructor throughout"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: List of all circuits",
+        "api_call": "http://ergast.com/api/f1/circuits.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint is to obtain a list of all constructors.\n\n\nCircuit lists can be refined by adding one or more of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: List of all circuits within a year",
+        "api_call": "http://ergast.com/api/f1/{{year}}/circuits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: List of all circuits within a race in a year",
+        "api_call": "http://ergast.com/api/f1/{{year}}/{{round}}/circuits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Circuit Information",
+        "api_call": "http://ergast.com/api/f1/circuits/{{circuitid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Each constructor listed in the response is identified by a unique circuitId which is used to identify the constructor throughout"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Seasons List",
+        "api_call": "http://ergast.com/api/f1/seasons",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint gives the seasons currently supported by the API.\n\n\nSeason lists can be refined by adding one or more of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Race Result",
+        "api_call": "http://ergast.com/api/f1/{{year}}/{{round}}/results",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint gives the result for a specific race (round) in a season(year).\n\n\nIf the results for the specified race are"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Most recent race result",
+        "api_call": "http://ergast.com/api/f1/current/last/results",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Results from the most recent race can be obtained using this endpoint."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Qualifying Results",
+        "api_call": "http://ergast.com/api/f1/{{year}}/{{round}}/qualifying",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Schedule of races for a season",
+        "api_call": "http://ergast.com/api/f1/{{year}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "To obtain the schedule of races for a specific season use this endpoint required season (year)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Schedule of the current season",
+        "api_call": "http://ergast.com/api/f1/current",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "To obtain the schedule of races for the current season, use this endpoint."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Info about a specific race",
+        "api_call": "http://ergast.com/api/f1/{{year}}/{{round}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "To obtain the schedule of races for a specific race(round) in a season(year), use this endpoint."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Driver standings after a race",
+        "api_call": "http://ergast.com/api/f1/{{year}}/{{round}}/driverStandings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "To fetch the driver standings after a specific race(round) in a season(year), use this endpoint."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Constructor standings after a race",
+        "api_call": "http://ergast.com/api/f1/{{year}}/{{round}}/constructorStandings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "To list the constructor standings after a specific race (round) in a season(year), use this endpoint.\n\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Season end driver standings ",
+        "api_call": "http://ergast.com/api/f1/{{year}}/driverStandings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Driver Standings at the end of the season(year)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Season end constructor standing",
+        "api_call": "http://ergast.com/api/f1/{{year}}/constructorStandings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Constructor Standings at the end of the season(year)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Current drivers' standing",
+        "api_call": "http://ergast.com/api/f1/current/driverStandings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Current driver standings can always be obtained using this endpoint."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Current constructor's standing",
+        "api_call": "http://ergast.com/api/f1/current/constructorStandings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Current constructor standings can always be obtained using this endpoint."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: All winners of drivers' championships",
+        "api_call": "http://ergast.com/api/f1/driverStandings/1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "To fetch all the winners information of drivers."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: All winners of constructors' championships",
+        "api_call": "http://ergast.com/api/f1/constructorStandings/1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "To fetch all the winners information of constructors."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Driver standings by specifying the driver",
+        "api_call": "http://ergast.com/api/f1/drivers/{{driverid}}/driverStandings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Driver standings by giving in the driverid(name of the driver)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Constructor standings by specifying the constructor",
+        "api_call": "http://ergast.com/api/f1/constructors/{{constructorid}}/constructorStandings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Constructor standings by giving in the constructorid(name of the constructor)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: List of all finishing status codes",
+        "api_call": "http://ergast.com/api/f1/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Every driver has a finishing status like 'finished', disqualified', 'accident', '+1 lap', '+2 lap', etc. This endpoint will give the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: List of finishing status for a specific season",
+        "api_call": "http://ergast.com/api/f1/{{year}}/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "To fetch the list of finishing status of a specific season(year).\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: List of finishing status for a specific round in a season",
+        "api_call": "http://ergast.com/api/f1/{{year}}/{{round}}/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "To fetch the list of finishing status of a specific race(round) in a season(year)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Lap time",
+        "api_call": "http://ergast.com/api/f1/{{year}}/{{round}}/laps/{{lapnumber}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint requires the season(year), race(round) and lap number(lapnumber) to be specified."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Pit stop data for a race ",
+        "api_call": "http://ergast.com/api/f1/{{year}}/{{round}}/pitstops",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint requires the season(year) and race(round) to be specified.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Formula One API: Information for a specific pit stop",
+        "api_call": "http://ergast.com/api/f1/{{year}}/{{round}}/pitstops/{{pitstopnumber}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint requires the season(year), race(round) and pit stop number(pitstopnumber) to be specified."
+    }
+]

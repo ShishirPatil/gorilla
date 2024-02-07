@@ -1,0 +1,1408 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Create InMail Content",
+        "api_call": "https://{{baseUrl}}/rest/inMailContents/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n \"account\": \"<Account Number>\",\n \"name\": \"test strings\",\n \"subject\": \"test subject\",\n \"sender\": \"<person urn>\",\n \"customFooter\": \"terms and conditions\",\n \"htmlBody\":\"sample body\",\n \"subContent\": {\n   \"regular\": {\n     \"callToActionText\": \"sample string\",\n     \"callToActionLandingPageUrl\":\"http://www.linkedin.com\",\n     \"rightRailAdPicture\": \"<image urn>\"\n   }\n }\n}"
+            }
+        },
+        "functionality": "API to create an inMail Content."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get InMail Content",
+        "api_call": "https://{{baseUrl}}/rest/inMailContents/{adInMailContentId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "API to retrieve an inMail Content."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Update InMail Content",
+        "api_call": "https://{{baseUrl}}/rest/inMailContents/{adInMailContentId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n \"patch\": {\n   \"$set\": {\n     \"name\": \"test strings new\"\n   }\n }\n}\n"
+            }
+        },
+        "functionality": "API to update an inMail Content."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Batch Get InMail Content",
+        "api_call": "https://{{baseUrl}}/rest/inMailContents?ids={encoded adInMailContentId}&ids={encoded adInMailContentId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-RestLi-Method",
+                    "value": "BATCH_CREATE",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "API to retrieve an inMail Content in Batches."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Send Test InMail",
+        "api_call": "https://{{baseUrl}}/rest/inMailContents?action=sendTestInMail",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "API to send/share an inMail Content."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Upload an Image",
+        "api_call": "{{upload_url}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/octet-stream",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This is a generic Upload URL call without init."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Initialize Image Upload",
+        "api_call": "{{baseUrl}}/images?action=initializeUpload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"initializeUploadRequest\": {\n        \"owner\": \"urn:li:organization:5583111\"\n  }\n}\n"
+            }
+        },
+        "functionality": "Use the\u00a0`initializeUpload`\u00a0action to register the upload. When you initialize, you declare the upcoming upload. Use the upload URL to upload"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get a single Image",
+        "api_call": "https://{{baseUrl}}/rest/images/{{image_urn}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This API rerieve a single image."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get Multiple Images",
+        "api_call": "{{baseUrl}}/rest/images?ids=List({{image_urn1}},{{image_urn2}})",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This API rerieve multiple images."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Create Image Content",
+        "api_call": "https://{{baseUrl}}/rest/posts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"author\": \"{{company_id}}\",\n  \"commentary\": \"test strings\",\n  \"visibility\": \"PUBLIC\",\n  \"distribution\": {\n    \"feedDistribution\": \"MAIN_FEED\",\n    \"targetEntities\": [],\n    \"thirdPartyDistributionChannels\": []\n  },\n  \"content\": {\n   \"media\": {\"id\": \"{{image_urn}}\"}\n  },\n  \"lifecycleState\": \"PUBLISHED\",\n  \"isReshareDisabledByAuthor\": false\n}\n\n"
+            }
+        },
+        "functionality": "This API creates an image content."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get Image Content",
+        "api_call": "https://{{baseUrl}}/rest/posts/{postId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This API rerieve the content associated with a single image."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Fetch multiple Image Content",
+        "api_call": "https://{{baseUrl}}/rest/posts?ids=List({encoded postId},{encoded postId})",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This API rerieve content from multiple images."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Upload a Video",
+        "api_call": "{{upload_url}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/octet-stream",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This is a generic API to upload the data."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Initialize Video Upload",
+        "api_call": "https://{{baseUrl}}/videos?action=initializeUpload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{ \"initializeUploadRequest\": {\n       \"owner\": \"organization_urn\",\n       \"fileSizeBytes\": 1055736 ,\n       \"uploadCaptions\": false, //set to true to upload video with caption\n       \"uploadThumbnail\": false //set to true to upload video with thumbnail\n}}\n"
+            }
+        },
+        "functionality": "Use the\u00a0`initializeUpload`\u00a0action to register the upload. When you initialize, you declare the upcoming upload. Use the upload URL from the\u00a0`uploadInstructions`\u00a0to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get a single video",
+        "api_call": "https://{{baseUrl}}/images/{{image_urn}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This API retrieves a single video."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get Multiple Videos",
+        "api_call": "https://{{baseUrl}}/images?ids=List({{image_urn1}},{{image_urn2}})",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This API retrieves multiple videos."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Create an Organic Creative",
+        "api_call": "https://{{baseUrl}}/creatives",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"content\": {\n    \"reference\": \"{{urn_of_UGCPost}}\"\n  },\n  \"campaign\": \"{{urn_of_campaign}}\",\n  \"intendedStatus\": \"ACTIVE\"\n}\n"
+            }
+        },
+        "functionality": "You can sponsor an existing organic post that has been serving your company page followers and gone viral."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Create an Sponsored Creative",
+        "api_call": "https://{{baseUrl}}/creatives?action=createInline",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This API creates a sponsored content by adding the action as createInline."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get a  Sponsored Creative",
+        "api_call": "https://{{baseUrl}}/creatives/{{urn_creatives}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Search for Creative",
+        "api_call": "https://{{baseUrl}}/creatives?accounts=List(id1,id2,id3)&campaigns=List(id1,id2,id3)&contentReferences=List(id1,id2,id3)&creatives=List(id1,id2,id3)&intendedStatuses=List(ARCHIVED,CANCELED,ARCHIVED)&isTestAccount=true&isTotalIncluded=false&leadgenCreativeCallToActionDestinations=List()&q=criteria&sortOrder=ASCENDING",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "You can search for creative content in order to get a collection of creatives matching your search parameters. The Creative"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Update a Creative",
+        "api_call": "https://{{baseUrl}}/creatives/{creative ID}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_version}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "You can change the details of following Creatives fields:\n\n\\*   `intendedStatus`:\n\\*   `leadgenCallToAction`: field\u00a0`adFormUrn`\u00a0- The ad form that"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Delete a Creative",
+        "api_call": "https://{{baseUrl}}/creatives/{creative ID}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "A Creative can be deleted. Use DELETE method to delete a creative that meets one of the following conditions. To"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Create Organic Post",
+        "api_call": "https://{{baseUrl}}/posts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "X-Restli-Protocol-Version",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"author\": \"{{organization_urn}}\",\n  \"commentary\": \"Sample Video Post\",\n  \"visibility\": \"PUBLIC\",\n  \"distribution\": {\n    \"feedDistribution\": \"NONE\",\n    \"targetEntities\": [{\n                \"geoLocations\": [\n                    \"{{urn_geo}}\"\n                ],\n                \"seniorities\": [\n                    \"urn:li:seniority:3\"\n                ]\n            }],\n    \"thirdPartyDistributionChannels\": []\n  },\n  \"content\":{\n    \"media\":{\n      \"title\":\"title of the video\",\n      \"id\": \"{[urn_video}}\"\n      }\n    },\n  \"lifecycleState\": \"PUBLISHED\",\n  \"isReshareDisabledByAuthor\": true\n}\n\n"
+            }
+        },
+        "functionality": "Simplest form of post creation where an organic post is made ith a sample text at a page."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get Posts by URN",
+        "api_call": "https://{{baseUrl}}/posts/{encoded ugcPostUrn|shareUrn}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "Creating posts with image requires uploading an image asset to obtain a Image URN (urn:li:image:{id}) for creating the post. See"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get Multiple Post by URN",
+        "api_call": "https://{{baseUrl}}/posts?ids=List({encoded ugcPostUrn},{encoded ugcPostUrn})",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-RestLi-Method",
+                    "value": "BATCH_CREATE",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Multiple posts can be retrieved and viewed in a single API call by passing in multiple UGC Posts or share"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Find post by Account",
+        "api_call": "https://{{baseUrl}}/posts?dscAdAccount={encode dscAdAccount}&q=dscAdAccount",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "You can retrieve all posts with the specific Sponsored Account and the content types with the following parameters:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Update a Post",
+        "api_call": "https://{{baseUrl}}/posts/{shared ID}/{ugcPosts ID}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"patch\": {\n    \"$set\": {\n      \"commentary\": \"Update to the post\",\n      \"contentCallToActionLabel\": \"LEARN_MORE\"\n    }\n  }\n}\n"
+            }
+        },
+        "functionality": "The following\u00a0`posts`\u00a0field are available to update. Refer to\u00a0[Schema](https://docs.microsoft.com/en-us/linkedin/marketing/integrations/community-management/shares/posts-api?view=li-lms-2022-08&tabs=http#post-schema)\u00a0for complete field details.\n\n| Field | Description |\n| --- | --- |\n| commentary"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Delete a Post",
+        "api_call": "https://{{baseUrl}}/posts/{encoded ugcPostUrn|shareUrn}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Post deletions are idempotent. Deletion requests for a previously deleted UGC Post will return a\u00a0`204`\u00a0code - No Content.\n\n####"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Create a Sponsored Conversation",
+        "api_call": "https://{{baseUrl}}/conversationAds",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "Successful response will have Status\u00a0`201 Created`\u00a0and the ID in the\u00a0`x-linkedin-id`\u00a0response header. For example,`urn:li:sponsoredConversation:164380864`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get a Sponsored Conversation",
+        "api_call": "https://{{baseUrl}}/conversationAds/{conversationUrn}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "#### Sample Response\n\nJSONCopy\n\n```\n{\n  \"id\": \"urn:li:sponsoredConversation:185204\",\n  \"parentAccount\": \"urn:li:sponsoredAccount:520866471\"\n}\n\n```"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get Multiple Sponsored Conversations",
+        "api_call": "https://{{baseUrl}}/conversationAds?ids=List({conversation-urn1},{conversation-urn2})'",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "X-RestLi-Method",
+                    "value": "BATCH_GET",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Makes a BATCH_GET request to let a list of conversations that are created.\n\n#### Sample Response\n\nJSONCopy\n\n```\n{\n    \"statuses\": {\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Update a Sponsored Conversation",
+        "api_call": "https://{{baseUrl}}/conversationAds/{conversationUrn}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"patch\": {\n     \"$set\": {\n        \"firstMessageContent\": \"urn:li:sponsoredMessageContent:(urn:li:sponsoredConversation:185204:14253)\u201d\n     }\n  } \n}\n"
+            }
+        },
+        "functionality": "In the following example, the\u00a0`firstMessageContent`\u00a0field is changed to point to the first message of the conversation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Create Sponsored Message Content",
+        "api_call": "https://{{baseUrl}}/conversationAds/{conversationAdsId}/sponsoredMessageContents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"bodySource\": {\n     \"text\": \"test message\"\n  }\n}\n\n"
+            }
+        },
+        "functionality": "A successful response returns a\u00a0`201 Created`\u00a0HTTP status code and the ID in the\u00a0`x-linkedin-id response`\u00a0header, e.g.\u00a0`\"urn:li:sponsoredMessageContent:(urn:li:sponsoredConversation:186604,14277)\"`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get Sponsored Message Content",
+        "api_call": "https://{{baseUrl}}/conversationAds/{conversationUrn}/sponsoredMessageContents/{messageUrn}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Retrieves just a single message content from all the conversations in a conversation Ad."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get All Sponsored Message Content",
+        "api_call": "https://{{baseUrl}}/conversationAds/{conversationUrn}/sponsoredMessageContents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Retrieves just all the message contents from all the conversations in a conversation Ad."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Update Sponsored Message Content",
+        "api_call": "https://{{baseUrl}}/conversationAds/{conversationUrn}/sponsoredMessageContents/{messageUrn}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"patch\": {\n    \"$set\": {\n      \"bodySource\": {\n         \u201ctext\u201d: \u201cNew updated text\u201d\n      }\n    }\n  }\n}\n"
+            }
+        },
+        "functionality": "Updates the message contents from all the conversations in a conversation Ad."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Batch create Sponsored Message Content",
+        "api_call": "https://{{baseUrl}}/conversationAds/{conversationAdsId}/sponsoredMessageContents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-RestLi-Method",
+                    "value": "BATCH_CREATE",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"elements\": [ {\n              \"bodySource\": {\n         \"leadGenerationForm\": \"urn:li:adForm:434835\"\n       },\n               \"nextAction\":{\n                  \"options\":[\n                    {\n                        \"replyType\": \"LEAD_GENERATION_THANK_YOU\",\n                        \"optionText\": \"Visit website\"\n                    },\n                    {\n                        \"replyType\": \"SIMPLE_REPLY\",\n                                                \"nextContent\": \"urn:li:sponsoredMessageContent:(urn:li:sponsoredConversation:186604,14253)\",\n                        \"optionText\": \"Simple reply\"\n                    },\n                    {\n                        \"replyType\": \"EXTERNAL_WEBSITE\",\n                        \"optionText\": \"Visit website\",\n                        \"landingPage\": \"http://www.linkedin.com\"\n                    }\n                  ]\n               }\n        },{\n            \"bodySource\": {\n        \"text\": \"Sample text\"\n      },\n             \"nextAction\":{\n                  \"options\":[\n                    {\n                        \"replyType\": \"EXTERNAL_WEBSITE\",\n                        \"optionText\": \"Other website\",\n                        \"landingPage\": \"http://www.microsoft.com\"\n                    }\n                  ]\n               }\n\n        }]\n}\n\n"
+            }
+        },
+        "functionality": "Creates Sponsored Message Content in Batches."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Batch get Sponsored Message Content",
+        "api_call": "https://{{baseUrl}}/conversationAds/{conversationUrn}/sponsoredMessageContents?ids=List({message-urn1},{message-urn2})",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-RestLi-Method",
+                    "value": "BATCH_GET",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Retrieves Sponsored Message Content in Batches."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Batch update Sponsored Message Content",
+        "api_call": "https://{{baseUrl}}/conversationAds/{conversationUrn}/sponsoredMessageContents?ids=List({message-urn1},{message-urn2})",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "'Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-RestLi-Method",
+                    "value": "BATCH_UPDATE",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n       \"entities\": {\n        \"urn:li:sponsoredMessageContent:(urn_sponsoredConversation:sp1,sp2)\": {\n              \"patch\": {\n                  \"$set\": {\n                      \"bodySource\": {\n                         \u201ctext\u201d: \u201cNew updated text\u201d\n                      }\n                   }\n                }\n    },\n         \"urn:li:sponsoredMessageContent:(urn_sponsoredConversation:sp1,sp2)\": {\n              \"patch\": {\n                  \"$set\": {\n                      \"bodySource\": {\n                         \u201ctext\u201d: \u201cNew updated text2\u201d\n                      }\n                   }\n                }\n    }\n    }\n}\n\n"
+            }
+        },
+        "functionality": "Updates Sponsored Message Content in Batches."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Batch delete Sponsored Message Content",
+        "api_call": "https://{{baseUrl}}/conversationAds/{conversationUrn}/sponsoredMessageContents?ids=List({message-urn1},{message-urn2})'",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-RestLi-Method",
+                    "value": "BATCH_DELETE",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Deletes Sponsored Message Content in Batches."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Create a Dynamic Follower Ad",
+        "api_call": "https://{{baseUrl}}/creatives",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"content\": {\n     \"follow\": {\n      \"organizationName\": \"Test Company Name\",\n      \"logo\": \"{{urn_image}}\",\n      \"headline\": {\n          \"preApproved\": \"GROW_YOUR_BUSINESS_INSIGHTS\"\n      },\n      \"description\": {\n          \"preApproved\": \"GET_LATEST_JOBS_AND_INDUSTRY_NEWS\"\n      },\n      \"callToAction\": \"VISIT_ORGANIZATION_COMPANY_PAGE\",\n      \"showMemberProfilePhoto\": true\n     }\n    },\n    \"campaign\": \"urn:li:sponsoredCampaign:190492324\",\n    \"intendedStatus\": \"DRAFT\"\n}\n"
+            }
+        },
+        "functionality": "A successful response returns a\u00a0`201 Created HTTP`\u00a0status code and the ID in the\u00a0`x-linkedin-id`\u00a0response header. For example,\u00a0`urn:li:sponsoredCreative:164380864`\n\n##"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get a Dynamic Follower Ad",
+        "api_call": "https://{{baseUrl}}/creatives/{sponsoredCreative-urn}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "Retrieves a dynamic follower ad after passing an urn.\n\nA successful response returns a\u00a0`HTTP 200`\u00a0status code.\n\n##"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Update a Dynamic Follower Ad",
+        "api_call": "https://{{baseUrl}}/creatives/{sponsoredCreative-urn}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"patch\": {\n          \"$set\": {\n            \"content\": {\n              \"follow\": {\n                  \"organizationName\": \"Test Company Name\",\n                  \"logo\": \"{{urn_image}}\",\n                  \"headline\": {\n                      \"preApproved\": \"MEMBER_KEEP_UP_WITH_LATEST_INSIGHTS\"\n                  },\n                  \"description\": {\n                      \"custom\": \"custom_description\"\n                  },\n                  \"callToAction\": \"VISIT_ORGANIZATION_COMPANY_PAGE\",\n                  \"showMemberProfilePhoto\": true\n              }\n            }\n          }\n   }\n}\n\n"
+            }
+        },
+        "functionality": "Updates a dynamic follower ad after passing an urn.\n\nA successful response returns a\u00a0`204 No Content`\u00a0HTTP status code.\n\n##   \n\n##"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Delete a Dynamic Follower Ad",
+        "api_call": "https://{{baseUrl}}/creatives/{sponsoredCreative-urn}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Updates a dynamic follower ad after passing an urn.\n\nA successful response returns a\u00a0`204 No Content`.\n\n##"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Create a Dynamic Spotlight Ad",
+        "api_call": "https://{{baseUrl}}/creatives",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"content\": {\n        \"spotlight\": {\n            \"callToAction\": \"Join Us Now\",\n            \"description\": \"Check out this demo\",\n            \"headline\": \"Spotlight Ad Demo\",\n            \"landingPage\": \"http://www.linkedin.com\",\n            \"logo\": \"urn:li:image:abc\",\n            \"organizationName\": \"LinkedIn Demo\",\n            \"showMemberProfilePhoto\": true\n        }\n     },\n     \"campaign\": \"urn:li:sponsoredCampaign:123\",\n     \"intendedStatus\": \"ACTIVE\"\n}\n"
+            }
+        },
+        "functionality": "Creates a Dynamic Spotlight Ad Creative.\n\nA successful response returns a\u00a0`201 Created HTTP`\u00a0status code and the ID in the\u00a0`x-linkedin-id`\u00a0response header. For"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get a Dynamic Spotlight Ad",
+        "api_call": "https://{{baseUrl}}/creatives/{sponsoredCreative-urn}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "'Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "Retrives a Dynamic Spotlight Ad.\n\n#### Sample Response\n\nJSONCopy\n\n```\n{\n    \"servingHoldReasons\": [\n        \"UNDER_REVIEW\",\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Update a Dynamic Spotlight Ad",
+        "api_call": "https://{{baseUrl}}/creatives/{sponsoredCreative-urn}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"patch\": {\n        \"$set\": {\n            \"content\": {\n                \"spotlight\": {\n        \"callToAction\": \"New Action\",\n        \"description\": \"New Description\",\n        \"headline\": \"New Headline\",\n        \"landingPage\": \"http://example.com\",                       \n                    \"organizationName\": \"New Organization Name\",\n                    \"logo\": \"urn:li:image:def\",\n\t        \"showMemberProfilePhoto\": false\n                }\n            }\n        }\n    }\n}\n"
+            }
+        },
+        "functionality": "## Update a Dynamic Spotlight Ad Creative\n\n\\*   [http](https://docs.microsoft.com/en-us/linkedin/marketing/integrations/ads/advertising-targeting/version/spotlight-ads?view=li-lms-2022-08&tabs=http#tabpanel_3_http)\n\\*   [curl](https://docs.microsoft.com/en-us/linkedin/marketing/integrations/ads/advertising-targeting/version/spotlight-ads?view=li-lms-2022-08&tabs=http#tabpanel_3_curl)\n    \n\nHTTPCopy\n\n```\nPOST https://api.linkedin.com/rest/creatives/{sponsoredCreative-urn}\n\n```\n\nJSONCopy\n\n```\n{\n  "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Delete a Dynamic Spotlight Ad",
+        "api_call": "https://{{baseUrl}}/creatives/{sponsoredCreative-urn}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "## Delete a Dynamic Spotlight Ad Creative\n\n\\*   [http](https://docs.microsoft.com/en-us/linkedin/marketing/integrations/ads/advertising-targeting/version/spotlight-ads?view=li-lms-2022-08&tabs=http#tabpanel_4_http)\n\\*   [curl](https://docs.microsoft.com/en-us/linkedin/marketing/integrations/ads/advertising-targeting/version/spotlight-ads?view=li-lms-2022-08&tabs=http#tabpanel_4_curl)\n    \n\nHTTPCopy\n\n```\nDELETE https://api.linkedin.com/rest/creatives/{sponsoredCreative-urn}\n\n```\n\nA successful response"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Upload the Document file (select a document file in the Body for postman to use)",
+        "api_call": "{{document_uploadurl}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Initialize Document Upload",
+        "api_call": "{{baseUrl}}/documents?action=initializeUpload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get a single document",
+        "api_call": "{{baseUrl}}//documents/{{document_asset_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Get multiple documents",
+        "api_call": "{{baseUrl}}/rest/images?ids=List({{document_urn1}},{{document_urn2}})",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Create document content",
+        "api_call": "{{baseUrl}}/posts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"author\": \"urn:li:organization:{{organization_id}}\",\n    \"commentary\": \"test strings!\",\n    \"visibility\": \"PUBLIC\",\n    \"distribution\": {\n        \"feedDistribution\": \"MAIN_FEED\",\n        \"targetEntities\": [],\n        \"thirdPartyDistributionChannels\": []\n    },\n    \"content\": {\n        \"media\": {\n            \"title\":\"Example.pdf\",\n            \"id\": \"urn:li:document:{{document_asset_id}}\"\n        }\n    },\n    \"lifecycleState\": \"PUBLISHED\",\n    \"isReshareDisabledByAuthor\": false\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Content APIs: Fetch multiple document content",
+        "api_call": "{{baseUrl}}/posts?ids=List({encoded postId},{encoded postId})",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

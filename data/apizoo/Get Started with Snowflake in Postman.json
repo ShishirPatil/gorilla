@@ -1,0 +1,178 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started with Snowflake in Postman: SQL query by rows",
+        "api_call": "https://anytwtj-td76688.snowflakecomputing.com/api/v2/statements?requestId=statement-uuid&async=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Set this to the name and version of your application (e.g. \u201capplicationName/applicationVersion\u201d). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "{{userAgent}}"
+                },
+                {
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT or OAUTH for oAuth token. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "{{tokenType}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"statement\": \"select seq8(), randstr(1000, random()) from table(generator(rowcount=>600))\",\n    \"timeout\": \"1000\",\n    \"database\": \"SNOWFLAKE_SAMPLE_DATA\",\n    \"schema\": \"PUBLIC\",\n    \"warehouse\": \"S\",\n    \"role\": \"PUBLIC\",\n    \"bindings\": {},\n    \"parameters\": {}\n}\n",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Submits a single statement for execution. Review the statement under the **Body** tab under the property `statement`. Make sure to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started with Snowflake in Postman: Checks the status of the execution of a statement",
+        "api_call": "https://anytwtj-td76688.snowflakecomputing.com/api/v2/statements/:statementHandle?requestId=statement-uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Set this to the name and version of your application (e.g. \u201capplicationName/applicationVersion\u201d). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "{{userAgent}}"
+                },
+                {
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT or OAUTH for oAuth token. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "{{tokenType}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Checks the status of the execution of the statement with the specified statement handle. If the statement was executed successfully,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started with Snowflake in Postman: Cancels the execution of a statement",
+        "api_call": "https://anytwtj-td76688.snowflakecomputing.com/api/v2/statements/:statementHandle/cancel?requestId=statement-uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Set this to the name and version of your application (e.g. \u201capplicationName/applicationVersion\u201d). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "{{userAgent}}"
+                },
+                {
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT or OAUTH for oAuth token. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "{{tokenType}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Cancels the execution of the statement with the specified statement handle."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started with Snowflake in Postman: SQL query by time",
+        "api_call": "https://anytwtj-td76688.snowflakecomputing.com/api/v2/statements?requestId=statement-uuid&async=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Set this to the name and version of your application (e.g. \u201capplicationName/applicationVersion\u201d). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "{{userAgent}}"
+                },
+                {
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT or OAUTH for oAuth token. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "{{tokenType}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"statement\": \"select seq8(), randstr(1000, random()) from table(generator(timelimit=>20))\",\n    \"timeout\": \"1000\",\n    \"database\": \"SNOWFLAKE_SAMPLE_DATA\",\n    \"schema\": \"PUBLIC\",\n    \"warehouse\": \"S\",\n    \"role\": \"PUBLIC\",\n    \"bindings\": {},\n    \"parameters\": {}\n}\n",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Submits a single statement for execution. Review the statement under the **Body** tab under the property `statement`. To increase the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started with Snowflake in Postman: Checks the status",
+        "api_call": "https://anytwtj-td76688.snowflakecomputing.com/api/v2/statements/:statementHandle?requestId=statement-uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Set this to the name and version of your application (e.g. \u201capplicationName/applicationVersion\u201d). You must use a value that complies with RFC 7231.",
+                    "key": "User-Agent",
+                    "value": "{{userAgent}}"
+                },
+                {
+                    "description": "Specify the authorization token type for the Authorization header. KEYPAIR_JWT is for Keypair JWT or OAUTH for oAuth token. If not specified, OAUTH is assumed.",
+                    "key": "X-Snowflake-Authorization-Token-Type",
+                    "value": "{{tokenType}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Checks the status of the execution of the statement with the specified statement handle. If the statement was executed successfully,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Get Started with Snowflake in Postman: Notification",
+        "api_call": "https://postman-echo.com/post",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"message\": \"All done!\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
