@@ -1,0 +1,152 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Free GraphQL APIs: SpaceX",
+        "api_call": "https://api.spacex.land/graphql/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "graphql",
+                "graphql": {
+                    "query": "{\r\n  launchesPast(limit: 10) {\r\n    mission_name\r\n    launch_date_local\r\n    launch_site {\r\n      site_name_long\r\n    }\r\n    links {\r\n      article_link\r\n      video_link\r\n    }\r\n    rocket {\r\n      rocket_name\r\n    }\r\n  }\r\n}",
+                    "variables": ""
+                }
+            }
+        },
+        "functionality": "Get all sorts of information about previous Space X launches, like information about the rocket, astronauts, and more! Try it"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Free GraphQL APIs: SWAPI (Star Wars API)",
+        "api_call": "https://swapi-graphql.netlify.app/.netlify/functions/index",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "graphql",
+                "graphql": {
+                    "query": "{\r\n  allFilms {\r\n    films {\r\n      title\r\n    }\r\n  }\r\n}",
+                    "variables": ""
+                }
+            }
+        },
+        "functionality": "Are you a fan of Star Wars? The SWAPI API provides a wealth of information about some of the older"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Free GraphQL APIs: Rick and Morty API",
+        "api_call": "https://rickandmortyapi.com/graphql",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "graphql",
+                "graphql": {
+                    "query": "{\r\n  characters(page: 2, filter: { name: \"rick\" }) {\r\n    info {\r\n      count\r\n    }\r\n    results {\r\n      name\r\n    }\r\n  }\r\n}",
+                    "variables": ""
+                }
+            }
+        },
+        "functionality": "Get information about episodes, characters, and even their last known location!"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Free GraphQL APIs: Countries",
+        "api_call": "https://countries.trevorblades.com",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "graphql",
+                "graphql": {
+                    "query": "{\r\n  countries {\r\n    code\r\n    name\r\n    emoji\r\n  }\r\n}",
+                    "variables": ""
+                }
+            }
+        },
+        "functionality": "Get country codes, emoji, and more for every country."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Free GraphQL APIs: PokeAPI",
+        "api_call": "https://beta.pokeapi.co/graphql/v1beta",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "graphql",
+                "graphql": {
+                    "query": "{\r\n  gen1_species: pokemon_v2_pokemonspecies(\r\n    where: { pokemon_v2_generation: { name: { _eq: \"generation-i\" } } }\r\n    order_by: { id: asc }\r\n  ) {\r\n    name\r\n    id\r\n  }\r\n}",
+                    "variables": ""
+                }
+            }
+        },
+        "functionality": "Get all the information you need to build a Pokedex! The Pokemon API is free for non-commercial use and rate-limited."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Free GraphQL APIs: Dex API",
+        "api_call": "https://dex-server.herokuapp.com/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "graphql",
+                "graphql": {
+                    "query": "{\r\n  allPokemon {\r\n    name\r\n  }\r\n}",
+                    "variables": ""
+                }
+            }
+        },
+        "functionality": "Another Pokemon API with all the info you need to build a Pokedex! This API is in early development but"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Free GraphQL APIs: Anilist API",
+        "api_call": "https://graphql.anilist.co",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "graphql",
+                "graphql": {
+                    "query": "{\r\n  Page {\r\n    media {\r\n      siteUrl\r\n      title {\r\n        english\r\n        native\r\n      }\r\n      description\r\n    }\r\n  }\r\n}",
+                    "variables": ""
+                }
+            }
+        },
+        "functionality": "Anilist is an anime API with information about 1000s of animes. The API is free for non-commercial use and allows"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Free GraphQL APIs: GitHub API",
+        "api_call": "https://api.github.com/graphql",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "bearer <token>",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "graphql",
+                "graphql": {
+                    "query": "{\r\n  viewer {\r\n    login\r\n    repositories(last: 10) {\r\n      nodes {\r\n        name\r\n      }\r\n    }\r\n  }\r\n}",
+                    "variables": ""
+                }
+            }
+        },
+        "functionality": "The GitHub API is one of my favorite APIs for creating examples. It supports both queries and mutations (you can"
+    }
+]

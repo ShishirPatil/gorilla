@@ -1,0 +1,1960 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Create a payment link",
+        "api_call": "{{base_url}}/v2/payment-links",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{     \n    \"user\": {\n         \"first_name\": \"Firstname\",\n         \"last_name\": \"Lastname\",\n         \"external_reference\": \"REF-1234_AZ\"\n     },\n     \"expired_date\": \"2023-02-20T22:00:00.000Z\",\n     \"client_reference\": \"ABCDE_FG-HI_12345\",\n     \"transactions\": [\n     {\n         \"amount\": 10,\n         \"currency\": \"EUR\",\n         \"label\": \"Refund 123456\",\n         \"end_to_end_id\": \"E2E_ID-1234\"\n       }\n     ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get a single payment link",
+        "api_call": "{{base_url}}/v2/payment-links/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List payment links",
+        "api_call": "{{base_url}}/v2/payment-links",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Revoke a payment link",
+        "api_call": "{{base_url}}/v2/payment-links/:id/revoke",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Create a payment request",
+        "api_call": "{{base_url}}/v2/payment-requests",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"successful_callback_url\": \"https://www.google.com?success\",\n  \"unsuccessful_callback_url\": \"https://www.google.com?error\",\n  \"transactions\": [\n    {\n      \"currency\": \"EUR\",\n      \"label\": \"label test\",\n      \"amount\": 10.5,\n      \"beneficiary\": {\n          \"name\": \"Jean Baptiste\" ,\n          \"iban\": \"FR2310096000301695931368H67\"\n      },\n      \"client_reference\": \"ABCDE-EEEE_9398848\",\n      \"end_to_end_id\": \"E2E_TEST-123\"\n    }\n  ],\n  \"user\": {\n    \"first_name\": \"Thomas\",\n    \"last_name\": \"Pichet\",\n    \"external_reference\": \"AEF142536-890\"\n  },\n  \"bank_id\": 14\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get a single payment request",
+        "api_call": "{{base_url}}/v2/payment-requests/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List payment requests",
+        "api_call": "{{base_url}}/v2/payment-requests",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Create a refund",
+        "api_call": "{{base_url}}/v2/payment-refunds",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"payment_account_transaction_id\": \"9f7052e8-96cd-45da-8e5c-08c82ef83164\",\n  \"amount\": 10.0,\n  \"client_reference\": \"client-reference\",\n  \"description\": \"My product refund description\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get list of refunds",
+        "api_call": "{{base_url}}/v2/payment-refunds",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get single refund",
+        "api_call": "{{base_url}}/v2/payment-refunds/:refundId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get list of payout beneficiaries",
+        "api_call": "{{base_url}}/v2/payment-account/beneficiaries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Create a payout request",
+        "api_call": "{{base_url}}/v2/payment-account/payouts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"beneficiary_id\": \"bf939505-35d5-42b0-a928-a63a699dcf69\",\n    \"amount\": 20,\n    \"label\": \"label-20 euros\",\n    \"client_reference\": \"ref-1234\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get list of payout requests",
+        "api_call": "{{base_url}}/v2/payment-account/payouts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get single payout request",
+        "api_call": "{{base_url}}/v2/payment-account/payouts/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List all banks",
+        "api_call": "{{base_url}}/v2/banks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get a single bank",
+        "api_call": "{{base_url}}/v2/banks/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get connector statuses",
+        "api_call": "{{base_url}}/v2/banks/insights",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Create a user (deprecated)",
+        "api_call": "{{base_url}}/v2/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"email\": \"john.doe@mail.com\",\n  \"password\": \"password123\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Create a user",
+        "api_call": "{{base_url}}/v2/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Authenticate a user (deprecated)",
+        "api_call": "{{base_url}}/v2/authenticate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"email\": \"john.doe@mail.com\",\n  \"password\": \"password123\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Authenticate a user",
+        "api_call": "{{base_url}}/v2/authenticate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"user_uuid\": \"XXXX\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Log out a user",
+        "api_call": "{{base_url}}/v2/logout",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List users",
+        "api_call": "{{base_url}}/v2/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get a single user",
+        "api_call": "{{base_url}}/v2/users/:uuid",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Edit user's email",
+        "api_call": "{{base_url}}/v2/users/:uuid/email",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"new_email\": \"john.doeeeeeee@email.com\",\n    \"password\": \"password123\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Edit user's password",
+        "api_call": "{{base_url}}/v2/users/:uuid/password",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"current_password\": \"password123\",\n    \"new_password\": \"P@ssw0rd123\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Delete a user",
+        "api_call": "{{base_url}}/v2/users/:uuid/delete",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"password\": \"P@ssw0rd123\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Delete all users",
+        "api_call": "{{base_url}}/v2/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Check email validation",
+        "api_call": "{{base_url}}/v2/users/me/email/confirmation",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Connect an item",
+        "api_call": "{{base_url}}/v2/connect/items/add",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Edit an item",
+        "api_call": "{{base_url}}/v2/connect/items/edit?item_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Manage SCA and Sync",
+        "api_call": "{{base_url}}/v2/connect/items/sync?item_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Validate email",
+        "api_call": "{{base_url}}/v2/connect/users/email/confirmation",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Validate pro items",
+        "api_call": "{{base_url}}/v2/connect/items/pro/confirmation",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Manage accounts",
+        "api_call": "{{base_url}}/v2/connect/manage/accounts/iban",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Refresh accounts",
+        "api_call": "{{base_url}}/v2/transfers/accounts/refresh",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Send a transfer",
+        "api_call": "{{base_url}}/v2/pay/transfer",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"amount\": 123.45,\n\t\"label\": \"Label\",\n    \"beneficiary\": {\n        \"iban\": \"FR6910096000703217562131V12\",\n        \"name\": \"Test Name\"\n    },\n\t\"client_reference\": \"reference-test_1234\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Send bulk transfers",
+        "api_call": "{{base_url}}/v2/pay/bulk-transfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bankin-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_reference\": \"BULK-REF_1234\",\n    \"transfers\": [\n        {\n            \"amount\": 123.45,\n            \"label\": \"test 1\",\n            \"beneficiary\": {\n                \"iban\": \"FR6910096000703217562131V12\",\n                \"name\": \"Michelle Jeanne\"\n            },\n            \"client_reference\": \"TRANSFER-REF_1234\"\n        },\n        {\n            \"amount\": 0.01,\n            \"label\": \"test 2\",\n            \"beneficiary\": {\n                \"iban\": \"FR0312739000707993224654F33\",\n                \"name\": \"Patrick Pierre\"\n            },\n            \"client_reference\": \"TRANSFER-REF_1234\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List transfers",
+        "api_call": "{{base_url}}/v2/transfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get transfer",
+        "api_call": "{{base_url}}/v2/transfers/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List bulks",
+        "api_call": "{{base_url}}/v2/bulk-transfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get bulk",
+        "api_call": "{{base_url}}/v2/bulk-transfers/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List all sender accounts",
+        "api_call": "{{base_url}}/v2/transfers/accounts/senders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List items",
+        "api_call": "{{base_url}}/v2/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get a single item",
+        "api_call": "{{base_url}}/v2/items/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Refresh an item",
+        "api_call": "{{base_url}}/v2/items/:id/refresh",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get an item's refresh status",
+        "api_call": "{{base_url}}/v2/items/:id/refresh/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Delete an item",
+        "api_call": "{{base_url}}/v2/items/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List accounts",
+        "api_call": "{{base_url}}/v2/accounts?item_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get a single account",
+        "api_call": "{{base_url}}/v2/accounts/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List transactions",
+        "api_call": "{{base_url}}/v2/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List updated transactions",
+        "api_call": "{{base_url}}/v2/transactions/updated",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get a single transaction",
+        "api_call": "{{base_url}}/v2/transactions/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List transactions by account",
+        "api_call": "{{base_url}}/v2/accounts/:id/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List updated transactions by account",
+        "api_call": "{{base_url}}/v2/accounts/:id/transactions/updated",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List stocks",
+        "api_call": "{{base_url}}/v2/stocks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List updated stocks",
+        "api_call": "{{base_url}}/v2/stocks/updated",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get a single stock",
+        "api_call": "{{base_url}}/v2/stocks/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List categories",
+        "api_call": "{{base_url}}/v2/categories",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Accept-Language",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get a single category",
+        "api_call": "{{base_url}}/v2/categories/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Accept-Language",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get categories insights",
+        "api_call": "{{base_url}}/v2/insights/category",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: Get accounts information",
+        "api_call": "{{base_url}}/v2/accounts-information",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List subscriptions",
+        "api_call": "{{base_url}}/v2/subscriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "v2021.06.01 Bridge API Collection: List transactions linked to subscriptions",
+        "api_call": "{{base_url}}/v2/subscriptions/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Client-Id",
+                    "value": "{{client_id}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Client-Secret",
+                    "value": "{{client_secret}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Bridge-Version",
+                    "value": "{{bridge_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{access_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

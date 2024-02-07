@@ -1,0 +1,2000 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get build details",
+        "api_call": "https://{{host}}/papi/v1/build",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Gets information about the current API release. Note that available information about version numbers and build dates are unrelated to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Bulk activate a set of properties",
+        "api_call": "https://{{host}}/papi/v1/bulk/activations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"activatePropertyVersions\": [\n    {\n      \"network\": \"STAGING\",\n      \"note\": \"Some activation note\",\n      \"propertyId\": \"prp_1\",\n      \"propertyVersion\": 2\n    },\n    {\n      \"network\": \"STAGING\",\n      \"note\": \"Sample activation\",\n      \"notifyEmails\": [\n        \"someoneElse@somewhere.com\"\n      ],\n      \"propertyId\": \"prp_15\",\n      \"propertyVersion\": 3\n    },\n    {\n      \"acknowledgeAllWarnings\": false,\n      \"acknowledgeWarnings\": [\n        \"msg_123\",\n        \"msg_234\"\n      ],\n      \"network\": \"PRODUCTION\",\n      \"note\": \"created by xyz\",\n      \"propertyId\": \"prp_3\",\n      \"propertyVersion\": 11\n    }\n  ],\n  \"defaultActivationSettings\": {\n    \"acknowledgeAllWarnings\": true,\n    \"fastPush\": true,\n    \"notifyEmails\": [\n      \"you@example.com\",\n      \"them@example.com\"\n    ],\n    \"useFastFallback\": false\n  }\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Bulk activate a set of property versions. Alternately, perform a bulk [fallback](https://techdocs.akamai.com/property-mgr/reference/property-activation-error-handling) to the previous activation within an hour of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List bulk-activated properties",
+        "api_call": "https://{{host}}/papi/v1/bulk/activations/:bulkActivationId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "List all activations that result from a [bulk activation request](https://techdocs.akamai.com/property-mgr/reference/post-bulk-activations). Once the overall `bulkActivationStatus` is `COMPLETE`, check each activation's `activationStatus`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Bulk version a set of properties",
+        "api_call": "https://{{host}}/papi/v1/bulk/property-version-creations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"createPropertyVersions\": [\n    {\n      \"createFromVersion\": 1,\n      \"createFromVersionEtag\": \"2641910c585cf67b\",\n      \"propertyId\": \"prp_1\"\n    },\n    {\n      \"createFromVersion\": 2,\n      \"createFromVersionEtag\": \"343410c585cf67fc\",\n      \"propertyId\": \"prp_15\"\n    },\n    {\n      \"createFromVersion\": 10,\n      \"createFromVersionEtag\": \"6c7v5c65c6cvcv65\",\n      \"propertyId\": \"prp_3\"\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create new versions of a set of properties based on any previous version. This operation launches an asynchronous process to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List bulk-versioned properties",
+        "api_call": "https://{{host}}/papi/v1/bulk/property-version-creations/:bulkCreateId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "List all new property versions that result from a [bulk versioning request](https://techdocs.akamai.com/property-mgr/reference/post-bulk-version). This operation polls the asynchronous process's status. After"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Bulk patch a set of properties",
+        "api_call": "https://{{host}}/papi/v1/bulk/rules-patch-requests",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"patchPropertyVersions\": [\n    {\n      \"etag\": \"a87v5c65c6821bc\",\n      \"patches\": [\n        {\n          \"op\": \"replace\",\n          \"path\": \"/rules/children/1/features/3/option/enabled\",\n          \"value\": \"on\"\n        },\n        {\n          \"op\": \"replace\",\n          \"path\": \"/rules/children/1/features/0/option/enabled\",\n          \"value\": \"on\"\n        }\n      ],\n      \"propertyId\": \"prp_1\",\n      \"propertyVersion\": 1\n    },\n    {\n      \"etag\": \"6c7v5c65c6cvcv65\",\n      \"patches\": [\n        {\n          \"op\": \"replace\",\n          \"path\": \"/rules/children/1/children/0/features/1/enabled\",\n          \"value\": \"on\"\n        }\n      ],\n      \"propertyId\": \"prp_15\",\n      \"propertyVersion\": 2\n    },\n    {\n      \"etag\": \"1f8903bcde2f3\",\n      \"patches\": [\n        {\n          \"op\": \"replace\",\n          \"path\": \"/rules/children/0/children/1/children/2/features/1/enabled\",\n          \"value\": \"on\"\n        }\n      ],\n      \"propertyId\": \"prp_3\",\n      \"propertyVersion\": 10\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Apply a series of JSON Patch operations to modify a set of property versions. Form this set of `patches` based"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List bulk-patched properties",
+        "api_call": "https://{{host}}/papi/v1/bulk/rules-patch-requests/:bulkPatchId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "List all modified property versions that result from a [bulk patch](https://techdocs.akamai.com/property-mgr/reference/post-bulk-patch) request. This operation polls the asynchronous process's status. Once"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Bulk search a set of properties or includes",
+        "api_call": "https://{{host}}/papi/v1/bulk/rules-search-requests",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"bulkSearchQuery\": {\n    \"bulkSearchQualifiers\": [\n      \"$.options[?(@.secure==\\\"true\\\")]\",\n      \"$..features[?(@.name==\\\"origin\\\")].options[?(@.hostname==\\\"old.origin.example.com\\\")]\"\n    ],\n    \"match\": \"$..conditions[?(@.name == \\\"ext\\\" && \\\"mp3\\\" in @.options.value && \\\"mp4\\\" nin @.options.value)].options.value[?(@ == \\\"mp3\\\")]\",\n    \"syntax\": \"JSONPATH\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "POST a bulk search object to search across all active property or include versions. Specify a [JSONPath](http://goessner.net/articles/JsonPath/) expression to match"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Synchronously bulk search a set of properties or includes",
+        "api_call": "https://{{host}}/papi/v1/bulk/rules-search-requests-synch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"bulkSearchQuery\": {\n    \"bulkSearchQualifiers\": [\n      \"$.options[?(@.secure==\\\"true\\\")]\",\n      \"$..features[?(@.name==\\\"origin\\\")].options[?(@.hostname==\\\"old.origin.example.com\\\")]\"\n    ],\n    \"match\": \"$..conditions[?(@.name == \\\"ext\\\" && \\\"mp3\\\" in @.options.value && \\\"mp4\\\" nin @.options.value)].options.value[?(@ == \\\"mp3\\\")]\",\n    \"syntax\": \"JSONPATH\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Provides an alternative to the asynchronous [Bulk search a set of properties or includes](https://techdocs.akamai.com/property-mgr/reference/post-bulk-search) operation. It yields completed bulk search"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List bulk search results",
+        "api_call": "https://{{host}}/papi/v1/bulk/rules-search-requests/:bulkSearchId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "List all property or include versions that result from a [bulk search request](https://techdocs.akamai.com/property-mgr/reference/post-bulk-search). Run this operation to poll the asynchronous"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get client settings",
+        "api_call": "https://{{host}}/papi/v1/client-settings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get the current set of default values that apply to API clients keyed by the current authorization token.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Update client settings",
+        "api_call": "https://{{host}}/papi/v1/client-settings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"ruleFormat\": \"v2015-08-08\",\n  \"usePrefixes\": true\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Update the current set of default values that apply to API clients keyed by the current authorization token.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List contracts",
+        "api_call": "https://{{host}}/papi/v1/contracts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "You need information about the prevailing contract to access most PAPI interfaces. This operation provides a read-only list of contract"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Create a new CP code",
+        "api_call": "https://{{host}}/papi/v1/cpcodes?contractId=&groupId=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"cpcodeName\": \"SME WAA\",\n  \"productId\": \"prd_Web_App_Accel\"\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To create a new CP code, you need to associate it with a product. You can assign any CP code"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List CP codes",
+        "api_call": "https://{{host}}/papi/v1/cpcodes?contractId=&groupId=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This operation lists CP codes available within your contract and group pairing. You assign CP codes to a property within"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get a CP code",
+        "api_call": "https://{{host}}/papi/v1/cpcodes/:cpcodeId?contractId=&groupId=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This operation gets details about a CP code. To view or update certain CP code data, such as name, time"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List custom behaviors",
+        "api_call": "https://{{host}}/papi/v1/custom-behaviors",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the set of custom XML metadata behaviors configured for you by Akamai representatives. Referencing the relevant `behaviorId` from a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get a custom behavior",
+        "api_call": "https://{{host}}/papi/v1/custom-behaviors/:behaviorId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get information for a single custom behavior. Use this operation if you want to examine the custom behavior's XML metadata"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List custom overrides",
+        "api_call": "https://{{host}}/papi/v1/custom-overrides",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the set of custom XML metadata overrides configured for you by Akamai representatives. Referencing the relevant `overrideId` from a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get a custom override",
+        "api_call": "https://{{host}}/papi/v1/custom-overrides/:overrideId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get information for a single custom override. Use this operation if you want to examine the override's XML metadata.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Create a new edge hostname",
+        "api_call": "https://{{host}}/papi/v1/edgehostnames?contractId=&groupId=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"domainPrefix\": \"www.example.com\",\n  \"domainSuffix\": \"edgesuite.net\",\n  \"ipVersionBehavior\": \"IPV4\",\n  \"productId\": \"prd_Dynamic_Site_Del\",\n  \"secureNetwork\": \"STANDARD_TLS\",\n  \"useCases\": [\n    {\n      \"option\": \"BACKGROUND\",\n      \"type\": \"GLOBAL\",\n      \"useCase\": \"Download_Mode\"\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "**Note:** You can skip this operation if you're using Secure by Default that automatically creates an edge hostname upon activation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List edge hostnames",
+        "api_call": "https://{{host}}/papi/v1/edgehostnames?contractId=&groupId=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This lists all edge hostnames available under a contract. To assign any of these hostnames to a property, run [Update"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get an edge hostname",
+        "api_call": "https://{{host}}/papi/v1/edgehostnames/:edgeHostnameId?contractId=&groupId=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This polls the state of an edge hostname, typically after [creating a new edge hostname](https://techdocs.akamai.com/property-mgr/reference/post-edgehostnames). The response tells you whether"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List groups",
+        "api_call": "https://{{host}}/papi/v1/groups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "You need information about the prevailing group to access most PAPI interfaces. This operation provides a read-only list of groups,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List hostnames for an account",
+        "api_call": "https://{{host}}/papi/v1/hostnames",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This operation lists active property hostnames for all properties available in an account. Use the optional query parameters to paginate,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Generate domain validation challenges",
+        "api_call": "https://{{host}}/papi/v1/hostnames/certificate-challenges",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"cnamesFrom\": [\n    \"www.example1.com\",\n    \"www.example2.com\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "If you're using Secure by Default, you can generate the domain validation challenges ahead of setting hostnames for your property."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get audit history",
+        "api_call": "https://{{host}}/papi/v1/hostnames/:hostname/audit-history",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Gets a detailed record of all modifications made to a property hostname.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Create or clone an include",
+        "api_call": "https://{{host}}/papi/v1/includes?contractId=&groupId=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"includeName\": \"my.new.include1.com\",\n  \"includeType\": \"COMMON_SETTINGS\",\n  \"productId\": \"prd_Alta\",\n  \"ruleFormat\": \"v2022-10-18\"\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "__Limited availability__. This operation either creates a new include from scratch or bases one on another include's rule tree. Version"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List includes",
+        "api_call": "https://{{host}}/papi/v1/includes?contractId=&groupId=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "__Limited availability__. This operation lists includes available for the current contract and group. Use optional query parameters to only show"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Validate an include",
+        "api_call": "https://{{host}}/papi/v1/includes/validation-results/:activationId/properties/:propertyId/versions/:propertyVersion",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "__Limited availability__. Gets the results of an include validation against the specified parent property version that references the include.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get an include",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "__Limited availability__. This operation gets a specific include. You can call this operation by specifying any of the `includeId` members"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Remove an include",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "__Limited availability__. Removes a specific include, which you can only do if none of its versions are currently active. A"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List parent properties",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId/parents",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "__Limited availability__. Lists all active properties that reference a specific include. Combine optional query parameters to paginate, sort, and filter"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Activate or deactivate an include",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId/activations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"acknowledgeAllWarnings\": false,\n  \"acknowledgeWarnings\": [\n    \"msg_baa4560881774a45b5fd25f5b1eab021d7c40b4f\"\n  ],\n  \"activationType\": \"ACTIVATE\",\n  \"ignoreHttpErrors\": true,\n  \"includeVersion\": 1,\n  \"network\": \"STAGING\",\n  \"note\": \"Sample activation\",\n  \"notifyEmails\": [\n    \"you@example.com\",\n    \"them@example.com\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "__Limited availability__. This operation creates a new include activation, which deactivates any current activation. After a necessary delay, this activates"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List include's activations",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId/activations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "__Limited availability__. This lists all activations for all versions of an include, on both production and staging networks.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get an include activation",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId/activations/:activationId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "__Limited availability__. Gets details about an activation. The response also shows the results of a validation against the rule trees"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Cancel an include's pending activation",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId/activations/:activationId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "__Limited availability__. If you detect a problem with an include version while its activation is still `PENDING`, use this operation"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Create a new include version",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId/versions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"createFromVersion\": 1,\n  \"createFromVersionEtag\": \"2641910c585cf67b\"\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "__Limited availability__. Create a new include version based on any previous version. All data from the `createFromVersion` populates the new"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List include versions",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId/versions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "__Limited availability__. Lists the include's versions, with results limited to the 500 most recent versions. Optionally paginate the results. Each"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get the latest include version",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId/versions/latest",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "__Limited availability__. This operation provides either the latest include version overall, or the latest one active on the production or"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get an include version",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId/versions/:includeVersion",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "__Limited availability__. This polls the state of a specific include version, for example to check its activation status. When specifying"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List available behaviors for an include",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId/versions/:includeVersion/available-behaviors",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "__Limited availability__. Lists the set of [behaviors](https://techdocs.akamai.com/property-mgr/reference/ga-behaviors) you may apply within an include version's rules. The available set depends on"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List available criteria for an include",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId/versions/:includeVersion/available-criteria",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "__Limited availability__. Lists the set of [criteria](https://techdocs.akamai.com/property-mgr/reference/ga-criteria) you may apply within an include version's rules. The available set depends on"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get an include's rule tree",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId/versions/:includeVersion/rules",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "__Limited availability__. Gets the entire rule tree for an include version. See the [Rule Trees](https://techdocs.akamai.com/property-mgr/reference/rule-trees) section for details on the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Update an include's rule tree",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId/versions/:includeVersion/rules",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "description": "(Required) This corresponds to the `ETag` response header. Passing this value back as `If-Match` in write requests ensures you don't overwrite edits by any other API clients. See [Concurrency control](https://techdocs.akamai.com/property-mgr/reference/concurrency-control) for details.\n",
+                    "key": "If-Match",
+                    "value": "{{If-Match}}"
+                },
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"rules\": {\n    \"options\": {\n      \"is_secure\": false\n    },\n    \"behaviors\": [\n      {\n        \"options\": {\n          \"cacheKeyHostname\": \"ORIGIN_HOSTNAME\",\n          \"compress\": true,\n          \"enableTrueClientIp\": false,\n          \"forwardHostHeader\": \"REQUEST_HOST_HEADER\",\n          \"hostname\": \"origin.test.com\",\n          \"httpPort\": 80,\n          \"originType\": \"CUSTOMER\"\n        },\n        \"name\": \"origin\"\n      },\n      {\n        \"options\": {\n          \"value\": {\n            \"id\": 12345,\n            \"name\": \"my CP code\"\n          }\n        },\n        \"name\": \"cpCode\"\n      }\n    ],\n    \"children\": [],\n    \"criteria\": [],\n    \"name\": \"default\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "__Limited availability__. To write a rule tree to an include version, make a PUT request to the same resource as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Patch an include's rule tree",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId/versions/:includeVersion/rules",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "description": "(Required) This corresponds to the `ETag` response header. Passing this value back as `If-Match` in write requests ensures you don't overwrite edits by any other API clients. See [Concurrency control](https://techdocs.akamai.com/property-mgr/reference/concurrency-control) for details.\n",
+                    "key": "If-Match",
+                    "value": "{{If-Match}}"
+                },
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json-patch+json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"op\": \"replace\",\n    \"path\": \"/rules/options/is_secure\",\n    \"value\": true\n  },\n  {\n    \"op\": \"replace\",\n    \"path\": \"/rules/children/0/name\",\n    \"value\": \"Handle /my-path\"\n  }\n]",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "__Limited availability__. Selectively modify a rule tree using [JSON patch](http://jsonpatch.com) syntax. Set the `validateRules` query parameter to `false` to bypass"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get a digest for an include's rule tree",
+        "api_call": "https://{{host}}/papi/v1/includes/:includeId/versions/:includeVersion/rules",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "HEAD",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "__Limited availability__. Gets the rule tree's ETag without the rule tree object. Ordinarily when you [get a rule tree](https://techdocs.akamai.com/property-mgr/reference/get-include-version-rules), the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List products",
+        "api_call": "https://{{host}}/papi/v1/products?contractId=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This operation lists the set of products that are available under a given contract. You need a product identifier to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List use cases",
+        "api_call": "https://{{host}}/papi/v1/products/:productId/mapping-use-cases?contractId=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "For a given product, this lists Akamai-provided use case scenarios. Use cases help optimally map different types of traffic across"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Create or clone a property",
+        "api_call": "https://{{host}}/papi/v1/properties?contractId=&groupId=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"productId\": \"prd_Alta\",\n  \"propertyName\": \"my.new.property1.com\",\n  \"ruleFormat\": \"v2018-09-12\"\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This operation either creates a new property from scratch or bases one on another property's rule tree and optionally its"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List properties",
+        "api_call": "https://{{host}}/papi/v1/properties?contractId=&groupId=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This operation lists properties available for the current contract and group. Use optional query parameters to only show properties that"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get a property",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This operation gets a specific property. You can call this operation by specifying any of the `propertyId` members from a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Remove a property",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Removes a specific property, which you can only do if none of its versions are currently active. Activating another property"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Activate or deactivate a property",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/activations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"acknowledgeWarnings\": [\n    \"msg_baa4560881774a45b5fd25f5b1eab021d7c40b4f\"\n  ],\n  \"network\": \"STAGING\",\n  \"note\": \"Sample activation\",\n  \"notifyEmails\": [\n    \"you@example.com\",\n    \"them@example.com\"\n  ],\n  \"propertyVersion\": 1,\n  \"useFastFallback\": false\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This operation creates a new property activation, which deactivates any currently active version. After a necessary delay, this activates your"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List property's activations",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/activations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This lists all activations for all versions of a property, on both production and staging networks.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get a property activation",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/activations/:activationId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Gets details about an activation. You typically get a single activation from an `activationLink` when [launching a new activation](https://techdocs.akamai.com/property-mgr/reference/post-property-activations) and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Cancel a property's pending activation",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/activations/:activationId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "If you detect a problem with a property version while its activation is still `PENDING`, use this operation to cancel"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List property hostname activations",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/hostname-activations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "For a property with `useHostnameBucket` set to `true` at [creation](https://techdocs.akamai.com/property-mgr/reference/post-properties), this lists the activations for all hostnames in the property's"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get a property hostname activation",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/hostname-activations/:hostnameActivationId?contractId=&groupId=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "For a property with `useHostnameBucket` set to `true` at [creation](https://techdocs.akamai.com/property-mgr/reference/post-properties), this operation gets details about a specific property hostname activation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Cancel a pending property hostname activation",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/hostname-activations/:hostnameActivationId?contractId=&groupId=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "For a property with `useHostnameBucket` set to `true` [when created](https://techdocs.akamai.com/property-mgr/reference/post-properties), if you detect a problem with a property hostname while"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Add or remove hostnames for a property's hostname bucket",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/hostnames",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"add\": [\n    {\n      \"certProvisioningType\": \"DEFAULT\",\n      \"cnameFrom\": \"m.example.com\",\n      \"cnameType\": \"EDGE_HOSTNAME\",\n      \"edgeHostnameId\": \"ehn_895824\"\n    },\n    {\n      \"certProvisioningType\": \"CPS_MANAGED\",\n      \"cnameFrom\": \"www.example3.com\",\n      \"cnameType\": \"EDGE_HOSTNAME\",\n      \"edgeHostnameId\": \"ehn_895824\"\n    }\n  ],\n  \"network\": \"PRODUCTION\",\n  \"note\": \"Sample hostname activation\",\n  \"notifyEmails\": [\n    \"you@example.com\",\n    \"them@example.com\"\n  ],\n  \"remove\": [\n    \"www.example.com\",\n    \"m.example3.com\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "For a property with `useHostnameBucket` set to `true` [when created](https://techdocs.akamai.com/property-mgr/reference/post-properties), this operation adds or removes up to 1000 property hostnames"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List hostnames for a property",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/hostnames",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This operation lists active property hostnames assigned to a specific property. Use the optional query parameters to paginate, sort, and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get property hostnames diff",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/hostnames/diff",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This operation lists active property hostnames whose details differ between the staging and production networks. Optionally paginate the results. You"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Create a new property version",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/versions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"createFromVersion\": 1,\n  \"createFromVersionEtag\": \"2641910c585cf67b\"\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a new property version based on any previous version. All data from the `createFromVersion` populates the new version, including"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List property versions",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/versions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the property's versions, with results limited to the 500 most recent versions. Optionally paginate the results. Each property version"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get the latest property version",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/versions/latest",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This operation provides either the latest property version overall, or the latest one active on the production or staging networks."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get a property version",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/versions/:propertyVersion",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This polls the state of a specific property version, for example to check its activation status. When specifying `Accept: text/xml`,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List available behaviors for a property",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/versions/:propertyVersion/available-behaviors",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the set of [behaviors](https://techdocs.akamai.com/property-mgr/reference/ga-behaviors) you may apply within a property version's rules. The available set depends on the product"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List available criteria for a property",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/versions/:propertyVersion/available-criteria",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Lists the set of [criteria](https://techdocs.akamai.com/property-mgr/reference/ga-criteria) you may apply within a property version's rules. The available set depends on the product"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List hostnames for a property version",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/versions/:propertyVersion/hostnames",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "List all hostnames whose requests are handled by the rules in this property version.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Update hostnames for a property version",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/versions/:propertyVersion/hostnames",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "description": "(Required) This corresponds to the `ETag` response header. Passing this value back as `If-Match` in write requests ensures you don't overwrite edits by any other API clients. See [Concurrency control](https://techdocs.akamai.com/property-mgr/reference/concurrency-control) for details.\n",
+                    "key": "If-Match",
+                    "value": "{{If-Match}}"
+                },
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"certProvisioningType\": \"DEFAULT\",\n    \"cnameFrom\": \"m.example.com\",\n    \"cnameTo\": \"example.com.edgekey.net\",\n    \"cnameType\": \"EDGE_HOSTNAME\"\n  },\n  {\n    \"certProvisioningType\": \"CPS_MANAGED\",\n    \"cnameFrom\": \"example3.com\",\n    \"cnameType\": \"EDGE_HOSTNAME\",\n    \"edgeHostnameId\": \"ehn_895824\"\n  }\n]",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Modify the set of hostnames for a property version. For each hostname entry, set headers indicating their [limits](https://techdocs.akamai.com/property-mgr/reference/rate-and-resource-limiting).\n\n**Note**: If you're"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Add or remove hostnames for a property version",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/versions/:propertyVersion/hostnames",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "description": "(Required) This corresponds to the `ETag` response header. Passing this value back as `If-Match` in write requests ensures you don't overwrite edits by any other API clients. See [Concurrency control](https://techdocs.akamai.com/property-mgr/reference/concurrency-control) for details.\n",
+                    "key": "If-Match",
+                    "value": "{{If-Match}}"
+                },
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"add\": [\n    {\n      \"cnameFrom\": \"m.example.com\",\n      \"cnameTo\": \"example.com.edgesuite.net\",\n      \"cnameType\": \"EDGE_HOSTNAME\"\n    },\n    {\n      \"cnameFrom\": \"example3.com\",\n      \"cnameType\": \"EDGE_HOSTNAME\",\n      \"edgeHostnameId\": \"ehn_895824\"\n    }\n  ],\n  \"remove\": [\n    \"m.example.com\",\n    \"example4.com\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Modify the set of hostnames for a property version. For new entries, specify an `add` array with a `cnameFrom` set"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List property's includes",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/versions/:propertyVersion/includes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "__Limited availability__. Lists the set of includes referenced in the property version's rule tree.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get a property's rule tree",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/versions/:propertyVersion/rules",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Gets the entire rule tree for a property version. See the [Rule Trees](https://techdocs.akamai.com/property-mgr/reference/rule-trees) section for details on the response object's"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Update a property's rule tree",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/versions/:propertyVersion/rules",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "description": "(Required) This corresponds to the `ETag` response header. Passing this value back as `If-Match` in write requests ensures you don't overwrite edits by any other API clients. See [Concurrency control](https://techdocs.akamai.com/property-mgr/reference/concurrency-control) for details.\n",
+                    "key": "If-Match",
+                    "value": "{{If-Match}}"
+                },
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"rules\": {\n    \"options\": {\n      \"is_secure\": false\n    },\n    \"behaviors\": [\n      {\n        \"options\": {\n          \"cacheKeyHostname\": \"ORIGIN_HOSTNAME\",\n          \"compress\": true,\n          \"enableTrueClientIp\": false,\n          \"forwardHostHeader\": \"REQUEST_HOST_HEADER\",\n          \"hostname\": \"origin.test.com\",\n          \"httpPort\": 80,\n          \"originType\": \"CUSTOMER\"\n        },\n        \"name\": \"origin\"\n      },\n      {\n        \"options\": {\n          \"value\": {\n            \"id\": 12345,\n            \"name\": \"my CP code\"\n          }\n        },\n        \"name\": \"cpCode\"\n      }\n    ],\n    \"children\": [],\n    \"criteria\": [],\n    \"name\": \"default\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "To write a rule tree to a property version, make a PUT request to the same resource as the GET"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Patch a property's rule tree",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/versions/:propertyVersion/rules",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "description": "(Required) This corresponds to the `ETag` response header. Passing this value back as `If-Match` in write requests ensures you don't overwrite edits by any other API clients. See [Concurrency control](https://techdocs.akamai.com/property-mgr/reference/concurrency-control) for details.\n",
+                    "key": "If-Match",
+                    "value": "{{If-Match}}"
+                },
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json-patch+json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"op\": \"replace\",\n    \"path\": \"/rules/options/is_secure\",\n    \"value\": true\n  },\n  {\n    \"op\": \"replace\",\n    \"path\": \"/rules/children/0/name\",\n    \"value\": \"Handle /my-path\"\n  }\n]",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Selectively modify a rule tree using [JSON patch](http://jsonpatch.com) syntax.  As a component of the larger [Bulk patch a set"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get a digest for a property's rule tree",
+        "api_call": "https://{{host}}/papi/v1/properties/:propertyId/versions/:propertyVersion/rules",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "HEAD",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "*/*"
+                }
+            ]
+        },
+        "functionality": "Gets the rule tree's ETag without the rule tree object. Ordinarily when you [get a rule tree](https://techdocs.akamai.com/property-mgr/reference/get-property-version-rules), the response includes"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: List rule formats",
+        "api_call": "https://{{host}}/papi/v1/rule-formats",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Gets a list of available rule formats. Use these dated version strings available in the response's `ruleFormats.items` array to control"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get a schema for a rule format",
+        "api_call": "https://{{host}}/papi/v1/schemas/products/:productId/:ruleFormat",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get the JSON schema for the given product and rule format, which you can use to validate a rule tree"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Get a schema for a request",
+        "api_call": "https://{{host}}/papi/v1/schemas/request/:filename",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Fetch the JSON schema for a particular request. Error messages about schema mismatches typically link the schema filename.\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Property Manager API: Search properties or includes",
+        "api_call": "https://{{host}}/papi/v1/search/find-by-value",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) __Enum__. Sets whether to represent [ID prefixes](https://techdocs.akamai.com/property-mgr/reference/id-prefixes) in response data. Set to `false` when exchanging PAPI data with other APIs.\n",
+                    "key": "PAPI-Use-Prefixes",
+                    "value": "{{PAPI-Use-Prefixes}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"propertyName\": \"www.example.com_pm\"\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This operation searches includes by name, or properties either by name, hostname, or edge hostname for which they're currently active."
+    }
+]

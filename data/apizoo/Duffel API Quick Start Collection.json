@@ -1,0 +1,178 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Duffel API Quick Start Collection: Searching for Flights",
+        "api_call": "https://api.duffel.com/air/offer_requests",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Duffel-Version",
+                    "value": "v1",
+                    "description": "https:/duffel.com/docs/api/overview/making-requests/versioning",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"data\": {\n        \"slices\": [\n            {\n                \"origin\": \"NYC\",\n                \"destination\": \"ATL\",\n                \"departure_date\": \"2024-06-21\"\n            },\n            {\n                \"origin\": \"ATL\",\n                \"destination\": \"NYC\",\n                \"departure_date\": \"2024-07-21\"\n            }\n        ],\n        \"passengers\": [\n            {\n                \"type\": \"adult\"\n            },\n            {\n                \"type\": \"adult\"\n            },\n            {\n                \"age\": 1\n            }\n        ],\n        \"cabin_class\": \"business\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "In the Duffel API you create an offer request in order to search for flights.\n\nFor this you'll need the flight"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Duffel API Quick Start Collection: Selecting an offer from the search results",
+        "api_call": "https://api.duffel.com/air/offers/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Duffel-Version",
+                    "value": "v1",
+                    "description": "https:/duffel.com/docs/api/overview/making-requests/versioning",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Offers can get stale fairly quickly, and when they do you are no longer able to book them.\n\nTo get the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Duffel API Quick Start Collection: Creating a booking using the selected offer",
+        "api_call": "https://api.duffel.com/air/orders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Duffel-Version",
+                    "value": "v1",
+                    "description": "https:/duffel.com/docs/api/overview/making-requests/versioning",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"data\": {\n        \"selected_offers\": [\n            \"{{OFFER_ID}}\"\n        ],\n        \"payments\": [\n            {\n                \"type\": \"balance\",\n                \"currency\": \"{{TOTAL_CURRENCY}}\",\n                \"amount\": \"{{TOTAL_AMOUNT}}\"\n            }\n        ],\n        \"passengers\": [\n            {\n                \"phone_number\": \"+442080160508\",\n                \"email\": \"tony@example.com\",\n                \"born_on\": \"1980-07-24\",\n                \"title\": \"mr\",\n                \"gender\": \"m\",\n                \"family_name\": \"Stark\",\n                \"given_name\": \"Tony\",\n                \"infant_passenger_id\": \"{{INFANT_PASSENGER_ID}}\",\n                \"id\": \"{{ADULT_PASSENGER_ID_1}}\"\n            },\n            {\n                \"phone_number\": \"+442080160509\",\n                \"email\": \"potts@example.com\",\n                \"born_on\": \"1983-11-02\",\n                \"title\": \"mrs\",\n                \"gender\": \"m\",\n                \"family_name\": \"Potts\",\n                \"given_name\": \"Pepper\",\n                \"id\": \"{{ADULT_PASSENGER_ID_2}}\"\n            },\n            {\n                \"phone_number\": \"+442080160506\",\n                \"email\": \"morgan@example.com\",\n                \"born_on\": \"2019-08-24\",\n                \"title\": \"mrs\",\n                \"gender\": \"f\",\n                \"family_name\": \"Stark\",\n                \"given_name\": \"Morgan\",\n                \"id\": \"{{INFANT_PASSENGER_ID}}\"\n            }\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "We are finally ready to make a booking using the Duffel API which we call \"creating an order\".\n\nFor this you'll"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Duffel API Quick Start Collection: Searching for Flights (single passenger)",
+        "api_call": "https://api.duffel.com/air/offer_requests",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Duffel-Version",
+                    "value": "v1",
+                    "description": "https:/duffel.com/docs/api/overview/making-requests/versioning",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"data\": {\n        \"slices\": [\n            {\n                \"origin\": \"NYC\",\n                \"destination\": \"ATL\",\n                \"departure_date\": \"2024-06-21\"\n            },\n            {\n                \"origin\": \"ATL\",\n                \"destination\": \"NYC\",\n                \"departure_date\": \"2024-07-21\"\n            }\n        ],\n        \"passengers\": [\n            {\n                \"type\": \"adult\"\n            }\n        ],\n        \"cabin_class\": \"business\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "In the Duffel API you create an offer request in order to search for flights.\n\nFor this you'll need the flight"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Duffel API Quick Start Collection: Creating a booking using the selected offer(single passenger)",
+        "api_call": "https://api.duffel.com/air/orders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "type": "text"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "Duffel-Version",
+                    "value": "v1",
+                    "description": "https:/duffel.com/docs/api/overview/making-requests/versioning",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"data\": {\n        \"selected_offers\": [\n            \"{{OFFER_ID}}\"\n        ],\n        \"payments\": [\n            {\n                \"type\": \"balance\",\n                \"currency\": \"{{TOTAL_CURRENCY}}\",\n                \"amount\": \"{{TOTAL_AMOUNT}}\"\n            }\n        ],\n        \"passengers\": [\n            {\n                \"phone_number\": \"+442080160508\",\n                \"email\": \"tony@example.com\",\n                \"born_on\": \"1980-07-24\",\n                \"title\": \"mr\",\n                \"gender\": \"m\",\n                \"family_name\": \"Stark\",\n                \"given_name\": \"Tony\",\n                \"id\": \"{{PASSENGER_ID}}\"\n            }\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "We are finally ready to make a booking using the Duffel API which we call \"creating an order\".\n\nFor this you'll"
+    }
+]

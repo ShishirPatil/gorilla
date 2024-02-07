@@ -1,0 +1,310 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Daily Change Log",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/league/:year/:month/:day/changes.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides IDs and timestamps for teams, players, game statistics, schedules, and standings that have been modified on a given date."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Daily Schedule",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/games/:year/:month/:day/schedule.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Date, time, location, and other event details for every game taking place in the league-defined day."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Daily Transfers",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/league/:year/:month/:day/transfers.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Information for all transfers added or edited during the league-defined day."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Draft Summary",
+        "api_call": "https://api.sportradar.us/draft/nba/trial/v1/:locale/:year/draft.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides pre-draft pick order with live pick selections during the draft. Displays information on draft rounds, picks, teams, and prospects"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Free Agents",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/league/free_agents.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Detailed player information for all current free agents in the league."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Game Boxscore",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/games/:game_id/boxscore.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Top-level team scores by quarter, along with full statistics for each teams\u2019 leaders in points, rebounds, and assists."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Game Summary",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/games/:game_id/summary.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Top-level boxscore information, along with detailed game stats at the team and player levels."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Injuries",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/league/injuries.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Information concerning all active player injuries for each NBA team."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: League Hierarchy",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/league/hierarchy.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "League, conference, division, and team identification and association information."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: League Leaders",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/seasons/:year/:season_type/leaders.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NBA leader information for various offensive and defensive categories including full player seasonal statistics for each player in each category."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Play-By-Play",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/games/:game_id/pbp.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Detailed, real-time information on every team possession and game event."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Player Profile",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/players/:game_id/profile.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides player biographical information, draft information, and seasonal statistics for the regular season and postseason."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Prospects",
+        "api_call": "https://api.sportradar.us/draft/nba/trial/v1/:locale/:year/prospects.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides a list of upcoming or historical draft prospects for a given year."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Rankings",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/seasons/:year/:season_year/rankings.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Conference and division rank for each team, including playoff clinching status."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Schedule",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/games/:year/:season_type/schedule.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Date, time, location, and other event details for every match-up taking place in the full league season."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Seasonal Statistics",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/seasons/:year/:season_type/teams/:team_id/statistics.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides complete team and player seasonal statistics for a given season and season type."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Seasons",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/league/seasons.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides a list of all available seasons, including preseasons and postseasons."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Series Schedule",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/series/:year/:season_type/schedule.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Playoff participant information as well as the date, time, location, and other event details for every match-up taking place for"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Series Statistics",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/series/:series_id/teams/:team_id/statistics.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Detailed team and player statistics for a given playoff series."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Splits (Game)",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/seasons/:year/:season_type/teams/:team_id/splits/game.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Detailed Team, Player, and Opponent game splits across various views including: Home Team, Loss, Vs Opponent, Overtime, Over 500, Road,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Splits (Hierarchy)",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/seasons/:year/:season_type/teams/:team_id/splits/hierarchy.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Detailed Team, Player, and Opponent splits across each Conference and Division."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Splits (Ingame)",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/seasons/:year/:season_type/teams/:team_id/splits/ingame.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Detailed Team, Player, and Opponent in-game splits across various views including: Higher Field Goal Percentage, Less Personal Fouls, Less Rebounds,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Splits (Schedule)",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/seasons/:year/:season_type/teams/:team_id/splits/schedule.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Detailed Team, Player, and Opponent splits across various schedule views including: Days of Rest (1, 2, or 3+), Day of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Standings",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/seasons/:year/:season_type/standings.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Detailed team records across various views including, overall, conference, and division information."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Team Profile (Rosters)",
+        "api_call": "https://api.sportradar.us/nba/trial/v8/:locale/teams/:team_id/profile.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides top-level team information and a full roster of active players."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Team Draft Summary",
+        "api_call": "https://api.sportradar.us/draft/nba/trial/v1/:locale/:year/teams/:team_id/draft.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides pre-draft pick order with live pick selections during the draft for a given team."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Top Prospects",
+        "api_call": "https://api.sportradar.us/draft/nba/trial/v1/:locale/:year/top_prospects.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides a list of the top prospects for a given year."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NBA v8: Trades",
+        "api_call": "https://api.sportradar.us/draft/nba/trial/v1/:locale/:year/trades.json",
+        "api_version": "v8",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides summary details of all in-draft trades."
+    }
+]

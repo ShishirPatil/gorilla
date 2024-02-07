@@ -1,0 +1,45 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "OAuth2 Authentication: OAuth2 Authentication",
+        "api_call": "https://demo-accounts.vivapayments.com/connect/token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "password",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "grant_type",
+                        "value": "client_credentials",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

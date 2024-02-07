@@ -1,0 +1,842 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_accounts",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"eth_accounts\",\n  \"id\": 1\n}"
+            }
+        },
+        "functionality": "Get all the accounts"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_blockNumber",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"eth_blockNumber\",\n  \"params\": [],\n  \"id\": 1\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_call",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"eth_call\",\n  \"params\": [{\n  \t\"to\": \"0x6295ee1b4f6dd65047762f924ecd367c17eabf8f\",\n    \"data\": \"0x12a7b914\"\n  },\n  \"latest\"],\n  \"id\": 1\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_chainId",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_chainId\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the [chain ID](https://besu.hyperledger.org/en/stable/Concepts/NetworkID-And-ChainID).\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *quantity* - Chain ID, in hexadecimal."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_createAccessList",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"method\": \"eth_createAccessList\",\n    \"params\": [\n        {\n            \"from\": \"0xaeA8F8f781326bfE6A7683C2BD48Dd6AA4d3Ba63\",\n            \"data\": \"0x608060806080608155\"\n        },\n        \"pending\"\n    ],\n    \"id\": 1,\n    \"jsonrpc\": \"2.0\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_estimateGas",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_estimateGas\",\n    \"params\": [\n        {\n            \"from\": \"0x687422eea2cb73b5d3e242ba5456b782919afc85\",\n            \"to\": \"0xdd37f65db31c107f773e82a4f85c693058fef7a9\",\n            \"value\": \"0x1\"\n        },\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns an estimate of the gas required for a transaction to complete. The estimation process\ndoes not use gas and the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_feeHistory",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"id\": 1,\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_feeHistory\",\n    \"params\": [\n        \"0x5\",\n        \"latest\",\n        []\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns an estimate of the gas required for a transaction to complete. The estimation process\ndoes not use gas and the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getBalance",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getBalance\",\n    \"params\": [\n        \"0xfe3b557e8fb62b89f4916b721be55ceb828dbd73\",\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the account balance of the specified address.\n\n#### Parameters\n\n`DATA` - 20-byte account address from which to retrieve the balance.\n\n`QUANTITY|TAG` -"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_gasPrice",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_gasPrice\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns a percentile gas unit price for the most recent blocks, in Wei. By default,\nthe last 100 blocks are examined"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getBlockByHash",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getBlockByHash\",\n    \"params\": [\n        \"0xaf5526fcb88b2f0d163c9a78ee678bf95b20115dc3d4e2b7b1f5fc4a308724a0\",\n        false\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns information about the block by hash.\n\n#### Parameters\n\n`DATA` - 32-byte hash of a block.\n\n`Boolean` - If `true`, returns the full"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getBlockByNumber",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getBlockByNumber\",\n    \"params\": [\n        \"0xF\",\n        true\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns information about a block by block number.\n\n#### Parameters\n\n`QUANTITY|TAG` - Integer representing a block number or one of the string"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getBlockTransactionCountByHash",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getBlockTransactionCountByHash\",\n    \"params\": [\n        \"0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the number of transactions in the block matching the given block hash.\n\n#### Parameters\n\n`data` - 32-byte block hash.\n\n#### Returns\n\n`result` :"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getBlockTransactionCountByNumber",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getBlockTransactionCountByNumber\",\n    \"params\": [\n        \"0xe8\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the number of transactions in a block matching the specified block number.\n\n#### Parameters\n\n`QUANTITY|TAG` - Integer representing a block number"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getCode",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getCode\",\n    \"params\": [\n        \"0xa50a51c09a5c451c52bb714527e1974b686d8e77\",\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the code of the smart contract at the specified address. Besu stores compiled smart\ncontract code as a hexadecimal value.\n\n####"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getLogs",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getLogs\",\n    \"params\": [\n        {\n            \"fromBlock\": \"earliest\",\n            \"toBlock\": \"latest\",\n            \"address\": \"0x2e1f232a9439c3d459fceca0beef13acc8259dd8\",\n            \"topics\": []\n        }\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns an array of [logs](https://besu.hyperledger.org/en/stable/Concepts/Events-and-Logs) matching a specified filter object.\n\nLeave the [`--auto-log-bloom-caching-enabled`](https://besu.hyperledger.org/en/stable/CLI/CLI-Syntax#auto-log-bloom-caching-enabled)\ncommand line option at the default value of `true`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getStorageAt",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getStorageAt\",\n    \"params\": [\n        \"0x3B3F3E\",\n        \"0x0\",\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the value of a storage position at a specified address.\n\n#### Parameters\n\n`DATA` - A 20-byte storage address.\n\n`QUANTITY` - Integer index"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getTransactionByBlockHashAndIndex",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getTransactionByBlockHashAndIndex\",\n    \"params\": [\n        \"0xa52be92809541220ee0aaaede6047d9a6c5d0cd96a517c854d944ee70a0ebb44\",\n        \"0x1\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns transaction information for the specified block hash and transaction index position.\n\n#### Parameters\n\n`DATA` - 32-byte hash of a block.\n\n`QUANTITY` -"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getTransactionByBlockNumberAndIndex",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getTransactionByBlockNumberAndIndex\",\n    \"params\": [\n        \"latest\",\n        \"0x0\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns transaction information for the specified block number and transaction index position.\n\n#### Parameters\n\n`QUANTITY|TAG` - Integer representing a block number or"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getTransactionByHash",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getTransactionByHash\",\n    \"params\": [\n        \"0xa52be92809541220ee0aaaede6047d9a6c5d0cd96a517c854d944ee70a0ebb44\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns transaction information for the specified transaction hash.\n\n#### Parameters\n\n`DATA` - 32-byte transaction hash.\n\n#### Returns\n\nObject - [Transaction object](https://besu.hyperledger.org/en/stable/Reference/API-Objects#transaction-object), or `null` when"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getTransactionCount",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getTransactionCount\",\n    \"params\": [\n        \"0x9d8f8572f345e1ae53db1dFA4a7fce49B467bD7f\",\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the number of transactions sent from a specified address. Use the `pending` tag to get the\nnext account nonce not"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getTransactionReceipt",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getTransactionReceipt\",\n    \"params\": [\n        \"0x96c6830efd87a70020d4d1647c93402d747c05ecf6beeb068dee621f8d13d8d1\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the receipt of a transaction by transaction hash. Receipts for pending transactions are not\navailable.\n\nIf you enabled [revert reason](https://besu.hyperledger.org/en/stable/HowTo/Send-Transactions/Revert-Reason), the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getUncleByBlockHashAndIndex",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getUncleByBlockHashAndIndex\",\n    \"params\": [\n        \"0xc48fb64230a82f65a08e7280bd8745e7fea87bc7c206309dee32209fe9a985f7\",\n        \"0x0\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns uncle specified by block hash and index.\n\n#### Parameters\n\n`data` - 32-byte block hash.\n\n`quantity` - Index of the uncle.\n\n#### Returns\n\n`result` :"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getUncleByBlockNumberAndIndex",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getUncleByBlockNumberAndIndex\",\n    \"params\": [\n        \"0x7689D2\",\n        \"0x0\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns uncle specified by block number and index.\n\n#### Parameters\n\n`quantity|tag` - Index of the block, or one of the string tags"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getUncleCountByBlockHash",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getUncleCountByBlockHash\",\n    \"params\": [\n        \"0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the number of uncles in a block from a block matching the given block hash.\n\n#### Parameters\n\n`DATA` - 32-byte block"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getUncleCountByBlockNumber",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getUncleCountByBlockNumber\",\n    \"params\": [\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the number of uncles in a block matching the specified block number.\n\n#### Parameters\n\n`QUANTITY|TAG` - Integer representing either the index"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getWork",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getWork\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the hash of the current block, the seed hash, and the required target boundary condition.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : Array"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_mining",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_mining\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Whether the client is actively mining new blocks. Besu pauses mining while the client synchronizes\nwith the network regardless of command"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_hashrate",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_hashrate\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the number of hashes per second with which the node is mining.\n\nWhen the stratum server is enabled, this method"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_protocolVersion",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_protocolVersion\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns current Ethereum protocol version.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *quantity* - Ethereum protocol version."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_sendRawTransaction",
+        "api_call": "https://.infura.io/v3/{{project-id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_sendRawTransaction\",\n    \"params\": [\n        \"0xf86a018203e882520894f17f52151ebef6c7334fad080c5704d77216b732896c6b935b8bbd400000801ba093129415f03b4794fd1512e79ee7f097e4271f66721020f8407aac92179893a5a0451b875d89721ec98be55201092980b0a87bb1c48507fccb86da713596b2a09e\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Sends a [signed transaction](https://besu.hyperledger.org/en/stable/HowTo/Send-Transactions/Transactions).\nA transaction can send ether, deploy a contract, or interact with a contract.\nSet the maximum transaction fee"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_submitWork",
+        "api_call": "https://.infura.io/v3/{{project-id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_submitWork\",\n    \"params\": [\n        \"0x0000000000000001\",\n        \"0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef\",\n        \"0xD1GE5700000000000000000000000000D1GE5700000000000000000000000000\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Submits a Proof of Work (Ethash) solution.\n\nUsed by mining software such as [Ethminer](https://github.com/ethereum-mining/ethminer).\n\n#### Parameters\n\n* DATA, 8 Bytes - Retrieved nonce.\n*"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_syncing",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_syncing\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns an object with data about the synchronization status, or `false` if not synchronizing.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *Object|Boolean* - Object"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getFilterChanges",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getFilterChanges\",\n    \"params\": [\n        \"0xf8bf5598d9e04fbe84523d42640b9b0e\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Polls the specified filter and returns an array of changes that have occurred since the last poll.\n\n#### Parameters\n\n`data` - Filter"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_getFilterLogs",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getFilterLogs\",\n    \"params\": [\n        \"0x5ace5de3985749b6a1b2b0d3f3e1fb69\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns an array of [logs](https://besu.hyperledger.org/en/stable/Concepts/Events-and-Logs) for the specified filter.\n\nLeave the [`--auto-log-bloom-caching-enabled`](https://besu.hyperledger.org/en/stable/CLI/CLI-Syntax#auto-log-bloom-caching-enabled)\ncommand line option at the default value of `true` to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_newFilter",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_newFilter\",\n    \"params\": [\n        {\n            \"fromBlock\": \"earliest\",\n            \"toBlock\": \"latest\",\n            \"topics\": []\n        }\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a [log filter](https://besu.hyperledger.org/en/stable/Concepts/Events-and-Logs). To poll for logs associated with the\ncreated filter, use [`eth_getFilterChanges`](#eth_getfilterchanges). To get all logs associated with\nthe"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_newBlockFilter",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_newBlockFilter\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a filter to retrieve new block hashes. To poll for new blocks, use\n[`eth_getFilterChanges`](#eth_getfilterchanges).\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`data` - Filter ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: eth_uninstallFilter",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_uninstallFilter\",\n    \"params\": [\n        \"0x70355a0b574b437eaa19fe95adfedc0a\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Uninstalls a filter with the specified ID. When a filter is no longer required, call this method.\n\nFilters time out when"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: net_listening",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"net_listening\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Whether the client is actively listening for network connections.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` (*BOOLEAN*) - `true` if the client is actively listening"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: net_peerCount",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"net_peerCount\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the number of peers currently connected to the client.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *integer* - Number of connected peers in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: net_version",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"net_version\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the [network ID](https://besu.hyperledger.org/en/stable/Concepts/NetworkID-And-ChainID).\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *string* - Current network ID.\n\n| Network ID | Chain | Network | Description\n|------------|-------|---------|-------------------------------|\n|"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: web3_clientVersion",
+        "api_call": "https://.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"web3_clientVersion\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the current client version.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *string* - Current client version."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Infura Ethereum JSON-RPC: parity_nextNonce",
+        "api_call": "https://kovan.infura.io/v3/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"parity_nextNonce\",\n    \"params\": [\n        \"0xc94770007dda54cF92009BFF0dE90c06F603a09f\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the current client version.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *string* - Current client version."
+    }
+]

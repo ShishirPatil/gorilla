@@ -1,0 +1,13 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "get: GET",
+        "api_call": "",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "first get"
+    }
+]
