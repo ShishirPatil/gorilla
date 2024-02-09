@@ -1495,6 +1495,7 @@
     ]
   },
   {
+    "user_name": "avichare",
     "api_name": "Appointment API - GET /sn_apptmnt_booking/appointment/calendar",
     "api_call": "servicenow.get_appointment_calendar(catalog_id, location, opened_for)",
     "api_version": "1.0",
@@ -1524,6 +1525,7 @@
     ]
   },
   {
+    "user_name": "avichare",
     "api_name": "Appointment API - GET /sn_apptmnt_booking/appointment/configuration",
     "api_call": "servicenow.get_appointment_configuration(catalog_id)",
     "api_version": "1.0",
@@ -1545,6 +1547,7 @@
     ]
   },
   {
+    "user_name": "avichare",
     "api_name": "Appointment API - GET /sn_apptmnt_booking/appointment/execute_rule_conditions",
     "api_call": "servicenow.get_appointment_rule_conditions(catalog_id, task_id=None, other_inputs=None)",
     "api_version": "1.0",
@@ -1576,6 +1579,7 @@
     ]
   },
   {
+    "user_name": "avichare",
     "api_name": "Appointment API - GET /sn_apptmnt_booking/appointment/execute_rule_conditions",
     "api_call": "servicenow.get_appointment_rule_conditions(catalog_id, task_id=None, other_inputs=None)",
     "api_version": "1.0",
@@ -1607,6 +1611,7 @@
     ]
   },
   {
+    "user_name": "avichare",
     "api_name": "Appointment API - POST /sn_apptmnt_booking/appointment/appointment",
     "api_call": "servicenow.book_or_reschedule_appointment(start_date_utc, end_date_utc, actual_start_date, actual_end_date, catalog_id, location, opened_for, reschedule, task_id, task_table, timezone, service_configuration_rule='')",
     "api_version": "1.0",
@@ -1673,6 +1678,7 @@
     ]
   },
   {
+    "user_name": "avichare",
     "api_name": "Appointment API - POST /sn_apptmnt_booking/appointment/availability",
     "api_call": "servicenow.get_appointment_availability(start_date, end_date, location, catalog_id, opened_for, task_table, view, full_day, get_next_available_slot, use_read_replica, service_config_rule='', otherInputs={})",
     "api_version": "1.0",
