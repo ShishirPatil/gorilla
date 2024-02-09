@@ -1,0 +1,1742 @@
+[
+  {
+    "user_name": "avichare",
+    "api_name": "Account - GET /now/account",
+    "api_call": "servicenow.retrieve_account_records(limit={limit}, offset={offset}, query={query})",
+    "api_version": "1.0",
+    "api_arguments": {
+      "limit": {
+        "description": "The maximum number of records to retrieve",
+        "data_type": "integer"
+      },
+      "offset": {
+        "description": "The number of records to skip before starting to retrieve data",
+        "data_type": "integer"
+      },
+      "query": {
+        "description": "The query string used to filter the results",
+        "data_type": "string"
+      }
+    },
+    "functionality": "Retrieve account records",
+    "example_code": "import requests\nurl = 'https://instance.servicenow.com/api/now/account'\nparams = {'limit': {limit}, 'offset': {offset}, 'query': {query}}\nheaders = {'Accept': 'application/json'}\nresponse = requests.get(url, params=params, headers=headers)\ndata = response.json()\nprint(data)",
+    "meta_data": {
+      "description": "The Account API enables users to retrieve and update account records.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve a specified set of account records?",
+      "What parameters are required to retrieve account records?",
+      "Is there support for pagination when retrieving account records?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Account - GET /now/account/{id}",
+    "api_call": "servicenow.retrieve_account_by_id(id={id})",
+    "api_version": "1.0",
+    "api_arguments": {
+      "id": {
+        "description": "The unique identifier of the account to retrieve",
+        "data_type": "string"
+      }
+    },
+    "functionality": "Retrieve an account by ID",
+    "example_code": "import requests\nurl = 'https://instance.servicenow.com/api/now/account/{id}'\nheaders = {'Accept': 'application/json'}\nresponse = requests.get(url, headers=headers)\ndata = response.json()\nprint(data)",
+    "meta_data": {
+      "description": "The Account API enables users to retrieve and update account records.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve a specific account by its ID?",
+      "What is the endpoint format to retrieve an account record by its unique identifier?",
+      "Is it possible to retrieve account records by specifying their unique IDs?"
+    ]
+  },
+
+  {
+    "user_name": "avichare",
+    "api_name": "ActivitySubscriptions - GET /now/actsub/activities",
+    "api_call": "servicenow.retrieve_activities(before={before}, context={context}, context_instance={context_instance}, end_date={end_date}, facets={facets}, last={last}, record_id={record_id}, start_date={start_date}, stFrom={stFrom})",
+    "api_version": "1.0",
+    "api_arguments": {
+      "before": {
+        "description": "Date/time value. The request returns only records created prior to this date and time.",
+        "data_type": "String",
+        "format": "YYYY-MM-DD hh:mm:ss or YYYY-MM-DD"
+      },
+      "context": {
+        "description": "Required. Sys_id of an activity context. Located in the Activity Context [sn_actsub_activity_context] table. Predefined activity contexts include Consumer and Contact.",
+        "data_type": "String"
+      },
+      "context_instance": {
+        "description": "Required. Sys_id of an instance of the specified activity context, representing the initiator of the activities you want to retrieve. Located in the appropriate table for the activity context.",
+        "data_type": "String"
+      },
+      "end_date": {
+        "description": "Date/time value. The request returns only records created during the time period defined by start_date and this parameter. Must be set along with start_date.",
+        "data_type": "String",
+        "format": "YYYY-MM-DD hh:mm:ss or YYYY-MM-DD"
+      },
+      "facets": {
+        "description": "Comma-separated list of sys_ids of activity facet types to retrieve for the specified activity context. These sys_ids are located in the Activity Facet [sn_actsub_facet] table. Default: Return all activity facet types configured for the activity context.",
+        "data_type": "String"
+      },
+      "last": {
+        "description": "Index value of the first result row omitted from the response body. The result row index starts at 0. Default: The value of the com.snc.actsub.activities.api.fetch.limit system property (10 by default).",
+        "data_type": "Number (integer)"
+      },
+      "record_id": {
+        "description": "Sys_id of a record to use when rendering dynamic facets. Located in the appropriate table for the activity type you want to retrieve.",
+        "data_type": "String"
+      },
+      "start_date": {
+        "description": "Date/time value. The request returns only records created during the time period defined by this parameter and end_date. Must be set along with end_date.",
+        "data_type": "String",
+        "format": "YYYY-MM-DD hh:mm:ss or YYYY-MM-DD"
+      },
+      "stFrom": {
+        "description": "Index value of the first result row to include in the response body. The result row index starts at 0. Default: 0.",
+        "data_type": "Number (integer)"
+      }
+    },
+    "functionality": "Retrieves activity records from Subscriptions and Activity Feed Framework",
+    "meta_data": {
+      "description": "Retrieves activity records from Subscriptions and Activity Feed Framework.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve activity records for a specific context and instance?",
+      "What parameters are required to fetch activities within a specified time range?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "ActivitySubscriptions - GET /now/actsub/facets/{activity_context}/{context_instance}",
+    "api_call": "servicenow.retrieve_activity_facets(activity_context, context_instance)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "activity_context": {
+        "description": "Sys_id of an activity context.",
+        "data_type": "String"
+      },
+      "api_version": {
+        "description": "Version of the endpoint to access. For example, v1 or v2",
+        "data_type": "String"
+      },
+      "context_instance": {
+        "description": "Sys_id of an instance of the specified activity context.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Retrieves activity facet records from Subscriptions and Activity Feed Framework",
+    "example_code": "curl \"https://instance.servicenow.com/api/now/actsub/facets/activity_context/context_instance\" --request GET --header \"Accept: application/json\" --user \"username:password\"",
+    "meta_data": {
+      "description": "Retrieves activity facet records from Subscriptions and Activity Feed Framework.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve activity facet records for a specific activity context and instance?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/{agent_id}",
+    "api_call": "servicenow.retrieve_agent_details(agent_id={agent_id})",
+    "api_version": "1.0",
+    "api_arguments": {
+      "agent_id": {
+        "description": "Unique ID of an agent listed in the Agent ID column of the Agent Client Collectors [sn_agent_cmdb_ci_agent] table. For a list of agent IDs and other details, run the GET /agents/list endpoint.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Gets the information of a specified agent.",
+    "env_requirements": [],
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/<agent_id>\" --request GET --header \"Accept:application/json\" --user 'username':'password'",
+    "meta_data": {
+      "description": "The Agent Client Collector API provides endpoints to manage actions on available agents and managing policies.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve details of a specific agent using its ID?",
+      "What parameters are required to fetch agent details?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/{agent_id}/data/off",
+    "api_call": "servicenow.disable_agent_data_collection(agent_id={agent_id})",
+    "api_version": "1.0",
+    "api_arguments": {
+      "agent_id": {
+        "description": "Unique ID of an agent listed in the Agent ID column of the Agent Client Collectors [sn_agent_cmdb_ci_agent] table. For a list of agent IDs and other details, run the GET /agents/list endpoint.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Disables data collection for a specified agent in the up/alive state.",
+    "env_requirements": [],
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/<agent_id>/data/off\" --request GET --header \"Accept:application/json\" --user 'username':'password'",
+    "meta_data": {
+      "description": "The Agent Client Collector API provides endpoints to manage actions on available agents and managing policies.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I disable data collection for a specific agent?",
+      "What is the URL format for disabling data collection for an agent?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/{agent_id}/data/on",
+    "api_call": "servicenow.enable_data_collection_for_agent(agent_id={agent_id})",
+    "api_version": "1.0",
+    "api_arguments": {
+      "agent_id": {
+        "description": "Unique ID of an agent listed in the Agent ID column of the Agent Client Collectors table",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Enables data collection for a specified agent in the up/alive state",
+    "meta_data": {
+      "description": "This API endpoint enables users to enable data collection for a specific agent in the up/alive state.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/<agent_id>/data/on\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "How can I enable data collection for a specific agent?",
+      "What endpoint should I use to turn on data collection for an agent?",
+      "Is it possible to enable data collection for an agent through the API?"
+    ]
+  },
+
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/{agent_id}/discovery",
+    "api_call": "servicenow.run_discovery_for_agent(agent_id={agent_id})",
+    "api_version": "1.0",
+    "api_arguments": {
+      "agent_id": {
+        "description": "Unique ID of an agent listed in the Agent ID column of the Agent Client Collectors table",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Runs a discovery check to locate CIs related to an agent",
+    "meta_data": {
+      "description": "This API endpoint enables users to run a discovery check to locate Configuration Items (CIs) related to a specific agent. The specified agent must be in the alive/up status.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/<agent_id>/discovery\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "How can I run a discovery check for an agent?",
+      "What endpoint should I use to perform a discovery check for an agent?",
+      "Is it possible to locate Configuration Items related to an agent through the API?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/check_defs/{check_def_id}",
+    "api_call": "servicenow.get_check_definition(check_def_id={check_def_id})",
+    "api_version": "1.0",
+    "api_arguments": {
+      "check_def_id": {
+        "description": "Sys_id of the check definition listed in the Check Definitions table",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Gets a specified check definition with details",
+    "meta_data": {
+      "description": "This API endpoint retrieves details of a specified check definition, including its command, parameters, plugins, and other relevant information. The specified check definition must be valid and exist in the system.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/check_defs/94436b237f705300f128134f8dfa91a4\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "How can I retrieve details of a specific check definition?",
+      "What endpoint should I use to fetch information about a check definition?",
+      "Is it possible to obtain parameters and plugins associated with a check definition through the API?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/check_defs/list",
+    "api_call": "servicenow.get_check_definitions_list()",
+    "api_version": "1.0",
+    "api_arguments": {},
+    "functionality": "Gets a list of check definitions with details",
+    "meta_data": {
+      "description": "This API endpoint retrieves a list of check definitions along with their details. Check definitions represent various checks that can be executed by the Agent Client Collector. The returned list includes information such as the name, command, parameters, plugins, and other relevant details of each check definition.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/check_defs/list\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "How can I retrieve a list of check definitions through the API?",
+      "What endpoint should I use to fetch details of multiple check definitions?",
+      "Is there a way to filter the list of check definitions returned by the API?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/exec/background/stop/{request_id}",
+    "api_call": "servicenow.stop_background_check(request_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "request_id": "String"
+    },
+    "functionality": "Stops a background check.",
+    "meta_data": {
+      "description": "This API endpoint allows users to stop a background check that is currently running. It requires the ID of the background check request, which is generated when the background check is initiated using the POST /agents/check_defs/{check_def_id}/run API. By providing the request ID, users can terminate the execution of the background check.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/exec/background/stop/02359174db2a30108a0751f4f3961997\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "How can I stop a background check that is currently running?",
+      "What information do I need to provide to stop a background check using this API?",
+      "Is there any specific request ID format required for stopping a background check?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/exec/run/{request_id}",
+    "api_call": "servicenow.get_request_status(request_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "request_id": "String"
+    },
+    "functionality": "Gets status of the request with the given ID.",
+    "meta_data": {
+      "description": "This API endpoint retrieves the status of a request identified by the provided request ID. It is used to check the progress or completion status of a background check request that was initiated using the POST /agents/check_defs/{check_def_id}/run API. The API returns the current status of the request, which can be one of several values including 'done', 'failure', 'mid_flow', 'processing', or 'timeout'. Additionally, an error message may be provided if there was an issue processing the request.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/exec/run/12fed13cdb2a30108a0751f4f3961981\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "How can I check the status of a background check request using this API?",
+      "What are the possible values for the 'status' field returned by this API?",
+      "When would the API return an error message in the response body?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/exec/test/{test_result_id}",
+    "api_call": "servicenow.get_test_result_status(test_result_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "test_result_id": "String"
+    },
+    "functionality": "Gets the test check status of the given test result.",
+    "meta_data": {
+      "description": "This API endpoint retrieves the status of a test check result identified by the provided test result ID. It is used to check the status of a test check request that was initiated using the POST /agents/check_defs/{check_def_id}/run API. The API returns the current status of the test check, which can be one of several values including 'Pending', 'In progress', 'Complete', or 'No test result with given ID'. Additionally, an output describing the status may be provided.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/exec/test/99e12466dba530106f4810284b961976\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "What are the possible values for the 'status' field returned by this API?",
+      "When would the API return a 'No test result with given ID' status?",
+      "How can I use this API to check the status of a test check request?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/list",
+    "api_call": "servicenow.get_agent_list()",
+    "api_version": "1.0",
+    "api_arguments": {},
+    "functionality": "Gets a list of agents with related information.",
+    "meta_data": {
+      "description": "This API endpoint retrieves a list of agents along with their extended information. It provides details such as agent ID, data collection status, IP address, agent name, number of running checks, status, up since time, and version. The API can accept optional query parameters to filter the results based on specific conditions and can limit the number of returned records. The response contains an array of JSON objects, each representing an agent.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/list\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "What are the different status values for an agent returned by this API?",
+      "How can I filter the list of agents based on specific conditions?",
+      "What information does each JSON object in the response represent?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/{agent_id}/log",
+    "api_call": "servicenow.get_agent_log(agent_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "agent_id": "String"
+    },
+    "functionality": "Requests the log of a specified agent with alive/up status.",
+    "meta_data": {
+      "description": "This API endpoint requests the log of a specified agent that is in an alive/up status. It returns a request ID, which can be used to retrieve the log and check its progress later using the GET /agents/log/{request_id}/ endpoint. The agent ID must be provided as a path parameter in the URL.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/<sys_id>/log\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "How can I check the progress of the log request using the request ID?",
+      "What status codes can be returned by this API endpoint?",
+      "What headers are required for this API call?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/log/{request_id}/",
+    "api_call": "servicenow.check_log_request_status(request_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "request_id": "String"
+    },
+    "functionality": "Checks the status of a grab log request.",
+    "meta_data": {
+      "description": "This API endpoint checks the status of a grab log request initiated using the GET /api/sn_agent/agents/{agent_id}/log endpoint. It takes a request ID as a path parameter in the URL and returns information describing the status of the log retrieval process.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/log/<request_ID>\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "What are the possible status codes returned by this API endpoint?",
+      "Is there a limit on the number of requests that can be checked simultaneously?",
+      "How can I use the output information returned by this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/policies/list",
+    "api_call": "servicenow.get_agent_policies()",
+    "api_version": "1.0",
+    "api_arguments": {},
+    "functionality": "Gets a list of policies that are in published or unpublished draft state.",
+    "meta_data": {
+      "description": "This API endpoint retrieves a list of policies related to Agent Client Collector. Policies can be in a published or unpublished draft state. It provides detailed information about each policy, including checks and agents associated with them.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/policies/list\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--header 'X-Enc-Query: active=true ' \\\n--header 'X-Include-Checks-And-Agents: true' \\\n--user 'username' : 'password'",
+    "questions": [
+      "What is the purpose of including checks and agents in the results?",
+      "How can I filter the results based on policy attributes?",
+      "Can I retrieve information about check parameters and secure parameters?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/policy/activate/{policy_id}",
+    "api_call": "servicenow.activate_policy(policy_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "policy_id": "String"
+    },
+    "functionality": "Activates a published policy.",
+    "meta_data": {
+      "description": "This API endpoint activates a published policy in the Agent Client Collector. It requires the sys_id of the published policy as input. Once activated, the policy will be enforced on the appropriate agents.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/policy/activate/<sys_id>\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username' : 'password'",
+    "questions": [
+      "What is the effect of activating a policy?",
+      "Can I activate a policy that is in a draft state?",
+      "Is there any validation performed before activating a policy?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/policy/deactivate/{policy_id}",
+    "api_call": "servicenow.deactivate_policy(policy_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "policy_id": "String"
+    },
+    "functionality": "Deactivates a published policy.",
+    "meta_data": {
+      "description": "This API endpoint deactivates a published policy in the Agent Client Collector. It requires the sys_id of the published policy as input. Once deactivated, the policy will no longer be enforced on the appropriate agents.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/policy/deactivate/<sys_id>\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username' : 'password'",
+    "questions": [
+      "What happens to agents that have the deactivated policy enforced on them?",
+      "Can I deactivate a policy that is in a draft state?",
+      "Is there any validation performed before deactivating a policy?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/policy/publish/{policy_id}",
+    "api_call": "servicenow.publish_policy(policy_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "policy_id": "String"
+    },
+    "functionality": "Publishes a draft policy.",
+    "meta_data": {
+      "description": "This API endpoint publishes a draft policy in the Agent Client Collector. It requires the sys_id of the draft policy as input. Once published, the policy will be enforced on the appropriate agents according to its configurations.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/policy/publish/<sys_id>\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username' : 'password'",
+    "questions": [
+      "Can I publish a policy that is already published?",
+      "What happens to agents that have the policy enforced on them when the policy is published?",
+      "Is there any validation performed before publishing a policy?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/policy/sandbox_from_published/{policy_id}",
+    "api_call": "servicenow.get_sandbox_from_published(policy_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "policy_id": "String"
+    },
+    "functionality": "Gets the sandbox copy of a published policy and provides policy details.",
+    "meta_data": {
+      "description": "This API endpoint retrieves the sandbox copy of a published policy in the Agent Client Collector. It allows users to view the details of the published policy, including its checks, parameters, and configurations. The sandbox copy can be used to make updates to the policy before republishing.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/policy/sandbox_from_published/<sys_id>\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "What modifications can be made to the sandbox copy of a published policy?",
+      "How does the sandbox copy differ from the published version of the policy?",
+      "Can multiple users make modifications to the same sandbox copy of a policy?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - GET /agents/{agent_id}/restart",
+    "api_call": "servicenow.restart_agent(agent_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "agent_id": "String"
+    },
+    "functionality": "Restarts a specified agent with alive/up status.",
+    "meta_data": {
+      "description": "This API endpoint allows users to restart a specified agent in the Agent Client Collector. Restarting an agent can help resolve performance issues or apply changes made to the agent configuration. The agent must be in an alive or up status for the restart operation to be successful.",
+      "supported_environments": [
+        "Linux-based agents using systemd",
+        "Windows agents"
+      ],
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/<agent_id>/restart\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "Can the API be used to restart agents on other platforms like macOS?",
+      "What happens if the specified agent is not in an alive or up status?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - POST /agents/check_defs/{check_def_id}/run",
+    "api_call": "servicenow.run_check_definition(check_def_id, params, priority, query, table, timeout)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "check_def_id": {
+        "description": "Sys_id of a check definition in the Check Definitions [sn_agent_check_def] table.",
+        "data_type": "String"
+      },
+      "params": {
+        "description": "Map of parameter names and values. These settings can be used to override the parameter records of the check definition and its specified values.",
+        "data_type": "Object"
+      },
+      "priority": {
+        "description": "Priority of the request to be set on the ECC queue. Valid values: 0 (interactive), 1 (expedited), 2 (standard).",
+        "data_type": "Number"
+      },
+      "query": {
+        "description": "Encoded query for retrieving the GlideRecord from the table specified in the table property.",
+        "data_type": "String"
+      },
+      "table": {
+        "description": "Name of the cmdb_ci table for this background check.",
+        "data_type": "String"
+      },
+      "timeout": {
+        "description": "Value of the timeout for the request in seconds.",
+        "data_type": "Number"
+      }
+    },
+    "functionality": "Runs a check against the given configuration item.",
+    "meta_data": {
+      "description": "This API endpoint allows users to run a check against a specified configuration item using the Agent Client Collector. It triggers the execution of the specified check definition and returns a request ID for the background check request. The background check can be monitored and stopped using the provided request ID.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/check_defs/<check_def_id>/run\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\" \\\n--data \"{\\\"table\\\":\\\"<table_name>\\\"}\" \\\n--user 'username':'password'",
+    "questions": [
+      "What is the purpose of the priority parameter in this API?",
+      "How can I monitor the progress of a background check triggered by this API?"
+    ]
+  },
+
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - POST /agents/check_defs/{check_def_id}/test",
+    "api_call": "servicenow.test_check_definition(check_def_id, ci_id, credentials_id, credentials_name, credentials_alias_id, credentials_alias_name)",
+    "api_arguments": {
+      "check_def_id": {
+        "description": "Sys_id of the check definition listed in the Check Definitions [sn_agent_check_def] table.",
+        "data_type": "String"
+      },
+      "ci_id": {
+        "description": "Sys_id of a CMDB Configuration Item.",
+        "data_type": "String"
+      },
+      "credentials_id": {
+        "description": "Sys_id of a credentials record.",
+        "data_type": "String"
+      },
+      "credentials_name": {
+        "description": "Name of the credentials record.",
+        "data_type": "String"
+      },
+      "credentials_alias_id": {
+        "description": "Sys_id of a credentials alias record.",
+        "data_type": "String"
+      },
+      "credentials_alias_name": {
+        "description": "Name of a credentials alias.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Enables building test check requests on check definitions.",
+    "meta_data": {
+      "description": "This API endpoint allows users to enable building test check requests on check definitions using the Agent Client Collector. It sets the check definition to test mode and specifies the configuration item to run the test against. Users can also provide identifiers such as credential sys_id, credential alias id, credential name, or credential alias name to use during the test.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/check_defs/<check_def_id>/test\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\" \\\n--data \"{\\\"ci_id\\\":\\\"<ci_id>\\\", \\\"credentials_id\\\":\\\"<credentials_id>\\\", \\\"credentials_name\\\":\\\"<credentials_name>\\\", \\\"credentials_alias_id\\\":\\\"<credentials_alias_id>\\\", \\\"credentials_alias_name\\\":\\\"<credentials_alias_name>\\\"}\" \\\n--user 'username':'password'",
+    "questions": [
+      "What is the purpose of setting the check definition to test mode?",
+      "How can I specify the configuration item for the test check request?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - POST /agents/check_instances/{check_instance_id}/test",
+    "api_call": "servicenow.test_check_instance(check_instance_id, ci_id, credentials_id, credentials_name, credentials_alias_id, credentials_alias_name, proxy_agent_id)",
+    "api_arguments": {
+      "check_instance_id": {
+        "description": "Sys_id of the check instance listed in the Check Instances [sn_agent_check] table.",
+        "data_type": "String"
+      },
+      "ci_id": {
+        "description": "Sys_id of a CMDB Configuration Item.",
+        "data_type": "String"
+      },
+      "credentials_id": {
+        "description": "Sys_id of a credentials record.",
+        "data_type": "String"
+      },
+      "credentials_name": {
+        "description": "Name of the credentials record.",
+        "data_type": "String"
+      },
+      "credentials_alias_id": {
+        "description": "Sys_id of a credentials alias record.",
+        "data_type": "String"
+      },
+      "credentials_alias_name": {
+        "description": "Name of a credentials alias.",
+        "data_type": "String"
+      },
+      "proxy_agent_id": {
+        "description": "Unique ID of an agent proxy to run this check.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Enables building test check requests on check instances.",
+    "meta_data": {
+      "description": "This API endpoint allows users to enable building test check requests on check instances using the Agent Client Collector. It sets the check instance to test mode and specifies the configuration item to run the test against. Users can also provide identifiers such as credential sys_id, credential alias id, credential name, or credential alias name to use during the test. Additionally, users can specify a proxy agent ID to run this check.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/check_instances/<check_instance_id>/test\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\" \\\n--data \"{\\\"ci_id\\\":\\\"<ci_id>\\\", \\\"credentials_id\\\":\\\"<credentials_id>\\\", \\\"credentials_name\\\":\\\"<credentials_name>\\\", \\\"credentials_alias_id\\\":\\\"<credentials_alias_id>\\\", \\\"credentials_alias_name\\\":\\\"<credentials_alias_name>\\\", \\\"proxy_agent_id\\\":\\\"<proxy_agent_id>\\\"}\" \\\n--user 'username':'password'",
+    "questions": [
+      "How can I specify a proxy agent ID to run the check instance?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - POST /agents/update/check/{check_id}",
+    "api_call": "servicenow.update_check(check_id, active, auto_generate, check_type, command, command_prefix, event_status_change_threshold, event_status_repair_threshold, interval, name, timeout)",
+    "api_arguments": {
+      "check_id": {
+        "description": "Sys_id of a policy check sandbox copy in the Check Instances [sn_agent_check] table.",
+        "data_type": "String"
+      },
+      "active": {
+        "description": "Flag that indicates whether the policy check is active.",
+        "data_type": "Boolean"
+      },
+      "auto_generate": {
+        "description": "Flag that indicates whether to automatically generate the command with the command_prefix value.",
+        "data_type": "Boolean"
+      },
+      "check_type": {
+        "description": "Check type specifying the monitoring option.",
+        "data_type": "String"
+      },
+      "command": {
+        "description": "Command that the Agent Client Collector executes.",
+        "data_type": "String"
+      },
+      "command_prefix": {
+        "description": "If the auto_generate property is true, this command is used for automatic generation.",
+        "data_type": "String"
+      },
+      "event_status_change_threshold": {
+        "description": "The number of consecutive times that a check's response status must happen before a new event is sent.",
+        "data_type": "Number"
+      },
+      "event_status_repair_threshold": {
+        "description": "The number of consecutive times that a check's response status must improve to close the previous event.",
+        "data_type": "Number"
+      },
+      "interval": {
+        "description": "The amount of time in seconds to wait between check executions.",
+        "data_type": "Number"
+      },
+      "name": {
+        "description": "Name of the check.",
+        "data_type": "String"
+      },
+      "timeout": {
+        "description": "The amount of time, in seconds, after which the check execution stops when no output is returned.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Updates a selected policy check.",
+    "meta_data": {
+      "description": "This API endpoint enables users to update a selected policy check using the Agent Client Collector. It allows modifying various properties of the check instance, including its activity status, auto-generation flag, check type, command, command prefix, event status change and repair thresholds, execution interval, name, and timeout. Users can specify the check instance to update using its Sys_id.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/update/check/<check_sys_id>\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\" \\\n--data \"{\\\"event_status_change_threshold\\\" : \\\"2\\\", \\\"event_status_repair_threshold\\\" : \\\"1\\\"}\" \\\n--user 'username':'password'",
+    "questions": [
+      "Can I update multiple properties of a check instance in a single request?"
+    ]
+  },
+
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - POST /agents/update/check_def_params/{check_def_param_id}",
+    "api_call": "servicenow.update_check_def_params(check_def_param_id, active, default_value, mandatory, name)",
+    "api_arguments": {
+      "check_def_param_id": {
+        "description": "Sys_id of the check parameter listed in the Check Parameter Definitions [sn_agent_check_param_def] table.",
+        "data_type": "String"
+      },
+      "active": {
+        "description": "Flag that indicates whether the check parameter is active.",
+        "data_type": "Boolean"
+      },
+      "default_value": {
+        "description": "Specifies the default value for this check parameter.",
+        "data_type": "String"
+      },
+      "mandatory": {
+        "description": "Flag that indicates whether the check parameter is required.",
+        "data_type": "Boolean"
+      },
+      "name": {
+        "description": "Name of the check parameter.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Enables changing one or more field values of a specified check parameter.",
+    "meta_data": {
+      "description": "This API endpoint allows users to update one or more field values of a specified check parameter in the Agent Client Collector. Users can modify the activity status, default value, requirement status, and name of the check parameter using its Sys_id.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/update/check_def_params/02d89bb01b307490f271ea42b24bcb63\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\" \\\n--data \"{\\\"active\\\":\\\"true\\\"}\" \\\n--user 'username':'password'",
+    "questions": [
+      "Can I update multiple properties of a check parameter in a single request?"
+    ]
+  },
+
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - POST /agents/update/check_def_secure_params/{check_def_secure_param_id}",
+    "api_call": "servicenow.update_check_def_secure_params(check_def_secure_param_id, active, name, order)",
+    "api_arguments": {
+      "check_def_secure_param_id": {
+        "description": "Sys_id of the secure parameter listed in the Check Secure Parameter Definitions [sn_agent_check_secure_param_def] table.",
+        "data_type": "String"
+      },
+      "active": {
+        "description": "Flag that indicates whether the secure parameter is active.",
+        "data_type": "Boolean"
+      },
+      "name": {
+        "description": "Name of the secure parameter.",
+        "data_type": "String"
+      },
+      "order": {
+        "description": "Order in which the parameter is sent to the check command/script.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Enables changing one or more field values of a specified check secure parameter.",
+    "meta_data": {
+      "description": "This API endpoint allows users to update one or more field values of a specified check secure parameter in the Agent Client Collector. Users can modify the activity status, name, and order of the secure parameter using its Sys_id.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/update/check_def_secure_params/2d30a066dba530106f4810284b9619c1\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\" \\\n--data \"{\\\"active\\\":\\\"true\\\"}\" \\\n--user 'username':'password'",
+    "questions": [
+      "Can I update multiple properties of a secure parameter in a single request?"
+    ]
+  },
+
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - POST /agents/update/check_defs/{check_def_id}",
+    "api_call": "servicenow.update_check_defs(check_def_id, active, background, check_group, check_type, command, name, params, plugins, proxy_valid, query, table, timeout)",
+    "api_arguments": {
+      "check_def_id": {
+        "description": "Sys_id of the check definition listed in the Check Definitions [sn_agent_check_def] table.",
+        "data_type": "String"
+      },
+      "active": {
+        "description": "Indicates whether this check definition is active.",
+        "data_type": "Number"
+      },
+      "background": {
+        "description": "Flag that indicates whether this check definition is a background check.",
+        "data_type": "Boolean"
+      },
+      "check_group": {
+        "description": "Group specified for this check definition.",
+        "data_type": "String"
+      },
+      "check_type": {
+        "description": "Type of check.",
+        "data_type": "String"
+      },
+      "command": {
+        "description": "Command that the Agent Client Collector executes.",
+        "data_type": "String"
+      },
+      "name": {
+        "description": "Name of the check.",
+        "data_type": "String"
+      },
+      "params": {
+        "description": "Map of parameter names and values. These settings can be used to override the parameter records of the check definition and its specified values.",
+        "data_type": "Object"
+      },
+      "plugins": {
+        "description": "List of Agent Client Collector plugins associated with this check.",
+        "data_type": "Array"
+      },
+      "proxy_valid": {
+        "description": "Flag that indicates whether the check definition policy is set to work as a proxy.",
+        "data_type": "Boolean"
+      },
+      "query": {
+        "description": "Encoded query for retrieving the GlideRecord from the table specified in the table property.",
+        "data_type": "String"
+      },
+      "table": {
+        "description": "Name of the cmdb_ci table for this check.",
+        "data_type": "String"
+      },
+      "timeout": {
+        "description": "Timeout in seconds.",
+        "data_type": "Number"
+      }
+    },
+    "functionality": "Enables changing one or more field values of a specified check definition.",
+    "meta_data": {
+      "description": "This API endpoint allows users to update one or more field values of a specified check definition in the Agent Client Collector. Users can modify various properties of the check definition such as its activity status, name, associated parameters, and more using its Sys_id.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/update/check_defs/99e12466dba530106f4810284b961976\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\" \\\n--data \"{\\\"active\\\":\\\"false\\\"}\" \\\n--user 'username':'password'",
+    "questions": [
+      "Can I update multiple properties of a check definition in a single request?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - POST /agents/update/check_param/{param_id}",
+    "api_call": "servicenow.update_check_param(param_id, active, flag, mandatory, name, value, value_required)",
+    "api_arguments": {
+      "param_id": {
+        "description": "Sys_id of policy check parameter sandbox copy in the Check Parameters [sn_agent_check_param] table.",
+        "data_type": "String"
+      },
+      "active": {
+        "description": "Flag that indicates whether the check parameter is active.",
+        "data_type": "Boolean"
+      },
+      "flag": {
+        "description": "Flag associated with the parameter.",
+        "data_type": "String"
+      },
+      "mandatory": {
+        "description": "Flag that indicates whether this check is mandatory.",
+        "data_type": "Boolean"
+      },
+      "name": {
+        "description": "Name of the parameter.",
+        "data_type": "String"
+      },
+      "value": {
+        "description": "Value of the parameter.",
+        "data_type": "String"
+      },
+      "value_required": {
+        "description": "Flag that indicates whether the information provided by the value property is required.",
+        "data_type": "Boolean"
+      }
+    },
+    "functionality": "Updates a selected policy check parameter.",
+    "meta_data": {
+      "description": "This API endpoint allows users to update one or more field values of a specified policy check parameter in the Agent Client Collector. Users can modify various properties of the policy check parameter such as its activity status, flag, name, value, and more using its Sys_id.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/update/check_param/<param_sys_id>\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\" \\\n--data \"{\\\"flag\\\":\\\"-d\\\", \\\"mandatory\\\":\\\"true\\\", \\\"name\\\":\\\"scheme2\\\", \\\"value\\\":\\\"120\\\", \\\"value_required\\\":\\\"false\\\"}\" \\\n--user 'username':'password'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - POST /agents/update/check_secure_param/{param_id}",
+    "api_call": "servicenow.update_check_secure_param(param_id, active, name, order)",
+    "api_arguments": {
+      "param_id": {
+        "description": "Sys_id of the policy check secure parameter sandbox copy in the Check Secure Parameter [sn_agent_check_secure_param] table.",
+        "data_type": "String"
+      },
+      "active": {
+        "description": "Flag that indicates whether the check secure parameter is active.",
+        "data_type": "Boolean"
+      },
+      "name": {
+        "description": "Name of the secure parameter.",
+        "data_type": "String"
+      },
+      "order": {
+        "description": "Order in which the parameter is sent to the check command/script.",
+        "data_type": "Number"
+      }
+    },
+    "functionality": "Updates a selected policy check secure parameter.",
+    "meta_data": {
+      "description": "This API endpoint allows users to update one or more field values of a specified policy check secure parameter in the Agent Client Collector. Users can modify various properties of the policy check secure parameter such as its activity status, name, and order using its Sys_id.",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/update/check_secure_param/<param_sys_id>\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\" \\\n--data \"{\\\"name\\\":\\\"new name\\\", \\\"order\\\":\\\"2\\\"}\" \\\n--user 'username':'password'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Agent Client Collector - POST /agents/update/policy/{policy_id}",
+    "api_call": "servicenow.update_policy(policy_id, cred_alias, credential_alias, filter, interval, monitored_ci_group, monitored_ci_script, monitored_ci_type_filter, monitored_ci_type_group, monitored_ci_type_script, name, table)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "policy_id": {
+        "description": "Sys_id of a policy sandbox copy in the Policies [sn_agent_policy] table.",
+        "data_type": "String"
+      },
+      "cred_alias": {
+        "description": "Name listed in the Credentials [discovery_credentials] table.",
+        "data_type": "String"
+      },
+      "credential_alias": {
+        "description": "Sys_id of the credential alias in the Connection & Credential Aliases [sys_alias] table.",
+        "data_type": "String"
+      },
+      "filter": {
+        "description": "Filter restricting the policy's checks to monitor only the specified criteria.",
+        "data_type": "String"
+      },
+      "interval": {
+        "description": "The amount of time in seconds to wait between policy checks. For example, a value of 60 means that the check runs every 60 seconds.",
+        "data_type": "Number"
+      },
+      "monitored_ci_group": {
+        "description": "Name of the CMDB groups associated with the policy. This CMDB is listed in the CMDB Groups [cmdb_group] table.",
+        "data_type": "String"
+      },
+      "monitored_ci_script": {
+        "description": "Script for monitoring CIs.",
+        "data_type": "String"
+      },
+      "monitored_ci_type_filter": {
+        "description": "Flag that indicates whether filtering by CI type is enabled. The CI type is listed in the table property.",
+        "data_type": "Boolean"
+      },
+      "monitored_ci_type_group": {
+        "description": "Flag that indicates whether monitoring by CMDB group type is enabled.",
+        "data_type": "Boolean"
+      },
+      "monitored_ci_type_script": {
+        "description": "Flag that indicates whether the script for monitoring CIs is enabled.",
+        "data_type": "Boolean"
+      },
+      "name": {
+        "description": "Name of the policy.",
+        "data_type": "String"
+      },
+      "table": {
+        "description": "Monitored CI-type field on the policy. This field is only applied if monitored_ci_type_filter is true.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Updates a sandbox copy of a policy.",
+    "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/update/policy/<policy_sys_id>\" --request POST --header \"Accept:application/json\" --header \"Content-Type:application/json\" --data \"{\\\"name\\\": \\\"new policy name\\\", \\\"filter\\\": \\\"operational_status=1\\\"}\" --user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I update the name and filter properties of a policy using this API?",
+      "Can you provide an example of using this API to update a policy in a ServiceNow instance?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Aggregate API - GET /now/stats/{tableName}",
+    "api_call": "servicenow.aggregate_stats(tableName, sysparm_avg_fields, sysparm_count, sysparm_display_value, sysparm_group_by, sysparm_having, sysparm_orderby, sysparm_query)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "tableName": {
+        "description": "Name of the table for which to retrieve records.",
+        "data_type": "String"
+      },
+      "sysparm_avg_fields": {
+        "description": "List of fields on which to perform each aggregate operation.",
+        "data_type": "String"
+      },
+      "sysparm_count": {
+        "description": "Flag that determines whether to return the number of records returned by the query.",
+        "data_type": "String"
+      },
+      "sysparm_display_value": {
+        "description": "Data retrieval operation when grouping by reference or choice fields.",
+        "data_type": "String"
+      },
+      "sysparm_group_by": {
+        "description": "Fields by which to group the returned data.",
+        "data_type": "String"
+      },
+      "sysparm_having": {
+        "description": "Additional query that enables you to filter the data based on an aggregate operation.",
+        "data_type": "String"
+      },
+      "sysparm_orderby": {
+        "description": "List of values by which to order grouped results.",
+        "data_type": "String"
+      },
+      "sysparm_query": {
+        "description": "An encoded query.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Retrieves records for the specified table and performs aggregate functions on the returned values.",
+    "example_code": "curl \"https://instance.servicenow.com/api/now/stats/incident?sysparm_avg_fields=reassignment_count%2Cbusiness_stc&sysparm_group_by=assignment_group\" --request GET --header \"Accept:application/json\" --user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I perform aggregate functions on records from a specific table using this API?",
+      "What are the different parameters I can use to customize the aggregation process in this API?"
+    ]
+  },
+
+  {
+    "user_name": "avichare",
+    "api_name": "AI Search External User Mapping - POST /ais/external_content/user_mapping/import_multiple/{target_table}",
+    "api_call": "servicenow.import_user_mapping(target_table, records)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "target_table": {
+        "description": "The name of the AI Search user mapping table that you want the imported mappings to appear in.",
+        "data_type": "String"
+      },
+      "records": {
+        "description": "Array of objects representing user mappings to import into the specified target table.",
+        "data_type": "Array",
+        "structure": {
+          "mapping_value": {
+            "description": "Email field value that uniquely identifies an existing record in the User [sys_user] table.",
+            "data_type": "String"
+          },
+          "external_group": {
+            "description": "Array of strings where each string is the name of an externally defined group.",
+            "data_type": "Array"
+          },
+          "external_user": {
+            "description": "Array of strings where each string is the name of an externally defined user.",
+            "data_type": "Array"
+          }
+        }
+      }
+    },
+    "functionality": "Imports a list of external user mappings into an AI Search user mapping table.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I import external user mappings into the ServiceNow AI Search application?",
+      "What is the significance of the target table parameter in this API?",
+      "Can you explain the structure of the records parameter in the request body?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "AI Search External User Mapping - POST /ais/external_content/user_mapping/import_multiple/{target_table}",
+    "api_call": "servicenow.import_user_mapping(target_table, records)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "target_table": {
+        "description": "The name of the AI Search user mapping table to import mappings into.",
+        "data_type": "String"
+      },
+      "records": {
+        "description": "An array of objects representing user mappings to be imported.",
+        "data_type": "Array",
+        "structure": {
+          "mapping_value": {
+            "description": "Email field value uniquely identifying an existing record in the User table.",
+            "data_type": "String"
+          },
+          "external_group": {
+            "description": "Array of strings representing externally defined groups.",
+            "data_type": "Array"
+          },
+          "external_user": {
+            "description": "Array of strings representing externally defined users.",
+            "data_type": "Array"
+          }
+        }
+      }
+    },
+    "functionality": "Imports external user mappings into an AI Search user mapping table.",
+    "env_requirements": [],
+    "example_code": "curl 'https://instance.servicenow.com/api/now/v1/ais/external_content/user_mapping/import_multiple/u_ext_content_user_mapping' \\\n  --request POST \\\n  --user 'username':'password' \\\n  --header 'Accept: application/json' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"records\": [\n      {\n        \"mapping_value\": \"beth.anglin@example.com\",\n        \"external_user\": [\n          \"ad\\beth-anglin\",\n          \"beth.anglin@sharepoint\"\n        ],\n        \"external_group\": [\n          \"reports\",\n          \"reports-admin\",\n          \"reports-dev\"\n        ]\n      },\n      {}\n    ]\n  }'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I import external user mappings into the ServiceNow AI Search application?",
+      "What is the significance of the target table parameter in this API?",
+      "Can you explain the structure of the records parameter in the request body?"
+    ]
+  },
+
+  {
+    "user_name": "avichare",
+    "api_name": "Alarm Management Open API - GET /sn_ind_tmf642/alarm_mgmt/alarm",
+    "api_call": "servicenow.retrieve_alarms(alarmRaisedTime, fields, id, limit, offset, probableCause, state, sourceSystemId)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "alarmRaisedTime": {
+        "description": "Date the alarm was raised. Only alarms with a date matching the value of this parameter are returned in the response.",
+        "data_type": "String"
+      },
+      "fields": {
+        "description": "List of fields to return in the response. Invalid fields are ignored.",
+        "data_type": "String",
+        "default": "All fields"
+      },
+      "id": {
+        "description": "Alarm ID. Only alarms with an ID matching the value of this parameter are returned in the response.",
+        "data_type": "String"
+      },
+      "limit": {
+        "description": "Maximum number of records to return. For requests that exceed this number of records, use the offset parameter to paginate record retrieval.",
+        "data_type": "Number",
+        "default": 1000,
+        "maximum": 2000
+      },
+      "offset": {
+        "description": "Starting index at which to begin retrieving records. Use this value to paginate record retrieval.",
+        "data_type": "Number",
+        "default": 0
+      },
+      "probableCause": {
+        "description": "Probable cause of the alarm. Only alarms with a probable cause matching the value of this parameter are returned in the response.",
+        "data_type": "String"
+      },
+      "state": {
+        "description": "Alarm state. Only alarms with a state matching the value of this parameter are returned in the response.",
+        "data_type": "String"
+      },
+      "sourceSystemId": {
+        "description": "Source system ID of the alarm. Only alarms with a source system ID matching the value of this parameter are returned in the response.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Retrieves a list of all alarm records from the Events [em_event] and Alert [em_alert] tables.",
+    "env_requirements": [],
+    "example_code": "curl 'https://instance.servicenow.com/api/sn_ind_tmf642/alarm_mgmt/alarm' \\\n--request GET \\\n--header 'Accept:application/json' \\\n--user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve alarm records using the Alarm Management Open API?",
+      "What parameters can I use to filter the alarm records in the response?",
+      "What does the 'fields' parameter specify in the API call?"
+    ]
+  },
+
+  {
+    "user_name": "avichare",
+    "api_name": "Alarm Management Open API - GET /sn_ind_tmf642/alarm_mgmt/alarm/{id}",
+    "api_call": "servicenow.retrieve_alarm(id, fields)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "id": {
+        "description": "Unique identifier of the record to retrieve. Located in the Message key field in the Events [em_event] table.",
+        "data_type": "String"
+      },
+      "fields": {
+        "description": "List of fields to return in the response. Invalid fields are ignored.",
+        "data_type": "String",
+        "default": "All fields"
+      }
+    },
+    "functionality": "Retrieves a specified alarm record from the Events [em_event] or Alert [em_alert] table.",
+    "env_requirements": [],
+    "example_code": "curl 'https://instance.servicenow.com/api/sn_ind_tmf642/alarm_mgmt/alarm/001a0ca629078d10f87759e2f69e4c64_2212331' \\\n--request GET \\\n--header 'Accept:application/json' \\\n--user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve a specific alarm record using the Alarm Management Open API?",
+      "What parameters can I specify to filter the fields returned in the response?",
+      "What does the 'id' parameter specify in the API call?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Alarm Management Open API - PATCH /sn_ind_tmf642/alarm_mgmt/alarm/{id}",
+    "api_call": "servicenow.update_alarm(id, payload)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "id": {
+        "description": "Unique identifier of the record to update. Located in the Message key field in the Events [em_event] table.",
+        "data_type": "String"
+      },
+      "payload": {
+        "description": "Request body containing the fields to update for the specified alarm.",
+        "data_type": "JSON"
+      }
+    },
+    "functionality": "Updates a specified alarm and any associated alert.",
+    "env_requirements": [],
+    "example_code": "curl 'https://<instance>.service-now.com/api/sn_ind_tmf642/alarm_mgmt/alarm/6e116bb8db09201087b9a8394b961950_<external-alarm-id>' \\\n--request PATCH \\\n--header 'Accept:application/json' \\\n--header 'Content-Type:application/json' \\\n--data '{\\n     \"href\":\"http://api/alarm/ROUTER_IF@Cisco-0000-0-0-0-0-00-00-0-- Xz0/00@00\",\\n     \"externalAlarmId\":\"<external-alarm-id>\",\\n     \"alarmType\":\"QualityOfServiceAlarm\",\\n     \"type\":\"QualityOfServiceAlarm\",\\n     \"ackState\":\"acknowledged\",\\n     \"perceivedSeverity\":\"MINOR\",\\n     \"probableCause\":\"Threshold crossed\",\\n     \"specificProblem\":\"Inbound Traffic threshold crossed\",\\n     \"alarmedObjectType\":\"ROUTER\",\\n     \"alarmedObject\":{\\n        \"id\":\"vManage_000000\",\\n        \"href\":\" http://api/alarmedobject/000000\"\\n     },\\n     \"sourceSystemId\":\"SOURCE_SYSTEM_vManage_00000_000_00\",\\n     \"alarmDetails\":\"Software Failure on SD-WAN Controller vManage_000000\",\\n     \"alarmEscalation\": false,\\n     \"state\":\"RAISED\",\\n     \"alarmChangedTime\":\"2017-08-15T07:04:15.666Z\",\\n     \"proposedRepairActions\":\"Switch in standby equipment\",\\n     \"alarmReportingTime\":\"2017-06-15T07:04:15.666Z\",\\n     \"alarmRaisedTime\":\"2020-09-15T07:04:15.666Z\",\\n     \"plannedOutageIndication\":\"IN_SERVICE\",\\n     \"serviceAffecting\":true,\\n     \"affectedService\":[\\n        {\\n           \"id\":\"SD WAN Enterprise Solutions\",\\n           \"href\":\"http://api/service/vlan_dot0_dot0\"\\n        },\\n        {\\n           \"id\":\"Santa Clara SD WAN Application Service\",\\n           \"href\":\"http://api/service/vlan_dot0_dot0\"\\n        }\\n     ] \\n }' \\\n--user 'user:'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I update an alarm using the Alarm Management Open API?",
+      "What are the required fields in the payload for updating an alarm?",
+      "What status code indicates a successful update of the alarm?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Alarm Management Open API - POST /sn_ind_tmf642/alarm_mgmt/alarm",
+    "api_call": "servicenow.create_alarm(payload)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "payload": {
+        "description": "Request body containing the fields to create a new alarm record.",
+        "data_type": "JSON"
+      }
+    },
+    "functionality": "Creates an alarm record in the Events [em_event] table.",
+    "env_requirements": [],
+    "example_code": "curl 'https://<instance>.service-now.com/api/sn_ind_tmf642/alarm_mgmt/alarm' \\\n--request POST \\\n--header 'Accept:application/json' \\\n--header 'Content-Type:application/json' \\\n--data '{\\n     \"href\":\"http://api/alarm/ROUTER_IF@Cisco-0000-0-0-0-0-00-00-0-- Xz0/00@00\",\\n     \"externalAlarmId\":\"<external-alarm-id>\",\\n     \"alarmType\":\"QualityOfServiceAlarm\",\\n     \"type\":\"QualityOfServiceAlarm\",\\n     \"ackState\":\"acknowledged\",\\n     \"perceivedSeverity\":\"CRITICAL\",\\n     \"probableCause\":\"Threshold crossed\",\\n     \"specificProblem\":\"Inbound Traffic threshold crossed\",\\n     \"alarmedObjectType\":\"ROUTER\",\\n     \"alarmedObject\":{\\n        \"id\":\"vManage_000000\",\\n        \"href\":\" http://api/alarmedobject/000000\"\\n     },\\n     \"sourceSystemId\":\"SOURCE_SYSTEM_vManage_00000_000_00\",\\n     \"alarmDetails\":\"Software Failure on SD-WAN Controller vManage_000000\",\\n     \"state\":\"RAISED\",\\n     \"alarmChangedTime\":\"2017-08-15T07:04:15.666Z\",\\n     \"proposedRepairActions\":\"Switch in standby equipment\",\\n     \"alarmReportingTime\":\"2017-06-15T07:04:15.666Z\",\\n     \"alarmRaisedTime\":\"2020-09-15T07:04:15.666Z\",\\n     \"plannedOutageIndication\":\"IN_SERVICE\",\\n     \"serviceAffecting\":true,\\n     \"affectedService\":[\\n        {\\n           \"id\":\"SD WAN Enterprise Solutions\",\\n           \"href\":\"http://api/service/vlan_dot0_dot0\"\\n        },\\n        {\\n           \"id\":\"Santa Clara SD WAN Application Service\",\\n           \"href\":\"http://api/service/vlan_dot0_dot0\"\\n        }\\n     ] \\n }' \\\n--user 'user':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I create an alarm record using the Alarm Management Open API?",
+      "What are the required fields in the payload for creating an alarm record?",
+      "What status code indicates a successful creation of the alarm record?"
+    ]
+  },
+
+  {
+    "user_name": "avichare",
+    "api_name": "Alarm Management Open API - POST /sn_ind_tmf642/alarm_mgmt/alarm/{id}/clear",
+    "api_call": "servicenow.clear_alarm(id, payload)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "id": "String",
+      "payload": {
+        "description": "Request body containing the fields to clear the specified alarm.",
+        "data_type": "JSON"
+      }
+    },
+    "functionality": "Clears a specified alarm and closes any associated alert.",
+    "env_requirements": [],
+    "example_code": "curl 'https://<instance>.service-now.com/api/sn_ind_tmf642/alarm_mgmt/alarm/6e116bb8db09201087b9a8394b961950_<external-alarm-id>/clear' \\\n--request POST \\\n--header 'Accept:application/json' \\\n--header 'Content-Type:application/json' \\\n--data '{\\n  \"alarmClearedTime\": \"2017-08-15 06:04:15\",\\n  \"clearSystemId\": \"<source_instance_name>\",\\n  \"clearUserId\": \"SOURCE_SYSTEM_vManage_00000_000_00\" \\n}' \\\n--user 'user':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I clear a specified alarm using the Alarm Management Open API?",
+      "What parameters are required in the payload for clearing an alarm?",
+      "What status code indicates a successful clearing of the alarm?"
+    ]
+  },
+
+  {
+    "user_name": "avichare",
+    "api_name": "Application Service API - GET /now/cmdb/app_service/{sys_id}/getContent",
+    "api_call": "servicenow.get_application_service_content(sys_id, mode)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "sys_id": "String",
+      "mode": {
+        "description": "Amount of relationship data to return.",
+        "valid_values": ["Shallow", "Full"],
+        "data_type": "String"
+      }
+    },
+    "functionality": "Retrieves a list of configuration items and their relationships in an application service.",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/now/cmdb/app_service/{sys_id}/getContent?mode=shallow'\nheaders = {'Accept': 'application/json'}\nauth = ('username', 'password')\nresponse = requests.get(url, headers=headers, auth=auth)\nprint(response.json())",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve a list of configuration items and their relationships in an application service using this API?",
+      "What are the valid values for the 'mode' parameter?",
+      "What headers are required in the request to use this API?"
+    ]
+  },
+
+  {
+    "user_name": "avichare",
+    "api_name": "Application Service API - GET /now/cmdb/csdm/app_service/find_service",
+    "api_call": "servicenow.get_application_service_info(name, number)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "name": {
+        "description": "Name of the service for which to return information.",
+        "required": true,
+        "data_type": "String"
+      },
+      "number": {
+        "description": "Unique number that identifies the application service for which to return information.",
+        "required": true,
+        "data_type": "String"
+      }
+    },
+    "functionality": "Returns basic information about a specified application service and its associated business context.",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/now/cmdb/csdm/app_service/find_service?name=Email_East&number=SNSVC0001018'\nheaders = {'Accept': 'application/json'}\nauth = ('username', 'password')\nresponse = requests.get(url, headers=headers, auth=auth)\nprint(response.json())",
+    "questions": [
+      "How can I retrieve basic information about a specified application service using this API?",
+      "What are the required parameters for calling this API?",
+      "What does the 'relationships' field in the response represent?"
+    ]
+  },
+
+  {
+    "user_name": "avichare",
+    "api_name": "Application Service API - POST /now/cmdb/app_service/create",
+    "api_call": "servicenow.create_or_update_application_service(serviceDetails)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "serviceDetails": {
+        "description": "Details of the application service to be created or updated.",
+        "data_type": "Object",
+        "elements": {
+          "name": {
+            "description": "Name of the application service.",
+            "required": true,
+            "data_type": "String"
+          },
+          "service_relations": {
+            "description": "Information about CIs and the hierarchy they form.",
+            "data_type": "Object",
+            "elements": {
+              "parent": {
+                "description": "Sys_id of the parent CI.",
+                "data_type": "String"
+              },
+              "child": {
+                "description": "Sys_id of the child CI.",
+                "data_type": "String"
+              }
+            }
+          }
+        }
+      }
+    },
+    "functionality": "Creates an application service or updates an existing one with specified details and CI relationships.",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/now/cmdb/app_service/create'\nheaders = {'Accept': 'application/json', 'Content-Type': 'application/json'}\nauth = ('username', 'password')\n\nservice_details = {\n    'name': 'myTestAppService',\n    'comments': 'Passing data to the Comments field',\n    'service_relations': [\n        {'parent': '', 'child': '3a70f789c0a8ce010091b0ea635b982a'},\n        {'parent': '3a70f789c0a8ce010091b0ea635b982a', 'child': 'b4fd7c8437201000deeabfc8bcbe5dc1'},\n        {'parent': 'b4fd7c8437201000deeabfc8bcbe5dc1', 'child': '53fdbc8437201000deeabfc8bcbe5d10'}\n    ]\n}\n\nresponse = requests.post(url, headers=headers, json=service_details, auth=auth)\nprint(response.json())",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I create or update an application service using this API?",
+      "What are the required parameters for creating or updating an application service?",
+      "How do I specify the relationships between CIs when creating or updating an application service?"
+    ]
+  },
+
+  {
+    "user_name": "avichare",
+    "api_name": "Application Service API - PUT /now/cmdb/csdm/app_service/{service_sys_id}/populate_service",
+    "api_call": "servicenow.populate_application_service(service_sys_id, populationMethod)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "service_sys_id": {
+        "description": "Sys_id of the application service to populate with specified CIs.",
+        "data_type": "String"
+      },
+      "populationMethod": {
+        "description": "CIs to associate with the specified application service.",
+        "data_type": "Object",
+        "elements": {
+          "type": {
+            "description": "Type of CI to populate.",
+            "required": true,
+            "data_type": "String",
+            "valid_values": ["cmdb_group_based", "discovery", "tag_list"]
+          },
+          "group_id": {
+            "description": "Sys_id of the group to associate with the CI.",
+            "required": true,
+            "data_type": "String",
+            "required_if_type": "cmdb_group_based"
+          },
+          "entry_point_id": {
+            "description": "Entry point into the application service.",
+            "data_type": "String",
+            "required_if_type": "discovery"
+          },
+          "attributes": {
+            "description": "List of attributes to associate with the CI.",
+            "data_type": "Array",
+            "required_if_type": "discovery",
+            "elements": {
+              "name": {
+                "description": "Name of the attribute.",
+                "data_type": "String"
+              },
+              "value": {
+                "description": "Attribute value.",
+                "data_type": "String"
+              }
+            }
+          },
+          "tags": {
+            "description": "List of tags to associate with the CI.",
+            "data_type": "Array",
+            "required_if_type": "tag_list",
+            "elements": {
+              "tag": {
+                "description": "Name of the tag.",
+                "data_type": "String"
+              },
+              "value": {
+                "description": "Tag value.",
+                "data_type": "String"
+              }
+            }
+          }
+        }
+      }
+    },
+    "functionality": "Populates the specified application service with a specified set of downstream configuration items (CI).",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/now/cmdb/csdm/app_service/{service_sys_id}/populate_service'\nheaders = {'Accept': 'application/json', 'Content-Type': 'application/json'}\nauth = ('username', 'password')\n\npopulation_method = {\n    'type': 'cmdb_group_based',\n    'group_id': 'e809cf60db94101037640f95ca961932'\n}\n\nresponse = requests.put(url.format(service_sys_id='f809cb60db94101037740f95ca96190f'), headers=headers, json={'population_method': population_method}, auth=auth)\nprint(response.json())",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How do I populate an application service with downstream configuration items?",
+      "What are the supported types of CIs that can be populated with this API?",
+      "What parameters are required for populating an application service with discovery type?"
+    ]
+  },
+
+  {
+    "user_name": "avichare",
+    "api_name": "Application Service API - PUT /now/cmdb/csdm/app_service/{service_sys_id}/service_details",
+    "api_call": "servicenow.update_application_service(service_sys_id, basic_details, relationships)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "service_sys_id": {
+        "description": "Sys_id of the application service to be updated.",
+        "data_type": "String"
+      },
+      "basic_details": {
+        "description": "Details of the service associated with the specified application service.",
+        "data_type": "Object",
+        "elements": {
+          "environment": {
+            "description": "Environment in which the application service is deployed.",
+            "data_type": "String",
+            "max_length": 40,
+            "default": "null"
+          },
+          "name": {
+            "description": "Name of the application service.",
+            "data_type": "String",
+            "required": true,
+            "max_length": 255
+          }
+        }
+      },
+      "relationships": {
+        "description": "Service types to associate with the application service.",
+        "data_type": "Object",
+        "elements": {
+          "business_app": {
+            "description": "List of sys_ids of the business applications to relate to the application service.",
+            "data_type": "Array"
+          },
+          "business_service_offering": {
+            "description": "List of sys_ids of the business service offerings to relate to the application service.",
+            "data_type": "Array"
+          },
+          "technical_service_offering": {
+            "description": "List of sys_ids of the technical service offerings to relate to the application service.",
+            "data_type": "Array"
+          }
+        }
+      }
+    },
+    "functionality": "Updates the specified application service with the passed in basic information.",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/now/cmdb/csdm/app_service/{service_sys_id}/service_details'\nheaders = {'Accept': 'application/json', 'Content-Type': 'application/json'}\nauth = ('username', 'password')\n\nbasic_details = {\n    'environment': 'Test Lab 2',\n    'name': 'MyAppService'\n}\n\nrelationships = {\n    'business_app': ['f07c7620db54101037740f95ca96199a']\n}\n\nresponse = requests.put(url.format(service_sys_id='f809cb60db94101037740f95ca96190f'), headers=headers, json={'basic_details': basic_details, 'relationships': relationships}, auth=auth)\nprint(response.json())",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How do I update an application service with basic information?",
+      "What are the required parameters for updating an application service?",
+      "What status codes can be returned when updating an application service?"
+    ]
+  },
+  {
+    "api_name": "Appointment API - GET /sn_apptmnt_booking/appointment/calendar",
+    "api_call": "servicenow.get_appointment_calendar(catalog_id, location, opened_for)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "catalog_id": {
+        "description": "Sys_id of the record producer configured with an appointment booking service configuration.",
+        "data_type": "String"
+      },
+      "location": {
+        "description": "Sys_id of the location (cmn_location) of the appointment.",
+        "data_type": "String"
+      },
+      "opened_for": {
+        "description": "Sys_id of the user for whom the appointment is being booked.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Returns the time range for which you can book appointments.",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/sn_apptmnt_booking/v1/appointment/calendar'\nheaders = {'Accept': 'application/json'}\nauth = ('username', 'password')\n\nparams = {\n    'catalog_id': 'e4c1116b3b810300ce8a4d72f3efc40f',\n    'location': '32e8499cdb2d2200d75270f5bf9619d6',\n    'opened_for': '6816f79cc0a8016401c5a33be04be441'\n}\n\nresponse = requests.get(url, headers=headers, params=params, auth=auth)\nprint(response.json())",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What are the required parameters for getting the appointment calendar?",
+      "What does the 'range_start' parameter in the response represent?",
+      "How do I authenticate to access this endpoint?"
+    ]
+  },
+  {
+    "api_name": "Appointment API - GET /sn_apptmnt_booking/appointment/configuration",
+    "api_call": "servicenow.get_appointment_configuration(catalog_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "catalog_id": {
+        "description": "Sys_id of the record producer configured with the appointment booking service configuration.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Returns the configuration defined in a specified Appointment Booking Service Configuration.",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/sn_apptmnt_booking/v1/appointment/configuration?catalog_id=e4c1116b3b810300ce8a4d72f3efc40f'\nheaders = {'Accept': 'application/json'}\nauth = ('username', 'password')\n\nresponse = requests.get(url, headers=headers, auth=auth)\nprint(response.json())",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What parameters are required to retrieve the appointment configuration?",
+      "How is the appointment duration represented in the response?",
+      "What does the 'active' parameter in the 'service_config' section indicate?"
+    ]
+  },
+  {
+    "api_name": "Appointment API - GET /sn_apptmnt_booking/appointment/execute_rule_conditions",
+    "api_call": "servicenow.get_appointment_rule_conditions(catalog_id, task_id=None, other_inputs=None)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "catalog_id": {
+        "description": "Sys_id of the record producer configured with the appointment booking service configuration.",
+        "data_type": "String"
+      },
+      "task_id": {
+        "description": "Sys_id of the task record for which the appointment is being booked.",
+        "data_type": "String",
+        "optional": true
+      },
+      "other_inputs": {
+        "description": "Name-value pairs of catalog item variables to compare against the rules defined for a service configuration.",
+        "data_type": "Object",
+        "optional": true
+      }
+    },
+    "functionality": "Returns the sys_id of the appointment booking service configuration rule that matches a specified task sys_id or a set of specified catalog item data.",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/sn_apptmnt_booking/v1/appointment/execute_rule_conditions'\nheaders = {'Accept': 'application/json', 'Content-Type': 'application/json'}\nauth = ('username', 'password')\n\ndata_task = {\"catalogId\": \"e4c1116b3b810300ce8a4d72f3efc40f\", \"taskId\": \"ce1f397c43b861105e0dbcba6ab8f298\"}\ndata_other_inputs = {\"catalogId\": \"e4c1116b3b810300ce8a4d72f3efc40f\", \"otherInputs\": {\"u_sn_point_of_sale_variable_set\": \"true\", \"short_description\": \"Point-of-Sale Installation\", \"contact\": \"6816f79cc0a8016401c5a33be04be441\", \"description\": \"Install new point-of-sale system with cash tray\", \"location\": \"32e8499cdb2d2200d75270f5bf9619d6\"}}\n\nresponse_task = requests.post(url, headers=headers, auth=auth, json=data_task)\nresponse_other_inputs = requests.post(url, headers=headers, auth=auth, json=data_other_inputs)\n\nprint(response_task.json())\nprint(response_other_inputs.json())",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What is the purpose of the 'task_id' parameter in the API call?",
+      "How can you specify the 'other_inputs' parameter in the API call?",
+      "What does the 'dedicatedCapacity' parameter in the response indicate?"
+    ]
+  },
+  {
+    "api_name": "Appointment API - GET /sn_apptmnt_booking/appointment/execute_rule_conditions",
+    "api_call": "servicenow.get_appointment_rule_conditions(catalog_id, task_id=None, other_inputs=None)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "catalog_id": {
+        "description": "Sys_id of the record producer configured with the appointment booking service configuration.",
+        "data_type": "String"
+      },
+      "task_id": {
+        "description": "Sys_id of the task record for which the appointment is being booked.",
+        "data_type": "String",
+        "optional": true
+      },
+      "other_inputs": {
+        "description": "Name-value pairs of catalog item variables to compare against the rules defined for a service configuration.",
+        "data_type": "Object",
+        "optional": true
+      }
+    },
+    "functionality": "Returns the sys_id of the appointment booking service configuration rule that matches a specified task sys_id or a set of specified catalog item data.",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/sn_apptmnt_booking/v1/appointment/execute_rule_conditions'\nheaders = {'Accept': 'application/json', 'Content-Type': 'application/json'}\nauth = ('username', 'password')\n\ndata_task = {\"catalogId\": \"e4c1116b3b810300ce8a4d72f3efc40f\", \"taskId\": \"ce1f397c43b861105e0dbcba6ab8f298\"}\ndata_other_inputs = {\"catalogId\": \"e4c1116b3b810300ce8a4d72f3efc40f\", \"otherInputs\": {\"u_sn_point_of_sale_variable_set\": \"true\", \"short_description\": \"Point-of-Sale Installation\", \"contact\": \"6816f79cc0a8016401c5a33be04be441\", \"description\": \"Install new point-of-sale system with cash tray\", \"location\": \"32e8499cdb2d2200d75270f5bf9619d6\"}}\n\nresponse_task = requests.post(url, headers=headers, auth=auth, json=data_task)\nresponse_other_inputs = requests.post(url, headers=headers, auth=auth, json=data_other_inputs)\n\nprint(response_task.json())\nprint(response_other_inputs.json())",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What is the purpose of the 'task_id' parameter in the API call?",
+      "How can you specify the 'other_inputs' parameter in the API call?",
+      "What does the 'dedicatedCapacity' parameter in the response indicate?"
+    ]
+  },
+  {
+    "api_name": "Appointment API - POST /sn_apptmnt_booking/appointment/appointment",
+    "api_call": "servicenow.book_or_reschedule_appointment(start_date_utc, end_date_utc, actual_start_date, actual_end_date, catalog_id, location, opened_for, reschedule, task_id, task_table, timezone, service_configuration_rule='')",
+    "api_version": "1.0",
+    "api_arguments": {
+      "start_date_utc": {
+        "description": "Start date and time for the appointment slot in UTC time zone.",
+        "data_type": "String"
+      },
+      "end_date_utc": {
+        "description": "End date and time for the appointment slot in UTC time zone.",
+        "data_type": "String"
+      },
+      "actual_start_date": {
+        "description": "Start date and time for the appointment slot in the appointment's time zone.",
+        "data_type": "String"
+      },
+      "actual_end_date": {
+        "description": "End date and time for the appointment slot in the appointment's time zone.",
+        "data_type": "String"
+      },
+      "catalog_id": {
+        "description": "Sys_id of the record producer configured for the appointment booking service configuration.",
+        "data_type": "String"
+      },
+      "location": {
+        "description": "Sys_id of the location record related to the appointment.",
+        "data_type": "String"
+      },
+      "opened_for": {
+        "description": "Sys_id of the user for which the appointment is being booked.",
+        "data_type": "String"
+      },
+      "reschedule": {
+        "description": "Flag that indicates whether the appointment is being rescheduled.",
+        "data_type": "Boolean"
+      },
+      "task_id": {
+        "description": "Sys_id of the task record for which the appointment is being booked.",
+        "data_type": "String"
+      },
+      "task_table": {
+        "description": "Name of the table containing the task record for which the appointment is being booked.",
+        "data_type": "String"
+      },
+      "timezone": {
+        "description": "Time zone to use when booking or updating the specified appointment slot.",
+        "data_type": "String"
+      },
+      "service_configuration_rule": {
+        "description": "Sys_id of the service configuration rule if the appointment is being booked under a rule.",
+        "data_type": "String",
+        "optional": true
+      }
+    },
+    "functionality": "Enables you to book and reschedule appointments for a Field Service Management task.",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/sn_apptmnt_booking/appointment/appointment'\nheaders = {'Accept': 'application/json', 'Content-Type': 'application/json'}\nauth = ('username', 'password')\n\ndata = {\n    \"startDateUTC\": \"2023-02-01 20:00:00\",\n    \"endDateUTC\": \"2023-02-01 22:00:00\",\n    \"actualStartDate\": \"2023-02-01 15:00:00\",\n    \"actualEndDate\": \"2023-02-01 17:00:00\",\n    \"taskTable\": \"wm_order\",\n    \"location\": \"32e8499cdb2d2200d75270f5bf9619d6\",\n    \"catalogId\": \"e4c1116b3b810300ce8a4d72f3efc40f\",\n    \"openedFor\": \"ddce70866f9331003b3c498f5d3ee417\",\n    \"taskId\": \"ce1f397c43b861105e0dbcba6ab8f298\",\n    \"reschedule\": false,\n    \"service_configuration_rule\": \"\",\n    \"timezone\": \"US/Eastern\"\n}\n\nresponse = requests.post(url, headers=headers, auth=auth, json=data)\n\nprint(response.json())",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What is the difference between 'start_date_utc' and 'actual_start_date' parameters?",
+      "When should the 'reschedule' parameter be set to true?",
+      "What is the purpose of the 'service_configuration_rule' parameter?"
+    ]
+  },
+  {
+    "api_name": "Appointment API - POST /sn_apptmnt_booking/appointment/availability",
+    "api_call": "servicenow.get_appointment_availability(start_date, end_date, location, catalog_id, opened_for, task_table, view, full_day, get_next_available_slot, use_read_replica, service_config_rule='', otherInputs={})",
+    "api_version": "1.0",
+    "api_arguments": {
+      "start_date": {
+        "description": "Start date and time for which to fetch appointments.",
+        "data_type": "String"
+      },
+      "end_date": {
+        "description": "End date and time for which to fetch appointments.",
+        "data_type": "String"
+      },
+      "location": {
+        "description": "Sys_id of the location record associated with the appointment.",
+        "data_type": "String"
+      },
+      "catalog_id": {
+        "description": "Sys_id of the record producer configured for the appointment booking service configuration.",
+        "data_type": "String"
+      },
+      "opened_for": {
+        "description": "Sys_id of the user for which the appointment is being booked.",
+        "data_type": "String"
+      },
+      "task_table": {
+        "description": "Name of the table containing the task record for which the appointment is being booked.",
+        "data_type": "String"
+      },
+      "view": {
+        "description": "Origination point of the request.",
+        "data_type": "String",
+        "valid_values": ["platform", "portal"]
+      },
+      "full_day": {
+        "description": "Flag that indicates whether to return all appointments for the specified date range regardless of the time values.",
+        "data_type": "Boolean"
+      },
+      "get_next_available_slot": {
+        "description": "Flag that indicates whether to return the first available appointment slot.",
+        "data_type": "Boolean"
+      },
+      "use_read_replica": {
+        "description": "Flag that indicates whether to use the read replica of the database when fetching the appointment slots.",
+        "data_type": "Boolean"
+      },
+      "service_config_rule": {
+        "description": "Sys_id of the service configuration rule to use to calculate the appointment slots and availability.",
+        "data_type": "String",
+        "optional": true
+      },
+      "otherInputs": {
+        "description": "Name-value pairs of any other values needed to calculate the availability.",
+        "data_type": "Object"
+      }
+    },
+    "functionality": "Returns the slots that have been configured in the appointment booking service configuration along with their availability.",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/sn_apptmnt_booking/appointment/availability'\nheaders = {'Accept': 'application/json', 'Content-Type': 'application/json'}\nauth = ('username', 'password')\n\ndata = {\n    \"start_date\": \"2023-02-05 05:00:00\",\n    \"end_date\": \"2023-02-07 04:59:59\",\n    \"location\": \"32e8499cdb2d2200d75270f5bf9619d6\",\n    \"catalog_id\": \"e4c1116b3b810300ce8a4d72f3efc40f\",\n    \"opened_for\": \"6816f79cc0a8016401c5a33be04be441\",\n    \"full_day\": false,\n    \"task_table\": \"wm_order\",\n    \"view\": \"portal\",\n    \"get_next_available_slot\": true,\n    \"use_read_replica\": true,\n    \"service_config_rule\": \"f7d5d98f437c21105e0dbcba6ab8f2fc\"\n}\n\nresponse = requests.post(url, headers=headers, auth=auth, json=data)\n\nprint(response.json())",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What is the difference between 'start_date' and 'end_date' parameters?",
+      "How does the 'full_day' parameter affect the response?",
+      "When should the 'get_next_available_slot' parameter be set to true?"
+    ]
+  }
+]
