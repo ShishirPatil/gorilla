@@ -1744,5 +1744,2874 @@
       "How does the 'full_day' parameter affect the response?",
       "When should the 'get_next_available_slot' parameter be set to true?"
     ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Attachment API - DELETE /now/attachment/{sys_id}",
+    "api_call": "servicenow.delete_attachment(sys_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "sys_id": {
+        "description": "Sys_id value of the attachment to delete.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Deletes the attachment with a specific sys_id value.",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/now/attachment/615ea769c0a80166001cf5f2367302f5'\nauth = ('username', 'password')\n\nresponse = requests.delete(url, auth=auth)\n\nprint(response.status_code)",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What happens if the attachment with the specified sys_id does not exist?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Attachment API - GET /now/attachment",
+    "api_call": "servicenow.get_attachments(sysparm_limit)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "sysparm_limit": {
+        "description": "Limit to be applied on pagination.",
+        "data_type": "String",
+        "default": "1000"
+      }
+    },
+    "functionality": "Returns the metadata for multiple attachments.",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/now/attachment?sysparm_limit=1'\nauth = ('username', 'password')\n\nresponse = requests.get(url, headers={'Accept': 'application/json'}, auth=auth)\n\nprint(response.json())",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What happens if the specified sysparm_limit exceeds the maximum allowed value?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Attachment API - GET /now/attachment/{sys_id}/file",
+    "api_call": "servicenow.get_attachment_file(sys_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "sys_id": {
+        "description": "Sys_id of the attachment record from which to return binary data.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Returns the binary file attachment with a specific sys_id value.",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/now/attachment/615ea769c0a80166001cf5f2367302f5/file'\nauth = ('username', 'password')\n\nresponse = requests.get(url, headers={'Accept': '*/*'}, auth=auth)\n\n# Binary response not shown.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What headers should be specified in the request to receive only JPEG or PNG image files?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Attachment API - GET /now/attachment/{sys_id}",
+    "api_call": "servicenow.get_attachment_metadata(sys_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "sys_id": {
+        "description": "Sys_id of the attachment record for which to retrieve the metadata.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Returns the metadata for the attachment file with a specific sys_id value.",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/now/attachment/615ea769c0a80166001cf5f2367302f5'\nauth = ('username', 'password')\n\nresponse = requests.get(url, headers={'Accept': 'application/json'}, auth=auth)\n\nprint(response.json())",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What headers should be specified in the request to receive XML format of the metadata?"
+    ]
+  },
+
+  {
+    "user_name": "avichare",
+    "api_name": "Attachment API - POST /now/attachment/file",
+    "api_call": "servicenow.upload_attachment(file_path, table_name, table_sys_id, file_name, content_type)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "file_path": {
+        "description": "Path to the binary file to attach to the specified record.",
+        "data_type": "String"
+      },
+      "table_name": {
+        "description": "Name of the table to attach the file to.",
+        "data_type": "String"
+      },
+      "table_sys_id": {
+        "description": "Sys_id of the record in the table specified in table_name that you want to attach the file to.",
+        "data_type": "String"
+      },
+      "file_name": {
+        "description": "Name to give the attachment.",
+        "data_type": "String",
+        "required": true
+      },
+      "content_type": {
+        "description": "Content type of the file to attach, such as image/jpeg or */*.",
+        "data_type": "String",
+        "required": true
+      }
+    },
+    "functionality": "Uploads a specified binary file as an attachment to a specified record.",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/now/attachment/file?table_name=incident&table_sys_id=d71f7935c0a8016700802b64c67c11c6&file_name=Issue_screenshot'\nauth = ('username', 'password')\nfiles = {'file': open('path_to_file', 'rb')}\n\nresponse = requests.post(url, headers={'Accept': 'application/json', 'Content-Type': 'image/jpeg'}, files=files, auth=auth)\n\nprint(response.json())",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What happens if the specified record does not exist in the specified table?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Attachment API - POST /now/attachment/upload",
+    "api_call": "servicenow.upload_attachment_multipart(file, table_name, table_sys_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "file": {
+        "description": "Path to the binary file to attach to the specified record.",
+        "data_type": "String"
+      },
+      "table_name": {
+        "description": "Name of the table to which the file will be attached.",
+        "data_type": "String",
+        "required": true
+      },
+      "table_sys_id": {
+        "description": "Sys_id of the record in the table specified in table_name that you want to attach the file to.",
+        "data_type": "String",
+        "required": true
+      }
+    },
+    "functionality": "Uploads a multipart file attachment.",
+    "example_code": "import requests\n\nurl = 'https://instance.servicenow.com/api/now/attachment/upload'\nauth = ('username', 'password')\nfiles = {'uploadFile': open('path_to_file', 'rb')}\nparams = {'table_name': 'incident', 'table_sys_id': 'd71f7935c0a8016700802b64c67c11c6'}\n\nresponse = requests.post(url, headers={'Accept': 'application/json'}, files=files, data=params, auth=auth)\n\nprint(response.json())",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": ["What should be done if the upload fails?"]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Automation Center API - POST /sn_ac/automation/rpa",
+    "api_call": "servicenow.sn_ac.create_event(departmentName, domainId, endtime, environment, errorMessage, eventName, id, name, priority, processId, robotId, source, starttime, state, status, triggeredBy, type, version)",
+    "api_version": "v1",
+    "api_arguments": {
+      "departmentName": "String",
+      "domainId": "String",
+      "endtime": "String",
+      "environment": "String",
+      "errorMessage": "String",
+      "eventName": "String",
+      "id": "Integer",
+      "name": "String",
+      "priority": "String",
+      "processId": "String",
+      "robotId": "String",
+      "source": "String",
+      "starttime": "String",
+      "state": "String",
+      "status": "String",
+      "triggeredBy": "String",
+      "type": "String",
+      "version": "String"
+    },
+    "functionality": "Creates robot, process, and execution events for process automation.",
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_ac/automation/rpa\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\" \\\n--data \"{records: [{id: 8001,name: \\\"Quotes system Automation Robot\\\",state: \\\"Available\\\",status: \\\"In Use\\\",version: 5.6,departmentName: \\\"Customer Support\\\",type: \\\"Unattended\\\",source: \\\"servicenow_rpa\\\",eventName: \\\"robot\\\"},{id: 8002,name: \\\"Invoice Matching Robot\\\",state: \\\"Responsive\\\",status: \\\"In Maintenance\\\",version: 3,departmentName: \\\"HR\\\",type: \\\"Unattended\\\",source: \\\"servicenow_rpa\\\",eventName: \\\"robot\\\"},{id: 8003,name: \\\"Data Reconciliation Robot\\\",state: \\\"Busy\\\",status: \\\"Retired\\\",version: 2,departmentName: \\\"Finance\\\",type: \\\"Unattended\\\",source: \\\"servicenow_rpa\\\",eventName: \\\"robot\\\"}]}\\--user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can the Automation Center API be utilized to streamline customer support processes?",
+      "In what scenarios would a finance department benefit from implementing the Automation Center API?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "AWA Agent API - GET /now/awa/agents/{user_id}",
+    "api_call": "servicenow.awa.get_agent_presence(user_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "user_id": "String"
+    },
+    "functionality": "Returns the current agent presence state and channel availability.",
+    "example_code": "curl -X GET \\\nhttps://instance.servicenow.com/api/now/awa/agents/46d44a23a9fe19810012d100cca80666 \\\n-H 'Accept: application/json' \\\n-H 'Content-Type: application/json' \\\n-u 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can the AWA Agent API be used to optimize agent workload management?",
+      "In what scenarios would an organization benefit from integrating the AWA Agent API with their existing systems?"
+    ]
+  },
+  {
+    "user_name": "username",
+    "api_name": "AWA Agent API - GET /now/awa/agents/{user_id}/presence_states",
+    "api_call": "servicenow.awa.get_agent_capacities(user_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "user_id": "String"
+    },
+    "functionality": "Returns an agent's channel capacities, universal capacity, and current workload to determine if the agent can handle a case.",
+    "example_code": "curl \"https://instance.service-now.com/api/now/awa/agents/46d44a23a9fe19810012d100cca80666/capacities\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can organizations leverage the AWA Agent API to optimize their workforce allocation and maximize agent efficiency?",
+      "In what scenarios would it be crucial for businesses to monitor and adjust the channel capacities and universal capacity of their agents using the AWA Agent API?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "AWA Agent API - PUT /now/awa/agents/{user_id}",
+    "api_call": "servicenow.awa.set_agent_presence(user_id, presence)",
+    "api_version": "v1",
+    "api_arguments": {
+      "user_id": {
+        "data_type": "String",
+        "description": "Sys_id of the agent. Located in the User [sys_user] table."
+      },
+      "presence": {
+        "data_type": "Object",
+        "description": "Information about an agent's current presence state and channel."
+      }
+    },
+    "functionality": "Sets the state of a specified agent’s presence and, if provided, sets the agent’s channel availability for that state.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I use an API to dynamically manage agent presence and channel availability based on their workload?",
+      "What are some best practices for utilizing the AWA Agent API to optimize workforce management?",
+      "Can this API be integrated with other tools or platforms for more comprehensive workforce optimization?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "AWA Agent API - PUT /now/awa/agents/{user_id}/capacities",
+    "api_call": "servicenow.awa.update_agent_capacities(user_id, capacities)",
+    "api_version": "v1",
+    "api_arguments": {
+      "user_id": {
+        "data_type": "String",
+        "description": "Sys_id of the agent listed in the User [sys_user] table."
+      }
+    },
+    "functionality": "Enables updating an agent's maximum capacity (workload) for channel capacities and universal capacity.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I efficiently update an agent's maximum workload for specific service channels using this API?",
+      "What are the potential implications of setting the universal capacity for an agent too high or too low?",
+      "Can this API be used to automate workload adjustments for agents based on real-time demand?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "AWA Assignment API - POST /awa/workitems/{work_item_sys_id}/assignments",
+    "api_call": "awa.assign_work_item(work_item_sys_id, agent_sys_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "work_item_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the work item to assign to an available agent. Located in the Work Items [awa_work_item] table."
+      },
+      "agent_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the available agent to receive the work item. Agents are users with the awa_agent role in the User [sys_user] table."
+      }
+    },
+    "functionality": "Assigns an available work item to an available Advanced Work Assignment agent.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I ensure that the work item I'm assigning is in the appropriate state to be assigned?",
+      "What are the potential reasons for a failed manual assignment request?",
+      "Is it possible to assign multiple work items to the same agent using this API?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "AWA Inbox Actions API - GET /awa/inbox/actions/reject_reasons/{channel_id}",
+    "api_call": "servicenow.awa.get_reject_reasons(channel_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "channel_id": {
+        "data_type": "String",
+        "description": "Sys_id of a service channel listed in the Service Channels [awa_service_channel] table."
+      }
+    },
+    "functionality": "Gets the work item reject reasons for a specified service channel.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I use the reject reasons retrieved by this API in my application?",
+      "Can I customize the reject reasons for different service channels?",
+      "Is there a limit to the number of reject reasons that can be retrieved for a service channel?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "AWA Inbox Actions API - POST /awa/inbox/actions/accept",
+    "api_call": "servicenow.awa.accept_work_item(agent_id, work_item_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "agent_id": {
+        "data_type": "String",
+        "description": "Sys_id of the agent listed in the User [sys_user] table."
+      },
+      "work_item_id": {
+        "data_type": "String",
+        "description": "Sys_id of the work item listed in the AWA Work Item [awa_work_item] table. The work item must be assigned to the specified agent and in Pending Accept state."
+      }
+    },
+    "functionality": "Accepts a work item in Pending Accept state on behalf of an agent.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What happens if I try to accept a work item that is not in the Pending Accept state?",
+      "Can I accept work items on behalf of other agents?",
+      "Is there a limit to the number of work items I can accept at once?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "AWA Inbox Actions API - POST /awa/inbox/actions/reject",
+    "api_call": "servicenow.awa.reject_work_item(agent_id, reject_reason_id, work_item_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "agent_id": {
+        "data_type": "String",
+        "description": "Sys_id of the agent listed in the User [sys_user] table."
+      },
+      "reject_reason_id": {
+        "data_type": "String",
+        "description": "Sys_id of a rejection reason for this service channel. Reasons are listed in the Reject Reasons [awa_reject_reason] table."
+      },
+      "work_item_id": {
+        "data_type": "String",
+        "description": "Sys_id of the work item listed in the AWA Work Item [awa_work_item] table. The work item must be assigned to the specified agent and in Pending Accept state."
+      }
+    },
+    "functionality": "Rejects a work item in Pending Accept state on behalf of an agent.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What happens if I try to reject a work item that is not in the Pending Accept state?",
+      "Can I reject work items on behalf of other agents?",
+      "Is there a limit to the number of work items I can reject at once?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "AWA Routing API - POST /awa/queues/{queue_sys_id}/work_item",
+    "api_call": "servicenow.awa.route_to_queue(queue_sys_id, document_sys_id, document_table)",
+    "api_version": "v1",
+    "api_arguments": {
+      "queue_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the queue record from the Queue [awa_queue] table."
+      },
+      "document_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the document to route to the queue."
+      },
+      "document_table": {
+        "data_type": "String",
+        "description": "Name of the table associated with the document, such as incident."
+      }
+    },
+    "functionality": "Routes a document to a queue. If an active work item exists, routes the document to the queue. If an active work item does not exist for the specified document, creates a work item and sets its fields accordingly.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "Can I route multiple documents to the same queue at once?",
+      "What happens if the specified queue does not exist?",
+      "Is there a limit to the number of documents that can be routed to a queue?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Batch API - POST /now/batch",
+    "api_call": "servicenow.batch_api.send_requests(batch_request_id, rest_requests)",
+    "api_version": "v1",
+    "api_arguments": {
+      "batch_request_id": {
+        "data_type": "String",
+        "description": "ID that identifies the batch of requests."
+      },
+      "rest_requests": {
+        "data_type": "Array",
+        "description": "List of request objects to include in the batch request."
+      }
+    },
+    "functionality": "Sends multiple REST API requests in a single call. You can include any API available on the instance in a Batch API call.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What is the maximum number of requests that can be included in a single batch request?",
+      "How are errors handled in a batch request?",
+      "Is there a limit to the number of batch requests that can be made within a certain timeframe?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Case API - GET /sn_customerservice/case/{id}/activities",
+    "api_call": "servicenow.case_api.get_activity_stream_from_csm_case(batch_request_id, rest_requests)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest.",
+        "data_type": "String"
+      },
+      "id": {
+        "description": "Sys_id or case number of the case to retrieve. Located in the Case [sn_customerservice_case] table. Results will be unpredictable if a specified case number is shared by two or more cases.",
+        "data_type": "String"
+      },
+      "sysparm_activity_type": {
+        "description": "Filters the type of activities to return from the activity stream. The entries.element parameter contains the activity type for each activity.",
+        "data_type": "String"
+      },
+      "sysparm_limit": {
+        "description": "Maximum number of records to return. Unusually large sysparm_limit values can impact system performance. For requests that exceed this number of records, use the sysparm_offset parameter to paginate record retrieval.",
+        "data_type": "Number"
+      },
+      "sysparm_offset": {
+        "description": "Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks.",
+        "data_type": "Number"
+      }
+    },
+    "functionality": "Retrieve activity stream for a specified CSM case",
+    "example_code": "curl --request GET 'https://instance.servicenow.com/api/sn_customerservice/case/{id}/activities'  \\ --request GET \\ --header 'Accept: application/json' \\ --user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I filter the type of activities to retrieve from the activity stream?",
+      "What is the maximum number of records I can retrieve in one call?",
+      "Can I paginate the record retrieval to manage large datasets?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Case - GET /sn_customerservice/case/field_values/{field_name}",
+    "api_call": "servicenow.case_api.get_field_values(field_name, sysparm_dependent_value, sysparm_limit, sysparm_offset, sysparm_reference_field_columns, sysparm_query, sysparm_ref_qual_input)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest.",
+        "data_type": "String"
+      },
+      "field_name": {
+        "description": "Name of a choice or reference field in the Case [sn_customerservice_case] table.",
+        "data_type": "String"
+      },
+      "sysparm_dependent_value": {
+        "description": "Value to select in the Case [sn_customerservice_case] table choice field that the requested field is dependent on. Use only when requesting a choice field that is dependent on another field.",
+        "data_type": "String"
+      },
+      "sysparm_limit": {
+        "description": "Maximum number of records to return. Unusually large sysparm_limit values can impact system performance. For requests that exceed this number of records, use the sysparm_offset parameter to paginate record retrieval.",
+        "data_type": "Number"
+      },
+      "sysparm_offset": {
+        "description": "Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks.",
+        "data_type": "Number"
+      },
+      "sysparm_reference_field_columns": {
+        "description": "Comma-separated list of column names, from the table of the specified reference field, to return in the response.",
+        "data_type": "String"
+      },
+      "sysparm_query": {
+        "description": "Encoded query used to filter the result set. Queries defined using this parameter are appended to any encoded queries produced by reference qualifiers.",
+        "data_type": "String"
+      },
+      "sysparm_ref_qual_input": {
+        "description": "Encoded set of field values representing a current object to pass to reference qualifiers that use JavaScript functions. Use only when requesting a reference field.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Retrieve list of possible field values for a choice or reference field in the Case table",
+    "example_code": "curl 'https://instance.servicenow.com/api/sn_customerservice/case/field_values/{field_name}' \\ --request GET \\ --header 'Accept: application/json' \\ --user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve the possible field values for a specific choice or reference field in the Case table?",
+      "How do I specify values for dependent choice fields?",
+      "What query parameters can I use to filter the result set?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Case - GET /sn_customerservice/case/{id}/field_values/{field_name}",
+    "api_call": "servicenow.case_api.get_field_values_for_record(field_name, sysparm_dependent_value, sysparm_limit, sysparm_offset, sysparm_reference_field_columns, sysparm_query, sysparm_ref_qual_input)",
+    "api_version": "Washington DC",
+    "api_arguments": {
+      "api_version": {
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest.",
+        "data_type": "String"
+      },
+      "field_name": {
+        "description": "Name of a choice or reference field. Located in the Case [sn_customerservice_case] table.",
+        "data_type": "String"
+      },
+      "id": {
+        "description": "Sys_id of a record. Located in the Case [sn_customerservice_case] table to use when evaluating reference qualifiers.",
+        "data_type": "String"
+      },
+      "sysparm_dependent_value": {
+        "description": "Value to select in the Case [sn_customerservice_case] table choice field that the requested field is dependent on. Use only when requesting a choice field that is dependent on another field.",
+        "data_type": "String"
+      },
+      "sysparm_limit": {
+        "description": "Maximum number of records to return. Unusually large sysparm_limit values can impact system performance. For requests that exceed this number of records, use the sysparm_offset parameter to paginate record retrieval.",
+        "data_type": "Number"
+      },
+      "sysparm_offset": {
+        "description": "Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks.",
+        "data_type": "Number"
+      },
+      "sysparm_query": {
+        "description": "Encoded query used to filter the result set. Queries defined using this parameter are appended to any encoded queries produced by reference qualifiers.",
+        "data_type": "String"
+      },
+      "sysparm_reference_field_columns": {
+        "description": "Comma-separated list of column names, from the table of the specified reference field, to return in the response.",
+        "data_type": "String"
+      },
+      "sysparm_ref_qual_input": {
+        "description": "Encoded set of field values representing a current object to pass to reference qualifiers that use JavaScript functions. Use only when requesting a reference field.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Retrieve list of possible field values for a choice or reference field for a specified record in the Case table",
+    "env_requirements": [],
+    "example_code": "curl 'https://instance.servicenow.com/api/sn_customerservice/case/f352dc9387632300d6b0a7da0acb0b60/field_values/contact' \\ --request GET \\ --header 'Accept: application/json' \\ --user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "Questions": [
+      "How can I retrieve the possible field values for a specific choice or reference field for a specified record in the Case table?",
+      "How do I specify values for dependent choice fields for a specified record?",
+      "What query parameters can I use to filter the result set for a specified record?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Case - GET /sn_customerservice/case/{id}/field_values/{field_name}",
+    "api_call": "servicenow.case_api.retrieve_field_values(id, field_name, sysparm_dependent_value, sysparm_limit, sysparm_offset, sysparm_query, sysparm_reference_field_columns, sysparm_ref_qual_input)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "id": {
+        "description": "Sys_id of a record. Located in the Case [sn_customerservice_case] table to use when evaluating reference qualifiers.",
+        "data_type": "String"
+      },
+      "field_name": {
+        "description": "Name of a choice or reference field. Located in the Case [sn_customerservice_case] table.",
+        "data_type": "String"
+      },
+      "sysparm_dependent_value": {
+        "description": "Value to select in the Case [sn_customerservice_case] table choice field that the requested field is dependent on. Use only when requesting a choice field that is dependent on another field.",
+        "data_type": "String"
+      },
+      "sysparm_limit": {
+        "description": "Maximum number of records to return. Unusually large sysparm_limit values can impact system performance. For requests that exceed this number of records, use the sysparm_offset parameter to paginate record retrieval.",
+        "data_type": "Number"
+      },
+      "sysparm_offset": {
+        "description": "Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks.",
+        "data_type": "Number"
+      },
+      "sysparm_query": {
+        "description": "Encoded query used to filter the result set. Queries defined using this parameter are appended to any encoded queries produced by reference qualifiers.",
+        "data_type": "String"
+      },
+      "sysparm_reference_field_columns": {
+        "description": "Comma-separated list of column names, from the table of the specified reference field, to return in the response.",
+        "data_type": "String"
+      },
+      "sysparm_ref_qual_input": {
+        "description": "Encoded set of field values representing a current object to pass to reference qualifiers that use JavaScript functions. Use only when requesting a reference field.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Retrieve list of possible field values for a choice or reference field for a specified record in the Case table",
+    "env_requirements": [],
+    "example_code": "curl 'https://instance.servicenow.com/api/sn_customerservice/case/f352dc9387632300d6b0a7da0acb0b60/field_values/contact' \\ --request GET \\ --header 'Accept: application/json' \\ --user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve the possible field values for a specific choice or reference field for a specified record in the Case table?",
+      "How do I specify values for dependent choice fields for a specified record?",
+      "What query parameters can I use to filter the result set for a specified record?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Case - GET /sn_customerservice/case/{id}",
+    "api_call": "servicenow.case_api.retrieve_case(id, sysparm_display_value)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "id": {
+        "description": "Sys_id or case number for the case to retrieve. Located in the Case [sn_customerservice_case] table.",
+        "data_type": "String"
+      },
+      "sysparm_display_value": {
+        "description": "Determines the type of data returned, either the actual values from the database or the display values of the fields.",
+        "data_type": "String",
+        "valid_values": ["true", "false", "all"],
+        "default": "false"
+      }
+    },
+    "functionality": "Retrieve the specified Customer Service Management (CSM) case.",
+    "example_code": "curl 'https://instance.servicenow.com/api/sn_customerservice/case/ba325dbe64f01300964fae39b050e9a6' --request GET --header 'Accept: application/json' --user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve a specific CSM case?",
+      "What is the purpose of the sysparm_display_value parameter?",
+      "What status codes might be returned when making this request?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Case - GET /sn_customerservice/case",
+    "api_call": "servicenow.case_api.retrieve_cases(sysparm_display_value, sysparm_fields, sysparm_limit, sysparm_offset, sysparm_query, sysparm_reference_fields)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "sysparm_display_value": {
+        "description": "Data retrieval operation for reference and choice fields.",
+        "data_type": "String",
+        "valid_values": ["true", "false", "all"],
+        "default": "false"
+      },
+      "sysparm_fields": {
+        "description": "Comma-separated list of fields to return in the response.",
+        "data_type": "String"
+      },
+      "sysparm_limit": {
+        "description": "Maximum number of records to return.",
+        "data_type": "Number"
+      },
+      "sysparm_offset": {
+        "description": "Starting record index for which to begin retrieving records.",
+        "data_type": "Number",
+        "default": 0
+      },
+      "sysparm_query": {
+        "description": "Encoded query used to filter the result set.",
+        "data_type": "String"
+      },
+      "sysparm_reference_fields": {
+        "description": "Whether or not to retrieve fields from reference tables such as account, contact, consumer, and sn_app_cs_social_social_profile.",
+        "data_type": "Boolean",
+        "default": true
+      }
+    },
+    "functionality": "Retrieves a specified set of Customer Service Management (CSM) cases.",
+    "example_code": "curl 'https://instance.servicenow.com/api/sn_customerservice/case?sysparm_query=account=86837a386f0331003b3c498f5d3ee4ca&sysparm_limit=2&sysparm_offset=2' --request GET --header 'Accept: application/json' --user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve a set of CSM cases?",
+      "What does the sysparm_display_value parameter control?",
+      "How can I limit the number of records returned?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Case - POST /sn_customerservice/case",
+    "api_call": "servicenow.case_api.create_case(account, active, active_account_escalation, active_escalation, activity_due, additional_assignee_list, approval, assigned_to, assignment_group, business_duration, business_impact, business_service, category, cause, caused_by, change, child_case_creation_progress, close_notes, closed_at, closed_by, cmdb_ci, comments, company, consumer, contact, contact_time_zone, contact_type, contract, correlation_display, correlation_id, delivery_plan, delivery_task, description, due_date, entitlement, escalation, expected_start, first_response_time, follow_the_sun, group_list, impact, knowledge, location, made_sla, major_case_state, notes_to_comments, notify, number, opened_at, opened_by, order, parent, partner, partner_contact, priority, probable_cause, problem, product, reassignment_count, recipient_list, rejection_goto, resolution_code, resolved_at, resolved_by, short_description, skills, sla_due, social_channel, social_handle, social_handle_type, social_handle_url, social_post_url, state, subcategory, support_manager, sync_driver, sys_domain_path, time_worked, upon_approval, upon_reject, urgency, user_input, variables, watch_list, wf_activity, work_end, work_notes_list, work_start)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "account": {
+        "description": "Sys_id of the account associated with the case; located in the Account [customer_account] table.",
+        "data_type": "String",
+        "default": "If contact specified, defaults to account specified in contact record."
+      },
+      "active": {
+        "description": "Flag that indicates whether the case is open and active.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"],
+        "default": true
+      },
+      "active_account_escalation": {
+        "description": "Sys_id of the active account escalation record associated with the case. Located in the Escalation [sn_customerservice_escalation] table.",
+        "data_type": "String"
+      },
+      "active_escalation": {
+        "description": "Sys_id of the active escalation record associated with the case. Located in the Escalation [sn_customerservice_escalation] table.",
+        "data_type": "String"
+      },
+      "activity_due": {
+        "description": "Date for which the associated case is expected to be completed.",
+        "data_type": "String"
+      },
+      "additional_assignee_list": {
+        "description": "List of the sys_ids of the additional persons (other than the primary assignee) that have been assigned to the account. Located in the User [sys_user] table.",
+        "data_type": "Array",
+        "maximum": 4000
+      },
+      "approval": {
+        "description": "String that describes the type of approval required.",
+        "data_type": "String",
+        "possible_values": [
+          "approved",
+          "cancelled",
+          "duplicate",
+          "not_required",
+          "not requested",
+          "rejected",
+          "requested"
+        ],
+        "maximum_characters": 40,
+        "default": "not requested"
+      },
+      "assigned_to": {
+        "description": "Sys_id of the person assigned to the case. Located in the User [sys_user] table.",
+        "data_type": "String"
+      },
+      "assignment_group": {
+        "description": "Sys_id of the customer service agent group assigned to the case. Located in the Group [sys_user_group] table.",
+        "data_type": "String"
+      },
+      "business_duration": {
+        "description": "Length in calendar work hours, work days, and work weeks that it took to complete the case.",
+        "data_type": "String"
+      },
+      "business_impact": {
+        "description": "Impact of the issue on the associated customer.",
+        "data_type": "String",
+        "maximum_characters": 4000
+      },
+      "business_service": {
+        "description": "Sys_id of the service record associated with the case. Located in the Service [cmdb_ci_service] table.",
+        "data_type": "String"
+      },
+      "category": {
+        "description": "Case category.",
+        "data_type": "Number (Integer)",
+        "possible_values": [0, 1, 2],
+        "default": 1
+      },
+      "cause": {
+        "description": "Details about the cause of the problem.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "caused_by": {
+        "description": "Sys_id of the change request that caused the case to be created. Located in the Change Request [change_request] table.",
+        "data_type": "String"
+      },
+      "change": {
+        "description": "Sys_id of the change request that caused the case to be created. Located in the Change Request [change_request] table.",
+        "data_type": "String"
+      },
+      "child_case_creation_progress": {
+        "description": "Flag that indicates whether the case is a child case that was created from a major case.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"]
+      },
+      "close_notes": {
+        "description": "Notes made when the case was closed.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "closed_at": {
+        "description": "Date and time that the case was closed.",
+        "data_type": "String"
+      },
+      "closed_by": {
+        "description": "Sys_id of the user that closed the case. Located in the User [sys_user] table.",
+        "data_type": "String"
+      },
+      "cmdb_ci": {
+        "description": "Sys_id of the configuration item associated with the case. Located in the Configuration Item [cmdb_ci] table.",
+        "data_type": "String"
+      },
+      "comments": {
+        "description": "Additional comments about the case.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "company": {
+        "description": "Sys_id of the company associated with the case. Located in the Company [core_company] table.",
+        "data_type": "String"
+      },
+      "consumer": {
+        "description": "Business-to-consumer cases only. Sys_id of the person to contact with regard to this case. Located in the Consumer [csm_consumer] table.",
+        "data_type": "String"
+      },
+      "contact": {
+        "description": "Business-to-business based cases only. Sys_id of the person to contact regarding this case. Located in the Contact [customer_contact] table.",
+        "data_type": "String"
+      },
+      "contact_time_zone": {
+        "description": "Time zone of the contact associated with the case.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "contact_type": {
+        "description": "Method in which the case was initially reported.",
+        "data_type": "String",
+        "maximum_length": 40,
+        "possible_values": ["chat", "email", "phone", "social", "web"]
+      },
+      "contract": {
+        "description": "Sys_id of the contract associated with the case. Located in the Contract [ast_contract] table.",
+        "data_type": "String"
+      },
+      "correlation_display": {
+        "description": "Correlation display.",
+        "data_type": "String",
+        "maximum_length": 100
+      },
+      "correlation_id": {
+        "description": "Correlation identifier.",
+        "data_type": "String",
+        "maximum_length": 100
+      },
+      "delivery_plan": {
+        "description": "Sys_id of the parent execution plan for this case. Located in the Execution Plan [sc_cat_item_delivery_plan] table.",
+        "data_type": "String"
+      },
+      "delivery_task": {
+        "description": "Sys_id of the execution plan task. Located in the Execution Plan Task [sc_cat_item_delivery_task] table.",
+        "data_type": "String"
+      },
+      "description": {
+        "description": "Detailed description of the problem associated with the case.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "due_date": {
+        "description": "Date that the case is due to be closed.",
+        "data_type": "String"
+      },
+      "entitlement": {
+        "description": "Sys_id of the entitlement record associated with the case. Located in the Entitlement [service_entitlement] table.",
+        "data_type": "String"
+      },
+      "escalation": {
+        "description": "Current escalation level.",
+        "data_type": "Number (Integer)",
+        "possible_values": [0, 1, 2, 3],
+        "default": 0
+      },
+      "expected_start": {
+        "description": "Date and time when work is scheduled to begin on the case.",
+        "data_type": "String"
+      },
+      "first_response_time": {
+        "description": "Date and time when the first action was taken on the case.",
+        "data_type": "String"
+      },
+      "follow_the_sun": {
+        "description": "Flag that indicates whether the case should be handed-off for global follow-up.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"],
+        "default": false
+      },
+      "group_list": {
+        "description": "List of sys_ids of the group records associated with the case. Located in the Group [sys_user_group] table.",
+        "data_type": "Array"
+      },
+      "impact": {
+        "description": "Impact on customer.",
+        "data_type": "Number (Integer)",
+        "possible_values": [1, 2, 3],
+        "default": 3
+      },
+      "knowledge": {
+        "description": "Flag that indicates if there is a knowledge base article available for the specified issue.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"],
+        "default": false
+      },
+      "location": {
+        "description": "Sys_id of the record describing the company location. Located in the Location [cmn_location] table.",
+        "data_type": "String"
+      },
+      "made_sla": {
+        "description": "Flag that indicates whether the case was resolved in alignment with the associated service level agreement.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"],
+        "default": true
+      },
+      "major_case_state": {
+        "description": "Current state of the major case.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "notes_to_comments": {
+        "description": "Flag that indicates whether to add the resolution notes to the comments.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"]
+      },
+      "notify": {
+        "description": "Method to use to notify contact/consumer.",
+        "data_type": "Number (Integer)",
+        "possible_values": [1, 2, 3],
+        "default": 1
+      },
+      "number": {
+        "description": "Case number.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "opened_at": {
+        "description": "Date and time that the case was opened.",
+        "data_type": "String"
+      },
+      "opened_by": {
+        "description": "Sys_id of the person that initially opened the case. Located in the User [sys_user] table.",
+        "data_type": "String"
+      },
+      "order": {
+        "description": "Order of the case.",
+        "data_type": "Number (Integer)"
+      },
+      "parent": {
+        "description": "Sys_id of the parent case to which this case (child) is associated. Located in the Task [task] table.",
+        "data_type": "String"
+      },
+      "partner": {
+        "description": "Sys_id of the partner associated with the case. Located in the Account [customer_account] table.",
+        "data_type": "String"
+      },
+      "partner_contact": {
+        "description": "Sys_id of the partner contact associated with the case. Located in the Contact [customer_contact] table.",
+        "data_type": "String"
+      },
+      "priority": {
+        "description": "Priority of the case.",
+        "data_type": "Number (Integer)",
+        "possible_values": [1, 2, 3, 4],
+        "default": 4
+      },
+      "probable_cause": {
+        "description": "Possible cause of the issue associated with the case.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "problem": {
+        "description": "Sys_id of the issue that the customer is encountering. Located in the Problem [problem] table.",
+        "data_type": "String"
+      },
+      "product": {
+        "description": "Sys_id of the product model of the asset associated to the case. Located in the Product Model [cmdb_model] table.",
+        "data_type": "String"
+      },
+      "reassignment_count": {
+        "description": "Number of times that the case was reassigned to a person that is responsible for moving the case forward.",
+        "data_type": "Number (Integer)",
+        "default": 0
+      },
+      "recipient_list": {
+        "description": "Sys_id of the record that contains the list of recipients for communications about this case. Located in the Recipients List [sn_publications_recipients_list] table.",
+        "data_type": "String"
+      },
+      "rejection_goto": {
+        "description": "Sys_id of the task to execute if the case is rejected. Located in the Task [task] table.",
+        "data_type": "String"
+      },
+      "resolution_code": {
+        "description": "Resolution state for the case, such as 'Solved - Fixed by Support/Guidance provided'.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "resolved_at": {
+        "description": "Date and time that the case was resolved.",
+        "data_type": "String"
+      },
+      "resolved_by": {
+        "description": "Sys_id of the person that resolved the case. Located in the User [sys_user] table.",
+        "data_type": "String"
+      },
+      "short_description": {
+        "description": "Concise description of the case.",
+        "data_type": "String",
+        "maximum_length": 160
+      },
+      "skills": {
+        "description": "List of the unique identifiers (sys_id) of the skills needed to complete the case. Located in the Skill [cmn_skill] table.",
+        "data_type": "String"
+      },
+      "sla_due": {
+        "description": "Date/time at which the case must be closed based on the associated service level agreement.",
+        "data_type": "String"
+      },
+      "social_channel": {
+        "description": "Type of social media channel such as Twitter, Facebook, or Instagram.",
+        "data_type": "String"
+      },
+      "social_handle": {
+        "description": "User handle on the channel.",
+        "data_type": "String"
+      },
+      "social_handle_type": {
+        "description": "Type of case to associate the social media profile.",
+        "data_type": "String",
+        "valid_values": ["account", "consumer", "contact"]
+      },
+      "social_handle_url": {
+        "description": "URL of the user's social media handle.",
+        "data_type": "String"
+      },
+      "social_post_url": {
+        "description": "URL of the social message from which the case is being generated.",
+        "data_type": "String"
+      },
+      "state": {
+        "description": "Current state of the case.",
+        "data_type": "Number (Integer)",
+        "possible_values": [1, 3, 6, 10, 18],
+        "default": 1
+      },
+      "subcategory": {
+        "description": "Case subcategory.",
+        "data_type": "Number (Integer)",
+        "possible_values": [0],
+        "default": 0
+      },
+      "support_manager": {
+        "description": "Sys_id of the CSM manager assigned to the case. Located in the User [sys_user] table.",
+        "data_type": "String"
+      },
+      "sync_driver": {
+        "description": "Flag that indicates whether there's driver synchronization.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"]
+      },
+      "sys_domain_path": {
+        "description": "Domain path.",
+        "data_type": "String",
+        "maximum_length": 255,
+        "default": "/"
+      },
+      "time_worked": {
+        "description": "Total amount of time worked on the case.",
+        "data_type": "String"
+      },
+      "upon_approval": {
+        "description": "Action to take if the case is approved.",
+        "data_type": "String",
+        "possible_values": ["do_nothing", "proceed"],
+        "maximum_length": 40,
+        "default": "proceed"
+      },
+      "upon_reject": {
+        "description": "Action to take if the case is rejected.",
+        "data_type": "String",
+        "possible_values": ["cancel", "goto"],
+        "maximum_length": 40,
+        "default": "cancel"
+      },
+      "urgency": {
+        "description": "Urgency of the case.",
+        "data_type": "Number (Integer)",
+        "possible_values": [1, 2, 3],
+        "default": 3
+      },
+      "user_input": {
+        "description": "Additional user input.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "variables": {
+        "description": "Name-value pairs of variables associated with the case.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "watch_list": {
+        "description": "List of sys_ids of the users who receive notifications about this case when additional comments are added or if the state of a case is changed to Resolved or Closed. Located in the User [sys_user] table.",
+        "data_type": "Array"
+      },
+      "wf_activity": {
+        "description": "Sys_id of the workflow activity record associated with the case. Located in the Workflow Activity [wf_activity] table.",
+        "data_type": "String"
+      },
+      "work_end": {
+        "description": "Date and time that work on the case ended.",
+        "data_type": "String"
+      },
+      "work_notes_list": {
+        "description": "List of sys_ids of the work notes associated with the case. Located in the Work Note [sn_work_note] table.",
+        "data_type": "Array"
+      },
+      "work_start": {
+        "description": "Date and time that work on the case began.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Creates a new Customer Service Management (CSM) case.",
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_customerservice/case\" --request POST --header \"Accept:application/json\" --header \"Content-Type:application/json\" --data \"{ account: \\\"051f62b0d7300200e5982cf65e610333\\\", contact_type: \\\"phone\\\", priority: \\\"1\\\", short_description: \\\"Power Outage\\\"}\" --user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    }
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Case - POST /sn_customerservice/case",
+    "api_call": "servicenow.case_api.create_case(account, active, active_account_escalation, active_escalation, activity_due, additional_assignee_list, approval, assigned_to, assignment_group, business_duration, business_impact, business_service, category, cause, caused_by, change, child_case_creation_progress, close_notes, closed_at, closed_by, cmdb_ci, comments, company, consumer, contact, contact_time_zone, contact_type, contract, correlation_display, correlation_id, delivery_plan, delivery_task, description, due_date, entitlement, escalation, expected_start, first_response_time, follow_the_sun, group_list, impact, knowledge, location, made_sla, major_case_state, notes_to_comments, notify, number, opened_at, opened_by, order, parent, partner, partner_contact, priority, probable_cause, problem, product, reassignment_count, recipient_list, rejection_goto, resolution_code, resolved_at, resolved_by, short_description, skills, sla_due, social_channel, social_handle, social_handle_type, social_handle_url, social_post_url, state, subcategory, support_manager, sync_driver, sys_domain_path, time_worked, upon_approval, upon_reject, urgency, user_input, variables, watch_list, wf_activity, work_end, work_notes_list, work_start)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "account": {
+        "description": "Sys_id of the account associated with the case; located in the Account [customer_account] table.",
+        "data_type": "String",
+        "default": "If contact specified, defaults to account specified in contact record."
+      },
+      "active": {
+        "description": "Flag that indicates whether the case is open and active.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"],
+        "default": true
+      },
+      "active_account_escalation": {
+        "description": "Sys_id of the active account escalation record associated with the case. Located in the Escalation [sn_customerservice_escalation] table.",
+        "data_type": "String"
+      },
+      "active_escalation": {
+        "description": "Sys_id of the active escalation record associated with the case. Located in the Escalation [sn_customerservice_escalation] table.",
+        "data_type": "String"
+      },
+      "activity_due": {
+        "description": "Date for which the associated case is expected to be completed.",
+        "data_type": "String"
+      },
+      "additional_assignee_list": {
+        "description": "List of the sys_ids of the additional persons (other than the primary assignee) that have been assigned to the account. Located in the User [sys_user] table.",
+        "data_type": "Array",
+        "maximum": 4000
+      },
+      "approval": {
+        "description": "String that describes the type of approval required.",
+        "data_type": "String",
+        "possible_values": [
+          "approved",
+          "cancelled",
+          "duplicate",
+          "not_required",
+          "not requested",
+          "rejected",
+          "requested"
+        ],
+        "maximum_characters": 40,
+        "default": "not requested"
+      },
+      "assigned_to": {
+        "description": "Sys_id of the person assigned to the case. Located in the User [sys_user] table.",
+        "data_type": "String"
+      },
+      "assignment_group": {
+        "description": "Sys_id of the customer service agent group assigned to the case. Located in the Group [sys_user_group] table.",
+        "data_type": "String"
+      },
+      "business_duration": {
+        "description": "Length in calendar work hours, work days, and work weeks that it took to complete the case.",
+        "data_type": "String"
+      },
+      "business_impact": {
+        "description": "Impact of the issue on the associated customer.",
+        "data_type": "String",
+        "maximum_characters": 4000
+      },
+      "business_service": {
+        "description": "Sys_id of the service record associated with the case. Located in the Service [cmdb_ci_service] table.",
+        "data_type": "String"
+      },
+      "category": {
+        "description": "Case category.",
+        "data_type": "Number (Integer)",
+        "possible_values": [0, 1, 2],
+        "default": 1
+      },
+      "cause": {
+        "description": "Details about the cause of the problem.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "caused_by": {
+        "description": "Sys_id of the change request that caused the case to be created. Located in the Change Request [change_request] table.",
+        "data_type": "String"
+      },
+      "change": {
+        "description": "Sys_id of the change request that caused the case to be created. Located in the Change Request [change_request] table.",
+        "data_type": "String"
+      },
+      "child_case_creation_progress": {
+        "description": "Flag that indicates whether the case is a child case that was created from a major case.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"]
+      },
+      "close_notes": {
+        "description": "Notes made when the case was closed.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "closed_at": {
+        "description": "Date and time that the case was closed.",
+        "data_type": "String"
+      },
+      "closed_by": {
+        "description": "Sys_id of the user that closed the case. Located in the User [sys_user] table.",
+        "data_type": "String"
+      },
+      "cmdb_ci": {
+        "description": "Sys_id of the configuration item associated with the case. Located in the Configuration Item [cmdb_ci] table.",
+        "data_type": "String"
+      },
+      "comments": {
+        "description": "Additional comments about the case.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "company": {
+        "description": "Sys_id of the company associated with the case. Located in the Company [core_company] table.",
+        "data_type": "String"
+      },
+      "consumer": {
+        "description": "Business-to-consumer cases only. Sys_id of the person to contact with regard to this case. Located in the Consumer [csm_consumer] table.",
+        "data_type": "String"
+      },
+      "contact": {
+        "description": "Business-to-business based cases only. Sys_id of the person to contact regarding this case. Located in the Contact [customer_contact] table.",
+        "data_type": "String"
+      },
+      "contact_time_zone": {
+        "description": "Time zone of the contact associated with the case.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "contact_type": {
+        "description": "Method in which the case was initially reported.",
+        "data_type": "String",
+        "maximum_length": 40,
+        "possible_values": ["chat", "email", "phone", "social", "web"]
+      },
+      "contract": {
+        "description": "Sys_id of the contract associated with the case. Located in the Contract [ast_contract] table.",
+        "data_type": "String"
+      },
+      "correlation_display": {
+        "description": "Correlation display.",
+        "data_type": "String",
+        "maximum_length": 100
+      },
+      "correlation_id": {
+        "description": "Correlation identifier.",
+        "data_type": "String",
+        "maximum_length": 100
+      },
+      "delivery_plan": {
+        "description": "Sys_id of the parent execution plan for this case. Located in the Execution Plan [sc_cat_item_delivery_plan] table.",
+        "data_type": "String"
+      },
+      "delivery_task": {
+        "description": "Sys_id of the execution plan task. Located in the Execution Plan Task [sc_cat_item_delivery_task] table.",
+        "data_type": "String"
+      },
+      "description": {
+        "description": "Detailed description of the problem associated with the case.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "due_date": {
+        "description": "Date that the case is due to be closed.",
+        "data_type": "String"
+      },
+      "entitlement": {
+        "description": "Sys_id of the entitlement record associated with the case. Located in the Entitlement [service_entitlement] table.",
+        "data_type": "String"
+      },
+      "escalation": {
+        "description": "Current escalation level.",
+        "data_type": "Number (Integer)",
+        "possible_values": [0, 1, 2, 3],
+        "default": 0
+      },
+      "expected_start": {
+        "description": "Date and time when work is scheduled to begin on the case.",
+        "data_type": "String"
+      },
+      "first_response_time": {
+        "description": "Date and time when the first action was taken on the case.",
+        "data_type": "String"
+      },
+      "follow_the_sun": {
+        "description": "Flag that indicates whether the case should be handed-off for global follow-up.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"],
+        "default": false
+      },
+      "group_list": {
+        "description": "List of sys_ids of the group records associated with the case. Located in the Group [sys_user_group] table.",
+        "data_type": "Array"
+      },
+      "impact": {
+        "description": "Impact on customer.",
+        "data_type": "Number (Integer)",
+        "possible_values": [1, 2, 3],
+        "default": 3
+      },
+      "knowledge": {
+        "description": "Flag that indicates if there is a knowledge base article available for the specified issue.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"],
+        "default": false
+      },
+      "location": {
+        "description": "Sys_id of the record describing the company location. Located in the Location [cmn_location] table.",
+        "data_type": "String"
+      },
+      "made_sla": {
+        "description": "Flag that indicates whether the case was resolved in alignment with the associated service level agreement.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"],
+        "default": true
+      },
+      "major_case_state": {
+        "description": "Current state of the major case.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "notes_to_comments": {
+        "description": "Flag that indicates whether to add the resolution notes to the comments.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"]
+      },
+      "notify": {
+        "description": "Method to use to notify contact/consumer.",
+        "data_type": "Number (Integer)",
+        "possible_values": [1, 2, 3],
+        "default": 1
+      },
+      "number": {
+        "description": "Case number.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "opened_at": {
+        "description": "Date and time that the case was opened.",
+        "data_type": "String"
+      },
+      "opened_by": {
+        "description": "Sys_id of the person that initially opened the case. Located in the User [sys_user] table.",
+        "data_type": "String"
+      },
+      "order": {
+        "description": "Order of the case.",
+        "data_type": "Number (Integer)"
+      },
+      "parent": {
+        "description": "Sys_id of the parent case to which this case (child) is associated. Located in the Task [task] table.",
+        "data_type": "String"
+      },
+      "partner": {
+        "description": "Sys_id of the partner associated with the case. Located in the Account [customer_account] table.",
+        "data_type": "String"
+      },
+      "partner_contact": {
+        "description": "Sys_id of the partner contact associated with the case. Located in the Contact [customer_contact] table.",
+        "data_type": "String"
+      },
+      "priority": {
+        "description": "Priority of the case.",
+        "data_type": "Number (Integer)",
+        "possible_values": [1, 2, 3, 4],
+        "default": 4
+      },
+      "probable_cause": {
+        "description": "Possible cause of the issue associated with the case.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "problem": {
+        "description": "Sys_id of the issue that the customer is encountering. Located in the Problem [problem] table.",
+        "data_type": "String"
+      },
+      "product": {
+        "description": "Sys_id of the product model of the asset associated to the case. Located in the Product Model [cmdb_model] table.",
+        "data_type": "String"
+      },
+      "reassignment_count": {
+        "description": "Number of times that the case was reassigned to a person that is responsible for moving the case forward.",
+        "data_type": "Number (Integer)",
+        "default": 0
+      },
+      "recipient_list": {
+        "description": "Sys_id of the record that contains the list of recipients for communications about this case. Located in the Recipients List [sn_publications_recipients_list] table.",
+        "data_type": "String"
+      },
+      "rejection_goto": {
+        "description": "Sys_id of the task to execute if the case is rejected. Located in the Task [task] table.",
+        "data_type": "String"
+      },
+      "resolution_code": {
+        "description": "Resolution state for the case, such as 'Solved - Fixed by Support/Guidance provided'.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "resolved_at": {
+        "description": "Date and time that the case was resolved.",
+        "data_type": "String"
+      },
+      "resolved_by": {
+        "description": "Sys_id of the person that resolved the case. Located in the User [sys_user] table.",
+        "data_type": "String"
+      },
+      "short_description": {
+        "description": "Concise description of the case.",
+        "data_type": "String",
+        "maximum_length": 160
+      },
+      "skills": {
+        "description": "List of the unique identifiers (sys_id) of the skills needed to complete the case. Located in the Skill [cmn_skill] table.",
+        "data_type": "String"
+      },
+      "sla_due": {
+        "description": "Date/time at which the case must be closed based on the associated service level agreement.",
+        "data_type": "String"
+      },
+      "social_channel": {
+        "description": "Type of social media channel such as Twitter, Facebook, or Instagram.",
+        "data_type": "String"
+      },
+      "social_handle": {
+        "description": "User handle on the channel.",
+        "data_type": "String"
+      },
+      "social_handle_type": {
+        "description": "Type of case to associate the social media profile.",
+        "data_type": "String",
+        "valid_values": ["account", "consumer", "contact"]
+      },
+      "social_handle_url": {
+        "description": "URL of the user's social media handle.",
+        "data_type": "String"
+      },
+      "social_post_url": {
+        "description": "URL of the social message from which the case is being generated.",
+        "data_type": "String"
+      },
+      "state": {
+        "description": "Current state of the case.",
+        "data_type": "Number (Integer)",
+        "possible_values": [1, 3, 6, 10, 18],
+        "default": 1
+      },
+      "subcategory": {
+        "description": "Case subcategory.",
+        "data_type": "Number (Integer)",
+        "possible_values": [0],
+        "default": 0
+      },
+      "support_manager": {
+        "description": "Sys_id of the CSM manager assigned to the case. Located in the User [sys_user] table.",
+        "data_type": "String"
+      },
+      "sync_driver": {
+        "description": "Flag that indicates whether there's driver synchronization.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"]
+      },
+      "sys_domain_path": {
+        "description": "Domain path.",
+        "data_type": "String",
+        "maximum_length": 255,
+        "default": "/"
+      },
+      "time_worked": {
+        "description": "Total amount of time worked on the case.",
+        "data_type": "String"
+      },
+      "upon_approval": {
+        "description": "Action to take if the case is approved.",
+        "data_type": "String",
+        "possible_values": ["do_nothing", "proceed"],
+        "maximum_length": 40,
+        "default": "proceed"
+      },
+      "upon_reject": {
+        "description": "Action to take if the case is rejected.",
+        "data_type": "String",
+        "possible_values": ["cancel", "goto"],
+        "maximum_length": 40,
+        "default": "cancel"
+      },
+      "urgency": {
+        "description": "Urgency of the case.",
+        "data_type": "Number (Integer)",
+        "possible_values": [1, 2, 3],
+        "default": 3
+      },
+      "user_input": {
+        "description": "Additional user input.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "variables": {
+        "description": "Name-value pairs of variables associated with the case.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "watch_list": {
+        "description": "List of sys_ids of the users who receive notifications about this case when additional comments are added or if the state of a case is changed to Resolved or Closed. Located in the User [sys_user] table.",
+        "data_type": "Array"
+      },
+      "wf_activity": {
+        "description": "Sys_id of the workflow activity record associated with the case. Located in the Workflow Activity [wf_activity] table.",
+        "data_type": "String"
+      },
+      "work_end": {
+        "description": "Date and time that work on the case ended.",
+        "data_type": "String"
+      },
+      "work_notes_list": {
+        "description": "List of sys_ids of the work notes associated with the case. Located in the Work Note [sn_work_note] table.",
+        "data_type": "Array"
+      },
+      "work_start": {
+        "description": "Date and time that work on the case began.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Creates a new Customer Service Management (CSM) case.",
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_cusomerservice/case/0397c743db436f0057c3fd441d96197f\" --request PUT --header \"Accept:application/json\" --header \"Content-Type:application/json\" --data \"{ consumer: \\\"cd97ef1ddb8bc7006b7a9646db9619ac\\\", contact_type: \\\"phone\\\", priority: \\\"4\\\", short_description: \\\"Consumer Test Case\\\"}\" --user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    }
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Case - PUT /sn_customerservice/case/{id}",
+    "api_call": "servicenow.case_api.update_case(account, active, active_account_escalation, active_escalation, activity_due, additional_assignee_list, approval, assigned_to, assignment_group, business_duration, business_impact, business_service, category, cause, caused_by, change, child_case_creation_progress, close_notes, closed_at, closed_by, cmdb_ci, comments, company, consumer, contact, contact_time_zone, contact_type, contract, correlation_display, correlation_id, delivery_plan, delivery_task, description, due_date, entitlement, escalation, expected_start, first_response_time, follow_the_sun, group_list, impact, knowledge, location, made_sla, major_case_state, notes_to_comments, notify, number, opened_at, opened_by, order, parent, partner, partner_contact, priority, probable_cause, problem, product, reassignment_count, recipient_list, rejection_goto, resolution_code, resolved_at, resolved_by, short_description, skills, sla_due, social_channel, social_handle, social_handle_type, social_handle_url, social_post_url, state, subcategory, support_manager, sync_driver, sys_domain_path, time_worked, upon_approval, upon_reject, urgency, user_input, variables, watch_list, wf_activity, work_end, work_notes_list, work_start)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "account": {
+        "description": "Sys_id of the account associated with the case; located in the Account [customer_account] table.",
+        "data_type": "String",
+        "default": "If contact specified, defaults to account specified in contact record."
+      },
+      "active": {
+        "description": "Flag that indicates whether the case is open and active.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"],
+        "default": true
+      },
+      "active_account_escalation": {
+        "description": "Sys_id of the active account escalation record associated with the case. Located in the Escalation [sn_customerservice_escalation] table.",
+        "data_type": "String"
+      },
+      "active_escalation": {
+        "description": "Sys_id of the active escalation record associated with the case. Located in the Escalation [sn_customerservice_escalation] table.",
+        "data_type": "String"
+      },
+      "activity_due": {
+        "description": "Date for which the associated case is expected to be completed.",
+        "data_type": "String"
+      },
+      "additional_assignee_list": {
+        "description": "List of the sys_ids of the additional persons (other than the primary assignee) that have been assigned to the account. Located in the User [sys_user] table.",
+        "data_type": "Array",
+        "maximum": 4000
+      },
+      "approval": {
+        "description": "String that describes the type of approval required.",
+        "data_type": "String",
+        "possible_values": [
+          "approved",
+          "cancelled",
+          "duplicate",
+          "not_required",
+          "not requested",
+          "rejected",
+          "requested"
+        ],
+        "maximum_characters": 40,
+        "default": "not requested"
+      },
+      "assigned_to": {
+        "description": "Sys_id of the person assigned to the case. Located in the User [sys_user] table.",
+        "data_type": "String"
+      },
+      "assignment_group": {
+        "description": "Sys_id of the customer service agent group assigned to the case. Located in the Group [sys_user_group] table.",
+        "data_type": "String"
+      },
+      "business_duration": {
+        "description": "Length in calendar work hours, work days, and work weeks that it took to complete the case.",
+        "data_type": "String"
+      },
+      "business_impact": {
+        "description": "Impact of the issue on the associated customer.",
+        "data_type": "String",
+        "maximum_characters": 4000
+      },
+      "business_service": {
+        "description": "Sys_id of the service record associated with the case. Located in the Service [cmdb_ci_service] table.",
+        "data_type": "String"
+      },
+      "category": {
+        "description": "Case category.",
+        "data_type": "Number (Integer)",
+        "possible_values": [0, 1, 2],
+        "default": 1
+      },
+      "cause": {
+        "description": "Details about the cause of the problem.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "caused_by": {
+        "description": "Sys_id of the change request that caused the case to be created. Located in the Change Request [change_request] table.",
+        "data_type": "String"
+      },
+      "change": {
+        "description": "Sys_id of the change request that caused the case to be created. Located in the Change Request [change_request] table.",
+        "data_type": "String"
+      },
+      "child_case_creation_progress": {
+        "description": "Flag that indicates whether the case is a child case that was created from a major case.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"]
+      },
+      "close_notes": {
+        "description": "Notes made when the case was closed.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "closed_at": {
+        "description": "Date and time that the case was closed.",
+        "data_type": "String"
+      },
+      "closed_by": {
+        "description": "Sys_id of the user that closed the case. Located in the User [sys_user] table.",
+        "data_type": "String"
+      },
+      "cmdb_ci": {
+        "description": "Sys_id of the configuration item associated with the case. Located in the Configuration Item [cmdb_ci] table.",
+        "data_type": "String"
+      },
+      "comments": {
+        "description": "Additional comments about the case.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "company": {
+        "description": "Sys_id of the company associated with the case. Located in the Company [core_company] table.",
+        "data_type": "String"
+      },
+      "consumer": {
+        "description": "Business-to-consumer cases only. Sys_id of the person to contact with regard to this case. Located in the Consumer [csm_consumer] table.",
+        "data_type": "String"
+      },
+      "contact": {
+        "description": "Business-to-business based cases only. Sys_id of the person to contact regarding this case. Located in the Contact [customer_contact] table.",
+        "data_type": "String"
+      },
+      "contact_time_zone": {
+        "description": "Time zone of the contact associated with the case.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "contact_type": {
+        "description": "Method in which the case was initially reported.",
+        "data_type": "String",
+        "maximum_length": 40,
+        "possible_values": ["chat", "email", "phone", "social", "web"]
+      },
+      "contract": {
+        "description": "Sys_id of the contract associated with the case. Located in the Contract [ast_contract] table.",
+        "data_type": "String"
+      },
+      "correlation_display": {
+        "description": "Correlation display.",
+        "data_type": "String",
+        "maximum_length": 100
+      },
+      "correlation_id": {
+        "description": "Correlation identifier.",
+        "data_type": "String",
+        "maximum_length": 100
+      },
+      "delivery_plan": {
+        "description": "Sys_id of the parent execution plan for this case. Located in the Execution Plan [sc_cat_item_delivery_plan] table.",
+        "data_type": "String"
+      },
+      "delivery_task": {
+        "description": "Sys_id of the execution plan task. Located in the Execution Plan Task [sc_cat_item_delivery_task] table.",
+        "data_type": "String"
+      },
+      "description": {
+        "description": "Detailed description of the problem associated with the case.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "due_date": {
+        "description": "Date that the case is due to be closed.",
+        "data_type": "String"
+      },
+      "entitlement": {
+        "description": "Sys_id of the entitlement record associated with the case. Located in the Entitlement [service_entitlement] table.",
+        "data_type": "String"
+      },
+      "escalation": {
+        "description": "Current escalation level.",
+        "data_type": "Number (Integer)",
+        "possible_values": [0, 1, 2, 3],
+        "default": 0
+      },
+      "expected_start": {
+        "description": "Date and time when work is scheduled to begin on the case.",
+        "data_type": "String"
+      },
+      "first_response_time": {
+        "description": "Date and time when the first action was taken on the case.",
+        "data_type": "String"
+      },
+      "follow_the_sun": {
+        "description": "Flag that indicates whether the case should be handed-off for global follow-up.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"],
+        "default": false
+      },
+      "group_list": {
+        "description": "List of sys_ids of the group records associated with the case. Located in the Group [sys_user_group] table.",
+        "data_type": "Array"
+      },
+      "impact": {
+        "description": "Impact on customer.",
+        "data_type": "Number (Integer)",
+        "possible_values": [1, 2, 3],
+        "default": 3
+      },
+      "knowledge": {
+        "description": "Flag that indicates if there is a knowledge base article available for the specified issue.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"],
+        "default": false
+      },
+      "location": {
+        "description": "Sys_id of the record describing the company location. Located in the Location [cmn_location] table.",
+        "data_type": "String"
+      },
+      "made_sla": {
+        "description": "Flag that indicates whether the case was resolved in alignment with the associated service level agreement.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"],
+        "default": true
+      },
+      "major_case_state": {
+        "description": "Current state of the major case.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "notes_to_comments": {
+        "description": "Flag that indicates whether to add the resolution notes to the comments.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"]
+      },
+      "notify": {
+        "description": "Method to use to notify contact/consumer.",
+        "data_type": "Number (Integer)",
+        "possible_values": [1, 2, 3],
+        "default": 1
+      },
+      "number": {
+        "description": "Case number.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "opened_at": {
+        "description": "Date and time that the case was opened.",
+        "data_type": "String"
+      },
+      "opened_by": {
+        "description": "Sys_id of the person that initially opened the case. Located in the User [sys_user] table.",
+        "data_type": "String"
+      },
+      "order": {
+        "description": "Order of the case.",
+        "data_type": "Number (Integer)"
+      },
+      "parent": {
+        "description": "Sys_id of the parent case to which this case (child) is associated. Located in the Task [task] table.",
+        "data_type": "String"
+      },
+      "partner": {
+        "description": "Sys_id of the partner associated with the case. Located in the Account [customer_account] table.",
+        "data_type": "String"
+      },
+      "partner_contact": {
+        "description": "Sys_id of the partner contact associated with the case. Located in the Contact [customer_contact] table.",
+        "data_type": "String"
+      },
+      "priority": {
+        "description": "Priority of the case.",
+        "data_type": "Number (Integer)",
+        "possible_values": [1, 2, 3, 4],
+        "default": 4
+      },
+      "probable_cause": {
+        "description": "Possible cause of the issue associated with the case.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "problem": {
+        "description": "Sys_id of the issue that the customer is encountering. Located in the Problem [problem] table.",
+        "data_type": "String"
+      },
+      "product": {
+        "description": "Sys_id of the product model of the asset associated to the case. Located in the Product Model [cmdb_model] table.",
+        "data_type": "String"
+      },
+      "reassignment_count": {
+        "description": "Number of times that the case was reassigned to a person that is responsible for moving the case forward.",
+        "data_type": "Number (Integer)",
+        "default": 0
+      },
+      "recipient_list": {
+        "description": "Sys_id of the record that contains the list of recipients for communications about this case. Located in the Recipients List [sn_publications_recipients_list] table.",
+        "data_type": "String"
+      },
+      "rejection_goto": {
+        "description": "Sys_id of the task to execute if the case is rejected. Located in the Task [task] table.",
+        "data_type": "String"
+      },
+      "resolution_code": {
+        "description": "Resolution state for the case, such as 'Solved - Fixed by Support/Guidance provided'.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "resolved_at": {
+        "description": "Date and time that the case was resolved.",
+        "data_type": "String"
+      },
+      "resolved_by": {
+        "description": "Sys_id of the person that resolved the case. Located in the User [sys_user] table.",
+        "data_type": "String"
+      },
+      "short_description": {
+        "description": "Concise description of the case.",
+        "data_type": "String",
+        "maximum_length": 160
+      },
+      "skills": {
+        "description": "List of the unique identifiers (sys_id) of the skills needed to complete the case. Located in the Skill [cmn_skill] table.",
+        "data_type": "String"
+      },
+      "sla_due": {
+        "description": "Date/time at which the case must be closed based on the associated service level agreement.",
+        "data_type": "String"
+      },
+      "social_channel": {
+        "description": "Type of social media channel such as Twitter, Facebook, or Instagram.",
+        "data_type": "String"
+      },
+      "social_handle": {
+        "description": "User handle on the channel.",
+        "data_type": "String"
+      },
+      "social_handle_type": {
+        "description": "Type of case to associate the social media profile.",
+        "data_type": "String",
+        "valid_values": ["account", "consumer", "contact"]
+      },
+      "social_handle_url": {
+        "description": "URL of the user's social media handle.",
+        "data_type": "String"
+      },
+      "social_post_url": {
+        "description": "URL of the social message from which the case is being generated.",
+        "data_type": "String"
+      },
+      "state": {
+        "description": "Current state of the case.",
+        "data_type": "Number (Integer)",
+        "possible_values": [1, 3, 6, 10, 18],
+        "default": 1
+      },
+      "subcategory": {
+        "description": "Case subcategory.",
+        "data_type": "Number (Integer)",
+        "possible_values": [0],
+        "default": 0
+      },
+      "support_manager": {
+        "description": "Sys_id of the CSM manager assigned to the case. Located in the User [sys_user] table.",
+        "data_type": "String"
+      },
+      "sync_driver": {
+        "description": "Flag that indicates whether there's driver synchronization.",
+        "data_type": "Boolean",
+        "possible_values": ["true", "false"]
+      },
+      "sys_domain_path": {
+        "description": "Domain path.",
+        "data_type": "String",
+        "maximum_length": 255,
+        "default": "/"
+      },
+      "time_worked": {
+        "description": "Total amount of time worked on the case.",
+        "data_type": "String"
+      },
+      "upon_approval": {
+        "description": "Action to take if the case is approved.",
+        "data_type": "String",
+        "possible_values": ["do_nothing", "proceed"],
+        "maximum_length": 40,
+        "default": "proceed"
+      },
+      "upon_reject": {
+        "description": "Action to take if the case is rejected.",
+        "data_type": "String",
+        "possible_values": ["cancel", "goto"],
+        "maximum_length": 40,
+        "default": "cancel"
+      },
+      "urgency": {
+        "description": "Urgency of the case.",
+        "data_type": "Number (Integer)",
+        "possible_values": [1, 2, 3],
+        "default": 3
+      },
+      "user_input": {
+        "description": "Additional user input.",
+        "data_type": "String",
+        "maximum_length": 4000
+      },
+      "variables": {
+        "description": "Name-value pairs of variables associated with the case.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "watch_list": {
+        "description": "List of sys_ids of the users who receive notifications about this case when additional comments are added or if the state of a case is changed to Resolved or Closed. Located in the User [sys_user] table.",
+        "data_type": "Array"
+      },
+      "wf_activity": {
+        "description": "Sys_id of the workflow activity record associated with the case. Located in the Workflow Activity [wf_activity] table.",
+        "data_type": "String"
+      },
+      "work_end": {
+        "description": "Date and time that work on the case ended.",
+        "data_type": "String"
+      },
+      "work_notes_list": {
+        "description": "List of sys_ids of the work notes associated with the case. Located in the Work Note [sn_work_note] table.",
+        "data_type": "Array"
+      },
+      "work_start": {
+        "description": "Date and time that work on the case began.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Updates the specified existing Customer Service Management (CSM) case with the passed-in parameters.",
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_cusomerservice/case/0397c743db436f0057c3fd441d96197f\" --request PUT --header \"Accept:application/json\" --header \"Content-Type:application/json\" --data \"{ consumer: \\\"cd97ef1ddb8bc7006b7a9646db9619ac\\\", contact_type: \\\"phone\\\", priority: \\\"4\\\", short_description: \\\"Consumer Test Case\\\"}\" --user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    }
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CCCIF Media Resource API - POST /cccif/media/upload",
+    "api_call": "servicenow.upload_cccif_media_resource(file, provider_application_id, user_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "file": {
+        "data_type": "String",
+        "description": "Path of the file to upload."
+      },
+      "provider_application_id": {
+        "data_type": "String",
+        "description": "Sys_id of the sys_cs_provider_application interacting with the VA bot."
+      },
+      "user_id": {
+        "data_type": "String",
+        "description": "Unique user identifier of the user interacting with the VA bot."
+      }
+    },
+    "functionality": "Uploads a private attachment to ServiceNow instance for use in Virtual Agent conversations.",
+    "example_code": "curl --location --request POST 'https://instance.servicenow.com/api/now/v1/cccif/media/upload' --header 'Authorization: Basic xxxxxxxxxxxxx' --header 'Content-Type:multipart/form-data' --form 'user_id=\"lincoln\"' --form 'file=@\"/Users/Desktop/Screenshot 2021-10-25 at 5.08.14 PM.png\"'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I use this API to upload attachments for use in Virtual Agent conversations?",
+      "What steps are required to configure the attachment system properties for this API?",
+      "Can this API be used to upload public attachments as well, or only private attachments?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmApplicationsApi - DELETE /sn_cdm/applications/deployables",
+    "api_call": "servicenow.delete_cdm_deployable(app_name, deployable_name)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "app_name": {
+        "data_type": "String",
+        "description": "Name of the CDM application to which the deployable is associated."
+      },
+      "deployable_name": {
+        "data_type": "String",
+        "description": "Name of the deployable to delete."
+      }
+    },
+    "functionality": "Deletes a specified Configuration Data Management (CDM) deployable.",
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/applications/deployables?appName=testApp&name=Dep-1\" --request DELETE --header \"Accept:application/json\" --user 'username':'password1'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What roles are required to access this API?",
+      "How does the asynchronous queuing implementation work for export and upload endpoints?",
+      "Can this API be used to perform simple retrieval of application records?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmApplicationsApi - DELETE /sn_cdm/applications/shared_components",
+    "api_call": "servicenow.remove_shared_component(app_name, shared_component_name, changeset_number)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "app_name": {
+        "data_type": "String",
+        "description": "Name of the application from which to remove the specified shared component association."
+      },
+      "shared_component_name": {
+        "data_type": "String",
+        "description": "Unique name of the shared component to remove from the specified application."
+      },
+      "changeset_number": {
+        "data_type": "String",
+        "description": "Unique identifier of the associated changeset."
+      }
+    },
+    "functionality": "Removes the shared component usage reference from a specified Configuration Data Management (CDM) application.",
+    "example_code": "curl \"https://instance-name.service-now.com/api/sn_cdm/applications/shared_components?appName=App1&sharedComponentName=paymentService-V1.1&changesetNumber=Chset-25\" --request DELETE --header \"Accept:application/json\" --user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How does this API handle error responses?",
+      "What role is required to access this endpoint?",
+      "Can you provide an example of how to use this API to remove a shared component?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Cdm Applications API - GET /sn_cdm/applications/deployables/exports/{export_id}/content",
+    "api_call": "servicenow.cdm_applications_api_get_deployable_export_content(export_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "export_id": {
+        "data_type": "String",
+        "description": "Unique identifier for the export request whose configuration data to return. Value is returned by the CdmApplicationsApi - POST /sn_cdm/applications/deployables/exports endpoint."
+      }
+    },
+    "functionality": "Retrieve content associated with a specified configuration data export request.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/applications/deployables/exports/3ab14a7d53b1301096edddeeff7b12f/content\" --request GET --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "How can I retrieve the content associated with a specific configuration data export request?",
+      "What happens if I call this endpoint before the export is complete?",
+      "Can you provide an example of a successful response from this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Cdm Applications API - GET /sn_cdm/applications/deployables/exports/{export_id}/status",
+    "api_call": "servicenow.cdm_applications_api_get_export_status(export_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "export_id": {
+        "data_type": "String",
+        "description": "Sys_id of the export request whose status to return. Value is returned by the CdmApplicationsApi - POST /sn_cdm/applications/deployables/exports endpoint."
+      }
+    },
+    "functionality": "Retrieve the current status of the specified configuration data export request.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/applications/deployables/exports/3ab14a7d53b1301096edddeeff7b12f/status\" --request GET --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "How can I retrieve the current status of a specific configuration data export request?",
+      "What happens if I call this endpoint with an incorrect export_id?",
+      "Can you provide an example of a response when the export encounters an error?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Cdm Applications API - GET /sn_cdm/applications/shared_components",
+    "api_call": "servicenow.cdm_applications_api_get_shared_components(appName, withUpdatesOnly)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the application whose list of shared components you want returned. Must be set to shared_library."
+      },
+      "withUpdatesOnly": {
+        "data_type": "Boolean",
+        "description": "Flag indicating whether to only return shared components with a new updated version available. Defaults to false."
+      }
+    },
+    "functionality": "Retrieve the list of shared components used by a specified application, with an option to filter for components with new version updates.",
+    "env_requirements": ["CDM Admin role access"],
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance-name.service-now.com/api/sn_cdm/applications/shared_components?updatesOnly=true&appName=App1\" --request GET --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "How do I retrieve the list of shared components for a specific application?",
+      "Can I filter the list to only show components with new version updates?",
+      "What permissions are required to access this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Cdm Applications API - GET /sn_cdm/applications/shared_libraries/components/applications",
+    "api_call": "servicenow.cdm_applications_api_get_shared_library_components_applications(sharedComponentName, sharedLibraryName)",
+    "api_version": "v1",
+    "api_arguments": {
+      "sharedComponentName": {
+        "data_type": "String",
+        "description": "Name of the shared component to include in the map."
+      },
+      "sharedLibraryName": {
+        "data_type": "String",
+        "description": "Name of the shared library to include in the map. Must have the type field set to 'shared_library'."
+      }
+    },
+    "functionality": "Retrieve a map of shared components and the applications that use them within a specified library.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance-name.service-now.com/api/sn_cdm/applications/shared_libraries/components/applications?sharedLibraryName=OracleG-Library-10&sharedComponentName=paymentService-V1.1\" --request GET --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "How can I retrieve a list of applications within a specified shared library that use a particular shared component?",
+      "What permissions are necessary to access this endpoint?",
+      "Can I filter the response to show only specific components or libraries?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmApplicationsApi - GET /sn_cdm/applications/upload-status/{upload_id}",
+    "api_call": "servicenow.cdm_applications_api_get_upload_status(upload_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "upload_id": {
+        "data_type": "String",
+        "description": "Sys_id of the upload request whose status to return."
+      }
+    },
+    "functionality": "Retrieve the current status of the specified configuration data upload request.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/applications/upload-status/5560a6895326301096edddeeff7b1230\" --request GET --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "What is the current state of the upload request with a specific upload ID?",
+      "How can I identify the application under which the upload was performed?",
+      "Can the upload status indicate whether validation was invoked after the commit?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmApplicationsApi - POST /sn_cdm/applications/deployables",
+    "api_call": "servicenow.cdm_applications_api_post_deployables(name, appName, envType)",
+    "api_version": "v1",
+    "api_arguments": {
+      "name": {
+        "data_type": "String",
+        "description": "Name of the CDM deployable."
+      },
+      "appName": {
+        "data_type": "String",
+        "description": "Name of an existing, active CDM application to associate with the deployable."
+      },
+      "envType": {
+        "data_type": "String",
+        "description": "Environment type for the deployable. Valid values: Development, Production, Test."
+      }
+    },
+    "functionality": "Creates a new deployable and automatically connects it to a specified Configuration Data Management (CDM) application.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/applications/deployables?name=Dep-1&returnFields=name%2Csys_id%2Cstate&appName=testApp&envType=Test\" --request POST --header \"Accept:application/json\" --user 'username':'password1'",
+    "questions": [
+      "What are the required parameters to create a new deployable using this API endpoint?",
+      "Can the environment type of a deployable be changed after creation?",
+      "How can I retrieve the sys_id of the created deployable?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmApplicationsApi - POST /sn_cdm/applications/deployables/create",
+    "api_call": "servicenow.cdm_applications_api_post_deployables_create(appSysId, autoConnect, envType, quantity)",
+    "api_version": "v1",
+    "api_arguments": {
+      "appSysId": {
+        "data_type": "String",
+        "description": "Sys_id of an active CDM Application to associate with the deployables."
+      },
+      "autoConnect": {
+        "data_type": "Boolean",
+        "description": "Flag that determines whether to automatically connect the newly created deployables to dynamically generated Application Models."
+      },
+      "envType": {
+        "data_type": "String",
+        "description": "Environment type for the deployable. Valid values: Development, Production, Test."
+      },
+      "quantity": {
+        "data_type": "Number",
+        "description": "Number of deployables to create."
+      }
+    },
+    "functionality": "Creates one or more new deployables, either manually connected to an Application Model or automatically connected to dynamically generated Application Models.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/applications/deployables/create?envType=Production&appSysId=5e118055b712011054c1e5a6ce11a9d4&quantity=5&autoConnect=true\" --request POST --header \"Accept:application/json\" --header \"Content-Type:application/json\" --user 'username':'password'",
+    "questions": [
+      "What are the required parameters to create multiple deployables using this API endpoint?",
+      "How does the auto-generated naming of deployables work?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmApplicationsApi - POST /sn_cdm/applications/deployables/exports",
+    "api_call": "servicenow.cdm_applications_api_post_deployables_exports(appName, deployableName, exporterName, dataFormat, additionalDeployables, args, restrictExport)",
+    "api_version": "v1",
+    "api_arguments": {
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the application whose configuration data you want to export."
+      },
+      "deployableName": {
+        "data_type": "String",
+        "description": "Name of the deployable whose configuration data you want to export."
+      },
+      "exporterName": {
+        "data_type": "String",
+        "description": "Name of the exporter to use to export the snapshot data."
+      },
+      "dataFormat": {
+        "data_type": "String",
+        "description": "Output format of the exported data. Valid values: ini, json, properties, raw, xml, yaml."
+      },
+      "additionalDeployables": {
+        "data_type": "Array of Objects",
+        "description": "Non-primary deployables to export. Array of objects with app_name and deployable_name."
+      },
+      "args": {
+        "data_type": "Object",
+        "description": "A JSON object containing key-value pairs for custom arguments."
+      },
+      "restrictExport": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the endpoint validates snapshots when exporting the data."
+      }
+    },
+    "functionality": "Submits a request to export the current snapshot for a specified application and one or more deployables into the CDM Exporter Cache table.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/applications/deployables/exports?appName=TestAppA&args=%7B%22arg_A_required%22%20%3A%20%22value%20A%22%7D&exporterName=exporter-1-primary_deployable&deployableName=DEP1\" --request POST --header \"Accept:application/json\" --header \"Content-Type:application/json\" --user 'username':'password'",
+    "questions": [
+      "How can I export the configuration data of multiple deployables using this API endpoint?",
+      "What are the valid values for the dataFormat parameter?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmApplicationsApi - POST /sn_cdm/applications/shared_components",
+    "api_call": "servicenow.cdm_applications_api_post_shared_components(appName, changesetNumber, sharedLibraryName, sharedComponentName, returnFields)",
+    "api_version": "v1",
+    "api_arguments": {
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the application to associate with the shared component."
+      },
+      "changesetNumber": {
+        "data_type": "String",
+        "description": "Unique identifier of the changeset associated with the component."
+      },
+      "sharedLibraryName": {
+        "data_type": "String",
+        "description": "Name of the shared library under which to create the component."
+      },
+      "sharedComponentName": {
+        "data_type": "String",
+        "description": "Name of the shared component to associate with the specified application."
+      },
+      "returnFields": {
+        "data_type": "Array",
+        "description": "List of fields to return as part of the response."
+      }
+    },
+    "functionality": "Associates the specified shared component to the application within a specified changeset.",
+    "env_requirements": ["CDM Admin role access"],
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_cdm/applications/shared_components?appName=App1&changesetNumber=Chset-20&sharedLibraryName=OracleG-Library-10&sharedComponentName=paymentService-V1.1\" --request POST --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "What is the purpose of associating shared components with applications?",
+      "Can I associate multiple shared components with one application in a single request?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmApplicationsApi - POST /sn_cdm/applications/uploads/components",
+    "api_call": "servicenow.cdm_applications_api_post_upload_components(appName, autoCommit, autoDelete, autoValidate, changesetNumber, dataFormat, dataFormatAttributes, deleteRedundantOverrides, fileName, fileNodeName, identifierKeys, ignoreAttributes, namePath, sharedLibraryName)",
+    "api_version": "v1",
+    "api_arguments": {
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the application to associate with the configuration data."
+      },
+      "autoCommit": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the changeset is committed after upload."
+      },
+      "autoDelete": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether existing nodes not part of the upload content are deleted after processing."
+      },
+      "autoValidate": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the snapshots created when committed are validated."
+      },
+      "changesetNumber": {
+        "data_type": "String",
+        "description": "Unique identifier of the changeset associated with the application."
+      },
+      "dataFormat": {
+        "data_type": "String",
+        "description": "Format of the configuration data."
+      },
+      "dataFormatAttributes": {
+        "data_type": "Object",
+        "description": "Attributes that define the CSV data format."
+      },
+      "deleteRedundantOverrides": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether to create an override where redundant values are present."
+      },
+      "fileName": {
+        "data_type": "String",
+        "description": "Name of the file to upload."
+      },
+      "fileNodeName": {
+        "data_type": "String",
+        "description": "Name of the file node."
+      },
+      "identifierKeys": {
+        "data_type": "Array",
+        "description": "List of names that indicate which key in an array child to use to identify the same node."
+      },
+      "ignoreAttributes": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the given data format supports attributes."
+      },
+      "namePath": {
+        "data_type": "String",
+        "description": "Path of the targeted node under which the configuration data should be uploaded."
+      },
+      "sharedLibraryName": {
+        "data_type": "String",
+        "description": "Name of the shared library where the component to delete is located."
+      }
+    },
+    "functionality": "Submits a request to upload the passed-in configuration data for a specific component.",
+    "env_requirements": [
+      "Active application and changeset",
+      "CDM Admin role access"
+    ],
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/applications/uploads/components?namePath=%2FSettings%2FdbSettings&dataFormat=json&appName=Demo_App1631126164773&changesetNumber=Chset-8&autoCommit=false&autoDelete=true\" --request POST --header \"Accept:application/json\" --header \"Content-Type:text/plain\" --data \"{\\\"dbIPAddress\\\": \\\"10.10.10.110\\\",\\\"dbPort\\\": \\\"8080\\\",\\\"dbConnectionString\\\": \\\"admin:admin server1.xyz.com:8080 dbName_payments\\\",\\\"dbConnectionStringBackup\\\": \\\"admin:admin server2.xyz.com dbName_payments_backup\\\"}\" --user 'username':'password'",
+    "questions": [
+      "What is the maximum default upload content size?",
+      "Can I upload data in a format other than JSON, XML, or CSV?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmApplicationsApi - POST sn_cdm/applications/uploads/components/file",
+    "api_call": "servicenow.cdm_applications_api_post_upload_file(appName, autoCommit, autoValidate, changesetNumber, fileName, fileNodeName, namePath, publishOption, uploadData)",
+    "api_version": "v1",
+    "api_arguments": {
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the application to associate with the configuration data."
+      },
+      "autoCommit": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the changeset is committed after upload."
+      },
+      "autoValidate": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the snapshots created when committed are validated."
+      },
+      "changesetNumber": {
+        "data_type": "String",
+        "description": "Unique identifier of the changeset associated with the application."
+      },
+      "fileName": {
+        "data_type": "String",
+        "description": "Name of the file to upload."
+      },
+      "fileNodeName": {
+        "data_type": "String",
+        "description": "Name of the file node."
+      },
+      "namePath": {
+        "data_type": "String",
+        "description": "Path of the targeted node under which the configuration data should be uploaded."
+      },
+      "publishOption": {
+        "data_type": "String",
+        "description": "Publish option for the associated configured snapshots."
+      },
+      "uploadData": {
+        "data_type": "String/stream",
+        "description": "Configuration data to upload."
+      }
+    },
+    "functionality": "Uploads files as part of the Configuration Data Model (CDM) to the components folder.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/applications/uploads/components/file?autoValidate=true&appName=testApp&namePath=testComponent%2FfilesFolder&fileName=testFileNodeName.txt&publishOption=publish_valid&changesetNumber=Chset-108&autoCommit=true&fileNodeName=testFile.txt\" --request POST --header \"Accept:application/json\" --header \"Content-Type:text/plain\" --data \"This is sample content that will be uploaded to a plain text file.\" --user 'username':'password'",
+    "questions": [
+      "Is there a limit to the file size that can be uploaded?",
+      "What are the supported file formats for upload?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmApplicationsApi - POST /sn_cdm/applications/uploads/components/vars",
+    "api_call": "servicenow.cdm_applications_api_post_upload_vars(appName, autoCommit, autoDelete, autoValidate, changesetNumber, dataFormat, deleteRedundantOverrides, fileName, fileNodeName, identifierKeys, ignoreAttributes, namePath, sharedLibraryName, uploadData)",
+    "api_version": "v1",
+    "api_arguments": {
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the application to associate with the configuration data."
+      },
+      "autoCommit": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the changeset is committed after upload."
+      },
+      "autoDelete": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether existing nodes not part of the upload content are deleted."
+      },
+      "autoValidate": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the snapshots created when committed are validated."
+      },
+      "changesetNumber": {
+        "data_type": "String",
+        "description": "Unique identifier of the changeset associated with the application."
+      },
+      "dataFormat": {
+        "data_type": "String",
+        "description": "Format of the configuration data."
+      },
+      "deleteRedundantOverrides": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether to create an override where redundant values are present."
+      },
+      "fileName": {
+        "data_type": "String",
+        "description": "Name of the file to upload."
+      },
+      "fileNodeName": {
+        "data_type": "String",
+        "description": "Name of the file node."
+      },
+      "identifierKeys": {
+        "data_type": "Array of Strings",
+        "description": "List of names that indicate which key in an array child to use to identify the same node."
+      },
+      "ignoreAttributes": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the given data format supports attributes."
+      },
+      "namePath": {
+        "data_type": "String",
+        "description": "Path of the targeted node under which the configuration data should be uploaded."
+      },
+      "sharedLibraryName": {
+        "data_type": "String",
+        "description": "Name of the shared library where the component to delete is located."
+      },
+      "uploadData": {
+        "data_type": "String",
+        "description": "Configuration data to upload."
+      }
+    },
+    "functionality": "Submits a request to upload the passed-in configuration data under the vars folder, within the system components folder, for the specified application.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/applications/uploads/components/vars?changesetNumber=Chset-102&autoValidate=false&autoDelete=true&publishOption=publish_none&appName=Demo_App1631126164773&namePath=%2FSettings%2FdbSettings&autoCommit=false&dataFormat=json\" --request POST --header \"Accept:application/json\" --header \"Content-Type:text/plain\" --data \"{ \\n  \\\"dbSettings\\\": { \\n    \\\"dbIPAddress\\\": \\\"10.10.10.110\\\", \\n    \\\"dbPort\\\": \\\"8080\\\", \\n    \\\"dbConnectionString\\\": \\\"username:password server1.xyz.com:8080 dbName_payments\\\", \\n    \\\"dbConnectionStringBackup\\\": \\\"username:password server2.xyz.com dbName_payments_backup\\\" \\n  } \\n}\" --user 'username':'password'",
+    "questions": [
+      "What is the maximum allowed upload content size by default?",
+      "How can I modify the default maximum upload content size?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmApplicationsApi - POST /sn_cdm/applications/uploads/collections",
+    "api_call": "servicenow.cdm_applications_api_post_upload_collections(appName, autoCommit, autoDelete, autoValidate, changesetNumber, collectionName, dataFormat, dataFormatAttributes, deleteRedundantOverrides, ignoreAttributes, namePath, uploadData)",
+    "api_version": "v1",
+    "api_arguments": {
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the application to associate with the configuration data."
+      },
+      "autoCommit": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the changeset is committed after upload."
+      },
+      "autoDelete": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether existing nodes not part of the upload content are deleted."
+      },
+      "autoValidate": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the snapshots created when committed are validated."
+      },
+      "changesetNumber": {
+        "data_type": "String",
+        "description": "Unique identifier of the changeset associated with the application."
+      },
+      "collectionName": {
+        "data_type": "String",
+        "description": "Name of the collection under which to store the uploaded payload."
+      },
+      "dataFormat": {
+        "data_type": "String",
+        "description": "Format of the configuration data."
+      },
+      "dataFormatAttributes": {
+        "data_type": "Object",
+        "description": "Attributes that define the CSV data format."
+      },
+      "deleteRedundantOverrides": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether to create an override where redundant values are present."
+      },
+      "ignoreAttributes": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the given data format supports attributes."
+      },
+      "namePath": {
+        "data_type": "String",
+        "description": "Path of the targeted node under which the configuration data should be uploaded."
+      },
+      "uploadData": {
+        "data_type": "String",
+        "description": "Configuration data to upload."
+      }
+    },
+    "functionality": "Submits a request to upload the passed-in configuration data for a specific collection, within the system collections folder, for the specified application.",
+    "env_requirements": [
+      "Active application and changeset",
+      "CDM Admin role access"
+    ],
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/applications/uploads/collections?dataFormat=json&autoValidate=false&changesetNumber=Chset-102&appName=Demo_App1631126164773&autoDelete=true&namePath=%2FSettings%2FdbSettings&collectionName=release-1.0&autoCommit=false&publishOption=publish_none\" --request POST --header \"Accept:application/json\" --header \"Content-Type:text/plain\" --data \"{ \\n  \\\"dbSettings\\\": { \\n    \\\"dbIPAddress\\\": \\\"10.10.10.110\\\", \\n    \\\"dbPort\\\": \\\"8080\\\", \\n    \\\"dbConnectionString\\\": \\\"admin:admin server1.xyz.com:8080 dbName_payments\\\", \\n    \\\"dbConnectionStringBackup\\\": \\\"admin:admin server2.xyz.com dbName_payments_backup\\\" \\n  } \\n}\" --user 'username':'password'",
+    "questions": [
+      "What is the maximum allowed upload content size by default?",
+      "How can I modify the default maximum upload content size?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmApplicationsApi - POST /sn_cdm/applications/uploads/collections/file",
+    "api_call": "servicenow.cdm_applications_api_post_upload_collections_file(appName, autoCommit, autoValidate, collectionName, changesetNumber, fileName, fileNodeName, namePath, publishOption, uploadData)",
+    "api_version": "v1",
+    "api_arguments": {
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the application to associate with the configuration data."
+      },
+      "autoCommit": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the changeset is committed after upload."
+      },
+      "autoValidate": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the snapshots created when committed are validated."
+      },
+      "collectionName": {
+        "data_type": "String",
+        "description": "Name of the collection under which to store the uploaded payload."
+      },
+      "changesetNumber": {
+        "data_type": "String",
+        "description": "Unique identifier of the changeset associated with the application."
+      },
+      "fileName": {
+        "data_type": "String",
+        "description": "Name of the file to upload."
+      },
+      "fileNodeName": {
+        "data_type": "String",
+        "description": "Name of the file node used in the configuration data."
+      },
+      "namePath": {
+        "data_type": "String",
+        "description": "Path of the targeted node under which the configuration data should be uploaded."
+      },
+      "publishOption": {
+        "data_type": "String",
+        "description": "Publish option for the associated configured snapshots."
+      },
+      "uploadData": {
+        "data_type": "String/stream",
+        "description": "Configuration data to upload."
+      }
+    },
+    "functionality": "Uploads a file to the collections folder in the Configuration Data Model (CDM).",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/applications/uploads/collections/file?autoValidate=true&collectionName=collA&appName=testApp&namePath=testComponent%2FfilesFolder&fileName=testFileNodeName.txt&publishOption=publish_valid&changesetNumber=Chset-108&autoCommit=true&fileNodeName=testFile.txt\" --request POST --header \"Accept:application/json\" --header \"Content-Type:text/plain\" --data \"This is sample content that will be uploaded to a plain text file.\" --user 'username':'password'",
+    "questions": [
+      "What is the maximum file size allowed for upload by default?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmApplicationsApi - POST /sn_cdm/applications/uploads/deployables",
+    "api_call": "servicenow.cdm_applications_api_post_upload_deployables(appName, autoCommit, autoDelete, autoValidate, changesetNumber, dataFormat, dataFormatAttributes, deleteRedundantOverrides, deployableName, identifierKeys, ignoreAttributes, namePath, publishOption, uploadData)",
+    "api_version": "v1",
+    "api_arguments": {
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the application to associate with the configuration data."
+      },
+      "autoCommit": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the changeset is committed after upload."
+      },
+      "autoDelete": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the existing nodes not part of the upload content are deleted after processing."
+      },
+      "autoValidate": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the snapshots created when committed are validated."
+      },
+      "changesetNumber": {
+        "data_type": "String",
+        "description": "Unique identifier of the changeset associated with the application."
+      },
+      "dataFormat": {
+        "data_type": "String",
+        "description": "Format of the configuration data."
+      },
+      "dataFormatAttributes": {
+        "data_type": "Object",
+        "description": "Attributes that define the CSV data format."
+      },
+      "deleteRedundantOverrides": {
+        "data_type": "Boolean",
+        "description": "Flag indicating whether to create an override where redundant values are present."
+      },
+      "deployableName": {
+        "data_type": "String",
+        "description": "Name of the deployable under which to store the uploaded payload."
+      },
+      "identifierKeys": {
+        "data_type": "Array of Strings",
+        "description": "List of names indicating which key in an array child to use to identify the same node."
+      },
+      "ignoreAttributes": {
+        "data_type": "Boolean",
+        "description": "Flag indicating whether the given data format supports attributes."
+      },
+      "namePath": {
+        "data_type": "String",
+        "description": "Path of the targeted node under which the configuration data should be uploaded."
+      },
+      "publishOption": {
+        "data_type": "String",
+        "description": "Publish option for the associated configured snapshots."
+      },
+      "uploadData": {
+        "data_type": "String",
+        "description": "Configuration data to upload."
+      }
+    },
+    "functionality": "Submits a request to upload the configuration content for a specific deployable within the deployables system folder of a specified application.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/applications/uploads/deployables?deployableName=TST-1&autoValidate=false&dataFormat=json&autoDelete=false&changesetNumber=Chset-102&appName=Demo_App1631126164773&publishOption=publish_none&autoCommit=true&namePath=%2FSettings%2FdbSettings\" --request POST --header \"Accept:application/json\" --header \"Content-Type:text/plain\" --data \"{\"dbIPAddress\": \"10.10.10.110\",\"dbPort\": \"8080\",\"dbConnectionString\": \"admin:admin server1.xyz.com:8080 dbName_payments\",\"dbConnectionStringBackup\": \"admin:admin server2.xyz.com dbName_payments_backup\"}\" --user 'username':'password'",
+    "questions": [
+      "What is the maximum file size allowed for upload by default?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmApplicationsApi - POST /sn_cdm/applications/uploads/deployables/file",
+    "api_call": "servicenow.cdm_applications_api_post_upload_deployables_file(appName, autoCommit, autoValidate, changesetNumber, deployableName, fileName, fileNodeName, namePath, publishOption, uploadData)",
+    "api_version": "v1",
+    "api_arguments": {
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the application to associate with the configuration data."
+      },
+      "autoCommit": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the changeset is committed after upload."
+      },
+      "autoValidate": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the snapshots created when committed are validated."
+      },
+      "changesetNumber": {
+        "data_type": "String",
+        "description": "Unique identifier of the changeset associated with the application."
+      },
+      "deployableName": {
+        "data_type": "String",
+        "description": "Name of the CDM deployable for which to map the policy."
+      },
+      "fileName": {
+        "data_type": "String",
+        "description": "Name of the file to upload."
+      },
+      "fileNodeName": {
+        "data_type": "String",
+        "description": "Name of the file node used in the configuration data."
+      },
+      "namePath": {
+        "data_type": "String",
+        "description": "Path of the targeted node under which the configuration data should be uploaded."
+      },
+      "publishOption": {
+        "data_type": "String",
+        "description": "Publish option for the associated configured snapshots."
+      },
+      "uploadData": {
+        "data_type": "String",
+        "description": "Configuration data to upload."
+      }
+    },
+    "functionality": "Uploads files to the deployables folder in the Configuration Data Model (CDM).",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/applications/uploads/deployables/file?autoValidate=true&deployableName=depA&appName=testApp&namePath=testComponent%2FfilesFolder&fileName=testFileNodeName.txt&publishOption=publish_valid&changesetNumber=Chset-108&autoCommit=true&fileNodeName=testFile.txt\" --request POST --header \"Accept:application/json\" --header \"Content-Type:text/plain\" --data \"This is sample content that will be uploaded to a plain text file.\" --user 'username':'password'",
+    "questions": [
+      "What is the maximum file size allowed for upload by default?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmApplicationsApi - PUT /sn_cdm/applications/deployables",
+    "api_call": "servicenow.cdm_applications_api_put_update_deployables(appName, name, newDescription, newServiceId, newIdentifier, newName)",
+    "api_version": "v1",
+    "api_arguments": {
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the CDM Application."
+      },
+      "name": {
+        "data_type": "String",
+        "description": "Name of the CDM Deployable."
+      },
+      "newDescription": {
+        "data_type": "String",
+        "description": "Optional. A description for the CDM Deployable."
+      },
+      "newServiceId": {
+        "data_type": "String",
+        "description": "Optional. The ID of the desired Application Service/Dynamic CI Group."
+      },
+      "newIdentifier": {
+        "data_type": "Choice (Development/Test/Production)",
+        "description": "Optional. The identifier of the Deployable."
+      },
+      "newName": {
+        "data_type": "String",
+        "description": "Optional. The new name of the Deployable."
+      }
+    },
+    "functionality": "Updates the specified shared component in an application within a specified changeset.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://localhost:8080/api/sn_cdm/applications/deployables?appName=testApp&name=Dep-1\" --request PUT --header \"Accept:application/json\" --user 'cdm_admin':'password1!'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmApplicationsApi - PUT /sn_cdm/applications/shared_components",
+    "api_call": "servicenow.cdm_applications_api_put_update_shared_components(sharedComponentName, sharedLibraryName, changesetNumber, version, appName, returnFields)",
+    "api_version": "v1",
+    "api_arguments": {
+      "sharedComponentName": {
+        "data_type": "String",
+        "description": "Name of the shared component associated with the specified application."
+      },
+      "sharedLibraryName": {
+        "data_type": "String",
+        "description": "Name of the shared library under which the component resides."
+      },
+      "changesetNumber": {
+        "data_type": "String",
+        "description": "Unique identifier of the changeset associated with the component."
+      },
+      "version": {
+        "data_type": "String",
+        "description": "Version name associated with the shared component."
+      },
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the CDM Application."
+      },
+      "returnFields": {
+        "data_type": "Array",
+        "description": "List of fields to return as part of the response."
+      }
+    },
+    "functionality": "Updates the specified shared component in an application within a specified changeset.",
+    "example_code": "curl \"https://instance-name.service-now.com/api/sn_cdm/applications/shared_components?sharedComponentName=paymentService-V1.1&sharedLibraryName=OracleG-Library-10&changesetNumber=Chset-20&versionName=sComp3-v2.shc&appName=App1\" --request PUT --header \"Accept:application/json\" --user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I use this API to update a shared component in my ServiceNow application?",
+      "What happens if the specified changeset does not exist when using this API?",
+      "Can I retrieve specific fields of the updated shared component using this API?"
+    ]
   }
 ]
