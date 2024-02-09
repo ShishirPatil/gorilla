@@ -1,0 +1,28 @@
+{
+    "user_name": "Amokhalad",
+    "api_name": "Dropbox files_upload API",
+    "api_call": "dropbox_client.files_upload(f, path, mode=WriteMode(u'add', None), autorename=False, client_modified=None, mute=False, property_groups=None, strict_conflict=False, content_hash=None)",
+    "api_version": 2.0,
+    "api_arguments": {
+      "f": "bytes (Contents to upload)",
+      "path": "String (The destination path in Dropbox where you want to upload the file)",
+      "mode": "WriteMode (Optional parameter specifying how to handle conflicts if a file with the same name already exists)",
+      "autorename": "boolean (Optional parameter specifying whether Dropbox should automatically rename the file if there's a conflict)",
+      "client_modified": "String (Optional parameter specifying the modification time to set for the uploaded file)",
+      "mute": "boolean (Optional parameter specifying whether to suppress notifications about the upload)",
+      "property_groups": "Array (Optional parameter specifying additional file properties to set)",
+      "strict_conflict": "boolean (Optional parameter specifying whether to raise an error if there's a conflict)",
+      "content_hash": "String (Optional parameter specifying the content hash of the file for conflict resolution)"
+    },
+    "functionality": "Upload a file to Dropbox using files_upload function",
+    "env_requirements": ["Dropbox Python SDK"],
+    "example_code": "import dropbox\n\n# Access token for Dropbox\nACCESS_TOKEN = 'your_access_token'\ndropbox_client = dropbox.Dropbox(ACCESS_TOKEN)\n\n# Path to the local file\nlocal_file_path = '/path/to/local/file.txt'\n\n# Destination path in Dropbox\ndropbox_file_path = '/path/to/dropbox/file.txt'\n\n# Read the file contents\nwith open(local_file_path, 'rb') as f:\n    # Upload the file to Dropbox\n    dropbox_client.files_upload(f.read(), dropbox_file_path)",
+    "meta_data": {
+      "documentation_link": "https://www.dropbox.com/developers/documentation/python"
+    },
+    "Questions": [
+      "How can I upload files to Dropbox using Python and the Dropbox API?",
+      "What are the parameters of the files_upload function in the Dropbox Python SDK?"
+    ]
+  }
+  
