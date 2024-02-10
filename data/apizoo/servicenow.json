@@ -4613,5 +4613,1697 @@
       "What happens if the specified changeset does not exist when using this API?",
       "Can I retrieve specific fields of the updated shared component using this API?"
     ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmChangesetsApi - DELETE /sn_cdm/changesets",
+    "api_call": "servicenow.cdm_changesets_api_delete_changesets(changesetNumber)",
+    "api_version": "v1",
+    "api_arguments": {
+      "changesetNumber": {
+        "data_type": "String",
+        "description": "Unique identifier of the associated changeset."
+      }
+    },
+    "functionality": "Deletes a specified changeset.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What roles are required to access this API?",
+      "How does the asynchronous queuing implementation work for creating changesets?",
+      "What happens if the caller does not have the necessary role to access this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmChangesetsApi - GET /sn_cdm/changesets",
+    "api_call": "servicenow.cdm_changesets_api_get_changesets(appName, number, state)",
+    "api_version": "v1",
+    "api_arguments": {
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the CDM application whose changesets you want returned."
+      },
+      "number": {
+        "data_type": "String",
+        "description": "Changeset number."
+      },
+      "state": {
+        "data_type": "String",
+        "description": "State of the changesets to return."
+      }
+    },
+    "functionality": "Retrieves all changesets associated with a CDM application or a specified changeset record.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What roles are required to access this API?",
+      "How does the asynchronous queuing implementation work for creating changesets?",
+      "What happens if the caller does not have the necessary role to access this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmChangesetsApi - GET /sn_cdm/changesets/activity",
+    "api_call": "servicenow.cdm_changesets_api_get_changesets_activity(changesetNumber, returnFields)",
+    "api_version": "v1",
+    "api_arguments": {
+      "changesetNumber": {
+        "data_type": "String",
+        "description": "Unique identifier of the associated changeset."
+      },
+      "returnFields": {
+        "data_type": "Array",
+        "description": "List of fields to return as part of the response."
+      }
+    },
+    "functionality": "Retrieves the node changes within a specified changeset.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What roles are required to access this API?",
+      "How does the asynchronous queuing implementation work for creating changesets?",
+      "What happens if the caller does not have the necessary role to access this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmChangesetsApi - GET /sn_cdm/changesets/commit-status/{commit_id}",
+    "api_call": "servicenow.get_cdm_changesets_commit_status(commit_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "commit_id": {
+        "data_type": "String",
+        "description": "Sys_id for the commit request whose status to return."
+      }
+    },
+    "functionality": "Retrieve current status of a specified changeset commit request",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'http://instance.servicenow.com/api/sn_cdm/changesets/commit-status/bf506e69537c3010a1d3ddeeff7b12c0' --request GET --header 'Accept:application/json' --user 'username':'password'",
+    "questions": [
+      "How can I check the status of a specific commit request?",
+      "Can I retrieve the status of a changeset commit using its commit ID?",
+      "What information is returned when querying the status of a commit request?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmChangesetsApi - GET /sn_cdm/changesets/impacted-deployables",
+    "api_call": "servicenow.get_cdm_changesets_impacted_deployables(changesetNumber, returnFields)",
+    "api_version": "v1",
+    "api_arguments": {
+      "changesetNumber": {
+        "data_type": "String",
+        "description": "Unique identifier of the associated changeset, such as 'Chset-10'."
+      },
+      "returnFields": {
+        "data_type": "Array",
+        "description": "List of fields to return as part of the response."
+      }
+    },
+    "functionality": "Retrieve the list of deployables associated with a specified changeset.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'http://instance.servicenow.com/api/sn_cdm/changesets/impacted-deployables?changesetNumber=Chset-783' --request GET --header 'Accept:application/json' --user 'username':'password'",
+    "questions": [
+      "How can I retrieve the list of deployables associated with a specific changeset?",
+      "What parameters do I need to provide to fetch impacted deployables?",
+      "Can I customize the fields returned in the response?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmChangesetsApi - GET /sn_cdm/changesets/impacted-shared-components",
+    "api_call": "servicenow.get_cdm_changesets_impacted_shared_components(changeset_number, return_fields)",
+    "api_version": "v1",
+    "api_arguments": {
+      "changeset_number": {
+        "data_type": "String",
+        "description": "Unique identifier of the associated changeset, such as 'Chset-10'."
+      },
+      "return_fields": {
+        "data_type": "Array",
+        "description": "List of fields to return as part of the response."
+      }
+    },
+    "functionality": "Retrieve the list of shared components associated with a specified changeset.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'https://instance.servicenow.com/sn_cdm/changesets/impacted-shared-components?changesetNumber=Chset-20' --request GET --header 'Accept:application/json' --user 'username':'password'",
+    "questions": [
+      "How can I obtain the shared components impacted by a specific changeset?",
+      "What information is included in the response for impacted shared components?",
+      "Can I filter the fields returned in the response?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmChangesetsApi - GET /sn_cdm/changesets/{changeset_id}/impacted-deployables",
+    "api_call": "servicenow.get_cdm_changesets_impacted_deployables(api_version, changeset_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2."
+      },
+      "changeset_id": {
+        "data_type": "String",
+        "description": "Sys_id of the changeset record to process."
+      }
+    },
+    "functionality": "Retrieve the list of deployables associated with a specified changeset.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'http://instance.servicenow.com/api/sn_cdm/changesets/bf506e69537c3010a1d3ddeeff7b12c0/impacted-deployables' --request GET --header 'Accept:application/json' --user 'username':'password'",
+    "questions": [
+      "How can I retrieve the list of deployables associated with a specific changeset?",
+      "What parameters do I need to provide to fetch impacted deployables?",
+      "Can I specify the API version to access?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmChangesetsApi - POST /sn_cdm/changesets/{changeset_id}/commit",
+    "api_call": "servicenow.commit_cdm_changeset(api_version, changeset_id, autoValidate, publishOption)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2."
+      },
+      "changeset_id": {
+        "data_type": "String",
+        "description": "Sys_id of the changeset record to process."
+      },
+      "autoValidate": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the snapshots created upon commit are validated."
+      },
+      "publishOption": {
+        "data_type": "String",
+        "description": "Publish option for the associated configuration snapshots."
+      }
+    },
+    "functionality": "Commits the specified changeset and generates snapshots of affected deployables.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'http://instance.servicenow.com/api/sn_cdm/changesets/29e24001533030104bacddeeff7b120c/commit?publishOption=publish_valid' --request POST --header 'Accept:application/json' --header 'Content-Type:application/json' --user 'username':'password'",
+    "questions": [
+      "How can I commit a changeset and generate snapshots of affected deployables?",
+      "What parameters do I need to provide to commit a changeset?",
+      "Can I specify the publish option for the associated configuration snapshots?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmChangesetsApi - POST /sn_cdm/changesets/create",
+    "api_call": "servicenow.create_cdm_changeset(api_version, app_name, description)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2."
+      },
+      "app_name": {
+        "data_type": "String",
+        "description": "Name of the CDM application or shared library to associate with this changeset."
+      },
+      "description": {
+        "data_type": "String",
+        "description": "Changeset description."
+      }
+    },
+    "functionality": "Creates a new changeset in the open state for a specified CDM application or shared library.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/changesets/create?appName=App%20Service1&description=Sample%20Description\" --request POST --header \"Accept:application/json\" --header \"Content-Type:application/json\" --user 'username':'password'",
+    "questions": [
+      "How can I create a new changeset for a CDM application or shared library?",
+      "What parameters do I need to provide to create a changeset?",
+      "Is there any specific role required to access this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmChangesetsApi - PUT /sn_cdm/changesets/commit",
+    "api_call": "servicenow.update_and_commit_changeset(api_version, changeset_number, auto_validate, publish_option)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2."
+      },
+      "changeset_number": {
+        "data_type": "String",
+        "description": "Unique identifier of the associated changeset, such as 'Chset-10'."
+      },
+      "auto_validate": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the snapshots created during the commit are validated."
+      },
+      "publish_option": {
+        "data_type": "String",
+        "description": "Publish option for the associated configured snapshots."
+      }
+    },
+    "functionality": "Updates and commits a specified changeset.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/changesets/commit?changesetNumber=Chset-146\" --request PUT --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "How can I update and commit a changeset?",
+      "What parameters do I need to provide to update and commit a changeset?",
+      "What are the possible values for the autoValidate parameter?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmEditorApi - DELETE /sn_cdm/editor/nodes",
+    "api_call": "servicenow.delete_node(api_version, changeset_number, full_name_path)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2."
+      },
+      "changeset_number": {
+        "data_type": "String",
+        "description": "Unique identifier of the associated changeset, such as 'Chset-10'."
+      },
+      "full_name_path": {
+        "data_type": "String",
+        "description": "Path name of the node to delete."
+      }
+    },
+    "functionality": "Deletes a specified node.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/editor/nodes?changesetNumber=Chset783&fullNamePath=%2FtestApp%2Fdeployables%2FDevelopment-1%2Fcdi88\" --request DELETE --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "How can I delete a node using the CdmEditorApi?",
+      "What parameters do I need to provide to delete a node?",
+      "What roles are required to delete a node?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmEditorApi - GET /sn_cdm/editor/includes",
+    "api_call": "servicenow.get_includes(api_version, changeset_number, source_full_name_path, return_fields)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2."
+      },
+      "changeset_number": {
+        "data_type": "String",
+        "description": "Unique identifier of the associated changeset, such as 'Chset-10'."
+      },
+      "source_full_name_path": {
+        "data_type": "String",
+        "description": "Path name of the source node for which to return the included nodes."
+      },
+      "return_fields": {
+        "data_type": "Array",
+        "description": "List of fields to return as part of the response."
+      }
+    },
+    "functionality": "Returns the list of nodes that were included within a specified node path.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/editor/includes?changesetNumber=Chset5&sourceFullNamePath=%2FtestApp%2Fcollections%2FcollA\" --request GET --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "How can I retrieve the list of included nodes in ServiceNow using the CdmEditorApi?",
+      "What parameters do I need to provide to retrieve included nodes?",
+      "What roles are required to access this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmEditorApi - GET /sn_cdm/editor/nodes",
+    "api_call": "servicenow.get_nodes(api_version, changeset_number, decrypt_password, name, parent_full_name_path, return_fields, type)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2."
+      },
+      "changeset_number": {
+        "data_type": "String",
+        "description": "Unique identifier of the associated changeset, such as 'Chset-10'."
+      },
+      "decrypt_password": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the value should be encrypted for the leaf nodes."
+      },
+      "name": {
+        "data_type": "String",
+        "description": "Node name. If you pass this parameter, only the results for the specified node are returned."
+      },
+      "parent_full_name_path": {
+        "data_type": "String",
+        "description": "Path name of the parent node for which to return the child nodes or to which the node specified in the name parameter resides."
+      },
+      "return_fields": {
+        "data_type": "Array",
+        "description": "List of fields to return as part of the response."
+      },
+      "type": {
+        "data_type": "String",
+        "description": "Node type. Possible values: sn_cdm_node_cdi, sn_cdm_node_collection, sn_cdm_node_component, sn_cdm_node_folder, sn_cdm_node_variable."
+      }
+    },
+    "functionality": "Returns the details of a specified node or a list of child Configuration Data Management (CDM) nodes for a specified parent node.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/editor/nodes?decryptPassword=true&name=cdi45&changesetNumber=Chset3&parentFullNamePath=%2FtestApp%2Fdeployables%2FDevelopment_1&type=sn_cdm_node_cdi\" --request GET --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "How can I retrieve the details of a specified node or its child nodes in ServiceNow using the CdmEditorApi?",
+      "What parameters do I need to provide to retrieve node details?",
+      "What roles are required to access this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmEditorApi - POST /sn_cdm/editor/includes",
+    "api_call": "servicenow.include_node(api_version, changeset_number, source_full_name_path, target_full_name_path, return_fields)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2."
+      },
+      "changeset_number": {
+        "data_type": "String",
+        "description": "Unique number of the open changeset to include in the target node."
+      },
+      "source_full_name_path": {
+        "data_type": "String",
+        "description": "Path name of the node to include in the target node."
+      },
+      "target_full_name_path": {
+        "data_type": "String",
+        "description": "Path name of the node under which the source node is to be included."
+      },
+      "return_fields": {
+        "data_type": "Array",
+        "description": "List of fields to return as part of the response."
+      }
+    },
+    "functionality": "Includes an existing node into another node, such as a component node into a collection node or a collection node into a deployable node.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/editor/includes?changesetNumber=Chset5&targetFullNamePath=%2FtestApp%2Fdeployables%2FDevelopment_1&sourceFullNamePath=%2FtestApp%2Fcollections%2FcollA\" --request POST --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "How can I include an existing node into another node using the CdmEditorApi in ServiceNow?",
+      "What parameters do I need to provide to include a node into another node?",
+      "What roles are required to access this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmEditorApi - POST /sn_cdm/editor/nodes",
+    "api_call": "servicenow.create_node(api_version, auto_create_parents, changeset_number, full_name_path, return_fields, secure, type, value)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2."
+      },
+      "auto_create_parents": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether to automatically create the non-existent parents in the name path as components."
+      },
+      "changeset_number": {
+        "data_type": "String",
+        "description": "Unique identifier of the associated changeset."
+      },
+      "full_name_path": {
+        "data_type": "String",
+        "description": "Path name of the node."
+      },
+      "return_fields": {
+        "data_type": "Array",
+        "description": "List of fields to return as part of the response."
+      },
+      "secure": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the value should be encrypted for the leaf nodes."
+      },
+      "type": {
+        "data_type": "String",
+        "description": "Type of new node."
+      },
+      "value": {
+        "data_type": "String",
+        "description": "Value of the new node."
+      }
+    },
+    "functionality": "Creates a specific type of node, such as component, collection, folder, configuration data item (CDI), or variable.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/editor/nodes?fullNamePath=%2FtestApp%2Fdeployables%2FDevelopment1%2Fcdi1&secure=true&value=someVal&type=cdi&changesetNumber=Chset-760\" --request POST --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "How can I create a new node using the CdmEditorApi in ServiceNow?",
+      "What parameters are required to create a node?",
+      "Can I specify whether to automatically create non-existent parent nodes?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmEditorApi - PUT /sn_cdm/editor/nodes",
+    "api_call": "servicenow.update_node(api_version, changeset_number, full_name_path, new_name, new_value, secure, return_fields)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "changeset_number": {
+        "data_type": "String",
+        "description": "Unique identifier of the associated changeset."
+      },
+      "full_name_path": {
+        "data_type": "String",
+        "description": "Path name of the node."
+      },
+      "new_name": {
+        "data_type": "String",
+        "description": "New name for the associated node."
+      },
+      "new_value": {
+        "data_type": "String",
+        "description": "New value for the associated node."
+      },
+      "secure": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the value should be encrypted for the leaf nodes."
+      },
+      "return_fields": {
+        "data_type": "Array",
+        "description": "List of fields to return as part of the response."
+      }
+    },
+    "functionality": "Updates the name and/or value of a specified node.",
+    "required_roles": ["CDM Editor", "CDM Secret"],
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/editor/nodes?newValue=cdcdc&fullNamePath=%2FtestApp%2Fdeployables%2FDevelopment-1%2Fcdi45&changesetNumber=Chset-5\" --request PUT --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "How can I update the name or value of a node using the CdmEditorApi in ServiceNow?",
+      "What parameters are required to update a node?"
+    ]
+  },
+  {
+    "api_name": "CdmPoliciesApi - DELETE /sn_cdm/policies/mappings",
+    "api_call": "servicenow.delete_policy_mapping(api_version, app_name, deployable_name, policy_name)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "app_name": {
+        "data_type": "String",
+        "description": "Name of the Configuration Data Management (CDM) application for which to remove the mapping to the policy."
+      },
+      "deployable_name": {
+        "data_type": "String",
+        "description": "Name of the CDM deployable for which to remove the mapping to the policy."
+      },
+      "policy_name": {
+        "data_type": "String",
+        "description": "Name of the associated policy."
+      }
+    },
+    "functionality": "Deletes the mapping of a specified policy to a deployable.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-it-operations-management/page/product/configuration-data-management/task/map-policies-deployables.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/policies/mappings?deployableName=Development_1&policyName=testALPolicy1&appName=testApp\" --request DELETE --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "How can I remove a policy mapping using the CdmPoliciesApi in ServiceNow?",
+      "What parameters are required to delete a policy mapping?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmPoliciesApi - GET /sn_cdm/policies/mappings/inputs/resolved",
+    "api_call": "servicenow.get_cdm_resolved_policy_inputs(appName, deployableName, policyName)",
+    "api_version": "v1",
+    "functionality": "Returns resolved inputs for a specified policy mapping of a deployable.",
+    "api_arguments": {
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the Configuration Data Management (CDM) application associated with the deployable."
+      },
+      "deployableName": {
+        "data_type": "String",
+        "description": "Name of the CDM deployable for which to return the resolved policy."
+      },
+      "policyName": {
+        "data_type": "String",
+        "description": "Name of the associated policy."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I use this API to retrieve resolved policy inputs for a specific deployable?",
+      "What is the significance of the 'appName' parameter in this API?",
+      "Can I use this API to retrieve resolved policy inputs for multiple policies simultaneously?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmPoliciesApi - POST /sn_cdm/policies/mappings",
+    "api_call": "servicenow.map_policy_to_deployable(appName, deployableName, policyName)",
+    "api_version": "v1",
+    "functionality": "Maps a specified policy to a deployable.",
+    "api_arguments": {
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the Configuration Data Management (CDM) application to map the policy."
+      },
+      "deployableName": {
+        "data_type": "String",
+        "description": "Name of the CDM deployable to map the policy."
+      },
+      "policyName": {
+        "data_type": "String",
+        "description": "Name of the policy to map."
+      },
+      "returnFields": {
+        "data_type": "Array",
+        "description": "List of fields to return as part of the response."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What is the significance of the 'returnFields' parameter in this API?",
+      "How does this API handle exceptions during the mapping process?",
+      "Can this API be used to map multiple policies to a single deployable in one request?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmPoliciesApi - PUT /sn_cdm/policies/mappings/inputs/additional-deployables",
+    "api_call": "servicenow.update_additional_deployables_input(appName, deployableName, policyName, additionalDeployables)",
+    "api_version": "v1",
+    "functionality": "Updates the additionalDeployablesInput input variable of a Configuration Data Management (CDM) policy mapping.",
+    "api_arguments": {
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the CDM application for which to update the additionalDeployablesInput input variable."
+      },
+      "deployableName": {
+        "data_type": "String",
+        "description": "Name of the CDM deployable for which to update the additionalDeployablesInput input variable."
+      },
+      "policyName": {
+        "data_type": "String",
+        "description": "Name of the associated policy."
+      },
+      "additionalDeployables": {
+        "data_type": "Array of Objects",
+        "description": "List of deployables to add to the additionalDeployablesInput input variable."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How does this API handle cases where the additional deployables provided are already associated with the policy mapping?",
+      "Can this API be used to remove deployables from the additionalDeployablesInput input variable?",
+      "What is the purpose of the 'is_unused' field in the response?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmPoliciesApi - PUT /sn_cdm/policies/mappings/inputs",
+    "api_call": "servicenow.update_policy_mapping_input(appName, deployableName, policyName, inputName, inputValue)",
+    "api_version": "v1",
+    "functionality": "Updates a specified input variable for a Configuration Data Management (CDM) policy mapping.",
+    "api_arguments": {
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the CDM application for which to update the policy mapping inputs."
+      },
+      "deployableName": {
+        "data_type": "String",
+        "description": "Name of the CDM deployable for which to update the policy mapping inputs."
+      },
+      "policyName": {
+        "data_type": "String",
+        "description": "Name of the associated policy."
+      },
+      "inputName": {
+        "data_type": "String",
+        "description": "Name of the input variable to update."
+      },
+      "inputValue": {
+        "data_type": "Dependant on the input variable",
+        "description": "Value to assign to the input variable."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How does this API handle cases where the input variable being updated is currently used by other mappings?",
+      "Can this API update multiple input variables in a single request?",
+      "What happens if the provided input variable name does not exist for the specified policy mapping?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Cdm Shared Library API - DELETE /sn_cdm/shared_libraries",
+    "api_call": "service_now.delete_shared_library(name='your_shared_library_name')",
+    "api_version": "v1",
+    "api_arguments": {
+      "name": {
+        "data_type": "String",
+        "description": "Name of the shared library to delete. Located in the CDM Application [sn_cdm_application] table."
+      }
+    },
+    "functionality": "Deletes the shared library with the specified name.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/sn_cdm/shared_libraries?name='javalib'\" --request DELETE --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "How do I delete a shared library using the Cdm Shared Library API?",
+      "What permissions are required to delete a shared library?",
+      "Can you provide an example of deleting a shared library using the API?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmSharedLibraryApi - DELETE /sn_cdm/shared_libraries/components",
+    "api_call": "servicenow.delete_shared_library_component(api_version=<api_version>, changeset_number=<changeset_number>, name=<name>, shared_library_name=<shared_library_name>)",
+    "api_version": "v1",
+    "functionality": "Deletes the specified shared component from the specified library",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access"
+      },
+      "changeset_number": {
+        "data_type": "String",
+        "description": "Number of the changeset associated with the component"
+      },
+      "name": {
+        "data_type": "String",
+        "description": "Name of the shared component to delete"
+      },
+      "shared_library_name": {
+        "data_type": "String",
+        "description": "Name of the shared library where the component to delete is located"
+      }
+    },
+    "example_code": "curl \"http://instance.servicenow.com/sn_cdm/shared_libraries/components?sharedLibraryName='javalib&changesetNumber='chset-8'&name='TestComponent'\" \n--request DELETE\n--header \"Accept:application/json\" \n--user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How do I delete a shared component from a library if it's currently being used?",
+      "What happens if I try to delete a component from an inactive shared library?",
+      "Is there any restriction on who can delete a shared component?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmSharedLibraryApi - GET /sn_cdm/shared_libraries/upload-status/{upload-id}",
+    "api_call": "servicenow.get_shared_library_upload_status(api_version=api_version, upload_id=upload_id)",
+    "api_version": "v1",
+    "functionality": "Returns the current status of the specified shared library upload request",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access"
+      },
+      "upload_id": {
+        "data_type": "String",
+        "description": "Sys_id of the upload request whose status to return"
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What does the 'state' parameter indicate in the response?",
+      "How do I determine if the upload request was successful or encountered an error?",
+      "Can I retrieve the details of the uploaded data from the response?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmSharedLibraryApi - POST /sn_cdm/shared_libraries",
+    "api_call": "servicenow.create_shared_library(api_version=api_version, name=name, description=description, user_group_ids=user_group_ids)",
+    "api_version": "v1",
+    "functionality": "Creates a new shared library with the specified name",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access"
+      },
+      "name": {
+        "data_type": "String",
+        "description": "Name of the shared library to create. This name must be unique across all CDM applications and libraries."
+      },
+      "description": {
+        "data_type": "String",
+        "description": "Description of the shared library."
+      },
+      "user_group_ids": {
+        "data_type": "String",
+        "description": "Comma-separated list of sys_ids of the user groups that can edit the associated shared library. All users with the proper roles can view the shared library."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What happens if the provided name for the shared library is not unique?",
+      "Can I create a shared library without providing a description?",
+      "How do I specify which user groups can edit the shared library?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmSharedLibraryApi - POST /sn_cdm/shared_libraries/components",
+    "api_call": "servicenow.create_shared_component(api_version=api_version, shared_library_name=shared_library_name, change_set_number=changeset_number, name=name, description=description)",
+    "api_version": "v1",
+    "functionality": "Creates the specified shared component under the specified library",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access"
+      },
+      "shared_library_name": {
+        "data_type": "String",
+        "description": "Name of the shared library under which to create the component. This library must already exist and be in the active state."
+      },
+      "change_set_number": {
+        "data_type": "String",
+        "description": "Unique identifier of the associated changeset, such as 'Chset-10'. Located in the CDM Changeset [sn_cdm_changeset] table."
+      },
+      "name": {
+        "data_type": "String",
+        "description": "Name of the shared component to create in the shared library. This name must be unique."
+      },
+      "description": {
+        "data_type": "String",
+        "description": "Description of the shared component."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What happens if a shared component with the same name already exists in the specified library?",
+      "Can I create a shared component without providing a description?",
+      "How do I find the sys_id of the changeset associated with the shared component?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmSharedLibraryApi - POST /sn_cdm/shared_libraries/uploads/components",
+    "api_call": "servicenow.create_shared_component_upload(api_version=api_version, shared_library_name=shared_library_name, changeset_number=changeset_number, data_format=data_format, auto_commit=auto_commit, auto_delete=auto_delete, delete_redundant_overrides=delete_redundant_overrides, identifier_keys=identifier_keys, ignore_attributes=ignore_attributes, name_path=name_path, publish_option=publish_option, upload_data=upload_data)",
+    "api_version": "v1",
+    "functionality": "Enables you to create and manage shared libraries and shared components by uploading configuration data.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access"
+      },
+      "shared_library_name": {
+        "data_type": "String",
+        "description": "Name of the shared library to create or manage. Located in the CDM Application [sn_cdm_application] table."
+      },
+      "changeset_number": {
+        "data_type": "String",
+        "description": "String that uniquely identifies the changeset associated with the application, such as Chset-102. Located in the CDM Changeset [sn_cdm_changeset] table. This changeset must be in the 'Open' state."
+      },
+      "data_format": {
+        "data_type": "String",
+        "description": "Format of the configuration data."
+      },
+      "auto_commit": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the changeset identified in the changesetNumber parameter is committed to the data model after upload."
+      },
+      "auto_delete": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the existing nodes, that aren’t part of the upload content, are deleted after the processing is complete."
+      },
+      "delete_redundant_overrides": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether to create an override where redundant values are present."
+      },
+      "identifier_keys": {
+        "data_type": "Array of Strings",
+        "description": "List of names that indicate which key in an array child to use to identify the same node."
+      },
+      "ignore_attributes": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the given data format supports attributes (currently only XML)."
+      },
+      "name_path": {
+        "data_type": "String",
+        "description": "Path of the targeted node under which the configuration data should be uploaded."
+      },
+      "publish_option": {
+        "data_type": "String",
+        "description": "Publish option for the associated configured snapshots."
+      },
+      "upload_data": {
+        "data_type": "Variable",
+        "description": "Configuration data to upload. This can be any data in the format defined by the dataFormat parameter of the query parameters."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What happens if the autoCommit parameter is set to true?",
+      "Can I upload configuration data in a format other than those listed in dataFormat?",
+      "How can I handle errors related to exceeding the maximum upload size?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmSharedLibraryApi - POST /sn_cdm/shared_libraries/uploads/components/file",
+    "api_call": "servicenow.upload_shared_component_file(api_version=api_version, shared_library_name=shared_library_name, changeset_number=changeset_number, auto_commit=auto_commit, auto_validate=auto_validate, file_name=file_name, file_node_name=file_node_name, name_path=name_path, upload_data=upload_data)",
+    "api_version": "v1",
+    "functionality": "Uploads files as part of the Configuration Data Model (CDM) under the components folder in a shared library.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access"
+      },
+      "shared_library_name": {
+        "data_type": "String",
+        "description": "Name of the shared library where the component to delete is located. Located in the CDM Application [sn_cdm_application] table."
+      },
+      "changeset_number": {
+        "data_type": "String",
+        "description": "String that uniquely identifies the changeset associated with the application, such as Chset-102. This changeset must be in the 'Open' state. Located in the CDM Changeset [sn_cdm_changeset] table."
+      },
+      "auto_commit": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the changeset identified in the changesetNumber parameter is committed to the data model after upload."
+      },
+      "auto_validate": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the snapshots created when committed are validated. Note: This option is only available if the autoCommit parameter is true."
+      },
+      "file_name": {
+        "data_type": "String",
+        "description": "Name of the file to upload. This name can differ from than the actual file name and contain the file extension."
+      },
+      "file_node_name": {
+        "data_type": "String",
+        "description": "Name of the file node. This file name is used in the configuration data when exporting it. This name doesn’t require a file extension nor does it affect the download."
+      },
+      "name_path": {
+        "data_type": "String",
+        "description": "Path of the targeted node under which the configuration data should be uploaded. This path is relative to the components, collection, or deployable folder (depending on the endpoint being called)."
+      },
+      "upload_data": {
+        "data_type": "String/stream",
+        "description": "Configuration data to upload."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What is the maximum file size allowed for upload?",
+      "Can I specify a different Content-Type header for the file being uploaded?",
+      "How can I handle errors related to missing parameters or exceeding the maximum file size?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmSharedLibraryApi - PUT /sn_cdm/shared_libraries",
+    "api_call": "servicenow.update_shared_library(api_version=api_version, name=name, new_available_state=new_available_state, new_description=new_description, new_name=new_name, new_user_group_ids=new_user_group_ids)",
+    "api_version": "v1",
+    "functionality": "Updates the shared library information including name, description, state, and user groups that can access the library.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access."
+      },
+      "name": {
+        "data_type": "String",
+        "description": "Name of the shared library to update."
+      },
+      "new_available_state": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates the state of the shared library."
+      },
+      "new_description": {
+        "data_type": "String",
+        "description": "Updated description of the shared library."
+      },
+      "new_name": {
+        "data_type": "String",
+        "description": "New name of the shared library."
+      },
+      "new_user_group_ids": {
+        "data_type": "String",
+        "description": "Comma separated list of sys_ids of the user groups that can access the associated shared library."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "Can I update multiple shared libraries in a single API call?",
+      "What happens if I try to update a shared library that doesn't exist?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmSharedLibraryApi - PUT /sn_cdm/shared_libraries/components",
+    "api_call": "servicenow.update_shared_component(api_version=api_version, changesetNumber=changesetNumber, name=name, newName=newName, newDescription=newDescription)",
+    "api_version": "v1",
+    "functionality": "Updates the name and description of the specified shared component.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access."
+      },
+      "changesetNumber": {
+        "data_type": "String",
+        "description": "Name of the associated changeset."
+      },
+      "name": {
+        "data_type": "String",
+        "description": "Name of the shared component to update."
+      },
+      "newName": {
+        "data_type": "String",
+        "description": "Updated name of the shared component."
+      },
+      "newDescription": {
+        "data_type": "String",
+        "description": "Updated description of the shared component."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What happens if I try to rename a shared component that has been used?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmSnapshotAPI - POST /sn_cdm/snapshots/{snapshot_id}/publish",
+    "api_call": "servicenow.publish_snapshot(api_version=api_version, snapshot_id=snapshot_id)",
+    "api_version": "v1",
+    "functionality": "Publishes a specified unpublished snapshot.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access."
+      },
+      "snapshot_id": {
+        "data_type": "String",
+        "description": "Sys_id of the snapshot record to process."
+      }
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/snapshots/3a168d9dc342301054c1582e1340dd68/publish\" --request POST --header \"Accept:application/json\" --header \"Content-Type:application/json\" --user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": ["What happens if the snapshot has already been published?"]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmSnapshotAPI - POST /sn_cdm/snapshots/{snapshot_id}/unpublish",
+    "api_call": "servicenow.unpublish_snapshot(api_version=api_version, snapshot_id=snapshot_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access."
+      },
+      "snapshot_id": {
+        "data_type": "String",
+        "description": "Sys_id of the snapshot record to process."
+      }
+    },
+    "functionality": "Unpublishes a previously published snapshot.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/snapshots/3a168d9dc342301054c1582e1340dd68/unpublish\"\n--request POST \n--header \"Accept:application/json\" \n--header \"Content-Type:application/json\" \n--user 'username':'password'",
+    "questions": [
+      "What happens if the snapshot has already been unpublished?",
+      "How can I check if the unpublishing process was successful?",
+      "Can I unpublish multiple snapshots at once?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmSnapshotAPI - POST /sn_cdm/snapshots/{snapshot_id}/validate",
+    "api_call": "servicenow.validate_snapshot(api_version=api_version, snapshot_id=snapshot_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access."
+      },
+      "snapshot_id": {
+        "data_type": "String",
+        "description": "Sys_id of the snapshot record to process."
+      }
+    },
+    "functionality": "Validates a specified unpublished snapshot.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/snapshots/3a168d9dc342301054c1582e1340dd68/validate\"\n--request POST \n--header \"Accept:application/json\" \n--header \"Content-Type:application/json\" \n--user 'username':'password'",
+    "questions": [
+      "What is the purpose of validating a snapshot?",
+      "Can a published snapshot be validated?",
+      "How can I check the validation status of a snapshot?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmSnapshotApi - PUT /sn_cdm/snapshots/publish",
+    "api_call": "servicenow.publish_snapshot(api_version=api_version, appName=appName, deployableName=deployableName, name=name)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access."
+      },
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the Configuration Data Management (CDM) application."
+      },
+      "deployableName": {
+        "data_type": "String",
+        "description": "Name of the CDM deployable."
+      },
+      "name": {
+        "data_type": "String",
+        "description": "Name of the snapshot."
+      }
+    },
+    "functionality": "Publishes a specified unpublished snapshot.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/snapshots/publish?deployableName=Development_1&name=Development_1-v1.dpl&appName=testApp\" \n--request PUT \n--header \"Accept:application/json\" \n--user 'username':'password'",
+    "questions": [
+      "What role is required to call this endpoint?",
+      "Can a snapshot be published without being validated?",
+      "What is the validation status of the snapshot after it's published?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmSnapshotApi - PUT /sn_cdm/snapshots/unpublish",
+    "api_call": "servicenow.unpublish_snapshot(api_version=api_version, appName=appName, deployableName=deployableName, name=name)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access."
+      },
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the Configuration Data Management (CDM) application."
+      },
+      "deployableName": {
+        "data_type": "String",
+        "description": "Name of the CDM deployable."
+      },
+      "name": {
+        "data_type": "String",
+        "description": "Name of the snapshot."
+      }
+    },
+    "functionality": "Unpublishes a previously published snapshot.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/snapshots/unpublish?deployableName=Development_1&name=Development_1-v1.dpl&appName=testApp\" \n--request PUT \n--header \"Accept:application/json\" \n--user 'username':'password'",
+    "questions": [
+      "What happens if the snapshot being unpublished is not currently published?",
+      "Is it possible to unpublish multiple snapshots at once using this endpoint?",
+      "What is the validation status of the snapshot after it's unpublished?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmSnapshotApi - PUT /sn_cdm/snapshots/validate",
+    "api_call": "servicenow.validate_snapshot(api_version=api_version, appName=appName, deployableName=deployableName, name=name)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access."
+      },
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the Configuration Data Management (CDM) application."
+      },
+      "deployableName": {
+        "data_type": "String",
+        "description": "Name of the CDM deployable."
+      },
+      "name": {
+        "data_type": "String",
+        "description": "Name of the snapshot."
+      }
+    },
+    "functionality": "Validates a specified unpublished snapshot against its mapped policies.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/snapshots/validate?name=Development_1-v2.dpl&deployableName=Development_1&appName=testApp\" \n--request PUT \n--header \"Accept:application/json\" \n--user 'username':'password'",
+    "questions": [
+      "What is the purpose of validating a snapshot?",
+      "Can a snapshot be validated while it is still being edited?",
+      "How can one determine the validation status of a snapshot?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmVersionApi - GET /sn_cdm/versions/export",
+    "api_call": "servicenow.export_version(api_version=api_version, dataFormat=dataFormat, decryptPassword=decryptPassword, sharedComponentName=sharedComponentName, sharedLibraryName=sharedLibraryName, substituteVariables=substituteVariables)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access."
+      },
+      "dataFormat": {
+        "data_type": "String",
+        "description": "Format of the configuration data."
+      },
+      "decryptPassword": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether to show encoded or decrypted password values."
+      },
+      "sharedComponentName": {
+        "data_type": "String",
+        "description": "Name of the shared component whose configuration data to export."
+      },
+      "sharedLibraryName": {
+        "data_type": "String",
+        "description": "Name of the shared library that contains the component whose configuration data you want to return."
+      },
+      "substituteVariables": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether to follow the variables."
+      }
+    },
+    "functionality": "Returns the configuration data for a specified shared component within a specified shared library for a specified published version.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/versions/export?dataFormat=ini&decryptPassword=false&sharedComponentName=jdk8&sharedLibraryName=JavaLib&substituteVariables=true\" \n--request GET \n--header \"Accept:application/json\" \n--user 'username':'password'",
+    "questions": [
+      "What does the dataFormat parameter specify?",
+      "When would you set decryptPassword to true?",
+      "Why might you want to export configuration data for a shared component?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmVersionApi - PUT /sn_cdm/versions/publish",
+    "api_call": "servicenow.publish_version(api_version=api_version, name=name, sharedComponentName=sharedComponentName, sharedLibraryName=sharedLibraryName)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access."
+      },
+      "name": {
+        "data_type": "String",
+        "description": "Name of the version of the shared component to publish."
+      },
+      "sharedComponentName": {
+        "data_type": "String",
+        "description": "Name of the shared component to publish."
+      },
+      "sharedLibraryName": {
+        "data_type": "String",
+        "description": "Name of the shared library in which the specified component resides."
+      }
+    },
+    "functionality": "Publishes a version of a shared component under a specified shared library.",
+    "roles_required": ["Scripted REST CDM Editor ACL (sn_cdm.cdm_editor)"],
+    "additional_requirements": "The Configuration Data Management (CDM) plugin must be activated.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"http://instance.servicenow.com/api/sn_cdm/versions/publish?name=Development-v1.shc&sharedComponentName=Development&sharedLibraryName=LibraryJdk\" \\\n--request PUT \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "What happens if you try to publish a version that is already published?",
+      "What is the purpose of publishing a version in the Configuration Data Management (CDM) context?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CdmVersionApi - PUT /sn_cdm/versions/unpublish",
+    "api_call": "servicenow.unpublish_version(api_version=api_version, name=name, sharedComponentName=sharedComponentName, sharedLibraryName=sharedLibraryName)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access."
+      },
+      "name": {
+        "data_type": "String",
+        "description": "Name of the version of the shared component to unpublish."
+      },
+      "sharedComponentName": {
+        "data_type": "String",
+        "description": "Name of the shared component to unpublish."
+      },
+      "sharedLibraryName": {
+        "data_type": "String",
+        "description": "Name of the shared library in which the specified component resides."
+      }
+    },
+    "functionality": "Unpublishes a version of a shared component under a specified shared library.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance-name.service-now.com/api/sn_cdm/versions/unpublish?sharedLibraryName=OracleG-Library-10&sharedComponentName=paymentService-V1.1&name=paymentService-V1.1-v1.shc\" \\\n--request PUT \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "What happens if you try to unpublish a version that is already unpublished?",
+      "How does unpublishing a version affect the shared component's availability for use?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - DELETE /sn_chg_rest/change/{change_sys_id}/task/{task_sys_id}",
+    "api_call": "servicenow.delete_change_task(change_sys_id=change_sys_id_value, task_sys_id=task_sys_id_value)",
+    "api_version": "v1",
+    "api_arguments": {
+      "change_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request to which the task is associated. Located in the Change Request [change_request] table."
+      },
+      "task_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request task to delete. Located in the Change Tasks [change_task] table."
+      }
+    },
+    "functionality": "Deletes the change request task identified by the specified sys_ids.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/0f4ac6c4b750230096c3e4f6ee11a9fe/task/12629ec4b750230096c3e4f6ee11a9d5\" --request DELETE --header \"Accept:application/json\" --user \"username\":\"password\"",
+    "questions": [
+      "How does this API ensure that only authorized users can delete change request tasks?",
+      "What happens if the specified change or task sys_id does not exist in the system?",
+      "Can this API be used to delete multiple change request tasks simultaneously?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - DELETE /sn_chg_rest/change/{sys_id}",
+    "api_call": "servicenow.delete_change_request(sys_id=sys_id_value)",
+    "api_version": "v1",
+    "api_arguments": {
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request record to delete. Located in the Change Request [change_request] table."
+      }
+    },
+    "functionality": "Deletes the change request associated with the specified sys_id.",
+    "env_requirements": ["None"],
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/sys_id_value\" \\\n--request DELETE \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+
+    "questions": [
+      "What happens if the user attempts to delete a change request that doesn't exist?",
+      "Can this API be used to delete multiple change requests simultaneously?",
+      "How does the system handle dependencies or related records when a change request is deleted?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - DELETE /sn_chg_rest/change/{sys_id}/conflict",
+    "api_call": "servicenow.cancel_conflict_check(sys_id=sys_id_value)",
+    "api_version": "v1",
+    "api_arguments": {
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request record for which to cancel the running conflict checking process. Located in the Change Request [change_request] table."
+      }
+    },
+    "functionality": "Cancels the running conflict checking process for the specified change request (sys_id).",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/sys_id_value/conflict\" \\\n--request DELETE \\\n--user \"username\":\"password\"",
+    "questions": [
+      "What happens if the conflict checking process is already completed or not running?",
+      "Is there any way to resume the conflict checking process once canceled?",
+      "Can this API be used to cancel conflict checking for multiple change requests simultaneously?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - DELETE /sn_chg_rest/change/emergency/{sys_id}",
+    "api_call": "servicenow.delete_emergency_change(sys_id=sys_id_value)",
+    "api_version": "v1",
+    "api_arguments": {
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the emergency change request to delete. Located in the Change Request [change_request] table."
+      }
+    },
+    "functionality": "Deletes the emergency change request identified by the specified sys_id.",
+    "env_requirements": ["None"],
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/emergency/sys_id_value\" \\\n--request DELETE \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "What happens if the emergency change request has associated tasks?",
+      "Can this API be used to delete multiple emergency change requests simultaneously?",
+      "Is there any way to recover a deleted emergency change request?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - DELETE /sn_chg_rest/change/normal/{sys_id}",
+    "api_call": "servicenow.delete_normal_change(sys_id=sys_id_value)",
+    "api_version": "v1",
+    "api_arguments": {
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the normal change request to delete. Located in the Change Request [change_request] table."
+      }
+    },
+    "functionality": "Deletes the normal change request identified by the specified sys_id.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/normal/sys_id_value\" \\\n--request DELETE \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "What happens if the normal change request has associated tasks?",
+      "Can this API be used to delete multiple normal change requests simultaneously?",
+      "Is there any way to recover a deleted normal change request?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - DELETE /sn_chg_rest/change/standard/{sys_id}",
+    "api_call": "servicenow.delete_standard_change(sys_id=sys_id_value)",
+    "api_version": "v1",
+    "api_arguments": {
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the standard change request to delete. Located in the Change Request [change_request] table."
+      }
+    },
+    "functionality": "Deletes the standard change request identified by the specified sys_id.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/standard/sys_id_value\" \\\n--request DELETE \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "What happens if the standard change request has associated tasks?",
+      "Can this API be used to delete multiple standard change requests simultaneously?",
+      "Is there any way to recover a deleted standard change request?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/ci/{cmdb_ci_sys_id}/schedule",
+    "api_call": "servicenow.get_change_schedule(cmdb_ci_sys_id=cmdb_ci_sys_id_value, duration_in_seconds=duration_value, planned_start_time=planned_start_time_value)",
+    "api_version": "v1",
+    "api_arguments": {
+      "cmdb_ci_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of a record in the Configuration Items [cmdb_ci] table. This endpoint does not require a change request."
+      },
+      "duration_in_seconds": {
+        "data_type": "Integer",
+        "description": "Duration of change in seconds, that is, how much time is required to complete the change request task."
+      },
+      "planned_start_time": {
+        "data_type": "String",
+        "description": "Optional. Date and time that the change request is planned to start implementation in UTC. Retrieve the available time slot start at or later than this time. If not provided, the system uses the current time as the start time. Time format: yyyy-mm-dd hh:mm:ss."
+      }
+    },
+    "functionality": "Enables retrieving available time slots by configuration item ID and duration, with an option to include planned start time.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_chg_rest/change/ci/cmdb_ci_sys_id_value/schedule?duration_in_seconds=duration_value&planned_start_time=planned_start_time_value\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "How does the system handle time slots that are already booked?",
+      "Can the duration of the change request task exceed the available time slots?",
+      "Is there a limit to the number of time slots that can be retrieved in a single request?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change",
+    "api_call": "servicenow.get_change_records(query_parameters)",
+    "api_version": "v1",
+    "api_arguments": {
+      "query_parameters": {
+        "data_type": "String",
+        "description": "Name-value pairs or encoded query used to filter the result set. See documentation for details."
+      }
+    },
+    "functionality": "Retrieves one or more change requests based on the specified criteria.",
+    "env_requirements": ["Role required: sn_change_reader."],
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change?sysparm_query=active=true^ORDERBYnumber\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "How can I filter the result set based on specific criteria?",
+      "What is the maximum number of records that can be retrieved in a single request?",
+      "Can I combine multiple criteria in the query parameters?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/{change_sys_id}/nextstates",
+    "api_call": "servicenow.get_change_next_states(change_sys_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "change_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request. Located in the Change Request [change_request] table."
+      }
+    },
+    "functionality": "Retrieves a list of available states for the specified change request, including the current state.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/b0dbda5347c12200e0ef563dbb9a718f/nextstates\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "What information does the 'state_transitions' array provide?",
+      "How can I determine if a transition to a certain state is automatic or requires manual intervention?",
+      "What is the significance of the 'conditions' array within each state transition?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/{change_sys_id}/schedule",
+    "api_call": "servicenow.get_change_schedule(change_sys_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "change_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request on which to find the next available time slot. Located in the [change_request] table."
+      }
+    },
+    "functionality": "Enables retrieving the available time slots for a change request.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/change/{change_sys_id}/schedule\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "What are some possible issues that could result in a 400 Bad Request response?",
+      "How does the endpoint handle cases where the specified change request is missing planned start and end times?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/{change_sys_id}/task",
+    "api_call": "servicenow.get_change_tasks(change_sys_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "change_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request whose tasks are to be retrieved. Located in the Change Request [change_request] table."
+      },
+      "key-value pairs": {
+        "data_type": "String",
+        "description": "Fields to modify when creating the request. The key is the field name within the template and the value is the information to populate in the field."
+      },
+      "order": {
+        "data_type": "String",
+        "description": "Field by which to sort the returned change requests. Default: number"
+      },
+      "sysparm_limit": {
+        "data_type": "Number",
+        "description": "Maximum number of records to return. For requests that exceed this number of records, use the sysparm_offset parameter to paginate record retrieval.",
+        "default": 500
+      },
+      "sysparm_offset": {
+        "data_type": "Number",
+        "description": "Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks.",
+        "default": 0
+      },
+      "sysparm_query": {
+        "data_type": "String",
+        "description": "Encoded query used to filter the result set. You can use a UI filter to obtain a properly encoded query."
+      },
+      "textSearch": {
+        "data_type": "String",
+        "description": "String to use to search all change task record fields. This search uses ServiceNow full text search platform functionality and defaults to IR_AND_OR_QUERY."
+      }
+    },
+    "functionality": "Retrieves one or more tasks associated with a specified change request based on the specified criteria.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/{change_sys_id}/task?sysparm_query=active=true^ORDERBYnumber\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "What are some possible issues that could result in a 400 Bad Request response?",
+      "How does the endpoint handle cases where the specified change request does not have associated tasks?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/{sys_id}",
+    "api_call": "servicenow.get_change_request(sys_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request record to retrieve from Change Request [change_request] table."
+      }
+    },
+    "functionality": "Retrieves the change request identified by the specified sys_id.",
+    "supported_params": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/{sys_id}\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "What does a 404 status code indicate in the context of this API endpoint?",
+      "Can you provide an example of when it might be appropriate to specify an api_version other than the latest?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/{sys_id}/ci",
+    "api_call": "servicenow.get_change_request_cis(sys_id, association_type)",
+    "api_version": "v1",
+    "api_arguments": {
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request for which to return the associated CMDB CIs."
+      },
+      "association_type": {
+        "data_type": "String",
+        "description": "Type of association between the CMDB CI and the change request. Valid values: affected, impacted, offering"
+      },
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "name-value pairs": {
+        "data_type": "String",
+        "description": "Fields to modify when creating the request. The key is the field name within the template and the value is the information to populate in the field."
+      },
+      "sysparm_limit": {
+        "data_type": "Number",
+        "description": "Maximum number of records to return. For requests that exceed this number of records, use the sysparm_offset parameter to paginate record retrieval.",
+        "default": 500
+      },
+      "sysparm_offset": {
+        "data_type": "Number",
+        "description": "Starting record index for which to begin retrieving records. Use this value to paginate record retrieval.",
+        "default": 0
+      },
+      "sysparm_query": {
+        "data_type": "String",
+        "description": "Encoded query used to filter the result set."
+      }
+    },
+    "functionality": "Retrieves multiple configuration items (CIs) associated to a specified change request based on the specified association type.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/{sys_id}/ci?association_type=affected\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "What are the valid values for the association_type parameter in this API endpoint?",
+      "How would you modify the query to filter the result set based on multiple conditions?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/{sys_id}/conflict",
+    "api_call": "servicenow.get_change_request_conflicts(sys_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request for which to return the status of the running/completed conflict checking process."
+      },
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      }
+    },
+    "functionality": "Retrieves the status of the currently running change request conflict checking process or the results of the last completed conflict checking process for the specified change request.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/{sys_id}/conflict\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "What does the 'status' field indicate in the response body?",
+      "How can you determine if there were any conflicts detected based on the response?"
+    ]
   }
 ]
