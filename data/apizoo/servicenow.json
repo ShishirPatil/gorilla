@@ -6305,5 +6305,778 @@
       "What does the 'status' field indicate in the response body?",
       "How can you determine if there were any conflicts detected based on the response?"
     ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/emergency",
+    "api_call": "servicenow.get_emergency_change_requests()",
+    "api_version": "v1",
+    "functionality": "Retrieves one or more emergency change requests based on the specified criteria.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "order": {
+        "data_type": "String",
+        "description": "Field by which to sort the returned change requests. Default: number"
+      },
+      "sysparm_limit": {
+        "data_type": "Number",
+        "description": "Maximum number of records to return. For requests that exceed this number of records, use the sysparm_offset parameter to paginate record retrieval."
+      },
+      "sysparm_offset": {
+        "data_type": "Number",
+        "description": "Starting record index for which to begin retrieving records. Use this value to paginate record retrieval."
+      },
+      "sysparm_query": {
+        "data_type": "String",
+        "description": "Encoded query used to filter the result set. You can use a UI filter to obtain a properly encoded query."
+      },
+      "key-value pairs": {
+        "data_type": "String",
+        "description": "Name-value pairs to use to filter the result set. This parameter is mutually exclusive with sysparm_query."
+      },
+      "textSearch": {
+        "data_type": "String",
+        "description": "String to use to search all emergency change request record fields."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/emergency?sysparm_query=active=true^ORDERBYnumber\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "How can I filter the emergency change requests based on specific criteria?",
+      "What does the 'state' field represent in the response body?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/emergency/{sys_id}",
+    "api_call": "servicenow.get_emergency_change_request(sys_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the emergency change request to retrieve from the Change Request [change_request] table."
+      }
+    },
+    "functionality": "Retrieves the emergency change request identified by the specified sys_id.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/emergency/b0dbda5347c12200e0ef563dbb9a718f\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "Can I retrieve multiple emergency change requests using this endpoint?",
+      "What is the significance of the 'state' field in the response body?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/model",
+    "api_call": "servicenow.get_change_models(api_version, name_value_pairs, order, sysparm_offset, sysparm_query, textSearch)",
+    "api_version": "v1",
+    "functionality": "Retrieves one or more change models based on the specified criteria.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "name-value pairs": {
+        "data_type": "String",
+        "description": "Name-value pairs to use to filter the result set."
+      },
+      "order": {
+        "data_type": "String",
+        "description": "Field by which to sort the returned change models. Default: name"
+      },
+      "sysparm_offset": {
+        "data_type": "Number",
+        "description": "Starting record index for which to begin retrieving records. Use this value to paginate record retrieval."
+      },
+      "sysparm_query": {
+        "data_type": "String",
+        "description": "Encoded query used to filter the result set."
+      },
+      "textSearch": {
+        "data_type": "String",
+        "description": "String to use to search all change model record fields."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/model\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "What are some common fields that can be used to filter the result set?",
+      "How can I specify the order in which the returned change models are sorted?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/model/{sys_id}",
+    "api_call": "servicenow.get_change_model(api_version, sys_id)",
+    "api_version": "v1",
+    "functionality": "Retrieves the change model identified by the specified sys_id.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change model record to retrieve from the Change Model [chg_model] table."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/model/c0efda5347c12200e0ef563dbb9a81e3\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "What kind of information does a change model contain?",
+      "How can I use a retrieved change model to create a change request?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/normal",
+    "api_call": "servicenow.get_normal_changes(api_version, query_params)",
+    "api_version": "v1",
+    "functionality": "Retrieves one or more normal change requests based on the specified criteria.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "query_params": {
+        "data_type": "Object",
+        "description": "Name-value pairs, order, limit, offset, or query to filter the result set."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/normal?sysparm_query=active=true^ORDERBYnumber\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "How can I retrieve normal change requests based on specific criteria?",
+      "What parameters can I use to filter the result set of normal change requests?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/normal/{sys_id}",
+    "api_call": "servicenow.get_normal_change(api_version, sys_id)",
+    "api_version": "v1",
+    "functionality": "Retrieves the normal change request identified by the specified sys_id.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the normal change request to retrieve from Change Request [change_request] table."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/normal/b0dbda5347c12200e0ef563dbb9a718f\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "How can I retrieve a normal change request by its sys_id?",
+      "What information does the response body contain?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/standard",
+    "api_call": "servicenow.get_standard_change(api_version, query_parameters)",
+    "api_version": "v1",
+    "functionality": "Retrieves one or more standard change requests based on the specified criteria.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "query_parameters": {
+        "data_type": "Object",
+        "description": "Object containing the parameters to filter the result set.",
+        "properties": {
+          "name-value pairs": {
+            "data_type": "String",
+            "description": "Name-value pairs to use to filter the result set. The name is the field on which the specified value is filtered."
+          },
+          "order": {
+            "data_type": "String",
+            "description": "Field by which to sort the returned change requests.",
+            "default": "number"
+          },
+          "sysparm_limit": {
+            "data_type": "String",
+            "description": "Maximum number of records to return."
+          },
+          "sysparm_offset": {
+            "data_type": "Number",
+            "description": "Starting record index for which to begin retrieving records."
+          },
+          "sysparm_query": {
+            "data_type": "String",
+            "description": "Encoded query used to filter the result set."
+          },
+          "textSearch": {
+            "data_type": "String",
+            "description": "String to use to search all standard change request record fields."
+          }
+        }
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_chg_rest/v1/change/standard?sysparm_query=active=true^ORDERBYnumber\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "How can I retrieve standard change requests based on specific criteria?",
+      "What parameters can I use to filter the result set?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/standard/{sys_id}",
+    "api_call": "servicenow.get_standard_change_by_id(api_version, sys_id)",
+    "api_version": "v1",
+    "functionality": "Retrieves the standard change request identified by the specified sys_id.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the standard change request to retrieve from the Change Request [change_request] table."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/standard/b0dbda5347c12200e0ef563dbb9a718f\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": ["How can I retrieve a standard change request by its sys_id?"]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/standard/template",
+    "api_call": "servicenow.get_standard_change_templates(api_version, name_value_pairs, order, sysparm_limit, sysparm_offset, sysparm_query, textSearch)",
+    "api_version": "v1",
+    "functionality": "Retrieves one or more standard change templates based on the specified criteria.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "name_value_pairs": {
+        "data_type": "String",
+        "description": "Name-value pairs to use to filter the result set. The name is the field on which the specified value is filtered."
+      },
+      "order": {
+        "data_type": "String",
+        "description": "Field by which to sort the returned standard change templates. Default: number"
+      },
+      "sysparm_limit": {
+        "data_type": "Number",
+        "description": "Maximum number of records to return."
+      },
+      "sysparm_offset": {
+        "data_type": "Number",
+        "description": "Starting record index for which to begin retrieving records."
+      },
+      "sysparm_query": {
+        "data_type": "String",
+        "description": "Encoded query used to filter the result set."
+      },
+      "textSearch": {
+        "data_type": "String",
+        "description": "String to use to search all standard change request record fields."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/standard/template?sysparm_query=active=true^ORDERBYnumber\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "How can I retrieve standard change templates based on specific criteria?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/standard/template/{sys_id}",
+    "api_call": "servicenow.get_standard_change_template(api_version, sys_id)",
+    "api_version": "v1",
+    "functionality": "Retrieves the standard change template identified by the specified sys_id.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the standard change template to retrieve from the [std_change_record_producer] table."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/standard/template/92b8544047810200e90d87e8dee490b0\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": ["How can I retrieve a specific standard change template?"]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - GET /sn_chg_rest/change/worker/{sys_id}",
+    "api_call": "servicenow.get_change_worker_status(api_version, sys_id)",
+    "api_version": "v1",
+    "functionality": "Retrieves the current status, information, and errors for the specified asynchronous worker.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change management asynchronous worker. Located in the Change Management Worker [chg_mgt_worker] table."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/worker/0644cd02dbec330084f07ffdbf9619c1\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "How can I retrieve the status and information for a specific asynchronous worker?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - PATCH /sn_chg_rest/change/{sys_id}",
+    "api_call": "servicenow.update_change_request(api_version, sys_id, params, data, encrypted_fields)",
+    "api_version": "v1",
+    "functionality": "Updates the change request identified by the specified sys_id with the key-value pairs in the request body or URL.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request to modify. Located in the Change Request [change_request] table."
+      },
+      "params": {
+        "data_type": "String",
+        "description": "Name-value pairs representing the fields to update. Request body parameters override URL parameters. However, required parameters must be specified in the URL."
+      },
+      "data": {
+        "data_type": "String",
+        "description": "Name-value pairs representing the field(s) to update in the associated change request."
+      },
+      "encrypted_fields": {
+        "data_type": "String",
+        "description": "List of comma-separated fields to encrypt. These fields are encrypted before they are stored in the associated record."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/b0dbda5347c12200e0ef563dbb9a718f\" \\\n--request PATCH \\\n--header \"Accept: application/json\" \\\n--header \"Content-Type: application/json\" \\\n--data \"{\\\"short_desription\\\": \\\"Reboot the server at 6 am\\\" }\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "How can I update a change request in ServiceNow via the REST API?",
+      "What parameters are required to update a change request in ServiceNow?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - PATCH /sn_chg_rest/change/{sys_id}/approvals",
+    "api_call": "servicenow.approve_reject_change_request(api_version, sys_id, state, comments)",
+    "api_version": "v1",
+    "functionality": "Allows the current user to approve or reject a change request approval record for the specified change request.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request for which the approval/rejection applies. Located in the Change Request [change_request] table."
+      },
+      "state": {
+        "data_type": "String",
+        "description": "Approval state. Valid values: approved, rejected."
+      },
+      "comments": {
+        "data_type": "String",
+        "description": "Reason that the change was rejected. Required if state is rejected."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/0f4ac6c4b750230096c3e4f6ee11a9fe/approvals\" \\\n--request POST \\\n--header \"Accept: application/json\" \\\n--header \"Content-Type: application/json\" \\\n--data \"{\\\"state\\\": \\\"approved\\\"}\" \\\n--user \"username\":\"password\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - PATCH /sn_chg_rest/change/{change_sys_id}/schedule/first_available",
+    "api_call": "servicenow.update_change_schedule_first_available(api_version, change_sys_id, duration_in_seconds, planned_start_time)",
+    "api_version": "v1",
+    "functionality": "Updates the planned start and end times of a change request using the first available time slot found.",
+    "role_required": "sn_change_writer",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "change_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request on which to update with the next available time slot. Located in the Change Requests [change_request] table. The selected change request must have a configuration item (cmdb_ci)."
+      },
+      "duration_in_seconds": {
+        "data_type": "Integer",
+        "description": "Duration of change in seconds, that is, how much time is required to complete the change request task."
+      },
+      "planned_start_time": {
+        "data_type": "String",
+        "description": "Optional. Date and time that the change request is planned to start implementation in UTC. Retrieve the available time slot start at or later than this time. If not provided, the system uses the current time as the start time. Time format: yyyy-mm-dd hh:mm:ss"
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.service-now.com/api/sn_chg_rest/change/87ae5e900a0a2c3e263e8304e727c646/schedule/first_available\" \\\n--request PATCH \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\" \\\n--data \"{\\\"duration_in_seconds\\\":\\\"10800\\\"}\" \\\n--user \"username\":\"password\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - PATCH /sn_chg_rest/change/{change_sys_id}/task/{task_sys_id}",
+    "api_call": "servicenow.update_change_task(api_version, change_sys_id, task_sys_id, data)",
+    "api_version": "v1",
+    "functionality": "Updates the change request task identified by the specified sys_ids with the key-value pairs in the request body or the URL.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "change_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request to which the task is associated. Verifies whether the specified task is associated with the specified change request. Located in the Change Request [change_request] table."
+      },
+      "task_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the task to modify. Located in the Change Task [change_task] table."
+      },
+      "data": {
+        "data_type": "String",
+        "description": "Name-value pairs representing the field(s) to update in the associated change request. For example, to update the short description file, enter a name-value pair similar to the following: --data '{\"short_description\": \"my short desc\" }'."
+      }
+    },
+    "role_required": "sn_change_writer",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/0f4ac6c4b750230096c3e4f6ee11a9fe/task/12629ec4b750230096c3e4f6ee11a9d5?short_description=Retire%20both%20nodes\" \\\n--request PATCH \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type: application/json\" \\\n--data \"{\\\"state\\\": \\\"assess\\\", \\\"no_such_field\\\": \\\"this will be ignored\\\" }\" \\\n--user \"username\":\"password\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - PATCH /sn_chg_rest/change/emergency/{sys_id}",
+    "api_call": "servicenow.update_emergency_change_request(api_version, sys_id, data)",
+    "api_version": "v1",
+    "functionality": "Updates the emergency change request identified by the specified sys_id with the key-value pairs in the request body or the URL.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request to modify. Located in the [change_request] table."
+      },
+      "data": {
+        "data_type": "String",
+        "description": "Name-value pairs representing the field(s) to update in the associated change request. For example, to update the short description file, enter a name-value pair similar to the following: --data '{\"short_description\": \"my short desc\" }'."
+      }
+    },
+    "meta_data": {
+      "role_required": "sn_change_writer",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/emergency/b0dbda5347c12200e0ef563dbb9a718f\" \\\n--request PATCH \\\n--header \"Accept: application/json\" \\\n--header \"Content-Type: application/json\" \\\n--data \"{\\\"no_such_field\\\": \\\"this will be ignored\\\" }\" \\\n--user \"username\":\"password\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - PATCH /sn_chg_rest/change/normal/{sys_id}",
+    "api_call": "servicenow.update_normal_change_request(api_version, sys_id, data)",
+    "api_version": "v1",
+    "functionality": "Updates the normal change request identified by the specified sys_id with the parameters in the request body or the URL.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request to modify. Located in the [change_request] table."
+      },
+      "data": {
+        "data_type": "String",
+        "description": "Name-value pairs representing the field(s) to update in the associated change request. For example, to update the short description file, enter a name-value pair similar to the following: --data '{\"short_description\": \"my short desc\" }'."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/normal/b0dbda5347c12200e0ef563dbb9a718f\" \\\n--request PATCH \\\n--header \"Accept: application/json\" \\\n--header \"Content-Type: application/json\" \\\n--data \"{\\\"no_such_field\\\": \\\"this will be ignored\\\" }\" \\\n--user \"username\":\"password\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - PATCH /sn_chg_rest/change/standard/{sys_id}",
+    "api_call": "servicenow.update_standard_change_request(api_version, sys_id, data)",
+    "api_version": "v1",
+    "functionality": "Updates the standard change request identified by the specified sys_id with the parameters in the request body or in the URL.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request to modify. Located in the [change_request] table."
+      },
+      "data": {
+        "data_type": "String",
+        "description": "Name-value pairs representing the field(s) to update in the associated change request. For example, to update the short description file, enter a name-value pair similar to the following: --data '{\"short_description\": \"my short desc\" }'."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/standard/1c87925347c12200e0ef563dbb9a7177\" \\\n--request PATCH \\\n--header \"Accept: application/json\" \\\n--header \"Content-Type: application/json\" \\\n--data \"{\\\"short_description\\\": \\\"my short desc\\\" }\" \\\n--user \"username\":\"password\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - PATCH /sn_chg_rest/change/standard/{sys_id}/risk",
+    "api_call": "servicenow.evaluate_standard_change_risk(api_version, sys_id)",
+    "api_version": "v1",
+    "functionality": "Calculates the risk and impact of the specified standard change based on an evaluation of the risk conditions.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the standard change to evaluate. Located in the Change Request [change_request] table."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/standard/1c87925347c12200e0ef563dbb9a7177/risk\" \\\n--request PATCH \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - POST /sn_chg_rest/change",
+    "api_call": "servicenow.create_change_request(api_version, chg_model, type, encrypted_fields, request_body)",
+    "api_version": "v1",
+    "functionality": "Creates a change request record based on the change request.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "chg_model": {
+        "data_type": "String",
+        "description": "Name of a change model listed in the Change Model [chg_model] table."
+      },
+      "type": {
+        "data_type": "String",
+        "description": "Name of the change request type listed in the Choices [sys_choice] table."
+      },
+      "encrypted_fields": {
+        "data_type": "String",
+        "description": "List of comma-separated fields to encrypt. These fields are encrypted before they are stored in the associated record."
+      },
+      "request_body": {
+        "data_type": "JSON",
+        "description": "Name-value pairs representing the field(s) to update in the associated change request."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\" \\\n--data \"{\\n    \\\"chg_model\\\" : \\\"Standard\\\",\\n    \\\"description\\\" : \\\"Describes the change request.\\\",\\n    \\\"short_description\\\" : \\\"My change request\\\",\\n    \\\"type\\\" : \\\"Standard\\\"\\n}\" \\\n--user \"username\":\"password\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - POST /sn_chg_rest/change/{sys_id}/ci",
+    "api_call": "servicenow.create_change_ci_association(api_version, sys_id, association_type, cmdb_ci_sys_ids, refresh_impacted_services)",
+    "api_version": "v1",
+    "functionality": "Creates the association between a change request and Configuration Management Database (CMDB) configuration items (CI).",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request to associate with the CMDB CI."
+      },
+      "association_type": {
+        "data_type": "String",
+        "description": "Type of association between the CMDB CI and the change request. Valid values: affected, impacted, offering."
+      },
+      "cmdb_ci_sys_ids": {
+        "data_type": "Array or comma-separated string",
+        "description": "List of CMDB CI sys_ids to associate to the change request."
+      },
+      "refresh_impacted_services": {
+        "data_type": "Boolean",
+        "description": "Flag used when association_type=affected to populate impacted services based on the list of affected CIs."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/c286d61347c12200e0ef563dbb9a71df/ci\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\" \\\n--data \"{cmdb_ci_sys_ids:'caf043a3b7fb23000999e4f6ee11a9c0,06f043a3b7fb23000999e4f6ee11a9c1', association_type:'affected'}\" \\\n--user \"username\":\"password\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - POST /sn_chg_rest/change/{sys_id}/conflict",
+    "api_call": "servicenow.start_change_conflict_check(api_version, sys_id)",
+    "api_version": "v1",
+    "functionality": "Starts a change request conflict checking process for the specified change request.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change management request for which to start the conflict checking process. Located in the Change Request [change_request] table."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/0f4ac6c4b750230096c3e4f6ee11a9fe/conflict\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - POST /sn_chg_rest/change/emergency",
+    "api_call": "servicenow.create_emergency_change_request(api_version, key_value_pairs)",
+    "api_version": "v1",
+    "functionality": "Creates one emergency change request based on the default emergency change request record.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "key_value_pairs": {
+        "data_type": "String",
+        "description": "Key-value pairs of fields to modify when creating the request. The key is the field name within the template and the value is the information to populate in the field. Fields that cannot be modified are ignored."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/emergency?no_such_field=something&description=test&short_description=Reboot server\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - POST /sn_chg_rest/change/normal",
+    "api_call": "servicenow.create_normal_change_request(api_version, key_value_pairs)",
+    "api_version": "v1",
+    "functionality": "Creates one normal change request based on the default normal change request record.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "key_value_pairs": {
+        "data_type": "String",
+        "description": "Fields to modify when creating the request. The key is the field name within the template and the value is the information to populate in the field. Fields that cannot be modified are ignored."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/normal?no_such_field=something&description=test&short_description=Remove server\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - POST /sn_chg_rest/change/{sys_id}/refresh_impacted_services",
+    "api_call": "servicenow.refresh_impacted_services(api_version, sys_id)",
+    "api_version": "v1",
+    "functionality": "Populates the impacted services/configuration items (CIs) related list based on the primary CI.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request to use to refresh the impacted services."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/c286d61347c12200e0ef563dbb9a71df/refresh_impacted_services\" \\ \n--request POST \\ \n--header \"Accept:application/json\" \\ \n--header \"Content-Type:application/json\" \\ \n--user \"username\":\"password\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - POST /sn_chg_rest/change/standard/{standard_change_template_id}",
+    "api_call": "servicenow.create_standard_change_request(api_version, standard_change_template_id, name_value_pairs)",
+    "api_version": "v1",
+    "functionality": "Creates one standard change request based on an existing standard change template as specified by the passed-in template sys_id.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "standard_change_template_id": {
+        "data_type": "String",
+        "description": "Sys_id of the standard change template on which to base the new standard change request. Located in the Standard Change Template [std_change_record_producer] table."
+      },
+      "name_value_pairs": {
+        "data_type": "String",
+        "description": "Fields within the specified standard change template to modify when creating the request. The key is the field name within the template and the value is the information to populate in the field."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/standard/{standard_change_template_id}\" \\ \n--request POST \\ \n--header \"Accept:application/json\" \\ \n--user \"username\":\"password\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Change Management - POST /sn_chg_rest/change/{change_sys_id}/task",
+    "api_call": "servicenow.create_change_request_task(api_version, change_sys_id, name_value_pairs)",
+    "api_version": "v1",
+    "functionality": "Creates one change request task based on the default change request task record and associates it with the specified change request.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "change_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the change request to which to associate this task. Located in the Change Request [change_request] table."
+      },
+      "name_value_pairs": {
+        "data_type": "String",
+        "description": "Fields to modify when creating the request. The key is the field name within the template and the value is the information to populate in the field."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/{change_sys_id}/task\" \\ \n--request POST \\ \n--header \"Accept:application/json\" \\ \n--user \"username\":\"password\""
   }
 ]
