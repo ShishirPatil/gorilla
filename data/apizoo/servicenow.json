@@ -7078,5 +7078,2202 @@
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
     },
     "example_code": "curl \"https://instance.servicenow.com/api/sn_chg_rest/v1/change/{change_sys_id}/task\" \\ \n--request POST \\ \n--header \"Accept:application/json\" \\ \n--user \"username\":\"password\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI Lifecycle Management API - DELETE /now/cilifecyclemgmt/actions",
+    "api_call": "servicenow.remove_ci_actions(action_name, requestor_id, sys_ids)",
+    "api_version": "",
+    "api_arguments": {
+      "action_name": {
+        "data_type": "String",
+        "description": "Configuration item action name to remove"
+      },
+      "requestor_id": {
+        "data_type": "String",
+        "description": "Sys ID of the requestor user or workflow"
+      },
+      "sys_ids": {
+        "data_type": "String",
+        "description": "Comma-separated list of CI sys_ids to remove the action from"
+      }
+    },
+    "functionality": "Remove a CI action from a list of CIs",
+    "example_code": "curl --request DELETE \\ 'https://instance.service-now.com/api/now/cilifecyclemgmt/actions?actionName=Patching&requestorId=621b5a09309e5010f877773aa7167c0a&sysIds=00a9a80d3790200044e0bfc8bcbe5d1c,d0fdbc8437201000deeabfc8bcbe5d33' \\ --header 'Accept: application/json' \\ --user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I remove an in-progress action like patching from a CI if I need to?",
+      "What API call allows me to cancel an action that is currently applied to a CI?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI Lifecycle Management API - DELETE /now/cilifecyclemgmt/operators/{req_id}",
+    "api_call": "servicenow.unregister_operator(req_id)",
+    "api_version": "",
+    "api_arguments": {
+      "req_id": {
+        "data_type": "String",
+        "description": "Sys ID of operator to unregister"
+      }
+    },
+    "functionality": "Unregister a non-workflow operator user",
+    "env_requirements": [],
+    "example_code": "curl --request DELETE \"https://instance.service-now.com/api/now/cilifecyclemgmt/operators/3cf1b3cc30121010f877773aa7167c6e\" --header \"Accept: application/json\" --user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I revoke access for a user that no longer needs to manage CI state?",
+      "What API call allows me to unregister an operator so they can no longer make CI state changes?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI Lifecycle Management API - GET /now/cilifecyclemgmt/actions/{sys_id}",
+    "api_call": "servicenow.get_ci_actions(sys_id)",
+    "api_version": "",
+    "api_arguments": {
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys ID of CI to get actions for"
+      }
+    },
+    "functionality": "Get active CI actions for a CI",
+    "env_requirements": [],
+    "example_code": "curl --request GET 'https://instance.service-now.com/api/now/cilifecyclemgmt/actions/00a9a80d3790200044e0bfc8bcbe5d1c' --header 'Accept: application/json' --user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I check what actions like patching or provisioning are in progress on a CI?",
+      "What API call allows me to see current actions running on a configuration item?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI Lifecycle Management API - GET /now/cilifecyclemgmt/compatActions",
+    "api_call": "servicenow.check_ci_action_compatibility(action_name, other_action_name)",
+    "api_version": "",
+    "api_arguments": {
+      "action_name": {
+        "data_type": "String",
+        "description": "Name of first CI action"
+      },
+      "other_action_name": {
+        "data_type": "String",
+        "description": "Name of second CI action"
+      }
+    },
+    "functionality": "Check if two CI actions are compatible",
+    "env_requirements": [],
+    "example_code": "curl --request GET 'https://instance.service-now.com/api/now/cilifecyclemgmt/compatActions?actionName=Patching&otherActionName=Provisioning' --header 'Accept: application/json' --user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I check if two actions like provisioning and decommissioning can run on a CI at the same time?",
+      "What API call allows me to verify compatibility between actions I want to execute on a configuration item?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI Lifecycle Management API - GET /now/cilifecyclemgmt/leases/{sys_id}/expired",
+    "api_call": "servicenow.check_ci_action_lease_expired(sys_id, action_name, requestor_id)",
+    "api_version": "",
+    "api_arguments": {
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys ID of CI with applied action"
+      },
+      "action_name": {
+        "data_type": "String",
+        "description": "Name of applied CI action"
+      },
+      "requestor_id": {
+        "data_type": "String",
+        "description": "ID of CI action requestor"
+      }
+    },
+    "functionality": "Check if lease expired for CI action requestor",
+    "env_requirements": [],
+    "example_code": "curl --request GET 'https://instance.service-now.com/api/now/cilifecyclemgmt/leases/00a9a80d3790200044e0bfc8bcbe5d1c/expired?actionName=Patching&requestorId=621b5a09309e5010f877773aa7167c0a' --header 'Accept: application/json' --user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I check if a user's access to run an action on a CI has expired?",
+      "What API call allows me to verify that a CI action requestor's lease is still valid?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI Lifecycle Management - GET /now/cilifecyclemgmt/notAllowedAction",
+    "api_call": "servicenow.ci_lifecycle_management_get_not_allowed_action(api_version: String, action_name: String, ci_class: String, ops_label: String)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "action_name": {
+        "data_type": "String",
+        "description": "Name of the CI action to check."
+      },
+      "ci_class": {
+        "data_type": "String",
+        "description": "CI class."
+      },
+      "ops_label": {
+        "data_type": "String",
+        "description": "Operational state to check."
+      }
+    },
+    "functionality": "Determine whether a specified CI action is allowed for a CI of a specified class when in a specified operational state.",
+    "example_code": "curl --request GET \\ \"https://instance.service-now.com/api/now/cilifecyclemgmt/notAllowedAction?actionName=Patching&ciClass=cmdb_ci_computer&opsLabel=DR+Standby\" \\ --header \"Accept: application/json\" \\ --user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I determine if a specific action is allowed for a configuration item (CI) in a particular operational state?",
+      "What are the possible values returned by the 'result' parameter in the response body?",
+      "Can I specify a custom API version to access this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI Lifecycle Management - GET /now/cilifecyclemgmt/notAllowedOpsTransition",
+    "api_call": "servicenow.ci_lifecycle_management_get_not_allowed_ops_transition(api_version: String, ci_class: String, ops_label: String, transition_ops_label: String)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "ci_class": {
+        "data_type": "String",
+        "description": "CI class to check transition restrictions for."
+      },
+      "ops_label": {
+        "data_type": "String",
+        "description": "Label of the current CI operational state."
+      },
+      "transition_ops_label": {
+        "data_type": "String",
+        "description": "Label of the operational state that is the target of the transition."
+      }
+    },
+    "functionality": "Determine whether a specified CI class can transition from a specified operational state to another specified operational state.",
+    "example_code": "curl --request GET \\ \"https://instance.service-now.com/api/now/cilifecyclemgmt/notAllowedOpsTransition?ciClass=cmdb_ci_computer&opsLabel=Retired&transitionOpsLabel=DR+Standby\" \\ --header \"Accept: application/json\" \\ --user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I check if a specific CI class can transition from one operational state to another?",
+      "What does the 'result' parameter in the response body indicate?",
+      "Are there any restrictions on using this endpoint with different API versions?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI Lifecycle Management - GET /now/cilifecyclemgmt/requestors/{req_id}/valid",
+    "api_call": "servicenow.ci_lifecycle_management_get_requestor_valid(api_version: String, req_id: String)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "req_id": {
+        "data_type": "String",
+        "description": "Sys_id of a workflow context or an operator user ID returned from the CI Lifecycle Management - POST /now/cilifecyclemgmt/operators endpoint."
+      }
+    },
+    "functionality": "Determine whether a specified active workflow user or registered user is a valid requestor.",
+    "example_code": "curl --request GET 'https://instance.service-now.com/api/now/cilifecyclemgmt/requestors/4cab9b95301a9010f877773aa7167ca9/valid' --header 'Accept: application/json' --user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I verify if a particular user is a valid requestor in the CI lifecycle management?",
+      "What are the possible error codes that can be encountered while processing the request?",
+      "What should I do if the response indicates that the requestor is invalid?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI Lifecycle Management - GET /now/cilifecyclemgmt/statuses/{sys_id}",
+    "api_call": "servicenow.ci_lifecycle_management_get_statuses(api_version: String, sys_id: String)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the CI."
+      }
+    },
+    "functionality": "Returns the current operational state for the specified configuration item (CI).",
+    "example_code": "curl --request GET 'https://instance.service-now.com/api/now/cilifecyclemgmt/statuses/aac0b1213784200044e0bfc8bcbe5de3' --header 'Accept: application/json' --user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve the current operational state of a specific configuration item?",
+      "What are the possible errors that could occur while fetching the operational state?",
+      "How should I handle the response if the operational state is unknown?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI Lifecycle Management - PATCH /now/cilifecyclemgmt/leases/{sys_id}",
+    "api_call": "servicenow.ci_lifecycle_management_patch_leases(api_version: String, sys_id: String, actionName: String, leaseTime: String, requestorId: String)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the CI for which to extend the lease."
+      },
+      "actionName": {
+        "data_type": "String",
+        "description": "Name of the associated CI action."
+      },
+      "leaseTime": {
+        "data_type": "String",
+        "description": "Time duration for which the lease is valid for the CI action specified in actionName. Format: HH:MM:SS"
+      },
+      "requestorId": {
+        "data_type": "String",
+        "description": "Sys_id of a workflow context, or an operator user ID returned from the CI Lifecycle Management - POST /now/cilifecyclemgmt/operators endpoint."
+      }
+    },
+    "functionality": "Extends the specified configuration item (CI) action's lease expiration time for the specified user.",
+    "example_code": "curl --request PATCH 'https://instance.service-now.com/api/now/cilifecyclemgmt/leases/affd3c8437201000deeabfc8bcbe5dc3?actionName=Patching&leaseTime=24:00:00&requestorId=e7c3402d305a9010f877773aa7167c2a' --header 'Accept: application/json' --header 'Content-Type: application/json' --user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I extend the lease expiration time for a specific configuration item action?",
+      "What is the required format for the lease duration?",
+      "What actions should be taken if the lease extension fails?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI Lifecycle Management - POST /now/cilifecyclemgmt/actions",
+    "api_call": "servicenow.ci_lifecycle_management_post_actions(api_version: String, actionName: String, leaseTime: String, oldActionNames: String, requestorId: String, sysIds: String)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "actionName": {
+        "data_type": "String",
+        "description": "Name of the CI action to add to the list."
+      },
+      "leaseTime": {
+        "data_type": "String",
+        "description": "Time duration for which the lease is valid for specified CI action. Format: HH:MM:SS"
+      },
+      "oldActionNames": {
+        "data_type": "String",
+        "description": "Comma-separated list of old CI actions that all CIs should be in."
+      },
+      "requestorId": {
+        "data_type": "String",
+        "description": "Sys_id of a workflow context, or an operator user ID returned from the CI Lifecycle Management - POST /now/cilifecyclemgmt/operators endpoint."
+      },
+      "sysIds": {
+        "data_type": "String",
+        "description": "Comma-separated list of CI sys_ids to which to add the CI action."
+      }
+    },
+    "functionality": "Adds a specified configuration item (CI) action to a specified list of CIs.",
+    "example_code": "curl --request POST \"https://instance.service-now.com/api/now/cilifecyclemgmt/actions?actionName=Patching&requestorId=621b5a09309e5010f877773aa7167c0a&sysIds=00a9a80d3790200044e0bfc8bcbe5d1c,d0fdbc8437201000deeabfc8bcbe5d33\" --header \"Accept: application/json\" --header \"Content-Type: application/json\" --user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What should be done if the CI action cannot be set for all CIs in the list?",
+      "Can multiple CI actions be added to the same list of CIs in a single request?",
+      "How can I verify if the CI action was successfully added to the CIs?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI Lifecycle Management - POST /now/cilifecyclemgmt/operators",
+    "api_call": "servicenow.ci_lifecycle_management_post_operators(api_version: String)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      }
+    },
+    "functionality": "Registers an operator for a non-workflow user.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl --request POST \\\n\"https://instance.service-now.com/api/now/cilifecyclemgmt/operators\" \\\n--header \"Accept: application/json\" \\\n--header \"Content-Type: application/json\" \\\n--user \"username\":\"password\"\n{\n  \"result\": {\n    \"result\": true,\n    \"requestorId\": \"6f992b8430121010f877773aa7167c42\"\n  }\n}",
+    "questions": []
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI Lifecycle Management - POST /now/cilifecyclemgmt/statuses",
+    "api_call": "servicenow.ci_lifecycle_management_post_statuses(api_version: String, opsLabel: String, requestorId: String, sysIds: String, oldOpsLabels: String)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "opsLabel": {
+        "data_type": "String",
+        "description": "Required. Label of the operational state to set for the specified CIs."
+      },
+      "requestorId": {
+        "data_type": "String",
+        "description": "Required. Sys_id of a workflow context, or an operator user ID returned from the CI Lifecycle Management - POST /now/cilifecyclemgmt/operators endpoint. Operator user IDs are located in the CI State Registered Users [statemgmt_register_users] table."
+      },
+      "sysIds": {
+        "data_type": "String",
+        "description": "Required. Comma-separated list of sys_ids of CIs for which the operational state is to be set."
+      },
+      "oldOpsLabels": {
+        "data_type": "String",
+        "description": "Comma-separated list of old CI operational states in which all CIs should be included."
+      }
+    },
+    "functionality": "Sets the operational state for a specified list of configuration items (CIs).",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl --request POST \"https://instance.service-now.com/api/now/cilifecyclemgmt/statuses?opsLabel=Repair%20in%20Progress&requestorId=23d58bc030121010f877773aa7167c83&sysIds=affd3c8437201000deeabfc8bcbe5dc3,aac0b1213784200044e0bfc8bcbe5de3\" --header \"Accept: application/json\" --header \"Content-Type: application/json\" --user \"username\":\"password\"",
+    "questions": []
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CMDB Data Ingestion - POST /cmdb/ingest/{data_source_sys_id}",
+    "api_call": "servicenow.cmdb_data_ingestion_post_ingest(api_version: String, data_source_sys_id: String, Array: Array)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "data_source_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the data source record."
+      },
+      "Array": {
+        "data_type": "Array",
+        "description": "Free-form array of objects that describe the data to append to the associated Import Set table. Each object in the array defines a row in the Import Sets table; each name-value pair a column. Note: This array must be named, such as '{\"records\":[{\"hostname\": \"Hostname1\", \"serialnumber\": \"2acd3873-7fc5-454c-8844-e7769e4d6cfc\", \"model\": \"Model Id\"},{\"vendor\": \"ABC Co\"}]}'"
+      }
+    },
+    "functionality": "Inserts records into the Import Set table associated with the data source record identified by the passed-in sys_id.",
+    "env_requirements": ["HTTP client library"],
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"instance.service-now.com/api/now/cmdb/ingest/4dd9686d1b9800103d374087bc4bcb3d\" \\\n--request POST \\\n--header \"Accept: application/json\" \\\n--header \"Content-Type:application/json\" \\\n--data \"{\\\"records\\\":[{\\\"hostname\\\": \\\"Hostname1\\\", \\\"serialnumber\\\": \\\"2acd3873-7fc5-454c-8844-e7769e4d6cfc\\\", \\\"model\\\": \\\"Model 5100\\\"},{\\\"vendor\\\": \\\"ABC Co\\\"}, {\\\"hostname\\\": \\\"Hostname2\\\", \\\"serialnumber\\\": \\\"3adb3873-7fc5-564d-8844-e7769e4d6ded\\\", \\\"model\\\": \\\"Model 5200\\\"},{\\\"vendor\\\": \\\"ACME Co\\\"}]}'\"\n\nSuccessful response:\n{\n  \"result\": {\n    \"staged_row_count\": 2,\n    \"import_set\": \"ISET0010010\",\n    \"staging_table\": \"sn_my_demo_integra_demo_data_source_01\"\n  }\n}"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CMDB Instance - DELETE /now/cmdb/instance/{classname}/{sys_id}/relation/{rel_sys_id}",
+    "api_call": "servicenow.cmdb_instance_delete_relation(class_name, sys_id, rel_sys_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "class_name": {
+        "data_type": "String",
+        "description": "CMDB class name. Name of the table that contains the desired CI records."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the CI."
+      },
+      "rel_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the relation to remove."
+      }
+    },
+    "functionality": "Deletes the relation for the specified configuration item.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/now/cmdb/instance/cmdb_ci_linux_server/0f4ac6c4b750230096c3e4f6ee11a9fe/relation/b0dbda5347c12200e0ef563dbb9a718f\" \\\n--request DELETE \\\n--user 'username':'password'",
+    "questions": [
+      "How can I delete a specific relation for a CI in the CMDB?",
+      "What happens if I try to delete a relation that doesn't exist?",
+      "Can I delete multiple relations at once using this API?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CMDB Instance - GET /now/cmdb/instance/{classname}",
+    "api_call": "servicenow.cmdb_instance_get(classname, sysparm_limit=None, sysparm_offset=None, sysparm_query=None)",
+    "api_version": "v1",
+    "api_arguments": {
+      "classname": {
+        "data_type": "String",
+        "description": "CMDB class name. Name of the table that contains the desired CI records."
+      },
+      "sysparm_limit": {
+        "data_type": "Number",
+        "description": "Maximum number of records to return."
+      },
+      "sysparm_offset": {
+        "data_type": "Number",
+        "description": "Starting record index for which to begin retrieving records."
+      },
+      "sysparm_query": {
+        "data_type": "String",
+        "description": "Encoded query used to filter the result set."
+      }
+    },
+    "functionality": "Returns the available configuration items (CI) for a specified CMDB class.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/now/cmdb/instance/cmdb_ci_linux_server\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "How can I retrieve all configuration items of a specific CMDB class?",
+      "Is there a way to limit the number of records returned by the API?",
+      "Can I filter the results based on specific criteria, such as the status of the configuration item?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CMDB Instance - GET /now/cmdb/instance/{classname}/{sys_id}",
+    "api_call": "servicenow.cmdb_instance_get(classname, sys_id, api_version=None)",
+    "api_version": "v1",
+    "api_arguments": {
+      "classname": {
+        "data_type": "String",
+        "description": "CMDB class name. Name of the table that contains the desired CI records."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the CI record to retrieve."
+      },
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. Use an endpoint version other than the latest."
+      }
+    },
+    "functionality": "Returns attributes and relationship information for a specified CI record.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/now/cmdb/instance/cmdb_ci_linux_server/70bc4e11c0a8210d01f074cbe6bd73b4\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "How can I retrieve attributes and relationship information for a specific configuration item (CI) record?",
+      "What is the structure of the response JSON returned by this API call?",
+      "Is it possible to specify a different version of the endpoint to access?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CMDB Instance - POST /now/cmdb/instance/{classname}",
+    "api_call": "servicenow.cmdb_instance_post(classname, attributes, inbound_relations=None, outbound_relations=None, source, api_version=None)",
+    "api_version": "v1",
+    "api_arguments": {
+      "classname": {
+        "data_type": "String",
+        "description": "CMDB class name. Name of the table that contains the desired CI records."
+      },
+      "attributes": {
+        "data_type": "Object",
+        "description": "Data attributes to define in the CI record."
+      },
+      "inbound_relations": {
+        "data_type": "Array",
+        "description": "List of objects that define the inbound relations to associate with the CI."
+      },
+      "outbound_relations": {
+        "data_type": "Array",
+        "description": "List of objects that define the outbound relations to associate with the CI."
+      },
+      "source": {
+        "data_type": "String",
+        "description": "Entity that updated the information."
+      },
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. Use an endpoint version other than the latest."
+      }
+    },
+    "functionality": "Creates a single CI with specified outbound and inbound relations.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/now/cmdb/instance/cmdb_ci_linux_server\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\"\\\n--user \"username\":\"password\" \\\n--data {\n  \"outbound_relations\": [\n    {\n      \"type\" : \"1a9cb166f1571100a92eb60da2bce5c5\",\n      \"target\" : \"3a307c930a0a0bb400353965d0b8861f\"\n    },\n    {\n      \"type\" : \"607ad1b2c0a8010e01941856b365af90\",\n      \"target\" : \"3a307c930a0a0bb400353965d0b8861f\"\n    }\n  ],\n  \"attributes\": {\n    \"name\" : \"lnux999\",\n    \"firewall_status\": \"Intranet\"\n  },\n  \"source\": \"ServiceNow\",\n  \"inbound_relations\": [\n    {\n      \"type\" : \"1a9cb166f1571100a92eb60da2bce5c5\",\n      \"target\" : \"3a27d4370a0a0bb4006316812bf45439\"\n    }\n  ]\n}",
+    "questions": [
+      "How can I create a single CI with specified outbound and inbound relations?",
+      "What is the structure of the request body JSON for this API call?",
+      "What are the required parameters for creating a CI using this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CMDB Instance - PUT /now/cmdb/instance/{classname}/{sys_id}",
+    "api_call": "servicenow.cmdb_instance_put(classname, sys_id, attributes, source, api_version=None)",
+    "api_version": "v1",
+    "api_arguments": {
+      "classname": {
+        "data_type": "String",
+        "description": "CMDB class name. Name of the table that contains the desired CI records."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the CI record to update."
+      },
+      "attributes": {
+        "data_type": "Object",
+        "description": "Data attributes to replace in the CI record."
+      },
+      "source": {
+        "data_type": "String",
+        "description": "Entity that updated the information."
+      },
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. Use an endpoint version other than the latest."
+      }
+    },
+    "functionality": "Updates the specified CI record with specified attribute name-value pairs.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/now/cmdb/instance/cmdb_ci_linux_server/70bc4e11c0a8210d01f074cbe6bd73b4\" \\\n--request PUT \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\"\\\n--user \"username\":\"password\" \\\n--data {\n  \"attributes\": {\n    \"firewall_status\": \"Extranet\",\n    \"discovery_source\": \"ServiceNows\",\n    \"name\": \"Linux299\",\n    \"used_for\": \"Pre-production\",\n    \"container\": \"Box\"\n  },\n  \"source\": \"ServiceNow\"\n}",
+    "questions": [
+      "How can I update a specific CI record with attribute name-value pairs?",
+      "What are the parameters required to update a CI record using this endpoint?",
+      "Is there any special consideration while using this endpoint for updating CI records?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CMDB Instance - POST /now/cmdb/instance/{classname}/{sys_id}/relation",
+    "api_call": "servicenow.cmdb_instance_relation_post(classname, sys_id, inbound_relations, outbound_relations, source, api_version=None)",
+    "api_version": "v1",
+    "api_arguments": {
+      "classname": {
+        "data_type": "String",
+        "description": "CMDB class name. Name of the table that contains the desired CI records."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the CI record to update."
+      },
+      "inbound_relations": {
+        "data_type": "Array",
+        "description": "List of objects that define the inbound relations to associate with the CI."
+      },
+      "outbound_relations": {
+        "data_type": "Array",
+        "description": "List of objects that define the outbound relations to associate with the CI."
+      },
+      "source": {
+        "data_type": "String",
+        "description": "Entity that updated the information."
+      },
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. Use an endpoint version other than the latest."
+      }
+    },
+    "functionality": "Adds inbound and/or outbound relations to the specified CI.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/now/cmdb/instance/cmdb_ci_linux_server/3a290cc60a0a0bb400000bdb386af1cf/relation\" \\\n--request POST \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\"\\\n--user \"username\":\"password\" \\\n--data {\n  \"outbound_relations\": [\n    {\n      \"type\" : \"1a9cb166f1571100a92eb60da2bce5c5\",\n      \"target\" : \"3a307c930a0a0bb400353965d0b8861f\"\n    },\n    {\n      \"type\" : \"607ad1b2c0a8010e01941856b365af90\",\n      \"target\" : \"3a307c930a0a0bb400353965d0b8861f\"\n    }\n  ],\n  \"source\": \"ServiceNow\",\n  \"inbound_relations\": [\n    {\n      \"type\" : \"1a9cb166f1571100a92eb60da2bce5c5\",\n      \"target\" : \"3a27d4370a0a0bb4006316812bf45439\"\n    }\n  ]\n}",
+    "questions": [
+      "How can I add inbound and outbound relations to a specific CI record?",
+      "What are the parameters required to add relations using this endpoint?",
+      "Is there any limitation on the number of relations that can be added in a single request?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CMDB Instance - PATCH /now/cmdb/instance/{classname}/{sys_id}",
+    "api_call": "servicenow.cmdb_instance_patch(classname, sys_id, attributes, source, api_version=None)",
+    "api_version": "v1",
+    "api_arguments": {
+      "classname": {
+        "data_type": "String",
+        "description": "CMDB class name. Name of the table that contains the desired CI records."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the CI record to update."
+      },
+      "attributes": {
+        "data_type": "Object",
+        "description": "Data attributes to replace in the CI record."
+      },
+      "source": {
+        "data_type": "String",
+        "description": "Entity that updated the information."
+      },
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. Use an endpoint version other than the latest."
+      }
+    },
+    "functionality": "Replaces the attributes in the specified CI record with the specified name-value pairs.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/now/cmdb/instance/cmdb_class_sw/70bc4e11c0a8210d01f074cbe6bd73b4\" \\\n--request PATCH \\\n--header \"Accept:application/json\" \\\n--header \"Content-Type:application/json\"\\\n--user \"username\":\"password\"\\\n--data {\n    \"attributes\": {\n      \"firewall_status\": \"Active\",\n      \"name\": \"Linux299\",\n      \"used_for\": \"Production\"\n    },\n    \"source\": \"ServiceNow\"\n}",
+    "questions": [
+      "How can I update specific attributes of a CI record using PATCH request?",
+      "What are the required parameters to update attributes of a CI using this endpoint?",
+      "Is there a way to update multiple attributes at once?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CMDB Meta - GET /now/cmdb/meta/{classname}",
+    "api_call": "servicenow.cmdb_meta_get(classname, api_version=None)",
+    "api_version": "v1",
+    "api_arguments": {
+      "classname": {
+        "data_type": "String",
+        "description": "CMDB class name. Name of the table that contains the desired CI records."
+      },
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. Use an endpoint version other than the latest."
+      }
+    },
+    "functionality": "Returns the meta data for the specified CMDB class.",
+    "env_requirements": [],
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/now/cmdb/meta/cmdb_ci_computer\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user 'username':'password'",
+    "questions": [
+      "What information does this endpoint provide about a CMDB class?",
+      "How can I retrieve metadata for a specific CMDB class using this endpoint?",
+      "Is there a way to specify the version of the API to use?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Consumer - GET /now/consumer",
+    "api_call": "servicenow.consumer_get(api_version=None, sysparm_limit=10, sysparm_offset=0, sysparm_query=None)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "sysparm_limit": {
+        "data_type": "Number",
+        "description": "Maximum number of records to return."
+      },
+      "sysparm_offset": {
+        "data_type": "Number",
+        "description": "Starting record index for which to begin retrieving records."
+      },
+      "sysparm_query": {
+        "data_type": "String",
+        "description": "Encoded query used to filter the result set."
+      }
+    },
+    "functionality": "Retrieves a specified set of Customer Service Management (CSM) consumer records.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/integrate/inbound-rest/concept/c_RESTAPI.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/now/consumer?sysparm_query=account=86837a386f0331003b3c498f5d3ee4ca&sysparm_limit=2&sysparm_offset=2>;rel=\\\"next\\\"\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "How can I use this endpoint to retrieve CSM consumer records?",
+      "What query parameters can I use to filter the result set?",
+      "Is pagination supported by this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Consumer - GET /now/consumer/{id}",
+    "api_call": "servicenow.consumer_get_by_id(id, api_version=None)",
+    "api_version": "v1",
+    "api_arguments": {
+      "id": {
+        "data_type": "String",
+        "description": "Sys_id of the consumer record to return."
+      },
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      }
+    },
+    "functionality": "Retrieves the specified Customer Service Management (CSM) consumer record.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/integrate/inbound-rest/concept/c_RESTAPI.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/now/consumer/01d8403fdb1b1200b6075200cf961941\" \\\n--request GET \\\n--header \"Accept:application/json\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "How can I use this endpoint to retrieve a specific CSM consumer record?",
+      "What information does the response body contain?",
+      "Is authentication required to access this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Consumer - POST /now/consumer",
+    "api_call": "servicenow.consumer_create(data, api_version=None)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "active": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the consumer is active.",
+        "possible_values": ["true", "false"],
+        "default": "true"
+      },
+      "business_phone": {
+        "data_type": "String",
+        "description": "Business phone number of the consumer.",
+        "maximum_length": 40
+      },
+      "city": {
+        "data_type": "String",
+        "description": "City in which the consumer resides.",
+        "maximum_length": 100
+      },
+      "country": {
+        "data_type": "String",
+        "description": "Country in which the consumer resides.",
+        "maximum_length": 40
+      },
+      "date_format": {
+        "data_type": "String",
+        "description": "Format in which to display dates.",
+        "valid_values": [
+          "dd-mm-yyyy",
+          "dd/mm/yyyy",
+          "dd.mm.yyyy",
+          "mm-dd-yyyy",
+          "yyyy-mm-dd"
+        ],
+        "maximum_length": 40,
+        "default": "blank (system date format)"
+      },
+      "email": {
+        "data_type": "String",
+        "description": "Email address of the consumer.",
+        "maximum_length": 100
+      },
+      "fax": {
+        "data_type": "String",
+        "description": "Fax number of the consumer.",
+        "maximum_length": 40
+      },
+      "first_name": {
+        "data_type": "String",
+        "description": "Consumer first name.",
+        "maximum_length": 50
+      },
+      "gender": {
+        "data_type": "String",
+        "description": "Gender of the consumer.",
+        "maximum_length": 40
+      },
+      "home_phone": {
+        "data_type": "String",
+        "description": "Home phone number of the consumer.",
+        "maximum_length": 40
+      },
+      "household": {
+        "data_type": "String",
+        "description": "Sys_id of the record that describes the household characteristics.",
+        "located_in": "Household [csm_household] table"
+      },
+      "last_name": {
+        "data_type": "String",
+        "description": "Consumer last name.",
+        "maximum_length": 50
+      },
+      "middle_name": {
+        "data_type": "String",
+        "description": "Consumer middle name.",
+        "maximum_length": 50
+      },
+      "mobile_phone": {
+        "data_type": "String",
+        "description": "Consumer mobile phone number.",
+        "maximum_length": 40
+      },
+      "name": {
+        "data_type": "String",
+        "description": "Consumer full name; first_name+middle_name+last_name.",
+        "maximum_length": 152
+      },
+      "notes": {
+        "data_type": "String",
+        "description": "Notes on consumer.",
+        "maximum_length": 4000
+      },
+      "notification": {
+        "data_type": "Integer",
+        "description": "Indicates whether the consumer should receive notifications.",
+        "valid_values": [1, 2],
+        "maximum_length": 40,
+        "default": 2
+      },
+      "photo": {
+        "data_type": "Image",
+        "description": "Photo of the consumer."
+      },
+      "preferred_language": {
+        "data_type": "String",
+        "description": "Consumer primary language.",
+        "maximum_length": 3
+      },
+      "prefix": {
+        "data_type": "String",
+        "description": "Consumer name prefix such as, Dr., Mr., Mrs., or Ms.",
+        "maximum_length": 40
+      },
+      "primary": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether this is the primary consumer.",
+        "possible_values": ["true", "false"],
+        "default": "false"
+      },
+      "social_channel": {
+        "data_type": "String",
+        "description": "Social media channel to which the consumer is associated.",
+        "associated_with": "Twitter, Facebook, Instagram, etc."
+      },
+      "social_handle": {
+        "data_type": "String",
+        "description": "User handle on the social media channel."
+      },
+      "social_handle_url": {
+        "data_type": "String",
+        "description": "URL to the consumer's social channel handle."
+      },
+      "state": {
+        "data_type": "String",
+        "description": "State in which the consumer resides.",
+        "maximum_length": 100
+      },
+      "street": {
+        "data_type": "String",
+        "description": "Consumer street address.",
+        "maximum_length": 255
+      },
+      "suffix": {
+        "data_type": "String",
+        "description": "Consumer name suffix such as Jr., Sr., or II."
+      },
+      "time_format": {
+        "data_type": "String",
+        "description": "Format in which to display time.",
+        "valid_values": ["hh.mm.ss a", "hh:mm:ss a", "HH.mm.ss", "HH:mm:ss"],
+        "maximum_length": 40,
+        "default": "blank (system time format)"
+      },
+      "time_zone": {
+        "data_type": "String",
+        "description": "Consumer time zone, such as Canada/Central or US/Eastern.",
+        "maximum_length": 40
+      },
+      "title": {
+        "data_type": "String",
+        "description": "Consumer business title such as Manager, Software Developer, or Contractor.",
+        "maximum_length": 60
+      },
+      "user": {
+        "data_type": "String",
+        "description": "Sys_id of the consumer user.",
+        "located_in": "Consumer User [csm_consumer_user] table"
+      },
+      "zip": {
+        "data_type": "String",
+        "description": "Consumer zip code.",
+        "maximum_length": 40
+      }
+    },
+    "functionality": "Creates a new Customer Service Management (CSM) consumer record.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/integrate/inbound-rest/concept/c_RESTAPI.html"
+    },
+    "example_code": "curl -X POST \"https://instance.servicenow.com/api/now/consumer\" \\\n-H \"Accept: application/json\" \\\n-H \"Content-Type: application/json\" \\\n-d \" { \\\n  \"country\": \"USA\", \\\n  \"notes\": \"Never comes in before 10am\", \\\n  \"gender\": \"Female\", \\\n  \"city\": \"San Marcos\", \\\n  \"prefix\": \"Ms\", \\\n  \"title\": \"Director\", \\\n  \"notification\": \"1\", \\\n  \"business_phone\": \"(555)555-1234\", \\\n  \"mobile_phone\": \"(555)555-1235\", \\\n  \"street\": \"123 Sesame St\", \\\n  \"state\": \"CA\", \\\n  \"fax\": \"(555)555-1236\", \\\n  \"first_name\": \"Jane\", \\\n  \"zip\": \"92001\", \\\n  \"home_phone\": \"(555)555-1234\", \\\n  \"last_name\": \"Brown\", \\\n  \"active\": \"true\", \\\n  \"middle_name\": \"Dell\", \\\n  \"time_zone\": \"PST\", \\\n  \"name\": \"Jane Brown\", \\\n  \"household\": \"4\", \\\n  \"user\": \"c3d35d82c37122005871d44d81d3ae91\", \\\n  \"primary\": \"false\" \\\n}\" \\\n--user \"username\":\"password\"",
+    "questions": [
+      "How can I use this endpoint to create a new CSM consumer record?",
+      "What parameters are required in the request body?",
+      "Are there any optional parameters that can be included in the request?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Contact - GET /now/contact",
+    "api_call": "servicenow.retrieve_contacts(sysparm_limit, sysparm_offset, sysparm_query)",
+    "api_version": "v1",
+    "api_arguments": {
+      "sysparm_limit": {
+        "data_type": "Number",
+        "description": "Maximum number of records to return."
+      },
+      "sysparm_offset": {
+        "data_type": "Number",
+        "description": "Starting record index for which to begin retrieving records."
+      },
+      "sysparm_query": {
+        "data_type": "String",
+        "description": "Encoded query used to filter the result set."
+      }
+    },
+    "functionality": "Retrieves a specified set of Customer Service Management (CSM) contacts.",
+    "example_code": "curl 'https://instance.servicenow.com/api/now/contact?sysparm_query=account=86837a386f0331003b3c498f5d3ee4ca&sysparm_limit=10&sysparm_offset=0' --request GET --header 'Accept:application/json' --user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve a specific set of contacts associated with a particular account?",
+      "Is there a way to limit the number of contacts returned in the response?",
+      "What parameters can I use to filter the contacts based on specific criteria?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Contact - GET /now/contact/{id}",
+    "api_call": "servicenow.get_contact(id)",
+    "api_version": "v1",
+    "functionality": "Retrieve the specified Customer Service Management (CSM) contact.",
+    "api_arguments": {
+      "id": {
+        "data_type": "String",
+        "description": "Sys_id of the contact to retrieve. Located in the Contact [customer_contact] table."
+      }
+    },
+    "example_code": "curl 'https://instance.servicenow.com/api/now/contact/ddce70866f9331003b3c498f5d3ee417' --request GET --header 'Accept:application/json' --user 'username:password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How do I retrieve a specific CSM contact using this API?",
+      "What status codes can be returned by this API, and what do they indicate?",
+      "Are there any authentication requirements for accessing this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Contact - POST /now/contact",
+    "api_call": "servicenow.create_contact(account, active, agent_status, building, calendar_integration, city, company, cost_center, country, date_format, default_perspective, department, edu_status, email, employee_number, enable_multifactor_authn, failed_attempts, first_name, gender, geolocation_tracked, home_phone, internal_integration_user, introduction, last_login_device, last_login_time, last_name, latitude, ldap_server, location, locked_out, longitude, manager, middle_name, mobile_phone, notification, on_schedule, phone, photo, preferred_language, roles, schedule, social_channel, social_handle, social_handle_url, source, state, street, time_format, time_sheet_policy, time_zone, title, user_name, vip, web_service_access_only, zip)",
+    "api_version": "v1",
+    "api_arguments": {
+      "account": {
+        "description": "Sys_id of the account record to which the contact is associated; Account [customer_account] table.",
+        "data_type": "String"
+      },
+      "active": {
+        "description": "Flag that indicates whether the contact is active within the system.",
+        "possible_values": [
+          "true: Contact is active",
+          "false: Contact is inactive"
+        ],
+        "data_type": "Boolean",
+        "default": "true"
+      },
+      "agent_status": {
+        "description": "Status of the agent.",
+        "possible_values": ["Off work", "On break", "On route", "On site"],
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "building": {
+        "description": "Sys_id of the record that describes the building in which the contact resides; Building [cmn_building] table.",
+        "data_type": "String"
+      },
+      "calendar_integration": {
+        "description": "Calendar application that the contact uses.",
+        "data_type": "Number (Integer)",
+        "default": 1
+      },
+      "city": {
+        "description": "City in which the contact resides.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "company": {
+        "description": "Sys_id of the company record to which the contact is associated; Company [core_company] table.",
+        "data_type": "String"
+      },
+      "cost_center": {
+        "description": "Sys_id of the cost center associated with the contact; Cost Center [cmn_cost_center] table.",
+        "data_type": "String"
+      },
+      "country": {
+        "description": "Country code of the country in which the contact resides.",
+        "data_type": "String",
+        "maximum_length": 3
+      },
+      "date_format": {
+        "description": "Format in which to display dates to contacts.",
+        "valid_values": [
+          "dd/mm/yyyy",
+          "dd-mm-yyyy",
+          "dd.mm.yyyy",
+          "mm-dd-yyyy",
+          "yyyy-mm-dd"
+        ],
+        "data_type": "String",
+        "maximum_length": 40,
+        "default": "blank (system date format)"
+      },
+      "default_perspective": {
+        "description": "Sys_id of the default perspective for the contact. Located in the Menu List [sys_perspective] table.",
+        "data_type": "String"
+      },
+      "department": {
+        "description": "Sys_id of the department associated with the contact. Located in the Department [cmn_department] table.",
+        "data_type": "String"
+      },
+      "edu_status": {
+        "description": "Education status of the associated contact.",
+        "data_type": "String",
+        "maximum_length": 40,
+        "default": "faculty"
+      },
+      "email": {
+        "description": "Contact email address.",
+        "data_type": "String"
+      },
+      "employee_number": {
+        "description": "Contact employee number.",
+        "data_type": "String"
+      },
+      "enable_multifactor_authn": {
+        "description": "Flag that indicates whether multifactor authorization is required for the contact to log in to the service portal.",
+        "possible_values": [
+          "true: Multifactor authorization enabled",
+          "false: Multifactor authorization disabled"
+        ],
+        "data_type": "Boolean",
+        "default": "false"
+      },
+      "failed_attempts": {
+        "description": "Number of failed log in attempts.",
+        "data_type": "Number (Integer)"
+      },
+      "first_name": {
+        "description": "Contact first name.",
+        "data_type": "String",
+        "maximum_length": 50
+      },
+      "gender": {
+        "description": "Contact gender.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "geolocation_tracked": {
+        "description": "Flag that indicates whether the contact location is obtained through geotracking.",
+        "possible_values": [
+          "true: Contact location obtained through geotracking",
+          "false: Contact location not obtained through geotracking"
+        ],
+        "data_type": "Boolean",
+        "default_value": "false"
+      },
+      "home_phone": {
+        "description": "Contact home phone number.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "internal_integration_user": {
+        "description": "Flag that indicates whether the contact is an internal integration user.",
+        "possible_values": [
+          "true: Internal integration user",
+          "false: Other type of user"
+        ],
+        "data_type": "Boolean",
+        "default": "false"
+      },
+      "introduction": {
+        "description": "Introduction",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "last_login_device": {
+        "description": "Device the consumer used the last time they logged in to the system.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "last_login_time": {
+        "description": "Date and time the contact logged in to the system.",
+        "data_type": "String (Date/time)"
+      },
+      "last_name": {
+        "description": "Contact last name.",
+        "data_type": "String",
+        "maximum_length": 50
+      },
+      "latitude": {
+        "description": "Latitude coordinate of the contact.",
+        "data_type": "Number (Floating point)",
+        "maximum_length": 40
+      },
+      "ldap_server": {
+        "description": "Sys_id of the LDAP server used by the contact to last log in to the system; LDAP Server [ldap_server_config] table.",
+        "data_type": "String"
+      },
+      "location": {
+        "description": "Sys_id of the record that describes the location of the contact; Location [cmn_location] table.",
+        "data_type": "String"
+      },
+      "locked_out": {
+        "description": "Flag that indicates if the contact is locked-out.",
+        "possible_values": [
+          "true: Contact locked-out",
+          "false: Contact not locked-out"
+        ],
+        "data_type": "Boolean",
+        "default": "false"
+      },
+      "longitude": {
+        "description": "Longitude coordinate of the contact.",
+        "data_type": "Number (Floating point)",
+        "maximum_length": 40
+      },
+      "manager": {
+        "description": "Sys_id of the record that describes the direct supervisor of the contact; User [sys_user] table.",
+        "data_type": "String"
+      },
+      "middle_name": {
+        "description": "Contact middle name.",
+        "data_type": "Number (Floating point)",
+        "maximum_length": 50
+      },
+      "mobile_phone": {
+        "description": "Contact mobile phone number.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "notification": {
+        "description": "Indicates whether the contact should receive notifications.",
+        "valid_values": ["1: Disabled", "2: Enabled"],
+        "data_type": "Number (Integer)",
+        "default": 2
+      },
+      "on_schedule": {
+        "description": "Indicates the timeliness of dispatched service personnel.",
+        "valid_values": [
+          "Ahead: Ahead of schedule.",
+          "behind_less30: Behind schedule, but less than 30 minutes.",
+          "behind_30to60: Behind schedule between 30 and 60 minutes.",
+          "behind_more60: Behind schedule more than 60 minutes.",
+          "on_time: On schedule."
+        ],
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "phone": {
+        "description": "Contact business phone number.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "photo": {
+        "description": "Photo image of the contact.",
+        "data_type": "Image"
+      },
+      "preferred_language": {
+        "description": "Country code of the contact primary language.",
+        "data_type": "String",
+        "maximum_length": 3
+      },
+      "roles": {
+        "description": "List of user roles associated with the contact.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "schedule": {
+        "description": "Sys_id of the record that describes the work schedule for the associated contact; Schedule [cmn_schedule] table.",
+        "data_type": "String"
+      },
+      "social_channel": {
+        "description": "Social media channel to which the contact is associated such as Twitter, Facebook, or Instagram.",
+        "data_type": "String"
+      },
+      "social_handle": {
+        "description": "User handle on the social media channel.",
+        "data_type": "String"
+      },
+      "social_handle_url": {
+        "description": "URL to the contact's social channel profile.",
+        "data_type": "String"
+      },
+      "source": {
+        "description": "Source of the contact.",
+        "data_type": "String",
+        "maximum_length": 255
+      },
+      "state": {
+        "description": "State in which the contact resides.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "street": {
+        "description": "Contact street address.",
+        "data_type": "String",
+        "maximum_length": 255
+      },
+      "time_format": {
+        "description": "Format in which to display time.",
+        "valid_values": [
+          "hh.mm.ss a: hh.mm.ss (12 hour)",
+          "hh:mm:ss a: hh:mm:ss (12 hour)",
+          "HH.mm.ss: hh.mm.ss (24 hour)",
+          "HH:mm:ss: hh:mm:ss (24 hour)"
+        ],
+        "data_type": "String",
+        "maximum_length": 40,
+        "default": "Blank (system time format)"
+      },
+      "time_sheet_policy": {
+        "description": "Sys_id of the record that contains the time sheet policy for the associated contact; Time Sheet Policy [time_sheet_policy] table.",
+        "data_type": "String"
+      },
+      "time_zone": {
+        "description": "Time zone in which the contact resides, such as Canada/Central or US/Eastern.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "title": {
+        "description": "Contact business title such as Manager, Software Developer, or Contractor.",
+        "data_type": "String",
+        "maximum_length": 60
+      },
+      "user_name": {
+        "description": "Contact user ID.",
+        "data_type": "String",
+        "maximum_length": 40
+      },
+      "vip": {
+        "description": "Flag that indicates whether the associated contact has VIP status.",
+        "possible_values": ["true: VIP", "false: Not VIP"],
+        "data_type": "Boolean",
+        "default": "false"
+      },
+      "web_service_access_only": {
+        "description": "Flag that indicates whether the contact can only access services through the web.",
+        "possible_values": [
+          "true: Web access only",
+          "false: Access through all available methods"
+        ],
+        "data_type": "Boolean",
+        "default": "false"
+      },
+      "zip": {
+        "description": "Contact zip code.",
+        "data_type": "String",
+        "maximum_length": 40
+      }
+    },
+    "functionality": "Creates a new Customer Service Management (CSM) contact.",
+    "example_code": "curl -X POST \"https://instance.servicenow.com/api/now/contact\" \\n-H 'Accept: application/json' \\n-H 'Content-Type: application/json' \\n-d '{ \\n  \"country\": \"USA\", \\n  \"calendar_integration\": \"1\", \\n  \"last_login_time\": \"2018-03-10 21:48:11\", \\n  \"last_login_device\": \"tablet\", \\n  \"building\": \"Cardinal West\", \\n  \"web_service_access_only\": \"false\", \\n  \"notification\": \"1\", \\n  \"enable_multifactor_authn\": \"true\", \\n  \"agent_status\": \"Travelling\", \\n  \"state\": \"CA\", \\n  \"vip\": \"false\", \\n  \"longitude\": \"123.76\", \\n  \"zip\": \"92069\", \\n  \"home_phone\": \"(555)555-1234\", \\n  \"time_format\": \"hh:mm:ss\", \\n  \"geolocation_tracked\": \"false\", \\n  \"active\": \"true\", \\n  \"phone\": \"+1 858 287 7834\", \\n  \"cost_center\": \"1345\", \\n  \"name\": \"Dora Warren\", \\n  \"employee_number\": \"546\", \\n  \"gender\": \"Female\", \\n  \"city\": \"Orlando\", \\n  \"user_name\": \"dora.warren\", \\n  \"failed_attempts\": \"2\", \\n  \"edu_status\": \"current\", \\n  \"latitude\": \"57.6\", \\n  \"title\": \"Network Administrator\", \\n  \"internal_integration_user\": \"false\", \\n  \"ldap_server\": \"10.24.23.123\", \\n  \"mobile_phone\": \"+1 858 867 7857\", \\n  \"street\": \"123 Lagume\", \\n  \"company\": \"86837a386f0331003b3c498f5d3ee4ca\", \\n  \"department\": \"IT\", \\n  \"first_name\": \"Dora\", \\n  \"preferred_language\": \"Spanish\", \\n  \"email\": \"dora.warren@mailinator.com\", \\n  \"manager\": \"ddce70866f9331003b3c498f5d3ee417\", \\n  \"locked_out\": \"false\", \\n  \"last_name\": \"Warren\", \\n  \"middle_name\": \"Dell\", \\n  \"time_zone\": \"PST\", \\n  \"schedule\": \"9-5\", \\n  \"date_format\": \"MM/DD/YY\", \\n  \"location\": \"25ab8e460a0a0bb300857304ff811af5\", \\n  \"account\": \"86837a386f0331003b3c498f5d3ee4ca\" \\n}' \\n--user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How do I retrieve a specific CSM contact using its Sys_id?",
+      "What HTTP status codes can I expect in the response when fetching a contact?",
+      "Are there any specific authentication requirements for accessing contact data?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - GET /sn_cicd/app/batch/results/{result_id}",
+    "api_call": "servicenow.get_ci_cd_batch_results(result_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "result_id": {
+        "data_type": "String",
+        "description": "Sys_id of the batch installation for which to return results information. This value is returned in the links.results.id parameter of the /sn_cicd/app/batch/install endpoint."
+      }
+    },
+    "functionality": "Returns the results of a batch install based on a specified result identifier.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'instance.servicenow.com/api/sn_cicd/app/batch/results/df24b1e9db2d0110b5e3f6c5ae97c561' --request GET --header 'Accept: application/json' --user 'username':'password'",
+    "questions": [
+      "How do I obtain the results of a batch installation using this API?",
+      "What does the result_id parameter represent in this API?",
+      "What permissions are required to access this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - GET /sn_cicd/instance_scan/result/{progress_id}",
+    "api_call": "servicenow.get_ci_cd_instance_scan_result(progress_id)",
+    "api_version": "v1",
+    "functionality": "Returns the current progress and status of the CI/CD instance scan function associated with a passed-in progress ID.",
+    "api_arguments": {
+      "progress_id": {
+        "data_type": "String",
+        "description": "Unique identifier of the function for which to return progress information. This value is returned in the links.progress.id parameter of the endpoint that initiated the action, such as /sn_cicd/instance_scan/full_scan or /sn_cicd/instance_scan/point_scan."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'instance.service-now.com/api/sn_cicd/instance_scan/result/a74c70a11b7800103d374087bc4bcb28' --request GET --header 'Accept: application/json' --user 'username':'password'",
+    "questions": [
+      "How can I check the progress and status of a CI/CD instance scan function?",
+      "What information does the progress_id parameter provide in this context?",
+      "What permissions are required to access this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - GET /sn_cicd/progress/{progress_id}",
+    "api_call": "servicenow.get_ci_cd_progress(progress_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "progress_id": {
+        "data_type": "String",
+        "description": "Unique identifier of the function for which to return progress information. This value is returned in the links.progress.id parameter of the endpoint that initiated the action, such as /sn_cicd/app_repo/publish, /sn_cicd/app_repo/install, /sn_cicd/testsuite/run, or /sn_cicd/sc/apply_stash."
+      }
+    },
+    "functionality": "Returns the current progress and status of the Continuous Integration and Continuous Delivery (CICD) function associated with a specified progress ID.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'instance.servicenow.com/api/sn_cicd/progress/a4fae8911bdc00103d374087bc4bcbbd' --request GET --header 'Accept: application/json' --user 'username':'password'",
+    "questions": [
+      "How can I obtain the current progress and status of a CICD function using this API?",
+      "What does the progress_id parameter represent in this context?",
+      "What are the possible status codes returned by this endpoint and what do they indicate?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - GET /sn_cicd/testsuite/results/{result_id}",
+    "api_call": "servicenow.get_ci_cd_testsuite_results(result_id)",
+    "api_version": "v1",
+    "functionality": "Returns the results of a test suite run based on a specified results identifier.",
+    "api_arguments": {
+      "result_id": {
+        "data_type": "String",
+        "description": "Unique identifier of the test suite results to retrieve. The corresponding /sn_cicd/progress/{progress_id} endpoint call returns this information."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'instance.servicenow.com/api/sn_cicd/testsuite/results/2891389d1b1040103d374087bc4bcb09' --request GET --header 'Accept: application/json' --user 'username':'password'",
+    "questions": [
+      "How do I retrieve the results of a test suite run using this API?",
+      "What information does the result_id parameter provide?",
+      "What are the possible HTTP status codes returned by this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/app/batch/install",
+    "api_call": "servicenow.post_ci_cd_batch_install(name, notes, packages)",
+    "api_version": "v1",
+    "functionality": "Installs two or more packages in a single specified batch.",
+    "api_arguments": {
+      "name": {
+        "data_type": "String",
+        "description": "User specified descriptive name for this batch request."
+      },
+      "notes": {
+        "data_type": "String",
+        "description": "User specified additional notes about the batch install plan."
+      },
+      "packages": {
+        "data_type": "Array",
+        "description": "JSON array containing details of each package to install."
+      },
+      "packages.id": {
+        "data_type": "String",
+        "description": "Sys_id of the application or identifier of the plugin to install."
+      },
+      "packages.load_demo_data": {
+        "data_type": "Boolean",
+        "description": "Flag indicating whether demo data should be loaded when installing the package."
+      },
+      "packages.notes": {
+        "data_type": "String",
+        "description": "User specified notes about the package."
+      },
+      "packages.requested_customization_version": {
+        "data_type": "String",
+        "description": "Version of the application customization to the store application or to the scoped ServiceNow plugin to install, such as 1.0.2 or 2.3."
+      },
+      "packages.requested_version": {
+        "data_type": "String",
+        "description": "Version of the package to install, such as 1.0.2 or 2.3. Required if packages.type is set to application; ignored if set to plugin."
+      },
+      "packages.type": {
+        "data_type": "String",
+        "description": "Type of package. Valid values: application, plugin."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'instance.servicenow.com/api/sn_cicd/app/batch/install' --request POST --header 'Accept: application/json' --user 'username':'password' --data '{ \"name\": \"Release 2.2 Deployment\", \"packages\": [ { \"id\": \"syd_id_abcefghi\", \"type\": \"application\", \"load_demo_data\": false, \"requested_version\": \"1.0.2\", \"notes\": \"User specific text to describe this application install\" }, { \"id\": \"syd_id_defabcde\", \"type\": \"application\", \"requested_version\": \"1.0.0\", \"requested_customization_version\": \"2.0.7\", \"notes\": \"Customization for CSM App1\" }, { \"id\": \"com.glide.some.plugin\", \"type\": \"plugin\", \"load_demo_data\": true, \"notes\": \"Plugin related notes\" } ] }'",
+    "questions": [
+      "How can I install multiple packages in a single batch using this API?",
+      "What are the required parameters for the packages to be installed?",
+      "What does the name parameter represent in this context?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/app/batch/rollback/{rollback_id}",
+    "api_call": "servicenow.post_ci_cd_batch_rollback(rollback_id)",
+    "api_version": "v1",
+    "functionality": "Rolls back all of the packages associated with a specific batch installation to their previous versions.",
+    "api_arguments": {
+      "rollback_id": {
+        "data_type": "String",
+        "description": "Sys_id of the batch installation plan for which to rollback the installed packages to their previous versions. This value is returned in the links.rollback.id parameter of the /sn_cicd/app/batch/install endpoint."
+      }
+    },
+    "env_requirements": [],
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'instance.servicenow.com/api/sn_cicd/app/batch/rollback/a329f82e871da64c724ba21c82a764f2' --request POST --header 'Accept: application/json' --user 'username':'password'",
+    "questions": [
+      "How can I rollback all packages associated with a batch installation to their previous versions using this API?",
+      "What does the rollback_id parameter represent in this context?",
+      "What are the possible HTTP status codes returned by this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/app/batch/rollback/{rollback_id}",
+    "api_call": "servicenow.post_ci_cd_batch_rollback(rollback_id)",
+    "api_version": "v1",
+    "functionality": "Rolls back all of the packages associated with a specific batch installation to their previous versions.",
+    "api_arguments": {
+      "rollback_id": {
+        "data_type": "String",
+        "description": "Sys_id of the batch installation plan for which to rollback the installed packages to their previous versions. This value is returned in the links.rollback.id parameter of the /sn_cicd/app/batch/install endpoint."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'instance.servicenow.com/api/sn_cicd/app/batch/rollback/a329f82e871da64c724ba21c82a764f2' --request POST --header 'Accept: application/json' --user 'username':'password'",
+    "questions": [
+      "How can I rollback all packages associated with a batch installation to their previous versions using this API?",
+      "What does the rollback_id parameter represent in this context?",
+      "What are the possible HTTP status codes returned by this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/app_repo/install",
+    "api_call": "servicenow.post_ci_cd_app_repo_install(sys_id, auto_upgrade_base_app, base_app_version, scope, version)",
+    "api_version": "v1",
+    "functionality": "Installs the specified application from the application repository onto the instance making the endpoint call.",
+    "api_arguments": {
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the application to install. You can locate this value in the Sys ID field in the Custom Application [sys_app] table or Store Application [sys_store_app] table."
+      },
+      "auto_upgrade_base_app": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the associated base application should be automatically upgraded to a later version. Valid values: true: Automatically upgrade the associated base application. false: Leave the base application as the version currently installed on the instance."
+      },
+      "base_app_version": {
+        "data_type": "String",
+        "description": "Version of the base application to install. A base application is any third-party application that is available in the ServiceNow Store. If the application has no application customizations, or if the application has application customizations and you are only updating the base application, then enter the updated version of the application in this parameter."
+      },
+      "scope": {
+        "data_type": "String",
+        "description": "Scope name of the application, such as x_aah_custom_app. You can locate this value in the scope field in the Custom Application [sys_app] table or Store Application [sys_store_app] table."
+      },
+      "version": {
+        "data_type": "String",
+        "description": "Version of the application to install."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'instance.servicenow.com/api/sn_cicd/app_repo/install?sys_id=2d146921dbd80010caf55268dc9619d8' --request POST --header 'Accept: application/json' --user 'username':'password'",
+    "questions": [
+      "How can I install a specified application from the application repository onto my instance using this API?",
+      "What is the purpose of the auto_upgrade_base_app parameter?",
+      "When should I use the base_app_version parameter?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/app_repo/publish",
+    "api_call": "servicenow.post_ci_cd_app_repo_publish(sys_id, scope, version, dev_notes)",
+    "api_version": "v1",
+    "functionality": "Publishes the specified application and all of its artifacts to the application repository.",
+    "api_arguments": {
+      "sys_id": {
+        "data_type": "String",
+        "description": "The sys_id of the application to store in the repository. You can locate this value in the Sys ID field in the Custom Application [sys_app] table."
+      },
+      "scope": {
+        "data_type": "String",
+        "description": "The scope of the application. You can locate this value in the scope field in the Custom Application [sys_app] table."
+      },
+      "version": {
+        "data_type": "String",
+        "description": "Version under which to store the application."
+      },
+      "dev_notes": {
+        "data_type": "String",
+        "description": "Developer notes to store with the application."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'instance.servicenow.com/api/sn_cicd/app_repo/publish?sys_id=4dd9686d1b9800103d374087bc4bcb3d' --request POST --header 'Accept: application/json' --user 'username':'password'",
+    "questions": [
+      "How can I publish the specified application and its artifacts to the application repository using this API?",
+      "What happens if there are uncommitted changes to tracked files when calling this endpoint?",
+      "When should I use the dev_notes parameter?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/app_repo/rollback",
+    "api_call": "servicenow.post_ci_cd_app_repo_rollback(sys_id, scope, version)",
+    "api_version": "v1",
+    "functionality": "Initiates a rollback of a specified application to a specified version.",
+    "api_arguments": {
+      "sys_id": {
+        "data_type": "String",
+        "description": "The sys_id of the application to rollback."
+      },
+      "scope": {
+        "data_type": "String",
+        "description": "The scope name of the application to rollback."
+      },
+      "version": {
+        "data_type": "String",
+        "description": "Version of the application that is expected after the rollback operation. If the request is to rollback an App Customization install, then set this field to the version of the base application that the system is expected to have after the rollback operation."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'instance.servicenow.com/api/sn_cicd/app_repo/rollback?sys_id=2d146921dbd80010caf55268dc9619d8&version=1.1.0' --request POST --header 'Accept: application/json' --user 'username':'password'",
+    "questions": [
+      "How do I initiate a rollback of a specified application?",
+      "When should I use the scope parameter instead of the sys_id parameter?",
+      "What happens if the version specified in the rollback operation doesn't exist?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/instance_scan/full_scan",
+    "api_call": "servicenow.post_ci_cd_instance_scan_full_scan()",
+    "api_version": "v1",
+    "functionality": "Runs all active checks present in your instance.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. Only specify this value to use an endpoint version other than the latest."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'instance.servicenow.com/api/sn_cicd/instance_scan/full_scan' --request POST --header 'Accept: application/json' --user 'username':'password'",
+    "questions": [
+      "What types of checks can be run using this endpoint?",
+      "How can I ensure that the checks run successfully?",
+      "What actions can I take based on the response status code?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/instance_scan/point_scan",
+    "api_call": "servicenow.post_ci_cd_instance_scan_point_scan(target_table, target_sys_id)",
+    "api_version": "v1",
+    "functionality": "Executes all applicable checks against a specified record.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. Only specify this value to use an endpoint version other than the latest."
+      },
+      "target_table": {
+        "data_type": "String",
+        "description": "Name of the table in which the record to scan resides, such as 'Incident'.",
+        "required": true
+      },
+      "target_sys_id": {
+        "data_type": "String",
+        "description": "The sys_id of the record within the specified table to scan.",
+        "required": true
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'instance.service-now.com/api/sn_cicd/instance_scan/point_scan?target_table=incident&target_sys_id=2d146921dbd80010caf55268dc9619d8' --request POST --header 'Accept: application/json' --user 'username':'password'",
+    "questions": [
+      "What checks are executed against the specified record?",
+      "How are the checks determined for execution?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/instance_scan/suite_scan/combo/{combo_sys_id}",
+    "api_call": "servicenow.post_ci_cd_instance_scan_suite_scan_combo(combo_sys_id)",
+    "api_version": "v1",
+    "functionality": "Runs a scan using a suite and target (scoped apps or update sets) that have already run previously.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. Only specify this value to use an endpoint version other than the latest."
+      },
+      "combo_sys_id": {
+        "data_type": "String",
+        "description": "The sys_id of the scan to run. The scan must be an existing scan that you want to re-run. Located in the Combo [scan_combo] table.",
+        "required": true
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_cicd/instance_scan/suite_scan/combo/245d29cc1bd32010178aed72604bcb4b\" --request POST --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": ["How do I obtain the combo_sys_id for a scan combo?"]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/instance_scan/suite_scan/{suite_sys_id}/scoped_apps",
+    "api_call": "servicenow.post_ci_cd_instance_scan_suite_scan_scoped_apps(suite_sys_id, app_scope_sys_ids)",
+    "api_version": "v1",
+    "functionality": "Runs all active checks inside a suite against a list of scoped apps.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. Only specify this value to use an endpoint version other than the latest."
+      },
+      "suite_sys_id": {
+        "data_type": "String",
+        "description": "The sys_id of the suite to run. Located in the Suite [scan_check_suite] table.",
+        "required": true
+      },
+      "app_scope_sys_ids": {
+        "data_type": "Array",
+        "description": "A list of sys_ids of the scoped applications to scan. Located in the Application [sys_scope] table. The array can't be an empty array.",
+        "required": true,
+        "structure": ["String", "String", "String"]
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_cicd/instance_scan/suite_scan/833655cc1b94101046e87733cd4bcb4e/scoped_apps\" --request POST --header \"Accept:application/json\" --header \"Content-Type:application/json\" --data \"{app_scope_sys_ids: [\"078e8020950f12a215a92e8ad9b346e0\"]}\" --user 'username':'password'",
+    "questions": [
+      "What happens if the app_scope_sys_ids array is empty?",
+      "Can I run checks against a single scoped app using this endpoint?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/instance_scan/suite_scan/combo/{combo_sys_id}",
+    "api_call": "servicenow.post_ci_cd_instance_scan_suite_scan_combo(combo_sys_id)",
+    "api_version": "v1",
+    "functionality": "Runs a scan using a suite and target (scoped apps or update sets) that have already run previously.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. Only specify this value to use an endpoint version other than the latest."
+      },
+      "combo_sys_id": {
+        "data_type": "String",
+        "description": "The sys_id of the scan to run. Located in the Combo [scan_combo] table.",
+        "required": true
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_cicd/instance_scan/suite_scan/combo/245d29cc1bd32010178aed72604bcb4b\" --request POST --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "Can I use this endpoint to create a new scan combo?",
+      "What happens if the combo_sys_id provided does not exist?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/instance_scan/suite_scan/{suite_sys_id}/scoped_apps",
+    "api_call": "servicenow.post_ci_cd_instance_scan_suite_scan_scoped_apps(suite_sys_id, app_scope_sys_ids)",
+    "api_version": "v1",
+    "functionality": "Runs all active checks inside a suite against a list of scoped apps.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. Only specify this value to use an endpoint version other than the latest."
+      },
+      "suite_sys_id": {
+        "data_type": "String",
+        "description": "The sys_id of the suite to run. Located in the Suite [scan_check_suite] table.",
+        "required": true
+      },
+      "app_scope_sys_ids": {
+        "data_type": "Array",
+        "description": "A list of sys_ids of the scoped applications to scan. The array can't be empty.",
+        "required": true
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_cicd/instance_scan/suite_scan/833655cc1b94101046e87733cd4bcb4e/scoped_apps\" --request POST --header \"Accept:application/json\" --header \"Content-Type:application/json\" --data \"{app_scope_sys_ids: [\\\"078e8020950f12a215a92e8ad9b346e0\\\"]}\" --user 'username':'password'",
+    "questions": [
+      "What happens if the app_scope_sys_ids array is empty?",
+      "Is there a limit to the number of scoped apps that can be scanned in a single request?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/instance_scan/suite_scan/{suite_sys_id}/update_sets",
+    "api_call": "servicenow.post_ci_cd_instance_scan_suite_scan_update_sets(suite_sys_id, update_set_sys_ids)",
+    "api_version": "v1",
+    "functionality": "Runs all active checks inside a suite against a list of update sets.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. Only specify this value to use an endpoint version other than the latest."
+      },
+      "suite_sys_id": {
+        "data_type": "String",
+        "description": "The sys_id of the suite to run. Located in the Suite [scan_check_suite] table.",
+        "required": true
+      },
+      "update_set_sys_ids": {
+        "data_type": "Array",
+        "description": "A list of sys_ids of the update sets to scan. The array can't be empty.",
+        "required": true
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_cicd/instance_scan/suite_scan/833655cc1b94101046e87733cd4bcb4e/update_sets\" --request POST --header \"Accept:application/json\" --header \"Content-Type:application/json\" --data \"{update_set_sys_ids: [\\\"7abef63c1b572010178aed72604bcbfd\\\"]}\" --user 'username':'password'",
+    "questions": [
+      "Is there a limit to the number of update sets that can be scanned in a single request?",
+      "What happens if one of the update set sys_ids provided in the request does not exist?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/plugin/{plugin_id}/activate",
+    "api_call": "servicenow.activate_plugin(plugin_id)",
+    "api_version": "v1",
+    "functionality": "Activates the specified plugin.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. Only specify this value to use an endpoint version other than the latest."
+      },
+      "plugin_id": {
+        "data_type": "String",
+        "description": "Unique identifier of the plugin. You can locate this identifier on the Plugins page within the card of the desired plugin; identified with the name 'ID'.",
+        "required": true
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'instance.servicenow.com/api/sn_cicd/plugin/com.glide.web_service_aggregate/activate' --request POST --header 'Accept: application/json' --user 'username':'password'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/plugin/{plugin_id}/rollback",
+    "api_call": "servicenow.rollback_plugin(plugin_id)",
+    "api_version": "v1",
+    "functionality": "Rolls back the specified plugin to the previous installed version. If no prior version has been installed, returns an error.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. Only specify this value to use an endpoint version other than the latest."
+      },
+      "plugin_id": {
+        "data_type": "String",
+        "description": "Unique identifier of the plugin. You can locate this identifier on the Plugins page within the card of the desired plugin; identified with the name 'ID'.",
+        "required": true
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'instance.servicenow.com/api/sn_cicd/plugin/com.glide.web_service_aggregate/rollback' --request POST --header 'Accept: application/json' --user 'username':'password'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/sc/apply_stash/{stash_id}",
+    "api_call": "servicenow.apply_source_control_stash(stash_id)",
+    "api_version": "v1",
+    "functionality": "Starts applying a previously generated 'stash' of changes from a remote source control to a specified local application or application-customization.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. Only specify this value to use an endpoint version other than the latest."
+      },
+      "stash_id": {
+        "data_type": "String",
+        "description": "Unique identifier of the stash to apply. This value is returned in the links.stash.id parameter in the corresponding progress endpoint call.",
+        "required": true
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'https://instance.servicenow.com/api/sn_cicd/sc/apply_stash/fc2224e4e0429110f8771827f8fd3634' --request POST --header 'Accept:application/json' --header 'Content-Type:application/json' --user 'username':'password'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/sc/import",
+    "api_call": "servicenow.import_application_from_source_control(repo_url, branch_name, credential_sys_id, auto_upgrade_base_app, mid_server_sys_id)",
+    "api_version": "v1",
+    "functionality": "Imports an application using the specified repository URL and branch name.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. Only specify this value to use an endpoint version other than the latest."
+      },
+      "repo_url": {
+        "data_type": "String",
+        "description": "URL of the Git repository to import the application from.",
+        "required": true
+      },
+      "branch_name": {
+        "data_type": "String",
+        "description": "Name of the branch in the source control system to import the application from.",
+        "required": true
+      },
+      "credential_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the credentials that have access to the Git repository.",
+        "default": "Sys_id set in the system properties glide.source_control.default_basic_auth_credential_sys_id or glide.source_control.default_ssh_private_key_credential_sys_id, depending on whether the repo_url parameter is an https or ssh repository. By default, this property is empty.",
+        "required": false
+      },
+      "auto_upgrade_base_app": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether the system should auto-upgrade the base application to a later version if the latest commit on the Git repository is built on a version that is later than that of the base application that is currently installed on the local instance.",
+        "default": true,
+        "required": false
+      },
+      "mid_server_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the MID server to use for source control operations for this application.",
+        "default": "Empty string/NULL",
+        "required": false
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'https://instance.servicenow.com/api/sn_cicd/sc/import?repo_url=https%3A%2F%2Fcode.devsnc.com%2Fsome-user%2FncRegrApp1.git&branch_name=main_branch&credential_sys_id=af9b6d6180feb010f8779c30d4dd6b6b' --request POST --header 'Accept:application/json' --user 'admin':'admin'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CI/CD - POST /sn_cicd/testsuite/run",
+    "api_call": "servicenow.run_automated_test_suite(test_suite_name, test_suite_sys_id, browser_name, browser_version, os_name, os_version)",
+    "api_version": "v1",
+    "functionality": "Starts a specified automated test suite.",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the endpoint to access. Only specify this value to use an endpoint version other than the latest."
+      },
+      "test_suite_name": {
+        "data_type": "String",
+        "description": "The name of the test suite to run. Required if test_suite_sys_id is not specified."
+      },
+      "test_suite_sys_id": {
+        "data_type": "String",
+        "description": "The sys_id of the test suite to run. Required if test_suite_name is not specified."
+      },
+      "browser_name": {
+        "data_type": "String",
+        "description": "Name of the browser to use to run the client test. Valid values: any, chrome, firefox, edge, ie, safari. Default: any."
+      },
+      "browser_version": {
+        "data_type": "String",
+        "description": "Starting value of the version of the browser specified in browser_name to use to run the test."
+      },
+      "os_name": {
+        "data_type": "String",
+        "description": "Name of the operating system under which to run the test suite."
+      },
+      "os_version": {
+        "data_type": "String",
+        "description": "Starting value of the version of the operating system under which to run the test suite."
+      }
+    },
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'https://instance.servicenow.com/api/sn_cicd/testsuite/run?test_suite_sys_id=632e43900b20220050192f15d6673a7e' --request POST --header 'Accept: application/json' --user 'username':'password'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CSM Attachment - DELETE /now/attachment_csm/{sys_id}",
+    "api_call": "servicenow.delete_attachment_csm(sys_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the attachment to delete. This attachment must belong to one of the tables listed within the glide.rest.attachment_csm_api.allowed_tables property in the System Properties [sys_properties] table."
+      }
+    },
+    "functionality": "Deletes the specified attachment.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I delete an attachment associated with a CSM record?",
+      "What should I do if I encounter a 'Bad Request' error while trying to delete an attachment?",
+      "Is there a way to retrieve a list of allowed tables for attachments using the API?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CSM Attachment - GET /now/attachment_csm",
+    "api_call": "servicenow.get_attachment_csm(sysparm_limit, sysparm_offset, sysparm_query)",
+    "api_version": "v1",
+    "api_arguments": {
+      "sysparm_limit": {
+        "data_type": "Number",
+        "description": "Maximum number of records to return. Default is 1000."
+      },
+      "sysparm_offset": {
+        "data_type": "Number",
+        "description": "Starting record index for which to begin retrieving records. Default is 0."
+      },
+      "sysparm_query": {
+        "data_type": "String",
+        "description": "Encoded query to use to search for attachments. Must contain at least sysparm_query=table_name=<table>."
+      }
+    },
+    "functionality": "Returns the metadata for multiple attachments.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve metadata for multiple attachments in a CSM context?",
+      "What are the default limits for the number of records returned and starting record index when querying attachments?",
+      "Can I sort the responses based on certain fields when querying for attachments?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CSM Attachment - GET /now/attachment_csm/{sys_id}/file",
+    "api_call": "servicenow.get_attachment_csm_file(sys_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the attachment listed in the Attachments [sys_attachment] table."
+      }
+    },
+    "functionality": "Returns the file attachment for the specified attachment sys_id.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve the file attachment for a specific attachment sys_id in the CSM context?",
+      "What are the response headers returned when retrieving the file attachment?",
+      "Does this endpoint support specifying the file type format in the Accept header?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CSM Attachment - GET /now/attachment_csm/{sys_id}",
+    "api_call": "servicenow.get_attachment_csm_metadata(sys_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the attachment record for which to return metadata."
+      }
+    },
+    "functionality": "Returns the metadata for the attachment file with the specific attachment sys_id.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve the metadata for an attachment file using its sys_id in the CSM context?",
+      "What response code is returned if the specified attachment does not exist?",
+      "Are there any specific permissions required to access the metadata of an attachment?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CSM Attachment - POST /now/attachment_csm/file",
+    "api_call": "servicenow.post_attachment_csm_file(file_name, table_name, table_sys_id, file_path)",
+    "api_version": "v1",
+    "api_arguments": {
+      "file_name": {
+        "data_type": "String",
+        "description": "Name to give the attachment."
+      },
+      "table_name": {
+        "data_type": "String",
+        "description": "Name of the table to which you want to attach the file."
+      },
+      "table_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the record on the specified table to which you want to attach the file."
+      },
+      "file_path": {
+        "data_type": "String",
+        "description": "Path to the binary file to attach to the specified record."
+      }
+    },
+    "functionality": "Uploads a specified binary file as an attachment to a specified record.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How do I upload a binary file as an attachment to a record in ServiceNow CSM using this API?",
+      "What happens if the specified table or record does not exist when attempting to upload the attachment?",
+      "Can I specify an encryption context when uploading the attachment?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CSM Attachment - POST /now/attachment_csm/upload",
+    "api_call": "servicenow.post_attachment_csm_upload(content_type, table_name, table_sys_id, file)",
+    "api_version": "v1",
+    "api_arguments": {
+      "content_type": {
+        "data_type": "String",
+        "description": "Content-Type of the file, included in the message body for multipart uploads."
+      },
+      "table_name": {
+        "data_type": "String",
+        "description": "Name of the table to which you want to attach the file."
+      },
+      "table_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the record on the specified table to which you want to attach the file."
+      },
+      "file": {
+        "data_type": "File",
+        "description": "Binary content of the file attachment."
+      }
+    },
+    "functionality": "Uploads a multipart file attachment.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How do I upload a multipart file attachment to a specific record in ServiceNow CSM using this API?",
+      "What happens if the table or record specified in the form body does not exist during the multipart upload?",
+      "Is there a limit to the file size that can be uploaded using the multipart POST method?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CTI_API - GET /sn_cti_core/cti_api/call_analysis/{interaction_sys_id}",
+    "api_call": "cti_api.get_call_analysis(interaction_sys_id)",
+    "api_version": "Default",
+    "api_arguments": {
+      "interaction_sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the agent call for which to render to transcript and recording."
+      }
+    },
+    "functionality": "Renders transcripts and recordings for a specified agent call.",
+    "env_requirements": ["workspace_user", "interaction_agent", "admin role"],
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What permissions are required to access this endpoint in Agent and Manager workspaces?",
+      "How can I customize the extension point sn_cti_core.CTICallAnalysisExtractor for different implementations?",
+      "What response parameters does this endpoint return, and how do they relate to the implementation of the CTICallAnalysisExtractor extension point?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CTI_API - POST /sn_cti_core/cti_api/providers/{provider}/components/{component}/versions/{version}",
+    "api_call": "cti_api.post_cti_operations(provider, component, version, request_body)",
+    "api_version": "Default",
+    "api_arguments": {
+      "provider": {
+        "data_type": "String",
+        "description": "Sys_id of your CTI provider record."
+      },
+      "component": {
+        "data_type": "String",
+        "description": "Label of your provider component, such as sn_aws_connect_lambda_proxy_component or sn_aws_connect_lex_intent_processor_component."
+      },
+      "version": {
+        "data_type": "String",
+        "description": "Version of the specified provider record."
+      },
+      "request_body": {
+        "data_type": "JSON or XML",
+        "description": "Depends on the operation handler being called and its specific implementation."
+      }
+    },
+    "functionality": "Invokes Computer Telephony Integration (CTI) operations using a specified operation handlers within the Cloud Call Center framework.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl -X POST 'https://instance.servicenow.com/api/sn_cti_core/cti_api/providers/c4b12aa6e700001034b36584c2f6a9bc/components/sn_aws_connect_lambda_proxy_component/versions/v1.0' -H 'Accept: application/json' -H 'Content-Type: application/json' -u 'username':'password' -d '{ \"context\": { \"callbackWaitsForEmptyEventLoop\": true, \"functionVersion\": \"$LATEST\", \"functionName\": \"snRALJNLambda\", \"memoryLimitInMB\": \"128\", \"logGroupName\": \"/aws/lambda/snRALJNLambda\", \"logStreamName\": \"2020/09/24/[$LATEST]b604a9579ef548a1b3f6b6739d19e1d9\", \"invokedFunctionArn\": \"arn:aws:lambda:us-west-2:028738656045:function:snRALJNLambda\", \"awsRequestId\": \"b528a5a8-bb0b-4ec8-8e76-aa568f68fdc8\" }, \"event\": { \"Details\": { \"ContactData\": { \"Attributes\": { \"$accepted_terms\": \"true\" }, \"Channel\": \"VOICE\", \"ContactId\": \"8fe7c107-78df-4eec-85b3-91c6dcb8e912\", \"CustomerEndpoint\": { \"Address\": \"+16693504374\", \"Type\": \"TELEPHONE_NUMBER\" }, \"Description\": null, \"InitialContactId\": \"8fe7c107-78df-4eec-85b3-91c6dcb8e912\", \"InitiationMethod\": \"INBOUND\", \"InstanceARN\": \"arn:aws:connect:us-west-2:028738656045:instance/d276bd83-6305-4f63-abee-e66fd5bdf503\", \"LanguageCode\": \"en-US\", \"MediaStreams\": { \"Customer\": { \"Audio\": null } }, \"Name\": null, \"PreviousContactId\": \"8fe7c107-78df-4eec-85b3-91c6dcb8e912\", \"Queue\": { \"ARN\": \"arn:aws:connect:us-west-2:028738656045:instance/d276bd83-6305-4f63-abee-e66fd5bdf503/queue/0f17b62d-d493-439a-88c6-42db0d0e652f\", \"Name\": \"BasicQueue\", \"OutboundCallerId\": { \"Address\": \"+18335441399\", \"Type\": \"TELEPHONE_NUMBER\" } }, \"References\": {}, \"SystemEndpoint\": { \"Address\": \"+18335441399\", \"Type\": \"TELEPHONE_NUMBER\" } }, \"Parameters\": { \"sn_component\": \"sn_aws_connect_lambda_proxy_component\", \"sn_operation\": \"interactionEvent\" } }, \"Name\": \"ContactFlowEvent\" } }'",
+    "questions": [
+      "How do I create a provider configuration record and associated message transformers?",
+      "What is the purpose of the Operation Handler [sn_cti_operation_handler] table, and how can I create operation handlers?",
+      "Can you provide examples of working operation handlers and message transformers for integration with Amazon Connect?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "CTI API - POST /sn_cti_core/cti_api/softphone/sources/{source}/actor/{actor}/events/{event}",
+    "api_call": "servicenow.pass_softphone_event(actor, event, sources)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "actor": {
+        "data_type": "String",
+        "description": "Emitter of the event, such as agent or external_system."
+      },
+      "event": {
+        "data_type": "String",
+        "description": "Name of the event in the Computer Telephony Integration (CTI) vendor’s system, such as Available or Offline."
+      },
+      "sources": {
+        "data_type": "String",
+        "description": "Identifier of the vendor's Softphone UI page, such as aws_ccp."
+      }
+    },
+    "functionality": "Passes events from a Contact Control Panel (CCP) provider to a ServiceNow instance.",
+    "example_code": "curl -X POST 'https://instance.servicenow.com/api/sn_cti_core/cti_api/softphone/sources/aws_ccp/actor/agent/events/AgentStatusOne' -H 'Accept: application/json' -H 'Content-Type: application/json' -u 'username':'password' -d '{ \"agent\": { \"sys_id\": \"doe.john@snc\", \"status\": { \"agentStateARN\": null, \"type\": \"not_routable\", \"name\": \"AgentStatusOne\", \"startTimestamp\": \"2020-09-24T21:43:20.957Z\" } }, \"window\": { \"location\": { \"href\": \"https://instance.servicenow.com/sn_cti_amzn_cct_aws_ccp.do?id=44106eabdb5710100231dbdb5e96191d\", \"search\": \"?id=44106eabdb5710100231dbdb5e96191d\" } }, \"aws\": { \"connect\": { \"config\": { \"ccpHost\": \"instance.awsapps.com\", \"ccpUrl\": \"https://instance.awsapps.com/connect/ccp-v2/\", \"loginPopup\": true, \"audioRecordingUrlPrefix\": \"https://instance.awsapps.com/connect/get-recording?format=wav&callLegId=\", \"softphone\": { \"allowFramedSoftphone\": true }, \"region\": \"us-west-2\" } } } }'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I use this API to change the presence state of an agent in my Contact Control Panel (CCP) UI page?",
+      "What roles are required to access this endpoint?",
+      "Can I customize the events passed from the CCP provider to ServiceNow instance?"
+    ]
   }
 ]
