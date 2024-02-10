@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Converter</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container-fluid {
+            margin-top: 2rem;
+        }
+
+        textarea {
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="text-center mb-4">
+            <h1>Welcome to the Gorilla Zoo Data Converter!</h1>
+            <p class="lead">Easily convert your API data from Option 2 to Option 1 format.</p>
+            <div class="text-center mb-4">
+                <p>For more information about Option 1 and Option 2 formats, visit <a
+                        href="https://github.com/ShishirPatil/gorilla/tree/main/data#option-2-url-json"
+                        target="_blank">this GitHub page</a>.</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card-deck">
+                    <div class="card border-primary">
+                        <div class="card-header bg-primary text-white">
+                            <h4>Option 2 JSON Input</h4>
+                        </div>
+                        <div class="card-body">
+                            <textarea id="option2Input" class="form-control" rows="15"
+                                placeholder="Paste your Option 2 JSON here..."></textarea>
+                        </div>
+                        <div class="card-footer d-flex justify-content-around">
+                            <button id="convertButton" class="btn btn-primary">Convert</button>
+
+                            <div class="spinner-border text-dark" role="status" style="visibility: hidden;"
+                                id="loading-spinner">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="card border-secondary">
+                        <div class="card-header bg-secondary text-white">
+                            <h4>Option 1 JSON Output</h4>
+                        </div>
+                        <div class="card-body">
+                            <textarea id="option1Output" class="form-control" rows="15"
+                                placeholder="Your converted Option 1 JSON will appear here..." readonly></textarea>
+                        </div>
+                        <div class="card-footer d-flex justify-content-around">
+                            <button id="editButton" class="btn btn-secondary">Edit</button>
+                            <button id="copyButton" class="btn btn-secondary">Copy to Clipboard</button>
+                            <button id="submitPR" class="btn btn-primary">Raise Pull Request</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/app.js"></script>
+</body>
+
+</html>
