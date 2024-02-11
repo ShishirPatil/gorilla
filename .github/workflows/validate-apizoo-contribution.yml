@@ -1,0 +1,49 @@
+name: Validate API Zoo PR
+
+on:
+  pull_request:
+    branches: 
+      - main
+    paths:
+      - 'data/apizoo/**'
+
+jobs:
+  check-api-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install jq
+        run: sudo apt-get install jq
+      
+      - name: Check for duplicate APIs
+        id: check
+        run: |
+          FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep 'data/apizoo/')
+          for FILE in $FILES; do
+            DATA=$(jq -c . < "$FILE")
+            RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "$DATA" http://34.123.98.138/api/validate)
+            echo "Validation response for $FILE: $RESPONSE"
+            if [[ "$RESPONSE" == *"\"duplicate\": true"* ]]; then
+              echo "::set-output name=duplicate::true"
+              break
+            fi
+          done
+      
+      - name: Comment on PR if duplicate API
+        if: steps.check.outputs.duplicate == 'true'
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            :warning: **Duplicate API detected**: This PR cannot be merged.
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Fail if duplicate API
+        if: steps.check.outputs.duplicate == 'true'
+        run: |
+          echo "Duplicate API detected, failing the workflow"
+          exit 1
