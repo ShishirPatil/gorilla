@@ -2,7 +2,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - acl.delete",
-        "api_call": "youtube.acl().delete(calendarId: str, ruleId: str).execute()",
+        "api_call": "service.acl().delete(calendarId: str, ruleId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword.",
@@ -22,7 +22,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - acl.get",
-        "api_call": "youtube.acl().get(calendarId: str, ruleId: str).execute()",
+        "api_call": "service.acl().get(calendarId: str, ruleId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword.",
@@ -42,7 +42,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - acl.insert",
-        "api_call": "youtube.acl().insert(calendarId: str).execute()",
+        "api_call": "service.acl().insert(calendarId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword.",
@@ -62,7 +62,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - acl.list",
-        "api_call": "youtube.acl().list(calendarId: str).execute()",
+        "api_call": "service.acl().list(calendarId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword.",
@@ -85,7 +85,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - acl.patch",
-        "api_call": "youtube.acl().patch(calendarId: str, ruleId: str).execute()",
+        "api_call": "service.acl().patch(calendarId: str, ruleId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword.",
@@ -106,7 +106,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - acl.update",
-        "api_call": "youtube.acl().update(calendarId: str, ruleId: str).execute()",
+        "api_call": "service.acl().update(calendarId: str, ruleId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword.",
@@ -127,7 +127,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - acl.watch",
-        "api_call": "youtube.acl().watch(calendarId: str).execute()",
+        "api_call": "service.acl().watch(calendarId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword.",
@@ -150,7 +150,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - calendarList.delete",
-        "api_call": "youtube.calendarList().delete(calendarId: str).execute()",
+        "api_call": "service.calendarList().delete(calendarId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword."
@@ -169,7 +169,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - calendarList.get",
-        "api_call": "youtube.calendarList().get(calendarId: str).execute()",
+        "api_call": "service.calendarList().get(calendarId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword."
@@ -188,7 +188,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - calendarList.insert",
-        "api_call": "youtube.calendarList().insert().execute()",
+        "api_call": "service.calendarList().insert().execute()",
         "api_version": "v3",
         "api_arguments": {
             "colorRgbFormat": "boolean: Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False."
@@ -207,7 +207,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - calendarList.list",
-        "api_call": "youtube.calendarList().list().execute()",
+        "api_call": "service.calendarList().list().execute()",
         "api_version": "v3",
         "api_arguments": {
             "maxResults": "integer: Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.",
@@ -231,7 +231,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - calendarList.patch",
-        "api_call": "youtube.calendarList().patch(calendarId: str).execute()",
+        "api_call": "service.calendarList().patch(calendarId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword.",
@@ -251,7 +251,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - calendarList.update",
-        "api_call": "youtube.calendarList().update(calendarId: str).execute()",
+        "api_call": "service.calendarList().update(calendarId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword.",
@@ -271,7 +271,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - calendarList.watch",
-        "api_call": "youtube.calendarList().watch().execute()",
+        "api_call": "service.calendarList().watch().execute()",
         "api_version": "v3",
         "api_arguments": {
             "maxResults": "integer: Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.",
@@ -295,7 +295,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - calendars.clear",
-        "api_call": "youtube.calendars().clear(calendarId: str).execute()",
+        "api_call": "service.calendars().clear(calendarId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword."
@@ -314,7 +314,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - calendars.delete",
-        "api_call": "youtube.calendars().delete(calendarId: str).execute()",
+        "api_call": "service.calendars().delete(calendarId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword."
@@ -333,7 +333,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - calendars.get",
-        "api_call": "youtube.calendars().get(calendarId: str).execute()",
+        "api_call": "service.calendars().get(calendarId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword."
@@ -352,7 +352,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - calendars.insert",
-        "api_call": "youtube.calendars().insert().execute()",
+        "api_call": "service.calendars().insert().execute()",
         "api_version": "v3",
         "api_arguments": {},
         "functionality": "Creates a secondary calendar.",
@@ -369,7 +369,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - calendars.patch",
-        "api_call": "youtube.calendars().patch(calendarId: str).execute()",
+        "api_call": "service.calendars().patch(calendarId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword."
@@ -388,7 +388,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - calendars.update",
-        "api_call": "youtube.calendars().update(calendarId: str).execute()",
+        "api_call": "service.calendars().update(calendarId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword."
@@ -407,7 +407,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - channels.stop",
-        "api_call": "youtube.channels().stop().execute()",
+        "api_call": "service.channels().stop().execute()",
         "api_version": "v3",
         "api_arguments": {},
         "functionality": "Stop watching resources through this channel",
@@ -424,7 +424,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - colors.get",
-        "api_call": "youtube.colors().get().execute()",
+        "api_call": "service.colors().get().execute()",
         "api_version": "v3",
         "api_arguments": {},
         "functionality": "Returns the color definitions for calendars and events.",
@@ -441,7 +441,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - events.delete",
-        "api_call": "youtube.events().delete(calendarId: str, eventId: str).execute()",
+        "api_call": "service.events().delete(calendarId: str, eventId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword.",
@@ -463,7 +463,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - events.get",
-        "api_call": "youtube.events().get(calendarId: str, eventId: str).execute()",
+        "api_call": "service.events().get(calendarId: str, eventId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "alwaysIncludeEmail": "boolean: Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).",
@@ -486,7 +486,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - events.import",
-        "api_call": "youtube.events().import(calendarId: str).execute()",
+        "api_call": "service.events().import(calendarId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword.",
@@ -507,7 +507,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - events.insert",
-        "api_call": "youtube.events().insert(calendarId: str).execute()",
+        "api_call": "service.events().insert(calendarId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword.",
@@ -531,7 +531,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - events.instances",
-        "api_call": "youtube.events().instances(calendarId: str, eventId: str).execute()",
+        "api_call": "service.events().instances(calendarId: str, eventId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "alwaysIncludeEmail": "boolean: Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).",
@@ -560,7 +560,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - events.list",
-        "api_call": "youtube.events().list(calendarId: str).execute()",
+        "api_call": "service.events().list(calendarId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "alwaysIncludeEmail": "boolean: Deprecated and ignored.",
@@ -597,7 +597,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - events.move",
-        "api_call": "youtube.events().move(calendarId: str, eventId: str, destination: str).execute()",
+        "api_call": "service.events().move(calendarId: str, eventId: str, destination: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier of the source calendar where the event currently is on.",
@@ -620,7 +620,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - events.patch",
-        "api_call": "youtube.events().patch(calendarId: str, eventId: str).execute()",
+        "api_call": "service.events().patch(calendarId: str, eventId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "alwaysIncludeEmail": "boolean: Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).",
@@ -646,7 +646,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - events.quickAdd",
-        "api_call": "youtube.events().quickAdd(calendarId: str, text: str).execute()",
+        "api_call": "service.events().quickAdd(calendarId: str, text: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "calendarId": "[REQUIRED] string: Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the \"primary\" keyword.",
@@ -668,7 +668,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - events.update",
-        "api_call": "youtube.events().update(calendarId: str, eventId: str).execute()",
+        "api_call": "service.events().update(calendarId: str, eventId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "alwaysIncludeEmail": "boolean: Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).",
@@ -694,7 +694,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - events.watch",
-        "api_call": "youtube.events().watch(calendarId: str).execute()",
+        "api_call": "service.events().watch(calendarId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "alwaysIncludeEmail": "boolean: Deprecated and ignored.",
@@ -731,7 +731,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - freebusy.query",
-        "api_call": "youtube.freebusy().query().execute()",
+        "api_call": "service.freebusy().query().execute()",
         "api_version": "v3",
         "api_arguments": {},
         "functionality": "Returns free/busy information for a set of calendars.",
@@ -748,7 +748,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - settings.get",
-        "api_call": "youtube.settings().get(setting: str).execute()",
+        "api_call": "service.settings().get(setting: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "setting": "[REQUIRED] string: The id of the user setting."
@@ -767,7 +767,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - settings.list",
-        "api_call": "youtube.settings().list().execute()",
+        "api_call": "service.settings().list().execute()",
         "api_version": "v3",
         "api_arguments": {
             "maxResults": "integer: Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.",
@@ -788,7 +788,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Calendar API - settings.watch",
-        "api_call": "youtube.settings().watch().execute()",
+        "api_call": "service.settings().watch().execute()",
         "api_version": "v3",
         "api_arguments": {
             "maxResults": "integer: Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.",
