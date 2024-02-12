@@ -2,7 +2,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Docs API - documents.batchUpdate",
-        "api_call": "youtube.documents().batchUpdate(documentId: str).execute()",
+        "api_call": "service.documents().batchUpdate(documentId: str).execute()",
         "api_version": "v1",
         "api_arguments": {
             "documentId": "[REQUIRED] string: The ID of the document to update."
@@ -21,7 +21,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Docs API - documents.create",
-        "api_call": "youtube.documents().create().execute()",
+        "api_call": "service.documents().create().execute()",
         "api_version": "v1",
         "api_arguments": {},
         "functionality": "Creates a blank document using the title given in the request. Other fields in the request, including any provided content, are ignored. Returns the created document.",
@@ -38,7 +38,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Docs API - documents.get",
-        "api_call": "youtube.documents().get(documentId: str).execute()",
+        "api_call": "service.documents().get(documentId: str).execute()",
         "api_version": "v1",
         "api_arguments": {
             "documentId": "[REQUIRED] string: The ID of the document to retrieve.",
