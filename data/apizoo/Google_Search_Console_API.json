@@ -2,7 +2,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Search Console API - searchanalytics.query",
-        "api_call": "youtube.searchanalytics().query(siteUrl: str).execute()",
+        "api_call": "service.searchanalytics().query(siteUrl: str).execute()",
         "api_version": "v1",
         "api_arguments": {
             "siteUrl": "[REQUIRED] string: The site's URL, including protocol. For example: `http://www.example.com/`."
@@ -21,7 +21,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Search Console API - sitemaps.delete",
-        "api_call": "youtube.sitemaps().delete(siteUrl: str, feedpath: str).execute()",
+        "api_call": "service.sitemaps().delete(siteUrl: str, feedpath: str).execute()",
         "api_version": "v1",
         "api_arguments": {
             "feedpath": "[REQUIRED] string: The URL of the actual sitemap. For example: `http://www.example.com/sitemap.xml`.",
@@ -41,7 +41,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Search Console API - sitemaps.get",
-        "api_call": "youtube.sitemaps().get(siteUrl: str, feedpath: str).execute()",
+        "api_call": "service.sitemaps().get(siteUrl: str, feedpath: str).execute()",
         "api_version": "v1",
         "api_arguments": {
             "feedpath": "[REQUIRED] string: The URL of the actual sitemap. For example: `http://www.example.com/sitemap.xml`.",
@@ -61,7 +61,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Search Console API - sitemaps.list",
-        "api_call": "youtube.sitemaps().list(siteUrl: str).execute()",
+        "api_call": "service.sitemaps().list(siteUrl: str).execute()",
         "api_version": "v1",
         "api_arguments": {
             "siteUrl": "[REQUIRED] string: The site's URL, including protocol. For example: `http://www.example.com/`.",
@@ -81,7 +81,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Search Console API - sitemaps.submit",
-        "api_call": "youtube.sitemaps().submit(siteUrl: str, feedpath: str).execute()",
+        "api_call": "service.sitemaps().submit(siteUrl: str, feedpath: str).execute()",
         "api_version": "v1",
         "api_arguments": {
             "feedpath": "[REQUIRED] string: The URL of the actual sitemap. For example: `http://www.example.com/sitemap.xml`.",
@@ -101,7 +101,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Search Console API - sites.add",
-        "api_call": "youtube.sites().add(siteUrl: str).execute()",
+        "api_call": "service.sites().add(siteUrl: str).execute()",
         "api_version": "v1",
         "api_arguments": {
             "siteUrl": "[REQUIRED] string: The URL of the site to add."
@@ -120,7 +120,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Search Console API - sites.delete",
-        "api_call": "youtube.sites().delete(siteUrl: str).execute()",
+        "api_call": "service.sites().delete(siteUrl: str).execute()",
         "api_version": "v1",
         "api_arguments": {
             "siteUrl": "[REQUIRED] string: The URI of the property as defined in Search Console. **Examples:** `http://www.example.com/` or `sc-domain:example.com`."
@@ -139,7 +139,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Search Console API - sites.get",
-        "api_call": "youtube.sites().get(siteUrl: str).execute()",
+        "api_call": "service.sites().get(siteUrl: str).execute()",
         "api_version": "v1",
         "api_arguments": {
             "siteUrl": "[REQUIRED] string: The URI of the property as defined in Search Console. **Examples:** `http://www.example.com/` or `sc-domain:example.com`."
@@ -158,7 +158,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Search Console API - sites.list",
-        "api_call": "youtube.sites().list().execute()",
+        "api_call": "service.sites().list().execute()",
         "api_version": "v1",
         "api_arguments": {},
         "functionality": " Lists the user's Search Console sites.",
@@ -175,7 +175,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Search Console API - urlInspection.index.inspect",
-        "api_call": "youtube.urlInspection().index().inspect().execute()",
+        "api_call": "service.urlInspection().index().inspect().execute()",
         "api_version": "v1",
         "api_arguments": {},
         "functionality": "Index inspection.",
@@ -192,7 +192,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Search Console API - urlTestingTools.mobileFriendlyTest.run",
-        "api_call": "youtube.urlTestingTools().mobileFriendlyTest().run().execute()",
+        "api_call": "service.urlTestingTools().mobileFriendlyTest().run().execute()",
         "api_version": "v1",
         "api_arguments": {},
         "functionality": "Runs Mobile-Friendly Test for a given URL.",
