@@ -2,7 +2,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Slides API - presentations.batchUpdate",
-        "api_call": "youtube.presentations().batchUpdate(presentationId: str).execute()",
+        "api_call": "service.presentations().batchUpdate(presentationId: str).execute()",
         "api_version": "v1",
         "api_arguments": {
             "presentationId": "[REQUIRED] string: The presentation to apply the updates to."
@@ -21,7 +21,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Slides API - presentations.create",
-        "api_call": "youtube.presentations().create().execute()",
+        "api_call": "service.presentations().create().execute()",
         "api_version": "v1",
         "api_arguments": {},
         "functionality": "Creates a blank presentation using the title given in the request. If a `presentationId` is provided, it is used as the ID of the new presentation. Otherwise, a new ID is generated. Other fields in the request, including any provided content, are ignored. Returns the created presentation.",
@@ -38,7 +38,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Slides API - presentations.get",
-        "api_call": "youtube.presentations().get(presentationId: str).execute()",
+        "api_call": "service.presentations().get(presentationId: str).execute()",
         "api_version": "v1",
         "api_arguments": {
             "presentationId": "[REQUIRED] string: The ID of the presentation to retrieve."
@@ -57,7 +57,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Slides API - presentations.pages.get",
-        "api_call": "youtube.presentations().pages().get(presentationId: str, pageObjectId: str).execute()",
+        "api_call": "service.presentations().pages().get(presentationId: str, pageObjectId: str).execute()",
         "api_version": "v1",
         "api_arguments": {
             "pageObjectId": "[REQUIRED] string: The object ID of the page to retrieve.",
@@ -77,7 +77,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Slides API - presentations.pages.getThumbnail",
-        "api_call": "youtube.presentations().pages().getThumbnail(presentationId: str, pageObjectId: str).execute()",
+        "api_call": "service.presentations().pages().getThumbnail(presentationId: str, pageObjectId: str).execute()",
         "api_version": "v1",
         "api_arguments": {
             "pageObjectId": "[REQUIRED] string: The object ID of the page whose thumbnail to retrieve.",
