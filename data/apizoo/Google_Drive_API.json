@@ -2,7 +2,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - about.get",
-        "api_call": "youtube.about().get().execute()",
+        "api_call": "service.about().get().execute()",
         "api_version": "v3",
         "api_arguments": {},
         "functionality": "Gets information about the user, the user's Drive, and system capabilities.",
@@ -19,7 +19,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - apps.get",
-        "api_call": "youtube.apps().get(appId: str).execute()",
+        "api_call": "service.apps().get(appId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "appId": "[REQUIRED] string: The ID of the app."
@@ -38,7 +38,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - apps.list",
-        "api_call": "youtube.apps().list().execute()",
+        "api_call": "service.apps().list().execute()",
         "api_version": "v3",
         "api_arguments": {
             "appFilterExtensions": "string: A comma-separated list of file extensions to limit returned results. All results within the given app query scope which can open any of the given file extensions are included in the response. If `appFilterMimeTypes` are provided as well, the result is a union of the two resulting app lists.",
@@ -59,7 +59,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - changes.getStartPageToken",
-        "api_call": "youtube.changes().getStartPageToken().execute()",
+        "api_call": "service.changes().getStartPageToken().execute()",
         "api_version": "v3",
         "api_arguments": {
             "driveId": "string: The ID of the shared drive for which the starting pageToken for listing future changes from that shared drive will be returned.",
@@ -81,7 +81,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - changes.list",
-        "api_call": "youtube.changes().list(pageToken: str).execute()",
+        "api_call": "service.changes().list(pageToken: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "driveId": "string: The shared drive from which changes will be returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.",
@@ -113,7 +113,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - changes.watch",
-        "api_call": "youtube.changes().watch(pageToken: str).execute()",
+        "api_call": "service.changes().watch(pageToken: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "driveId": "string: The shared drive from which changes will be returned. If specified the change IDs will be reflective of the shared drive; use the combined drive ID and change ID as an identifier.",
@@ -145,7 +145,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - channels.stop",
-        "api_call": "youtube.channels().stop().execute()",
+        "api_call": "service.channels().stop().execute()",
         "api_version": "v3",
         "api_arguments": {},
         "functionality": "Stops watching resources through this channel.",
@@ -162,7 +162,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - comments.create",
-        "api_call": "youtube.comments().create(fileId: str).execute()",
+        "api_call": "service.comments().create(fileId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "fileId": "[REQUIRED] string: The ID of the file."
@@ -181,7 +181,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - comments.delete",
-        "api_call": "youtube.comments().delete(fileId: str, commentId: str).execute()",
+        "api_call": "service.comments().delete(fileId: str, commentId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "commentId": "[REQUIRED] string: The ID of the comment.",
@@ -201,7 +201,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - comments.get",
-        "api_call": "youtube.comments().get(fileId: str, commentId: str).execute()",
+        "api_call": "service.comments().get(fileId: str, commentId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "commentId": "[REQUIRED] string: The ID of the comment.",
@@ -222,7 +222,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - comments.list",
-        "api_call": "youtube.comments().list(fileId: str).execute()",
+        "api_call": "service.comments().list(fileId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "fileId": "[REQUIRED] string: The ID of the file.",
@@ -245,7 +245,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - comments.update",
-        "api_call": "youtube.comments().update(fileId: str, commentId: str).execute()",
+        "api_call": "service.comments().update(fileId: str, commentId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "commentId": "[REQUIRED] string: The ID of the comment.",
@@ -265,7 +265,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - drives.create",
-        "api_call": "youtube.drives().create(requestId: str).execute()",
+        "api_call": "service.drives().create(requestId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "requestId": "[REQUIRED] string: Required. An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a shared drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same shared drive. If the shared drive already exists a 409 error will be returned."
@@ -284,7 +284,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - drives.delete",
-        "api_call": "youtube.drives().delete(driveId: str).execute()",
+        "api_call": "service.drives().delete(driveId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "allowItemDeletion": "boolean: Whether any items inside the shared drive should also be deleted. This option is only supported when `useDomainAdminAccess` is also set to `true`.",
@@ -305,7 +305,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - drives.get",
-        "api_call": "youtube.drives().get(driveId: str).execute()",
+        "api_call": "service.drives().get(driveId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "driveId": "[REQUIRED] string: The ID of the shared drive.",
@@ -325,7 +325,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - drives.hide",
-        "api_call": "youtube.drives().hide(driveId: str).execute()",
+        "api_call": "service.drives().hide(driveId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "driveId": "[REQUIRED] string: The ID of the shared drive."
@@ -344,7 +344,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - drives.list",
-        "api_call": "youtube.drives().list().execute()",
+        "api_call": "service.drives().list().execute()",
         "api_version": "v3",
         "api_arguments": {
             "pageSize": "integer: Maximum number of shared drives to return per page.",
@@ -366,7 +366,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - drives.unhide",
-        "api_call": "youtube.drives().unhide(driveId: str).execute()",
+        "api_call": "service.drives().unhide(driveId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "driveId": "[REQUIRED] string: The ID of the shared drive."
@@ -385,7 +385,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - drives.update",
-        "api_call": "youtube.drives().update(driveId: str).execute()",
+        "api_call": "service.drives().update(driveId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "driveId": "[REQUIRED] string: The ID of the shared drive.",
@@ -405,7 +405,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - files.copy",
-        "api_call": "youtube.files().copy(fileId: str).execute()",
+        "api_call": "service.files().copy(fileId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "enforceSingleParent": "boolean: Deprecated. Copying files into multiple folders is no longer supported. Use shortcuts instead.",
@@ -432,7 +432,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - files.create",
-        "api_call": "youtube.files().create().execute()",
+        "api_call": "service.files().create().execute()",
         "api_version": "v3",
         "api_arguments": {
             "enforceSingleParent": "boolean: Deprecated. Creating files in multiple folders is no longer supported.",
@@ -459,7 +459,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - files.delete",
-        "api_call": "youtube.files().delete(fileId: str).execute()",
+        "api_call": "service.files().delete(fileId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "enforceSingleParent": "boolean: Deprecated: If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.",
@@ -481,7 +481,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - files.emptyTrash",
-        "api_call": "youtube.files().emptyTrash().execute()",
+        "api_call": "service.files().emptyTrash().execute()",
         "api_version": "v3",
         "api_arguments": {
             "driveId": "string: If set, empties the trash of the provided shared drive.",
@@ -501,7 +501,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - files.export",
-        "api_call": "youtube.files().export(fileId: str, mimeType: str).execute()",
+        "api_call": "service.files().export(fileId: str, mimeType: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "fileId": "[REQUIRED] string: The ID of the file.",
@@ -521,7 +521,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - files.generateIds",
-        "api_call": "youtube.files().generateIds().execute()",
+        "api_call": "service.files().generateIds().execute()",
         "api_version": "v3",
         "api_arguments": {
             "count": "integer: The number of IDs to return.",
@@ -542,7 +542,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - files.get",
-        "api_call": "youtube.files().get(fileId: str).execute()",
+        "api_call": "service.files().get(fileId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "acknowledgeAbuse": "boolean: Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.",
@@ -566,7 +566,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - files.list",
-        "api_call": "youtube.files().list().execute()",
+        "api_call": "service.files().list().execute()",
         "api_version": "v3",
         "api_arguments": {
             "corpora": "string: Bodies of items (files/documents) to which the query applies. Supported bodies are 'user', 'domain', 'drive', and 'allDrives'. Prefer 'user' or 'drive' to 'allDrives' for efficiency. By default, corpora is set to 'user'. However, this can change depending on the filter set through the 'q' parameter.",
@@ -599,7 +599,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - files.listLabels",
-        "api_call": "youtube.files().listLabels(fileId: str).execute()",
+        "api_call": "service.files().listLabels(fileId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "fileId": "[REQUIRED] string: The ID for the file.",
@@ -620,7 +620,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - files.modifyLabels",
-        "api_call": "youtube.files().modifyLabels(fileId: str).execute()",
+        "api_call": "service.files().modifyLabels(fileId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "fileId": "[REQUIRED] string: The ID of the file to which the labels belong."
@@ -639,7 +639,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - files.update",
-        "api_call": "youtube.files().update(fileId: str).execute()",
+        "api_call": "service.files().update(fileId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "addParents": "string: A comma-separated list of parent IDs to add.",
@@ -668,7 +668,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - files.watch",
-        "api_call": "youtube.files().watch(fileId: str).execute()",
+        "api_call": "service.files().watch(fileId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "acknowledgeAbuse": "boolean: Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.",
@@ -692,7 +692,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - permissions.create",
-        "api_call": "youtube.permissions().create(fileId: str).execute()",
+        "api_call": "service.permissions().create(fileId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "emailMessage": "string: A plain text custom message to include in the notification email.",
@@ -719,7 +719,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - permissions.delete",
-        "api_call": "youtube.permissions().delete(fileId: str, permissionId: str).execute()",
+        "api_call": "service.permissions().delete(fileId: str, permissionId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "fileId": "[REQUIRED] string: The ID of the file or shared drive.",
@@ -742,7 +742,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - permissions.get",
-        "api_call": "youtube.permissions().get(fileId: str, permissionId: str).execute()",
+        "api_call": "service.permissions().get(fileId: str, permissionId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "fileId": "[REQUIRED] string: The ID of the file.",
@@ -765,7 +765,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - permissions.list",
-        "api_call": "youtube.permissions().list(fileId: str).execute()",
+        "api_call": "service.permissions().list(fileId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "fileId": "[REQUIRED] string: The ID of the file or shared drive.",
@@ -790,7 +790,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - permissions.update",
-        "api_call": "youtube.permissions().update(fileId: str, permissionId: str).execute()",
+        "api_call": "service.permissions().update(fileId: str, permissionId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "fileId": "[REQUIRED] string: The ID of the file or shared drive.",
@@ -815,7 +815,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - replies.create",
-        "api_call": "youtube.replies().create(fileId: str, commentId: str).execute()",
+        "api_call": "service.replies().create(fileId: str, commentId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "commentId": "[REQUIRED] string: The ID of the comment.",
@@ -835,7 +835,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - replies.delete",
-        "api_call": "youtube.replies().delete(fileId: str, commentId: str, replyId: str).execute()",
+        "api_call": "service.replies().delete(fileId: str, commentId: str, replyId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "commentId": "[REQUIRED] string: The ID of the comment.",
@@ -856,7 +856,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - replies.get",
-        "api_call": "youtube.replies().get(fileId: str, commentId: str, replyId: str).execute()",
+        "api_call": "service.replies().get(fileId: str, commentId: str, replyId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "commentId": "[REQUIRED] string: The ID of the comment.",
@@ -878,7 +878,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - replies.list",
-        "api_call": "youtube.replies().list(fileId: str, commentId: str).execute()",
+        "api_call": "service.replies().list(fileId: str, commentId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "commentId": "[REQUIRED] string: The ID of the comment.",
@@ -901,7 +901,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - replies.update",
-        "api_call": "youtube.replies().update(fileId: str, commentId: str, replyId: str).execute()",
+        "api_call": "service.replies().update(fileId: str, commentId: str, replyId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "commentId": "[REQUIRED] string: The ID of the comment.",
@@ -922,7 +922,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - revisions.delete",
-        "api_call": "youtube.revisions().delete(fileId: str, revisionId: str).execute()",
+        "api_call": "service.revisions().delete(fileId: str, revisionId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "fileId": "[REQUIRED] string: The ID of the file.",
@@ -942,7 +942,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - revisions.get",
-        "api_call": "youtube.revisions().get(fileId: str, revisionId: str).execute()",
+        "api_call": "service.revisions().get(fileId: str, revisionId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "acknowledgeAbuse": "boolean: Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.",
@@ -963,7 +963,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - revisions.list",
-        "api_call": "youtube.revisions().list(fileId: str).execute()",
+        "api_call": "service.revisions().list(fileId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "fileId": "[REQUIRED] string: The ID of the file.",
@@ -984,7 +984,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - revisions.update",
-        "api_call": "youtube.revisions().update(fileId: str, revisionId: str).execute()",
+        "api_call": "service.revisions().update(fileId: str, revisionId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "fileId": "[REQUIRED] string: The ID of the file.",
@@ -1004,7 +1004,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - teamdrives.create",
-        "api_call": "youtube.teamdrives().create(requestId: str).execute()",
+        "api_call": "service.teamdrives().create(requestId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "requestId": "[REQUIRED] string: Required. An ID, such as a random UUID, which uniquely identifies this user's request for idempotent creation of a Team Drive. A repeated request by the same user and with the same request ID will avoid creating duplicates by attempting to create the same Team Drive. If the Team Drive already exists a 409 error will be returned."
@@ -1023,7 +1023,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - teamdrives.delete",
-        "api_call": "youtube.teamdrives().delete(teamDriveId: str).execute()",
+        "api_call": "service.teamdrives().delete(teamDriveId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "teamDriveId": "[REQUIRED] string: The ID of the Team Drive"
@@ -1042,7 +1042,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - teamdrives.get",
-        "api_call": "youtube.teamdrives().get(teamDriveId: str).execute()",
+        "api_call": "service.teamdrives().get(teamDriveId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "teamDriveId": "[REQUIRED] string: The ID of the Team Drive",
@@ -1062,7 +1062,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - teamdrives.list",
-        "api_call": "youtube.teamdrives().list().execute()",
+        "api_call": "service.teamdrives().list().execute()",
         "api_version": "v3",
         "api_arguments": {
             "pageSize": "integer: Maximum number of Team Drives to return.",
@@ -1084,7 +1084,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Drive API - teamdrives.update",
-        "api_call": "youtube.teamdrives().update(teamDriveId: str).execute()",
+        "api_call": "service.teamdrives().update(teamDriveId: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "teamDriveId": "[REQUIRED] string: The ID of the Team Drive",
