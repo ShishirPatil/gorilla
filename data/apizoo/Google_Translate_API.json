@@ -2,7 +2,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.detectLanguage",
-        "api_call": "youtube.projects().detectLanguage(parent: str).execute()",
+        "api_call": "service.projects().detectLanguage(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "parent": "[REQUIRED] string: Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned."
@@ -21,7 +21,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.getSupportedLanguages",
-        "api_call": "youtube.projects().getSupportedLanguages(parent: str).execute()",
+        "api_call": "service.projects().getSupportedLanguages(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "displayLanguageCode": "string: Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.",
@@ -42,7 +42,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.romanizeText",
-        "api_call": "youtube.projects().romanizeText(parent: str).execute()",
+        "api_call": "service.projects().romanizeText(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "parent": "[REQUIRED] string: Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`."
@@ -61,7 +61,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.translateText",
-        "api_call": "youtube.projects().translateText(parent: str).execute()",
+        "api_call": "service.projects().translateText(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "parent": "[REQUIRED] string: Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned."
@@ -80,7 +80,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.adaptiveMtTranslate",
-        "api_call": "youtube.projects().locations().adaptiveMtTranslate(parent: str).execute()",
+        "api_call": "service.projects().locations().adaptiveMtTranslate(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "parent": "[REQUIRED] string: Required. Location to make a regional call. Format: `projects/{project-number-or-id}/locations/{location-id}`."
@@ -99,7 +99,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.batchTranslateDocument",
-        "api_call": "youtube.projects().locations().batchTranslateDocument(parent: str).execute()",
+        "api_call": "service.projects().locations().batchTranslateDocument(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "parent": "[REQUIRED] string: Required. Location to make a regional call. Format: `projects/{project-number-or-id}/locations/{location-id}`. The `global` location is not supported for batch translation. Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned."
@@ -118,7 +118,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.batchTranslateText",
-        "api_call": "youtube.projects().locations().batchTranslateText(parent: str).execute()",
+        "api_call": "service.projects().locations().batchTranslateText(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "parent": "[REQUIRED] string: Required. Location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}`. The `global` location is not supported for batch translation. Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned."
@@ -137,7 +137,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.detectLanguage",
-        "api_call": "youtube.projects().locations().detectLanguage(parent: str).execute()",
+        "api_call": "service.projects().locations().detectLanguage(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "parent": "[REQUIRED] string: Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Only models within the same region (has same location-id) can be used. Otherwise an INVALID_ARGUMENT (400) error is returned."
@@ -156,7 +156,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.get",
-        "api_call": "youtube.projects().locations().get(name: str).execute()",
+        "api_call": "service.projects().locations().get(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: Resource name for the location."
@@ -175,7 +175,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.getSupportedLanguages",
-        "api_call": "youtube.projects().locations().getSupportedLanguages(parent: str).execute()",
+        "api_call": "service.projects().locations().getSupportedLanguages(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "displayLanguageCode": "string: Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.",
@@ -196,7 +196,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.list",
-        "api_call": "youtube.projects().locations().list(name: str).execute()",
+        "api_call": "service.projects().locations().list(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "filter": "string: A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
@@ -218,7 +218,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.romanizeText",
-        "api_call": "youtube.projects().locations().romanizeText(parent: str).execute()",
+        "api_call": "service.projects().locations().romanizeText(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "parent": "[REQUIRED] string: Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}/locations/{location-id}` or `projects/{project-number-or-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`."
@@ -237,7 +237,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.translateDocument",
-        "api_call": "youtube.projects().locations().translateDocument(parent: str).execute()",
+        "api_call": "service.projects().locations().translateDocument(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "parent": "[REQUIRED] string: Required. Location to make a regional call. Format: `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have the same location-id), otherwise an INVALID_ARGUMENT (400) error is returned."
@@ -256,7 +256,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.translateText",
-        "api_call": "youtube.projects().locations().translateText(parent: str).execute()",
+        "api_call": "service.projects().locations().translateText(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "parent": "[REQUIRED] string: Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id}` or `projects/{project-number-or-id}/locations/{location-id}`. For global calls, use `projects/{project-number-or-id}/locations/global` or `projects/{project-number-or-id}`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have same location-id), otherwise an INVALID_ARGUMENT (400) error is returned."
@@ -275,7 +275,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.adaptiveMtDatasets.create",
-        "api_call": "youtube.projects().locations().adaptiveMtDatasets().create(parent: str).execute()",
+        "api_call": "service.projects().locations().adaptiveMtDatasets().create(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "parent": "[REQUIRED] string: Required. Name of the parent project. In form of `projects/{project-number-or-id}/locations/{location-id}`"
@@ -294,7 +294,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.adaptiveMtDatasets.delete",
-        "api_call": "youtube.projects().locations().adaptiveMtDatasets().delete(name: str).execute()",
+        "api_call": "service.projects().locations().adaptiveMtDatasets().delete(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: Required. Name of the dataset. In the form of `projects/{project-number-or-id}/locations/{location-id}/adaptiveMtDatasets/{adaptive-mt-dataset-id}`"
@@ -313,7 +313,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.adaptiveMtDatasets.get",
-        "api_call": "youtube.projects().locations().adaptiveMtDatasets().get(name: str).execute()",
+        "api_call": "service.projects().locations().adaptiveMtDatasets().get(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: Required. Name of the dataset. In the form of `projects/{project-number-or-id}/locations/{location-id}/adaptiveMtDatasets/{adaptive-mt-dataset-id}`"
@@ -332,7 +332,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.adaptiveMtDatasets.importAdaptiveMtFile",
-        "api_call": "youtube.projects().locations().adaptiveMtDatasets().importAdaptiveMtFile(parent: str).execute()",
+        "api_call": "service.projects().locations().adaptiveMtDatasets().importAdaptiveMtFile(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "parent": "[REQUIRED] string: Required. The resource name of the file, in form of `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}`"
@@ -351,7 +351,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.adaptiveMtDatasets.list",
-        "api_call": "youtube.projects().locations().adaptiveMtDatasets().list(parent: str).execute()",
+        "api_call": "service.projects().locations().adaptiveMtDatasets().list(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "filter": "string: Optional. An expression for filtering the results of the request. Filter is not supported yet.",
@@ -373,7 +373,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.adaptiveMtDatasets.adaptiveMtFiles.delete",
-        "api_call": "youtube.projects().locations().adaptiveMtDatasets().adaptiveMtFiles().delete(name: str).execute()",
+        "api_call": "service.projects().locations().adaptiveMtDatasets().adaptiveMtFiles().delete(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: Required. The resource name of the file to delete, in form of `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}`"
@@ -392,7 +392,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.adaptiveMtDatasets.adaptiveMtFiles.get",
-        "api_call": "youtube.projects().locations().adaptiveMtDatasets().adaptiveMtFiles().get(name: str).execute()",
+        "api_call": "service.projects().locations().adaptiveMtDatasets().adaptiveMtFiles().get(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: Required. The resource name of the file, in form of `projects/{project-number-or-id}/locations/{location_id}/adaptiveMtDatasets/{dataset}/adaptiveMtFiles/{file}`"
@@ -411,7 +411,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.adaptiveMtDatasets.adaptiveMtFiles.list",
-        "api_call": "youtube.projects().locations().adaptiveMtDatasets().adaptiveMtFiles().list(parent: str).execute()",
+        "api_call": "service.projects().locations().adaptiveMtDatasets().adaptiveMtFiles().list(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "pageSize": "integer: Optional. ",
@@ -432,7 +432,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.adaptiveMtDatasets.adaptiveMtFiles.adaptiveMtSentences.list",
-        "api_call": "youtube.projects().locations().adaptiveMtDatasets().adaptiveMtFiles().adaptiveMtSentences().list(parent: str).execute()",
+        "api_call": "service.projects().locations().adaptiveMtDatasets().adaptiveMtFiles().adaptiveMtSentences().list(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "pageSize": "integer",
@@ -453,7 +453,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.adaptiveMtDatasets.adaptiveMtSentences.list",
-        "api_call": "youtube.projects().locations().adaptiveMtDatasets().adaptiveMtSentences().list(parent: str).execute()",
+        "api_call": "service.projects().locations().adaptiveMtDatasets().adaptiveMtSentences().list(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "pageSize": "integer",
@@ -474,7 +474,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.datasets.create",
-        "api_call": "youtube.projects().locations().datasets().create(parent: str).execute()",
+        "api_call": "service.projects().locations().datasets().create(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "parent": "[REQUIRED] string: Required. The project name."
@@ -493,7 +493,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.datasets.delete",
-        "api_call": "youtube.projects().locations().datasets().delete(name: str).execute()",
+        "api_call": "service.projects().locations().datasets().delete(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: Required. The name of the dataset to delete."
@@ -512,7 +512,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.datasets.exportData",
-        "api_call": "youtube.projects().locations().datasets().exportData(dataset: str).execute()",
+        "api_call": "service.projects().locations().datasets().exportData(dataset: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "dataset": "[REQUIRED] string: Required. Name of the dataset. In form of `projects/{project-number-or-id}/locations/{location-id}/datasets/{dataset-id}`"
@@ -531,7 +531,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.datasets.get",
-        "api_call": "youtube.projects().locations().datasets().get(name: str).execute()",
+        "api_call": "service.projects().locations().datasets().get(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: Required. The resource name of the dataset to retrieve."
@@ -550,7 +550,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.datasets.importData",
-        "api_call": "youtube.projects().locations().datasets().importData(dataset: str).execute()",
+        "api_call": "service.projects().locations().datasets().importData(dataset: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "dataset": "[REQUIRED] string: Required. Name of the dataset. In form of `projects/{project-number-or-id}/locations/{location-id}/datasets/{dataset-id}`"
@@ -569,7 +569,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.datasets.list",
-        "api_call": "youtube.projects().locations().datasets().list(parent: str).execute()",
+        "api_call": "service.projects().locations().datasets().list(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "pageSize": "integer: Optional. Requested page size. The server can return fewer results than requested.",
@@ -590,7 +590,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.datasets.examples.list",
-        "api_call": "youtube.projects().locations().datasets().examples().list(parent: str).execute()",
+        "api_call": "service.projects().locations().datasets().examples().list(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "filter": "string: Optional. An expression for filtering the examples that will be returned. Example filter: * `usage=TRAIN`",
@@ -612,7 +612,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.glossaries.create",
-        "api_call": "youtube.projects().locations().glossaries().create(parent: str).execute()",
+        "api_call": "service.projects().locations().glossaries().create(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "parent": "[REQUIRED] string: Required. The project name."
@@ -631,7 +631,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.glossaries.delete",
-        "api_call": "youtube.projects().locations().glossaries().delete(name: str).execute()",
+        "api_call": "service.projects().locations().glossaries().delete(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: Required. The name of the glossary to delete."
@@ -650,7 +650,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.glossaries.get",
-        "api_call": "youtube.projects().locations().glossaries().get(name: str).execute()",
+        "api_call": "service.projects().locations().glossaries().get(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: Required. The name of the glossary to retrieve."
@@ -669,7 +669,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.glossaries.list",
-        "api_call": "youtube.projects().locations().glossaries().list(parent: str).execute()",
+        "api_call": "service.projects().locations().glossaries().list(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "filter": "string: Optional. Filter specifying constraints of a list operation. Specify the constraint by the format of \"key=value\", where key must be \"src\" or \"tgt\", and the value must be a valid language code. For multiple restrictions, concatenate them by \"AND\" (uppercase only), such as: \"src=en-US AND tgt=zh-CN\". Notice that the exact match is used here, which means using 'en-US' and 'en' can lead to different results, which depends on the language code you used when you create the glossary. For the unidirectional glossaries, the \"src\" and \"tgt\" add restrictions on the source and target language code separately. For the equivalent term set glossaries, the \"src\" and/or \"tgt\" add restrictions on the term set. For example: \"src=en-US AND tgt=zh-CN\" will only pick the unidirectional glossaries which exactly match the source language code as \"en-US\" and the target language code \"zh-CN\", but all equivalent term set glossaries which contain \"en-US\" and \"zh-CN\" in their language set will be picked. If missing, no filtering is performed.",
@@ -691,7 +691,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.glossaries.patch",
-        "api_call": "youtube.projects().locations().glossaries().patch(name: str).execute()",
+        "api_call": "service.projects().locations().glossaries().patch(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: Required. The resource name of the glossary. Glossary names have the form `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`.",
@@ -711,7 +711,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.glossaries.glossaryEntries.create",
-        "api_call": "youtube.projects().locations().glossaries().glossaryEntries().create(parent: str).execute()",
+        "api_call": "service.projects().locations().glossaries().glossaryEntries().create(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "parent": "[REQUIRED] string: Required. The resource name of the glossary to create the entry under."
@@ -730,7 +730,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.glossaries.glossaryEntries.delete",
-        "api_call": "youtube.projects().locations().glossaries().glossaryEntries().delete(name: str).execute()",
+        "api_call": "service.projects().locations().glossaries().glossaryEntries().delete(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: Required. The resource name of the glossary entry to delete"
@@ -749,7 +749,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.glossaries.glossaryEntries.get",
-        "api_call": "youtube.projects().locations().glossaries().glossaryEntries().get(name: str).execute()",
+        "api_call": "service.projects().locations().glossaries().glossaryEntries().get(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: Required. The resource name of the glossary entry to get"
@@ -768,7 +768,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.glossaries.glossaryEntries.list",
-        "api_call": "youtube.projects().locations().glossaries().glossaryEntries().list(parent: str).execute()",
+        "api_call": "service.projects().locations().glossaries().glossaryEntries().list(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "pageSize": "integer: Optional. Requested page size. The server may return fewer glossary entries than requested. If unspecified, the server picks an appropriate default.",
@@ -789,7 +789,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.glossaries.glossaryEntries.patch",
-        "api_call": "youtube.projects().locations().glossaries().glossaryEntries().patch(name: str).execute()",
+        "api_call": "service.projects().locations().glossaries().glossaryEntries().patch(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: Required. The resource name of the entry. Format: \"projects/*/locations/*/glossaries/*/glossaryEntries/*\""
@@ -808,7 +808,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.models.create",
-        "api_call": "youtube.projects().locations().models().create(parent: str).execute()",
+        "api_call": "service.projects().locations().models().create(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "parent": "[REQUIRED] string: Required. The project name, in form of `projects/{project}/locations/{location}`"
@@ -827,7 +827,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.models.delete",
-        "api_call": "youtube.projects().locations().models().delete(name: str).execute()",
+        "api_call": "service.projects().locations().models().delete(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: Required. The name of the model to delete."
@@ -846,7 +846,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.models.get",
-        "api_call": "youtube.projects().locations().models().get(name: str).execute()",
+        "api_call": "service.projects().locations().models().get(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: Required. The resource name of the model to retrieve."
@@ -865,7 +865,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.models.list",
-        "api_call": "youtube.projects().locations().models().list(parent: str).execute()",
+        "api_call": "service.projects().locations().models().list(parent: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "filter": "string: Optional. An expression for filtering the models that will be returned. Supported filter: `dataset_id=${dataset_id}`",
@@ -887,7 +887,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.operations.cancel",
-        "api_call": "youtube.projects().locations().operations().cancel(name: str).execute()",
+        "api_call": "service.projects().locations().operations().cancel(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: The name of the operation resource to be cancelled."
@@ -906,7 +906,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.operations.delete",
-        "api_call": "youtube.projects().locations().operations().delete(name: str).execute()",
+        "api_call": "service.projects().locations().operations().delete(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: The name of the operation resource to be deleted."
@@ -925,7 +925,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.operations.get",
-        "api_call": "youtube.projects().locations().operations().get(name: str).execute()",
+        "api_call": "service.projects().locations().operations().get(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: The name of the operation resource."
@@ -944,7 +944,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.operations.list",
-        "api_call": "youtube.projects().locations().operations().list(name: str).execute()",
+        "api_call": "service.projects().locations().operations().list(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "filter": "string: The standard list filter.",
@@ -966,7 +966,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Translate API - projects.locations.operations.wait",
-        "api_call": "youtube.projects().locations().operations().wait(name: str).execute()",
+        "api_call": "service.projects().locations().operations().wait(name: str).execute()",
         "api_version": "v3",
         "api_arguments": {
             "name": "[REQUIRED] string: The name of the operation resource to wait on."
