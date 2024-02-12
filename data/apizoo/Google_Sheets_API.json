@@ -2,7 +2,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.batchUpdate",
-        "api_call": "youtube.spreadsheets().batchUpdate(spreadsheetId: str).execute()",
+        "api_call": "service.spreadsheets().batchUpdate(spreadsheetId: str).execute()",
         "api_version": "v4",
         "api_arguments": {
             "spreadsheetId": "[REQUIRED] string: The spreadsheet to apply the updates to."
@@ -21,7 +21,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.create",
-        "api_call": "youtube.spreadsheets().create().execute()",
+        "api_call": "service.spreadsheets().create().execute()",
         "api_version": "v4",
         "api_arguments": {},
         "functionality": "Creates a spreadsheet, returning the newly created spreadsheet.",
@@ -38,7 +38,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.get",
-        "api_call": "youtube.spreadsheets().get(spreadsheetId: str).execute()",
+        "api_call": "service.spreadsheets().get(spreadsheetId: str).execute()",
         "api_version": "v4",
         "api_arguments": {
             "includeGridData": "boolean: True if grid data should be returned. This parameter is ignored if a field mask was set in the request.",
@@ -59,7 +59,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.getByDataFilter",
-        "api_call": "youtube.spreadsheets().getByDataFilter(spreadsheetId: str).execute()",
+        "api_call": "service.spreadsheets().getByDataFilter(spreadsheetId: str).execute()",
         "api_version": "v4",
         "api_arguments": {
             "spreadsheetId": "[REQUIRED] string: The spreadsheet to request."
@@ -78,7 +78,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.developerMetadata.get",
-        "api_call": "youtube.spreadsheets().developerMetadata().get(spreadsheetId: str, metadataId: int).execute()",
+        "api_call": "service.spreadsheets().developerMetadata().get(spreadsheetId: str, metadataId: int).execute()",
         "api_version": "v4",
         "api_arguments": {
             "metadataId": "[REQUIRED] integer: The ID of the developer metadata to retrieve.",
@@ -98,7 +98,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.developerMetadata.search",
-        "api_call": "youtube.spreadsheets().developerMetadata().search(spreadsheetId: str).execute()",
+        "api_call": "service.spreadsheets().developerMetadata().search(spreadsheetId: str).execute()",
         "api_version": "v4",
         "api_arguments": {
             "spreadsheetId": "[REQUIRED] string: The ID of the spreadsheet to retrieve metadata from."
@@ -117,7 +117,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.sheets.copyTo",
-        "api_call": "youtube.spreadsheets().sheets().copyTo(spreadsheetId: str, sheetId: int).execute()",
+        "api_call": "service.spreadsheets().sheets().copyTo(spreadsheetId: str, sheetId: int).execute()",
         "api_version": "v4",
         "api_arguments": {
             "sheetId": "[REQUIRED] integer: The ID of the sheet to copy.",
@@ -137,7 +137,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.values.append",
-        "api_call": "youtube.spreadsheets().values().append(spreadsheetId: str, range: str).execute()",
+        "api_call": "service.spreadsheets().values().append(spreadsheetId: str, range: str).execute()",
         "api_version": "v4",
         "api_arguments": {
             "includeValuesInResponse": "boolean: Determines if the update response should include the values of the cells that were appended. By default, responses do not include the updated values.",
@@ -162,7 +162,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.values.batchClear",
-        "api_call": "youtube.spreadsheets().values().batchClear(spreadsheetId: str).execute()",
+        "api_call": "service.spreadsheets().values().batchClear(spreadsheetId: str).execute()",
         "api_version": "v4",
         "api_arguments": {
             "spreadsheetId": "[REQUIRED] string: The ID of the spreadsheet to update."
@@ -181,7 +181,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.values.batchClearByDataFilter",
-        "api_call": "youtube.spreadsheets().values().batchClearByDataFilter(spreadsheetId: str).execute()",
+        "api_call": "service.spreadsheets().values().batchClearByDataFilter(spreadsheetId: str).execute()",
         "api_version": "v4",
         "api_arguments": {
             "spreadsheetId": "[REQUIRED] string: The ID of the spreadsheet to update."
@@ -200,7 +200,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.values.batchGet",
-        "api_call": "youtube.spreadsheets().values().batchGet(spreadsheetId: str).execute()",
+        "api_call": "service.spreadsheets().values().batchGet(spreadsheetId: str).execute()",
         "api_version": "v4",
         "api_arguments": {
             "dateTimeRenderOption": "string: How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.",
@@ -223,7 +223,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.values.batchGetByDataFilter",
-        "api_call": "youtube.spreadsheets().values().batchGetByDataFilter(spreadsheetId: str).execute()",
+        "api_call": "service.spreadsheets().values().batchGetByDataFilter(spreadsheetId: str).execute()",
         "api_version": "v4",
         "api_arguments": {
             "spreadsheetId": "[REQUIRED] string: The ID of the spreadsheet to retrieve data from."
@@ -242,7 +242,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.values.batchUpdate",
-        "api_call": "youtube.spreadsheets().values().batchUpdate(spreadsheetId: str).execute()",
+        "api_call": "service.spreadsheets().values().batchUpdate(spreadsheetId: str).execute()",
         "api_version": "v4",
         "api_arguments": {
             "spreadsheetId": "[REQUIRED] string: The ID of the spreadsheet to update."
@@ -261,7 +261,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.values.batchUpdateByDataFilter",
-        "api_call": "youtube.spreadsheets().values().batchUpdateByDataFilter(spreadsheetId: str).execute()",
+        "api_call": "service.spreadsheets().values().batchUpdateByDataFilter(spreadsheetId: str).execute()",
         "api_version": "v4",
         "api_arguments": {
             "spreadsheetId": "[REQUIRED] string: The ID of the spreadsheet to update."
@@ -280,7 +280,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.values.clear",
-        "api_call": "youtube.spreadsheets().values().clear(spreadsheetId: str, range: str).execute()",
+        "api_call": "service.spreadsheets().values().clear(spreadsheetId: str, range: str).execute()",
         "api_version": "v4",
         "api_arguments": {
             "range": "[REQUIRED] string: The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the values to clear.",
@@ -300,7 +300,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.values.get",
-        "api_call": "youtube.spreadsheets().values().get(spreadsheetId: str, range: str).execute()",
+        "api_call": "service.spreadsheets().values().get(spreadsheetId: str, range: str).execute()",
         "api_version": "v4",
         "api_arguments": {
             "dateTimeRenderOption": "string: How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.",
@@ -323,7 +323,7 @@
     {
         "user_name": "meenakshimittal",
         "api_name": "Google Sheets API - spreadsheets.values.update",
-        "api_call": "youtube.spreadsheets().values().update(spreadsheetId: str, range: str).execute()",
+        "api_call": "service.spreadsheets().values().update(spreadsheetId: str, range: str).execute()",
         "api_version": "v4",
         "api_arguments": {
             "includeValuesInResponse": "boolean: Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than the range actually written, the response includes all values in the requested range (excluding trailing empty rows and columns).",
