@@ -6,7 +6,7 @@ one round each for the user and the agent.
 '''
 from datasets import load_dataset, Dataset
 
-OPENAPI_API_KEY = "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"
+OPENAPI_API_KEY = ""
 API_PATH = "felixzhu1.json"
 
 from openai import OpenAI
