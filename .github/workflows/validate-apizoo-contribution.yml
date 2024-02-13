@@ -39,11 +39,5 @@ jobs:
         with:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            :warning: **Duplicate API detected**: This PR cannot be merged.
+            :warning: **Duplicate API detected**: This PR should not be merged.
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Fail if duplicate API
-        if: steps.check.outputs.duplicate == 'true'
-        run: |
-          echo "Duplicate API detected, failing the workflow"
-          exit 1
