@@ -3,7 +3,7 @@ This repository contains a simple example of using WebAssembly (WASM) to execute
 
 ## JavaScript Code
 ```javascript
-/ JavaScript code to execute HTTP request in the browser
+// JavaScript code to execute HTTP request in the browser
 
 // Function to execute HTTP request and ping google.com
 function pingGoogle() {
