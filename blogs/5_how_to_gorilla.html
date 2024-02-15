@@ -68,7 +68,7 @@
                 <div class="Introduction">
                     <p>
                         Gorilla is a rapidly growing open-source project that connects LLM’s to APIs. We currently have 4 different ways to utilize Gorilla.
-                        <ul>
+                        <ol>
                             <li>Gorilla CLI
                             </li>
                             <li>Gorilla Inference
@@ -81,25 +81,48 @@
                             </li>
                             <li>Train Your Own Gorilla
                             </li>
-                        <ul>
+                        </ol>
                         This blog post outlines these ways in a step-by-step manner and links Google Colab playground environments for you to quickly experiment with Gorilla!
-
+                    </p>>
                 </div>
 
                 <div class="body">
-                    <h4 id="gorilla-cli">Gorilla CLI: Gorilla in Your Command Line 💻</h4>
+                    <h4 id="gorilla-cli"><a href="https://github.com/gorilla-llm/gorilla-cli#usage">Gorilla CLI: Gorilla in Your Command Line 💻</a></h4>
                     <p>
-                        At its core, instruction tuning allows LLMs to generate responses based on specific instructions embedded within the prompts. However, this approach has its limitations:
-                        <ul>
-                            <li>Limited Adaptability: Traditional LLMs may struggle when faced with real-time changes or updates in the information. This can be particularly concerning when using evolving data sources, such as API documentation.
+                        Gorilla CLI simplifies command line interactions by generating candidate commands for your desired task. 
+                        Instead of needing to recall verbose commands for various API’s, Gorilla CLI streamlines this process into a simple command: <code>gorilla “your query”</code>. 
+                        Moreover, we prioritize confidentiality and full user control, only executing commands with explicit permission from the user and never collecting output data. 
+                        <ol>
+                            <li>Get started with pip install: 
+                                <br><code>pip install gorilla-cli</code>>
                             </li>
-                            <li>Dependence on In-Context Learning: Instruction tuning relies heavily on in-context learning, which can be restrictive. Without the ability to pivot based on fresh or updated data, the model might produce outdated or inaccurate outputs.
+                            <li> Using gorilla CLI to write to files:
+                                <ul>
+                                    <li>Command:
+                                    <br><code>$ gorilla “generate 100 random characters into a file called text.txt”</code>
+                                    </li>
+                                    <li>Output: Using arrow keys, toggle between commands and press <code>Enter</code>
+                                    <br><code>» cat /dev/urandom | env LC_ALL=C tr -dc 'a-zA-Z0-9' | head -c 100 > test.txt </code>
+                                    <br><code>echo $(head /dev/urandom | LC_CTYPE=C tr -dc 'a-zA-Z0-9' | dd bs=100 count=1) > test.txt </code>
+                                    <br><code>dd if=/dev/urandom bs=1 count=100 of=test.txt </code>
+                                    </li>
+                                </ul>
                             </li>
-                            <li>Potential for Hallucination: One of the significant challenges with LLMs is their tendency to "hallucinate" or generate incorrect or unrelated information. Traditional tuning methods have been known to exacerbate this issue.
+                            <li> Other Usage Examples:
+                                <ul>
+                                    <li>Command:
+                                    <br><code>$ gorilla “list all my GCP instances”</code>
+                                    </li>
+                                    <li>Output: 
+                                    <br><code>» gcloud compute instances list --format="table(name,zone,status)"</code>
+                                    <br><code>gcloud compute instances list --format table </code>
+                                    <br><code>gcloud compute instances list --format="table(name, zone, machineType, status)" </code>
+                                    </li>
+                                </ul>
                             </li>
-                        </ul>
+                        </ol>
                     </p>
-                    <h4 id="gorilla-inference">Gorilla Inference 🦍</h4>
+                    <h4 id="gorilla-inference"><a href="https://github.com/ShishirPatil/gorilla/tree/main/inference">Gorilla Inference 🦍 </a></h4>
                     <p>
                         With the above challenges in mind, retriever-aware training was introduced. 
                         The principle behind this method is to append additional supporting documentation to the user's prompt, 
