@@ -10539,5 +10539,440 @@
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
     }
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "External Content Ingestion API - DELETE /ais/external_content/deleteByQuery/{schema_table_name}",
+    "api_call": "servicenow.external_content_ingestion_api_delete(schema_table_name, query)",
+    "api_version": "v2",
+    "api_arguments": {
+      "schema_table_name": {
+        "data_type": "String",
+        "description": "The name of the external content schema table that defines the schema for the indexed documents to delete. For example, u_ext_content."
+      },
+      "query": {
+        "data_type": "String",
+        "description": "A valid URL-escaped query for the schema table specified by schema_table_name. For example, title=Introduction to query for documents whose title is Introduction."
+      }
+    },
+    "functionality": "Deletes all external documents that match the specified query from the AI Search index.",
+    "example_code": "curl \"https://instance.service-now.com/api/now/v2/ais/external_content/deleteByQuery/u_ext_content?query=title%3DIntroduction%20OR%20title%3DReport%20for%2031%20October%202020\" \\ --request DELETE \\ --user \"username\":\"password\" \\ --header \"Accept: application/json\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    }
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "External Content Ingestion API - DELETE /ais/external_content/deleteDocument/{schema_table_name}/{document_id}",
+    "api_call": "servicenow.external_content_ingestion_api_delete_document(schema_table_name, document_id)",
+    "api_version": "v2",
+    "api_arguments": {
+      "schema_table_name": {
+        "data_type": "String",
+        "description": "The name of the external content schema table that defines the schema for the indexed document to delete. For example, u_ext_content."
+      },
+      "document_id": {
+        "data_type": "String",
+        "description": "The unique identifier for the external document to delete. For example, ADMIN-2027858531-16."
+      }
+    },
+    "functionality": "Deletes the external document with a specified unique identifier from the AI Search index.",
+    "example_code": "curl 'https://instance.service-now.com/api/now/v2/ais/external_content/deleteDocument/u_ext_content/ADMIN-2587918521-27' \\ --request DELETE \\ --user 'username':'password' \\ --header 'Accept: application/json'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    }
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "External Content Ingestion API - POST /ais/external_content/ingestDocument/{schema_table_name}",
+    "api_call": "servicenow.external_content_ingestion_api_post_ingest_document(schema_table_name, documents)",
+    "api_version": "v2",
+    "api_arguments": {
+      "schema_table_name": {
+        "data_type": "String",
+        "description": "The name of the external content schema table that defines the schema for external documents in the request. For example, u_ext_content."
+      },
+      "documents": {
+        "data_type": "Array",
+        "description": "An array of objects representing external documents to ingest for indexing."
+      },
+      "document_id": {
+        "data_type": "String",
+        "description": "Unique identifier for the external document in the external content schema table specified by the schema_table_name path parameter."
+      },
+      "content_pointer": {
+        "data_type": "String",
+        "description": "Identifier for an instance of binary content stored using the POST /ais/external_content/storeContent endpoint. During ingestion, AI Search parses the binary content and adds its searchable content to the indexed record that represents the external document."
+      },
+      "principals": {
+        "data_type": "Object",
+        "description": "Object containing key-value pairs that describe the external document's access permissions for externally defined security principals (users and groups)."
+      },
+      "principals.everyone": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether access to the external document is allowed for all users."
+      },
+      "principals.groups.deny": {
+        "data_type": "Array",
+        "description": "Array of strings where each string is the name of an externally defined group that is denied access to the external document."
+      },
+      "principals.groups.read": {
+        "data_type": "Array",
+        "description": "Array of strings where each string is the name of an externally defined group that is allowed to access the external document."
+      },
+      "principals.none": {
+        "data_type": "Boolean",
+        "description": "Boolean option indicating whether access to the external document is denied for all users."
+      },
+      "principals.users.deny": {
+        "data_type": "Array",
+        "description": "Array of strings where each string is the name of an externally defined user that is denied access to the external document."
+      },
+      "principals.users.read": {
+        "data_type": "Array",
+        "description": "Array of strings where each string is the name of an externally defined user that is allowed to access the external document."
+      },
+      "properties": {
+        "data_type": "Object",
+        "description": "Object containing name-value pairs where each pair represents a field name and value to ingest for the document."
+      }
+    },
+    "example_code": "curl 'https://instance.servicenow.com/api/now/v2/ais/external_content/ingestDocument/u_ext_content' --request POST --user 'username':'password' --header 'Accept: application/json' --header 'Content-Type: application/json' --data '[{\"document_id\":\"ADMIN-2027858531-16\",\"content_pointer\":\"749b52a1-baa8-4556-a4f3-00404c95e6a8\",\"properties\":{\"title\":\"Introduction\",\"url\":\"file:///myhost/reports/Introduction.pdf\",\"file_name\":\"Introduction.pdf\",\"file_size\":\"10285\",\"creation_date\":\"2020-11-01 12:27:43\"},\"principals\":{\"everyone\":false,\"groups.read\":[\"report-users\",\"report-admins\"],\"users.deny\":[\"ad\\abel-tuter\"]}},{\"document_id\":\"ADMIN-2587918521-27\",\"content_pointer\":\"bd605435-268b-464f-a7c3-0c5ea894a5c2\",\"properties\":{\"title\":\"Report for 31 August 2020\",\"url\":\"file:///myhost/reports/Report-2020-08-31.pdf\",\"file_size\":\"27597\",\"creation_date\":\"2020-09-01 12:48:13\"},\"principals\":{\"everyone\":false,\"groups.read\":[\"report-users\",\"report-admins\"],\"users.read\":[\"ad\\beth-anglin\"]}}]'",
+    "functionality": "Sends a list of external documents to the AI Search ingestion batcher for indexing. After indexing completes, content from the ingested documents becomes searchable.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    }
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "External Content Ingestion API - POST ais/external_content/storeContent",
+    "api_call": "servicenow.external_content_ingestion_api_post_store_content(binary_data)",
+    "api_version": "v2",
+    "api_arguments": {
+      "binary_data": {
+        "data_type": "Binary",
+        "description": "Binary content to store as a content object in AI Search."
+      }
+    },
+    "example_code": "curl 'https://instance.servicenow.com/api/now/v2/ais/external_content/storeContent' --request POST --user 'username':'password' --header 'Content-Type: application/pdf' --data-binary '@Report-2020-08-31.pdf'",
+    "functionality": "Stores binary content as a content object in AI Search.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What are the valid values for the 'Content-Type' request header?",
+      "What response status code indicates a successful request to store binary content?",
+      "How does AI Search associate stored binary content with an external document?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "HR REST - GET /get_usa_employee_profile",
+    "api_call": "servicenow.hr_rest_get_usa_employee_profile(employee_identifier, sysparm_limit, sysparm_offset, updated_after)",
+    "api_version": "v1",
+    "api_arguments": {
+      "employee_identifier": {
+        "data_type": "String",
+        "description": "Unique identifier of an employee. The calling system generates this value and can be in whatever format is consistent with their system. To obtain this value, first call the endpoint using the updated_after parameter."
+      },
+      "sysparm_limit": {
+        "data_type": "Number",
+        "description": "Maximum number of records to return. For requests that exceed this number of records, use the sysparm_offset parameter to paginate record retrieval.",
+        "default": 1000
+      },
+      "sysparm_offset": {
+        "data_type": "Number",
+        "description": "Starting record index for which to begin retrieving records. Use this value to paginate record retrieval. This functionality enables the retrieval of all records, regardless of the number of records, in small manageable chunks.",
+        "example": "0"
+      },
+      "updated_after": {
+        "data_type": "String",
+        "description": "Date to use to determine the employee data to return. All United States-based employees (work or home) that were added to your instance, or whose information was updated on or after this date, are included in the return results.",
+        "format": "YYYY-MM-DD HH:MM:SS or YYYY-MM-DD (time defaults to 00:00:00)"
+      }
+    },
+    "functionality": "Returns employee profile information for employees based in the United States.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl -X GET 'https://instance.servicenow.com/api/sn_hr_core/V1/hr_rest_api/get_usa_employee_profile?employee_identifier=231' -H 'accept: application/json' -u 'username':'password'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Identification and Reconciliation - POST /now/identifyreconcile",
+    "api_call": "servicenow.identification_and_reconciliation_post_identifyreconcile(items, referenceItems, relations)",
+    "api_version": "v2",
+    "api_arguments": {
+      "items": {
+        "description": "Array of objects in which each object describes a CI to create or update.",
+        "data_type": "Array",
+        "structure": {
+          "className": "Required. The sys_class_name (class/table name) of the CI to create or update. This value can be any CMDB table, such as cmdb_ci_linux_server or cmdb_ci_win_server.",
+          "internal_id": "Unique identifier for this item in this payload. Can be any value, but must be unique within the payload.",
+          "lookup": {
+            "description": "Array of objects in which each object describes a lookup-based identification record.",
+            "data_type": "Array",
+            "structure": {
+              "className": "Required. The sys_class_name or class/table name of the CI to create or update.",
+              "internal_id": "Unique identifier for this lookup record in this payload.",
+              "sys_object_source_info": {
+                "source_feed": "Name that uniquely identifies the feed sending this CI.",
+                "source_name": "Data source for the CI information.",
+                "source_native_key": "Unique key/id from the source for the CI.",
+                "source_recency_timestamp": "UTC date and time that the CI was scanned. Format: YYYY-MM-DD hh:mm:ss"
+              },
+              "values": "Object describing fields for this lookup item as name/value pairs."
+            }
+          },
+          "related": {
+            "description": "Array of objects in which each object describes an item record to create or update, based on a related table.",
+            "data_type": "Array",
+            "structure": {
+              "className": "Required. The sys_class_name or class/table name of the related item to create or update.",
+              "internal_id": "Unique identifier for this related item in this payload.",
+              "sys_object_source_info": {
+                "source_feed": "Name that uniquely identifies the feed sending this related item.",
+                "source_name": "Data source for the related item information.",
+                "source_native_key": "Unique key/id from the source for the related item.",
+                "source_recency_timestamp": "UTC date and time that the related item was scanned. Format: YYYY-MM-DD hh:mm:ss"
+              },
+              "values": "Object describing fields to create or update for this related item as name/value pairs."
+            }
+          },
+          "settings": {
+            "skipReclassificationRestrictionRules": "Flag that indicates whether IRE should skip running the Reclassification Restriction rule that matches the class for the payload item. Valid values: true: Skip running the rule. false: Run the rule. Default: false",
+            "updateWithoutDowngrade": "Indicates whether update and downgrade are both permitted for this CI. Valid values: true: Update the item but downgrade is not permitted. false: Both item update and downgrade are permitted. Default: false",
+            "updateWithoutSwitch": "Indicates whether this CI can be updated and its class switched. Valid values: true: Update the item but class switching is not permitted. false: Both item update and class switching are permitted. Default: false",
+            "updateWithoutUpgrade": "Indicates whether update and upgrade are both permitted for this CI. Valid values: true: Update the item but upgrade is not permitted. false: Both item update and upgrade are permitted. Default: false"
+          },
+          "sys_object_source_info": {
+            "source_feed": "Name that uniquely identifies the feed sending this CI.",
+            "source_name": "Data source for the CI information.",
+            "source_native_key": "Unique key/id from the source for the CI.",
+            "source_recency_timestamp": "UTC date and time that the CI was scanned. Format: YYYY-MM-DD hh:mm:ss"
+          },
+          "values": "Object describing fields to create or update for this CI as name/value pairs."
+        }
+      },
+      "referenceItems": {
+        "description": "Array of objects in which each object describes a reference between two items in the payload.",
+        "data_type": "Array",
+        "structure": {
+          "referenced": "The internal_id defined for the item being referenced by another item.",
+          "referencedBy": "The internal_id defined for the item that references another item.",
+          "referenceField": "Name of the reference field in the class/table for the referencedBy item."
+        }
+      },
+      "relations": {
+        "description": "Array of objects in which each object describes a relationship between two items defined in the payload.",
+        "data_type": "Array",
+        "structure": {
+          "child": "The integer index of the CI object in the items array that represents the child in the relationship.",
+          "child_id": "The internal_id of the child item in the relationship.",
+          "parent": "The integer index of the CI object in the items array that represents the parent in the relationship.",
+          "parent_id": "The internal_id of the parent item in the relationship.",
+          "sys_rel_source_info": {
+            "source_name": "Discovery source name.",
+            "source_feed": "Any string that is a sub-discovery/scan within the discovery source."
+          },
+          "type": "The type of relationship existing between the parent and child items."
+        }
+      }
+    },
+    "functionality": "Inserts or updates configuration items (CIs) in the CMDB by applying identification and reconciliation rules to the specified payload.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "curl_command": "curl 'https://instance.servicenow.com/api/now/identifyreconcile' --request POST --header 'Accept: application/json' --header 'Content-Type: application/json' --user 'username:password' --data '{ \"items\": [{ \"className\": \"cmdb_ci_linux_server\", \"values\": { \"sys_class_name\": \"cmdb_ci_linux_server\", \"name\": \"lnux101\", \"host_name\": \"lnux101.servicenow.com\", \"ip_address\": \"10.11.12.173\", \"os_name\": \"Linux Red Hat\" }, \"lookup\": [{ \"className\": \"cmdb_serial_number\", \"values\": { \"serial_number\": \"lnux101\", \"serial_number_type\": \"uuid\", \"valid\": \"true\" } }, { \"className\": \"cmdb_ci_network_adapter\", \"values\": { \"name\": \"eth0\", \"ip_address\": \"10.11.12.173\", \"mac_address\": \"00:55:51:21:26:2f\" } }] }, { \"className\": \"cmdb_ci_ip_switch\", \"values\": { \"name\": \"IP-Switch-1\", \"serial_number\": \"Switch23587\", \"serial_number_type\": \"uuid\" } }], \"relations\": [{ \"parent\": 0, \"child\": 1, \"type\": \"IP Connection::IP Connection\" }] }'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Identification and Reconciliation - POST /now/identifyreconcile/enhanced",
+    "api_call": "servicenow.identification_and_reconciliation_post({items}, {api_version}, {sysparm_data_source})",
+    "api_version": "v2",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "options": {
+        "data_type": "String",
+        "description": "Comma-separated list of name-value pairs representing Enhanced IRE options applied for the request."
+      },
+      "sysparm_data_source": {
+        "data_type": "String",
+        "description": "Identifies the source of the CI information."
+      },
+      "items": {
+        "data_type": "Array",
+        "description": "Array of objects describing configuration items (CIs) to create or update."
+      },
+      "referenceItems": {
+        "data_type": "Array",
+        "description": "Array of objects describing references between items in the payload."
+      },
+      "relations": {
+        "data_type": "Array",
+        "description": "Array of objects describing relationships between items defined in the payload."
+      }
+    },
+    "example_code": "curl 'https://instance.servicenow.com/api/now/identifyreconcile/enhanced' --request POST --header 'Accept: application/json' --header 'Content-Type: application/json' --user 'username':'password' --data '{ \"items\" : [ { \"className\" : \"cmdb_ci_computer\", \"sys_object_source_info\" : { \"source_name\" : \"ServiceNow\", \"source_native_key\" : \"ncomputer3367\" }, \"values\" : { \"cpu_core_count\" : \"6\", \"ram\" : \"8192\", \"manufacturer\" : \"DELL\", \"company\" : \"My Company\" } } ] }'",
+    "functionality": "Inserts or updates CIs in the CMDB by applying identification and reconciliation rules to the payload.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    }
+  },
+  {
+    "api_name": "Identification and Reconciliation - POST /now/identifyreconcile/query",
+    "api_call": "servicenow.identification_and_reconciliation_query(items, api_version, sysparm_data_source)",
+    "api_version": "v2",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "sysparm_data_source": {
+        "data_type": "String",
+        "description": "Identifies the source of the CI information."
+      },
+      "items": {
+        "data_type": "Array",
+        "description": "Array of objects describing configuration items (CIs) to simulate creating or updating."
+      },
+      "referenceItems": {
+        "data_type": "Array",
+        "description": "Array of objects describing references between items in the payload."
+      },
+      "relations": {
+        "data_type": "Array",
+        "description": "Array of objects describing relationships between items defined in the payload."
+      }
+    },
+    "functionality": "Simulates the CMDB operation (insert/update) without committing the operations in the database.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/now/identifyreconcile/query\" \\ \n--request POST \\ \n--header \"Accept: application/json\" \\ \n--header \"Content-Type: application/json\" \\ \n--user \"username\":\"password\" \\ \n--data '{ \\ \n  \"items\": [{ \\ \n    \"className\": \"cmdb_ci_linux_server\", \\ \n    \"values\": { \\ \n      \"sys_class_name\": \"cmdb_ci_linux_server\", \\ \n      \"name\": \"lnux101\", \\ \n      \"host_name\": \"lnux101.servicenow.com\", \\ \n      \"ip_address\": \"10.11.12.173\", \\ \n      \"os_name\": \"Linux Red Hat\" \\ \n    }, \\ \n    \"lookup\": [{ \\ \n      \"className\": \"cmdb_serial_number\", \\ \n      \"values\": { \\ \n        \"serial_number\": \"lnux101\", \\ \n        \"serial_number_type\": \"uuid\", \\ \n        \"valid\": \"true\" \\ \n      } \\ \n    }, { \\ \n      \"className\": \"cmdb_ci_network_adapter\", \\ \n      \"values\": { \\ \n        \"name\": \"eth0\", \\ \n        \"ip_address\": \"10.11.12.173\", \\ \n        \"mac_address\": \"00:55:51:21:26:2f\" \\ \n      } \\ \n    }] \\ \n  }, { \\ \n    \"className\": \"cmdb_ci_ip_switch\", \\ \n    \"values\": { \\ \n      \"name\": \"IP-Switch-1\", \\ \n      \"serial_number\": \"Switch23587\", \\ \n      \"serial_number_type\": \"uuid\" \\ \n    } \\ \n  }], \\ \n  \"relations\": [{ \\ \n    \"parent\": 0, \\ \n    \"child\": 1, \\ \n    \"type\": \"IP Connection::IP Connection\" \\ \n  }] \\ \n}'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Identification and Reconciliation - POST /now/identifyreconcile/queryEnhanced",
+    "api_call": "servicenow.identification_and_reconciliation_post_now_identifyreconcile_query_enhanced(api_version, options, sysparm_data_source, items, referenceItems, relations)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the API being used."
+      },
+      "options": {
+        "data_type": "String",
+        "description": "Comma-separated list of name-value pairs representing Enhanced IRE options applied for the request."
+      },
+      "sysparm_data_source": {
+        "data_type": "String",
+        "description": "Identifies the source of the CI information."
+      },
+      "items": {
+        "data_type": "Array",
+        "description": "Array of objects describing the configuration items to create or update."
+      },
+      "referenceItems": {
+        "data_type": "Array",
+        "description": "Array of objects describing a reference between two items in the payload."
+      },
+      "relations": {
+        "data_type": "Array",
+        "description": "Array of objects describing a relationship between two items defined in the payload."
+      }
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/now/identifyreconcile/queryEnhanced\" --request POST --header \"Accept: application/json\" --header \"Content-Type: application/json\" --user \"username\":\"password\" --data '{ \"items\" : [ { \"className\" : \"cmdb_ci_computer\", \"sys_object_source_info\" : { \"source_name\" : \"ServiceNow\", \"source_native_key\" : \"ncomputer3367\" }, \"values\" : { \"cpu_core_count\" : \"6\", \"ram\" : \"8192\", \"manufacturer\" : \"DELL\", \"company\" : \"My Company\" } } ] }'",
+    "functionality": "Determines the CMDB operation to perform with the specified payload.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    }
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Import Set - GET /now/import/{stagingTableName}/{sys_id}",
+    "api_call": "servicenow.import_set_get_now_import_staging_table_name_sys_id(api_version, stagingTableName, sys_id)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the API being used."
+      },
+      "stagingTableName": {
+        "data_type": "String",
+        "description": "Name of the table from which to obtain the import data."
+      },
+      "sys_id": {
+        "data_type": "String",
+        "description": "Sys_id of the record that contains the data."
+      }
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/now/import/imp_user/e2928be64f411200adf9f8e18110c777\" --request GET --header \"Accept:application/json\" --user \"username\":\"password\"",
+
+    "functionality": "Retrieves the specified import staging record and resulting transformation result.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    }
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Import Set - POST /now/import/{stagingTableName}",
+    "api_call": "servicenow.import_set_post_now_import_staging_table_name(api_version, stagingTableName, request_body_parameters)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the API being used."
+      },
+      "stagingTableName": {
+        "data_type": "String",
+        "description": "Name of the table from which to import the data."
+      },
+      "request_body_parameters": {
+        "data_type": "String",
+        "description": "Name-value pairs to insert in the import fields."
+      }
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/now/import/imp_user\" --request POST --header \"Accept:application/json\" --header \"Content-Type:application/json\" --data '{\"first_name\":\"John\",\"last_name\":\"Public\",\"user_id\":\"john.public\",\"email\":\"john.public@company.com\"}' --user \"username\":\"password\"",
+    "functionality": "Inserts incoming data into a specified staging table and triggers transformation based on predefined transform maps in the import set table.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    }
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Import Set - POST /now/import/{stagingTableName}/insertMultiple",
+    "api_call": "servicenow.import_set_post_now_import_staging_table_name_insert_multiple(api_version, stagingTableName, multi_import_set_id, run_after, request_body)",
+    "api_version": "v1",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Version of the API being used."
+      },
+      "stagingTableName": {
+        "data_type": "String",
+        "description": "Name of the import set table from which to import the data."
+      },
+      "multi_import_set_id": {
+        "data_type": "String",
+        "description": "Sys_id of an entry in the Multi Import Sets [sys_multi_import_set] table. If specified, adds the current import to this multiple import set instead of adding to a new multiple import set."
+      },
+      "run_after": {
+        "data_type": "String",
+        "description": "Sys_id of an entry in the Import Sets [sys_import_set] table. Enables running the current import set after the specified import set is complete. You can use this parameter to enforce the sequential order of imports. This parameter is only valid in asynchronous transformations."
+      },
+      "request_body": {
+        "data_type": "Object",
+        "description": "Request body in JSON format containing records to be inserted into the import fields."
+      }
+    },
+    "functionality": "Inserts multiple records into a specified staging table and triggers transformation based on predefined transform maps or Robust Transform Engine (RTE) configurations.",
+    "example_code": "curl \"https://instance.servicenow.com/api/now/import/u_employee_import_set_table/insertMultiple\" --request POST --header \"Accept:application/json\" --header \"Content-Type:application/json\" --data \"{ \\\"records\\\": [ { \\\"Address\\\": \\\"Hollywood\\\", \\\"Name\\\": \\\"Tom\\\", \\\"ID\\\": \\\"123\\\" }, { \\\"Address\\\": \\\"Vine\\\", \\\"Name\\\": \\\"Irene\\\", \\\"ID\\\": \\\"456\\\" } ] }\" --user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    }
   }
 ]
