@@ -10292,5 +10292,252 @@
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
     },
     "example_code": "curl 'https://instance.service-now.com/api/sn_devops_config/devops_config/application' --request POST --header 'Accept:application/json' --header 'Content-Type:application/json' --data '{ \"type\": \"application\", \"appName\": \"Demo Application 1234\", \"appDescription\": \"Description of Demo Application created from REST API\", \"appManufacturerId\": \"262702654725d950a34a3085d36d435e\", \"appModelOwnerId\": \"6816f79cc0a8016401c5a33be04be441\" }' --user 'username':'password'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Email - GET /now/email/{id}",
+    "api_call": "servicenow.get_email_details(api_version, id, sysparm_fields)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "id": {
+        "data_type": "String",
+        "description": "Sys_id of the email for which to return details."
+      },
+      "sysparm_fields": {
+        "data_type": "String",
+        "description": "Comma-separated list of fields to return in the response."
+      }
+    },
+    "functionality": "Returns the email details for the specified email record.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'http://instance.servicenow.com/api/now/email/06e095427f0022007f005212bdfa91b3' --request GET --header 'Accept:application/json' --user 'user-name':'password'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Email - POST /now/email",
+    "api_call": "servicenow.create_email_record(api_version, email_data)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "email_data": {
+        "data_type": "Object",
+        "description": "Data related to the email to be created."
+      }
+    },
+    "functionality": "Creates an email record using the passed information.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'http://instance.servicenow.com/api/now/email' --request POST --header 'Accept:application/json' --header 'Content-Type:application/json' --user 'username':'password' --data '{\n  \"to\": [\n    \"User1 <user1@example.com>\",\n    \"User2 <user2@example.com>\"\n  ],\n  \"cc\": [\n    \"User3 <user3@example.com>\",\n    \"User4 <user4@example.com>\"\n  ],\n  \"bcc\": [\n    \"User5 <user5@example.com>\",\n    \"User6 <user6@example.com>\"\n  ],\n  \"subject\": \"Hello There\",\n  \"text\": \"Test Message\",\n  \"html\": \"<b>Test Message</b>\",\n  \"table_name\": \"incident\",\n  \"table_record_id\": \"136b2140bd0312004d7d1371f1abbdb6\",\n  \"headers\": {\n    \"X-Custom\": \"header\"\n  }\n}'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Entitlement - GET /sn_pss_core/entitlement/{id}",
+    "api_call": "servicenow.retrieve_entitlement_record(api_version, id, display_value)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "id": {
+        "data_type": "String",
+        "description": "Sys_id of the entitlement record to retrieve."
+      },
+      "display_value": {
+        "data_type": "String",
+        "description": "Type of data to return. Valid values: false, true, all."
+      }
+    },
+    "functionality": "Returns the specified entitlement record, its associated coverage, and its latest usage details.",
+    "meta_data": {
+      "tables": [
+        "Characteristics [sn_pss_core_entitlement_characteristic]",
+        "Entitlement [service_entitlement]",
+        "Entitlement Usage [sn_pss_core_entitlement_usage]",
+        "Sold Product Covered [sn_install_base_m2m_contract_sold_product]"
+      ],
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'https://instance.servicenow.com/api/sn_pss_core/entitlement/fc73d2de89226110f877430a4e008' --request GET --header 'Accept:application/json' --user 'username':'password'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Entitlement - POST /sn_pss_core/entitlement",
+    "api_call": "servicenow.create_entitlement_record(api_version, request_body)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "request_body": {
+        "data_type": "JSON",
+        "description": "JSON object containing the details of the entitlement record to be created."
+      }
+    },
+    "functionality": "Creates an entitlement record and all its related detail records.",
+    "meta_data": {
+      "tables": [
+        "Characteristic [sn_pss_core_entitlement_characteristic]",
+        "Entitlement [service_entitlement]",
+        "Entitlement Usage [sn_pss_core_entitlement_usage]",
+        "Sold Products Covered [sn_install_base_m2m_contract_sold_product]"
+      ],
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'https://instance.servicenow.com/api/sn_pss_core/entitlement' --request POST --header 'Accept:application/json' --data '{ \"state\": \"active\", \"entitlement_name\": \"indep entl\", \"account\": \"4c325111d1f53110f8776589fa411f3d\", \"start_date\": \"2023-10-03\", \"end_date\": \"2024-12-03\", \"sold_products_covered\": [ { \"sold_product\": \"0df21151d1f53110f8776589fa411f1b\" } ],  \"install_base_items_covered\": [ { \"install_base\": \"e2639951d1f53110f8776589fa411f2b\" } ], \"entitlement_characteristics\": [ { \"characteristic\": \"63418db7539e61106bfcddeeff7b1238\", \"characteristic_option\": \"495149b7539e61106bfcddeeff7b1262\", \"value\": \"20\", \"type\": \"coverage_and_usage\", \"entitlement_usage\": { \"used_units\": \"25\" } } ] }'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Event Management Topic Open - POST /sn_api_notif_mgmt/topic",
+    "api_call": "servicenow.create_event_management_topic(api_version, contentQuery, externalId, headerQuery, name, namespace)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "contentQuery": {
+        "description": "Filter to apply to the payload of the event. This query is a deeper event filter that is used to find information such as event severity or ticket type.",
+        "data_type": "String"
+      },
+      "externalId": {
+        "description": "Unique external identifier for the topic, such as a GUID.",
+        "data_type": "String"
+      },
+      "headerQuery": {
+        "description": "Filter to apply to the event header properties. This query defines the type of events to listen to for the associated topic.",
+        "data_type": "String"
+      },
+      "name": {
+        "description": "Name of the topic.",
+        "data_type": "String"
+      },
+      "namespace": {
+        "description": "Namespace for the topic. Empty if there is no associated namespace.",
+        "data_type": "String"
+      }
+    },
+    "functionality": "Creates a new record in the Topic table and saves the passed topic information to that record.",
+    "meta_data": {
+      "table": "Topic [sn_api_notif_mgmt_topic]",
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'http://instance.servicenow.com/api/sn_api_notif_mgmt/topic' --request POST --header 'Accept:application/json' --user 'username':'password' --data '{ \"name\": \"HighPriorityTroubleTicket\", \"headerQuery\": \"eventType=TroubleTicketStatusChangeEvent,TroubleTicketAttributeChangeEvent\", \"contentQuery\": \"troubleTicket.ticketType=incident&troubleTicket.severity=1\", \"externalId\": \"ext001\", \"namespace\": \"telecomEvents\" }'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Event Notification Management Open API - POST /{instance_name}/{scope_id}/{GUID}",
+    "api_call": "servicenow.event_notification_management_open_api_post(instance_name, scope_id, GUID, event)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "event": {
+        "data_type": "Object",
+        "description": "Details about the event that occurred.",
+        "properties": {
+          "alarm": {
+            "data_type": "Object",
+            "description": "Details about the associated alarm.",
+            "properties": {
+              "affectedService": {
+                "data_type": "Array",
+                "description": "List of objects identifying one or more services affected by the alarm.",
+                "properties": {
+                  "href": {
+                    "data_type": "String",
+                    "description": "URL reference providing details of the affected service."
+                  },
+                  "id": {
+                    "data_type": "String",
+                    "description": "Identifier of the service affected by the alarm. This value maps to the affected configuration item (CI) on the alert."
+                  }
+                }
+              },
+              "alarmedObject": {
+                "data_type": "Object",
+                "description": "Details of the alarm object.",
+                "properties": {
+                  "href": {
+                    "data_type": "String",
+                    "description": "URL reference to get the details of the alarm object."
+                  },
+                  "id": {
+                    "data_type": "String",
+                    "description": "Unique identifier of the alarm object. This value maps to a CI in the system."
+                  }
+                }
+              },
+              "alarmType": {
+                "data_type": "String",
+                "description": "Type of alarm. Used to categorize the alarm."
+              },
+              "crossedThresholdInformation": {
+                "data_type": "Object",
+                "description": "Details about the crossed threshold.",
+                "properties": {
+                  "thresholdId": {
+                    "data_type": "String",
+                    "description": "Unique identifier of the threshold that caused the alarm."
+                  }
+                }
+              },
+              "externalAlarmId": {
+                "data_type": "String",
+                "description": "Unique identifier for the alarm from the source system posting the alarm."
+              },
+              "href": {
+                "data_type": "String",
+                "description": "URL reference to the alarm."
+              },
+              "id": {
+                "data_type": "String",
+                "description": "Unique identifier of the alarm. Specified by the alarm owning system."
+              },
+              "perceivedSeverity": {
+                "data_type": "String",
+                "description": "Possible severities associated with the alarm."
+              },
+              "probableCause": {
+                "data_type": "String",
+                "description": "Most likely situation to trigger the alarm. Use with alarmType to qualify the alarm."
+              },
+              "sourceSystemId": {
+                "data_type": "String",
+                "description": "Unique identifier of the source system of the alarm."
+              },
+              "specificProblem": {
+                "data_type": "String",
+                "description": "Specific problem that triggers the alarm. Use with probableCause to qualify the alarm."
+              }
+            }
+          }
+        }
+      },
+      "eventType": {
+        "data_type": "String",
+        "description": "Type of event to process.",
+        "required": true,
+        "options": [
+          "AlarmChangeNotification",
+          "AlarmCreateNotification",
+          "AlarmDeleteNotification"
+        ]
+      }
+    },
+    "functionality": "Places the payload of the associated request in the NowMQ queue.",
+    "example_code": "curl -X POST 'https://example.com/api/notification' -H 'Content-Type: application/json' -d '{\"eventType\":\"AlarmCreateNotification\",\"event\":{\"alarm\":{\"id\":\"\",\"externalAlarmId\":\"ext123456\",\"alarmType\":\"QualityOfServiceAlarm\",\"perceivedSeverity\":\"MINOR\",\"alarmedObject\":{\"id\":\"vManage_000000\",\"href\":\"http://api/alarmedobject/000000\"},\"probableCause\":\"Threshold crossed\",\"sourceSystemId\":\"SOURCE_SYSTEM_vManage_00000_000_00\",\"href\":\"http://api/alarm/ROUTER_IF@Cisco-0000-0-0-0-0-00-00-0--Xz0/00@00\",\"specificProblem\":\"Inbound Traffic threshold crossed\",\"crossedThresholdInformation\":{\"thresholdId\":\"12fasdfasdfasd\"},\"affectedService\":[{\"id\":\"SD WAN Enterprise Solutions\",\"href\":\"http://api/service/vlan_dot0_dot0\"}]}}}'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    }
   }
 ]
