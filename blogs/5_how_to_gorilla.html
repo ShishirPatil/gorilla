@@ -67,7 +67,7 @@
                 <!-- Image here -->
                 <div class="Introduction">
                     <p>
-                        Gorilla is a rapidly growing open-source project that connects LLM’s to APIs. We currently have 4 different ways to utilize Gorilla.
+                        Gorilla is a rapidly growing open-source project that connects LLM’s to APIs. We currently have 6 different ways to utilize Gorilla.
                         <ol>
                             <li>Gorilla CLI
                             </li>
@@ -181,25 +181,83 @@
                         <br>If you want to see an in depth walk through of how quantization with llama.cpp is performed under the hood, check out <a href="https://colab.research.google.com/drive/1JP_MN-J1rODo9k_-dR_9c9EnZRCfcVNe?usp=sharing">this Google Colab</a>.  
                     </p>
                     <h5> <a href ="https://github.com/ShishirPatil/gorilla/tree/main/inference#4-private-inference-using-gorilla-hosted-endpoint-on-replicate">Inference with Hosted Endpoint on Replicate</a></h5>
-                    
+
                     <h4 id="gorilla-openfunctions">Gorilla OpenFunctions: Executable API Calls ⚔️</h4>
+                    <i>
+                        Note: If you would like to try out Gorilla Open Functions in a playground-like environment check out <a href="https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd">this Google Colab</a>. 
+                        <br>For more information about the technical details behind Gorilla Open Functions check out <a href="https://gorilla.cs.berkeley.edu/blogs/4_open_functions.html">this blog post</a>!
+                    </i>
                     <p>
-                        However, the promise of retriever-aware training is not fully utilized yet in reality. 
-                        This is mainly because the accuracy of the retriever is not good enough. In other words, 
-                        the recall for the retriever has become a bottleneck for the final performance of the LLM. 
-                        Imagine the model would easily get confused if it got the question to 
-                        “look up whether in Berkeley” but with the supporting documents of “biography of 
-                        Albert Einstein”. Thus, balancing between the recall of the retriever and the frequency 
-                        of updating LLMs is a choice to make.
+                        Gorilla Open Functions returns executable API calls given a specific user query and API documentation. 
+                        It acts as  an open source version of OpenAI’s function calling except with chat completion. 
+                        One key difference is that OpenAI will repeatedly prompt users if arguments are missing in the query but Gorilla Open Functions utilizes chat completion to accurately infer and fill in these missing parameters. 
+                    </p>
+                    <p>
+                        Using Gorilla Open Functions is simple: Install the necessary dependencies, provide a query and a set of functions, and get a response.
+                        <ol>
+                            <li>Install dependencies:
+                                <br><code>pip install openai==0.28.1</code>
+                            </li>
+                            <li> Provide a query and set of functions (example below):
+                                <pre><code>
+                                    query = "Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes"
+                                    function_documentation = {  
+                                        "name": "Uber Carpool",
+                                        "api_name": "uber.ride",
+                                        "description": "Find suitable ride for customers given the location, type of ride, and the amount of time the customer is willing to wait as parameters",
+                                        "parameters": 
+                                            [
+                                                {
+                                                "name": "loc", 
+                                                "description": "location of the starting place of the uber ride"
+                                                }, 
+                                                {
+                                                    "name":"type", 
+                                                    "enum": ["plus", "comfort", "black"], 
+                                                    "description": "types of uber ride user is ordering"
+                                                },
+                                                {
+                                                    "name": "time", 
+                                                    "description": "the amount of time in minutes the customer is willing to wait"
+                                                }
+                                            ]
+                                        }
+                                </code></pre>
+                            </li> 
+                            <li> Define a response function (example below):
+                                <pre><code>
+                                    def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes", model="gorilla-openfunctions-v0", functions=[]):
+                                        openai.api_key = "EMPTY"
+                                        openai.api_base = "http://luigi.millennium.berkeley.edu:8000/v1"
+                                        try:
+                                            completion = openai.ChatCompletion.create(
+                                            model="gorilla-openfunctions-v1",
+                                            temperature=0.0,
+                                            messages=[{"role": "user", "content": prompt}],
+                                            functions=functions,
+                                            )
+                                            return completion.choices[0].message.content
+                                        except Exception as e:
+                                            print(e, model, prompt)
+                                </code></pre>
+                            </li>
+                            <li> Return relevant API call:
+                                <br><code>get_gorilla_response(query, functions=functions)</code>
+                            </li>
+                            <li> Output Example:
+                                <br><code>uber.ride(loc="berkeley", type="plus", time=10)</code>
+                            </li>
+                        </ol>
                     </p>
 
                     <p>
-                        Wrapping Up
-
-                        As with all innovations, retriever-aware training comes with its set of pros and cons. 
-                        But its introduction marks an exciting shift towards creating LLMs that are more adaptable, 
-                        accurate, and less prone to errors. As we continue to refine this methodology, there's 
-                        no doubt that the future of LLM training is brimming with potential.
+                        Also, checkout the following tutorials for running and self hosting OpenFunctions locally!
+                        <ul>
+                            <li> <a href="https://colab.research.google.com/drive/1I9UJoKh9sngE2MfPfQD5kbn2-twq2xvY?usp=sharing">Run OpenFunctions Locally!</a>
+                            </li> 
+                            <li> <a href="https://github.com/ShishirPatil/gorilla/tree/main/openfunctions#self-hosting-openfunctions">Self-Hosting OpenFunctions</a>
+                            </li>
+                        </ul>
 
                     </p>
 
