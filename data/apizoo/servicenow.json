@@ -151,7 +151,6 @@
       }
     },
     "functionality": "Gets the information of a specified agent.",
-    "env_requirements": [],
     "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/<agent_id>\" --request GET --header \"Accept:application/json\" --user 'username':'password'",
     "meta_data": {
       "description": "The Agent Client Collector API provides endpoints to manage actions on available agents and managing policies.",
@@ -174,7 +173,6 @@
       }
     },
     "functionality": "Disables data collection for a specified agent in the up/alive state.",
-    "env_requirements": [],
     "example_code": "curl \"https://instance.service-now.com/api/sn_agent/agents/<agent_id>/data/off\" --request GET --header \"Accept:application/json\" --user 'username':'password'",
     "meta_data": {
       "description": "The Agent Client Collector API provides endpoints to manage actions on available agents and managing policies.",
@@ -1093,7 +1091,6 @@
       }
     },
     "functionality": "Imports external user mappings into an AI Search user mapping table.",
-    "env_requirements": [],
     "example_code": "curl 'https://instance.servicenow.com/api/now/v1/ais/external_content/user_mapping/import_multiple/u_ext_content_user_mapping' \\\n  --request POST \\\n  --user 'username':'password' \\\n  --header 'Accept: application/json' \\\n  --header 'Content-Type: application/json' \\\n  --data '{\n    \"records\": [\n      {\n        \"mapping_value\": \"beth.anglin@example.com\",\n        \"external_user\": [\n          \"ad\\beth-anglin\",\n          \"beth.anglin@sharepoint\"\n        ],\n        \"external_group\": [\n          \"reports\",\n          \"reports-admin\",\n          \"reports-dev\"\n        ]\n      },\n      {}\n    ]\n  }'",
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
@@ -1149,7 +1146,6 @@
       }
     },
     "functionality": "Retrieves a list of all alarm records from the Events [em_event] and Alert [em_alert] tables.",
-    "env_requirements": [],
     "example_code": "curl 'https://instance.servicenow.com/api/sn_ind_tmf642/alarm_mgmt/alarm' \\\n--request GET \\\n--header 'Accept:application/json' \\\n--user 'username':'password'",
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
@@ -1178,7 +1174,6 @@
       }
     },
     "functionality": "Retrieves a specified alarm record from the Events [em_event] or Alert [em_alert] table.",
-    "env_requirements": [],
     "example_code": "curl 'https://instance.servicenow.com/api/sn_ind_tmf642/alarm_mgmt/alarm/001a0ca629078d10f87759e2f69e4c64_2212331' \\\n--request GET \\\n--header 'Accept:application/json' \\\n--user 'username':'password'",
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
@@ -1205,7 +1200,6 @@
       }
     },
     "functionality": "Updates a specified alarm and any associated alert.",
-    "env_requirements": [],
     "example_code": "curl 'https://<instance>.service-now.com/api/sn_ind_tmf642/alarm_mgmt/alarm/6e116bb8db09201087b9a8394b961950_<external-alarm-id>' \\\n--request PATCH \\\n--header 'Accept:application/json' \\\n--header 'Content-Type:application/json' \\\n--data '{\\n     \"href\":\"http://api/alarm/ROUTER_IF@Cisco-0000-0-0-0-0-00-00-0-- Xz0/00@00\",\\n     \"externalAlarmId\":\"<external-alarm-id>\",\\n     \"alarmType\":\"QualityOfServiceAlarm\",\\n     \"type\":\"QualityOfServiceAlarm\",\\n     \"ackState\":\"acknowledged\",\\n     \"perceivedSeverity\":\"MINOR\",\\n     \"probableCause\":\"Threshold crossed\",\\n     \"specificProblem\":\"Inbound Traffic threshold crossed\",\\n     \"alarmedObjectType\":\"ROUTER\",\\n     \"alarmedObject\":{\\n        \"id\":\"vManage_000000\",\\n        \"href\":\" http://api/alarmedobject/000000\"\\n     },\\n     \"sourceSystemId\":\"SOURCE_SYSTEM_vManage_00000_000_00\",\\n     \"alarmDetails\":\"Software Failure on SD-WAN Controller vManage_000000\",\\n     \"alarmEscalation\": false,\\n     \"state\":\"RAISED\",\\n     \"alarmChangedTime\":\"2017-08-15T07:04:15.666Z\",\\n     \"proposedRepairActions\":\"Switch in standby equipment\",\\n     \"alarmReportingTime\":\"2017-06-15T07:04:15.666Z\",\\n     \"alarmRaisedTime\":\"2020-09-15T07:04:15.666Z\",\\n     \"plannedOutageIndication\":\"IN_SERVICE\",\\n     \"serviceAffecting\":true,\\n     \"affectedService\":[\\n        {\\n           \"id\":\"SD WAN Enterprise Solutions\",\\n           \"href\":\"http://api/service/vlan_dot0_dot0\"\\n        },\\n        {\\n           \"id\":\"Santa Clara SD WAN Application Service\",\\n           \"href\":\"http://api/service/vlan_dot0_dot0\"\\n        }\\n     ] \\n }' \\\n--user 'user:'password'",
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
@@ -1228,7 +1222,6 @@
       }
     },
     "functionality": "Creates an alarm record in the Events [em_event] table.",
-    "env_requirements": [],
     "example_code": "curl 'https://<instance>.service-now.com/api/sn_ind_tmf642/alarm_mgmt/alarm' \\\n--request POST \\\n--header 'Accept:application/json' \\\n--header 'Content-Type:application/json' \\\n--data '{\\n     \"href\":\"http://api/alarm/ROUTER_IF@Cisco-0000-0-0-0-0-00-00-0-- Xz0/00@00\",\\n     \"externalAlarmId\":\"<external-alarm-id>\",\\n     \"alarmType\":\"QualityOfServiceAlarm\",\\n     \"type\":\"QualityOfServiceAlarm\",\\n     \"ackState\":\"acknowledged\",\\n     \"perceivedSeverity\":\"CRITICAL\",\\n     \"probableCause\":\"Threshold crossed\",\\n     \"specificProblem\":\"Inbound Traffic threshold crossed\",\\n     \"alarmedObjectType\":\"ROUTER\",\\n     \"alarmedObject\":{\\n        \"id\":\"vManage_000000\",\\n        \"href\":\" http://api/alarmedobject/000000\"\\n     },\\n     \"sourceSystemId\":\"SOURCE_SYSTEM_vManage_00000_000_00\",\\n     \"alarmDetails\":\"Software Failure on SD-WAN Controller vManage_000000\",\\n     \"state\":\"RAISED\",\\n     \"alarmChangedTime\":\"2017-08-15T07:04:15.666Z\",\\n     \"proposedRepairActions\":\"Switch in standby equipment\",\\n     \"alarmReportingTime\":\"2017-06-15T07:04:15.666Z\",\\n     \"alarmRaisedTime\":\"2020-09-15T07:04:15.666Z\",\\n     \"plannedOutageIndication\":\"IN_SERVICE\",\\n     \"serviceAffecting\":true,\\n     \"affectedService\":[\\n        {\\n           \"id\":\"SD WAN Enterprise Solutions\",\\n           \"href\":\"http://api/service/vlan_dot0_dot0\"\\n        },\\n        {\\n           \"id\":\"Santa Clara SD WAN Application Service\",\\n           \"href\":\"http://api/service/vlan_dot0_dot0\"\\n        }\\n     ] \\n }' \\\n--user 'user':'password'",
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
@@ -1253,7 +1246,6 @@
       }
     },
     "functionality": "Clears a specified alarm and closes any associated alert.",
-    "env_requirements": [],
     "example_code": "curl 'https://<instance>.service-now.com/api/sn_ind_tmf642/alarm_mgmt/alarm/6e116bb8db09201087b9a8394b961950_<external-alarm-id>/clear' \\\n--request POST \\\n--header 'Accept:application/json' \\\n--header 'Content-Type:application/json' \\\n--data '{\\n  \"alarmClearedTime\": \"2017-08-15 06:04:15\",\\n  \"clearSystemId\": \"<source_instance_name>\",\\n  \"clearUserId\": \"SOURCE_SYSTEM_vManage_00000_000_00\" \\n}' \\\n--user 'user':'password'",
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
@@ -2155,6 +2147,7 @@
       }
     },
     "functionality": "Sends multiple REST API requests in a single call. You can include any API available on the instance in a Batch API call.",
+    "example_code": "curl \"https://instance.servicenow.com/api/now/v1/batch\" --request POST --header \"Accept:application/json\" --header \"Content-Type:application/json\" --user \"username\":\"password\" --data \"{ \\\"batch_request_id\\\":\\\"1\\\", \\\"rest_requests\\\":[ { \\\"id\\\":\\\"11\\\", \\\"headers\\\":[ { \\\"name\\\":\\\"Content-Type\\\", \\\"value\\\":\\\"application/xml\\\" }, { \\\"name\\\":\\\"Accept\\\", \\\"value\\\":\\\"application/xml\\\" } ], \\\"url\\\":\\\"/api/global/user_role_inheritance\\\", \\\"method\\\":\\\"GET\\\" }, { \\\"id\\\":\\\"12\\\", \\\"exclude_response_headers\\\":true, \\\"headers\\\":[ { \\\"name\\\":\\\"Content-Type\\\", \\\"value\\\":\\\"application/json\\\" }, { \\\"name\\\":\\\"Accept\\\", \\\"value\\\":\\\"application/json\\\" } ], \\\"url\\\":\\\"/api/now/table/incident?sysparm_limit=1\\\", \\\"method\\\":\\\"GET\\\" }, { \\\"id\\\":\\\"13\\\", \\\"exclude_response_headers\\\":true, \\\"headers\\\":[ { \\\"name\\\":\\\"Content-Type\\\", \\\"value\\\":\\\"application/json\\\" }, { \\\"name\\\":\\\"Accept\\\", \\\"value\\\":\\\"application/json\\\" } ], \\\"url\\\": \\\"/api/now/table/incident\\\", \\\"method\\\":\\\"POST\\\", \\\"body\\\": \\\"eyd1cmdlbmN5JzonMScsICdzaG9ydF9kZXNjcmlwdGlvbic6J015IGNvbXB1dGVyIGJyb2tlJywgJ2NvbW1lbnRzJzonRWxldmF0aW5nIHVyZ2VuY3ksIHRoaXMgaXMgYSBibG9ja2luZyBpc3N1ZSd9\\\" } ]}\"",
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
     },
@@ -2296,7 +2289,6 @@
       }
     },
     "functionality": "Retrieve list of possible field values for a choice or reference field for a specified record in the Case table",
-    "env_requirements": [],
     "example_code": "curl 'https://instance.servicenow.com/api/sn_customerservice/case/f352dc9387632300d6b0a7da0acb0b60/field_values/contact' \\ --request GET \\ --header 'Accept: application/json' \\ --user 'username':'password'",
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
@@ -2347,7 +2339,6 @@
       }
     },
     "functionality": "Retrieve list of possible field values for a choice or reference field for a specified record in the Case table",
-    "env_requirements": [],
     "example_code": "curl 'https://instance.servicenow.com/api/sn_customerservice/case/f352dc9387632300d6b0a7da0acb0b60/field_values/contact' \\ --request GET \\ --header 'Accept: application/json' \\ --user 'username':'password'",
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
@@ -3874,7 +3865,6 @@
       }
     },
     "functionality": "Retrieve the list of shared components used by a specified application, with an option to filter for components with new version updates.",
-    "env_requirements": ["CDM Admin role access"],
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
     },
@@ -4069,7 +4059,6 @@
       }
     },
     "functionality": "Associates the specified shared component to the application within a specified changeset.",
-    "env_requirements": ["CDM Admin role access"],
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
     },
@@ -4143,10 +4132,6 @@
       }
     },
     "functionality": "Submits a request to upload the passed-in configuration data for a specific component.",
-    "env_requirements": [
-      "Active application and changeset",
-      "CDM Admin role access"
-    ],
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
     },
@@ -4338,10 +4323,6 @@
       }
     },
     "functionality": "Submits a request to upload the passed-in configuration data for a specific collection, within the system collections folder, for the specified application.",
-    "env_requirements": [
-      "Active application and changeset",
-      "CDM Admin role access"
-    ],
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
     },
@@ -5963,7 +5944,6 @@
       }
     },
     "functionality": "Deletes the change request associated with the specified sys_id.",
-    "env_requirements": ["None"],
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
     },
@@ -6009,7 +5989,6 @@
       }
     },
     "functionality": "Deletes the emergency change request identified by the specified sys_id.",
-    "env_requirements": ["None"],
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
     },
@@ -6106,7 +6085,6 @@
       }
     },
     "functionality": "Retrieves one or more change requests based on the specified criteria.",
-    "env_requirements": ["Role required: sn_change_reader."],
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
     },
@@ -7120,7 +7098,6 @@
       }
     },
     "functionality": "Unregister a non-workflow operator user",
-    "env_requirements": [],
     "example_code": "curl --request DELETE \"https://instance.service-now.com/api/now/cilifecyclemgmt/operators/3cf1b3cc30121010f877773aa7167c6e\" --header \"Accept: application/json\" --user \"username\":\"password\"",
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
@@ -7142,7 +7119,6 @@
       }
     },
     "functionality": "Get active CI actions for a CI",
-    "env_requirements": [],
     "example_code": "curl --request GET 'https://instance.service-now.com/api/now/cilifecyclemgmt/actions/00a9a80d3790200044e0bfc8bcbe5d1c' --header 'Accept: application/json' --user \"username\":\"password\"",
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
@@ -7168,7 +7144,6 @@
       }
     },
     "functionality": "Check if two CI actions are compatible",
-    "env_requirements": [],
     "example_code": "curl --request GET 'https://instance.service-now.com/api/now/cilifecyclemgmt/compatActions?actionName=Patching&otherActionName=Provisioning' --header 'Accept: application/json' --user \"username\":\"password\"",
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
@@ -7198,7 +7173,6 @@
       }
     },
     "functionality": "Check if lease expired for CI action requestor",
-    "env_requirements": [],
     "example_code": "curl --request GET 'https://instance.service-now.com/api/now/cilifecyclemgmt/leases/00a9a80d3790200044e0bfc8bcbe5d1c/expired?actionName=Patching&requestorId=621b5a09309e5010f877773aa7167c0a' --header 'Accept: application/json' --user \"username\":\"password\"",
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
@@ -7480,7 +7454,6 @@
       }
     },
     "functionality": "Inserts records into the Import Set table associated with the data source record identified by the passed-in sys_id.",
-    "env_requirements": ["HTTP client library"],
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
     },
@@ -7756,7 +7729,6 @@
       }
     },
     "functionality": "Returns the meta data for the specified CMDB class.",
-    "env_requirements": [],
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
     },
@@ -8549,7 +8521,6 @@
         "description": "Sys_id of the batch installation plan for which to rollback the installed packages to their previous versions. This value is returned in the links.rollback.id parameter of the /sn_cicd/app/batch/install endpoint."
       }
     },
-    "env_requirements": [],
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
     },
@@ -9194,7 +9165,7 @@
     "user_name": "avichare",
     "api_name": "CTI_API - GET /sn_cti_core/cti_api/call_analysis/{interaction_sys_id}",
     "api_call": "cti_api.get_call_analysis(interaction_sys_id)",
-    "api_version": "Default",
+    "api_version": "v1",
     "api_arguments": {
       "interaction_sys_id": {
         "data_type": "String",
@@ -9202,7 +9173,6 @@
       }
     },
     "functionality": "Renders transcripts and recordings for a specified agent call.",
-    "env_requirements": ["workspace_user", "interaction_agent", "admin role"],
     "meta_data": {
       "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
     },
@@ -9216,7 +9186,7 @@
     "user_name": "avichare",
     "api_name": "CTI_API - POST /sn_cti_core/cti_api/providers/{provider}/components/{component}/versions/{version}",
     "api_call": "cti_api.post_cti_operations(provider, component, version, request_body)",
-    "api_version": "Default",
+    "api_version": "v1",
     "api_arguments": {
       "provider": {
         "data_type": "String",
@@ -9250,7 +9220,7 @@
     "user_name": "avichare",
     "api_name": "CTI API - POST /sn_cti_core/cti_api/softphone/sources/{source}/actor/{actor}/events/{event}",
     "api_call": "servicenow.pass_softphone_event(actor, event, sources)",
-    "api_version": "1.0",
+    "api_version": "v1",
     "api_arguments": {
       "actor": {
         "data_type": "String",
@@ -9275,5 +9245,1052 @@
       "What roles are required to access this endpoint?",
       "Can I customize the events passed from the CCP provider to ServiceNow instance?"
     ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Customer Central - GET /cust_central/custinfo/{context}/{context_instance}/{target}",
+    "api_call": "servicenow.retrieve_customer_info(context, context_instance, target)",
+    "api_version": "v1",
+    "api_arguments": {
+      "context": {
+        "data_type": "String",
+        "description": "Name of the customer context table to use. Valid values: customer_contact, csm_consumer."
+      },
+      "context_instance": {
+        "data_type": "String",
+        "description": "Sys_id of the record in the table specified in the context parameter to return."
+      },
+      "target": {
+        "data_type": "String",
+        "description": "Target table associated with the customer context table specified in the context parameter."
+      }
+    },
+    "functionality": "Returns customer information and configuration details for a specific customer context.",
+    "example_code": "curl \"https://instance.servicenow/api/sn_customercentral/cust_central/custinfo/csm_consumer/a0488cfbdb1b1200b6075200cf9619db/interaction\" --request GET --header \"Accept:application/json\" --user \"username\":\"password\"",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "How can I retrieve customer information for a specific customer context?",
+      "What are the valid values for the customer context table?",
+      "How can I paginate the record retrieval when using this API?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Data Classification - GET /data_classification/getAllDataClasses",
+    "api_call": "servicenow.get_all_data_classes()",
+    "api_version": "1.0",
+    "api_arguments": null,
+    "functionality": "Returns a list of all data classifications available in the current domain.",
+    "example_code": "curl \"https://instance.servicenow.com/api/now/data_classification/getAllDataClasses\" --request GET --header \"Accept:application/json\" --user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What roles are required to access this API?",
+      "Can I filter the list of data classifications returned by this API?",
+      "Is pagination supported for large datasets?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Data Classification - POST /data_classification/classify",
+    "api_call": "servicenow.classify_data(dictionary_entries, data_classes)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "dictionary_entries": {
+        "data_type": "String",
+        "description": "The sys_ids of the records you want to classify. Entered as a comma-separated list enclosed in a string."
+      },
+      "data_classes": {
+        "data_type": "String",
+        "description": "The sys_ids of the data classifications you want to assign. Entered as a comma-separated list enclosed in a string."
+      }
+    },
+    "functionality": "Assigns pre-defined or user-defined data classifications to existing dictionary entries.",
+    "example_code": "curl \"https://instance.servicenow.com/api/now/data_classification/classify\" --request POST --header \"Accept:application/json\" --header \"Content-Type:application/json\" --data \"{\\\"dictionary_entries\\\": \\\"445de0a6dba30300efc57416bf9619b0\\\", \\\"data_classes\\\": \\\"40edb1f51bbcec50b92a10a61a4bcb8a\\\"}\" --user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "What happens if I try to assign a data classification to a dictionary entry that already has a classification?",
+      "Can I classify multiple dictionary entries at once using this API?",
+      "Is there a limit to the number of data classifications I can assign to a dictionary entry?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Data Classification - POST /data_classification/clear",
+    "api_call": "servicenow.clear_data_classification(dictionary_entries)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "dictionary_entries": {
+        "data_type": "String",
+        "description": "The sys_ids of the records you want to remove classifications from. Entered as a comma-separated list enclosed in a string."
+      }
+    },
+    "functionality": "Removes all data classifications for the specified dictionary entries.",
+    "example_code": "curl \"https://instance.servicenow.com/api/now/data_classification/clear\" --request POST --header \"Accept:application/json\" --header \"Content-Type:application/json\" --data \"{\\\"dictionary_entries\\\": \\\"445de0a6dba30300efc57416bf9619b0\\\"}\" --user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "Can I clear data classifications for multiple dictionary entries at once using this API?",
+      "What happens if I try to clear data classifications for a dictionary entry that doesn't have any classifications?",
+      "Is there any way to undo the data classification removal once it's been cleared?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "Data Classification - POST /data_classification/getClassification",
+    "api_call": "servicenow.get_data_classification(dictionary_entries)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "dictionary_entries": {
+        "data_type": "String",
+        "description": "The sys_ids of the records you want to retrieve classifications for. Entered as a comma-separated list enclosed in a string."
+      }
+    },
+    "functionality": "Retrieves all data classifications for the specified dictionary entries.",
+    "example_code": "curl \"https://instance.servicenow.com/api/now/data_classification/getClassification\" --request POST --header \"Accept:application/json\" --header \"Content-Type:application/json\" --data \"{\\\"dictionary_entries\\\": \\\"445de0a6dba30300efc57416bf9619b0\\\"}\" --user 'username':'password'",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "questions": [
+      "Can I retrieve data classifications for multiple dictionary entries at once using this API?",
+      "What format are the data classifications returned in?",
+      "Does this API support filtering data classifications based on specific criteria?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - GET /devops/code/schema",
+    "api_call": "servicenow.get_devops_code_schema(resource)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "resource": {
+        "data_type": "String",
+        "description": "Type of resource schema to return. Valid values: commit, repository, branch."
+      }
+    },
+    "functionality": "Returns the schema object for a specified code resource: commit, repository, or branch.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl \"https://instance.servicenow.com/api/sn_devops/v1/devops/code/schema?resource=branch\" --request GET --header \"Accept:application/json\" --user 'username':'password'",
+    "questions": [
+      "What are the required elements returned in the schema object?",
+      "Can I retrieve the schema for multiple resources at once?",
+      "Are there any limitations or restrictions on the size of the returned schema object?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - GET /devops/onboarding/status",
+    "api_call": "servicenow.get_devops_onboarding_status(id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "id": {
+        "data_type": "String",
+        "description": "Unique identifier of the onboarding event whose status to return. Provided in the return results of the endpoint that invoked the event request."
+      }
+    },
+    "functionality": "Returns the current status of the specified onboarding event which is processed or being processed asynchronously by the DevOps service.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl -X GET \"https://servicenow-instance/api/sn_devops/v1/devops/onboarding/status?id=IBE0001603\" -H \"Accept: application/json\" -H \"Content-Type: application/json\" -u \"username\":\"password\"",
+    "questions": [
+      "How can I track the progress of an onboarding event?",
+      "Is there a way to get more detailed information about the onboarding event, such as error messages?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - GET /devops/orchestration/changeControl",
+    "api_call": "servicenow.get_devops_orchestration_change_control(orchestration_task_name, tool_id, tool_type, test_connection)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "orchestration_task_name": {
+        "data_type": "String",
+        "description": "Name of the orchestration task to check."
+      },
+      "tool_id": {
+        "data_type": "String",
+        "description": "Sys_id of the orchestration tool. Located in the Orchestration Tool [sn_devops_orchestration_tool] table."
+      },
+      "tool_type": {
+        "data_type": "String",
+        "description": "Type of tool. Valid values: jenkins."
+      },
+      "test_connection": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether to test the end-to-end connection between the instance and the DevOps tool."
+      }
+    },
+    "functionality": "Checks if the orchestration task is under change control.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl -X GET \"https://instance.servicenow.com/api/sn_devops/v1/devops/orchestration/changeControl?toolId=f0ca45679323008b52f3b457415ae6&orchestrationTaskName=Platform-Analytics-UAT-Deployment&orchestrationTaskURL=https%253A%252F%252Fjenkins.mycompany.com%253A8080%252Fjob%252FMobile-Platform-deploy%252F&toolType=jenkins\" -H \"accept: application/json\" -u \"username\":\"password\"",
+    "questions": [
+      "What happens if the test_connection parameter is set to true?",
+      "How can I find the tool_id for a specific orchestration tool?",
+      "What does it mean if the status code returned is 401?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - GET /devops/orchestration/changeInfo",
+    "api_call": "servicenow.get_devops_orchestration_change_info(tool_id, build_number, branch_name, pipeline_name, project_name, stage_name)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "tool_id": {
+        "data_type": "String",
+        "description": "Sys_id of the orchestration tool. Located in the Orchestration Tool [sn_devops_orchestration_tool] table."
+      },
+      "build_number": {
+        "data_type": "String",
+        "description": "Pipeline build number within the orchestration tool."
+      },
+      "branch_name": {
+        "data_type": "String",
+        "description": "Name of the branch associated with the orchestration task."
+      },
+      "pipeline_name": {
+        "data_type": "String",
+        "description": "Orchestration pipeline name. Optional for Jenkins Freestyle or Maven projects, required for all others."
+      },
+      "project_name": {
+        "data_type": "String",
+        "description": "Orchestration tool project name. Required for Jenkins Freestyle or Maven projects, optional for all others."
+      },
+      "stage_name": {
+        "data_type": "String",
+        "description": "Orchestration stage name. Optional for Jenkins Freestyle or Maven projects, required for all others. Maximum length: 160"
+      }
+    },
+    "functionality": "Retrieves change request details for a specified orchestration pipeline execution.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl -X GET \"https://instance.servicenow.com/api/sn_devops/v1/devops/orchestration/changeInfo?toolId=1487f457db642810765555535e9619d3&pipelineName=Automation/apps HR/family release&stageName=deployfamilyrelease&buildNumber=1639\"  -H \"accept: application/json\" -u \"username\":\"password\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - GET /devops/orchestration/schema",
+    "api_call": "servicenow.get_devops_orchestration_schema(api_version, resource)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "resource": {
+        "data_type": "String",
+        "description": "Type of resource schema to return. Valid values (not case-sensitive): build_details, callback, orchestration_task, task_execution"
+      }
+    },
+    "functionality": "Returns the schema object for a specified orchestration resource.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl -X GET 'https://instance.servicenow.com/api/sn_devops/v1/devops/orchestration/schema?resource=task_execution' -H 'Accept: application/json' -u 'username':'password'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - GET /devops/orchestration/stepMapping",
+    "api_call": "servicenow.get_devops_orchestration_step_mapping(api_version, branchName, isMultiBranch, parentStageName, parentStageURL, orchestrationTaskName, orchestrationTaskURL, testConnection, toolId, toolType)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "branchName": {
+        "data_type": "String",
+        "description": "Name of the branch associated with the orchestration task."
+      },
+      "isMultiBranch": {
+        "data_type": "Boolean",
+        "description": "If the orchestration tool is Jenkins, flag that indicates whether the project is of type Multibranch. Valid values: true or false. Default: false."
+      },
+      "parentStageName": {
+        "data_type": "String",
+        "description": "If the orchestration task is a child nested inside a parent orchestration task, the name of the parent orchestration task."
+      },
+      "parentStageURL": {
+        "data_type": "String",
+        "description": "If the orchestration task is a child nested inside a parent orchestration task, the URL of the parent orchestration task."
+      },
+      "orchestrationTaskName": {
+        "data_type": "String",
+        "description": "Required. Name of the orchestration task."
+      },
+      "orchestrationTaskURL": {
+        "data_type": "String",
+        "description": "Required. URL of the orchestration task. Must be percent (%) encoded."
+      },
+      "testConnection": {
+        "data_type": "Boolean",
+        "description": "Flag that indicates whether to test the end-to-end connection between the instance and the DevOps tool. Valid values: true or false. Default: false."
+      },
+      "toolId": {
+        "data_type": "String",
+        "description": "Required. Sys_id of the orchestration tool."
+      },
+      "toolType": {
+        "data_type": "String",
+        "description": "Required. Type of tool. Valid value: jenkins."
+      }
+    },
+    "functionality": "Verifies that the information being passed is valid for the creation of an orchestration task and is valid for association to a previously created step.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl -X GET 'https://instance.servicenow.com/api/sn_devops/v1/devops/orchestration/stepMapping?toolId=f0ca45679323008b52f3b457415ae6&orchestrationTaskName=Platform-Analytics-UAT-Deployment&orchestrationTaskURL=https%253A%252F%252Fjenkins.mycompany.com%253A8080%252Fjob%252FMobile-Platform-deploy%252F&toolType=jenkins' -H 'Accept: application/json' -u 'username':'password'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - GET /devops/plan/schema",
+    "api_call": "servicenow.get_devops_plan_schema(api_version, resource)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "resource": {
+        "data_type": "String",
+        "description": "Type of resource schema to return. Valid values: app, version, work_item."
+      }
+    },
+    "functionality": "Returns the schema object for a specific plan: app, version, or work item.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'https://instance.servicenow.com/api/sn_devops/v1/devops/plan/schema?resource=app' --request GET --header 'Accept:application/json' --user 'username':'password'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - POST /devops/artifact/registration",
+    "api_call": "servicenow.create_devops_artifact_registration(api_version, artifacts, orchestration_tool_id, tool_id)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "artifacts": {
+        "data_type": "Array",
+        "description": "Array of objects in which each object uniquely identifies an artifact version to register."
+      },
+      "orchestration_tool_id": {
+        "data_type": "String",
+        "description": "Sys_id of the orchestration tool associated with the artifact. Located in the Orchestration Tool table."
+      },
+      "tool_id": {
+        "data_type": "String",
+        "description": "Sys_id of the artifact tool associated with the artifact. Located in the Artifact Tool table."
+      }
+    },
+    "functionality": "Enables orchestration tools to register artifacts into a ServiceNow instance.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl -X POST 'https://instance.servicenow.com/api/sn_devops/devops/artifact/registration?toolId=391b4ff6dba24010bc8cdd384b96198f&orchestrationToolId=99d70b36dba24010bc8cdd384b961985' -H 'Accept: application/json' -H 'Content-Type: application/json' -u 'username':'password' -d '{ \"artifacts\": [ { \"name\": \"sa-web.jar\", \"version\": \"3.1\", \"semanticVersion\": \"3.1.0\", \"repositoryName\": \"services-1031\" }, { \"name\": \"sa-frontend.jar\", \"version\": \"3.2\", \"semanticVersion\": \"3.2.0\", \"repositoryName\": \"services-1031\" } ], \"pipelineName\": \"spring-boot-app\", \"taskExecutionNumber\": \"160\", \"stageName\": \"Build\", \"branchName\": \"primary\" }'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - POST /devops/onboarding/app",
+    "api_call": "servicenow.create_devops_onboarding_app(api_version, apps, pipelines, repositories, plans, artifact_repositories, credentials)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "apps": {
+        "data_type": "Array",
+        "description": "Array of objects that define the apps to create within the associated ServiceNow instance.",
+        "elements": [
+          {
+            "bussinessApp": {
+              "data_type": "String",
+              "description": "Name of the cmdb_ci_business_app to which map the application. This ties the DevOps application to the specified CMDB application."
+            },
+            "name": {
+              "data_type": "String",
+              "description": "Required. User friendly name of the application to create to create. An app is a DevOps product container object that ties plans, repositories, and pipelines together."
+            }
+          }
+        ]
+      },
+      "credentials": {
+        "data_type": "Object",
+        "description": "Required. Credentials to use for the webhook creation. The created webhook is used by the tool to send notifications.",
+        "elements": {
+          "name": {
+            "data_type": "String",
+            "description": "Required. ServiceNow user ID of the user making the endpoint request. Located in the User [sys_user] table. This user must have the devops.integration.user role. Starting with version 1.34.1, this user must have the sn_devops.admin role."
+          },
+          "password": {
+            "data_type": "String",
+            "description": "Required. Password of the user specified in the credenitals.name parameter."
+          }
+        }
+      },
+      "pipelines": {
+        "data_type": "Array",
+        "description": "Array of objects that define pipelines to associate with applications.",
+        "elements": [
+          {
+            "app": {
+              "data_type": "String",
+              "description": "Required if a pipelines object is specified. Name of the application to associate with the plan specified in the pipelines.name parameter. The application must have already been created or be specified in the apps object of this request."
+            },
+            "name": {
+              "data_type": "String",
+              "description": "Required if a pipelines object is specified. Name of the pipeline to associate with the application specified in pipelines.app parameter. This pipeline must already be discovered on the ServiceNow instance."
+            },
+            "tool": {
+              "data_type": "String",
+              "description": "Required if a pipelines object is specified. Tool to associate with the pipeline to create a unique pipeline/tool identifier."
+            },
+            "changeSteps": {
+              "data_type": "Array",
+              "description": "Array of objects that define the change steps to create for the pipeline specified in the pipelines.name field.",
+              "elements": [
+                {
+                  "changeApprovalGroup": {
+                    "data_type": "String",
+                    "description": "Required if a changeSteps object is specified. Name of the change approval group to associate with the pipeline. Located in the Group [sys_user_group] table. This group must already exist on the ServiceNow instance."
+                  },
+                  "changeControlledBranches": {
+                    "data_type": "String",
+                    "description": "Comma-separated list of code branches that are under change control. This only applies for multi branch support."
+                  },
+                  "changeType": {
+                    "data_type": "String",
+                    "description": "Required if a changeSteps object is specified. Type of change request to create. The available types are defined in the Type field of the Change Request [change_request] table."
+                  },
+                  "name": {
+                    "data_type": "String",
+                    "description": "Required if a changeSteps object is specified. Name of the step to create. The step name must match the name of the corresponding step in the orchestration tool’s pipeline."
+                  },
+                  "type": {
+                    "data_type": "String",
+                    "description": "Required if a changeSteps object is specified. Type of step to create. The available step types are defined in the Type field of the Steps [sn_devops_step] table."
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "plans": {
+        "data_type": "Array",
+        "description": "Array of objects that define a plan to associate with an application.",
+        "elements": [
+          {
+            "app": {
+              "data_type": "String",
+              "description": "Required if a plans object is specified. Names of applications to associate with the plan specified in the plans.name parameter. These applications must have already been created or be specified in the apps object of this request."
+            },
+            "name": {
+              "data_type": "String",
+              "description": "Required if a plans object is specified. Name of the plan to associate with the application specified in plans.app parameter. This plan must already be discovered on the ServiceNow instance."
+            },
+            "tool": {
+              "data_type": "String",
+              "description": "Required if a plans object is specified. Tool to associate with the plan to create a unique plan/tool identifier."
+            },
+            "project": {
+              "data_type": "String",
+              "description": "Required if a plans object is specified and the plans.tool supports projects entity (for example, the ADO tool). Tool to associate with the pipeline to create a unique plans/tool identifier. Parameter value must derive from a project in the Project [sn_devops_project] table."
+            }
+          }
+        ]
+      },
+      "repositories": {
+        "data_type": "Array",
+        "description": "Array of objects that define the repositories associated with an application. If the repositories object contains an app parameter, then it maps the repository to the application.",
+        "elements": [
+          {
+            "app": {
+              "data_type": "String",
+              "description": "Required if a repositories object is specified. Name of the application to associate with this repository. The application must have already been created or be specified in the apps object of this request."
+            },
+            "name": {
+              "data_type": "String",
+              "description": "Required if a repositories object is specified. Name of the repository to associate with the application specified in repositories.app parameter. This repository must already be discovered on the ServiceNow instance."
+            },
+            "tool": {
+              "data_type": "String",
+              "description": "Required if a repositories object is specified. User friendly tool name to associate with the repository to create a unique repository/tool identifier. The tool must already be created on the ServiceNow instance."
+            },
+            "project": {
+              "data_type": "String",
+              "description": "Required if a repositories object is specified and the repositories.tool supports a projects entity (for example, the ADO tool). Tool to associate with the repositories to create a unique repository/tool identifier. Parameter value must derive from a project in the Project [sn_devops_project] table."
+            }
+          }
+        ]
+      },
+      "artifact_repositories": {
+        "data_type": "Array",
+        "description": "Array of objects that define artifact repositories associated with applications.",
+        "elements": [
+          {
+            "app": {
+              "data_type": "String",
+              "description": "Required if the artifactRepositories object is specified. Name of the application to associate with this artifactRepositories. The application must have already been created or be specified in the apps object of this request."
+            },
+            "name": {
+              "data_type": "String",
+              "description": "Required if the artifactRepositories object is specified. Name of the artifactRepositories to associate with the application specified in artifactRepositories.app parameter. This artifactRepositories must already be discovered on the ServiceNow instance."
+            },
+            "tool": {
+              "data_type": "String",
+              "description": "Required if the artifactRepositories object is specified. User friendly tool name to associate with the artifactRepositories to create a unique artifactRepositories /tool identifier. The tool must already be created on the ServiceNow instance."
+            },
+            "project": {
+              "data_type": "String",
+              "description": "Required if the artifactRepositories object is specified and the repositories.tool supports projects entity (for example, the ADO tool). Tool to associate with the artifactRepositories to create a unique pipeline/tool identifier."
+            }
+          }
+        ]
+      }
+    },
+    "functionality": "Creates an onboarding app event that is asynchronously processed by the DevOps service.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl -X POST \"https://servicenow-instance/api/sn_devops/v1/devops/onboarding/app\" -H \"Accept: application/json\" -H \"Content-Type: application/json\" -u \"username\":\"password\" -d \"{\n  \\\"apps\\\": [\n    {\n      \\\"name\\\": \\\"Bike Rental Service\\\"\n    }\n  ],\n  \\\"pipelines\\\": [\n    {\n      \\\"tool\\\": \\\"Primary Jenkins\\\",\n      \\\"name\\\": \\\"Bike Rentals\\\",\n      \\\"app\\\": \\\"Bike Rental Service\\\",\n      \\\"changeSteps\\\": [\n        {\n          \\\"name\\\": \\\"Prod\\\",\n          \\\"type\\\": \\\"deploy\\\",\n          \\\"changeApprovalGroup\\\": \\\"Change Management\\\",\n          \\\"changeType\\\": \\\"normal\\\"\n        }\n      ]\n    }\n  ],\n  \\\"repositories\\\": [\n    {\n      \\\"tool\\\": \\\"Primary GitHub\\\",\n      \\\"name\\\": \\\"nowDevops01/CorpSite\\\",\n      \\\"app\\\": \\\"Bike Rental Service\\\"\n    }\n  ],\n  \\\"plans\\\": [\n    {\n      \\\"tool\\\": \\\"Primary Azure\\\",\n      \\\"name\\\": \\\"testPlan_Bike_Rental\\\",\n      \\\"project\\\": \\\"DemoProjecttt\\\",\n      \\\"apps\\\": [\n        \\\"Bike Rental Service\\\"\n      ]\n    }\n  ],\n  \\\"artifactRepositories\\\": [\n    {\n      \\\"tool\\\": \\\"AdoTool\\\",\n      \\\"name\\\": \\\"empb5-sonar\\\",\n      \\\"apps\\\": [\n        \\\"appXXXXtz\\\"\n      ]\n    }\n  ],\n  \\\"credentials\\\" : {\n    \\\"name\\\": \\\"devops_user\\\",\n    \\\"password\\\": \\\"devops_password\\\"\n  }\n}\""
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - POST /devops/onboarding/tool",
+    "api_call": "servicenow.create_devops_onboarding_tool(api_version, credentials, tools)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "credentials": {
+        "data_type": "Object",
+        "description": "Required. Credentials to use for the webhook creation. The tool uses the created webhook to send notifications.",
+        "elements": {
+          "name": {
+            "data_type": "String",
+            "description": "Required. ServiceNow identifier of the user making the endpoint request. Located in the User [sys_user] table. This user must have the devops.integration.user role. Starting with version 1.34.1, this user must have the sn_devops.admin role."
+          },
+          "password": {
+            "data_type": "String",
+            "description": "Required. Password of the user specified in the credenitals.name parameter."
+          }
+        }
+      },
+      "tools": {
+        "data_type": "Array",
+        "description": "Required. Array of objects that define the tools to create within the associated ServiceNow instance. You can create one or more tools in a single request.",
+        "elements": {
+          "name": {
+            "data_type": "String",
+            "description": "Required. User friendly name or label of the tool to create. This name is used to identify the tool in the DevOps service."
+          },
+          "password": {
+            "data_type": "String",
+            "description": "Required except for Agile tool. Password to use to access the tool. Supported authentications are basic and token; OAuth is not supported."
+          },
+          "type": {
+            "data_type": "String",
+            "description": "Required. Type of tool to create, such as GitHub or BitBucket. The specified value must be one of the Tool labels in the Tool Integrations [sn_devops_tool_integration] table."
+          },
+          "useMidServer": {
+            "data_type": "Boolean",
+            "description": "Flag that indicates whether the tool connects through a MID Server. Valid values: true (Connects through a MID Server), false (Does not connect through a MID Server)."
+          },
+          "username": {
+            "data_type": "String",
+            "description": "Required except for Agile tool. User name to use to access the tool through this endpoint."
+          },
+          "url": {
+            "data_type": "String",
+            "description": "Required except for Agile tool. URL of the tool to create. The DevOps service uses this URL to integrate with the tool."
+          }
+        }
+      }
+    },
+    "functionality": "Creates an onboarding tool event that is asynchronously processed by the DevOps service.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl -X POST \"https://servicenow-instance/api/sn_devops/v1/devops/onboarding/tool\" -H \"Accept: application/json\" -H \"Content-Type: application/json\" -u \"username\":\"password\" -d '{\"tools\":[{\"name\": \"Primary GitHub\",\"type\": \"GitHub\",\"url\": \"https://api.github.com\",\"username\": \"username\",\"password\": \"password\",\"useMidServer\": false }],\"credentials\" : {\"name\": \"devops_user\",\"password\": \"devops_password\"}}'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - POST /devops/orchestration/changeControl",
+    "api_call": "servicenow.register_change_control_callback(api_version, tool_id, tool_type, request_body)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "tool_id": {
+        "data_type": "String",
+        "description": "Required. Sys_id of the DevOps tool for which to place the specified task under change control. Located in the Orchestration Tool sn_devops_orchestration_tool table."
+      },
+      "tool_type": {
+        "data_type": "String",
+        "description": "Type of tool. Valid value: Any value that identifies the tool, such as 'jenkins'."
+      },
+      "request_body": {
+        "data_type": "Object",
+        "description": "Request body parameters for registering a callback with a ServiceNow instance for an orchestration task under change control.",
+        "elements": {
+          "callbackURL": {
+            "data_type": "String",
+            "description": "Required. URL that the ServiceNow instance can call back once the associated change request approval process is complete. This callback should let the pipeline execution continue or not, based on the approval result."
+          },
+          "changeRequestDetails": {
+            "data_type": "Object",
+            "description": "Name-value pairs of the fields to set when closing a change request."
+          },
+          "isMultiBranch": {
+            "data_type": "Boolean",
+            "description": "If the orchestration tool is Jenkins, flag that indicates whether the project is of type Multibranch."
+          },
+          "orchestrationTaskDetails": {
+            "data_type": "Object",
+            "description": "Description of the orchestration task.",
+            "elements": {
+              "message": {
+                "data_type": "String",
+                "description": "Free-form text message."
+              },
+              "triggerType": {
+                "data_type": "String",
+                "description": "Required. The way the orchestration task was started."
+              },
+              "upstreamTaskExecutionURL": {
+                "data_type": "String",
+                "description": "Required if triggerType is set to upstream. Upstream task execution URL."
+              }
+            }
+          },
+          "orchestrationTaskURL": {
+            "data_type": "String",
+            "description": "Required. URL of the orchestration task for which to create the call back."
+          },
+          "parentNode": {
+            "data_type": "Object",
+            "description": "If the orchestration task is a child nested inside a parent orchestration task, this value contains the parent node details."
+          },
+          "parentStageName": {
+            "data_type": "String",
+            "description": "If the orchestration task is a child nested inside a parent orchestration task, the name of the parent orchestration task."
+          },
+          "parentStageURL": {
+            "data_type": "String",
+            "description": "If the orchestration task is a child nested inside a parent orchestration task, the URL of the parent orchestration task."
+          }
+        }
+      }
+    },
+    "functionality": "Registers a callback with a ServiceNow instance for an orchestration task under change control.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl -X POST 'https://instance.servicenow.com/api/sn_devops/v1/devops/orchestration/changeControl?toolId=f0ca45679323008b52f3b457415ae6&toolType=jenkins' -H 'accept: application/json' -H 'Content-Type: application/json' -u 'username:password' -d '{\"orchestrationTaskURL\":\"https://jenkins.mycompany.com:8080/orchestration task/Mobile-Platform-deploy/\",\"callbackURL\":\"https://jenkins.mycompany.com:8080/sn-devops/964aca59-0cae-4d9b-a36d-5929f426cf31\",\"orchestrationTaskDetails\":{\"message\":\"Started by upstream project \\\"Mobile-Platform-test\\\" build number 40\",\"triggerType\":\"upstream\",\"upstreamTaskExecutionURL\":\"https://jenkins.mycompany.com:8080/job/Mobile-Platform-test/40/\"}}'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - POST /devops/orchestration/stepMapping",
+    "api_call": "servicenow.create_orchestration_step_mapping(api_version, tool_id, tool_type, request_body)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "tool_id": {
+        "data_type": "String",
+        "description": "Required. Sys_id of the orchestration tool. Located in the Orchestration Tool [sn_devops_orchestration_tool] table."
+      },
+      "tool_type": {
+        "data_type": "String",
+        "description": "Required. Type of tool. Valid values: jenkins"
+      },
+      "request_body": {
+        "data_type": "Object",
+        "description": "Request body parameters for verifying and creating an orchestration task.",
+        "elements": {
+          "branchName": {
+            "data_type": "String",
+            "description": "Name of the branch associated with the orchestration task."
+          },
+          "isMultiBranch": {
+            "data_type": "Boolean",
+            "description": "If the orchestration tool is Jenkins, flag that indicates whether the project is of type Multibranch."
+          },
+          "parentNode": {
+            "data_type": "Object",
+            "description": "If the orchestration task is a child nested inside a parent orchestration task, this value contains the parent node details."
+          },
+          "parentStageName": {
+            "data_type": "String",
+            "description": "If the orchestration task is a child nested inside a parent orchestration task, the name of the parent orchestration task."
+          },
+          "parentStageURL": {
+            "data_type": "String",
+            "description": "If the orchestration task is a child nested inside a parent orchestration task, the URL of the parent orchestration task."
+          },
+          "orchestrationTaskName": {
+            "data_type": "String",
+            "description": "Required. Name of the orchestration task. This is the same task referenced in the orchestrationTaskURL."
+          },
+          "orchestrationTaskURL": {
+            "data_type": "String",
+            "description": "Required. URL of the orchestration task."
+          }
+        }
+      }
+    },
+    "functionality": "Verifies that the information being passed is valid for the creation of an orchestration task and is valid for association to a previously created step. If both are valid, it creates the orchestration task and makes the association.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl -X POST 'https://instance.servicenow.com/api/sn_devops/v1/devops/orchestration/stepMapping?toolId=f0ca45679323008b52f3b457415ae6&toolType=jenkins' -H 'Accept: application/json' -H 'Content-Type: application/json' -u 'username:password' -d '{\"orchestrationTaskURL\":\"http://127.0.0.1:8090/jenkins/job/CorpSite/job/primary#deploy PROD/\",\"orchestrationTaskName\":\"primary#deploy PROD\"}'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - POST /devops/package/registration",
+    "api_call": "servicenow.register_artifact_package(api_version, orchestration_tool_id, artifact_tool_id, request_body)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access. For example, v1 or v2. Only specify this value to use an endpoint version other than the latest."
+      },
+      "orchestration_tool_id": {
+        "data_type": "String",
+        "description": "Required. Sys_id of the orchestration tool associated with the artifact package. Located in the Orchestration Tool [sn_devops_orchestration_tool] table."
+      },
+      "artifact_tool_id": {
+        "data_type": "String",
+        "description": "Sys_id of the artifact tool associated with the artifact package. Located in the Artifact Tool [sn_devops_artifact_tool] table."
+      },
+      "request_body": {
+        "data_type": "Object",
+        "description": "Request body parameters for registering an artifact package.",
+        "elements": {
+          "name": {
+            "data_type": "String",
+            "description": "Required. Name of package."
+          },
+          "artifacts": {
+            "data_type": "Array",
+            "description": "At least one entry required. Array of objects in which each object uniquely identifies an artifact version to include in the package.",
+            "elements": {
+              "branchName": {
+                "data_type": "String",
+                "description": "Name of the branch associated with the artifact version."
+              },
+              "name": {
+                "data_type": "String",
+                "description": "Required. Artifact file name."
+              },
+              "pipelineName": {
+                "data_type": "String",
+                "description": "Pipeline name."
+              },
+              "projectName": {
+                "data_type": "String",
+                "description": "Free-form project name."
+              },
+              "repositoryName": {
+                "data_type": "String",
+                "description": "Artifact repository name."
+              },
+              "stageName": {
+                "data_type": "String",
+                "description": "Stage name."
+              },
+              "taskExecutionNumber": {
+                "data_type": "String",
+                "description": "Pipeline run number."
+              },
+              "version": {
+                "data_type": "String",
+                "description": "Version of the artifacts."
+              }
+            }
+          }
+        }
+      }
+    },
+    "functionality": "Enables orchestration tools to create new artifact packages that contain specified artifact versions.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl -X POST 'https://instance.servicenow.com/api/sn_devops/devops/package/registration?toolId=f0ca45679323008b52f3b457415ae6' -H 'Accept: application/json' -H 'Content-Type: application/json' -u 'username:password' -d '{\"name\": \"sentimentpackage\",\"artifacts\": [{\"name\": \"sa-web.jar\",\"repositoryName\": \"services-1031\",\"version\": \"3.1\"},{\"name\": \"sa-frontend.jar\",\"repositoryName\": \"services-1031\",\"version\": \"9.2\"}],\"pipelineName\": \"spring-boot-app\",\"taskExecutionNumber\": \"160\",\"stageName\": \"Build\",\"branchName\": \"primary\"}'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - POST /devops/tool/{capability}",
+    "api_call": "servicenow.post_to_inbound_event(api_version, capability, tool_id, request_body)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "capability": {
+        "data_type": "String",
+        "description": "Type of tool passing in the payload to store in the Inbound Event table."
+      },
+      "tool_id": {
+        "data_type": "String",
+        "description": "Required. Sys_id of the tool for which the endpoint is being called."
+      },
+      "request_body": {
+        "data_type": "Object",
+        "description": "Request body parameters specific to the tool."
+      }
+    },
+    "functionality": "Posts the passed-in payload to the Inbound Event table for processing by a custom DevOps subflow.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl -X POST 'https://instance.servicenow.com/api/sn_devops/v1/tool/artifact?toolId=3b59043ee4ea556e6850d61bc1a77e8a' -H 'accept: application/json' -H 'Content-Type: application/json' -u 'username:password' -d '{\"artifacts\": [{\"name\": \"sp-boot-app\",\"version\": \"1.320\",\"semanticVersion\": \"1.320.0\",\"repositoryName\": \"sp-boot-app-repo\"}],\"pipelineName\": \"spring-boot-app-gitea\",\"taskExecutionNumber\": \"320\",\"stageName\": \"Build\"}'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - POST /devops/tool/event/{sn_tool_id}",
+    "api_call": "servicenow.post_to_devops_event(api_version, sn_tool_id, request_body)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "sn_tool_id": {
+        "data_type": "String",
+        "description": "Sys_id of the tool to use for the request."
+      },
+      "request_body": {
+        "data_type": "Object",
+        "description": "Request body parameters specific to the tool. The payload can be located in the tool under the webhook information."
+      }
+    },
+    "functionality": "Posts the passed-in payload from GitHub, Jira, or Bitbucket to the Events [sn_devops_event] table for processing by a pre-built subflow.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'https://instance.service-now.com/api/sn_devops/devops/tool/event/46a07b2f471e011028c23a34846d43b2' --request POST --header 'Accept:application/json' --header 'Content-Type:application/json' --data '{\"ref\": \"refs/heads/master\",\"before\": \"59078a17cad1f4129754971c808d6c399b6141a5\",\"after\": \"b7957bab20835449c4d597fee24075a9a5a2c099\",\"repository\": {\"id\": 252146476,\"node_id\": \"MDEwOlJlcG9zaXRvcnkyNTIxNDY0NzY=\",\"name\": \"test\",\"full_name\": \"Xyz002/test\",\"private\": false,\"owner\": {\"name\": \"Xyz002\",\"email\": \"62993516+Xyz002@users.noreply.github.com\",\"login\": \"Xyz002\",\"id\": 62993516,\"node_id\": \"MDQ6VXNlcjYyOTkzNTE2\",\"avatar_url\": \"https://avatars.githubusercontent.com/u/62993516?v=4\",\"gravatar_id\": \"\",\"url\": \"https://api.github.com/users/Xyz002\",\"html_url\": \"https://github.com/Xyz002\",\"followers_url\": \"https://api.github.com/users/Xyz002/followers\",\"following_url\": \"https://api.github.com/users/Xyz002/following{/other_user}\",\"gists_url\": \"https://api.github.com/users/Xyz002/gists{/gist_id}\",\"starred_url\": \"https://api.github.com/users/Xyz002/starred{/owner}{/repo}\",\"subscriptions_url\": \"https://api.github.com/users/Xyz002/subscriptions\",\"organizations_url\": \"https://api.github.com/users/Xyz002/orgs\",\"repos_url\": \"https://api.github.com/users/Xyz002/repos\",\"events_url\": \"https://api.github.com/users/Xyz002/events{/privacy}\",\"received_events_url\": \"https://api.github.com/users/Xyz002/received_events\",\"type\": \"User\",\"site_admin\": false},\"html_url\": \"https://github.com/Xyz002/test\",\"description\": null,\"fork\": false,\"url\": \"https://github.com/Xyz002/test\",\"forks_url\": \"https://api.github.com/repos/Xyz002/test/forks\",\"keys_url\": \"https://api.github.com/repos/Xyz002/test/keys{/key_id}\",\"collaborators_url\": \"https://api.github.com/repos/Xyz002/test/collaborators{/collaborator}\",\"teams_url\": \"https://api.github.com/repos/Xyz002/test/teams\",\"hooks_url\": \"https://api.github.com/repos/Xyz002/test/hooks\",\"issue_events_url\": \"https://api.github.com/repos/Xyz002/test/issues/events{/number}\",\"events_url\": \"https://api.github.com/repos/Xyz002/test/events\",\"assignees_url\": \"https://api.github.com/repos/Xyz002/test/assignees{/user}\",\"branches_url\": \"https://api.github.com/repos/Xyz002/test/branches{/branch}\",\"tags_url\": \"https://api.github.com/repos/Xyz002/test/tags\",\"blobs_url\": \"https://api.github.com/repos/Xyz002/test/git/blobs{/sha}\",\"git_tags_url\": \"https://api.github.com/repos/Xyz002/test/git/tags{/sha}\",\"git_refs_url\": \"https://api.github.com/repos/Xyz002/test/git/refs{/sha}\",\"trees_url\": \"https://api.github.com/repos/Xyz002/test/git/trees{/sha}\",\"statuses_url\": \"https://api.github.com/repos/Xyz002/test/statuses/{sha}\",\"languages_url\": \"https://api.github.com/repos/Xyz002/test/languages\",\"stargazers_url\": \"https://api.github.com/repos/Xyz002/test/stargazers\",\"contributors_url\": \"https://api.github.com/repos/Xyz002/test/contributors\",\"subscribers_url\": \"https://api.github.com/repos/Xyz002/test/subscribers\",\"subscription_url\": \"https://api.github.com/repos/Xyz002/test/subscription\",\"commits_url\": \"https://api.github.com/repos/Xyz002/test/commits{/sha}\",\"git_commits_url\": \"https://api.github.com/repos/Xyz002/test/git/commits{/sha}\",\"comments_url\": \"https://api.github.com/repos/Xyz002/test/comments{/number}\",\"issue_comment_url\": \"https://api.github.com/repos/Xyz002/test/issues/comments{/number}\",\"contents_url\": \"https://api.github.com/repos/Xyz002/test/contents/{+path}\",\"compare_url\": \"https://api.github.com/repos/Xyz002/test/compare/{base}...{head}\",\"merges_url\": \"https://api.github.com/repos/Xyz002/test/merges\",\"archive_url\": \"https://api.github.com/repos/Xyz002/test/{archive_format}{/ref}\",\"downloads_url\": \"https://api.github.com/repos/Xyz002/test/downloads\",\"issues_url\": \"https://api.github.com/repos/Xyz002/test/issues{/number}\",\"pulls_url\": \"https://api.github.com/repos/Xyz002/test/pulls{/number}\",\"milestones_url\": \"https://api.github.com/repos/Xyz002/test/milestones{/number}\",\"notifications_url\": \"https://api.github.com/repos/Xyz002/test/notifications{?since,all,participating}\",\"labels_url\": \"https://api.github.com/repos/Xyz002/test/labels{/name}\",\"releases_url\": \"https://api.github.com/repos/Xyz002/test/releases{/id}\",\"deployments_url\": \"https://api.github.com/repos/Xyz002/test/deployments\",\"created_at\": 1585737871,\"updated_at\": \"2022-01-04T14:37:36Z\",\"pushed_at\": 1648103939,\"git_url\": \"git://github.com/Xyz002/test.git\",\"ssh_url\": \"git@github.com:Xyz002/test.git\",\"clone_url\": \"https://github.com/Xyz002/test.git\",\"svn_url\": \"https://github.com/Xyz002/test\",\"homepage\": null,\"size\": 1378,\"stargazers_count\": 0,\"watchers_count\": 0,\"language\": \"Java\",\"has_issues\": true,\"has_projects\": true,\"has_downloads\": true,\"has_wiki\": true,\"has_pages\": false,\"forks_count\": 0,\"mirror_url\": null,\"archived\": false,\"disabled\": false,\"open_issues_count\": 2,\"license\": null,\"allow_forking\": true,\"is_template\": false,\"topics\": [],\"visibility\": \"public\",\"forks\": 0,\"open_issues\": 2,\"watchers\": 0,\"default_branch\": \"master\",\"stargazers\": 0,\"master_branch\": \"master\"},\"pusher\": {\"name\": \"Xyz002\",\"email\": \"62993516+Xyz002@users.noreply.github.com\"},\"sender\": {\"login\": \"Xyz002\",\"id\": 62993516,\"node_id\": \"MDQ6VXNlcjYyOTkzNTE2\",\"avatar_url\": \"https://avatars.githubusercontent.com/u/62993516?v=4\",\"gravatar_id\": \"\",\"url\": \"https://api.github.com/users/Xyz002\",\"html_url\": \"https://github.com/Xyz002\",\"followers_url\": \"https://api.github.com/users/Xyz002/followers\",\"following_url\": \"https://api.github.com/users/Xyz002/following{/other_user}\",\"gists_url\": \"https://api.github.com/users/Xyz002/gists{/gist_id}\",\"starred_url\": \"https://api.github.com/users/Xyz002/starred{/owner}{/repo}\",\"subscriptions_url\": \"https://api.github.com/users/Xyz002/subscriptions\",\"organizations_url\": \"https://api.github.com/users/Xyz002/orgs\",\"repos_url\": \"https://api.github.com/users/Xyz002/repos\",\"events_url\": \"https://api.github.com/users/Xyz002/events{/privacy}\",\"received_events_url\": \"https://api.github.com/users/Xyz002/received_events\",\"type\": \"User\",\"site_admin\": false},\"created\": false,\"deleted\": false,\"forced\": false,\"base_ref\": null,\"compare\": \"https://github.com/Xyz002/test/compare/59078a17cad1...b7957bab2083\",\"commits\": [{\"id\": \"b7957bab20835449c4d597fee24075a9a5a2c099\",\"tree_id\": \"fa8d699762ec0a25868fa1ab4d299da392f0a974\",\"distinct\": true,\"message\": \"updated this file\",\"timestamp\": \"2022-03-24T12:08:59+05:30\",\"url\": \"https://github.com/Xyz002/test/commit/b7957bab20835449c4d597fee24075a9a5a2c099\",\"author\": {\"name\": \"Xyz002\",\"email\": \"62993516+Xyz002@users.noreply.github.com\",\"username\": \"Xyz002\"},\"committer\": {\"name\": \"GitHub\",\"email\": \"noreply@github.com\",\"username\": \"web-flow\"},\"added\": [],\"removed\": [],\"modified\": [\"README.me\"]}],\"head_commit\": {\"id\": \"b7957bab20835449c4d597fee24075a9a5a2c099\",\"tree_id\": \"fa8d699762ec0a25868fa1ab4d299da392f0a974\",\"distinct\": true,\"message\": \"updated this file\",\"timestamp\": \"2022-03-24T12:08:59+05:30\",\"url\": \"https://github.com/Xyz002/test/commit/b7957bab20835449c4d597fee24075a9a5a2c099\",\"author\": {\"name\": \"Xyz002\",\"email\": \"62993516+Xyz002@users.noreply.github.com\",\"username\": \"Xyz002\"},\"committer\": {\"name\": \"GitHub\",\"email\": \"noreply@github.com\",\"username\": \"web-flow\"},\"added\": [],\"removed\": [],\"modified\": [\"README.me\"]}}' --user 'username:password'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - PUT /devops/orchestration/changeControl/{changeControlId}",
+    "api_call": "servicenow.update_orchestration_change_control(api_version, changeControlId, toolId, request_body)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "changeControlId": {
+        "data_type": "String",
+        "description": "Sys_id of the change control task."
+      },
+      "toolId": {
+        "data_type": "String",
+        "description": "Sys_id of the DevOps tool associated with the change control task."
+      },
+      "request_body": {
+        "data_type": "Object",
+        "description": "Request body parameters for updating the change control task."
+      }
+    },
+    "functionality": "Updates the change control information for the specified orchestration task.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl -X PUT 'https://instance.service-now.com/api/sn_devops/v1/devops/orchestration/change/f0ca45679323008b52f3b457415ae6?toolId=f0ca45679323008b52f3b457415ae6' -H 'accept: application/json' -H 'Content-Type: application/json' -u 'username:password' -d '{\"orchestrationTaskURL\":\"https://jenkins.mycompany.com:8080/job/Mobile-Platform-deploy/\",\"toolType\":\"jenkins\",\"callbackURL\":\"https://jenkins.mycompany.com:8080/sn-devops/964aca59-0cae-4d9b-a36d-5929f426cf31\",\"orchestrationTaskDetails\":{\"message\":\"Started by upstream project \\\"Mobile-Platform-test\\\" build number 40\",\"triggerType\":\"upstream\",\"upstreamTaskExecutionURL\":\"https://jenkins.mycompany.com:8080/job/Mobile-Platform-test/40/\"}}'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps - PUT /devops/orchestration/changeInfo/{changeInfo}",
+    "api_call": "servicenow.update_orchestration_change_info(api_version, changeInfo, changeRequestNumber, request_body)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "changeInfo": {
+        "data_type": "String",
+        "description": "The identifier for the change information."
+      },
+      "changeRequestNumber": {
+        "data_type": "String",
+        "description": "Change request number associated with the orchestration task to update."
+      },
+      "request_body": {
+        "data_type": "String",
+        "description": "Name-value pairs for the field(s) to update in the associated change request."
+      }
+    },
+    "functionality": "Updates fields in a specified change request.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl -X PUT 'https://instance.servicenow.com/api/sn_devops/v1/devops/orchestration/changeInfo?changeRequestNumber=CHG0030023' -H 'accept: application/json' -u 'username:password' -d '{\"short_description\": \"Test description\", \"priority\": \"1\", \"start_date\": \"2021-02-05 08:00:00\", \"end_date\": \"2022-04-05 08:00:00\", \"justification\": \"test justification\", \"description\": \"test description\", \"cab_required\": true, \"comments\": \"This update for work notes is from jenkins file\", \"work_notes\": \"test work notes\", \"assignment_group\": \"a715cd759f2002002920bde8132e7018\" }'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps Config - DELETE /devops_config/application/{appid}",
+    "api_call": "servicenow.delete_devops_application(api_version, appid)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "appid": {
+        "data_type": "String",
+        "description": "Sys_id of the application to delete."
+      }
+    },
+    "functionality": "Deletes an application.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'https://instance.service-now.com/api/sn_devops_config/devops_config/application/38e17dc3473d111072566862736d43c7' --request DELETE --header 'Accept:application/json' --user 'username':'password'",
+    "questions": [
+      "What precautions should be taken before deleting an application?"
+    ]
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps Config - GET /devops_config/application/{appid}",
+    "api_call": "servicenow.get_devops_application(api_version, appid)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "appid": {
+        "data_type": "String",
+        "description": "Sys_id of the application to retrieve."
+      }
+    },
+    "functionality": "Retrieves an application.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'https://instance.service-now.com/api/sn_devops_config/devops_config/application/18a17de3283d15107256686277777777' --request GET --header 'Accept:application/json' --user 'username':'password'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps Config - PATCH /devops_config/application/{appid}",
+    "api_call": "servicenow.update_devops_application(api_version, appid, appDescription, appManagedByGroups, appManufacturerId, appModelOwnerId)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "appid": {
+        "data_type": "String",
+        "description": "Sys_id of the application to update."
+      },
+      "appDescription": {
+        "data_type": "String",
+        "description": "Description of the application."
+      },
+      "appManagedByGroups": {
+        "data_type": "String",
+        "description": "Comma-separated list of sys_ids of the groups that manage the application."
+      },
+      "appManufacturerId": {
+        "data_type": "String",
+        "description": "Sys_id of the manufacturer."
+      },
+      "appModelOwnerId": {
+        "data_type": "String",
+        "description": "Sys_id of the application model owner."
+      }
+    },
+    "functionality": "Updates an application.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'https://instance.service-now.com/api/sn_devops_config/devops_config/application/38e17dc3473d111072566862736d43c7' --request PATCH --header 'Accept:application/json' --header 'Content-Type:application/json' --data '{ \"appDescription\": \"Updated description of Demo Application created from REST API\", \"appManufacturerId\": \"262702654725d950a34a3085d36d435e\", \"appModelOwnerId\": \"6816f79cc0a8016401c5a33be04be441\" }' --user 'username':'password'"
+  },
+  {
+    "user_name": "avichare",
+    "api_name": "DevOps Config - POST /devops_config/application",
+    "api_call": "servicenow.create_devops_application(api_version, appDescription, appManagedByGroups, appManufacturerId, appModelId, appModelName, appModelOwnerId, appName, appServiceId, appServiceName, technicalServiceId, type)",
+    "api_version": "1.0",
+    "api_arguments": {
+      "api_version": {
+        "data_type": "String",
+        "description": "Optional. Version of the endpoint to access."
+      },
+      "appDescription": {
+        "data_type": "String",
+        "description": "Description of the application."
+      },
+      "appManagedByGroups": {
+        "data_type": "String",
+        "description": "Comma-separated list of sys_ids of the groups that manage the application."
+      },
+      "appManufacturerId": {
+        "data_type": "String",
+        "description": "Sys_id of the manufacturer."
+      },
+      "appModelId": {
+        "data_type": "String",
+        "description": "Sys_id of an existing application model to use to create the application."
+      },
+      "appModelName": {
+        "data_type": "String",
+        "description": "Name of an existing application model to use to create the application."
+      },
+      "appModelOwnerId": {
+        "data_type": "String",
+        "description": "Sys_id of the application model owner."
+      },
+      "appName": {
+        "data_type": "String",
+        "description": "Name of the application."
+      },
+      "appServiceId": {
+        "data_type": "String",
+        "description": "Sys_id of an existing application service to use to create the application."
+      },
+      "appServiceName": {
+        "data_type": "String",
+        "description": "Name of an existing application service to use to create the application."
+      },
+      "technicalServiceId": {
+        "data_type": "String",
+        "description": "Sys_id of an existing dynamic CI group to use to create the application."
+      },
+      "type": {
+        "data_type": "String",
+        "description": "The type of application to create."
+      }
+    },
+    "functionality": "Creates an application.",
+    "meta_data": {
+      "documentation_link": "https://docs.servicenow.com/bundle/washingtondc-api-reference/page/build/applications/concept/api-rest.html"
+    },
+    "example_code": "curl 'https://instance.service-now.com/api/sn_devops_config/devops_config/application' --request POST --header 'Accept:application/json' --header 'Content-Type:application/json' --data '{ \"type\": \"application\", \"appName\": \"Demo Application 1234\", \"appDescription\": \"Description of Demo Application created from REST API\", \"appManufacturerId\": \"262702654725d950a34a3085d36d435e\", \"appModelOwnerId\": \"6816f79cc0a8016401c5a33be04be441\" }' --user 'username':'password'"
   }
 ]
