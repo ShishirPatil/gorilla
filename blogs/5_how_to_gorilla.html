@@ -262,24 +262,30 @@
                     </p>
 
                     <h4 id="integrate-third-party">Integrating Gorilla with Third Party Libraries 🦜</h4>
+                    <i> For a self contained walkthrough on how to integrate Gorilla with Langchain check out <a href="https://colab.research.google.com/drive/11HJWR3ylG1HSE2v78W1gRK-dKkSA0pHe">this Google Colab</a>. </i>
                     <p>
-                        However, the promise of retriever-aware training is not fully utilized yet in reality. 
-                        This is mainly because the accuracy of the retriever is not good enough. In other words, 
-                        the recall for the retriever has become a bottleneck for the final performance of the LLM. 
-                        Imagine the model would easily get confused if it got the question to 
-                        “look up whether in Berkeley” but with the supporting documents of “biography of 
-                        Albert Einstein”. Thus, balancing between the recall of the retriever and the frequency 
-                        of updating LLMs is a choice to make.
-                    </p>
-
-                    <p>
-                        Wrapping Up
-
-                        As with all innovations, retriever-aware training comes with its set of pros and cons. 
-                        But its introduction marks an exciting shift towards creating LLMs that are more adaptable, 
-                        accurate, and less prone to errors. As we continue to refine this methodology, there's 
-                        no doubt that the future of LLM training is brimming with potential.
-
+                        Integrate Gorilla with Langchain for easy deployment in less than 10 lines of code. 
+                        Install dependencies, create a langchain agent and start prompting!
+                        <ol>
+                            <li> Install dependencies:
+                                <br><code>pip install transformers[sentencepiece] datasets langchain openai==0.28.1 &> /dev/null</code>
+                            </li>
+                            <li>Define Langchain Chat Agent:
+                                <pre><code>
+                                    from langchain.chat_models import ChatOpenAI
+                                    chat_model = ChatOpenAI(
+                                        openai_api_base="http://zanino.millennium.berkeley.edu:8000/v1",
+                                        openai_api_key="EMPTY",
+                                        model="gorilla-7b-hf-v1",
+                                        verbose=True
+                                    )
+                                </code></pre>
+                            </li> 
+                            <li> Prompt:
+                                <br><code>example = chat_model.predict("I want to translate from English to Chinese")</code>
+                                <br><code>print(example)</code>
+                            </li>
+                        </ol>
                     </p>
 
                     <h4 id="api-zoo">Gorilla API Zoo Index 📖</h4>
