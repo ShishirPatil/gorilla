@@ -124,23 +124,64 @@
                     </p>
                     <h4 id="gorilla-inference"><a href="https://github.com/ShishirPatil/gorilla/tree/main/inference">Gorilla Inference 🦍 </a></h4>
                     <p>
-                        With the above challenges in mind, retriever-aware training was introduced. 
-                        The principle behind this method is to append additional supporting documentation to the user's prompt, 
-                        such as "Use this API documentation for reference: <retrieved_API_doc_JSON>." 
-                        The goal is to teach the LLM to utilize the supporting documents provided 
-                        (the reference to API documentation) to generate a more informed answer to the first half.
-
-                        The advantages of this approach are manifold:
-
-                        <ul>
-                            <li>Adaptability: The model becomes more adaptable to changes in API documentation at test-time. This means that even if an API undergoes changes, the model can reference the latest documentation to provide accurate responses.
-                            </li>
-                            <li>Improved In-Context Learning: By referencing external documentation, the LLM can go beyond its inherent knowledge and pull from real-time data, leading to more accurate and updated responses.
-                            </li>
-                            <li>Reduction in Hallucination: A key benefit noted was the reduction in hallucination errors. By grounding responses in real-time data, the chances of the LLM generating false or unrelated information diminish.
-                            </li>
-                        </ul>
+                        <i>Note: If you would like to try out zero-shot Gorilla in a playground-like environment check out <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">this Google Colab</a>. 
+                        </i>
+                        <br>
+                        <br>Running inference with gorilla is now supported on both hosted endpoints and locally! Inference with Gorilla can be done in 3 primary modalities: 
+                            <ol>
+                                <li>CLI inference (Single and Batched Prompt Inference)
+                                </li>
+                                <li>Local Inference with Quantized Models
+                                </li>
+                                <li> <a href="https://github.com/ShishirPatil/gorilla/tree/main/inference#4-private-inference-using-gorilla-hosted-endpoint-on-replicate">Inference with Hosted Endpoint on Replicate</a>
+                                </li>
+                            </ol>
                     </p>
+                    <h5> <a href="https://github.com/ShishirPatil/gorilla/tree/main/inference#1-inference-using-cli"> CLI Inference</a>: Install dependencies, download model, prompt! </h5>
+                    <p>
+                            <br><code>conda create -n gorilla python=3.10</code>
+                            <br><code>conda activate gorilla</code>
+                            <br><code>pip install -r requirements.txt</code>
+                            <br>
+                            <br>At this point you have multiple options as to which Gorilla Model you would like to use. 
+                            In order to comply with the Llama license, we have released the Gorilla delta weights, which need to be merged with Llama. 
+                            If you would like to use models out of the box, you can directly download <a href="https://huggingface.co/gorilla-llm/gorilla-mpt-7b-hf-v0">gorilla-mpt-7b-hf-v0</a> and <a href="https://huggingface.co/gorilla-llm/gorilla-falcon-7b-hf-v0">gorilla-falcon-7b-hf-v0</a> from Hugging Face. 
+                            Run the model with:
+                            <br><code>python3 serve/gorilla_falcon_cli.py --model-path path/to/gorilla-falcon-7b-hf-v0</code>
+                            <br> To run inference with <a href="https://github.com/ShishirPatil/gorilla/tree/main/inference#2-batch-inference-on-a-prompt-file">batched prompts</a> (multiple prompts in one batch), create a json file following <a href="https://github.com/ShishirPatil/gorilla/blob/main/inference/example_questions/example_questions.jsonl">this format</a> with all of your prompts.
+                            Get results for your set of prompts by running:
+                            <br><code>python3 gorilla_eval.py --model-path path/to/gorilla-falcon-7b-hf-v0 --question-file path/to/questions.jsonl ----answer-file path/to/answers.jsonl</code>
+                            
+
+                    </p>
+                    <h5> <a href="https://github.com/ShishirPatil/gorilla/tree/main/inference#3-local-inference-of-quantized-models"> Local Inference With Quantized Models</a></h5>
+                    <p>
+                        To support running Gorilla locally, we have released quantized versions of the llama, falcon, and mpt-based versions of Gorilla. 
+                        The easiest way to run Gorilla locally with a clean UI is through <a href="https://github.com/oobabooga/text-generation-webui">text-generation-webui</a>. 
+                        <ol>
+                            <li>Clone text-generation-webui:
+                                <br><code>git clone https://github.com/oobabooga/text-generation-webui.git</code>
+                            </li>
+                            <li>Go to cloned folder and install dependencies:
+                                <br><code>cd text-generation-webui</code>
+                                <br><code>pip install -r requirements.txt</code>
+                            </li>
+                            <li>
+                                Run the following command to start the UI:
+                                <br><code>./start_macos.sh </code>
+                            </li>
+                            <li>
+                                Open a browser and paste the following url:
+                                <br><code>http://127.0.0.1:7860/</code>
+                            </li>
+                        </ol>
+                        <br>From here, navigate to the “Model” tab, select your desired quantized model by pasting the name from <a href="https://huggingface.co/gorilla-llm">this Hugging Face repo</a>. 
+                        For example in the first text field under “Model,” one could paste “gorilla-llm/gorilla-7b-hf-v1-gguf” and then specify the specific model as “gorilla-7b-hf-v1-q3_K_M.gguf.” 
+                        After loading the model, navigate to the “Chat” tab and start prompting!
+                        <br>If you want to see an in depth walk through of how quantization with llama.cpp is performed under the hood, check out <a href="https://colab.research.google.com/drive/1JP_MN-J1rODo9k_-dR_9c9EnZRCfcVNe?usp=sharing">this Google Colab</a>.  
+                    </p>
+                    <h5> <a href ="https://github.com/ShishirPatil/gorilla/tree/main/inference#4-private-inference-using-gorilla-hosted-endpoint-on-replicate">Inference with Hosted Endpoint on Replicate</a></h5>
+                    
                     <h4 id="gorilla-openfunctions">Gorilla OpenFunctions: Executable API Calls ⚔️</h4>
                     <p>
                         However, the promise of retriever-aware training is not fully utilized yet in reality. 
