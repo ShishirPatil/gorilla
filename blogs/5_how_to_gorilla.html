@@ -304,7 +304,7 @@
                                 <ol type="a">
                                     <li>Go to cloned folder</li>
                                     <li><code>cd loras</code></li>
-                                    <li>Upload your desired API’s (stored as a .txt file) into <code>loras</code> directory</li>
+                                    <li>Format your APIs according to <a href="https://github.com/ShishirPatil/gorilla/tree/main/data">this template</a> and upload your desired API’s (stored as a .txt file) into the <code>loras</code> directory</li>
                                     <li><code>pip install -r requirements.txt</code></li>
                                     <li><code>./start_macos.sh</code> and it will open a localhost interface</li>
                                 </ol>
@@ -328,6 +328,17 @@
                                 <ol type="a">
                                     <li>If you would like to speed up inference and have a GPU available on your laptop, increasing <code>n-gpu-layers</code> on the left side of the "Model" tab accelerates inference.</li>
                                 </ol>
+                            </li>
+                        </ol>
+                        To finetune llama-based quantized models, we can directly utilize finetuning functionality in <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> in accordance with the steps below:
+                        <ol>
+                            <li>Format your APIs according to <a href="https://github.com/ShishirPatil/gorilla/tree/main/data">this template</a> and store as a .txt file</li>
+                            <li>Download your desired k-quantized model from <a href="https://huggingface.co/gorilla-llm/gorilla-7b-hf-v1-gguf/tree/main">here</a> to use as the base model (note only llama based models are supported). Make sure you are installing a quantized model (.gguf file format). </li>
+                            <li>Run <code>llama.cpp/finetune --model-base the-model-you-downloaded.gguf --train-data your-training-data.txt</code>
+                                <ol type="a"><li>Refer to <a href="https://github.com/ggerganov/llama.cpp/blob/master/examples/finetune/README.md">llama.cpp documentation</a> for any extra flags you would like to include.</li></ol>
+                            </li>
+                            <li>Run the following command for inference:
+                                <br><code>llama.cpp/main --model the-model-you-downloaded.gguf --lora ggml-lora-LATEST-f32.gguf --prompt "YOUR_PROMPT_HERE"</code>
                             </li>
                         </ol>
                     </p>
