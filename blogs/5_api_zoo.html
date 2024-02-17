@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-NRZJLJCSH6');
+    </script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>The API Zoo: A Keystone for and API Discovery and Building API-connected LLMs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Team-Clean.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;">
+        <a href="../index.html">Home </a>&nbsp;&nbsp;&nbsp;     
+        <a href="../blog.html"> Blog</a>
+    </div>
+    <div class="highlight-clean-blog" style="padding-bottom: 10px;">
+        <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+
+        <div class="box-index">
+            <h3>Blog 4: API Zoo</h3>
+            <ul>
+                <ul>
+                        <li><a href="5_api_zoo.html#enhancing-discovery">Enhancing API Discovery</a></li>
+                        <li><a href="5_api_zoo.html#evolving-apis">Keeping Up with the Evolving Nature of API Documentation</a></li>
+                        <li><a href="5_api_zoo.html#training-data">A Rich Data Source for Model Training</a></li>
+                        <li><a href="5_api_zoo.html#retrieval-inference">Facilitating Retrieval Mode Inference</a></li>
+                        <li><a href="5_api_zoo.html#conclusion">Conclusion</a></li>
+                        <li class="more-blogs">
+                            <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span class="caret">&#9654;</span></a>
+                            <ul class="sub-menu">
+                                <li><a href="1_gorilla_intro.html">Introduction to Gorilla LLM</a></li>
+                                <li><a href="3_retreiver_aware_training.html">Retrieval Aware Training (RAT)</a></li>
+                                <li><a href="4_open_functions.html">Gorilla OpenFunctions</a></li>
+                                <!-- Add more blog entries as needed -->
+                            </ul>
+                        </li>  
+                </ul>
+                <!-- Add more entries as needed -->
+            </ul>
+        </div>
+
+        <div class="blog-container">
+            <div class="blog-post">
+                <h2 class="blog-title">The API Zoo: A Keystone for Building API-connected LLMs</h2>
+                <div class="author-date">
+                    <p class="author"> <a href="https://www.linkedin.com/in/ramanvarma/">Raman Varma</a>  </p>
+                    <p class="date">Date: Feb 16, 2024</p>
+                </div>
+                <div class="preview">
+                    <p>
+                        The rapid pace at which API documentation evolves presents a formidable challenge for the development of LLMs that use tools via API calls. Keeping up with the latest changes, deprecations, and new releases is crucial, yet arduous, necessitating a dynamic repository that can keep pace with these constant updates. The API Zoo emerges as a groundbreaking initiative, serving as a community-maintained repository of up-to-date API documentation. This blog delves into the multifaceted benefits of the API Zoo, particularly highlighting its role in API discovery, adapting to the evolving landscape of API documentation, serving as a rich data source for model training, and facilitating Retrieval Aware Training (RAT) and retrieval mode inference to ensure model relevance over time.
+                    </p>
+                </div>
+
+                <div class="body">
+                    <h4 id="enhancing-discovery">Enhancing API Discovery</h4>
+                    <p>
+                        The API Zoo stands as a vital resource for the discovery of APIs, addressing a critical gap in the development of LLMs that use external tools. Traditionally, developers and researchers face the daunting task of sifting through fragmented documentation across the internet to find suitable APIs for their projects. The API Zoo consolidates this information into a single, accessible location, significantly streamlining the process of identifying relevant APIs. By offering a <a href="/apizoo">comprehensive, searchable index of APIs</a> across various domains and functionalities, the API Zoo not only saves time but also inspires the exploration of new possibilities for enhancing model capabilities. We hope for this centralized repository to be instrumental in encouraging the adoption of APIs via LLMs in novel contexts, thereby expanding the horizons of what LLMs can achieve.
+                    </p>
+
+                    <h4 id="evolving-apis">Keeping Up with the Evolving Nature of API Documentation</h4>
+                    <p>
+                        API documentation is perpetually in flux, with updates, deprecations, and new releases becoming the norm rather than the exception. This dynamic nature poses a significant challenge for LLMs, as the frequency of documentation updates outpaces the retraining or fine-tuning schedule of LLMs. The API Zoo addresses this challenge head-on by providing a platform for continuous community contributions, ensuring that the documentation remains current. This collaborative approach not only keeps the repository up-to-date but also reflects the collective knowledge and expertise of the community, enriching the quality of the documentation available for LLMs. The adaptability of the API Zoo to changes in API documentation ensures that LLMs can maintain their efficacy and accuracy, thereby remaining reliable tools in the ever-evolving landscape of APIs.
+                    </p>
+
+                    <!-- APIs change frequently -->
+                    <p style="text-align: center; margin-bottom: 0">
+                        <img src="../assets/img/blog_post_1_apichange.png" alt="APIs change frequently" width="95%">
+                        <br>
+                    </p>
+                    <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                        <i style="font-size: 0.9em;">
+                            APIs evolve frequently! For example, in just one day, the AWS APIs underwent over 30 modifications.
+                        </i>
+                    </p>
+
+                    <h4 id="training-data">A Rich Data Source for Model Training</h4>
+                    <p>
+                        For those interested in training their own LLMs to use tools via API calls, the API Zoo offers a treasure trove of data. The repository’s structured format, containing detailed API documentation including arguments, versioning, and example usage, provides an ideal dataset for training purposes. This data can be leveraged to teach models about the syntax and semantics of APIs across a wide range of domains, enhancing their ability to interact with external services effectively. Furthermore, the inclusion of meta-data, such as performance metrics for models exposed via ML APIs, and functional descriptions enables LLMs trained on the API Zoo to make informed decisions about which API to call under different circumstances. The API Zoo, therefore, not only facilitates the discovery of APIs but also provides a great source of training data, enabling the development of more sophisticated and capable models.
+                    </p>
+
+                    <h4 id="retrieval-inference">Facilitating Retrieval Mode Inference</h4>
+                    <p>
+                        Another benefit of the API Zoo lies in its application to Retrieval Aware Training (RAT), a novel training methodology that ensures LLMs remain up-to-date with and adapt to the latest API documentation, and retrieval mode inference. You can learn more about RAT in this great <a href="/blogs/3_retriever_aware_training.html">blog post</a>! In short, RAT involves appending additional supporting API documentation to the user's prompt in the following format: "Use this API documentation for reference: &ltretrieved_API_doc_JSON&gt". The goal of this is to teach the LLM to effectively utilize the provided supporting API documentation. Then, in retrieval mode inference, a retriever is used to append the most up-to-date API documentation from the API Zoo to the user prompt, instructing Gorilla to reference this information when making API calls. This approach has several profound implications: it enables the adaptation to documentation changes, enhances model performance compared to in-context learning, and reduces of hallucination error.
+                    </p>
+
+                    <!-- Retrieval Mode Inference  -->
+                    <p style="text-align: center; margin-bottom: 0">
+                        <img src="../assets/img/gorilla_method.png" alt="Gorilla can be used with retrievers, which utilize the API Zoo to retieve up-to-date API documentation" width="75%">
+                        <br>
+                    </p>
+                    <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                        <i style="font-size: 0.9em;">
+                            Gorilla can be used for inference in two modes: <em>zero-shot</em> and retrieval. 
+                            In retrieval mode, the retriever first retrieves the most up-to-date API documentation stored in the API Zoo. 
+                        </i>
+                    </p>
+                    
+                    <p>
+                        The use of RAT and Gorilla's retrieval mode inference, underpinned by the API Zoo, represents a leap forward in developing LLMs that are robust to frequent changes in the information they are designed to process (in this case, API documentation). It not only enhances Gorilla's adaptability and accuracy but also paves the way for more reliable and robust ML systems that can seamlessly interact with a constantly changing ecosystem of APIs.
+                    </p>
+
+                    <h4 id="conclusion">Conclusion</h4>
+                    <p>
+                        By facilitating the discovery of APIs, maintaining a current and comprehensive database of documentation, providing a rich data source for model training, and enabling retrieval mode inference, the API Zoo stands as a foundational component of the larger Gorilla ecosystem. As we continue to explore the vast potential of connecting LLMs to external tools using APIs, we hope that the API Zoo will play a pivotal role in this exciting field. To explore the current state of the API Zoo repository, you can visit the API Zoo Index page <a href="/apizoo">here</a>. To learn more about how to contribute to the API Zoo, please visit our <a href="https://github.com/ShishirPatil/gorilla/tree/main/data">github repo</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: white;
+            justify-content: center;
+            align-items: center;
+        }
+        .blog-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .blog-post {
+            margin: 20px;
+            padding: 20px;
+            max-width: 1000px; 
+            justify-content: center;
+        }
+        .blog-post img {
+            display: block;
+            margin: 0 auto;
+        }
+        .blog-title{
+            color: #055ada;
+            text-align: center;
+        }
+
+        .author-date {
+                display: flex;
+                margin-bottom: 0px;
+                justify-content: center; 
+        }
+        .author {
+                font-size: 16px;
+                color: #1E90FF;
+                margin-right: 20px;
+        }
+
+        .date {
+            font-size: 16px;
+            color: #7e8790;
+        }
+
+        .preview {
+            text-align: justify; 
+            text-justify: inter-word; 
+        }
+
+        .highlight-clean-blog {
+            color: #313437;
+            background-color: #fff;
+            padding: 50px 0;
+        }
+
+        .box-index {
+        position: fixed;
+        top: 50%; 
+        left: 20px; 
+        transform: translateY(-50%);
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 200px;
+        }
+
+        .box-index h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        }
+
+        .box-index ul {
+        list-style-type: disc;
+        padding: 0;
+        }
+
+        .box-index ul li {
+        margin-bottom: 10px;
+        }
+
+        .box-index ul li a {
+        text-decoration: none;
+        color: #333;
+        }
+
+        .box-index ul li a:hover {
+        color: #1E90FF;
+        }
+
+        
+        .more-blogs .sub-menu {
+            display: none;
+        }
+
+        .more-blogs .sub-menu.expanded {
+            display: block;
+            max-height: 200px; /* Adjust the max height as needed */
+            overflow-y: auto;
+        }
+
+        .more-blogs .sub-menu li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .more-blogs .sub-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .more-blogs .caret {
+            transition: transform 0.3s ease-in-out;
+            display: inline-block;
+            transform: rotate(0deg);
+            font-size: 12px; /* Adjust the font size to change the caret size */
+        }
+
+        .more-blogs.expanded .caret {
+            transform: rotate(90deg);
+        }
+
+        @media screen and (max-width: 768px) {
+        .blog-post {
+            padding: 10px; /* Adjust spacing for smaller screens */
+        }
+        .blog-post img {
+            max-width: 80%; /* Reduce image size for smaller screens */
+        }
+        .box-index {
+        display: none; /* Hide the index on smaller screens */
+        }
+    }
+    </style>
+</body>
+</html>
+
+<script>
+    function toggleMoreBlogs() {
+        var subMenu = document.querySelector('.more-blogs .sub-menu');
+        var parentItem = document.querySelector('.more-blogs');
+        subMenu.classList.toggle('expanded');
+        parentItem.classList.toggle('expanded');
+    }
+</script>
