@@ -64,6 +64,7 @@ body {
 }
 .btn-secondary {
     display: block;
+    margin: 15px auto;
     width: fit-content;
     border: 1px solid #ff004f;
     padding: 14px 20px;
@@ -120,10 +121,10 @@ form input, form textarea {
     width: 100%;
     border: 0;
     outline: none;
-    background: #a2a8ae;
+    background: #f0f7ff;
     padding: 15px;
     margin: 15px 0;
-    color: #fff;
+    color: #ababab;
     font-size: 18px;
     border-radius: 6px;
 }
