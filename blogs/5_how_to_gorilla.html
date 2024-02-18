@@ -98,24 +98,24 @@
                 
                 <div class="body">
                     <ol type="I">
-                        <li><h4 id="gorilla-cli"><a href="https://github.com/gorilla-llm/gorilla-cli#usage">Gorilla CLI: Gorilla in Your Command Line 💻</a></h4>
+                        <h4 id="gorilla-cli"><li><a href="https://github.com/gorilla-llm/gorilla-cli#usage">Gorilla CLI: Gorilla in Your Command Line 💻</a></h4>
                         <p>
                             Gorilla CLI simplifies command line interactions by generating candidate commands for your desired task. 
                             Instead of needing to recall verbose commands for various API’s, Gorilla CLI streamlines this process into a simple command: <code>gorilla “your query”</code>. 
                             Moreover, we prioritize confidentiality and full user control, only executing commands with explicit permission from the user and never collecting output data. 
                             <ol>
                                 <li>Get started with pip install: 
-                                    <br><code>pip install gorilla-cli</code>>
+                                    <br><code>pip install gorilla-cli</code>
                                 </li>
                                 <li> Using gorilla CLI to write to files:
                                     <ul>
                                         <li>Command:
                                         <br><code>$ gorilla “generate 100 random characters into a file called text.txt”</code>
                                         </li>
-                                        <li>Output: Using arrow keys, toggle between commands and press <code>Enter</code>
-                                        <br><code>» cat /dev/urandom | env LC_ALL=C tr -dc 'a-zA-Z0-9' | head -c 100 > test.txt </code>
-                                        <br><code>echo $(head /dev/urandom | LC_CTYPE=C tr -dc 'a-zA-Z0-9' | dd bs=100 count=1) > test.txt </code>
-                                        <br><code>dd if=/dev/urandom bs=1 count=100 of=test.txt </code>
+                                        <li>Output: Using arrow keys, toggle between commands and press <kbd>Enter</kbd>
+                                        <br><samp>» cat /dev/urandom | env LC_ALL=C tr -dc 'a-zA-Z0-9' | head -c 100 > test.txt </samp>
+                                        <br><samp>echo $(head /dev/urandom | LC_CTYPE=C tr -dc 'a-zA-Z0-9' | dd bs=100 count=1) > test.txt </samp>
+                                        <br><samp>dd if=/dev/urandom bs=1 count=100 of=test.txt </samp>
                                         </li>
                                     </ul>
                                 </li>
@@ -125,15 +125,15 @@
                                         <br><code>$ gorilla “list all my GCP instances”</code>
                                         </li>
                                         <li>Output: 
-                                        <br><code>» gcloud compute instances list --format="table(name,zone,status)"</code>
-                                        <br><code>gcloud compute instances list --format table </code>
-                                        <br><code>gcloud compute instances list --format="table(name, zone, machineType, status)" </code>
+                                        <br><samp>» gcloud compute instances list --format="table(name,zone,status)"</samp>
+                                        <br><samp>gcloud compute instances list --format table </samp>
+                                        <br><samp>gcloud compute instances list --format="table(name, zone, machineType, status)" </samp>
                                         </li>
                                     </ul>
                                 </li>
                             </ol>
                         </p> </li>
-                        <li><h4 id="gorilla-inference"><a href="https://github.com/ShishirPatil/gorilla/tree/main/inference">Gorilla Inference 🦍 </a></h4>
+                        <h4 id="gorilla-inference"><li><a href="https://github.com/ShishirPatil/gorilla/tree/main/inference">Gorilla Inference 🦍 </a></h4>
                         <p>
                             <i>Note: If you would like to try out zero-shot Gorilla in a playground-like environment check out <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">this Google Colab</a>. 
                             </i>
@@ -192,9 +192,40 @@
                             After loading the model, navigate to the “Chat” tab and start prompting!
                             <br>If you want to see an in depth walk through of how quantization with llama.cpp is performed under the hood, check out <a href="https://colab.research.google.com/drive/1JP_MN-J1rODo9k_-dR_9c9EnZRCfcVNe?usp=sharing">this Google Colab</a>.  
                         </p>
-                        <h5> <a href ="https://github.com/ShishirPatil/gorilla/tree/main/inference#4-private-inference-using-gorilla-hosted-endpoint-on-replicate">Inference with Hosted Endpoint on Replicate</a></h5></li>
+                        <h5> <a href ="https://github.com/ShishirPatil/gorilla/tree/main/inference#4-private-inference-using-gorilla-hosted-endpoint-on-replicate">Inference with Hosted Endpoint on Replicate</a></h5>
+                        <p>
+                            Rather than hitting our UC Berkeley hosted endpoint, for those wanting to run fast, private, and secure inference, Replicate is an alternative scalable platform to run and deploy ML models. 
+                            Useful for private applications, and running Gorilla for personal use-cases, Gorilla can now be turned into a production-grade service following the instructions below!
+                            <ol type="1">
+                                <li>Install Cog (Replicate's tool to containerize/deploy Gorilla):
+                                    <br><code>sudo curl -o /usr/local/bin/cog -L https://github.com/replicate/cog/releases/latest/download/cog_`uname -s`_`uname -m`</code>
+                                    <br><code>sudo chmod +x /usr/local/bin/cog</code>
+                                </li>
+                                <li>Utilize the config file <a href="https://github.com/ShishirPatil/gorilla/blob/main/inference/README.md#4-private-inference-using-gorilla-hosted-endpoint-on-replicate">here</a> to use Gorilla with Cog</li>
+                                <li>Set up predict.py according to <a href="https://github.com/ShishirPatil/gorilla/blob/main/inference/README.md#4-private-inference-using-gorilla-hosted-endpoint-on-replicate">this specification</a></li>
+                                <li>Run the following command to build a Docker image:
+                                    <br><code>cog build -t your_image_name_here</code>
+                                </li>
+                                <li>Log in to Replicate and push your model to Replicate's registry:
+                                    <br><code>cog login</code>
+                                    <br><code>cog push r8.im/your_username_here/your_model_name_here</code>
+                                </li>
+                                <li>The Gorilla model should now be visible on Replicate's website. To run inference, install Replicate's python client library, authenticate your API token, and start generating outputs!
+                                    <br><code>pip install replicate</code>
+                                    <br><code>export REPLICATE_API_TOKEN=your_token_here</code>
+                                    <br><pre><code>
+                                        import replicate
+                                            output = replicate.run(
+                                                        "<your-username>/<your-model-name>:<model-version>",
+                                                        input={"user_query": <add-your-query-here>}
+                                                    )
+                                            print(output)
+                                    </code></pre>
+                                </li>
+                            </ol>
+                        </p></li>
 
-                        <li><h4 id="gorilla-openfunctions">Gorilla OpenFunctions: Executable API Calls ⚔️</h4>
+                        <h4 id="gorilla-openfunctions"><li>Gorilla OpenFunctions: Executable API Calls ⚔️</h4>
                         <i>
                             Note: If you would like to try out Gorilla Open Functions in a playground-like environment check out <a href="https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd">this Google Colab</a>. 
                             <br>For more information about the technical details behind Gorilla Open Functions check out <a href="https://gorilla.cs.berkeley.edu/blogs/4_open_functions.html">this blog post</a>!
@@ -211,7 +242,7 @@
                                     <br><code>pip install openai==0.28.1</code>
                                 </li>
                                 <li> Provide a query and set of functions (example below):
-                                    <pre><code>
+                                    <br><pre><code>
                                         query = "Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes"
                                         function_documentation = {  
                                             "name": "Uber Carpool",
@@ -237,7 +268,7 @@
                                     </code></pre>
                                 </li> 
                                 <li> Define a response function (example below):
-                                    <pre><code>
+                                    <br><pre><code>
                                         def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes", model="gorilla-openfunctions-v0", functions=[]):
                                             openai.api_key = "EMPTY"
                                             openai.api_base = "http://luigi.millennium.berkeley.edu:8000/v1"
@@ -277,7 +308,7 @@
 
                         </p></li>
 
-                        <li><h4 id="integrate-third-party">Integrating Gorilla with Third Party Libraries 🦜</h4>
+                        <h4 id="integrate-third-party"><li>Integrating Gorilla with Third Party Libraries 🦜</h4>
                         <i> For a self contained walkthrough on how to integrate Gorilla with Langchain check out <a href="https://colab.research.google.com/drive/11HJWR3ylG1HSE2v78W1gRK-dKkSA0pHe">this Google Colab</a>. </i>
                         <p>
                             Integrate Gorilla with Langchain for easy deployment in less than 10 lines of code. 
@@ -287,7 +318,7 @@
                                     <br><code>pip install transformers[sentencepiece] datasets langchain openai==0.28.1 &> /dev/null</code>
                                 </li>
                                 <li>Define Langchain Chat Agent:
-                                    <pre><code>
+                                    <br><pre><code>
                                         from langchain.chat_models import ChatOpenAI
                                         chat_model = ChatOpenAI(
                                             openai_api_base="http://zanino.millennium.berkeley.edu:8000/v1",
@@ -304,13 +335,13 @@
                             </ol>
                         </p></li>
 
-                        <li><h4 id="api-zoo"> <a href="blogs/6_apizoo.html">Gorilla API Zoo Index 📖</a></h4>
+                        <h4 id="api-zoo"><li><a href="blogs/6_apizoo.html">Gorilla API Zoo Index 📖</a></h4>
                         <p>
                             The API Zoo is an open sourced index containing API documentation that can be used by LLMs to increase tool-use capabilities via API calls. 
                             Anyone can upload to the index, simply follow the instructions <a href="https://github.com/ShishirPatil/gorilla/blob/main/data/README.md#gorilla-api-store">here</a> to upload your API!
                         </p>
 
-                        <h4 id="train-your-own-gorilla">Train Your Own Gorilla 🔨🔧</h4>
+                        <h4 id="train-your-own-gorilla"><li>Train Your Own Gorilla 🔨🔧</h4>
                         <p>
                             It's easy to finetune Gorilla on your own personal set of APIs. To LoRA finetune Gorilla, follow the steps below:
                             <ol>
@@ -359,12 +390,12 @@
                             </ol>
                         </p></li>
 
-                        <li><h4>Summary</h4>
+                        <h4>Summary</h4>
                         <p>
                             This blog post went over the numerous methods to utilize and experiment with Gorilla for your own use cases including running local inference, finetuning Gorilla on your own set of APIs, utilizing Gorilla OpenFunctions, and the API Zoo. 
                             Gorilla enables some super cool applications like <a href="https://drive.google.com/file/d/1E0k5mG1mTiaz0kukyK1PdeohJipTFh6j/view">Gorilla-Spotlight</a>! Enabling LLMs to utilize tools like APIs opens up the door for agents that can concretely interact with the world. The possibilities for applications are endless. 
                             Be sure to check out our <a href="https://discord.gg/3apqwwME">Discord community</a> for updates and any questions as well as our <a href="https://github.com/ShishirPatil/gorilla">official repo</a> on Github. 
-                        </p></li>
+                        </p>
                     </ol>
                 </div>
             </div>
