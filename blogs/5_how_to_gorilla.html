@@ -213,14 +213,7 @@
                                 <li>The Gorilla model should now be visible on Replicate's website. To run inference, install Replicate's python client library, authenticate your API token, and start generating outputs!
                                     <br><code>pip install replicate</code>
                                     <br><code>export REPLICATE_API_TOKEN=your_token_here</code>
-                                    <br><pre><code>
-                                        import replicate
-                                            output = replicate.run(
-                                                        "<your-username>/<your-model-name>:<model-version>",
-                                                        input={"user_query": <add-your-query-here>}
-                                                    )
-                                            print(output)
-                                    </code></pre>
+                                    <br><code>output = replicate.run("your_username_here/your_model_name_here:model_version_here", input={"user_query": your_query_here})</code>
                                 </li>
                             </ol>
                         </p></li>
@@ -343,50 +336,67 @@
 
                         <h4 id="train-your-own-gorilla"><li>Train Your Own Gorilla 🔨🔧</h4>
                         <p>
-                            It's easy to finetune Gorilla on your own personal set of APIs. To LoRA finetune Gorilla, follow the steps below:
-                            <ol>
-                                <li><code>git clone https://github.com/oobabooga/text-generation-webui.git</code>
-                                </li> 
-                                <li>Follow <a href="https://github.com/oobabooga/text-generation-webui">text-generation webui</a> to run the application locally
-                                    <ol type="a">
-                                        <li>Go to cloned folder</li>
-                                        <li><code>cd loras</code></li>
-                                        <li>Format your APIs according to <a href="https://github.com/ShishirPatil/gorilla/tree/main/data">this template</a> and upload your desired API’s (stored as a .txt file) into the <code>loras</code> directory</li>
-                                        <li><code>pip install -r requirements.txt</code></li>
-                                        <li><code>./start_macos.sh</code> and it will open a localhost interface</li>
-                                    </ol>
+                            Want to use Gorilla on your own set of APIs? Whether it's utilizing Gorilla to help your company run more efficiently by training it on internal APIs or playing around with personal applications built on top of Gorilla, its now easy to train your own Gorilla LLM!
+                            We currently have two ways finetune Gorilla:
+                            <ol type=1>
+                                <li>text-generation-webui: 
+                                    With this method of finetuning, its possible to train full-precision versions of Gorilla (llama, falcon, and mpt base) on your data with a clean chat interface to interact with your model. 
+                                    However, for quantized models, this method does not support .gguf file formats, which is the file format for the official k-quantized gorilla models.
+                                    As a result, if you would like to finetune quantized models with this method, we will be using <a href="https://huggingface.co/TheBloke/gorilla-7B-GPTQ">GPTQ quantized gorilla from TheBloke</a>.
                                 </li>
-                                <li> Open a browser and go to url <code>http://127.0.0.1:7860/</code></li>
-                                <li> Navigate to the "Model" tab</li>
-                                <li> Load <a href="https://huggingface.co/TheBloke/gorilla-7B-GPTQ">this GPTQ quantized version of Gorilla</a>>. 
-                                    Note that text-generation-webui method DOES NOT support .gguf models for LoRA finetuning, which is why we use GPTQ quantized version. 
-                                    <ol type="a">
-                                        <li>If you would like to finetune the full precision models, you can pick any of the models WITHOUT the gguf or ggml suffix tag in <a href="https://huggingface.co/gorilla-llm">this Hugging Face Repo</a>. </li>
-                                        <li> <i>To use the llama-based model, we released delta weights to follow compliance rules, so first follow <a href="https://github.com/ShishirPatil/gorilla/tree/main/inference#downloading-gorilla-delta-weights">these instructions</a> to merge with base llama.</i></li>
-                                    </ol>
-                                </li>
-                                <li> In the dropdown menu under the Models tab, click the LoRA dropdown menu to add your LoRA.
-                                    
-                                </li>
-                                <li> Click "Apply Lora" Note that this step might take some time.
-                                    
-                                </li>
-                                <li> Navigate to the Chat tab and start chatting with your fine-tuned model!
-                                    <ol type="a">
-                                        <li>If you would like to speed up inference and have a GPU available on your laptop, increasing <code>n-gpu-layers</code> on the left side of the "Model" tab accelerates inference.</li>
-                                    </ol>
+                                <li>Llama.cpp built-in finetuning: 
+                                    This method allows you to finetune Gorilla on our official a href="https://huggingface.co/gorilla-llm/gorilla-7b-hf-v1-gguf/tree/main">llama-based k-quantized models</a>. 
+                                    Unfortunately this method doesn't support finetuning the falcon-based or mpt-based quantized versions of Gorilla. The steps are straightforward, but we are working to make the pipeline for this process self-contained and more streamlined so stay-tuned for that!
                                 </li>
                             </ol>
-                            To finetune llama-based quantized models, we can directly utilize finetuning functionality in <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> in accordance with the steps below:
-                            <ol>
-                                <li>Format your APIs according to <a href="https://github.com/ShishirPatil/gorilla/tree/main/data">this template</a> and store as a .txt file</li>
-                                <li>Download your desired k-quantized model from <a href="https://huggingface.co/gorilla-llm/gorilla-7b-hf-v1-gguf/tree/main">here</a> to use as the base model (note only llama based models are supported). Make sure you are installing a quantized model (.gguf file format). </li>
-                                <li>Run <code>llama.cpp/finetune --model-base the-model-you-downloaded.gguf --train-data your-training-data.txt</code>
-                                    <ol type="a"><li>Refer to <a href="https://github.com/ggerganov/llama.cpp/blob/master/examples/finetune/README.md">llama.cpp documentation</a> for any extra flags you would like to include.</li></ol>
-                                </li>
-                                <li>Run the following command for inference:
-                                    <br><code>llama.cpp/main --model the-model-you-downloaded.gguf --lora ggml-lora-LATEST-f32.gguf --prompt "YOUR_PROMPT_HERE"</code>
-                                </li>
+                            Simply <a href="https://github.com/ShishirPatil/gorilla/tree/main/data">format your API dataset</a>, pick a method of finetuning and follow the steps below to LoRA finetune Gorilla:
+                            <ol type =1>
+                                <li> Finetuning with <a href="https://github.com/oobabooga/text-generation-webui">text-generation-webui</a>:
+                                <ol>
+                                    <li><code>git clone https://github.com/oobabooga/text-generation-webui.git</code>
+                                    </li> 
+                                    <li>Follow <a href="https://github.com/oobabooga/text-generation-webui">text-generation webui</a> to run the application locally
+                                        <ol type="a">
+                                            <li>Go to cloned folder</li>
+                                            <li><code>cd loras</code></li>
+                                            <li>Format your APIs according to <a href="https://github.com/ShishirPatil/gorilla/tree/main/data">this template</a> and upload your desired API’s (stored as a .txt file) into the <code>loras</code> directory</li>
+                                            <li><code>pip install -r requirements.txt</code></li>
+                                            <li><code>./start_macos.sh</code> and it will open a localhost interface</li>
+                                        </ol>
+                                    </li>
+                                    <li> Open a browser and go to url <code>http://127.0.0.1:7860/</code></li>
+                                    <li> Navigate to the "Model" tab</li>
+                                    <li> Load <a href="https://huggingface.co/TheBloke/gorilla-7B-GPTQ">this GPTQ quantized version of Gorilla</a>>. 
+                                        Note that text-generation-webui method DOES NOT support .gguf models for LoRA finetuning, which is why we use GPTQ quantized version. 
+                                        <ol type="a">
+                                            <li>If you would like to finetune the full precision models, you can pick any of the models WITHOUT the gguf or ggml suffix tag in <a href="https://huggingface.co/gorilla-llm">this Hugging Face Repo</a>. </li>
+                                            <li> <i>To use the llama-based model, we released delta weights to follow compliance rules, so first follow <a href="https://github.com/ShishirPatil/gorilla/tree/main/inference#downloading-gorilla-delta-weights">these instructions</a> to merge with base llama.</i></li>
+                                        </ol>
+                                    </li>
+                                    <li> In the dropdown menu under the Models tab, click the LoRA dropdown menu to add your LoRA.
+                                        
+                                    </li>
+                                    <li> Click "Apply Lora" Note that this step might take some time.
+                                        
+                                    </li>
+                                    <li> Navigate to the Chat tab and start chatting with your fine-tuned model!
+                                        <ol type="a">
+                                            <li>If you would like to speed up inference and have a GPU available on your laptop, increasing <code>n-gpu-layers</code> on the left side of the "Model" tab accelerates inference.</li>
+                                        </ol>
+                                    </li>
+                                </ol> </li>
+                                <li> Finetuning with <a href="https://github.com/ggerganov/llama.cpp">Llama.cpp</a>:
+                                <br>To finetune llama-based quantized models, we can directly utilize finetuning functionality in <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> in accordance with the steps below:
+                                <ol>
+                                    <li>Format your APIs according to <a href="https://github.com/ShishirPatil/gorilla/tree/main/data">this template</a> and store as a .txt file</li>
+                                    <li>Download your desired k-quantized model from <a href="https://huggingface.co/gorilla-llm/gorilla-7b-hf-v1-gguf/tree/main">here</a> to use as the base model (note only llama based models are supported). Make sure you are installing a quantized model (.gguf file format). </li>
+                                    <li>Run <code>llama.cpp/finetune --model-base the-model-you-downloaded.gguf --train-data your-training-data.txt</code>
+                                        <ol type="a"><li>Refer to <a href="https://github.com/ggerganov/llama.cpp/blob/master/examples/finetune/README.md">llama.cpp documentation</a> for any extra flags you would like to include.</li></ol>
+                                    </li>
+                                    <li>Run the following command for inference:
+                                        <br><code>llama.cpp/main --model the-model-you-downloaded.gguf --lora ggml-lora-LATEST-f32.gguf --prompt "YOUR_PROMPT_HERE"</code>
+                                    </li>
+                                </ol> </li>
                             </ol>
                         </p></li>
 
