@@ -18,13 +18,22 @@
     <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/Team-Clean.css">
+    <style>
+        /* Bars to separate titles in nav bar */
+        .navbar a:not(:last-child)::after {
+            content: "|";
+            margin: 0 10px;
+            color: #000;
+        }
+    </style>
 </head>
 
 <body>
     <!-- Navigation Bar -->
     <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100; font-size: 18px;">
-        <a href="index.html">Home</a>&nbsp;&nbsp;&nbsp;
+        <a href="index.html">Home</a>
         <a href="">Blog</a>
+        <a href="apizoo/">API Zoo Index</a>
     </div>
 
     <style>
@@ -299,6 +308,7 @@
                 </div>
             </a>
         </div>
+
 
         <!-- Add more posts using the same structure as above -->
     </div>
