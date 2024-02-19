@@ -56,7 +56,7 @@ export default {
   methods: {
     async fetchApis() {
       try {
-        const response = await fetch('http://34.123.98.138/api/data');
+        const response = await fetch('https://apizooindex.gorilla-llm.com/api/data');
         if (!response.ok) throw new Error('Failed to fetch');
         const data = await response.json();
         this.apis = data;
