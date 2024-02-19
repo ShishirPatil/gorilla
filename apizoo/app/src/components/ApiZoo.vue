@@ -1,8 +1,10 @@
 <template>
   <div>
   <div class="navbar">
-      <a href="../index.html">Home</a>&nbsp;&nbsp;&nbsp;
-      <a href="../blog.html">Blog</a>&nbsp;&nbsp;&nbsp;
+      <a href="../index.html">Home</a>
+      <span class="nav-separator">|</span>
+      <a href="../blog.html">Blog</a>
+      <span class="nav-separator">|</span>
       <a href="apizoo/">API Zoo Index</a>
   </div>
   <div class="api-zoo-container">
@@ -90,6 +92,12 @@ export default {
   color: #055ada;
   text-decoration: underline;
 }
+
+.nav-separator {
+  margin: 0 8px;
+  color: #000;
+}
+
 .api-zoo-container {
   font-family: 'Source Sans Pro', sans-serif;
   color: #313437;

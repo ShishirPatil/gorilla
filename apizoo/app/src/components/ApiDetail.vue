@@ -1,8 +1,10 @@
 <template>
   <div>
     <div class="navbar">
-      <a href="../../index.html">Home</a>&nbsp;&nbsp;&nbsp;
-      <a href="../../blog.html">Blog</a>&nbsp;&nbsp;&nbsp;
+      <a href="../../index.html">Home</a>
+      <span class="nav-separator">|</span>
+      <a href="../../blog.html">Blog</a>
+      <span class="nav-separator">|</span>
       <a href="../">API Zoo Index</a>
   </div>
   <div class="api-detail-container">
@@ -83,6 +85,11 @@ export default {
 .navbar a:hover {
   color: #055ada;
   text-decoration: underline;
+}
+
+.nav-separator {
+  margin: 0 8px;
+  color: #000;
 }
 
 .api-detail-container {
