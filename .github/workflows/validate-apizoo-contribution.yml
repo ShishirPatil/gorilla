@@ -25,7 +25,7 @@ jobs:
           FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep 'data/apizoo/')
           for FILE in $FILES; do
             DATA=$(jq -c . < "$FILE")
-            RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "$DATA" http://34.123.98.138/api/validate)
+            RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "$DATA" https://apizooindex.gorilla-llm.com/api/validate)
             echo "Validation response for $FILE: $RESPONSE"
             if [[ "$RESPONSE" == *"\"duplicate\": true"* ]]; then
               echo "::set-output name=duplicate::true"
