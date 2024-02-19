@@ -36,11 +36,11 @@
             <h3>Blog 5: How to Use Gorilla</h3>
             <ul>
                 <ul>
-                        <li><a href="5_how_to_gorilla.html#gorilla-cli">Gorilla CLI: Gorilla in Your Command Line</a></li>
+                        <li><a href="5_how_to_gorilla.html#gorilla-cli">Gorilla CLI</a></li>
                         <li><a href="5_how_to_gorilla.html#gorilla-inference">Gorilla Inference</a></li>
-                        <li><a href="5_how_to_gorilla.html#gorilla-openfunctions">Gorilla Open Functions: Executable API Calls</a></li>
+                        <li><a href="5_how_to_gorilla.html#gorilla-openfunctions">Gorilla Open Functions</a></li>
                         <li><a href="5_how_to_gorilla.html#integrate-third-party">Integrating Gorilla with Third Party Libraries</a></li>
-                        <li><a href="5_how_to_gorilla.html#api-zoo">Gorilla API Zoo Index</a></li>
+                        <li><a href="5_how_to_gorilla.html#api-zoo">API Zoo Index</a></li>
                         <li><a href="5_how_to_gorilla.html#train-your-own-gorilla">Train Your Own Gorilla</a></li>
                         <li class="more-blogs">
                             <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span class="caret">&#9654;</span></a>
@@ -64,31 +64,33 @@
                     <p class="author"> <a href="https://www.linkedin.com/in/pranav--ramesh/"> Pranav Ramesh </a>  </p>
                     <p class="date">Feb 15, 2024</p>
                 </div>
-                <!-- Image here -->
+                
+                <img src="../assets/img/blog_post_5_main_image.png" alt="How to Use Gorilla Image" style="width: 95%;">
+                    <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                        <i style="font-size: 0.9em;">
+                            Gorilla returns the right API calls for your specific task, enabling LLMs to interact with the world. In this blog post, learn about the different ways you can use Gorilla directly, or integrate it into your workflow.
+                        </i>
+                    </p>
+                
                 <div class="Introduction">
                     <p>
                         Gorilla LLM is a rapidly growing open-source project that connects LLMs to APIs, accurately returning API calls for a specific task provided by the user in natural language. 
-                        Imagine a ChatGPT with the ability to generate accurate CLI commands, set up meetings on Google Calendar, and order a pizza for you. These are all online tasks that can be accomplished through API calls, and Gorilla automatically generates relevant calls given a task.
+                        Imagine ChatGPT with the ability to generate accurate CLI commands, set up meetings on Google Calendar, and order a pizza for you. These are all online tasks that can be accomplished through API calls, and Gorilla automatically generates relevant calls given a task.
                         With this functionality, Gorilla effectively has the ability to take actions in the world by interacting with thousands of services and tools to accompish a wide variety of user-defined tasks. 
-                        We currently have 6 different ways to utilize Gorilla.
+                        We currently have 6 different modalities you can use Gorilla.
                         <ol type="I">
-                            <li>Gorilla CLI
-                            </li>
-                            <li>Gorilla Inference
+                            <li><a href="5_how_to_gorilla.html#gorilla-cli">Gorilla CLI</a></li>
+                            <li><a href="5_how_to_gorilla.html#gorilla-inference">Gorilla Inference</a>
                                 <ol type="i">
                                     <li>Inference in CLI</li>
                                     <li>Local Inference with Quantized Models</li>
                                     <li>Inference Hosted on Replicate Endpoint</li>
                                 </ol>
                             </li>
-                            <li>Gorilla Open Functions
-                            </li>
-                            <li>Integrating Gorilla With Third Party Libraries
-                            </li>
-                            <li>Gorilla API Zoo Index
-                            </li>
-                            <li>Train Your Own Gorilla
-                            </li>
+                            <li><a href="5_how_to_gorilla.html#gorilla-openfunctions">Gorilla Open Functions</a></li>
+                            <li><a href="5_how_to_gorilla.html#integrate-third-party">Integrating Gorilla With Third Party Libraries</a></li>
+                            <li><a href="5_how_to_gorilla.html#api-zoo">Gorilla API Zoo Index</a></li>
+                            <li><a href="5_how_to_gorilla.html#train-your-own-gorilla">Train Your Own Gorilla</a></li>
                         </ol>
                         This blog post outlines these ways in a step-by-step manner and links Google Colab playground environments for you to quickly experiment with Gorilla!
                     </p>
@@ -99,6 +101,17 @@
                 <div class="body">
                     <ol type="I">
                         <h4 id="gorilla-cli"><li><a href="https://github.com/gorilla-llm/gorilla-cli#usage">Gorilla CLI: Gorilla in Your Command Line 💻</a></h4>
+                        <div class="responsive-iframe-container" style="text-align: center;">
+                            <iframe src="https://www.youtube.com/embed/RMgM3tPTpXI"
+                                frameborder="0"
+                                style="width: 70%; height: 400px;"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <p class="text-center">Gorilla powered CLI. 
+                            Get started with <code>pip install gorilla-cli</code>.
+                        </p>
                         <p>
                             Gorilla CLI simplifies command line interactions by generating candidate commands for your desired task. 
                             Instead of needing to recall verbose commands for various API’s, Gorilla CLI streamlines this process into a simple command: <code>gorilla “your query”</code>. 
@@ -135,17 +148,20 @@
                         </p> </li>
                         <h4 id="gorilla-inference"><li><a href="https://github.com/ShishirPatil/gorilla/tree/main/inference">Gorilla Inference 🦍 </a></h4>
                         <p>
-                            <i>Note: If you would like to try out zero-shot Gorilla in a playground-like environment check out <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">this Google Colab</a>. 
+                            <i>
+                                Note: If you would like to try out zero-shot Gorilla in a playground-like environment check out <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">this Google Colab</a>.
                                 <br>It is plug-and-play with OpenAI's chat completion API:
-                                <p style="text-align: center; margin-bottom: 0">
-                                    <img src="../assets/img/blog_post_5_openai_chat_completion.png" alt="OpenAI Chat Completion Compliance" width="70%">
-                                </p>
                             </i>
-                            <br>
-                            <br>Gorilla was trained on data from HuggingFace's Model Hub, Pytorch Hub, and TensorFlow Hub. Out of the box, it returns API calls for your specific prompt based on its training data (and we've now introduced a way to finetune Gorilla on your own set of APIs but more on that in later sections 😊). 
+
+                            <img src="../assets/img/blog_post_5_openai_chat_completion.png" alt="OpenAI Chat Completion Compliance" width="70%">
+                            <p class="text-center">Gorilla powered CLI. 
+                                Our hosted Gorilla models are compliant with OpenAI's chat completion API, and can be used as a drop-in replacement! You just need to point <code>openai.api_base</code> to our endpoints, and pick the right <code>model</code>. 
+                            </p>
+
+                            <br>Some of our Gorilla models <code></code>, were trained on data from HuggingFace's Model Hub, Pytorch Hub, and TensorFlow Hub. Out of the box, it returns API calls for your specific prompt based on its training data (and we've now introduced a way to finetune Gorilla on your own set of APIs but more on that in later sections 😊). 
                             Running inference with gorilla is now supported on both hosted endpoints and locally! Inference with Gorilla can be done in 3 primary modalities: 
                                 <ol>
-                                    <li>CLI inference (Single and Batched Prompt Inference)
+                                    <li>CLI inference for Single and Batched Prompt Inference. (Not to be confused with Gorilla-CLI, the tool).
                                     </li>
                                     <li>Local Inference with Quantized Models
                                     </li>
@@ -240,45 +256,47 @@
                                 </li>
                                 <li> Provide a query and set of functions (example below):
                                     <br><pre><code>
-                                        query = "Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes"
-                                        function_documentation = {  
-                                            "name": "Uber Carpool",
-                                            "api_name": "uber.ride",
-                                            "description": "Find suitable ride for customers given the location, type of ride, and the amount of time the customer is willing to wait as parameters",
-                                            "parameters": 
-                                                [
-                                                    {
-                                                    "name": "loc", 
-                                                    "description": "location of the starting place of the uber ride"
-                                                    }, 
-                                                    {
-                                                        "name":"type", 
-                                                        "enum": ["plus", "comfort", "black"], 
-                                                        "description": "types of uber ride user is ordering"
-                                                    },
-                                                    {
-                                                        "name": "time", 
-                                                        "description": "the amount of time in minutes the customer is willing to wait"
-                                                    }
-                                                ]
-                                            }
+    query = "Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes"
+    function_documentation = {  
+        "name": "Uber Carpool",
+        "api_name": "uber.ride",
+        "description": "Find suitable ride for customers given the location, type of ride, 
+            and the amount of time the customer is willing to wait as parameters",
+        "parameters": 
+            [
+                {
+                "name": "loc", 
+                "description": "location of the starting place of the uber ride"
+                }, 
+                {
+                    "name":"type", 
+                    "enum": ["plus", "comfort", "black"], 
+                    "description": "types of uber ride user is ordering"
+                },
+                {
+                    "name": "time", 
+                    "description": "the amount of time in minutes the customer is willing to wait"
+                }
+            ]
+        }
                                     </code></pre>
                                 </li> 
                                 <li> Define a response function (example below):
                                     <br><pre><code>
-                                        def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes", model="gorilla-openfunctions-v0", functions=[]):
-                                            openai.api_key = "EMPTY"
-                                            openai.api_base = "http://luigi.millennium.berkeley.edu:8000/v1"
-                                            try:
-                                                completion = openai.ChatCompletion.create(
-                                                model="gorilla-openfunctions-v1",
-                                                temperature=0.0,
-                                                messages=[{"role": "user", "content": prompt}],
-                                                functions=functions,
-                                                )
-                                                return completion.choices[0].message.content
-                                            except Exception as e:
-                                                print(e, model, prompt)
+    def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes", 
+                             model="gorilla-openfunctions-v0", functions=[]):
+        openai.api_key = "EMPTY"
+        openai.api_base = "http://luigi.millennium.berkeley.edu:8000/v1"
+        try:
+            completion = openai.ChatCompletion.create(
+            model="gorilla-openfunctions-v1",
+            temperature=0.0,
+            messages=[{"role": "user", "content": prompt}],
+            functions=functions,
+            )
+            return completion.choices[0].message.content
+        except Exception as e:
+            print(e, model, prompt)
                                     </code></pre>
                                 </li>
                                 <li> Return relevant API call:
@@ -316,13 +334,13 @@
                                 </li>
                                 <li>Define Langchain Chat Agent:
                                     <br><pre><code>
-                                        from langchain.chat_models import ChatOpenAI
-                                        chat_model = ChatOpenAI(
-                                            openai_api_base="http://zanino.millennium.berkeley.edu:8000/v1",
-                                            openai_api_key="EMPTY",
-                                            model="gorilla-7b-hf-v1",
-                                            verbose=True
-                                        )
+from langchain.chat_models import ChatOpenAI
+chat_model = ChatOpenAI(
+    openai_api_base="http://zanino.millennium.berkeley.edu:8000/v1",
+    openai_api_key="EMPTY",
+    model="gorilla-7b-hf-v1",
+    verbose=True
+)
                                     </code></pre>
                                 </li> 
                                 <li> Prompt:
@@ -407,7 +425,7 @@
                         <h4>Summary</h4>
                         <p>
                             This blog post went over the numerous methods to utilize and experiment with Gorilla for your own use cases including running local inference, finetuning Gorilla on your own set of APIs, utilizing Gorilla OpenFunctions, and the API Zoo. 
-                            Gorilla enables some super cool applications like <a href="https://drive.google.com/file/d/1E0k5mG1mTiaz0kukyK1PdeohJipTFh6j/view">Gorilla-Spotlight</a>! Enabling LLMs to utilize tools like APIs opens up the door for agents that can concretely interact with the world. The possibilities for applications are endless. 
+                            Gorilla enables some super cool applications like <a href="https://youtu.be/RMgM3tPTpXI">Gorilla-Spotlight</a>! Enabling LLMs to utilize tools like APIs opens up the door for agents that can concretely interact with the world. The possibilities for applications are endless. 
                             Be sure to check out our <a href="https://discord.gg/3apqwwME">Discord community</a> for updates and any questions as well as our <a href="https://github.com/ShishirPatil/gorilla">official repo</a> on Github. 
                         </p>
                     </ol>
