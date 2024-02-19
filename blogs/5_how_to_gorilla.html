@@ -136,6 +136,10 @@
                         <h4 id="gorilla-inference"><li><a href="https://github.com/ShishirPatil/gorilla/tree/main/inference">Gorilla Inference 🦍 </a></h4>
                         <p>
                             <i>Note: If you would like to try out zero-shot Gorilla in a playground-like environment check out <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">this Google Colab</a>. 
+                                <br>It is plug-and-play with OpenAI's chat completion API:
+                                <p style="text-align: center; margin-bottom: 0">
+                                    <img src="../assets/img/blog_post_5_openai_chat_completion.png" alt="OpenAI Chat Completion Compliance" width="70%">
+                                </p>
                             </i>
                             <br>
                             <br>Gorilla was trained on data from HuggingFace's Model Hub, Pytorch Hub, and TensorFlow Hub. Out of the box, it returns API calls for your specific prompt based on its training data (and we've now introduced a way to finetune Gorilla on your own set of APIs but more on that in later sections 😊). 
@@ -386,7 +390,7 @@
                                     </li>
                                 </ol> </li>
                                 <li> Finetuning with <a href="https://github.com/ggerganov/llama.cpp">Llama.cpp</a>:
-                                <br>To finetune llama-based quantized models, we can directly utilize finetuning functionality in <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> in accordance with the steps below:
+                                <br>To finetune llama-based quantized models, we can directly utilize finetuning functionality in <a href="https://github.com/ggerganov/llama.cpp/tree/master/examples/finetune">llama.cpp</a> in accordance with the steps below:
                                 <ol>
                                     <li>Format your APIs according to <a href="https://github.com/ShishirPatil/gorilla/tree/main/data">this template</a> and store as a .txt file</li>
                                     <li>Download your desired k-quantized model from <a href="https://huggingface.co/gorilla-llm/gorilla-7b-hf-v1-gguf/tree/main">here</a> to use as the base model (note only llama based models are supported). Make sure you are installing a quantized model (.gguf file format). </li>
