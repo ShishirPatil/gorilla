@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-NRZJLJCSH6');
+    </script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Introduction to Gorilla LLM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/Team-Clean.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;">
+        <a href="../index.html">Home </a>&nbsp;&nbsp;&nbsp;     
+        <a href="../blog.html"> Blog</a>
+    </div>
+    <div class="highlight-clean-blog" style="padding-bottom: 10px;">
+        <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+
+        <div class="box-index">
+            <h3>Blog 5: How to Use Gorilla</h3>
+            <ul>
+                <ul>
+                        <li><a href="5_how_to_gorilla.html#gorilla-cli">Gorilla CLI</a></li>
+                        <li><a href="5_how_to_gorilla.html#gorilla-inference">Gorilla Inference</a></li>
+                        <li><a href="5_how_to_gorilla.html#gorilla-openfunctions">Gorilla Open Functions</a></li>
+                        <li><a href="5_how_to_gorilla.html#integrate-third-party">Integrating Gorilla with Third Party Libraries</a></li>
+                        <li><a href="5_how_to_gorilla.html#api-zoo">API Zoo Index</a></li>
+                        <li><a href="5_how_to_gorilla.html#train-your-own-gorilla">Train Your Own Gorilla</a></li>
+                        <li class="more-blogs">
+                            <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span class="caret">&#9654;</span></a>
+                            <ul class="sub-menu">
+                                <li><a href="1_gorilla_intro.html">Introduction to Gorilla LLM</a></li>
+                                <li><a href="2_hallucination.html">How to Measure Hallucination?</a></li>
+                                <li><a href="3_retreiver_aware_training.html">Retrieval Aware Training (RAT)</a></li>
+                                <li><a href="4_open_functions.html">Gorilla OpenFunctions</a></li>
+                                <!-- Add more blog entries as needed -->
+                            </ul>
+                        </li>  
+                </ul>
+                <!-- Add more entries as needed -->
+            </ul>
+        </div>
+
+        <div class="blog-container">
+            <div class="blog-post">
+                <h2 class="blog-title">How to Use Gorilla: A Step-by-Step Walkthrough </h2>
+                <div class="author-date">
+                    <p class="author"> <a href="https://www.linkedin.com/in/pranav--ramesh/"> Pranav Ramesh </a>  </p>
+                    <p class="date">Feb 15, 2024</p>
+                </div>
+                
+                <img src="../assets/img/blog_post_5_main_image.png" alt="How to Use Gorilla Image" style="width: 95%;">
+                    <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                        <i style="font-size: 0.9em;">
+                            Gorilla returns the right API calls for your specific task, enabling LLMs to interact with the world. In this blog post, learn about the different ways you can use Gorilla directly, or integrate it into your workflow.
+                        </i>
+                    </p>
+                
+                <div class="Introduction">
+                    <p>
+                        Gorilla LLM is a rapidly growing open-source project that connects LLMs to APIs, accurately returning API calls for a specific task provided by the user in natural language. 
+                        Imagine ChatGPT with the ability to generate accurate CLI commands, set up meetings on Google Calendar, and order a pizza for you. These are all online tasks that can be accomplished through API calls, and Gorilla automatically generates relevant calls given a task.
+                        With this functionality, Gorilla effectively has the ability to take actions in the world by interacting with thousands of services and tools to accompish a wide variety of user-defined tasks. 
+                        We currently have 6 different modalities you can use Gorilla.
+                        <ol type="I">
+                            <li><a href="5_how_to_gorilla.html#gorilla-cli">Gorilla CLI</a></li>
+                            <li><a href="5_how_to_gorilla.html#gorilla-inference">Gorilla Inference</a>
+                                <ol type="i">
+                                    <li>Inference in CLI</li>
+                                    <li>Local Inference with Quantized Models</li>
+                                    <li>Inference Hosted on Replicate Endpoint</li>
+                                </ol>
+                            </li>
+                            <li><a href="5_how_to_gorilla.html#gorilla-openfunctions">Gorilla Open Functions</a></li>
+                            <li><a href="5_how_to_gorilla.html#integrate-third-party">Integrating Gorilla With Third Party Libraries</a></li>
+                            <li><a href="5_how_to_gorilla.html#api-zoo">Gorilla API Zoo Index</a></li>
+                            <li><a href="5_how_to_gorilla.html#train-your-own-gorilla">Train Your Own Gorilla</a></li>
+                        </ol>
+                        This blog post outlines these ways in a step-by-step manner and links Google Colab playground environments for you to quickly experiment with Gorilla!
+                    </p>
+                </div>
+
+
+                
+                <div class="body">
+                    <ol type="I">
+                        <h4 id="gorilla-cli"><li><a href="https://github.com/gorilla-llm/gorilla-cli#usage">Gorilla CLI: Gorilla in Your Command Line 💻</a></h4>
+                        <div class="responsive-iframe-container" style="text-align: center;">
+                            <iframe src="https://www.youtube.com/embed/RMgM3tPTpXI"
+                                frameborder="0"
+                                style="width: 70%; height: 400px;"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <p class="text-center">Gorilla powered CLI. 
+                            Get started with <code>pip install gorilla-cli</code>.
+                        </p>
+                        <p>
+                            Gorilla CLI simplifies command line interactions by generating candidate commands for your desired task. 
+                            Instead of needing to recall verbose commands for various API’s, Gorilla CLI streamlines this process into a simple command: <code>gorilla “your query”</code>. 
+                            Moreover, we prioritize confidentiality and full user control, only executing commands with explicit permission from the user and never collecting output data. 
+                            <ol>
+                                <li>Get started with pip install: 
+                                    <br><code>pip install gorilla-cli</code>
+                                </li>
+                                <li> Using gorilla CLI to write to files:
+                                    <ul>
+                                        <li>Command:
+                                        <br><code>$ gorilla “generate 100 random characters into a file called text.txt”</code>
+                                        </li>
+                                        <li>Output: Using arrow keys, toggle between commands and press <kbd>Enter</kbd>
+                                        <br><samp>» cat /dev/urandom | env LC_ALL=C tr -dc 'a-zA-Z0-9' | head -c 100 > test.txt </samp>
+                                        <br><samp>echo $(head /dev/urandom | LC_CTYPE=C tr -dc 'a-zA-Z0-9' | dd bs=100 count=1) > test.txt </samp>
+                                        <br><samp>dd if=/dev/urandom bs=1 count=100 of=test.txt </samp>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li> Other Usage Examples:
+                                    <ul>
+                                        <li>Command:
+                                        <br><code>$ gorilla “list all my GCP instances”</code>
+                                        </li>
+                                        <li>Output: 
+                                        <br><samp>» gcloud compute instances list --format="table(name,zone,status)"</samp>
+                                        <br><samp>gcloud compute instances list --format table </samp>
+                                        <br><samp>gcloud compute instances list --format="table(name, zone, machineType, status)" </samp>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </p> </li>
+                        <h4 id="gorilla-inference"><li><a href="https://github.com/ShishirPatil/gorilla/tree/main/inference">Gorilla Inference 🦍 </a></h4>
+                        <p>
+                            <i>
+                                Note: If you would like to try out zero-shot Gorilla in a playground-like environment check out <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">this Google Colab</a>.
+                                <br>It is plug-and-play with OpenAI's chat completion API:
+                            </i>
+
+                            <img src="../assets/img/blog_post_5_openai_chat_completion.png" alt="OpenAI Chat Completion Compliance" width="70%">
+                            <p class="text-center">Gorilla powered CLI. 
+                                Our hosted Gorilla models are compliant with OpenAI's chat completion API, and can be used as a drop-in replacement! You just need to point <code>openai.api_base</code> to our endpoints, and pick the right <code>model</code>. 
+                            </p>
+
+                            <br>Some of our Gorilla models <code></code>, were trained on data from HuggingFace's Model Hub, Pytorch Hub, and TensorFlow Hub. Out of the box, it returns API calls for your specific prompt based on its training data (and we've now introduced a way to finetune Gorilla on your own set of APIs but more on that in later sections 😊). 
+                            Running inference with gorilla is now supported on both hosted endpoints and locally! Inference with Gorilla can be done in 3 primary modalities: 
+                                <ol>
+                                    <li>CLI inference for Single and Batched Prompt Inference. (Not to be confused with Gorilla-CLI, the tool).
+                                    </li>
+                                    <li>Local Inference with Quantized Models
+                                    </li>
+                                    <li> <a href="https://github.com/ShishirPatil/gorilla/tree/main/inference#4-private-inference-using-gorilla-hosted-endpoint-on-replicate">Inference with Hosted Endpoint on Replicate</a>
+                                    </li>
+                                </ol>
+                        </p>
+                        <h5> <a href="https://github.com/ShishirPatil/gorilla/tree/main/inference#1-inference-using-cli"> CLI Inference</a>: Install dependencies, download model, prompt! </h5>
+                        <p>
+                                <br><code>conda create -n gorilla python=3.10</code>
+                                <br><code>conda activate gorilla</code>
+                                <br><code>pip install -r requirements.txt</code>
+                                <br>
+                                <br>At this point you have multiple options as to which Gorilla Model you would like to use. 
+                                In order to comply with the Llama license, we have released the Gorilla delta weights, which need to be merged with Llama. 
+                                If you would like to use models out of the box, you can directly download <a href="https://huggingface.co/gorilla-llm/gorilla-mpt-7b-hf-v0">gorilla-mpt-7b-hf-v0</a> and <a href="https://huggingface.co/gorilla-llm/gorilla-falcon-7b-hf-v0">gorilla-falcon-7b-hf-v0</a> from Hugging Face. 
+                                Run the model with:
+                                <br><code>python3 serve/gorilla_falcon_cli.py --model-path path/to/gorilla-falcon-7b-hf-v0</code>
+                                <br> To run inference with <a href="https://github.com/ShishirPatil/gorilla/tree/main/inference#2-batch-inference-on-a-prompt-file">batched prompts</a> (multiple prompts in one batch), create a json file following <a href="https://github.com/ShishirPatil/gorilla/blob/main/inference/example_questions/example_questions.jsonl">this format</a> with all of your prompts.
+                                Get results for your set of prompts by running:
+                                <br><code>python3 gorilla_eval.py --model-path path/to/gorilla-falcon-7b-hf-v0 --question-file path/to/questions.jsonl ----answer-file path/to/answers.jsonl</code>
+                                
+
+                        </p>
+                        <h5> <a href="https://github.com/ShishirPatil/gorilla/tree/main/inference#3-local-inference-of-quantized-models"> Local Inference With Quantized Models</a></h5>
+                        <p>
+                            To support running Gorilla locally, we have released quantized versions of the llama, falcon, and mpt-based versions of Gorilla. 
+                            The easiest way to run Gorilla locally with a clean UI is through <a href="https://github.com/oobabooga/text-generation-webui">text-generation-webui</a>. 
+                            <ol>
+                                <li>Clone text-generation-webui:
+                                    <br><code>git clone https://github.com/oobabooga/text-generation-webui.git</code>
+                                </li>
+                                <li>Go to cloned folder and install dependencies:
+                                    <br><code>cd text-generation-webui</code>
+                                    <br><code>pip install -r requirements.txt</code>
+                                </li>
+                                <li>
+                                    Run the following command to start the UI:
+                                    <br><code>./start_macos.sh </code>
+                                </li>
+                                <li>
+                                    Open a browser and paste the following url:
+                                    <br><code>http://127.0.0.1:7860/</code>
+                                </li>
+                            </ol>
+                            <br>From here, navigate to the “Model” tab, select your desired quantized model by pasting the name from <a href="https://huggingface.co/gorilla-llm">this Hugging Face repo</a>. 
+                            For example in the first text field under “Model,” one could paste “gorilla-llm/gorilla-7b-hf-v1-gguf” and then specify the specific model as “gorilla-7b-hf-v1-q3_K_M.gguf.” 
+                            After loading the model, navigate to the “Chat” tab and start prompting!
+                            <br>If you want to see an in depth walk through of how quantization with llama.cpp is performed under the hood, check out <a href="https://colab.research.google.com/drive/1JP_MN-J1rODo9k_-dR_9c9EnZRCfcVNe?usp=sharing">this Google Colab</a>.  
+                        </p>
+                        <h5> <a href ="https://github.com/ShishirPatil/gorilla/tree/main/inference#4-private-inference-using-gorilla-hosted-endpoint-on-replicate">Inference with Hosted Endpoint on Replicate</a></h5>
+                        <p>
+                            Rather than hitting our UC Berkeley hosted endpoint, for those wanting to run fast, private, and secure inference, Replicate is an alternative scalable platform to run and deploy ML models. 
+                            Useful for private applications, and running Gorilla for personal use-cases, Gorilla can now be turned into a production-grade service following the instructions below!
+                            <ol type="1">
+                                <li>Install Cog (Replicate's tool to containerize/deploy Gorilla):
+                                    <br><code>sudo curl -o /usr/local/bin/cog -L https://github.com/replicate/cog/releases/latest/download/cog_`uname -s`_`uname -m`</code>
+                                    <br><code>sudo chmod +x /usr/local/bin/cog</code>
+                                </li>
+                                <li>Utilize the config file <a href="https://github.com/ShishirPatil/gorilla/blob/main/inference/README.md#4-private-inference-using-gorilla-hosted-endpoint-on-replicate">here</a> to use Gorilla with Cog</li>
+                                <li>Set up predict.py according to <a href="https://github.com/ShishirPatil/gorilla/blob/main/inference/README.md#4-private-inference-using-gorilla-hosted-endpoint-on-replicate">this specification</a></li>
+                                <li>Run the following command to build a Docker image:
+                                    <br><code>cog build -t your_image_name_here</code>
+                                </li>
+                                <li>Log in to Replicate and push your model to Replicate's registry:
+                                    <br><code>cog login</code>
+                                    <br><code>cog push r8.im/your_username_here/your_model_name_here</code>
+                                </li>
+                                <li>The Gorilla model should now be visible on Replicate's website. To run inference, install Replicate's python client library, authenticate your API token, and start generating outputs!
+                                    <br><code>pip install replicate</code>
+                                    <br><code>export REPLICATE_API_TOKEN=your_token_here</code>
+                                    <br><code>output = replicate.run("your_username_here/your_model_name_here:model_version_here", input={"user_query": your_query_here})</code>
+                                </li>
+                            </ol>
+                        </p></li>
+
+                        <h4 id="gorilla-openfunctions"><li>Gorilla OpenFunctions: Executable API Calls ⚔️</h4>
+                        <i>
+                            Note: If you would like to try out Gorilla Open Functions in a playground-like environment check out <a href="https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd">this Google Colab</a>. 
+                            <br>For more information about the technical details behind Gorilla Open Functions check out <a href="https://gorilla.cs.berkeley.edu/blogs/4_open_functions.html">this blog post</a>!
+                        </i>
+                        <p>
+                            Gorilla Open Functions returns executable API calls given a specific user query and API documentation. 
+                            It acts as  an open source version of OpenAI’s function calling except with chat completion. 
+                            One key difference is that OpenAI will repeatedly prompt users if arguments are missing in the query but Gorilla Open Functions utilizes chat completion to accurately infer and fill in these missing parameters. 
+                        </p>
+                        <p>
+                            Using Gorilla Open Functions is simple: Install the necessary dependencies, provide a query and a set of functions, and get a response.
+                            <ol>
+                                <li>Install dependencies:
+                                    <br><code>pip install openai==0.28.1</code>
+                                </li>
+                                <li> Provide a query and set of functions (example below):
+                                    <br><pre><code>
+    query = "Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes"
+    function_documentation = {  
+        "name": "Uber Carpool",
+        "api_name": "uber.ride",
+        "description": "Find suitable ride for customers given the location, type of ride, 
+            and the amount of time the customer is willing to wait as parameters",
+        "parameters": 
+            [
+                {
+                "name": "loc", 
+                "description": "location of the starting place of the uber ride"
+                }, 
+                {
+                    "name":"type", 
+                    "enum": ["plus", "comfort", "black"], 
+                    "description": "types of uber ride user is ordering"
+                },
+                {
+                    "name": "time", 
+                    "description": "the amount of time in minutes the customer is willing to wait"
+                }
+            ]
+        }
+                                    </code></pre>
+                                </li> 
+                                <li> Define a response function (example below):
+                                    <br><pre><code>
+    def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes", 
+                             model="gorilla-openfunctions-v0", functions=[]):
+        openai.api_key = "EMPTY"
+        openai.api_base = "http://luigi.millennium.berkeley.edu:8000/v1"
+        try:
+            completion = openai.ChatCompletion.create(
+            model="gorilla-openfunctions-v1",
+            temperature=0.0,
+            messages=[{"role": "user", "content": prompt}],
+            functions=functions,
+            )
+            return completion.choices[0].message.content
+        except Exception as e:
+            print(e, model, prompt)
+                                    </code></pre>
+                                </li>
+                                <li> Return relevant API call:
+                                    <br><code>get_gorilla_response(query, functions=functions)</code>
+                                </li>
+                                <li> Output Example:
+                                    <br><code>uber.ride(loc="berkeley", type="plus", time=10)</code>
+                                </li>
+                            </ol>
+                        </p>
+
+                        <p>
+                            Also, checkout the following tutorials for running and self hosting OpenFunctions locally! 
+                            Rather than relying on our UC Berkeley hosted endpoints, the tutorials below go over local 
+                            <ul>
+                                <li> <a href="https://colab.research.google.com/drive/1I9UJoKh9sngE2MfPfQD5kbn2-twq2xvY?usp=sharing">Run OpenFunctions Locally!</a>
+                                    <br>The link above provides a walkthrough of the quantization process of the Gorilla OpenFunctions model and demonstrates how you can run fast, local inference with the model on Google Colab's free T4 GPU!
+                                </li> 
+                                <li> <a href="https://github.com/ShishirPatil/gorilla/tree/main/openfunctions#self-hosting-openfunctions">Self-Hosting OpenFunctions</a>
+                                    <br>The link above provides a clear walkthrough on how to set up serving Gorilla OpenFunctions for your enterprise use-cases. 
+                                    Self-hosting the model in this manner allows for control over your sensitive enterprise data, resulting in secure, private inference!
+                                </li>
+                            </ul>
+
+                        </p></li>
+
+                        <h4 id="integrate-third-party"><li>Integrating Gorilla with Third Party Libraries 🦜</h4>
+                        <i> For a self contained walkthrough on how to integrate Gorilla with Langchain check out <a href="https://colab.research.google.com/drive/11HJWR3ylG1HSE2v78W1gRK-dKkSA0pHe">this Google Colab</a>. </i>
+                        <p>
+                            Integrate Gorilla with Langchain for easy deployment in less than 10 lines of code. 
+                            Install dependencies, create a langchain agent and start prompting!
+                            <ol>
+                                <li> Install dependencies:
+                                    <br><code>pip install transformers[sentencepiece] datasets langchain openai==0.28.1 &> /dev/null</code>
+                                </li>
+                                <li>Define Langchain Chat Agent:
+                                    <br><pre><code>
+from langchain.chat_models import ChatOpenAI
+chat_model = ChatOpenAI(
+    openai_api_base="http://zanino.millennium.berkeley.edu:8000/v1",
+    openai_api_key="EMPTY",
+    model="gorilla-7b-hf-v1",
+    verbose=True
+)
+                                    </code></pre>
+                                </li> 
+                                <li> Prompt:
+                                    <br><code>example = chat_model.predict("I want to translate from English to Chinese")</code>
+                                    <br><code>print(example)</code>
+                                </li>
+                            </ol>
+                        </p></li>
+
+                        <h4 id="api-zoo"><li><a href="blogs/6_apizoo.html">Gorilla API Zoo Index 📖</a></h4>
+                        <p>
+                            The API Zoo is an open sourced index containing API documentation that can be used by LLMs to increase tool-use capabilities via API calls. 
+                            Anyone can upload to the index, simply follow the instructions <a href="https://github.com/ShishirPatil/gorilla/blob/main/data/README.md#gorilla-api-store">here</a> to upload your API!
+                        </p>
+
+                        <h4 id="train-your-own-gorilla"><li>Train Your Own Gorilla 🔨🔧</h4>
+                        <p>
+                            Want to use Gorilla on your own set of APIs? Whether it's utilizing Gorilla to help your company run more efficiently by training it on internal APIs or playing around with personal applications built on top of Gorilla, its now easy to train your own Gorilla LLM!
+                            We currently have two ways finetune Gorilla:
+                            <ol type=1>
+                                <li>text-generation-webui: 
+                                    With this method of finetuning, its possible to train full-precision versions of Gorilla (llama, falcon, and mpt base) on your data with a clean chat interface to interact with your model. 
+                                    However, for quantized models, this method does not support .gguf file formats, which is the file format for the official k-quantized gorilla models.
+                                    As a result, if you would like to finetune quantized models with this method, we will be using <a href="https://huggingface.co/TheBloke/gorilla-7B-GPTQ">GPTQ quantized gorilla from TheBloke</a>.
+                                </li>
+                                <li>Llama.cpp built-in finetuning: 
+                                    This method allows you to finetune Gorilla on our official a href="https://huggingface.co/gorilla-llm/gorilla-7b-hf-v1-gguf/tree/main">llama-based k-quantized models</a>. 
+                                    Unfortunately this method doesn't support finetuning the falcon-based or mpt-based quantized versions of Gorilla. The steps are straightforward, but we are working to make the pipeline for this process self-contained and more streamlined so stay-tuned for that!
+                                </li>
+                            </ol>
+                            Simply <a href="https://github.com/ShishirPatil/gorilla/tree/main/data">format your API dataset</a>, pick a method of finetuning and follow the steps below to LoRA finetune Gorilla:
+                            <ol type =A>
+                                <li> Finetuning with <a href="https://github.com/oobabooga/text-generation-webui">text-generation-webui</a>:
+                                <ol>
+                                    <li><code>git clone https://github.com/oobabooga/text-generation-webui.git</code>
+                                    </li> 
+                                    <li>Follow <a href="https://github.com/oobabooga/text-generation-webui">text-generation webui</a> to run the application locally
+                                        <ol type="a">
+                                            <li>Go to cloned folder</li>
+                                            <li><code>cd loras</code></li>
+                                            <li>Format your APIs according to <a href="https://github.com/ShishirPatil/gorilla/tree/main/data">this template</a> and upload your desired API’s (stored as a .txt file) into the <code>loras</code> directory</li>
+                                            <li><code>pip install -r requirements.txt</code></li>
+                                            <li><code>./start_macos.sh</code> and it will open a localhost interface</li>
+                                        </ol>
+                                    </li>
+                                    <li> Open a browser and go to url <code>http://127.0.0.1:7860/</code></li>
+                                    <li> Navigate to the "Model" tab</li>
+                                    <li> Load <a href="https://huggingface.co/TheBloke/gorilla-7B-GPTQ">this GPTQ quantized version of Gorilla</a>>. 
+                                        Note that text-generation-webui method DOES NOT support .gguf models for LoRA finetuning, which is why we use GPTQ quantized version. 
+                                        <ol type="a">
+                                            <li>If you would like to finetune the full precision models, you can pick any of the models WITHOUT the gguf or ggml suffix tag in <a href="https://huggingface.co/gorilla-llm">this Hugging Face Repo</a>. </li>
+                                            <li> <i>To use the llama-based model, we released delta weights to follow compliance rules, so first follow <a href="https://github.com/ShishirPatil/gorilla/tree/main/inference#downloading-gorilla-delta-weights">these instructions</a> to merge with base llama.</i></li>
+                                        </ol>
+                                    </li>
+                                    <li> In the dropdown menu under the Models tab, click the LoRA dropdown menu to add your LoRA.
+                                        
+                                    </li>
+                                    <li> Click "Apply Lora" Note that this step might take some time.
+                                        
+                                    </li>
+                                    <li> Navigate to the Chat tab and start chatting with your fine-tuned model!
+                                        <ol type="a">
+                                            <li>If you would like to speed up inference and have a GPU available on your laptop, increasing <code>n-gpu-layers</code> on the left side of the "Model" tab accelerates inference.</li>
+                                        </ol>
+                                    </li>
+                                </ol> </li>
+                                <li> Finetuning with <a href="https://github.com/ggerganov/llama.cpp">Llama.cpp</a>:
+                                <br>To finetune llama-based quantized models, we can directly utilize finetuning functionality in <a href="https://github.com/ggerganov/llama.cpp/tree/master/examples/finetune">llama.cpp</a> in accordance with the steps below:
+                                <ol>
+                                    <li>Format your APIs according to <a href="https://github.com/ShishirPatil/gorilla/tree/main/data">this template</a> and store as a .txt file</li>
+                                    <li>Download your desired k-quantized model from <a href="https://huggingface.co/gorilla-llm/gorilla-7b-hf-v1-gguf/tree/main">here</a> to use as the base model (note only llama based models are supported). Make sure you are installing a quantized model (.gguf file format). </li>
+                                    <li>Run <code>llama.cpp/finetune --model-base the-model-you-downloaded.gguf --train-data your-training-data.txt</code>
+                                        <ol type="a"><li>Refer to <a href="https://github.com/ggerganov/llama.cpp/blob/master/examples/finetune/README.md">llama.cpp documentation</a> for any extra flags you would like to include.</li></ol>
+                                    </li>
+                                    <li>Run the following command for inference:
+                                        <br><code>llama.cpp/main --model the-model-you-downloaded.gguf --lora ggml-lora-LATEST-f32.gguf --prompt "YOUR_PROMPT_HERE"</code>
+                                    </li>
+                                </ol> </li>
+                            </ol>
+                        </p></li>
+
+                        <h4>Summary</h4>
+                        <p>
+                            This blog post went over the numerous methods to utilize and experiment with Gorilla for your own use cases including running local inference, finetuning Gorilla on your own set of APIs, utilizing Gorilla OpenFunctions, and the API Zoo. 
+                            Gorilla enables some super cool applications like <a href="https://youtu.be/RMgM3tPTpXI">Gorilla-Spotlight</a>! Enabling LLMs to utilize tools like APIs opens up the door for agents that can concretely interact with the world. The possibilities for applications are endless. 
+                            Be sure to check out our <a href="https://discord.gg/3apqwwME">Discord community</a> for updates and any questions as well as our <a href="https://github.com/ShishirPatil/gorilla">official repo</a> on Github. 
+                        </p>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: white;
+            justify-content: center;
+            align-items: center;
+        }
+        .blog-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .blog-post {
+            margin: 20px;
+            padding: 20px;
+            max-width: 1000px; 
+            justify-content: center;
+        }
+        .blog-post img {
+            display: block;
+            margin: 0 auto;
+        }
+        .blog-title{
+            color: #055ada;
+            text-align: center;
+        }
+
+        .author-date {
+                display: flex;
+                margin-bottom: 0px;
+                justify-content: center; 
+        }
+        .author {
+                font-size: 16px;
+                color: #1E90FF;
+                margin-right: 20px;
+        }
+
+        .date {
+            font-size: 16px;
+            color: #7e8790;
+        }
+
+        .preview {
+            text-align: justify; 
+            text-justify: inter-word; 
+        }
+
+        .highlight-clean-blog {
+            color: #313437;
+            background-color: #fff;
+            padding: 50px 0;
+        }
+
+        .box-index {
+        position: fixed;
+        top: 50%; 
+        left: 0px; 
+        transform: translateY(-50%);
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 150px;
+        }
+
+        .box-index h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        }
+
+        .box-index ul {
+        list-style-type: disc;
+        padding: 0;
+        }
+
+        .box-index ul li {
+        margin-bottom: 10px;
+        }
+
+        .box-index ul li a {
+        text-decoration: none;
+        color: #333;
+        }
+
+        .box-index ul li a:hover {
+        color: #1E90FF;
+        }
+
+        
+        .more-blogs .sub-menu {
+            display: none;
+        }
+
+        .more-blogs .sub-menu.expanded {
+            display: block;
+            max-height: 200px; /* Adjust the max height as needed */
+            overflow-y: auto;
+        }
+
+        .more-blogs .sub-menu li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .more-blogs .sub-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .more-blogs .caret {
+            transition: transform 0.3s ease-in-out;
+            display: inline-block;
+            transform: rotate(0deg);
+            font-size: 12px; /* Adjust the font size to change the caret size */
+        }
+
+        .more-blogs.expanded .caret {
+            transform: rotate(90deg);
+        }
+
+        @media screen and (max-width: 768px) {
+        .blog-post {
+            padding: 10px; /* Adjust spacing for smaller screens */
+        }
+        .blog-post img {
+            max-width: 80%; /* Reduce image size for smaller screens */
+        }
+        .box-index {
+        display: none; /* Hide the index on smaller screens */
+        }
+    }
+
+    </style>
+</body>
+</html>
+
+<script>
+    function toggleMoreBlogs() {
+        var subMenu = document.querySelector('.more-blogs .sub-menu');
+        var parentItem = document.querySelector('.more-blogs');
+        subMenu.classList.toggle('expanded');
+        parentItem.classList.toggle('expanded');
+    }
+</script>
