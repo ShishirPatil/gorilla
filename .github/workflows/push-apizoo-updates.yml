@@ -27,5 +27,5 @@ jobs:
             DATA=$(jq -c . < "$FILE")
             FILE_URL="${REPO_URL}${FILE}"
             JSON_BODY=$(jq --arg file_url "$FILE_URL" 'if type == "array" then map(. + {"file_url": $file_url}) else . + {"file_url": $file_url} end' <<< "$DATA")
-            curl -X POST -H "Content-Type: application/json" -d "$JSON_BODY" https://apizooindex.gorilla-llm.com/api/update
+            curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer ${{ secrets.APIZOO_UPDATE_TOKEN }}" -d "$JSON_BODY" https://apizooindex.gorilla-llm.com/api/update
           done
