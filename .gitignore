@@ -7,3 +7,4 @@ dist
 .vscode
 .idea
 .editorconfig
+/scrapers
