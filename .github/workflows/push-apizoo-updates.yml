@@ -34,7 +34,7 @@ jobs:
             HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
             if [ "$HTTP_STATUS" -ne 200 ]; then
               ERROR_FLAG=1
-              ISSUE_BODY+="**Error updating API data for $FILE**\n\n- HTTP Status: $HTTP_STATUS\n- Response: $BODY\n\n"
+              ISSUE_BODY+="**Error adding API documentation in $FILE to the API Zoo Index**\n\n- HTTP Status: $HTTP_STATUS\n- Response: $BODY\n\n"
             fi
           done
           if [ "$ERROR_FLAG" -eq 1 ]; then
@@ -47,7 +47,7 @@ jobs:
       - name: Prepare Issue Content If Errors Were Detected
         if: env.ERRORS_DETECTED == 'true'
         run: |
-          echo -e "name: API Zoo Index\nabout: Update Error\n\n**Describe the issue**\nError(s) occurred while updating API data to the server.\n\n$ISSUE_BODY" > issue_content.md
+          echo -e "name: API Zoo Index\nabout: Update Error\n\n**Describe the issue**\nError(s) occurred while adding new API documentation to the API Zoo Index.\n\n$ISSUE_BODY" > issue_content.md
           echo "::set-output name=issue_file::issue_content.md"
 
       - name: Create GitHub Issue on Error
@@ -56,5 +56,5 @@ jobs:
         with:
           title: "[API Zoo] Error Updating API Zoo Index"
           content-filepath: ./issue_content.md
-          labels: apizoo-actions
+          labels: apizoo-index
           token: ${{ secrets.GITHUB_TOKEN }}
