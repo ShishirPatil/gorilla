@@ -33,7 +33,11 @@ jobs:
             echo "Validation response for $FILE: $RESPONSE"
             if [ "$HTTP_STATUS" -ne 200 ]; then
               ERROR_FLAG=1
-              ISSUE_BODY+="**Error validating new API documentation in $FILE for duplicates**\n\n- HTTP Status: $HTTP_STATUS\n- Response: $BODY\n\n"
+              ISSUE_BODY+="**Error validating new API documentation in $FILE for duplicates**\n\n- HTTP Status: $HTTP_STATUS\n- Response:\n\`\`\`\n"
+              while read -r line; do
+                ISSUE_BODY+="$line\n"
+              done <<< "$BODY"
+              ISSUE_BODY+="\`\`\`\n\n"
             fi
             if [[ "$RESPONSE" == *"\"duplicate\": true"* ]]; then
               echo "::set-output name=duplicate::true"
