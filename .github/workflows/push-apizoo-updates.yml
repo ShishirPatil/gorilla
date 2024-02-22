@@ -23,9 +23,38 @@ jobs:
         run: |
           REPO_URL="https://github.com/ShishirPatil/gorilla/blob/main/"
           FILES=$(git diff --name-only ${{ github.sha }} ${{ github.event.before }} | grep 'data/apizoo/')
+          ERROR_FLAG=0
+          ISSUE_BODY=""
           for FILE in $FILES; do
             DATA=$(jq -c . < "$FILE")
             FILE_URL="${REPO_URL}${FILE}"
             JSON_BODY=$(jq --arg file_url "$FILE_URL" 'if type == "array" then map(. + {"file_url": $file_url}) else . + {"file_url": $file_url} end' <<< "$DATA")
-            curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer ${{ secrets.APIZOO_UPDATE_TOKEN }}" -d "$JSON_BODY" https://apizooindex.gorilla-llm.com/api/update
+            RESPONSE=$(curl -s -w "\n%{http_code}" -X POST -H "Content-Type: application/json" -H "Authorization: Bearer ${{ secrets.APIZOO_UPDATE_TOKEN }}" -d "$JSON_BODY" https://apizooindex.gorilla-llm.com/api/update)
+            BODY=$(echo "$RESPONSE" | head -n -1)
+            HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
+            if [ "$HTTP_STATUS" -ne 200 ]; then
+              ERROR_FLAG=1
+              ISSUE_BODY+="**Error updating API data for $FILE**\n\n- HTTP Status: $HTTP_STATUS\n- Response: $BODY\n\n"
+            fi
           done
+          if [ "$ERROR_FLAG" -eq 1 ]; then
+            echo "ISSUE_BODY<<EOF" >> $GITHUB_ENV
+            echo "$ISSUE_BODY" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
+            echo "ERRORS_DETECTED=true" >> $GITHUB_ENV
+          fi
+      
+      - name: Prepare Issue Content If Errors Were Detected
+        if: env.ERRORS_DETECTED == 'true'
+        run: |
+          echo -e "name: API Zoo Index\nabout: Update Error\n\n**Describe the issue**\nError(s) occurred while updating API data to the server.\n\n$ISSUE_BODY" > issue_content.md
+          echo "::set-output name=issue_file::issue_content.md"
+
+      - name: Create GitHub Issue on Error
+        if: env.ERRORS_DETECTED == 'true'
+        uses: peter-evans/create-issue-from-file@v1
+        with:
+          title: "[API Zoo] Error Updating API Zoo Index"
+          content-filepath: ./issue_content.md
+          labels: apizoo-actions
+          token: ${{ secrets.GITHUB_TOKEN }}
