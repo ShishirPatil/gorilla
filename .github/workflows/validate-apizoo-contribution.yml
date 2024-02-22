@@ -23,15 +23,44 @@ jobs:
         id: check
         run: |
           FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep 'data/apizoo/')
+          ERROR_FLAG=0
+          ISSUE_BODY=""
           for FILE in $FILES; do
             DATA=$(jq -c . < "$FILE")
-            RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "$DATA" https://apizooindex.gorilla-llm.com/api/validate)
+            RESPONSE=$(curl -s -w "\n%{http_code}" -X POST -H "Content-Type: application/json" -d "$DATA" https://apizooindex.gorilla-llm.com/api/validate)
+            BODY=$(echo "$RESPONSE" | head -n -1)
+            HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
             echo "Validation response for $FILE: $RESPONSE"
+            if [ "$HTTP_STATUS" -ne 200 ]; then
+              ERROR_FLAG=1
+              ISSUE_BODY+="**Error validating new API documentation in $FILE for duplicates**\n\n- HTTP Status: $HTTP_STATUS\n- Response: $BODY\n\n"
+            fi
             if [[ "$RESPONSE" == *"\"duplicate\": true"* ]]; then
               echo "::set-output name=duplicate::true"
               break
             fi
           done
+          if [ "$ERROR_FLAG" -eq 1 ]; then
+            echo "ISSUE_BODY<<EOF" >> $GITHUB_ENV
+            echo "$ISSUE_BODY" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
+            echo "ERRORS_DETECTED=true" >> $GITHUB_ENV
+          fi
+
+      - name: Prepare Issue Content If Errors Were Detected
+        if: env.ERRORS_DETECTED == 'true'
+        run: |
+          echo -e "name: API Zoo Index\nabout: Validation Error\n\n**Describe the issue**\nError(s) occurred while validating new API additions to the API Zoo Index.\n\n$ISSUE_BODY" > issue_content.md
+          echo "::set-output name=issue_file::issue_content.md"
+
+      - name: Create GitHub Issue on Error
+        if: env.ERRORS_DETECTED == 'true'
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "[API Zoo] Error Validating New Additions To The API Zoo Index"
+          content-filepath: ./issue_content.md
+          labels: apizoo-index
+          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Comment on PR if duplicate API
         if: steps.check.outputs.duplicate == 'true'
