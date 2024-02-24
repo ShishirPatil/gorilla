@@ -12,10 +12,6 @@ body {
     color: #fff;
 }
 
-.container {
-    padding: 10px 10%;
-}
-
 .sub-title {
     font-size: 60px;
     font-weight: 600;
@@ -56,12 +52,7 @@ body {
     border-radius: 50%;
     text-align: center;
 }
-.work:hover img {
-    transform: scale(1.1);
-}
-.work:hover .layer {
-    height: 100%;
-}
+
 .btn-secondary {
     display: block;
     margin: 15px auto;
@@ -71,41 +62,8 @@ body {
     border-radius: 6px;
     text-decoration: none;
     color: #fff;
-    transition: background 0.5s;
-}
-.btn-secondary:hover {
-    background: #ff004f;
 }
 /* ---------contact-------- */
-.contact-left {
-    flex-basis: 35%;
-}
-.contact-right {
-    flex-basis: 60%;
-}
-.contact-left p {
-    margin-top: 30px;
-}
-.contact-left p i {
-    color: #ff004f;
-    margin-right: 15px;
-    font-size: 25px;
-}
-.social-icons {
-    margin-top: 30px;
-}
-.social-icons a {
-    text-decoration: none;
-    font-size: 30px;
-    margin-right: 15px;
-    color: #ababab;
-    display: inline-block;
-    transition: transform 0.5s;
-}
-.social-icons a:hover {
-    /*color: #ff004f;*/
-    transform: translateY(-5px);
-}
 .btn-secondary.btn-secondary2 {
     display: inline-block;
     background: #ff004f;
@@ -133,64 +91,4 @@ form .btn-secondary2 {
     font-size: 18px;
     margin-top: 20px;
     cursor: pointer;
-}
-/* -------css for small screens-------- */
-nav .fa-solid {
-    display: none;
-}
-@media only screen and (max-width: 600px) {
-    #header {
-        background-image: url(images/phone-background.png);
-    }
-    .header-text {
-        margin-top: 100%;
-        font-size: 16px;
-    }
-    .header-text h1 {
-        font-size: 30px;
-    }
-    nav .fa-solid {
-        display: block;
-        font-size: 25px;
-    }
-    nav ul {
-        background: #ff004f;
-        position: fixed;
-        top: 0;
-        right: -200px;
-        width: 200px;
-        height: 100vh;
-        padding-top: 50px;
-        z-index: 2;
-        transition: right 0.5s;
-    }
-    nav ul li {
-        display: block;
-        margin: 25px;
-    }
-    nav ul .fa-solid {
-        position: absolute;
-        top: 25px;
-        left: 25px;
-        cursor: pointer;
-    }
-    .sub-title {
-        font-size: 40px;
-    }
-    .about-col-1, .about-col-2 {
-        flex-basis: 100%;
-    }
-    .about-col-1 {
-        margin-bottom: 30px;
-    }
-    .about-col-2 {
-        font-size: 14px;
-    }
-    .tab-links {
-        font-size: 16px;
-        margin-right: 20px;
-    }
-    .contact-left, .contact-right {
-        flex-basis: 100%;
-    }
 }
