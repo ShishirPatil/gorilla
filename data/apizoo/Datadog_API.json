@@ -18,6 +18,9 @@
             "filter[category]": "string: Filter API keys by category."
         },
         "functionality": "List all API keys available for your account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -29,6 +32,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create an API key.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -42,6 +48,9 @@
             "api_key_id": "[REQUIRED] string: The ID of the API key."
         },
         "functionality": "Delete an API key.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -56,6 +65,9 @@
             "include": "string: Comma separated list of resource paths for related resources to include in the response. Supported resource paths are `created_by` and `modified_by`."
         },
         "functionality": "Get an API key.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -69,6 +81,9 @@
             "api_key_id": "[REQUIRED] string: The ID of the API key."
         },
         "functionality": "Update an API key.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -82,6 +97,9 @@
             "id": "[REQUIRED] string: ID of the API to delete"
         },
         "functionality": "Delete a specific API by ID.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -95,6 +113,9 @@
             "id": "[REQUIRED] string: ID of the API to retrieve"
         },
         "functionality": "Retrieve information about a specific API in [OpenAPI](https://spec.openapis.org/oas/latest.html) format file.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -108,6 +129,9 @@
             "id": "[REQUIRED] string: ID of the API to modify"
         },
         "functionality": "Update information about a specific API. The given content will replace all API content of the given ID.\nThe ID is returned by the create API, or can be found in the URL in the API catalog UI.\n",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -119,6 +143,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a new API from the [OpenAPI](https://spec.openapis.org/oas/latest.html) specification given.\nIt supports version `2.0`, `3.0` and `3.1` of the specification. A specific extension section, `x-datadog`,\nlet you specify the `teamHandle` for your team responsible for the API in Datadog.\nIt returns the created API ID.\n",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -130,6 +157,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Get the list of configured span-based metrics with their definitions.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -141,6 +171,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a metric based on your ingested spans in your organization.\nReturns the span-based metric object from the request body when the request is successful.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -154,6 +187,9 @@
             "metric_id": "[REQUIRED] string: The name of the span-based metric."
         },
         "functionality": "Delete a specific span-based metric from your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -167,6 +203,9 @@
             "metric_id": "[REQUIRED] string: The name of the span-based metric."
         },
         "functionality": "Get a specific span-based metric from your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -180,6 +219,9 @@
             "metric_id": "[REQUIRED] string: The name of the span-based metric."
         },
         "functionality": "Update a specific span-based metric from your organization.\nReturns the span-based metric object from the request body when the request is successful.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -191,6 +233,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Get the list of APM retention filters.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -202,6 +247,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a retention filter to index spans in your organization.\nReturns the retention filter definition when the request is successful.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -213,6 +261,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Re-order the execution order of retention filters.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -226,6 +277,9 @@
             "filter_id": "[REQUIRED] string: The ID of the retention filter."
         },
         "functionality": "Delete a specific retention filter from your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -239,6 +293,9 @@
             "filter_id": "[REQUIRED] string: The ID of the retention filter."
         },
         "functionality": "Get an APM retention filter.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -252,6 +309,9 @@
             "filter_id": "[REQUIRED] string: The ID of the retention filter."
         },
         "functionality": "Update a retention filter from your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -271,6 +331,9 @@
             "include": "string: Resource path for related resources to include in the response. Only `owned_by` is supported."
         },
         "functionality": "List all application keys available for your org",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -284,6 +347,9 @@
             "app_key_id": "[REQUIRED] string: The ID of the application key."
         },
         "functionality": "Delete an application key",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -298,6 +364,9 @@
             "include": "string: Resource path for related resources to include in the response. Only `owned_by` is supported."
         },
         "functionality": "Get an application key for your org.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -311,6 +380,9 @@
             "app_key_id": "[REQUIRED] string: The ID of the application key."
         },
         "functionality": "Edit an application key",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -329,6 +401,9 @@
             "page[limit]": "integer: Maximum number of events in the response."
         },
         "functionality": "List endpoint returns events that match a Audit Logs search query.\n[Results are paginated][1].\n\nUse this endpoint to see your latest Audit Logs events.\n\n[1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -340,6 +415,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List endpoint returns Audit Logs events that match an Audit search query.\n[Results are paginated][1].\n\nUse this endpoint to build complex Audit Logs events filtering and search.\n\n[1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -356,6 +434,9 @@
             "filter": "string: Filter all mappings by the given string."
         },
         "functionality": "List all AuthN Mappings in the org.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -367,6 +448,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create an AuthN Mapping.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -380,6 +464,9 @@
             "authn_mapping_id": "[REQUIRED] string: The UUID of the AuthN Mapping."
         },
         "functionality": "Delete an AuthN Mapping specified by AuthN Mapping UUID.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -393,6 +480,9 @@
             "authn_mapping_id": "[REQUIRED] string: The UUID of the AuthN Mapping."
         },
         "functionality": "Get an AuthN Mapping specified by the AuthN Mapping UUID.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -406,6 +496,9 @@
             "authn_mapping_id": "[REQUIRED] string: The UUID of the AuthN Mapping."
         },
         "functionality": "Edit an AuthN Mapping.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -423,6 +516,9 @@
             "sort[asc]": "boolean: Specify if order is ascending or not"
         },
         "functionality": "Search cases.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -434,6 +530,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a Case",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -445,6 +544,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Get all projects.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -456,6 +558,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a project.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -469,6 +574,9 @@
             "project_id": "[REQUIRED] string: Project UUID"
         },
         "functionality": "Remove a project using the project's `id`.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -482,6 +590,9 @@
             "project_id": "[REQUIRED] string: Project UUID"
         },
         "functionality": "Get the details of a project by `project_id`.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -495,6 +606,9 @@
             "case_id": "[REQUIRED] string: Case's UUID or key"
         },
         "functionality": "Get the details of case by `case_id`",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -508,6 +622,9 @@
             "case_id": "[REQUIRED] string: Case's UUID or key"
         },
         "functionality": "Archive case",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -521,6 +638,9 @@
             "case_id": "[REQUIRED] string: Case's UUID or key"
         },
         "functionality": "Assign case to a user",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -534,6 +654,9 @@
             "case_id": "[REQUIRED] string: Case's UUID or key"
         },
         "functionality": "Update case priority",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -547,6 +670,9 @@
             "case_id": "[REQUIRED] string: Case's UUID or key"
         },
         "functionality": "Update case status",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -560,6 +686,9 @@
             "case_id": "[REQUIRED] string: Case's UUID or key"
         },
         "functionality": "Unarchive case",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -573,6 +702,9 @@
             "case_id": "[REQUIRED] string: Case's UUID or key"
         },
         "functionality": "Unassign case",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -584,6 +716,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Send your pipeline event to your Datadog platform over HTTP. For details about how pipeline executions are modeled and what execution types we support, see [Pipeline Data Model And Execution Types](https://docs.datadoghq.com/continuous_integration/guides/pipeline_data_model/).\n\nPipeline events can be submitted with a timestamp that is up to 18 hours in the past.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -595,6 +730,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Use this API endpoint to aggregate CI Visibility pipeline events into buckets of computed metrics and timeseries.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -613,6 +751,9 @@
             "page[limit]": "integer: Maximum number of events in the response."
         },
         "functionality": "List endpoint returns CI Visibility pipeline events that match a [search query](https://docs.datadoghq.com/continuous_integration/explorer/search_syntax/).\n[Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).\n\nUse this endpoint to see your latest pipeline events.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -624,6 +765,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List endpoint returns CI Visibility pipeline events that match a [search query](https://docs.datadoghq.com/continuous_integration/explorer/search_syntax/).\n[Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).\n\nUse this endpoint to build complex events filtering and search.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -635,6 +779,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "The API endpoint to aggregate CI Visibility test events into buckets of computed metrics and timeseries.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -653,6 +800,9 @@
             "page[limit]": "integer: Maximum number of events in the response."
         },
         "functionality": "List endpoint returns CI Visibility test events that match a [log search query](https://docs.datadoghq.com/logs/explorer/search_syntax/).\n[Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).\n\nUse this endpoint to see your latest test events.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -664,6 +814,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List endpoint returns CI Visibility test events that match a [log search query](https://docs.datadoghq.com/logs/explorer/search_syntax/).\n[Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).\n\nUse this endpoint to build complex events filtering and search.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -681,6 +834,9 @@
             "page[cursor]": "string: String to query the next page of results.\nThis key is provided with each valid response from the API in `meta.pagination.next_cursor`."
         },
         "functionality": "Get all Container Images for your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -698,6 +854,9 @@
             "page[cursor]": "string: String to query the next page of results.\nThis key is provided with each valid response from the API in `meta.pagination.next_cursor`."
         },
         "functionality": "Get all containers for your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -709,6 +868,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List the AWS CUR configs.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -720,6 +882,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a Cloud Cost Management account for an AWS CUR config.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -733,6 +898,9 @@
             "cloud_account_id": "[REQUIRED] string: Cloud Account id."
         },
         "functionality": "Archive a Cloud Cost Management Account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -746,6 +914,9 @@
             "cloud_account_id": "[REQUIRED] string: Cloud Account id."
         },
         "functionality": "Update the status of an AWS CUR config (active/archived).",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -759,6 +930,9 @@
             "filter[management_account_id]": "[REQUIRED] string: The ID of the management account to filter by."
         },
         "functionality": "List the AWS accounts in an organization by calling 'organizations:ListAccounts' from the specified management account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -770,6 +944,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List the Azure configs.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -781,6 +958,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a Cloud Cost Management account for an Azure config.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -794,6 +974,9 @@
             "cloud_account_id": "[REQUIRED] string: Cloud Account id."
         },
         "functionality": "Archive a Cloud Cost Management Account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -807,6 +990,9 @@
             "cloud_account_id": "[REQUIRED] string: Cloud Account id."
         },
         "functionality": "Update the status of an  Azure config (active/archived).",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -818,6 +1004,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Get the Cloud Cost Management activity.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -829,6 +1018,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Get active billing dimensions for cost attribution. Cost data for a given month becomes available no later than the 19th of the following month.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -849,6 +1041,9 @@
             "include_descendants": "boolean: Include child org cost in the response. Defaults to `true`."
         },
         "functionality": "Get monthly cost attribution by tag across multi-org and single root-org accounts.\nCost Attribution data for a given month becomes available no later than the 19th of the following month.\nThis API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is\nset in the response. If it is, make another request and pass `next_record_id` as a parameter.\nPseudo code example:\n```\nresponse := GetMonthlyCostAttribution(start_month, end_month)\ncursor := response.metadata.pagination.next_record_id\nWHILE cursor != null BEGIN\n  sleep(5 seconds)  # Avoid running into rate limit\n  response := GetMonthlyCostAttribution(start_month, end_month, next_record_id=cursor)\n  cursor := response.metadata.pagination.next_record_id\nEND\n```",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -868,6 +1063,9 @@
             "include": "string: Resource path for related resources to include in the response. Only `owned_by` is supported."
         },
         "functionality": "List all application keys available for current user",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -879,6 +1077,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create an application key for current user",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -892,6 +1093,9 @@
             "app_key_id": "[REQUIRED] string: The ID of the application key."
         },
         "functionality": "Delete an application key owned by current user",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -905,6 +1109,9 @@
             "app_key_id": "[REQUIRED] string: The ID of the application key."
         },
         "functionality": "Get an application key owned by current user",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -918,6 +1125,9 @@
             "app_key_id": "[REQUIRED] string: The ID of the application key."
         },
         "functionality": "Edit an application key owned by current user",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -931,6 +1141,9 @@
             "dashboard_list_id": "[REQUIRED] integer: ID of the dashboard list to delete items from."
         },
         "functionality": "Delete dashboards from an existing dashboard list.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -944,6 +1157,9 @@
             "dashboard_list_id": "[REQUIRED] integer: ID of the dashboard list to get items from."
         },
         "functionality": "Fetch the dashboard list\u2019s dashboard definitions.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -957,6 +1173,9 @@
             "dashboard_list_id": "[REQUIRED] integer: ID of the dashboard list to add items to."
         },
         "functionality": "Add dashboards to an existing dashboard list.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -970,6 +1189,9 @@
             "dashboard_list_id": "[REQUIRED] integer: ID of the dashboard list to update items from."
         },
         "functionality": "Update dashboards of an existing dashboard list.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -981,6 +1203,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Use this API endpoint to provide data about deployments for DORA metrics.\n\nThis is necessary for:\n- Deployment Frequency\n- Change Lead Time\n- Change Failure Rate",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -992,6 +1217,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Use this API endpoint to provide data about incidents for DORA metrics.\n\nThis is necessary for:\n- Change Failure Rate\n- Time to Restore",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1008,6 +1236,9 @@
             "page[limit]": "integer: Maximum number of downtimes in the response."
         },
         "functionality": "Get all scheduled downtimes.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1019,6 +1250,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Schedule a downtime.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1032,6 +1266,9 @@
             "downtime_id": "[REQUIRED] string: ID of the downtime to cancel."
         },
         "functionality": "Cancel a downtime.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1046,6 +1283,9 @@
             "include": "string: Comma-separated list of resource paths for related resources to include in the response. Supported resource\npaths are `created_by` and `monitor`."
         },
         "functionality": "Get downtime detail by `downtime_id`.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1059,6 +1299,9 @@
             "downtime_id": "[REQUIRED] string: ID of the downtime to update."
         },
         "functionality": "Update a downtime by `downtime_id`.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1077,6 +1320,9 @@
             "page[limit]": "integer: Maximum number of events in the response."
         },
         "functionality": "List endpoint returns events that match an events search query.\n[Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).\n\nUse this endpoint to see your latest events.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1088,6 +1334,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List endpoint returns events that match an events search query.\n[Results are paginated similarly to logs](https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination).\n\nUse this endpoint to build complex events filtering and search.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1103,6 +1352,9 @@
             "page[offset]": "integer: Specific offset to use as the beginning of the returned page."
         },
         "functionality": "Get all incidents for the user's organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1114,6 +1366,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create an incident.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1131,6 +1386,9 @@
             "page[offset]": "integer: Specific offset to use as the beginning of the returned page."
         },
         "functionality": "Search for incidents matching a certain query.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1144,6 +1402,9 @@
             "incident_id": "[REQUIRED] string: The UUID of the incident."
         },
         "functionality": "Deletes an existing incident from the users organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1158,6 +1419,9 @@
             "include": "array: Specifies which types of related objects should be included in the response."
         },
         "functionality": "Get the details of an incident by `incident_id`.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1172,6 +1436,9 @@
             "include": "array: Specifies which types of related objects should be included in the response."
         },
         "functionality": "Updates an incident. Provide only the attributes that should be updated as this request is a partial update.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1187,6 +1454,9 @@
             "filter[attachment_type]": "array: Specifies which types of attachments are included in the response."
         },
         "functionality": "Get all attachments for a given incident.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1201,6 +1471,9 @@
             "include": "array: Specifies which types of related objects are included in the response."
         },
         "functionality": "The bulk update endpoint for creating, updating, and deleting attachments for a given incident.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1214,6 +1487,9 @@
             "incident_id": "[REQUIRED] string: The UUID of the incident."
         },
         "functionality": "Get all integration metadata for an incident.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1227,6 +1503,9 @@
             "incident_id": "[REQUIRED] string: The UUID of the incident."
         },
         "functionality": "Create an incident integration metadata.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1241,6 +1520,9 @@
             "integration_metadata_id": "[REQUIRED] string: The UUID of the incident integration metadata."
         },
         "functionality": "Delete an incident integration metadata.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1255,6 +1537,9 @@
             "integration_metadata_id": "[REQUIRED] string: The UUID of the incident integration metadata."
         },
         "functionality": "Get incident integration metadata details.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1269,6 +1554,9 @@
             "integration_metadata_id": "[REQUIRED] string: The UUID of the incident integration metadata."
         },
         "functionality": "Update an existing incident integration metadata.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1282,6 +1570,9 @@
             "incident_id": "[REQUIRED] string: The UUID of the incident."
         },
         "functionality": "Get all todos for an incident.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1295,6 +1586,9 @@
             "incident_id": "[REQUIRED] string: The UUID of the incident."
         },
         "functionality": "Create an incident todo.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1309,6 +1603,9 @@
             "todo_id": "[REQUIRED] string: The UUID of the incident todo."
         },
         "functionality": "Delete an incident todo.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1323,6 +1620,9 @@
             "todo_id": "[REQUIRED] string: The UUID of the incident todo."
         },
         "functionality": "Get incident todo details.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1337,6 +1637,9 @@
             "todo_id": "[REQUIRED] string: The UUID of the incident todo."
         },
         "functionality": "Update an incident todo.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1348,6 +1651,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List all GCP STS-enabled service accounts configured in your Datadog account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1359,6 +1665,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a new entry within Datadog for your STS enabled service account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1372,6 +1681,9 @@
             "account_id": "[REQUIRED] string: Your GCP STS enabled service account's unique ID."
         },
         "functionality": "Delete an STS enabled GCP account from within Datadog.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1385,6 +1697,9 @@
             "account_id": "[REQUIRED] string: Your GCP STS enabled service account's unique ID."
         },
         "functionality": "Update an STS enabled service account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1396,6 +1711,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List your Datadog-GCP STS delegate account configured in your Datadog account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1407,6 +1725,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a Datadog GCP principal.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1418,6 +1739,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Get a list of all services from the Datadog Opsgenie integration.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1429,6 +1753,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a new service object in the Opsgenie integration.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1442,6 +1769,9 @@
             "integration_service_id": "[REQUIRED] string: The UUID of the service."
         },
         "functionality": "Delete a single service object in the Datadog Opsgenie integration.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1455,6 +1785,9 @@
             "integration_service_id": "[REQUIRED] string: The UUID of the service."
         },
         "functionality": "Get a single service from the Datadog Opsgenie integration.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1468,6 +1801,9 @@
             "integration_service_id": "[REQUIRED] string: The UUID of the service."
         },
         "functionality": "Update a single service object in the Datadog Opsgenie integration.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1479,6 +1815,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List Cloudflare accounts.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1490,6 +1829,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a Cloudflare account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1503,6 +1845,9 @@
             "account_id": "[REQUIRED] string"
         },
         "functionality": "Delete a Cloudflare account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1516,6 +1861,9 @@
             "account_id": "[REQUIRED] string"
         },
         "functionality": "Get a Cloudflare account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1529,6 +1877,9 @@
             "account_id": "[REQUIRED] string"
         },
         "functionality": "Update a Cloudflare account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1540,6 +1891,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List Confluent accounts.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1551,6 +1905,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a Confluent account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1564,6 +1921,9 @@
             "account_id": "[REQUIRED] string: Confluent Account id."
         },
         "functionality": "Delete a Confluent account with the provided account ID.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1577,6 +1937,9 @@
             "account_id": "[REQUIRED] string: Confluent Account id."
         },
         "functionality": "Get the Confluent account with the provided account ID.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1590,6 +1953,9 @@
             "account_id": "[REQUIRED] string: Confluent Account id."
         },
         "functionality": "Update the Confluent account with the provided account ID.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1603,6 +1969,9 @@
             "account_id": "[REQUIRED] string: Confluent Account id."
         },
         "functionality": "Get a Confluent resource for the account associated with the provided ID.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1616,6 +1985,9 @@
             "account_id": "[REQUIRED] string: Confluent Account id."
         },
         "functionality": "Create a Confluent resource for the account associated with the provided ID.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1630,6 +2002,9 @@
             "resource_id": "[REQUIRED] string: Confluent Account Resource ID."
         },
         "functionality": "Delete a Confluent resource with the provided resource id for the account associated with the provided account ID.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1644,6 +2019,9 @@
             "resource_id": "[REQUIRED] string: Confluent Account Resource ID."
         },
         "functionality": "Get a Confluent resource with the provided resource id for the account associated with the provided account ID.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1658,6 +2036,9 @@
             "resource_id": "[REQUIRED] string: Confluent Account Resource ID."
         },
         "functionality": "Update a Confluent resource with the provided resource id for the account associated with the provided account ID.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1669,6 +2050,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List Fastly accounts.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1680,6 +2064,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a Fastly account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1693,6 +2080,9 @@
             "account_id": "[REQUIRED] string: Fastly Account id."
         },
         "functionality": "Delete a Fastly account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1706,6 +2096,9 @@
             "account_id": "[REQUIRED] string: Fastly Account id."
         },
         "functionality": "Get a Fastly account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1719,6 +2112,9 @@
             "account_id": "[REQUIRED] string: Fastly Account id."
         },
         "functionality": "Update a Fastly account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1732,6 +2128,9 @@
             "account_id": "[REQUIRED] string: Fastly Account id."
         },
         "functionality": "List Fastly services for an account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1745,6 +2144,9 @@
             "account_id": "[REQUIRED] string: Fastly Account id."
         },
         "functionality": "Create a Fastly service for an account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1759,6 +2161,9 @@
             "service_id": "[REQUIRED] string: Fastly Service ID."
         },
         "functionality": "Delete a Fastly service for an account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1773,6 +2178,9 @@
             "service_id": "[REQUIRED] string: Fastly Service ID."
         },
         "functionality": "Get a Fastly service for an account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1787,6 +2195,9 @@
             "service_id": "[REQUIRED] string: Fastly Service ID."
         },
         "functionality": "Update a Fastly service for an account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1798,6 +2209,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List Okta accounts.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1809,6 +2223,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create an Okta account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1822,6 +2239,9 @@
             "account_id": "[REQUIRED] string"
         },
         "functionality": "Delete an Okta account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1835,6 +2255,9 @@
             "account_id": "[REQUIRED] string"
         },
         "functionality": "Get an Okta account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1848,6 +2271,9 @@
             "account_id": "[REQUIRED] string"
         },
         "functionality": "Update an Okta account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1859,6 +2285,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Returns the IP allowlist and its enabled or disabled state.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1870,6 +2299,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Edit the entries in the IP allowlist, and enable or disable it.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1884,6 +2316,9 @@
             "ddtags": "string: Log tags can be passed as query parameters with `text/plain` content type."
         },
         "functionality": "Send your logs to your Datadog platform over HTTP. Limits per HTTP request are:\n\n- Maximum content size per payload (uncompressed): 5MB\n- Maximum size for a single log: 1MB\n- Maximum array size if sending multiple logs in an array: 1000 entries\n\nAny log exceeding 1MB is accepted and truncated by Datadog:\n- For a single log request, the API truncates the log at 1MB and returns a 2xx.\n- For a multi-logs request, the API processes all logs, truncates only logs larger than 1MB, and returns a 2xx.\n\nDatadog recommends sending your logs compressed.\nAdd the `Content-Encoding: gzip` header to the request when sending compressed logs.\nLog events can be submitted with a timestamp that is up to 18 hours in the past.\n\nThe status codes answered by the HTTP API are:\n- 202: Accepted: the request has been accepted for processing\n- 400: Bad request (likely an issue in the payload formatting)\n- 401: Unauthorized (likely a missing API Key)\n- 403: Permission issue (likely using an invalid API Key)\n- 408: Request Timeout, request should be retried after some time\n- 413: Payload too large (batch is above 5MB uncompressed)\n- 429: Too Many Requests, request should be retried after some time\n- 500: Internal Server Error, the server encountered an unexpected condition that prevented it from fulfilling the request, request should be retried after some time\n- 503: Service Unavailable, the server is not ready to handle the request probably because it is overloaded, request should be retried after some time",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1895,6 +2330,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "The API endpoint to aggregate events into buckets and compute metrics and timeseries.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1906,6 +2344,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Get the current order of your archives.\nThis endpoint takes no JSON arguments.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1917,6 +2358,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Update the order of your archives. Since logs are processed sequentially, reordering an archive may change\nthe structure and content of the data processed by other archives.\n\n**Note**: Using the `PUT` method updates your archive's order by replacing the current order\nwith the new one.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1928,6 +2372,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Get the list of configured logs archives with their definitions.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1939,6 +2386,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create an archive in your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1952,6 +2402,9 @@
             "archive_id": "[REQUIRED] string: The ID of the archive."
         },
         "functionality": "Delete a given archive from your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1965,6 +2418,9 @@
             "archive_id": "[REQUIRED] string: The ID of the archive."
         },
         "functionality": "Get a specific archive from your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1978,6 +2434,9 @@
             "archive_id": "[REQUIRED] string: The ID of the archive."
         },
         "functionality": "Update a given archive configuration.\n\n**Note**: Using this method updates your archive configuration by **replacing**\nyour current configuration with the new one sent to your Datadog organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -1991,6 +2450,9 @@
             "archive_id": "[REQUIRED] string: The ID of the archive."
         },
         "functionality": "Removes a role from an archive. ([Roles API](https://docs.datadoghq.com/api/v2/roles/))",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2004,6 +2466,9 @@
             "archive_id": "[REQUIRED] string: The ID of the archive."
         },
         "functionality": "Returns all read roles a given archive is restricted to.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2017,6 +2482,9 @@
             "archive_id": "[REQUIRED] string: The ID of the archive."
         },
         "functionality": "Adds a read role to an archive. ([Roles API](https://docs.datadoghq.com/api/v2/roles/))",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2028,6 +2496,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Get the list of configured log-based metrics with their definitions.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2039,6 +2510,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a metric based on your ingested logs in your organization.\nReturns the log-based metric object from the request body when the request is successful.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2052,6 +2526,9 @@
             "metric_id": "[REQUIRED] string: The name of the log-based metric."
         },
         "functionality": "Delete a specific log-based metric from your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2065,6 +2542,9 @@
             "metric_id": "[REQUIRED] string: The name of the log-based metric."
         },
         "functionality": "Get a specific log-based metric from your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2078,6 +2558,9 @@
             "metric_id": "[REQUIRED] string: The name of the log-based metric."
         },
         "functionality": "Update a specific log-based metric from your organization.\nReturns the log-based metric object from the request body when the request is successful.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2092,6 +2575,9 @@
             "page[number]": "integer: Specific page number to return."
         },
         "functionality": "Returns all restriction queries, including their names and IDs.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2103,6 +2589,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a new restriction query for your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2116,6 +2605,9 @@
             "role_id": "[REQUIRED] string: The ID of the role."
         },
         "functionality": "Get restriction query for a given role.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2129,6 +2621,9 @@
             "user_id": "[REQUIRED] string: The ID of the user."
         },
         "functionality": "Get all restriction queries for a given user.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2142,6 +2637,9 @@
             "restriction_query_id": "[REQUIRED] string: The ID of the restriction query."
         },
         "functionality": "Deletes a restriction query.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2155,6 +2653,9 @@
             "restriction_query_id": "[REQUIRED] string: The ID of the restriction query."
         },
         "functionality": "Get a restriction query in the organization specified by the restriction query's `restriction_query_id`.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2168,6 +2669,9 @@
             "restriction_query_id": "[REQUIRED] string: The ID of the restriction query."
         },
         "functionality": "Edit a restriction query.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2181,6 +2685,9 @@
             "restriction_query_id": "[REQUIRED] string: The ID of the restriction query."
         },
         "functionality": "Removes a role from a restriction query.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2196,6 +2703,9 @@
             "page[number]": "integer: Specific page number to return."
         },
         "functionality": "Returns all roles that have a given restriction query.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2209,6 +2719,9 @@
             "restriction_query_id": "[REQUIRED] string: The ID of the restriction query."
         },
         "functionality": "Adds a role to a restriction query.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2229,6 +2742,9 @@
             "page[limit]": "integer: Maximum number of logs in the response."
         },
         "functionality": "List endpoint returns logs that match a log search query.\n[Results are paginated][1].\n\nUse this endpoint to see your latest logs.\n\n**If you are considering archiving logs for your organization,\nconsider use of the Datadog archive capabilities instead of the log list API.\nSee [Datadog Logs Archive documentation][2].**\n\n[1]: /logs/guide/collect-multiple-logs-with-pagination\n[2]: https://docs.datadoghq.com/logs/archives",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2240,6 +2756,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List endpoint returns logs that match a log search query.\n[Results are paginated][1].\n\nUse this endpoint to build complex logs filtering and search.\n\n**If you are considering archiving logs for your organization,\nconsider use of the Datadog archive capabilities instead of the log list API.\nSee [Datadog Logs Archive documentation][2].**\n\n[1]: /logs/guide/collect-multiple-logs-with-pagination\n[2]: https://docs.datadoghq.com/logs/archives",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2259,6 +2778,9 @@
             "window[seconds]": "integer: The number of seconds of look back (from now) to apply to a filter[tag] or filter[queried] query.\nDefault value is 3600 (1 hour), maximum value is 2,592,000 (30 days)."
         },
         "functionality": "Returns all metrics that can be configured in the Metrics Summary page or with Metrics without Limits\u2122 (matching additional filters if specified).",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2270,6 +2792,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Delete all custom lists of queryable tag keys for a set of existing count, gauge, rate, and distribution metrics.\nMetrics are selected by passing a metric name prefix.\nResults can be sent to a set of account email addresses, just like the same operation in the Datadog web app.\nCan only be used with application keys of users with the `Manage Tags for Metrics` permission.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2281,6 +2806,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create and define a list of queryable tag keys for a set of existing count, gauge, rate, and distribution metrics.\nMetrics are selected by passing a metric name prefix. Use the Delete method of this API path to remove tag configurations.\nResults can be sent to a set of account email addresses, just like the same operation in the Datadog web app.\nIf multiple calls include the same metric, the last configuration applied (not by submit order) is used, do not\nexpect deterministic ordering of concurrent calls. The `exclude_tags_mode` value will set all metrics that match the prefix to\nthe same exclusion state, metric tag configurations do not support mixed inclusion and exclusion for tags on the same metric.\nCan only be used with application keys of users with the `Manage Tags for Metrics` permission.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2295,6 +2823,9 @@
             "window[seconds]": "integer: The number of seconds of look back (from now).\nDefault value is 604,800 (1 week), minimum value is 7200 (2 hours), maximum value is 2,630,000 (1 month)."
         },
         "functionality": "List tags and aggregations that are actively queried on dashboards and monitors for a given metric name.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2308,6 +2839,9 @@
             "metric_name": "[REQUIRED] string: The name of the metric."
         },
         "functionality": "View indexed tag key-value pairs for a given metric name.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2326,6 +2860,9 @@
             "filter[timespan_h]": "integer: A window, in hours, from the look back to estimate cardinality with."
         },
         "functionality": "Returns the estimated cardinality for a metric with a given tag, percentile and number of aggregations configuration using Metrics without Limits&trade;.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2339,6 +2876,9 @@
             "metric_name": "[REQUIRED] string: The name of the metric."
         },
         "functionality": "Deletes a metric's tag configuration. Can only be used with application\nkeys from users with the `Manage Tags for Metrics` permission.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2352,6 +2892,9 @@
             "metric_name": "[REQUIRED] string: The name of the metric."
         },
         "functionality": "Returns the tag configuration for the given metric name.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2365,6 +2908,9 @@
             "metric_name": "[REQUIRED] string: The name of the metric."
         },
         "functionality": "Update the tag configuration of a metric or percentile aggregations of a distribution metric or custom aggregations\nof a count, rate, or gauge metric. By setting `exclude_tags_mode` to true the behavior is changed\nfrom an allow-list to a deny-list, and tags in the defined list will not be queryable.\nCan only be used with application keys from users with the `Manage Tags for Metrics` permission. This endpoint requires\na tag configuration to be created first.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2378,6 +2924,9 @@
             "metric_name": "[REQUIRED] string: The name of the metric."
         },
         "functionality": "Create and define a list of queryable tag keys for an existing count/gauge/rate/distribution metric.\nOptionally, include percentile aggregations on any distribution metric or configure custom aggregations\non any count, rate, or gauge metric. By setting `exclude_tags_mode` to true the behavior is changed\nfrom an allow-list to a deny-list, and tags in the defined list will not be queryable.\nCan only be used with application keys of users with the `Manage Tags for Metrics` permission.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2391,6 +2940,9 @@
             "metric_name": "[REQUIRED] string: The name of the metric."
         },
         "functionality": "View distinct metrics volumes for the given metric name.\n\nCustom metrics generated in-app from other products will return `null` for ingested volumes.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2402,6 +2954,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Get all monitor configuration policies.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2413,6 +2968,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a monitor configuration policy.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2426,6 +2984,9 @@
             "policy_id": "[REQUIRED] string: ID of the monitor configuration policy."
         },
         "functionality": "Delete a monitor configuration policy.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2439,6 +3000,9 @@
             "policy_id": "[REQUIRED] string: ID of the monitor configuration policy."
         },
         "functionality": "Get a monitor configuration policy by `policy_id`.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2452,6 +3016,9 @@
             "policy_id": "[REQUIRED] string: ID of the monitor configuration policy."
         },
         "functionality": "Edit a monitor configuration policy.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2467,6 +3034,9 @@
             "page[limit]": "integer: Maximum number of downtimes in the response."
         },
         "functionality": "Get all active downtimes for the specified monitor.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2478,6 +3048,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Returns a list of all permissions, including name, description, and ID.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2502,6 +3075,9 @@
             "filter[status]": "string: Return only findings with the specified status."
         },
         "functionality": "Get a list of CSPM findings.\n\n### Filtering\n\nFilters can be applied by appending query parameters to the URL.\n\n  - Using a single filter: `?filter[attribute_key]=attribute_value`\n  - Chaining filters: `?filter[attribute_key]=attribute_value&filter[attribute_key]=attribute_value...`\n  - Filtering on tags: `?filter[tags]=tag_key:tag_value&filter[tags]=tag_key_2:tag_value_2`\n\nHere, `attribute_key` can be any of the filter keys described further below.\n\nQuery parameters of type `integer` support comparison operators (`>`, `>=`, `<`, `<=`). This is particularly useful when filtering by `evaluation_changed_at` or `resource_discovery_timestamp`. For example: `?filter[evaluation_changed_at]=>20123123121`.\n\nYou can also use the negation operator on strings. For example, use `filter[resource_type]=-aws*` to filter for any non-AWS resources.\n\nThe operator must come after the equal sign. For example, to filter with the `>=` operator, add the operator after the equal sign: `filter[evaluation_changed_at]=>=1678809373257`.\n\nQuery parameters must be only among the documented ones and with values of correct types. Duplicated query parameters (e.g. `filter[status]=low&filter[status]=info`) are not allowed.\n\n### Response\n\nThe response includes an array of finding objects, pagination metadata, and a count of items that match the query.\n\nEach finding object contains the following:\n\n- The finding ID that can be used in a `GetFinding` request to retrieve the full finding details.\n- Core attributes, including status, evaluation, high-level resource details, muted state, and rule details.\n- `evaluation_changed_at` and `resource_discovery_date` time stamps.\n- An array of associated tags.\n",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2513,6 +3089,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Mute or unmute findings.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2527,6 +3106,9 @@
             "snapshot_timestamp": "integer: Return the finding for a given snapshot of time (Unix ms)."
         },
         "functionality": "Returns a single finding with message and resource configuration.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2541,6 +3123,9 @@
             "page[offset]": "integer: Specific offset to use as the beginning of the returned page."
         },
         "functionality": "Get a list of all powerpacks.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2552,6 +3137,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a powerpack.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2565,6 +3153,9 @@
             "powerpack_id": "[REQUIRED] string: Powerpack id"
         },
         "functionality": "Delete a powerpack.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2578,6 +3169,9 @@
             "powerpack_id": "[REQUIRED] string: ID of the powerpack."
         },
         "functionality": "Get a powerpack.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2591,6 +3185,9 @@
             "powerpack_id": "[REQUIRED] string: ID of the powerpack."
         },
         "functionality": "Update a powerpack.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2609,6 +3206,9 @@
             "page[cursor]": "string: String to query the next page of results.\nThis key is provided with each valid response from the API in `meta.page.after`."
         },
         "functionality": "Get all processes for your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2620,6 +3220,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Query scalar values (as seen on Query Value, Table, and Toplist widgets).\nMultiple data sources are supported with the ability to\nprocess the data using formulas and functions.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2631,6 +3234,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Query timeseries data across various data sources and\nprocess the data by applying formulas and functions.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2644,6 +3250,9 @@
             "resource_id": "[REQUIRED] string: Identifier, formatted as `type:id`. Supported types: `connection`, `dashboard`, `notebook`, `security-rule`, `slo`."
         },
         "functionality": "Deletes the restriction policy associated with a specified resource.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2657,6 +3266,9 @@
             "resource_id": "[REQUIRED] string: Identifier, formatted as `type:id`. Supported types: `connection`, `dashboard`, `notebook`, `security-rule`, `slo`."
         },
         "functionality": "Retrieves the restriction policy associated with a specified resource.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2670,6 +3282,9 @@
             "resource_id": "[REQUIRED] string: Identifier, formatted as `type:id`. Supported types: `connection`, `dashboard`, `notebook`, `security-rule`, `slo`."
         },
         "functionality": "Updates the restriction policy associated with a resource.\n\n#### Supported resources\nRestriction policies can be applied to the following resources:\n- Connections: `connection`\n- Dashboards: `dashboard`\n- Notebooks: `notebook`\n- Security Rules: `security-rule`\n- Service Level Objectives: `slo`\n\n#### Supported relations for resources\nResource Type            | Supported Relations\n-------------------------|--------------------------\nConnections              | `viewer`, `editor`, `resolver`\nDashboards               | `viewer`, `editor`\nNotebooks                | `viewer`, `editor`\nSecurity Rules           | `viewer`, `editor`\nService Level Objectives | `viewer`, `editor`",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2687,6 +3302,9 @@
             "filter[id]": "string: Filter all roles by the given list of role IDs."
         },
         "functionality": "Returns all roles, including their names and their unique identifiers.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2698,6 +3316,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a new role for your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2711,6 +3332,9 @@
             "role_id": "[REQUIRED] string: The unique identifier of the role."
         },
         "functionality": "Disables a role.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2724,6 +3348,9 @@
             "role_id": "[REQUIRED] string: The unique identifier of the role."
         },
         "functionality": "Get a role in the organization specified by the role\u2019s `role_id`.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2737,6 +3364,9 @@
             "role_id": "[REQUIRED] string: The unique identifier of the role."
         },
         "functionality": "Edit a role. Can only be used with application keys belonging to administrators.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2750,6 +3380,9 @@
             "role_id": "[REQUIRED] string: The unique identifier of the role."
         },
         "functionality": "Clone an existing role",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2763,6 +3396,9 @@
             "role_id": "[REQUIRED] string: The unique identifier of the role."
         },
         "functionality": "Removes a permission from a role.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2776,6 +3412,9 @@
             "role_id": "[REQUIRED] string: The unique identifier of the role."
         },
         "functionality": "Returns a list of all permissions for a single role.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2789,6 +3428,9 @@
             "role_id": "[REQUIRED] string: The unique identifier of the role."
         },
         "functionality": "Adds a permission to a role.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2802,6 +3444,9 @@
             "role_id": "[REQUIRED] string: The unique identifier of the role."
         },
         "functionality": "Removes a user from a role.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2819,6 +3464,9 @@
             "filter": "string: Filter all users by the given string. Defaults to no filtering."
         },
         "functionality": "Gets all users of a role.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2832,6 +3480,9 @@
             "role_id": "[REQUIRED] string: The unique identifier of the role."
         },
         "functionality": "Adds a user to a role.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2843,6 +3494,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "The API endpoint to aggregate RUM events into buckets of computed metrics and timeseries.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2854,6 +3508,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List all the RUM applications in your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2865,6 +3522,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a new RUM application in your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2878,6 +3538,9 @@
             "id": "[REQUIRED] string: RUM application ID."
         },
         "functionality": "Delete an existing RUM application in your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2891,6 +3554,9 @@
             "id": "[REQUIRED] string: RUM application ID."
         },
         "functionality": "Get the RUM application with given ID in your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2904,6 +3570,9 @@
             "id": "[REQUIRED] string: RUM application ID."
         },
         "functionality": "Update the RUM application with given ID in your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2922,6 +3591,9 @@
             "page[limit]": "integer: Maximum number of events in the response."
         },
         "functionality": "List endpoint returns events that match a RUM search query.\n[Results are paginated][1].\n\nUse this endpoint to see your latest RUM events.\n\n[1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2933,6 +3605,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List endpoint returns RUM events that match a RUM search query.\n[Results are paginated][1].\n\nUse this endpoint to build complex RUM events filtering and search.\n\n[1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2944,6 +3619,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Endpoint for uploading IdP metadata for SAML setup.\n\nUse this endpoint to upload or replace IdP metadata for SAML login configuration.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2966,6 +3644,9 @@
             "filter[rule][name]": "string: Filter outcomes based on rule name."
         },
         "functionality": "Fetches all rule outcomes.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2977,6 +3658,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Sets multiple service-rule outcomes in a single batched request.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -2999,6 +3683,9 @@
             "fields[scorecard]": "string: Return only specific fields in the included response for scorecard attributes."
         },
         "functionality": "Fetch all rules.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3010,6 +3697,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Creates a new rule.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3023,6 +3713,9 @@
             "rule_id": "[REQUIRED] string: The ID of the rule/scorecard."
         },
         "functionality": "Deletes a single rule.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3034,6 +3727,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "The download endpoint generates a Cloud Workload Security policy file from your currently active\nCloud Workload Security rules, and downloads them as a .policy file. This file can then be deployed to\nyour Agents to update the policy running in your environment.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3045,6 +3741,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Get the list of Agent rules.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3056,6 +3755,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a new Agent rule with the given parameters.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3069,6 +3771,9 @@
             "agent_rule_id": "[REQUIRED] string: The ID of the Agent rule."
         },
         "functionality": "Delete a specific Agent rule.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3082,6 +3787,9 @@
             "agent_rule_id": "[REQUIRED] string: The ID of the Agent rule."
         },
         "functionality": "Get the details of a specific Agent rule.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3095,6 +3803,9 @@
             "agent_rule_id": "[REQUIRED] string: The ID of the Agent rule."
         },
         "functionality": "Update a specific Agent rule.\nReturns the Agent rule object when the request is successful.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3106,6 +3817,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Get the list of configured security filters with their definitions.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3117,6 +3831,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a security filter.\n\nSee the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)\nfor more examples.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3130,6 +3847,9 @@
             "security_filter_id": "[REQUIRED] string: The ID of the security filter."
         },
         "functionality": "Delete a specific security filter.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3143,6 +3863,9 @@
             "security_filter_id": "[REQUIRED] string: The ID of the security filter."
         },
         "functionality": "Get the details of a specific security filter.\n\nSee the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)\nfor more examples.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3156,6 +3879,9 @@
             "security_filter_id": "[REQUIRED] string: The ID of the security filter."
         },
         "functionality": "Update a specific security filter.\nReturns the security filter object when the request is successful.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3167,6 +3893,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Get the list of all suppression rules.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3178,6 +3907,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a new suppression rule.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3191,6 +3923,9 @@
             "suppression_id": "[REQUIRED] string: The ID of the suppression rule"
         },
         "functionality": "Delete a specific suppression rule.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3204,6 +3939,9 @@
             "suppression_id": "[REQUIRED] string: The ID of the suppression rule"
         },
         "functionality": "Get the details of a specific suppression rule.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3217,6 +3955,9 @@
             "suppression_id": "[REQUIRED] string: The ID of the suppression rule"
         },
         "functionality": "Update a specific suppression rule.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3231,6 +3972,9 @@
             "page[number]": "integer: Specific page number to return."
         },
         "functionality": "List rules.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3242,6 +3986,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a detection rule.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3255,6 +4002,9 @@
             "rule_id": "[REQUIRED] string: The ID of the rule."
         },
         "functionality": "Delete an existing rule. Default rules cannot be deleted.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3268,6 +4018,9 @@
             "rule_id": "[REQUIRED] string: The ID of the rule."
         },
         "functionality": "Get a rule's details.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3281,6 +4034,9 @@
             "rule_id": "[REQUIRED] string: The ID of the rule."
         },
         "functionality": "Update an existing rule. When updating `cases`, `queries` or `options`, the whole field\nmust be included. For example, when modifying a query all queries must be included.\nDefault rules can only be updated to be enabled and to change notifications.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3299,6 +4055,9 @@
             "page[limit]": "integer: The maximum number of security signals in the response."
         },
         "functionality": "The list endpoint returns security signals that match a search query.\nBoth this endpoint and the POST endpoint can be used interchangeably when listing\nsecurity signals.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3310,6 +4069,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Returns security signals that match a search query.\nBoth this endpoint and the GET endpoint can be used interchangeably for listing\nsecurity signals.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3323,6 +4085,9 @@
             "signal_id": "[REQUIRED] string: The ID of the signal."
         },
         "functionality": "Get a signal's details.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3336,6 +4101,9 @@
             "signal_id": "[REQUIRED] string: The ID of the signal."
         },
         "functionality": "Modify the triage assignee of a security signal.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3349,6 +4117,9 @@
             "signal_id": "[REQUIRED] string: The ID of the signal."
         },
         "functionality": "Change the related incidents for a security signal.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3362,6 +4133,9 @@
             "signal_id": "[REQUIRED] string: The ID of the signal."
         },
         "functionality": "Change the triage state of a security signal.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3373,6 +4147,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List all the Scanning groups in your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3384,6 +4161,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Reorder the list of groups.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3395,6 +4175,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a scanning group.\nThe request MAY include a configuration relationship.\nA rules relationship can be omitted entirely, but if it is included it MUST be\nnull or an empty array (rules cannot be created at the same time).\nThe new group will be ordered last within the configuration.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3408,6 +4191,9 @@
             "group_id": "[REQUIRED] string: The ID of a group of rules."
         },
         "functionality": "Delete a given group.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3421,6 +4207,9 @@
             "group_id": "[REQUIRED] string: The ID of a group of rules."
         },
         "functionality": "Update a group, including the order of the rules.\nRules within the group are reordered by including a rules relationship. If the rules\nrelationship is present, its data section MUST contain linkages for all of the rules\ncurrently in the group, and MUST NOT contain any others.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3432,6 +4221,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a scanning rule in a sensitive data scanner group, ordered last.\nThe posted rule MUST include a group relationship.\nIt MUST include either a standard_pattern relationship or a regex attribute, but not both.\nIf included_attributes is empty or missing, we will scan all attributes except\nexcluded_attributes. If both are missing, we will scan the whole event.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3445,6 +4237,9 @@
             "rule_id": "[REQUIRED] string: The ID of the rule."
         },
         "functionality": "Delete a given rule.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3458,6 +4253,9 @@
             "rule_id": "[REQUIRED] string: The ID of the rule."
         },
         "functionality": "Update a scanning rule.\nThe request body MUST NOT include a standard_pattern relationship, as that relationship\nis non-editable. Trying to edit the regex attribute of a rule with a standard_pattern\nrelationship will also result in an error.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3469,6 +4267,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Returns all standard patterns.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3482,6 +4283,9 @@
             "Content-Encoding": "string: HTTP header used to compress the media-type."
         },
         "functionality": "The metrics end-point allows you to post time-series data that can be graphed on Datadog\u2019s dashboards.\nThe maximum payload size is 500 kilobytes (512000 bytes). Compressed payloads must have a decompressed size of less than 5 megabytes (5242880 bytes).\n\nIf you\u2019re submitting metrics directly to the Datadog API without using DogStatsD, expect:\n\n- 64 bits for the timestamp\n- 64 bits for the value\n- 20 bytes for the metric names\n- 50 bytes for the timeseries\n- The full payload is approximately 100 bytes.\n\nHost name is one of the resources in the Resources field.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3493,6 +4297,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a service account for your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3512,6 +4319,9 @@
             "filter[created_at][end]": "string: Only include application keys created on or before the specified date."
         },
         "functionality": "List all application keys available for this service account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3525,6 +4335,9 @@
             "service_account_id": "[REQUIRED] string: The ID of the service account."
         },
         "functionality": "Create an application key for this service account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3539,6 +4352,9 @@
             "app_key_id": "[REQUIRED] string: The ID of the application key."
         },
         "functionality": "Delete an application key owned by this service account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3553,6 +4369,9 @@
             "app_key_id": "[REQUIRED] string: The ID of the application key."
         },
         "functionality": "Get an application key owned by this service account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3567,6 +4386,9 @@
             "app_key_id": "[REQUIRED] string: The ID of the application key."
         },
         "functionality": "Edit an application key owned by this service account.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3583,6 +4405,9 @@
             "filter": "string: A search query that filters services by name."
         },
         "functionality": "Get all incident services uploaded for the requesting user's organization. If the `include[users]` query parameter is provided, the included attribute will contain the users related to these incident services.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3594,6 +4419,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Creates a new incident service.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3609,6 +4437,9 @@
             "schema_version": "string: The schema version desired in the response."
         },
         "functionality": "Get a list of all service definitions from the Datadog Service Catalog.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3620,6 +4451,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create or update service definition in the Datadog Service Catalog.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3633,6 +4467,9 @@
             "service_name": "[REQUIRED] string: The name of the service."
         },
         "functionality": "Delete a single service definition in the Datadog Service Catalog.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3647,6 +4484,9 @@
             "schema_version": "string: The schema version desired in the response."
         },
         "functionality": "Get a single service definition from the Datadog Service Catalog.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3660,6 +4500,9 @@
             "service_id": "[REQUIRED] string: The ID of the incident service."
         },
         "functionality": "Deletes an existing incident service.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3674,6 +4517,9 @@
             "include": "string: Specifies which types of related objects should be included in the response."
         },
         "functionality": "Get details of an incident service. If the `include[users]` query parameter is provided,\nthe included attribute will contain the users related to these incident services.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3687,6 +4533,9 @@
             "service_id": "[REQUIRED] string: The ID of the incident service."
         },
         "functionality": "Updates an existing incident service. Only provide the attributes which should be updated as this request is a partial update.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3698,6 +4547,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "The API endpoint to aggregate spans into buckets and compute metrics and timeseries.\nThis endpoint is rate limited to `300` requests per hour.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3716,6 +4568,9 @@
             "page[limit]": "integer: Maximum number of spans in the response."
         },
         "functionality": "List endpoint returns spans that match a span search query.\n[Results are paginated][1].\n\nUse this endpoint to see your latest spans.\nThis endpoint is rate limited to `300` requests per hour.\n\n[1]: /logs/guide/collect-multiple-logs-with-pagination?tab=v2api",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3727,6 +4582,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "List endpoint returns spans that match a span search query.\n[Results are paginated][1].\n\nUse this endpoint to build complex spans filtering and search.\nThis endpoint is rate limited to `300` requests per hour.\n\n[1]: /logs/guide/collect-multiple-logs-with-pagination?tab=v2api",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3738,6 +4596,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Get the on-demand concurrency cap.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3749,6 +4610,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Save new value for on-demand concurrency cap.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3768,6 +4632,9 @@
             "fields[team]": "array: List of fields that need to be fetched."
         },
         "functionality": "Get all teams.\nCan be used to search for teams using the `filter[keyword]` and `filter[me]` query parameters.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3779,6 +4646,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a new team.\nUser IDs passed through the `users` relationship field are added to the team.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3792,6 +4662,9 @@
             "team_id": "[REQUIRED] string"
         },
         "functionality": "Remove a team using the team's `id`.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3805,6 +4678,9 @@
             "team_id": "[REQUIRED] string"
         },
         "functionality": "Get a single team using the team's `id`.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3818,6 +4694,9 @@
             "team_id": "[REQUIRED] string"
         },
         "functionality": "Update a team using the team's `id`.\nIf the `team_links` relationship is present, the associated links are updated to be in the order they appear in the array, and any existing team links not present are removed.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3831,6 +4710,9 @@
             "team_id": "[REQUIRED] string"
         },
         "functionality": "Get all links for a given team.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3844,6 +4726,9 @@
             "team_id": "[REQUIRED] string"
         },
         "functionality": "Add a new link to a team.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3858,6 +4743,9 @@
             "link_id": "[REQUIRED] string"
         },
         "functionality": "Remove a link from a team.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3872,6 +4760,9 @@
             "link_id": "[REQUIRED] string"
         },
         "functionality": "Get a single link for a team.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3886,6 +4777,9 @@
             "link_id": "[REQUIRED] string"
         },
         "functionality": "Update a team link.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3903,6 +4797,9 @@
             "filter[keyword]": "string: Search query, can be user email or name"
         },
         "functionality": "Get a paginated list of members for a team",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3916,6 +4813,9 @@
             "team_id": "[REQUIRED] string"
         },
         "functionality": "Add a user to a team.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3930,6 +4830,9 @@
             "user_id": "[REQUIRED] string"
         },
         "functionality": "Remove a user from a team.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3944,6 +4847,9 @@
             "user_id": "[REQUIRED] string"
         },
         "functionality": "Update a user's membership attributes on a team.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3957,6 +4863,9 @@
             "team_id": "[REQUIRED] string"
         },
         "functionality": "Get all permission settings for a given team.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3971,6 +4880,9 @@
             "action": "[REQUIRED] string"
         },
         "functionality": "Update a team permission setting for a given team.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3987,6 +4899,9 @@
             "filter": "string: A search query that filters teams by name."
         },
         "functionality": "Get all incident teams for the requesting user's organization. If the `include[users]` query parameter is provided, the included attribute will contain the users related to these incident teams.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -3998,6 +4913,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Creates a new incident team.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4011,6 +4929,9 @@
             "team_id": "[REQUIRED] string: The ID of the incident team."
         },
         "functionality": "Deletes an existing incident team.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4025,6 +4946,9 @@
             "include": "string: Specifies which types of related objects should be included in the response."
         },
         "functionality": "Get details of an incident team. If the `include[users]` query parameter is provided,\nthe included attribute will contain the users related to these incident teams.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4038,6 +4962,9 @@
             "team_id": "[REQUIRED] string: The ID of the incident team."
         },
         "functionality": "Updates an existing incident team. Only provide the attributes which should be updated as this request is a partial update.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4052,6 +4979,9 @@
             "end_hr": "string: Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending\n**before** this hour."
         },
         "functionality": "Get hourly usage for application security .\n**Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4066,6 +4996,9 @@
             "end_month": "string: Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for cost ending this month."
         },
         "functionality": "Get cost across multi-org account.\nCost by org data for a given month becomes available no later than the 16th of the following month.\n**Note:** This endpoint has been deprecated. Please use the new endpoint\n[`/historical_cost`](https://docs.datadoghq.com/api/latest/usage-metering/#get-historical-cost-across-your-account)\ninstead.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4083,6 +5016,9 @@
             "end_date": "string: Datetime in ISO-8601 format, UTC, precise to day: `[YYYY-MM-DD]` for cost ending this day."
         },
         "functionality": "Get estimated cost across multi-org and single root-org accounts.\nEstimated cost data is only available for the current month and previous month\nand is delayed by up to 72 hours from when it was incurred.\nTo access historical costs prior to this, use the `/historical_cost` endpoint.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4098,6 +5034,9 @@
             "end_month": "string: Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for cost ending this month."
         },
         "functionality": "Get historical cost across multi-org and single root-org accounts.\nCost data for a given month becomes available no later than the 16th of the following month.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4118,6 +5057,9 @@
             "page[next_record_id]": "string: List following results with a next_record_id provided in the previous query."
         },
         "functionality": "Get hourly usage by product family.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4132,6 +5074,9 @@
             "end_hr": "string: Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending\n**before** this hour."
         },
         "functionality": "Get hourly usage for Lambda traced invocations.\n**Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4146,6 +5091,9 @@
             "end_hr": "string: Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending\n**before** this hour."
         },
         "functionality": "Get hourly usage for observability pipelines.\n**Note:** hourly usage data for all products is now available in the [Get hourly usage by product family API](https://docs.datadoghq.com/api/latest/usage-metering/#get-hourly-usage-by-product-family)",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4159,6 +5107,9 @@
             "view": "string: String to specify whether cost is broken down at a parent-org level or at the sub-org level. Available views are `summary` and `sub-org`. Defaults to `summary`."
         },
         "functionality": "Get projected cost across multi-org and single root-org accounts.\nProjected cost data is only available for the current month and becomes available around the 12th of the month.\nThis endpoint requires the usage_read authorization scope.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4170,6 +5121,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Sends emails to one or more users inviting them to join the organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4183,6 +5137,9 @@
             "user_invitation_uuid": "[REQUIRED] string: The UUID of the user invitation."
         },
         "functionality": "Returns a single user invitation by its UUID.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4201,6 +5158,9 @@
             "filter[status]": "string: Filter on status attribute.\nComma separated list, with possible values `Active`, `Pending`, and `Disabled`.\nDefaults to no filtering."
         },
         "functionality": "Get the list of all users in the organization. This list includes\nall users even if they are deactivated or unverified.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4212,6 +5172,9 @@
         "api_version": "v2",
         "api_arguments": {},
         "functionality": "Create a user for your organization.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4225,6 +5188,9 @@
             "user_id": "[REQUIRED] string: The ID of the user."
         },
         "functionality": "Disable a user. Can only be used with an application key belonging\nto an administrator user.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4238,6 +5204,9 @@
             "user_id": "[REQUIRED] string: The ID of the user."
         },
         "functionality": "Get a user in the organization specified by the user\u2019s `user_id`.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4251,6 +5220,9 @@
             "user_id": "[REQUIRED] string: The ID of the user."
         },
         "functionality": "Edit a user. Can only be used with an application key belonging\nto an administrator user.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4264,6 +5236,9 @@
             "user_id": "[REQUIRED] string: The ID of the user."
         },
         "functionality": "Get a user organization. Returns the user information and all organizations\njoined by this user.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4277,6 +5252,9 @@
             "user_id": "[REQUIRED] string: The ID of the user."
         },
         "functionality": "Get a user permission set. Returns a list of the user\u2019s permissions\ngranted by the associated user's roles.",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
@@ -4290,6 +5268,9 @@
             "user_uuid": "[REQUIRED] string"
         },
         "functionality": "Get a list of memberships for a user",
+        "env_requirements": [
+            "datadog_api_client"
+        ],
         "metadata": {
             "documentation_link": "https://docs.datadoghq.com/api/latest/"
         }
