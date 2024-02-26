@@ -37,7 +37,6 @@ def run_conversation():
         }
     ]
     completion = openai.ChatCompletion.create(
-        # model="gpt-3.5-turbo-0613",
         model='gorilla-openfunctions-v2',
         messages=messages,
         functions=functions,
