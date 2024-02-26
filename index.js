@@ -54,7 +54,6 @@ document.getElementById('submit-btn').addEventListener('click', async function (
     }
 
     const jsonResponse = await response.json();
-    print("got reponse")
 
     if (model === "gorilla-openfunctions-v2") {
         directCode = jsonResponse.choices[0].message.content;
