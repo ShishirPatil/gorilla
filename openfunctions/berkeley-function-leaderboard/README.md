@@ -9,14 +9,36 @@ Read more about the technical details and interesting insights in our blog post!
 
 ## Prepare Evaluation Dataset
 
-To download the evaluation dataset from huggingface, from the current directory, run the following command:
+To download the evaluation dataset from huggingface, from the current directory `./openfunctions/berkeley-function-leaderboard`, run the following command:
 
 ```bash
-    huggingface-cli download gorilla-llm/Berkeley-Function-Calling-Leaderboard --local-dir ./new_data --repo-type dataset
+    huggingface-cli download gorilla-llm/Berkeley-Function-Calling-Leaderboard --local-dir ./data --repo-type dataset
+```
+
+This will download our dataset to `data` repository. Then consturct batch data file `eval_data_total.json` if you want to do OSS Models inference:
+```python
+    python eval_data_compilation.py
 ```
 
 ## Execution Evaluation Data Post-processing 
-Input your API keys into `function_credential_config.json`, so that the original placeholder values in questions, params, and answers will be cleaned. The `apply_function_credential_config.py` inputs an input file, optionally an outputs file. If the output file is not given as an argument, it will overwrites your original file with the claned data.
+Input your API keys into `function_credential_config.json`, so that the original placeholder values in questions, params, and answers will be cleaned. 
+
+To run the executable test categories, there are 3 API keys to fill out:
+
+1. RAPID-API Key: https://rapidapi.com/hub
+
+    * Yahoo Finance: https://rapidapi.com/sparior/api/yahoo-finance15
+    * Real Time Amazon Data : https://rapidapi.com/letscrape-6bRBa3QguO5/api/real-time-amazon-data
+    * Urban Dictionary: https://rapidapi.com/community/api/urban-dictionary
+    * Covid 19: https://rapidapi.com/api-sports/api/covid-193
+    * Time zone by Location: https://rapidapi.com/BertoldVdb/api/timezone-by-location
+
+    All the Rapid APIs we use have free tier usage. As a result, you need to subscribe to those API providers in order to have the executable test enviornment setup but it will be free of charge!
+
+2. Exchange Rate API:https://www.exchangerate-api.com
+3. OMDB API: http://www.omdbapi.com/apikey.aspx
+
+The `apply_function_credential_config.py` inputs an input file, optionally an outputs file. If the output file is not given as an argument, it will overwrites your original file with the claned data.
 
 ```bash
     python apply_function_credential_config.py --input_file ./data/gorilla_openfunctions_v1_test_rest.json
