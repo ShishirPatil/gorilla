@@ -124,18 +124,18 @@ const ctx = document.getElementById('myChart');
 const data = {
     labels: [
         'Irrelevance Detection',
-        'Simple Function (AST)',
-        'Parallel Functions (AST)',
-        'Multiple Functions (AST)',
+        'Simple (AST)',
+        'Parallel (AST)',
+        'Multiple (AST)',
         'Parallel Multiple (AST)',
-        'Simple Function (Exec)',
-        'Parallel Functions (Exec)',
-        'Multiple Functions (Exec)',
+        'Simple (Exec)',
+        'Parallel (Exec)',
+        'Multiple (Exec)',
         'Parallel Multiple (Exec)'
     ],
     datasets: [
         {
-            label: 'GPT-4-0125-Preview',
+            label: 'GPT-4-0125',
             data: [87.50, 82.18, 90.00, 90.00, 91.00, 54.12, 76.00, 70.00, 55.00],
             fill: true,
             backgroundColor: 'rgba(255, 206, 86, 0.1)',
@@ -145,7 +145,7 @@ const data = {
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgb(255, 206, 86)'
         }, {
-            label: 'GPT-4-1106-Preview',
+            label: 'GPT-4-1106',
             data: [88.75, 81.64, 92.00, 89.50, 92.00, 53.53, 72.00, 62.00, 50.00],
             fill: true,
             backgroundColor: 'rgba(75, 192, 192, 0.1)',
@@ -296,21 +296,6 @@ new Chart(ctx, {
     type: 'radar',
     data: data,
     options: {
-        scales: {
-            r: {
-                angleLines: {
-                    display: true
-                },
-                suggestedMin: 0,
-                suggestedMax: 100,
-                pointLabels: {
-                    font: {
-                        size: 14,
-                        weight: 'bold',
-                    },
-                },
-            }
-        },
         elements: {
             line: {
                 borderWidth: 3
