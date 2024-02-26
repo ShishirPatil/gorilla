@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "G-NRZJLJCSH6");
+    </script>
+    <script src="assets/lib/chart.umd.js"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
+    <link rel="stylesheet" href="assets/css/api-explorer.css" />
+    <link rel="stylesheet" href="assets/css/common-styles.css" />
+    <link rel="stylesheet" href="assets/css/Highlight-Clean-leaderboard.css" />
+    <link rel="stylesheet" href="assets/css/leaderboard.css" />
+    <link rel="stylesheet" href="assets/css/contact.css">
+    <title>Gorilla</title>
+    <style>
+        /* Bars to separate titles in nav bar */
+        .navbar a:not(:last-child)::after {
+            content: "|";
+            margin: 0 10px;
+            color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar" style="
+        position: absolute;
+        top: 0;
+        right: 20px;
+        padding: 10px;
+        z-index: 100;
+        font-size: 18px;
+      ">
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#api-explorer">Try it Out!</a>
+        <a href="https://gorilla.cs.berkeley.edu/blogs/6_function_leaderboard.html">Blog</a>
+        <a href="apizoo/">Gorilla</a>
+    </div>
+
+    <div class="highlight-clean" style="padding-bottom: 10px">
+        <!-- Title Section -->
+        <h1 class="text-center"><img src="assets/img/Cal.png" alt="UC Berkeley Logo" class="header-image"> Berkeley Function-Calling Leaderboard</h1>
+        <div>
+            <p></p>
+        </div>
+        <!-- Author Section -->
+        <div class="container" id="author" style="background: white">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="text-center">
+                        <a class="text-center" href="https://fanjia-yan.github.io/">Fanjia Yan<sup>*</sup></a>,
+                        <a class="text-center" href="https://huanzhimao.com/">Huanzhi Mao<sup>*</sup></a>,
+                        <a class="text-center" href="https://charliejcj.github.io/">Charlie Cheng-Jie Ji<sup>*</sup></a>,
+                        <a class="text-center" href="https://tianjunz.github.io//">Tianjun Zhang</a>,
+                        <a class="text-center" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir Patil</a>,
+                        <a class="text-center" href="https://people.eecs.berkeley.edu/~istoica/">Ion Stoica</a>,
+                        <a class="text-center" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph Gonzalez</a>
+                    </h4>
+                    <h4></h4>
+                    <h5 class="text-center">UC Berkeley</h5>
+                    <h6 class="text-center">sgp@berkeley.edu, tianjunz@berkeley.edu</h6>
+                    <p class="text-center"><sup>*</sup> means equal contribution</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <p></p>
+        </div>
+    </div>
+
+    <!-- Leaderboard Section -->
+    <div class="container" style="background: #f0f7ff">
+        <div class="col-md-12">
+            <h2>Leaderboard</h2>
+
+            <p class="text-center">
+                This live leaderboard evaluates the LLM's ability to call functions (aka tools) accurately. This leaderboard consists of real-world data and is updated every 24hrs. For more information on the evaluation dataset and methodology, please refer to our blog post and code release.
+            </p>
+
+            <div class="table-container">
+                <table id="leaderboard">
+
+                    <thead>
+                        <tr>
+                            <th colspan="5"></th>
+                            <th colspan="4">AST Evaluation</th>
+                            <th colspan="4">Execution Evaluation</th>
+                            <th colspan="1"></th>
+                        </tr>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Overall Acc</th>
+                            <th>Model</th>
+                            <th>Organization</th>
+                            <th>License</th>
+                            <th>Simple Function</th>
+                            <th>Parallel Functions</th>
+                            <th>Multiple Functions</th>
+                            <th>Parallel Multiple</th>
+                            <th>Simple Function</th>
+                            <th>Multiple Functions</th>
+                            <th>Parallel Functions</th>
+                            <th>Parallel Multiple</th>
+                            <th>Irrelevance Detection</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>83.80</td>
+                            <td>
+                                <a href=''>GPT-4-0125-Preview</a>
+                            </td>
+                            <td>OpenAI</td>
+                            <td>Proprietary</td>
+                            <td>82.18</td>
+                            <td>90.00</td>
+                            <td>90.00</td>
+                            <td>91.00</td>
+                            <td>54.12</td>
+                            <td>76.00</td>
+                            <td>70.00</td>
+                            <td>55.00</td>
+                            <td>87.50</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>83.55</td>
+                            <td>
+                                <a href=''>GPT-4-1106-Preview</a>
+                            </td>
+                            <td>OpenAI</td>
+                            <td>Proprietary</td>
+                            <td>81.64</td>
+                            <td>92.00</td>
+                            <td>89.50</td>
+                            <td>92.00</td>
+                            <td>53.53</td>
+                            <td>72.00</td>
+                            <td>62.00</td>
+                            <td>50.00</td>
+                            <td>88.75</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>83.55</td>
+                            <td>
+                                <a href=''>OpenFunctions-v2</a>
+                            </td>
+                            <td>Gorilla LLM</td>
+                            <td>Apache 2.0</td>
+                            <td>88.73</td>
+                            <td>79.50</td>
+                            <td>89.50</td>
+                            <td>78.00</td>
+                            <td>78.82</td>
+                            <td>76.00</td>
+                            <td>74.00</td>
+                            <td>60.00</td>
+                            <td>71.67</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>81.63</td>
+                            <td>
+                                <a href=''>GPT-3.5-Turbo</a>
+                            </td>
+                            <td>OpenAI</td>
+                            <td>Proprietary</td>
+                            <td>81.27</td>
+                            <td>87.50</td>
+                            <td>88.00</td>
+                            <td>88.00</td>
+                            <td>74.12</td>
+                            <td>70.00</td>
+                            <td>74.00</td>
+                            <td>47.50</td>
+                            <td>68.33</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>79.46</td>
+                            <td>
+                                <a href=''>Mistral-medium</a>
+                            </td>
+                            <td>Mistral AI</td>
+                            <td>Proprietary</td>
+                            <td>80.18</td>
+                            <td>71.00</td>
+                            <td>84.50</td>
+                            <td>68.00</td>
+                            <td>75.88</td>
+                            <td>62.00</td>
+                            <td>72.00</td>
+                            <td>47.50</td>
+                            <td>90.00</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>75.78</td>
+                            <td>
+                                <a href=''>Claude-2.1</a>
+                            </td>
+                            <td>Anthropic</td>
+                            <td>Proprietary</td>
+                            <td>85.64</td>
+                            <td>72.00</td>
+                            <td>83.00</td>
+                            <td>56.50</td>
+                            <td>61.18</td>
+                            <td>60.00</td>
+                            <td>48.00</td>
+                            <td>45.00</td>
+                            <td>78.33</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>59.52</td>
+                            <td>
+                                <a href=''>Mistral-tiny</a>
+                            </td>
+                            <td>Mistral AI</td>
+                            <td>Proprietary</td>
+                            <td>59.27</td>
+                            <td>53.50</td>
+                            <td>59.50</td>
+                            <td>41.50</td>
+                            <td>58.24</td>
+                            <td>42.00</td>
+                            <td>64.00</td>
+                            <td>40.00</td>
+                            <td>77.08</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>59.22</td>
+                            <td>
+                                <a href=''>Claude-instant</a>
+                            </td>
+                            <td>Anthropic</td>
+                            <td>Proprietary</td>
+                            <td>68.73</td>
+                            <td>53.00</td>
+                            <td>59.00</td>
+                            <td>39.50</td>
+                            <td>51.76</td>
+                            <td>50.00</td>
+                            <td>52.00</td>
+                            <td>37.50</td>
+                            <td>61.67</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>54.46</td>
+                            <td>
+                                <a href=''>Nexusflow-Raven-v2</a>
+                            </td>
+                            <td>Nexusflow</td>
+                            <td>Apache 2.0</td>
+                            <td>76.55</td>
+                            <td>39.50</td>
+                            <td>83.50</td>
+                            <td>34.00</td>
+                            <td>45.88</td>
+                            <td>68.00</td>
+                            <td>78.00</td>
+                            <td>45.00</td>
+                            <td>0.00</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>53.86</td>
+                            <td>
+                                <a href=''>Mistral-small</a>
+                            </td>
+                            <td>Mistral AI</td>
+                            <td>Proprietary</td>
+                            <td>46.55</td>
+                            <td>48.50</td>
+                            <td>68.00</td>
+                            <td>58.00</td>
+                            <td>14.12</td>
+                            <td>40.00</td>
+                            <td>30.00</td>
+                            <td>37.50</td>
+                            <td>89.58</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>53.49</td>
+                            <td>
+                                <a href=''>GPT-4-0613</a>
+                            </td>
+                            <td>OpenAI</td>
+                            <td>Proprietary</td>
+                            <td>74.55</td>
+                            <td>4.00</td>
+                            <td>86.00</td>
+                            <td>0.00</td>
+                            <td>37.65</td>
+                            <td>0.00</td>
+                            <td>50.00</td>
+                            <td>0.00</td>
+                            <td>87.08</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>43.19</td>
+                            <td>
+                                <a href=''>Deepseek-v1.5</a>
+                            </td>
+                            <td>Deepseek</td>
+                            <td>Deepseek License</td>
+                            <td>48.36</td>
+                            <td>35.00</td>
+                            <td>61.00</td>
+                            <td>43.50</td>
+                            <td>5.29</td>
+                            <td>0.00</td>
+                            <td>2.00</td>
+                            <td>7.50</td>
+                            <td>66.25</td>
+                        </tr>
+                        <tr>
+                            <td>13</td>
+                            <td>33.69</td>
+                            <td>
+                                <a href=''>Glaive-v1</a>
+                            </td>
+                            <td>Glaive</td>
+                            <td>cc-by-sa-4.0</td>
+                            <td>34.55</td>
+                            <td>2.00</td>
+                            <td>26.00</td>
+                            <td>0.00</td>
+                            <td>21.18</td>
+                            <td>0.00</td>
+                            <td>34.00</td>
+                            <td>2.50</td>
+                            <td>46.25</td>
+                        </tr>
+                        <tr>
+                            <td>14</td>
+                            <td>33.61</td>
+                            <td>
+                                <a href=''>OpenFunctions-v0</a>
+                            </td>
+                            <td>Gorilla LLM</td>
+                            <td>Apache 2.0</td>
+                            <td>60.00</td>
+                            <td>1.00</td>
+                            <td>56.00</td>
+                            <td>2.50</td>
+                            <td>39.41</td>
+                            <td>0.00</td>
+                            <td>62.00</td>
+                            <td>0.00</td>
+                            <td>4.58</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div>
+        <p></p>
+    </div>
+
+    <div class="container chart-container" style="background: white">
+        <div class="col-md-12">
+            <h2>Wagon Wheel</h2>
+            <p class="text-center">
+                The following chart shows the comparison of the models based on a few metrics.
+                You can select and deselect which models to compare.
+            </p>
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- API Explorer Section -->
+    <div id="api-explorer" class="container" style="background: #f0f7ff">
+        <div class="col-md-12">
+            <h2>Function Calling Demo</h2>
+            <p class="text-center">
+                In this demo for function calling, you can enter a prompt and a
+                function and see the output. There will be two outputs (and two output boxes accordingly): one in the 
+                actual code format (the top one) and the other in the OpenAI compatible format (the bottom one).
+                Note that the OpenAI compatible format output is only available if the actual code output has valid syntax and can be parsed.
+                We also provide you a few examples to try out and get a sense of the input format and the output.
+            </p>
+            <!-- Example Section -->
+            <div id="examples">
+                <button id="example-btn-1">
+                    Example 1
+                </button>
+                <button id="example-btn-2">
+                    Example 2
+                </button>
+                <button id="example-btn-3">
+                    Example 3
+                </button>
+            </div>
+            <div>
+                <p></p>
+            </div>
+            <div class="container" id="demo-input-container">
+                <div class="inputs">
+                    <div> Model:
+                        <select name="option" id="model-dropdown">
+                            <option value="gorilla-openfunctions-v2">Gorilla OpenFunctions-v2</option>
+                            <!-- <option value="gpt-4-1106-preview">GPT-4-1106-Preview</option>
+                            <option value="gpt-4-0125-preview">GPT-4-0125-Preview</option>
+                            <option value="gpt-4-0613">GPT-4-0613</option>
+                            <option value="gpt-3.5-turbo">GPT-3.5-Turbo</option>
+                            <option value="gpt-3.5-turbo-0613">GPT-3.5-Turbo-0613</option> -->
+                        </select>
+                    </div>
+                    <div>
+                        <br>
+                    </div>
+                    <div>
+                        <label for="temperatureSlider">Temperature:</label>
+                        <input type="range" id="temperatureSlider" name="temperature" min="0" max="1" value="0.7"
+                            step="0.1" oninput="temperatureValue.value = temperatureSlider.value" />
+                        <output id="temperatureValue">0.7</output>
+                    </div>
+                    <div>
+                        <p></p>
+                    </div>
+
+                    <textarea id="input-text" placeholder="Enter your prompt here" rows="3"></textarea>
+                    <textarea id="input-function" placeholder="Enter your function description here"
+                        rows="10"></textarea>
+                    <button class="api-explorer-button" id="submit-btn">Submit</button>
+                </div>
+                <div class="output-section">
+                    <div class="output" id="code-output">Output will be shown here:</div>
+                    <div class="output" id="json-output" style="white-space: pre-wrap;">OpenAI compatible format output here:</div>
+                    <!-- <div>
+                        <p></p>
+                        <button id="exec-btn" class="api-explorer-button" style="display: none;">Execute</button>
+                        <p></p>
+                    </div>
+
+                    <div class="output" id="exec-output" style="display: none;"> Execute Result: </div> -->
+                    <div>
+                        <button id="report-issue-btn" style="display: none;">Report Issue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div>
+        <p></p>
+    </div>
+
+
+
+    <div class="container shorter-container" style="background: #f0f7ff">
+        <!-- Contact Us Section -->
+        <div class="col-md-6 contact-us">
+            <h2>Contact Us</h2>
+            <form name="submit-to-google-sheet" style="width: 80%; margin: 0 auto">
+                <input type="text" name="Name" placeholder="Your Name" required>
+                <input type="Email" name="Email" placeholder="Your Email" required>
+                <input type="Organization" name="Organization" placeholder="Your Organization">
+                <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                <button type="submit" class="btn-secondary btn-secondary2">Submit</button>
+            </form>
+            <span id="msg"></span>
+        </div>
+
+        <!-- Citation Section -->
+        <div class="col-md-6">
+
+            <h2>Citation</h2>
+            <div class="container" style="background: white">
+                <code>
+                    @article{patil2023gorilla,<br>
+                    &nbsp;  title={Gorilla: Large Language Model Connected with Massive APIs}, <br>
+                    &nbsp;  author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},<br>
+                    &nbsp;  journal={arXiv preprint arXiv:2305.15334},<br>
+                    &nbsp;  year={2023},<br>
+                    }
+                </code>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+<script src="index.js"></script>
+
+</html>

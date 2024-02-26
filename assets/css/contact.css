@@ -1,0 +1,87 @@
+/* Form styling */
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+/* Input and Textarea styling */
+form input, form textarea {
+    width: calc(100% - 30px); /* Adjust width to account for padding */
+    border: 1px solid #ccc;
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 16px;
+    border-radius: 6px;
+}
+
+/* Placeholder styling */
+::placeholder {
+    color: #ababab;
+    opacity: 1; /* Firefox */
+}
+
+/* Button styling */
+.btn-secondary2 {
+    display: block; /* Make the button block to fill the width */
+    width: 100%;
+    background: #ff004f;
+    width: 20%; 
+    font-size: 14px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    color: white;
+    transition: background 0.3s ease;
+    margin: 0 auto;
+
+}
+
+
+/* Button hover effect */
+.btn-secondary2:hover {
+    background: #e60046;
+}
+
+/* Message styling */
+#msg {
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+
+
+/* Adjustments for the contact form */
+form[name="submit-to-google-sheet"] input,
+form[name="submit-to-google-sheet"] textarea {
+    margin-bottom: 5px; 
+    padding: 8px 12px; 
+    height: auto; 
+}
+
+form[name="submit-to-google-sheet"] textarea {
+    height: 100px; 
+}
+
+
+
+.col-md-6.contact-us {
+    border-right: 5px solid white; /* Creates a white border line on the right */
+}
+
+.shorter-container {
+    padding: 10px; /* Reduced from 20px */
+}
+
+.row, .col-md-6 {
+    padding: 5px; /* Smaller padding inside each column */
+}
+
+.shorter-container h2 {
+    margin-top: 0;
+    margin-bottom: 10px; /* Smaller margin for headings */
+}
+
