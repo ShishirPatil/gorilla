@@ -1,0 +1,172 @@
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: white;
+    justify-content: center;
+    align-items: center;
+}
+
+.centered-text {
+    text-align: center;
+    display: block;
+    /* Ensure the <i> element takes up the full width available */
+    margin: 0 auto;
+    /* Center the element horizontally */
+}
+
+.container {
+    display: flex;
+}
+
+.code-block {
+    width: 100%;
+    padding: 10px;
+    flex: 1;
+    /* This makes each code block take equal width */
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+}
+
+.image-container img {
+    margin: 10px;
+}
+
+.blog-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.blog-post {
+    margin: 20px;
+    padding: 20px;
+    max-width: 1000px;
+    justify-content: center;
+}
+
+.blog-post img {
+    display: block;
+    margin: 0 auto;
+}
+
+.blog-title {
+    color: #055ada;
+    text-align: center;
+}
+
+.author-date {
+    display: flex;
+    margin-bottom: 0px;
+    justify-content: center;
+}
+
+.author {
+    font-size: 16px;
+    color: #1E90FF;
+    margin-right: 20px;
+}
+
+.date {
+    font-size: 16px;
+    color: #7e8790;
+}
+
+.preview {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.highlight-clean-blog {
+    color: #313437;
+    background-color: #fff;
+    padding: 50px 0;
+}
+
+.box-index {
+    position: fixed;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 150px;
+}
+
+.box-index h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.box-index ul {
+    list-style-type: disc;
+    padding: 0;
+}
+
+.box-index ul li {
+    margin-bottom: 10px;
+}
+
+.box-index ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+.box-index ul li a:hover {
+    color: #1E90FF;
+}
+
+.more-blogs .sub-menu {
+    display: none;
+}
+
+.more-blogs .sub-menu.expanded {
+    display: block;
+    max-height: 200px;
+    /* Adjust the max height as needed */
+    overflow-y: auto;
+}
+
+.more-blogs .sub-menu li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.more-blogs .sub-menu li:last-child {
+    border-bottom: none;
+}
+
+.more-blogs .caret {
+    transition: transform 0.3s ease-in-out;
+    display: inline-block;
+    transform: rotate(0deg);
+    font-size: 12px;
+    /* Adjust the font size to change the caret size */
+}
+
+.more-blogs.expanded .caret {
+    transform: rotate(90deg);
+}
+
+@media screen and (max-width: 768px) {
+    .blog-post {
+        padding: 10px;
+        /* Adjust spacing for smaller screens */
+    }
+
+    .blog-post img {
+        max-width: 80%;
+        /* Reduce image size for smaller screens */
+    }
+
+    .box-index {
+        display: none;
+        /* Hide the index on smaller screens */
+    }
+}
