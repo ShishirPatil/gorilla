@@ -55,14 +55,12 @@ table {
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse; 
-}
-
-
-#leaderboard {
     width: auto; /* Allows the table to expand naturally based on content */
     border-collapse: collapse;
     table-layout: auto; /* Default layout for the table */
 }
+
+
 
 #leaderboard td, #leaderboard th {
     word-wrap: break-word; /* Allows words to break and wrap to the next line */
