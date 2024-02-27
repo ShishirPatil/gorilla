@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-    gtag('config', 'G-NRZJLJCSH6');
+        gtag('config', 'G-NRZJLJCSH6');
     </script>
 
 
@@ -18,25 +19,16 @@
     <title>Introduction to Gorilla LLM</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
-    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/Team-Clean.css">
+    <link rel="stylesheet" href="../assets/css/blog.css">
 </head>
 
 <body>
     <!-- Navigation Bar -->
-    <div class="navbar" style="
-        position: absolute;
-        top: 0;
-        right: 20px;
-        padding: 10px;
-        z-index: 100;
-        font-size: 18px;
-      ">
-        <a href="../leaderboard.html#leaderboard">Leaderboard</a> &nbsp;&nbsp;&nbsp;    
-        <a href="../leaderboard.html#api-explorer">Try it Out!</a> &nbsp;&nbsp;&nbsp;    
-        <a href="../blog.html">Blogs</a> &nbsp;&nbsp;&nbsp;    
-        <a href="../index.html">Gorilla</a> &nbsp;&nbsp;&nbsp;    
+    <div class="navbar">
+        <a href="../leaderboard.html#leaderboard">Leaderboard</a> &nbsp;&nbsp;&nbsp;
+        <a href="../leaderboard.html#api-explorer">Try it Out!</a> &nbsp;&nbsp;&nbsp;
+        <a href="../blog.html">Blogs</a> &nbsp;&nbsp;&nbsp;
+        <a href="../index.html">Gorilla</a> &nbsp;&nbsp;&nbsp;
     </div>
 
     <div class="highlight-clean-blog" style="padding-bottom: 10px;">
@@ -61,21 +53,27 @@
                 </div>
 
                 <div class="preview">
-                    <p>            
-                        Since late 2022, Large Language Models (LLMs) have caught everyone’s attention because of their capability to perform general tasks. Beyond chatting, it is natural to adopt and integrate these models to develop many AI applications and softwares (e.g., Langchain, Llama Index, AutoGPT, Voyager). Models like GPT, Gemini, Llama, Mistral etc, have demonstrated huge potential in this route by interacting with the external world with function calling and execution. 
-</p>
                     <p>
-We present <b>Berkeley Function-Calling Leaderboard (BFCL)</b>, the first comprehensive and executable function calling evaluation for LLMs function calling. Different from prior function calling evaluations, such as the Anyscale function calling dataset, we consider function callings of various forms, different function calling scenarios, and the executability of function calls.We built this dataset from our learnings to be representative of most users' function calling use-cases, for example, in agents, as a part of enterprise workflows, etc. To this end, our evaluation dataset spans diverse categories, and across multiple languges. We also release our model Gorilla-Openfunctions-v2, the best open-source models so far to handle function calls with multiple programming languages and parallel and multiple function calls. We also provide a specific debugging feature that when the provided function is not suitable for your task, the model will output an “Error Message”. 
+                        Since late 2022, Large Language Models (LLMs) have caught everyone's attention because of their
+                        capability to perform general tasks. Beyond chatting, it is natural to adopt and integrate these
+                        models to develop many AI applications and softwares (e.g., Langchain, Llama Index, AutoGPT,
+                        Voyager). Models like GPT, Gemini, Llama, Mistral etc, have demonstrated huge potential in this
+                        route by interacting with the external world with function calling and execution.
+                    </p>
+                    <p>
+                        We present <b>Berkeley Function-Calling Leaderboard (BFCL)</b>, the first comprehensive and
+                        executable function calling evaluation for LLMs function calling. Different from prior function
+                        calling evaluations, such as the Anyscale function calling dataset, we consider function
+                        callings of various forms, different function calling scenarios, and the executability of
+                        function calls.We built this dataset from our learnings to be representative of most users'
+                        function calling use-cases, for example, in agents, as a part of enterprise workflows, etc. To
+                        this end, our evaluation dataset spans diverse categories, and across multiple languges. We also
+                        release our model Gorilla-Openfunctions-v2, the best open-source models so far to handle
+                        function calls with multiple programming languages and parallel and multiple function calls. We
+                        also provide a specific debugging feature that when the provided function is not suitable for
+                        your task, the model will output an “Error Message”.
 
                     </p>
-                    <!-- <p>
-                        Quick Links:
-                        <ul>
-                            <li>Colab Notebook: <a href="https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd?usp=sharing">OpenFunctions</a></li>
-                            <li>Dataset: <a href="https://github.com/ShishirPatil/gorilla/tree/main/openfunctions">GitHub</a></li>
-                            <li>Models on HuggingFace: <a href="https://huggingface.co/gorilla-llm/gorilla-openfunctions-v0">gorilla-llm/gorilla-openfunctions-v0</a></li>
-                        </ul>
-                    </p> -->
                 </div>
 
                 <!-- How to use OpenFunctions -->
@@ -93,11 +91,17 @@ We present <b>Berkeley Function-Calling Leaderboard (BFCL)</b>, the first compre
                         <i style="font-size: 0.9em;">
                             LLMs' performance on Berkeley Function-Calling Leaderboard (BFCL)
                         </i>
-                </p>
+                    </p>
 
-                <div class="body">
-                    <p>In order to better dive in and visualize the results, we also provide an interactive hexagon tool for the users to compare different models. We break these into 9 categories: Function irrelevance detection, the AST tree checking and execution function call checking for simple, multiple, parallel multiple functions. With this, we can clearly see that in which of our tests the model is doing non-satisfactory. In terms of simple single function callings, the propatiery models and open-source ones perform similar. But GPT-series models outperform the open-source ones when it involves multiple and parallel function calling.</p>
-                </div>
+                    <div class="body">
+                        <p>In order to better dive in and visualize the results, we also provide an interactive hexagon
+                            tool for the users to compare different models. We break these into 9 categories: Function
+                            irrelevance detection, the AST tree checking and execution function call checking for
+                            simple, multiple, parallel multiple functions. With this, we can clearly see that in which
+                            of our tests the model is doing non-satisfactory. In terms of simple single function
+                            callings, the propatiery models and open-source ones perform similar. But GPT-series models
+                            outperform the open-source ones when it involves multiple and parallel function calling.</p>
+                    </div>
 
                 <p style="text-align: center; margin-bottom: 0">
                     <img src="../assets/img/blog_post_8_Wagon.gif" alt="Berkeley Function-Calling Leaderboard (BFCL) Wagon Chart" width="100%">
@@ -106,68 +110,125 @@ We present <b>Berkeley Function-Calling Leaderboard (BFCL)</b>, the first compre
                             </i>
                     </p>
 
-                <!-- OpenFunction BenchMarking  -->
-                <h4 id="benchmarking">Dataset Composition</h4>
-            
-                <div class="body">
-                    <p>The Gorilla OpenFunctions evaluation dataset grows from its previous 100 entries to 1900 entries! The evaluation dataset improve its quality and demonstrate diversity in:</p>
+                    <!-- OpenFunction BenchMarking  -->
+                    <h4 id="benchmarking">Dataset Composition</h4>
+
+                    <div class="body">
+                        <p>The Gorilla OpenFunctions evaluation dataset grows from its previous 100 entries to 1900
+                            entries! The evaluation dataset improve its quality and demonstrate diversity in:</p>
                         <ul>
                             <li>Domains of functions documentations</li>
                             <li>Number of function documents and function calls QA pairs</li>
                             <li>Data types of different programming languages</li>
                         </ul>
 
-                    <p>Our evaluation JSON functions are scraped and generated from different sources of website. We intentially include domains like using functions related to Mathematics-Algebra, Sports-Soccer, Finance-Mortgage, and etc. We include 40 sub-domains of functions within our generic evaluations. This allows us to understand the model performance not just in data-abundant domains like computing, and cloud, but also niche domains like sports, and law.
-                    </p>
+                        <p>Our evaluation JSON functions are scraped and generated from different sources of website. We
+                            intentially include domains like using functions related to Mathematics-Algebra,
+                            Sports-Soccer, Finance-Mortgage, and etc. We include 40 sub-domains of functions within our
+                            generic evaluations. This allows us to understand the model performance not just in
+                            data-abundant domains like computing, and cloud, but also niche domains like sports, and
+                            law.
+                        </p>
 
-                    <p style="text-align: center; margin-bottom: 0">
-                        <img src="../assets/img/blog_post_8_data_composition.png" alt="Gorilla Input and Output" width="65%">
+                        <p style="text-align: center; margin-bottom: 0">
+                            <img src="../assets/img/blog_post_8_data_composition.png" alt="Gorilla Input and Output"
+                                width="65%">
                             <i style="font-size: 0.9em;">
                                 Berkeley Function-Calling Leaderboard (BFCL) Data Composition
                             </i>
-                    </p>
-                    
-                 <h4 id="benchmarking">Evaluation Categories 📊</h4>
-                 
-                    <p> We break down the majority of the evaluation in two categories:</p>
-                    <ul>
-                            <li>Python: Simple Function, Multiple Function, Parallel Function, Parallel Multiple Function</li>
+                        </p>
+
+                        <h4 id="benchmarking">Evaluation Categories 📊</h4>
+
+                        <p> We break down the majority of the evaluation in two categories:</p>
+                        <ul>
+                            <li>Python: Simple Function, Multiple Function, Parallel Function, Parallel Multiple
+                                Function</li>
                             <li>Non-Python: Function Relevance Detection, REST API, SQL, Java, Javascript</li>
                         </ul>
-                    <h5 id="benchmarking">Python Evaluation</h5>
-                    <p><mark>Simple Function:</mark> Generic single function evaluation contains the simplest but most commonly seen format: the user supplies one JSON function document, with one and only one function call will be invoked. </p>
-                    <p><mark>Multiple Function:</mark> Multiple function category contains a user question that only invokes one function call out of 2 - 4 JSON function documentations. The model needs to be capable of selecting the best function to invoke according to user provided context.</p>
-                    <p><mark>Parallel Function:</mark> Parallel function is defined as invoking multiple function calls in parallel with one user query. The model needs to digest how many function calls need to be made and the question to model can be a single sentence or multiple sentence.</p>
-                    <p><mark>Parallel Multiple Function:</mark> Parallel Multiple function is the combination of parallel function and multiple function. In another word, the model is provided with multiple function documentations, each of the corresponding function calls will be invoked 0 or more times. </p>
-                    <p>Each category has its corresponding Executable category. In this section, we manually write function codes drawing inspiration from some free REST API endpoints (e.g. Get weather) and functions (e.g. Linear regression) that directly computes. Executable category is designed to understand whether the function call generation is able to be utilized in the real world. </p>
-                    <!-- FIXME, add examples -->
+                        <h5 id="benchmarking">Python Evaluation</h5>
+                        <p><mark>Simple Function:</mark> Generic single function evaluation contains the simplest but
+                            most commonly seen format: the user supplies one JSON function document, with one and only
+                            one function call will be invoked. </p>
+                        <p><mark>Multiple Function:</mark> Multiple function category contains a user question that only
+                            invokes one function call out of 2 - 4 JSON function documentations. The model needs to be
+                            capable of selecting the best function to invoke according to user provided context.</p>
+                        <p><mark>Parallel Function:</mark> Parallel function is defined as invoking multiple function
+                            calls in parallel with one user query. The model needs to digest how many function calls
+                            need to be made and the question to model can be a single sentence or multiple sentence.</p>
+                        <p><mark>Parallel Multiple Function:</mark> Parallel Multiple function is the combination of
+                            parallel function and multiple function. In another word, the model is provided with
+                            multiple function documentations, each of the corresponding function calls will be invoked 0
+                            or more times. </p>
+                        <p>Each category has its corresponding Executable category. In this section, we manually write
+                            function codes drawing inspiration from some free REST API endpoints (e.g. Get weather) and
+                            functions (e.g. Linear regression) that directly computes. Executable category is designed
+                            to understand whether the function call generation is able to be utilized in the real world.
+                        </p>
+                        <!-- FIXME, add examples -->
 
-                <h5 id="benchmarking">Non-Python Evaluation</h5>
-                    <p>While the previous categories consist of the majority of our evaluations, we include more specific categories to evaluate model performance in different scenarios and are resilient to irrelevant questions and function documentations.</p>
+                        <h5 id="benchmarking">Non-Python Evaluation</h5>
+                        <p>While the previous categories consist of the majority of our evaluations, we include more
+                            specific categories to evaluate model performance in different scenarios and are resilient
+                            to irrelevant questions and function documentations.</p>
 
-                    <p><mark>Function Relevance detection:</mark> In no function call category, we design a scenario where none of the provided functions are relevant and supposed to be invoked. We expect the model's output to be no function call. This scenario provides insight to whether a model will hallucinate on its function and parameter to generate function code despite lacking the information to do so. </p>
-                    <p><mark>REST API:</mark> A majority of the real world API calls are from REST API calls. Python mainly makes REST API calls through requests.get(), requests.post(), requests.delete() and etc that are included in the python requests library. GET requests are the most common ones used in real world. As a result, we include real world GET requests to test the model's capabilities to generate executable REST API calls through complex function documentations, using requests.get() along with the API's hardcoded URL and description of the purpose of the function and its parameters. Our evaluation includes two variations. The first type requires passing the parameters inside the URL, called path parameters, for example the {Year} and {CountryCode} in  GET /api/v3/PublicHolidays/{Year}/{CountryCode}. The second type requires the model to put parameters as key/value pairs into the params and/or headers of requests.get(.). For example, params={'lang': 'fr'} in the function call. The model is not given which type of REST API call it is going to make but needs to make a decision on how it’s going to be invoked.  </p>
-                    <p><mark>SQL:</mark> SQL evaluation data includes our customized sql.execute functions that contains sql_keyword, table_name, columns, and conditions. Those four parameters provide necessary information to construct a simple SQL query like SELECT column_A from table_B where column_C == D Through this, we want to see if through function calling, SQL query can be reliably constructed and utilized rather than training a SQL specific model. In our evaluation dataset, we restricted the scenarios and supported simple keywords, including "SELECT", "INSERT INTO", "UPDATE", "DELETE", "CREATE".</p>
-                    <p><mark>Java + Javascript:</mark> Despite function calling formats being the same across most programming languages, each programming language has language specific types. For example, C has pointer type, Java has HashMap type. The goal of this test category is to understand how well the function calling model can be extended to not just JSON and Python type but all the language specific typings.
-</p>
-                    <p>The above three categories enable us to see how different models perform in some popular use cases of API calls and give us some insights into the potential of function calling models. 
-</p>
-                    
-                    <h4 id="benchmarking">Evaluation Metrics📈</h4>
-                    <p>We use two popular method to evaluate the accuracy of the model generated answers: AST checker and Execution checker. Ideally one should use execution checker, but when we evaluate the answers, not all the results are easily executable (e.g., Java functions). So we use the AST as a complement to the execution checker. </p>
+                        <p><mark>Function Relevance detection:</mark> In no function call category, we design a scenario
+                            where none of the provided functions are relevant and supposed to be invoked. We expect the
+                            model's output to be no function call. This scenario provides insight to whether a model
+                            will hallucinate on its function and parameter to generate function code despite lacking the
+                            information to do so. </p>
+                        <p><mark>REST API:</mark> A majority of the real world API calls are from REST API calls. Python
+                            mainly makes REST API calls through requests.get(), requests.post(), requests.delete() and
+                            etc that are included in the python requests library. GET requests are the most common ones
+                            used in real world. As a result, we include real world GET requests to test the model's
+                            capabilities to generate executable REST API calls through complex function documentations,
+                            using requests.get() along with the API's hardcoded URL and description of the purpose of
+                            the function and its parameters. Our evaluation includes two variations. The first type
+                            requires passing the parameters inside the URL, called path parameters, for example the
+                            {Year} and {CountryCode} in GET /api/v3/PublicHolidays/{Year}/{CountryCode}. The second type
+                            requires the model to put parameters as key/value pairs into the params and/or headers of
+                            requests.get(.). For example, params={'lang': 'fr'} in the function call. The model is not
+                            given which type of REST API call it is going to make but needs to make a decision on how
+                            it's going to be invoked. </p>
+                        <p><mark>SQL:</mark> SQL evaluation data includes our customized sql.execute functions that
+                            contains sql_keyword, table_name, columns, and conditions. Those four parameters provide
+                            necessary information to construct a simple SQL query like SELECT column_A from table_B
+                            where column_C == D Through this, we want to see if through function calling, SQL query can
+                            be reliably constructed and utilized rather than training a SQL specific model. In our
+                            evaluation dataset, we restricted the scenarios and supported simple keywords, including
+                            "SELECT", "INSERT INTO", "UPDATE", "DELETE", "CREATE".</p>
+                        <p><mark>Java + Javascript:</mark> Despite function calling formats being the same across most
+                            programming languages, each programming language has language specific types. For example, C
+                            has pointer type, Java has HashMap type. The goal of this test category is to understand how
+                            well the function calling model can be extended to not just JSON and Python type but all the
+                            language specific typings.
+                        </p>
+                        <p>The above three categories enable us to see how different models perform in some popular use
+                            cases of API calls and give us some insights into the potential of function calling models.
+                        </p>
+
+                        <h4 id="benchmarking">Evaluation Metrics📈</h4>
+                        <p>We use two popular method to evaluate the accuracy of the model generated answers: AST
+                            checker and Execution checker. Ideally one should use execution checker, but when we
+                            evaluate the answers, not all the results are easily executable (e.g., Java functions). So
+                            we use the AST as a complement to the execution checker. </p>
                         <ul>
                             <li>Abstract Syntax Tree (AST) Checker</li>
                             <li>Execution Checker</li>
                         </ul>
-                    <p>AST Checking: For the function call answers generated that are executable, we take parse the function call using AST tree.</p>
-                    <p>Example: <code>[calculate_triangle_area(base=10, height=5)]</code></p>
-                    <p>Parse: <code>Module(body=[Expr(value=List(elts=[Call(func=Name(id='calculate_triangle_area', ctx=Load()), args=[], keywords=[keyword(arg='base', value=Constant(value=10)), keyword(arg='height', value=Constant(value=5))])], ctx=Load()))], type_ignores=[])
+                        <p>AST Checking: For the function call answers generated that are executable, we take parse the
+                            function call using AST tree.</p>
+                        <p>Example: <code>[calculate_triangle_area(base=10, height=5)]</code></p>
+                        <p>Parse: <code>Module(body=[Expr(value=List(elts=[Call(func=Name(id='calculate_triangle_area', ctx=Load()), args=[], keywords=[keyword(arg='base', value=Constant(value=10)), keyword(arg='height', value=Constant(value=5))])], ctx=Load()))], type_ignores=[])
 [calculate_triangle_area(base=10, height=5)]</code></p>
-                    <p>We extract the variables from the AST and check if every parameter can be found and exact matched in possible answers. For each possible answer, what should be the acceptable answer:</p>
-                    <ul>
+                        <p>We extract the variables from the AST and check if every parameter can be found and exact
+                            matched in possible answers. For each possible answer, what should be the acceptable answer:
+                        </p>
+                        <ul>
                             <li>For bool:
                                 <ul>
-                                    <li>We check the direct matching of boolean values, and don't allow leniency on the string versions of boolean values. </li>
+                                    <li>We check the direct matching of boolean values, and don't allow leniency on the
+                                        string versions of boolean values. </li>
                                 </ul>
                             </li>
                             <li>For integer, float:
@@ -177,7 +238,8 @@ We present <b>Berkeley Function-Calling Leaderboard (BFCL)</b>, the first compre
                             </li>
                             <li>For List:
                                 <ul>
-                                    <li>We are checking for exact matches so List of any order should be matched. [1,2,3]==[2,3,1] </li>
+                                    <li>We are checking for exact matches so List of any order should be matched.
+                                        [1,2,3]==[2,3,1] </li>
                                 </ul>
                             </li>
                             <li>For Dict:
@@ -198,14 +260,22 @@ We present <b>Berkeley Function-Calling Leaderboard (BFCL)</b>, the first compre
 
                         <p>Here are some example of possible answer:</p>
                         <ul>
-                            <li><code>{"calculate_triangle_area": {"base": [10], "height": [5], "unit": ["units", "unit"]}}</code></li>
-                            <li><code>{"predict_house_price": {"bedrooms": [3], "bathrooms": [2], "area": [1800], "location": ["San Francisco", "San Francisco, CA"]}}</code></li>
+                            <li><code>{"calculate_triangle_area": {"base": [10], "height": [5], "unit": ["units", "unit"]}}</code>
+                            </li>
+                            <li><code>{"predict_house_price": {"bedrooms": [3], "bathrooms": [2], "area": [1800], "location": ["San Francisco", "San Francisco, CA"]}}</code>
+                            </li>
                         </ul>
                         <p>This checking mechanism applies to everything except for executable_* and REST.</p>
-                        <p>Executable checking: For executable_* and REST, we have corresponding functions that can be executable for each question. Therefore, directly after the model generates answers, we will take the answers and then execute them in a python environment. There are two types of matchings.</p>
+                        <p>Executable checking: For executable_* and REST, we have corresponding functions that can be
+                            executable for each question. Therefore, directly after the model generates answers, we will
+                            take the answers and then execute them in a python environment. There are two types of
+                            matchings.</p>
                         <ul>
-                            <li>For executable output that is deterministic, we check for exact matches according to our human execution result.</li>
-                            <li>For executable output that is non-deterministic and real-world related, we check for its response type and response JSON key consistencies. Seeing whether the value is something we expected to see. Since we observe that sometimes if REST</li>
+                            <li>For executable output that is deterministic, we check for exact matches according to our
+                                human execution result.</li>
+                            <li>For executable output that is non-deterministic and real-world related, we check for its
+                                response type and response JSON key consistencies. Seeing whether the value is something
+                                we expected to see. Since we observe that sometimes if REST</li>
                         </ul>
 
                  <h4 id="benchmarking">Prompting</h4>
@@ -341,10 +411,16 @@ Gorilla-openfunctions-v2 output:
         </pre>
 
 
-<li>
-    <p>Chat Model tend to generate malformed function call in which parameters can be extracted but not executable</p>
-                <p>Example of mistral-medium generate result like: <code>solve\\_quadratic\\_equation(a=2, b=6, c=5)"</code>. With gorilla-openfunctions-v2, we are able to directly output solve_quadratic_equation(a=3, b=2, c=1) which is executable upon receiving the result.</p>
-</li>
+                            <li>
+                                <p>Chat Model tend to generate malformed function call in which parameters can be
+                                    extracted but not executable</p>
+                                <p>Example of mistral-medium generate result like:
+                                    <code>solve\\_quadratic\\_equation(a=2, b=6, c=5)"</code>. With
+                                    gorilla-openfunctions-v2, we are able to directly output
+                                    solve_quadratic_equation(a=3, b=2, c=1) which is executable upon receiving the
+                                    result.
+                                </p>
+                            </li>
 
 <li>REST API call inconsistency:                        
     <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
@@ -407,12 +483,18 @@ Gorilla-Openfunctions-v2 output:
 
     </pre>
 
-</li>
-</ol>
-<h4 id="benchmarking">Conclusion</h4>
-<div class="body">
-<p>We provide a comprehensive and systematic evaluation of LLMs for function calling with Gorilla Open Functions Leaderboard. The studies here suggest that in terms of simple function calling (without complex planning and chained function calling), finetuning an open-source can be as effective as propatiery models. Furthermore, we provide Gorilla Open Functions v2, an open-source model that can help users with building AI applications with function calling and interacting with json compatible output.
-</p>
+                            </li>
+                        </ol>
+
+                        <h4 id="benchmarking">Conclusion</h4>
+                        <div class="body">
+                            <p>We provide a comprehensive and systematic evaluation of LLMs for function calling with
+                                Gorilla Open Functions Leaderboard. The studies here suggest that in terms of simple
+                                function calling (without complex planning and chained function calling), finetuning an
+                                open-source can be as effective as propatiery models. Furthermore, we provide Gorilla
+                                Open Functions v2, an open-source model that can help users with building AI
+                                applications with function calling and interacting with json compatible output.
+                            </p>
 
 <p>
                         We hope you enjoyed this blog post. We would love to hear from you on <a href="https://discord.gg/SwTyuTAxX3">Discord</a>, <a href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter (#GorillaLLM)</a>, and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br> 
@@ -421,7 +503,7 @@ Gorilla-Openfunctions-v2 output:
                         If you would like to cite Gorilla:<br>
                         @inproceedings{berkeley-function-calling-leaderboard,<br>
                         &nbsp; 	title={Berkeley Function Calling Leaderboard},<br>
-                        &nbsp; 	author={Fanjia Yan and Charlie Cheng-Jie Ji and Huanzhi Mao and Tianjun Zhang and Shishir G. Patil and Ion Stoica and Joseph E. Gonzalez},<br>
+                        &nbsp; 	author={Fanjia Yan and Huanzhi Mao and Charlie Cheng-Jie Ji and Tianjun Zhang and Shishir G. Patil and Ion Stoica and Joseph E. Gonzalez},<br>
                         &nbsp; 	year={2024},<br>
                         &nbsp;	howpublished={\url{https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html}},<br>
                     }</p>
@@ -586,6 +668,7 @@ Gorilla-Openfunctions-v2 output:
 
     </style>
 </body>
+
 </html>
 
 <script>

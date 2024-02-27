@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/Team-Clean.css">
+    <link rel="stylesheet" href="../assets/css/blog.css">
     <style>
         /* Bars to separate titles in nav bar */
         .navbar a:not(:last-child)::after {
@@ -146,7 +147,7 @@
         }
 
 .highlighted-blog {
-    flex-basis: calc(50% - 20px);
+    flex-basis: calc(33.33% - 20px);
     background: #fff;
     border: 3px solid #e8e8e8;
     padding: 20px;
@@ -172,7 +173,16 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 20px;
+    justify-content: center;
 }
+
+
+@media only screen and (max-width: 768px) {
+    .highlighted-blog {
+        flex-basis: auto;
+    }
+}
+
 
 .highlighted-blog,
 .highlighted-tall-blog {
