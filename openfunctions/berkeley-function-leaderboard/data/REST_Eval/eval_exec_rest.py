@@ -1,9 +1,5 @@
 import json
 import time
-from urllib.parse import urlparse, urlunparse
-
-
-MODEL_USED = "gorilla"
 
 eval_GT_file = "./data/REST_Eval/rest-eval-response_v5.jsonl" # Ground truth file for v5
 
