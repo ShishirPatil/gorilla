@@ -39,8 +39,7 @@ def get_args():
     parser.add_argument("--test_category", type=str, default="ast")
 
     # If file name, that means we are testing it. It has the highest priority.
-    parser.add_argument("--file_name", type=str, default="git_rest_js_java_dedup_ast_noapi_aug0.2_nopartialfunc_noanswer_chat_v10_deepspeek_100.json")
-    # parser.add_argument("--file_name", type=str, default=None)
+    parser.add_argument("--file_name", type=str, default=None)
     # Whether the run will be used for output analysis. 
     parser.add_argument("--output_analysis", action="store_true", default=False)
     #Store the log whether each eval data is correct or not

@@ -89,7 +89,7 @@ Below is a list of model we support to run our leaderboard evaluation against. I
 |mistral-*| Not supported|
 |Nexusflow-Raven-v2| Supported|
 |deepseek-7b| Not supported|
-|glaiveai| Not supported| 
+|glaiveai|  Supported| 
 
 
 
