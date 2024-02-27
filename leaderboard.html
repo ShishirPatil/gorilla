@@ -48,8 +48,8 @@
       ">
         <a href="#leaderboard">Leaderboard</a>
         <a href="#api-explorer">Try it Out!</a>
-        <a href="https://gorilla.cs.berkeley.edu/blogs/6_function_leaderboard.html">Blog</a>
-        <a href="apizoo/">Gorilla</a>
+        <a href="blogs/8_berkeley_function_calling_leaderboard.html">Blog</a>
+        <a href="index.html">Gorilla</a>
     </div>
 
     <div class="highlight-clean" style="padding-bottom: 10px">
@@ -59,28 +59,17 @@
             <p></p>
         </div>
         <!-- Author Section -->
-        <div class="container" id="author" style="background: white">
+        <!-- <div class="container" id="author" style="background: white">
             <div class="row">
                 <div class="col-md-12">
-                    <h4 class="text-center">
-                        <a class="text-center" href="https://fanjia-yan.github.io/">Fanjia Yan<sup>*</sup></a>,
-                        <a class="text-center" href="https://huanzhimao.com/">Huanzhi Mao<sup>*</sup></a>,
-                        <a class="text-center" href="https://charliejcj.github.io/">Charlie Cheng-Jie Ji<sup>*</sup></a>,
-                        <a class="text-center" href="https://tianjunz.github.io//">Tianjun Zhang</a>,
-                        <a class="text-center" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir Patil</a>,
-                        <a class="text-center" href="https://people.eecs.berkeley.edu/~istoica/">Ion Stoica</a>,
-                        <a class="text-center" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph Gonzalez</a>
-                    </h4>
                     <h4></h4>
-                    <h5 class="text-center">UC Berkeley</h5>
-                    <h6 class="text-center">sgp@berkeley.edu, tianjunz@berkeley.edu</h6>
-                    <p class="text-center"><sup>*</sup> means equal contribution</p>
+                    <h5 class="text-center">Gorilla LLM Team</h5>
                 </div>
             </div>
         </div>
         <div>
             <p></p>
-        </div>
+        </div> -->
     </div>
 
     <!-- Leaderboard Section -->
@@ -89,7 +78,7 @@
             <h2>Leaderboard</h2>
 
             <p class="text-center">
-                This live leaderboard evaluates the LLM's ability to call functions (aka tools) accurately. This leaderboard consists of real-world data and is updated every 24hrs. For more information on the evaluation dataset and methodology, please refer to our blog post and code release.
+                This live leaderboard evaluates the LLM's ability to call functions (aka tools) accurately. This leaderboard consists of real-world data and is updated every 24hrs. For more information on the evaluation dataset and methodology, please refer to our <a href="blogs/8_berkeley_function_calling_leaderboard.html">blog post</a> and <a href="https://github.com/ShishirPatil/gorilla">code release</a>.
             </p>
 
             <div class="table-container">
@@ -98,8 +87,8 @@
                     <thead>
                         <tr>
                             <th colspan="5"></th>
-                            <th colspan="4">AST Evaluation</th>
-                            <th colspan="4">Execution Evaluation</th>
+                            <th colspan="4">Abstract Syntax Tree (AST) Evaluation</th>
+                            <th colspan="4">Evaluation by Executing APIs</th>
                             <th colspan="1"></th>
                         </tr>
                         <tr>
@@ -116,7 +105,7 @@
                             <th>Multiple Functions</th>
                             <th>Parallel Functions</th>
                             <th>Parallel Multiple</th>
-                            <th>Irrelevance Detection</th>
+                            <th>Relevance Detection</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -497,11 +486,11 @@
             <h2>Citation</h2>
             <div class="container" style="background: white">
                 <code>
-                    @article{patil2023gorilla,<br>
-                    &nbsp;  title={Gorilla: Large Language Model Connected with Massive APIs}, <br>
-                    &nbsp;  author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},<br>
-                    &nbsp;  journal={arXiv preprint arXiv:2305.15334},<br>
-                    &nbsp;  year={2023},<br>
+                    @misc{berkeley-function-calling-leaderboard,<br>
+                    &nbsp;  title={Berkeley Function Calling Leaderboard}, <br>
+                    &nbsp;  author={Fanjia Yan and Charlie Cheng-Jie Ji and Huanzhi Mao and Tianjun Zhang and Shishir G. Patil and Ion Stoica and Joseph E. Gonzalez},<br>
+                    &nbsp;  howpublished={\url{https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html}},<br>
+                    &nbsp;  year={2024},<br>
                     }
                 </code>
             </div>
