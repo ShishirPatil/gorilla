@@ -14,7 +14,7 @@
 
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=0.6">
     <title>Introduction to Gorilla LLM</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
@@ -46,23 +46,19 @@
         <div class="blog-container">
             <div class="blog-post">
                 <h2 class="blog-title">Berkeley Function-Calling Leaderboard</h2>
-                <div class="author-date">
-                    <p class="author"> <a class="text-center" href="https://fanjia-yan.github.io/">Fanjia Yan<sup>*</sup></a></p>
-                    <p class="author"><a class="text-center" href="https://huanzhimao.com/">Huanzhi Mao<sup>*</sup></a></p>
-                    <p class="author"><a class="text-center" href="https://charliejcj.github.io/">Charlie Cheng-Jie<sup>*</sup></a></p>
-                    <p class="author"> <a href="https://tianjunz.github.io">Tianjun Zhang</a></p>
-                    <p class="author"> <a href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G. Patil</a> </p>
-                    <p class="author"> <a href="https://people.eecs.berkeley.edu/~istoica">Ion Stoica</a> </p>
-                    <p class="author"> <a href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a> </p>
-                    <p class="date">Feb 26, 2024</p>
+                <div class="col-md-12">
+                    <h4 class="text-center" style="margin: 0px;">
+                         <p></p>
+                         <a class="author" href="https://fanjia-yan.github.io/">Fanjia Yan<sup>*</sup></a>
+                         <a class="author" href="https://huanzhimao.com/">Huanzhi Mao<sup>*</sup></a>
+                         <a class="author" href="https://charliejcj.github.io/">Charlie Cheng-Jie<sup>*</sup></a>
+                         <a class="author" href="https://tianjunz.github.io">Tianjun Zhang</a>
+                         <a class="author" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G. Patil</a>
+                         <a class="author" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a>
+                         <a class="author" href="https://people.eecs.berkeley.edu/~istoica">Ion Stoica</a>
+                         <p></p>
+                    </h4>
                 </div>
-                    <!-- <img src="../assets/img/blog_post_4_gorilla_open_function_calling.png" alt="Gorilla introductory image" style="width: 95%;">
-                    <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
-                        <i style="font-size: 0.9em;">
-                            Gorilla OpenFunctions is a drop-in open-source alternative. Given a prompt and API, Gorilla returns the correctly formatted function call. 
-                            With Apache 2.0 licensed models, you can integrate OpenFunctions into your applications directly! 
-                        </i>
-                    </p> -->
 
                 <div class="preview">
                     <p>            
@@ -93,7 +89,7 @@ We present <b>Berkeley Function-Calling Leaderboard (BFCL)</b>, the first compre
                 </div>
                 
                 <p style="text-align: center; margin-bottom: 0">
-                    <img src="../assets/img/blog_post_8_Leaderboard.jpg" alt="Berkeley Function-Calling Leaderboard (BFCL)" width="85%">
+                    <img src="../assets/img/blog_post_8_Leaderboard.jpg" alt="Berkeley Function-Calling Leaderboard (BFCL)" width="100%">
                         <i style="font-size: 0.9em;">
                             LLMs' performance on Berkeley Function-Calling Leaderboard (BFCL)
                         </i>
@@ -104,7 +100,7 @@ We present <b>Berkeley Function-Calling Leaderboard (BFCL)</b>, the first compre
                 </div>
 
                 <p style="text-align: center; margin-bottom: 0">
-                    <img src="../assets/img/blog_post_8_Wagon.gif" alt="Berkeley Function-Calling Leaderboard (BFCL) Wagon Chart" width="85%">
+                    <img src="../assets/img/blog_post_8_Wagon.gif" alt="Berkeley Function-Calling Leaderboard (BFCL) Wagon Chart" width="100%">
                             <i style="font-size: 0.9em;">
                                 Detailed analysis using Berkeley Function-Calling Leaderboard (BFCL) Wagon Chart
                             </i>
@@ -217,20 +213,17 @@ We present <b>Berkeley Function-Calling Leaderboard (BFCL)</b>, the first compre
                  <ol>
                     <li>For all the function calling models, we did not supply any system prompt but instead toggle the function calling mode on and put the function definitions where it should be.</li>
                     <li>For chat model, we explicitly provides system message:
-                    <div class="code-block">
-                            <!-- Your first code section goes here -->
-
-                                <code>
+                        <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
 SYSTEM_PROMPT_FOR_CHAT_MODEL = """"
 You are an expert in composing functions. You are given a question and a set of possible functions.
 Based on the question, you will need to make one or more function/tool calls to achieve the purpose.
 If none of the function can be used, point it out. If the given question lacks the parameters required by the function,
 also point it out. You should only return the function call in tools call sections.
 """
-                                </code>
-                                <code>
+                        </pre>
+                        <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
 USER_MESSAGE_FOR_CHAT_MODEL = "Questions:{user_prompt}\nHere is a list of functions in JSON format that you can invoke:\n{functions}. Should you decide to return the function call(s), NO other text MUST be included."
-                                </code>
+                        </pre>
 
                         </div>
                     </li>
@@ -239,9 +232,8 @@ USER_MESSAGE_FOR_CHAT_MODEL = "Questions:{user_prompt}\nHere is a list of functi
                 With our benchmark BFCL, we are able to identify some common mistakes that LLMs make when generating function calls. These mistakes are interesting because they help us understand the limitations of the current models and provide insights into how to improve them.
                 <ol>
                 <li><p>GPTs' function documents are difficult to format and their typings are restrictive in real world scenarios.</p>
-<div class="code-block">
-    <pre>
-        <code>
+
+                <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;"></pre>
 "Function": 
 {
     "name": "calculate_binomial_probability",
@@ -272,18 +264,15 @@ USER_MESSAGE_FOR_CHAT_MODEL = "Questions:{user_prompt}\nHere is a list of functi
         "required": ["number_of_trials", "number_of_successes"]
     }
 }
-        </code>
-    </pre>
-</div>
+                </pre>
+
                 <p>In this case, we need to manually convert float into number to make the function OpenAI compatible. In addition to that, numbers convey less information compared to floats in terms of precision and type consistency.</p>
                 <p>In Gorilla Openfunctions-v2, we improve the flexibility of the function documents by not restricting the typing of the parameters. In another word, the user can supply Tuple , Float , and even language specific types like HashMap and Linked List in Java!</p>
 </li>
 <li> GPT underperforms in scenario where the parameters are not immediately available in user question but instead requires some implicit converion. Here is an example:
 
     <p></p>
-    <div class="code-block">
-        <pre>
-            <code>
+    <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
 "Function": 
 {
     "name": "finance.predict_future_value",
@@ -320,14 +309,10 @@ USER_MESSAGE_FOR_CHAT_MODEL = "Questions:{user_prompt}\nHere is a list of functi
         "required": ["present_value", "annual_interest_rate", "time_years"]
     }
 }
-            </code>
         </pre>
         <p>Questions : Predict the future value of a $5000 investment with an annual interest rate of 5% in 3 years with monthly compounding.</p>
-        <div class="container">
-            <div class="code-block">
-                <!-- Your first code section goes here -->
-                <pre>
-                    <code>
+
+        <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
 GPT-4 output:
 [{
     "name": "finance.predict_future_value",
@@ -339,13 +324,8 @@ GPT-4 output:
         "time_years": 3
     }
 }]
-                    </code>
-                </pre>
-            </div>
-            <div class="code-block">
-                <!-- Your second code section goes here -->
-                <pre>
-                    <code>
+        </pre>
+        <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
 Gorilla-openfunctions-v2 output:
 [{
     "name": "finance.predict_future_value",
@@ -358,10 +338,7 @@ Gorilla-openfunctions-v2 output:
     }
 }]
 
-                    </code>
-                </pre>
-            </div>
-        </div>
+        </pre>
 
 
 <li>
@@ -370,9 +347,7 @@ Gorilla-openfunctions-v2 output:
 </li>
 
 <li>REST API call inconsistency:                        
-    <div class="code-block">
-        <pre>
-            <code>
+    <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
 "User": "Can you fetch me the weather data for the coordinates 
 37.8651 N, 119.5383 W, including the hourly forecast for temperature, 
 wind speed, and precipitation for the next 10 days?"
@@ -398,15 +373,9 @@ wind speed, and precipitation for the next 10 days?"
         }
     }
 }
-        </code>
     </pre>
-</div>  
 
-<div class="container">
-    <div class="code-block">
-        <!-- Your first code section goes here -->
-        <pre>
-            <code>
+    <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
 GPT-4 output:
 {
     "name": "requests.get",
@@ -420,13 +389,8 @@ GPT-4 output:
         },
     }
 }
-            </code>
-        </pre>
-    </div>
-    <div class="code-block">
-        <!-- Your second code section goes here -->
-        <pre>
-            <code>
+    </pre>
+    <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
 Gorilla-Openfunctions-v2 output:
 {
     "name": "requests.get",
@@ -441,10 +405,7 @@ Gorilla-Openfunctions-v2 output:
     }
 }
 
-            </code>
-        </pre>
-    </div>
-</div>
+    </pre>
 
 </li>
 </ol>
@@ -503,13 +464,6 @@ Gorilla-Openfunctions-v2 output:
             padding: 10px;
             flex: 1; /* This makes each code block take equal width */
         }
-        .image-container {
-            display: flex;
-            justify-content: center;
-        }
-        .image-container img {
-            margin: 10px;
-        }
         .blog-container {
             display: flex;
             flex-direction: column;
@@ -531,11 +485,6 @@ Gorilla-Openfunctions-v2 output:
             text-align: center;
         }
 
-        .author-date {
-                display: flex;
-                margin-bottom: 0px;
-                justify-content: center; 
-        }
         .author {
                 font-size: 16px;
                 color: #1E90FF;

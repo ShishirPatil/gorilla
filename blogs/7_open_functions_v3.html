@@ -14,7 +14,7 @@
 
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
     <title>Introduction to Gorilla LLM</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
@@ -113,7 +113,8 @@
                     <p> Using Gorilla OpenFunctions-v2 is straightforward:
                         <ol>
                             <li>To help with quick prototyping, we provide a hosted Gorilla Openfunctions-v2 model for inference. Or you can run it locally, or self-host it by accessing the model from <a href="https://huggingface.co/gorilla-llm/gorilla-openfunctions-v2">HuggingFace</a>. The example below, demonstrates how to invoke the hosted gorilla openfunctions v2 model:</li>
-                            <!-- <code>
+                            
+                            <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
 import openai
 
 def get_gorilla_response(prompt="", model="gorilla-openfunctions-v2", functions=[]):
@@ -129,7 +130,7 @@ def get_gorilla_response(prompt="", model="gorilla-openfunctions-v2", functions=
     # completion.choices[0].message.content, string format of the function call 
     # completion.choices[0].message.functionsl, Json format of the function call
     return completion.choices[0]
-                            </code> -->
+                            </pre>
                         
 
 
@@ -199,11 +200,15 @@ def get_gorilla_response(prompt="", model="gorilla-openfunctions-v2", functions=
 
         body {
             font-family: 'Source Sans Pro', sans-serif;
-            margin: 0;
-            padding: 0;
+            margin: auto;
+            padding: auto;
             background: white;
             justify-content: center;
             align-items: center;
+        }
+        .code-block {
+            padding: 0px;
+            width: 100%;
         }
         .blog-container {
             display: flex;
@@ -219,7 +224,7 @@ def get_gorilla_response(prompt="", model="gorilla-openfunctions-v2", functions=
         }
         .blog-post img {
             display: block;
-            margin: 0 auto;
+            margin: auto auto;
         }
         .blog-title{
             color: #055ada;
