@@ -1,0 +1,100 @@
+{"GeometryPresentation.createPresentation": {"controller": ["mapController"], "parent": ["mapArea"]}}
+{"SQLCompletionAnalyzer.makeProposalsFromObject": {"object": ["Customers"], "useShortName": [true], "params": [{"limit": 50, "schemaFilter": "public"}]}}
+{"FireBirdUtils.getViewSourceWithHeader": {"monitor": ["dbMonitor"], "view": ["'EmployeeView'"], "source": ["'SELECT * FROM Employee WHERE status = \\'active\\''"]}}
+{"DB2Tablespace.resolveTablespaceReference": {"monitor": ["dbMonitor"], "dataSource": ["db2DataSource"], "reference": ["USERSPACE1"]}}
+{"DB2ViewBaseDepCache.prepareObjectsStatement": {"session": ["jdbcSession"], "db2ViewBase": ["EmployeeView", "\"EmployeeView\"", "HR.EmployeeView", "\"HR.EmployeeView\""]}}
+{"PlainTextPresentation.createPresentation": {"controller": ["dataController"], "parent": ["compositeParent"]}}
+{"SpreadsheetPresentation.refreshData": {"refreshMetadata": [true], "append": [true], "keepState": [true]}}
+{"EFSNIOResource.copy": {"destination": ["/backup/data.txt"], "force": [true], "monitor": ["progressTracker"]}}
+{"EFSNIOFile.setContents": {"source": ["fileStream"], "force": [true], "keepHistory": [false], "monitor": ["progressMonitor"]}}
+{"writeMultiPoint": {"multiPoint": ["new MultiPoint(new Point[]{new Point(1, 2), new Point(3, 4), new Point(5, 6), new Point(7, 8), new Point(9, 10)})"], "xyzmMode": ["XyzmMode.XYZ", "XYZ"], "buffer": ["ByteBuffer.allocate(1024)"]}}
+{"JNIBridge.setLauncherInfo": {"launcher": ["/usr/local/bin/dbeaver"], "name": ["DBeaverLauncher"]}}
+{"BasePolicyDataProvider.getRegistryPolicyValue": {"root": ["HKEY_LOCAL_MACHINE"], "property": ["EnableExtensions"]}}
+{"ExasolExecutionContext.setCurrentSchema": {"monitor": ["progressMonitor"], "schemaName": ["AnalyticsDB"]}}
+{"AltibaseGrantee.prepareObjectsStatement": {"session": ["JDBC_session"], "owner": ["JohnDoe"]}}
+{"FunGameBase.onFinish": {"layout": ["gameLayout"], "success": [true]}}
+{"Res9patchStreamDecoder.decode": {"in": ["imageInputStream"], "out": ["imageOutputStream"]}}
+{"InsnDecoder.invokePolymorphic": {"insn": ["instructionData"], "isRange": [true]}}
+{"GenericTypesVisitor.attachGenericTypesInfo": {"mth": ["initMethod"], "insn": ["newConstructorInsn"]}}
+{"SysRoleController.queryPageRoleCount": {"pageNo": [3], "pageSize": [20]}}
+{"PersonController.personal": {"model": ["webModel"], "request": ["userRequest"]}}
+{"HbaseAdapter.updateConfig": {"fileName": ["user-mapping.yml"], "config": ["newMappingConfig"]}}
+{"SessionHandler.exceptionCaught": {"ctx": ["nettyChannelContext"], "e": ["ioExceptionEvent"]}}
+{"PmsProductServiceImpl.updateNewStatus": {"ids": ["[101, 202, 303]", "Arrays.asList(101L, 202L, 303L)", "ArrayList<Long>(Arrays.asList(101L, 202L, 303L))"], "newStatus": [2]}}
+{"SmsHomeNewProductServiceImpl.list": {"productName": ["LED TV"], "recommendStatus": [1], "pageSize": [20], "pageNum": [3]}}
+{"PmsProductCategoryController.updateShowStatus": {"ids": [[101, 102, 103]], "showStatus": [0]}}
+{"SmsHomeRecommendSubjectController.updateSort": {"id": [42], "sort": [5]}}
+{"ProxyConnection.prepareCall": {"sql": ["CALL totalSales(?)"], "resultSetType": [1005], "concurrency": [1007], "holdability": [2]}}
+{"TwoSum.twoSum": {"nums": [[2, 7, 11, 15]], "target": [9]}}
+{"configStorage.dynamicCredentialsScheduledExecutorService": {"credentialsFile": ["es_credentials.properties"], "credentialsRefreshInterval": [30], "basicCredentials": ["basicAuthCredentials"]}}
+{"propertyTransferredToCollectorBuilder": {"property": ["zipkin.collector.activemq.concurrency"], "value": [10], "builderExtractor": ["ActiveMQCollector.Builder::getConcurrency"]}}
+{"RedissonAsyncCache.putIfAbsent": {"key": ["answer"], "value": [42]}}
+{"RedissonRx.getQueue": {"name": ["taskQueue"], "codec": ["jsonCodec"]}}
+{"RedissonPermitExpirableSemaphore.tryAcquireAsync_1": {"waitTime": [5], "leaseTime": [120], "unit": ["SECONDS", "seconds"]}}
+{"RedissonMapCache.putOperationAsync": {"key": ["employee:1234"], "value": ["John Doe"]}}
+{"ServiceManager.newTimeout": {"task": ["cleanupTask"], "delay": [5], "unit": ["MINUTES", "TimeUnit.MINUTES"]}}
+{"RedissonConnection.bitOp": {"op": ["BitOperation.AND"], "destination": ["user:online:both"], "keys": [["user:online:today", "user:online:yesterday"]]}}
+{"ObjectMapEntryReplayDecoder.decode": {"parts": [["userID", 42, "username", "johndoe", "isActive", true]], "state": ["processingState"]}}
+{"ConsoleAnnotator.annotate": {"context": ["jenkinsBuild"], "text": ["buildOutput"]}}
+{"NestedValueFetcher.createSourceMapStub": {"filteredSource": ["docFields"]}}
+{"NodeIdConverter.format": {"event": ["logEvent"], "toAppendTo": ["logBuilder"]}}
+{"RoutingNodesChangedObserver.shardInitialized": {"unassignedShard": ["shardA"], "initializedShard": ["shardB"]}}
+{"SearchHit.declareInnerHitsParseFields": {"parser": ["searchHitParser"]}}
+{"TermQueryBuilderTests.termQuery": {"mapper": ["usernameField"], "value": ["JohnDoe"], "caseInsensitive": [true]}}
+{"SecureMockMaker.createSpy": {"settings": ["mockSettings"], "handler": ["mockHandler"], "object": ["testObject"]}}
+{"DesAPITest.init": {"crypt": ["DESede"], "mode": ["CBC"], "padding": ["PKCS5Padding"]}}
+{"Basic.checkSizes": {"environ": ["envVariables"], "size": [5]}}
+{"MethodInvokeTest.checkInjectedInvoker": {"csm": ["csmInstance"], "expected": ["MyExpectedClass.class"]}}
+{"LargeHandshakeTest.format_1": {"name": ["CERTIFICATE"], "value": ["MIIFdTCCBF2gAwIBAgISESG..."]}}
+{"CookieHeaderTest.create": {"sa": ["new InetSocketAddress(\"192.168.1.10\", 8080)"], "sslContext": ["testSSLContext"]}}
+{"Http2TestExchangeImpl.sendResponseHeaders": {"rCode": [404], "responseLength": [1500]}}
+{"TransformIndexerStateTests.doDeleteByQuery": {"deleteByQueryRequest": ["deleteQueryRequest"], "responseListener": ["testListener"]}}
+{"CCRUsageTransportAction.masterOperation": {"task": ["usageTask"], "request": ["usageRequest"], "state": ["clusterState"], "listener": ["actionListener"]}}
+{"SamlObjectSignerTests.getChildren": {"node": ["SAMLAssertionNode"], "type": ["Element.class"]}}
+{"VotingOnlyNodePlugin.fullMasterWithOlderState": {"localAcceptedTerm": [42], "localAcceptedVersion": [7]}}
+{"AbstractTransportSearchableSnapshotsAction.shardOperation": {"request": ["snapshotRequest"], "shardRouting": ["shardRouteInfo"], "task": ["snapshotTask"], "listener": ["operationListener"]}}
+{"SearchableSnapshotDirectory.create": {"repositories": ["repositoriesService"], "cache": ["cacheService"], "indexSettings": ["indexSettingsForLogs"], "shardPath": ["new ShardPath(false, Paths.get('/data/nodes/0/indices/logs'), Paths.get('/data/nodes/0/indices/logs/5'), new ShardId(new Index('logs', '_na_'), 5))"], "currentTimeNanosSupplier": ["currentTimeNanos"], "threadPool": ["threadPool"], "blobStoreCacheService": ["blobStoreCacheService"], "sharedBlobCacheService": ["sharedBlobCacheService"]}}
+{"CCSDuelIT.parseEntity": {"entity": ["httpResponseEntity"], "entityParser": ["responseParser"], "parserConfig": ["defaultParserConfig"]}}
+{"Booleans.parseBooleanLenient": {"value": ["yes", "enableLogging"], "defaultValue": [false]}}
+{"XContentBuilder.map": {"values": ["userProfile"], "ensureNoSelfReferences": [true], "writeStartAndEndHeaders": [true]}}
+{"TruncateTranslogAction.execute": {"terminal": ["terminalInterface"], "shardPath": ["new ShardPath(Paths.get('/var/data/elasticsearch/nodes/0/indices/1shard'))"], "indexDirectory": ["FSDirectory.open(Paths.get('/var/data/elasticsearch/nodes/0/indices/1shard/index'))"]}}
+{"NestedQueryBuilder.doBuild_1": {"parentSearchContext": ["mainSearchContext"], "innerHitsContext": ["hitsContext"]}}
+{"ScoreFunctionBuilders.exponentialDecayFunction": {"fieldName": ["timestamp"], "origin": ["now"], "scale": ["10d"], "offset": ["2d", ""], "decay": [0.5]}}
+{"dvRangeQuery": {"field": ["temperature"], "queryType": ["FLOAT", "BinaryDocValuesRangeQuery.QueryType.FLOAT"], "from": [20.5], "to": [30.0], "includeFrom": [true], "includeTo": [false]}}
+{"withinQuery": {"field": ["age"], "from": [30], "to": [40], "includeFrom": [true], "includeTo": [false]}}
+{"DateScriptFieldType.createFieldType": {"name": ["timestamp"], "factory": ["dateFactory"], "script": ["dateScript"], "meta": [{"format": "epoch_millis"}], "onScriptError": ["FAIL"]}}
+{"RootObjectMapper.doXContent": {"builder": ["xContentBuilderInstance"], "params": ["new ToXContent.Params(\"include_defaults\", True, \"TOXCONTENT_SKIP_RUNTIME\", True)"]}}
+{"CompositeRuntimeField.createChildRuntimeField": {"parserContext": ["mappingParserContext"], "parent": ["compositeField1"], "parentScriptFactory": ["compositeScriptFactory"], "onScriptError": ["onScriptError.IGNORE", "OnScriptError.IGNORE"]}}
+{"MacDmgBundler.prepareDMGSetupScript": {"appLocation": ["/Applications/PhotoEditor.app"], "params": ["{\"APP_NAME\": \"PhotoEditor\"}", "{\"IMAGES_ROOT\": \"/path/to/images\"}", "{\"BACKGROUND_IMAGE_FOLDER\": \"background\"}", "{\"BACKGROUND_IMAGE\": \"custom-bg.png\"}"]}}
+{"MacBaseInstallerBundler.validateAppImageAndBundeler": {"params": ["{\"PREDEFINED_APP_IMAGE\":\"/Applications/MyApp.app\",\"APP_NAME\":\"MyApp\"}", "{\"PREDEFINED_APP_IMAGE\":\"/Applications/MyApp.app\",\"APP_NAME\":\"MyApp.app\"}"]}}
+{"DurationImpl.alignSigns": {"buf": ["durations"], "start": [2], "end": [5]}}
+{"XMLNamespaceBinder.endElement_1": {"element": ["new QName('http://www.example.com', 'item', 'ex')"], "augs": ["augmentations"]}}
+{"CoroutineManager.co_exit_to": {"arg_object": ["resultData"], "thisCoroutine": [5], "toCoroutine": [10]}}
+{"ToTextStream.characters_1": {"ch": ["textBuffer"], "start": [5], "length": [10]}}
+{"Encodings.getEncodingInfo": {"encoding": ["UTF-8"], "allowJavaNames": [true]}}
+{"BaseMarkupSerializer.surrogates": {"high": [55357], "low": [56832], "inContent": [false]}}
+{"JdkXmlFeatures.getSystemProperty": {"feature": ["XML_SECURITY"], "sysPropertyName": ["enableXmlSecurityFeature"]}}
+{"Intro.step": {"w": [800], "h": [600]}}
+{"JndiLoginModule.verifyPassword": {"encryptedPassword": ["e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"], "password": ["P@ssw0rd!"]}}
+{"OptionSpecBuilder.requiredUnless": {"dependent": ["quiet"], "otherDependents": [["verbose"]]}}
+{"SAXFilterFactoryImpl.resolveEntity": {"publicid": [""], "sysId": ["http://astro.com/stylesheets/toptemplate"]}}
+{"RegexConstraint.initIRPattern": {"category": ["failOn"], "ruleIdx": [42]}}
+{"TestObjectGraphAfterGC.doTesting_1": {"testcaseData": ["humongous-test-case.json"], "doGC": ["customGarbageCollector"], "checker": ["referenceChecker"], "gcLogName": ["gc-analysis.log"], "shouldContain": [["GC pause"]], "shouldNotContain": [["OutOfMemoryError"]]}}
+{"clear001a.runIt": {"args": ["testArgs"], "out": ["System.out"]}}
+{"thrcputime002.runIt_1": {"argv": [["-waitTime", "120", "-iterations", "500"], ["-iterations", "500", "-waitTime", "120"]], "out": ["System.out"]}}
+{"checkInnerFields": {"redefCls": ["myRedefClass"], "expValue": [100]}}
+{"classfloadhk005.runIt": {"argv": [["/path/to/classes", "60"]], "out": ["logStream"]}}
+{"argumenttypes001.runThis": {"argv": [["-v", "--no-strict"]], "out": ["debugOutput"]}}
+{"suspendpolicy017.settingVMDeathRequest": {"suspendPolicy": [3], "property": ["deathEvent001"]}}
+{"filter_s002.setting22MethodEntryRequest": {"thread": ["mainThread"], "testedClass": ["com.example.MainClass"], "suspendPolicy": ["EventRequest.SUSPEND_ALL"], "property": ["testProperty"]}}
+{"runThis": {"argv": ["-waitTime", "2 minutes", "120 seconds", "2m", "120s", "-debuggeeName", "TestDebuggee"], "out": ["testLogStream"]}}
+{"sourcepaths002.runIt": {"args": [["-v", "-p"]], "out": ["System.out"]}}
+{"invokemethod007.runIt": {"args": [["suspend", "log"]], "out": ["debugLog"]}}
+{"ClassFileFinder.findClassFile": {"name": ["com.example.MyClass"], "classPath": ["/usr/local/classes:/home/user/java/libs", "/usr/local/classes", "/home/user/java/libs"]}}
+{"AbstractJarAgent.runJarAgent": {"options": ["trace log"], "inst": ["appInstrumentation"]}}
+{"NFILibrary.isMemberReadable": {"symbol": ["getVersion"], "recursive": [""]}}
+{"ExportNodeTest.doGeneric": {"receiver": ["ExportInlinedObject1Instance"], "argument": ["HelloWorld"], "node": ["InlinableNodeInstance"], "library": ["NodeLibraryInstance"]}}
+{"InstrumentableProcessor.createCallConverter": {"converterMethod": ["convertValue"], "frameParameterName": ["frameVar"], "returnName": ["returnValueCode"]}}
+{"FlatNodeGenFactory.generateIntrospectionInfo": {"clazz": ["NodeClass"], "inlined": [false]}}
+{"LoopConditionProfile.calculateProbability": {"trueCountLocal": [150], "falseCountLocal": [50]}}
+{"LibraryExport.createDelegate": {"factory": ["myFactory"], "delegate": ["existingDelegate"]}}
