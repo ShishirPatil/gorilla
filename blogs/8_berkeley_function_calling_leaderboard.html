@@ -20,48 +20,40 @@
     <title>Introduction to Gorilla LLM</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
-    <link rel="stylesheet" href="../assets/css/Highlight-Clean-blog.css">
-    <link rel="stylesheet" href="../assets/css/blog_8.css">
+    <link rel="stylesheet" href="../assets/css/blog.css">
 </head>
 
 <body>
     <!-- Navigation Bar -->
-    <div class="navbar" style="
-        position: absolute;
-        top: 0;
-        right: 20px;
-        padding: 10px;
-        z-index: 100;
-        font-size: 18px;
-      ">
+    <div class="navbar">
         <a href="../leaderboard.html#leaderboard">Leaderboard</a> &nbsp;&nbsp;&nbsp;
         <a href="../leaderboard.html#api-explorer">Try it Out!</a> &nbsp;&nbsp;&nbsp;
         <a href="../blog.html">Blogs</a> &nbsp;&nbsp;&nbsp;
         <a href="../index.html">Gorilla</a> &nbsp;&nbsp;&nbsp;
     </div>
+    <div class="header-container">
+        <h1 id="header-h1"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+    </div>
 
-    <div class="highlight-clean-blog" style="padding-bottom: 10px;">
-        <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive
-            APIs</h1>
+    <div>
+        <div class="blog-container container">
+            <h2 class="blog-title">Berkeley Function-Calling Leaderboard</h2>
+            <div class="author-date">
+                <p class="author"> <a class="text-center" href="https://fanjia-yan.github.io/">Fanjia
+                        Yan<sup>*</sup></a></p>
+                <p class="author"><a class="text-center" href="https://huanzhimao.com/">Huanzhi Mao<sup>*</sup></a>
+                </p>
+                <p class="author"><a class="text-center" href="https://charliejcj.github.io/">Charlie
+                        Cheng-Jie<sup>*</sup></a></p>
+                <p class="author"> <a href="https://tianjunz.github.io">Tianjun Zhang</a></p>
+                <p class="author"> <a href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G. Patil</a>
+                </p>
+                <p class="author"> <a href="https://people.eecs.berkeley.edu/~istoica">Ion Stoica</a> </p>
+                <p class="author"> <a href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a> </p>
+                <p class="date">Feb 26, 2024</p>
+            </div>
 
-
-        <div class="blog-container">
             <div class="blog-post">
-                <h2 class="blog-title">Berkeley Function-Calling Leaderboard</h2>
-                <div class="author-date">
-                    <p class="author"> <a class="text-center" href="https://fanjia-yan.github.io/">Fanjia
-                            Yan<sup>*</sup></a></p>
-                    <p class="author"><a class="text-center" href="https://huanzhimao.com/">Huanzhi Mao<sup>*</sup></a>
-                    </p>
-                    <p class="author"><a class="text-center" href="https://charliejcj.github.io/">Charlie
-                            Cheng-Jie<sup>*</sup></a></p>
-                    <p class="author"> <a href="https://tianjunz.github.io">Tianjun Zhang</a></p>
-                    <p class="author"> <a href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G. Patil</a>
-                    </p>
-                    <p class="author"> <a href="https://people.eecs.berkeley.edu/~istoica">Ion Stoica</a> </p>
-                    <p class="author"> <a href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a> </p>
-                    <p class="date">Feb 26, 2024</p>
-                </div>
 
                 <div class="preview">
                     <p>
@@ -308,6 +300,7 @@
                         </ul>
 
                         <h4 id="benchmarking">Prompting</h4>
+
                         We provide all the prompts we used to evaluate our propatiery and open-source models. For
                         function calling models, since they are specifically designed to generate function calls, we did
                         not provide any system prompt but instead toggle the function calling mode on and put the
@@ -318,7 +311,7 @@
                             </li>
                             <li>For chat model, we explicitly provides system message:
                                 <div class="code-block">
-                                    <!-- Your first code section goes here -->
+
 
                                     <code>
 SYSTEM_PROMPT_FOR_CHAT_MODEL = """"
@@ -436,7 +429,6 @@ USER_MESSAGE_FOR_CHAT_MODEL = "Questions:{user_prompt}\nHere is a list of functi
                                         interest rate of 5% in 3 years with monthly compounding.</p>
                                     <div class="container">
                                         <div class="code-block">
-                                            <!-- Your first code section goes here -->
                                             <pre>
                     <code>
 GPT-4 output:
@@ -454,7 +446,6 @@ GPT-4 output:
                 </pre>
                                         </div>
                                         <div class="code-block">
-                                            <!-- Your second code section goes here -->
                                             <pre>
                     <code>
 Gorilla-openfunctions-v2 output:
@@ -482,7 +473,8 @@ Gorilla-openfunctions-v2 output:
                                     <code>solve\\_quadratic\\_equation(a=2, b=6, c=5)"</code>. With
                                     gorilla-openfunctions-v2, we are able to directly output
                                     solve_quadratic_equation(a=3, b=2, c=1) which is executable upon receiving the
-                                    result.</p>
+                                    result.
+                                </p>
                             </li>
 
                             <li>REST API call inconsistency:
@@ -520,7 +512,6 @@ wind speed, and precipitation for the next 10 days?"
 
                                 <div class="container">
                                     <div class="code-block">
-                                        <!-- Your first code section goes here -->
                                         <pre>
             <code>
 GPT-4 output:
@@ -540,7 +531,6 @@ GPT-4 output:
         </pre>
                                     </div>
                                     <div class="code-block">
-                                        <!-- Your second code section goes here -->
                                         <pre>
             <code>
 Gorilla-Openfunctions-v2 output:
@@ -564,6 +554,7 @@ Gorilla-Openfunctions-v2 output:
 
                             </li>
                         </ol>
+
                         <h4 id="benchmarking">Conclusion</h4>
                         <div class="body">
                             <p>We provide a comprehensive and systematic evaluation of LLMs for function calling with
@@ -585,7 +576,7 @@ Gorilla-Openfunctions-v2 output:
                                 If you would like to cite Gorilla:<br>
                                 @inproceedings{berkeley-function-calling-leaderboard,<br>
                                 &nbsp; title={Berkeley Function Calling Leaderboard},<br>
-                                &nbsp; author={Fanjia Yan and Charlie Cheng-Jie Ji and Huanzhi Mao and Tianjun Zhang and
+                                &nbsp; author={Fanjia Yan and Huanzhi Mao and Charlie Cheng-Jie Ji and Tianjun Zhang and
                                 Shishir G. Patil and Ion Stoica and Joseph E. Gonzalez},<br>
                                 &nbsp; year={2024},<br>
                                 &nbsp;

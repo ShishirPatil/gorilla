@@ -1,60 +1,72 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-    gtag('config', 'G-NRZJLJCSH6');
+        gtag('config', 'G-NRZJLJCSH6');
     </script>
 
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Introduction to Gorilla LLM</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
-    <link rel="stylesheet" href="assets/css/Highlight-Clean-blog.css">
+    <link rel="stylesheet" href="../assets/css/blog.css">
 </head>
 
 <body>
     <!-- Navigation Bar -->
-    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;font-size: 18px;">
-        <a href="../index.html">Home </a>&nbsp;&nbsp;&nbsp;     
+    <div class="navbar">
+        <a href="../index.html">Home </a>&nbsp;&nbsp;&nbsp;
         <a href="../blog.html"> Blog</a>
     </div>
-
-    <div class="highlight-clean-blog" style="padding-bottom: 10px;">
-        <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
-
-        <div class="blog-container">
+    <div class="header-container">
+        <h1 id="header-h1"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+    </div>
+    <div style="padding-bottom: 10px;">
+        <div class="blog-container container">
             <div class="blog-post">
                 <h2 class="blog-title">Gorilla OpenFunctions v2</h2>
                 <div class="author-date">
                     <p class="author"> Charlie Cheng-Jie Ji* </p>
                     <p class="author"> Huanzhi Mao* </p>
                     <p class="author"> Fanjia Yan* </p>
-                    <p class="author"> <a href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G. Patil</a> </p>
+                    <p class="author"> <a href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G. Patil</a>
+                    </p>
                     <p class="author"> <a href="https://tianjunz.github.io">Tianjun Zhang</a> </p>
                     <p class="author"> <a href="https://people.eecs.berkeley.edu/~istoica">Ion Stoica</a> </p>
                     <p class="author"> <a href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a> </p>
-                    
+
                     <!-- <p class="date">Nov 13, 2023</p> -->
                 </div>
-                    <img src="../assets/img/blog_post_7_demo.gif" alt="Gorilla introductory image" style="width: 95%;">
-                    <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
-                        <i style="font-size: 0.9em;">
-                            Gorilla OpenFunctions-v2! SoTA for open-source models. On-par with commercial models. 
-                        </i>
-                    </p>
+                <img src="../assets/img/blog_post_7_demo.gif" alt="Gorilla introductory image" style="width: 95%;">
+                <p width="80%" style="text-align:center; padding-bottom: -10px">
+                    <i style="font-size: 0.9em;">
+                        Gorilla OpenFunctions-v2! SoTA for open-source models. On-par with commercial models.
+                    </i>
+                </p>
 
                 <div class="preview">
                     <p>
-                        Wuth the latest iteration of Gorilla OpenFunctions, version 2, we are delighted to mark significant advancements in function calling for LLMs within the open-source community. As a direct substitute for its predecessor, Gorilla OpenFunctions-v2 retains its open-source ethos while introducing exciting enhancements. These include support for multiple programming languages such as Python, Java, JavaScript and REST API - the first among open-source and closed-source models, alongside the ability to handle multiple and parallel function calls, and the ability to determine function relevance. This update cements gorilla-openfunctions-v2's position at the forefront of function calling capabilities among LLMs. Moreover, the drop-in-replacement allows for seamless integration of OpenFunctions into a diverse range of applications, from social media platforms like Instagram to delivery services like Doordash, as well as utility tools including Google Calendar and Stripe.
+                        Wuth the latest iteration of Gorilla OpenFunctions, version 2, we are delighted to mark
+                        significant advancements in function calling for LLMs within the open-source community. As a
+                        direct substitute for its predecessor, Gorilla OpenFunctions-v2 retains its open-source ethos
+                        while introducing exciting enhancements. These include support for multiple programming
+                        languages such as Python, Java, JavaScript and REST API - the first among open-source and
+                        closed-source models, alongside the ability to handle multiple and parallel function calls, and
+                        the ability to determine function relevance. This update cements gorilla-openfunctions-v2's
+                        position at the forefront of function calling capabilities among LLMs. Moreover, the
+                        drop-in-replacement allows for seamless integration of OpenFunctions into a diverse range of
+                        applications, from social media platforms like Instagram to delivery services like Doordash, as
+                        well as utility tools including Google Calendar and Stripe.
                     </p>
 
                 </div>
@@ -64,38 +76,66 @@
                     <p>
                         The five new exciting features we are happy to launch with OpenFunctions-v2 are:
                     </p>
-                    <div class="image-container">
-                        <img src="../assets/img/blog_post_7_open_function_v2_features.png" alt="New-Features in Gorilla LLMs" width="100%" >
+                    <div class="image-container container">
+                        <img src="../assets/img/blog_post_7_open_function_v2_features.png"
+                            alt="New-Features in Gorilla LLMs" width="100%">
                         <br>
                     </div>
-                    
+
                     <ul>
-                        <li><strong>More Data Types:</strong> Gorilla Open Functions v2 can now support diverse languages with expanded support for argument types in function calls. This includes <code>[string, number, boolean, list, tuple, dict, any]</code> for Python, <code>[string, number, boolean, list, tuple, dict, any]</code> for Java and <code>[string, number, boolean, dict, bigint, array, date, any]</code> for Javascript. For reference, OpenAI and many others only support JSON schema, i.e., <code>[string, number, integer, object, array, and boolean]</code>. Native support for these types means, you can now plug-and-play openfunctions-v2 without having to weave through string literals.</li>
-                        <li><strong>Parallel & Multiple Functions:</strong> Support for Parallel and Multiple Functions. Multiple functions refers to the scenario where the user can input multiple functions when they are not sure which exact function is best to service the prompt. In this scenario, the Gorilla model picks one or more (or none) of the functions provided to respond to the user's requests. In parallel functions, the user's prompt could be serviced by multiple calls to the same function. Gorilla not only supports both of these, but the benefits stack one-on-top of the other! </li>
-                        <li><strong>Function Relevance Detection:</strong> Reduce hallucinations in scenarios when no function, or even no relevant function is provided. Gorilla openfunctions v2 can now automatically detect whether the functions provided to the model can address the user's prompt. Recognizing this, the LLM raises an “Error” message to the user providing them with additional information.</li>
-                        <li><strong>Enhanced Capabilities for Restful APIs:</strong> Enhance ability to format RESTful API calls. RESTful APIs are a common phenomenon within the web powering many popular software services including Slack, PayPal, etc. Our model is specially trained to handle RESTful API calls with good quality.</li>
+                        <li><strong>More Data Types:</strong> Gorilla Open Functions v2 can now support diverse
+                            languages with expanded support for argument types in function calls. This includes
+                            <code>[string, number, boolean, list, tuple, dict, any]</code> for Python,
+                            <code>[string, number, boolean, list, tuple, dict, any]</code> for Java and
+                            <code>[string, number, boolean, dict, bigint, array, date, any]</code> for Javascript. For
+                            reference, OpenAI and many others only support JSON schema, i.e.,
+                            <code>[string, number, integer, object, array, and boolean]</code>. Native support for these
+                            types means, you can now plug-and-play openfunctions-v2 without having to weave through
+                            string literals.</li>
+                        <li><strong>Parallel & Multiple Functions:</strong> Support for Parallel and Multiple Functions.
+                            Multiple functions refers to the scenario where the user can input multiple functions when
+                            they are not sure which exact function is best to service the prompt. In this scenario, the
+                            Gorilla model picks one or more (or none) of the functions provided to respond to the user's
+                            requests. In parallel functions, the user's prompt could be serviced by multiple calls to
+                            the same function. Gorilla not only supports both of these, but the benefits stack
+                            one-on-top of the other! </li>
+                        <li><strong>Function Relevance Detection:</strong> Reduce hallucinations in scenarios when no
+                            function, or even no relevant function is provided. Gorilla openfunctions v2 can now
+                            automatically detect whether the functions provided to the model can address the user's
+                            prompt. Recognizing this, the LLM raises an “Error” message to the user providing them with
+                            additional information.</li>
+                        <li><strong>Enhanced Capabilities for Restful APIs:</strong> Enhance ability to format RESTful
+                            API calls. RESTful APIs are a common phenomenon within the web powering many popular
+                            software services including Slack, PayPal, etc. Our model is specially trained to handle
+                            RESTful API calls with good quality.</li>
                     </ul>
 
                     <p>
                         Quick Links:
-                        <ul>
-                            <li>How well to other function-calling models perform: <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function Calling Leaderboard</a></li>
-                            <li>Play with the model online: <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Gorilla OpenFunctions-v2 web-demo</a></li>
-                            <li>Check out the project: <a href="https://github.com/ShishirPatil/gorilla/tree/main/openfunctions">GitHub</a></li>
-                            <li>Model (7B) on HuggingFace: <a href="https://huggingface.co/gorilla-llm/gorilla-openfunctions-v2">gorilla-llm/gorilla-openfunctions-v2</a></li>
-                        </ul>
+                    <ul>
+                        <li>How well to other function-calling models perform: <a
+                                href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function Calling
+                                Leaderboard</a></li>
+                        <li>Play with the model online: <a
+                                href="https://gorilla.cs.berkeley.edu/leaderboard.html">Gorilla OpenFunctions-v2
+                                web-demo</a></li>
+                        <li>Check out the project: <a
+                                href="https://github.com/ShishirPatil/gorilla/tree/main/openfunctions">GitHub</a></li>
+                        <li>Model (7B) on HuggingFace: <a
+                                href="https://huggingface.co/gorilla-llm/gorilla-openfunctions-v2">gorilla-llm/gorilla-openfunctions-v2</a>
+                        </li>
+                    </ul>
                     </p>
                 </div>
 
                 <h4 id="how_to_use_open_functions">Integrating OpenFunctions-v2 in your App 🔨</h4>
-                <!-- <p style="text-align: center; margin-bottom: 0">
-                    <img src="../assets/img/blog_post_4_gorilla_open_function_calling.png" alt="Gorilla Input and Output" width="65%">
-        
-                </p> -->
                 <div class="body">
                     <p>Using Gorilla OpenFunctions-v2 is straightforward:
-                        <ol>
-                        <li>To help with quick prototyping, we provide a hosted Gorilla Openfunctions-v2 model for inference. Or you can run it locally, or self-host it by accessing the model from <a href="https://huggingface.co/gorilla-llm/gorilla-openfunctions-v2">HuggingFace</a>. The example below, demonstrates how to invoke the hosted gorilla openfunctions v2 model:</li>
+                    <ol>
+                        <li>To help with quick prototyping, we provide a hosted Gorilla Openfunctions-v2 model for
+                            inference. Or you can run it locally, or self-host it by accessing the model from <a
+                                href="https://huggingface.co/gorilla-llm/gorilla-openfunctions-v2">HuggingFace</a>. The
+                            example below, demonstrates how to invoke the hosted gorilla openfunctions v2 model:</li>
                         <pre><code>
     import openai
 
@@ -115,7 +155,8 @@
                         </code></pre>
                         <li>Prompt the model:</li>
                         <code>What's the weather like in the two cities of Boston and San Francisco?</code>
-                        <li>Format your function call: The model will return the function call based on your request.</li>
+                        <li>Format your function call: The model will return the function call based on your request.
+                        </li>
                         <pre><code>
         query = "What's the weather like in the two cities of Boston and San Francisco?"
         functions = [
@@ -136,46 +177,76 @@
             }
         ]
                         </code></pre>
-                        <li>Get Your Function Call: The model will return a Python function call based on your request.</li>
-                        This opens up possibilities for developers and non-developers alike, allowing them to leverage complex functionalities without writing extensive code.</p>
+                        <li>Get Your Function Call: The model will return a Python function call based on your request.
+                        </li>
+                        This opens up possibilities for developers and non-developers alike, allowing them to leverage
+                        complex functionalities without writing extensive code.</p>
                         <p>Input:</p>
                         <pre><code>
     get_gorilla_response(prompt=query, functions=[functions])</code></pre>
                         <p>Output:</p>
                         <pre><code>
-    [get_current_weather(location='Boston, MA'), get_current_weather(location='San Francisco, CA')]</code></pre></ol></p>
+    [get_current_weather(location='Boston, MA'), get_current_weather(location='San Francisco, CA')]</code></pre>
+                    </ol>
+                    </p>
 
-    <p>With the example above, you can use Gorilla OpenFunctions-v2 to provide a well formatted output, or call a function with your own definiton! Then you can use this freely within your applications and chatbot!</p>
+                    <p>With the example above, you can use Gorilla OpenFunctions-v2 to provide a well formatted output,
+                        or call a function with your own definiton! Then you can use this freely within your
+                        applications and chatbot!</p>
 
-    <p>Note: Gorilla through our hosted end-point is currently only supported with <code>openai==0.28.1</code>. We will migrate to also include support for <code>openai==1.xx</code> soon with which  <code>functions</code> is replaced by <code>tool_calls</code>.</p>
+                    <p>Note: Gorilla through our hosted end-point is currently only supported with
+                        <code>openai==0.28.1</code>. We will migrate to also include support for
+                        <code>openai==1.xx</code> soon with which <code>functions</code> is replaced by
+                        <code>tool_calls</code>.</p>
                 </div>
 
                 <!-- OpenFunction BenchMarking  -->
+
                 <h4 id="benchmarking">Performance on Berkeley Function Calling Leaderboard &#128293</h4>
                 <div class="body">
 
-                    <div class="image-container">
-                        <img src="../assets/img/blog_post_7_open_function_v2_summary.png" alt="Open functions types of data" width="100%" >
+                    <div class="image-container container">
+                        <img src="../assets/img/blog_post_7_open_function_v2_summary.png"
+                            alt="Open functions types of data" width="100%">
                         <br>
                     </div>
-                    <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                    <p width="80%" style="text-align:center; padding-bottom: -10px">
                         <i style="font-size: 0.9em;">
-                        We perform exhaustive and comprehensive evaluation on the Berkeley Function Calling Leaderboard, we benchmark our model against current state-of-art models GPT-4-1106-preview as well as  GPT-4 and GPT-3.5-turbo function calling features. In addition, we also compare our model with the other open-source models, demonstrating superior behavior among them. Our evaluation consists of 2k distinct query, API documentation pairs from different domains (including travel, finance, scheduling meetings, etc) and languages (java, javascript, python, restAPI).
+                            We perform exhaustive and comprehensive evaluation on the Berkeley Function Calling
+                            Leaderboard, we benchmark our model against current state-of-art models GPT-4-1106-preview
+                            as well as GPT-4 and GPT-3.5-turbo function calling features. In addition, we also compare
+                            our model with the other open-source models, demonstrating superior behavior among them. Our
+                            evaluation consists of 2k distinct query, API documentation pairs from different domains
+                            (including travel, finance, scheduling meetings, etc) and languages (java, javascript,
+                            python, restAPI).
                         </i>
                     </p>
-                    <p> To dive into details about how our model performs in each category, we provide a detailed table below from the Berkeley Function Calling Leaderboard. We see that when compared to the current state-of-the-art, GPT-4's function calling, in Python, Gorilla OpenFunctions-v2 does better at simple function calling cateogry, but not as good on function calls that involve multiple and parallel functions. This new feature continues to be an exciting area of research for us, and the open-source community in general. It is worth highlighting that our model provides a very stable executable function calls - function calls that were evaluated by actually executing them - with no intervention in-between. Un-surprisiingly, having been trained, our model outperforms GPT-4 on function calls on the programming languages other than Python (e.g., Java, Javascript and REST APIs). For REST APIs, our model provides more stable outputs that includes all the required fields including the <strong>url</strong>, <strong>params</strong> and <strong>header</strong> making our model ripe for immediate adoption.</p>
-                    <div class="image-container">
-                        <img src="../assets/img/blog_post_7_open_function_v2_leaderboard.png" alt="Open functions types of data" width="100%" >
+                    <p> To dive into details about how our model performs in each category, we provide a detailed table
+                        below from the Berkeley Function Calling Leaderboard. We see that when compared to the current
+                        state-of-the-art, GPT-4's function calling, in Python, Gorilla OpenFunctions-v2 does better at
+                        simple function calling cateogry, but not as good on function calls that involve multiple and
+                        parallel functions. This new feature continues to be an exciting area of research for us, and
+                        the open-source community in general. It is worth highlighting that our model provides a very
+                        stable executable function calls - function calls that were evaluated by actually executing them
+                        - with no intervention in-between. Un-surprisiingly, having been trained, our model outperforms
+                        GPT-4 on function calls on the programming languages other than Python (e.g., Java, Javascript
+                        and REST APIs). For REST APIs, our model provides more stable outputs that includes all the
+                        required fields including the <strong>url</strong>, <strong>params</strong> and
+                        <strong>header</strong> making our model ripe for immediate adoption.</p>
+                    <div class="image-container container">
+                        <img src="../assets/img/blog_post_7_open_function_v2_leaderboard.png"
+                            alt="Open functions types of data" width="100%">
                         <br>
                     </div>
-                    <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                    <p width="80%" style="text-align:center; padding-bottom: -10px">
                         <i style="font-size: 0.9em;">
-                            An example of a side-by-side comparison between GPT-4-1106 function calling and Gorilla OpenFunctions-v2. We can observe that GPT-4 function call misses the default <strong>url</strong> parameter. A common failure mode on RESTful APIs.
+                            An example of a side-by-side comparison between GPT-4-1106 function calling and Gorilla
+                            OpenFunctions-v2. We can observe that GPT-4 function call misses the default
+                            <strong>url</strong> parameter. A common failure mode on RESTful APIs.
                         </i>
                     </p>
-                    <div class="container">
+                    <div class="code-container container">
                         <div class="code-block">
-                            <!-- Your first code section goes here -->
                             <pre>
                                 <code>
 "User": "Can you fetch me the weather data for the coordinates 
@@ -220,7 +291,6 @@ wind speed, and precipitation for the next 10 days?"
                             </pre>
                         </div>
                         <div class="code-block">
-                            <!-- Your second code section goes here -->
                             <pre>
                                 <code>
 "User": "Can you fetch me the weather data for the coordinates 
@@ -265,59 +335,88 @@ wind speed, and precipitation for the next 10 days?"
                         </div>
                     </div>
 
-                    <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                    <p width="80%" style="text-align:center; padding-bottom: -10px">
                         <i style="font-size: 0.9em;">
-                        The left hand side is GPT-4 generated, and the right hand side is openfunctions-v2 generated. As we can see from the above mistakes that when GPT-4 function call is dealing with functions involving complex parameter structures (e.g., dict inside a dict) with default values, the model tends to have trouble, especially on parsing default values. Rather than being a corner-case, the example above is a common paradigm for REST APIs.
+                            The left hand side is GPT-4 generated, and the right hand side is openfunctions-v2
+                            generated. As we can see from the above mistakes that when GPT-4 function call is dealing
+                            with functions involving complex parameter structures (e.g., dict inside a dict) with
+                            default values, the model tends to have trouble, especially on parsing default values.
+                            Rather than being a corner-case, the example above is a common paradigm for REST APIs.
                         </i>
                     </p>
 
                 </div>
+
                 <!-- OpenFunctions Data Composition -->
 
                 <h4 id="data_composition"> OpenFunctions Data Composition & Training &#127829</h4>
                 <div class="body">
                     <p>
-                        Gorilla openfunctions v2 is a 7B parameter model trained further upon on the [deepseek-coder-7b-instruct-v1.5] model. To trian the model, we collect in total of 65,283 question-function-answer pairs from three different sources: Python packages (19,353), Java repositories (16,586), Javascript Repositories (4,245), public-API (6,009), and Command Line Tools (19,090) from various cloud providers. The data composition is shown in the figure below.
+                        Gorilla openfunctions v2 is a 7B parameter model trained further upon on the
+                        [deepseek-coder-7b-instruct-v1.5] model. To trian the model, we collect in total of 65,283
+                        question-function-answer pairs from three different sources: Python packages (19,353), Java
+                        repositories (16,586), Javascript Repositories (4,245), public-API (6,009), and Command Line
+                        Tools (19,090) from various cloud providers. The data composition is shown in the figure below.
                     </p>
                     <p>
-                        After the data collection, we carry out four data augmentations to diversify our training dataset. First, we change the function names. This is critical to ensure the model does not "memorize" the API mapping. Second, we add random (randomly chosen, and random number of) functions to make our data-set compatible with parallel functions. This way we can generatemultuiple- function datasets from simple functions. Third, we adopt similar strategies of perturbing the prompt to generate scenarios of parallel-functions. We then extend it to also include multiple- and parallel- functions in the same data-points. Finally, we mix some portion of the dataset in which the functions provided during the input is not sufficinet to the task. We flag these as `Relevance Detection` scenarios. As with most LLM training, we extensively varied the extents of each data augmentation to train a robust model. 
+                        After the data collection, we carry out four data augmentations to diversify our training
+                        dataset. First, we change the function names. This is critical to ensure the model does not
+                        "memorize" the API mapping. Second, we add random (randomly chosen, and random number of)
+                        functions to make our data-set compatible with parallel functions. This way we can
+                        generatemultuiple- function datasets from simple functions. Third, we adopt similar strategies
+                        of perturbing the prompt to generate scenarios of parallel-functions. We then extend it to also
+                        include multiple- and parallel- functions in the same data-points. Finally, we mix some portion
+                        of the dataset in which the functions provided during the input is not sufficinet to the task.
+                        We flag these as `Relevance Detection` scenarios. As with most LLM training, we extensively
+                        varied the extents of each data augmentation to train a robust model.
                     </p>
                     <ul>
-                        <li><strong>Function Name Transformation:</strong> From the original question-function-answer pairs, we augment this with a differnt function names to avoid the model memorizing the correlation between function names and the question (e.g., 'uber' API is used for transportation). 
-                            <pre> 
+                        <li><strong>Function Name Transformation:</strong> From the original question-function-answer
+                            pairs, we augment this with a differnt function names to avoid the model memorizing the
+                            correlation between function names and the question (e.g., 'uber' API is used for
+                            transportation).
+                            <pre>
     query + [{'name': 'func1', 'description': 'order takeout'}] -> ans1 => 
     query + [{'name': 'func2', 'description': 'order takeout'}] -> [ans2]
                             </pre>
                         </li>
-                        <li><strong>Parallel Functions Transformation:</strong> To handle a more complex case where multiple functions will be selected to answer the user's request, we change the original question to ask for multiple outputs.  
-                        <pre> 
+                        <li><strong>Parallel Functions Transformation:</strong> To handle a more complex case where
+                            multiple functions will be selected to answer the user's request, we change the original
+                            question to ask for multiple outputs.
+                            <pre>
     query + [{'name': 'func1', 'description': 'order takeout'}] -> ans1 => 
     query + [{'name': 'func1', 'description': 'order takeout'}, {'name': 'func2', 'description': 'get weather'}] -> [ans1]
-                        </pre> 
+                        </pre>
                         </li>
-                        <li><strong>Multiple Functions Transformation:</strong> Transform the original function with multiple function calls inlcuded in the training, so that the model can learn to choose which function call to use.
-                        <pre> 
+                        <li><strong>Multiple Functions Transformation:</strong> Transform the original function with
+                            multiple function calls inlcuded in the training, so that the model can learn to choose
+                            which function call to use.
+                            <pre>
     query1 + [{'name': 'func1', 'description': 'order takeout'}] -> ans1 => 
     query2 + [{'name': 'func1', 'description': 'order takeout'}] -> [ans1, ans2]
                         </pre>
                         </li>
-                        <li><strong>Parallel Multiple Functions Transformation:</strong> The combined of the above parallel, and multiple transforms. 
-                        <pre> 
+                        <li><strong>Parallel Multiple Functions Transformation:</strong> The combined of the above
+                            parallel, and multiple transforms.
+                            <pre>
     query1 + [{'name': 'func1', 'description': 'order takeout'}] -> ans1 => 
     query2 + [{'name': 'func1', 'description': 'order takeout'}, {'name': 'func2', 'description': 'get weather'}] -> [ans1, ans2]
                         </pre>
                         </li>
-                        <li><strong>Function Relevance Detection Transformation:</strong> We also include some portion of the dataset in which the functions provided cant not solve the task. We call this `Relevance Detection`.
-                        <pre>
+                        <li><strong>Function Relevance Detection Transformation:</strong> We also include some portion
+                            of the dataset in which the functions provided cant not solve the task. We call this
+                            `Relevance Detection`.
+                            <pre>
     query1 + [{'name': 'func1', 'description': 'order takeout'}] -> ans1 => 
     query2 + [{'name': 'func1', 'description': 'order takeout'}] -> [Error, the function cannot solve the question.]
                         </pre>
                         </li>
                     </ul>
                     <p>
-                        After the entire data agumentation, we also deduplicate the data using Rouge score to remove some of the duplicates, a standard practise by now. 
-                    <p>    
-                        
+                        After the entire data agumentation, we also deduplicate the data using Rouge score to remove
+                        some of the duplicates, a standard practise by now.
+                    <p>
+
                     </p>
 
                 </div>
@@ -326,187 +425,46 @@ wind speed, and precipitation for the next 10 days?"
                 <h4 id="conclusion">Conclusion</h4>
 
                 <div class="body">
-                    <p>We are happy to release  <code>gorilla-openfunctions-v2</code>, a 7B parameter model trained on top of the Deepseek-Coder-7B-Instruct-v1.5 LLM. 
-                    It takes-in the users prompt along with multiple API calls and returns the functions with the right arguments. With OpenFunctions we extended native
-                    support for parameter types in Python, Java, and JavaScript, and RESTful APIs.
-                    For more information, check out our blog on Berkeley Function Calling Leaderboard for evaluation, and our GitHub page for the model.
-                    All of the results in the blog are generated using <code>gorilla-openfunctions-v2</code>.
+                    <p>We are happy to release <code>gorilla-openfunctions-v2</code>, a 7B parameter model trained on
+                        top of the Deepseek-Coder-7B-Instruct-v1.5 LLM.
+                        It takes-in the users prompt along with multiple API calls and returns the functions with the
+                        right arguments. With OpenFunctions we extended native
+                        support for parameter types in Python, Java, and JavaScript, and RESTful APIs.
+                        For more information, check out our blog on Berkeley Function Calling Leaderboard for
+                        evaluation, and our GitHub page for the model.
+                        All of the results in the blog are generated using <code>gorilla-openfunctions-v2</code>.
                     </p>
 
                     <p> Licensing:<br>
-                        Gorilla OpenFunctions v2 is distributed under the Apache 2.0 license. This software incorporates elements from the Deepseek model. Consequently, the licensing of Gorilla OpenFunctions v2 adheres to the Apache 2.0 license, with additional terms as outlined in Appendix A of the Deepseek license.
+                        Gorilla OpenFunctions v2 is distributed under the Apache 2.0 license. This software incorporates
+                        elements from the Deepseek model. Consequently, the licensing of Gorilla OpenFunctions v2
+                        adheres to the Apache 2.0 license, with additional terms as outlined in Appendix A of the
+                        Deepseek license.
                     </p>
 
                     <hr class="post-separator">
 
                     <p>
-                        We hope you enjoyed this blog post. We would love to hear from you on <a href="https://discord.gg/3apqwwME">Discord</a>, Twitter (#GorillaLLM), and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br> 
+                        We hope you enjoyed this blog post. We would love to hear from you on <a
+                            href="https://discord.gg/3apqwwME">Discord</a>, Twitter (#GorillaLLM), and <a
+                            href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br>
                     </p>
                     <p id="gorilla-bibtex">
                         If you would like to cite Gorilla:<br>
                         @inproceedings{gorilla-openfunctions-v2,<br>
-                        &nbsp; 	title={Gorilla OpenFunctions v2},<br>
-                        &nbsp; 	author={ Charlie Cheng-Jie Ji, Huanzhi Mao, Fanjia Yan, Shishir G. Patil, Tianjun Zhang, Ion Stoica, Joseph E. Gonzalez},<br>
-                        &nbsp; 	year={2024},<br>
-                        &nbsp;	howpublished={\url{https://gorilla.cs.berkeley.edu//blogs/7_open_functions_v2.html}},<br>
-                    }</p>
+                        &nbsp; title={Gorilla OpenFunctions v2},<br>
+                        &nbsp; author={Charlie Cheng-Jie Ji, Huanzhi Mao, Fanjia Yan, Shishir G. Patil, Tianjun Zhang,
+                        Ion Stoica, Joseph E. Gonzalez},<br>
+                        &nbsp; year={2024},<br>
+                        &nbsp; howpublished={\url{https://gorilla.cs.berkeley.edu//blogs/7_open_functions_v2.html}},<br>
+                        }</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <style>
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: white;
-            justify-content: center;
-            align-items: center;
-        }
-        .container {
-            display: flex;
-        }
-
-        .code-block {
-            width: 65%;
-            padding: 10px;
-            flex: 1; /* This makes each code block take equal width */
-        }
-        .image-container {
-            display: flex;
-            justify-content: center;
-        }
-        .image-container img {
-            margin: 10px;
-        }
-        .blog-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .blog-post {
-            margin: 20px;
-            padding: 20px;
-            max-width: 1000px; 
-            justify-content: center;
-        }
-        .blog-post img {
-            display: block;
-            margin: 0 auto;
-        }
-        .blog-title{
-            color: #055ada;
-            text-align: center;
-        }
-
-        .author-date {
-                display: flex;
-                margin-bottom: 0px;
-                justify-content: center; 
-        }
-        .author {
-                font-size: 16px;
-                color: #1E90FF;
-                margin-right: 20px;
-        }
-
-        .date {
-            font-size: 16px;
-            color: #7e8790;
-        }
-
-        .preview {
-            text-align: justify; 
-            text-justify: inter-word; 
-        }
-
-        .highlight-clean-blog {
-            color: #313437;
-            background-color: #fff;
-            padding: 50px 0;
-        }
-
-        .box-index {
-        position: fixed;
-        top: 50%; 
-        left: 0px; 
-        transform: translateY(-50%);
-        background-color: #f9f9f9;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        max-width: 150px;
-        }
-
-        .box-index h3 {
-        font-size: 1.2em;
-        margin-bottom: 10px;
-        }
-
-        .box-index ul {
-        list-style-type: disc;
-        padding: 0;
-        }
-
-        .box-index ul li {
-        margin-bottom: 10px;
-        }
-
-        .box-index ul li a {
-        text-decoration: none;
-        color: #333;
-        }
-
-        .box-index ul li a:hover {
-        color: #1E90FF;
-        }
-
-        .more-blogs .sub-menu {
-            display: none;
-        }
-
-        .more-blogs .sub-menu.expanded {
-            display: block;
-            max-height: 200px; /* Adjust the max height as needed */
-            overflow-y: auto;
-        }
-
-        .more-blogs .sub-menu li {
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .more-blogs .sub-menu li:last-child {
-            border-bottom: none;
-        }
-
-        .more-blogs .caret {
-            transition: transform 0.3s ease-in-out;
-            display: inline-block;
-            transform: rotate(0deg);
-            font-size: 12px; /* Adjust the font size to change the caret size */
-        }
-
-        .more-blogs.expanded .caret {
-            transform: rotate(90deg);
-        }
-
-        @media screen and (max-width: 768px) {
-        .blog-post {
-            padding: 10px; /* Adjust spacing for smaller screens */
-        }
-        .blog-post img {
-            max-width: 80%; /* Reduce image size for smaller screens */
-        }
-        .box-index {
-        display: none; /* Hide the index on smaller screens */
-        }
-    }
-
-    </style>
 </body>
+
 </html>
 
 <script>
