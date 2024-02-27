@@ -34,11 +34,9 @@ def build_client(model_name):
     elif "claude" in model_name:
         from anthropic import Anthropic
         client = Anthropic(
-            api_key= os.environ.get("ANTHROPIC_API_KEY"),
-        )
-    elif "mistral-medium" in model_name or "mistral-tiny" in model_name or "mistral-small" in model_name:
+            api_key= os.environ.get("ANTHROPIC_API_KEY"))
+    elif "mistral-medium" in model_name or "mistral-tiny" in model_name or "mistral-small" in model_name or "mistral-large-latest" in model_name:
         from mistralai.client import MistralClient
-        from mistralai.models.chat_completion import ChatMessage
         client = MistralClient(api_key= os.environ.get("MISTRAL_API_KEY"))
     elif "Nexus" in model_name:
         return None
@@ -47,26 +45,29 @@ def build_client(model_name):
         openai.api_key = "EMPTY"
         openai.api_base = "http://luigi.millennium.berkeley.edu:8000/v1"
         return None
+    elif "firework" in model_name:
+        from openai import OpenAI
+        client = OpenAI(api_key=os.environ.get("FIRE_WORKS_API_KEY"),base_url = "https://api.fireworks.ai/inference/v1")
     else:
         return None
     return client
 
 
 test_categories = {
-    "executable_generic": "gorilla_openfunctions_v1_test_executable_generic.json",
+    "executable_generic": "gorilla_openfunctions_v1_test_executable_simple.json",
     "executable_parallel_function": "gorilla_openfunctions_v1_test_executable_parallel_function.json",
     "executable_multiple_function": "gorilla_openfunctions_v1_test_executable_multiple_function.json",
     "executable_parallel_multiple_function": "gorilla_openfunctions_v1_test_executable_parallel_multiple_function.json",
-    "generic": "gorilla_openfunctions_v1_test_generic.json",
+    "generic": "gorilla_openfunctions_v1_test_simple.json",
     "no_function_call": "gorilla_openfunctions_v1_test_no_function_call.json",
     "parallel_function": "gorilla_openfunctions_v1_test_parallel_function.json",
     "multiple_function": "gorilla_openfunctions_v1_test_multiple_function.json",
     "parallel_multiple_function": "gorilla_openfunctions_v1_test_parallel_multiple_function.json",
     "java": "gorilla_openfunctions_v1_test_java.json",
     "javascript": "gorilla_openfunctions_v1_test_javascript.json",
-    "chatable": "gorilla_openfunctions_v1_test_chatable.json",
     "rest": "gorilla_openfunctions_v1_test_rest.json",
     "sql": "gorilla_openfunctions_v1_test_sql.json",
+    "chatable": "gorilla_openfunctions_v1_test_chatable.json",
 }
 
 model_choice = {
@@ -80,8 +81,10 @@ model_choice = {
     "gpt-4-1106-preview": "gpt-4-1106-preview",
     "gpt-4-0125-preview": "gpt-4-0125-preview",
     "mistral-medium": "mistral-medium",
+    "mistral-large": "mistral-large",
     "mistral-tiny": "mistral-tiny",
     "mistrl-small": "mistral-small",
+    "fireworks-ai": "https://api.fireworks.ai/inference/v1",
     "Nexusflow-Raven-v2": "http://38.142.9.20:10240",
     "claude-2.1": "claude-2.1",
     "claude-instant-1.2": "claude-instant-1.2",
@@ -118,7 +121,7 @@ def call_to_model(
     """
     Perform A single request to selected model based on the parameters.
     """
-    if "gpt" in model:
+    if "gpt" in model or "firework" in model:
         # Build OAI tool calls.
         oai_tool = []
         for item in function:
@@ -184,7 +187,47 @@ def call_to_model(
             top_p=top_p,
         )
         result = response.completion
+    elif "mistral-large-latest" in model:
+        from mistralai.models.chat_completion import ChatMessage
+        oai_tool = []
+        for item in function:
+            if "." in item["name"]:
+                item["name"] = re.sub(
+                    r"\.", "_", item["name"]
+                )  # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
+            item["parameters"]["type"] = "object"  # If typing is missing, we assume it is an object since OAI requires a type.
+            if "properties" not in item["parameters"]:
+                item["parameters"]["properties"] = item["parameters"].copy()
+                item["parameters"]["type"] = "object"
+                for key in list(item["parameters"].keys()).copy():
+                    if key != "properties" and key != "type" and key != "required":
+                        del item["parameters"][key]
+                for key in list(item["parameters"]["properties"].keys()).copy():
+                    if key == "required" or key == "type":
+                        del item["parameters"]["properties"][key]
+            item["parameters"]["properties"] = cast_multi_param_type(
+                item["parameters"]["properties"]
+            )
+            oai_tool.append({"type": "function", "function": item})
+        message = [
+            ChatMessage(role="user", content=user_prompt),
+        ]
+        chat_response = client.chat(
+            model=model,
+            messages=message,
+            tools = oai_tool,
+            temperature=temperature,
+            top_p=top_p,
+        )   
+        try:
+            result = [
+                {func_call.function.name: func_call.function.arguments}
+                for func_call in chat_response.choices[0].message.tool_calls
+            ]
+        except:
+            result = chat_response.choices[0].message.content
     elif "mistral-medium" in model or "mistral-tiny" in model or "mistral-small" in model:
+        from mistralai.models.chat_completion import ChatMessage
         message = [
             ChatMessage(role="system", content=SYSTEM_PROMPT_FOR_CHAT_MODEL),
             ChatMessage(
@@ -209,7 +252,7 @@ def call_to_model(
                 temperature=temperature,
                 top_p=top_p,
             )
-        result = chat_response.choices[0].message.conten
+        result = chat_response.choices[0].message.content
     elif "gorilla-openfunctions-v2" in model:
         import openai
         completion = openai.ChatCompletion.create(
@@ -349,7 +392,7 @@ if __name__ == "__main__":
     args = get_args()
     model = args.model
     client = build_client(args.model)
-    if all([model_name not in args.model for model_name in ["gpt","claude","mistral-medium","Nexus","openfunctions","mistral-medium","mistral-tiny","mistral-small","gorilla-openfunctions-v2"]]):
+    if all([model_name not in args.model for model_name in ["firework","gpt","claude","mistral-medium","Nexus","openfunctions","mistral-medium","mistral-tiny","mistral-small","gorilla-openfunctions-v2","mistral-large-latest"]]):
         if model in model_id_dict:
             model_id = model_id_dict[model]
             if not os.path.exists("./result/" + model):

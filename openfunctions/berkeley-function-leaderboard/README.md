@@ -85,11 +85,13 @@ Below is a list of model we support to run our leaderboard evaluation against. I
 |gorilla-openfunctions-v0 | Supported|
 |gorilla-openfunctions-v2 | Supported|
 |gpt-*| Supported|
+|glaiveai|  Supported| 
+|Nexusflow-Raven-v2| Supported|
+|FireFunction-v1 | Supported|
+|mistral-large-latest | Supported|
 |claude-*| Not supported|
 |mistral-*| Not supported|
-|Nexusflow-Raven-v2| Supported|
 |deepseek-7b| Not supported|
-|glaiveai|  Supported| 
 
 
 

@@ -52,7 +52,7 @@ args = get_args()
 # If the test category is all, we will check all the tests categories.
 if args.test_category == "all":
     test_categories = ["generic", 
-                       "executable_generic", 
+                       "executable_simple", 
                        "executable_parallel_function", 
                        "parallel_function",
                        "multiple_function",
@@ -76,7 +76,7 @@ elif args.test_category == "executable":
     
 # If the test category is ast, we will check all the ast tests categories.
 elif args.test_category == "ast":
-    test_categories = ["generic", 
+    test_categories = ["simple", 
                        "parallel_function",
                        "multiple_function",
                        "parallel_multiple_function",

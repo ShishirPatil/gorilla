@@ -288,7 +288,7 @@ else:
         assert len(example) == len(answer)
 
 # Check if the input file is a gpt or gorilla file
-if "gpt" in file_name or "glaive" in file_name:
+if "gpt" in file_name or "glaive" in file_name or "fire" in file_name or "mistral-large-latest" in file_name:
     total = 0
     success = 0
     for k in range(len(example)):
@@ -307,6 +307,10 @@ if "gpt" in file_name or "glaive" in file_name:
                     continue
         else:
             if test_category == "miss_param" or test_category == "no_function_call" or test_category == "chatable":
+                if example[k]["result"] == []:
+                    total += 1
+                    success += 1
+                    continue
                 if type(example[k]["result"]) is str:
                     total += 1
                     success += 1
@@ -345,7 +349,11 @@ if "gpt" in file_name or "glaive" in file_name:
                         if type(function_param_dict[args]) is str and len(function_param_dict[args]) > 0 and function_param_dict[args][0] == "{":
                             if "true" in function_param_dict[args]:
                                 function_param_dict[args] = function_param_dict[args].replace("true","True")
-                            result_dict = eval(function_param_dict[args].replace("true","True"))
+                            try:
+                                result_dict = eval(function_param_dict[args].replace("true","True"))
+                            except:
+                                total += 1
+                                continue
                             answer_dict = eval(str(answer[k][possible_func_name][args]))[0]
                             arg_result_dict.append(result_dict == answer_dict)
                         elif type(function_param_dict[args]) is dict:
