@@ -1,14 +1,14 @@
 # Gorilla OpenFunctions v2 
 
 🎉 Gorilla OpenFunctions v2 is here!
-💡 SoTA for open-source models. On-par with GPT-4. 
+💡 SoTA for open-source models (Apache 2.0). On-par with GPT-4. 
 
 🚀 Try it out on the [leaderboard](https://gorilla.cs.berkeley.edu/leaderboard)   
 📣 Read more in our [OpenFunctions v2 release blog](https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html)
 
 ## Introduction
 Gorilla OpenFunctions extends Large Language Model(LLM) Chat Completion feature to formulate 
-executable APIs call given natural language instructions and API context. With OpenFunctions v2,
+executable APIs call given natural language instructions and API context. With OpenFunctions v2 7B paramter model,
 we now support:
 1. Multiple functions - choose betwen functions 
 2. Parallel functions - call the same function `N` time with different parameter values
@@ -227,9 +227,13 @@ def format_response(response: str):
 The Berkeley Open Functions Leaderboard is a platform for evaluating the performance of models on function calling. The leaderboard is a collection of user-submitted prompts and the corresponding model responses. The leaderboard will be updated in real-time as new prompts are submitted. The leaderboard is available at [https://gorilla.cs.berkeley.edu/leaderboard](https://gorilla.cs.berkeley.edu/leaderboard).
 
 
+## License
+
+Gorilla OpenFunctions v2 is distributed under the Apache 2.0 license. This software incorporates elements from the Deepseek model. Consequently, the licensing of Gorilla OpenFunctions v2 adheres to the Apache 2.0 license, with additional terms as outlined in [Appendix A](https://github.com/deepseek-ai/DeepSeek-LLM/blob/6712a86bfb7dd25c73383c5ad2eb7a8db540258b/LICENSE-MODEL) of the Deepseek license.
+
+
 ## Contributing
 
-All the models, and data used to train the models is released under Apache 2.0.
 Gorilla is an open source effort from UC Berkeley and we welcome contributors. 
 Please email us your comments, criticism, and questions. More information about the project can be found at [https://gorilla.cs.berkeley.edu/](https://gorilla.cs.berkeley.edu/)
 
