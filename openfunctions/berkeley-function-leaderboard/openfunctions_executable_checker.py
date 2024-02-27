@@ -2,7 +2,7 @@ import os
 import json
 import re
 import argparse
-from data.REST_Eval.eval_exec_rest_all_models_cleaned import is_exec_valid
+from data.REST_Eval.eval_exec_rest import is_exec_valid
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
