@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/Team-Clean.css">
+    <link rel="stylesheet" href="../assets/css/blog.css">
     <style>
         /* Bars to separate titles in nav bar */
         .navbar a:not(:last-child)::after {
@@ -146,7 +147,7 @@
         }
 
 .highlighted-blog {
-    flex-basis: calc(50% - 20px);
+    flex-basis: calc(33.33% - 20px);
     background: #fff;
     border: 3px solid #e8e8e8;
     padding: 20px;
@@ -172,7 +173,16 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 20px;
+    justify-content: center;
 }
+
+
+@media only screen and (max-width: 768px) {
+    .highlighted-blog {
+        flex-basis: auto;
+    }
+}
+
 
 .highlighted-blog,
 .highlighted-tall-blog {
@@ -223,15 +233,15 @@
 
         <!-- Wider Highlighted Blog -->
         <div class="highlighted-blog">
-            <a href="blogs/6_api_zoo.html">
+            <a href="blogs/8_berkeley_function_calling_leaderboard.html">
                 <div class="blog-content">
-                    <h2 class="blog-title">The API Zoo: A Keystone for Building API-connected LLMs</h2>
+                    <h2 class="blog-title">Berkeley Function-Calling Leaderboard</h2>
                     <div class="author-date">
-                        <p class="author"><a href="https://www.linkedin.com/in/ramanvarma/">Raman Varma</a></p>
-                        <p class="date">Feb 16, 2024</p>
+                        <p class="author">Fanjia Yan</p>
+                        <p class="date">Feb 26, 2024</p>
                     </div>
-                    <a href="blogs/6_api_zoo.html">
-                        <img src="assets/img/blog_post_6_apizoo_functionality.gif" alt="The API Zoo Image" style="width: 70%; display: block; margin-left: auto; margin-right: auto;">
+                    <a href="blogs/8_berkeley_function_calling_leaderboard.html">
+                        <img src="assets/img/blog_post_8_Wagon.gif" alt="The API Zoo Image" style="width: 70%; display: block; margin-left: auto; margin-right: auto;">
                     </a> 
                 </div>
             </a>
@@ -239,7 +249,7 @@
 
         <!-- Taller but Narrower Highlighted Blog Post 7-->
         <div class="highlighted-blog">
-            <a href="blogs/5_how_to_gorilla.html">
+            <a href="blogs/7_open_functions_v2.html">
                 <div class="blog-content">
                     <h2 class="blog-title">Gorilla OpenFunctions v2</h2>
                     <div class="author-date">

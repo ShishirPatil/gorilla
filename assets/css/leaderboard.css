@@ -1,0 +1,119 @@
+#leaderboard {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#leaderboard th,
+#leaderboard td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#leaderboard tbody tr:nth-child(1) {
+    background-color: #fff176;
+    /* Lightest yellow for rank 1 */
+}
+
+#leaderboard tbody tr:nth-child(2) {
+    background-color: #fff59d;
+    /* Medium yellow for rank 2 */
+}
+
+#leaderboard tbody tr:nth-child(3) {
+    background-color: #fff9c4;
+    /* Darker yellow for rank 3 */
+}
+
+#leaderboard td:nth-child(2) {
+    background-color: #e57e81;
+}
+
+#leaderboard td:nth-child(6),
+#leaderboard td:nth-child(7),
+#leaderboard td:nth-child(8),
+#leaderboard td:nth-child(9) {
+    background-color: #7ad5f0;
+}
+
+
+#leaderboard td:nth-child(10),
+#leaderboard td:nth-child(11),
+#leaderboard td:nth-child(12),
+#leaderboard td:nth-child(13) {
+    background-color: #d5f8d5;
+}
+
+#leaderboard td:nth-child(14) {
+    background-color: #65d57f;
+}
+
+
+
+/* Ensure the table uses the full width of its container */
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse; 
+}
+
+
+#leaderboard {
+    width: auto; /* Allows the table to expand naturally based on content */
+    border-collapse: collapse;
+    table-layout: auto; /* Default layout for the table */
+}
+
+#leaderboard td, #leaderboard th {
+    word-wrap: break-word; /* Allows words to break and wrap to the next line */
+    overflow-wrap: break-word; /* Ensures wrapping at break points */
+    padding: 8px; /* Adjust padding as needed */
+    text-align: center; /* Keeps text centered, adjust as needed */
+    border: 1px solid #ddd; 
+}
+
+
+
+
+.table-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS devices */
+    width: 100%; /* Full width of the parent */
+    max-width: 100%; /* Ensure the container does not exceed the width of the parent */
+    max-height: 500px; /* Set the maximum height of the table to 8 rows */
+    display: block;
+    border: 1px solid #ddd; /* Optional: Adds a border for better visibility */
+}
+
+
+
+
+
+.group1 col {
+    width: 5px; 
+}
+
+
+.group2 col, .group3 col, .group4 col, .group5 col, .group6 col, .group7 col, .group8 col {
+    width: auto; 
+}
+
+
+
+#myChart {
+    display: block;
+    margin: auto; /* Center the canvas */
+    width: 80%; /* Adjust the width to your preference */
+    height: auto; /* This will maintain the aspect ratio */
+    max-height: 600px; /* Optional: to ensure it doesn't get too tall */
+    align-items: center;
+    justify-content: center;
+}
+
+
+@media only screen and (max-width: 768px) {
+    #myChart {
+        width: 100%; /* Adjust the width to your preference */
+    }
+  }
