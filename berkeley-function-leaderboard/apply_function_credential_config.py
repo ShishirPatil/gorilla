@@ -30,9 +30,7 @@ def replace_placeholders(data):
             elif isinstance(value, str):
                 for placeholder, actual_value in PLACEHOLDERS.items():
                     if placeholder in value:  # Check if placeholder is in the string
-                        print(f"Before replacement: {value}")  # Debugging print
                         data[key] = value.replace(placeholder, actual_value)
-                        print(f"After replacement: {data[key]}")  # Debugging print
     elif isinstance(data, list):
         for idx, item in enumerate(data):
             if isinstance(item, (dict, list)):
@@ -40,9 +38,7 @@ def replace_placeholders(data):
             elif isinstance(item, str):
                 for placeholder, actual_value in PLACEHOLDERS.items():
                     if placeholder in item:  # Check if placeholder is in the string
-                        print(f"Before replacement: {item}")  # Debugging print
                         data[idx] = item.replace(placeholder, actual_value)
-                        print(f"After replacement: {data[idx]}")  # Debugging print
     return data
 
 modified_data = []
