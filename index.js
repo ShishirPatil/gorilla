@@ -39,7 +39,7 @@ document.getElementById('submit-btn').addEventListener('click', async function (
         temperature: parseFloat(temperatureValue),
     };
 
-    const response = await fetch('http://luigi.millennium.berkeley.edu:8000/v1/chat/completions', {
+    const response = await fetch('https://luigi.millennium.berkeley.edu:8000/v1/chat/completions', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
