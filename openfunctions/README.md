@@ -219,7 +219,7 @@ def format_response(response: str):
         
 ```
 
-**Note:** Use the `get_prompt` and `format_response`  only if you are hosting it Locally. If you are using the Berkeley hosted models through the Chat-completion API, we do this in the backend, so you don't have to do this. The model is supported in Hugging Face 🤗 Transformers and can be run up locally:
+**Note:** Use the `get_prompt` and `format_response`  only if you are hosting it locally. If you are using the Berkeley hosted models through the Chat-completion API, we do this in the backend, so you don't have to do this. The model is supported in Hugging Face 🤗 Transformers and can be run up locally:
 
 
 ## Evaluation
