@@ -26,7 +26,6 @@ form input, form textarea {
 /* Button styling */
 .btn-secondary2 {
     display: block; /* Make the button block to fill the width */
-    width: 100%;
     background: #ff004f;
     width: 20%; 
     font-size: 14px;
@@ -36,7 +35,7 @@ form input, form textarea {
     color: white;
     transition: background 0.3s ease;
     margin: 0 auto;
-
+    min-width: 120px;
 }
 
 
@@ -84,4 +83,5 @@ form[name="submit-to-google-sheet"] textarea {
     margin-top: 0;
     margin-bottom: 10px; /* Smaller margin for headings */
 }
+
 
