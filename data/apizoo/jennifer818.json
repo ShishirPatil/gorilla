@@ -7,7 +7,7 @@
         "api_arguments": {
             "blockID": " string (Identifier for a block. Also accepts a page ID.)",
             "children": " list (Child content to append to a container block as an array of block objects.)",
-            "after": " string (The ID of the existing block that the new block should be appended after.)"
+            "after": " string (Optional. The ID of the existing block that the new block should be appended after.)"
         },
         "functionality": "Creates and appends new children blocks to the parent block_id specified.",
         "env_requirements": [
@@ -48,8 +48,8 @@
         "api_version": "2022-06-28",
         "api_arguments": {
             "blockID": " string (Identifier for a block)",
-            "startCursor": " string (Page of results starts after the cursor provided)",
-            "pageSize": " int32 (The number of items from the full list desired in the response. Maximum: 100)"
+            "startCursor": " string (Optional. Page of results starts after the cursor provided)",
+            "pageSize": " int32 (Optional. The number of items from the full list desired in the response. Maximum: 100)"
         },
         "functionality": "Returns a paginated array of child block objects contained in the block using the ID specified.",
         "env_requirements": [
@@ -71,7 +71,7 @@
         "api_arguments": {
             "blockID": " string (Identifier for a Notion block)",
             "updatedBlock": " block (Block that will replace old block)",
-            "archive": " Set to true to archive (delete) a block. Set to false to un-archive (restore) a block."
+            "archive": " boolean (Optional. Set to true to archive (delete) a block. Set to false to un-archive (restore) a block.)"
         },
         "functionality": "Updates the content for the specified block_id based on the block type. Supported fields based on the block object type.",
         "env_requirements": [
@@ -113,7 +113,7 @@
         "api_arguments": {
             "parent": " json (the parent page or database where the new page is inserted)",
             " properties": " json (The values of the page\u2019s properties.)",
-            " children": " array of strings (The content to be rendered on the new Page.)",
+            " children": " array of strings (Optional. The content to be rendered on the new Page.)",
             " icon": " json (The icon of the new page. Either an emoji object or an external file object.)",
             " cover": " json (The cover image of the new page.)"
         },
@@ -132,16 +132,16 @@
     {
         "user_name": "jennifer818",
         "api_name": "Notion - Retrieve a page",
-        "api_call": "notion.pages.retrieve({page_id={pageId}});",
+        "api_call": "notion.pages.retrieve({page_id={pageId}, filter_properties={filterProperties}});",
         "api_version": "2022-06-28",
         "api_arguments": {
             "pageID": " string (Identifier for a Notion page)"
         },
-        "functionality": "Retrieves a Page object (page properties) using the ID specified.",
+        "functionality": "filterProperties, string (Optional. A list of page property value IDs associated with the page. Use this param to limit the response to a specific page property value or values.)",
         "env_requirements": [
             "@notionhq/client"
         ],
-        "example_code": "const { Client } = require('@notionhq/client'); \n const notion = new Client({ auth: process.env.NOTION_API_KEY }); \n (async () => { \n const pageId = '59833787-2cf9-4fdf-8782-e53db20768a5'; \n const response = await notion.pages.retrieve({ page_id: pageId }); \n console.log(response); \n })(); \n ",
+        "example_code": "Retrieves a Page object (page properties) using the ID specified. \n const { Client } = require('@notionhq/client'); \n const notion = new Client({ auth: process.env.NOTION_API_KEY }); \n (async () => { \n const pageId = '59833787-2cf9-4fdf-8782-e53db20768a5'; \n const response = await notion.pages.retrieve({ page_id: pageId }); \n console.log(response); \n })(); \n ",
         "meta_data": {
             "documentation_link": " https://developers.notion.com/reference/retrieve-a-page"
         },
@@ -157,8 +157,8 @@
         "api_arguments": {
             "pageID": " string (Identifier for a Notion page)",
             " propertyID": " string (Identifier for a page property)",
-            " pageSize": " int32 (For paginated properties. The max number of property item objects on a page. The default size is 100)",
-            " startCursor": " string (For paginated properties.)"
+            " pageSize": " int32 (Optional. For paginated properties. The max number of property item objects on a page. The default size is 100)",
+            " startCursor": " string (Optional. For paginated properties.)"
         },
         "functionality": "Retrieves a property_item object for a given page_id and property_id.",
         "env_requirements": [
@@ -179,10 +179,10 @@
         "api_version": "2022-06-28",
         "api_arguments": {
             "pageID": " string (The identifier for the Notion page to be updated.)",
-            " properties": " json (The property values to update for the page. The keys are the names or IDs of the property and the values are property values.)",
-            " archived": " boolean (Whether the page is archived (deleted). Set to true to archive a page. Set to false to un-archive (restore) a page.)",
-            " icon": " json (A page icon for the page.)",
-            " cover": " json (A cover image for the page. Only external file objects are supported.)"
+            " properties": " json (Optional. The property values to update for the page. The keys are the names or IDs of the property and the values are property values.)",
+            " archived": " boolean (Optional. Whether the page is archived (deleted). Set to true to archive a page. Set to false to un-archive (restore) a page.)",
+            " icon": " json (Optional. A page icon for the page.)",
+            " cover": " json (Optional. A cover image for the page. Only external file objects are supported.)"
         },
         "functionality": "Updates the properties of a page in a database.",
         "env_requirements": [
@@ -203,7 +203,7 @@
         "api_version": "2022-06-28",
         "api_arguments": {
             "parent": " json (A page parent)",
-            " title": " array (Title of database as it appears in Notion.)",
+            " title": " array (Optional. Title of database as it appears in Notion.)",
             " properties": " json (Property schema of database.)"
         },
         "functionality": "Creates a database as a subpage in the specified parent page, with the specified properties schema.",
@@ -227,7 +227,7 @@
             "databaseID": " string (The name of the property as it appears in the database or propertyID)",
             " filter": " object (The type-specific filter condition for the query.)"
         },
-        "functionality": "On a database query, limits the returned entries based on the specified criteria.",
+        "functionality": "When you query a database, you can send a filter object in the body of the request that limits the returned entries based on the specified criteria.",
         "env_requirements": [
             "@notionhq/client"
         ],
@@ -263,11 +263,15 @@
     {
         "user_name": "jennifer818",
         "api_name": "Notion - Query a database",
-        "api_call": "await notion.databases.query({database_id={databaseID}, filter={filterProperties}})",
+        "api_call": "await notion.databases.query({database_id={databaseID}, filter_properties={filterProperties}}, filter={filter}, sorts={sortCriteria}, page_size={pageSize})",
         "api_version": "2022-06-28",
         "api_arguments": {
             "databaseID": " string (The name of the property as it appears in the database or propertyID)",
-            " filterProperties": " array of strings (A list of page property value IDs associated with the database.)"
+            " filterProperties": " array of strings (Optional. A list of page property value IDs associated with the database.)",
+            " filter": " json (Optional. Limits which pages are returned based on the filter conditions.)",
+            " sortCriteria": " array (Optional. Orders the results based on the provided sort criteria.)",
+            " startCursor": " string (Optional. Returns a page of results starting after the cursor provided)",
+            " pageSize": " int32 (The number of items from the full list desired in the response. Maximum: 100)"
         },
         "functionality": "Gets a list of Pages and/or Databases contained in the database, filtered and ordered according to the filter conditions and sort criteria provided in the request.",
         "env_requirements": [
@@ -308,9 +312,9 @@
         "api_version": "2022-06-28",
         "api_arguments": {
             "databaseID": " string (identifier for a Notion database)",
-            " title": " array (An array of rich text objects that represents the title of the database that is displayed in the Notion UI.)",
-            " description": " array (An array of rich text objects that represents the description of the database that is displayed in the Notion UI.)",
-            " properties": " json (The properties of a database to be changed in the request in the form of a JSON object."
+            " title": " array (Optional. An array of rich text objects that represents the title of the database that is displayed in the Notion UI.)",
+            " description": " array (Optional. An array of rich text objects that represents the description of the database that is displayed in the Notion UI.)",
+            " properties": " json (Optional. The properties of a database to be changed in the request in the form of a JSON object.)"
         },
         "functionality": "Updates the database object \u2014 the title, description, or properties \u2014 of a specified database.",
         "env_requirements": [
@@ -322,6 +326,133 @@
         },
         "questions": [
             "I want to change the documented creator of the inventory database"
+        ]
+    },
+    {
+        "user_name": "jennifer818",
+        "api_name": "Notion - List all users",
+        "api_call": "notion.users.list();",
+        "api_version": "2022-06-28",
+        "api_arguments": {
+            "start_cursor": " string (Optional. Returns a page of results starting after the cursor provided. Default: this endpoint will return the first page of results.)",
+            " page_size": " (Optional. The number of items from the full list desired in the response. Maximum: 100.)"
+        },
+        "functionality": "Returns a paginated list of Users for the workspace. The response may contain fewer than page_size of results.",
+        "env_requirements": [
+            "@notionhq/client"
+        ],
+        "example_code": "const { Client } = require('@notionhq/client'); \n const notion = new Client({ auth: process.env.NOTION_API_KEY }); \n (async () => { \n const response = await notion.users.list(); \n console.log(response); \n })(); \n ",
+        "meta_data": {
+            "documentation_link": " https://developers.notion.com/reference/get-users"
+        },
+        "questions": [
+            "I want to see everyone who is using the Notion workspace."
+        ]
+    },
+    {
+        "user_name": "jennifer818",
+        "api_name": "Notion - Retrieve a user",
+        "api_call": "notion.users.retrieve({ user_id: {userId}});",
+        "api_version": "2022-06-28",
+        "api_arguments": {
+            "userID": " string (Identifier for a Notion user)"
+        },
+        "functionality": "Retrieves a User using the ID specified.",
+        "env_requirements": [
+            "@notionhq/client"
+        ],
+        "example_code": "const { Client } = require('@notionhq/client'); \n const notion = new Client({ auth: process.env.NOTION_API_KEY }); \n (async () => { \n const userId = 'd40e767c-d7af-4b18-a86d-55c61f1e39a4'; \n const response = await notion.users.retrieve({ user_id: userId }); \n console.log(response); \n })(); \n ",
+        "meta_data": {
+            "documentation_link": " https://developers.notion.com/reference/get-user"
+        },
+        "questions": [
+            "I need all the information of Jason, the user who creates the schedules for all the workers."
+        ]
+    },
+    {
+        "user_name": "jennifer818",
+        "api_name": "Notion - Retrieve your token's bot user",
+        "api_call": "notion.users.me();",
+        "api_version": "2022-06-28",
+        "api_arguments": {},
+        "functionality": "Retrieves the bot User associated with the API token provided in the authorization header. The bot will have an owner field with information about the person who authorized the integration.",
+        "env_requirements": [
+            "@notionhq/client"
+        ],
+        "example_code": "const { Client } = require('@notionhq/client'); \n const notion = new Client({ auth: process.env.NOTION_API_KEY }); \n (async () => { \n const response = await notion.users.me(); \n console.log(response); \n })(); \n ",
+        "meta_data": {
+            "documentation_link": " https://developers.notion.com/reference/get-self"
+        },
+        "questions": [
+            "Give me all the information on the bot that signs documents."
+        ]
+    },
+    {
+        "user_name": "jennifer818",
+        "api_name": "Notion - Create comment",
+        "api_call": "notion.comments.create({parent = {pageParent}, discussion_id = {discID}, rich_text = {comment}});",
+        "api_version": "2022-06-28",
+        "api_arguments": {
+            "pageParent": " json (A page parent. Either this or a discussion_id is required but not both.)",
+            " discID": " string (A UUID identifier for a discussion thread. Either this or a parent object is required (not both))",
+            " comment": " json (A rich text object)"
+        },
+        "functionality": "Creates a comment in a page or existing discussion thread. Returns a comment object for the created comment.",
+        "env_requirements": [
+            "@notionhq/client"
+        ],
+        "example_code": "const { Client } = require('@notionhq/client'); \n const notion = new Client({ auth: process.env.NOTION_API_KEY }); \n (async () => { \n const response = await notion.comments.create({ \n \"parent\": { \n \"page_id\": \"5c6a28216bb14a7eb6e1c50111515c3d\" \n }, \n \"rich_text\": [ \n { \n \"text\": { \n \"content\": \"Hello world\" \n } \n } \n ] \n }); \n console.log(response); \n })(); \n ",
+        "meta_data": {
+            "documentation_link": " https://developers.notion.com/reference/create-a-comment"
+        },
+        "questions": [
+            "Add a comment to next week's schedule about pushing back the 1pm meeting back by an hour."
+        ]
+    },
+    {
+        "user_name": "jennifer818",
+        "api_name": "Notion - Retrieve comments",
+        "api_call": "notion.comments.list({ block_id={blockId}, start_cursor={startCursor}, page_size={pageSize} })",
+        "api_version": "2022-06-28",
+        "api_arguments": {
+            "blockID": " string (Identifier for a Notion block or page)",
+            " startCursor": " string (Optional. Returns a page of results starting after the cursor provided. If not supplied this endpoint will return the first page of results.)",
+            " pageSize": " int32 (Optional. The number of items from the full list desired in the response. Maximum: 100)"
+        },
+        "functionality": "Retrieves a list of un-resolved Comment objects from a page or block.",
+        "env_requirements": [
+            "@notionhq/client"
+        ],
+        "example_code": "const { Client } = require('@notionhq/client'); \n const notion = new Client({ auth: process.env.NOTION_API_KEY }); \n (async () => { \n const blockId = 'd40e767c-d7af-4b18-a86d-55c61f1e39a4'; \n const response = await notion.comments.list({ block_id: blockId }); \n console.log(response); \n })(); \n ",
+        "meta_data": {
+            "documentation_link": " https://developers.notion.com/reference/retrieve-a-comment"
+        },
+        "questions": [
+            "I want to look through all the comments about the grocery inventory."
+        ]
+    },
+    {
+        "user_name": "jennifer818",
+        "api_name": "Notion - Search by title",
+        "api_call": "notion.search({query = {query}, filter = {filter}, sort = {sort}, start_cursor = {startCursor}, page_size = {pageSize}})",
+        "api_version": "2022-06-28",
+        "api_arguments": {
+            "query": " string (The text that the API compares page and database titles against.)",
+            " sort": " object (Optional. A set of criteria (direction and timestamp keys) that orders the results. The only supported timestamp value is \"last_edited_time\". Supported direction values are \"ascending\" and \"descending\".)",
+            " filter": " object (Optional. A set of criteria (value and property keys) that limits the results to either only pages or only databases. Possible value values are \"page\" or \"database\". The only supported property value is \"object\".)",
+            " startCursor": " string (Optional. Limits the response to results starting after the cursor)",
+            " pageSize": " int32 (Optional. The number of items from the full list to include in the response. Maximum: 100.)"
+        },
+        "functionality": "Searches all parent or child pages and databases that have been shared with an integration. Returns all pages or databases, excluding duplicated linked databases, that have titles that include the query param. If no query param is provided, then the response contains all pages or databases that have been shared with the integration.",
+        "env_requirements": [
+            "@notionhq/client"
+        ],
+        "example_code": "const { Client } = require('@notionhq/client'); \n const notion = new Client({ auth: process.env.NOTION_API_KEY }); \n (async () => { \n const response = await notion.search({ \n query: 'External tasks', \n filter: { \n value: 'database', \n property: 'object' \n }, \n sort: { \n direction: 'ascending', \n timestamp: 'last_edited_time' \n }, \n }); \n console.log(response); \n })(); \n ",
+        "meta_data": {
+            "documentation_link": " https://developers.notion.com/reference/post-search"
+        },
+        "questions": [
+            "I need to look at all relevant documents and databases related to worker schedules on the 21st."
         ]
     }
 ]
