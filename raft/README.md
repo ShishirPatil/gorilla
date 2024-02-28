@@ -14,9 +14,9 @@ pip install -r requirements.txt
 
 ### Usage
 
-Run the following command with your desired arguments.  
+Run the following command with your desired arguments to generate the dataset.  
 ```bash 
-python3 raft.py --datapath PATH_TO_DATA --output OUTPUT_PATH --distractors 3 --questions 5 --chunk_size 512 --is_api False
+python3 raft.py --datapath PATH_TO_DATA --output OUTPUT_PATH --distractors 3 --questions 5 --chunk_size 512 --is_api False --openai_key YOUR_OPENAI_KEY --tokenizer TOKENIZER
 ```  
 `raft.py` does the following:  
 - Takes a pdf/API doc located at `PATH_TO_DATA`, breaks it into chunks of size `chunk_size` tokens if the data is a pdf, or chunks of one API endpoint if the data is an API documentation, as denoted by `is_api`.

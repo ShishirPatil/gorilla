@@ -1,10 +1,5 @@
-import sys
-import argparse
+from datasets import Dataset, load_dataset
 
-# Check if at least one argument is provided
-if len(sys.argv) > 1:
-    # Iterate over all arguments except the script name
-    for i, arg in enumerate(sys.argv[1:], start=1):
-        print(f"Argument {i}: {arg}")
-else:
-    print("No arguments provided.")
+ds2 = Dataset.load_from_disk("sample_ds4")
+
+print(ds2[0])
