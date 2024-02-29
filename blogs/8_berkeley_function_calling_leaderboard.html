@@ -20,6 +20,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
     <link rel="stylesheet" href="../assets/css/blog.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
+    <link rel="stylesheet" href="../assets/css/api-explorer.css" />
+    <link rel="stylesheet" href="../assets/css/common-styles.css" />
+    <link rel="stylesheet" href="../assets/css/Highlight-Clean-leaderboard.css" />
+    <link rel="stylesheet" href="../assets/css/model_info_dashboard.css" />
+    <link rel="stylesheet" href="../assets/css/contact.css">
 </head>
 
 <body>
@@ -279,6 +285,315 @@
                         </ul>
 
                  <h4 id="benchmarking">Prompting</h4>
+                 <p>    </p>
+                            <!-- Leaderboard Section -->
+                <div id="model_info_dashboard" style="background: #f0f7ff">
+                        <h2>Model Manual</h2>
+                        <p class="text-center">
+                            The model manual provided some basic insights and function calling features support by the model we evaluated on. We also highlight models from open source community and acknowledge their impressive effort!
+                        </p>
+                        <div class="table-container">
+                            <table>
+
+                                <thead>
+                                    <tr>
+                                        <th colspan="4">Basic Information</th>
+                                        <th colspan="3">Function Calling Support</th>
+                                        <th colspan="4">Data Type Support</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Model</th>
+                                        <th>Model Size</th>
+                                        <th>Organization</th>
+                                        <th>License</th>
+                                        <th>Function Calling Support</th>
+                                        <th>Parallel Functions</th>
+                                        <th>Multiple Functions</th>
+                                        <th>Java </th>
+                                        <th>Javascript</th>
+                                        <th>C++</th>
+                                        <th>Python</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href=''>GPT-4-0125-Preview</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>OpenAI</td>
+                                        <td>Proprietary</td>
+                                        <td><a href="https://openai.com/blog/function-calling-and-other-api-updates">&#10003;</a></td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>GPT-4-1106-Preview</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>OpenAI</td>
+                                        <td>Proprietary</td>
+                                        <td><a href="https://openai.com/blog/function-calling-and-other-api-updates">&#10003;</a></td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Gorilla OpenFunctions-v2</a>
+                                        </td>
+                                        <td>7B</td>
+                                        <td>Gorilla LLM</td>
+                                        <td>Apache 2.0</td>
+                                        <td><a href="https://gorilla.cs.berkeley.edu/">&#10003;</a></td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>GPT-3.5-Turbo</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>OpenAI</td>
+                                        <td>Proprietary</td>
+                                        <td><a href="https://openai.com/blog/function-calling-and-other-api-updates">&#10003;</a></td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Mistral-Medium</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>Mistral AI</td>
+                                        <td>Proprietary</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Claude-2.1</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>Anthropic</td>
+                                        <td>Proprietary</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Mistral-Tiny</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>Mistral AI</td>
+                                        <td>Proprietary</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Claude-instant</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>Anthropic</td>
+                                        <td>Proprietary</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Mistral-Large</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>Anthropic</td>
+                                        <td>Proprietary</td>
+                                        <td><a href="https://docs.mistral.ai/guides/function-calling/">&#10003;</a></td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Gemini-1.0-pro</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>Google</td>
+                                        <td>Proprietary</td>
+                                        <td><a href="https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/function-calling">&#10003;</a></td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Nexusflow-Raven-v2</a>
+                                        </td>
+                                        <td>13B</td>
+                                        <td>Nexusflow</td>
+                                        <td>Apache 2.0</td>
+                                        <td><a href="https://nexusflow.ai/blogs/ravenv2">&#10003;</a></td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Firefunction-v1</a>
+                                        </td>
+                                        <td>46.7B</td>
+                                        <td>Fireworks-ai</td>
+                                        <td>Apache 2.0</td>
+                                        <td><a href="https://fireworks.ai/blog/firefunction-v1-gpt-4-level-function-calling">&#10003;</a></td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Mistral-Small</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>Anthropic</td>
+                                        <td>Proprietary</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>GPT-4-0613</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>OpenAI</td>
+                                        <td>Proprietary</td>
+                                        <td><a href="https://openai.com/blog/function-calling-and-other-api-updates">&#10003;</a></td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Gemma</a>
+                                        </td>
+                                        <td>7B</td>
+                                        <td>Google</td>
+                                        <td>gemme-term-of-use</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Deepseek-v1.5</a>
+                                        </td>
+                                        <td>6.7B</td>
+                                        <td>Deepseek</td>
+                                        <td>Deepseek License</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Gorilla-Openfunctions-v0</a>
+                                        </td>
+                                        <td>7B</td>
+                                        <td>Gorilla LLM</td>
+                                        <td>Apache 2.0</td>
+                                        <td><a href="https://gorilla.cs.berkeley.edu/blogs/4_open_functions.html">&#10003;</a></td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Glaive-v1</a>
+                                        </td>
+                                        <td>2.7B</td>
+                                        <td>Glaive-AI</td>
+                                        <td>cc-by-sa-4.0</td>
+                                        <td><a href="https://huggingface.co/glaiveai/glaive-function-calling-v1">&#10003;</a></td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                </div>
+                <div>
+                    <p></p>
+                </div>
                  We provide all the prompts we used to evaluate our propatiery and open-source models. For function calling models, since they are specifically designed to generate function calls, we did not provide any system prompt but instead toggle the function calling mode on and put the function definitions where it should be. For chat model, we explicitly provides system message.
                  <ol>
                     <li>For all the function calling models, we did not supply any system prompt but instead toggle the function calling mode on and put the function definitions where it should be.</li>
