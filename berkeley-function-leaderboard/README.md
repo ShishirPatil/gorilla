@@ -11,7 +11,7 @@ Read more about the technical details and interesting insights in our blog post!
 
 Inside `./data`, we included live `gorilla-llm/Berkeley-Function-Calling-Leaderboard` evaluation dataset. 
 
-You can also download the live evaluation dataset from huggingface, working from the current directory `./berkeley-function-leaderboard`, run the following command:
+You can also download the live evaluation dataset from huggingface, working from the current directory `./berkeley-function-leaderboard`, run the following command will fetch the most up-to-date live evaluation dataset:
 
 ```bash
     huggingface-cli download gorilla-llm/Berkeley-Function-Calling-Leaderboard --local-dir ./data --repo-type dataset
