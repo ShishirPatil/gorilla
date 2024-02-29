@@ -68,7 +68,7 @@
                         function calls. We built this dataset from our learnings to be representative of most users'
                         function calling use-cases, for example, in agents, as a part of enterprise workflows, etc. To
                         this end, our evaluation dataset spans diverse categories, and across multiple languges. We also
-                        release our model Gorilla-Openfunctions-v2, the best open-source models so far to handle
+                        release our model Gorilla OpenFunctions-v2, the best open-source models so far to handle
                         function calls with multiple programming languages and parallel and multiple function calls. We
                         also provide a specific debugging feature that when the provided function is not suitable for
                         your task, the model will output an “Error Message”.
@@ -143,9 +143,7 @@
                             <li style="margin-bottom: 5px;"><b>Non-Python</b>: Function Relevance Detection, REST API, SQL, Java, Javascript</li>
                         </ul>
                         <h5 id="benchmarking">Python Evaluation</h5>
-                        <p><strong>Simple Function:</strong> Generic single function evaluation contains the simplest but
-                            most commonly seen format: the user supplies one JSON function document, with one and only
-                            one function call will be invoked. </p>
+                        <p><strong>Simple Function:</strong> Single function evaluation contains the simplest but most commonly seen format, where the user supplies a single JSON function document, with one and only one function call will be invoked. </p>
                         <p><strong>Multiple Function:</strong> Multiple function category contains a user question that only
                             invokes one function call out of 2 to 4 JSON function documentations. The model needs to be
                             capable of selecting the best function to invoke according to user provided context.</p>
@@ -211,7 +209,8 @@
                             <li style="margin-bottom: 5px;">Abstract Syntax Tree (AST) Checker</li>
                             <li style="margin-bottom: 5px;">Execution Checker</li>
                         </ul>
-                        <p>AST Checking: For the function call answers generated that are executable, we take parse the
+                        <h5>AST Checking</h5>
+                        <p>For the function call answers generated that are executable, we take parse the
                             function call using AST tree.</p>
                         <p><b>Example</b>:</p>
                         <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">calculate_triangle_area(<span style="color: #333;">base</span>=<span style="color: #333;">10</span></span>, height=<sp5 style="color: #333;">5</span>)
@@ -219,54 +218,67 @@
 
                         <p><b>Parse</b>:</p> 
                         
-                        <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">Module(body=[Expr(value=List(elts=[Call(func=Name(id='calculate_triangle_area', ctx=Load()), args=[], keywords=[keyword(arg='base', value=Constant(value=10)), keyword(arg='height', value=Constant(value=5))])], ctx=Load()))], type_ignores=[])</pre>
+                            <pre style="white-space: pre-wrap; width: 100%; overflow-x: auto; background-color: #f4f4f4; color: #333;"><code>Module(body=[
+        Expr(value=List(elts=[
+            Call(
+                func=Name(id=<span style="color: #0000FF;">'calculate_triangle_area'</span>, ctx=Load()), 
+                args=[], 
+                keywords=[
+                    keyword(arg=<span style="color: #008000;">'base'</span>, value=Constant(value=<span style="color: #A31515;">10</span>)), 
+                    keyword(arg=<span style="color: #008000;">'height'</span>, value=Constant(value=<span style="color: #A31515;">5</span>))
+                ]
+            )
+        ], ctx=Load()))
+    ], type_ignores=[])
+</code></pre>
 
                         <p>We extract the variables from the AST and check if every parameter can be found and exact
                             matched in possible answers. For each possible answer, what should be the acceptable answer:
                         </p>
                         <ul>
-                            <li style="margin-bottom: 5px;">For bool:
+                            <li style="margin-bottom: 5px;">For <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">bool</code>:
                                 <ul>
                                     <li style="margin-bottom: 5px;">We check the direct matching of boolean values, and don't allow leniency on the
                                         string versions of boolean values. </li>
                                 </ul>
                             </li>
-                            <li style="margin-bottom: 5px;">For integer, float:
+                            <li style="margin-bottom: 5px;">For <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">integer</code>, <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">float</code>:
                                 <ul>
-                                    <li style="margin-bottom: 5px;">The answer should be unique e.g. [1]</li>
+                                    <li style="margin-bottom: 5px;">The answer should be unique e.g. <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">[1]</code></li>
                                 </ul>
                             </li>
-                            <li style="margin-bottom: 5px;">For List:
+                            <li style="margin-bottom: 5px;">For <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">List</code>:
                                 <ul>
                                     <li style="margin-bottom: 5px;">We are checking for exact matches so List of any order should be matched.
-                                        [1,2,3]==[2,3,1] </li>
+                                        <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">[1,2,3]==[2,3,1]</code> </li>
                                 </ul>
                             </li>
-                            <li style="margin-bottom: 5px;">For Dict:
+                            <li style="margin-bottom: 5px;">For <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Dict</code>:
                                 <ul>
                                     <li style="margin-bottom: 5px;">We skip checking recursive AST dictionary structure for simplicity. </li>
                                 </ul>
                             </li>
-                            <li style="margin-bottom: 5px;">For String:
+                            <li style="margin-bottom: 5px;">For <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">String</code>:
                                 <ul>
-                                    <li style="margin-bottom: 5px;">Possibile date "20th June", "2023-06-20", "06/20/2023", "Jun.20,2023" </li>
-                                    <li style="margin-bottom: 5px;">Possible Location ["New York City", "NYC"] </li>
-                                    <li style="margin-bottom: 5px;">Possibile date "20th June", "2023-06-20", "06/20/2023", "Jun.20,2023"]</li>
-                                    <li style="margin-bottom: 5px;">Possible Anything ["Manchester United", "Man United", "Man U", "MUFC"] </li>
+                                    <li style="margin-bottom: 5px;">Possibile date <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">["20th June", "2023-06-20", "06/20/2023", "Jun.20,2023"]</code></li>
+                                    <li style="margin-bottom: 5px;">Possible Location <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">["New York City", "NYC"]</code> </li>
+                                    <li style="margin-bottom: 5px;">Possibile date <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">["20th June", "2023-06-20", "06/20/2023", "Jun.20,2023"]</code></li>
+                                    <li style="margin-bottom: 5px;">Possible Anything <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">["Manchester United", "Man United", "Man U", "MUFC"]</code> </li>
                                 </ul>
                             </li>
                         </ul>
 
 
-                        <p>Here are some example of possible answer:</p>
-                        <ul>
-                            <li style="margin-bottom: 5px;"><code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">{"calculate_triangle_area": {"base": [10], "height": [5], "unit": ["units", "unit"]}}</code>
-                            </li>
-                            <li style="margin-bottom: 5px;"><code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">{"predict_house_price": {"bedrooms": [3], "bathrooms": [2], "area": [1800], "location": ["San Francisco", "San Francisco, CA"]}}</code>
-                            </li>
-                        </ul>
-                        <p>This checking mechanism applies to everything except for executable_* and REST.</p>
-                        <p>Executable checking: For executable_* and REST, we have corresponding functions that can be
+                        <p><b>Here are some examples of possible answer:</b></p>
+                        <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">{"calculate_triangle_area": {"base": <span style="color: red;">[10]</span>, "height": <span style="color: red;">[5]</span>, "unit": <span style="color: red;">["units", "unit"]</span>}}</pre>
+
+
+                        <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">{"predict_house_price": {"bedrooms": <span style="color: red;">[3]</span>, "bathrooms": <span style="color: red;">[2]</span>, "area": <span style="color: red;">[1800]</span>, "location": <span style="color: red;">["San Francisco", "San Francisco, CA"]</span>}}</pre>
+
+                        
+                        <p>This checking mechanism applies to everything except for <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">executable_*</code> and <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">REST</code>.</p>
+                        <h5>Executable checking:</h5>
+                        <p>For <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">executable_*</code> and <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">REST</code>, we have corresponding functions that can be
                             executable for each question. Therefore, directly after the model generates answers, we will
                             take the answers and then execute them in a python environment. There are two types of
                             matchings.</p>
@@ -337,7 +349,7 @@ USER_MESSAGE_FOR_CHAT_MODEL = "Questions:{user_prompt}\nHere is a list of functi
                 </pre>
 
                 <p>In this case, we need to manually convert float into number to make the function OpenAI compatible. In addition to that, numbers convey less information compared to floats in terms of precision and type consistency.</p>
-                <p>In Gorilla Openfunctions-v2, we improve the flexibility of the function documents by not restricting the typing of the parameters. In another word, the user can supply Tuple , Float , and even language specific types like HashMap and Linked List in Java!</p>
+                <p>In Gorilla OpenFunctions-v2, we improve the flexibility of the function documents by not restricting the typing of the parameters. In another word, the user can supply Tuple , Float , and even language specific types like HashMap and Linked List in Java!</p>
 </li>
 <li style="margin-bottom: 5px;"> GPT underperforms in scenario where the parameters are not immediately available in user question but instead requires some implicit converion. Here is an example:
 
