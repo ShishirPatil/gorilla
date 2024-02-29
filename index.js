@@ -6,7 +6,7 @@ EXAMPLES = [
 
 PROMPTS = [
     "I'm planning a camping trip and I need to know the weather forecast. Can you fetch me the weather data for the campsite located at latitude 35.68 and longitude -121.34 for the next 10 days including daily temperature and precipitation forecasts? Also, I prefer the temperature 2 minute max in Fahrenheit and sum of precipitation in inches.",
-    "Can you provide the latitude and longitude coordinates for latitude 37.4224764 and longitude -122.0842499 using the Geocoding API?",
+    "Can you provide the address for latitude 37.4224764 and longitude -122.0842499 using the Geocoding API?",
     "I'm planning a series of long weekend getaways for the upcoming year and I need to know when they'll occur in my country. Could you fetch me the list of long weekends for Canada in the year 2023? I'd like to integrate this information into my holiday planning app."
 ]
 function populateInput(index) {
