@@ -34,6 +34,34 @@
     <div class="highlight-clean-blog" style="padding-bottom: 10px;">
         <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
 
+        <div class="box-index">
+            <h3>Blog 8: Berkeley Function-Calling Leaderboard</h3>
+            <ul>
+                <ul>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#bfcl">Berkeley Function Calling Leaderboard 🏆
+</a></li>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#benchmarking">Dataset Composition</a></li>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#categories">Evaluation Categories 📊</a></li>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#metrics">Evaluation Metrics📈</a></li>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#prompt">Prompting</a></li>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#mistakes">Common Mistakes</a></li>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#conclusion">Conclusion</a></li>
+                        <li class="more-blogs">
+                            <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span class="caret">&#9654;</span></a>
+                            <ul class="sub-menu">
+                                <li><a href="7_open_functions_v2.html">Gorilla OpenFunctions-v2</a></li>
+                                <li><a href="6_api_zoo.html">The API Zoo: A Keystone for Building API-connected LLMs</a></li>
+                                <li><a href="5_how_to_gorilla.html">How to Use Gorilla: A Step-by-Step Walkthrough
+                                <li><a href="4_open_functions.html">Gorilla OpenFunctions
+</a></li>
+</a></li>
+                                <!-- Add more blog entries as needed -->
+                            </ul>
+                        </li>  
+                </ul>
+                <!-- Add more entries as needed -->
+            </ul>
+        </div>
 
         <div class="blog-container">
             <div class="blog-post">
@@ -134,7 +162,7 @@
                             </i>
                         </p>
 
-                        <h4 id="benchmarking">Evaluation Categories 📊</h4>
+                        <h4 id="categories">Evaluation Categories 📊</h4>
 
                         <p> We break down the majority of the evaluation in two categories:</p>
                         <ul>
@@ -278,7 +306,7 @@
 
     <br>
 
-                        <h4 id="benchmarking">Evaluation Metrics📈</h4>
+                        <h4 id="metrics">Evaluation Metrics📈</h4>
                         <p>We use two popular method to evaluate the accuracy of the model generated answers: AST
                             checker and Execution checker. Ideally one should use execution checker, but when we
                             evaluate the answers, not all the results are easily executable (e.g., Java functions). So
@@ -366,7 +394,7 @@
                             <li style="margin-bottom: 5px;">For executable output that is non-deterministic and real-world related, we check for it <b>effective execution, response type and response JSON key consistencies</b>. To see whether the values are expected from our pre-computed ground truth. We observe that REST API responses' format stays the same for long periods of time. We periodically check update with the ground truth executed response results. Consistent REST responses typically follow with same key definition, same response objects. </li>
                         </ul>
 
-                 <h4 id="benchmarking">Prompting</h4>
+                 <h4 id="prompt">Prompting</h4>
                  We provide all the prompts we used to evaluate our propatiery and open-source models. For function calling models, since they are specifically designed to generate function calls, we did not provide any system prompt but instead toggle the function calling mode on and put the function definitions where it should be. For chat model, we explicitly provides <b>system message</b>.
                  <ol>
                     <li style="margin-bottom: 5px;">For all the function calling models, we did not supply any system prompt but instead toggle the function calling mode on and put the function definitions where it should be.</li>
@@ -385,7 +413,7 @@ USER_MESSAGE_FOR_CHAT_MODEL = "Questions:{user_prompt}\nHere is a list of functi
                         </div>
                     </li>
                  </ol>
-                <h4 id="benchmarking">Common Mistakes</h4>
+                <h4 id="mistakes">Common Mistakes</h4>
                 With our benchmark BFCL, we are able to identify some common mistakes that LLMs make when generating function calls. These mistakes are interesting because they help us understand the limitations of the current models and provide insights into how to improve them.
                 <ol>
                 <li style="margin-bottom: 5px;"><p>GPTs' <em>function documents are difficult to format</em> and their <em>typings are restrictive</em> in real world scenarios.</p>
@@ -567,7 +595,7 @@ Gorilla-Openfunctions-v2 output:
                             </li>
                         </ol>
 <br>
-                        <h4 id="benchmarking">Conclusion</h4>
+                        <h4 id="conclusion">Conclusion</h4>
                         <div class="body">
                             <p>We provide a comprehensive and systematic evaluation of LLMs for function calling with
                                 Gorilla Open Functions Leaderboard. The studies here suggest that in terms of simple
