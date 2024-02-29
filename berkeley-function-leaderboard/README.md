@@ -9,7 +9,7 @@ Read more about the technical details and interesting insights in our blog post!
 
 ## Prepare Evaluation Dataset
 
-Inside `./data`, we included live `gorilla-llm/Berkeley-Function-Calling-Leaderboard` evaluation dataset. 
+Inside `./data`, the live [`gorilla-llm/Berkeley-Function-Calling-Leaderboard`](https://huggingface.co/datasets/gorilla-llm/Berkeley-Function-Calling-Leaderboard) evaluation dataset is included. 
 
 You can also download the live evaluation dataset from huggingface, working from the current directory `./berkeley-function-leaderboard`, run the following command will fetch the most up-to-date live evaluation dataset:
 
