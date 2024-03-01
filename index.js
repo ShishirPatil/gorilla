@@ -301,3 +301,43 @@ new Chart(ctx, {
         }
     }
 });
+
+var expand = false;
+function toggleExpand() {
+    // Select all detail-row and detail-header elements
+    var elements = document.querySelectorAll('.summary-row, .summary-small-header');
+    
+    // Toggle the visibility of each element
+    elements.forEach(function(element) {
+        if (expand) {
+            // Apply the appropriate display style based on the element's tag
+            if (element.tagName === 'TR') {
+                element.style.display = 'table-row';
+            } else if (element.tagName === 'TD' || element.tagName === 'TH') {
+                element.style.display = 'table-cell';
+            }
+        } else {
+            element.style.display = 'none'; // Hide element
+        }
+    });
+
+
+    // Select all detail-row and detail-header elements
+    var elements = document.querySelectorAll('.detail-row, .detail-header, .detail-small-header');
+    
+    // Toggle the visibility of each element
+    elements.forEach(function(element) {
+        if (!expand) {
+            // Apply the appropriate display style based on the element's tag
+            if (element.tagName === 'TR') {
+                element.style.display = 'table-row';
+            } else if (element.tagName === 'TD' || element.tagName === 'TH') {
+                element.style.display = 'table-cell';
+            }
+        } else {
+            element.style.display = 'none'; // Hide element
+        }
+    });
+
+    expand = !expand;
+}

@@ -29,22 +29,28 @@
     background-color: #e57e81;
 }
 
-#leaderboard td:nth-child(6),
 #leaderboard td:nth-child(7),
-#leaderboard td:nth-child(8),
+#leaderboard td:nth-child(6),
+#leaderboard td:nth-child(8) {
+    background-color: #48eac9;
+}
+
+#leaderboard td:nth-child(11),
+#leaderboard td:nth-child(10),
+#leaderboard td:nth-child(12),
 #leaderboard td:nth-child(9) {
     background-color: #7ad5f0;
 }
 
 
-#leaderboard td:nth-child(10),
-#leaderboard td:nth-child(11),
-#leaderboard td:nth-child(12),
+#leaderboard td:nth-child(15),
+#leaderboard td:nth-child(14),
+#leaderboard td:nth-child(16),
 #leaderboard td:nth-child(13) {
     background-color: #d5f8d5;
 }
 
-#leaderboard td:nth-child(14) {
+#leaderboard td:nth-child(17) {
     background-color: #65d57f;
 }
 
@@ -52,12 +58,13 @@
 
 /* Ensure the table uses the full width of its container */
 table {
-    width: 100%;
-    table-layout: fixed;
+    table-layout: auto;
     border-collapse: collapse; 
     width: auto; /* Allows the table to expand naturally based on content */
     border-collapse: collapse;
     table-layout: auto; /* Default layout for the table */
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -82,6 +89,8 @@ table {
     max-height: 500px; /* Set the maximum height of the table to 8 rows */
     display: block;
     border: 1px solid #ddd; /* Optional: Adds a border for better visibility */
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -115,3 +124,41 @@ table {
         width: 100%; /* Adjust the width to your preference */
     }
   }
+
+.detail-row {
+    display: none; /* Hide detail rows initially */
+}
+
+.detail-small-header {
+    display: none; /* Hide detail headers initially */
+}
+
+.detail-header {
+    display: none; /* Hide detail headers initially */
+}
+
+.summary-small-header {
+    display: "";
+}
+
+.summary-row {
+    display: "";
+}
+
+
+#expand-btn {
+    font-size: 14px;
+    /* Adjust the font size as needed */
+    color: white;
+    /* Text color */
+    background-color: #6c757d;
+    /* Background color */
+    border: none;
+    border-radius: 5px;
+    /* Rounded corners */
+    padding: 5px 5px;
+    cursor: pointer;
+    /* Changes the cursor to a pointer on hover */
+    transition: background-color 0.3s ease;
+    /* Smooth transition for hover effect */
+}
