@@ -33,7 +33,7 @@ form input, form textarea {
     border: 2px solid transparent;
     border-radius: 3px;
     color: white;
-    transition: background 0.3s ease;
+    transition: 0.3s ease;
     margin: 0 auto;
     min-width: 120px;
 }
