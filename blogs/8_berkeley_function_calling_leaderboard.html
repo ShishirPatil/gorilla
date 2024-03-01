@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="../assets/css/blog.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
     <link rel="stylesheet" href="../assets/css/api-explorer.css" />
-    <link rel="stylesheet" href="../assets/css/common-styles.css" />
+    <link rel="stylesheet" href="../assets/css/common-styles.css" /> 
     <link rel="stylesheet" href="../assets/css/Highlight-Clean-leaderboard.css" />
     <link rel="stylesheet" href="../assets/css/model_info_dashboard.css" />
     <link rel="stylesheet" href="../assets/css/contact.css">
@@ -37,8 +37,11 @@
         <a href="../index.html">Gorilla</a> &nbsp;&nbsp;&nbsp;
     </div>
 
+
     <div class="highlight-clean-blog" style="padding-bottom: 10px;">
         <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+
+
 
         <div class="box-index">
             <h3>Blog 8: Berkeley Function-Calling Leaderboard</h3>
@@ -52,6 +55,8 @@
                         <li><a href="8_berkeley_function_calling_leaderboard.html#prompt">Prompting</a></li>
                         <li><a href="8_berkeley_function_calling_leaderboard.html#mistakes">Common Mistakes</a></li>
                         <li><a href="8_berkeley_function_calling_leaderboard.html#conclusion">Conclusion</a></li>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#generalization">Function-Calling Generalization to New Languages</a></li>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#citation">Citation</a></li>
                         <li class="more-blogs">
                             <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span class="caret">&#9654;</span></a>
                             <ul class="sub-menu">
@@ -68,6 +73,7 @@
                 <!-- Add more entries as needed -->
             </ul>
         </div>
+        
 
         <div class="blog-container">
             <div class="blog-post">
@@ -499,7 +505,7 @@
                                         <td>&#10003;</td>
                                         <td>&#10003;</td>
                                         <td>&#10003;</td>
-                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
                                         <td>&#10003;</td>
                                     </tr>
                                     <tr>
@@ -673,7 +679,7 @@
                                         </td>
                                         <td>7B</td>
                                         <td>Google</td>
-                                        <td>gemme-term-of-use</td>
+                                        <td>gemma-term-of-use</td>
                                         <td>&#10007;</td>
                                         <td>&#10007;</td>
                                         <td>&#10007;</td>
@@ -938,8 +944,8 @@ Gorilla-Openfunctions-v2 output:
                             </li>
                         </ol>
 <br>
-                        <h4 id="ood">Function-calling Generalization to New Languages</h4>
-                        <p></p>
+                        <h4 id="generalization">Function-Calling Generalization to New Languages</h4>
+                        <p>In this section, we delve into leveraging SQL as an example language to assess the generalizability of function-calling in unseen programming languages when it's not explicitly included in the model training data. The evaluation of SQL uses Abstract Syntax Tree (AST) checker, which looks at SQL function calls—such as <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">sql.execute</code>—to construct and execute simple queries. Our evaluation encompasses basic SQL operations: <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">SELECT</code>, <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">INSERT INTO</code>, <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">UPDATE</code>, <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">DELETE</code>, <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">CREATE</code>, providing an example test set of how well models can generalize function calling to new languages. The table below illustrates the performance of various models, including GPT-4, Mistral Large, Claude-2.1, Gorilla-v2, and Gorilla-v0, in generating SQL function calls. Remarkably, Gorilla OpenFunctions-v2 showcases notable proficiency in interpreting and executing SQL commands, even without direct SQL training data. This underscores the model's generalization capability. We opted to exclude SQL performance from the AST evaluation in the BFCL due to the multiplicity of methods to construct SQL function calls achieving identical outcomes. The exhaustive identification of all accurate SQL calls within the AST evaluation framework is deemed impractical. Therefore, SQL has been omitted from the current leaderboard to pave the way for a more comprehensive evaluation in subsequent iterations. </p>
                         <h4 id="conclusion">Conclusion</h4>
                         <div class="body">
                             <p>We provide a comprehensive and systematic evaluation of LLMs for function calling with
@@ -949,7 +955,71 @@ Gorilla-Openfunctions-v2 output:
                                 Open Functions v2, an open-source model that can help users with building AI
                                 applications with function calling and interacting with json compatible output.
                             </p>
+                        
+                            <div class="table-container">
+<table>
+    <thead>
 
+    <tr>
+        <th>Model</th>
+        <th>SQL AST Simple Function Evaluation</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>GPT-4-0613</td>
+        <td>89%</td>
+    </tr>
+    <tr>
+        <td>Mistral Large</td>
+        <td>88%</td>
+    </tr>
+    <tr>
+        <td>GPT-3.5-turbo</td>
+        <td>85%</td>
+    </tr>
+    <tr style="background-color: #DFEBEB;">
+        <td>Gorilla OpenFunctions-v2</td>
+        <td>25%</td>
+    </tr>
+    <tr>
+        <td>Claude-2.1</td>
+        <td>11%</td>
+    </tr>
+    <tr>
+        <td>Gorilla OpenFunctions-v0</td>
+        <td>3%</td>
+    </tr>
+    
+    </tbody>
+</table>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .align-left {
+        text-align: left;
+    }
+    ul.no-bullets {
+        text-align: center;
+        list-style-type: none; /* Remove bullets */
+        padding: 0; /* Remove padding */
+        margin: 0; /* Remove margins */
+    }
+</style>
+
+</div>
+
+<br>
 <p>
                         We hope you enjoyed this blog post. We would love to hear from you on <a href="https://discord.gg/SwTyuTAxX3">Discord</a>, <a href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter (#GorillaLLM)</a>, and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br> 
                     </p>
@@ -974,8 +1044,8 @@ Gorilla-Openfunctions-v2 output:
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
+            margin: 0;
+            padding: 0;
             background: white;
             justify-content: center;
             align-items: center;
