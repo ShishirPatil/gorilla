@@ -5,7 +5,6 @@ from tqdm import tqdm
 import requests
 import argparse
 from dataclasses import asdict
-from anthropic import Anthropic
 
 
 def get_args():
@@ -49,7 +48,7 @@ def build_client(model_name):
         from openai import OpenAI
         client = OpenAI(api_key=os.environ.get("FIRE_WORKS_API_KEY"),base_url = "https://api.fireworks.ai/inference/v1")
     else:
-        return None
+        raise ValueError("Model not supported")
     return client
 
 
