@@ -3,7 +3,7 @@
 💡 Read more in our [Gorilla OpenFunctions Leaderboard](https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html)
 
 ## Introduction
-We present Berkeley Function Leaderboard, the first comprehensive and executable function calling evaluation for LLMs function calling. Different from prior function calling evaluations (e.g. Anyscale function calling blog), we consider function callings of various forms, different function calling scenarios, and the executability of function calls. We also release our model Gorilla-Openfunctions-v2, the best open-source models so far to handle multiple languages of function calls, parallel function calls and multiple function calls. We also provide a specific debugging feature that when the provided function is not suitable for your task, the model will output an “Error Message”. 
+We present Berkeley Function Leaderboard, the **first comprehensive and executable function calling evaluation for LLMs function calling**. Different from prior function calling evaluations (e.g. Anyscale function calling blog), we consider function callings of various forms, different function calling scenarios, and the executability of function calls. We also release our model Gorilla-Openfunctions-v2, the best open-source models so far to handle multiple languages of function calls, parallel function calls and multiple function calls. We also provide a specific debugging feature that when the provided function is not suitable for your task, the model will output an “Error Message”. 
 
 Read more about the technical details and interesting insights in our blog post!
 
