@@ -54,19 +54,22 @@ To generate leaderboard statistics, there are two steps:
 1. Inference the evaluation data and obtain the results from specific models 
 
 ```bash
-    python openfunctions_evaluation.py --model MODEL_NAME --test_category all --temperature 0.3
+    python openfunctions_evaluation.py --model MODEL_NAME --test_category TEST_CATEGORY --temperature 0.3
 ```
+For TEST_CATEGORY, we have `executable_simple`, `executable_parallel_function`, `executable_multiple_function`, `executable_parallel_multiple_function`, `simple`, `relevance`, `parallel_function`, `multiple_function`, `parallel_multiple_function`, `java`, `javascript`, `rest`, `sql`, `chatable`.
+
+If you want to run all evaluation at the same time, you can use `all` as the test category.
 
 Running proprietary model like GPTs, Claude, Mistral-X will requires an API-Key which can be supplied in `openfunctions_evaluation.py`.
 
 If decided to run OSS model, openfunctions evaluation uses vllm and therefore requires GPU for hosting and inferencing.
 
-2. Check the accuracy of the evaluation result by our AST and Executable checks
+1. Check the accuracy of the evaluation result by our AST and Executable checks
 
 ```bash
     python openfunctions_checker.py --model MODEL_NAME --test_category {TEST_CATEGORY,all,ast,executable}
 ```
-    
+
 If you want to run the "all" or "executable" category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard want to test model's generated output on real world API! 
 
 If you don't want to supply any API key, that's alright! Set `test_category` to `ast`. There, we are only doing the ast tree parsing and perform an exact match to derive the accuracy.
