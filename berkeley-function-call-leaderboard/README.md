@@ -16,10 +16,7 @@ To download the evaluation dataset from huggingface, from the current directory 
     huggingface-cli download gorilla-llm/Berkeley-Function-Calling-Leaderboard --local-dir ./data --repo-type dataset
 ```
 
-This will download our dataset to `data` repository. Then consturct batch data file `eval_data_total.json` if you want to do OSS Models inference:
-```python
-    python eval_data_compilation.py
-```
+This will download our dataset to `data` repository. 
 
 ## Execution Evaluation Data Post-processing 
 Input your API keys into `function_credential_config.json`, so that the original placeholder values in questions, params, and answers will be cleaned. 
