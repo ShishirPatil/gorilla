@@ -43,7 +43,7 @@ and our [release blog](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function
 ### Dataset Description
 
 
-**Simple**: Generic evaluation contains the simplest but most commonly seen format: the user supplies one JSON function document, with one and only one function call will be invoked. 
+**Simple Function**: Generic evaluation contains the simplest but most commonly seen format: the user supplies one JSON function document, with one and only one function call will be invoked. 
 
 **Multiple Function**: In multiple function category, a user question that only invokes one function call out of 2 - 4 JSON function documentations. The model needs to be capable of selecting the best function to invoke according to user provided context.
 
@@ -53,11 +53,13 @@ and our [release blog](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function
 
 **Relevance detection**: In relevance detection, we design a scenario where none of the provided functions are relevant and supposed to be invoked. We expect the model’s output to be no function call. 
 
-**REST**: A majority of the real world API calls are from REST API calls. Python makes REST API calls through requests.get() . As a result, we include requests.get function along with a hardcoded URL and description of the purpose of the function and its parameters. Our evaluation includes two variations. The first type requires embedding the parameters inside the URL, called path parameters, for example the {Year} and {CountryCode} in  GET /api/v3/PublicHolidays/{Year}/{CountryCode}. The second type requires the model to put parameters into the params and/or headers of requests.get(.). For examples, XXX. The model is not given which type of REST API call it is going to make but needs to make a decision on how it’s going to be invoked. 
-We execute all teh REST calls to evaluate correctness. 
+**REST**: A majority of the real world API calls are from REST API calls. Python mainly makes REST API calls through `requests.get()`, `requests.post()`, `requests.delete()` and etc that are included in the python requests library. GET requests are the most common ones used in real world. As a result, we include real world GET requests to test the model's capabilities to generate executable REST API calls through complex function documentations, using `requests.get()` along with the API's hardcoded URL and description of the purpose of the function and its parameters. Our evaluation includes two variations. The first type requires passing the parameters inside the URL, called path parameters, for example the `{Year}` and `{CountryCode}` in `GET /api/v3/PublicHolidays/{Year}/{CountryCode}`. The second type requires the model to put parameters as key/value pairs into the `params` and/or `headers` of `requests.get(.)`. For example, `params={'lang': 'fr'}` in the function call. The model is not given which type of REST API call it is going to make but needs to make a decision on how
+it's going to be invoked.  
+
+For REST API, we use a execution checker to check for the executable outputs' effective execution, response type and response JSON key consistencies. On the AST, we chose not to perform AST evaluation on REST mainly because of the immense possible answer for complicated defined APIs that enumeration of all possible answer is unexhausive. 
 
 **SQL**: SQL evaluation data includes our customized sql.execute functions that contains sql_keyword, table_name, columns, and conditions. Those four parameters provide necessary information to construct a simple SQL query like SELECT column_A from table_B where column_C == D Through this, we want to see if through function calling, SQL query can be reliably constructed and utilized rather than training a SQL specific model. 
-We do not include SQL in the live leaderboard rankings, since evaluating SQL through AST or Executing them remains an open question. None-the-less, we release this hand-curated data-set 
+We do not include SQL in the live leaderboard rankings, since evaluating SQL through AST or executing them remains an open question. None-the-less, we release this hand-curated data-set 
 for the benefit of the community. 
 
 **Java and Javascript**: Despite function calling formats being the same across most programming languages, each programming language has language specific types. For example, C has pointer type, Java has HashMap type. The goal of this test category is to understand how well the function calling model can be extended to not just JSON and Python type but all the language specific typings.
