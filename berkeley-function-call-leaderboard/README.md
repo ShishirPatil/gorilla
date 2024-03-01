@@ -83,7 +83,7 @@ Testing type: XXX, success rate: XXX
 Below is a list of model we support to run our leaderboard evaluation against. If supported function calling, we will follow its function calling format provided by official documentations. Else, we will construct system message to prompt the model to generate function calls in the right format.
 |Model | Function Calling |
 |---|---|
-|gorilla-openfunctions-v0 | Supported|
+|gorilla-openfunctions-v0 | Not supported|
 |gorilla-openfunctions-v2 | Supported|
 |gpt-*| Supported|
 |glaiveai|  Supported| 

@@ -41,9 +41,9 @@ def build_client(model_name):
     elif "Nexus" in model_name:
         return None
     elif "gorilla-openfunctions-v2" in model_name:
-        import openai
-        openai.api_key = "EMPTY"
-        openai.api_base = "http://luigi.millennium.berkeley.edu:8000/v1"
+        # import openai
+        # openai.api_key = "EMPTY"
+        # openai.api_base = "https://luigi.millennium.berkeley.edu:443/v1"
         return None
     elif "firework" in model_name:
         from openai import OpenAI
@@ -114,6 +114,25 @@ SYSTEM_PROMPT_FOR_CHAT_MODEL = """"
     """
 USER_PROMPT_FOR_CHAT_MODEL = "Questions:{user_prompt}\nHere is a list of functions in JSON format that you can invoke:\n{functions}. Should you decide to return the function call(s), NO other text MUST be included."
 
+def get_gorilla_response(prompt, function, model, temperature):
+    requestData = {
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "functions": function,
+        "temperature": temperature,
+    }
+    url = "https://luigi.millennium.berkeley.edu:443/v1/chat/completions"
+    response = requests.post(
+        url,
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": "EMPTY",  # Hosted for free with ❤️ from UC Berkeley
+        },
+        data=json.dumps(requestData),
+    )
+    jsonResponse = response.json()
+    directCode = jsonResponse["choices"][0]["message"]["content"]
+    return directCode
 
 def call_to_model(
     client, model, user_prompt, function, max_tokens, temperature, top_p, timeout
@@ -121,6 +140,7 @@ def call_to_model(
     """
     Perform A single request to selected model based on the parameters.
     """
+    result = None
     if "gpt" in model or "firework" in model:
         # Build OAI tool calls.
         oai_tool = []
@@ -256,16 +276,11 @@ def call_to_model(
     elif "gorilla-openfunctions-v2" in model:
         import openai
         try:
-            completion = openai.ChatCompletion.create(
-                model="gorilla-openfunctions-v2",
-                temperature=args.temperature,
-                messages=[{"role": "user", "content": user_prompt}],
-                functions=function,
-            )
-        except:
+            completion = get_gorilla_response(user_prompt, function, model, temperature)
+        except Exception as e:
             result = "Error"
             return result
-        result = completion.choices[0].message.content
+        result = completion
 
     elif "Nexus" in model:
         raven_prompt = format_raven_function(user_prompt, function)
@@ -429,7 +444,6 @@ if __name__ == "__main__":
                 ) as f:
                     for line in f:
                         num_existing_result += 1
-
             for index, test_case in enumerate(tqdm(test_cases)):
                 if index < num_existing_result:
                     continue
