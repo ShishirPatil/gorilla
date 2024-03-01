@@ -54,7 +54,8 @@
 
     <div class="highlight-clean" style="padding-bottom: 10px">
         <!-- Title Section -->
-        <h1 class="text-center"><img src="assets/img/Cal.png" alt="UC Berkeley Logo" class="header-image"> Berkeley Function-Calling Leaderboard</h1>
+        <h1 class="text-center"><img src="assets/img/Cal.png" alt="UC Berkeley Logo" class="header-image"> Berkeley
+            Function-Calling Leaderboard</h1>
         <div>
             <p></p>
         </div>
@@ -79,7 +80,11 @@
             <h2>Leaderboard</h2>
 
             <p class="text-center">
-                This live leaderboard evaluates the LLM's ability to call functions (aka tools) accurately. This leaderboard consists of real-world data and will be updated periodically. For more information on the evaluation dataset and methodology, please refer to our <a href="blogs/8_berkeley_function_calling_leaderboard.html">blog post</a> and <a href="https://github.com/ShishirPatil/gorilla">code release</a>.
+                This live leaderboard evaluates the LLM's ability to call functions (aka tools) accurately. This
+                leaderboard consists of real-world data and will be updated periodically. For more information on the
+                evaluation dataset and methodology, please refer to our <a
+                    href="blogs/8_berkeley_function_calling_leaderboard.html">blog post</a> and <a
+                    href="https://github.com/ShishirPatil/gorilla">code release</a>.
             </p>
             <button id="expand-btn" onclick="toggleExpand()">Expand/Collapse Table</button>
             <div class="table-container">
@@ -465,7 +470,8 @@
             <p class="text-center">
                 The following chart shows the comparison of the models based on a few metrics.
 
-                You can select and deselect which models to compare. More information on each metric can be found in the <a href="blogs/8_berkeley_function_calling_leaderboard.html#benchmarking">blog</a>.
+                You can select and deselect which models to compare. More information on each metric can be found in the
+                <a href="blogs/8_berkeley_function_calling_leaderboard.html#benchmarking">blog</a>.
             </p>
             <div>
                 <canvas id="myChart"></canvas>
@@ -480,9 +486,10 @@
             <h2>Function Calling Demo</h2>
             <p class="text-center">
                 In this demo for function calling, you can enter a prompt and a
-                function and see the output. There will be two outputs (and two output boxes accordingly): one in the 
+                function and see the output. There will be two outputs (and two output boxes accordingly): one in the
                 actual code format (the top one) and the other in the OpenAI compatible format (the bottom one).
-                Note that the OpenAI compatible format output is only available if the actual code output has valid syntax and can be parsed.
+                Note that the OpenAI compatible format output is only available if the actual code output has valid
+                syntax and can be parsed.
                 We also provide you a few examples to try out and get a sense of the input format and the output.
             </p>
             <!-- Example Section -->
@@ -532,16 +539,14 @@
                 </div>
                 <div class="output-section">
                     <div class="output" id="code-output">Output will be shown here:</div>
-                    <div class="output" id="json-output" style="white-space: pre-wrap;">OpenAI compatible format output here:</div>
-                    <!-- <div>
-                        <p></p>
-                        <button id="exec-btn" class="api-explorer-button" style="display: none;">Execute</button>
-                        <p></p>
-                    </div>
+                    <div class="output" id="json-output" style="white-space: pre-wrap;">OpenAI compatible format output
+                        here:</div>
 
-                    <div class="output" id="exec-output" style="display: none;"> Execute Result: </div> -->
-                    <div>
-                        <button id="report-issue-btn" style="display: none;">Report Issue</button>
+                    <div class="button-container">
+                            <button class="thumbs" id="thumbs-up-btn" onclick="sendFeedbackPositive()" style="display: none;">👍</button>
+                            <button class="thumbs thumbs-down" id="thumbs-down-btn" onclick="sendFeedbackNegative()" style="display: none;">👎</button>
+
+                            <button id="report-issue-btn" style="display: none;">Report Issue</button>
                     </div>
                 </div>
             </div>
@@ -565,7 +570,7 @@
                 <input type="Email" name="Email" placeholder="Your Email" required>
                 <input type="Organization" name="Organization" placeholder="Your Organization">
                 <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                <button type="submit" class="btn-secondary btn-secondary2">Submit</button>
+                <button type="submit" class="btn-secondary2">Submit</button>
             </form>
             <span id="msg"></span>
         </div>

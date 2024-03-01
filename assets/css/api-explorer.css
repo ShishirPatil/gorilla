@@ -177,11 +177,6 @@
 #report-issue-btn {
     background-color: #a53931;
     color: white;
-    border: 2px solid transparent;
-    padding: 8px 16px;
-    font-size: 14px;
-    border-radius: 3px;
-    cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
 }
 
@@ -204,4 +199,53 @@
     /* Even darker for the pressed effect */
     transform: scale(0.98);
     /* Slightly smaller on click */
+}
+
+@media only screen and (max-width: 768px) {
+    #report-issue-btn {
+        padding: 0;
+    }
+}
+
+
+.thumbs {
+    background-color: #4CAF50;
+    /* Green background */
+    color: white;
+    /* White text */
+}
+
+
+.thumbs-down {
+    background-color: #f44336;
+    /* Red background */
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    /* This will ensure the children take up full space between them */
+    width: 100%;
+    /* Adjust this as needed */
+    align-items: center;
+}
+
+
+.button-container button {
+    font-size: 16px;
+    /* Adjust the font size as needed */
+    color: white;
+    /* Text color */
+    /* Background color */
+    border: none;
+    border-radius: 5px;
+    /* Rounded corners */
+    padding: 10px 20px;
+    /* Padding inside the button */
+    margin: 0 10px;
+    /* Space between buttons */
+    cursor: pointer;
+    /* Changes the cursor to a pointer on hover */
+    transition: background-color 0.3s ease;
+    /* Smooth transition for hover effect */
 }
