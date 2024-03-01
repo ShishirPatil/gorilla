@@ -120,9 +120,16 @@ for i in range(len(result_data)):
             total += 1
             continue
     if "gorilla_v0.json" == input_file:
-        result = result_data[i]["text"]
-    if input_file is not None and "git" in input_file:
+        result = result_data[i]["text"] 
+        print(result)
+    if (input_file is not None and "git" in input_file):
         result = result_data[i]["text"].split("<<function>>")[1:]
+    if "gorilla-openfunctions-v2" in model_name:
+        result = result_data[i]["result"]
+        regex = r"\w+\([^()]*\)"
+
+        # Find all matches of function calls
+        result = re.findall(regex, result)
     if input_file is not None and "deepseek.json" in input_file:
         result_data[i]["text"] = result_data[i]["text"].replace("\n","")
         try:

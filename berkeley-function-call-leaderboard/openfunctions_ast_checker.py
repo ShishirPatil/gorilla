@@ -276,7 +276,7 @@ else:
         for line in f:
             example.append(json.loads(line)) 
 answer = []
-if test_category == "miss_param" or test_category == "no_function_call" or test_category == "chatable":
+if test_category == "miss_param" or test_category == "relevance" or test_category == "chatable":
     pass
 else:
     with open(possible_answer_file,"r") as f:
@@ -297,16 +297,16 @@ if "gpt" in file_name or "glaive" in file_name or "fire" in file_name or "mistra
             try:
                 example[k]["text"] = json.loads(example[k]["text"].split("<functioncall>")[1].replace("\'{","{").replace("\'}","}"))
                 example[k]["text"] = [{example[k]["text"]["name"]:example[k]["text"]["arguments"]}]
-                if test_category == "miss_param" or test_category == "no_function_call" or test_category == "chatable":
+                if test_category == "miss_param" or test_category == "relevance" or test_category == "chatable":
                     total += 1
                     continue
             except:
-                if test_category == "miss_param" or test_category == "no_function_call" or test_category == "chatable":
+                if test_category == "miss_param" or test_category == "relevance" or test_category == "chatable":
                     total += 1
                     success += 1
                     continue
         else:
-            if test_category == "miss_param" or test_category == "no_function_call" or test_category == "chatable":
+            if test_category == "miss_param" or test_category == "relevance" or test_category == "chatable":
                 if example[k]["result"] == []:
                     total += 1
                     success += 1
@@ -449,7 +449,7 @@ else:
                 func = "[" + func
             if not func.endswith("]"):
                 func = func + "]"
-        if test_category == "miss_param" or test_category == "no_function_call" or test_category == "chatable":
+        if test_category == "miss_param" or test_category == "relevance" or test_category == "chatable":
             try:
                 x = build_ast(func)
                 total += 1

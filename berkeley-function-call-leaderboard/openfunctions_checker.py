@@ -14,8 +14,8 @@ import argparse
         `python3 openfunctions_checker.py --model gorilla-openfunctions-v2 --test_category executable` will check the correctness of the outputs of the model gorilla-openfunctions-v2 for the executable test category.
         `python3 openfunctions_checker.py --model gorilla-openfunctions-v2 --test_category all` will check the correctness of the outputs of the model gorilla-openfunctions-v2 for all the test categories.
     Here is a possible list of test categories:
-        - generic
-        - executable_generic
+        - simple
+        - executable_simple
         - executable_parallel_function
         - parallel_function
         - multiple_function
@@ -23,7 +23,7 @@ import argparse
         - executable_multiple_function
         - executable_parallel_multiple_function
         - chatable
-        - no_function_call
+        - relevance
         - sql
         - java
         - javascript
@@ -51,7 +51,7 @@ args = get_args()
 
 # If the test category is all, we will check all the tests categories.
 if args.test_category == "all":
-    test_categories = ["generic", 
+    test_categories = ["simple", 
                        "executable_simple", 
                        "executable_parallel_function", 
                        "parallel_function",
@@ -60,7 +60,7 @@ if args.test_category == "all":
                        "executable_multiple_function"
                        "executable_parallel_multiple_function",
                        "chatable",
-                       "no_function_call",
+                       "relevance",
                        "sql",
                        "java",
                        "javascript",
@@ -68,7 +68,7 @@ if args.test_category == "all":
 
 # If the test category is executable, we will check all the executable tests categories.    
 elif args.test_category == "executable":
-    test_categories = ["executable_generic", 
+    test_categories = ["executable_simple", 
                        "executable_parallel_function", 
                        "executable_multiple_function",
                        "executable_parallel_multiple_function",
@@ -81,7 +81,7 @@ elif args.test_category == "ast":
                        "multiple_function",
                        "parallel_multiple_function",
                        "chatable",
-                       "no_function_call",
+                       "relevance",
                        "sql",
                        "java",
                        "javascript",]

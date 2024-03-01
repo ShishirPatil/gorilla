@@ -53,11 +53,12 @@ with open(f"{args.input_file}", 'r') as f:
             # Handle the case where a line is not a valid JSON object
             print("Invalid JSON line skipped.")
             continue
-if args.output_file == "":
+
+if args.output_file != "":
     with open(f"{args.output_file}", 'w') as f:
         for modified_line in modified_data:
-            f.write(modified_line + '\n')  # Write each modified JSON object back to the file
+            f.write(modified_line + '\n')  # Write each modified JSON object back to the output file
 else:
     with open(f"{args.input_file}", 'w') as f:
         for modified_line in modified_data:
-            f.write(modified_line + '\n')  # Write each modified JSON object back to the file
+            f.write(modified_line + '\n')  # Write each modified JSON object overwrite the input file

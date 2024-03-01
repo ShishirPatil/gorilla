@@ -30,7 +30,7 @@ def build_client(model_name):
     # Fill in the API key for the model you want to test.
     if "gpt" in model_name:
         from openai import OpenAI
-        client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        client = OpenAI(api_key= os.environ.get("OPENAI_API_KEY"))
     elif "claude" in model_name:
         from anthropic import Anthropic
         client = Anthropic(
@@ -54,12 +54,12 @@ def build_client(model_name):
 
 
 test_categories = {
-    "executable_generic": "gorilla_openfunctions_v1_test_executable_simple.json",
+    "executable_simple": "gorilla_openfunctions_v1_test_executable_simple.json",
     "executable_parallel_function": "gorilla_openfunctions_v1_test_executable_parallel_function.json",
     "executable_multiple_function": "gorilla_openfunctions_v1_test_executable_multiple_function.json",
     "executable_parallel_multiple_function": "gorilla_openfunctions_v1_test_executable_parallel_multiple_function.json",
-    "generic": "gorilla_openfunctions_v1_test_simple.json",
-    "no_function_call": "gorilla_openfunctions_v1_test_no_function_call.json",
+    "simple": "gorilla_openfunctions_v1_test_simple.json",
+    "relevance": "gorilla_openfunctions_v1_test_relevance.json",
     "parallel_function": "gorilla_openfunctions_v1_test_parallel_function.json",
     "multiple_function": "gorilla_openfunctions_v1_test_multiple_function.json",
     "parallel_multiple_function": "gorilla_openfunctions_v1_test_parallel_multiple_function.json",
@@ -255,13 +255,16 @@ def call_to_model(
         result = chat_response.choices[0].message.content
     elif "gorilla-openfunctions-v2" in model:
         import openai
-        completion = openai.ChatCompletion.create(
-            model="gorilla-openfunctions-v2",
-            temperature=args.temperature,
-            messages=[{"role": "user", "content": user_prompt}],
-            functions=function,
-        )
-        print(completion.choices[0].message.content)
+        try:
+            completion = openai.ChatCompletion.create(
+                model="gorilla-openfunctions-v2",
+                temperature=args.temperature,
+                messages=[{"role": "user", "content": user_prompt}],
+                functions=function,
+            )
+        except:
+            result = "Error"
+            return result
         result = completion.choices[0].message.content
 
     elif "Nexus" in model:
