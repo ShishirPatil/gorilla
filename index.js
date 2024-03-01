@@ -86,12 +86,12 @@ document.getElementById('submit-btn').addEventListener('click', async function (
 
 
 document.getElementById('report-issue-btn').addEventListener('click', function () {
-    var inputText = encodeURIComponent(document.getElementById('input-text').value);
-    var funcDef = encodeURIComponent(document.getElementById('input-function').value);
-    var temperatureValue = encodeURIComponent(document.getElementById('temperatureSlider').value);
-    var model = encodeURIComponent(document.getElementById("model-dropdown").value);
-    var codeOutputText = encodeURIComponent(document.getElementById('code-output').innerText);
-    var jsonOutputText = encodeURIComponent(document.getElementById('json-output').innerText);
+    var inputText = document.getElementById('input-text').value;
+    var funcDef = document.getElementById('input-function').value;
+    var temperatureValue = document.getElementById('temperatureSlider').value;
+    var model = document.getElementById("model-dropdown").value;
+    var codeOutputText = document.getElementById('code-output').innerText;
+    var jsonOutputText = document.getElementById('json-output').innerText;
     if (inputText === "" || funcDef === "") {
         alert("Please provide input and function definition to send feedback.")
         return;
@@ -375,12 +375,12 @@ function sendFeedback(vote) {
                 'Access-Control-Request-Headers': '*',
                 'Authorization': `Bearer ${accessToken}`
             };
-            var inputText = encodeURIComponent(document.getElementById('input-text').value);
-            var funcDef = encodeURIComponent(document.getElementById('input-function').value);
-            var temperatureValue = encodeURIComponent(document.getElementById('temperatureSlider').value);
-            var model = encodeURIComponent(document.getElementById("model-dropdown").value);
-            var codeOutputText = encodeURIComponent(document.getElementById('code-output').innerText);
-            var jsonOutputText = encodeURIComponent(document.getElementById('json-output').innerText);
+            var inputText = document.getElementById('input-text').value;
+            var funcDef = document.getElementById('input-function').value;
+            var temperatureValue = document.getElementById('temperatureSlider').value;
+            var model = document.getElementById("model-dropdown").value;
+            var codeOutputText = document.getElementById('code-output').innerText;
+            var jsonOutputText = document.getElementById('json-output').innerText;
 
             if (inputText === "" || funcDef === "") {
                 alert("Please provide input and function definition to send feedback.")
