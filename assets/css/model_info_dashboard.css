@@ -1,75 +1,78 @@
-#leaderboard {
-    width: 100%;
+#model_info_dashboard {
+    width: 90%;
     border-collapse: collapse;
+    justify-content: center;
 }
 
-#leaderboard th,
-#leaderboard td {
+#model_info_dashboard th,
+#model_info_dashboard td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
 }
 
-#leaderboard tbody tr:nth-child(1) {
-    background-color: #fff176;
+#model_info_dashboard tbody tr:nth-child(1),
+#model_info_dashboard tbody tr:nth-child(2),
+#model_info_dashboard tbody tr:nth-child(4),
+#model_info_dashboard tbody tr:nth-child(5),
+#model_info_dashboard tbody tr:nth-child(6),
+#model_info_dashboard tbody tr:nth-child(7),
+#model_info_dashboard tbody tr:nth-child(8),
+#model_info_dashboard tbody tr:nth-child(9),
+#model_info_dashboard tbody tr:nth-child(10),
+#model_info_dashboard tbody tr:nth-child(13),
+#model_info_dashboard tbody tr:nth-child(14){
+    background-color: white;
     /* Lightest yellow for rank 1 */
 }
 
-#leaderboard tbody tr:nth-child(2) {
-    background-color: #fff59d;
-    /* Medium yellow for rank 2 */
-}
 
-#leaderboard tbody tr:nth-child(3) {
-    background-color: #fff9c4;
+#model_info_dashboard tbody tr:nth-child(3),
+#model_info_dashboard tbody tr:nth-child(11),
+#model_info_dashboard tbody tr:nth-child(12),
+#model_info_dashboard tbody tr:nth-child(15),
+#model_info_dashboard tbody tr:nth-child(16),
+#model_info_dashboard tbody tr:nth-child(17),
+#model_info_dashboard tbody tr:nth-child(18){
+    background-color: #DFEBEB;
     /* Darker yellow for rank 3 */
 }
 
-#leaderboard td:nth-child(2) {
-    background-color: #e57e81;
-}
+/* #model_info_dashboard td:nth-child(2) {
+    background-color: white;
+} */
 
-#leaderboard td:nth-child(7),
-#leaderboard td:nth-child(6),
-#leaderboard td:nth-child(8) {
-    background-color: #48eac9;
+/* #model_info_dashboard td:nth-child(6),
+#model_info_dashboard td:nth-child(7),
+#model_info_dashboard td:nth-child(8),
+#model_info_dashboard td:nth-child(9) {
+    background-color: white;
 }
-
-#leaderboard td:nth-child(11),
-#leaderboard td:nth-child(10),
-#leaderboard td:nth-child(12),
-#leaderboard td:nth-child(9) {
-    background-color: #7ad5f0;
+#model_info_dashboard td:nth-child(10),
+#model_info_dashboard td:nth-child(11),
+#model_info_dashboard td:nth-child(12),
+#model_info_dashboard td:nth-child(13) {
+    background-color:white;
 }
-
-
-#leaderboard td:nth-child(15),
-#leaderboard td:nth-child(14),
-#leaderboard td:nth-child(16),
-#leaderboard td:nth-child(13) {
-    background-color: #d5f8d5;
-}
-
-#leaderboard td:nth-child(17) {
-    background-color: #65d57f;
-}
+#model_info_dashboard td:nth-child(14) {
+    background-color: white;
+} */
 
 
 
 /* Ensure the table uses the full width of its container */
 table {
-    table-layout: auto;
+    width: 100%;
+    table-layout: fixed;
     border-collapse: collapse; 
     width: auto; /* Allows the table to expand naturally based on content */
     border-collapse: collapse;
     table-layout: auto; /* Default layout for the table */
-    align-items: center;
-    justify-content: center;
 }
 
 
 
-#leaderboard td, #leaderboard th {
+#model_info_dashboard td, #model_info_dashboard th {
     word-wrap: break-word; /* Allows words to break and wrap to the next line */
     overflow-wrap: break-word; /* Ensures wrapping at break points */
     padding: 8px; /* Adjust padding as needed */
@@ -89,8 +92,6 @@ table {
     max-height: 500px; /* Set the maximum height of the table to 8 rows */
     display: block;
     border: 1px solid #ddd; /* Optional: Adds a border for better visibility */
-    align-items: center;
-    justify-content: center;
 }
 
 
@@ -124,41 +125,3 @@ table {
         width: 100%; /* Adjust the width to your preference */
     }
   }
-
-.detail-row {
-    display: none; /* Hide detail rows initially */
-}
-
-.detail-small-header {
-    display: none; /* Hide detail headers initially */
-}
-
-.detail-header {
-    display: none; /* Hide detail headers initially */
-}
-
-.summary-small-header {
-    display: "";
-}
-
-.summary-row {
-    display: "";
-}
-
-
-#expand-btn {
-    font-size: 14px;
-    /* Adjust the font size as needed */
-    color: white;
-    /* Text color */
-    background-color: #6c757d;
-    /* Background color */
-    border: none;
-    border-radius: 5px;
-    /* Rounded corners */
-    padding: 5px 5px;
-    cursor: pointer;
-    /* Changes the cursor to a pointer on hover */
-    transition: background-color 0.3s ease;
-    /* Smooth transition for hover effect */
-}

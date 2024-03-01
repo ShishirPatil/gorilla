@@ -54,7 +54,8 @@
 
     <div class="highlight-clean" style="padding-bottom: 10px">
         <!-- Title Section -->
-        <h1 class="text-center"><img src="assets/img/Cal.png" alt="UC Berkeley Logo" class="header-image"> Berkeley Function-Calling Leaderboard</h1>
+        <h1 class="text-center"><img src="assets/img/Cal.png" alt="UC Berkeley Logo" class="header-image"> Berkeley
+            Function-Calling Leaderboard</h1>
         <div>
             <p></p>
         </div>
@@ -79,35 +80,42 @@
             <h2>Leaderboard</h2>
 
             <p class="text-center">
-                This live leaderboard evaluates the LLM's ability to call functions (aka tools) accurately. This leaderboard consists of real-world data and will be updated periodically. For more information on the evaluation dataset and methodology, please refer to our <a href="blogs/8_berkeley_function_calling_leaderboard.html">blog post</a> and <a href="https://github.com/ShishirPatil/gorilla">code release</a>.
+                This live leaderboard evaluates the LLM's ability to call functions (aka tools) accurately. This
+                leaderboard consists of real-world data and will be updated periodically. For more information on the
+                evaluation dataset and methodology, please refer to our <a
+                    href="blogs/8_berkeley_function_calling_leaderboard.html">blog post</a> and <a
+                    href="https://github.com/ShishirPatil/gorilla">code release</a>.
             </p>
-
+            <button id="expand-btn" onclick="toggleExpand()">Expand/Collapse Table</button>
             <div class="table-container">
 
-                <table>
+                <table id="leaderboard-table">
 
                     <thead>
                         <tr>
-                            <th colspan="5"></th>
-                            <th colspan="4">Abstract Syntax Tree (AST) Evaluation</th>
-                            <th colspan="4">Evaluation by Executing APIs</th>
-                            <th colspan="1"></th>
+                            <th class="detail-header" colspan="5"></th>
+                            <th class="detail-header" colspan="4">Abstract Syntax Tree (AST) Evaluation</th>
+                            <th class="detail-header" colspan="4">Evaluation by Executing APIs</th>
+                            <th class="detail-header" colspan="1"></th>
                         </tr>
                         <tr>
                             <th>Rank</th>
                             <th>Overall Acc</th>
                             <th>Model</th>
-                            <th>Organization</th>
-                            <th>License</th>
-                            <th>Simple Function</th>
-                            <th>Multiple Functions</th>
-                            <th>Parallel Functions</th>
-                            <th>Parallel Multiple</th>
-                            <th>Simple Function</th>
-                            <th>Multiple Functions</th>
-                            <th>Parallel Functions</th>
-                            <th>Parallel Multiple</th>
-                            <th>Relevance Detection</th>
+                            <th class="detail-small-header">Organization</th>
+                            <th class="detail-small-header">License</th>
+                            <th class="summary-small-header">AST Summary</th>
+                            <th class="summary-small-header">Exec Summary</th>
+                            <th class="summary-small-header">Relevance</th>
+                            <th class="detail-small-header">Simple Function</th>
+                            <th class="detail-small-header">Multiple Functions</th>
+                            <th class="detail-small-header">Parallel Functions</th>
+                            <th class="detail-small-header">Parallel Multiple</th>
+                            <th class="detail-small-header">Simple Function</th>
+                            <th class="detail-small-header">Multiple Functions</th>
+                            <th class="detail-small-header">Parallel Functions</th>
+                            <th class="detail-small-header">Parallel Multiple</th>
+                            <th class="detail-small-header">Relevance Detection</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -117,17 +125,20 @@
                             <td>
                                 <a href=''>GPT-4-0125-Preview</a>
                             </td>
-                            <td>OpenAI</td>
-                            <td>Proprietary</td>
-                            <td>82.18</td>
-                            <td>90.00</td>
-                            <td>90.00</td>
-                            <td>91.00</td>
-                            <td>54.12</td>
-                            <td>70.00</td>
-                            <td>76.00</td>
-                            <td>55.00</td>
-                            <td>87.50</td>
+                            <td class="detail-row">OpenAI</td>
+                            <td class="detail-row">Proprietary</td>
+                            <td class="summary-row">88.30</td>
+                            <td class="summary-row">63.78</td>
+                            <td class="summary-row">87.50</td>
+                            <td class="detail-row">82.18</td>
+                            <td class="detail-row">90.00</td>
+                            <td class="detail-row">90.00</td>
+                            <td class="detail-row">91.00</td>
+                            <td class="detail-row">54.12</td>
+                            <td class="detail-row">70.00</td>
+                            <td class="detail-row">76.00</td>
+                            <td class="detail-row">55.00</td>
+                            <td class="detail-row">87.50</td>
                         </tr>
                         <tr>
                             <td>2</td>
@@ -135,17 +146,20 @@
                             <td>
                                 <a href=''>GPT-4-1106-Preview</a>
                             </td>
-                            <td>OpenAI</td>
-                            <td>Proprietary</td>
-                            <td>81.64</td>
-                            <td>89.50</td>
-                            <td>92.00</td>
-                            <td>92.00</td>
-                            <td>53.53</td>
-                            <td>62.00</td>
-                            <td>72.00</td>
-                            <td>50.00</td>
-                            <td>88.75</td>
+                            <td class="detail-row">OpenAI</td>
+                            <td class="detail-row">Proprietary</td>
+                            <td class="summary-row">88.78</td>
+                            <td class="summary-row">59.38</td>
+                            <td class="summary-row">88.75</td>
+                            <td class="detail-row">81.64</td>
+                            <td class="detail-row">89.50</td>
+                            <td class="detail-row">92.00</td>
+                            <td class="detail-row">92.00</td>
+                            <td class="detail-row">53.53</td>
+                            <td class="detail-row">62.00</td>
+                            <td class="detail-row">72.00</td>
+                            <td class="detail-row">50.00</td>
+                            <td class="detail-row">88.75</td>
                         </tr>
                         <tr>
                             <td>3</td>
@@ -153,17 +167,20 @@
                             <td>
                                 <a href=''>OpenFunctions-v2</a>
                             </td>
-                            <td>Gorilla LLM</td>
-                            <td>Apache 2.0</td>
-                            <td>88.73</td>
-                            <td>89.50</td>
-                            <td>79.50</td>
-                            <td>78.00</td>
-                            <td>78.82</td>
-                            <td>74.00</td>
-                            <td>76.00</td>
-                            <td>60.00</td>
-                            <td>71.67</td>
+                            <td class="detail-row">Gorilla LLM</td>
+                            <td class="detail-row">Apache 2.0</td>
+                            <td class="summary-row">83.93</td>
+                            <td class="summary-row">72.20</td>
+                            <td class="summary-row">71.67</td>
+                            <td class="detail-row">88.73</td>
+                            <td class="detail-row">89.50</td>
+                            <td class="detail-row">79.50</td>
+                            <td class="detail-row">78.00</td>
+                            <td class="detail-row">78.82</td>
+                            <td class="detail-row">74.00</td>
+                            <td class="detail-row">76.00</td>
+                            <td class="detail-row">60.00</td>
+                            <td class="detail-row">71.67</td>
                         </tr>
                         <tr>
                             <td>4</td>
@@ -171,17 +188,20 @@
                             <td>
                                 <a href=''>GPT-3.5-Turbo</a>
                             </td>
-                            <td>OpenAI</td>
-                            <td>Proprietary</td>
-                            <td>81.27</td>
-                            <td>88.00</td>
-                            <td>87.50</td>
-                            <td>88.00</td>
-                            <td>74.12</td>
-                            <td>74.00</td>
-                            <td>70.00</td>
-                            <td>47.50</td>
-                            <td>68.33</td>
+                            <td class="detail-row">OpenAI</td>
+                            <td class="detail-row">Proprietary</td>
+                            <td class="summary-row">86.19</td>
+                            <td class="summary-row">66.41</td>
+                            <td class="summary-row">68.33</td>
+                            <td class="detail-row">81.27</td>
+                            <td class="detail-row">88.00</td>
+                            <td class="detail-row">87.50</td>
+                            <td class="detail-row">88.00</td>
+                            <td class="detail-row">74.12</td>
+                            <td class="detail-row">74.00</td>
+                            <td class="detail-row">70.00</td>
+                            <td class="detail-row">47.50</td>
+                            <td class="detail-row">68.33</td>
                         </tr>
                         <tr>
                             <td>5</td>
@@ -189,17 +209,20 @@
                             <td>
                                 <a href=''>Mistral-medium</a>
                             </td>
-                            <td>Mistral AI</td>
-                            <td>Proprietary</td>
-                            <td>80.18</td>
-                            <td>84.50</td>
-                            <td>71.00</td>
-                            <td>68.00</td>
-                            <td>75.88</td>
-                            <td>72.00</td>
-                            <td>62.00</td>
-                            <td>47.50</td>
-                            <td>90.00</td>
+                            <td class="detail-row">Mistral AI</td>
+                            <td class="detail-row">Proprietary</td>
+                            <td class="summary-row">75.92</td>
+                            <td class="summary-row">64.34</td>
+                            <td class="summary-row">90.00</td>
+                            <td class="detail-row">80.18</td>
+                            <td class="detail-row">84.50</td>
+                            <td class="detail-row">71.00</td>
+                            <td class="detail-row">68.00</td>
+                            <td class="detail-row">75.88</td>
+                            <td class="detail-row">72.00</td>
+                            <td class="detail-row">62.00</td>
+                            <td class="detail-row">47.50</td>
+                            <td class="detail-row">90.00</td>
                         </tr>
                         <tr>
                             <td>6</td>
@@ -207,17 +230,20 @@
                             <td>
                                 <a href=''>Claude-2.1</a>
                             </td>
-                            <td>Anthropic</td>
-                            <td>Proprietary</td>
-                            <td>85.64</td>
-                            <td>83.00</td>
-                            <td>72.00</td>
-                            <td>56.50</td>
-                            <td>61.18</td>
-                            <td>48.00</td>
-                            <td>60.00</td>
-                            <td>45.00</td>
-                            <td>78.33</td>
+                            <td class="detail-row">Anthropic</td>
+                            <td class="detail-row">Proprietary</td>
+                            <td class="summary-row">74.28</td>
+                            <td class="summary-row">53.55</td>
+                            <td class="summary-row">78.33</td>
+                            <td class="detail-row">85.64</td>
+                            <td class="detail-row">83.00</td>
+                            <td class="detail-row">72.00</td>
+                            <td class="detail-row">56.50</td>
+                            <td class="detail-row">61.18</td>
+                            <td class="detail-row">48.00</td>
+                            <td class="detail-row">60.00</td>
+                            <td class="detail-row">45.00</td>
+                            <td class="detail-row">78.33</td>
                         </tr>
                         <tr>
                             <td>7</td>
@@ -225,17 +251,20 @@
                             <td>
                                 <a href=''>Mistral-tiny</a>
                             </td>
-                            <td>Mistral AI</td>
-                            <td>Proprietary</td>
-                            <td>59.27</td>
-                            <td>59.50</td>
-                            <td>53.50</td>
-                            <td>41.50</td>
-                            <td>58.24</td>
-                            <td>64.00</td>
-                            <td>42.00</td>
-                            <td>40.00</td>
-                            <td>77.08</td>
+                            <td class="detail-row">Mistral AI</td>
+                            <td class="detail-row">Proprietary</td>
+                            <td class="summary-row">53.44</td>
+                            <td class="summary-row">51.06</td>
+                            <td class="summary-row">77.08</td>
+                            <td class="detail-row">59.27</td>
+                            <td class="detail-row">59.50</td>
+                            <td class="detail-row">53.50</td>
+                            <td class="detail-row">41.50</td>
+                            <td class="detail-row">58.24</td>
+                            <td class="detail-row">64.00</td>
+                            <td class="detail-row">42.00</td>
+                            <td class="detail-row">40.00</td>
+                            <td class="detail-row">77.08</td>
                         </tr>
                         <tr>
                             <td>8</td>
@@ -243,17 +272,20 @@
                             <td>
                                 <a href=''>Claude-instant</a>
                             </td>
-                            <td>Anthropic</td>
-                            <td>Proprietary</td>
-                            <td>68.73</td>
-                            <td>59.00</td>
-                            <td>53.00</td>
-                            <td>39.50</td>
-                            <td>51.76</td>
-                            <td>52.00</td>
-                            <td>50.00</td>
-                            <td>37.50</td>
-                            <td>61.67</td>
+                            <td class="detail-row">Anthropic</td>
+                            <td class="detail-row">Proprietary</td>
+                            <td class="summary-row">55.06</td>
+                            <td class="summary-row">47.81</td>
+                            <td class="summary-row">61.67</td>
+                            <td class="detail-row">68.73</td>
+                            <td class="detail-row">59.00</td>
+                            <td class="detail-row">53.00</td>
+                            <td class="detail-row">39.50</td>
+                            <td class="detail-row">51.76</td>
+                            <td class="detail-row">52.00</td>
+                            <td class="detail-row">50.00</td>
+                            <td class="detail-row">37.50</td>
+                            <td class="detail-row">61.67</td>
                         </tr>
                         <tr>
                             <td>9</td>
@@ -261,17 +293,20 @@
                             <td>
                                 <a href=''>Mistral-large</a>
                             </td>
-                            <td>Mistral AI</td>
-                            <td>Proprietary</td>
-                            <td>71.82</td>
-                            <td>90.50</td>
-                            <td>4.00</td>
-                            <td>0.00</td>
-                            <td>61.76</td>
-                            <td>66.00</td>
-                            <td>0.00</td>
-                            <td>5.00</td>
-                            <td>84.58</td>
+                            <td class="detail-row">Mistral AI</td>
+                            <td class="detail-row">Proprietary</td>
+                            <td class="summary-row">41.58</td>
+                            <td class="summary-row">33.19</td>
+                            <td class="summary-row">84.58</td>
+                            <td class="detail-row">71.82</td>
+                            <td class="detail-row">90.50</td>
+                            <td class="detail-row">4.00</td>
+                            <td class="detail-row">0.00</td>
+                            <td class="detail-row">61.76</td>
+                            <td class="detail-row">66.00</td>
+                            <td class="detail-row">0.00</td>
+                            <td class="detail-row">5.00</td>
+                            <td class="detail-row">84.58</td>
                         </tr>
                         <tr>
                             <td>10</td>
@@ -279,17 +314,20 @@
                             <td>
                                 <a href=''>Nexusflow-Raven-v2</a>
                             </td>
-                            <td>Nexusflow</td>
-                            <td>Apache 2.0</td>
-                            <td>76.55</td>
-                            <td>83.50</td>
-                            <td>39.50</td>
-                            <td>34.00</td>
-                            <td>45.88</td>
-                            <td>78.00</td>
-                            <td>68.00</td>
-                            <td>45.00</td>
-                            <td>0.00</td>
+                            <td class="detail-row">Nexusflow</td>
+                            <td class="detail-row">Apache 2.0</td>
+                            <td class="summary-row">58.39</td>
+                            <td class="summary-row">59.22</td>
+                            <td class="summary-row">0.00</td>
+                            <td class="detail-row">76.55</td>
+                            <td class="detail-row">83.50</td>
+                            <td class="detail-row">39.50</td>
+                            <td class="detail-row">34.00</td>
+                            <td class="detail-row">45.88</td>
+                            <td class="detail-row">78.00</td>
+                            <td class="detail-row">68.00</td>
+                            <td class="detail-row">45.00</td>
+                            <td class="detail-row">0.00</td>
                         </tr>
                         <tr>
                             <td>11</td>
@@ -297,17 +335,20 @@
                             <td>
                                 <a href=''>Firefunction-v1</a>
                             </td>
-                            <td>Fireworks-ai</td>
-                            <td>Apache 2.0</td>
-                            <td>73.19</td>
-                            <td>87.00</td>
-                            <td>4.00</td>
-                            <td>0.00</td>
-                            <td>48.24</td>
-                            <td>64.00</td>
-                            <td>0.00</td>
-                            <td>5.00</td>
-                            <td>81.25</td>
+                            <td class="detail-row">Fireworks-ai</td>
+                            <td class="detail-row">Apache 2.0</td>
+                            <td class="summary-row">41.05</td>
+                            <td class="summary-row">29.31</td>
+                            <td class="summary-row">81.25</td>
+                            <td class="detail-row">73.19</td>
+                            <td class="detail-row">87.00</td>
+                            <td class="detail-row">4.00</td>
+                            <td class="detail-row">0.00</td>
+                            <td class="detail-row">48.24</td>
+                            <td class="detail-row">64.00</td>
+                            <td class="detail-row">0.00</td>
+                            <td class="detail-row">5.00</td>
+                            <td class="detail-row">81.25</td>
                         </tr>
                         <tr>
                             <td>12</td>
@@ -315,17 +356,20 @@
                             <td>
                                 <a href=''>Mistral-small</a>
                             </td>
-                            <td>Mistral AI</td>
-                            <td>Proprietary</td>
-                            <td>46.55</td>
-                            <td>68.00</td>
-                            <td>48.50</td>
-                            <td>58.00</td>
-                            <td>14.12</td>
-                            <td>30.00</td>
-                            <td>40.00</td>
-                            <td>37.50</td>
-                            <td>89.58</td>
+                            <td class="detail-row">Mistral AI</td>
+                            <td class="detail-row">Proprietary</td>
+                            <td class="summary-row">55.26</td>
+                            <td class="summary-row">30.41</td>
+                            <td class="summary-row">89.58</td>
+                            <td class="detail-row">46.55</td>
+                            <td class="detail-row">68.00</td>
+                            <td class="detail-row">48.50</td>
+                            <td class="detail-row">58.00</td>
+                            <td class="detail-row">14.12</td>
+                            <td class="detail-row">30.00</td>
+                            <td class="detail-row">40.00</td>
+                            <td class="detail-row">37.50</td>
+                            <td class="detail-row">89.58</td>
                         </tr>
                         <tr>
                             <td>13</td>
@@ -333,17 +377,20 @@
                             <td>
                                 <a href=''>GPT-4-0613</a>
                             </td>
-                            <td>OpenAI</td>
-                            <td>Proprietary</td>
-                            <td>74.55</td>
-                            <td>86.00</td>
-                            <td>4.00</td>
-                            <td>0.00</td>
-                            <td>37.65</td>
-                            <td>50.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>87.08</td>
+                            <td class="detail-row">OpenAI</td>
+                            <td class="detail-row">Proprietary</td>
+                            <td class="summary-row">41.14</td>
+                            <td class="summary-row">21.91</td>
+                            <td class="summary-row">87.08</td>
+                            <td class="detail-row">74.55</td>
+                            <td class="detail-row">86.00</td>
+                            <td class="detail-row">4.00</td>
+                            <td class="detail-row">0.00</td>
+                            <td class="detail-row">37.65</td>
+                            <td class="detail-row">50.00</td>
+                            <td class="detail-row">0.00</td>
+                            <td class="detail-row">0.00</td>
+                            <td class="detail-row">87.08</td>
                         </tr>
                         <tr>
                             <td>14</td>
@@ -351,17 +398,20 @@
                             <td>
                                 <a href=''>Deepseek-v1.5</a>
                             </td>
-                            <td>Deepseek</td>
-                            <td>Deepseek License</td>
-                            <td>48.36</td>
-                            <td>61.00</td>
-                            <td>35.00</td>
-                            <td>43.50</td>
-                            <td>5.29</td>
-                            <td>2.00</td>
-                            <td>0.00</td>
-                            <td>7.50</td>
-                            <td>66.25</td>
+                            <td class="detail-row">Deepseek</td>
+                            <td class="detail-row">Deepseek License</td>
+                            <td class="summary-row">46.97</td>
+                            <td class="summary-row">3.7</td>
+                            <td class="summary-row">66.25</td>
+                            <td class="detail-row">48.36</td>
+                            <td class="detail-row">61.00</td>
+                            <td class="detail-row">35.00</td>
+                            <td class="detail-row">43.50</td>
+                            <td class="detail-row">5.29</td>
+                            <td class="detail-row">2.00</td>
+                            <td class="detail-row">0.00</td>
+                            <td class="detail-row">7.50</td>
+                            <td class="detail-row">66.25</td>
                         </tr>
                         <tr>
                             <td>15</td>
@@ -369,17 +419,20 @@
                             <td>
                                 <a href=''>OpenFunctions-v0</a>
                             </td>
-                            <td>Gorilla LLM</td>
-                            <td>Apache 2.0</td>
-                            <td>60.00</td>
-                            <td>56.00</td>
-                            <td>1.00</td>
-                            <td>2.50</td>
-                            <td>39.41</td>
-                            <td>62.00</td>
-                            <td>0.00</td>
-                            <td>0.00</td>
-                            <td>4.58</td>
+                            <td class="detail-row">Gorilla LLM</td>
+                            <td class="detail-row">Apache 2.0</td>
+                            <td class="summary-row">29.88</td>
+                            <td class="summary-row">25.35</td>
+                            <td class="summary-row">4.58</td>
+                            <td class="detail-row">60.00</td>
+                            <td class="detail-row">56.00</td>
+                            <td class="detail-row">1.00</td>
+                            <td class="detail-row">2.50</td>
+                            <td class="detail-row">39.41</td>
+                            <td class="detail-row">62.00</td>
+                            <td class="detail-row">0.00</td>
+                            <td class="detail-row">0.00</td>
+                            <td class="detail-row">4.58</td>
                         </tr>
                         <tr>
                             <td>16</td>
@@ -387,17 +440,20 @@
                             <td>
                                 <a href=''>Glaive-v1</a>
                             </td>
-                            <td>Glaive</td>
-                            <td>cc-by-sa-4.0</td>
-                            <td>34.55</td>
-                            <td>26.00</td>
-                            <td>2.00</td>
-                            <td>0.00</td>
-                            <td>21.18</td>
-                            <td>0.00</td>
-                            <td>34.00</td>
-                            <td>2.50</td>
-                            <td>46.25</td>
+                            <td class="detail-row">Glaive</td>
+                            <td class="detail-row">cc-by-sa-4.0</td>
+                            <td class="summary-row">15.64</td>
+                            <td class="summary-row">14.42</td>
+                            <td class="summary-row">46.25</td>
+                            <td class="detail-row">34.55</td>
+                            <td class="detail-row">26.00</td>
+                            <td class="detail-row">2.00</td>
+                            <td class="detail-row">0.00</td>
+                            <td class="detail-row">21.18</td>
+                            <td class="detail-row">0.00</td>
+                            <td class="detail-row">34.00</td>
+                            <td class="detail-row">2.50</td>
+                            <td class="detail-row">46.25</td>
                         </tr>
                     </tbody>
                 </table>
@@ -414,7 +470,8 @@
             <p class="text-center">
                 The following chart shows the comparison of the models based on a few metrics.
 
-                You can select and deselect which models to compare. More information on each metric can be found in the <a href="blogs/8_berkeley_function_calling_leaderboard.html#benchmarking">blog</a>.
+                You can select and deselect which models to compare. More information on each metric can be found in the
+                <a href="blogs/8_berkeley_function_calling_leaderboard.html#benchmarking">blog</a>.
             </p>
             <div>
                 <canvas id="myChart"></canvas>
@@ -429,9 +486,10 @@
             <h2>Function Calling Demo</h2>
             <p class="text-center">
                 In this demo for function calling, you can enter a prompt and a
-                function and see the output. There will be two outputs (and two output boxes accordingly): one in the 
+                function and see the output. There will be two outputs (and two output boxes accordingly): one in the
                 actual code format (the top one) and the other in the OpenAI compatible format (the bottom one).
-                Note that the OpenAI compatible format output is only available if the actual code output has valid syntax and can be parsed.
+                Note that the OpenAI compatible format output is only available if the actual code output has valid
+                syntax and can be parsed.
                 We also provide you a few examples to try out and get a sense of the input format and the output.
             </p>
             <!-- Example Section -->
@@ -481,16 +539,14 @@
                 </div>
                 <div class="output-section">
                     <div class="output" id="code-output">Output will be shown here:</div>
-                    <div class="output" id="json-output" style="white-space: pre-wrap;">OpenAI compatible format output here:</div>
-                    <!-- <div>
-                        <p></p>
-                        <button id="exec-btn" class="api-explorer-button" style="display: none;">Execute</button>
-                        <p></p>
-                    </div>
+                    <div class="output" id="json-output" style="white-space: pre-wrap;">OpenAI compatible format output
+                        here:</div>
 
-                    <div class="output" id="exec-output" style="display: none;"> Execute Result: </div> -->
-                    <div>
-                        <button id="report-issue-btn" style="display: none;">Report Issue</button>
+                    <div class="button-container">
+                            <button class="thumbs" id="thumbs-up-btn" onclick="sendFeedbackPositive()" style="display: none;">👍</button>
+                            <button class="thumbs thumbs-down" id="thumbs-down-btn" onclick="sendFeedbackNegative()" style="display: none;">👎</button>
+
+                            <button id="report-issue-btn" style="display: none;">Report Issue</button>
                     </div>
                 </div>
             </div>
@@ -514,7 +570,7 @@
                 <input type="Email" name="Email" placeholder="Your Email" required>
                 <input type="Organization" name="Organization" placeholder="Your Organization">
                 <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                <button type="submit" class="btn-secondary btn-secondary2">Submit</button>
+                <button type="submit" class="btn-secondary2">Submit</button>
             </form>
             <span id="msg"></span>
         </div>
