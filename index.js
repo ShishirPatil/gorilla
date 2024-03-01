@@ -409,7 +409,7 @@ function sendFeedback(vote) {
                 body: JSON.stringify(body)
             })
                 .then(response => response.json())
-                .then(data => console.log("Document inserted:", data))
+                .then(data => alert("Feedback Sent Successfully!"))
                 .catch(error => console.error('Error:', error));
         })
         .catch(error => console.error('Error:', error)); // Catches and logs any errors
