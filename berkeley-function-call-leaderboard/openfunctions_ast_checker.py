@@ -293,6 +293,8 @@ else:
         assert len(example) == len(answer)
 
 # Check if the input file is a gpt or gorilla file
+
+# Here we are receiving JSON schema where we do the AST checking.
 if "gpt" in file_name or "glaive" in file_name or "fire" in file_name or "mistral-large-latest" in file_name:
     total = 0
     success = 0
@@ -400,14 +402,20 @@ if "gpt" in file_name or "glaive" in file_name or "fire" in file_name or "mistra
                 with open("./gpt_failure.json","a+") as f:
                     f.write(json.dumps({"index":k,"answer":example[k]["result"]}) + "\n")
     print(f"Testing type: {test_category}, success rate: {success/total}")
+# Here we are function calls schema where we do the AST checking.
 else:
     total = 0
     success = 0
     for k in range(len(example)):
+        # Parsing raw gorilla v2 output
         if "gorilla_openfunctions_v2" in file_name or "git" in file_name:
             func = "[" + ", ".join(example[k]["text"].replace("\n","").split("<<function>>")[1:]) + "]"
+
+        # Parsing raw gorilla v0 output
         elif "gorilla-openfunctions-v0" in str(file_name):
             func = "[" + example[k]["text"] + "]"
+        
+        # Parsing deepseek output
         elif "deepseek-7b" in file_name:
             example[k]["text"] = example[k]["text"].replace("\n","")
             try:
@@ -434,7 +442,7 @@ else:
                 func = "[" + func
             if not func.endswith("]"):
                 func = func + "]"
-        if "Nexus" in args.model:
+        elif "Nexus" in args.model:
             try:
                 func = func.split("<human_end>\n \n")[1]
             except:
@@ -447,7 +455,7 @@ else:
                 func = "["+",".join(func)+"]"
             elif type(func) is str:
                 func = "["+func+"]"
-        if "claude" in args.model:
+        elif "claude" in args.model:
             if " " == func[0]:
                 func = func[1:]
             if not func.startswith("["):

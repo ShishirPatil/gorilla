@@ -117,24 +117,21 @@ for i in tqdm(range(len(result_data))):
         execution_result_type = testing_data[i]["execution_result_type"]
         if type(execution_result_type) is str and len(execution_result) > 1:
                 execution_result_type = [execution_result_type] * len(execution_result)
-    if ("gpt" in model_name or "fire" in model_name or "mistral-large-latest" in model_name) and input_file is None:
+    if ("gpt" in model_name or "fire" in model_name or "mistral-large-latest" in model_name) and     is None:
         try:
             result = convert_to_function_call(result_data[i]["result"])
         except:     
             total += 1
             continue
-    if "gorilla_v0.json" == input_file:
+    if input_file is not None and "gorilla" in input_file:
         result = result_data[i]["text"] 
         print(result)
-    if (input_file is not None and "git" in input_file):
-        result = result_data[i]["text"].split("<<function>>")[1:]
     if "gorilla-openfunctions-v2" in model_name:
         result = result_data[i]["result"]
         regex = r"\w+\([^()]*\)"
-
         # Find all matches of function calls
         result = re.findall(regex, result)
-    if input_file is not None and "deepseek.json" in input_file:
+    if input_file is not None and "deepseek" in input_file:
         result_data[i]["text"] = result_data[i]["text"].replace("\n","")
         try:
             pattern = r"```python(.*?)```"
@@ -191,7 +188,7 @@ for i in tqdm(range(len(result_data))):
         result = func.split("),")
         result = [r + ")" for r in result]
         result[-1] = result[-1][:-1]
-    elif "glaiveai" in model_name or "glaiveai.json" == input_file:
+    elif "glaiveai" in model_name or "glaiveai" in input_file:
         try:
             result_data[i]["text"] = json.loads(result_data[i]["text"].split("<functioncall>")[1].replace("\'{","{").replace("\'}","}"))
             result = result_data[i]["text"]["name"] + "(" + ",".join([f"{k}={v}" for k,v in result_data[i]["text"]["arguments"].items()]) + ")"
@@ -219,12 +216,6 @@ for i in tqdm(range(len(result_data))):
             continue
         if rest_result:
             success += 1
-        # if not rest_result:
-        #     if os.path.exists("./result/" + model_name + "/check/") is False:
-        #         os.mkdir("./result/" + model_name + "/check/")
-        #     with open("./result/" + model_name + "/check/" + filename, "a+") as f:
-        #         f.write(json.dumps({"original":result[0],"idx":i}))
-        #         f.write("\n")
         total += 1
         continue
     if len(result) != len(execution_result):

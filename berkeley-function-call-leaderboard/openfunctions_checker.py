@@ -50,6 +50,10 @@ def get_args():
     return args
 args = get_args() 
 
+# oss models are evaluated within one single file.
+if "deepseek" in args.model or "llama" in args.model:
+    args.file_name = "./" + args.model + "/result.json"
+
 # If the test category is all, we will check all the tests categories.
 if args.test_category == "all":
     test_categories = ["simple", 
@@ -89,6 +93,7 @@ elif args.test_category == "ast":
 else:
     # If the test category is not all, executable, or ast, we will check the specific test category.
     test_categories = [args.test_category]
+
 
 for test_category in test_categories:
     append_string = ""

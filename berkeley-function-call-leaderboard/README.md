@@ -18,6 +18,8 @@ To download the evaluation dataset from huggingface, from the current directory 
 
 This will download our dataset to `data` repository. 
 
+If you plan to evaluate on OSS models, we are using vLLM for inference and refer to https://github.com/vllm-project/vllm for detail. We recommend to inference on at least V100s, A100s, and latest GPUs that are supported by vLLM. 
+
 ## Execution Evaluation Data Post-processing 
 Input your API keys into `function_credential_config.json`, so that the original placeholder values in questions, params, and answers will be cleaned. 
 
@@ -108,11 +110,15 @@ Below is a list of model we support to run our leaderboard evaluation against. I
 |Nexusflow-Raven-v2| Supported|
 |FireFunction-v1 | Supported|
 |mistral-large-latest | Supported|
-|claude-*| Not supported|
-|mistral-*| Not supported|
+|claude-{2.1,instant-1.2}| Not supported|
+|mistral-{tiny,small,medium}| Not supported|
 |deepseek-7b| Not supported|
+|llama-v2-{7b,13b,70b}| Not supported|
 
-
+If you are thinking about adding more OSS models to evaluate. Here are the codes you need to change 
+* In `openfunctions_evaluation.py`, add `model_name` and `model_id` to `model_id_dict`. Check vllm for more details of what to put.
+* In `openfunctions_ast_checker.py`, add parser that parse model output in the format of either JSON schema or function calling schema(i.e. `[func1(param1=val1...)...]`).
+*  In `openfunctions_executable_checker.py`, make sure  to parse the model output in the format of list of function calls string i.e. `["func_call_1","func_call_2"...]` where `func_call_n` is executable strings using `exec()`
 
 ## Contributing
 

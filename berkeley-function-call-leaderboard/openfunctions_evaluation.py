@@ -426,8 +426,8 @@ if __name__ == "__main__":
             if not os.path.exists("./result/" + model):
                 os.makedirs("./result/" + model)
             answer_file = "./result/" + model + "/result.json"
-            if not os.path.exists("./model" + model):
-                os.makedirs("./model" + model)
+            if not os.path.exists("./model/" + model):
+                os.makedirs("./model/" + model)
             model_path = "./model/" + model
             os.system(f"python openfunctions_evaluation_vllm.py --model-path {model_path} --model-id {model_id} --question-file eval_data_total.json --answer-file {answer_file} --num-gpus {args.num_gpus}")
     else:
