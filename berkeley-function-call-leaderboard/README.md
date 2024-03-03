@@ -49,6 +49,23 @@ Then, use `eval_data_compilation.py` to compile all files by using
 ```
 ## Berkeley Function Leaderboard Statistics
 
+Before generating the leaderboard statistics, make sure to install the required packages by running the following command:
+
+```bash
+    conda create -n BFCL python=3.10
+    conda activate BFCL
+    pip install -r requirements.txt
+```
+
+and also provide your API keys in your environment variables.
+
+```bash
+    export OPENAI_API_KEY=sk-XXXXXX
+    export MISTRAL_API_KEY=XXXXXX
+    export FIRE_WORKS_API_KEY=XXXXXX
+    export ANTHROPIC_API_KEY=XXXXXX
+```
+
 To generate leaderboard statistics, there are two steps:
 
 1. Inference the evaluation data and obtain the results from specific models 
@@ -85,7 +102,8 @@ Below is a list of model we support to run our leaderboard evaluation against. I
 |---|---|
 |gorilla-openfunctions-v0 | Not supported|
 |gorilla-openfunctions-v2 | Supported|
-|gpt-*| Supported|
+|gpt-3.5-{turbo-0613, turbo-1106, turbo-0125}| Supported|
+|gpt-4-{0613, 1106-preview, 0125-preview}| Supported|
 |glaiveai|  Supported| 
 |Nexusflow-Raven-v2| Supported|
 |FireFunction-v1 | Supported|

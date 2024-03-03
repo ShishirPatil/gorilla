@@ -258,23 +258,28 @@ def ast_parse(x):
 # Reading input file and possible answer
 test_category = args.test_category
 example = []
-if args.file_name is not None:
-    with open(file_name,"r") as f:
-        for line in f:
-            example.append(json.loads(line))
-    gorilla_testing_data = []
-    with open("eval_data_total.json","r") as f:
-        for line in f:
-            gorilla_testing_data.append(json.loads(line))
-    new_example = []
-    for i in range(len(gorilla_testing_data)):
-        if gorilla_testing_data[i]["question_type"] == args.test_category:
-            new_example.append(example[i])
-    example = new_example
-else:
-    with open(file_name,"r") as f:
-        for line in f:
-            example.append(json.loads(line)) 
+try:
+    if args.file_name is not None:
+        with open(file_name,"r") as f:
+            for line in f:
+                example.append(json.loads(line))
+        gorilla_testing_data = []
+        with open("eval_data_total.json","r") as f:
+            for line in f:
+                gorilla_testing_data.append(json.loads(line))
+        new_example = []
+        for i in range(len(gorilla_testing_data)):
+            if gorilla_testing_data[i]["question_type"] == args.test_category:
+                new_example.append(example[i])
+        example = new_example
+    else:
+        with open(file_name,"r") as f:
+            for line in f:
+                example.append(json.loads(line)) 
+except:
+    print(f"🙊 Your {args.model}'s {test_category} evaluation category data is not found, check whether you have finished openfunctions_evaluation.py evaluation data generation.")
+    exit()
+    
 answer = []
 if test_category == "miss_param" or test_category == "relevance" or test_category == "chatable":
     pass

@@ -41,9 +41,6 @@ def build_client(model_name):
     elif "Nexus" in model_name:
         return None
     elif "gorilla-openfunctions-v2" in model_name:
-        # import openai
-        # openai.api_key = "EMPTY"
-        # openai.api_base = "https://luigi.millennium.berkeley.edu:443/v1"
         return None
     elif "firework" in model_name:
         from openai import OpenAI
@@ -96,6 +93,7 @@ model_choice = {
     "dolphin-2.2.1-mistral-7b": "cognitivecomputations/dolphin-2.2.1-mistral-7b",
 }
 
+# supported open source models
 model_id_dict = {
     "deepseek-7b": "deepseek-coder",
     "glaiveai": "vicuna_1.1",
@@ -281,10 +279,12 @@ def call_to_model(
             result = "Error"
             return result
         result = completion
-
+    
     elif "Nexus" in model:
         raven_prompt = format_raven_function(user_prompt, function)
         result = query_raven(raven_prompt, max_tokens, temperature, top_p)
+    else:
+        raise ValueError("Model not supported")
     return result
 
 def cast_multi_param_type(properties):

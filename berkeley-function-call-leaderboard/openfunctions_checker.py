@@ -1,6 +1,7 @@
 import ast
 import os 
 import argparse
+from tqdm import tqdm
 """
     This script is used to check the correctness of the outputs of the models for the given test categories.
     The input:
@@ -97,6 +98,7 @@ for test_category in test_categories:
         append_string += " --log_store"
     if "executable" in test_category or "rest" in test_category:
         # If the test category is executable, we will use openfunctions_executable_checker.py.
+        print(f"Executable test category: {test_category} in progress...🦍")
         if args.file_name is not None:
             os.system(f"python openfunctions_executable_checker.py --model {args.model} --test_category {test_category} --input_file {args.file_name}" + append_string)
         else:

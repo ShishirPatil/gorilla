@@ -66,12 +66,12 @@ def main():
         with open(f"{args.input_file}", 'w') as f:
             for modified_line in modified_data:
                 f.write(modified_line + '\n')  # Write each modified JSON object back to the input file
-        print(f"All placeholders have been replaced in {args.input_file}.")
+        print(f"All placeholders have been replaced in {args.input_file} 🦍.")
     else:
         with open(f"{args.output_file}", 'w') as f:
             for modified_line in modified_data:
                 f.write(modified_line + '\n')  # Write each modified JSON object overwrite the output file
-        print(f"All placeholders have been replaced in {args.output_file}.")
+        print(f"All placeholders have been replaced in {args.output_file} 🦍.")
                 
 if __name__ == "__main__":
     main()

@@ -3,6 +3,7 @@ import json
 import re
 import argparse
 from data.REST_Eval.eval_exec_rest import is_exec_valid
+from tqdm import tqdm
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -105,7 +106,10 @@ with open(f"./data/gorilla_openfunctions_v1_test_{test_category}.json") as f:
         testing_data.append(json.loads(line))
 total = 0
 success = 0
-for i in range(len(result_data)):
+if len(result_data) == 0:
+    print(f"🙊 Your {model_name}'s {test_category} evaluation category data is not found, check whether you have finished openfunctions_evaluation.py evaluation data generation.")
+    exit()
+for i in tqdm(range(len(result_data))):
     # if i < num_existing_result:
     #     continue
     if "rest" not in test_category:
