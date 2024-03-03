@@ -40,6 +40,10 @@ def build_client(model_name):
         client = MistralClient(api_key= os.environ.get("MISTRAL_API_KEY"))
     elif "Nexus" in model_name:
         return None
+    elif "gorilla-openfunctions-v0" in model_name:
+        import openai
+        openai.api_key = "EMPTY" # Hosted for free with ❤️ from UC Berkeley
+        openai.api_base = "http://luigi.millennium.berkeley.edu:8000/v1"
     elif "gorilla-openfunctions-v2" in model_name:
         return None
     elif "firework" in model_name:
@@ -279,7 +283,13 @@ def call_to_model(
             result = "Error"
             return result
         result = completion
-    
+    elif "gorilla-openfunctions-v0" in model:
+        response = openai.ChatCompletion.create(
+            model='gorilla-openfunctions-v0',
+            messages=user_prompt,
+            functions=function
+        )
+        result = response["choices"][0]["message"]
     elif "Nexus" in model:
         raven_prompt = format_raven_function(user_prompt, function)
         result = query_raven(raven_prompt, max_tokens, temperature, top_p)
@@ -410,7 +420,7 @@ if __name__ == "__main__":
     args = get_args()
     model = args.model
     client = build_client(args.model)
-    if all([model_name not in args.model for model_name in ["firework","gpt","claude","mistral-medium","Nexus","openfunctions","mistral-medium","mistral-tiny","mistral-small","gorilla-openfunctions-v2","mistral-large-latest"]]):
+    if all([model_name not in args.model for model_name in ["firework","gpt","claude","mistral-medium","Nexus","openfunctions","mistral-medium","mistral-tiny","mistral-small","gorilla","mistral-large-latest"]]):
         if model in model_id_dict:
             model_id = model_id_dict[model]
             if not os.path.exists("./result/" + model):
