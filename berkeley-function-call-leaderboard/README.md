@@ -62,8 +62,9 @@ Before generating the leaderboard statistics, make sure to install the required 
     conda activate BFCL
     pip install -r requirements.txt
 ```
+To run Mistral Models function calling, you need to have `mistralai >= 0.1.3`.
 
-and also provide your API keys in your environment variables.
+Also provide your API keys in your environment variables.
 
 ```bash
     export OPENAI_API_KEY=sk-XXXXXX
