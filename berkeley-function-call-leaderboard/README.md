@@ -1,6 +1,10 @@
-# Berkeley Function Leaderboard
+# Berkeley Function Calling Leaderboard
 
-💡 Read more in our [Gorilla OpenFunctions Leaderboard](https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html)
+💡 Read more in our [Gorilla OpenFunctions Leaderboard Blog](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html)
+
+🦍 Berkeley Function Calling Leaderboard live [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html#leaderboard)
+
+🦍 Berkeley Function Calling Leaderboard on Hugginface [Berkeley Function Calling Leaderboard Hugginface](https://huggingface.co/spaces/gorilla-llm/berkeley-function-calling-leaderboard)
 
 ## Introduction
 We present Berkeley Function Leaderboard, the **first comprehensive and executable function calling evaluation for LLMs function calling**. Different from prior function calling evaluations (e.g. Anyscale function calling blog), we consider function callings of various forms, different function calling scenarios, and the executability of function calls. We also release our model Gorilla-Openfunctions-v2, the best open-source models so far to handle multiple languages of function calls, parallel function calls and multiple function calls. We also provide a specific debugging feature that when the provided function is not suitable for your task, the model will output an “Error Message”. 
