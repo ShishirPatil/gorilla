@@ -61,6 +61,7 @@ Before generating the leaderboard statistics, make sure to install the required 
     conda create -n BFCL python=3.10
     conda activate BFCL
     pip install -r requirements.txt
+    pip install vllm # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
 ```
 To run Mistral Models function calling, you need to have `mistralai >= 0.1.3`.
 
