@@ -123,7 +123,7 @@
                     <p><a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function-Calling Leaderboard</a> (BFCL) aims to provide a through study of the function calling capability of different LLMs. It consists of 2k question-function-answer pairs with multiple languages (python, java, javascript, restAPI), diverse application domains and complex usecases (multiple function calls where the LLM needs to select one or more functions from multiple functions provided, and parallel function calls that the LLM needs to make multiple function calls together). We also investigate function relevance detection, to determine how the model will react when the provided function is not suitable to answer the user's question (in such case an "Error Message will be provided"). In more details, <b>BFCL includes 100 Java, 50 JavaScript, 70 REST API, 100 SQL, and 1,680 Python on various simple, parallel, multiple, executable functions calling scenarios as well as function relevance detection</b>.</p>
                     <p>The leaderboard is shown below in the Figure, we can see that <b>GPT-4 (from OpenAI) function calling is still leading the evaluation, whereas the Gorilla OpenFunctions-v2 (from Gorilla LLM) almost gets similar performance to them</b>. Ranking below is the Mistral-medium model (from Mistral AI) and Claude-2.1 (from Anthropic). This suggests that a finetuned open-source model can also perform almost close to propatiery models in function calling tasks without chaining them together.</p>
                     <p>We tried our best to cover real-world use cases and diverse languages. We will continue to expand our testing domains and come up with creative use cases in the future.</p>
-                </div>
+                
                 
                 <p style="text-align: center; margin-bottom: 0">
                     <img src="../assets/img/blog_post_8_Leaderboard.jpg" alt="Berkeley Function-Calling Leaderboard (BFCL)" width="100%">
@@ -131,19 +131,19 @@
                             LLMs' performance on <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function-Calling Leaderboard</a> (BFCL)
                         </i>
                     </p>
+                </div>
     <br>
 
                     <div class="body">
-                        <p>To improve our understanding and visualization of the outcomes, we have introduced an interactive wagon wheel tool that allows users to compare various models. This comparison is organized into nine distinct categories: <b></b>function relevance detection, AST (Abstract Syntax Tree) tree analysis, and execution function call verification across simple, multiple, and parallel multiple function scenarios</b>. Through this approach, it becomes evident where our tests reveal unsatisfactory performance by the models. Specifically, in simple function calling, both proprietary and open-source models exhibit comparable performance. However, when it comes to handling multiple and parallel function calls, the GPT-series models demonstrate superior performance over their open-source counterparts.
-</p>
-                    </div>
-
-                <p style="text-align: center; margin-bottom: 0">
-                    <img src="../assets/img/blog_post_8_Wagon.gif" alt="Berkeley Function-Calling Leaderboard (BFCL) Wagon Chart" width="100%">
+                        <p>To improve our understanding and visualization of the outcomes, we have introduced an interactive wagon wheel tool that allows users to compare various models. This comparison is organized into nine distinct categories: <b></b>function relevance detection, AST (Abstract Syntax Tree) tree analysis, and execution function call verification across simple, multiple, and parallel multiple function scenarios</b>. Through this approach, it becomes evident where our tests reveal unsatisfactory performance by the models. Specifically, in simple function calling, both proprietary and open-source models exhibit comparable performance. However, when it comes to handling multiple and parallel function calls, the GPT-series models demonstrate superior performance over their open-source counterparts.</p>
+                        
+                        <p style="text-align: center; margin-bottom: 0">
+                            <img src="../assets/img/blog_post_8_Wagon.gif" alt="Berkeley Function-Calling Leaderboard (BFCL) Wagon Chart" width="100%">
                             <i style="font-size: 0.9em;">
                                 Detailed analysis using <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function-Calling Leaderboard</a> (BFCL) Wagon Chart
                             </i>
-                    </p>
+                        </p>
+                    </div>
 
                     <!-- OpenFunction BenchMarking  -->
                     <h4 id="benchmarking">Dataset Composition</h4>
@@ -254,85 +254,84 @@
                         <p>The final counts of each of the nine categories shown in BFCL with composition of more granular types is shown in the following table</p>
                         </div>
 
-<!-- <div id="model_info_dashboard" > -->
-<div class="table-container">
-<table>
-    <thead>
-    <tr>
-        <th colspan="4">Abstract Syntax Tree (AST) Evaluation 🌳</th>
-        <th colspan="4">Evaluation by Executing APIs ⚙️</th>
-        <th>Relevance Detection</th>
-    </tr>
-    <tr>
-        <th>Simple Function</th>
-        <th>Multiple Functions</th>
-        <th>Parallel Functions</th>
-        <th>Parallel Multiple</th>
-        
-        <th>Simple Function</th>
-        <th>Multiple Functions</th>
-        <th>Parallel Functions</th>
-        <th>Parallel Multiple</th>
-        
-        <th rowspan="2"></th> 
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td class="align-left"><ul class="no-bullets">
-            <li>Py: 400</li>
-            <li>Java: 100</li>
-            <li>JS: 50
-            </li>
-    </ul></td>
-        <td class="align-left"><ul class="no-bullets">
-            <li>Py: 200</li> </ul></td>
-        <td class="align-left"><ul class="no-bullets">
-            <li>Py: 200</li> </ul></td>
-        <td class="align-left"><ul class="no-bullets">
-            <li>Py: 200</li> </ul></td>
-        
-        <td class="align-left"><ul class="no-bullets">
-            <li>Py: 100</li>
-            <li>REST: 70</li>
-    </ul></td>
-        <td class="align-left"><ul class="no-bullets">
-            <li>Py: 50</li> </ul></td>
-        <td class="align-left"><ul class="no-bullets" >
-            <li>Py: 50</li> </ul></td>
-        <td class="align-left"><ul class="no-bullets">
-            <li>Py: 40</li> </ul></td>
-        
-        <td><ul class="no-bullets">
-            <li>Py: 240</li> </ul></td>
-    </tr>
-    </tbody>
-</table>
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid black;
-        padding: 5px;
-        text-align: center;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-    .align-left {
-        text-align: left;
-    }
-    ul.no-bullets {
-        text-align: center;
-        list-style-type: none; /* Remove bullets */
-        padding: 0; /* Remove padding */
-        margin: 0; /* Remove margins */
-    }
-</style>
+                        <div class="table-container">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th colspan="4">Abstract Syntax Tree (AST) Evaluation 🌳</th>
+                                <th colspan="4">Evaluation by Executing APIs ⚙️</th>
+                                <th>Relevance Detection</th>
+                            </tr>
+                            <tr>
+                                <th>Simple Function</th>
+                                <th>Multiple Functions</th>
+                                <th>Parallel Functions</th>
+                                <th>Parallel Multiple</th>
+                                
+                                <th>Simple Function</th>
+                                <th>Multiple Functions</th>
+                                <th>Parallel Functions</th>
+                                <th>Parallel Multiple</th>
+                                
+                                <th rowspan="2"></th> 
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="align-left"><ul class="no-bullets">
+                                    <li>Py: 400</li>
+                                    <li>Java: 100</li>
+                                    <li>JS: 50
+                                    </li>
+                            </ul></td>
+                                <td class="align-left"><ul class="no-bullets">
+                                    <li>Py: 200</li> </ul></td>
+                                <td class="align-left"><ul class="no-bullets">
+                                    <li>Py: 200</li> </ul></td>
+                                <td class="align-left"><ul class="no-bullets">
+                                    <li>Py: 200</li> </ul></td>
+                                
+                                <td class="align-left"><ul class="no-bullets">
+                                    <li>Py: 100</li>
+                                    <li>REST: 70</li>
+                            </ul></td>
+                                <td class="align-left"><ul class="no-bullets">
+                                    <li>Py: 50</li> </ul></td>
+                                <td class="align-left"><ul class="no-bullets" >
+                                    <li>Py: 50</li> </ul></td>
+                                <td class="align-left"><ul class="no-bullets">
+                                    <li>Py: 40</li> </ul></td>
+                                
+                                <td><ul class="no-bullets">
+                                    <li>Py: 240</li> </ul></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <style>
+                            table {
+                                width: 100%;
+                                border-collapse: collapse;
+                            }
+                            th, td {
+                                border: 1px solid black;
+                                padding: 5px;
+                                text-align: center;
+                            }
+                            th {
+                                background-color: #f2f2f2;
+                            }
+                            .align-left {
+                                text-align: left;
+                            }
+                            ul.no-bullets {
+                                text-align: center;
+                                list-style-type: none; /* Remove bullets */
+                                padding: 0; /* Remove padding */
+                                margin: 0; /* Remove margins */
+                            }
+                        </style>
 
-</div>
+                        </div>
 
 
 
@@ -350,7 +349,7 @@
                         </ul>
                         </div>
                         <h5>Abstract Syntax Tree (AST) Evaluation 🌳</h5>
-                        <div class="body"></div>
+                        <div class="body">
                         <p>For the function call answers generated that are executable, we take parse the
                             function call using AST tree.</p>
                         <p><b>Example</b>:</p>
@@ -418,6 +417,7 @@
 
                         
                         <p>This checking mechanism applies to everything except for <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">executable_*</code> and <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">REST</code>.</p>
+                        </div>
                         <h5>Evaluation by Executing APIs ⚙️:</h5>
                         <div class="body">
                         <p>For <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">executable_*</code> and <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">REST</code>, we have corresponding functions that can be
@@ -432,6 +432,7 @@
                         <h4 id="prompt">Prompting</h4>
                             <!-- Leaderboard Section -->
                     </div>
+                    <div class="body">
                            
                 <div id="model_info_dashboard" >
                         <h2>Model Manual</h2>
@@ -736,11 +737,8 @@
                             </table>
                         </div>
                     
+                    </div>
                 </div>
-                <div>
-                    <p></p>
-                </div>
-                <div class="blog-post">
                 As the above model manual has shown, our evaluation involves both function calling and non-function calling models. 
                 For function calling models, since they are specifically designed to generate function calls, we did not provide any system prompt but instead toggle the function calling mode on and put the function definitions where it should be. For chat model, we explicitly provides system message.
                 We provide all the prompts we used to evaluate our propatiery and open-source models. For function calling models, since they are specifically designed to generate function calls, we did not provide any system prompt but instead toggle the function calling mode on and put the function definitions where it should be. For chat model, we explicitly provides <b>system message</b>.
@@ -762,6 +760,7 @@ USER_MESSAGE_FOR_CHAT_MODEL = "Questions:{user_prompt}\nHere is a list of functi
                     </li>
                  </ol>
                 <h4 id="mistakes">Common Mistakes</h4>
+                <div class="body">
                 With our benchmark BFCL, we are able to identify some common mistakes that LLMs make when generating function calls. These mistakes are interesting because they help us understand the limitations of the current models and provide insights into how to improve them.
                 <ol>
                 <li style="margin-bottom: 5px;"><p>GPTs' <em>function documents are difficult to format</em> and their <em>typings are restrictive</em> in real world scenarios.</p>
@@ -942,8 +941,8 @@ Gorilla-Openfunctions-v2 output:
 
                             </li>
                         </ol>
+                    </div>
 <br>
-
                         <h4 id="conclusion">Conclusion</h4>
                         <div class="body">
                             <p>We provide a comprehensive and systematic evaluation of LLMs for function calling with
@@ -954,70 +953,9 @@ Gorilla-Openfunctions-v2 output:
                                 applications with function calling and interacting with json compatible output.
                             </p>
                         
-                            <div class="table-container">
-<!-- <table>
-    <thead>
-
-    <tr>
-        <th>Model</th>
-        <th>SQL AST Simple Function Evaluation</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>GPT-4-0613</td>
-        <td>89%</td>
-    </tr>
-    <tr>
-        <td>Mistral Large</td>
-        <td>88%</td>
-    </tr>
-    <tr>
-        <td>GPT-3.5-turbo</td>
-        <td>85%</td>
-    </tr>
-    <tr style="background-color: #DFEBEB;">
-        <td>Gorilla OpenFunctions-v2</td>
-        <td>25%</td>
-    </tr>
-    <tr>
-        <td>Claude-2.1</td>
-        <td>11%</td>
-    </tr>
-    <tr>
-        <td>Gorilla OpenFunctions-v0</td>
-        <td>3%</td>
-    </tr>
-    
-    </tbody>
-</table> -->
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    th, td {
-        border: 1px solid black;
-        padding: 5px;
-        text-align: center;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-    .align-left {
-        text-align: left;
-    }
-    ul.no-bullets {
-        text-align: center;
-        list-style-type: none; /* Remove bullets */
-        padding: 0; /* Remove padding */
-        margin: 0; /* Remove margins */
-    }
-</style>
-
-</div>
-
+                        </div>
 <br>
+                    <div class="body">
 <p>
                         We hope you enjoyed this blog post. We would love to hear from you on <a href="https://discord.gg/SwTyuTAxX3">Discord</a>, <a href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter (#GorillaLLM)</a>, and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br> 
                     </p>
@@ -1032,9 +970,8 @@ Gorilla-Openfunctions-v2 output:
                         &nbsp; 	year={2024},<br>
                         &nbsp;	howpublished={\url{https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html}},<br>
                     }</p>
-    </div>
+                    </div>
 
-                </div>
             </div>
         </div>
     </div>
@@ -1047,6 +984,7 @@ Gorilla-Openfunctions-v2 output:
             background: white;
             justify-content: center;
             align-items: center;
+            width: auto
         }
         .centered-text {
             text-align: center;
@@ -1055,6 +993,8 @@ Gorilla-Openfunctions-v2 output:
         }
         .container {
             display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
         }
 
         .code-block {
@@ -1071,12 +1011,15 @@ Gorilla-Openfunctions-v2 output:
         .blog-post {
             margin: 20px;
             padding: 20px;
+            width: auto;
+            /* max-width: 1000px;  */
             max-width: 1000px; 
             justify-content: center;
         }
         .blog-post img {
             display: block;
             margin: 0 auto;
+            max-width: 100%; 
         }
         .blog-title{
             color: #055ada;
@@ -1170,12 +1113,13 @@ Gorilla-Openfunctions-v2 output:
             transform: rotate(90deg);
         }
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 1200px) {
         .blog-post {
             padding: 10px; /* Adjust spacing for smaller screens */
+            max-width: 90%
         }
         .blog-post img {
-            max-width: 80%; /* Reduce image size for smaller screens */
+            max-width: 90%;
         }
         .box-index {
         display: none; /* Hide the index on smaller screens */

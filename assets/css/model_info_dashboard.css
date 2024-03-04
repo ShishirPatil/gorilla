@@ -68,6 +68,7 @@ table {
     width: auto; /* Allows the table to expand naturally based on content */
     border-collapse: collapse;
     table-layout: auto; /* Default layout for the table */
+
 }
 
 
@@ -87,8 +88,8 @@ table {
     overflow-x: auto; /* Enable horizontal scrolling */
     overflow-y: auto; /* Enable vertical scrolling */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS devices */
-    width: 100%; /* Full width of the parent */
-    max-width: 100%; /* Ensure the container does not exceed the width of the parent */
+    width: auto; /* Full width of the parent */
+    max-width: auto; /* Ensure the container does not exceed the width of the parent */
     max-height: 500px; /* Set the maximum height of the table to 8 rows */
     display: block;
     border: 1px solid #ddd; /* Optional: Adds a border for better visibility */
