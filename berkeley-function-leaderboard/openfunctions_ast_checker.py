@@ -288,7 +288,7 @@ else:
         assert len(example) == len(answer)
 
 # Check if the input file is a gpt or gorilla file
-if "gpt" in file_name or "glaive" in file_name or "fire" in file_name or "mistral-large-latest" in file_name:
+if "gemini" in file_name or "gpt" in file_name or "glaive" in file_name or "fire" in file_name or "mistral-large-latest" in file_name:
     total = 0
     success = 0
     for k in range(len(example)):
@@ -389,6 +389,8 @@ if "gpt" in file_name or "glaive" in file_name or "fire" in file_name or "mistra
                 possible_function_result_list.append(all(arg_result_dict) and len(function_param_dict) >= required_parameter and len(function_param_dict) <= required_parameter + optional_parameter)
             result_list.append(any(possible_function_result_list))     
         total += 1
+        if all(result_list):
+            print("Index: ", k, " Example: ", example[k], "\n")
         success += all(result_list)
         if not all(result_list):
             if output_analysis:
