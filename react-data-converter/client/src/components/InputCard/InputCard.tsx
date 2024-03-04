@@ -42,7 +42,7 @@ const InputCard: React.FC<InputCardProps> = ({ handleConvertAndSetUrls }) => {
 
 
   const handleConvert = async (event: React.MouseEvent) => {
-    event.preventDefault(); // Prevents the default action if used within a form
+    event.preventDefault(); 
     if (isFormValid()) {
       setIsLoading(true);
       try {
