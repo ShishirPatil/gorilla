@@ -66,18 +66,17 @@ def get_model_answers(model_path, model_id, question_jsons):
     prompts = []
     for i, line in enumerate(question_jsons):
         ques_json = json.loads(line)
-        qs = ""
-
-        if isinstance(ques_json["function"], list):
-            for idx, func in enumerate(ques_json["function"]):
-                qs += "\n<<function" + str(idx) + ">> " + str(func)
-        else:
-            qs += "\n<<function0>>" + str(ques_json["function"])
-        qs += "\n" + ques_json["question"]
+        SYSTEM_PROMPT_FOR_CHAT_MODEL = """"
+            You are an expert in composing functions. You are given a question and a set of possible functions. 
+            Based on the question, you will need to make one or more function/tool calls to achieve the purpose. 
+            If none of the function can be used, point it out. If the given question lacks the parameters required by the function,
+            also point it out. You should only return the function call in tools call sections.
+            """
+        USER_PROMPT_FOR_CHAT_MODEL = "Questions:{user_prompt}\nHere is a list of functions in JSON format that you can invoke:\n{functions}. Should you decide to return the function call(s), NO other text MUST be included."
         
         conv = get_conversation_template(model_id)
-        conv.append_message(conv.roles[0], qs)
-        conv.append_message(conv.roles[1], None)
+        conv.append_message(conv.roles[0], USER_PROMPT_FOR_CHAT_MODEL.format(user_prompt=ques_json["question"], functions=ques_json["function"]))
+        conv.append_message(conv.roles[1], SYSTEM_PROMPT_FOR_CHAT_MODEL)
         prompt = conv.get_prompt()
         prompts.append(prompt)
 
