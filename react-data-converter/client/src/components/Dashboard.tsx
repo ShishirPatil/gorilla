@@ -5,7 +5,7 @@ import { ConvertResult } from "../types/types";
 import { convertUrls } from "@/pages/api/apiService";
 
 interface DashboardProps {
-  // Define any props here if needed, for now, we don't have any specific props for Dashboard
+  // 
 }
 
 const Dashboard: React.FC<DashboardProps> = () => {
