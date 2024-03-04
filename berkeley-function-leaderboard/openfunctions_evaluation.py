@@ -6,6 +6,8 @@ import requests
 import argparse
 from dataclasses import asdict
 from anthropic import Anthropic
+from time import sleep
+import subprocess
 
 
 def get_args():
@@ -68,6 +70,7 @@ test_categories = {
     "rest": "gorilla_openfunctions_v1_test_rest.json",
     "sql": "gorilla_openfunctions_v1_test_sql.json",
     "chatable": "gorilla_openfunctions_v1_test_chatable.json",
+    "fix": "gorilla_openfunctions_v1_test_fix.json",
 }
 
 model_choice = {
@@ -177,6 +180,41 @@ def call_to_model(
             ]
         except:
             result = response.choices[0].message.content
+    elif "gemini" in model:
+        tools = []
+        for item in function:
+            if "." in item["name"]:
+                item["name"] = re.sub(
+                    r"\.", "_", item["name"]
+                )  # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
+            item["parameters"]["type"] = "object"  # If typing is missing, we assume it is an object since OAI requires a type.
+            if "properties" not in item["parameters"]:
+                item["parameters"]["properties"] = item["parameters"].copy()
+                item["parameters"]["type"] = "object"
+                for key in list(item["parameters"].keys()).copy():
+                    if key != "properties" and key != "type" and key != "required":
+                        del item["parameters"][key]
+                for key in list(item["parameters"]["properties"].keys()).copy():
+                    if key == "required" or key == "type":
+                        del item["parameters"]["properties"][key]
+            item["parameters"]["properties"] = cast_multi_param_type(
+                item["parameters"]["properties"]
+            )
+            # Remove fields that are not supported by Gemini today.
+            if "api_call" in item:
+                del item["api_call"]
+            if "optional" in item["parameters"]:
+                del item["parameters"]["optional"]
+            for params in item["parameters"]["properties"].values():
+                if "default" in params:
+                    del params["default"]
+                if "optional" in params:
+                    del params["optional"]
+                if "maximum" in params:
+                    del params["maximum"]
+            tools.append(item)
+        query = "Questions:" + user_prompt + "\n Return Nothing if no tool or function calls are involved."
+        result = query_gemini(query, tools)
     elif "claude" in model:
         message = f"""{SYSTEM_PROMPT_FOR_CHAT_MODEL}\n\nHuman: {USER_PROMPT_FOR_CHAT_MODEL.format(user_prompt=user_prompt,functions=str(function))} Put it in the format of [func1(params_name=params_value, params_name2=params_value2...), func2(params)]\n\nAssistant:"""
         response = client.completions.create(
@@ -388,11 +426,64 @@ def query_raven(prompt, max_tokens, temperature, top_p):
     return call
 
 
+def query_gemini(user_query, functions):
+    """
+    Query Gemini Pro model.
+    """
+
+    token = subprocess.run(
+        'gcloud auth print-access-token',
+        check=False,
+        shell=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+
+    json_data = {
+        "contents": {
+            "role": "user",
+            "parts": {
+                "text": user_query,
+            },
+        },
+        "generation_config": {
+            "max_output_tokens": 1024,
+            "temperature": 0.0,
+        },
+        "tools": {
+            'function_declarations': functions
+        }
+    }
+
+    API_URL = "https://us-central1-aiplatform.googleapis.com/v1beta1/projects/cloud-llm-preview1/locations/us-central1/publishers/google/models/gemini-pro:generateContent"
+    headers = {"Authorization": "Bearer " + token, "Content-Type": "application/json"}
+    response = requests.post(
+        API_URL,
+        headers=headers,
+        data = json.dumps(json_data),
+    )
+    result = json.loads(response.content)
+    print("HTTP content: ", result, "\n")
+    if 'error' in result:
+      return result["error"]["message"]
+    contents = result['candidates'][0]['content']['parts'][0]
+
+    if "functionCall" in contents:
+        if "name" in contents["functionCall"] and "args" in contents["functionCall"]:
+            return [
+                {contents["functionCall"]["name"] : json.dumps(contents["functionCall"]["args"])}
+            ]
+        else:
+            return "Parsing error: " + json.dumps(contents["functionCall"])
+    else:
+        return contents["text"]
+
+
 if __name__ == "__main__":
     args = get_args()
     model = args.model
     client = build_client(args.model)
-    if all([model_name not in args.model for model_name in ["firework","gpt","claude","mistral-medium","Nexus","openfunctions","mistral-medium","mistral-tiny","mistral-small","gorilla-openfunctions-v2","mistral-large-latest"]]):
+    if all([model_name not in args.model for model_name in ["gemini", "firework","gpt","claude","mistral-medium","Nexus","openfunctions","mistral-medium","mistral-tiny","mistral-small","gorilla-openfunctions-v2","mistral-large-latest"]]):
         if model in model_id_dict:
             model_id = model_id_dict[model]
             if not os.path.exists("./result/" + model):
@@ -452,6 +543,8 @@ if __name__ == "__main__":
                     args.top_p,
                     args.timeout,
                 )
+                # Sleep 1 sec to avoid being throttled.
+                sleep(1)
                 if not os.path.exists("./result/" + args.model):
                     os.makedirs("./result/" + args.model)
                 with open(

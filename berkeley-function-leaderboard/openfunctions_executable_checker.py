@@ -100,7 +100,8 @@ else:
 
 # Load the testing data and execution result from the data folder.
 testing_data = []
-with open(f"./data/gorilla_openfunctions_v1_test_{test_category}.json") as f:
+file_name= f"./result/{model_name}/gorilla_openfunctions_v1_test_{test_category}_result.json"
+with open(file_name) as f:
     for line in f:
         testing_data.append(json.loads(line))
 total = 0
@@ -113,7 +114,7 @@ for i in range(len(result_data)):
         execution_result_type = testing_data[i]["execution_result_type"]
         if type(execution_result_type) is str and len(execution_result) > 1:
                 execution_result_type = [execution_result_type] * len(execution_result)
-    if ("gpt" in model_name or "fire" in model_name or "mistral-large-latest" in model_name) and input_file is None:
+    if ("gemini" in model_name or "gpt" in model_name or "fire" in model_name or "mistral-large-latest" in model_name) and input_file is None:
         try:
             result = convert_to_function_call(result_data[i]["result"])
         except:     
