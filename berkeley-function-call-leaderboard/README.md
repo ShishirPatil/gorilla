@@ -131,7 +131,7 @@ Below is a list of model we support to run our leaderboard evaluation against. I
 |glaiveai 💻|  Supported| 
 |Nexusflow-Raven-v2| Supported|
 |fireworks-ai | Supported|
-|mistral-large-latest | Supported|
+|mistral-large-2402 | Supported|
 |claude-{2.1,instant-1.2}| Not supported|
 |mistral-{tiny,small,medium}| Not supported|
 |deepseek-7b 💻| Not supported|
@@ -143,6 +143,12 @@ If you are thinking about adding more OSS models to evaluate. Here are the codes
 * In `openfunctions_evaluation.py`, add `model_name` and `model_id` to `model_id_dict`. Check vllm for more details of what to put.
 * In `openfunctions_ast_checker.py`, add parser that parse model output in the format of either JSON schema or function calling schema(i.e. `[func1(param1=val1...)...]`).
 *  In `openfunctions_executable_checker.py`, make sure  to parse the model output in the format of list of function calls string i.e. `["func_call_1","func_call_2"...]` where `func_call_n` is executable strings using `exec()`
+
+
+## Changelog
+* [#237](https://github.com/ShishirPatil/gorilla/pull/237) and [238](https://github.com/ShishirPatil/gorilla/pull/238) leaderboard update resulting from [#223](https://github.com/ShishirPatil/gorilla/pull/223); 3 new models: `mistral-large-2402`, `gemini-1.0-pro`, and `gemma`.
+* [#223](https://github.com/ShishirPatil/gorilla/pull/223) modifications to REST evaluation. 
+
 
 ## Contributing
 
