@@ -51,9 +51,8 @@ def get_args():
 args = get_args() 
 
 # oss models are evaluated within one single file.
-if "deepseek" in args.model or "llama" in args.model:
-    args.file_name = "./" + args.model + "/result.json"
-
+if "deepseek" in args.model or "llama" in args.model or "gemma" in args.model or "glaive" in args.model:
+    args.file_name = "./result/" + args.model + "/result.json"
 # If the test category is all, we will check all the tests categories.
 if args.test_category == "all":
     test_categories = ["simple", 
