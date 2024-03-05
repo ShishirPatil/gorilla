@@ -5,6 +5,7 @@ import IconButton from './IconButton';
 import { raisePullRequest, reportIssue } from '../../pages/api/apiService';
 import { faThumbsDown, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { convertUrls } from '../../pages/api/apiService';
+import { toast } from 'react-toastify';
 
 // OutputCard.tsx
 interface OutputCardProps {
@@ -45,11 +46,19 @@ const OutputCard: React.FC<OutputCardProps> = ({ urlsResults }) => {
     }));
     try {
       // TODO: Replace "username" and "apiName" with actual values or state
-      const newResult = await convertUrls("username", "apiName", [urlToRegenerate]);
-      setEditedResults(prevResults => ({
-        ...prevResults,
-        [urlToRegenerate]: newResult[urlToRegenerate],
-      }));
+      const response = toast.promise(convertUrls("username", "apiName", [urlToRegenerate]), {
+        pending: "Regenerating URL...",
+        success: "URL regenerated successfully!",
+        error: "Failed to regenerate URL",
+      });
+
+      response.then((result) => {
+        setEditedResults(prevResults => ({
+          ...prevResults,
+          [urlToRegenerate]: result[urlToRegenerate],
+        }));
+      });
+
     } catch (error) {
       console.error("Failed to regenerate URL:", error);
     }
@@ -79,7 +88,7 @@ const OutputCard: React.FC<OutputCardProps> = ({ urlsResults }) => {
 
 
   return (
-    <div className="card border-secondary">
+    <div className="card border-secondary shadow-lg">
       <div className="card-header bg-secondary text-white">
         <h4>JSON Outputs</h4>
       </div>

@@ -42,23 +42,16 @@ const InputCard: React.FC<InputCardProps> = ({ handleConvertAndSetUrls }) => {
 
 
   const handleConvert = async (event: React.MouseEvent) => {
-    event.preventDefault(); 
+    event.preventDefault();
     if (isFormValid()) {
       setIsLoading(true);
-      try {
-        await handleConvertAndSetUrls(username, apiName, urls.filter(url => url.trim() !== ''));
-        toast.success("URLs converted successfully.");
-      } catch (error) {
-        console.error("Conversion error:", error);
-        toast.error(`Conversion failed. ${error}`);
-      } finally {
-        setIsLoading(false);
-      }
-    }
+      await handleConvertAndSetUrls(username, apiName, urls.filter(url => url.trim() !== ''));
+      setIsLoading(false);
+    };
   };
 
   return (
-    <div className="card border-primary">
+    <div className="card border-primary shadow-lg">
       <div className="card-header bg-primary text-white">
         <h4>Option 2 JSON Input</h4>
       </div>

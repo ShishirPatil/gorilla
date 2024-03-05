@@ -1,8 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import IconButton from './IconButton';
-import { faEdit, faClipboard, faThumbsDown, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
-import { ApiCallDetail, ConvertedURL } from '../../types/types';
-import { ToastContainer, toast } from 'react-toastify';
+import { ConvertedURL } from '../../types/types';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UrlResultItem from './UrlResultItem';
 
@@ -60,7 +58,7 @@ const UrlResult: React.FC<UrlResultProps> = React.memo(({ result, onResultsChang
       </p>
       {result.data.map((value, index) => (
         <UrlResultItem
-          key={index} // Consider using a more stable identifier
+          key={index} // TODO: Consider using a more stable identifier
           value={value}
           index={index}
           editableIndex={editableIndex}

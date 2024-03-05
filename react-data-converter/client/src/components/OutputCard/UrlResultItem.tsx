@@ -2,7 +2,8 @@ import React from 'react';
 import IconButton from './IconButton';
 import { faEdit, faClipboard } from '@fortawesome/free-solid-svg-icons';
 import { ApiCallDetail } from '@/types/types';
-
+import CodeMirror from '@uiw/react-codemirror';
+import { json } from '@codemirror/lang-json';
 
 interface UrlResultItemProps {
     value: ApiCallDetail;
@@ -11,7 +12,7 @@ interface UrlResultItemProps {
     toggleEdit: (index: number) => void;
     handleCopy: (text: string, apiName: string) => void;
     editedJSONResults: string[];
-    handleChange: (event: React.ChangeEvent<HTMLTextAreaElement>, index: number) => void;
+    handleChange: (value: string, index: number) => void; // Updated to reflect CodeMirror's onChange signature
     handleBlur: () => void;
 }
 
@@ -25,22 +26,30 @@ const UrlResultItem: React.FC<UrlResultItemProps> = ({
     handleChange,
     handleBlur
 }) => (
-    <div className='card-body'>
-        <div className="d-flex justify-content-between align-items-center">
-            <h5 className="card-title">{value.api_name}</h5>
-            <div>
-                <IconButton icon={faEdit} onClick={() => toggleEdit(index)} ariaLabel="Edit" />
-                <IconButton icon={faClipboard} onClick={() => handleCopy(editedJSONResults[index], value.api_name)} ariaLabel="Copy" />
+    <div className='card mb-3'>
+        <div className="card-body">
+            <div className="d-flex justify-content-between align-items-center">
+                <h5 className="card-title">{value.api_name}</h5>
+                <div>
+                    <IconButton icon={faEdit} onClick={() => toggleEdit(index)} ariaLabel="Edit" />
+                    <IconButton icon={faClipboard} onClick={() => handleCopy(editedJSONResults[index], value.api_name)} ariaLabel="Copy" />
+                </div>
             </div>
+            <CodeMirror
+                value={editedJSONResults[index]}
+                extensions={[json()]}
+                onChange={(value) => handleChange(value, index)}
+                onBlur={handleBlur}
+                editable={editableIndex !== index}
+                height="auto"
+                minHeight="100px"
+                basicSetup={{
+                    lineNumbers: false,
+                    closeBrackets: true,
+                }}
+                style={{ fontSize: '14px', borderRadius: '4px', border: '1px solid #ced4da' }} // Enhanced styling
+            />
         </div>
-        <textarea
-            className="form-control mt-2"
-            rows={7}
-            value={editedJSONResults[index]}
-            readOnly={editableIndex !== index}
-            onChange={(e) => handleChange(e, index)}
-            onBlur={() => handleBlur()}
-        />
     </div>
 );
 
