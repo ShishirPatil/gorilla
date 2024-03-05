@@ -47,7 +47,7 @@ const UrlResultItem: React.FC<UrlResultItemProps> = ({
                     lineNumbers: false,
                     closeBrackets: true,
                 }}
-                style={{ fontSize: '14px', borderRadius: '4px', border: '1px solid #ced4da' }} // Enhanced styling
+                style={{ fontSize: '14px', borderRadius: '4px', border: '1px solid #ced4da' }} 
             />
         </div>
     </div>
