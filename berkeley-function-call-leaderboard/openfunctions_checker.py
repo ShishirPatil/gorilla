@@ -62,7 +62,8 @@ if args.test_category == "all":
                        "parallel_function",
                        "multiple_function",
                        "parallel_multiple_function",
-                       "executable_multiple_function"
+                       "executable_multiple_function",
+                       "rest",
                        "executable_parallel_multiple_function",
                        "chatable",
                        "relevance",
@@ -103,7 +104,7 @@ for test_category in test_categories:
         append_string += " --log_store"
     if "executable" in test_category or "rest" in test_category:
         # If the test category is executable, we will use openfunctions_executable_checker.py.
-        print(f"Executable test category: {test_category} in progress...🦍")
+        print(f"Executable test category: {test_category}, Model {args.model} in progress...🦍")
         if args.file_name is not None:
             os.system(f"python openfunctions_executable_checker.py --model {args.model} --test_category {test_category} --input_file {args.file_name}" + append_string)
         else:

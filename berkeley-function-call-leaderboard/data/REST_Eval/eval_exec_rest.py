@@ -9,7 +9,7 @@ with open(eval_GT_file) as f:
 
 def is_exec_valid(func_call, idx):
     if "https://geocode.maps.co" in func_call:
-        time.sleep(1)
+        time.sleep(2)
     if "requests_get" in func_call:
         func_call = func_call.replace("requests_get", "requests.get")
     try:

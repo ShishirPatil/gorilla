@@ -28,6 +28,7 @@ def get_args():
 
 def build_client(model_name):
     # Fill in the API key for the model you want to test.
+    client = None
     if "gpt" in model_name:
         from openai import OpenAI
         client = OpenAI(api_key= os.environ.get("OPENAI_API_KEY"))
@@ -44,6 +45,7 @@ def build_client(model_name):
         import openai
         openai.api_key = "EMPTY" # Hosted for free with ❤️ from UC Berkeley
         openai.api_base = "http://luigi.millennium.berkeley.edu:8000/v1"
+        return None
     elif "gorilla-openfunctions-v2" in model_name:
         return None
     elif "firework" in model_name:
@@ -138,7 +140,7 @@ def get_gorilla_response(prompt, function, model, temperature):
 
 def call_to_model(
     client, model, user_prompt, function, max_tokens, temperature, top_p, timeout
-):
+): 
     """
     Perform A single request to selected model based on the parameters.
     """
@@ -173,32 +175,60 @@ def call_to_model(
                 + "\n Return Nothing if no tool or function calls are involved.",
             }
         ]
-        if len(oai_tool) > 0:
-            response = client.chat.completions.create(
-                messages=message,
-                model=model,
-                temperature=temperature,
-                max_tokens=max_tokens,
-                top_p=top_p,
-                timeout=timeout,
-                tools=oai_tool,
-            )
-        else:
-            response = client.chat.completions.create(
-                messages=message,
-                model=model,
-                temperature=temperature,
-                max_tokens=max_tokens,
-                top_p=top_p,
-                timeout=timeout,
-            )
-        try:
-            result = [
-                {func_call.function.name: func_call.function.arguments}
-                for func_call in response.choices[0].message.tool_calls
-            ]
-        except:
-            result = response.choices[0].message.content
+        if "gpt" in model:
+            if len(oai_tool) > 0:
+                response = client.chat.completions.create(
+                    messages=message,
+                    model=model,
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                    top_p=top_p,
+                    timeout=timeout,
+                    tools=oai_tool,
+                )
+            else:
+                response = client.chat.completions.create(
+                    messages=message,
+                    model=model,
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                    top_p=top_p,
+                    timeout=timeout,
+                )
+            try:
+                result = [
+                    {func_call.function.name: func_call.function.arguments}
+                    for func_call in response.choices[0].message.tool_calls
+                ]
+            except:
+                result = response.choices[0].message.content
+        elif "firework" in model:
+            if len(oai_tool) > 0:
+                response = client.chat.completions.create(
+                    messages=message,
+                    model="accounts/fireworks/models/firefunction-v1",
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                    top_p=top_p,
+                    timeout=timeout,
+                    tools=oai_tool,
+                )
+            else:
+                response = client.chat.completions.create(
+                    messages=message,
+                    model="accounts/fireworks/models/firefunction-v1",
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                    top_p=top_p,
+                    timeout=timeout,
+                )
+            try:
+                result = [
+                    {func_call.function.name: func_call.function.arguments}
+                    for func_call in response.choices[0].message.tool_calls
+                ]
+            except:
+                result = response.choices[0].message.content
     elif "claude" in model:
         message = f"""{SYSTEM_PROMPT_FOR_CHAT_MODEL}\n\nHuman: {USER_PROMPT_FOR_CHAT_MODEL.format(user_prompt=user_prompt,functions=str(function))} Put it in the format of [func1(params_name=params_value, params_name2=params_value2...), func2(params)]\n\nAssistant:"""
         response = client.completions.create(
@@ -284,9 +314,10 @@ def call_to_model(
             return result
         result = completion
     elif "gorilla-openfunctions-v0" in model:
+        import openai
         response = openai.ChatCompletion.create(
             model='gorilla-openfunctions-v0',
-            messages=user_prompt,
+            messages=[{"role": "user", "content": user_prompt}],
             functions=function
         )
         result = response["choices"][0]["message"]

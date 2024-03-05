@@ -401,7 +401,7 @@ if "gpt" in file_name or "glaive" in file_name or "fire" in file_name or "mistra
             if output_analysis:
                 with open("./gpt_failure.json","a+") as f:
                     f.write(json.dumps({"index":k,"answer":example[k]["result"]}) + "\n")
-    print(f"Testing type: {test_category}, success rate: {success/total}")
+    print(f"Testing type: {test_category}, Model: {file_name}, success rate: {success/total}")
 # Here we are function calls schema where we do the AST checking.
 else:
     total = 0
@@ -414,7 +414,12 @@ else:
         # Parsing raw gorilla v0 output
         elif "gorilla-openfunctions-v0" in str(file_name):
             func = "[" + example[k]["text"] + "]"
-        
+        elif "gemma" in file_name:
+            pattern = re.compile(r"\b\w+(?:\.\w+)?\b\([^)]*\)")
+
+            # Find all matches in the text
+            matches = pattern.findall(example[k]["text"])
+            func = "[" + ", ".join(matches) + "]"
         # Parsing deepseek output
         elif "deepseek-7b" in file_name:
             example[k]["text"] = example[k]["text"].replace("\n","")
@@ -543,5 +548,5 @@ else:
         else:
             total += 1
             success += 1
-    print(f"Testing type: {test_category}, success rate: {success/total}")
+    print(f"Testing type: {test_category}, Model: {args.model}, success rate: {success/total}")
             

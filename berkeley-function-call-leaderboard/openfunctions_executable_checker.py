@@ -126,9 +126,15 @@ for i in tqdm(range(len(result_data))):
     elif input_file is not None and "gorilla" in input_file:
         result = result_data[i]["text"] 
         print(result)
+    elif input_file is not None and "gemma" in input_file:
+        pattern = re.compile(r"\b\w+(?:\.\w+)?\b\([^)]*\)")
+
+        # Find all matches in the text
+        matches = pattern.findall(result_data[i]["text"])
+        result = matches
     elif "gorilla-openfunctions-v2" in model_name:
         result = result_data[i]["result"]
-        regex = r"\w+\([^()]*\)"
+        regex = r"[\w\.]+\([^()]*\)"
         # Find all matches of function calls
         result = re.findall(regex, result)
     elif input_file is not None and "deepseek" in input_file:
@@ -211,7 +217,6 @@ for i in tqdm(range(len(result_data))):
     test_result_list = []
     reason_list = []
     if "rest" in test_category:
-        rest_result = is_exec_valid(result[0], i) 
         try:
             rest_result = is_exec_valid(result[0], i)
         except:
@@ -262,4 +267,4 @@ for i in tqdm(range(len(result_data))):
         with open("./result/" + model_name + "/check/" + name, "a+") as f:
             f.write(json.dumps({"match": match, "reason": reason}))
             f.write("\n")
-print(f"Testing type: {args.test_category}, success rate: {success/total}")
+print(f"Testing type: {args.test_category}, Model: {args.model_name}, success rate: {success/total}")

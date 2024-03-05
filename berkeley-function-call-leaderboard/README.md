@@ -11,6 +11,17 @@ We present Berkeley Function Leaderboard, the **first comprehensive and executab
 
 Read more about the technical details and interesting insights in our blog post!
 
+### Install Dependencies
+
+Before generating the leaderboard statistics, you should install dependencies using the following command: 
+
+```bash
+    conda create -n BFCL python=3.10
+    conda activate BFCL
+    pip install -r requirements.txt
+    pip install vllm # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
+```
+
 ## Prepare Evaluation Dataset
 
 To download the evaluation dataset from huggingface, from the current directory `./openfunctions/berkeley-function-call-leaderboard`, run the following command:
@@ -53,16 +64,8 @@ Then, use `eval_data_compilation.py` to compile all files by using
 ```bash
     python eval_data_compilation.py
 ```
-## Berkeley Function Leaderboard Statistics
+## Berkeley Function-Calling Leaderboard Statistics
 
-Before generating the leaderboard statistics, make sure to install the required packages by running the following command:
-
-```bash
-    conda create -n BFCL python=3.10
-    conda activate BFCL
-    pip install -r requirements.txt
-    pip install vllm # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
-```
 To run Mistral Models function calling, you need to have `mistralai >= 0.1.3`.
 
 Also provide your API keys in your environment variables.
@@ -104,22 +107,37 @@ The output of this is in the format of
 Testing type: XXX, success rate: XXX
 ```
 
+To ease the usage for generating and evaluating results on a range of models and test categories, we provide a script `test_eval_api.sh` that can be used to generate evaluation results for all model provided in the list parallelly. Before running the bash file, make sure to fill in the API keys.
+
+```bash
+    bash test_eval_api.sh
+```
+If you are using oss, feel free to use `bash test_eval_oss.sh` with appropriated parameteres
+
+After generation evaluation results, you can use `test_eval_checker.sh` to check the accuracy of the evaluation result by our AST and Executable checks, select your evaluation method. 
+
+```bash
+    bash test_eval_checker.sh
+```
+
+
 ## Models Available
 Below is a list of model we support to run our leaderboard evaluation against. If supported function calling, we will follow its function calling format provided by official documentations. Else, we will construct system message to prompt the model to generate function calls in the right format.
 |Model | Function Calling |
 |---|---|
-|gorilla-openfunctions-v0 | Not supported|
 |gorilla-openfunctions-v2 | Supported|
 |gpt-3.5-{turbo-0613, turbo-1106, turbo-0125}| Supported|
 |gpt-4-{0613, 1106-preview, 0125-preview}| Supported|
-|glaiveai|  Supported| 
+|glaiveai 💻|  Supported| 
 |Nexusflow-Raven-v2| Supported|
-|FireFunction-v1 | Supported|
+|fireworks-ai | Supported|
 |mistral-large-latest | Supported|
 |claude-{2.1,instant-1.2}| Not supported|
 |mistral-{tiny,small,medium}| Not supported|
-|deepseek-7b| Not supported|
-|llama-v2-{7b,13b,70b}| Not supported|
+|deepseek-7b 💻| Not supported|
+|llama-v2-{7b,13b,70b} 💻| Not supported|
+
+Here {MODEL}💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls.
 
 If you are thinking about adding more OSS models to evaluate. Here are the codes you need to change 
 * In `openfunctions_evaluation.py`, add `model_name` and `model_id` to `model_id_dict`. Check vllm for more details of what to put.
