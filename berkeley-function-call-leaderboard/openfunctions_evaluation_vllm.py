@@ -7,7 +7,6 @@ import shortuuid
 import ray
 from vllm import LLM, SamplingParams
 import random
-from fastchat.model import get_conversation_template
 
 """
     This script is used to evaluate the OSS model using the VLLM model.
@@ -20,15 +19,8 @@ from fastchat.model import get_conversation_template
     Outputs:
         - answer_file: The file containing the answers
     Example usage:
-        python openfunctions/openfunctions_evaluation_vllm.py \
-            --model-path "./model/gorilla-openfunctions-v2/" \
-            --model-id "gorilla-openfunctions-v2" \
-            --question-file "eval_data_total.json" \
-            --answer-file "./result/gorilla-openfunctions-v2/result.json" \
-            --num-gpus 1
+        python openfunctions_evaluation_vllm.py --model-path glaiveai/glaive-function-calling-v1 --model-id glaiveai --question-file eval_data_total.json --answer-file ./result/glaiveai/result.json --num-gpus 4
 """
-N_DOCS = 100
-N_SAMPLES = 3
 def run_eval(model_path, model_id, question_file, answer_file, num_gpus):
     # split question file into num_gpus files
     ques_jsons = []
@@ -51,6 +43,7 @@ def run_eval(model_path, model_id, question_file, answer_file, num_gpus):
     for ans_handle in ans_handles:
         ans_jsons.extend(ray.get(ans_handle))
 
+    os.makedirs(os.path.dirname(answer_file), exist_ok=True)
     with open(os.path.expanduser(answer_file), "w") as ans_file:
         for line in ans_jsons:
             ans_file.write(json.dumps(line) + "\n")
@@ -66,20 +59,21 @@ def get_model_answers(model_path, model_id, question_jsons):
     prompts = []
     for i, line in enumerate(question_jsons):
         ques_json = json.loads(line)
-        qs = ""
-
-        if isinstance(ques_json["function"], list):
-            for idx, func in enumerate(ques_json["function"]):
-                qs += "\n<<function" + str(idx) + ">> " + str(func)
+        functions = ""
+        if model_id == "glaiveai":
+            SYSTEM_PROMPT = """
+                You are an helpful assistant who has access to the following functions to help the user, you can use the functions if needed-
+            """
+            if isinstance(ques_json["function"], list):
+                for idx, func in enumerate(ques_json["function"]):
+                    functions += "\n" + str(func)
+            else:
+                functions += "\n" + str(ques_json["function"])
+            prompt = f"SYSTEM: {SYSTEM_PROMPT}\n{functions}\nUSER: {ques_json['question']}\nASSISTANT: "
+            prompts.append(prompt)
         else:
-            qs += "\n<<function0>>" + str(ques_json["function"])
-        qs += "\n" + ques_json["question"]
-        
-        conv = get_conversation_template(model_id)
-        conv.append_message(conv.roles[0], qs)
-        conv.append_message(conv.roles[1], None)
-        prompt = conv.get_prompt()
-        prompts.append(prompt)
+            raise Exception('Model not supported yet 🦍')
+
 
         ans_id = shortuuid.uuid()
         ans_jsons.append(
@@ -89,30 +83,10 @@ def get_model_answers(model_path, model_id, question_jsons):
                 }
             )
 
-        '''
-        if "human_eval_answer" in ques_json.keys():
-            ans_jsons.append(
-                {
-                    "answer_id": ans_id,
-                    "question": ques_json["question"],
-                    "function": ques_json['function'],
-                    "ground_truth": ques_json["human_eval_answer"]
-                }
-            )
-        else:
-            ans_jsons.append(
-                {
-                    "answer_id": ans_id,
-                    "question": ques_json["question"],
-                    "function": ques_json['function'],
-                    "ground_truth": ques_json["answer"]
-                }
-            )
-        '''
-
+        
     print('start generating: ', len(prompts))
     sampling_params = SamplingParams(temperature=0.0, max_tokens=1024)
-    llm = LLM(model=model_path, dtype="float16")
+    llm = LLM(model=model_path, dtype="float16", trust_remote_code=True)
     outputs = llm.generate(prompts, sampling_params)
     final_ans_jsons = []
     for output, ans_json in zip(outputs, ans_jsons):

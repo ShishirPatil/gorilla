@@ -1,6 +1,7 @@
 import ast
 import os 
 import argparse
+from tqdm import tqdm
 """
     This script is used to check the correctness of the outputs of the models for the given test categories.
     The input:
@@ -14,8 +15,8 @@ import argparse
         `python3 openfunctions_checker.py --model gorilla-openfunctions-v2 --test_category executable` will check the correctness of the outputs of the model gorilla-openfunctions-v2 for the executable test category.
         `python3 openfunctions_checker.py --model gorilla-openfunctions-v2 --test_category all` will check the correctness of the outputs of the model gorilla-openfunctions-v2 for all the test categories.
     Here is a possible list of test categories:
-        - generic
-        - executable_generic
+        - simple
+        - executable_simple
         - executable_parallel_function
         - parallel_function
         - multiple_function
@@ -23,7 +24,7 @@ import argparse
         - executable_multiple_function
         - executable_parallel_multiple_function
         - chatable
-        - no_function_call
+        - relevance
         - sql
         - java
         - javascript
@@ -49,18 +50,22 @@ def get_args():
     return args
 args = get_args() 
 
+# oss models are evaluated within one single file.
+if "deepseek" in args.model or "llama" in args.model or "gemma" in args.model or "glaive" in args.model:
+    args.file_name = "./result/" + args.model + "/result.json"
 # If the test category is all, we will check all the tests categories.
 if args.test_category == "all":
-    test_categories = ["generic", 
+    test_categories = ["simple", 
                        "executable_simple", 
                        "executable_parallel_function", 
                        "parallel_function",
                        "multiple_function",
                        "parallel_multiple_function",
-                       "executable_multiple_function"
+                       "executable_multiple_function",
+                       "rest",
                        "executable_parallel_multiple_function",
                        "chatable",
-                       "no_function_call",
+                       "relevance",
                        "sql",
                        "java",
                        "javascript",
@@ -68,7 +73,7 @@ if args.test_category == "all":
 
 # If the test category is executable, we will check all the executable tests categories.    
 elif args.test_category == "executable":
-    test_categories = ["executable_generic", 
+    test_categories = ["executable_simple", 
                        "executable_parallel_function", 
                        "executable_multiple_function",
                        "executable_parallel_multiple_function",
@@ -81,13 +86,14 @@ elif args.test_category == "ast":
                        "multiple_function",
                        "parallel_multiple_function",
                        "chatable",
-                       "no_function_call",
+                       "relevance",
                        "sql",
                        "java",
                        "javascript",]
 else:
     # If the test category is not all, executable, or ast, we will check the specific test category.
     test_categories = [args.test_category]
+
 
 for test_category in test_categories:
     append_string = ""
@@ -97,6 +103,7 @@ for test_category in test_categories:
         append_string += " --log_store"
     if "executable" in test_category or "rest" in test_category:
         # If the test category is executable, we will use openfunctions_executable_checker.py.
+        print(f"Executable test category: {test_category}, Model {args.model} in progress...🦍")
         if args.file_name is not None:
             os.system(f"python openfunctions_executable_checker.py --model {args.model} --test_category {test_category} --input_file {args.file_name}" + append_string)
         else:

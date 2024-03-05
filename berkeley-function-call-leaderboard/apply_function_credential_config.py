@@ -41,23 +41,37 @@ def replace_placeholders(data):
                         data[idx] = item.replace(placeholder, actual_value)
     return data
 
-modified_data = []
-with open(f"{args.input_file}", 'r') as f:
-    lines = f.readlines()
-    for line in lines:
-        try:
-            data = json.loads(line)  # Parse each line as a JSON object
-            data = replace_placeholders(data)  # Replace placeholders
-            modified_data.append(json.dumps(data))  # Convert back to string and store
-        except json.JSONDecodeError:
-            # Handle the case where a line is not a valid JSON object
-            print("Invalid JSON line skipped.")
-            continue
-if args.output_file == "":
-    with open(f"{args.output_file}", 'w') as f:
-        for modified_line in modified_data:
-            f.write(modified_line + '\n')  # Write each modified JSON object back to the file
-else:
-    with open(f"{args.input_file}", 'w') as f:
-        for modified_line in modified_data:
-            f.write(modified_line + '\n')  # Write each modified JSON object back to the file
+def main():
+    # Verify all values are provided
+    for key, value in PLACEHOLDERS.items():
+        if value == "":
+            print(f"Please provide a value for the placeholder {key}.")
+            return
+    print("All API keys are present.")
+        
+    modified_data = []
+    with open(f"{args.input_file}", 'r') as f:
+        lines = f.readlines()
+        for line in lines:
+            try:
+                data = json.loads(line)  # Parse each line as a JSON object
+                data = replace_placeholders(data)  # Replace placeholders
+                modified_data.append(json.dumps(data))  # Convert back to string and store
+            except json.JSONDecodeError:
+                # Handle the case where a line is not a valid JSON object
+                print("Invalid JSON line skipped.")
+                continue
+
+    if args.output_file == "":
+        with open(f"{args.input_file}", 'w') as f:
+            for modified_line in modified_data:
+                f.write(modified_line + '\n')  # Write each modified JSON object back to the input file
+        print(f"All placeholders have been replaced in {args.input_file} 🦍.")
+    else:
+        with open(f"{args.output_file}", 'w') as f:
+            for modified_line in modified_data:
+                f.write(modified_line + '\n')  # Write each modified JSON object overwrite the output file
+        print(f"All placeholders have been replaced in {args.output_file} 🦍.")
+                
+if __name__ == "__main__":
+    main()

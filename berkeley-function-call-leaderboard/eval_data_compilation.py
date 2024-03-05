@@ -16,3 +16,4 @@ with open("./eval_data_total.json", "a+") as file:
     for item in data:
         file.write(json.dumps(item))
         file.write("\n")
+print("Data successfully compiled into eval_data_total.json 🦍")
