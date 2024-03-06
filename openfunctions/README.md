@@ -119,16 +119,16 @@ This is possible in OpenFunctions v2, because we ensure that the output includes
 
 ### End to End Example
 
-In the current directory, run the example code in `ofv2_hosted.py` to see how the model works.
+In the current directory, run the example code in `inference_hosted.py` to see how the model works.
 
 ```bash
-python ofv2_hosted.py
+python inference_hosted.py
 ```
 
 Expected Output:
 
 ```bash
-(.py3) shishir@dhcp-132-64:~/Work/Gorilla/openfunctions/$ python ofv2_hosted.py
+(.py3) shishir@dhcp-132-64:~/Work/Gorilla/openfunctions/$ python inference_hosted.py
 --------------------
 Function call strings(s): get_current_weather(location='Boston, MA'), get_current_weather(location='San Francisco, CA')
 --------------------
@@ -219,6 +219,15 @@ def format_response(response: str):
     return response, function_call_dicts
         
 ```
+
+### End to End Example
+
+In the current directory, run the example code in `inference_local.py` to see how the model works.
+
+```bash
+python inference_local.py
+```
+
 
 **Note:** Use the `get_prompt` and `format_response`  only if you are hosting it locally. If you are using the Berkeley hosted models through the Chat-completion API, we do this in the backend, so you don't have to do this. The model is supported in Hugging Face 🤗 Transformers and can be run up locally:
 
