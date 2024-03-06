@@ -1,0 +1,13 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Jira - Capability - Get Issue: Get a Single Issue",
+        "api_call": "{{baseUrl}}/rest/api/3/issue/:issueIdOrKey?fields=*all&fieldsByKeys=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns the details for an issue.\n\nThe issue is identified by its ID or key, however, if the identifier doesn't match"
+    }
+]

@@ -1,0 +1,385 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: GetCurrencies",
+        "api_call": "https://api.dingconnect.com/api/V1/GetCurrencies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "*Get a list of supported currencies*\r\n\r\nRetrieves a list of standard three letter currency codes that the system supports, along with"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: GetRegions",
+        "api_call": "https://api.dingconnect.com/api/V1/GetRegions?countryIsos=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "*Get a list of regions on the system*\r\n\r\nRetrieves a list of regions used in the system. Each region includes a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: GetCountries",
+        "api_call": "https://api.dingconnect.com/api/V1/GetCountries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "*Get a list of supported countries*\r\n\r\nRetrieves a list of standard two letter country codes that the system supports, along with"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: GetProviders",
+        "api_call": "https://api.dingconnect.com/api/V1/GetProviders?providerCodes=<string>&countryIsos=<string>&regionCodes=<string>&accountNumber=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "*Get a list of product providers available to the agent*\r\n\r\nRetrieves the list of providers available to the agent.\r\n\r\nPlease see the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: GetProviderStatus",
+        "api_call": "https://api.dingconnect.com/api/V1/GetProviderStatus?providerCodes=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "*Get the current status of product providers*\r\n\r\nProviders can be suspended or be in an error state. This API allows an"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: GetProducts",
+        "api_call": "https://api.dingconnect.com/api/V1/GetProducts?countryIsos=<string>&providerCodes=<string>&skuCodes=<string>&benefits=<string>&regionCodes=<string>&accountNumber=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "*Get a list of products that can be used in SendTransfer*\r\n\r\nThis API returns a list of available products that satisfy"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: GetProductDescriptions",
+        "api_call": "https://api.dingconnect.com/api/V1/GetProductDescriptions?languageCodes=<string>&skuCodes=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "*Get localized strings for products*\r\n\r\nPlease see the documentation section on [localization](#localization).\r\n\r\nPlease see the documentation section on [querying](#querying)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: SendTransfer",
+        "api_call": "https://api.dingconnect.com/api/V1/SendTransfer",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "SkuCode",
+                        "value": "<string>",
+                        "description": "(Required) Code provided by GetProducts API"
+                    },
+                    {
+                        "key": "SendValue",
+                        "value": "<double>",
+                        "description": "(Required) The transfer value to be sent. Specified to two decimal places of accuracy of the major currency unit, e.g. 3.17 USD."
+                    },
+                    {
+                        "key": "AccountNumber",
+                        "value": "<string>",
+                        "description": "(Required) The account number to target"
+                    },
+                    {
+                        "key": "DistributorRef",
+                        "value": "<string>",
+                        "description": "(Required) Unique identifier in the distributor system to be associated with the transfer"
+                    },
+                    {
+                        "key": "ValidateOnly",
+                        "value": "<boolean>",
+                        "description": "(Required) Validate the request with the provider without doing a transfer"
+                    },
+                    {
+                        "key": "SendCurrencyIso",
+                        "value": "<string>",
+                        "description": "The currency of the `SendValue`. If this is null or empty, we will assume distributor currency."
+                    },
+                    {
+                        "key": "Settings",
+                        "value": "{\"Name\":\"<string>\",\"Value\":\"<string>\"}",
+                        "description": "Product specific name/value pairs to be associated with the transfer request"
+                    },
+                    {
+                        "key": "Settings",
+                        "value": "{\"Name\":\"<string>\",\"Value\":\"<string>\"}",
+                        "description": "Product specific name/value pairs to be associated with the transfer request"
+                    },
+                    {
+                        "key": "BillRef",
+                        "value": "<string>",
+                        "description": "Bill reference. Required when product has \"LookupBillsRequired\" set to true."
+                    }
+                ]
+            }
+        },
+        "functionality": "*Send a transfer to an account*\r\n\r\nAn agent will construct a request that contains a product `SkuCode` and a `SendValue` that\r\nis"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: EstimatePrices",
+        "api_call": "https://api.dingconnect.com/api/V1/EstimatePrices",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "SkuCode",
+                        "value": "<string>"
+                    },
+                    {
+                        "key": "BatchItemRef",
+                        "value": "<string>"
+                    },
+                    {
+                        "key": "SendValue",
+                        "value": "<decimal>"
+                    },
+                    {
+                        "key": "SendCurrencyIso",
+                        "value": "<string>"
+                    },
+                    {
+                        "key": "ReceiveValue",
+                        "value": "<decimal>"
+                    },
+                    {
+                        "key": "SkuCode",
+                        "value": "<string>"
+                    },
+                    {
+                        "key": "BatchItemRef",
+                        "value": "<string>"
+                    },
+                    {
+                        "key": "SendValue",
+                        "value": "<decimal>"
+                    },
+                    {
+                        "key": "SendCurrencyIso",
+                        "value": "<string>"
+                    },
+                    {
+                        "key": "ReceiveValue",
+                        "value": "<decimal>"
+                    }
+                ]
+            }
+        },
+        "functionality": "*Estimate prices for send or receive values*\r\n\r\nBefore a transfer is attempted, it is impossible to know the exact value that"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: GetBalance",
+        "api_call": "https://api.dingconnect.com/api/V1/GetBalance",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "*Get the current agent balance*\r\n\r\nReturns the current agent balance. This will include any commission-on-sale increments, but will not reflect any\r\ntransfers"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: GetPromotions",
+        "api_call": "https://api.dingconnect.com/api/V1/GetPromotions?countryIsos=<string>&providerCodes=<string>&accountNumber=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "*Get a list of promotions*\r\n\r\nReturns a list promotions that may apply for the submitted criteria. \r\n\r\nPlease see the documentation section"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: GetPromotionDescriptions",
+        "api_call": "https://api.dingconnect.com/api/V1/GetPromotionDescriptions?languageCodes=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "*Get localized strings for promotions*\r\n\r\nPlease see the documentation section on [localization](#localization).\r\n\r\nPlease see the documentation section on [querying](#querying).\r\n\r\n#### Dates\r\nIt is not"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: ListTransferRecords",
+        "api_call": "https://api.dingconnect.com/api/V1/ListTransferRecords",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "Take",
+                        "value": "<integer>",
+                        "description": "(Required) The amount of records to return"
+                    },
+                    {
+                        "key": "TransferRef",
+                        "value": "<string>",
+                        "description": "Filter by Ding TransferRef"
+                    },
+                    {
+                        "key": "DistributorRef",
+                        "value": "<string>",
+                        "description": "Filter transfers by DistributorRef."
+                    },
+                    {
+                        "key": "AccountNumber",
+                        "value": "<string>",
+                        "description": "Filter transfers by AccountNumber"
+                    },
+                    {
+                        "key": "Skip",
+                        "value": "<integer>",
+                        "description": "The amount of records to by-pass before returning the remaining records"
+                    }
+                ]
+            }
+        },
+        "functionality": "*Query transfers that were submitted to the system*\r\n\r\nListTransferRecords gives the ability to search the details of transfers that have been"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: CancelTransfers",
+        "api_call": "https://api.dingconnect.com/api/V1/CancelTransfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "TransferId",
+                        "value": "{\"TransferRef\":\"<string>\",\"DistributorRef\":\"<string>\"}"
+                    },
+                    {
+                        "key": "BatchItemRef",
+                        "value": "<string>"
+                    },
+                    {
+                        "key": "TransferId",
+                        "value": "{\"TransferRef\":\"<string>\",\"DistributorRef\":\"<string>\"}"
+                    },
+                    {
+                        "key": "BatchItemRef",
+                        "value": "<string>"
+                    }
+                ]
+            }
+        },
+        "functionality": "*Attempt to cancel transfers with the submitted TransferIds*\r\n\r\nThe agent should call `ListTransferRecords` with an appropriate query to \r\nget a list"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: GetAccountLookup",
+        "api_call": "https://api.dingconnect.com/api/V1/GetAccountLookup?accountNumber=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "*Get providers and product information for a specific account number*\r\n\r\nReturns country, provider and region code details for the account number."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: LookupBills",
+        "api_call": "https://api.dingconnect.com/api/V1/LookupBills",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "SkuCode",
+                        "value": "<string>",
+                        "description": "(Required) Code provided by GetProducts API"
+                    },
+                    {
+                        "key": "AccountNumber",
+                        "value": "<string>",
+                        "description": "(Required) The account number to target"
+                    },
+                    {
+                        "key": "Settings",
+                        "value": "{\"Name\":\"<string>\",\"Value\":\"<string>\"}",
+                        "description": "Product specific name/value pairs to be associated with the lookup bills request"
+                    },
+                    {
+                        "key": "Settings",
+                        "value": "{\"Name\":\"<string>\",\"Value\":\"<string>\"}",
+                        "description": "Product specific name/value pairs to be associated with the lookup bills request"
+                    }
+                ]
+            }
+        },
+        "functionality": "*Search available bills*\r\n\r\n`LookupBills` should be called for any product where `LookupBillsRequired` true that will be required for this product when"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "DingConnect API: GetErrorCodeDescriptions",
+        "api_call": "https://api.dingconnect.com/api/V1/GetErrorCodeDescriptions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "*Get a list of error code descriptions*\r\n\r\nEvery API response can contain one or more ErrorCodes that indicate why a request"
+    }
+]
