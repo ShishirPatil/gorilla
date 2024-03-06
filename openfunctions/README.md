@@ -165,10 +165,11 @@ def get_prompt(user_query: str, functions: list = []) -> str:
     Returns:
     - str: The formatted conversation prompt.
     """
+    system = "You are an AI programming assistant, utilizing the Gorilla LLM model, developed by Gorilla LLM, and you only answer questions related to computer science. For politically sensitive questions, security and privacy issues, and other non-computer science questions, you will refuse to answer."
     if len(functions) == 0:
-        return f"USER: <<question>> {user_query}\nASSISTANT: "
+        return f"{system}\n### Instruction: <<question>> {user_query}\n### Response: "
     functions_string = json.dumps(functions)
-    return f"USER: <<question>> {user_query} <<function>> {functions_string}\nASSISTANT: "
+    return f"{system}\n### Instruction: <<function>>{functions_string}\n<<question>>{user_query}\n### Response: "
 ```
 
 Further, here is how we format the response:
