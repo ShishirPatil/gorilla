@@ -97,7 +97,7 @@ document.getElementById('report-issue-btn').addEventListener('click', function (
         return;
     }
     var issueTitle = "[bug] OpenFunctions-v2: "
-    var issueBody = `**Issue Description**%0A%0APrompt: ${inputText}%0A%0AModel: ${model}%0A%0ATemperature: ${temperatureValue}%0A%0AOutput (or Error if request failed): ${codeOutputText} %0A%0A ${jsonOutputText}%0A%0A**Additional Information**\n`;
+    var issueBody = `**Issue Description**%0A%0APrompt: ${inputText}%0A%0AModel: ${model}%0A%0ATemperature: ${temperatureValue}%0A%0AOutput (or Error if request failed): %0A%0A ${codeOutputText} %0A%0A ${jsonOutputText}%0A%0A**Additional Information**\n`;
     window.open(`https://github.com/ShishirPatil/gorilla/issues/new?assignees=&labels=hosted-openfunctions-v2&projects=&template=hosted-openfunctions-v2.md&title=${issueTitle}&body=${issueBody}`, '_blank');
 });
 
