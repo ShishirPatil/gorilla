@@ -398,7 +398,7 @@ function toggleExpand() {
 
 
 function sendFeedback(vote) {
-    fetch('https://realm.mongodb.com/api/client/v2.0/app/data-onwzq/auth/providers/local-userpass/login', {
+    fetch('https://us-west-2.aws.realm.mongodb.com/api/client/v2.0/app/data-onwzq/auth/providers/local-userpass/login', {
         method: 'POST', // Specifies the request method
         headers: {
             'Content-Type': 'application/json', // Sets header to indicate the media type of the resource
