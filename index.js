@@ -326,7 +326,7 @@ const data = {
             pointHoverBorderColor: 'rgb(0, 255, 255)',
             hidden: true
         }, {
-            label: 'Gemma',
+            label: 'Gemma-7B-IT',
             data: [0.42, 61.45, 60.00, 41.00, 32.50, 44.71, 46.00, 44.00, 25.50],
             fill: true,
             backgroundColor: 'rgba(85, 107, 47, 0.1)',
