@@ -38,20 +38,31 @@ def convert_to_function_call(data_str):
     output_func_list = []
     for func in data_str:
         # Step 2: Split the string into function name and parameters parts
-        func_name_part, params_part = func.split(":", 1)
+        try:
+            func_name_part, params_part = func.split(":", 1)
+        except:
+            continue
 
         # Step 3: Clean and extract the function name
         func_name = func_name_part.strip("{").strip(" '")
-
         # Step 4: Extract and clean the parameters string
-        if params_part[-1] == "}":
-            params_part = params_part[:-2]
-        params_str = params_part.strip(" '")
-        # Step 5: Replace single quotes with double quotes for JSON parsing
-        params_str = params_str.replace("'", '"')
-        params_str = params_str.replace("\\" + "n", "")
-        # Step 6: Load the parameters string as a dictionary
-        params = json.loads(params_str)
+        if "gemini" in model_name:
+            if params_part[0] != "{":
+                params_part = params_part[1:]
+            params_part = params_part[0:-1]
+            try:
+                params = eval(params_part)
+            except:
+                continue
+        else:
+            if params_part[-1] == "}":
+                params_part = params_part[:-2]
+            params_str = params_part.strip(" '")
+            # Step 5: Replace single quotes with double quotes for JSON parsing
+            params_str = params_str.replace("'", '"')
+            params_str = params_str.replace("\\" + "n", "")
+            # Step 6: Load the parameters string as a dictionary
+            params = json.loads(params_str)
         function_string = func_name + "("
         for k,v in params.items():
             if isinstance(v, str):
@@ -117,15 +128,10 @@ for i in tqdm(range(len(result_data))):
         execution_result_type = testing_data[i]["execution_result_type"]
         if type(execution_result_type) is str and len(execution_result) > 1:
                 execution_result_type = [execution_result_type] * len(execution_result)
-    if ("gpt" in model_name or "fire" in model_name or "mistral-large-latest" in model_name) and input_file is None:
-        try:
-            result = convert_to_function_call(result_data[i]["result"])
-        except:     
-            total += 1
-            continue
+    if ("gpt" in model_name or "fire" in model_name or "mistral-large-latest" in model_name or "gemini" in model_name) and input_file is None:
+        result = convert_to_function_call(result_data[i]["result"])
     elif input_file is not None and "gorilla" in input_file:
         result = result_data[i]["text"] 
-        print(result)
     elif input_file is not None and "gemma" in input_file:
         pattern = re.compile(r"\b\w+(?:\.\w+)?\b\([^)]*\)")
 
