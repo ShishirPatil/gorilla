@@ -182,6 +182,8 @@ git clone https://github.com/tree-sitter/tree-sitter-java.git
 git clone https://github.com/tree-sitter/tree-sitter-javascript.git
 ```
 
+Please `git clone` and run example code under current `openfunctions` directory!
+
 And you can use the following code to format the response:
 
 ```python
