@@ -78,6 +78,10 @@ table {
 }
 
 
+th:not(.detail-header)  {
+    cursor: pointer;
+}
+
 
 
 .table-container {

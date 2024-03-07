@@ -468,3 +468,52 @@ function sendFeedbackNegative() {
 function sendFeedbackPositive() {
     sendFeedback("positive");
 }
+
+
+
+function getCellValue(row, columnIndex) {
+    return row.children[columnIndex].innerText || row.children[columnIndex].textContent;
+}
+
+function createComparer(columnIndex, isAscending) {
+    return function(rowA, rowB) {
+        var valueA = getCellValue(isAscending ? rowA : rowB, columnIndex);
+        var valueB = getCellValue(isAscending ? rowB : rowA, columnIndex);
+
+        if (valueA !== '' && valueB !== '' && !isNaN(valueA) && !isNaN(valueB)) {
+            return valueA - valueB; // Numeric comparison
+        } else {
+            return valueA.toString().localeCompare(valueB); // String comparison
+        }
+    };
+}
+
+
+document.querySelectorAll('th:not(.detail-header)').forEach(function(header) {
+    var sortIndicator = document.createElement('span');
+    header.appendChild(sortIndicator); 
+    
+    header.addEventListener('click', function() {
+        var table = header.closest('table');
+        var tbody = table.querySelector('tbody');
+        var columnIndex = Array.from(header.parentNode.children).indexOf(header);
+        var isAscending = header.asc = !header.asc; 
+
+        sortIndicator.textContent = isAscending ? ' 🔼' : ' 🔽';
+        
+        document.querySelectorAll('th span').forEach(function(otherIndicator) {
+            if (otherIndicator !== sortIndicator) {
+                otherIndicator.textContent = ''; // Clear other indicators
+            }
+        });
+
+        var rowsArray = Array.from(tbody.querySelectorAll('tr'));
+        rowsArray.sort(createComparer(columnIndex, isAscending))
+            .forEach(function(row) {
+                tbody.appendChild(row);
+            });
+    });
+});
+
+
+document.getElementById("rank-col").click(); // Sort by rank by default
