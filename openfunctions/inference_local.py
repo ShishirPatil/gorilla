@@ -103,8 +103,7 @@ functions_2 = [{"name": "thermodynamics.calculate_boiling_point", "description":
 # Generate prompt and obtain model output
 prompt_1 = get_prompt(query_1, functions=functions_1)
 output_1 = pipe(prompt_1)
-fn_call_string, function_call_dict = format_response(output_1)
-
+fn_call_string, function_call_dict = format_response(output_1[0]['generated_text'])
 print("--------------------")
 print(f"Function call strings 1(s): {fn_call_string}")
 print("--------------------")
