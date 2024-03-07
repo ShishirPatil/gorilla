@@ -1,0 +1,183 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "GigaChat: list models",
+        "api_call": "https://gigachat.devices.sberbank.ru/api/v1/models",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "GigaChat: chat/completions",
+        "api_call": "https://gigachat.devices.sberbank.ru/api/v1/chat/completions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Request-ID",
+                    "value": "79e41a5f-f180-4c7a-b2d9-393086ae20a1",
+                    "description": "\u041f\u043e \u043d\u0435\u043c\u0443 \u043c\u043e\u0436\u043d\u043e \u043d\u0430\u0439\u0442\u0438 \u043b\u043e\u0433\u0438 \u0437\u0430\u043f\u0440\u043e\u0441\u0430",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Session-ID",
+                    "value": "b6874da0-bf06-410b-a150-fd5f9164a0b2",
+                    "description": "\u041f\u043e \u043d\u0435\u043c\u0443 \u043c\u043e\u0436\u043d\u043e \u043d\u0430\u0439\u0442\u0438 \u043b\u043e\u0433\u0438 \u0441\u0435\u0441\u0441\u0438\u0438",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Client-ID",
+                    "value": "b6874da0-bf06-410b-a150-fd5f9164a0b2",
+                    "description": "\u041f\u043e \u043d\u0435\u043c\u0443 \u043c\u043e\u0436\u043d\u043e \u043d\u0430\u0439\u0442\u0438 \u043b\u043e\u0433\u0438 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"model\": \"GigaChat:latest\", // \u0438\u0434\u0435\u043d\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0440 \u043c\u043e\u0434\u0435\u043b\u0438, \u043c\u043e\u0436\u043d\u043e \u0443\u043a\u0430\u0437\u0430\u0442\u044c \u043a\u043e\u043d\u043a\u0440\u0435\u0442\u043d\u0443\u044e \u0438\u043b\u0438 :latest \u00a0\u0434\u043b\u044f \u0432\u044b\u0431\u043e\u0440\u0430 \u043d\u0430\u0438\u0431\u043e\u043b\u0435\u0435 \u0430\u043a\u0442\u0443\u0430\u043b\u044c\u043d\u043e\u0439\n  \"temperature\": 0.87, // \u043e\u0442 0 \u0434\u043e 2, \u0447\u0435\u043c \u0432\u044b\u0448\u0435, \u0442\u0435\u043c \u0432\u044b\u0432\u043e\u0434 \u0431\u043e\u043b\u0435\u0435 \u0441\u043b\u0443\u0447\u0430\u0439\u043d\u044b\u0439, \u043d\u0435 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0443\u0435\u0442\u0441\u044b \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u044c \u0441\u043e\u0432\u043c\u0435\u0441\u0442\u043d\u043e c top_p\n  \"top_p\": 0.47, // \u043e\u0442 0 \u0434\u043e 1, \u0430\u043b\u044c\u0442\u0435\u0440\u043d\u0430\u0442\u0438\u0432\u0430 \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u0443 temperature, \u043d\u0435 \u0440\u0435\u043a\u043e\u043c\u0435\u043d\u0434\u0443\u0435\u0442\u0441\u044b \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u044c \u0441\u043e\u0432\u043c\u0435\u0441\u0442\u043d\u043e c temperature\n  \"n\": 1, // \u043e\u0442 1 \u0434\u043e 4, \u0447\u0438\u0441\u043b\u043e \u0432\u0430\u0440\u0438\u0430\u043d\u0442\u043e\u0432 \u043e\u0442\u0432\u0435\u0442\u043e\u0432 \u043c\u043e\u0434\u0435\u043b\u0438\n  \"max_tokens\": 512, // \u043c\u0430\u043a\u0441\u0438\u043c\u0430\u043b\u044c\u043d\u043e\u0435 \u0447\u0438\u0441\u043b\u043e \u0442\u043e\u043a\u0435\u043d\u043e\u0432 \u0434\u043b\u044f \u0433\u0435\u043d\u0435\u0440\u0430\u0446\u0438\u0438 \u043e\u0442\u0432\u0435\u0442\u043e\u0432\n  \"repetition_penalty\": 1.07, // \u043a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e \u043f\u043e\u0432\u0442\u043e\u0440\u0435\u043d\u0438\u0439 \u0441\u043b\u043e\u0432, 1.0 - \u043d\u0438 \u0447\u0435\u0433\u043e \u043d\u0435 \u043c\u0435\u043d\u044f\u0442\u044c, \u043e\u0442 0 \u0434\u043e 1 \u043f\u043e\u0432\u0442\u043e\u0440\u044f\u0442\u044c \u0443\u0436\u0435 \u0441\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0435 \u0441\u043b\u043e\u0432\u0430, \u043e\u0442 1 \u0438 \u0434\u0430\u043b\u0435\u0435 \u043d\u0435 \u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u044c \u0441\u043a\u0430\u0437\u0430\u043d\u043d\u044b\u0435 \u0441\u043b\u043e\u0432\u0430\n  \"stream\": false, // \u0435\u0441\u043b\u0438 true, \u0431\u0443\u0434\u0443\u0442 \u043e\u0442\u043f\u0440\u0430\u0432\u043b\u044f\u0442\u044c\u0441\u044f \u0447\u0430\u0441\u0442\u0438\u0447\u043d\u044b\u0435 \u043e\u0442\u0432\u0435\u0442\u044b \u0441\u043e\u043e\u0431\u0449\u0435\u043d\u0438\u0439\n  \"update_interval\": 0, // \u0438\u043d\u0442\u0435\u0440\u0432\u0430\u043b \u0432 \u0441\u0435\u043a\u0443\u043d\u0434\u0430\u0445, \u043d\u0435 \u0447\u0430\u0449\u0435 \u043a\u043e\u0442\u043e\u0440\u043e\u0433\u043e \u0431\u0443\u0434\u0443\u0442 \u043f\u0440\u0438\u0441\u044b\u043b\u0430\u0442\u044c\u0441\u044f \u0442\u043e\u043a\u0435\u043d\u044b \u0432 stream \u0440\u0435\u0436\u0438\u043c\u0435\n  \"messages\": [\n        {\n            \"role\": \"system\", // \u043a\u043e\u043d\u0442\u0435\u043a\u0441\u0442\n            \"content\": \"\u041e\u0442\u0432\u0435\u0447\u0430\u0439 \u043a\u0430\u043a \u043d\u0430\u0443\u0447\u043d\u044b\u0439 \u0441\u043e\u0442\u0440\u0443\u0434\u043d\u0438\u043a\"\n        },\n        {\n            \"role\": \"user\", // \u0437\u0430\u043f\u0440\u043e\u0441 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f\n            \"content\": \"\u041d\u0430\u043f\u0438\u0448\u0438 5 \u0432\u0430\u0440\u0438\u0430\u043d\u0442\u043e\u0432 \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u0439 \u0434\u043b\u044f \u043a\u043e\u0441\u043c\u0438\u0447\u0435\u0441\u043a\u043e\u0439 \u0441\u0442\u0430\u043d\u0446\u0438\u0438\"\n        }\n/* \u043f\u0440\u0438\u043c\u0435\u0440 \u0441 \u0434\u0438\u0430\u043b\u043e\u0433\u043e\u043c\n        {\n            \"role\": \"assistant\", // \u043e\u0442\u0432\u0435\u0442 \u043c\u043e\u0434\u0435\u043b\u0438\n            \"content\": \"1. \u041c\u0418\u0420 2. \u0417\u0415\u041c\u041b\u042f 3. \u041b\u0423\u041d\u0410 4. \u041d\u041e\u0412\u0410\u042f \u0417\u0415\u041c\u041b\u042f 5. \u041f\u041e\u041b\u042e\u0421\"\n        },\n        {\n            \"role\": \"user\", // \u0437\u0430\u043f\u0440\u043e\u0441 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f\n            \"content\": \"\u0410 \u0435\u0441\u043b\u0438 \u043f\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u0438\u0442\u044c, \u0447\u0442\u043e \u043e\u043d\u0438 \u0431\u0443\u0434\u0443\u0442 \u043d\u0430 \u041c\u0430\u0440\u0441\u0435?\"\n        }\n*/\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "GigaChat: tokens/count",
+        "api_call": "https://gigachat.devices.sberbank.ru/api/v1/tokens/count",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Request-ID",
+                    "value": "79e41a5f-f180-4c7a-b2d9-393086ae20a1",
+                    "description": "\u041f\u043e \u043d\u0435\u043c\u0443 \u043c\u043e\u0436\u043d\u043e \u043d\u0430\u0439\u0442\u0438 \u043b\u043e\u0433\u0438 \u0437\u0430\u043f\u0440\u043e\u0441\u0430",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Session-ID",
+                    "value": "b6874da0-bf06-410b-a150-fd5f9164a0b2",
+                    "description": "\u041f\u043e \u043d\u0435\u043c\u0443 \u043c\u043e\u0436\u043d\u043e \u043d\u0430\u0439\u0442\u0438 \u043b\u043e\u0433\u0438 \u0441\u0435\u0441\u0441\u0438\u0438",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Client-ID",
+                    "value": "b6874da0-bf06-410b-a150-fd5f9164a0b2",
+                    "description": "\u041f\u043e \u043d\u0435\u043c\u0443 \u043c\u043e\u0436\u043d\u043e \u043d\u0430\u0439\u0442\u0438 \u043b\u043e\u0433\u0438 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044f",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"model\": \"GigaChat\",\n    \"input\": [\n        \"\u042f \u043a \u0432\u0430\u043c \u043f\u0438\u0448\u0443 \u2014 \u0447\u0435\u0433\u043e \u0436\u0435 \u0431\u043e\u043b\u0435?\",\n        \"\u0427\u0442\u043e \u044f \u043c\u043e\u0433\u0443 \u0435\u0449\u0435 \u0441\u043a\u0430\u0437\u0430\u0442\u044c?\",\n        \"\u0422\u0435\u043f\u0435\u0440\u044c, \u044f \u0437\u043d\u0430\u044e, \u0432 \u0432\u0430\u0448\u0435\u0439 \u0432\u043e\u043b\u0435\",\n        \"\u041c\u0435\u043d\u044f \u043f\u0440\u0435\u0437\u0440\u0435\u043d\u044c\u0435\u043c \u043d\u0430\u043a\u0430\u0437\u0430\u0442\u044c.\",\n        \"\u041d\u043e \u0432\u044b, \u043a \u043c\u043e\u0435\u0439 \u043d\u0435\u0441\u0447\u0430\u0441\u0442\u043d\u043e\u0439 \u0434\u043e\u043b\u0435\",\n        \"\u0425\u043e\u0442\u044c \u043a\u0430\u043f\u043b\u044e \u0436\u0430\u043b\u043e\u0441\u0442\u0438 \u0445\u0440\u0430\u043d\u044f,\",\n        \"\u0412\u044b \u043d\u0435 \u043e\u0441\u0442\u0430\u0432\u0438\u0442\u0435 \u043c\u0435\u043d\u044f.\"\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "GigaChat: embeddings",
+        "api_call": "https://gigachat.devices.sberbank.ru/api/v1/embeddings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"model\": \"Embeddings\",\n    \"input\": [\n        \"\u0420\u0430\u0441\u0441\u043a\u0430\u0436\u0438 \u043e \u0441\u043e\u0432\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0445 \u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0438\u044f\u0445\",\n        \"\u041a\u0430\u043a\u0438\u0435 \u043d\u043e\u0432\u0438\u043d\u043a\u0438 \u0432 \u043c\u0438\u0440\u0435 IT?\"\n    ]\n  }",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "GigaChat: get access_token",
+        "api_call": "https://ngw.devices.sberbank.ru:9443/api/v2/oauth",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "RqUID",
+                    "value": "6f0b1291-c7f3-43c6-bb2e-9f3efb2dc98e",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "scope",
+                        "value": "GIGACHAT_API_PERS",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
