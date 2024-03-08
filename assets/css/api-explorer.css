@@ -1,0 +1,251 @@
+#api-explorer .container {
+    display: flex;
+}
+
+#api-explorer .inputs,
+#api-explorer .output-section {
+    flex: 1;
+    margin: 0 10px;
+}
+
+#input-text,
+#input-function {
+    width: 100%;
+    resize: vertical;
+    margin-bottom: 10px;
+}
+
+#input-function {
+    min-height: 360px;
+}
+
+#input-text {
+    min-height: 160px;
+}
+
+#api-explorer .output {
+    border: 1px solid #ccc;
+    padding: 10px;
+    height: fit-content;
+    margin-top: 10px;
+}
+
+#api-explorer #code-output {
+    min-height: 75px;
+}
+
+#api-explorer #json-output {
+    min-height: 300px;
+}
+
+#api-explorer #exec-output {
+    min-height: 150px;
+}
+
+
+#api-explorer {
+    margin-top: 20px;
+}
+
+#submit-btn {
+    display: block;
+    width: 20%;
+    margin: auto;
+}
+
+#exec-btn {
+    display: block;
+    width: 20%;
+    margin: auto;
+}
+
+
+#examples button {
+    font-size: 16px;
+    /* Adjust the font size as needed */
+    font-weight: bold;
+    color: white;
+    /* Text color */
+    background-color: #007bff;
+    /* Background color */
+    border: none;
+    border-radius: 5px;
+    /* Rounded corners */
+    padding: 10px 20px;
+    /* Padding inside the button */
+    margin: 0 20px;
+    /* Space between buttons */
+    cursor: pointer;
+    /* Changes the cursor to a pointer on hover */
+    transition: background-color 0.3s ease;
+    /* Smooth transition for hover effect */
+}
+
+#examples button:hover {
+    background-color: #0056b3;
+    /* Darker shade when hovered */
+}
+
+
+#examples {
+    display: flex;
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+}
+
+
+@media only screen and (max-width: 768px) {
+    #examples button {
+        padding: 2px 10px;
+        font-size: small;
+        margin: 0 10px;
+    }
+}
+
+
+#demo-input-container {
+    max-width: 95%;
+}
+
+
+#report-issue-btn {
+    display: block;
+    /* This makes the button a block-level element, enabling it to occupy its own line */
+    width: 25%;
+    margin: 15px auto;
+}
+
+
+.centered-options {
+    text-align: center;
+}
+
+
+.centered-options #option1+label {
+    margin-right: 20px;
+}
+
+
+.api-explorer-button {
+    background-color: #ff5722;
+    /* A vibrant orange */
+    color: #ffffff;
+    /* White text */
+    border: none;
+    /* Remove default border */
+    padding: 10px 15px;
+    /* Vertical and horizontal padding */
+    border-radius: 4px;
+    /* Slightly rounded corners for a modern look */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* Subtle shadow for depth */
+    cursor: pointer;
+    /* Cursor changes to pointer to indicate clickable */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    /* Smooth transition for press and hover effects */
+    text-align: center;
+    min-width: 120px;
+}
+
+@media only screen and (max-width: 768px) {
+    .api-explorer-button {
+        padding: 0;
+        min-width: none;
+    }
+}
+
+
+
+.api-explorer-button:hover,
+.api-explorer-button:focus {
+    background-color: #e64a19;
+    /* Darker shade of orange on hover/focus */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Larger shadow for a "lifted" effect */
+}
+
+.api-explorer-button:active {
+    transform: translateY(2px);
+    /* Button appears pressed on click */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    /* Smaller shadow for pressed effect */
+}
+
+
+#report-issue-btn {
+    background-color: #a53931;
+    color: white;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+#report-issue-btn:hover {
+    background-color: #d32f2f;
+    /* Darker shade of red */
+    border-color: #b71c1c;
+    /* Border color changes on hover */
+}
+
+#report-issue-btn:focus {
+    outline: none;
+    /* Removes default focus outline */
+    border-color: #b71c1c;
+    /* Ensures visibility in focus state */
+}
+
+#report-issue-btn:active {
+    background-color: #c62828;
+    /* Even darker for the pressed effect */
+    transform: scale(0.98);
+    /* Slightly smaller on click */
+}
+
+@media only screen and (max-width: 768px) {
+    #report-issue-btn {
+        padding: 0;
+    }
+}
+
+
+.thumbs {
+    background-color: #4CAF50;
+    /* Green background */
+    color: white;
+    /* White text */
+}
+
+
+.thumbs-down {
+    background-color: #f44336;
+    /* Red background */
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    /* This will ensure the children take up full space between them */
+    width: 100%;
+    /* Adjust this as needed */
+    align-items: center;
+}
+
+
+.button-container button {
+    font-size: 16px;
+    /* Adjust the font size as needed */
+    color: white;
+    /* Text color */
+    /* Background color */
+    border: none;
+    border-radius: 5px;
+    /* Rounded corners */
+    padding: 10px 20px;
+    /* Padding inside the button */
+    margin: 0 10px;
+    /* Space between buttons */
+    cursor: pointer;
+    /* Changes the cursor to a pointer on hover */
+    transition: background-color 0.3s ease;
+    /* Smooth transition for hover effect */
+}

@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-NRZJLJCSH6');
+    </script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.6">
+    <title>Introduction to Gorilla LLM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="../assets/css/blog.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
+    <link rel="stylesheet" href="../assets/css/api-explorer.css" />
+    <link rel="stylesheet" href="../assets/css/common-styles.css" /> 
+    <link rel="stylesheet" href="../assets/css/Highlight-Clean-leaderboard.css" />
+    <link rel="stylesheet" href="../assets/css/model_info_dashboard.css" />
+    <link rel="stylesheet" href="../assets/css/contact.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="../leaderboard.html#leaderboard">Leaderboard</a> &nbsp;&nbsp;&nbsp;
+        <a href="../leaderboard.html#api-explorer">Try it Out!</a> &nbsp;&nbsp;&nbsp;
+        <a href="../blog.html">Blogs</a> &nbsp;&nbsp;&nbsp;
+        <a href="../index.html">Gorilla</a> &nbsp;&nbsp;&nbsp;
+    </div>
+
+
+    <div class="highlight-clean-blog" style="padding-bottom: 10px;">
+        <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+
+
+
+        <div class="box-index">
+            <h3>Blog 8: Berkeley Function-Calling Leaderboard</h3>
+            <ul>
+                <ul>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#bfcl">Berkeley Function Calling Leaderboard 🏆
+</a></li>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#benchmarking">Dataset Composition</a></li>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#categories">Evaluation Categories 📊</a></li>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#metrics">Evaluation Metrics📈</a></li>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#prompt">Prompting</a></li>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#mistakes">Common Mistakes</a></li>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#conclusion">Conclusion</a></li>
+                        <li><a href="8_berkeley_function_calling_leaderboard.html#citation">Citation</a></li>
+                        <li class="more-blogs">
+                            <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span class="caret">&#9654;</span></a>
+                            <ul class="sub-menu">
+                                <li><a href="7_open_functions_v2.html">Gorilla OpenFunctions-v2</a></li>
+                                <li><a href="6_api_zoo.html">The API Zoo: A Keystone for Building API-connected LLMs</a></li>
+                                <li><a href="5_how_to_gorilla.html">How to Use Gorilla: A Step-by-Step Walkthrough
+                                <li><a href="4_open_functions.html">Gorilla OpenFunctions
+</a></li>
+</a></li>
+                                <!-- Add more blog entries as needed -->
+                            </ul>
+                        </li>  
+                </ul>
+                <!-- Add more entries as needed -->
+            </ul>
+        </div>
+        
+
+        <div class="blog-container">
+            <div class="blog-post">
+                <h2 class="blog-title">Berkeley Function-Calling Leaderboard</h2>
+                <div class="col-md-12">
+                    <h4 class="text-center" style="margin: 0px;">
+                        <p></p>
+                        <a class="author" href="https://fanjia-yan.github.io/">Fanjia Yan<sup>*</sup></a>
+                        <a class="author" href="https://huanzhimao.com/">Huanzhi Mao<sup>*</sup></a>
+                        <a class="author" href="https://charliejcj.github.io/">Charlie Cheng-Jie Ji<sup>*</sup></a>
+                        <a class="author" href="https://tianjunz.github.io">Tianjun Zhang</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G. Patil</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~istoica">Ion Stoica</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a>
+                        <p></p>
+                    </h4>
+                </div>
+
+                <div class="preview">
+                    <p>
+                        Since late 2022, Large Language Models (LLMs) have caught everyone's attention because of their
+                        capability to perform general tasks. Beyond chatting, it is natural to adopt and integrate these
+                        models to develop many AI applications and softwares (e.g., Langchain, Llama Index, AutoGPT,
+                        Voyager). Models like GPT, Gemini, Llama, Mistral etc, have demonstrated huge potential in this
+                        route by interacting with the external world with function calling and execution.
+                    </p>
+                    <p>
+                        We present <b><a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function-Calling Leaderboard</a> (BFCL), the first comprehensive and
+                        executable function calling evaluation for LLMs function calling</b>. Different from prior function
+                        calling evaluations, such as the Anyscale function calling dataset, we consider function
+                        callings of various forms, different function calling scenarios, and the executability of
+                        function calls. We built this dataset from our learnings to be representative of most users'
+                        function calling use-cases, for example, in agents, as a part of enterprise workflows, etc. To
+                        this end, our evaluation dataset spans diverse categories, and across multiple languges. We also
+                        release our model Gorilla OpenFunctions-v2, the best open-source models so far to handle
+                        function calls with multiple programming languages and parallel and multiple function calls. We
+                        also provide a specific debugging feature that when the provided function is not suitable for
+                        your task, the model will output an “Error Message”.
+
+                    </p>
+                </div>
+
+                <!-- How to use OpenFunctions -->
+
+                <h3 id="bfcl">Berkeley Function Calling Leaderboard 🏆</h4>
+
+                <div class="body">
+                    <p><a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function-Calling Leaderboard</a> (BFCL) aims to provide a through study of the function calling capability of different LLMs. It consists of 2k question-function-answer pairs with multiple languages (python, java, javascript, restAPI), diverse application domains and complex usecases (multiple function calls where the LLM needs to select one or more functions from multiple functions provided, and parallel function calls that the LLM needs to make multiple function calls together). We also investigate function relevance detection, to determine how the model will react when the provided function is not suitable to answer the user's question (in such case an "Error Message will be provided"). In more details, <b>BFCL includes 100 Java, 50 JavaScript, 70 REST API, 100 SQL, and 1,680 Python on various simple, parallel, multiple, executable functions calling scenarios as well as function relevance detection</b>.</p>
+                    <p>The leaderboard is shown below in the Figure, we can see that <b>GPT-4 (from OpenAI) function calling is still leading the evaluation, whereas the Gorilla OpenFunctions-v2 (from Gorilla LLM) almost gets similar performance to them</b>. Ranking below is the Mistral-medium model (from Mistral AI) and Claude-2.1 (from Anthropic). This suggests that a finetuned open-source model can also perform almost close to propatiery models in function calling tasks without chaining them together.</p>
+                    <p>We tried our best to cover real-world use cases and diverse languages. We will continue to expand our testing domains and come up with creative use cases in the future.</p>
+                
+                
+                <p style="text-align: center; margin-bottom: 0">
+                    <img src="../assets/img/blog_post_8_Leaderboard.jpg" alt="Berkeley Function-Calling Leaderboard (BFCL)" width="100%">
+                        <i style="font-size: 0.9em;">
+                            LLMs' performance on <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function-Calling Leaderboard</a> (BFCL)
+                        </i>
+                    </p>
+                </div>
+    <br>
+
+                    <div class="body">
+                        <p>To improve our understanding and visualization of the outcomes, we have introduced an interactive wagon wheel tool that allows users to compare various models. This comparison is organized into nine distinct categories: <b></b>function relevance detection, AST (Abstract Syntax Tree) tree analysis, and execution function call verification across simple, multiple, and parallel multiple function scenarios</b>. Through this approach, it becomes evident where our tests reveal unsatisfactory performance by the models. Specifically, in simple function calling, both proprietary and open-source models exhibit comparable performance. However, when it comes to handling multiple and parallel function calls, the GPT-series models demonstrate superior performance over their open-source counterparts.</p>
+                        
+                        <p style="text-align: center; margin-bottom: 0">
+                            <img src="../assets/img/blog_post_8_Wagon.gif" alt="Berkeley Function-Calling Leaderboard (BFCL) Wagon Chart" width="100%">
+                            <i style="font-size: 0.9em;">
+                                Detailed analysis using <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function-Calling Leaderboard</a> (BFCL) Wagon Chart
+                            </i>
+                        </p>
+                    </div>
+
+                    <!-- OpenFunction BenchMarking  -->
+                    <h4 id="benchmarking">Dataset Composition</h4>
+
+                    <div class="body">
+                        <p>The Gorilla OpenFunctions evaluation dataset grows from its previous <a href=4_open_functions.html><code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">OpenFunctions-v0</code>'s 100 entries</a> to 1900
+                            entries! The evaluation dataset improve its quality and demonstrate diversity in:</p>
+                        <ul>
+                            <li style="margin-bottom: 5px;">Domains of functions documentations</li>
+                            <li style="margin-bottom: 5px;">Number of function documents and function calls QA pairs</li>
+                            <li style="margin-bottom: 5px;">Data types of different programming languages</li>
+                            <li style="margin-bottom: 5px;">Executability of real-world examples </li>
+                        </ul>
+
+                        <p>Our evaluation JSON functions are scraped and generated from different sources of website. We
+                            intentially include domains like using functions related to  <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Mathematics-Algebra</code>,
+                            <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Sports-Soccer</code>,  <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Finance-Mortgage</code>, and etc. We include 40 sub-domains of functions within our
+                            generic evaluations. This allows us to understand the model performance not just in
+                            data-abundant domains like computing, and cloud, but also niche domains like sports, and
+                            law.
+                        </p>
+
+                        <p style="text-align: center; margin-bottom: 0">
+                            <img src="../assets/img/blog_post_8_data_composition.png" alt="Gorilla Input and Output"
+                                width="65%">
+                            <i style="font-size: 0.9em;">
+                                <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function-Calling Leaderboard</a> (BFCL) Data Composition
+                            </i>
+                        </p>
+                    </div>
+                        <h4 id="categories">Evaluation Categories 📊</h4>
+                        <div class="body">
+                        <p> We break down the majority of the evaluation in two categories:</p>
+                        <ul>
+                            <li style="margin-bottom: 5px;"><b>Python</b>: Simple Function, Multiple Function, Parallel Function, Parallel Multiple
+                                Function</li>
+                            <li style="margin-bottom: 5px;"><b>Non-Python</b>: Function Relevance Detection, REST API, SQL, Java, Javascript</li>
+                        </ul>
+                        </div>
+                        <h5 id="benchmarking">Python Evaluation</h5>
+                        <div class="body">
+                        <p><strong>Simple Function:</strong> Single function evaluation contains the simplest but most commonly seen format, where the user supplies a single JSON function document, with one and only one function call will be invoked. </p>
+                        <p><strong>Multiple Function:</strong> Multiple function category contains a user question that only
+                            invokes one function call out of 2 to 4 JSON function documentations. The model needs to be
+                            capable of selecting the best function to invoke according to user provided context.</p>
+                        <p><strong>Parallel Function:</strong> Parallel function is defined as invoking multiple function
+                            calls in parallel with one user query. The model needs to digest how many function calls
+                            need to be made and the question to model can be a single sentence or multiple sentence.</p>
+                        <p><strong>Parallel Multiple Function:</strong> Parallel Multiple function is the combination of
+                            parallel function and multiple function. In another word, the model is provided with
+                            multiple function documentations, each of the corresponding function calls will be invoked zero
+                            or more times. </p>
+                        <p>Each category has both AST and its corresponding executable evaluations. In the executable evalution data, we manually write
+                            python functions drawing inspiration from free REST API endpoints (e.g. get weather) and
+                            functions (e.g. linear regression) that compute directly. Executable category is designed
+                            to understand whether the function call generation is able to be stably utilized in applications utilizing function calls in the real world.
+                        </p>
+                        </div>
+                        <!-- FIXME, add examples -->
+
+                        <h5 id="benchmarking">Non-Python Evaluation</h5>
+                        <div class="body">
+                        <p>While the previous categories consist of the majority of our evaluations, we include other
+                            specific categories, namely REST API, SQL, Java, and JavaScript, to evaluate model performance on diverse scenarios and support of multiple programming languages, and are resilient
+                            to irrelevant questions and function documentations.</p>
+
+                        <p><strong>Function Relevance Detection:</strong> In function relevance detection, we design scenarios
+                            where none of the provided functions are relevant and supposed to be invoked. We expect the
+                            model's output to be no function call. This scenario provides insight to whether a model
+                            will hallucinate on its function and parameter to generate function code despite lacking the
+                            function information or instructions from the users to do so. </p>
+                        <p><strong>REST API:</strong> A majority of the real world API calls are from REST API calls. Python
+                            mainly makes REST API calls through <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">requests.get()</code>, <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">requests.post()</code>, <ode><code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">requests.delete()</code> and
+                            etc that are included in the python requests library. GET requests are the most common ones
+                            used in real world. As a result, we include real world GET requests to test the model's
+                            capabilities to generate executable REST API calls through complex function documentations,
+                            using <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">requests.get()</code> along with the API's hardcoded URL and description of the purpose of
+                            the function and its parameters. Our evaluation includes two variations. The first type
+                            requires passing the parameters inside the URL, called path parameters, for example the
+                            <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">{Year}</code> and <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">{CountryCode}</code> in <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">GET /api/v3/PublicHolidays/{Year}/{CountryCode}</code>. The second type
+                            requires the model to put parameters as key/value pairs into the <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">params</code> and/or <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">headers</code> of
+                            <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">requests.get(.)</code>. For example, <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">params={'lang': 'fr'}</code> in the function call. The model is not
+                            given which type of REST API call it is going to make but needs to make a decision on how
+                            it's going to be invoked. </p> 
+                            <p>For REST API, we use a execution checker to check for the executable outputs' effective execution, response type and response JSON key consistencies. On the AST, we chose not to perform AST evaluation on REST mainly because of the immense possible answer for complicated defined APIs that enumeration of all possible answer is unexhausive. </p>
+                        <p><strong>SQL:</strong> SQL evaluation data includes our customized <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">sql.execute</code> functions that
+                            contains sql_keyword, table_name, columns, and conditions. Those four parameters provide
+                            necessary information to construct a simple SQL query like <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">SELECT column_A from table_B where column_C == D</code> Through this, we want to see if through function calling, SQL query can
+                            be reliably constructed and utilized rather than training a SQL specific model. In our
+                            evaluation dataset, we restricted the scenarios and supported simple keywords, including
+                            <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">SELECT</code>, <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">INSERT INTO</code>, <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">UPDATE</code>, <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">DELETE</code>, <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">CREATE</code>. We included 100 examples for SQL AST evaluation.  Note that SQL AST evaluation will not be shown in our leaderboard calculations. We use SQL evaluation testing the generalization ability of function calling for programming languages that are not included in the training set for Gorilla OpenFunctions-v2. We opted to exclude SQL performance from the AST evaluation in the BFCL due to the multiplicity of methods to construct SQL function calls achieving identical outcomes. We're currently working on better evaluation of SQL and are open to suggestions and feedback from the community. Therefore, SQL has been omitted from the current leaderboard to pave the way for a more comprehensive evaluation in subsequent iterations. </p> 
+                        
+                        
+                        
+                            <p><strong>Java + Javascript:</strong> Despite function calling formats being the same across most
+                            programming languages, each programming language has language specific types. For example, C
+                            has  <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">pointer</code> type, Java has <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">HashMap</code> type. The goal of this test category is to understand how
+                            well the function calling model can be extended to not just JSON and Python type but all the
+                            language specific typings. We included 100 examples for Java AST evaluation and 70 examples for Javascript AST evaluation. 
+                        </p>
+                        <p>The three categories outlined above provide insight into the performance of different models across popular API call scenarios, offering valuable perspectives on the potential of function-calling models.
+
+                        </p>
+                        </div>
+                        <h5> Leaderboard Evaluation Categories</h5>
+                        <div class="body">
+                        <p>We've performed a hierarchical categorization on our existing categories to have nine categories showcased in our Berkeley Function-Calling Leaderboard BFCL, which we group by on both evaluation method (AST or execution) and type of functions (simple, parallel, multiple, parallel multiple functions). Here, we display a table organizing counts of evaluation data points of each leaderboard categories, which compose of more granular categories listed in the blog. Specifically, we categorize REST executable evaluation as <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Simple Function (Evaluation by Executing APIs)</code> because we considered cases where one REST API call is being called. For Java + Javascript evaluation, we categorize these into <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Simple Function (Abstract Syntax Tree (AST) Evaluation)</code> since our current version of evaluation set didn't included multiple, parallel, and parallel multiple cases of diverse programming languages.</p> 
+                        <p>The final counts of each of the nine categories shown in BFCL with composition of more granular types is shown in the following table</p>
+                        </div>
+
+                        <div class="table-container">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th colspan="4">Abstract Syntax Tree (AST) Evaluation 🌳</th>
+                                <th colspan="4">Evaluation by Executing APIs ⚙️</th>
+                                <th>Relevance Detection</th>
+                            </tr>
+                            <tr>
+                                <th>Simple Function</th>
+                                <th>Multiple Functions</th>
+                                <th>Parallel Functions</th>
+                                <th>Parallel Multiple</th>
+                                
+                                <th>Simple Function</th>
+                                <th>Multiple Functions</th>
+                                <th>Parallel Functions</th>
+                                <th>Parallel Multiple</th>
+                                
+                                <th rowspan="2"></th> 
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="align-left"><ul class="no-bullets">
+                                    <li>Py: 400</li>
+                                    <li>Java: 100</li>
+                                    <li>JS: 50
+                                    </li>
+                            </ul></td>
+                                <td class="align-left"><ul class="no-bullets">
+                                    <li>Py: 200</li> </ul></td>
+                                <td class="align-left"><ul class="no-bullets">
+                                    <li>Py: 200</li> </ul></td>
+                                <td class="align-left"><ul class="no-bullets">
+                                    <li>Py: 200</li> </ul></td>
+                                
+                                <td class="align-left"><ul class="no-bullets">
+                                    <li>Py: 100</li>
+                                    <li>REST: 70</li>
+                            </ul></td>
+                                <td class="align-left"><ul class="no-bullets">
+                                    <li>Py: 50</li> </ul></td>
+                                <td class="align-left"><ul class="no-bullets" >
+                                    <li>Py: 50</li> </ul></td>
+                                <td class="align-left"><ul class="no-bullets">
+                                    <li>Py: 40</li> </ul></td>
+                                
+                                <td><ul class="no-bullets">
+                                    <li>Py: 240</li> </ul></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <style>
+                            table {
+                                width: 100%;
+                                border-collapse: collapse;
+                            }
+                            th, td {
+                                border: 1px solid black;
+                                padding: 5px;
+                                text-align: center;
+                            }
+                            th {
+                                background-color: #f2f2f2;
+                            }
+                            .align-left {
+                                text-align: left;
+                            }
+                            ul.no-bullets {
+                                text-align: center;
+                                list-style-type: none; /* Remove bullets */
+                                padding: 0; /* Remove padding */
+                                margin: 0; /* Remove margins */
+                            }
+                        </style>
+
+                        </div>
+
+
+
+    <br>
+
+                        <h4 id="metrics">Evaluation Metrics📈</h4>
+                        <div class="body">
+                        <p>We use two popular method to evaluate the accuracy of the model generated answers: AST
+                            checker and Execution checker. Ideally one should use execution checker, but when we
+                            evaluate the answers, not all the results are easily executable (e.g., Java functions). So
+                            we use the AST as a complement to the execution checker. </p>
+                        <ul>
+                            <li style="margin-bottom: 5px;">Abstract Syntax Tree (AST) Evaluation</li>
+                            <li style="margin-bottom: 5px;">Evaluation by Executing APIs</li>
+                        </ul>
+                        </div>
+                        <h5>Abstract Syntax Tree (AST) Evaluation 🌳</h5>
+                        <div class="body">
+                        <p>For the function call answers generated that are executable, we take parse the
+                            function call using AST tree.</p>
+                        <p><b>Example</b>:</p>
+                        <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">calculate_triangle_area(<span style="color: #333;">base</span>=<span style="color: #333;">10</span></span>, height=<sp5 style="color: #333;">5</span>)
+</pre>
+
+                        <p><b>Parse</b>:</p> 
+                        
+                            <pre style="white-space: pre-wrap; width: 100%; overflow-x: auto; background-color: #f4f4f4; color: #333;"><code>Module(body=[
+        Expr(value=List(elts=[
+            Call(
+                func=Name(id=<span style="color: #0000FF;">'calculate_triangle_area'</span>, ctx=Load()), 
+                args=[], 
+                keywords=[
+                    keyword(arg=<span style="color: #008000;">'base'</span>, value=Constant(value=<span style="color: #A31515;">10</span>)), 
+                    keyword(arg=<span style="color: #008000;">'height'</span>, value=Constant(value=<span style="color: #A31515;">5</span>))
+                ]
+            )
+        ], ctx=Load()))
+    ], type_ignores=[])
+</code></pre>
+
+                        <p>We extract the variables from the AST and check if every parameter can be found and exact
+                            matched in possible answers. For each possible answer, what should be the acceptable answer:
+                        </p>
+                        <ul>
+                            <li style="margin-bottom: 5px;">For <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">bool</code>:
+                                <ul>
+                                    <li style="margin-bottom: 5px;">We check the direct matching of boolean values, and don't allow leniency on the
+                                        string versions of boolean values. </li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 5px;">For <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">integer</code>, <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">float</code>:
+                                <ul>
+                                    <li style="margin-bottom: 5px;">The answer should be unique e.g. <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">[1]</code></li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 5px;">For <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">List</code>:
+                                <ul>
+                                    <li style="margin-bottom: 5px;">We are checking for <b>exact matches</b> so <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">List</code> of any order should be matched.
+                                        <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">[1,2,3]==[2,3,1]</code> </li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 5px;">For <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Dict</code>:
+                                <ul>
+                                    <li style="margin-bottom: 5px;">We skip checking recursive AST dictionary structure for simplicity. </li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 5px;">For <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">String</code>:
+                                <ul>
+                                    <li style="margin-bottom: 5px;">Possibile date <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">["20th June", "2023-06-20", "06/20/2023", "Jun.20,2023"]</code></li>
+                                    <li style="margin-bottom: 5px;">Possible Location <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">["New York City", "NYC"]</code> </li>
+                                    <li style="margin-bottom: 5px;">Possibile date <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">["20th June", "2023-06-20", "06/20/2023", "Jun.20,2023"]</code></li>
+                                    <li style="margin-bottom: 5px;">Possible Anything <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">["Manchester United", "Man United", "Man U", "MUFC"]</code> </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+
+                        <p><b>Here are some examples of possible answer:</b></p>
+                        <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">{"calculate_triangle_area": {"base": <span style="color: red;">[10]</span>, "height": <span style="color: red;">[5]</span>, "unit": <span style="color: red;">["units", "unit"]</span>}}</pre>
+
+
+                        <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">{"predict_house_price": {"bedrooms": <span style="color: red;">[3]</span>, "bathrooms": <span style="color: red;">[2]</span>, "area": <span style="color: red;">[1800]</span>, "location": <span style="color: red;">["San Francisco", "San Francisco, CA"]</span>}}</pre>
+
+                        
+                        <p>This checking mechanism applies to everything except for <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">executable_*</code> and <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">REST</code>.</p>
+                        </div>
+                        <h5>Evaluation by Executing APIs ⚙️:</h5>
+                        <div class="body">
+                        <p>For <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">executable_*</code> and <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">REST</code>, we have corresponding functions that can be
+                            executable for each question. Therefore, directly after the model generates answers, we will
+                            take the answers and then execute them in a python environment. There are two types of
+                            matchings.</p>
+                        <ul>
+                            <li style="margin-bottom: 5px;">For executable output that is deterministic, we check for <b>exact matches</b> according to our
+                                human execution result.</li>
+                            <li style="margin-bottom: 5px;">For executable output that is non-deterministic and real-world related, we check for it <b>effective execution, response type and response JSON key consistencies</b>. To see whether the values are expected from our pre-computed ground truth. We observe that REST API responses' format stays the same for long periods of time. We periodically check update with the ground truth executed response results. Consistent REST responses typically follow with same key definition, same response objects. </li>
+                        </ul>   
+                        <h4 id="prompt">Prompting</h4>
+                            <!-- Leaderboard Section -->
+                    </div>
+                    <div class="body">
+                           
+                <div id="model_info_dashboard" >
+                        <h2>Model Manual</h2>
+                        <p class="text-center">
+                            The model manual provided some basic insights and function calling features support by the model we evaluated on. We also highlight models from open source community and acknowledge their impressive effort!
+                        </p>
+                        <div class="table-container">
+                            <table>
+
+                                <thead>
+                                    <tr>
+                                        <th colspan="4">Basic Information</th>
+                                        <th colspan="3">Function Calling Support</th>
+                                        <th colspan="4">Data Type Support</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Model</th>
+                                        <th>Model Size</th>
+                                        <th>Organization</th>
+                                        <th>License</th>
+                                        <th>Function Calling Support</th>
+                                        <th>Parallel Functions</th>
+                                        <th>Multiple Functions</th>
+                                        <th>Java </th>
+                                        <th>Javascript</th>
+                                        <th>C++</th>
+                                        <th>Python</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href=''>GPT-4-0125-Preview</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>OpenAI</td>
+                                        <td>Proprietary</td>
+                                        <td><a href="https://openai.com/blog/function-calling-and-other-api-updates">&#10003;</a></td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>GPT-4-1106-Preview</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>OpenAI</td>
+                                        <td>Proprietary</td>
+                                        <td><a href="https://openai.com/blog/function-calling-and-other-api-updates">&#10003;</a></td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Gorilla OpenFunctions-v2</a>
+                                        </td>
+                                        <td>7B</td>
+                                        <td>Gorilla LLM</td>
+                                        <td>Apache 2.0</td>
+                                        <td><a href="https://gorilla.cs.berkeley.edu/">&#10003;</a></td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>GPT-3.5-Turbo</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>OpenAI</td>
+                                        <td>Proprietary</td>
+                                        <td><a href="https://openai.com/blog/function-calling-and-other-api-updates">&#10003;</a></td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Mistral-Medium</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>Mistral AI</td>
+                                        <td>Proprietary</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Claude-2.1</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>Anthropic</td>
+                                        <td>Proprietary</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Mistral-Tiny</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>Mistral AI</td>
+                                        <td>Proprietary</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Claude-instant</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>Anthropic</td>
+                                        <td>Proprietary</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Mistral-Large</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>Anthropic</td>
+                                        <td>Proprietary</td>
+                                        <td><a href="https://docs.mistral.ai/guides/function-calling/">&#10003;</a></td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Gemini-1.0-pro</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>Google</td>
+                                        <td>Proprietary</td>
+                                        <td><a href="https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/function-calling">&#10003;</a></td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Nexusflow-Raven-v2</a>
+                                        </td>
+                                        <td>13B</td>
+                                        <td>Nexusflow</td>
+                                        <td>Apache 2.0</td>
+                                        <td><a href="https://nexusflow.ai/blogs/ravenv2">&#10003;</a></td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Firefunction-v1</a>
+                                        </td>
+                                        <td>46.7B</td>
+                                        <td>Fireworks-ai</td>
+                                        <td>Apache 2.0</td>
+                                        <td><a href="https://fireworks.ai/blog/firefunction-v1-gpt-4-level-function-calling">&#10003;</a></td>
+                                        <td>&#10003;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Mistral-Small</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>Anthropic</td>
+                                        <td>Proprietary</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>GPT-4-0613</a>
+                                        </td>
+                                        <td>Unknown</td>
+                                        <td>OpenAI</td>
+                                        <td>Proprietary</td>
+                                        <td><a href="https://openai.com/blog/function-calling-and-other-api-updates">&#10003;</a></td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Gemma</a>
+                                        </td>
+                                        <td>7B</td>
+                                        <td>Google</td>
+                                        <td>gemma-term-of-use</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Deepseek-v1.5</a>
+                                        </td>
+                                        <td>6.7B</td>
+                                        <td>Deepseek</td>
+                                        <td>Deepseek License</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Gorilla-Openfunctions-v0</a>
+                                        </td>
+                                        <td>7B</td>
+                                        <td>Gorilla LLM</td>
+                                        <td>Apache 2.0</td>
+                                        <td><a href="https://gorilla.cs.berkeley.edu/blogs/4_open_functions.html">&#10003;</a></td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href=''>Glaive-v1</a>
+                                        </td>
+                                        <td>2.7B</td>
+                                        <td>Glaive-AI</td>
+                                        <td>cc-by-sa-4.0</td>
+                                        <td><a href="https://huggingface.co/glaiveai/glaive-function-calling-v1">&#10003;</a></td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10007;</td>
+                                        <td>&#10003;</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    
+                    </div>
+                </div>
+                As the above model manual has shown, our evaluation involves both function calling and non-function calling models. 
+                For function calling models, since they are specifically designed to generate function calls, we did not provide any system prompt but instead toggle the function calling mode on and put the function definitions where it should be. For chat model, we explicitly provides system message.
+                We provide all the prompts we used to evaluate our propatiery and open-source models. For function calling models, since they are specifically designed to generate function calls, we did not provide any system prompt but instead toggle the function calling mode on and put the function definitions where it should be. For chat model, we explicitly provides <b>system message</b>.
+                <ol>
+                    <li style="margin-bottom: 5px;">For all the function calling models, we did not supply any system prompt but instead toggle the function calling mode on and put the function definitions where it should be.</li>
+                    <li style="margin-bottom: 5px;">For chat model, we explicitly provides system message:
+<pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">
+SYSTEM_PROMPT_FOR_CHAT_MODEL = """
+You are an expert in composing functions. You are given a question and a set of possible functions.
+Based on the question, you will need to make one or more function/tool calls to achieve the purpose.
+If none of the function can be used, point it out. If the given question lacks the parameters required by the function, also point it out. You should only return the function call in tools call sections.
+"""
+</pre>
+<pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">
+USER_MESSAGE_FOR_CHAT_MODEL = "Questions:{user_prompt}\nHere is a list of functions in JSON format that you can invoke:\n{functions}. Should you decide to return the function call(s), NO other text MUST be included."
+</pre>
+
+                        
+                    </li>
+                 </ol>
+                <h4 id="mistakes">Common Mistakes</h4>
+                <div class="body">
+                With our benchmark BFCL, we are able to identify some common mistakes that LLMs make when generating function calls. These mistakes are interesting because they help us understand the limitations of the current models and provide insights into how to improve them.
+                <ol>
+                <li style="margin-bottom: 5px;"><p>GPTs' <em>function documents are difficult to format</em> and their <em>typings are restrictive</em> in real world scenarios.</p>
+
+                <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">"Function": 
+{
+    "name": "calculate_binomial_probability",
+    ...
+    "parameters": 
+    {
+        "type": "object", 
+        "properties": 
+        {
+            "number_of_trials": 
+            {
+                "type": "integer", 
+                "description": "The total number of trials."
+            },
+            "number_of_successes": 
+            {
+                "type": "integer", 
+                "description": "The desired number of successful outcomes."
+            },
+            "probability_of_success": 
+            {
+                "type": "<span style="color:#ff0000;">float</span>", 
+                The probability of a successful outcome on any given trial.", 
+                "default": 0.5
+            }
+            ...
+        }
+        "required": ["number_of_trials", "number_of_successes"]
+    }
+}</pre>
+
+                <p>In this case, we need to manually convert float into number to make the function OpenAI compatible. In addition to that, <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">number</code>s convey less information compared to <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">float</code>s in terms of precision and type consistency.</p>
+                <p>In Gorilla OpenFunctions-v2, we improve the flexibility of the function documents by not restricting the typing of the parameters. In another word, the user can supply <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Tuple</code>, <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Float</code>, and even language specific types like <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Hashmap</code> and <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Linked List</code> in Java!</p>
+</li>
+<li style="margin-bottom: 5px;"> GPT underperforms in scenario where the <em>parameters are not immediately available</em> in user question but instead requires some implicit converion. Here is an example:
+
+    <p></p>
+    <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
+"Function": 
+{
+    "name": "finance.predict_future_value",
+    ...
+    "parameters": 
+    {
+        "type": "object", 
+        "properties": 
+        {
+            "present_value": 
+            {
+                "type": "number", 
+                "description": "The present value of the investment."
+            },
+            <span style="color:#0000ff;">
+            "annual_interest_rate": 
+            {
+                "type": "number", 
+                "description": "The annual interest rate of the investment."
+            },
+            </span>
+            "compounding_periods_per_year": 
+            {
+                "type": "integer", 
+                "description": "The number of times that interest is compounded per year.", 
+            },
+            "time_years": 
+            {
+                "type": "integer", 
+                "description": "The investment horizon in years."
+            }
+            ...
+        }
+        "required": ["present_value", "annual_interest_rate", "time_years"]
+    }
+}</pre>
+        <p><b>Questions</b>: Predict the future value of a $5000 investment with an annual interest rate of 5% in 3 years with monthly compounding.</p>
+
+        <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
+GPT-4 output:
+[{
+    "name": "finance.predict_future_value",
+    "parameters": 
+    {
+        "present_value": 5000,
+        "annual_interest_rate": <span style="color:#ff0000;">5</span>,
+        "compounding_periods_per_year": 12,
+        "time_years": 3
+    }
+}]</pre>
+        <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
+Gorilla-openfunctions-v2 output:
+[{
+    "name": "finance.predict_future_value",
+    "parameters": 
+    {
+        "present_value": 5000,
+        "annual_interest_rate": <span style="color:#0B6623;">0.05</span>,
+        "compounding_periods_per_year": 12,
+        "time_years": 3
+    }
+}]</pre>
+
+
+                            <li style="margin-bottom: 5px;">
+                                <p>Chat Model tend to generate <em>malformed function call</em> in which parameters can be
+                                    extracted but not executable</p>
+                                <p><b>Example</b>: 
+                                    <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">mistral-medium</code> generate result like:
+                                    <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">solve\\_quadratic\\_equation(a=2, b=6, c=5)</code>. With
+                                    gorilla-openfunctions-v2, we are able to directly output
+                                    <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">solve_quadratic_equation(a=3, b=2, c=1)</code> which is executable upon receiving the
+                                    result.
+                                </p>
+                            </li>
+
+<li style="margin-bottom: 5px;"><p>REST API <em>missing urls</em>:</p>
+    <p>
+    A discrepancy arises due to the absence of required url in REST API requests made by GPT-4 for fetching weather data. While the GPT-4 output omits the necessary URL, the Gorilla Openfunctions-v2 model successfully includes the correct API endpoint, enabling it to successfully execute and retrieve the requested weather information for the specified coordinates and forecast period.
+</p>
+    <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
+"User": "Can you fetch me the weather data for the coordinates 
+37.8651 N, 119.5383 W, including the hourly forecast for temperature, 
+wind speed, and precipitation for the next 10 days?"
+
+"Function": 
+{
+    "name": "requests.get",
+    ...
+    "parameters": 
+    {
+        "type": "object", 
+        "properties": 
+        {
+            "url": 
+            {
+                "type": "string", 
+                "description": "The API endpoint for fetching
+                weather data from the Open-Meteo API for the 
+                given latitude and longitude, default 
+                <span style="color:#0000FF;">https://api.open-meteo.com/v1/forecast</span>"
+            }
+            ...
+        }
+    }
+}</pre>
+
+    <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
+GPT-4 output:
+{
+    "name": "requests.get",
+    "parameters": {
+        "url": "<span style="color:#ff0000;">Missing</span>",
+        "params": 
+        {
+            "latitude": "37.8651",
+            "longitude": "-119.5383",
+            "forecast_days": 10
+        },
+    }
+}</pre>
+    <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
+Gorilla-Openfunctions-v2 output:
+{
+    "name": "requests.get",
+    "parameters": {
+        "url": "<span style="color:#0B6623;">https://api.open-meteo.com/v1/forecast</span>",
+        "params": 
+        {
+            "latitude": "37.8651",
+            "longitude": "-119.5383",
+            "forecast_days": 10
+        },
+    }
+}</pre>
+
+                            </li>
+                        </ol>
+                    </div>
+<br>
+                        <h4 id="conclusion">Conclusion</h4>
+                        <div class="body">
+                            <p>We provide a comprehensive and systematic evaluation of LLMs for function calling with
+                                Gorilla Open Functions Leaderboard. The studies here suggest that in terms of simple
+                                function calling (without complex planning and chained function calling), finetuning an
+                                open-source can be as effective as propatiery models. Furthermore, we provide Gorilla
+                                Open Functions v2, an open-source model that can help users with building AI
+                                applications with function calling and interacting with json compatible output.
+                            </p>
+                        
+                        </div>
+<br>
+                    <div class="body">
+<p>
+                        We hope you enjoyed this blog post. We would love to hear from you on <a href="https://discord.gg/SwTyuTAxX3">Discord</a>, <a href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter (#GorillaLLM)</a>, and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br> 
+                    </p>
+                    </div>
+                    <h4 id="citation">Citation</h4>
+                    <div class="body">
+                    <p id="gorilla-bibtex">
+                        If you would like to cite Gorilla:<br>
+                        @inproceedings{berkeley-function-calling-leaderboard,<br>
+                        &nbsp; 	title={Berkeley Function Calling Leaderboard},<br>
+                        &nbsp; 	author={Fanjia Yan and Huanzhi Mao and Charlie Cheng-Jie Ji and Tianjun Zhang and Shishir G. Patil and Ion Stoica and Joseph E. Gonzalez},<br>
+                        &nbsp; 	year={2024},<br>
+                        &nbsp;	howpublished={\url{https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html}},<br>
+                    }</p>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: white;
+            justify-content: center;
+            align-items: center;
+            width: auto
+        }
+        .centered-text {
+            text-align: center;
+            display: block; /* Ensure the <i> element takes up the full width available */
+            margin: 0 auto; /* Center the element horizontally */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+
+        .code-block {
+            width: 100%;
+            padding: 10px;
+            flex: 1; /* This makes each code block take equal width */
+        }
+        .blog-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .blog-post {
+            margin: 20px;
+            padding: 20px;
+            width: auto;
+            /* max-width: 1000px;  */
+            max-width: 1000px; 
+            justify-content: center;
+        }
+        .blog-post img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%; 
+        }
+        .blog-title{
+            color: #055ada;
+            text-align: center;
+        }
+
+        .author {
+                font-size: 16px;
+                color: #1E90FF;
+                margin-right: 20px;
+        }
+
+        .date {
+            font-size: 16px;
+            color: #7e8790;
+        }
+
+        .preview {
+            text-align: justify; 
+            text-justify: inter-word; 
+        }
+
+        .highlight-clean-blog {
+            color: #313437;
+            background-color: #fff;
+            padding: 50px 0;
+        }
+
+        .box-index {
+        position: fixed;
+        top: 50%; 
+        left: 0px; 
+        transform: translateY(-50%);
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 150px;
+        }
+
+        .box-index h3 {
+        font-size: 1.2em;
+        margin-bottom: 10px;
+        }
+
+        .box-index ul {
+        list-style-type: disc;
+        padding: 0;
+        }
+
+        .box-index ul li {
+        margin-bottom: 10px;
+        }
+
+        .box-index ul li a {
+        text-decoration: none;
+        color: #333;
+        }
+
+        .box-index ul li a:hover {
+        color: #1E90FF;
+        }
+
+        .more-blogs .sub-menu {
+            display: none;
+        }
+
+        .more-blogs .sub-menu.expanded {
+            display: block;
+            max-height: 200px; /* Adjust the max height as needed */
+            overflow-y: auto;
+        }
+
+        .more-blogs .sub-menu li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .more-blogs .sub-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .more-blogs .caret {
+            transition: transform 0.3s ease-in-out;
+            display: inline-block;
+            transform: rotate(0deg);
+            font-size: 12px; /* Adjust the font size to change the caret size */
+        }
+
+        .more-blogs.expanded .caret {
+            transform: rotate(90deg);
+        }
+
+        @media screen and (max-width: 1200px) {
+        .blog-post {
+            padding: 10px; /* Adjust spacing for smaller screens */
+            max-width: 90%
+        }
+        .blog-post img {
+            max-width: 90%;
+        }
+        .box-index {
+        display: none; /* Hide the index on smaller screens */
+        }
+    }
+
+    </style>
+</body>
+
+</html>
+
+<script>
+    function toggleMoreBlogs() {
+        var subMenu = document.querySelector('.more-blogs .sub-menu');
+        var parentItem = document.querySelector('.more-blogs');
+        subMenu.classList.toggle('expanded');
+        parentItem.classList.toggle('expanded');
+    }
+</script>
