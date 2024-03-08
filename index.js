@@ -294,7 +294,7 @@ const data = {
             hidden: true
         },  {
             label: 'Gemini-1.0-Pro',
-            data: [77.50, 78.43, 89, 4.00, 0.00, 63.77, 62.00, 0.00, 0.00],
+            data: [77.50, 78.43, 89, 4.00, 0.00, 46.72, 62.00, 0.00, 0.00],
             fill: true,
             backgroundColor: 'rgba(218, 112, 214, 0.1)',
             borderColor: 'rgb(218, 112, 214)',
