@@ -38,7 +38,7 @@ If you plan to evaluate on OSS models, we are using vLLM for inference and refer
 ## Execution Evaluation Data Post-processing 
 Input your API keys into `function_credential_config.json`, so that the original placeholder values in questions, params, and answers will be cleaned. 
 
-To run the executable test categories, there are 3 API keys to fill out:
+To run the executable test categories, there are 4 API keys to fill out:
 
 1. RAPID-API Key: https://rapidapi.com/hub
 
@@ -52,6 +52,7 @@ To run the executable test categories, there are 3 API keys to fill out:
 
 2. Exchange Rate API:https://www.exchangerate-api.com
 3. OMDB API: http://www.omdbapi.com/apikey.aspx
+4. Geocode API: https://geocode.maps.co/
 
 The `apply_function_credential_config.py` inputs an input file, optionally an outputs file. If the output file is not given as an argument, it will overwrites your original file with the claned data.
 
