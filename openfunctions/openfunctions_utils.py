@@ -1,6 +1,6 @@
-from openfunctions.utils.python_parser import parse_python_function_call
-from openfunctions.utils.java_parser import parse_java_function_call
-from openfunctions.utils.js_parser import parse_javascript_function_call
+from utils.python_parser import parse_python_function_call
+from utils.java_parser import parse_java_function_call
+from utils.js_parser import parse_javascript_function_call
 
 FN_CALL_DELIMITER = "<<function>>"
 
@@ -8,7 +8,7 @@ def strip_function_calls(content: str) -> list[str]:
     """
     Split the content by the function call delimiter and remove empty strings
     """
-    return [element.strip() for element in content.split(FN_CALL_DELIMITER) if element.strip()]
+    return [element.strip() for element in content.split(FN_CALL_DELIMITER)[2:] if element.strip()]
 
 def parse_function_call(call: str) -> dict[str, any]:
     """
@@ -21,7 +21,16 @@ def parse_function_call(call: str) -> dict[str, any]:
     except Exception as e:
         # If Python parsing fails, try Java parsing
         try:
-            return parse_java_function_call(call)
+            java_result = parse_java_function_call(call)
+            if not java_result:
+                raise Exception("Java parsing failed")
+            return java_result
         except Exception as e:
             # If Java parsing also fails, try JavaScript parsing
-            return parse_javascript_function_call(call)
+            try:   
+                javascript_result = parse_javascript_function_call(call)
+                if not javascript_result:
+                    raise Exception("JavaScript parsing failed")
+                return javascript_result
+            except:
+                return None
