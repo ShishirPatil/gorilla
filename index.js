@@ -172,7 +172,7 @@ const data = {
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgb(153, 102, 255)'
         }, {
-            label: 'GPT-3.5-Turbo',
+            label: 'GPT-3.5-Turbo-0125',
             data: [68.33, 81.27, 87.50, 88.00, 88.00, 80.00, 70.00, 74.00, 47.50],
             fill: true,
             backgroundColor: 'rgba(255, 159, 64, 0.1)',
