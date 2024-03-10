@@ -6,7 +6,10 @@ import json
 import PyPDF2
 import random
 
-def get_args():
+def get_args() -> any:
+    """
+    Parses and returns the arguments specified by the user's command
+    """
     parser = argparse.ArgumentParser()
 
     parser.add_argument("--datapath", type=str, default="")
@@ -14,38 +17,61 @@ def get_args():
     parser.add_argument("--distractors", type=int, default=3)
     parser.add_argument("--questions", type=int, default=5)
     parser.add_argument("--chunk_size", type=int, default=512)
-    parser.add_argument("--is_api", type=str, default="")
+    parser.add_argument("--doctype", type=str, default="pdf")
     parser.add_argument("--openai_key", type=str, default="")
     parser.add_argument("--tokenizer", type=str, default="bert-base-cased")
 
     args = parser.parse_args()
     return args
 
-def get_chunks(file_path, tokenizer=None, is_api=False, chunk_size=512):
+def get_chunks(file_path: str, tokenizer=None, doctype="pdf", chunk_size=512) -> list[str]:
+    """
+    Takes in a `file_path` and `doctype`, retrieves the document, breaks it down into chunks of size
+    `chunk_size`, and returns the chunks.
+    """
     chunks = []
     
-    if is_api:
+    if doctype == "api":
         with open(file_path) as f:
             api_docs_json = json.load(f)
         chunks = list(api_docs_json)
+
+        for field in ["user_name", "api_name", "api_call", "api_version", "api_arguments", "functionality"]:
+            if field not in chunks[0]:
+                raise TypeError(f"API documentation is not in the format specified by the Gorilla API Store: Missing field `{field}`")
+
     else:
-        text = ""
-        with open(file_path, 'rb') as file:
-            reader = PyPDF2.PdfReader(file)
-            num_pages = len(reader.pages)
-            for page_num in range(num_pages):
-                page = reader.pages[page_num]
-                text += page.extract_text()
+        if doctype == "json":
+            with open(file_path, 'r') as f:
+                data = json.load(f)
+            text = data["text"]
+        elif doctype == "pdf":
+            text = ""
+            with open(file_path, 'rb') as file:
+                reader = PyPDF2.PdfReader(file)
+                num_pages = len(reader.pages)
+                for page_num in range(num_pages):
+                    page = reader.pages[page_num]
+                    text += page.extract_text()
+        elif doctype == "txt":
+            with open(file_path, 'r') as file:
+                data = file.read()
+            text = str(data)
+        else:
+            raise TypeError("Document is not one of the accepted types: api, pdf, json, txt")
         
         tokens = tokenizer(text)['input_ids']
         for i in range(0, len(tokens), chunk_size):
             chunk = tokens[i:min(i + chunk_size,len(tokens))]
             chunk_string = tokenizer.decode(chunk)
             chunks.append(chunk_string)
-
+            
     return chunks
 
-def generate_instructions(api_call, x=5):
+def generate_instructions(api_call, x=5) -> list[str]:
+    """
+    Generates `x` questions / use cases for `api_call`. Used when the input document is of type `api`.
+    """
     response = client.chat.completions.create(
         model="gpt-4",
         messages=[
@@ -63,7 +89,11 @@ def generate_instructions(api_call, x=5):
 
     return queries
 
-def generate_instructions_gen(chunk, x=5):
+def generate_instructions_gen(chunk, x=5) -> list[str]:
+    """
+    Generates `x` questions / use cases for `chunk`. Used when the input document is of general types 
+    `pdf`, `json`, or `txt`.
+    """
     response = client.chat.completions.create(
         model="gpt-4",
         messages=[
@@ -79,7 +109,10 @@ def generate_instructions_gen(chunk, x=5):
 
     return queries 
 
-def strip_str(s):
+def strip_str(s) -> str:
+    """
+    Helper function for helping format strings returned by GPT-4.
+    """
     l, r = 0, len(s)-1
     beg_found = False
     for i in range(len(s)):
@@ -92,9 +125,10 @@ def strip_str(s):
     r += 2
     return s[l:min(r, len(s))]
 
-def encode_question(question, api):
-    """Encode multiple prompt instructions into a single string."""
-    
+def encode_question(question, api) -> list[str]:
+    """
+    Encode multiple prompt instructions into a single string for the `api` case.
+    """
     prompts = []
         
     prompt = question + "\nWrite a python program to call API in " + str(api) + ".\n\nThe answer should follow the format: <<<domain>>> $DOMAIN \n, <<<api_call>>>: $API_CALL \n, <<<api_provider>>>: $API_PROVIDER \n, <<<explanation>>>: $EXPLANATION \n, <<<code>>>: $CODE}. Here are the requirements:\n \n2. The $DOMAIN should be the domain of the API ('N/A' if unknown). The $API_CALL should have only 1 line of code that calls api.\n3. The $API_PROVIDER should be the programming framework used.\n4. $EXPLANATION should be a numbered, step-by-step explanation.\n5. The $CODE is the python code.\n6. Do not repeat the format in your answer."
@@ -102,8 +136,10 @@ def encode_question(question, api):
     prompts.append({"role": "user", "content": prompt})
     return prompts
 
-def encode_question_gen(question, chunk):
-    """Encode multiple prompt instructions into a single string."""
+def encode_question_gen(question, chunk) -> list[str]:
+    """
+    Encode multiple prompt instructions into a single string for the general case (`pdf`, `json`, or `txt`).
+    """
     
     prompts = []
         
@@ -112,8 +148,11 @@ def encode_question_gen(question, chunk):
     prompts.append({"role": "user", "content": prompt})
     return prompts
 
-def generate_label(question, context, is_api=False):
-    question = encode_question(question, context) if is_api else encode_question_gen(question, context)
+def generate_label(question, context, doctype="pdf") -> str:
+    """
+    Generates the label / answer to `question` using `context` and GPT-4.
+    """
+    question = encode_question(question, context) if doctype == "api" else encode_question_gen(question, context)
     response = client.chat.completions.create(
         model="gpt-4",
         messages=question,
@@ -123,11 +162,13 @@ def generate_label(question, context, is_api=False):
     response = response.choices[0].message.content
     return response
 
-# Create {Q, A, D} triplets using chunk / API call and add to dataset
-def add_chunk_to_dataset(chunks: list, chunk: str, is_api: bool = False, x: int = 5, num_distract: int = 3):
+def add_chunk_to_dataset(chunks: list, chunk: str, doctype: str = "api", x: int = 5, num_distract: int = 3):
+    """
+    Given a chunk, create {Q, A, D} triplets and add them to the dataset.
+    """
     global ds
     i = chunks.index(chunk)
-    qs = generate_instructions(chunk, x) if is_api else generate_instructions_gen(chunk, x)
+    qs = generate_instructions(chunk, x) if doctype == "api" else generate_instructions_gen(chunk, x)
     for q in qs:
         datapt = {
             "id": None,
@@ -139,7 +180,7 @@ def add_chunk_to_dataset(chunks: list, chunk: str, is_api: bool = False, x: int 
         }
 
         datapt["id"] = f"seed_task_{0 if not ds else ds.num_rows}"
-        datapt["type"] = "api call" if is_api else "general"
+        datapt["type"] = "api call" if doctype == "api" else "general"
         datapt["question"] = q
 
         # add 4 distractor docs
@@ -160,8 +201,8 @@ def add_chunk_to_dataset(chunks: list, chunk: str, is_api: bool = False, x: int 
         datapt["context"] = d
 
         # add answer to q
-        datapt["answer"] = chunk["api_call"] if is_api else generate_label(q, chunk)
-        datapt["cot_answer"] = generate_label(q, chunk) if is_api else None
+        datapt["answer"] = chunk["api_call"] if doctype == "api" else generate_label(q, chunk)
+        datapt["cot_answer"] = generate_label(q, chunk) if doctype == "api" else None
 
         # print(datapt)
 
@@ -178,6 +219,7 @@ def add_chunk_to_dataset(chunks: list, chunk: str, is_api: bool = False, x: int 
         else:
             ds = ds.add_item(datapt)
 
+
 if __name__ == "__main__":
     # run code
     args = get_args()
@@ -187,21 +229,22 @@ if __name__ == "__main__":
     client = OpenAI(
         api_key=OPENAPI_API_KEY,
     )
-    
-    if(args.is_api == "False"):
-        args.is_api = False
 
     CHUNK_SIZE = args.chunk_size
     NUM_DISTRACT_DOCS = args.distractors
 
     tokenizer = AutoTokenizer.from_pretrained(args.tokenizer)
 
-    chunks = get_chunks(args.datapath, tokenizer, args.is_api, CHUNK_SIZE)
+    chunks = get_chunks(args.datapath, tokenizer, args.doctype, CHUNK_SIZE)
 
     ds = None
 
     for chunk in chunks[:3]:
-        add_chunk_to_dataset(chunks, chunk, args.is_api, args.questions, NUM_DISTRACT_DOCS)
+        add_chunk_to_dataset(chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS)
         print("chunk done")
     
+    # Save as .arrow format
     ds.save_to_disk(args.output)
+    
+    # Save as .jsonl format
+    ds.to_json(args.output + ".jsonl")
