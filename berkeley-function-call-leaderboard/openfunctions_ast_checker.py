@@ -295,7 +295,7 @@ else:
 # Check if the input file is a gpt or gorilla file
 
 # Here we are receiving JSON schema where we do the AST checking.
-if "gpt" in file_name or "glaive" in file_name or "fire" in file_name or "mistral-large-latest" in file_name:
+if "gpt" in file_name or "glaive" in file_name or "fire" in file_name or "mistral-large-latest" in file_name or "gemini" in file_name:
     total = 0
     success = 0
     for k in range(len(example)):
@@ -335,7 +335,11 @@ if "gpt" in file_name or "glaive" in file_name or "fire" in file_name or "mistra
             keyword = "text"
         else:
             keyword = "result"
-        if len(example[k][keyword]) != len(answer[k].keys()):
+        try:
+            if len(example[k][keyword]) != len(answer[k].keys()):
+                total += 1
+                continue
+        except:
             total += 1
             continue
         for item in example[k][keyword]:
