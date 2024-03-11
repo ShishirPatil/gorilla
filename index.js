@@ -142,7 +142,7 @@ const data = {
     datasets: [
         {
             label: 'GPT-4-0125',
-            data: [87.50, 82.18, 90.00, 90.00, 91.00, 67.06, 76.00, 70.00, 55.00],
+            data: [87.50, 81.45, 88.50, 89.00, 83.50, 72.94, 68.00, 78.00, 50.00],
             fill: true,
             backgroundColor: 'rgba(255, 206, 86, 0.1)',
             borderColor: 'rgb(255, 206, 86)',
@@ -152,7 +152,7 @@ const data = {
             pointHoverBorderColor: 'rgb(255, 206, 86)'
         }, {
             label: 'GPT-4-1106',
-            data: [88.75, 81.64, 92.00, 89.50, 92.00, 70.00, 72.00, 62.00, 50.00],
+            data: [88.75, 80.73, 88.50, 89.00, 84.50, 74.12, 68.00, 70.00, 50.00],
             fill: true,
             backgroundColor: 'rgba(75, 192, 192, 0.1)',
             borderColor: 'rgb(75, 192, 192)',
@@ -163,7 +163,7 @@ const data = {
             hidden: true
         }, {
             label: 'OpenFunctions-v2',
-            data: [71.67, 88.73, 79.50, 89.50, 78.00, 80.00, 76.00, 74.00, 60.00],
+            data: [71.67, 87.82, 82.5, 88.50, 78.00, 85.88, 68.00, 82.00, 55.00],
             fill: true,
             backgroundColor: 'rgba(153, 102, 255, 0.1)',
             borderColor: 'rgb(153, 102, 255)',
@@ -173,7 +173,7 @@ const data = {
             pointHoverBorderColor: 'rgb(153, 102, 255)'
         }, {
             label: 'GPT-3.5-Turbo',
-            data: [68.33, 81.27, 87.50, 88.00, 88.00, 80.00, 70.00, 74.00, 47.50],
+            data: [68.33, 80.18, 82.50, 84.50, 79.00, 84.71, 68.00, 80.00, 45.00],
             fill: true,
             backgroundColor: 'rgba(255, 159, 64, 0.1)',
             borderColor: 'rgb(255, 159, 64)',
@@ -184,7 +184,7 @@ const data = {
             hidden: true
         }, {
             label: 'Mistral-medium',
-            data: [90.00, 80.18, 71.00, 84.50, 68.00, 78.24, 62.00, 72.00, 47.50],
+            data: [90.00, 80.18, 76.50, 84.50, 73.50, 84.71, 62.00, 76.00, 45.00],
             fill: true,
             backgroundColor: 'rgba(54, 162, 235, 0.1)',
             borderColor: 'rgb(54, 162, 235)',
@@ -195,7 +195,7 @@ const data = {
             hidden: true
         }, {
             label: 'Claude-2.1',
-            data: [78.33, 85.64, 72.00, 83.00, 56.50, 63.53, 60.00, 48.00, 45.00],
+            data: [78.33, 85.64, 77.00, 83.00, 60.50, 68.23, 52.00, 45.00, 47.50],
             fill: true,
             backgroundColor: 'rgba(163, 73, 164, 0.1)',
             borderColor: 'rgb(163, 73, 164)',
@@ -206,7 +206,7 @@ const data = {
             hidden: true
         }, {
             label: 'Mistral-tiny',
-            data: [77.08, 59.27, 53.50, 59.50, 41.50, 63.53, 42.00, 64.00, 40.00],
+            data: [77.08, 59.64, 56.00, 62.50, 43.00, 71.17, 36.00, 74.00, 32.50],
             fill: true,
             backgroundColor: 'rgba(255, 105, 180, 0.1)',
             borderColor: 'rgb(255, 105, 180)',
@@ -217,7 +217,7 @@ const data = {
             hidden: true
         }, {
             label: 'Claude-instant',
-            data: [61.67, 68.73, 53.00, 59.00, 39.50, 56.47, 50.00, 52.00, 37.50],
+            data: [61.67, 68.73, 56.50, 59.00, 44.00, 60.00, 50.00, 52.00, 37.50],
             fill: true,
             backgroundColor: 'rgba(255, 165, 0, 0.1)',
             borderColor: 'rgb(255, 165, 0)',
@@ -228,7 +228,7 @@ const data = {
             hidden: true
         }, {
             label: 'Nexusflow-Raven-v2',
-            data: [0.00, 76.55, 39.50, 83.50, 34.00, 58.24, 68.00, 78.00, 45.00],
+            data: [0.00, 76.55, 39.50, 83.50, 32.50, 61.18, 62.00, 84.00, 47.50],
             fill: true,
             backgroundColor: 'rgba(60, 179, 113, 0.1)',
             borderColor: 'rgb(60, 179, 113)',
@@ -239,7 +239,7 @@ const data = {
             hidden: true
         }, {
             label: 'Mistral-small',
-            data: [89.58, 46.55, 48.50, 68.00, 58.00, 32.35, 40.00, 30.00, 37.50],
+            data: [89.58, 46.55, 50.50, 68.00, 63.00, 34.71, 38.00, 32.00, 40.00],
             fill: true,
             backgroundColor: 'rgba(0, 0, 255, 0.1)',
             borderColor: 'rgb(0, 0, 255)',
@@ -250,7 +250,7 @@ const data = {
             hidden: true
         }, {
             label: 'GPT-4-0613',
-            data: [87.08, 74.55, 4.00, 86.00, 0.00, 44.12, 0.00, 50.00, 0.00],
+            data: [87.08, 74.55, 0.00, 86.00, 0.00, 50.00, 0.00, 56.00, 2.50],
             fill: true,
             backgroundColor: 'rgba(128, 0, 0, 0.1)',
             borderColor: 'rgb(128, 0, 0)',
@@ -261,7 +261,7 @@ const data = {
             hidden: true
         }, {
             label: 'Deepseek-v1.5',
-            data: [66.25, 48.36, 35.00, 61.00, 43.50, 24.70, 0.00, 2.00, 7.50],
+            data: [66.25, 48.36, 37.50, 61.00, 47.50, 24.70, 0.00, 2.00, 7.50],
             fill: true,
             backgroundColor: 'rgba(255, 215, 0, 0.1)',
             borderColor: 'rgb(255, 215, 0)',
@@ -272,7 +272,7 @@ const data = {
             hidden: true
         }, {
             label: 'Glaive-v1',
-            data: [46.25, 34.55, 2.00, 26.00, 0.00, 21.18, 0.00, 34.00, 2.50],
+            data: [46.25, 34.55, 0.00, 26.00, 0.00, 21.18, 0.00, 36.00, 2.50],
             fill: true,
             backgroundColor: 'rgba(64, 224, 208, 0.1)',
             borderColor: 'rgb(64, 224, 208)',
@@ -283,7 +283,7 @@ const data = {
             hidden: true
         }, {
             label: 'OpenFunctions-v0',
-            data: [4.58, 60.00, 1.00, 56.00, 2.50, 39.41, 0.00, 62.00, 0.00],
+            data: [4.58, 60.00, 0, 56.00, 3.50, 38.24, 0.00, 58.00, 0.00],
             fill: true,
             backgroundColor: 'rgba(255, 99, 132, 0.1)',
             borderColor: 'rgb(255, 99, 132)',
@@ -294,7 +294,7 @@ const data = {
             hidden: true
         },  {
             label: 'Gemini-1.0-Pro',
-            data: [78.30, 79.71, 89, 4.00, 0.00, 47.66, 62.00, 0.00, 0.00],
+            data: [78.30, 79.71, 89, 0.00, 0.00, 51.19, 66.00, 0.00, 0.00],
             fill: true,
             backgroundColor: 'rgba(218, 112, 214, 0.1)',
             borderColor: 'rgb(218, 112, 214)',
@@ -305,7 +305,7 @@ const data = {
             hidden: true
         }, {
             label: 'Mistral-large-2402',
-            data: [84.58, 71.82, 90.50, 4.00, 0.00, 67.06, 66.00, 0.00, 5.00],
+            data: [84.58, 71.82, 90.50, 4.00, 0.00, 72.94, 0, 76.00, 5.00],
             fill: true,
             backgroundColor: 'rgba(65, 105, 225, 0.1)',
             borderColor: 'rgb(65, 105, 225)',
@@ -316,7 +316,7 @@ const data = {
             hidden: true
         }, {
             label: 'Firefunction-v1',
-            data: [81.25, 73.19, 87.00, 4.00, 0.00, 61.76, 64.00, 0.00, 5.00],
+            data: [81.25, 73.19, 87.00, 0.00, 0.00, 68.23, 0.00, 76.00, 5.00],
             fill: true,
             backgroundColor: 'rgba(0, 255, 255, 0.1)',
             borderColor: 'rgb(0, 255, 255)',
@@ -327,7 +327,7 @@ const data = {
             hidden: true
         }, {
             label: 'Gemma-7B-IT',
-            data: [0.42, 61.45, 60.00, 41.00, 32.50, 44.71, 46.00, 44.00, 25.50],
+            data: [0.42, 61.45, 60.00, 41.00, 32.00, 44.71, 44.00, 48.00, 25.00],
             fill: true,
             backgroundColor: 'rgba(85, 107, 47, 0.1)',
             borderColor: 'rgb(85, 107, 47)',
