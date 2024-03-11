@@ -172,7 +172,7 @@ const data = {
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgb(153, 102, 255)'
         }, {
-            label: 'GPT-3.5-Turbo',
+            label: 'GPT-3.5-Turbo-0125',
             data: [68.33, 81.27, 87.50, 88.00, 88.00, 80.00, 70.00, 74.00, 47.50],
             fill: true,
             backgroundColor: 'rgba(255, 159, 64, 0.1)',
@@ -183,7 +183,7 @@ const data = {
             pointHoverBorderColor: 'rgb(255, 159, 64)',
             hidden: true
         }, {
-            label: 'Mistral-medium',
+            label: 'Mistral-medium-2312',
             data: [90.00, 80.18, 71.00, 84.50, 68.00, 78.24, 62.00, 72.00, 47.50],
             fill: true,
             backgroundColor: 'rgba(54, 162, 235, 0.1)',
@@ -205,7 +205,7 @@ const data = {
             pointHoverBorderColor: 'rgb(163, 73, 164)',
             hidden: true
         }, {
-            label: 'Mistral-tiny',
+            label: 'Mistral-tiny-2312',
             data: [77.08, 59.27, 53.50, 59.50, 41.50, 63.53, 42.00, 64.00, 40.00],
             fill: true,
             backgroundColor: 'rgba(255, 105, 180, 0.1)',
@@ -216,7 +216,7 @@ const data = {
             pointHoverBorderColor: 'rgb(255, 105, 180)',
             hidden: true
         }, {
-            label: 'Claude-instant',
+            label: 'Claude-instant-1.2',
             data: [61.67, 68.73, 53.00, 59.00, 39.50, 56.47, 50.00, 52.00, 37.50],
             fill: true,
             backgroundColor: 'rgba(255, 165, 0, 0.1)',
@@ -238,7 +238,7 @@ const data = {
             pointHoverBorderColor: 'rgb(60, 179, 113)',
             hidden: true
         }, {
-            label: 'Mistral-small',
+            label: 'Mistral-small-2312',
             data: [89.58, 46.55, 48.50, 68.00, 58.00, 32.35, 40.00, 30.00, 37.50],
             fill: true,
             backgroundColor: 'rgba(0, 0, 255, 0.1)',
