@@ -119,16 +119,16 @@ This is possible in OpenFunctions v2, because we ensure that the output includes
 
 ### End to End Example
 
-In the current directory, run the example code in `ofv2_hosted.py` to see how the model works.
+In the current directory, run the example code in `inference_hosted.py` to see how the model works.
 
 ```bash
-python ofv2_hosted.py
+python inference_hosted.py
 ```
 
 Expected Output:
 
 ```bash
-(.py3) shishir@dhcp-132-64:~/Work/Gorilla/openfunctions/$ python ofv2_hosted.py
+(.py3) shishir@dhcp-132-64:~/Work/Gorilla/openfunctions/$ python inference_hosted.py
 --------------------
 Function call strings(s): get_current_weather(location='Boston, MA'), get_current_weather(location='San Francisco, CA')
 --------------------
@@ -182,6 +182,8 @@ git clone https://github.com/tree-sitter/tree-sitter-java.git
 git clone https://github.com/tree-sitter/tree-sitter-javascript.git
 ```
 
+Please `git clone` and run example code under current `openfunctions` directory!
+
 And you can use the following code to format the response:
 
 ```python
@@ -218,6 +220,25 @@ def format_response(response: str):
         pass
     return response, function_call_dicts
         
+```
+
+### End to End Example
+
+In the current directory, run the example code in `inference_local.py` to see how the model works.
+
+```bash
+python inference_local.py
+```
+Expected Output (if you are using `query_1` and `functions_1`):
+```
+Loading checkpoint shards: 100%|███████████████████████████████████████████████████████████████████████| 2/2 [00:06<00:00,  3.15s/it]
+...
+...
+--------------------
+Function call strings 1(s): get_current_weather(location='Boston, MA'), get_current_weather(location='San Francisco, CA')
+--------------------
+OpenAI compatible `function_call`: [{'name': 'get_current_weather', 'arguments': {'location': 'Boston, MA'}}, {'name': 'get_current_weather', 'arguments': {'location': 'San Francisco, CA'}}]
+--------------------
 ```
 
 **Note:** Use the `get_prompt` and `format_response`  only if you are hosting it locally. If you are using the Berkeley hosted models through the Chat-completion API, we do this in the backend, so you don't have to do this. The model is supported in Hugging Face 🤗 Transformers and can be run up locally:
