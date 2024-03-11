@@ -129,7 +129,11 @@ for i in tqdm(range(len(result_data))):
         if type(execution_result_type) is str and len(execution_result) > 1:
                 execution_result_type = [execution_result_type] * len(execution_result)
     if ("gpt" in model_name or "fire" in model_name or "mistral-large-latest" in model_name or "gemini" in model_name) and input_file is None:
-        result = convert_to_function_call(result_data[i]["result"])
+        try:
+            result = convert_to_function_call(result_data[i]["result"])
+        except:     
+            total += 1
+            continue
     elif input_file is not None and "gorilla" in input_file:
         result = result_data[i]["text"] 
     elif input_file is not None and "gemma" in input_file:
