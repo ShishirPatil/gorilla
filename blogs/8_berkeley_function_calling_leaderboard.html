@@ -180,7 +180,7 @@
                         <ul>
                             <li style="margin-bottom: 5px;"><b>Python</b>: Simple Function, Multiple Function, Parallel Function, Parallel Multiple
                                 Function</li>
-                            <li style="margin-bottom: 5px;"><b>Non-Python</b>: Function Relevance Detection, REST API, SQL, Java, Javascript</li>
+                            <li style="margin-bottom: 5px;"><b>Non-Python</b>: Chatable, Function Relevance Detection, REST API, SQL, Java, Javascript</li>
                         </ul>
                         </div>
                         <h5 id="benchmarking">Python Evaluation</h5>
@@ -207,9 +207,9 @@
                         <h5 id="benchmarking">Non-Python Evaluation</h5>
                         <div class="body">
                         <p>While the previous categories consist of the majority of our evaluations, we include other
-                            specific categories, namely REST API, SQL, Java, and JavaScript, to evaluate model performance on diverse scenarios and support of multiple programming languages, and are resilient
+                            specific categories, namely Chatable, Function Relevance Detection, REST API, SQL, Java, and JavaScript, to evaluate model performance on diverse scenarios and support of multiple programming languages, and are resilient
                             to irrelevant questions and function documentations.</p>
-
+                        <p><strong>Chatable:</strong> In chatable,  we design scenarios where no JSON function document are passed in, while users ask generic questions, the model is able to output any chat messages instead of function calls. We include this category for internal model evaluation and exclude the statistics from live leaderboard. We currently are working on better evaluation on chatability and ensure the chat is relevant and coherent with users' request and open to suggestions and feedback from the community. </p>
                         <p><strong>Function Relevance Detection:</strong> In function relevance detection, we design scenarios
                             where none of the provided functions are relevant and supposed to be invoked. We expect the
                             model's output to be no function call. This scenario provides insight to whether a model
@@ -244,7 +244,7 @@
                             well the function calling model can be extended to not just JSON and Python type but all the
                             language specific typings. We included 100 examples for Java AST evaluation and 70 examples for Javascript AST evaluation. 
                         </p>
-                        <p>The three categories outlined above provide insight into the performance of different models across popular API call scenarios, offering valuable perspectives on the potential of function-calling models.
+                        <p>The categories outlined above provide insight into the performance of different models across popular API call scenarios, offering valuable perspectives on the potential of function-calling models.
 
                         </p>
                         </div>
@@ -404,6 +404,12 @@
                                     <li style="margin-bottom: 5px;">Possible Location <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">["New York City", "NYC"]</code> </li>
                                     <li style="margin-bottom: 5px;">Possibile date <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">["20th June", "2023-06-20", "06/20/2023", "Jun.20,2023"]</code></li>
                                     <li style="margin-bottom: 5px;">Possible Anything <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">["Manchester United", "Man United", "Man U", "MUFC"]</code> </li>
+                                </ul>
+                            </li>
+                            <li style="margin-bottom: 5px;">Handling Optional Parameters in Function Calls:
+                                <ul>
+                                    <li style="margin-bottom: 5px;">When optional parameters are not provided in the function calls (meaning they should use their default values), we represent their absence with <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">""</code>. This notation tells the AST (Abstract Syntax Tree) checker that the function call intentionally omits these parameters.</li>
+                                    <li style="margin-bottom: 5px;">Additionally, we specify the default values as stated in the function's description. This approach allows us to correctly recognize both cases: when an optional parameter is omitted and when it is included with its default value. This ensures that responses are marked as correct in either scenario.</li>
                                 </ul>
                             </li>
                         </ul>
