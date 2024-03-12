@@ -128,10 +128,10 @@ In the immediate future, we plan to release the following:
 - [] BFCL metrics to evaluate contamination 
 - [] BFCL systems metrics including cost and latency
 - [] BFCL update with "live" data and user-votes
-- [x] Openfunctions-v3 model to support more languges and multi-turn capability [Feb 26, 2024]
+- [] Openfunctions-v3 model to support more languges and multi-turn capability 
 - [x] Berkeley Function Calling leaderboard (BFCL) for evaluating tool-calling/function-calling models [Feb 26, 2024]
+- [x] Openfunctions-v2 with more languages (Java, JS, Python), relevance detection [Feb 26, 2024]
 - [x] API Zoo Index for easy access to all APIs [Feb 16, 2024]
-- [x] Openfunctions-v2 with more languages (Java, JS, Python), relevance detection [Nov 16, 2023]
 - [x] Openfunctions-v1, Apache 2.0, with parallel and multiple function calling [Nov 16, 2023]
 - [x] Openfunctions-v0, Apache 2.0 function calling model [Nov 16, 2023]
 - [X] Release a commercially usable, Apache 2.0 licensed Gorilla model [Jun 5, 2023] 
