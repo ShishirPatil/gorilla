@@ -3,6 +3,7 @@ import json
 import re
 import argparse
 from data.REST_Eval.eval_exec_rest import is_exec_valid
+from tqdm import tqdm
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -37,20 +38,31 @@ def convert_to_function_call(data_str):
     output_func_list = []
     for func in data_str:
         # Step 2: Split the string into function name and parameters parts
-        func_name_part, params_part = func.split(":", 1)
+        try:
+            func_name_part, params_part = func.split(":", 1)
+        except:
+            continue
 
         # Step 3: Clean and extract the function name
         func_name = func_name_part.strip("{").strip(" '")
-
         # Step 4: Extract and clean the parameters string
-        if params_part[-1] == "}":
-            params_part = params_part[:-2]
-        params_str = params_part.strip(" '")
-        # Step 5: Replace single quotes with double quotes for JSON parsing
-        params_str = params_str.replace("'", '"')
-        params_str = params_str.replace("\\" + "n", "")
-        # Step 6: Load the parameters string as a dictionary
-        params = json.loads(params_str)
+        if "gemini" in model_name:
+            if params_part[0] != "{":
+                params_part = params_part[1:]
+            params_part = params_part[0:-1]
+            try:
+                params = eval(params_part)
+            except:
+                continue
+        else:
+            if params_part[-1] == "}":
+                params_part = params_part[:-2]
+            params_str = params_part.strip(" '")
+            # Step 5: Replace single quotes with double quotes for JSON parsing
+            params_str = params_str.replace("'", '"')
+            params_str = params_str.replace("\\" + "n", "")
+            # Step 6: Load the parameters string as a dictionary
+            params = json.loads(params_str)
         function_string = func_name + "("
         for k,v in params.items():
             if isinstance(v, str):
@@ -105,7 +117,10 @@ with open(f"./data/gorilla_openfunctions_v1_test_{test_category}.json") as f:
         testing_data.append(json.loads(line))
 total = 0
 success = 0
-for i in range(len(result_data)):
+if len(result_data) == 0:
+    print(f"🙊 Your {model_name}'s {test_category} evaluation category data is not found, check whether you have finished openfunctions_evaluation.py evaluation data generation.")
+    exit()
+for i in tqdm(range(len(result_data))):
     # if i < num_existing_result:
     #     continue
     if "rest" not in test_category:
@@ -113,17 +128,26 @@ for i in range(len(result_data)):
         execution_result_type = testing_data[i]["execution_result_type"]
         if type(execution_result_type) is str and len(execution_result) > 1:
                 execution_result_type = [execution_result_type] * len(execution_result)
-    if ("gpt" in model_name or "fire" in model_name or "mistral-large-latest" in model_name) and input_file is None:
+    if ("gpt" in model_name or "fire" in model_name or "mistral-large-latest" in model_name or "gemini" in model_name) and input_file is None:
         try:
             result = convert_to_function_call(result_data[i]["result"])
         except:     
             total += 1
             continue
-    if "gorilla_v0.json" == input_file:
-        result = result_data[i]["text"]
-    if input_file is not None and "git" in input_file:
-        result = result_data[i]["text"].split("<<function>>")[1:]
-    if input_file is not None and "deepseek.json" in input_file:
+    elif input_file is not None and "gorilla" in input_file:
+        result = result_data[i]["text"] 
+    elif input_file is not None and "gemma" in input_file:
+        pattern = re.compile(r"\b\w+(?:\.\w+)?\b\([^)]*\)")
+
+        # Find all matches in the text
+        matches = pattern.findall(result_data[i]["text"])
+        result = matches
+    elif "gorilla-openfunctions-v2" in model_name:
+        result = result_data[i]["result"]
+        regex = r"[\w\.]+\([^()]*\)"
+        # Find all matches of function calls
+        result = re.findall(regex, result)
+    elif input_file is not None and "deepseek" in input_file:
         result_data[i]["text"] = result_data[i]["text"].replace("\n","")
         try:
             pattern = r"```python(.*?)```"
@@ -180,7 +204,7 @@ for i in range(len(result_data)):
         result = func.split("),")
         result = [r + ")" for r in result]
         result[-1] = result[-1][:-1]
-    elif "glaiveai" in model_name or "glaiveai.json" == input_file:
+    elif "glaiveai" in model_name or (input_file is not None and "glaiveai" in input_file):
         try:
             result_data[i]["text"] = json.loads(result_data[i]["text"].split("<functioncall>")[1].replace("\'{","{").replace("\'}","}"))
             result = result_data[i]["text"]["name"] + "(" + ",".join([f"{k}={v}" for k,v in result_data[i]["text"]["arguments"].items()]) + ")"
@@ -194,13 +218,15 @@ for i in range(len(result_data)):
                 continue
             total += 1
             continue
+    else:
+        print("Model not supported yet for executable result.")
+        exit()
     if type(result) == str:
             result = [result]
     exec_dict = {}
     test_result_list = []
     reason_list = []
     if "rest" in test_category:
-        rest_result = is_exec_valid(result[0], i) 
         try:
             rest_result = is_exec_valid(result[0], i)
         except:
@@ -208,12 +234,6 @@ for i in range(len(result_data)):
             continue
         if rest_result:
             success += 1
-        # if not rest_result:
-        #     if os.path.exists("./result/" + model_name + "/check/") is False:
-        #         os.mkdir("./result/" + model_name + "/check/")
-        #     with open("./result/" + model_name + "/check/" + filename, "a+") as f:
-        #         f.write(json.dumps({"original":result[0],"idx":i}))
-        #         f.write("\n")
         total += 1
         continue
     if len(result) != len(execution_result):
@@ -257,4 +277,4 @@ for i in range(len(result_data)):
         with open("./result/" + model_name + "/check/" + name, "a+") as f:
             f.write(json.dumps({"match": match, "reason": reason}))
             f.write("\n")
-print(f"Testing type: {args.test_category}, success rate: {success/total}")
+print(f"Testing type: {args.test_category}, Model: {args.model_name}, success rate: {success/total}")
