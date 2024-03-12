@@ -125,7 +125,7 @@ Check out our blog on [How to Use Gorilla: A Step-by-Step Walkthrough](https://g
 
 In the immediate future, we plan to release the following:
 
-- [] BFCL metrics to evaluate conatimation 
+- [] BFCL metrics to evaluate contamination 
 - [] BFCL systems metrics including cost and latency
 - [] BFCL update with "live" data and user-votes
 - [x] Openfunctions-v3 model to support more languges and multi-turn capability [Feb 26, 2024]
