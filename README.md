@@ -117,7 +117,7 @@ Langchain, is a versatile developer tool. Its "agents" can efficiently swap in a
 
 The beauty of these tools truly shines when they collaborate, complementing each other's strengths and capabilities to create an even more powerful and comprehensive solution. This is where your contribution can make a difference. We enthusiastically welcome any inputs to further refine and enhance these tools. 
 
-Check out our blog on [How to Use Gorilla: A Step-by-Step Walkthrough.](https://gorilla.cs.berkeley.edu/blogs/5_how_to_gorilla.html)
+Check out our blog on [How to Use Gorilla: A Step-by-Step Walkthrough](https://gorilla.cs.berkeley.edu/blogs/5_how_to_gorilla.html) to see all the different ways you can integrate Gorilla in your projects.
 
 
 
