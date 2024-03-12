@@ -163,7 +163,7 @@ const data = {
             hidden: true
         }, {
             label: 'OpenFunctions-v2',
-            data: [71.67, 87.82, 82.5, 88.50, 78.00, 85.88, 68.00, 82.00, 55.00],
+            data: [71.67, 87.82, 82.5, 89.00, 78.00, 85.88, 68.00, 82.00, 55.00],
             fill: true,
             backgroundColor: 'rgba(153, 102, 255, 0.1)',
             borderColor: 'rgb(153, 102, 255)',
