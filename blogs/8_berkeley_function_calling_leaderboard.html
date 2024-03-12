@@ -118,7 +118,7 @@
                         <ul>
                             <li>Live Leaderboard: <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Website</a></li>
                             <li>BFCL Evaluation Dataset: <a href="https://huggingface.co/datasets/gorilla-llm/Berkeley-Function-Calling-Leaderboard"> HuggingFace Dataset 🤗</a></li>
-                            <li>Gradio Demo: <a href="https://huggingface.co/spaces/gorilla-llm/gorilla-demo"> HuggingFace Space 🤗 </a></li>
+                            <li>Gradio Demo: <a href="https://huggingface.co/spaces/gorilla-llm/berkeley-function-calling-leaderboard"> HuggingFace Space 🤗 </a></li>
                             <li>Reproducibility: <a href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard">Github Code</a></li>
                             <li>OpenFunctions-v2 (6.91B) on HuggingFace 🤗: <a href="https://huggingface.co/gorilla-llm/gorilla-openfunctions-v2">gorilla-llm/gorilla-openfunctions-v2</a></li>
                         </ul>
@@ -190,7 +190,7 @@
                         <ul>
                             <li style="margin-bottom: 5px;"><b>Python</b>: Simple Function, Multiple Function, Parallel Function, Parallel Multiple
                                 Function</li>
-                            <li style="margin-bottom: 5px;"><b>Non-Python</b>: Chatable, Function Relevance Detection, REST API, SQL, Java, Javascript</li>
+                            <li style="margin-bottom: 5px;"><b>Non-Python</b>: Chatting Capability, Function Relevance Detection, REST API, SQL, Java, Javascript</li>
                         </ul>
                         </div>
                         <h5 id="benchmarking">Python Evaluation</h5>
@@ -217,9 +217,9 @@
                         <h5 id="benchmarking">Non-Python Evaluation</h5>
                         <div class="body">
                         <p>While the previous categories consist of the majority of our evaluations, we include other
-                            specific categories, namely Chatable, Function Relevance Detection, REST API, SQL, Java, and JavaScript, to evaluate model performance on diverse scenarios and support of multiple programming languages, and are resilient
+                            specific categories, namely Chatting Capability, Function Relevance Detection, REST API, SQL, Java, and JavaScript, to evaluate model performance on diverse scenarios and support of multiple programming languages, and are resilient
                             to irrelevant questions and function documentations.</p>
-                        <p><strong>Chatable:</strong> In chatable,  we design scenarios where no JSON function document are passed in, while users ask generic questions, the model is able to output any chat messages instead of function calls. We include this category for internal model evaluation and exclude the statistics from live leaderboard. We currently are working on better evaluation on chatability and ensure the chat is relevant and coherent with users' request and open to suggestions and feedback from the community. </p>
+                        <p><strong>Chatting Capability:</strong> In Chatting Capability, we design scenarios where no functions are passed in, and the users ask generic questions - this is similar to using the model as a general-purpose chatbot. We evaluate if the model is able to output chat messages and recognize that it does not need to invoke any functions. Note the difference with “Relevance” where the model is expected to also evaluate if any of the function input are relevant or not. We include this category for internal model evaluation and exclude the statistics from live leaderboard. We currently are working on better evaluation on chatability and ensure the chat is relevant and coherent with users' request and open to suggestions and feedback from the community. </p>
                         <p><strong>Function Relevance Detection:</strong> In function relevance detection, we design scenarios
                             where none of the provided functions are relevant and supposed to be invoked. We expect the
                             model's output to be no function call. This scenario provides insight to whether a model
