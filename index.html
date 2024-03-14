@@ -21,13 +21,28 @@
     <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/Team-Clean.css">
+    <style>
+        /* Bars to separate titles in nav bar */
+        .navbar a:not(:last-child)::after {
+            content: "|";
+            margin: 0 10px;
+            color: #000;
+        }
+    </style>
 </head>
 
 <body>
        <!-- Navigation Bar -->
     <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;; font-size: 18px;">
+<<<<<<< HEAD
         <a href="index.html">Home </a>&nbsp;&nbsp;&nbsp;     
         <a href="blog.html"> Blog</a>
+=======
+        <a href="index.html">Home</a>
+        <a href="blog.html">Blog</a>
+        <a href="leaderboard.html">Leaderboard</a>
+        <a href="apizoo/">API Zoo Index</a>
+>>>>>>> 4feb55eaf3b16509eec8f884d94ccc70a64c5108
     </div>
     <div class="highlight-clean" style="padding-bottom: 10px;">
             <h1 class="text-center"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
@@ -96,6 +111,7 @@
                 <h2>News</h2>
             </div>
             <div class="col-md-12">
+                <h5> 🥇 <a href="blogs/4_open_functions.html">Gorilla OpenFunctions!</a> Drop in replacement! <a href="https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd?usp=sharing">Examples</a></h5>
                 <h5> 🚀 <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">Try Gorilla in 60s!</a> No sign-ups, no installs, just colab!</h5>
                 <h5> 🤩 With Apache 2.0 licensed LLM models, you can use Gorilla comercially without any obligations!</h5>
                 <h5> 📣 We are excited to hear your feedback and we welcome API contributions as we build this open-source project. 
@@ -315,8 +331,22 @@ right at the same position as the top one */
     </div>
 </div>
 
+<!-- Figure -->
+<div><p></p></div>
+<div class="container" style="max-width: 768px;background: #f0f7ff" >
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Vision</h2>
+            <img src="assets/img/blog_post_1_teaser.gif" 
+            style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
+        </div>
+        <em>Rather have the user at the center, Gorilla enables users to interact with a wide range of services through LLMs. Gorilla is an open-source, state-of-the-art
+            LLM that invokes API calls to interact with services! </em>
+    </div>
+</div>
+
 <!-- Abstract -->
-<div class="container" style="max-width: 768px;background: #f0f7ff">
+<div class="container" style="max-width: 768px;">
     <div class="row">
         <div class="col-md-12">
             <h2>Abstract</h2>
@@ -340,7 +370,7 @@ right at the same position as the top one */
 </div>
 
 <!-- Result -->
-<div class="container" style="max-width: 768px;">
+<div class="container" style="max-width: 768px;background: #f0f7ff">
     <div class="row">
         <div class="col-md-12">
             <h2>Example</h2>
@@ -356,7 +386,7 @@ right at the same position as the top one */
 </div>
 
 <!-- Citation -->
-<div class="container" style="max-width: 768px; background: #f0f7ff">
+<div class="container" style="max-width: 768px">
     <div class="row">
         <div class="col-md-12">
             <h2>Citation</h2>

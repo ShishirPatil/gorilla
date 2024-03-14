@@ -1,0 +1,129 @@
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 0;
+    margin: 0;
+    background: white;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+.code-block {
+    max-width: 85%;
+    padding: 10px 10px;
+    flex: 1;
+    /* This makes each code block take equal width */
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+}
+
+.image-container img {
+    padding: 10px 0px;
+}
+
+.blog-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.code-container {
+    display: flex;
+}
+
+.blog-post {
+    padding: 20px 10px;
+    max-width: 1000px;
+    justify-content: center;
+    align-items: center;
+}
+
+.blog-post img {
+    display: block;
+    padding: 0 auto;
+}
+
+.blog-title {
+    color: #055ada;
+    text-align: center;
+}
+
+.author-date {
+    display: flex;
+    padding: 0px;
+    justify-content: center;
+}
+
+.author {
+    font-size: 16px;
+    color: #1E90FF;
+    padding-right: 20px;
+}
+
+.date {
+    font-size: 16px;
+    color: #7e8790;
+}
+
+.preview {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+.highlight-clean-blog {
+    color: #313437;
+    background-color: #fff;
+    padding: 50px 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%; 
+    overflow-x: auto;
+}
+
+
+
+.header-container {
+    width: 100%; /* Ensure the div takes full width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px 0; 
+}
+
+#header-h1 {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    #header-h1 {
+        font-size: 34px; 
+    }
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: flex-start; 
+    flex-wrap: wrap;
+}
