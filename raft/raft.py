@@ -5,6 +5,8 @@ from transformers import AutoTokenizer
 import json
 import PyPDF2
 import random
+from langchain_experimental.text_splitter import SemanticChunker
+from langchain_openai.embeddings import OpenAIEmbeddings
 
 def get_args() -> any:
     """
@@ -12,19 +14,19 @@ def get_args() -> any:
     """
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--datapath", type=str, default="")
-    parser.add_argument("--output", type=str, default="./")
-    parser.add_argument("--distractors", type=int, default=3)
-    parser.add_argument("--questions", type=int, default=5)
-    parser.add_argument("--chunk_size", type=int, default=512)
-    parser.add_argument("--doctype", type=str, default="pdf")
-    parser.add_argument("--openai_key", type=str, default="")
-    parser.add_argument("--tokenizer", type=str, default="bert-base-cased")
+    parser.add_argument("--datapath", type=str, default="", help="The path at which the document is located")
+    parser.add_argument("--output", type=str, default="./", help="The path at which to save the dataset")
+    parser.add_argument("--distractors", type=int, default=3, help="the number of distractor documents to include per data point / triplet")
+    parser.add_argument("--questions", type=int, default=5, help="the number of data points / triplets to generate per chunk")
+    parser.add_argument("--chunk_size", type=int, default=512, help="the size of each chunk in number of tokens")
+    parser.add_argument("--doctype", type=str, default="pdf", help="the type of the document, must be one of the accepted doctypes", choices=["pdf", "txt", "json", "api", "arrow"])
+    parser.add_argument("--openai_key", type=str, default="", help="your OpenAI key used to make queries to GPT-3.5 or GPT-4")
+    parser.add_argument("--tokenizer", type=str, default="bert-base-cased", help="name of desired tokenizer (defaults to bert-base-cased)")
 
     args = parser.parse_args()
     return args
 
-def get_chunks(file_path: str, tokenizer=None, doctype="pdf", chunk_size=512) -> list[str]:
+def get_chunks(file_path: str, tokenizer=None, doctype="pdf", chunk_size=512, openai_key=None) -> list[str]:
     """
     Takes in a `file_path` and `doctype`, retrieves the document, breaks it down into chunks of size
     `chunk_size`, and returns the chunks.
@@ -57,14 +59,26 @@ def get_chunks(file_path: str, tokenizer=None, doctype="pdf", chunk_size=512) ->
             with open(file_path, 'r') as file:
                 data = file.read()
             text = str(data)
+        elif doctype == "arrow": 
+            dataset = Dataset.from_file(file_path)
+            dataset = [data['context'] for data in dataset]
+            text = ""
+            for data in dataset:
+                text += str(data)
         else:
             raise TypeError("Document is not one of the accepted types: api, pdf, json, txt")
         
-        tokens = tokenizer(text)['input_ids']
-        for i in range(0, len(tokens), chunk_size):
-            chunk = tokens[i:min(i + chunk_size,len(tokens))]
-            chunk_string = tokenizer.decode(chunk)
-            chunks.append(chunk_string)
+        # TODO: fix this
+        # tokens = tokenizer(text)['input_ids']
+        # for i in range(0, len(tokens), chunk_size):
+        #     chunk = tokens[i:min(i + chunk_size,len(tokens))]
+        #     chunk_string = tokenizer.decode(chunk)
+        #     chunks.append(chunk_string)
+        text_splitter = SemanticChunker(OpenAIEmbeddings(openai_api_key=OPENAPI_API_KEY))
+        chunks = text_splitter.create_documents([text])
+        chunks = [chunk.page_content for chunk in chunks]
+        # print(len(chunks), chunks[0])
+        # exit()
             
     return chunks
 
@@ -143,7 +157,14 @@ def encode_question_gen(question, chunk) -> list[str]:
     
     prompts = []
         
-    prompt = question + "\nAnswer this question using the information given in the following context: " + str(chunk) + ".\n\nThe answer should be no more than five words. Include ONLY the answer in your response."
+    # prompt = question + "\nAnswer this question using the information given in the following context: " + str(chunk) + ".\n\nThe answer should be no more than five words. Include ONLY the answer in your response."
+    prompt = """
+        Question: {question}\nContext: {context}\n
+        Answer this question using the information given in the context above. Here is things to pay attention to: 
+        - First provide step-by-step reasoning on how to answer the question. 
+        - In the reasoning, if you need to copy paste some sentences from the context, include them in ##begin_quote## and ##end_quote##. This would mean that things outside of ##begin_quote## and ##end_quote## are not directly copy paste from the context. 
+        - End your response with final answer in the form <ANSWER>: $answer, the answer should be succint.
+    """.format(question=question, context=str(chunk))
     prompts.append({"role": "system", "content": "You are a helpful question answerer who can provide an answer given a question and relevant context."})
     prompts.append({"role": "user", "content": prompt})
     return prompts
@@ -201,10 +222,9 @@ def add_chunk_to_dataset(chunks: list, chunk: str, doctype: str = "api", x: int 
         datapt["context"] = d
 
         # add answer to q
-        datapt["answer"] = chunk["api_call"] if doctype == "api" else generate_label(q, chunk)
-        datapt["cot_answer"] = generate_label(q, chunk) if doctype == "api" else None
-
-        # print(datapt)
+        # datapt["answer"] = chunk["api_call"] if doctype == "api" else generate_label(q, chunk)
+        # datapt["cot_answer"] = generate_label(q, chunk) if doctype == "api" else None
+        datapt["cot_answer"] = generate_label(q, chunk) 
 
         # add to dataset
         if not ds:
@@ -235,7 +255,7 @@ if __name__ == "__main__":
 
     tokenizer = AutoTokenizer.from_pretrained(args.tokenizer)
 
-    chunks = get_chunks(args.datapath, tokenizer, args.doctype, CHUNK_SIZE)
+    chunks = get_chunks(args.datapath, tokenizer, args.doctype, CHUNK_SIZE, OPENAPI_API_KEY)
 
     ds = None
 
