@@ -8,8 +8,8 @@ import argparse
 import json
 import os
 
-base_url = 'https://Llama-2-7b-Finetune-lfslq-serverless.westus3.inference.ai.azure.com/v1'
-api_key = 'kZ1SOPC97IhTdMI3BKxJUk2ccAvPNEB4'
+base_url = ''
+api_key = ''
 client = OpenAI(
         base_url = base_url,
         api_key=api_key,
