@@ -16,12 +16,13 @@ def get_args() -> any:
 
     parser.add_argument("--datapath", type=str, default="", help="The path at which the document is located")
     parser.add_argument("--output", type=str, default="./", help="The path at which to save the dataset")
-    parser.add_argument("--distractors", type=int, default=3, help="the number of distractor documents to include per data point / triplet")
-    parser.add_argument("--questions", type=int, default=5, help="the number of data points / triplets to generate per chunk")
-    parser.add_argument("--chunk_size", type=int, default=512, help="the size of each chunk in number of tokens")
-    parser.add_argument("--doctype", type=str, default="pdf", help="the type of the document, must be one of the accepted doctypes", choices=["pdf", "txt", "json", "api", "arrow"])
-    parser.add_argument("--openai_key", type=str, default="", help="your OpenAI key used to make queries to GPT-3.5 or GPT-4")
-    parser.add_argument("--tokenizer", type=str, default="bert-base-cased", help="name of desired tokenizer (defaults to bert-base-cased)")
+    parser.add_argument("--distractors", type=int, default=3, help="The number of distractor documents to include per data point / triplet")
+    parser.add_argument("--p", type=float, default=1.0, help="The percentage that the oracle document is included in the context")
+    parser.add_argument("--questions", type=int, default=5, help="The number of data points / triplets to generate per chunk")
+    parser.add_argument("--chunk_size", type=int, default=512, help="The size of each chunk in number of tokens")
+    parser.add_argument("--doctype", type=str, default="pdf", help="The type of the document, must be one of the accepted doctypes", choices=["pdf", "txt", "json", "api", "arrow"])
+    parser.add_argument("--openai_key", type=str, default="", help="Your OpenAI key used to make queries to GPT-3.5 or GPT-4")
+    parser.add_argument("--tokenizer", type=str, default="bert-base-cased", help="Name of desired tokenizer (defaults to bert-base-cased)")
 
     args = parser.parse_args()
     return args
@@ -68,17 +69,10 @@ def get_chunks(file_path: str, tokenizer=None, doctype="pdf", chunk_size=512, op
         else:
             raise TypeError("Document is not one of the accepted types: api, pdf, json, txt")
         
-        # TODO: fix this
-        # tokens = tokenizer(text)['input_ids']
-        # for i in range(0, len(tokens), chunk_size):
-        #     chunk = tokens[i:min(i + chunk_size,len(tokens))]
-        #     chunk_string = tokenizer.decode(chunk)
-        #     chunks.append(chunk_string)
-        text_splitter = SemanticChunker(OpenAIEmbeddings(openai_api_key=OPENAPI_API_KEY))
+        num_chunks = len(text) / chunk_size 
+        text_splitter = SemanticChunker(OpenAIEmbeddings(openai_api_key=OPENAPI_API_KEY), number_of_chunks=num_chunks)
         chunks = text_splitter.create_documents([text])
         chunks = [chunk.page_content for chunk in chunks]
-        # print(len(chunks), chunks[0])
-        # exit()
             
     return chunks
 
@@ -157,7 +151,6 @@ def encode_question_gen(question, chunk) -> list[str]:
     
     prompts = []
         
-    # prompt = question + "\nAnswer this question using the information given in the following context: " + str(chunk) + ".\n\nThe answer should be no more than five words. Include ONLY the answer in your response."
     prompt = """
         Question: {question}\nContext: {context}\n
         Answer this question using the information given in the context above. Here is things to pay attention to: 
@@ -183,7 +176,7 @@ def generate_label(question, context, doctype="pdf") -> str:
     response = response.choices[0].message.content
     return response
 
-def add_chunk_to_dataset(chunks: list, chunk: str, doctype: str = "api", x: int = 5, num_distract: int = 3):
+def add_chunk_to_dataset(chunks: list, chunk: str, doctype: str = "api", x: int = 5, num_distract: int = 3, p: float = 1.0):
     """
     Given a chunk, create {Q, A, D} triplets and add them to the dataset.
     """
@@ -196,6 +189,7 @@ def add_chunk_to_dataset(chunks: list, chunk: str, doctype: str = "api", x: int 
             "type": None,
             "question": None,
             "context": None,
+            "oracle_context": None,
             "answer": None,
             "cot_answer": None
         }
@@ -210,6 +204,11 @@ def add_chunk_to_dataset(chunks: list, chunk: str, doctype: str = "api", x: int 
         indices.remove(i)
         for j in random.sample(indices, num_distract):
             docs.append(chunks[j])
+        # decides whether to add oracle document
+        oracle = random.uniform(0, 1) < p
+        if not oracle:
+            docs[0] = chunks[random.sample(indices, 1)[0]]
+
         random.shuffle(docs)
 
         d = {
@@ -220,10 +219,9 @@ def add_chunk_to_dataset(chunks: list, chunk: str, doctype: str = "api", x: int 
         d["title"].append(["placeholder_title"]*(num_distract+1))
         d["sentences"].append(docs)
         datapt["context"] = d
+        datapt["oracle_context"] = chunk
 
         # add answer to q
-        # datapt["answer"] = chunk["api_call"] if doctype == "api" else generate_label(q, chunk)
-        # datapt["cot_answer"] = generate_label(q, chunk) if doctype == "api" else None
         datapt["cot_answer"] = generate_label(q, chunk) 
 
         # add to dataset
@@ -233,6 +231,7 @@ def add_chunk_to_dataset(chunks: list, chunk: str, doctype: str = "api", x: int 
             datapt["type"] = [datapt["type"]]
             datapt["question"] = [datapt["question"]]
             datapt["context"] = [datapt["context"]]
+            datapt["oracle_context"] = [datapt["oracle_context"]]
             datapt["answer"] = [datapt["answer"]]
             datapt["cot_answer"] = [datapt["cot_answer"]]
             ds = Dataset.from_dict(datapt)
