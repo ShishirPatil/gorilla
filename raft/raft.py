@@ -184,7 +184,6 @@ def add_chunk_to_dataset(chunks: list, chunk: str, doctype: str = "api", x: int 
             "question": None,
             "context": None,
             "oracle_context": None,
-            "answer": None,
             "cot_answer": None
         }
 
@@ -217,6 +216,13 @@ def add_chunk_to_dataset(chunks: list, chunk: str, doctype: str = "api", x: int 
         # add answer to q
         datapt["cot_answer"] = generate_label(q, chunk, doctype) 
 
+        # construct model instruction 
+        context = ""
+        for doc in docs:
+            context += "<DOCUMENT>" + str(doc) + "</DOCUMENT>\n"
+        context += q
+        datapt["instruction"] = context
+
         # add to dataset
         if not ds:
             # init ds
@@ -225,8 +231,8 @@ def add_chunk_to_dataset(chunks: list, chunk: str, doctype: str = "api", x: int 
             datapt["question"] = [datapt["question"]]
             datapt["context"] = [datapt["context"]]
             datapt["oracle_context"] = [datapt["oracle_context"]]
-            datapt["answer"] = [datapt["answer"]]
             datapt["cot_answer"] = [datapt["cot_answer"]]
+            datapt["instruction"] = [datapt["instruction"]]
             ds = Dataset.from_dict(datapt)
         else:
             ds = ds.add_item(datapt)
