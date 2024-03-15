@@ -10,6 +10,7 @@ import os
 
 base_url = ''
 api_key = ''
+model_name = ''
 client = OpenAI(
         base_url = base_url,
         api_key=api_key,
@@ -18,7 +19,7 @@ client = OpenAI(
 def get_openai_response(message):
     response = client.chat.completions.create(
         messages=message,
-        model="Llama-2-7b-Finetune-lfslq",
+        model=model_name,
         temperature=0.2,
     )
     try:
