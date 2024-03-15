@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project provides a web application for fetching API calls from a API documentation urls into a specified format, to easily generate training points to train a finedtuned LLM model to perform API calls.
+This subdirectory provides a web application for fetching API calls from a API documentation urls into a specified format, to easily generate training points to train a finedtuned LLM model to perform API calls.
 
 ## Getting Started
 
