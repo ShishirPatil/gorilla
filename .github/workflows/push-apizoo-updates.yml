@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - apizoo-actions-update
     paths:
       - 'data/apizoo/**'
 
