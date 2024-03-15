@@ -51,17 +51,6 @@ def normalize_answer(s):
 
 
 def get_answer(input_json):
-    '''
-    question = input_json['question']
-    documents = input_json['docs']
-    
-    input_string = ""
-    for document in documents:
-        input_string += "<DOCUMENT>" + str(document) + "</DOCUMENT>\n"
-    input_string += "\n" + question
-   
-    message = [{"role": "user", "content": input_string}]
-    '''
     message = [{"role": "user", "content": input_json['instruction']}]
     result = get_openai_response(message)
     input_json['model_answer'] = result
@@ -107,17 +96,3 @@ if __name__ == "__main__":
         pool.join()
     end_time = time.time()
     print("total time used: ", end_time - start_time)
-
-    answers = []
-    correct = 0
-    with open(write_file_name, 'r') as f:
-        for line in f:
-            answers.append(json.loads(line))
-    for answer in answers:
-        if "<ANSWER>" not in answer['model_answer']:
-            continue
-        # if normalize_answer(answer['model_answer'].split("<ANSWER>")[1]) == normalize_answer(ans_json['answer']):
-        if normalize_answer(answer['model_answer'].split("<ANSWER>")[1]) == normalize_answer(answer['output'].split("<ANSWER>")[1]):
-            correct += 1
-
-    print("Final Accuracy: ", correct/len(answers))
