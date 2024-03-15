@@ -31,9 +31,9 @@ const UrlResult: React.FC<UrlResultProps> = React.memo(({ result, onResultsChang
 
 
   // Update jsonOutput state when textarea content changes
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>, index: number) => {
+  const handleChange = (value: string, index: number) => {
     const updatedJSONResults = [...editedJSONResults];
-    updatedJSONResults[index] = event.target.value;
+    updatedJSONResults[index] = value;
     setEditedDetails(updatedJSONResults);
   };
 
@@ -74,5 +74,5 @@ const UrlResult: React.FC<UrlResultProps> = React.memo(({ result, onResultsChang
   );
 });
 
-
+UrlResult.displayName = 'UrlResult';
 export default UrlResult;

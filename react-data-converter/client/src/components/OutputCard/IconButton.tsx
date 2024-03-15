@@ -25,4 +25,5 @@ const IconButton: React.FC<IconButtonProps> = React.memo(({
   </button>
 ));
 
+IconButton.displayName = 'IconButton';
 export default IconButton;
