@@ -27,7 +27,10 @@ jobs:
           ISSUE_BODY=""
           for FILE in $FILES; do
             DATA=$(jq -c . < "$FILE")
-            RESPONSE=$(curl -s -w "\n%{http_code}" -X POST -H "Content-Type: application/json" -d "$DATA" https://apizooindex.gorilla-llm.com/api/validate)
+            TMP_FILE=$(mktemp)
+            echo "$DATA" > "$TMP_FILE"
+            RESPONSE=$(curl -s -w "\n%{http_code}" -X POST -H "Content-Type: application/json" --data-binary "@$TMP_FILE" https://apizooindex.gorilla-llm.com/api/validate)
+            rm "$TMP_FILE"
             BODY=$(echo "$RESPONSE" | head -n -1)
             HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
             echo "Validation response for $FILE: $RESPONSE"
