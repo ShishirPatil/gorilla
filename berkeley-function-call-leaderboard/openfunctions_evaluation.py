@@ -28,9 +28,10 @@ def get_args():
 
 def build_client(model_name):
     # Fill in the API key for the model you want to test.
+    client = None
     if "gpt" in model_name:
         from openai import OpenAI
-        client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+        client = OpenAI(api_key= os.environ.get("OPENAI_API_KEY"))
     elif "claude" in model_name:
         from anthropic import Anthropic
         client = Anthropic(
@@ -40,10 +41,12 @@ def build_client(model_name):
         client = MistralClient(api_key= os.environ.get("MISTRAL_API_KEY"))
     elif "Nexus" in model_name:
         return None
-    elif "gorilla-openfunctions-v2" in model_name:
+    elif "gorilla-openfunctions-v0" in model_name:
         import openai
-        openai.api_key = "EMPTY"
+        openai.api_key = "EMPTY" # Hosted for free with ❤️ from UC Berkeley
         openai.api_base = "http://luigi.millennium.berkeley.edu:8000/v1"
+        return None
+    elif "gorilla-openfunctions-v2" in model_name:
         return None
     elif "firework" in model_name:
         from openai import OpenAI
@@ -54,12 +57,12 @@ def build_client(model_name):
 
 
 test_categories = {
-    "executable_generic": "gorilla_openfunctions_v1_test_executable_simple.json",
+    "executable_simple": "gorilla_openfunctions_v1_test_executable_simple.json",
     "executable_parallel_function": "gorilla_openfunctions_v1_test_executable_parallel_function.json",
     "executable_multiple_function": "gorilla_openfunctions_v1_test_executable_multiple_function.json",
     "executable_parallel_multiple_function": "gorilla_openfunctions_v1_test_executable_parallel_multiple_function.json",
-    "generic": "gorilla_openfunctions_v1_test_simple.json",
-    "no_function_call": "gorilla_openfunctions_v1_test_no_function_call.json",
+    "simple": "gorilla_openfunctions_v1_test_simple.json",
+    "relevance": "gorilla_openfunctions_v1_test_relevance.json",
     "parallel_function": "gorilla_openfunctions_v1_test_parallel_function.json",
     "multiple_function": "gorilla_openfunctions_v1_test_multiple_function.json",
     "parallel_multiple_function": "gorilla_openfunctions_v1_test_parallel_multiple_function.json",
@@ -96,6 +99,7 @@ model_choice = {
     "dolphin-2.2.1-mistral-7b": "cognitivecomputations/dolphin-2.2.1-mistral-7b",
 }
 
+# supported open source models
 model_id_dict = {
     "deepseek-7b": "deepseek-coder",
     "glaiveai": "vicuna_1.1",
@@ -114,13 +118,33 @@ SYSTEM_PROMPT_FOR_CHAT_MODEL = """"
     """
 USER_PROMPT_FOR_CHAT_MODEL = "Questions:{user_prompt}\nHere is a list of functions in JSON format that you can invoke:\n{functions}. Should you decide to return the function call(s), NO other text MUST be included."
 
+def get_gorilla_response(prompt, function, model, temperature):
+    requestData = {
+        "model": model,
+        "messages": [{"role": "user", "content": prompt}],
+        "functions": function,
+        "temperature": temperature,
+    }
+    url = "https://luigi.millennium.berkeley.edu:443/v1/chat/completions"
+    response = requests.post(
+        url,
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": "EMPTY",  # Hosted for free with ❤️ from UC Berkeley
+        },
+        data=json.dumps(requestData),
+    )
+    jsonResponse = response.json()
+    directCode = jsonResponse["choices"][0]["message"]["content"]
+    return directCode
 
 def call_to_model(
     client, model, user_prompt, function, max_tokens, temperature, top_p, timeout
-):
+): 
     """
     Perform A single request to selected model based on the parameters.
     """
+    result = None
     if "gpt" in model or "firework" in model:
         # Build OAI tool calls.
         oai_tool = []
@@ -151,32 +175,64 @@ def call_to_model(
                 + "\n Return Nothing if no tool or function calls are involved.",
             }
         ]
-        if len(oai_tool) > 0:
-            response = client.chat.completions.create(
-                messages=message,
-                model=model,
-                temperature=temperature,
-                max_tokens=max_tokens,
-                top_p=top_p,
-                timeout=timeout,
-                tools=oai_tool,
-            )
-        else:
-            response = client.chat.completions.create(
-                messages=message,
-                model=model,
-                temperature=temperature,
-                max_tokens=max_tokens,
-                top_p=top_p,
-                timeout=timeout,
-            )
-        try:
-            result = [
-                {func_call.function.name: func_call.function.arguments}
-                for func_call in response.choices[0].message.tool_calls
-            ]
-        except:
-            result = response.choices[0].message.content
+        if "gpt" in model:
+            if len(oai_tool) > 0:
+                response = client.chat.completions.create(
+                    messages=message,
+                    model=model,
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                    top_p=top_p,
+                    timeout=timeout,
+                    tools=oai_tool,
+                )
+            else:
+                response = client.chat.completions.create(
+                    messages=message,
+                    model=model,
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                    top_p=top_p,
+                    timeout=timeout,
+                )
+            try:
+                result = [
+                    {func_call.function.name: func_call.function.arguments}
+                    for func_call in response.choices[0].message.tool_calls
+                ]
+            except:
+                result = response.choices[0].message.content
+        elif "firework" in model:
+            try:
+                if len(oai_tool) > 0:
+                    response = client.chat.completions.create(
+                        messages=message,
+                        model="accounts/fireworks/models/firefunction-v1",
+                        temperature=temperature,
+                        max_tokens=max_tokens,
+                        top_p=top_p,
+                        timeout=timeout,
+                        tools=oai_tool,
+                    )
+                else:
+                    response = client.chat.completions.create(
+                        messages=message,
+                        model="accounts/fireworks/models/firefunction-v1",
+                        temperature=temperature,
+                        max_tokens=max_tokens,
+                        top_p=top_p,
+                        timeout=timeout,
+                    )
+                try:
+                    result = [
+                        {func_call.function.name: func_call.function.arguments}
+                        for func_call in response.choices[0].message.tool_calls
+                    ]
+                except:
+                    result = response.choices[0].message.content
+            except Exception as e:
+                result = "Error"
+                return result
     elif "claude" in model:
         message = f"""{SYSTEM_PROMPT_FOR_CHAT_MODEL}\n\nHuman: {USER_PROMPT_FOR_CHAT_MODEL.format(user_prompt=user_prompt,functions=str(function))} Put it in the format of [func1(params_name=params_value, params_name2=params_value2...), func2(params)]\n\nAssistant:"""
         response = client.completions.create(
@@ -255,18 +311,25 @@ def call_to_model(
         result = chat_response.choices[0].message.content
     elif "gorilla-openfunctions-v2" in model:
         import openai
-        completion = openai.ChatCompletion.create(
-            model="gorilla-openfunctions-v2",
-            temperature=args.temperature,
+        try:
+            completion = get_gorilla_response(user_prompt, function, model, temperature)
+        except Exception as e:
+            result = "Error"
+            return result
+        result = completion
+    elif "gorilla-openfunctions-v0" in model:
+        import openai
+        response = openai.ChatCompletion.create(
+            model='gorilla-openfunctions-v0',
             messages=[{"role": "user", "content": user_prompt}],
-            functions=function,
+            functions=function
         )
-        print(completion.choices[0].message.content)
-        result = completion.choices[0].message.content
-
+        result = response["choices"][0]["message"]
     elif "Nexus" in model:
         raven_prompt = format_raven_function(user_prompt, function)
         result = query_raven(raven_prompt, max_tokens, temperature, top_p)
+    else:
+        raise ValueError("Model not supported")
     return result
 
 def cast_multi_param_type(properties):
@@ -392,15 +455,13 @@ if __name__ == "__main__":
     args = get_args()
     model = args.model
     client = build_client(args.model)
-    if all([model_name not in args.model for model_name in ["firework","gpt","claude","mistral-medium","Nexus","openfunctions","mistral-medium","mistral-tiny","mistral-small","gorilla-openfunctions-v2","mistral-large-latest"]]):
+    if all([model_name not in args.model for model_name in ["firework","gpt","claude","mistral-medium","Nexus","openfunctions","mistral-medium","mistral-tiny","mistral-small","gorilla","mistral-large-latest"]]):
         if model in model_id_dict:
             model_id = model_id_dict[model]
+            model_path = model_choice[model]
             if not os.path.exists("./result/" + model):
                 os.makedirs("./result/" + model)
             answer_file = "./result/" + model + "/result.json"
-            if not os.path.exists("./model" + model):
-                os.makedirs("./model" + model)
-            model_path = "./model/" + model
             os.system(f"python openfunctions_evaluation_vllm.py --model-path {model_path} --model-id {model_id} --question-file eval_data_total.json --answer-file {answer_file} --num-gpus {args.num_gpus}")
     else:
         if args.test_category == "all":
@@ -426,7 +487,6 @@ if __name__ == "__main__":
                 ) as f:
                     for line in f:
                         num_existing_result += 1
-
             for index, test_case in enumerate(tqdm(test_cases)):
                 if index < num_existing_result:
                     continue

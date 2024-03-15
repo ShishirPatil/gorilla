@@ -258,25 +258,30 @@ def ast_parse(x):
 # Reading input file and possible answer
 test_category = args.test_category
 example = []
-if args.file_name is not None:
-    with open(file_name,"r") as f:
-        for line in f:
-            example.append(json.loads(line))
-    gorilla_testing_data = []
-    with open("eval_data_total.json","r") as f:
-        for line in f:
-            gorilla_testing_data.append(json.loads(line))
-    new_example = []
-    for i in range(len(gorilla_testing_data)):
-        if gorilla_testing_data[i]["question_type"] == args.test_category:
-            new_example.append(example[i])
-    example = new_example
-else:
-    with open(file_name,"r") as f:
-        for line in f:
-            example.append(json.loads(line)) 
+try:
+    if args.file_name is not None:
+        with open(file_name,"r") as f:
+            for line in f:
+                example.append(json.loads(line))
+        gorilla_testing_data = []
+        with open("eval_data_total.json","r") as f:
+            for line in f:
+                gorilla_testing_data.append(json.loads(line))
+        new_example = []
+        for i in range(len(gorilla_testing_data)):
+            if gorilla_testing_data[i]["question_type"] == args.test_category:
+                new_example.append(example[i])
+        example = new_example
+    else:
+        with open(file_name,"r") as f:
+            for line in f:
+                example.append(json.loads(line)) 
+except:
+    print(f"🙊 Your {args.model}'s {test_category} evaluation category data is not found, check whether you have finished openfunctions_evaluation.py evaluation data generation.")
+    exit()
+    
 answer = []
-if test_category == "miss_param" or test_category == "no_function_call" or test_category == "chatable":
+if test_category == "miss_param" or test_category == "relevance" or test_category == "chatable":
     pass
 else:
     with open(possible_answer_file,"r") as f:
@@ -288,7 +293,9 @@ else:
         assert len(example) == len(answer)
 
 # Check if the input file is a gpt or gorilla file
-if "gpt" in file_name or "glaive" in file_name or "fire" in file_name or "mistral-large-latest" in file_name:
+
+# Here we are receiving JSON schema where we do the AST checking.
+if "gpt" in file_name or "glaive" in file_name or "fire" in file_name or "mistral-large-latest" in file_name or "gemini" in file_name:
     total = 0
     success = 0
     for k in range(len(example)):
@@ -297,16 +304,16 @@ if "gpt" in file_name or "glaive" in file_name or "fire" in file_name or "mistra
             try:
                 example[k]["text"] = json.loads(example[k]["text"].split("<functioncall>")[1].replace("\'{","{").replace("\'}","}"))
                 example[k]["text"] = [{example[k]["text"]["name"]:example[k]["text"]["arguments"]}]
-                if test_category == "miss_param" or test_category == "no_function_call" or test_category == "chatable":
+                if test_category == "miss_param" or test_category == "relevance" or test_category == "chatable":
                     total += 1
                     continue
             except:
-                if test_category == "miss_param" or test_category == "no_function_call" or test_category == "chatable":
+                if test_category == "miss_param" or test_category == "relevance" or test_category == "chatable":
                     total += 1
                     success += 1
                     continue
         else:
-            if test_category == "miss_param" or test_category == "no_function_call" or test_category == "chatable":
+            if test_category == "miss_param" or test_category == "relevance" or test_category == "chatable":
                 if example[k]["result"] == []:
                     total += 1
                     success += 1
@@ -328,7 +335,11 @@ if "gpt" in file_name or "glaive" in file_name or "fire" in file_name or "mistra
             keyword = "text"
         else:
             keyword = "result"
-        if len(example[k][keyword]) != len(answer[k].keys()):
+        try:
+            if len(example[k][keyword]) != len(answer[k].keys()):
+                total += 1
+                continue
+        except:
             total += 1
             continue
         for item in example[k][keyword]:
@@ -394,15 +405,26 @@ if "gpt" in file_name or "glaive" in file_name or "fire" in file_name or "mistra
             if output_analysis:
                 with open("./gpt_failure.json","a+") as f:
                     f.write(json.dumps({"index":k,"answer":example[k]["result"]}) + "\n")
-    print(f"Testing type: {test_category}, success rate: {success/total}")
+    print(f"Testing type: {test_category}, Model: {file_name}, success rate: {success/total}")
+# Here we are function calls schema where we do the AST checking.
 else:
     total = 0
     success = 0
     for k in range(len(example)):
+        # Parsing raw gorilla v2 output
         if "gorilla_openfunctions_v2" in file_name or "git" in file_name:
             func = "[" + ", ".join(example[k]["text"].replace("\n","").split("<<function>>")[1:]) + "]"
+
+        # Parsing raw gorilla v0 output
         elif "gorilla-openfunctions-v0" in str(file_name):
             func = "[" + example[k]["text"] + "]"
+        elif "gemma" in file_name:
+            pattern = re.compile(r"\b\w+(?:\.\w+)?\b\([^)]*\)")
+
+            # Find all matches in the text
+            matches = pattern.findall(example[k]["text"])
+            func = "[" + ", ".join(matches) + "]"
+        # Parsing deepseek output
         elif "deepseek-7b" in file_name:
             example[k]["text"] = example[k]["text"].replace("\n","")
             try:
@@ -429,7 +451,7 @@ else:
                 func = "[" + func
             if not func.endswith("]"):
                 func = func + "]"
-        if "Nexus" in args.model:
+        elif "Nexus" in args.model:
             try:
                 func = func.split("<human_end>\n \n")[1]
             except:
@@ -442,14 +464,14 @@ else:
                 func = "["+",".join(func)+"]"
             elif type(func) is str:
                 func = "["+func+"]"
-        if "claude" in args.model:
+        elif "claude" in args.model:
             if " " == func[0]:
                 func = func[1:]
             if not func.startswith("["):
                 func = "[" + func
             if not func.endswith("]"):
                 func = func + "]"
-        if test_category == "miss_param" or test_category == "no_function_call" or test_category == "chatable":
+        if test_category == "miss_param" or test_category == "relevance" or test_category == "chatable":
             try:
                 x = build_ast(func)
                 total += 1
@@ -530,5 +552,5 @@ else:
         else:
             total += 1
             success += 1
-    print(f"Testing type: {test_category}, success rate: {success/total}")
+    print(f"Testing type: {test_category}, Model: {args.model}, success rate: {success/total}")
             
