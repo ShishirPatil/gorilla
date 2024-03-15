@@ -15,6 +15,8 @@
 
 :computer: Use [Gorilla in your CLI](https://github.com/gorilla-llm/gorilla-cli) with `pip install gorilla-cli`
 
+**:fax: Checkout our [blogs](https://gorilla.cs.berkeley.edu/blog.html) for all things tools-use/function-calling!** 
+
 **:newspaper_roll: Checkout our paper!** [![arXiv](https://img.shields.io/badge/arXiv-2305.15334-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334)
 
 **:wave: Join our Discord!** [![Discord](https://img.shields.io/discord/1111172801899012102?label=Discord&logo=discord&logoColor=green&style=flat-square)](https://discord.gg/SwTyuTAxX3)
@@ -23,8 +25,9 @@
 `Gorilla` enables LLMs to use tools by invoking APIs. Given a natural language query, Gorilla comes up with the semantically- and syntactically- correct API to invoke. With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (and growing) API calls accurately while reducing hallucination. We also release APIBench, the largest collection of APIs, curated and easy to be trained on! Join us, as we try to expand the largest API store and teach LLMs how to write them! Hop on our Discord, or open a PR, or email us if you would like to have your API incorporated as well.
 
 ## News
-- :trophy: [01/26] [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard) is live!
-- :dart: [01/25] [OpenFunctions v2](https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html) sets new SoTA for open-source LLMs!
+- :rocket: [03/15] RAFT: Adapting Language Model to Domain Specific RAG is live! [[MSFT-Meta blog](https://techcommunity.microsoft.com/t5/ai-ai-platform-blog/bg-p/AIPlatformBlog)] [[Berkeley Blog](https://gorilla.cs.berkeley.edu/blogs/9_raft.html)]
+- :trophy: [02/26] [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard) is live!
+- :dart: [02/25] [OpenFunctions v2](https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html) sets new SoTA for open-source LLMs!
 - :fire: [11/16] Excited to release [Gorilla OpenFunctions](https://gorilla.cs.berkeley.edu/blogs/4_open_functions.html)
 - 💻 [06/29] Released [gorilla-cli](https://github.com/gorilla-llm/gorilla-cli), LLMs for your CLI!
 - 🟢 [06/06] Released Commercially usable, Apache 2.0 licensed Gorilla models
@@ -49,11 +52,11 @@ Evaluation: We have included prompts and responses for the APIBench with and wit
 
 Our repository organization is shown below. 
 
+  - The `berkeley-function-call-leaderboard` folder contains scripts for evaluating function-calling ability of models.
   - The `data` folder contains all the evaluation APIs `(APIBench)` and the community contributed APIs.
   - The `eval` folder contains all our evaluation code as well as the Gorilla outputs.
   - The `inference` folder contains all the inference code for running Gorilla locally.
-  - <span style="color:hr">[Coming Soon!]</span>  The `train` folder contains all the training code associated with Gorilla finetuning.
-
+  - The `openfunctions` folder contains the inference code for the OpenFunctions model(s).
 
 For our dataset collections, all the 1640 API documentation is in `data/api`. We also include the `APIBench` dataset created by self-instruct in `data/apibench`. For evaluation, we convert this into a LLM-friendly chat format, and the questions are in `eval/eval-data/questions`, and the corresponding responses are in `eval/eval-data/responses`.  We have also included the evaluation scripts are in `eval/eval-scripts`. This would be entirely sufficient to train Gorilla yourself, and reproduce our results. Please see [evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval) for the details on how to use our evaluation pipeline.
 
@@ -61,6 +64,7 @@ Additionally, we have released all the model weights. `gorilla-7b-hf-v0` lets yo
 
 ```
 gorilla
+|-- berkeley-function-call-leaderboard (data and scripts to eval model's function-calling ability)
 ├── data
 │   ├── api (TF/HF/TH APIs used in generating apibench)
 │   │   ├── {api_name}_api.jsonl
@@ -88,7 +92,10 @@ gorilla
 │   ├── serve
 │   │   ├── gorilla_cli.py
 │   │   ├── conv_template.py
-├── train (Coming Soon!)
+├── openfunctions
+|   ├── openfunctions-v1 (data and scripts for openfunctions-v0 and v1)
+|   ├── utils (parsing script for openfunctions-v2)
+|   ├── inference_* (openfunctions-v2 hosted/local inference code)
 
 ```
 
@@ -103,37 +110,38 @@ We aim to build an open-source, one-stop-shop for all APIs, LLMs can interact wi
 Yes! We now have models that you can use commercially without any obligations.
 
 
-2. Can we use Gorilla with Langchain, Toolformer, AutoGPT etc?
+2. Can we use Gorilla with other tools like Langchain etc?
 
-Absolutely! You've highlighted a great aspect of our tools. Gorilla is  an  end-to-end model, specifically tailored to serve correct API calls without requiring any additional coding. It's designed to work as part of a wider ecosystem and can be flexibly integrated with other tools.
+Absolutely! You've highlighted a great aspect of our tools. Gorilla is  an  end-to-end model, specifically tailored to serve correct API calls (tools) without requiring any additional coding. It's designed to work as part of a wider ecosystem and can be flexibly integrated within agentic frameworks and other tools.
 
 Langchain, is a versatile developer tool. Its "agents" can efficiently swap in any LLM, Gorilla included, making it a highly adaptable solution for various needs.
 
-AutoGPT, on the other hand, concentrates on the art of prompting GPT series models. It's worth noting that Gorilla, as a fully fine-tuned model, consistently shows remarkable accuracy, and lowers hallucination, outperforming GPT-4 in making specific API calls.
-
-Now, when it comes to ToolFormer, Toolformer zeroes in on a select set of tools, providing specialized functionalities. Gorilla, in contrast, has the capacity to manage thousands of API calls, offering a broader coverage over a more extensive range of tools.
-
 The beauty of these tools truly shines when they collaborate, complementing each other's strengths and capabilities to create an even more powerful and comprehensive solution. This is where your contribution can make a difference. We enthusiastically welcome any inputs to further refine and enhance these tools. 
 
-3. How to train your own Gorilla models? 
+Check out our blog on [How to Use Gorilla: A Step-by-Step Walkthrough](https://gorilla.cs.berkeley.edu/blogs/5_how_to_gorilla.html) to see all the different ways you can integrate Gorilla in your projects.
 
-We will release the training code as soon as we can get GPUs to test and finalize the pipeline. Given the demand for our hosted end-points, we have dedicated all of our GPUs to serve the models. If you would like to help with resources get in touch!
 
 
 ## Project Roadmap
 
 In the immediate future, we plan to release the following:
 
-- [X] Dataset and Eval Code
-- [X] Opening up the APIZoo for contributions from community
-- [X] Hosted Gorilla LLM chat for HF model APIs [May 27, 2023]
-- [X] Release weights for HF model APIs [May 27, 2023]
-- [X] Run Gorilla LLM locally [May 28, 2023]
-- [X] Release weights for all APIs from APIBench [May 28, 2023]
+- [ ] BFCL metrics to evaluate contamination 
+- [ ] BFCL systems metrics including cost and latency
+- [ ] BFCL update with "live" data and user-votes
+- [ ] Openfunctions-v3 model to support more languges and multi-turn capability 
+- [x] Berkeley Function Calling leaderboard (BFCL) for evaluating tool-calling/function-calling models [Feb 26, 2024]
+- [x] Openfunctions-v2 with more languages (Java, JS, Python), relevance detection [Feb 26, 2024]
+- [x] API Zoo Index for easy access to all APIs [Feb 16, 2024]
+- [x] Openfunctions-v1, Apache 2.0, with parallel and multiple function calling [Nov 16, 2023]
+- [x] Openfunctions-v0, Apache 2.0 function calling model [Nov 16, 2023]
 - [X] Release a commercially usable, Apache 2.0 licensed Gorilla model [Jun 5, 2023] 
-- [ ] Train a model with first batch of community contributed APIs from APIZoo
-- [ ] Release training code
-- [ ] Train SOTA Gorilla LLM with expanded APIBench and APIZoo :rocket:
+- [X] Release weights for all APIs from APIBench [May 28, 2023]
+- [X] Run Gorilla LLM locally [May 28, 2023]
+- [X] Release weights for HF model APIs [May 27, 2023]
+- [X] Hosted Gorilla LLM chat for HF model APIs [May 27, 2023]
+- [X] Opening up the APIZoo for contributions from community
+- [X] Dataset and Eval Code
 
 Propose a new task you would like to work on :star_struck:
 
