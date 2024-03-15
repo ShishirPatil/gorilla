@@ -105,3 +105,13 @@ For each question-answer pair, append 4 randomly selected chunks as distractor d
 
  #### 4. Generate and save dataset
  RAFT repeats steps 2 and 3 for each chunk and saves the dataset to the path specified by the `--output` argument.
+
+
+ #### 5. Finetune your own model on Microsoft AI Studio
+ Once the dataset is prepared, follow the instructions in `azure-ai-studio-ft/howto.md` to finetune and deploy your own RAFT model.
+
+ #### 6. Evaluate RAFT model
+ After deploying your model in AI Studio, use command to evaluate the RAFT model. Make sure to fill in `base_url`, `api_key` and `model_name` in the `eval.py`, these can be found in the AI Studio. 
+ ```bash 
+python3 eval.py --question-file {your evaluation file}.jsonl --answer-file {your answer file}
+```
