@@ -16,7 +16,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.6">
-    <title>Introduction to Gorilla LLM</title>
+    <title>Berkeley Function Calling Leaderboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
     <link rel="stylesheet" href="../assets/css/blog.css">
@@ -26,15 +26,23 @@
     <link rel="stylesheet" href="../assets/css/Highlight-Clean-leaderboard.css" />
     <link rel="stylesheet" href="../assets/css/model_info_dashboard.css" />
     <link rel="stylesheet" href="../assets/css/contact.css">
+    <style>
+        /* Bars to separate titles in nav bar */
+        .navbar a:not(:last-child)::after {
+            content: "|";
+            margin: 0 10px;
+            color: #000;
+        }
+    </style>
 </head>
 
 <body>
     <!-- Navigation Bar -->
     <div class="navbar">
-        <a href="../leaderboard.html#leaderboard">Leaderboard</a> &nbsp;&nbsp;&nbsp;
-        <a href="../leaderboard.html#api-explorer">Try it Out!</a> &nbsp;&nbsp;&nbsp;
-        <a href="../blog.html">Blogs</a> &nbsp;&nbsp;&nbsp;
-        <a href="../index.html">Gorilla</a> &nbsp;&nbsp;&nbsp;
+        <a href="../leaderboard.html#leaderboard">Leaderboard</a>
+        <a href="../leaderboard.html#api-explorer">Try it Out!</a>
+        <a href="../blog.html">Blogs</a>
+        <a href="../index.html">Gorilla</a>
     </div>
 
 
@@ -111,7 +119,17 @@
                         function calls with multiple programming languages and parallel and multiple function calls. We
                         also provide a specific debugging feature that when the provided function is not suitable for
                         your task, the model will output an “Error Message”.
-
+                    
+                    </p>
+                    <p>
+                        Quick Links:
+                        <ul>
+                            <li>Live Leaderboard: <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Website</a></li>
+                            <li>BFCL Evaluation Dataset: <a href="https://huggingface.co/datasets/gorilla-llm/Berkeley-Function-Calling-Leaderboard"> HuggingFace Dataset 🤗</a></li>
+                            <li>Gradio Demo: <a href="https://huggingface.co/spaces/gorilla-llm/berkeley-function-calling-leaderboard"> HuggingFace Space 🤗 </a></li>
+                            <li>Reproducibility: <a href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard">Github Code</a></li>
+                            <li>OpenFunctions-v2 (6.91B) on HuggingFace 🤗: <a href="https://huggingface.co/gorilla-llm/gorilla-openfunctions-v2">gorilla-llm/gorilla-openfunctions-v2</a></li>
+                        </ul>
                     </p>
                 </div>
 
@@ -180,7 +198,7 @@
                         <ul>
                             <li style="margin-bottom: 5px;"><b>Python</b>: Simple Function, Multiple Function, Parallel Function, Parallel Multiple
                                 Function</li>
-                            <li style="margin-bottom: 5px;"><b>Non-Python</b>: Function Relevance Detection, REST API, SQL, Java, Javascript</li>
+                            <li style="margin-bottom: 5px;"><b>Non-Python</b>: Chatting Capability, Function Relevance Detection, REST API, SQL, Java, Javascript</li>
                         </ul>
                         </div>
                         <h5 id="benchmarking">Python Evaluation</h5>
@@ -207,9 +225,9 @@
                         <h5 id="benchmarking">Non-Python Evaluation</h5>
                         <div class="body">
                         <p>While the previous categories consist of the majority of our evaluations, we include other
-                            specific categories, namely REST API, SQL, Java, and JavaScript, to evaluate model performance on diverse scenarios and support of multiple programming languages, and are resilient
+                            specific categories, namely Chatting Capability, Function Relevance Detection, REST API, SQL, Java, and JavaScript, to evaluate model performance on diverse scenarios and support of multiple programming languages, and are resilient
                             to irrelevant questions and function documentations.</p>
-
+                        <p><strong>Chatting Capability:</strong> In Chatting Capability, we design scenarios where no functions are passed in, and the users ask generic questions - this is similar to using the model as a general-purpose chatbot. We evaluate if the model is able to output chat messages and recognize that it does not need to invoke any functions. Note the difference with “Relevance” where the model is expected to also evaluate if any of the function input are relevant or not. We include this category for internal model evaluation and exclude the statistics from live leaderboard. We currently are working on better evaluation on chatability and ensure the chat is relevant and coherent with users' request and open to suggestions and feedback from the community. </p>
                         <p><strong>Function Relevance Detection:</strong> In function relevance detection, we design scenarios
                             where none of the provided functions are relevant and supposed to be invoked. We expect the
                             model's output to be no function call. This scenario provides insight to whether a model
@@ -239,12 +257,11 @@
                         
                         
                             <p><strong>Java + Javascript:</strong> Despite function calling formats being the same across most
-                            programming languages, each programming language has language specific types. For example, C
-                            has  <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">pointer</code> type, Java has <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">HashMap</code> type. The goal of this test category is to understand how
-                            well the function calling model can be extended to not just JSON and Python type but all the
+                            programming languages, each programming language has language specific types. For example, Java has <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">HashMap</code> type. The goal of this test category is to understand how
+                            well the function calling model can be extended to not just Python type but all the
                             language specific typings. We included 100 examples for Java AST evaluation and 70 examples for Javascript AST evaluation. 
                         </p>
-                        <p>The three categories outlined above provide insight into the performance of different models across popular API call scenarios, offering valuable perspectives on the potential of function-calling models.
+                        <p>The categories outlined above provide insight into the performance of different models across popular API call scenarios, offering valuable perspectives on the potential of function-calling models.
 
                         </p>
                         </div>
@@ -406,6 +423,12 @@
                                     <li style="margin-bottom: 5px;">Possible Anything <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">["Manchester United", "Man United", "Man U", "MUFC"]</code> </li>
                                 </ul>
                             </li>
+                            <li style="margin-bottom: 5px;">Handling Optional Parameters in Function Calls:
+                                <ul>
+                                    <li style="margin-bottom: 5px;">When optional parameters are not provided in the function calls (meaning they should use their default values), we represent their absence with <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">""</code>. This notation tells the AST (Abstract Syntax Tree) checker that the function call intentionally omits these parameters.</li>
+                                    <li style="margin-bottom: 5px;">Additionally, we specify the default values as stated in the function's description. This approach allows us to correctly recognize both cases: when an optional parameter is omitted and when it is included with its default value. This ensures that responses are marked as correct in either scenario.</li>
+                                </ul>
+                            </li>
                         </ul>
 
 
@@ -497,7 +520,7 @@
                                         <td>
                                             <a href=''>Gorilla OpenFunctions-v2</a>
                                         </td>
-                                        <td>7B</td>
+                                        <td>6.91B</td>
                                         <td>Gorilla LLM</td>
                                         <td>Apache 2.0</td>
                                         <td><a href="https://gorilla.cs.berkeley.edu/">&#10003;</a></td>

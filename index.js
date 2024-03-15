@@ -205,7 +205,7 @@ const data = {
             pointHoverBorderColor: 'rgb(163, 73, 164)',
             hidden: true
         }, {
-            label: 'Mistral-tiny',
+            label: 'Mistral-tiny-2312',
             data: [77.08, 59.64, 56.00, 62.50, 43.00, 71.17, 36.00, 74.00, 32.50],
             fill: true,
             backgroundColor: 'rgba(255, 105, 180, 0.1)',
