@@ -28,28 +28,6 @@ def get_openai_response(message):
         print(e)
         return response
 
-def normalize_answer(s):
-    """Lower text and remove punctuation, articles and extra whitespace."""
-
-    def remove_articles(text):
-        return re.sub(r'\b(a|an|the)\b', ' ', text)
-
-    def white_space_fix(text):
-        return ' '.join(text.split())
-
-    def handle_punc(text):
-        exclude = set(string.punctuation + "".join([u"‘", u"’", u"´", u"`"]))
-        return ''.join(ch if ch not in exclude else ' ' for ch in text)
-
-    def lower(text):
-        return text.lower()
-
-    def replace_underscore(text):
-        return text.replace('_', ' ')
-
-    return white_space_fix(remove_articles(handle_punc(lower(replace_underscore(s))))).strip().replace('\n','')
-
-
 def get_answer(input_json):
     message = [{"role": "user", "content": input_json['instruction']}]
     result = get_openai_response(message)

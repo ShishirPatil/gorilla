@@ -2,7 +2,7 @@
 
 RAFT takes an input document from the user and creates a dataset using the document, consisting of synthetically generated `{ question, answer, documents }` triplets. The dataset can then be used to fine-tune models for improved question-answering and retrieval. 
 
-The input data from the user can be either a general text document (pdf, json, or txt) for general QA or an API documentation in the API Zoo JSON format for API calling. 
+The input data from the user can be either a general text document (pdf, json, or txt) for general QA or an API documentation in the API Zoo JSONL format for API calling. 
 
 ## Install Dependencies
 
@@ -19,11 +19,10 @@ Arguments:
   - currently accepted doctypes: `pdf`, `txt`, `json`, `api`
   - documents in `json` format must have a "text" attribute containing the content from which chunks are extracted
   - documents in `api` format must follow the API json format detailed in the Gorilla [API Store](https://github.com/ShishirPatil/gorilla/blob/main/data/README.md)
+- `--p` - the percentage of including the oracle documents in the context
 - `--chunk_size` - the size of each chunk in number of tokens
 - `--questions` - the number of data points / triplets to generate per chunk
 - `--openai_key` - your OpenAI key used to make queries to GPT-3.5 or GPT-4
-- `--tokenizer` - name of desired tokenizer (defaults to bert-base-cased)
-  - will be imported using `AutoTokenizer.from_pretrained`
 
 
 
@@ -31,7 +30,7 @@ Arguments:
 
 Run the following command with your desired arguments to generate the dataset.  
 ```bash 
-python3 raft.py --datapath PATH_TO_DATA --output OUTPUT_PATH --distractors 3 --doctype pdf --chunk_size 512 --questions 5 --openai_key YOUR_OPENAI_KEY --tokenizer TOKENIZER
+python3 raft.py --datapath PATH_TO_DATA --output OUTPUT_PATH --distractors 3 --doctype pdf --chunk_size 512 --questions 5 --openai_key YOUR_OPENAI_KEY
 ```
 `raft.py` does the following:  
 - Takes a document located at `PATH_TO_DATA`, breaks it into chunks of size `chunk_size` tokens if the data is a pdf, json, or txt, or chunks of one API endpoint if the data is an API documentation, as denoted by `doctype`.
@@ -43,7 +42,7 @@ python3 raft.py --datapath PATH_TO_DATA --output OUTPUT_PATH --distractors 3 --d
 
 This details the command and process used to generate the example dataset found in `./sample_ds4`. The document is a pdf of the Wikipedia page on the United States of America. 
 ```bash 
-python3 raft.py --datapath sample_data/United_States_PDF.pdf --output ./sample_ds4 --distractors 4 --doctype pdf --chunk_size 512 --questions 5 --openai_key OPENAI_KEY --tokenizer bert-base-cased
+python3 raft.py --datapath sample_data/United_States_PDF.pdf --output ./sample_ds4 --distractors 4 --doctype pdf --chunk_size 512 --questions 5 --openai_key OPENAI_KEY
 ```
 
 #### 1. Chunk generation
@@ -113,5 +112,5 @@ For each question-answer pair, append 4 randomly selected chunks as distractor d
  #### 6. Evaluate RAFT model
  After deploying your model in AI Studio, use command to evaluate the RAFT model. Make sure to fill in `base_url`, `api_key` and `model_name` in the `eval.py`, these can be found in the AI Studio. 
  ```bash 
-python3 eval.py --question-file {your evaluation file}.jsonl --answer-file {your answer file}
+python3 eval.py --question-file YOUR_EVAL_FILE.jsonl --answer-file YOUR_ANSWER_FILE
 ```

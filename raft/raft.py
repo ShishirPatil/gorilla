@@ -22,12 +22,11 @@ def get_args() -> any:
     parser.add_argument("--chunk_size", type=int, default=512, help="The size of each chunk in number of tokens")
     parser.add_argument("--doctype", type=str, default="pdf", help="The type of the document, must be one of the accepted doctypes", choices=["pdf", "txt", "json", "api"])
     parser.add_argument("--openai_key", type=str, default="", help="Your OpenAI key used to make queries to GPT-3.5 or GPT-4")
-    parser.add_argument("--tokenizer", type=str, default="bert-base-cased", help="Name of desired tokenizer (defaults to bert-base-cased)")
 
     args = parser.parse_args()
     return args
 
-def get_chunks(file_path: str, tokenizer=None, doctype="pdf", chunk_size=512, openai_key=None) -> list[str]:
+def get_chunks(file_path: str, doctype="pdf", chunk_size=512, openai_key=None) -> list[str]:
     """
     Takes in a `file_path` and `doctype`, retrieves the document, breaks it down into chunks of size
     `chunk_size`, and returns the chunks.
@@ -246,9 +245,7 @@ if __name__ == "__main__":
     CHUNK_SIZE = args.chunk_size
     NUM_DISTRACT_DOCS = args.distractors
 
-    tokenizer = AutoTokenizer.from_pretrained(args.tokenizer)
-
-    chunks = get_chunks(args.datapath, tokenizer, args.doctype, CHUNK_SIZE, OPENAPI_API_KEY)
+    chunks = get_chunks(args.datapath, args.doctype, CHUNK_SIZE, OPENAPI_API_KEY)
 
     ds = None
 
