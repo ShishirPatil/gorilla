@@ -38,6 +38,7 @@ def get_chunks(file_path: str, tokenizer=None, doctype="pdf", chunk_size=512, op
         with open(file_path) as f:
             api_docs_json = json.load(f)
         chunks = list(api_docs_json)
+        chunks = [str(api_doc_json) for api_doc_json in api_docs_json]
 
         for field in ["user_name", "api_name", "api_call", "api_version", "api_arguments", "functionality"]:
             if field not in chunks[0]:
@@ -67,7 +68,7 @@ def get_chunks(file_path: str, tokenizer=None, doctype="pdf", chunk_size=512, op
             for data in dataset:
                 text += str(data)
         else:
-            raise TypeError("Document is not one of the accepted types: api, pdf, json, txt")
+            raise TypeError("Document is not one of the accepted types: api, pdf, json, txt, arrow")
         
         num_chunks = len(text) / chunk_size 
         text_splitter = SemanticChunker(OpenAIEmbeddings(openai_api_key=OPENAPI_API_KEY), number_of_chunks=num_chunks)
@@ -208,7 +209,6 @@ def add_chunk_to_dataset(chunks: list, chunk: str, doctype: str = "api", x: int 
         oracle = random.uniform(0, 1) < p
         if not oracle:
             docs[0] = chunks[random.sample(indices, 1)[0]]
-
         random.shuffle(docs)
 
         d = {
@@ -222,7 +222,7 @@ def add_chunk_to_dataset(chunks: list, chunk: str, doctype: str = "api", x: int 
         datapt["oracle_context"] = chunk
 
         # add answer to q
-        datapt["cot_answer"] = generate_label(q, chunk) 
+        datapt["cot_answer"] = generate_label(q, chunk, doctype) 
 
         # add to dataset
         if not ds:
