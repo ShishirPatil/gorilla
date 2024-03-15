@@ -20,7 +20,7 @@ def get_args() -> any:
     parser.add_argument("--p", type=float, default=1.0, help="The percentage that the oracle document is included in the context")
     parser.add_argument("--questions", type=int, default=5, help="The number of data points / triplets to generate per chunk")
     parser.add_argument("--chunk_size", type=int, default=512, help="The size of each chunk in number of tokens")
-    parser.add_argument("--doctype", type=str, default="pdf", help="The type of the document, must be one of the accepted doctypes", choices=["pdf", "txt", "json", "api", "arrow"])
+    parser.add_argument("--doctype", type=str, default="pdf", help="The type of the document, must be one of the accepted doctypes", choices=["pdf", "txt", "json", "api"])
     parser.add_argument("--openai_key", type=str, default="", help="Your OpenAI key used to make queries to GPT-3.5 or GPT-4")
     parser.add_argument("--tokenizer", type=str, default="bert-base-cased", help="Name of desired tokenizer (defaults to bert-base-cased)")
 
@@ -61,14 +61,8 @@ def get_chunks(file_path: str, tokenizer=None, doctype="pdf", chunk_size=512, op
             with open(file_path, 'r') as file:
                 data = file.read()
             text = str(data)
-        elif doctype == "arrow": 
-            dataset = Dataset.from_file(file_path)
-            dataset = [data['context'] for data in dataset]
-            text = ""
-            for data in dataset:
-                text += str(data)
         else:
-            raise TypeError("Document is not one of the accepted types: api, pdf, json, txt, arrow")
+            raise TypeError("Document is not one of the accepted types: api, pdf, json, txt")
         
         num_chunks = len(text) / chunk_size 
         text_splitter = SemanticChunker(OpenAIEmbeddings(openai_api_key=OPENAPI_API_KEY), number_of_chunks=num_chunks)
