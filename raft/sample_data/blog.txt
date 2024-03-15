@@ -15,28 +15,29 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.8">
-    <title>Introduction to Gorilla LLM</title>
+    <title>RAFT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
     <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/Team-Clean.css">
+    <style>
+        /* Bars to separate titles in nav bar */
+        .navbar a:not(:last-child)::after {
+            content: "|";
+            margin: 0 10px;
+            color: #000;
+        }
+    </style>
 </head>
 
 <body>
     <!-- Navigation Bar -->
-    <div class="navbar" style="
-        position: absolute;
-        top: 0;
-        right: 20px;
-        padding: 10px;
-        z-index: 100;
-        font-size: 18px;
-      ">
-        <a href="../leaderboard.html#leaderboard">Leaderboard</a> &nbsp;&nbsp;&nbsp;    
-        <a href="../leaderboard.html#api-explorer">Try it Out!</a> &nbsp;&nbsp;&nbsp;    
-        <a href="../blog.html">Blogs</a> &nbsp;&nbsp;&nbsp;    
-        <a href="../index.html">Gorilla</a> &nbsp;&nbsp;&nbsp;    
+    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;; font-size: 18px;">
+        <a href="/index.html">Home</a>
+        <a href="/blog.html">Blogs</a>
+        <a href="/leaderboard.html">Leaderboard</a>
+        <a href="/apizoo/">API Zoo Index</a>
     </div>
 
     <div class="highlight-clean-blog" style="padding-bottom: 10px;">
@@ -50,6 +51,7 @@
                          <p></p>
                          <a class="author" href="https://tianjunz.github.io">Tianjun Zhang</a>
                          <a class="author" href="https://shishirpatil.github.io/">Shishir G. Patil</a>
+                         <a class="author" href="https://www.linkedin.com/in/kaiwen129/">Kai Wen</a>
                          <a class="author" href="https://naman-ntc.github.io/">Naman Jain</a> 
                          <a class="author" href="https://sincerass.github.io/">Sheng Shen</a>
                          <a class="author" href="https://people.eecs.berkeley.edu/~matei/">Matei Zaharia</a>
@@ -61,7 +63,7 @@
                 <div class="col-md-12">
                     <h4 class="text-center" style="margin: 0px;">
                          <p></p>
-                         <a class="author" href="https://cv.vidal.biz/"> Microsoft: Cetric Vidal </a>
+                         <a class="author" href="https://cv.vidal.biz/"> Microsoft: Cédric Vidal </a>
                          <a class="author" href="https://www.linkedin.com/in/surajsubramanian/"> Meta: Suraj Subramanian </a>
                          <p></p>
                     </h4>
@@ -73,12 +75,12 @@
 
                 <div class="preview">
                     <p>            
-                        When using LLMs for many downstream applications, it is common to additionally bake-in new knowledge (e.g., time-critical news, or enterprise private domain knowledge) either through RAG-based-prompting, or finetuning. But, what's the optimal recipe to teach the model such new knowledge? In this blog, we present Retrieval Augmented Fine Tuning (RAFT), a simple yet powerful finetuning recipe which improves the model's ability to answer questions in a "open-book" 
-                        in-domain settings. In RAFT, given a question, and a set of retrieved documents, we train the model to ignore those documents that don't help in answering the question (distractor documents). RAFT accomplishes this by citing verbatim the right sequence from the relevant document that would help answer the question. This coupled with RAFT's chain-of-thought-style response helps improve the model's ability to reason. In domain specific RAG, RAFT consistently improves the model's performance across PubMed, HotpotQA, and Gorilla datasets, presenting a post-training recipe to improve pre-trained LLMs to in-domain RAG. With RAT (Retriever Aware Training), we taught you how to optimize models for APIs. RAFT is a generalization for RAG! 
+                        When integrating Large Language Models (LLMs) into various applications, it often becomes necessary to incorporate new information, such as domain-specific knowledge or proprietary data, through techniques like retrieval-augmented generation (RAG)-based prompting or fine-tuning. However, the challenge lies in determining the most effective method for instilling this new knowledge into the model. In our latest blog, we introduce Retrieval Augmented Fine Tuning (RAFT), a straightforward and powerful fine-tuning recipe to enhance the model's performance in answering questions within specific domains in an "open-book" setting. Open-book refers to the paradigm, where the model can refer to documents to answer the question. RAFT operates by training the model to disregard any retrieved documents that do not contribute to answering a given question, thereby eliminating distractions. This is achieved by accurately identifying and quoting the relevant segments from helpful documents to address the question at hand. Moreover, RAFT's use of a chain-of-thought-style response further refines the model's reasoning abilities. When applied to domain-specific RAG, RAFT consistently improves performance across various datasets, including PubMed, HotpotQA, and Gorilla, offering a valuable post-training enhancement for pre-trained LLMs with domain-specific RAG capabilities.  In our previous blog about <a href="/blogs/3_retriever_aware_training.html">RAT (Retriever Aware Training)</a>, we explored optimization strategies for models interacting with APIs. RAFT builds on top of RAT, and generalizes beyond APIs for RAG applications.
                     </p>
                     <p>
                         The RAFT model is trained on top of the base model Llama2-7B from Meta and on Microsoft AI Studio. We provide a short tutorial on how to train your own RAFT model for RAG applications.
-                        For details about RAFT finetuning, please refer to <a href="https://github.com/ShishirPatil/gorilla">RAFT paper</a>, <a href="aka.ms">Microsoft-Meta blog</a>. 
+                        For more details about RAFT please refer to our <a href="https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/RAFT.pdf ">paper</a> and <a href="https://aka.ms/raft-blog
+                        ">Microsoft-Meta blog</a>. 
                     </p>
                 </div>
 
@@ -87,11 +89,12 @@
                 <h3 id="analogy">Analogy: How to prepare a LLM for an Exam? 📝</h4>
 
                 <div class="body">
+                <p>    
                 RAFT is a general recipe to finetune a pretrained LLM to your domain-specific RAG settings. 
-                This is a common case where you want your LLM to answer questions based on a set of documents (e.g., enterprise private files). 
-                Such setting is different from the general RAG where the LLM doesn't know about which domain (of documents) it will be tested on.
+                This is a common scenario where you want your LLM to answer questions grounded on a set of documents, for e.g., private files in an enterprise. 
+                Such a setting is different from the general RAG where the LLM does not know which domain (of documents) it will be tested on.
                 To better illustrate this setting, let's draw an analogy between deploying and using an LLM with the real-world setting of prepararing for an exam. 
-
+                </p>
                 <p><mark>Closed-Book Exam</mark> 
                     A closed book exam often refers to the scenario where the LLMs do not have access to any additional documents or references to answer the questions during the exam.  
                     For LLMs, this is equivalent to the scenario, for example, in which the LLM is used as a chatbot. In this scenario the LLM draws from the knowledge baked in during pre-training and supervised-finetuning to respond to the users' prompt. </p>
@@ -102,7 +105,7 @@
                     As a result, we argue that the LLM's performance in these settings, where it is trained as a general-purpose LLM is largely dependent on the quality of the retriever and how accurately the retriever can identify the most relevant piece of information. </p>
 
                 <p><mark>RAFT</mark> 
-                    RAFT focuses on a narrower but increasingly popular domain than the general open book exam, called the domain specific open book exam. In domain specific open book exam, we know apriori the domain in which the LLM will be tested --- used for inference. The LLM  can respond to the users' prompt using use any and all information from this specific domain, which it has been fine-tuned on. 
+                    RAFT focuses on a narrower but increasingly popular domain than the general open book exam, called the domain-specific open-book exam. In domain-specific open book exam, we know apriori the domain in which the LLM will be tested --- used for inference. The LLM  can respond to the users' prompt using use any and all information from this specific domain, which it has been fine-tuned on. 
                     Examples of domain specific examples include enterprise documents, latest news, code repositories belonging to an organization, etc. 
                     In all these scenarios, the LLM will be used to respond to the questions, whose answers can be found within a collection of documents (a small practical domain). The retrieval technique itself has little to no-impact on the mechanism (though it may impact the accuracy). 
                     This paper mainly studies this, domain-specific open-book setting and how to adapt a pretrained LLM to this specific domain, including how to make it more robust to a varying number of retrieved documents and distractors.</p>
@@ -115,14 +118,15 @@
                             <mark>How to preapre a LLM for an Exam?</mark> Closed-Book vs. Open-Book vs. RAFT
                         </i>
                 </p>
+                <p></p>
 
                 <!-- RAFT Adapting  -->
                 <h4 id="raft-domain-rag">RAFT: Adapting Language Model to Domain Specific RAG 📚</h4>
             
                 <div class="body">
-                    <p>Retrieval Aware Fine-Tuning (RAFT), presents a novel recipe to prepare fine-tuning data to tailor the models for domain-specific open-book setting, equivalent to in-domain RAG In RAFT, we prepare the training data such that each data point contains a question (<h:math> Q </h:math>), a set of documents (<h:math>D<sub>k</sub></h:math>), and a corresponding Chain-of-though style answer (<h:math>A<sup>*</sup></h:math>) generated from one of the document (<h:math>D<sup>*</sup></h:math>). We differentiate between two types of documents: <emph>oracle</emph> documents (<h:math>D*</h:math>) i.e. the documents from which the answer to the question can be deduced, and `distractor' documents (<h:math>D<sub>i</sub></h:math>) that do not contain answer-relevant information. As an implementation detail, the <emph>oracle</emph> document doesn't need to be a single document, but can be more than one document, as is the case in HotpotQA. Then, for $P$ fraction of the questions (<h:math>q<sub>i</sub></h:math>) in the dataset, we retain the oracle document (<h:math>d<sub>i</sub><sup>*</sup></h:math>) along with distractor documents (<h:math>d<sub>k-1</sub></h:math>). For <h:math>(1-P)</h:math> fraction of the questions (<h:math>q<sub>i</sub></h:math>) in the dataset, we include no oracle document and only include distractor documents (<h:math>d<sub>k</sub></h:math>). We then fine-tune the language model using standard supervised training (SFT) technique, training it to generate answers from the provided documents and question. Fig below illustrates the high-level design principal for RAFT. </p>
+                    <p>Retrieval Aware Fine-Tuning (RAFT), presents a novel recipe to prepare fine-tuning data to tailor the models for domain-specific open-book setting, equivalent to in-domain RAG. In RAFT, we prepare the training data such that each data point contains a question (<h:math> Q </h:math>), a set of documents (<h:math>D<sub>k</sub></h:math>), and a corresponding Chain-of-though style answer (<h:math>A<sup>*</sup></h:math>) generated from one of the document (<h:math>D<sup>*</sup></h:math>). We differentiate between two types of documents: <emph>oracle</emph> documents (<h:math>D*</h:math>) i.e. the documents from which the answer to the question can be deduced, and `distractor' documents (<h:math>D<sub>i</sub></h:math>) that do not contain answer-relevant information. As an implementation detail, the <emph>oracle</emph> document doesn't need to be a single document, but can be more than one document, as is the case in HotpotQA. Then, for $P$ fraction of the questions (<h:math>q<sub>i</sub></h:math>) in the dataset, we retain the oracle document (<h:math>d<sub>i</sub><sup>*</sup></h:math>) along with distractor documents (<h:math>d<sub>k-1</sub></h:math>). For <h:math>(1-P)</h:math> fraction of the questions (<h:math>q<sub>i</sub></h:math>) in the dataset, we include no oracle document and only include distractor documents (<h:math>d<sub>k</sub></h:math>). We then fine-tune the language model using standard supervised training (SFT) technique, training it to generate answers from the provided documents and question. The figure below illustrates the high-level design principal for RAFT. </p>
 
-                    <p>We demonstrate that our RAG approach trains the model to perform better RAG on the set of documents it is trained on (i.e., in-domain). By removing the oracle documents in some instances, we are compelling the model to memorize answers instead of deriving them from the context.  The training data for RAFT is as follows, and an example training data can be seen in the figure below: </p>
+                    <p>We demonstrate that our RAG approach trains the model to perform better RAG on the set of documents it is trained on i.e., in-domain. By removing the oracle documents in some instances of the training data, we are compelling the model to memorize domain-knowledge.  The training data for RAFT is as follows, and an example training data can be seen in the figure below: </p>
                     <ul>
                         <li> <h:math><b>P</b></h:math> % of data: <h:math><b>Q</b></h:math> + <h:math><b>D<sup>*</sup></b></h:math> + <h:math><b>D<sub>1</sub></b></h:math> + <h:math><b>D<sub>2</sub></b></h:math> + ... + <h:math><b>D<sub>k</sub></b></h:math> => <h:math><b>A<sup>*</sup></b></h:math> </li>
                         <li> <h:math><b>1-P</b></h:math> % of data: <h:math><b>Q</b></h:math> + <h:math><b>D<sub>1</sub></b></h:math> + <h:math><b>D<sub>2</sub></b></h:math> + ... + <h:math><b>D<sub>k</sub></b></h:math> => <h:math><b>A<sup>*</sup></b></h:math> </li>
@@ -134,6 +138,7 @@
                                 Train and Test Configuration for RAFT
                             </i>
                     </p>
+                    <p></p>
 
                     <p> We also provide one example of training data of our dataset. This involves questions, context, instruction and final CoT answer.
                         In our answer, we use ##begin_quote## and ##end_quote## to denote the beginning and end of a quote that is directly copy pasted from the context. We found this an efficient way to prevent the model hallucinate and stick to the contexts provided.
@@ -151,6 +156,7 @@ CoT Answer: ##Reason: The document ##begin_quote## The Oberoi family is an India
                     <p style="font-size: 0.9em; text-align: center;margin-bottom: 0">
                         Example of our RAFT training data. 
                     </p>
+                    <p></p>
                     
                  <h4 id="benchmarking">RAFT Evaluation 📊</h4>
 
@@ -169,17 +175,18 @@ CoT Answer: ##Reason: The document ##begin_quote## The Oberoi family is an India
                     <ul>
                         <li> LlaMA2-7B-chat model with 0-shot prompting: this is the commonly used instruction-tuned model for QA tasks, with clearly written instructions but no reference documentation. </li>
                         <li> LlaMA2-7B-chat model with RAG (Llama2 + RAG): similar to the previous setting, but differently we add on the reference context. This is the most used combination when dealing with domain-specific QA tasks.</li>
-                        <li> Domain-Specific Finetuning with 0-shot prompting (DSF): Performing standard instruction tuning without documents in the context. We found it mostly useful to align the answer style of the model as well as get familiar with the domain context. </li>
-                        <li> Domain-Specific Finetuning with RAG (DSF + RAG): Equip a domain-specific finetuned model with external knowledge using RAG. So for the knowledge the model doesn't know, it can still refer to the context. </li>
+                        <li> Domain-Specific Finetuning with 0-shot prompting (DSF): Performing standard instruction-finetuning without documents in the context. </li>
+                        <li> Domain-Specific Finetuning with RAG (DSF + RAG): Equip a domain-specific finetuned model with external knowledge using RAG. So, for the "knowledge" the model doesn't know, it can still refer to the context. </li>
                     </ul>
                  </p>
 
                  <p style="text-align: center; margin-bottom: 0">
                     <img src="../assets/img/blog_post_9_table.png" alt="Gorilla Input and Output" width="95%">
                         <i style="font-size: 0.9em;">
-                            Results of RAFT on Different Datasets
+                            Results of RAFT on Medical (PubMed), General-knowledge (HotPotQA), and API (Gorilla) benchmarks. 
                         </i>
                 </p>
+                <p></p>
 
 
                 <h4 id="benchmarking">Train your own RAFT 💡</h4>
@@ -195,7 +202,7 @@ CoT Answer: ##Reason: The document ##begin_quote## The Oberoi family is an India
                 <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
 Question: The Oberoi family is part of a hotel company that has a head office in what city?
 
-context: ... It is located in city center of Jakarta, near Mega Kuningan, adjacent to the sister JW Marriott Hotel. It is operated by The Ritz-Carlton Hotel Company. The complex has two towers that comprises a hotel and the Airlangga Apartment respectively...
+context: [The Oberoi family is an Indian family that is famous for its involvement in hotels, namely through The Oberoi Group]...[It is located in city center of Jakarta, near Mega Kuningan, adjacent to the sister JW Marriott Hotel. It is operated by The Ritz-Carlton Hotel Company. The complex has two towers that comprises a hotel and the Airlangga Apartment respectively]...[The Oberoi Group is a hotel company with its head office in Delhi.]
 
 CoT Answer: ##Reason: The document ##begin_quote## The Oberoi family is an Indian family that is famous for its involvement in hotels, namely through The Oberoi Group. ##end_quote## establishes that the Oberoi family is involved in the Oberoi group, and the document ##begin_quote## The Oberoi Group is a hotel company with its head office in Delhi. ##end_quote## establishes the head office of The Oberoi Group. Therefore, the Oberoi family is part of a hotel company whose head office is in Delhi. ##Answer: Delhi
                 </pre>
@@ -210,6 +217,7 @@ CoT Answer: ##Reason: The document ##begin_quote## The Oberoi family is an India
                             Finetune Llama2-7B on Azure AI Studio
                         </i>
                 </p>
+                <p></p>
 
                 <p><mark>Model Deployment</mark>: 
                     Once the model is trained, you can freely deploy it on your own GPUs (or CPUs through llama.cpp); an alternative is to deploy it on Microsoft AI Studio. The following image shows the model deployment process on Azure AI Studio.
@@ -222,15 +230,14 @@ CoT Answer: ##Reason: The document ##begin_quote## The Oberoi family is an India
                             Deploy Llama2-7B on Azure AI Studio
                         </i>
                 </p>
+                <p></p>
                 
 <h4 id="benchmarking">Conclusion</h4>
 <div class="body">
 <p>
-    In this paper, we study an underlying premise of training LLMs on knowledge-intensive tasks. 
-    We found that contrary to the previous findings, fine-tuning LLMs to memorize new knowledge can achieve good performance, but they have a hard time generalizing to out-of-domain knowledge even when provided with relevant context. 
-    On the other hand, teaching the model to read is a generalizable behavior for the LLMs for both in-domain and out-of-domain knowledge.
-    Moreover, we identify the usage of negative documents to make the model more robust to the top-k retrieved documents. 
-    We also make a multi-task fine-tuning process to enable the model to learn to read from the new knowledge without degrading its performance on general domains. 
+    RAFT is a training strategy designed to enhance the model's performance in answering questions within a specific domain, in "open-book" settings. This technique demonstrates a fine-tuning recipe for LLMs for question-answering tasks based on a selected collection of documents. We have pinpointed several crucial design decisions, such as training the model alongside distractor documents, organizing the dataset so a portion lacks oracle documents in their context, and formulating answers in a chain-of-thought manner with direct quotations from the relevant text. Our evaluations on PubMed, Hotpot QA, and Gorilla API Bench underline RAFT's significant potential.  
+
+    Looking forward, we anticipate that in-domain Retrieval-Augmented Generation (RAG) will continue to gain interest within both industrial and academic spheres. Unlike general-RAG, our work addresses practical scenarios where LLMs are tasked with answering questions using domain-specific knowledge. Aligning with current trends, our findings suggest that smaller, fine-tuned models are capable of performing comparably well in domain-specific question-answering tasks, in contrast to their generic LLM counterparts.
 </p>
 
 <p>
