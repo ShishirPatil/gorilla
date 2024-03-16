@@ -162,15 +162,16 @@ const data = {
             pointHoverBorderColor: 'rgb(75, 192, 192)',
             hidden: true
         }, {
-            label: 'OpenFunctions-v2',
-            data: [71.67, 87.82, 82.5, 89.00, 78.00, 85.88, 68.00, 82.00, 55.00],
+            label: 'GPT-4-0613',
+            data: [87.08, 74.55, 0.00, 86.00, 0.00, 50.00, 0.00, 56.00, 2.50],
             fill: true,
-            backgroundColor: 'rgba(153, 102, 255, 0.1)',
-            borderColor: 'rgb(153, 102, 255)',
-            pointBackgroundColor: 'rgb(153, 102, 255)',
+            backgroundColor: 'rgba(128, 0, 0, 0.1)',
+            borderColor: 'rgb(128, 0, 0)',
+            pointBackgroundColor: 'rgb(128, 0, 0)',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(153, 102, 255)'
+            pointHoverBorderColor: 'rgb(128, 0, 0)',
+            hidden: true
         }, {
             label: 'GPT-3.5-Turbo-0125',
             data: [68.33, 80.18, 82.50, 84.50, 79.00, 84.71, 68.00, 80.00, 45.00],
@@ -183,159 +184,15 @@ const data = {
             pointHoverBorderColor: 'rgb(255, 159, 64)',
             hidden: true
         }, {
-            label: 'Mistral-medium-2312',
-            data: [90.00, 80.18, 76.50, 84.50, 73.50, 84.71, 62.00, 76.00, 45.00],
+            label: 'OpenFunctions-v2',
+            data: [71.67, 87.82, 82.5, 89.00, 78.00, 85.88, 68.00, 82.00, 55.00],
             fill: true,
-            backgroundColor: 'rgba(54, 162, 235, 0.1)',
-            borderColor: 'rgb(54, 162, 235)',
-            pointBackgroundColor: 'rgb(54, 162, 235)',
+            backgroundColor: 'rgba(153, 102, 255, 0.1)',
+            borderColor: 'rgb(153, 102, 255)',
+            pointBackgroundColor: 'rgb(153, 102, 255)',
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(54, 162, 235)',
-            hidden: true
-        }, {
-            label: 'Claude-2.1',
-            data: [78.33, 85.64, 77.00, 83.00, 60.50, 68.23, 52.00, 45.00, 47.50],
-            fill: true,
-            backgroundColor: 'rgba(163, 73, 164, 0.1)',
-            borderColor: 'rgb(163, 73, 164)',
-            pointBackgroundColor: 'rgb(163, 73, 164)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(163, 73, 164)',
-            hidden: true
-        }, {
-            label: 'Mistral-tiny-2312',
-            data: [77.08, 59.64, 56.00, 62.50, 43.00, 71.17, 36.00, 74.00, 32.50],
-            fill: true,
-            backgroundColor: 'rgba(255, 105, 180, 0.1)',
-            borderColor: 'rgb(255, 105, 180)',
-            pointBackgroundColor: 'rgb(255, 105, 180)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(255, 105, 180)',
-            hidden: true
-        }, {
-            label: 'Claude-instant-1.2',
-            data: [61.67, 68.73, 56.50, 59.00, 44.00, 60.00, 50.00, 52.00, 37.50],
-            fill: true,
-            backgroundColor: 'rgba(255, 165, 0, 0.1)',
-            borderColor: 'rgb(255, 165, 0)',
-            pointBackgroundColor: 'rgb(255, 165, 0)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(255, 165, 0)',
-            hidden: true
-        }, {
-            label: 'Nexusflow-Raven-v2',
-            data: [0.00, 76.55, 39.50, 83.50, 32.50, 61.18, 62.00, 84.00, 47.50],
-            fill: true,
-            backgroundColor: 'rgba(60, 179, 113, 0.1)',
-            borderColor: 'rgb(60, 179, 113)',
-            pointBackgroundColor: 'rgb(60, 179, 113)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(60, 179, 113)',
-            hidden: true
-        }, {
-            label: 'Mistral-small-2312',
-            data: [89.58, 46.55, 50.50, 68.00, 63.00, 34.71, 38.00, 32.00, 40.00],
-            fill: true,
-            backgroundColor: 'rgba(0, 0, 255, 0.1)',
-            borderColor: 'rgb(0, 0, 255)',
-            pointBackgroundColor: 'rgb(0, 0, 255)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(0, 0, 255)',
-            hidden: true
-        }, {
-            label: 'GPT-4-0613',
-            data: [87.08, 74.55, 0.00, 86.00, 0.00, 50.00, 0.00, 56.00, 2.50],
-            fill: true,
-            backgroundColor: 'rgba(128, 0, 0, 0.1)',
-            borderColor: 'rgb(128, 0, 0)',
-            pointBackgroundColor: 'rgb(128, 0, 0)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(128, 0, 0)',
-            hidden: true
-        }, {
-            label: 'Deepseek-v1.5',
-            data: [66.25, 48.36, 37.50, 61.00, 47.50, 24.70, 0.00, 2.00, 7.50],
-            fill: true,
-            backgroundColor: 'rgba(255, 215, 0, 0.1)',
-            borderColor: 'rgb(255, 215, 0)',
-            pointBackgroundColor: 'rgb(255, 215, 0)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(255, 215, 0)',
-            hidden: true
-        }, {
-            label: 'Glaive-v1',
-            data: [46.25, 34.55, 0.00, 26.00, 0.00, 21.18, 0.00, 36.00, 2.50],
-            fill: true,
-            backgroundColor: 'rgba(64, 224, 208, 0.1)',
-            borderColor: 'rgb(64, 224, 208)',
-            pointBackgroundColor: 'rgb(64, 224, 208)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(64, 224, 208)',
-            hidden: true
-        }, {
-            label: 'OpenFunctions-v0',
-            data: [4.58, 60.00, 0, 56.00, 3.50, 38.24, 0.00, 58.00, 0.00],
-            fill: true,
-            backgroundColor: 'rgba(255, 99, 132, 0.1)',
-            borderColor: 'rgb(255, 99, 132)',
-            pointBackgroundColor: 'rgb(255, 99, 132)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(255, 99, 132)',
-            hidden: true
-        },  {
-            label: 'Gemini-1.0-Pro',
-            data: [78.30, 79.71, 89, 0.00, 0.00, 51.19, 66.00, 0.00, 0.00],
-            fill: true,
-            backgroundColor: 'rgba(218, 112, 214, 0.1)',
-            borderColor: 'rgb(218, 112, 214)',
-            pointBackgroundColor: 'rgb(218, 112, 214)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(218, 112, 214)',
-            hidden: true
-        }, {
-            label: 'Mistral-large-2402',
-            data: [84.58, 71.82, 90.50, 4.00, 0.00, 72.94, 0, 76.00, 5.00],
-            fill: true,
-            backgroundColor: 'rgba(65, 105, 225, 0.1)',
-            borderColor: 'rgb(65, 105, 225)',
-            pointBackgroundColor: 'rgb(65, 105, 225)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(65, 105, 225)',
-            hidden: true
-        }, {
-            label: 'Firefunction-v1',
-            data: [81.25, 73.19, 87.00, 0.00, 0.00, 68.23, 0.00, 76.00, 5.00],
-            fill: true,
-            backgroundColor: 'rgba(0, 255, 255, 0.1)',
-            borderColor: 'rgb(0, 255, 255)',
-            pointBackgroundColor: 'rgb(0, 255, 255)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(0, 255, 255)',
-            hidden: true
-        }, {
-            label: 'Gemma-7B-IT',
-            data: [0.42, 61.45, 60.00, 41.00, 32.00, 44.71, 44.00, 48.00, 25.00],
-            fill: true,
-            backgroundColor: 'rgba(85, 107, 47, 0.1)',
-            borderColor: 'rgb(85, 107, 47)',
-            pointBackgroundColor: 'rgb(85, 107, 47)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgb(85, 107, 47)',
-            hidden: true
+            pointHoverBorderColor: 'rgb(153, 102, 255)'
         }, {
             label: 'Claude-3-Opus-20240229',
             data: [84.58, 85.27, 83.00, 79.00, 72.00, 89.41, 80.00, 68.00, 57.50],
@@ -359,6 +216,105 @@ const data = {
             pointHoverBorderColor: 'rgb(185, 157, 47)',
             hidden: true
         }, {
+            label: 'Claude-2.1',
+            data: [78.33, 85.64, 77.00, 83.00, 60.50, 68.23, 52.00, 45.00, 47.50],
+            fill: true,
+            backgroundColor: 'rgba(163, 73, 164, 0.1)',
+            borderColor: 'rgb(163, 73, 164)',
+            pointBackgroundColor: 'rgb(163, 73, 164)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(163, 73, 164)',
+            hidden: true
+        }, {
+            label: 'Claude-instant-1.2',
+            data: [61.67, 68.73, 56.50, 59.00, 44.00, 60.00, 50.00, 52.00, 37.50],
+            fill: true,
+            backgroundColor: 'rgba(255, 165, 0, 0.1)',
+            borderColor: 'rgb(255, 165, 0)',
+            pointBackgroundColor: 'rgb(255, 165, 0)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(255, 165, 0)',
+            hidden: true
+        }, {
+            label: 'Mistral-large-2402',
+            data: [84.58, 71.82, 90.50, 4.00, 0.00, 72.94, 0, 76.00, 5.00],
+            fill: true,
+            backgroundColor: 'rgba(65, 105, 225, 0.1)',
+            borderColor: 'rgb(65, 105, 225)',
+            pointBackgroundColor: 'rgb(65, 105, 225)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(65, 105, 225)',
+            hidden: true
+        }, {
+            label: 'Mistral-medium-2312',
+            data: [90.00, 80.18, 76.50, 84.50, 73.50, 84.71, 62.00, 76.00, 45.00],
+            fill: true,
+            backgroundColor: 'rgba(54, 162, 235, 0.1)',
+            borderColor: 'rgb(54, 162, 235)',
+            pointBackgroundColor: 'rgb(54, 162, 235)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(54, 162, 235)',
+            hidden: true
+        }, {
+            label: 'Mistral-small-2312',
+            data: [89.58, 46.55, 50.50, 68.00, 63.00, 34.71, 38.00, 32.00, 40.00],
+            fill: true,
+            backgroundColor: 'rgba(0, 0, 255, 0.1)',
+            borderColor: 'rgb(0, 0, 255)',
+            pointBackgroundColor: 'rgb(0, 0, 255)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(0, 0, 255)',
+            hidden: true
+        }, {
+            label: 'Mistral-tiny-2312',
+            data: [77.08, 59.64, 56.00, 62.50, 43.00, 71.17, 36.00, 74.00, 32.50],
+            fill: true,
+            backgroundColor: 'rgba(255, 105, 180, 0.1)',
+            borderColor: 'rgb(255, 105, 180)',
+            pointBackgroundColor: 'rgb(255, 105, 180)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(255, 105, 180)',
+            hidden: true
+        }, {
+            label: 'Nexusflow-Raven-v2',
+            data: [0.00, 76.55, 39.50, 83.50, 32.50, 61.18, 62.00, 84.00, 47.50],
+            fill: true,
+            backgroundColor: 'rgba(60, 179, 113, 0.1)',
+            borderColor: 'rgb(60, 179, 113)',
+            pointBackgroundColor: 'rgb(60, 179, 113)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(60, 179, 113)',
+            hidden: true
+        }, {
+            label: 'Gemini-1.0-Pro',
+            data: [78.30, 79.71, 89, 0.00, 0.00, 51.19, 66.00, 0.00, 0.00],
+            fill: true,
+            backgroundColor: 'rgba(218, 112, 214, 0.1)',
+            borderColor: 'rgb(218, 112, 214)',
+            pointBackgroundColor: 'rgb(218, 112, 214)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(218, 112, 214)',
+            hidden: true
+        }, {
+            label: 'Deepseek-v1.5',
+            data: [66.25, 48.36, 37.50, 61.00, 47.50, 24.70, 0.00, 2.00, 7.50],
+            fill: true,
+            backgroundColor: 'rgba(255, 215, 0, 0.1)',
+            borderColor: 'rgb(255, 215, 0)',
+            pointBackgroundColor: 'rgb(255, 215, 0)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(255, 215, 0)',
+            hidden: true
+        }, {
             label: 'Functionary-Medium-v2.2',
             data: [79.17, 79.17, 90.00, 85.00, 78.00, 65.88, 62.00, 70.00, 50.00],
             fill: true,
@@ -369,9 +325,51 @@ const data = {
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgb(85, 157, 147)',
             hidden: true
+        }, {
+            label: 'OpenFunctions-v0',
+            data: [4.58, 60.00, 0, 56.00, 3.50, 38.24, 0.00, 58.00, 0.00],
+            fill: true,
+            backgroundColor: 'rgba(255, 99, 132, 0.1)',
+            borderColor: 'rgb(255, 99, 132)',
+            pointBackgroundColor: 'rgb(255, 99, 132)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(255, 99, 132)',
+            hidden: true
+        }, {
+            label: 'Glaive-v1',
+            data: [46.25, 34.55, 0.00, 26.00, 0.00, 21.18, 0.00, 36.00, 2.50],
+            fill: true,
+            backgroundColor: 'rgba(64, 224, 208, 0.1)',
+            borderColor: 'rgb(64, 224, 208)',
+            pointBackgroundColor: 'rgb(64, 224, 208)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(64, 224, 208)',
+            hidden: true
+        }, {
+            label: 'Firefunction-v1',
+            data: [81.25, 73.19, 87.00, 0.00, 0.00, 68.23, 0.00, 76.00, 5.00],
+            fill: true,
+            backgroundColor: 'rgba(0, 255, 255, 0.1)',
+            borderColor: 'rgb(0, 255, 255)',
+            pointBackgroundColor: 'rgb(0, 255, 255)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(0, 255, 255)',
+            hidden: true
+        }, {
+            label: 'Gemma-7B-IT',
+            data: [0.42, 61.45, 60.00, 41.00, 32.00, 44.71, 44.00, 48.00, 25.00],
+            fill: true,
+            backgroundColor: 'rgba(85, 107, 47, 0.1)',
+            borderColor: 'rgb(85, 107, 47)',
+            pointBackgroundColor: 'rgb(85, 107, 47)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(85, 107, 47)',
+            hidden: true
         },
-
-
     ]
 };
 
@@ -543,7 +541,7 @@ function getCellValue(row, columnIndex) {
 }
 
 function createComparer(columnIndex, isAscending) {
-    return function(rowA, rowB) {
+    return function (rowA, rowB) {
         var valueA = getCellValue(isAscending ? rowA : rowB, columnIndex);
         var valueB = getCellValue(isAscending ? rowB : rowA, columnIndex);
 
@@ -556,19 +554,19 @@ function createComparer(columnIndex, isAscending) {
 }
 
 
-document.querySelectorAll('th:not(.detail-header)').forEach(function(header) {
+document.querySelectorAll('th:not(.detail-header)').forEach(function (header) {
     var sortIndicator = document.createElement('span');
-    header.appendChild(sortIndicator); 
-    
-    header.addEventListener('click', function() {
+    header.appendChild(sortIndicator);
+
+    header.addEventListener('click', function () {
         var table = header.closest('table');
         var tbody = table.querySelector('tbody');
         var columnIndex = Array.from(header.parentNode.children).indexOf(header);
-        var isAscending = header.asc = !header.asc; 
+        var isAscending = header.asc = !header.asc;
 
         sortIndicator.textContent = isAscending ? ' 🔼' : ' 🔽';
-        
-        document.querySelectorAll('th span').forEach(function(otherIndicator) {
+
+        document.querySelectorAll('th span').forEach(function (otherIndicator) {
             if (otherIndicator !== sortIndicator) {
                 otherIndicator.textContent = ''; // Clear other indicators
             }
@@ -576,7 +574,7 @@ document.querySelectorAll('th:not(.detail-header)').forEach(function(header) {
 
         var rowsArray = Array.from(tbody.querySelectorAll('tr'));
         rowsArray.sort(createComparer(columnIndex, isAscending))
-            .forEach(function(row) {
+            .forEach(function (row) {
                 tbody.appendChild(row);
             });
     });
