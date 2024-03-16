@@ -129,7 +129,7 @@ const ctx = document.getElementById('myChart');
 
 const data = {
     labels: [
-        'Irrelevance Detection',
+        'Relevance Detection',
         'Simple (AST)',
         'Parallel (AST)',
         'Multiple (AST)',
