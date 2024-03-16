@@ -36,7 +36,7 @@
 {"calculate_gcd": {"num1": [128], "num2": [256], "algorithm": ["euclidean", "binary",""]}}
 {"kinematics.calculate_speed_from_rest": {"distance": [20], "time": [4], "initial_speed": [0,""]}}
 {"kinematics.final_velocity": {"initial_velocity": [40], "time": [6], "acceleration": [-9.81, ""]}}
-{"library.search_book": {"book_name": ["The Alchemist"], "city": ["New York","New York, NY", "New York City", "NYC", "NY"], "availability": ["", "true", "false"]}}
+{"library.search_book": {"book_name": ["The Alchemist"], "city": ["New York","New York, NY", "New York City", "NYC", "NY"], "availability": ["",true, false]}}
 {"ride_hailing.get_rides": {"source": ["New York","New York, NY", "New York City", "NYC", "NY"], "destination": ["Philadelphia"], "max_cost": [50]}}
 {"electromagnetism.biot_savart_law": {"current": [12], "distance": [8], "mu0": ["4\u03c0 * 10^-7", "1.2566370614359173e-6", ""]}}
 {"magnetic_field.calculate": {"I": [10], "r": [0.01]}}
@@ -110,7 +110,7 @@
 {"cellbio.get_proteins": {"cell_compartment": ["plasma membrane"], "include_description": [true]}}
 {"mutation_type.find": {"snp_id": ["rs6034464"], "species": ["Homo sapiens", ""]}}
 {"calculate_genotype_frequency": {"allele_frequency": [0.3], "genotype": ["AA"]}}
-{"forest_growth_forecast": {"location": ["Yellowstone National Park"], "years": [5], "include_human_impact": [true, "true"]}}
+{"forest_growth_forecast": {"location": ["Yellowstone National Park"], "years": [5], "include_human_impact": [true]}}
 {"calculate_fitness": {"trait_values": [[0.8, 0.7]], "trait_contributions": [[0.4, 0.6]]}}
 {"prediction.evolution_1": {"species": ["Homo Sapiens", "Homo sapiens"], "years": [50], "model": ["Darwin"]}}
 {"find_restaurants": {"location": ["Manhattan", "NYC"], "food_type": ["Thai"], "number": [5], "dietary_requirements": [["vegan"], ["Vegan"], ["VEGAN"]]}}
@@ -129,7 +129,7 @@
 {"calculate_return_on_equity": {"net_income": [2000000], "shareholder_equity": [10000000], "dividends_paid": [200000, ""]}}
 {"compound_interest": {"principal": [10000], "annual_rate": [0.05], "compounding_freq": ["monthly"], "time_in_years": [5]}}
 {"calculate_cagr": {"initial_value": [2000], "final_value": [3000], "period_in_years": [4]}}
-{"market_performance.get_data": {"indexes": [["S&P 500", "Dow Jones"]], "days": [5], "detailed": ["", "true", "false"]}}
+{"market_performance.get_data": {"indexes": [["S&P 500", "Dow Jones"]], "days": [5], "detailed": ["", true, false]}}
 {"finance.calculate_future_value": {"initial_investment": [20000], "rate_of_return": [0.08], "years": [5], "contribution": [""]}}
 {"calculate_mutual_fund_balance": {"investment_amount": [50000], "annual_yield": [0.05], "years": [3]}}
 {"crime_record.get_record": {"case_number": ["CA123456"], "county": ["San Diego", "San Diego County"], "details": [true]}}
@@ -152,13 +152,13 @@
 {"social_media_analytics.most_followed": {"topic": ["psychology"], "sub_topics": [["behaviour", "group dynamics"]], "region": [""]}}
 {"history.get_key_events": {"country": ["Germany"], "start_year": [1871], "end_year": [1945], "event_type": [["War"]]}}
 {"get_event_date": {"event": ["Treaty of Lisbon"], "location": [""]}}
-{"US_president.in_year": {"year": [1861], "full_name": ["true",true,"True",""]}}
-{"get_discoverer": {"discovery": ["neutron"], "detail": [true, "True", "true"]}}
+{"US_president.in_year": {"year": [1861], "full_name": [true,""]}}
+{"get_discoverer": {"discovery": ["neutron"], "detail": [true]}}
 {"historical_contrib.get_contrib": {"scientist": ["Albert Einstein"], "date": ["1915-03-17", "03/17/1915", "Mar.17,1915"], "category": [""]}}
 {"get_earliest_reference": {"name": ["Jesus Christ"], "source": ["historical records", "scriptures"]}}
 {"religious_history.get_papal_biography": {"papal_name": ["Innocent III"], "include_contributions": [true]}}
 {"calculate_paint_needed_1": {"coverage_rate": [400], "length": [30], "height": [12]}}
-{"get_sculpture_info": {"artist_name": ["James Plensa"], "detail": ["True",true,"true"]}}
+{"get_sculpture_info": {"artist_name": ["James Plensa"], "detail": [true]}}
 {"find_exhibition": {"location": ["New York","New York, NY", "New York City", "NYC", "NY"], "art_form": ["sculpture"], "month": ["upcoming", "next month"], "user_ratings": ["high"]}}
 {"analyze_structure": {"building_id": ["B1004"], "floors": [[2, 3, 4]], "mode": ["dynamic"]}}
 {"metropolitan_museum.get_top_artworks": {"number": [5], "sort_by": ["popularity"]}}
@@ -179,7 +179,7 @@
 {"find_card_in_deck": {"rank": ["Queen"], "suit": ["Hearts"], "deck": [""]}}
 {"poker_probability.full_house": {"deck_size": [52], "hand_size": [5]}}
 {"game_stats.fetch_player_statistics": {"game": ["Zelda"], "username": ["Sam"], "platform": ["Switch", "Nintendo Switch"]}}
-{"soccer.get_last_match": {"team_name": ["Liverpool F.C.", "Liverpool"], "include_stats": ["true",true]}}
+{"soccer.get_last_match": {"team_name": ["Liverpool F.C.", "Liverpool"], "include_stats": [true]}}
 {"multiplayer_game_finder": {"platform": ["Windows 10"], "rating": [4.5], "genre": [""]}}
 {"recipe_info.get_calories": {"website": ["Foodnetwork.com"], "recipe": ["Beef Lasagna"], "optional_meal_time": [""]}}
 {"recipe_search": {"dietary_restriction": ["Vegetarian"], "ingredients": [["pasta", "cheese"]], "servings": [2]}}
@@ -194,7 +194,7 @@
 {"maps.get_distance_duration": {"start_location": ["Eiffel Tower"], "end_location": ["Louvre Museum"], "traffic": [""]}}
 {"get_museum_hours": {"museum_name": ["Metropolitan Museum of Art", "The Met", "Met Museum"], "day": ["Saturday"]}}
 {"calc_heat_capacity_1": {"temp": [298], "volume": [10], "gas": ["air",""]}}
-{"cellbio.get_proteins": {"cell_compartment": ["plasma membrane"], "include_description": ["", true,"True","true"]}}
+{"cellbio.get_proteins": {"cell_compartment": ["plasma membrane"], "include_description": ["", true]}}
 {"mutation_type.find": {"snp_id": ["rs6034464"], "species": ["", "Homo sapiens"]}}
 {"calculate_genotype_frequency": {"allele_frequency": [0.3], "genotype": ["AA"]}}
-{"forest_growth_forecast": {"location": ["Yellowstone","yellowstone"], "years": [5], "include_human_impact": [true,"True","true"]}}
+{"forest_growth_forecast": {"location": ["Yellowstone","yellowstone"], "years": [5], "include_human_impact": [true]}}
