@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Components
-import Header from '../components/Header'
-import Dashboard from '../components/Dashboard'
+import Header from '../components/Header';
+import Dashboard from '../components/Dashboard';
 
 
 function index() {
@@ -13,7 +13,7 @@ function index() {
       <Dashboard></Dashboard>
     </div>
 
-  )
+  );
 }
 
-export default index
+export default index;

@@ -46,18 +46,15 @@ const OutputCard: React.FC<OutputCardProps> = ({ urlsResults }) => {
     }));
     try {
       // TODO: Replace "username" and "apiName" with actual values or state
-      const response = toast.promise(convertUrls("username", "apiName", [urlToRegenerate]), {
+      const result = await toast.promise(convertUrls("username", "apiName", [urlToRegenerate]), {
         pending: "Regenerating URL...",
         success: "URL regenerated successfully!",
         error: "Failed to regenerate URL",
       });
-
-      response.then((result) => {
-        setEditedResults(prevResults => ({
-          ...prevResults,
-          [urlToRegenerate]: result[urlToRegenerate],
-        }));
-      });
+      setEditedResults(prevResults => ({
+        ...prevResults,
+        [urlToRegenerate]: result[urlToRegenerate],
+      }));
 
     } catch (error) {
       console.error("Failed to regenerate URL:", error);
@@ -93,7 +90,7 @@ const OutputCard: React.FC<OutputCardProps> = ({ urlsResults }) => {
         <h4>JSON Outputs</h4>
       </div>
       <div className="card-body">
-        {renderUrlResults(urlsResults)}
+        {renderUrlResults(editedResults)}
       </div>
       <div className="card-footer d-flex justify-content-around">
         <button className="btn btn-primary" onClick={handleRaisePullRequest}>Raise Pull Request</button>
