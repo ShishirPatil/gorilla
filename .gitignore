@@ -1,3 +1,17 @@
 _site/
 .jekyll-cache/
 *.DS_Store
+
+# Ignore for Add API
+## Client Ignores
+add-api/client/node_modules
+add-api/client/.next
+
+## Server Ignores
+add-api/server/*.env
+add-api/server/__pycache__
+
+## misc
+.DS_Store
+*.pem
+*.venv
