@@ -128,6 +128,8 @@ for i in tqdm(range(len(result_data))):
         execution_result_type = testing_data[i]["execution_result_type"]
         if type(execution_result_type) is str and len(execution_result) > 1:
                 execution_result_type = [execution_result_type] * len(execution_result)
+        elif type(execution_result_type) is str and len(execution_result) == 1:
+            execution_result_type = [execution_result_type]
     if ("gpt" in model_name or "fire" in model_name or "mistral-large-latest" in model_name or "gemini" in model_name) and input_file is None:
         try:
             result = convert_to_function_call(result_data[i]["result"])
@@ -239,7 +241,7 @@ for i in tqdm(range(len(result_data))):
     if len(result) != len(execution_result):
         total += 1
         continue
-    for function_call, exec_result in zip(result, execution_result):
+    for function_call, exec_result, exec_type in zip(result, execution_result, execution_result_type):
         try:
             exec(
                 "from data.function.gorilla_openfunctions_v1_test_function import *"
@@ -252,7 +254,7 @@ for i in tqdm(range(len(result_data))):
             test_result_list.append(False)
             reason_list.append(str(e))
             continue
-        if execution_result_type == "exact_match":
+        if exec_type == "exact_match":
             test_result_list.append(output == exec_result or [output] == exec_result)
         else:
             try:
