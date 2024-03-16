@@ -336,6 +336,39 @@ const data = {
             pointHoverBackgroundColor: '#fff',
             pointHoverBorderColor: 'rgb(85, 107, 47)',
             hidden: true
+        }, {
+            label: 'Claude-3-Opus-20240229',
+            data: [84.58, 85.27, 83.00, 79.00, 72.00, 89.41, 80.00, 68.00, 57.50],
+            fill: true,
+            backgroundColor: 'rgba(85, 207, 47, 0.1)',
+            borderColor: 'rgb(85, 207, 47)',
+            pointBackgroundColor: 'rgb(85, 207, 47)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(85, 207, 47)',
+            hidden: true
+        }, {
+            label: 'Claude-3-Sonnet-20240229',
+            data: [41.25, 85.64, 87.50, 83.50, 83.00, 90.59, 82.00, 72.00, 60.00],
+            fill: true,
+            backgroundColor: 'rgba(185, 157, 47, 0.1)',
+            borderColor: 'rgb(185, 157, 47)',
+            pointBackgroundColor: 'rgb(185, 157, 47)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(185, 157, 47)',
+            hidden: true
+        }, {
+            label: 'Functionary-Medium-v2.2',
+            data: [79.17, 79.17, 90.00, 85.00, 78.00, 65.88, 62.00, 70.00, 50.00],
+            fill: true,
+            backgroundColor: 'rgba(85, 157, 147, 0.1)',
+            borderColor: 'rgb(85, 157, 147)',
+            pointBackgroundColor: 'rgb(85, 157, 147)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(85, 157, 147)',
+            hidden: true
         },
 
 
@@ -354,6 +387,40 @@ new Chart(ctx, {
         }
     }
 });
+
+
+// Note: If we have too many models, we can use the following code to add a plugin to automatically color the radar chart, but the color quality is not as good as the current one.
+
+// const autocolors = window['chartjs-plugin-autocolors'];
+// Chart.register(autocolors);
+
+// function convertColorToRGBAWithAlpha(color) {
+//     return Chart.helpers.color(color).alpha(0.15).rgbString();
+// }
+
+// new Chart(ctx, {
+//     type: 'radar',
+//     data: data,
+//     options: {
+//         elements: {
+//             line: {
+//                 borderWidth: 3
+//             }
+//         },
+//         plugins: {
+//             autocolors: {
+//                 customize(context) {
+//                     const colors = context.colors;
+//                     return {
+//                         background: convertColorToRGBAWithAlpha(colors.background),
+//                         border: colors.border
+//                     };
+//                 },
+//                 mode: 'label'
+//             }
+//         },
+//     }
+// });
 
 var expand = false;
 function toggleExpand() {
