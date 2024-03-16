@@ -142,9 +142,263 @@
       "Commit a payout of $2041 to my bank account.",
       "How can I retrieve a specific payout transaction?"
     ]
+  },
+  {
+    "user_name": "dangeo773",
+    "api_name": "DocuSign - AccountBrands",
+    "api_call": "DocuSign.AccountBrands.{methodName}({parameters})",
+    "api_version": "2023-10-16",
+    "api_arguments": {
+      "brandId": "string",
+      "brandName": "string",
+      "logo": "file",
+      "colors": "object",
+      "text": "object"
+    },
+    "functionality": "Customize account-level brands for recipient experience.",
+    "env_requirements": ["DocuSign"],
+    "example_code": "DocuSign.AccountBrands.create({brandName: 'My Brand', colors: {...}, text: {...}})",
+    "meta_data": {
+      "description": "Manage account-level brands to customize styles and text for recipients."
+    },
+    "questions": [
+      "How do I create a new account brand?",
+      "How can I delete a specific account brand?",
+      "Update the logo for my account brand."
+    ]
+  },
+  {
+    "user_name": "dangeo773",
+    "api_name": "DocuSign - AccountCustomFields",
+    "api_call": "DocuSign.AccountCustomFields.{methodName}({parameters})",
+    "api_version": "2023-10-16",
+    "api_arguments": {
+      "fieldId": "string",
+      "fieldName": "string",
+      "fieldValue": "string"
+    },
+    "functionality": "Manage envelope custom fields at account level.",
+    "env_requirements": ["DocuSign"],
+    "example_code": "DocuSign.AccountCustomFields.create({fieldName: 'Department', fieldValue: 'Sales'})",
+    "meta_data": {
+      "description": "Use accountCustomField for grouping and managing envelopes."
+    },
+    "questions": [
+      "Create a new custom field for my account.",
+      "How can I list all account custom fields?",
+      "Delete a specific custom field from my account."
+    ]
+  },
+  {
+    "user_name": "dangeo773",
+    "api_name": "DocuSign - Accounts",
+    "api_call": "DocuSign.Accounts.{methodName}({parameters})",
+    "api_version": "2023-10-16",
+    "api_arguments": {
+      "accountId": "string",
+      "setting": "object",
+      "language": "string"
+    },
+    "functionality": "Comprehensive account management tasks.",
+    "env_requirements": ["DocuSign"],
+    "example_code": "DocuSign.Accounts.get({accountId: '12345'})",
+    "meta_data": {
+      "description": "Perform various account management tasks including information retrieval and customization."
+    },
+    "questions": [
+      "How do I retrieve details about my account?",
+      "Update settings for my DocuSign account.",
+      "List all recipient names associated with my account's email."
+    ]
+  },
+  {
+    "user_name": "dangeo773",
+    "api_name": "DocuSign - AccountConsumerDisclosures",
+    "api_call": "DocuSign.AccountConsumerDisclosures.{methodName}({parameters})",
+    "api_version": "2023-10-16",
+    "api_arguments": {
+      "accountId": "string",
+      "langCode": "string",
+      "esignAgreementText": "string",
+      "esignText": "string"
+    },
+    "functionality": "Manage ERSD options for your account.",
+    "env_requirements": ["DocuSign"],
+    "example_code": "DocuSign.AccountConsumerDisclosures.get({accountId: '12345', langCode: 'en'})",
+    "meta_data": {
+      "description": "Enable, retrieve, and manage the ERSD options for your account, supporting custom disclosures per language."
+    },
+    "questions": [
+      "How do I retrieve the default ERSD for my account?",
+      "Update the ERSD for a specific language in my account.",
+      "Retrieve a custom ERSD in Spanish for my account."
+    ]
+  },
+  {
+    "user_name": "dangeo773",
+    "api_name": "DocuSign - AccountPasswordRules",
+    "api_call": "DocuSign.AccountPasswordRules.{methodName}({parameters})",
+    "api_version": "2023-10-16",
+    "api_arguments": {
+      "accountId": "string",
+      "passwordRules": "object"
+    },
+    "functionality": "Obtain and update account password rules.",
+    "env_requirements": ["DocuSign"],
+    "example_code": "DocuSign.AccountPasswordRules.get({accountId: '12345'})",
+    "meta_data": {
+      "description": "Provides methods to obtain and update password and membership rules for an account."
+    },
+    "questions": [
+      "How do I get the password rules for my account?",
+      "Retrieve the membership account password rules.",
+      "Update the password rules for my account."
+    ]
+  },
+  {
+    "user_name": "dangeo773",
+    "api_name": "DocuSign - AccountPermissionProfiles",
+    "api_call": "DocuSign.AccountPermissionProfiles.{methodName}({parameters})",
+    "api_version": "2023-10-16",
+    "api_arguments": {
+      "accountId": "string",
+      "permissionProfileId": "string",
+      "profileName": "string",
+      "permissions": "object"
+    },
+    "functionality": "Manage user permissions via profiles.",
+    "env_requirements": ["DocuSign"],
+    "example_code": "DocuSign.AccountPermissionProfiles.create({accountId: '12345', profileName: 'Custom Profile', permissions: {...}})",
+    "meta_data": {
+      "description": "Set and manage permissions for groups of users with permission profiles."
+    },
+    "questions": [
+      "How do I create a new permission profile for my account?",
+      "Delete a permission profile from my account.",
+      "Retrieve details of a specific permission profile.",
+      "List all permission profiles for my account.",
+      "Update a permission profile for my account."
+    ]
+  },
+  {
+    "user_name": "dangeo773",
+    "api_name": "DocuSign - AccountSealProviders",
+    "api_call": "DocuSign.AccountSealProviders.list({accountId: '12345'})",
+    "api_version": "2023-10-16",
+    "api_arguments": {
+      "accountId": "string"
+    },
+    "functionality": "Retrieve available seals for an account.",
+    "env_requirements": ["DocuSign"],
+    "example_code": "DocuSign.AccountSealProviders.list({accountId: '12345'})",
+    "meta_data": {
+      "description": "List available seals that can be used by an account for digital signatures."
+    },
+    "questions": [
+      "List all available seals for my account."
+    ]
+  },
+  {
+    "user_name": "dangeo773",
+    "api_name": "DocuSign - AccountSignatureProviders",
+    "api_call": "DocuSign.AccountSignatureProviders.list({accountId: '12345'})",
+    "api_version": "2023-10-16",
+    "api_arguments": {
+      "accountId": "string"
+    },
+    "functionality": "Retrieve available signature providers for compliance.",
+    "env_requirements": ["DocuSign"],
+    "example_code": "DocuSign.AccountSignatureProviders.list({accountId: '12345'})",
+    "meta_data": {
+      "description": "Get Standards-Based Signatures providers that comply with regulations."
+    },
+    "questions": [
+      "List all available signature providers for my account."
+    ]
+  },
+  {
+    "user_name": "dangeo773",
+    "api_name": "DocuSign - AccountSignatures",
+    "api_call": "DocuSign.AccountSignatures.{methodName}({parameters})",
+    "api_version": "2023-10-16",
+    "api_arguments": {
+      "accountId": "string",
+      "signatureId": "string",
+      "imageType": "string"
+    },
+    "functionality": "Manage stamps and signature images.",
+    "env_requirements": ["DocuSign"],
+    "example_code": "DocuSign.AccountSignatures.getAccountSignature({accountId: '12345', signatureId: '67890'})",
+    "meta_data": {
+      "description": "Methods for managing stamps and signature images for an account."
+    },
+    "questions": [
+      "How do I add a new stamp to my account?",
+      "Delete an account stamp.",
+      "Update a signature image for an account stamp."
+    ]
+  },
+  {
+    "user_name": "dangeo773",
+    "api_name": "DocuSign - AccountTabSettings",
+    "api_call": "DocuSign.AccountTabSettings.{methodName}({accountId: '12345'})",
+    "api_version": "2023-10-16",
+    "api_arguments": {
+      "accountId": "string"
+    },
+    "functionality": "Manage account tab settings.",
+    "env_requirements": ["DocuSign"],
+    "example_code": "DocuSign.AccountTabSettings.get({accountId: '12345'})",
+    "meta_data": {
+      "description": "Allows management of tab settings for an account."
+    },
+    "questions": [
+      "Retrieve my account's tab settings.",
+      "Modify tab settings for my account."
+    ]
+  },
+  {
+    "user_name": "dangeo773",
+    "api_name": "DocuSign - AccountWatermarks",
+    "api_call": "DocuSign.AccountWatermarks.{methodName}({accountId: '12345'})",
+    "api_version": "2023-10-16",
+    "api_arguments": {
+      "accountId": "string"
+    },
+    "functionality": "Manage watermark settings for documents.",
+    "env_requirements": ["DocuSign"],
+    "example_code": "DocuSign.AccountWatermarks.get({accountId: '12345'})",
+    "meta_data": {
+      "description": "Methods to obtain, preview, and update watermark information for an account."
+    },
+    "questions": [
+      "How can I get watermark information for my account?",
+      "Preview watermark changes.",
+      "Update watermark information for my account."
+    ]
+  },
+  {
+    "user_name": "dangeo773",
+    "api_name": "DocuSign - Authorizations",
+    "api_call": "DocuSign.Authorizations.{methodName}({accountId: '12345', userId: '67890'})",
+    "api_version": "2023-10-16",
+    "api_arguments": {
+      "accountId": "string",
+      "userId": "string",
+      "authorizationId": "string"
+    },
+    "functionality": "Manage user authorizations for shared access.",
+    "env_requirements": ["DocuSign"],
+    "example_code": "DocuSign.Authorizations.createUserAuthorization({accountId: '12345', userId: '67890'})",
+    "meta_data": {
+      "description": "Create, delete, and manage authorizations for users to share account access."
+    },
+    "questions": [
+      "Create a user authorization for shared account access.",
+      "Delete a specific user authorization.",
+      "Update the user authorization for managing account access."
+    ]
   }
-
-
 
 
 ]
