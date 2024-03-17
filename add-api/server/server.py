@@ -21,7 +21,7 @@ GITHUB_CLIENT_SECRET = os.getenv("GITHUB_CLIENT_SECRET")
 
 MAIN_REPO = "ShishirPatil/gorilla"
 GITHUB_CALLBACK_URL: str = "http://localhost:8080/github/callback"
-FRONTEND_URL: str = "http://localhost:3000"
+FRONTEND_URL: str = "http://localhost:8000/add-api/build/"
 SERVER_BASEURL: str = "http://localhost:8080"
 
 app = Flask(__name__)
@@ -34,6 +34,8 @@ CORS(app, origins=[FRONTEND_URL], supports_credentials=True)
 
 @app.route('/convert', methods=['POST'])
 def convert_json():
+    client_ip = request.remote_addr
+    print(f"Client IP: {client_ip}")
     try:
         option_2_json = request.get_json()
         api_urls = option_2_json.get('api_urls')
@@ -46,6 +48,7 @@ def convert_json():
         
         return Response(conversion_json_str, status=200, mimetype='application/json')
     except Exception as e:
+        print(e)
         return Response(json.dumps({"error": str(e)}), status=500, mimetype='application/json')
 
 
@@ -280,4 +283,4 @@ def getSuccessfulResults(urlResults: ConvertResult):
 
 if __name__ == "__main__":
     # TODO: remove debug=True for production.
-    app.run(debug=True, port=8080)
+    app.run(port=8080)
