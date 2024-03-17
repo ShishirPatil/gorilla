@@ -15,3 +15,4 @@ add-api/server/__pycache__
 .DS_Store
 *.pem
 *.venv
+*node_modules
