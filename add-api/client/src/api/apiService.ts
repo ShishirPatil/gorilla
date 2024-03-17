@@ -3,7 +3,6 @@ import { ConvertResult, ConvertedURL } from "../types/types";
 // apiService.js
 const BACKEND_BASEURL = "/api";
 
-// Add the convertUrls function here
 export const convertUrls = async (username: string, apiName: string, urls: string[]): Promise<ConvertResult> => {
   try {
     const response = await fetch(`${BACKEND_BASEURL}/convert`, {
