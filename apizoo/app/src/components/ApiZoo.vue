@@ -5,9 +5,9 @@
       <span class="nav-separator">|</span>
       <a href="../blog.html">Blog</a>
       <span class="nav-separator">|</span>
-      <a href="apizoo/">API Zoo Index</a>
+      <a href="/apizoo">API Zoo Index</a>
       <span class="nav-separator">|</span>
-      <a href="../../../../add-api/build">Add Your API</a>
+      <a href="/add-api/build">Add Your API</a>
   </div>
   <div class="api-zoo-container">
     <h1>🦍 Gorilla: API Zoo Index 🚀</h1>
