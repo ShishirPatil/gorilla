@@ -1,16 +1,14 @@
 {
   "name": "client",
-  "version": "0.1.0",
-  "homepage": "https://gorilla.cs.berkeley.edu/add-api",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "proxy": "http://localhost:8080",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "dev": "next dev -p 3000",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@codemirror/lang-json": "^6.0.1",
@@ -27,25 +25,25 @@
     "@mui/material": "^5.15.11",
     "@uiw/react-codemirror": "^4.21.24",
     "bootstrap": "^4.6.2",
-    "next": "14.1.0",
     "prismjs": "^1.29.0",
     "react": "^18",
     "react-dom": "^18",
     "react-simple-code-editor": "^0.13.1",
     "react-toastify": "^10.0.4",
+    "styled-components": "^6.1.8",
     "validator": "^13.11.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
     "@types/validator": "^13.11.9",
-    "autoprefixer": "^10.0.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.1.0",
-    "gh-pages": "^6.1.1",
-    "postcss": "^8",
-    "tailwindcss": "^3.3.0",
-    "typescript": "^5"
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "@typescript-eslint/parser": "^7.1.1",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.6"
   }
 }

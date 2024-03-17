@@ -1,5 +1,5 @@
 // InputCard.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import InputField from './InputField';
 import APIUrlsInput from './APIUrlsInput';
 import { toast, ToastContainer } from 'react-toastify';
@@ -51,12 +51,12 @@ const InputCard: React.FC<InputCardProps> = ({ handleConvertAndSetUrls }) => {
   };
 
   return (
-    <div className="card border-primary shadow-lg">
+    <div className="card border-primary shadow-md">
       <div className="card-header bg-primary text-white">
-        <h4>Option 2 JSON Input</h4>
+        <h4>API Information</h4>
       </div>
       <div className="card-body">
-        <InputField label="User Name" id="user_name" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+        <InputField label="Github Username" id="user_name" type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
         <InputField label="API Name" id="api_name" type="text" value={apiName} onChange={(e) => setApiName(e.target.value)} />
         <APIUrlsInput urls={urls} setUrls={setUrls} />
       </div>

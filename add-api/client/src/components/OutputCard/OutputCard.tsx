@@ -1,10 +1,9 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import UrlResult from './UrlResult';
-import { ConvertResult, ConvertedURL, ApiCallDetail } from '../../types/types';
+import { ConvertResult, ConvertedURL } from '../../types/types';
 import IconButton from './IconButton';
-import { raisePullRequest, reportIssue } from '../../pages/api/apiService';
 import { faThumbsDown, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
-import { convertUrls } from '../../pages/api/apiService';
+import { convertUrls, raisePullRequest, reportIssue } from '../../api/apiService';
 import { toast } from 'react-toastify';
 
 // OutputCard.tsx
@@ -85,9 +84,9 @@ const OutputCard: React.FC<OutputCardProps> = ({ urlsResults }) => {
 
 
   return (
-    <div className="card border-secondary shadow-lg">
+    <div className="card border-secondary shadow-md">
       <div className="card-header bg-secondary text-white">
-        <h4>JSON Outputs</h4>
+        <h4>Results</h4>
       </div>
       <div className="card-body">
         {renderUrlResults(editedResults)}

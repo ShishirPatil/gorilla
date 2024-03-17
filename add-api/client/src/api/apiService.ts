@@ -1,6 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from "next";
-import { ConvertResult, ConvertedURL } from "@/types/types";
+import { ConvertResult, ConvertedURL } from "../types/types";
 
 // apiService.js
 const BACKEND_BASEURL = "http://localhost:8080";

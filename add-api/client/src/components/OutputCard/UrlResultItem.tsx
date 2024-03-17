@@ -1,7 +1,7 @@
 import React from 'react';
 import IconButton from './IconButton';
 import { faEdit, faClipboard } from '@fortawesome/free-solid-svg-icons';
-import { ApiCallDetail } from '@/types/types';
+import { ApiCallDetail } from '../../types/types';
 import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
 
@@ -47,7 +47,7 @@ const UrlResultItem: React.FC<UrlResultItemProps> = ({
                     lineNumbers: false,
                     closeBrackets: true,
                 }}
-                style={{ fontSize: '14px', borderRadius: '4px', border: '1px solid #ced4da' }} 
+                style={{ fontSize: '14px', borderRadius: '4px', border: '1px solid #ced4da' }}
             />
         </div>
     </div>

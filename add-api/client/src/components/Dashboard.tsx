@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import InputCard from "./InputCard/InputCard";
 import OutputCard from "./OutputCard/OutputCard";
 import { ConvertResult } from "../types/types";
-import { convertUrls } from "@/pages/api/apiService";
+import { convertUrls } from "../api/apiService";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

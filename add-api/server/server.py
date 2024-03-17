@@ -16,7 +16,6 @@ from customTypes import ConvertResult, ConvertedURL
 
 # Load .env variables
 load_dotenv()
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 GITHUB_CLIENT_ID = os.getenv("GITHUB_CLIENT_ID")
 GITHUB_CLIENT_SECRET = os.getenv("GITHUB_CLIENT_SECRET")
 
@@ -80,7 +79,7 @@ def github_callback():
         return redirect(f'{SERVER_BASEURL}/submit-pr')
     else:
         # Provide feedback in case of error
-        return jsonify(token_response.json()), 400  
+        return jsonify(access_token), 400  
 
 
 @app.route('/submit-pr', methods=['GET'])
