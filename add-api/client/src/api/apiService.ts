@@ -1,8 +1,7 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { ConvertResult, ConvertedURL } from "../types/types";
 
 // apiService.js
-const BACKEND_BASEURL = "http://localhost:8080";
+const BACKEND_BASEURL = "/api";
 
 // Add the convertUrls function here
 export const convertUrls = async (username: string, apiName: string, urls: string[]): Promise<ConvertResult> => {
