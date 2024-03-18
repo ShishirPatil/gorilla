@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+      <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+  </head>
+  <body>
+    <input id="dir" value="./sample_dir/" />
+    <button onclick="evaluatePython()">Run</button>
+
+    <div id="output"></div>
+    <script type="text/javascript">
+        const dir = document.getElementById("dir");
+    
+      async function main(){
+        let pyodide = await loadPyodide();
+        return pyodide;
+      }
+      let pyodideReadyPromise = main();
+
+      async function evaluatePython() {
+        let pyodide = await pyodideReadyPromise;
+        try {
+            await pyodide.loadPackage("micropip");
+            let python_output = pyodide.runPython("\nimport micropip \nimport os \nos.getcwd() \nos.mkdir('" + dir.value + "') \nos.listdir('.')")//np.arange(" + number.value + ")")
+            console.log(python_output);
+            var output_div = document.getElementById('output');
+            output_div.innerHTML = python_output;
+        } catch (err) {
+            console.log(err);
+        }
+      }
+
+    </script>
+  </body>
+</html>

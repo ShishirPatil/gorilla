@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+      <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+  </head>
+  <body>
+    <input id="number" value="10" />
+    <button onclick="evaluatePython()">Run</button>
+
+    <div id="output"></div>
+    <script type="text/javascript">
+        const number = document.getElementById("number");
+    
+      async function main(){
+        let pyodide = await loadPyodide();
+        return pyodide;
+      }
+      let pyodideReadyPromise = main();
+
+      async function evaluatePython() {
+        let pyodide = await pyodideReadyPromise;
+        try {
+            await pyodide.loadPackage("micropip");
+            await pyodide.loadPackage("sqlalchemy");
+            await pyodide.loadPackage("pandas");
+            let python_output = pyodide.runPython("\nimport micropip \nimport os \nfrom sqlalchemy import create_engine \nimport pandas as pd \nengine = create_engine('sqlite:///./db1.db') \ndata = pd.DataFrame({'id': [1, 2, 3], 'name': ['Alice', 'Bob', 'Charlie']}) \ndata.to_sql('people', engine, if_exists='replace') \nos.listdir()")// + number.value + ")")
+            console.log(python_output);
+            var output_div = document.getElementById('output');
+            output_div.innerHTML = python_output;
+        } catch (err) {
+            console.log(err);
+        }
+      }
+
+    </script>
+  </body>
+</html>
