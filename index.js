@@ -47,27 +47,27 @@ function addToTable(dataArray) {
         if (index > 0) { 
             const tr = document.createElement('tr');
 
-            row.forEach((cell, cellIndex) => {
+            for (let cellIndex = 0; cellIndex < row.length; cellIndex += 1) {
+                let cell = row[cellIndex];
                 const td = document.createElement('td');
-
-
                 if (cellIndex === 2) { 
                     const a = document.createElement('a');
-                    a.href = ''; 
+                    a.href = row[3];
+                    cellIndex += 1;
                     a.textContent = cell;
                     td.appendChild(a);
                 } else {
                     td.textContent = cell;
                 }
 
-                if (cellIndex >= 5 && cellIndex <= 7) { // summary-row class for specific columns
+                if (cellIndex >= 6 && cellIndex <= 8) { // summary-row class for specific columns
                     td.className = 'summary-row';
-                } else if (cellIndex >= 8) { // detail-row class for specific columns
+                } else if (cellIndex >= 9) { // detail-row class for specific columns
                     td.className = 'detail-row';
                 }
 
                 tr.appendChild(td);
-            });
+            };
 
             tbody.appendChild(tr);
         }
