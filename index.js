@@ -23,7 +23,22 @@ fetch(csvFilePath)
     .catch(error => console.error('Error fetching or parsing the CSV file:', error));
 
 function parseCSV(text) {
-    return text.split('\n').map(row => row.split(','));
+    result = text.split('\n')
+    let i = 1;
+    for (i = 1; i < result.length; i += 1) {
+        result[i] = result[i].split(',').slice(0, 15);
+        result[i] = result[i].map((value) => {
+            if (value.endsWith('%')) {
+                return parseFloat(value.slice(0, -1));
+            }
+            return value;
+        });
+        result[i].unshift(i);
+        let overallAcc = result[i].splice(4, 1);
+        result[i].splice(1, 0, overallAcc);
+        result[i].splice(7, 0, result[i][result[i].length - 1]);
+    }
+    return result;
 }
 
 function addToTable(dataArray) {
