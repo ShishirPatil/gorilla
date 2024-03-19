@@ -9,6 +9,58 @@ PROMPTS = [
     "Can you provide the address for latitude 37.4224764 and longitude -122.0842499 using the Geocoding API?",
     "I'm planning a series of long weekend getaways for the upcoming year and I need to know when they'll occur in my country. Could you fetch me the list of long weekends for Canada in the year 2023? I'd like to integrate this information into my holiday planning app."
 ]
+
+
+
+const csvFilePath = './data.csv';
+
+fetch(csvFilePath)
+    .then(response => response.text())
+    .then(csvText => {
+        const data = parseCSV(csvText);
+        addToTable(data);
+    })
+    .catch(error => console.error('Error fetching or parsing the CSV file:', error));
+
+function parseCSV(text) {
+    return text.split('\n').map(row => row.split(','));
+}
+
+function addToTable(dataArray) {
+    const tbody = document.getElementById('leaderboard-table').getElementsByTagName('tbody')[0];
+    dataArray.forEach((row, index) => {
+        // Assuming the first row of the CSV is headers and skipping it
+        if (index > 0) { 
+            const tr = document.createElement('tr');
+
+            row.forEach((cell, cellIndex) => {
+                const td = document.createElement('td');
+
+
+                if (cellIndex === 2) { 
+                    const a = document.createElement('a');
+                    a.href = ''; 
+                    a.textContent = cell;
+                    td.appendChild(a);
+                } else {
+                    td.textContent = cell;
+                }
+
+                if (cellIndex >= 5 && cellIndex <= 7) { // summary-row class for specific columns
+                    td.className = 'summary-row';
+                } else if (cellIndex >= 8) { // detail-row class for specific columns
+                    td.className = 'detail-row';
+                }
+
+                tr.appendChild(td);
+            });
+
+            tbody.appendChild(tr);
+        }
+    });
+}
+
+
 function populateInput(index) {
     document.getElementById('input-text').value = PROMPTS[index];
     document.getElementById('input-function').value = JSON.stringify(EXAMPLES[index], null, 2);
