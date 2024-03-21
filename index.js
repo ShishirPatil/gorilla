@@ -33,7 +33,7 @@ function parseCSV(text) {
             }
             return value;
         });
-        let overallAcc = result[i].splice(4, 1);
+        let overallAcc = result[i].splice(5, 1);
         result[i].splice(1, 0, overallAcc);
         result[i].splice(7, 0, result[i][result[i].length - 1]);
     }
