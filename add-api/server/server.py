@@ -20,9 +20,9 @@ GITHUB_CLIENT_ID = os.getenv("GITHUB_CLIENT_ID")
 GITHUB_CLIENT_SECRET = os.getenv("GITHUB_CLIENT_SECRET")
 
 MAIN_REPO = "ShishirPatil/gorilla"
-GITHUB_CALLBACK_URL: str = "http://localhost:8080/github/callback"
-FRONTEND_URL: str = "http://localhost:8000/add-api/build/"
-SERVER_BASEURL: str = "http://localhost:8080"
+GITHUB_CALLBACK_URL = "http://localhost:8080/github/callback"
+FRONTEND_URL = "http://localhost:3000/add-api/build"
+SERVER_BASEURL = "http://localhost:8080"
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -34,8 +34,6 @@ CORS(app, origins=[FRONTEND_URL], supports_credentials=True)
 
 @app.route('/convert', methods=['POST'])
 def convert_json():
-    client_ip = request.remote_addr
-    print(f"Client IP: {client_ip}")
     try:
         option_2_json = request.get_json()
         api_urls = option_2_json.get('api_urls')
@@ -54,8 +52,17 @@ def convert_json():
 
 @app.route('/store-option1-content', methods=['POST'])
 def store_option1_content():
-    data: ConvertResult  = request.get_json()
+    res = request.get_json()
+    data = res.get('data')
+    username = res.get("user_name")
+
+    if not data or not username:
+        raise BadRequest("Missing data or username in the request body.")
+
+    # Store data in session to be used in the next routes
     session['urlResults'] = data
+    session['user_name'] = username 
+
     return jsonify({"message": "Content stored successfully"}), 200
 
 
@@ -79,20 +86,19 @@ def github_callback():
 
     if access_token:
         session['access_token'] = access_token
-        return redirect(f'{SERVER_BASEURL}/submit-pr')
+        return redirect(f'{SERVER_BASEURL}/raise-pr')
     else:
         # Provide feedback in case of error
         return jsonify(access_token), 400  
 
 
-@app.route('/submit-pr', methods=['GET'])
+@app.route('/raise-pr', methods=['GET'])
 def submit_pr():
     access_token = session.get('access_token')
     content: ConvertResult = session.get('urlResults')
-
+    user_name = session.get("user_name")
     successfulResults = getSuccessfulResults(content)
     
-    user_name = session.get("username")
     file_path = f"data/apizoo/{user_name}.json"
     new_branch_name = create_unique_branch_name(user_name)
 
@@ -108,7 +114,7 @@ def submit_pr():
         # TODO: write code to get the base_branch
         base_branch = "main"
         compare_url = generate_github_compare_url(MAIN_REPO, fork_repo_name, base_branch, new_branch_name)
-        # Redirect the user to the compare URL or provide it to them
+        # Redirect the user to the compare URL
         return redirect(compare_url)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -283,4 +289,4 @@ def getSuccessfulResults(urlResults: ConvertResult):
 
 if __name__ == "__main__":
     # TODO: remove debug=True for production.
-    app.run(port=8080)
+    app.run(debug=True, host="localhost", port=8080)
