@@ -5,13 +5,15 @@ import IconButton from './IconButton';
 import { faThumbsDown, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 import { convertUrls, raisePullRequest, reportIssue } from '../../api/apiService';
 import { toast } from 'react-toastify';
+import { useDashboard } from '../../context/DashboardContext';
 
 // OutputCard.tsx
 interface OutputCardProps {
-  urlsResults: ConvertResult;
+
 }
 
-const OutputCard: React.FC<OutputCardProps> = ({ urlsResults }) => {
+const OutputCard: React.FC<OutputCardProps> = () => {
+  const { urlsResults, username, apiName } = useDashboard();
   const [editedResults, setEditedResults] = useState<ConvertResult>(urlsResults);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ const OutputCard: React.FC<OutputCardProps> = ({ urlsResults }) => {
 
   const handleRaisePullRequest = async () => {
     try {
-      await raisePullRequest(editedResults);
+      await raisePullRequest(username, editedResults);
     } catch (error) {
       alert(`An error occurred while storing Option1 content: ${error}`);
     }
@@ -44,8 +46,7 @@ const OutputCard: React.FC<OutputCardProps> = ({ urlsResults }) => {
       [urlToRegenerate]: { status: "loading", data: [] },
     }));
     try {
-      // TODO: Replace "username" and "apiName" with actual values or state
-      const result = await toast.promise(convertUrls("username", "apiName", [urlToRegenerate]), {
+      const result = await toast.promise(convertUrls(username, apiName, [urlToRegenerate]), {
         pending: "Regenerating URL...",
         success: "URL regenerated successfully!",
         error: "Failed to regenerate URL",

@@ -23,6 +23,7 @@ const APIUrlsInput: React.FC<APIUrlsInputProps> = ({ urls, setUrls }) => {
           <input
             type="text"
             className="form-control api-url"
+            id={`api_url_${index}`}
             value={url}
             onChange={(e) => {
               const newUrls = [...urls];

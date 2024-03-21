@@ -2,19 +2,20 @@
 import React, { useState } from 'react';
 import InputField from './InputField';
 import APIUrlsInput from './APIUrlsInput';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useDashboard } from '../../context/DashboardContext';
+import { convertUrls } from '../../api/apiService';
+import { toast } from 'react-toastify';
 import validator from 'validator';
 
-// InputCard.tsx
-interface InputCardProps {
-  handleConvertAndSetUrls: (username: string, apiName: string, urls: string[]) => void;
-}
 
-const InputCard: React.FC<InputCardProps> = ({ handleConvertAndSetUrls }) => {
-  const [username, setUsername] = useState('');
-  const [apiName, setApiName] = useState('');
-  const [urls, setUrls] = useState<string[]>(['']);
+const InputCard = () => {
+  const {
+    username, setUsername,
+    apiName, setApiName,
+    urls, setUrls,
+    setUrlsResults
+  } = useDashboard();
+
   const [isLoading, setIsLoading] = useState(false);
 
   const isFormValid = () => {
@@ -39,13 +40,28 @@ const InputCard: React.FC<InputCardProps> = ({ handleConvertAndSetUrls }) => {
     return true;
   };
 
-
+  const saveToLocalStorage = (userName: string, apiName: string) => {
+    localStorage.setItem('username', userName);
+    localStorage.setItem('apiName', apiName);
+  };
 
   const handleConvert = async (event: React.MouseEvent) => {
     event.preventDefault();
     if (isFormValid()) {
       setIsLoading(true);
-      await handleConvertAndSetUrls(username, apiName, urls.filter(url => url.trim() !== ''));
+      setUrlsResults({});
+      saveToLocalStorage(username, apiName);
+      try {
+        const result = await toast.promise(convertUrls(username, apiName, urls.filter(url => url.trim() !== '')),
+          {
+            pending: "Converting URLs...",
+            success: "URLs converted successfully!",
+            error: "Conversion failed.",
+          });
+        setUrlsResults(result);
+      } catch (error) {
+        console.error(error);
+      }
       setIsLoading(false);
     };
   };
@@ -71,17 +87,6 @@ const InputCard: React.FC<InputCardProps> = ({ handleConvertAndSetUrls }) => {
           {isLoading ? "Loading..." : "Convert"}
         </button>
       </div>
-      <ToastContainer
-        position="top-right"
-        autoClose={1500}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
     </div>
   );
 };

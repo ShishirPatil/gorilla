@@ -69,7 +69,6 @@ const UrlResult: React.FC<UrlResultProps> = React.memo(({ result, onResultsChang
           handleBlur={handleBlur}
         />
       ))}
-      {/* <ToastContainer position="top-center" autoClose={800} /> */}
     </div>
   );
 });

@@ -28,7 +28,7 @@ export const convertUrls = async (username: string, apiName: string, urls: strin
 };
 
 
-export const raisePullRequest = async (urlResults: ConvertResult) => {
+export const raisePullRequest = async ( username: string, urlResults: ConvertResult) => {
   try {
     const response = await fetch(`${BACKEND_BASEURL}/store-option1-content`, {
       method: "POST",
@@ -36,20 +36,20 @@ export const raisePullRequest = async (urlResults: ConvertResult) => {
         'Content-Type': 'application/json',
       },
       credentials: 'include',
-      body: JSON.stringify(urlResults),
+      body: JSON.stringify( {user_name: username, data: urlResults} ),
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorDetails = await response.text();
+      throw new Error(`HTTP error! status: ${response.status}, details: ${errorDetails}`);
     }
     // Redirect to GitHub login on successful API call
     window.location.href = `${BACKEND_BASEURL}/login/github`;
 
-    // Assuming a JSON response for successful API call
-    return await response.json();
+    return response.json();
   } catch (error) {
     console.error("Failed to store Option1 content:", error);
-    throw new Error('An error occurred while storing Option1 content and initiating GitHub login');
+    throw error;
   }
 };
 
