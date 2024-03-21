@@ -9,6 +9,72 @@ PROMPTS = [
     "Can you provide the address for latitude 37.4224764 and longitude -122.0842499 using the Geocoding API?",
     "I'm planning a series of long weekend getaways for the upcoming year and I need to know when they'll occur in my country. Could you fetch me the list of long weekends for Canada in the year 2023? I'd like to integrate this information into my holiday planning app."
 ]
+
+
+
+const csvFilePath = './data.csv';
+
+fetch(csvFilePath)
+    .then(response => response.text())
+    .then(csvText => {
+        const data = parseCSV(csvText);
+        addToTable(data);
+    })
+    .catch(error => console.error('Error fetching or parsing the CSV file:', error));
+
+function parseCSV(text) {
+    result = text.split('\r');
+    // Skip the first row of the CSV (headers)
+    for (let i = 1; i < result.length; i += 1) {
+        result[i] = result[i].split(',');
+        result[i] = result[i].map((value) => {
+            if (value.endsWith('%')) {
+                return parseFloat(value.slice(0, -1));
+            }
+            return value;
+        });
+        let overallAcc = result[i].splice(4, 1);
+        result[i].splice(1, 0, overallAcc);
+        result[i].splice(7, 0, result[i][result[i].length - 1]);
+    }
+    return result;
+}
+
+function addToTable(dataArray) {
+    const tbody = document.getElementById('leaderboard-table').getElementsByTagName('tbody')[0];
+    dataArray.forEach((row, index) => {
+        // Assuming the first row of the CSV is headers and skipping it
+        if (index > 0) { 
+            const tr = document.createElement('tr');
+
+            for (let cellIndex = 0; cellIndex < row.length; cellIndex += 1) {
+                let cell = row[cellIndex];
+                const td = document.createElement('td');
+                if (cellIndex === 2) { 
+                    const a = document.createElement('a');
+                    a.href = row[3];
+                    cellIndex += 1;
+                    a.textContent = cell;
+                    td.appendChild(a);
+                } else {
+                    td.textContent = cell;
+                }
+
+                if (cellIndex >= 6 && cellIndex <= 8) { // summary-row class for specific columns
+                    td.className = 'summary-row';
+                } else if (cellIndex >= 9) { // detail-row class for specific columns
+                    td.className = 'detail-row';
+                }
+
+                tr.appendChild(td);
+            };
+
+            tbody.appendChild(tr);
+        }
+    });
+}
+
+
 function populateInput(index) {
     document.getElementById('input-text').value = PROMPTS[index];
     document.getElementById('input-function').value = JSON.stringify(EXAMPLES[index], null, 2);
