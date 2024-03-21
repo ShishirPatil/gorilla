@@ -18,6 +18,6 @@ Rank,Overall Acc,Model,Organization,License,AST Summary,Exec Summary,Simple Func
 17,Gemini-1.0-Pro (FC),https://deepmind.google/technologies/gemini/#introduction,Google,Proprietary,55.68%,42.18%,29.30%,79.71%,89.00%,0.00%,0.00%,51.19%,66.00%,0.00%,0.00%,78.30%
 18,GPT-4-0613 (FC),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,54.52%,40.14%,27.12%,74.55%,86.00%,0.00%,0.00%,50.00%,56.00%,0.00%,2.50%,87.08%
 19,Deepseek-v1.5 (Prompt),https://huggingface.co/deepseek-ai/deepseek-coder-7b-instruct-v1.5,Deepseek,Deepseek License,45.96%,48.59%,8.55%,48.36%,61.00%,37.50%,47.50%,24.70%,2.00%,0.00%,7.50%,66.25%
-20,Gemma,https://blog.google/technology/developers/gemma-open-models/,Google,gemma-terms-of-use,44.40%,48.61%,40.43%,61.45%,60.00%,41.00%,32.00%,44.71%,48.00%,44.00%,25.00%,0.42%
+20,Gemma-7b-it (Prompt),https://blog.google/technology/developers/gemma-open-models/,Google,gemma-terms-of-use,44.40%,48.61%,40.43%,61.45%,60.00%,41.00%,32.00%,44.71%,48.00%,44.00%,25.00%,0.42%
 21,Gorilla-OpenFunctions-v0 (FC),https://gorilla.cs.berkeley.edu/blogs/4_open_functions.html,Gorilla LLM,Apache 2.0,33.37%,29.88%,24.06%,60.00%,56.00%,0.00%,3.50%,38.24%,58.00%,0.00%,0.00%,4.58%
 22,Glaive-v1 (FC),https://huggingface.co/glaiveai/glaive-function-calling-v1,Glaive,cc-by-sa-4.0,24.58%,15.14%,14.92%,34.55%,26.00%,0.00%,0.00%,21.18%,36.00%,0.00%,2.50%,46.25%
