@@ -2,7 +2,7 @@ _site/
 .jekyll-cache/
 *__pycache__
 *.DS_Store
-*node_modules
+**/node_modules
 
 # add-api ignores
 add-api/server/.env
