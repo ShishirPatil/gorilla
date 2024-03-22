@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/Team-Clean.css">
+    <link rel="stylesheet" href="assets/css/contact_main_page.css">
     <style>
         /* Bars to separate titles in nav bar */
         .navbar a:not(:last-child)::after {
@@ -308,7 +309,7 @@ right at the same position as the top one */
                     allowfullscreen>
                 </iframe>
             </div>
-            <p class="text-center">Gorilla powered CLI<br>
+            <p class="text-center" style="color: black;">Gorilla powered CLI<br>
                 Get started with <code>pip install gorilla-cli</code></p>
         </div>
         <div class="col-md-6">
@@ -319,7 +320,7 @@ right at the same position as the top one */
                     allowfullscreen>
                 </iframe>
             </div>
-            <p class="text-center">Gorilla Powered Spotlight Search<br>
+            <p class="text-center" style="color: black;">Gorilla Powered Spotlight Search<br>
                 <a
                     href="https://docs.google.com/forms/d/1iuWrfQbTb8_T5s4J75HNftPF-w1Jg1Aeg-gB64X8MJg/edit">Gorilla-Spotlight Signup</a> </p>
         </div>
@@ -345,7 +346,7 @@ right at the same position as the top one */
     <div class="row">
         <div class="col-md-12">
             <h2>Abstract</h2>
-            <p style="text-align: justify;">
+            <p style="text-align: justify; color: black;">
                 Large Language Models (LLMs) have seen an impressive wave of advances recently,
                 with models now excelling in a variety of tasks, such as mathematical reasoning and program synthesis.
                 However, their potential to effectively use tools via API calls remains unfulfilled.
@@ -396,6 +397,71 @@ right at the same position as the top one */
         </div>
     </div>
 </div>
+<!-- Contact Us -->
+<div class="container" style="max-width: 768px">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Contact Us</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" style='color: black' placeholder="Your Name" required>
+                        <input type="Email" name="Email" style='color: black' placeholder="Your Email" required>
+                        <input type="Organization" name="Organization" style='color: black' placeholder="Your Organization">
+                        <textarea name="Message" rows="6" style='color: black' placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn-secondary btn-secondary2">Submit</button>
+                    </form>
+                    <span id="msg"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var tablinks = document.getElementsByClassName("tab-links");
+var tabcontents = document.getElementsByClassName("tab-contents");
+
+function opentab(tabname) {
+    for (tablink of tablinks) {
+        tablink.classList.remove("active-link");
+    }
+    for (tabcontent of tabcontents) {
+        tabcontent.classList.remove("active-tab");
+    }
+    event.currentTarget.classList.add("active-link");
+    document.getElementById(tabname).classList.add("active-tab");
+}
+</script>
+<script>
+
+    var sidemenu = document.getElementById("sidemenu");
+
+    function openmenu() {
+        sidemenu.style.right = "0";
+    }
+    function closemenu() {
+        sidemenu.style.right = "-200px";
+    }
+
+</script>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxdAKyEA36HA_p0k3KwMzMigxgFCZ1XegRBPfjgxlNaOK2CsOnP9hrEV_6V1ARCAJw3vw/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "<span style='color: black;'>Message Sent Successfully!</span>";
+            setTimeout(function() {
+                msg.innerHTML = ""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+</script>
 
 </body>
 
