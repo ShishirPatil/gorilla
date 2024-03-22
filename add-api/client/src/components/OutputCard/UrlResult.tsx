@@ -41,6 +41,7 @@ const UrlResult: React.FC<UrlResultProps> = React.memo(({ result, onResultsChang
     try {
       const updatedDetails = editedJSONResults.map(detail => JSON.parse(detail));
       onResultsChange({ ...result, data: updatedDetails }); // Notify OutputCard of the change
+      setEditableIndex(null); // Reset editableIndex
     } catch (error) {
       toast.error("Invalid JSON format.");
     }

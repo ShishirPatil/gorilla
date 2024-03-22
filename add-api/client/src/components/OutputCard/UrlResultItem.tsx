@@ -1,6 +1,9 @@
-import React from 'react';
-import IconButton from './IconButton';
-import { faEdit, faClipboard } from '@fortawesome/free-solid-svg-icons';
+import React, { useState, useCallback } from 'react';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import SaveIcon from '@mui/icons-material/Save';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { ApiCallDetail } from '../../types/types';
 import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
@@ -25,32 +28,53 @@ const UrlResultItem: React.FC<UrlResultItemProps> = ({
     editedJSONResults,
     handleChange,
     handleBlur
-}) => (
-    <div className='card mb-3'>
-        <div className="card-body">
-            <div className="d-flex justify-content-between align-items-center">
-                <h5 className="card-title">{value.api_name}</h5>
-                <div>
-                    <IconButton icon={faEdit} onClick={() => toggleEdit(index)} ariaLabel="Edit" />
-                    <IconButton icon={faClipboard} onClick={() => handleCopy(editedJSONResults[index], value.api_name)} ariaLabel="Copy" />
-                </div>
-            </div>
-            <CodeMirror
-                value={editedJSONResults[index]}
-                extensions={[json()]}
-                onChange={(value) => handleChange(value, index)}
-                onBlur={handleBlur}
-                editable={editableIndex !== index}
-                height="auto"
-                minHeight="100px"
-                basicSetup={{
-                    lineNumbers: false,
-                    closeBrackets: true,
-                }}
-                style={{ fontSize: '14px', borderRadius: '4px', border: '1px solid #ced4da' }}
-            />
-        </div>
-    </div>
-);
+}) => {
+    // State to manage the copied status of the item to change Icons
+    const [isCopied, setIsCopied] = useState(false);
 
-export default UrlResultItem;
+    const handleCopyWrap = useCallback((text: string, apiName: string) => {
+        handleCopy(text, apiName);
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2000);
+    }, [handleCopy]);
+
+    return (
+        <div className='card mb-3'>
+            <div className="card-body">
+                <div className="d-flex justify-content-between align-items-center">
+                    <h5 className="card-title">{value.api_name}</h5>
+                    <div>
+                        <IconButton onClick={() => toggleEdit(index)} aria-label={editableIndex === index ? "Save" : "Edit"} size="small">
+                            {editableIndex === index ? <SaveIcon fontSize="small" /> : <EditIcon fontSize="small" />}
+                        </IconButton>
+                        <IconButton aria-label={isCopied ? "Copied" : "Copy"} size="small" onClick={!isCopied ? () => handleCopyWrap(editedJSONResults[index], value.api_name) : undefined}>
+                            {isCopied ? <CheckCircleIcon fontSize="small" /> : <ContentCopyIcon fontSize="small" />}
+                        </IconButton>
+                    </div>
+                </div>
+                <CodeMirror
+                    value={editedJSONResults[index]}
+                    extensions={[json()]}
+                    onChange={(value) => handleChange(value, index)}
+                    onBlur={handleBlur}
+                    editable={editableIndex === index}
+                    height="auto"
+                    minHeight="100px"
+                    basicSetup={{
+                        lineNumbers: false,
+                        closeBrackets: true,
+                    }}
+                    style={{
+                        fontSize: '14px',
+                        borderRadius: '4px',
+                        border: '1px solid #ced4da',
+                        // Add a shadow to make it pop out more when editable
+                        boxShadow: editableIndex === index ? '0 0 8px rgba(0, 0, 0, 0.5)' : 'none',
+                    }}
+                />
+            </div>
+        </div>
+    );
+};
+
+export default React.memo(UrlResultItem);
