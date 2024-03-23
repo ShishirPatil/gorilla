@@ -18,6 +18,7 @@ def parse_java_function_call(source_code):
     tree = parser.parse(bytes(source_code, "utf8"))
     root_node = tree.root_node
     sexp_result = root_node.sexp()
+    
     if "ERROR" in sexp_result:
         return None
 
@@ -25,16 +26,44 @@ def parse_java_function_call(source_code):
         """Returns the text represented by the node."""
         return source_code[node.start_byte:node.end_byte]
 
-    def traverse_node(node):
+    def traverse_node(node, nested=False):
+        if node.type == 'string_literal':
+            if nested:
+                return get_text(node)
+            # Strip surrounding quotes from string literals
+            return get_text(node)[1:-1]
+        elif node.type == 'character_literal':
+            if nested:
+                return get_text(node)
+            # Strip surrounding single quotes from character literals
+            return get_text(node)[1:-1]
         """Traverse the node to collect texts for complex structures."""
         if node.type in ['identifier', 'class_literal', 'type_identifier', 'method_invocation']:
             return get_text(node)
+        elif node.type == 'array_creation_expression':
+            # Handle array creation expression specifically
+            type_node = node.child_by_field_name('type')
+            value_node = node.child_by_field_name('value')
+            type_text = traverse_node(type_node, True)
+            value_text = traverse_node(value_node, True)
+            return f"new {type_text}[]{value_text}"
+        elif node.type == 'object_creation_expression':
+            # Handle object creation expression specifically
+            type_node = node.child_by_field_name('type')
+            arguments_node = node.child_by_field_name('arguments')
+            type_text = traverse_node(type_node, True)
+            if arguments_node:
+                arguments_text = traverse_node(arguments_node, True)
+                return f"new {type_text}({arguments_text})"
+            else:
+                return f"new {type_text}()"
         elif node.type == 'set':
             # Handling sets specifically
-            items = [traverse_node(n) for n in node.children if n.type not in [',', 'set']]
+            items = [traverse_node(n, True) for n in node.children if n.type not in [',', 'set']]
             return '{' + ', '.join(items) + '}'
+        
         elif node.child_count > 0:
-            return ''.join(traverse_node(child) for child in node.children)
+            return ''.join(traverse_node(child, True) for child in node.children)
         else:
             return get_text(node)
 
@@ -85,11 +114,39 @@ def parse_java_function_call(source_code):
 if __name__ == "__main__":
     # Assuming parser setup and language loading are done earlier
     
-    # An invalid java source code case, our parse_java_function_call will return None
-    # """SourceSectionFilter.isRootIncluded(providedTags={ExpressionTag.class, StatementTag.class}, rootSection=codeBlockSection, rootNode=rootNodeInstance, rootNodeBits=rootNodeBitMask);"""
+    # Valid Java source code
+    source_code = """FileSystemsTest.execute(a, b, node=testRootNode, env=testEnv, contextArguments=new Object[]{'local', '/home/user', false, true, true}, frameArguments=new Object[]{}, arraylist=new ArrayList<>(Arrays.asList(\"include_defaults\", true, \"TOXCONTENT_SKIP_RUNTIME\", true)))"""
     
-    source_code = """FileSystemsTest.execute(a, b, node=testRootNode, node=testRootNode2, env=testEnv, contextArguments=new Object[]{'local', '/home/user', false, true, true}, frameArguments=new Object[]{})"""
-    # expected: {"function": {"name": "execute", "parameters": {"null": ["a", "b"], "node": ["testRootNode", "testRootNode2"], "env": "testEnv", "contextArguments": "newObject[]{'local','/home/user',false,true,true}", "frameArguments": "newObject[]{}"}}}
+    # expected print output from `print(json.dumps(result, indent=2))`:
+    """
+        {
+            "function": {
+                "name": "execute",
+                "parameters": {
+                "null": [
+                    "a",
+                    "b"
+                ],
+                "node": "testRootNode",
+                "env": "testEnv",
+                "contextArguments": "new Object[]{'local','/home/user',false,true,true}",
+                "frameArguments": "new Object[]{}",
+                "arraylist": "new ArrayList<>((Arrays.asList(\"include_defaults\", true, \"TOXCONTENT_SKIP_RUNTIME\", true)))"
+                }
+            }
+        }
+    """
+    
+    # An invalid java source code case, our parse_java_function_call will return None
+    """SourceSectionFilter.isRootIncluded(providedTags={ExpressionTag.class, StatementTag.class}, rootSection=codeBlockSection, rootNode=rootNodeInstance, rootNodeBits=rootNodeBitMask);"""
+    
+    # expected print output from `print(json.dumps(result, indent=2))`:
+    """
+        null
+    """
     
     result = parse_java_function_call(source_code)
     print(json.dumps(result, indent=2))
+
+    
+   
