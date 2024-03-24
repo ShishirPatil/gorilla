@@ -100,7 +100,7 @@ def generate_instructions_gen(chunk, x=5) -> list[str]:
         model="gpt-4",
         messages=[
             {"role": "system", "content": "You are a synthetic question-answer pair generator. Given a chunk of context about some topic(s), generate %s example questions a user could ask and would be answered using information from the chunk. For example, if the given context was a Wikipedia paragraph about the United States, an example question could be 'How many states are in the United States?'" % (x)},
-            {"role": "system", "content": "The questions should be able to be answered in a few words or less."},
+            {"role": "system", "content": "The questions should be able to be answered in a few words or less. Include only the questions in your response."},
             {"role": "user", "content": str(chunk)}
         ]
     )
@@ -191,7 +191,7 @@ def add_chunk_to_dataset(chunks: list, chunk: str, doctype: str = "api", x: int 
         datapt["type"] = "api call" if doctype == "api" else "general"
         datapt["question"] = q
 
-        # add 4 distractor docs
+        # add num_distract distractor docs
         docs = [chunk]
         indices = list(range(0, len(chunks)))
         indices.remove(i)
@@ -255,9 +255,8 @@ if __name__ == "__main__":
 
     ds = None
 
-    for chunk in chunks[:3]:
+    for chunk in chunks:
         add_chunk_to_dataset(chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS)
-        print("chunk done")
     
     # Save as .arrow format
     ds.save_to_disk(args.output)
