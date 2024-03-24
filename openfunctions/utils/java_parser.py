@@ -5,9 +5,7 @@ from tree_sitter import Language, Parser
 from tree_sitter import Language, Parser
 
 Language.build_library(
-    # Store the library in the `build` directory
     "build/tree_sitter.so",
-    # Include one or more languages
     ["./tree-sitter-java"],
 )
 JAVA_LANGUAGE = Language("build/tree_sitter.so", "java")
@@ -15,9 +13,21 @@ parser = Parser()
 parser.set_language(JAVA_LANGUAGE)
 
 def parse_java_function_call(source_code):
+    """
+    Parses the given Java function call code and extracts information about method invocations.
+
+    Args:
+        source_code (str): The Java source code to parse.
+
+    Returns:
+        dict: A dictionary containing information about the method invocation, including the function name and its parameters.
+              If there is an error during parsing, None is returned.
+    """
     tree = parser.parse(bytes(source_code, "utf8"))
     root_node = tree.root_node
     sexp_result = root_node.sexp()
+    print("S-expression result: ")
+    print(sexp_result)
     
     if "ERROR" in sexp_result:
         return None
@@ -53,7 +63,12 @@ def parse_java_function_call(source_code):
             arguments_node = node.child_by_field_name('arguments')
             type_text = traverse_node(type_node, True)
             if arguments_node:
-                arguments_text = traverse_node(arguments_node, True)
+                argument_texts = []
+                for child in arguments_node.children:
+                    if child.type not in [',', '(', ')']:  # Exclude commas and parentheses
+                        argument_text = traverse_node(child, True)
+                        argument_texts.append(argument_text)
+                arguments_text = ', '.join(argument_texts)
                 return f"new {type_text}({arguments_text})"
             else:
                 return f"new {type_text}()"
@@ -68,6 +83,16 @@ def parse_java_function_call(source_code):
             return get_text(node)
 
     def extract_arguments(args_node):
+        """
+        Extracts the arguments from the given args_node and returns a dictionary of arguments.
+
+        Args:
+            args_node (Node): The node representing the arguments.
+
+        Returns:
+            dict: A dictionary containing the extracted arguments, where the keys are the argument names
+                  and the values are the corresponding argument values.
+        """
         arguments = {}
         for child in args_node.children:
             if child.type == 'assignment_expression':
@@ -81,7 +106,6 @@ def parse_java_function_call(source_code):
                     arguments[name].append(value)
                 else:
                     arguments[name] = value
-                # arguments.append({'name': name, 'value': value})
             elif child.type in ['identifier', 'class_literal', 'set']:
                 # For unnamed parameters and handling sets
                 value = traverse_node(child)
@@ -94,9 +118,24 @@ def parse_java_function_call(source_code):
         return arguments
 
     def traverse(node):
+        """
+        Traverses the given AST node and extracts information about method invocations.
+
+        Args:
+            node (ASTNode): The AST node to traverse.
+
+        Returns:
+            dict: A dictionary containing information about the method invocation, including the function name and its parameters.
+        """
         if node.type == 'method_invocation':
             # Extract the function name and its arguments
-            function_name = get_text(node.child_by_field_name('name'))
+            method_name = get_text(node.child_by_field_name('name'))
+            class_name_node = node.child_by_field_name('object')
+            if class_name_node:
+                class_name = get_text(class_name_node)
+                function_name = f"{class_name}.{method_name}"
+            else:
+                function_name = method_name
             arguments_node = node.child_by_field_name('arguments')
             if arguments_node:
                 arguments = extract_arguments(arguments_node)
@@ -106,6 +145,7 @@ def parse_java_function_call(source_code):
                 result = traverse(child)
                 if result:
                     return result
+
 
     result = traverse(root_node)
     return result if result else {}
@@ -121,7 +161,7 @@ if __name__ == "__main__":
     """
         {
             "function": {
-                "name": "execute",
+                "name": "FileSystemsTest.execute",
                 "parameters": {
                 "null": [
                     "a",
@@ -131,7 +171,7 @@ if __name__ == "__main__":
                 "env": "testEnv",
                 "contextArguments": "new Object[]{'local','/home/user',false,true,true}",
                 "frameArguments": "new Object[]{}",
-                "arraylist": "new ArrayList<>((Arrays.asList(\"include_defaults\", true, \"TOXCONTENT_SKIP_RUNTIME\", true)))"
+                "arraylist": "new ArrayList<>(Arrays.asList(\"include_defaults\", true, \"TOXCONTENT_SKIP_RUNTIME\", true))"
                 }
             }
         }
