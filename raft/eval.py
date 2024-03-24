@@ -1,7 +1,9 @@
+from typing import Any
 import string
 import re
-from openai import OpenAI
+from openai import OpenAI 
 from openai import AzureOpenAI
+from openai.types.chat import ChatCompletionMessageParam, ChatCompletion
 import multiprocessing as mp
 import time
 import argparse
@@ -16,7 +18,9 @@ client = OpenAI(
         api_key=api_key,
         )
 
-def get_openai_response(message):
+def get_openai_response(
+    message: list[ChatCompletionMessageParam]
+) -> str | ChatCompletion | None :
     response = client.chat.completions.create(
         messages=message,
         model=model_name,
@@ -28,14 +32,17 @@ def get_openai_response(message):
         print(e)
         return response
 
-def get_answer(input_json):
+def get_answer(input_json: dict[str, Any]) -> dict[str, Any]:
     message = [{"role": "user", "content": input_json['instruction']}]
     result = get_openai_response(message)
     input_json['model_answer'] = result
     return input_json
   
 
-def write_result_to_file(result, write_file_name):
+def write_result_to_file(
+    result: dict[str, Any], 
+    write_file_name: str
+) -> None:
     global file_write_lock
     with file_write_lock:
         with open(write_file_name, "a") as outfile:
