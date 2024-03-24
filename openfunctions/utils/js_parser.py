@@ -26,6 +26,8 @@ def parse_javascript_function_call(source_code):
                 # Extract left (name) and right (value) parts of the assignment
                 name = child.children[0].text.decode('utf-8')
                 value = child.children[2].text.decode('utf-8')
+                if (value.startswith('"') and value.endswith('"')) or (value.startswith("'") and value.endswith("'")):
+                    value = value[1:-1]  # Trim the quotation marks
                 if name in args:
                     if not isinstance(args[name], list):
                         args[name] = [args[name]]
@@ -65,7 +67,25 @@ def parse_javascript_function_call(source_code):
 if __name__ == "__main__":
     # Assuming parser setup and language loading are done earlier
     
-    source_code = """markdownRenderComplete(a, b, elem=document.getElementById('contentArea'), elem=b, rendered=true)"""
+    source_code = """markdownRenderComplete(elem=document.getElementById('contentArea'), rendered=true, array=[1,2,3], array2=new Array(1,2,3), dictionary={'key':'value'})"""
+    
+    # Expected output:
+    """
+    {
+        "function": {
+            "name": "markdownRenderComplete",
+            "parameters": {
+            "elem": "document.getElementById('contentArea')",
+            "rendered": "true",
+            "array": "[1,2,3]",
+            "array2": "new Array(1,2,3)",
+            "dictionary": "{'key':'value'}"
+            }
+        }
+    }
+    """
+    
+    
     result = parse_javascript_function_call(source_code)
     print(source_code)
     print(json.dumps(result, indent=2))
