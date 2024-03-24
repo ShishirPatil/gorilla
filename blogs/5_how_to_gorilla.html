@@ -14,7 +14,7 @@
 
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How to Use Gorilla</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
@@ -50,8 +50,9 @@
                         <li><a href="5_how_to_gorilla.html#gorilla-inference">Gorilla Inference</a></li>
                         <li><a href="5_how_to_gorilla.html#gorilla-openfunctions">Gorilla Open Functions</a></li>
                         <li><a href="5_how_to_gorilla.html#integrate-third-party">Integrating Gorilla with Third Party Libraries</a></li>
-                        <li><a href="5_how_to_gorilla.html#api-zoo">API Zoo Index</a></li>
                         <li><a href="5_how_to_gorilla.html#train-your-own-gorilla">Train Your Own Gorilla</a></li>
+                        <li><a href="5_how_to_gorilla.html#api-zoo">API Zoo Index</a></li>
+                        <li><a href="5_how_to_gorilla.html#berkeley-function-calling-leaderboard">Berkeley Function Calling Leaderboard</a></li>
                         <li class="more-blogs">
                             <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span class="caret">&#9654;</span></a>
                             <ul class="sub-menu">
@@ -75,7 +76,7 @@
                     <p class="date">Feb 15, 2024</p>
                 </div>
                 
-                <img src="../assets/img/blog_post_5_main_image.png" alt="How to Use Gorilla Image" style="width: 95%;">
+                <img src="../assets/img/blog_post_5_landing_image.png" alt="How to Use Gorilla Image" style="width: 100%;">
                     <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
                         <i style="font-size: 0.9em;">
                             Gorilla returns the right API calls for your specific task, enabling LLMs to interact with the world. In this blog post, learn about the different ways you can use Gorilla directly, or integrate it into your workflow.
@@ -86,23 +87,26 @@
                     <p>
                         Gorilla LLM is a rapidly growing open-source project that connects LLMs to APIs, accurately returning API calls for a specific task provided by the user in natural language. 
                         Imagine ChatGPT with the ability to generate accurate CLI commands, set up meetings on Google Calendar, and order a pizza for you. These are all online tasks that can be accomplished through API calls, and Gorilla automatically generates relevant calls given a task.
-                        With this functionality, Gorilla effectively has the ability to take actions in the world by interacting with thousands of services and tools to accompish a wide variety of user-defined tasks. 
-                        We currently have 6 different modalities you can use Gorilla.
+                        With this functionality, Gorilla effectively has the ability to take actions in the world by interacting with thousands of services and tools to accompish a wide variety of user-defined tasks. Gorilla usage falls into 3 primary categories:
+                        
                         <ol type="I">
-                            <li><a href="5_how_to_gorilla.html#gorilla-cli">Gorilla CLI</a></li>
-                            <li><a href="5_how_to_gorilla.html#gorilla-inference">Gorilla Inference</a>
+                            <li>Ready-to-Use Product: <a href="5_how_to_gorilla.html#gorilla-cli">Gorilla CLI</a></li>
+                            <li>Developer Building Blocks:
                                 <ol type="i">
-                                    <li>Inference in CLI</li>
-                                    <li>Local Inference with Quantized Models</li>
-                                    <li>Inference Hosted on Replicate Endpoint</li>
+                                    <li><a href="5_how_to_gorilla.html#gorilla-inference">Gorilla Inference</a></li>
+                                    <li><a href="5_how_to_gorilla.html#gorilla-openfunctions">Gorilla Open Functions</a></li>
+                                    <li><a href="5_how_to_gorilla.html#integrate-third-party">Integrating Gorilla With Third Party Libraries</a></li>
+                                    <li><a href="5_how_to_gorilla.html#train-your-own-gorilla">Train Your Own Gorilla</a></li>
                                 </ol>
                             </li>
-                            <li><a href="5_how_to_gorilla.html#gorilla-openfunctions">Gorilla Open Functions</a></li>
-                            <li><a href="5_how_to_gorilla.html#integrate-third-party">Integrating Gorilla With Third Party Libraries</a></li>
-                            <li><a href="5_how_to_gorilla.html#api-zoo">Gorilla API Zoo Index</a></li>
-                            <li><a href="5_how_to_gorilla.html#train-your-own-gorilla">Train Your Own Gorilla</a></li>
+                            <li>Gorilla Community:
+                                <ol type="i">
+                                    <li><a href="5_how_to_gorilla.html#api-zoo">Gorilla API Zoo Index</a></li>
+                                    <li><a href="5_how_to_gorilla.html#berkeley-function-calling-leaderboard">Berkeley Function Calling Leaderboard</a></li>
+                                </ol>
+                            </li>
                         </ol>
-                        This blog post outlines these ways in a step-by-step manner and links Google Colab playground environments for you to quickly experiment with Gorilla!
+                        This blog post outlines these ways in a step-by-step manner and links Google Colab playground environments for you to quickly experiment with Gorilla! To find out what makes Gorilla so good at interacting with APIs, delve deeper into the novel method used to train Gorilla and check out <a href="3_retriever_aware_training.html">this blog post on retrieval-aware training (RAT)</a> and our newly released work on <a href="9_raft.html">retrieval-aware finetuning</a> which generalizes high performance RAG systems beyond APIs.
                     </p>
                 </div>
 
@@ -250,16 +254,20 @@
 
                         <h4 id="gorilla-openfunctions"><li>Gorilla OpenFunctions: Executable API Calls ⚔️</h4>
                         <i>
-                            Note: If you would like to try out Gorilla Open Functions in a playground-like environment check out <a href="https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd">this Google Colab</a>. 
-                            <br>For more information about the technical details behind Gorilla Open Functions check out <a href="https://gorilla.cs.berkeley.edu/blogs/4_open_functions.html">this blog post</a>!
+                            NEW: We've now released Gorilla Open Functions v2! Checkout <a href="https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html">this blog post</a> for an in-depth analysis on the capabilities of the latest iteration of Gorilla Open Functions! 
+                            <br>To quickly test out the newest Open Functions model, you can interactively use <a href="https://gorilla.cs.berkeley.edu/leaderboard.html#api-explorer">this demo</a>!
+                          
                         </i>
+                        <br>
+                        <br>
                         <p>
                             Gorilla Open Functions returns executable API calls given a specific user query and API documentation. 
                             It acts as  an open source version of OpenAI’s function calling except with chat completion. 
                             One key difference is that OpenAI will repeatedly prompt users if arguments are missing in the query but Gorilla Open Functions utilizes chat completion to accurately infer and fill in these missing parameters. 
+                            Open Functions v2 boasts the best functional calling performance amongst all open source models and is on par with GPT-4! v2 introduces 5 new features including support for more argument data types across different languages, parallel and multiple function calling, function relevance detection, and an improved ability to format RESTful API calls. 
                         </p>
                         <p>
-                            Using Gorilla Open Functions is simple: Install the necessary dependencies, provide a query and a set of functions, and get a response.
+                            Using the latest Gorilla Open Functions is simple: Install the necessary dependencies, provide a query and a set of functions, and get a response.
                             <ol>
                                 <li>Install dependencies:
                                     <br><code>pip install openai==0.28.1</code>
@@ -294,7 +302,7 @@
                                 <li> Define a response function (example below):
                                     <br><pre><code>
     def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes", 
-                             model="gorilla-openfunctions-v0", functions=[]):
+                             model="gorilla-openfunctions-v2", functions=[]):
         openai.api_key = "EMPTY"
         openai.api_base = "http://luigi.millennium.berkeley.edu:8000/v1"
         try:
@@ -359,12 +367,6 @@ chat_model = ChatOpenAI(
                                 </li>
                             </ol>
                         </p></li>
-
-                        <h4 id="api-zoo"><li><a href="6_api_zoo.html">Gorilla API Zoo Index 📖</a></h4>
-                        <p>
-                            The API Zoo is an open sourced index containing API documentation that can be used by LLMs to increase tool-use capabilities via API calls. 
-                            Anyone can upload to the index, simply follow the instructions <a href="https://github.com/ShishirPatil/gorilla/blob/main/data/README.md#gorilla-api-store">here</a> to upload your API!
-                        </p>
 
                         <h4 id="train-your-own-gorilla"><li>Train Your Own Gorilla 🔨🔧</h4>
                         <p>
@@ -432,9 +434,27 @@ chat_model = ChatOpenAI(
                             </ol>
                         </p></li>
 
+                        <h4 id="api-zoo"><li><a href="6_api_zoo.html">Gorilla API Zoo Index 📖</a></h4>
+                            <p>
+                                The API Zoo is an open sourced index containing API documentation that can be used by LLMs to increase tool-use capabilities via API calls. 
+                                Anyone can upload to the index, simply follow the instructions <a href="https://github.com/ShishirPatil/gorilla/blob/main/data/README.md#gorilla-api-store">here</a> to upload your API!
+                            </p>
+                    
+                        <h4 id="berkeley-function-calling-leaderboard"><li><a href="8_berkeley_function_calling_leaderboard.html">Berkeley Function Calling Leaderboard 🏆</a></h4>
+                            <p>
+                                The Gorilla Team has now released the Berkeley Function Calling Leaderboard (BFCL)! This is the first comprehensive dataset for evaluating executable function calls across different languages for LLM function calls. The dataset considers function callings of various forms, different function calling scenarios, and the executability of function call. 
+                                Specifically, BFCL includes evaluating across Python, Java, JavaScript, REST APIs, and SQL across a wide variety of real-world function calling scenarios. OpenFunctions v2 currently boasts the best performance amongst all open-source models and is on-par with GPT-4! For an interactive visualization to see how different models perform on this data set, checkout the <a href="../leaderboard.html">leaderboard here</a>!
+                                <p style="text-align: center; margin-bottom: 0">
+                                    <img src="../assets/img/blog_post_8_Wagon.gif" alt="Berkeley Function-Calling Leaderboard (BFCL) Wagon Chart" width="100%">
+                                    <i style="font-size: 0.9em;">
+                                        Detailed analysis using <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function-Calling Leaderboard</a> (BFCL) Wagon Chart
+                                    </i>
+                                </p>
+                            </p>
+
                         <h4>Summary</h4>
                         <p>
-                            This blog post went over the numerous methods to utilize and experiment with Gorilla for your own use cases including running local inference, finetuning Gorilla on your own set of APIs, utilizing Gorilla OpenFunctions, and the API Zoo. 
+                            This blog post went over the numerous methods to utilize and experiment with Gorilla for your own use cases including running local inference, finetuning Gorilla on your own set of APIs, utilizing Gorilla OpenFunctions, the API Zoo. 
                             Gorilla enables some super cool applications like <a href="https://youtu.be/RMgM3tPTpXI">Gorilla-Spotlight</a>! Enabling LLMs to utilize tools like APIs opens up the door for agents that can concretely interact with the world. The possibilities for applications are endless. 
                             Be sure to check out our <a href="https://discord.gg/3apqwwME">Discord community</a> for updates and any questions as well as our <a href="https://github.com/ShishirPatil/gorilla">official repo</a> on Github. 
                         </p>
