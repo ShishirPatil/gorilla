@@ -17,9 +17,11 @@ body {
 .text-center {
     text-align: center;
     align-items: center;
+    margin-bottom: 2px !important;
+    margin-left: 10px !important; 
+    margin-right: 10px !important;
   }
 
-  
 .container {
     padding: 20px;
     margin: auto;
