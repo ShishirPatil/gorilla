@@ -1,9 +1,47 @@
 /* Bars to separate titles in nav bar */
+/* For computers */
+.navbar {
+    padding: 10px;
+    font-size: 18px;
+    text-align: center; /* Center align by default */
+}
+
 .navbar a:not(:last-child)::after {
     content: "|";
-    margin: 0 10px;
+    margin: 0 7px;
     color: #000;
 }
+
+/* For screens larger than 500px */
+@media (min-width: 500px) {
+    .navbar {
+        position: absolute;
+        top: 0;
+        right: 20px;
+        text-align: right; /* Align links to the right */
+    }
+}
+
+/* For phones */
+@media (max-width: 500px) {
+
+    .navbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* Citation */
+.citation {
+    display: inline-block;
+    top: 0px;
+    margin-left: 12px;
+}
+
 /* Spinner Text */
 body {
     font-family: 'Source Sans Pro', sans-serif;
@@ -161,3 +199,10 @@ transform: translateY(0%);
 }
 }
 
+/* Citations */
+@media (max-width: 768px) {
+    .citation-line {
+        text-indent: 3px; /* Adjust the indentation as needed */
+        display: block;
+    }
+}
