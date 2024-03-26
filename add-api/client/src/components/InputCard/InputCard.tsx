@@ -66,9 +66,16 @@ const InputCard = () => {
     };
   };
 
+  const handleClear = () => {
+    setUsername('');
+    setApiName('');
+    setUrls(['']);
+    setUrlsResults({});
+  };
+
   return (
-    <div className="card border-primary shadow-md">
-      <div className="card-header bg-primary text-white">
+    <div className="card border-primary shadow-lg">
+      <div className="card-header bg-light">
         <h4>API Information</h4>
       </div>
       <div className="card-body">
@@ -78,7 +85,13 @@ const InputCard = () => {
       </div>
       <div className="card-footer d-flex justify-content-around">
         <button
-          className="btn btn-primary"
+          className="btn btn-db btn-grey"
+          onClick={handleClear}
+        >
+          Clear
+        </button>
+        <button
+          className="btn btn-db btn-convert"
           onClick={handleConvert}
           disabled={isLoading}
           aria-busy={isLoading}

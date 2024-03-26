@@ -65,7 +65,7 @@ const UrlResultItem: React.FC<UrlResultItemProps> = ({
                         closeBrackets: true,
                     }}
                     style={{
-                        fontSize: '14px',
+                        fontSize: '11px',
                         borderRadius: '4px',
                         border: '1px solid #ced4da',
                         // Add a shadow to make it pop out more when editable

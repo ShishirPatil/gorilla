@@ -1,11 +1,7 @@
 import React from 'react';
 import { useDashboard } from '../context/DashboardContext';
 import { ConvertResult } from '../types/types';
-import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
-import { grey, orange } from '@mui/material/colors';
 interface Example {
     username: string;
     apiName: string;
@@ -96,23 +92,6 @@ const exampleData: Example[] = [
     // TODO: Add more examples
 ];
 
-
-
-
-const containerStyles = {
-    padding: '1rem',
-    backgroundColor: grey[100],
-    borderRadius: '12px',
-};
-
-const buttonStyles = {
-    textTransform: 'none',
-    minWidth: '150px',
-    '&:hover': {
-        backgroundColor: orange[100],
-    },
-};
-
 const Examples: React.FC = () => {
     const { setUsername, setApiName, setUrls, setUrlsResults } = useDashboard();
 
@@ -125,26 +104,21 @@ const Examples: React.FC = () => {
     };
 
     return (
-        <div className="container" style={containerStyles}>
-            <div className="d-flex">
-                <TipsAndUpdatesIcon fontSize="small" style={{ color: orange[500] }} />
-                <Typography variant="h6" component="h6" gutterBottom>
-                    Examples
-                </Typography>
-            </div>
+        <div className="container examples-container">
+            <h5>Examples</h5>
             <Stack direction="row" spacing={3}>
                 {exampleData.map((example, index) => (
-                    <Button
+                    <button
+                        type="button"
+                        className="btn btn-link btn-db btn-ex"
                         key={index}
-                        variant="outlined"
                         onClick={() => handleClick(example)}
-                        sx={buttonStyles}
                     >
-                        {`${example.apiName}`}
-                    </Button>
+                        {example.apiName}
+                    </button>
                 ))}
             </Stack>
-        </div>
+        </div >
     );
 };
 

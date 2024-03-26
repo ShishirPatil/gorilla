@@ -3,7 +3,7 @@ import InputCard from "./InputCard/InputCard";
 import OutputCard from "./OutputCard/OutputCard";
 import { DashboardProvider } from "../context/DashboardContext";
 import Examples from "./Examples";
-
+import '../styles/components/DashboardStyles.css';
 interface DashboardProps {
   // 
 }

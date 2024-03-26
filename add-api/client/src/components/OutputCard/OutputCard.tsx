@@ -85,15 +85,15 @@ const OutputCard: React.FC<OutputCardProps> = () => {
 
 
   return (
-    <div className="card border-secondary shadow-md">
-      <div className="card-header bg-secondary text-white">
+    <div className="card border-primary shadow-lg">
+      <div className="card-header bg-light">
         <h4>Results</h4>
       </div>
       <div className="card-body">
         {renderUrlResults(editedResults)}
       </div>
       <div className="card-footer d-flex justify-content-around">
-        <button className="btn btn-primary" onClick={handleRaisePullRequest}>Raise Pull Request</button>
+        <button className="btn btn-db btn-grey" onClick={handleRaisePullRequest}>Raise Pull Request</button>
       </div>
     </div>
   );
