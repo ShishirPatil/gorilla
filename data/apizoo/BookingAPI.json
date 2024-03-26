@@ -1,0 +1,1414 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Status JSON",
+        "api_call": "{{endpoint}}/hotel-api/1.0/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Operation to check the working condition of our API"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Status XML",
+        "api_call": "{{endpoint}}/hotel-api/1.0/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "Operation to check the working condition of our API"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Availability by hotel code",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"stay\": {\n        \"checkIn\": \"2020-06-15\",\n        \"checkOut\": \"2020-06-16\"\n    },\n    \"occupancies\": [\n        {\n            \"rooms\": 1,\n            \"adults\": 2,\n            \"children\": 0\n        }\n    ],\n    \"hotels\": {\n        \"hotel\": [\n            77,\n            168,\n            264,\n            265,\n            297,\n            311\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "Hotel code list search. \n\nIn 'examples' you can find different cases of requests and responses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Availability by geolocation",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"stay\": {\n        \"checkIn\": \"2020-06-15\",\n        \"checkOut\": \"2020-06-16\"\n    },\n    \"occupancies\": [\n        {\n            \"rooms\": 1,\n            \"adults\": 1,\n            \"children\": 0\n        }\n    ],\n    \"geolocation\": {\n        \"latitude\": 39.57119,\n        \"longitude\": 2.646633999999949,\n        \"radius\": 20,\n        \"unit\": \"km\"\n    }\n}"
+            }
+        },
+        "functionality": "GPS and ratio search. \n\nIn 'examples' you can find different cases of requests and responses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Filter by room type",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"stay\": {\n        \"checkIn\": \"2020-06-15\",\n        \"checkOut\": \"2020-06-16\"\n    },\n    \"occupancies\": [\n        {\n            \"rooms\": 1,\n            \"adults\": 2,\n            \"children\": 0\n        }\n    ],\n    \"hotels\": {\n        \"hotel\": [\n            77,\n            168,\n            264,\n            265,\n            297,\n            311\n        ]\n    },\n    \"rooms\": {\n        \"included\": true,\n        \"room\": [\n            \"DBT.ST\"\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "Availability filtering by room type."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Filter by keyword",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"stay\": {\n        \"checkIn\": \"2020-06-15\",\n        \"checkOut\": \"2020-06-16\"\n    },\n    \"occupancies\": [\n        {\n            \"rooms\": 1,\n            \"adults\": 1,\n            \"children\": 0\n        }\n    ],\n    \"hotels\": {\n        \"hotel\": [\n            77,\n            168,\n            264,\n            265,\n            297,\n            311\n        ]\n    },\n    \"keywords\": {\n        \"keyword\": [\n            34,\n            38,\n            100\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "Availability filtering by keyword."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Filter by accommodation type",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"stay\": {\n        \"checkIn\": \"2020-06-15\",\n        \"checkOut\": \"2020-06-16\"\n    },\n    \"occupancies\": [\n        {\n            \"rooms\": 1,\n            \"adults\": 1,\n            \"children\": 0\n        }\n    ],\n    \"hotels\": {\n        \"hotel\": [\n            77,\n            168,\n            264,\n            265,\n            297,\n            311\n        ]\n    },\n    \"accommodations\": [\n        \"HOTEL\",\n        \"HOSTEL\"\n    ]\n}"
+            }
+        },
+        "functionality": "Availability filtering by accommodation type."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Filter by board code ",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"stay\": {\n        \"checkIn\": \"2020-06-15\",\n        \"checkOut\": \"2020-06-16\"\n    },\n    \"occupancies\": [\n        {\n            \"rooms\": 1,\n            \"adults\": 1,\n            \"children\": 0\n        }\n    ],\n    \"hotels\": {\n        \"hotel\": [\n            77,\n            168,\n            264,\n            265,\n            297,\n            311\n        ]\n    },\n    \"boards\": {\n        \"included\": true,\n        \"board\": [\n            \"RO\",\n            \"BB\"\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "Availability filtering by board code."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Filter by review rating",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"stay\": {\n        \"checkIn\": \"2020-06-15\",\n        \"checkOut\": \"2020-06-16\"\n    },\n    \"occupancies\": [\n        {\n            \"rooms\": 1,\n            \"adults\": 1,\n            \"children\": 0\n        }\n    ],\n    \"hotels\": {\n        \"hotel\": [\n            77,\n            168,\n            264,\n            265,\n            297,\n            311\n        ]\n    },\n    \"reviews\": [\n        {\n            \"type\": \"HOTELBEDS\",\n            \"maxRate\": 5,\n            \"minRate\": 1,\n            \"minReviewCount\": 3\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "Availability filtering by Hotelbeds or TripAdvisor rating. \n\nIn 'examples' you can find different cases of requests and responses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Other filters",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"stay\": {\n        \"checkIn\": \"2020-06-15\",\n        \"checkOut\": \"2020-06-16\"\n    },\n    \"occupancies\": [\n        {\n            \"rooms\": 1,\n            \"adults\": 1,\n            \"children\": 0\n        }\n    ],\n    \"hotels\": {\n        \"hotel\": [\n            77,\n            168,\n            264,\n            265,\n            297,\n            311\n        ]\n    },\n    \"filter\": {\n        \"minRate\": 100,\n        \"maxRate\": 1700,\n        \"minCategory\": 3,\n        \"maxCategory\": 5,\n        \"maxRooms\": 3,\n        \"maxRatesPerRoom\": 3,\n        \"paymentType\": \"AT_HOTEL\",\n        \"packaging\": true,\n        \"hotelPackage\": \"YES\",\n        \"contract\": \"CG-FIT B2B\"\n    }\n}"
+            }
+        },
+        "functionality": "Other filters available in the request:\n-minRate/maxRate[price limit]\n-minCategory/maxCategory[1~5]\n-paymentType[AT_WEB/AT_HOTEL/BOTH]\n-maxRatesPerRoom[integer]\n-packaging[TRUE/FALSE]\n-hotelPackage[YES/NO/BOTH]"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Availability with inclusions",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"stay\": {\n        \"checkIn\": \"2020-06-15\",\n        \"checkOut\": \"2020-06-16\"\n    },\n    \"occupancies\": [\n        {\n            \"rooms\": 1,\n            \"adults\": 2,\n            \"children\": 0\n        }\n    ],\n    \"hotels\": {\n        \"hotel\": [\n            1092,\n            39860,\n            100338\n        ]\n    },\n    \"inclusions\": [\n        \"RESIDENT_RATES\"\n    ]\n}"
+            }
+        },
+        "functionality": "Hotel code list search. \n\nIn 'examples' you can find different cases of requests and responses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Availability by hotel code",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<availabilityRQ xmlns=\"http://www.hotelbeds.com/schemas/messages\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t<stay checkIn=\"2020-06-15\" checkOut=\"2020-06-16\"/>\r\n\t<occupancies>\r\n\t\t<occupancy rooms=\"1\" adults=\"2\" children=\"0\"/>\r\n\t</occupancies>\r\n\t<hotels>\r\n\t\t<hotel>77</hotel>\r\n\t\t<hotel>168</hotel>\r\n\t\t<hotel>264</hotel>\r\n\t\t<hotel>265</hotel>\r\n\t\t<hotel>265</hotel>\r\n\t\t<hotel>297</hotel>\r\n\t\t<hotel>311</hotel>\r\n\t</hotels>\r\n</availabilityRQ>"
+            }
+        },
+        "functionality": "Hotel code list search. \n\nIn 'examples' you can find different cases of requests and responses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Availability by geolocation",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<availabilityRQ xmlns=\"http://www.hotelbeds.com/schemas/messages\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t<stay checkIn=\"2020-06-15\" checkOut=\"2020-06-16\"/>\r\n\t<occupancies>\r\n\t\t<occupancy rooms=\"1\" adults=\"2\" children=\"0\"/>\r\n\t</occupancies>\r\n\t<geolocation latitude=\"39.57119\" longitude=\"2.646633999999949\" radius=\"20\" unit=\"km\"/>\r\n</availabilityRQ>"
+            }
+        },
+        "functionality": "GPS and ratio search. \n\nIn 'examples' you can find different cases of requests and responses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Filter by room type",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<availabilityRQ xmlns=\"http://www.hotelbeds.com/schemas/messages\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t<stay checkIn=\"2020-06-15\" checkOut=\"2020-06-16\"/>\r\n\t<occupancies>\r\n\t\t<occupancy rooms=\"1\" adults=\"2\" children=\"0\"/>\r\n\t</occupancies>\r\n\t<hotels>\r\n\t\t<hotel>77</hotel>\r\n\t\t<hotel>168</hotel>\r\n\t\t<hotel>264</hotel>\r\n\t\t<hotel>265</hotel>\r\n\t\t<hotel>265</hotel>\r\n\t\t<hotel>297</hotel>\r\n\t\t<hotel>311</hotel>\r\n\t</hotels>\r\n\t<rooms included=\"True\">\r\n\t\t<room>DBT.ST</room>\r\n\t</rooms>\r\n</availabilityRQ>"
+            }
+        },
+        "functionality": "Availability filtering by room type."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Filter by keyword",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<availabilityRQ xmlns=\"http://www.hotelbeds.com/schemas/messages\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t<stay checkIn=\"2020-06-15\" checkOut=\"2020-06-16\"/>\r\n\t<occupancies>\r\n\t\t<occupancy rooms=\"1\" adults=\"2\" children=\"0\"/>\r\n\t</occupancies>\r\n\t<hotels>\r\n\t\t<hotel>77</hotel>\r\n\t\t<hotel>168</hotel>\r\n\t\t<hotel>264</hotel>\r\n\t\t<hotel>265</hotel>\r\n\t\t<hotel>265</hotel>\r\n\t\t<hotel>297</hotel>\r\n\t\t<hotel>311</hotel>\r\n\t</hotels>\r\n\t<keywords>\r\n\t\t<keyword>34</keyword>\r\n\t\t<keyword>38</keyword>\r\n\t\t<keyword>100</keyword>\r\n\t</keywords>\r\n</availabilityRQ>"
+            }
+        },
+        "functionality": "Availability filtering by keyword."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Filter by accommodation type",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<availabilityRQ xmlns=\"http://www.hotelbeds.com/schemas/messages\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\t\r\n\t<stay checkIn=\"2020-06-15\" checkOut=\"2020-06-16\"/>\t\r\n\t<occupancies>\r\n\t\t<occupancy rooms=\"1\" adults=\"2\" children=\"0\"/>\r\n\t</occupancies>\r\n\t<hotels>\r\n\t\t<hotel>77</hotel>\r\n\t\t<hotel>168</hotel>\r\n\t\t<hotel>264</hotel>\r\n\t\t<hotel>265</hotel>\r\n\t\t<hotel>265</hotel>\r\n\t\t<hotel>297</hotel>\r\n\t\t<hotel>311</hotel>\r\n\t</hotels>\r\n\t<accommodations>\r\n\t\t<accommodation>HOTEL</accommodation>\r\n\t\t<accommodation>HOSTEL</accommodation>\r\n\t</accommodations>\r\n</availabilityRQ>\r\n"
+            }
+        },
+        "functionality": "Availability filtering by accommodation type."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Filter by board code",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<availabilityRQ xmlns=\"http://www.hotelbeds.com/schemas/messages\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t<stay checkIn=\"2020-06-15\" checkOut=\"2020-06-16\"/>\r\n\t<occupancies>\r\n\t\t<occupancy rooms=\"1\" adults=\"2\" children=\"0\"/>\r\n\t</occupancies>\r\n\t<hotels>\r\n\t\t<hotel>77</hotel>\r\n\t\t<hotel>168</hotel>\r\n\t\t<hotel>264</hotel>\r\n\t\t<hotel>265</hotel>\r\n\t\t<hotel>265</hotel>\r\n\t\t<hotel>297</hotel>\r\n\t\t<hotel>311</hotel>\r\n\t</hotels>\r\n\t<boards included=\"true\">\r\n\t\t<board>RO</board>\r\n\t\t<board>BB</board>\r\n\t</boards>\r\n</availabilityRQ>"
+            }
+        },
+        "functionality": "Availability filtering by board code."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Filter by review rating",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<availabilityRQ xmlns=\"http://www.hotelbeds.com/schemas/messages\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t<stay checkIn=\"2020-06-15\" checkOut=\"2020-06-16\"/>\r\n\t<occupancies>\r\n\t\t<occupancy rooms=\"1\" adults=\"2\" children=\"0\"/>\r\n\t</occupancies>\r\n\t<hotels>\r\n\t\t<hotel>77</hotel>\r\n\t\t<hotel>168</hotel>\r\n\t\t<hotel>264</hotel>\r\n\t\t<hotel>265</hotel>\r\n\t\t<hotel>265</hotel>\r\n\t\t<hotel>297</hotel>\r\n\t\t<hotel>311</hotel>\r\n\t</hotels>\r\n\t<reviews>\r\n\t\t<review type=\"HOTELBEDS\" maxRate=\"5\" minRate=\"1\" minReviewCount=\"3\"/>\r\n\t</reviews>\r\n</availabilityRQ>"
+            }
+        },
+        "functionality": "Availability filtering by Hotelbeds or TripAdvisor rating. \n\nIn 'examples' you can find different cases of requests and responses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Other filters",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<availabilityRQ xmlns=\"http://www.hotelbeds.com/schemas/messages\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t<stay checkIn=\"2020-06-15\" checkOut=\"2020-06-16\"/>\r\n\t<occupancies>\r\n\t\t<occupancy rooms=\"1\" adults=\"2\" children=\"0\"/>\r\n\t</occupancies>\r\n\t<hotels>\r\n\t\t<hotel>77</hotel>\r\n\t\t<hotel>168</hotel>\r\n\t\t<hotel>264</hotel>\r\n\t\t<hotel>265</hotel>\r\n\t\t<hotel>265</hotel>\r\n\t\t<hotel>297</hotel>\r\n\t\t<hotel>311</hotel>\r\n\t</hotels>\r\n\t<filter\r\n\t\tminRate=\"100.000\"\r\n\t\tmaxRate=\"1700.000\"\r\n\t\tminCategory=\"3\"\r\n\t\tmaxCategory=\"5\"\r\n\t\tmaxRooms=\"3\"\r\n\t\tmaxRatesPerRoom=\"3\"\r\n\t\tpaymentType=\"AT_HOTEL\"\r\n\t\tpackaging=\"TRUE\"\r\n\t\thotelPackage=\"YES\"\r\n\t\tcontract=\"CG-FIT B2B\"/>\r\n</availabilityRQ>"
+            }
+        },
+        "functionality": "Other filters available in the request:\n-minRate/maxRate[price limit]\n-minCategory/maxCategory[1~5]\n-paymentType[AT_WEB/AT_HOTEL/BOTH]\n-maxRatesPerRoom[integer]\n-packaging[TRUE/FALSE]\n-hotelPackage[YES/NO/BOTH]"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Availability with inclusions",
+        "api_call": "{{endpoint}}/hotel-api/1.0/hotels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<availabilityRQ xmlns=\"http://www.hotelbeds.com/schemas/messages\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t<stay checkIn=\"2020-06-15\" checkOut=\"2020-06-16\"/>\r\n\t<occupancies>\r\n\t\t<occupancy rooms=\"1\" adults=\"2\" children=\"0\"/>\r\n\t</occupancies>\r\n\t<hotels>\r\n\t\t<hotel>39860</hotel>\r\n\t\t<hotel>1092</hotel>\r\n\t\t<hotel>100338</hotel>\r\n\t</hotels>\r\n\t<inclusions>\r\n\t\t<inclusion>RESIDENT_RATES</inclusion>\r\n\t</inclusions>\r\n</availabilityRQ>"
+            }
+        },
+        "functionality": "Hotel code list search. \n\nIn 'examples' you can find different cases of requests and responses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: CheckRate",
+        "api_call": "{{endpoint}}/hotel-api/1.0/checkrates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"rooms\": [\n        {\n            \"rateKey\": \"20190315|20190316|W|1|311|DBT.ST|PVP-SHORTSTAY|AI||1~2~0||N@08870BAE87754721542353710729AAES00000010000000007221346\"\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "Standard CheckRate operation. In 'examples' you can find different cases of requests and responses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: CheckRate",
+        "api_call": "{{endpoint}}/hotel-api/1.0/checkrates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<checkRateRQ xmlns=\"http://www.hotelbeds.com/schemas/messages\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t<rooms>\r\n\t\t<room rateKey=\"20190315|20190316|W|1|311|DBT.ST|PVP-SHORTSTAY|AI||1~2~0||N@08870BAE87754721542353710729AAES00000010000000007221346\"/>\r\n\t</rooms>\r\n</checkRateRQ>"
+            }
+        },
+        "functionality": "Standard CheckRate operation. In 'examples' you can find different cases of requests and responses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Booking",
+        "api_call": "{{endpoint}}/hotel-api/1.0/bookings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"holder\": {\n        \"name\": \"HolderFirstName\",\n        \"surname\": \"HolderLastName\"\n    },\n    \"rooms\": [\n        {\n            \"rateKey\": \"20190315|20190316|W|1|311|DBT.ST|PVP-SHORTSTAY|AI||1~2~0||N@08870BAE87754721542353710729AAES00000010000000007221346\",\n            \"paxes\": [\n                {\n                    \"roomId\": 1,\n                    \"type\": \"AD\",\n                    \"name\": \"First Adult Name\",\n                    \"surname\": \"Surname\"\n                },\n                {\n                    \"roomId\": 1,\n                    \"type\": \"AD\",\n                    \"name\": \"Second Adult Name\",\n                    \"surname\": \"Surname\"\n                }\n            ]\n        }\n    ],\n    \"clientReference\": \"IntegrationAgency\",\n    \"remark\": \"Booking remarks are to be written here.\",\n    \"tolerance\": 2\n}"
+            }
+        },
+        "functionality": "Standard Booking operation. In 'examples' you can find different cases of requests and responses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Booking (creditCard)",
+        "api_call": "{{secure_endpoint}}/hotel-api/1.0/bookings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"holder\": {\n        \"name\": \"HolderFirstName\",\n        \"surname\": \"HolderLastName\"\n    },\n    \"rooms\": [\n        {\n            \"rateKey\": \"20190615|20190616|W|1|1533|DBL.ST|CG BAR RO|RO||1~2~0||N@03DE28CA7DB742F1542362926996AAES0000008000000000725fb2\",\n            \"paxes\": [\n                {\n                    \"roomId\": 1,\n                    \"type\": \"AD\",\n                    \"name\": \"First Adult Name\",\n                    \"surname\": \"Surname\"\n                },\n                {\n                    \"roomId\": 1,\n                    \"type\": \"AD\",\n                    \"name\": \"Second Adult Name\",\n                    \"surname\": \"Surname\"\n                }\n            ]\n        }\n    ],\n    \"clientReference\": \"IntegrationAgency\",\n    \"remark\": \"Booking remarks are to be written here.\",\n    \"tolerance\": 2,\n    \"paymentData\": {\n        \"paymentCard\": {\n            \"cardHolderName\": \"CardHolderName\",\n            \"cardType\": \"VI\",\n            \"cardNumber\": \"4444333322221111\",\n            \"expiryDate\": \"0320\",\n            \"cardCVC\": \"123\"\n        },\n        \"contactData\": {\n            \"email\": \"integration@hotelbeds.com\",\n            \"phoneNumber\": \"654654654\"\n        }\n    }\n}"
+            }
+        },
+        "functionality": "AT_HOTEL booking example"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Booking (prepaymentCard)",
+        "api_call": "{{secure_endpoint}}/hotel-api/1.0/bookings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"holder\": {\n        \"name\": \"HolderFirstName\",\n        \"surname\": \"HolderLastName\"\n    },\n    \"rooms\": [\n        {\n            \"rateKey\": \"20190615|20190616|W|1|1533|DBL.ST|CG BAR RO|RO||1~2~0||N@03DE28CA7DB742F1542362926996AAES0000008000000000725fb2\",\n            \"paxes\": [\n                {\n                    \"roomId\": 1,\n                    \"type\": \"AD\",\n                    \"name\": \"First Adult Name\",\n                    \"surname\": \"Surname\"\n                },\n                {\n                    \"roomId\": 1,\n                    \"type\": \"AD\",\n                    \"name\": \"Second Adult Name\",\n                    \"surname\": \"Surname\"\n                }\n            ]\n        }\n    ],\n    \"clientReference\": \"IntegrationAgency\",\n    \"remark\": \"Booking remarks are to be written here.\",\n    \"tolerance\": 2,\n    \"paymentData\": {\n        \"paymentCard\": {\n            \"cardHolderName\": \"CardHolderName\",\n            \"cardType\": \"VI\",\n            \"cardNumber\": \"4444333322221111\",\n            \"expiryDate\": \"0320\",\n            \"cardCVC\": \"123\"\n        },\n        \"contactData\": {\n            \"email\": \"integration@hotelbeds.com\",\n            \"phoneNumber\": \"654654654\"\n        },\n        \"billingAddress\": {\n            \"address1\": \"Cambridge Science Park\",\n            \"address2\": \"Milton Road\",\n            \"city\": \"Cambridge\",\n            \"state\": \"Cambridgeshire\",\n            \"postalCode\": \"CB4 0FZ\",\n            \"countryCode\": \"GB\"\n        },\n        \"webPartner\": \"1\",\n        \"device\": {\n            \"id\": \"abcd\",\n            \"ip\": \"123.12.12.12.21\"\n        }\n    }\n}"
+            }
+        },
+        "functionality": "Standard Booking operation. In 'examples' you can find different cases of requests and responses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Booking",
+        "api_call": "{{endpoint}}/hotel-api/1.2/bookings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<bookingRQ xmlns=\"http://www.hotelbeds.com/schemas/messages\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n    <holder name=\"HolderFirstName\" surname=\"HolderLastName\"/>\n    <clientReference>IntegrationAgency</clientReference>\n    <rooms>\n        <room rateKey=\"20160615|20160620|W|52|1|DBL.ST|ID_B2B_25|RO|EM4TIES|1~1~0||N@1884739731\">\n            <paxes>\n                <pax roomId=\"1\" type=\"AD\" name=\"Adult Name\" surname=\"Surname\"/>\n            </paxes>\n        </room>\n    </rooms>\n    <remark>Booking remarks are to be written here.</remark>\n    <tolerance>2.00</tolerance>\n</bookingRQ>"
+            }
+        },
+        "functionality": "Standard Booking operation. In 'examples' you can find different cases of requests and responses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Booking (creditCard)",
+        "api_call": "{{secure_endpoint}}/hotel-api/1.0/bookings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<bookingRQ xmlns=\"http://www.hotelbeds.com/schemas/messages\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t<holder name=\"HolderFirstName\" surname=\"HolderLastName\"/>\r\n\t<clientReference>IntegrationAgency</clientReference>\r\n\t<rooms>\r\n\t\t<room rateKey=\"20171219|20171220|W|1|182125|DBT.ST|CG-TODOS1|BB||1~2~0||N@7087EB1490BC48E683817263207680D7\">\r\n\t\t\t<paxes>\r\n\t\t\t\t<pax roomId=\"1\" type=\"AD\" name=\"First Adult Name\" surname=\"Surname\"/>\r\n\t\t\t\t<pax roomId=\"1\" type=\"AD\" name=\"Second Adult Name\" surname=\"Surname\"/>\r\n\t\t\t</paxes>\r\n\t\t</room>\r\n\t</rooms>\r\n\t<remark>Booking remarks are to be written here.</remark>\r\n\t<tolerance>2.00</tolerance>\r\n\t<paymentData>\r\n\t\t<paymentCard>\r\n\t\t\t<cardHolderName>CardHolderName</cardHolderName>\r\n\t\t\t<cardType>VI</cardType>\r\n\t\t\t<cardNumber>4444333322221111</cardNumber>\r\n\t\t\t<expiryDate>0320</expiryDate>\r\n\t\t\t<cardCVC>123</cardCVC>\r\n\t\t</paymentCard>\r\n\t\t<contactData>\r\n\t\t\t<email>integration@hotelbeds.com</email>\r\n\t\t\t<phoneNumber>654654654</phoneNumber>\r\n\t\t</contactData>\r\n\t</paymentData>\r\n</bookingRQ>"
+            }
+        },
+        "functionality": "AT_HOTEL booking example"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: Booking (prepaymentCard)",
+        "api_call": "{{secure_endpoint}}/hotel-api/1.0/bookings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<bookingRQ xmlns=\"http://www.hotelbeds.com/schemas/messages\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n\t<holder name=\"HolderFirstName\" surname=\"HolderLastName\"/>\r\n\t<clientReference>IntegrationAgency</clientReference>\r\n\t<rooms>\r\n\t\t<room rateKey=\"20160615|20160620|W|52|1|DBL.ST|ID_B2B_25|RO|EM4TIES|1~1~0||N@1884739731\">\r\n\t\t\t<paxes>\r\n\t\t\t\t<pax roomId=\"1\" type=\"AD\" name=\"Adult Name\" surname=\"Surname\"/>\r\n\t\t\t</paxes>\r\n\t\t</room>\r\n\t</rooms>\r\n\t<remark>Booking remarks are to be written here.</remark>\r\n\t<tolerance>2.00</tolerance>\r\n\t<paymentData>\r\n\t\t<paymentCard>\r\n\t\t\t<cardHolderName>CardHolderName</cardHolderName>\r\n\t\t\t<cardType>VI</cardType>\r\n\t\t\t<cardNumber>4444333322221111</cardNumber>\r\n\t\t\t<expiryDate>0320</expiryDate>\r\n\t\t\t<cardCVC>123</cardCVC>\r\n\t\t</paymentCard>\r\n\t\t<contactData>\r\n\t\t\t<email>integration@hotelbeds.com</email>\r\n\t\t\t<phoneNumber>654654654</phoneNumber>\r\n\t\t</contactData>\r\n\t\t<billingAddress>\r\n\t\t\t<address1>Cambridge Science Park</address1>\r\n\t\t\t<address2>Milton Road</address2>\r\n\t\t\t<city>Cambridge</city>\r\n\t\t\t<state>Cambridgeshire</state>\r\n\t\t\t<postalCode>CB4 0FZ</postalCode>\r\n\t\t\t<countryCode>GB</countryCode>\r\n\t\t</billingAddress>\r\n\t\t<webPartner>1</webPartner>\r\n\t\t<device id=\"abcd\" ip=\"123.12.12.12.21\"/>\r\n\t</paymentData>\r\n</bookingRQ>"
+            }
+        },
+        "functionality": "Standard Booking operation. In 'examples' you can find different cases of requests and responses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: BookingDetail",
+        "api_call": "{{endpoint}}/hotel-api/1.0/bookings/{{bookingReference}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "The BookingDetail operation retuns all the information of the requested booking."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: BookingList",
+        "api_call": "{{endpoint}}/hotel-api/1.0/bookings?from=1&to=25&start={{fromDate}}&end={{toDate}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "The BookingList operation returns a list of bookings based on the search criteria."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: BookingCancellation",
+        "api_call": "{{endpoint}}/hotel-api/1.0/bookings/{{bookingReference}}?cancellationFlag=CANCELLATION",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "The BookingCancellation operation cancels a booking or simulates a booking cancellation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: BookingChange",
+        "api_call": "{{endpoint}}/hotel-api/1.0/bookings/{{bookingReference}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"mode\": \"SIMULATION\",\n    \"booking\": {\n        \"reference\": \"52-1274417\",\n        \"clientReference\": \"INTEGRATIONAGENCY\",\n        \"creationDate\": \"2017-08-31\",\n        \"status\": \"CONFIRMED\",\n        \"modificationPolicies\": {\n            \"cancellation\": true,\n            \"modification\": true\n        },\n        \"creationUser\": \"wuupfvswdqfz342cejxfv3ku\",\n        \"holder\": {\n            \"name\": \"INTEGRATIONTESTFIRSTNAME\",\n            \"surname\": \"INTEGRATIONTESTLASTNAME\"\n        },\n        \"hotel\": {\n            \"checkOut\": \"2017-09-20\",\n            \"checkIn\": \"2017-09-15\",\n            \"code\": 1,\n            \"name\": \"Villa Dorada\",\n            \"categoryCode\": \"3EST\",\n            \"categoryName\": \"3 STARS\",\n            \"destinationCode\": \"SAL\",\n            \"destinationName\": \"Salou Area / Costa Dorada\",\n            \"zoneCode\": 10,\n            \"zoneName\": \"Salou\",\n            \"latitude\": \"41.06865947991072\",\n            \"longitude\": \"1.1524744666303377\",\n            \"rooms\": [\n                {\n                    \"status\": \"CONFIRMED\",\n                    \"id\": 1,\n                    \"code\": \"DBT.ST-3\",\n                    \"name\": \"Double or Twin MONOPARENTAL 1 ADULT 2 CHILDREN\",\n                    \"paxes\": [\n                        {\n                            \"roomId\": 1,\n                            \"type\": \"AD\",\n                            \"name\": \"First Adult Name\",\n                            \"surname\": \"Surname\"\n                        },\n                        {\n                            \"roomId\": 1,\n                            \"type\": \"CH\",\n                            \"age\": 6,\n                            \"name\": \"Second Child Name\"\n                        },\n                        {\n                            \"roomId\": 1,\n                            \"type\": \"CH\",\n                            \"age\": 5,\n                            \"name\": \"First Child Name\"\n                        }\n                    ],\n                    \"rates\": [\n                        {\n                            \"rateClass\": \"NOR\",\n                            \"net\": \"302.26\",\n                            \"rateComments\": \"1x Double or Twin Estimated total amount of taxes & fees for this booking: 2.50 Euro   payable on arrival  \\r. Car park NO   . Key Collection 14:00 \u2013 00:00. Check-in hour 14:00 \u2013 00:00. . This rate is not applicable to Spain, Italy & Portugal market/country or passport holders otherwise the reservation will not be accepted or supplement fees can be charged on arrival.\",\n                            \"paymentType\": \"AT_WEB\",\n                            \"packaging\": false,\n                            \"boardCode\": \"RO\",\n                            \"boardName\": \"ROOM ONLY\",\n                            \"cancellationPolicies\": [\n                                {\n                                    \"amount\": \"141.00\",\n                                    \"from\": \"2017-09-14T23:59:00+02:00\"\n                                },\n                                {\n                                    \"amount\": \"70.50\",\n                                    \"from\": \"2017-09-12T23:59:00+02:00\"\n                                }\n                            ],\n                            \"rooms\": 1,\n                            \"adults\": 1,\n                            \"children\": 2\n                        }\n                    ]\n                }\n            ],\n            \"totalNet\": \"302.26\",\n            \"currency\": \"EUR\",\n            \"supplier\": {\n                \"name\": \"HOTELBEDS PRODUCT,S.L.U.\",\n                \"vatNumber\": \"ESB38877676\"\n            }\n        },\n        \"totalNet\": 302.26,\n        \"pendingAmount\": 302.26,\n        \"currency\": \"EUR\"\n    }\n}"
+            }
+        },
+        "functionality": "The BookingChange operation can be used to change (or simulate) different values of a booking or to partially cancel a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: BookingDetail",
+        "api_call": "{{endpoint}}/hotel-api/1.0/bookings/{{bookingReference}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "The BookingDetail operation retuns all the information of the requested booking."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: BookingList",
+        "api_call": "{{endpoint}}/hotel-api/1.0/bookings?start={{startDate}}&end={{endDate}}&from=1&to=25",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ]
+        },
+        "functionality": "The BookingList operation returns a list of bookings based on the search criteria."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: BookingCancellation",
+        "api_call": "{{endpoint}}/hotel-api/1.0/bookings/{{bookingReference}}?cancellationFlag=CANCELLATION&language=ENG",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "The BookingCancellation operation cancels a booking or simulates a booking cancellation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "BookingAPI: BookingChange",
+        "api_call": "{{endpoint}}/hotel-api/1.0/bookings/{{bookingReference}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Api-key",
+                    "value": "{{Api-key}}",
+                    "description": "API Key used in the request"
+                },
+                {
+                    "key": "X-Signature",
+                    "value": "{{X-Signature}}",
+                    "description": "SHA256 hash in Hex format from your API Key, your secret plus current timestamps in seconds"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/xml",
+                    "description": "Defines response format, posible values: application/xml, application/json"
+                },
+                {
+                    "key": "Accept-Encoding",
+                    "value": "gzip",
+                    "description": "Defines type of encoding used on the data"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/xml",
+                    "description": "Defines request format, posible values: application/xml, application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<bookingChangeRQ xmlns=\"http://www.hotelbeds.com/schemas/messages\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\r\n    <mode>SIMULATION</mode>\r\n    <booking reference=\"52-1274418\" clientReference=\"INTEGRATIONAGENCY\" creationDate=\"2017-08-31\" status=\"CONFIRMED\" creationUser=\"wuupfvswdqfz342cejxfv3ku\" totalNet=\"302.26\" pendingAmount=\"302.26\" currency=\"EUR\">\r\n        <modificationPolicies cancellation=\"true\" modification=\"true\"/>\r\n        <holder name=\"INTEGRATIONTESTFIRSTNAME\" surname=\"INTEGRATIONTESTLASTNAME\"/>\r\n        <hotel checkOut=\"2017-09-20\" checkIn=\"2017-09-15\" code=\"1\" name=\"Villa Dorada\" categoryCode=\"3EST\" categoryName=\"3 STARS\" destinationCode=\"SAL\" destinationName=\"Salou Area / Costa Dorada\" zoneCode=\"10\" zoneName=\"Salou\" latitude=\"41.06865947991072\" longitude=\"1.1524744666303377\" totalNet=\"302.26\" currency=\"EUR\">\r\n            <rooms>\r\n                <room status=\"CONFIRMED\" id=\"1\" code=\"DBT.ST-3\" name=\"Double or Twin MONOPARENTAL 1 ADULT 2 CHILDREN\">\r\n                    <paxes>\r\n                        <pax roomId=\"1\" type=\"AD\" name=\"First Adult Name\" surname=\"Surname\"/>\r\n                        <pax roomId=\"1\" type=\"CH\" age=\"6\" name=\"Second Child Name\"/>\r\n                        <pax roomId=\"1\" type=\"CH\" age=\"5\" name=\"First Child Name\"/>\r\n                    </paxes>\r\n                    <rates>\r\n                        <rate rateClass=\"NOR\" net=\"302.26\" rateComments=\"1x Double or Twin Estimated total amount of taxes &amp; fees for this booking: 2.50 Euro   payable on arrival  &#xd;. Car park NO   . Key Collection 14:00 \u2013 00:00. Check-in hour 14:00 \u2013 00:00. . This rate is not applicable to Spain, Italy &amp; Portugal market/country or passport holders otherwise the reservation will not be accepted or supplement fees can be charged on arrival.\" paymentType=\"AT_WEB\" packaging=\"false\" boardCode=\"RO\" boardName=\"ROOM ONLY\" rooms=\"1\" adults=\"1\" children=\"2\">\r\n                            <cancellationPolicies>\r\n                                <cancellationPolicy amount=\"141.00\" from=\"2017-09-14T23:59:00+02:00\"/>\r\n                                <cancellationPolicy amount=\"70.50\" from=\"2017-09-12T23:59:00+02:00\"/>\r\n                            </cancellationPolicies>\r\n                        </rate>\r\n                    </rates>\r\n                </room>\r\n            </rooms>\r\n            <supplier name=\"HOTELBEDS PRODUCT,S.L.U.\" vatNumber=\"ESB38877676\"/>\r\n        </hotel>\r\n    </booking>\r\n</bookingChangeRQ>"
+            }
+        },
+        "functionality": "The BookingChange operation can be used to change (or simulate) different values of a booking or to partially cancel a"
+    }
+]

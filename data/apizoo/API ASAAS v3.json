@@ -1,0 +1,2315 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar novo cliente",
+        "api_call": "{{domain}}/v3/customers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"name\": \"Marcelo Almeida\",\r\n  \"email\": \"marcelo.almeida@gmail.com\",\r\n  \"phone\": \"4738010919\",\r\n  \"mobilePhone\": \"4799376637\",\r\n  \"cpfCnpj\": \"24971563792\",\r\n  \"postalCode\": \"01310-000\",\r\n  \"address\": \"Av. Paulista\",\r\n  \"addressNumber\": \"150\",\r\n  \"complement\": \"Sala 201\",\r\n  \"province\": \"Centro\",\r\n  \"externalReference\": \"12987382\",\r\n  \"notificationDisabled\": false,\r\n  \"additionalEmails\": \"marcelo.almeida2@gmail.com,marcelo.almeida3@gmail.com\",\r\n  \"municipalInscription\": \"46683695908\",\r\n  \"stateInscription\": \"646681195275\",\r\n  \"observations\": \"\u00f3timo pagador, nenhum problema at\u00e9 o momento\"\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar um \u00fanico cliente",
+        "api_call": "{{domain}}/v3/customers/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar clientes",
+        "api_call": "{{domain}}/v3/customers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Atualizar cliente existente",
+        "api_call": "{{domain}}/v3/customers/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"name\": \"Marcelo Almeida\",\r\n  \"email\": \"marcelo.almeida@gmail.com\",\r\n  \"phone\": \"4738010919\",\r\n  \"mobilePhone\": \"4799376637\",\r\n  \"cpfCnpj\": \"24971563792\",\r\n  \"postalCode\": \"01310-000\",\r\n  \"address\": \"Av. Paulista\",\r\n  \"addressNumber\": \"150\",\r\n  \"complement\": \"Sala 201\",\r\n  \"province\": \"Centro\",\r\n  \"externalReference\": \"12987382\",\r\n  \"notificationDisabled\": false,\r\n  \"additionalEmails\": \"marcelo.almeida2@gmail.com,marcelo.almeida3@gmail.com\",\r\n  \"municipalInscription\": \"46683695908\",\r\n  \"stateInscription\": \"646681195275\"\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Remover cliente",
+        "api_call": "{{domain}}/v3/customers/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Restaurar cliente removido",
+        "api_call": "{{domain}}/v3/customers//restore",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar nova cobran\u00e7a",
+        "api_call": "{{domain}}/v3/payments",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"customer\": \"{CUSTOMER_ID}\",\r\n  \"billingType\": \"BOLETO\",\r\n  \"dueDate\": \"2017-06-10\",\r\n  \"value\": 100,\r\n  \"description\": \"Pedido 056984\",\r\n  \"externalReference\": \"056984\",\r\n  \"discount\": {\r\n    \"value\": 10,\r\n    \"dueDateLimitDays\": 0\r\n  },\r\n  \"fine\": {\r\n    \"value\": 1\r\n  },\r\n  \"interest\": {\r\n    \"value\": 2\r\n  },\r\n  \"postalService\": false\r\n}"
+            }
+        },
+        "functionality": "Cria uma nova cobran\u00e7a. \u00c9 poss\u00edvel escolher entre as formas de pagamento com boleto, cart\u00e3o de cr\u00e9dito, Pix ou permitir"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar cobran\u00e7a com cart\u00e3o de cr\u00e9dito",
+        "api_call": "{{domain}}/v3/payments",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"customer\": \"cus_0T1mdomVMi39\",\r\n  \"billingType\": \"CREDIT_CARD\",\r\n  \"dueDate\": \"2017-03-15\",\r\n  \"value\": 100,\r\n  \"description\": \"Pedido 056984\",\r\n  \"externalReference\": \"056984\",\r\n  \"creditCard\": {\r\n    \"holderName\": \"marcelo h almeida\",\r\n    \"number\": \"5162306219378829\",\r\n    \"expiryMonth\": \"05\",\r\n    \"expiryYear\": \"2021\",\r\n    \"ccv\": \"318\"\r\n  },\r\n  \"creditCardHolderInfo\": {\r\n    \"name\": \"Marcelo Henrique Almeida\",\r\n    \"email\": \"marcelo.almeida@gmail.com\",\r\n    \"cpfCnpj\": \"24971563792\",\r\n    \"postalCode\": \"89223-005\",\r\n    \"addressNumber\": \"277\",\r\n    \"addressComplement\": null,\r\n    \"phone\": \"4738010919\",\r\n    \"mobilePhone\": \"47998781877\"\r\n  },\r\n  \"creditCardToken\": \"76496073-536f-4835-80db-c45d00f33695\"\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar uma cobran\u00e7a parcelada",
+        "api_call": "{{domain}}/v3/payments",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"customer\": \"{CUSTOMER_ID}\",\r\n  \"billingType\": \"BOLETO\",\r\n  \"installmentCount\": 6,\r\n  \"installmentValue\": 20,\r\n  \"totalValue\": 120,\r\n  \"dueDate\": \"2017-06-10\",\r\n  \"description\": \"Pedido 056984\",\r\n  \"externalReference\": \"056984\",\r\n  \"discount\": {\r\n    \"value\": 10,\r\n    \"dueDateLimitDays\": 0\r\n  },\r\n  \"fine\": {\r\n    \"value\": 1\r\n  },\r\n  \"interest\": {\r\n    \"value\": 2\r\n  }\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar cobran\u00e7a com split",
+        "api_call": "{{domain}}/v3/payments",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"customer\": \"{CUSTOMER_ID}\",\r\n  \"billingType\": \"BOLETO\",\r\n  \"dueDate\": \"2017-06-10\",\r\n  \"value\": 100,\r\n  \"description\": \"Pedido 056984\",\r\n  \"externalReference\": \"056984\",\r\n  \"split\": [\r\n    {\r\n      \"walletId\": \"48548710-9baa-4ec1-a11f-9010193527c6\",\r\n      \"fixedValue\": 20\r\n    },\r\n    {\r\n      \"walletId\": \"0b763922-aa88-4cbe-a567-e3fe8511fa06\",\r\n      \"percentualValue\": 10\r\n    }\r\n  ]\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar uma \u00fanica cobran\u00e7a",
+        "api_call": "{{domain}}/v3/payments/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar cobran\u00e7as",
+        "api_call": "{{domain}}/v3/payments",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Atualizar cobran\u00e7a existente",
+        "api_call": "{{domain}}/v3/payments/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"billingType\": \"BOLETO\",\r\n  \"dueDate\": \"2017-06-10\",\r\n  \"value\": 100,\r\n  \"description\": \"Pedido 056984\",\r\n  \"externalReference\": \"056984\",\r\n  \"discount\": {\r\n    \"value\": 10,\r\n    \"dueDateLimitDays\": 0\r\n  },\r\n  \"fine\": {\r\n    \"value\": 1\r\n  },\r\n  \"interest\": {\r\n    \"value\": 2\r\n  },\r\n  \"postalService\": false\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Remover cobran\u00e7a",
+        "api_call": "{{domain}}/v3/payments/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Restaurar cobran\u00e7a removida",
+        "api_call": "{{domain}}/v3/payments//restore",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Estornar cobran\u00e7a",
+        "api_call": "{{domain}}/v3/payments//refund",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"value\": 5,\n    \"description\": \"Valor a mais\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Obter linha digit\u00e1vel do boleto",
+        "api_call": "https://www.asaas.com/v3/payments",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "string"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Obter QR Code PIX",
+        "api_call": "{{domain}}/v3/payments//pixQrCode",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Confirmar recebimento em dinheiro",
+        "api_call": "{{domain}}/v3/payments//receiveInCash",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Desfazer confirma\u00e7\u00e3o de recebimento em dinheiro",
+        "api_call": "{{domain}}/v3/payments//undoReceivedInCash",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar um \u00fanico parcelamento",
+        "api_call": "{{domain}}/v3/installments/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar parcelamentos",
+        "api_call": "{{domain}}/v3/installments",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar carn\u00ea de parcelamento",
+        "api_call": "{{domain}}/v3/installments//paymentBook",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Remover parcelamento",
+        "api_call": "{{domain}}/v3/installments/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Estornar parcelamento",
+        "api_call": "{{domain}}/v3/installments//refund",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar nova assinatura",
+        "api_call": "{{domain}}/v3/subscriptions",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"customer\": \"{CUSTOMER_ID}\",\r\n  \"billingType\": \"BOLETO\",\r\n  \"nextDueDate\": \"2017-05-15\",\r\n  \"value\": 19.9,\r\n  \"cycle\": \"MONTHLY\",\r\n  \"description\": \"Assinatura Plano Pr\u00f3\",\r\n  \"discount\": {\r\n    \"value\": 10,\r\n    \"dueDateLimitDays\": 0\r\n  },\r\n  \"fine\": {\r\n    \"value\": 1\r\n  },\r\n  \"interest\": {\r\n    \"value\": 2\r\n  }\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar uma \u00fanica assinatura",
+        "api_call": "{{domain}}/v3/subscriptions/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar assinaturas",
+        "api_call": "{{domain}}/v3/subscriptions",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar cobran\u00e7as de uma assinatura",
+        "api_call": "{{domain}}/v3/subscriptions//payments",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar carn\u00ea de parcelamento de assinatura",
+        "api_call": "{{domain}}/v3/subscriptions//paymentBook",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/jsonapplication/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar assinatura com cart\u00e3o de cr\u00e9dito",
+        "api_call": "{{domain}}/v3/subscriptions",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"customer\": \"{CUSTOMER_ID}\",\r\n  \"billingType\": \"CREDIT_CARD\",\r\n  \"nextDueDate\": \"2017-05-15\",\r\n  \"value\": 19.9,\r\n  \"cycle\": \"MONTHLY\",\r\n  \"description\": \"Assinatura Plano Pr\u00f3\",\r\n  \"creditCard\": {\r\n    \"holderName\": \"marcelo h almeida\",\r\n    \"number\": \"5162306219378829\",\r\n    \"expiryMonth\": \"05\",\r\n    \"expiryYear\": \"2021\",\r\n    \"ccv\": \"318\"\r\n  },\r\n  \"creditCardHolderInfo\": {\r\n    \"name\": \"Marcelo Henrique Almeida\",\r\n    \"email\": \"marcelo.almeida@gmail.com\",\r\n    \"cpfCnpj\": \"24971563792\",\r\n    \"postalCode\": \"89223-005\",\r\n    \"addressNumber\": \"277\",\r\n    \"addressComplement\": null,\r\n    \"phone\": \"4738010919\",\r\n    \"mobilePhone\": \"47998781877\"\r\n  },\r\n  \"creditCardToken\": \"a75a1d98-c52d-4a6b-a413-71e00b193c99\"\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Atualizar assinatura existente",
+        "api_call": "{{domain}}/v3/subscriptions/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"billingType\": \"BOLETO\",\r\n  \"nextDueDate\": \"2017-06-15\",\r\n  \"value\": 29.9,\r\n  \"cycle\": \"MONTHLY\",\r\n  \"description\": \"Assinatura Plano Pr\u00f3\",\r\n  \"updatePendingPayments\": true,\r\n  \"discount\": {\r\n    \"value\": 10,\r\n    \"dueDateLimitDays\": 0\r\n  },\r\n  \"fine\": {\r\n    \"value\": 1\r\n  },\r\n  \"interest\": {\r\n    \"value\": 2\r\n  }\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Remover assinatura",
+        "api_call": "{{domain}}/v3/subscriptions/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar notas fiscais de uma assinatura",
+        "api_call": "{{domain}}/v3/subscriptions//invoices",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar configura\u00e7\u00f5es para emiss\u00e3o de notas fiscais",
+        "api_call": "{{domain}}/v3/subscriptions//invoiceSettings",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"municipalServiceId\": null,\r\n  \"municipalServiceCode\": \"1.01\",\r\n  \"municipalServiceName\": \"An\u00e1lise e desenvolvimento de sistemas\",\r\n  \"deductions\": 55,\r\n  \"taxes\": {\r\n    \"retainIss\": true,\r\n    \"iss\": 1,\r\n    \"cofins\": 1,\r\n    \"csll\": 1,\r\n    \"inss\": 1,\r\n    \"ir\": 1,\r\n    \"pis\": 1\r\n  },\r\n  \"effectiveDatePeriod\": \"ON_PAYMENT_CONFIRMATION\",\r\n  \"daysBeforeDueDate\": null,\r\n  \"receivedOnly\": null,\r\n  \"observations\": \"Referente aos trabalhos de Junho\"\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Atualizar configura\u00e7\u00e3o para emiss\u00e3o de notas fiscais",
+        "api_call": "{{domain}}/v3/subscriptions//invoiceSettings",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar configura\u00e7\u00e3o para emiss\u00e3o de notas fiscais",
+        "api_call": "{{domain}}/v3/subscriptions//invoiceSettings",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Remover configura\u00e7\u00e3o para emiss\u00e3o de notas fiscais",
+        "api_call": "{{domain}}/v3/subscriptions//invoiceSettings",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar um link de pagamentos",
+        "api_call": "{{domain}}/v3/paymentLinks",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"name\": \"Venda de livros\",\r\n  \"description\": \"Qualquer livro por apenas R$: 50,00\",\r\n  \"endDate\": \"2021-02-05\",\r\n  \"value\": 50,\r\n  \"billingType\": \"UNDEFINED\",\r\n  \"chargeType\": \"DETACHED\",\r\n  \"dueDateLimitDays\": 10,\r\n  \"subscriptionCycle\": null,\r\n  \"maxInstallmentCount\": 1,\r\n  \"notificationEnabled\": true\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Atualizar um link de pagamentos",
+        "api_call": "{{domain}}/v3/paymentLinks/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"name\": \"Venda de livros digitais\",\r\n  \"description\": \"Qualquer livro por apenas R$: 20,00\",\r\n  \"endDate\": \"2022-05-05\",\r\n  \"value\": 20,\r\n  \"active\": true,\r\n  \"billingType\": \"CREDIT_CARD\",\r\n  \"chargeType\": \"INSTALLMENT\",\r\n  \"dueDateLimitDays\": 0,\r\n  \"subscriptionCycle\": null,\r\n  \"maxInstallmentCount\": 5,\r\n  \"notificationEnabled\": false\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar um \u00fanico link de pagamentos",
+        "api_call": "{{domain}}/v3/paymentLinks/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar link de pagamentos",
+        "api_call": "{{domain}}/v3/paymentLinks",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Remover um link de pagamentos",
+        "api_call": "{{domain}}/v3/paymentLinks/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Restaurar um link de pagamentos",
+        "api_call": "{{domain}}/v3/paymentLinks//restore",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Adicionar uma imagem a um link de pagamentos",
+        "api_call": "{{domain}}/v3/paymentLinks//images",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "main",
+                        "value": "true",
+                        "type": "text"
+                    },
+                    {
+                        "key": "image",
+                        "type": "file",
+                        "src": []
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar uma \u00fanica imagem de um link de pagamentos",
+        "api_call": "{{domain}}/v3/paymentLinks//images/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar imagens de um link de pagamentos",
+        "api_call": "{{domain}}/v3/paymentLinks//images",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Remover uma imagem do link de pagamentos",
+        "api_call": "{{domain}}/v3/paymentLinks//images",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Definir imagem principal do link de pagamentos",
+        "api_call": "{{domain}}/v3/paymentLinks//images//setAsMain",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Atualizar notifica\u00e7\u00e3o existente",
+        "api_call": "{{domain}}/v3/notifications/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"enabled\": true,\r\n  \"emailEnabledForProvider\": true,\r\n  \"smsEnabledForProvider\": true,\r\n  \"emailEnabledForCustomer\": true,\r\n  \"smsEnabledForCustomer\": true,\r\n  \"phoneCallEnabledForCustomer\": false,\r\n  \"scheduleOffset\": 5\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Atualizar notifica\u00e7\u00e3o existente em lote",
+        "api_call": "{{domain}}/v3/notifications/batch",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"customer\": \"{CUSTOMER_ID}\",\n    \"notifications\": [\n        {\n        \"id\": \"{NOTIFICATION_ID}\",\n        \"enabled\": true,\n        \"emailEnabledForProvider\": true,\n        \"smsEnabledForProvider\": true,\n        \"emailEnabledForCustomer\": true,\n        \"smsEnabledForCustomer\": true,\n        \"phoneCallEnabledForCustomer\": false,\n        \"whatsappEnabledForCustomer\": false\n        },\n        {\n        \"id\": \"{NOTIFICATION_ID}\",\n        \"enabled\": true,\n        \"emailEnabledForProvider\": true,\n        \"smsEnabledForProvider\": true,\n        \"emailEnabledForCustomer\": true,\n        \"smsEnabledForCustomer\": true,\n        \"phoneCallEnabledForCustomer\": false,\n        \"whatsappEnabledForCustomer\": false\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Transferir para conta banc\u00e1ria via TED",
+        "api_call": "{{domain}}/v3/transfers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "    {\r\n        \"value\": 1000.00,\r\n        \"bankAccount\": {\r\n            \"bank\": {\r\n                \"code\": \"237\"\r\n            },\r\n            \"accountName\": \"Conta do Bradesco\",\r\n            \"ownerName\": \"Marcelo Almeida\",\r\n            \"ownerBirthDate\": \"1995-04-12\",\r\n            \"cpfCnpj\": \"52233424611\",\r\n            \"agency\": \"1263\",\r\n            \"account\": \"9999991\",\r\n            \"accountDigit\": \"1\",\r\n            \"bankAccountType\": \"CONTA_CORRENTE\"\r\n        },\r\n        \"operationType\": \"TED\"\r\n    }"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Transferir para conta banc\u00e1ria via Pix manual",
+        "api_call": "{{domain}}/v3/transfers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "    {\r\n        \"value\": 1000.00,\r\n        \"bankAccount\": {\r\n            \"bank\": {\r\n                \"code\": \"237\"\r\n            },\r\n            \"accountName\": \"Conta do Bradesco\",\r\n            \"ownerName\": \"Marcelo Almeida\",\r\n            \"ownerBirthDate\": \"1995-04-12\",\r\n            \"cpfCnpj\": \"52233424611\",\r\n            \"agency\": \"1263\",\r\n            \"account\": \"9999991\",\r\n            \"accountDigit\": \"1\",\r\n            \"bankAccountType\": \"CONTA_CORRENTE\"\r\n        },\r\n        \"operationType\": \"PIX\"\r\n    }"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Transferir via Pix com Chave",
+        "api_call": "{{domain}}/v3/transfers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n   \"pixAddressKey\": \"+5547999999999\",\r\n   \"pixAddressKeyType\": \"PHONE\",\r\n   \"value\":1.0,\r\n   \"description\":\"Pix com chave\"\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Transferir para conta banc\u00e1ria via Pix manual (agendado)",
+        "api_call": "{{domain}}/v3/transfers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "    {\r\n        \"value\": 1000.00,\r\n        \"bankAccount\": {\r\n            \"bank\": {\r\n                \"code\": \"237\"\r\n            },\r\n            \"accountName\": \"Conta do Bradesco\",\r\n            \"ownerName\": \"Marcelo Almeida\",\r\n            \"ownerBirthDate\": \"1995-04-12\",\r\n            \"cpfCnpj\": \"52233424611\",\r\n            \"agency\": \"1263\",\r\n            \"account\": \"9999991\",\r\n            \"accountDigit\": \"1\",\r\n            \"bankAccountType\": \"CONTA_CORRENTE\"\r\n        },\r\n        \"operationType\": \"PIX\",\r\n        \"scheduleDate\": \"2022-04-29\"\r\n    }"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Transferir para conta ASAAS",
+        "api_call": "{{domain}}/v3/transfers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"value\": 1000,\r\n  \"walletId\": \"0021c712-d963-4d86-a59d-031e7ac51a2e\"\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar uma \u00fanica transfer\u00eancia",
+        "api_call": "{{domain}}/v3/transfers/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar transfer\u00eancias",
+        "api_call": "{{domain}}/v3/transfers",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Solicitar antecipa\u00e7\u00e3o",
+        "api_call": "{{domain}}/v3/anticipations",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "agreementSignature",
+                        "value": "Jo\u00e3o Felix",
+                        "type": "text"
+                    },
+                    {
+                        "key": "installment",
+                        "value": "null",
+                        "type": "text"
+                    },
+                    {
+                        "key": "payment",
+                        "value": "pay_626366773834",
+                        "type": "text"
+                    },
+                    {
+                        "key": "documents",
+                        "type": "file",
+                        "src": []
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Simular antecipa\u00e7\u00e3o",
+        "api_call": "{{domain}}/v3/anticipations/simulate",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"installment\": null,\r\n  \"payment\": \"pay_626366773834\"\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar uma \u00fanica antecipa\u00e7\u00e3o",
+        "api_call": "{{domain}}/v3/anticipations/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar antecipa\u00e7\u00f5es",
+        "api_call": "{{domain}}/v3/anticipations",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Concordar ou discordar com Aditivo aos Termos de Uso do ASAAS para contrata\u00e7\u00e3o do Servi\u00e7o de Antecipa\u00e7\u00e3o",
+        "api_call": "{{domain}}/v3/anticipations/agreement/sign",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"agreed\": true\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar uma negativa\u00e7\u00e3o",
+        "api_call": "{{domain}}/v3/paymentDunnings",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "payment",
+                        "value": "pay_080225913252",
+                        "type": "text"
+                    },
+                    {
+                        "key": "description",
+                        "value": "Duas mesas com 8 cadeiras solicitadas via encomenda no dia 01/05/2019",
+                        "type": "text"
+                    },
+                    {
+                        "key": "customerName",
+                        "value": "Marcelo Almeida",
+                        "type": "text"
+                    },
+                    {
+                        "key": "customerCpfCnpj",
+                        "value": "24971563792",
+                        "type": "text"
+                    },
+                    {
+                        "key": "customerPrimaryPhone",
+                        "value": "4738010919",
+                        "type": "text"
+                    },
+                    {
+                        "key": "customerSecundaryPhone",
+                        "value": "4732026941",
+                        "type": "text"
+                    },
+                    {
+                        "key": "customerPostalCode",
+                        "value": "01310-000",
+                        "type": "text"
+                    },
+                    {
+                        "key": "customerAddress",
+                        "value": "Av. Paulista",
+                        "type": "text"
+                    },
+                    {
+                        "key": "customerAddressNumber",
+                        "value": "150",
+                        "type": "text"
+                    },
+                    {
+                        "key": "customerProvince",
+                        "value": "Centro",
+                        "type": "text"
+                    },
+                    {
+                        "key": "customerComplement",
+                        "value": "Sala 201",
+                        "type": "text"
+                    },
+                    {
+                        "key": "type",
+                        "value": "CREDIT_BUREAU",
+                        "type": "text"
+                    },
+                    {
+                        "key": "documents",
+                        "type": "file",
+                        "src": []
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Simular uma negativa\u00e7\u00e3o",
+        "api_call": "{{domain}}/v3/paymentDunnings/simulate",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "\r\n{\r\n  \"payment\": \"pay_080225913252\"\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar uma \u00fanica negativa\u00e7\u00e3o",
+        "api_call": "{{domain}}/v3/paymentDunnings/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar negativa\u00e7\u00f5es",
+        "api_call": "{{domain}}/v3/paymentDunnings",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar hist\u00f3rico de eventos",
+        "api_call": "{{domain}}/v3/paymentDunnings//history",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar pagamentos recebidos",
+        "api_call": "{{domain}}/v3/paymentDunnings//partialPayments",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar cobran\u00e7as dispon\u00edveis para negativa\u00e7\u00e3o",
+        "api_call": "{{domain}}/v3/paymentDunnings/paymentsAvailableForDunning",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Reenviar documentos",
+        "api_call": "{{domain}}/v3/paymentDunnings//documents",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "documents",
+                        "type": "file",
+                        "src": []
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Cancelar negativa\u00e7\u00e3o",
+        "api_call": "{{domain}}/v3/paymentDunnings//cancel",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar um pagamento de conta",
+        "api_call": "{{domain}}/v3/bill",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"identificationField\": \"03399.77779 29900.000000 04751.101017 1 81510000002990\",\r\n  \"scheduleDate\": \"2020-03-15\",\r\n  \"description\": \"Celular 03/12\",\r\n  \"discount\": 2,\r\n  \"dueDate\": \"2020-03-30\",\r\n  \"value\": 98\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Simular um pagamento de conta",
+        "api_call": "{{domain}}/v3/bill/simulate",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"identificationField\": \"03399.77779 29900.000000 04751.101017 1 81510000002990\",\r\n  \"barCode\": \"34197830200000050001090000010231248018531000\"\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar um \u00fanico pagamento de conta",
+        "api_call": "{{domain}}/v3/bill/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar pagamentos de conta",
+        "api_call": "{{domain}}/v3/bill",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Cancelar pagamento de conta",
+        "api_call": "{{domain}}/v3/bill//cancel",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Realizar consulta",
+        "api_call": "{{domain}}/v3/creditBureauReport",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"customer\": \"cus_000000002750\",\r\n  \"cpfCnpj\": null,\r\n  \"state\": \"SC\"\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar uma consulta",
+        "api_call": "{{domain}}/v3/creditBureauReport/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar consultas",
+        "api_call": "{{domain}}/v3/creditBureauReport",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar extrato",
+        "api_call": "{{domain}}/v3/financialTransactions",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar saldo da conta",
+        "api_call": "{{domain}}/v3/finance/balance",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Estat\u00edsticas de cobran\u00e7as",
+        "api_call": "{{domain}}/v3/finance/payment/statistics",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar valores de split",
+        "api_call": "{{domain}}/v3/finance/split/statistics",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar WalletId",
+        "api_call": "{{domain}}/v3/wallets",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar dados comerciais",
+        "api_call": "{{domain}}/v3/myAccount/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Salvar personaliza\u00e7\u00e3o da fatura",
+        "api_call": "{{domain}}/v3/myAccount/paymentCheckoutConfig/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "logoBackgroundColor",
+                        "value": "#ff0000",
+                        "type": "text"
+                    },
+                    {
+                        "key": "infoBackgroundColor",
+                        "value": "#000000",
+                        "type": "text"
+                    },
+                    {
+                        "key": "fontColor",
+                        "value": "#00ff00",
+                        "type": "text"
+                    },
+                    {
+                        "key": "enabled",
+                        "value": "true",
+                        "type": "text"
+                    },
+                    {
+                        "key": "logoFile",
+                        "type": "file",
+                        "src": []
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar configura\u00e7\u00f5es de personaliza\u00e7\u00e3o",
+        "api_call": "{{domain}}/v3/myAccount/paymentCheckoutConfig/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar n\u00famero de conta no Asaas",
+        "api_call": "{{domain}}/v3/myAccount/accountNumber/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Agendar nota fiscal",
+        "api_call": "{{domain}}/v3/invoices",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"payment\": \"pay_637959110194\",\r\n  \"installment\": null,\r\n  \"serviceDescription\": \"Nota fiscal da Fatura 101940. \\nDescri\u00e7\u00e3o dos Servi\u00e7os: AN\u00c1LISE E DESENVOLVIMENTO DE SISTEMAS\",\r\n  \"observations\": \"Mensal referente aos trabalhos de Junho.\",\r\n  \"value\": 300,\r\n  \"deductions\": 0,\r\n  \"effectiveDate\": \"2018-07-03\",\r\n  \"externalReference\": null,\r\n  \"taxes\": {\r\n    \"retainIss\": false,\r\n    \"iss\": 3,\r\n    \"cofins\": 3,\r\n    \"csll\": 1,\r\n    \"inss\": 0,\r\n    \"ir\": 1.5,\r\n    \"pis\": 0.65\r\n  },\r\n  \"municipalServiceId\": null,\r\n  \"municipalServiceCode\": \"1.01\",\r\n  \"municipalServiceName\": \"An\u00e1lise e desenvolvimento de sistemas\"\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Atualizar nota fiscal",
+        "api_call": "{{domain}}/v3/invoices/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"serviceDescription\": \"Nota fiscal da Fatura 101940. \\nDescri\u00e7\u00e3o dos Servi\u00e7os: AN\u00c1LISE E DESENVOLVIMENTO DE SISTEMAS\",\r\n  \"observations\": \"Mensal referente aos trabalhos de Junho.\",\r\n  \"value\": 300,\r\n  \"deductions\": 10,\r\n  \"effectiveDate\": \"2018-07-03\",\r\n  \"externalReference\": null,\r\n  \"taxes\": {\r\n    \"retainIss\": false,\r\n    \"iss\": 3,\r\n    \"cofins\": 3,\r\n    \"csll\": 1,\r\n    \"inss\": 0,\r\n    \"ir\": 1.5,\r\n    \"pis\": 0.65\r\n  }\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar uma nota fiscal",
+        "api_call": "{{domain}}/v3/invoices/",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar notas fiscais",
+        "api_call": "{{domain}}/v3/invoices",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Emitir uma nota fiscal",
+        "api_call": "{{domain}}/v3/invoices//authorize",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Cancelar uma nota fiscal",
+        "api_call": "{{domain}}/v3/invoices//cancel",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar servi\u00e7os municipais",
+        "api_call": "{{domain}}/v3/invoices/municipalServices",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar configura\u00e7\u00f5es municipais",
+        "api_call": "{{domain}}/v3/customerFiscalInfo/municipalOptions",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar e atualizar informa\u00e7\u00f5es fiscais",
+        "api_call": "{{domain}}/v3/customerFiscalInfo",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "email",
+                        "value": "marcelo.almeida@gmail.com",
+                        "type": "text"
+                    },
+                    {
+                        "key": "municipalInscription",
+                        "value": "21779501",
+                        "type": "text"
+                    },
+                    {
+                        "key": "stateInscription",
+                        "value": "null",
+                        "type": "text"
+                    },
+                    {
+                        "key": "simplesNacional",
+                        "value": "false",
+                        "type": "text"
+                    },
+                    {
+                        "key": "culturalProjectsPromoter",
+                        "value": "false",
+                        "type": "text"
+                    },
+                    {
+                        "key": "cnae",
+                        "value": "6209100",
+                        "type": "text"
+                    },
+                    {
+                        "key": "specialTaxRegime",
+                        "value": "1",
+                        "type": "text"
+                    },
+                    {
+                        "key": "serviceListItem",
+                        "value": "null",
+                        "type": "text"
+                    },
+                    {
+                        "key": "rpsSerie",
+                        "value": "1",
+                        "type": "text"
+                    },
+                    {
+                        "key": "rpsNumber",
+                        "value": "1",
+                        "type": "text"
+                    },
+                    {
+                        "key": "loteNumber",
+                        "value": "1",
+                        "type": "text"
+                    },
+                    {
+                        "key": "username",
+                        "value": "usuario",
+                        "type": "text"
+                    },
+                    {
+                        "key": "password",
+                        "value": "secret",
+                        "type": "text"
+                    },
+                    {
+                        "key": "accessToken",
+                        "value": "abcde12345",
+                        "type": "text"
+                    },
+                    {
+                        "key": "certificateFile",
+                        "type": "file",
+                        "src": []
+                    },
+                    {
+                        "key": "certificatePassword",
+                        "value": "secret",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar informa\u00e7\u00f5es fiscais",
+        "api_call": "{{domain}}/v3/customerFiscalInfo",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar uma \u00fanica transa\u00e7\u00e3o",
+        "api_call": "{{domain}}/v3/pix/transactions?id=",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar transa\u00e7\u00f5es",
+        "api_call": "{{domain}}/v3/pix/transactions",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Cancelar uma transa\u00e7\u00e3o agendada",
+        "api_call": "{{domain}}/v3/pix/transactions//cancel",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar um QRCode est\u00e1tico",
+        "api_call": "{{domain}}/v3/pix/qrCodes/static",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"addressKey\": \"marcelo.almeida@gmail.com\",\n    \"description\": \"Churrasco\",\n    \"value\": 50.00\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Decodificar um QRCode",
+        "api_call": "{{domain}}/v3/pix/qrCodes/decode",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"payload\": \"00020126360014br.gov.bcb.pix0114+554799878454552040000530398654040.005802BR5905ASAAS6009S\u00e3o Paulo61088922730162290525ASAAS-1-2SHTS88FSECYMCUQX6304CA10\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Pagar um QRCode",
+        "api_call": "{{domain}}/v3/pix/qrCodes/pay",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"qrCode\": {\n        \"payload\": \"00020126360014br.gov.bcb.pix0114+554799878454552040000530398654040.005802BR5905ASAAS6009S\u00e3o Paulo61088922730162290525ASAAS-1-2SHTS88FSECYMCUQX6304CA10\"\n    },\n    \"value\": 100.00,\n    \"description\": \"Suco de laranja\",\n    \"scheduleDate\": \"2022-03-15 00:00:00\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar uma chave",
+        "api_call": "{{domain}}/v3/pix/addressKeys",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"type\": \"EVP\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar chaves",
+        "api_call": "{{domain}}/v3/pix/addressKeys",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar uma \u00fanica chave",
+        "api_call": "{{domain}}/v3/pix/addressKeys/{{id_da_chave_pix}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Remover chave",
+        "api_call": "{{domain}}/v3/pix/addressKeys/{{id_da_chave_pix}}",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar ou atualizar configura\u00e7\u00f5es para Webhook",
+        "api_call": "{{domain}}/v3/webhook",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"url\": \"https://www.exemplo.com/webhook/asaas\",\r\n  \"email\": \"marcelo.almeida@gmail.com\",\r\n  \"interrupted\": false,\r\n  \"enabled\": true,\r\n  \"apiVersion\": 3,\r\n  \"authToken\": \"5tLxsL6uoN\"\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar configura\u00e7\u00f5es de webhook",
+        "api_call": "{{domain}}/v3/webhook",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar ou atualizar configura\u00e7\u00f5es para webhook",
+        "api_call": "{{domain}}/v3/webhook/invoice",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"url\": \"https://www.exemplo.com/webhook/asaas\",\r\n  \"email\": \"marcelo.almeida@gmail.com\",\r\n  \"interrupted\": false,\r\n  \"enabled\": true,\r\n  \"apiVersion\": 3,\r\n  \"authToken\": \"5tLxsL6uoN\"\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar configura\u00e7\u00e3o de webhook",
+        "api_call": "{{domain}}/v3/webhook/invoice",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar ou atualizar configura\u00e7\u00f5es para webhook",
+        "api_call": "{{domain}}/v3/webhook/mobilePhoneRecharge",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n  \"url\": \"https://www.exemplo.com/webhook/asaas\",\r\n  \"email\": \"marcelo.almeida@gmail.com\",\r\n  \"interrupted\": false,\r\n  \"enabled\": true,\r\n  \"apiVersion\": 3,\r\n  \"authToken\": \"5tLxsL6uoN\"\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Recuperar configura\u00e7\u00e3o de webhook",
+        "api_call": "{{domain}}/v3/webhook/mobilePhoneRecharge",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Criar conta",
+        "api_call": "{{domain}}/v3/accounts",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n    \"name\": \"Conta criada via API\",\r\n    \"email\": \"emaildaempresa@gmail.com\",\r\n    \"cpfCnpj\": \"66625514000140\",\r\n    \"companyType\": \"MEI\",\r\n    \"birthDate\": null,\r\n    \"phone\": \"11 32300606\",\r\n    \"mobilePhone\": \"11 988451155\",\r\n    \"address\": \"Av. Rolf Wiest\",\r\n    \"addressNumber\": \"277\",\r\n    \"complement\": \"Sala 502\",\r\n    \"province\": \"Bom Retiro\",\r\n    \"postalCode\": \"89223005\"\r\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "API ASAAS v3: Listar contas",
+        "api_call": "{{domain}}/v3/accounts",
+        "api_version": "v3",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
