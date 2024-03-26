@@ -5,8 +5,7 @@ _site/
 **/node_modules
 
 # add-api ignores
-add-api/server/.env
-add-api/server/.venv
+add-api/addapi-server
 
 
 
