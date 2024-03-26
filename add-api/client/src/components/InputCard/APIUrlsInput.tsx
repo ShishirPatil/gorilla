@@ -1,5 +1,5 @@
 // APIUrlsInput.tsx
-import React from 'react';
+import React, { useCallback } from 'react';
 
 interface APIUrlsInputProps {
   urls: string[];
@@ -7,13 +7,15 @@ interface APIUrlsInputProps {
 }
 
 const APIUrlsInput: React.FC<APIUrlsInputProps> = ({ urls, setUrls }) => {
-  const handleAddMoreUrls = () => {
+  // Function to add an empty URL field to the list
+  const handleAddMoreUrls = useCallback(() => {
     setUrls((prevUrls) => [...prevUrls, '']);
-  };
+  }, [setUrls]);
 
-  const handleDeleteUrl = (index: number) => {
+  // Function to remove a URL field from the list
+  const handleDeleteUrl = useCallback((index: number) => {
     setUrls((prevUrls) => prevUrls.filter((_, idx) => idx !== index));
-  };
+  }, [setUrls]);
 
   return (
     <div className="form-group">
@@ -28,32 +30,32 @@ const APIUrlsInput: React.FC<APIUrlsInputProps> = ({ urls, setUrls }) => {
             onChange={(e) => {
               const newUrls = [...urls];
               newUrls[index] = e.target.value;
-              setUrls(newUrls);
+              setUrls(newUrls); // Updates the URL at the specific index with user input
             }}
             placeholder={`API URL ${index + 1}`}
             aria-label={`API URL ${index + 1}`}
           />
-          {index > 0 && (
-            <div className="input-group-append">
-              <button
-                className="btn btn-danger"
-                type="button"
-                onClick={() => handleDeleteUrl(index)}
-                aria-label="Delete URL">
-                &times;
-              </button>
-            </div>
-          )}
+          <div className="input-group-append">
+            {
+              index > 0 ? (  // Only show delete button if it's not the first URL field
+                <button
+                  className="btn btn-danger"
+                  type="button"
+                  onClick={() => handleDeleteUrl(index)}
+                  aria-label="Delete URL">
+                  &times;
+                </button>
+              ) :
+                <button
+                  className="btn btn-info"
+                  type="button"
+                  onClick={handleAddMoreUrls} // Button to add more URL fields
+                  aria-label="Add more URLs"
+                >+</button>
+            }
+          </div>
         </div>
       ))}
-      <button
-        className="btn btn-info mb-2"
-        type="button"
-        onClick={handleAddMoreUrls}
-        aria-label="Add more URLs"
-      >
-        +
-      </button>
     </div>
   );
 };
