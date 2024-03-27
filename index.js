@@ -7,29 +7,27 @@ EXAMPLES = [
 PROMPTS = [
     "I'm planning a camping trip and I need to know the weather forecast. Can you fetch me the weather data for the campsite located at latitude 35.68 and longitude -121.34 for the next 10 days including daily temperature and precipitation forecasts? Also, I prefer the temperature 2 minute max in Fahrenheit and sum of precipitation in inches.",
     "Can you provide the address for latitude 37.4224764 and longitude -122.0842499 using the Geocoding API?",
-    "I'm planning a series of long weekend getaways for the upcoming year and I need to know when they'll occur in my country. Could you fetch me the list of long weekends for Canada in the year 2023? I'd like to integrate this information into my holiday planning app."
-]
+    "I'm planning a series of long weekend getaways for the upcoming year and I need to know when they'll occur in my country. Could you fetch me the list of long weekends for Canada in the year 2023? I'd like to integrate this information into my holiday planning app.",
+];
 
-
-
-const csvFilePath = './data.csv';
+const csvFilePath = "./data.csv";
 
 fetch(csvFilePath)
-    .then(response => response.text())
-    .then(csvText => {
+    .then((response) => response.text())
+    .then((csvText) => {
         const data = parseCSV(csvText);
         addToTable(data);
         generateChart(data);
     })
-    .catch(error => console.error(error));
+    .catch((error) => console.error(error));
 
 function parseCSV(text) {
-    result = text.split('\r');
+    result = text.split("\r");
     // Skip the first row of the CSV (headers)
     for (let i = 1; i < result.length; i += 1) {
-        result[i] = result[i].split(',');
+        result[i] = result[i].split(",");
         result[i] = result[i].map((value) => {
-            if (value.endsWith('%')) {
+            if (value.endsWith("%")) {
                 return parseFloat(value.slice(0, -1));
             }
             return value;
@@ -40,17 +38,19 @@ function parseCSV(text) {
 }
 
 function addToTable(dataArray) {
-    const tbody = document.getElementById('leaderboard-table').getElementsByTagName('tbody')[0];
+    const tbody = document
+        .getElementById("leaderboard-table")
+        .getElementsByTagName("tbody")[0];
     dataArray.forEach((row, index) => {
         // Assuming the first row of the CSV is headers and skipping it
         if (index > 0) {
-            const tr = document.createElement('tr');
+            const tr = document.createElement("tr");
 
             for (let cellIndex = 0; cellIndex < row.length; cellIndex += 1) {
                 let cell = row[cellIndex];
-                const td = document.createElement('td');
+                const td = document.createElement("td");
                 if (cellIndex === 2) {
-                    const a = document.createElement('a');
+                    const a = document.createElement("a");
                     a.href = row[3];
                     cellIndex += 1;
                     a.textContent = cell;
@@ -59,163 +59,230 @@ function addToTable(dataArray) {
                     td.textContent = cell;
                 }
 
-                if (cellIndex >= 6 && cellIndex <= 8) { // summary-row class for specific columns
-                    td.className = 'summary-row';
-                } else if (cellIndex >= 9) { // detail-row class for specific columns
-                    td.className = 'detail-row';
+                if (cellIndex >= 6 && cellIndex <= 8) {
+                    // summary-row class for specific columns
+                    td.className = "summary-row";
+                } else if (cellIndex >= 9) {
+                    // detail-row class for specific columns
+                    td.className = "detail-row";
                 }
 
                 tr.appendChild(td);
-            };
+            }
 
             tbody.appendChild(tr);
         }
     });
 }
 
-
 function populateInput(index) {
-    document.getElementById('input-text').value = PROMPTS[index];
-    document.getElementById('input-function').value = JSON.stringify(EXAMPLES[index], null, 2);
+    document.getElementById("input-text").value = PROMPTS[index];
+    document.getElementById("input-function").value = JSON.stringify(
+        EXAMPLES[index],
+        null,
+        2
+    );
 }
 
+document.getElementById("example-btn-1").addEventListener("click", function () {
+    populateInput(0);
+});
+document.getElementById("example-btn-2").addEventListener("click", function () {
+    populateInput(1);
+});
+document.getElementById("example-btn-3").addEventListener("click", function () {
+    populateInput(2);
+});
 
-document.getElementById('example-btn-1').addEventListener('click', function () { populateInput(0) });
-document.getElementById('example-btn-2').addEventListener('click', function () { populateInput(1) });
-document.getElementById('example-btn-3').addEventListener('click', function () { populateInput(2) });
+document
+    .getElementById("submit-btn")
+    .addEventListener("click", async function () {
+        var inputText = document.getElementById("input-text").value;
+        var inputFunction = document.getElementById("input-function").value; // Assuming you have an input field with this id for the function
+        var temperatureValue = document.getElementById("temperatureSlider").value;
+        var model = document.getElementById("model-dropdown").value;
 
-
-document.getElementById('submit-btn').addEventListener('click', async function () {
-    var inputText = document.getElementById('input-text').value;
-    var inputFunction = document.getElementById('input-function').value; // Assuming you have an input field with this id for the function
-    var temperatureValue = document.getElementById('temperatureSlider').value;
-    var model = document.getElementById("model-dropdown").value;
-
-    if (inputText === "" || inputFunction === "") {
-        alert("Please provide input and function definition.")
-        return;
-    }
-
-    document.getElementById('code-output').innerText = 'Loading Model Response...';
-    document.getElementById('json-output').innerText = 'Loading Model Response...';
-
-    const requestData = {
-        model: model,
-        messages: [{ role: 'user', content: inputText }],
-        functions: [inputFunction],
-        temperature: parseFloat(temperatureValue),
-    };
-
-    const response = await fetch('https://luigi.millennium.berkeley.edu:443/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'EMPTY',
-        },
-        body: JSON.stringify(requestData)
-    })
-
-    if (!response.ok) {
-        document.getElementById('code-output').innerText = 'Error: ' + response.status;
-        return;
-    }
-
-    const jsonResponse = await response.json();
-
-    if (model === "gorilla-openfunctions-v2") {
-        directCode = jsonResponse.choices[0].message.content;
-        jsonCode = jsonResponse.choices[0].message.function_call;
-        document.getElementById('code-output').innerText = directCode;
-        if (jsonCode) {
-            jsonCode = JSON.stringify(jsonCode, null, 2); // Pretty print the JSON
-            document.getElementById('json-output').innerText = jsonCode;
-        } else {
-            document.getElementById('json-output').innerText = 'Error parsing JSON output.';
+        if (inputText === "" || inputFunction === "") {
+            alert("Please provide input and function definition.");
+            return;
         }
-    } else {
-        jsonCode = jsonResponse.choices[0].message.function_call;
-        jsonCode = JSON.stringify(jsonResponse, null, 2); // Pretty print the JSON
-        document.getElementById('json-output').innerText = jsonCode;
-        document.getElementById('code-output').innerText = 'Model does not support direct code output.';
-    }
 
-    // const executeButton = document.getElementById('exec-btn');
-    // executeButton.style.display = 'block'; // Ensure the button is visible after receiving a response
-    // executeButton.addEventListener('click', function () {
-    //     window.open("https://star-history.com/#ShishirPatil/gorilla&gorilla-llm/gorilla-cli")
-    // });
-    document.getElementById('thumbs-up-btn').style.display = 'block';
-    document.getElementById('thumbs-down-btn').style.display = 'block';
-    document.getElementById('report-issue-btn').style.display = 'block';
-});
+        document.getElementById("code-output").innerText =
+            "Loading Model Response...";
+        document.getElementById("json-output").innerText =
+            "Loading Model Response...";
 
+        const requestData = {
+            model: model,
+            messages: [{ role: "user", content: inputText }],
+            functions: [inputFunction],
+            temperature: parseFloat(temperatureValue),
+        };
 
-document.getElementById('report-issue-btn').addEventListener('click', function () {
-    var inputText = document.getElementById('input-text').value;
-    var funcDef = document.getElementById('input-function').value;
-    var temperatureValue = document.getElementById('temperatureSlider').value;
-    var model = document.getElementById("model-dropdown").value;
-    var codeOutputText = document.getElementById('code-output').innerText;
-    var jsonOutputText = document.getElementById('json-output').innerText;
-    if (inputText === "" || funcDef === "") {
-        alert("Please provide input and function definition to send feedback.")
-        return;
-    }
-    var issueTitle = "[bug] OpenFunctions-v2: "
-    var issueBody = `**Issue Description**%0A%0APrompt: ${inputText}%0A%0AModel: ${model}%0A%0ATemperature: ${temperatureValue}%0A%0AOutput (or Error if request failed): %0A%0A ${codeOutputText} %0A%0A ${jsonOutputText}%0A%0A**Additional Information**\n`;
-    window.open(`https://github.com/ShishirPatil/gorilla/issues/new?assignees=&labels=hosted-openfunctions-v2&projects=&template=hosted-openfunctions-v2.md&title=${issueTitle}&body=${issueBody}`, '_blank');
-});
+        const response = await fetch(
+            "https://luigi.millennium.berkeley.edu:443/v1/chat/completions",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: "EMPTY",
+                },
+                body: JSON.stringify(requestData),
+            }
+        );
 
+        if (!response.ok) {
+            document.getElementById("code-output").innerText =
+                "Error: " + response.status;
+            return;
+        }
 
+        const jsonResponse = await response.json();
 
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxdAKyEA36HA_p0k3KwMzMigxgFCZ1XegRBPfjgxlNaOK2CsOnP9hrEV_6V1ARCAJw3vw/exec'
-const form = document.forms['submit-to-google-sheet']
-const msg = document.getElementById("msg")
-form.addEventListener('submit', e => {
-    e.preventDefault()  // Prevents default refresh by the browser
-    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-        .then(response => {
-            console.log('Success!', response);
-            msg.innerHTML = "<span style='color: black;'>Message Sent Successfully!</span>";
+        if (model === "gorilla-openfunctions-v2") {
+            directCode = jsonResponse.choices[0].message.content;
+            jsonCode = jsonResponse.choices[0].message.function_call;
+            document.getElementById("code-output").innerText = directCode;
+            if (jsonCode) {
+                jsonCode = JSON.stringify(jsonCode, null, 2); // Pretty print the JSON
+                document.getElementById("json-output").innerText = jsonCode;
+            } else {
+                document.getElementById("json-output").innerText =
+                    "Error parsing JSON output.";
+            }
+        } else {
+            jsonCode = jsonResponse.choices[0].message.function_call;
+            jsonCode = JSON.stringify(jsonResponse, null, 2); // Pretty print the JSON
+            document.getElementById("json-output").innerText = jsonCode;
+            document.getElementById("code-output").innerText =
+                "Model does not support direct code output.";
+        }
+
+        // const executeButton = document.getElementById('exec-btn');
+        // executeButton.style.display = 'block'; // Ensure the button is visible after receiving a response
+        // executeButton.addEventListener('click', function () {
+        //     window.open("https://star-history.com/#ShishirPatil/gorilla&gorilla-llm/gorilla-cli")
+        // });
+        document.getElementById("thumbs-up-btn").style.display = "block";
+        document.getElementById("thumbs-down-btn").style.display = "block";
+        document.getElementById("report-issue-btn").style.display = "block";
+    });
+
+document
+    .getElementById("report-issue-btn")
+    .addEventListener("click", function () {
+        var inputText = document.getElementById("input-text").value;
+        var funcDef = document.getElementById("input-function").value;
+        var temperatureValue = document.getElementById("temperatureSlider").value;
+        var model = document.getElementById("model-dropdown").value;
+        var codeOutputText = document.getElementById("code-output").innerText;
+        var jsonOutputText = document.getElementById("json-output").innerText;
+        if (inputText === "" || funcDef === "") {
+            alert("Please provide input and function definition to send feedback.");
+            return;
+        }
+        var issueTitle = "[bug] OpenFunctions-v2: ";
+        var issueBody = `**Issue Description**%0A%0APrompt: ${inputText}%0A%0AModel: ${model}%0A%0ATemperature: ${temperatureValue}%0A%0AOutput (or Error if request failed): %0A%0A ${codeOutputText} %0A%0A ${jsonOutputText}%0A%0A**Additional Information**\n`;
+        window.open(
+            `https://github.com/ShishirPatil/gorilla/issues/new?assignees=&labels=hosted-openfunctions-v2&projects=&template=hosted-openfunctions-v2.md&title=${issueTitle}&body=${issueBody}`,
+            "_blank"
+        );
+    });
+
+const scriptURL =
+    "https://script.google.com/macros/s/AKfycbxdAKyEA36HA_p0k3KwMzMigxgFCZ1XegRBPfjgxlNaOK2CsOnP9hrEV_6V1ARCAJw3vw/exec";
+const form = document.forms["submit-to-google-sheet"];
+const msg = document.getElementById("msg");
+form.addEventListener("submit", (e) => {
+    e.preventDefault(); // Prevents default refresh by the browser
+    fetch(scriptURL, { method: "POST", body: new FormData(form) })
+        .then((response) => {
+            console.log("Success!", response);
+            msg.innerHTML =
+                "<span style='color: black;'>Message Sent Successfully!</span>";
             setTimeout(function () {
-                msg.innerHTML = ""
-            }, 5000)
+                msg.innerHTML = "";
+            }, 5000);
             // form.reset()
         })
-        .catch(error => console.error('Error!', error.message))
-})
+        .catch((error) => console.error("Error!", error.message));
+});
 
-
-
-const shown_model_list = ['GPT-4-0125-Preview (FC)', 'Gorilla-OpenFunctions-v2 (FC)']
-const color = ['rgb(54, 162, 235)', 'rgb(255, 165, 0)', 'rgb(65, 105, 225)', 'rgb(153, 102, 255)', 'rgb(75, 192, 192)', 'rgb(255, 206, 86)', 'rgb(128, 0, 0)', 'rgb(255, 159, 64)', 'rgb(85, 207, 47)', 'rgb(185, 157, 47)', 'rgb(163, 73, 164)', 'rgb(255, 105, 180)', 'rgb(0, 0, 255)', 'rgb(60, 179, 113)', 'rgb(255, 215, 0)', 'rgb(218, 112, 214)', 'rgb(85, 157, 147)', 'rgb(255, 99, 132)', 'rgb(0, 255, 255)', 'rgb(64, 224, 208)', 'rgb(85, 107, 47)', 'rgb(192, 0, 0)', 'rgb(0, 128, 128)', 'rgb(255, 0, 255)']
-
+const shown_model_list = [
+    "GPT-4-0125-Preview (FC)",
+    "Gorilla-OpenFunctions-v2 (FC)",
+];
+const color = [
+    "rgb(54, 162, 235)",
+    "rgb(255, 165, 0)",
+    "rgb(65, 105, 225)",
+    "rgb(153, 102, 255)",
+    "rgb(75, 192, 192)",
+    "rgb(255, 206, 86)",
+    "rgb(128, 0, 0)",
+    "rgb(255, 159, 64)",
+    "rgb(85, 207, 47)",
+    "rgb(185, 157, 47)",
+    "rgb(163, 73, 164)",
+    "rgb(255, 105, 180)",
+    "rgb(0, 0, 255)",
+    "rgb(60, 179, 113)",
+    "rgb(255, 215, 0)",
+    "rgb(218, 112, 214)",
+    "rgb(85, 157, 147)",
+    "rgb(255, 99, 132)",
+    "rgb(0, 255, 255)",
+    "rgb(64, 224, 208)",
+    "rgb(85, 107, 47)",
+    "rgb(192, 0, 0)",
+    "rgb(0, 128, 128)",
+    "rgb(255, 0, 255)",
+];
 
 function convertRGBtoRGBA(rgbString) {
     const rgbValues = rgbString.match(/\d+/g);
-    return `rgba(${rgbValues.join(', ')}, 0.1)`;
+    return `rgba(${rgbValues.join(", ")}, 0.1)`;
 }
 
-
 function generateChart(csvData) {
-    const ctx = document.getElementById('myChart');
+    const ctx = document.getElementById("myChart");
 
     var dataset = [];
     for (let i = 1; i < csvData.length; i += 1) {
         var row = csvData[i];
         var model_name = row[2];
-        console.log([csvData[i][17], csvData[i][9], csvData[i][10], csvData[i][11], csvData[i][12], csvData[i][13], csvData[i][14], csvData[i][15], csvData[i][16]]);
+        console.log([
+            csvData[i][17],
+            csvData[i][9],
+            csvData[i][10],
+            csvData[i][11],
+            csvData[i][12],
+            csvData[i][13],
+            csvData[i][14],
+            csvData[i][15],
+            csvData[i][16],
+        ]);
         var dataPoint = {
             label: model_name,
-            data: [csvData[i][17], csvData[i][9], csvData[i][10], csvData[i][11], csvData[i][12], csvData[i][13], csvData[i][14], csvData[i][15], csvData[i][16]],
+            data: [
+                csvData[i][17],
+                csvData[i][9],
+                csvData[i][10],
+                csvData[i][11],
+                csvData[i][12],
+                csvData[i][13],
+                csvData[i][14],
+                csvData[i][15],
+                csvData[i][16],
+            ],
             fill: true,
             backgroundColor: convertRGBtoRGBA(color[i - 1]),
             borderColor: color[i - 1],
             pointBackgroundColor: color[i - 1],
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: color[i - 1],
-            hidden: true
+            hidden: true,
         };
         if (shown_model_list.includes(model_name)) {
             dataPoint.hidden = false;
@@ -225,33 +292,31 @@ function generateChart(csvData) {
 
     const data = {
         labels: [
-            'Relevance Detection',
-            'Simple (AST)',
-            'Multiple (AST)',
-            'Parallel (AST)',
-            'Parallel Multiple (AST)',
-            'Simple (Exec)',
-            'Multiple (Exec)',
-            'Parallel (Exec)',
-            'Parallel Multiple (Exec)'
+            "Relevance Detection",
+            "Simple (AST)",
+            "Multiple (AST)",
+            "Parallel (AST)",
+            "Parallel Multiple (AST)",
+            "Simple (Exec)",
+            "Multiple (Exec)",
+            "Parallel (Exec)",
+            "Parallel Multiple (Exec)",
         ],
-        datasets: dataset
+        datasets: dataset,
     };
 
     new Chart(ctx, {
-        type: 'radar',
+        type: "radar",
         data: data,
         options: {
             elements: {
                 line: {
-                    borderWidth: 3
-                }
-            }
-        }
+                    borderWidth: 3,
+                },
+            },
+        },
     });
 }
-
-
 
 // Note: If we have too many models, we can use the following code to add a plugin to automatically color the radar chart, but the color quality is not as good as the current one.
 
@@ -289,77 +354,80 @@ function generateChart(csvData) {
 var expand = false;
 function toggleExpand() {
     // Select all detail-row and detail-header elements
-    var elements = document.querySelectorAll('.summary-row, .summary-small-header');
+    var elements = document.querySelectorAll(
+        ".summary-row, .summary-small-header"
+    );
 
     // Toggle the visibility of each element
     elements.forEach(function (element) {
         if (expand) {
             // Apply the appropriate display style based on the element's tag
-            if (element.tagName === 'TR') {
-                element.style.display = 'table-row';
-            } else if (element.tagName === 'TD' || element.tagName === 'TH') {
-                element.style.display = 'table-cell';
+            if (element.tagName === "TR") {
+                element.style.display = "table-row";
+            } else if (element.tagName === "TD" || element.tagName === "TH") {
+                element.style.display = "table-cell";
             }
         } else {
-            element.style.display = 'none'; // Hide element
+            element.style.display = "none"; // Hide element
         }
     });
 
-
     // Select all detail-row and detail-header elements
-    var elements = document.querySelectorAll('.detail-row, .detail-header, .detail-small-header');
+    var elements = document.querySelectorAll(
+        ".detail-row, .detail-header, .detail-small-header"
+    );
 
     // Toggle the visibility of each element
     elements.forEach(function (element) {
         if (!expand) {
             // Apply the appropriate display style based on the element's tag
-            if (element.tagName === 'TR') {
-                element.style.display = 'table-row';
-            } else if (element.tagName === 'TD' || element.tagName === 'TH') {
-                element.style.display = 'table-cell';
+            if (element.tagName === "TR") {
+                element.style.display = "table-row";
+            } else if (element.tagName === "TD" || element.tagName === "TH") {
+                element.style.display = "table-cell";
             }
         } else {
-            element.style.display = 'none'; // Hide element
+            element.style.display = "none"; // Hide element
         }
     });
 
     expand = !expand;
 }
 
-
-
 function sendFeedback(vote) {
-    fetch('https://us-west-2.aws.realm.mongodb.com/api/client/v2.0/app/data-onwzq/auth/providers/local-userpass/login', {
-        method: 'POST', // Specifies the request method
-        headers: {
-            'Content-Type': 'application/json', // Sets header to indicate the media type of the resource
-        },
-        body: JSON.stringify({
-            username: "website",
-            password: "kl4hL0ZuQqjYOoSl"
-        }) // Body of the request
-    })
-        .then(response => response.json()) // Parses the JSON response
-        .then(data => {
-
-
-            const url = 'https://us-west-2.aws.data.mongodb-api.com/app/data-onwzq/endpoint/data/v1/action/insertOne';
+    fetch(
+        "https://us-west-2.aws.realm.mongodb.com/api/client/v2.0/app/data-onwzq/auth/providers/local-userpass/login",
+        {
+            method: "POST", // Specifies the request method
+            headers: {
+                "Content-Type": "application/json", // Sets header to indicate the media type of the resource
+            },
+            body: JSON.stringify({
+                username: "website",
+                password: "kl4hL0ZuQqjYOoSl",
+            }), // Body of the request
+        }
+    )
+        .then((response) => response.json()) // Parses the JSON response
+        .then((data) => {
+            const url =
+                "https://us-west-2.aws.data.mongodb-api.com/app/data-onwzq/endpoint/data/v1/action/insertOne";
             const accessToken = data.access_token;
 
             const headers = {
-                'Content-Type': 'application/json',
-                'Access-Control-Request-Headers': '*',
-                'Authorization': `Bearer ${accessToken}`
+                "Content-Type": "application/json",
+                "Access-Control-Request-Headers": "*",
+                Authorization: `Bearer ${accessToken}`,
             };
-            var inputText = document.getElementById('input-text').value;
-            var funcDef = document.getElementById('input-function').value;
-            var temperatureValue = document.getElementById('temperatureSlider').value;
+            var inputText = document.getElementById("input-text").value;
+            var funcDef = document.getElementById("input-function").value;
+            var temperatureValue = document.getElementById("temperatureSlider").value;
             var model = document.getElementById("model-dropdown").value;
-            var codeOutputText = document.getElementById('code-output').innerText;
-            var jsonOutputText = document.getElementById('json-output').innerText;
+            var codeOutputText = document.getElementById("code-output").innerText;
+            var jsonOutputText = document.getElementById("json-output").innerText;
 
             if (inputText === "" || funcDef === "") {
-                alert("Please provide input and function definition to send feedback.")
+                alert("Please provide input and function definition to send feedback.");
                 return;
             }
 
@@ -375,21 +443,20 @@ function sendFeedback(vote) {
                     model: model,
                     codeOutput: codeOutputText,
                     jsonOutput: jsonOutputText,
-                    result: vote
-                }
+                    result: vote,
+                },
             };
 
             fetch(url, {
-                method: 'POST',
+                method: "POST",
                 headers: headers,
-                body: JSON.stringify(body)
+                body: JSON.stringify(body),
             })
-                .then(response => response.json())
-                .then(data => alert("Feedback Sent Successfully!"))
-                .catch(error => console.error('Error:', error));
+                .then((response) => response.json())
+                .then((data) => alert("Feedback Sent Successfully!"))
+                .catch((error) => console.error("Error:", error));
         })
-        .catch(error => console.error('Error:', error)); // Catches and logs any errors
-
+        .catch((error) => console.error("Error:", error)); // Catches and logs any errors
 }
 
 function sendFeedbackNegative() {
@@ -400,10 +467,10 @@ function sendFeedbackPositive() {
     sendFeedback("positive");
 }
 
-
-
 function getCellValue(row, columnIndex) {
-    return row.children[columnIndex].innerText || row.children[columnIndex].textContent;
+    return (
+        row.children[columnIndex].innerText || row.children[columnIndex].textContent
+    );
 }
 
 function createComparer(columnIndex, isAscending) {
@@ -411,7 +478,7 @@ function createComparer(columnIndex, isAscending) {
         var valueA = getCellValue(isAscending ? rowA : rowB, columnIndex);
         var valueB = getCellValue(isAscending ? rowB : rowA, columnIndex);
 
-        if (valueA !== '' && valueB !== '' && !isNaN(valueA) && !isNaN(valueB)) {
+        if (valueA !== "" && valueB !== "" && !isNaN(valueA) && !isNaN(valueB)) {
             return valueA - valueB; // Numeric comparison
         } else {
             return valueA.toString().localeCompare(valueB); // String comparison
@@ -419,32 +486,31 @@ function createComparer(columnIndex, isAscending) {
     };
 }
 
-
-document.querySelectorAll('th:not(.detail-header)').forEach(function (header) {
-    var sortIndicator = document.createElement('span');
+document.querySelectorAll("th:not(.detail-header)").forEach(function (header) {
+    var sortIndicator = document.createElement("span");
     header.appendChild(sortIndicator);
 
-    header.addEventListener('click', function () {
-        var table = header.closest('table');
-        var tbody = table.querySelector('tbody');
+    header.addEventListener("click", function () {
+        var table = header.closest("table");
+        var tbody = table.querySelector("tbody");
         var columnIndex = Array.from(header.parentNode.children).indexOf(header);
-        var isAscending = header.asc = !header.asc;
+        var isAscending = (header.asc = !header.asc);
 
-        sortIndicator.textContent = isAscending ? ' 🔼' : ' 🔽';
+        sortIndicator.textContent = isAscending ? " 🔼" : " 🔽";
 
-        document.querySelectorAll('th span').forEach(function (otherIndicator) {
+        document.querySelectorAll("th span").forEach(function (otherIndicator) {
             if (otherIndicator !== sortIndicator) {
-                otherIndicator.textContent = ''; // Clear other indicators
+                otherIndicator.textContent = ""; // Clear other indicators
             }
         });
 
-        var rowsArray = Array.from(tbody.querySelectorAll('tr'));
-        rowsArray.sort(createComparer(columnIndex, isAscending))
+        var rowsArray = Array.from(tbody.querySelectorAll("tr"));
+        rowsArray
+            .sort(createComparer(columnIndex, isAscending))
             .forEach(function (row) {
                 tbody.appendChild(row);
             });
     });
 });
-
 
 document.getElementById("rank-col").click(); // Sort by rank by default
