@@ -18,7 +18,8 @@
 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Explore The Berkeley Function Calling Leaderboard (also called The Berkeley Tool Calling Leaderboard) to see the LLM's ability to call functions (aka tools) accurately.">
+    <meta name="description"
+        content="Explore The Berkeley Function Calling Leaderboard (also called The Berkeley Tool Calling Leaderboard) to see the LLM's ability to call functions (aka tools) accurately.">
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
@@ -82,7 +83,8 @@
             <h2>Leaderboard</h2>
 
             <p class="text-center">
-                The Berkeley Function Calling Leaderboard (also called Berkeley Tool Calling Leaderboard) evaluates the LLM's ability to call functions (aka tools) accurately. This
+                The Berkeley Function Calling Leaderboard (also called Berkeley Tool Calling Leaderboard) evaluates the
+                LLM's ability to call functions (aka tools) accurately. This
                 leaderboard consists of real-world data and will be updated periodically. For more information on the
                 evaluation dataset and methodology, please refer to our <a
                     href="blogs/8_berkeley_function_calling_leaderboard.html">blog post</a> and <a
@@ -99,6 +101,8 @@
                             <th class="detail-header" colspan="4">Abstract Syntax Tree (AST) Evaluation</th>
                             <th class="detail-header" colspan="4">Evaluation by Executing APIs</th>
                             <th class="detail-header" colspan="1"></th>
+                            <th class="detail-header" colspan="1"></th>
+                            <th class="detail-header" colspan="2">Latency (s)</th>
                         </tr>
                         <tr>
                             <th id="rank-col">Rank</th>
@@ -109,6 +113,8 @@
                             <th class="summary-small-header">AST Summary</th>
                             <th class="summary-small-header">Exec Summary</th>
                             <th class="summary-small-header">Relevance</th>
+                            <th class="summary-small-header">Cost ($)</th>
+                            <th class="summary-small-header">Average Latency (s)</th>
                             <th class="detail-small-header">Simple Function</th>
                             <th class="detail-small-header">Multiple Functions</th>
                             <th class="detail-small-header">Parallel Functions</th>
@@ -118,6 +124,9 @@
                             <th class="detail-small-header">Parallel Functions</th>
                             <th class="detail-small-header">Parallel Multiple</th>
                             <th class="detail-small-header">Relevance Detection</th>
+                            <th class="detail-small-header">Cost ($, Per 1k Function Calls)</th>
+                            <th class="detail-small-header">Mean</th>
+                            <th class="detail-small-header">Standard Deviation</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -126,7 +135,15 @@
             </div>
             <p></p>
             <p>
-                FC = native support for function/tool calling. Click on column header to sort. If you would like to add your model or contribute test-cases, please contact us below!
+                FC = native support for function/tool calling.
+            </p>
+            <p>
+                Cost is calculated as an estimate of the cost per 1000 function calls, in USD.
+                Latency is measured in seconds.
+            </p>
+            <p>
+                Click on column header to sort. If you would like to add
+                your model or contribute test-cases, please contact us below!
             </p>
         </div>
     </div>
@@ -209,13 +226,16 @@
                 </div>
                 <div class="output-section">
                     <div class="output" id="code-output">Output will be shown here:</div>
-                    <div class="output" id="json-output" style="white-space: pre-wrap;">OpenAI compatible format output here:</div>
+                    <div class="output" id="json-output" style="white-space: pre-wrap;">OpenAI compatible format output
+                        here:</div>
 
                     <div class="button-container">
-                            <button class="thumbs" id="thumbs-up-btn" onclick="sendFeedbackPositive()" style="display: none;">👍</button>
-                            <button class="thumbs thumbs-down" id="thumbs-down-btn" onclick="sendFeedbackNegative()" style="display: none;">👎</button>
+                        <button class="thumbs" id="thumbs-up-btn" onclick="sendFeedbackPositive()"
+                            style="display: none;">👍</button>
+                        <button class="thumbs thumbs-down" id="thumbs-down-btn" onclick="sendFeedbackNegative()"
+                            style="display: none;">👎</button>
 
-                            <button id="report-issue-btn" style="display: none;">Report Issue</button>
+                        <button id="report-issue-btn" style="display: none;">Report Issue</button>
                     </div>
                 </div>
             </div>
