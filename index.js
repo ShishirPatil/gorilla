@@ -381,6 +381,8 @@ function parseCSV(text) {
             }
             return value;
         });
+        result[i].splice(9, 3);
+        result[i].splice(13, 2);
         result[i].splice(8, 0, result[i][result[i].length - 4]);
         result[i].splice(9, 0, result[i][result[i].length - 3]);
         result[i].splice(10, 0, result[i][result[i].length - 2]);
@@ -603,28 +605,28 @@ function generateChart(csvData) {
         var row = csvData[i];
         var model_name = row[2];
         console.log([
-            csvData[i][17],
-            csvData[i][9],
-            csvData[i][10],
+            csvData[i][8],
             csvData[i][11],
             csvData[i][12],
             csvData[i][13],
             csvData[i][14],
             csvData[i][15],
             csvData[i][16],
+            csvData[i][17],
+            csvData[i][18],
         ]);
         var dataPoint = {
             label: model_name,
             data: [
-                csvData[i][17],
-                csvData[i][9],
-                csvData[i][10],
+                csvData[i][8],
                 csvData[i][11],
                 csvData[i][12],
                 csvData[i][13],
                 csvData[i][14],
                 csvData[i][15],
                 csvData[i][16],
+                csvData[i][17],
+                csvData[i][18],
             ],
             fill: true,
             backgroundColor: convertRGBtoRGBA(color[i - 1]),
@@ -665,6 +667,13 @@ function generateChart(csvData) {
                     borderWidth: 3,
                 },
             },
+            scale: {
+                r: {
+                    beginAtZero: true, // Ensures that the scale starts from 0
+                    // max: 100, // Sets the maximum value of the scale
+                    min: 0, 
+                }
+            }
         },
     });
 }
