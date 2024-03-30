@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="assets/css/common-styles.css" />
     <link rel="stylesheet" href="assets/css/Highlight-Clean-leaderboard.css" />
     <link rel="stylesheet" href="assets/css/leaderboard.css" />
+    <link rel="stylesheet" href="assets/css/treemap.css">
     <link rel="stylesheet" href="assets/css/contact.css">
     <title>Berkeley Function Calling Leaderboard (aka Berkeley Tool Calling Leaderboard)</title>
     <style>
@@ -78,7 +79,7 @@
     </div>
 
     <!-- Leaderboard Section -->
-    <div class="container" id="leaderboard" style="background: #f0f7ff">
+    <div class="container" id="leaderboard" style="background: #e5effc">
 
         <div class="col-md-12">
             <h2>Leaderboard</h2>
@@ -152,10 +153,20 @@
         </div>
     </div>
 
-    <div id="872c80e4-9d92-4ea1-b8de-3530dcd429a3" class="plotly-graph-div" style="height:100%; width:100%;"></div>
+    <div class="treemap-container" style="background: #e5effc">
+            <h2>Error Type Analysis</h2>
+            <p class="text-center">
+                Here is an interactive treemap that shows the distribution of error types across different models. The size of each block represents the number of errors of that type, and the color represents the percentage of errors of that type. You can hover over each block to see the details.
+                <a href="blogs/10_checker_manual.html">blog</a>.
+            </p>
+
+            <div id="872c80e4-9d92-4ea1-b8de-3530dcd429a3" class="plotly-graph-div" style="height:100%; width:100%;"></div>
+
+
+    </div>
 
     <!-- API Explorer Section -->
-    <div id="api-explorer" class="container" style="background: #f0f7ff">
+    <div id="api-explorer" class="container" style="background: #e5effc">
         <div class="col-md-12">
             <h2>Function Calling Demo</h2>
             <p class="text-center">
@@ -234,7 +245,7 @@
 
 
 
-    <div class="container shorter-container" style="background: #f0f7ff">
+    <div class="container shorter-container" style="background: #e5effc">
         <!-- Contact Us Section -->
         <div class="col-md-6 contact-us">
             <h2>Contact Us</h2>
