@@ -19,3 +19,9 @@
         display: none;
     }
 }
+
+
+.plotly-graph-div {
+    width: 100%;
+    min-height: 85vh;
+}
