@@ -4,13 +4,14 @@
 
 🦍 Berkeley Function Calling Leaderboard live [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html#leaderboard)
 
-🦍 Berkeley Function Calling Leaderboard on Hugginface [Berkeley Function Calling Leaderboard Hugginface](https://huggingface.co/spaces/gorilla-llm/berkeley-function-calling-leaderboard)
+🦍 Berkeley Function Calling Leaderboard on Hugginface [Berkeley Function Calling Leaderboard Huggingface](https://huggingface.co/spaces/gorilla-llm/berkeley-function-calling-leaderboard)
 
 ## Introduction
 We present Berkeley Function Leaderboard, the **first comprehensive and executable function calling evaluation for LLMs function calling**. Different from prior function calling evaluations (e.g. Anyscale function calling blog), we consider function callings of various forms, different function calling scenarios, and the executability of function calls. We also release our model Gorilla-Openfunctions-v2, the best open-source models so far to handle multiple languages of function calls, parallel function calls and multiple function calls. We also provide a specific debugging feature that when the provided function is not suitable for your task, the model will output an “Error Message”. 
 
 Read more about the technical details and interesting insights in our blog post!
 
+![image](./architecture_diagram.png)
 ### Install Dependencies
 
 Before generating the leaderboard statistics, you should install dependencies using the following command: 
@@ -18,8 +19,28 @@ Before generating the leaderboard statistics, you should install dependencies us
 ```bash
     conda create -n BFCL python=3.10
     conda activate BFCL
-    pip install -r requirements.txt
+    pip install -r requirements.txt # Inside ./berkeley-function-call-leaderboard
     pip install vllm # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
+```
+If you plan to evaluate on OSS models, we are using vLLM for inference and refer to https://github.com/vllm-project/vllm for detail. We recommend to inference on at least V100s, A100s, and latest GPUs that are supported by vLLM. 
+
+### Checker Setup (required for Java, JavaScript test categories)
+We use `tree-sitter` to do the AST parsing for Java and JavaScript test categories. Thus, you need to install `tree-sitter`.
+
+The git clones need to be under the `./berkeley-function-call-leaderboard/eval_checker` folder.
+
+```bash
+cd ./berkeley-function-call-leaderboard/eval_checker
+pip3 install tree_sitter
+git clone https://github.com/tree-sitter/tree-sitter-java.git
+git clone https://github.com/tree-sitter/tree-sitter-javascript.git
+```
+
+Now, move back to `./berkeley-function-call-leaderboard` by `cd ..`, and create two symbolic links to the `tree-sitter-java` and `tree-sitter-javascript` directories. This is required to run `openfunctions_evaluation.py`.
+
+```
+ln -s eval_checker/tree-sitter-java tree-sitter-java
+ln -s eval_checker/tree-sitter-javascript tree-sitter-javascript
 ```
 
 ## Prepare Evaluation Dataset
@@ -27,13 +48,16 @@ Before generating the leaderboard statistics, you should install dependencies us
 To download the evaluation dataset from huggingface, from the current directory `./openfunctions/berkeley-function-call-leaderboard`, run the following command:
 
 ```bash
-    cd berkeley-function-call-leaderboard
     huggingface-cli download gorilla-llm/Berkeley-Function-Calling-Leaderboard --local-dir ./data --repo-type dataset
 ```
 
+
 This will download our dataset to `data` repository. 
 
-If you plan to evaluate on OSS models, we are using vLLM for inference and refer to https://github.com/vllm-project/vllm for detail. We recommend to inference on at least V100s, A100s, and latest GPUs that are supported by vLLM. 
+## Evaluation Dataset
+
+The evaluation datasets are now stored in the `./data` folder. The possible answers are stored in the `./data/possible_answer` folder. 
+
 
 ## Execution Evaluation Data Post-processing 
 Input your API keys into `function_credential_config.json`, so that the original placeholder values in questions, params, and answers will be cleaned. 
@@ -83,7 +107,7 @@ To generate leaderboard statistics, there are two steps:
 1. Inference the evaluation data and obtain the results from specific models 
 
 ```bash
-    python openfunctions_evaluation.py --model MODEL_NAME --test_category TEST_CATEGORY --temperature 0.3
+    python openfunctions_evaluation.py --model MODEL_NAME --test_category TEST_CATEGORY
 ```
 For TEST_CATEGORY, we have `executable_simple`, `executable_parallel_function`, `executable_multiple_function`, `executable_parallel_multiple_function`, `simple`, `relevance`, `parallel_function`, `multiple_function`, `parallel_multiple_function`, `java`, `javascript`, `rest`, `sql`, `chatable`.
 
@@ -91,67 +115,127 @@ If you want to run all evaluation at the same time, you can use `all` as the tes
 
 Running proprietary model like GPTs, Claude, Mistral-X will requires an API-Key which can be supplied in `openfunctions_evaluation.py`.
 
-If decided to run OSS model, openfunctions evaluation uses vllm and therefore requires GPU for hosting and inferencing.
+If decided to run OSS model, openfunctions evaluation uses vllm and therefore requires GPU for hosting and inferencing. If you have questions or concerns about evaluating OSS models, please reach out to us in our [discord channel](https://discord.gg/rgyHBXvw).
 
-1. Check the accuracy of the evaluation result by our AST and Executable checks
 
-```bash
-    python openfunctions_checker.py --model MODEL_NAME --test_category {TEST_CATEGORY,all,ast,executable}
-```
 
-If you want to run the "all" or "executable" category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard want to test model's generated output on real world API! 
 
-If you don't want to supply any API key, that's alright! Set `test_category` to `ast`. There, we are only doing the ast tree parsing and perform an exact match to derive the accuracy.
+## Checking the Evaluation Results
 
-The output of this is in the format of 
-```
-Testing type: XXX, success rate: XXX
-```
+### Running the Checker
 
-To ease the usage for generating and evaluating results on a range of models and test categories, we provide a script `test_eval_api.sh` that can be used to generate evaluation results for all model provided in the list parallelly. Before running the bash file, make sure to fill in the API keys.
+Navigate to the `./berkeley-function-call-leaderboard/eval_checker` directory and run the `eval_runner.py` script with the desired parameters. The basic syntax is as follows:
 
 ```bash
-    bash test_eval_api.sh
+    python ./eval_runner.py --model MODEL_NAME --test_category {TEST_CATEGORY,all,ast,executable,python,non-python}
 ```
-If you are using oss, feel free to use `bash test_eval_oss.sh` with appropriated parameteres
 
-After generation evaluation results, you can use `test_eval_checker.sh` to check the accuracy of the evaluation result by our AST and Executable checks, select your evaluation method. 
+- `MODEL_NAME`: Optional. The name of the model you wish to evaluate. This parameter can accept multiple model names separated by spaces. Eg, `--model gorilla-openfunctions-v2 gpt-4-0125-preview`.
+    - If no model name is provided, the script will run the checker on all models exist in the `./result` folder. This path can be changed by modifying the `INPUT_PATH` variable in the `eval_runner.py` script.
+- `TEST_CATEGORY`: Optional. The category of tests to run. You can specify multiple categories separated by spaces. Available options include:
+    - `all`: Run all test categories.
+    - `ast`: Abstract Syntax Tree tests.
+    - `executable`: Executable code evaluation tests.
+    - `python`: Tests specific to Python code.
+    - `non-python`: Tests for code in languages other than Python, such as Java and JavaScript.
+    - Individual test categories:
+        - `simple`: Simple function calls.
+        - `parallel_function`: Multiple function calls in parallel.
+        - `multiple_function`: Multiple function calls in sequence.
+        - `parallel_multiple_function`: Multiple function calls in parallel and in sequence.
+        - `executable_simple`: Executable function calls.
+        - `executable_parallel_function`: Executable multiple function calls in parallel.
+        - `executable_multiple_function`: Executable multiple function calls in sequence.
+        - `executable_parallel_multiple_function`: Executable multiple function calls in parallel and in sequence.
+        - `java`: Java function calls.
+        - `javascript`: JavaScript function calls.
+        - `rest`: REST API function calls.
+        - `relevance`: Function calls with irrelevant function documentation.
+    - If no test category is provided, the script will run all available test categories.
+> If you want to run the `all` or `executable` or `python` category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API! 
+> If you do not wish to provide API keys for REST API testing, set `test_category` to `ast` or any non-executable category.
+
+### Example Usage
+
+If you want to run all tests for the `gorilla-openfunctions-v2` model, you can use the following command:
 
 ```bash
-    bash test_eval_checker.sh
+    python ./eval_runner.py --model gorilla-openfunctions-v2
+```
+
+If you want to runn `rest` tests for all GPT models, you can use the following command:
+
+```bash
+    python ./eval_runner.py --model gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test_category rest
+```
+
+If you want to run `rest` and `javascript` tests for all GPT models and `gorilla-openfunctions-v2`, you can use the following command:
+
+```bash
+    python ./eval_runner.py --model gorilla-openfunctions-v2 gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test_category rest javascript
 ```
 
 
 ## Models Available
-Below is a list of model we support to run our leaderboard evaluation against. If supported function calling, we will follow its function calling format provided by official documentations. Else, we will construct system message to prompt the model to generate function calls in the right format.
-|Model | Function Calling |
+Below is *a table of model we support* to run our leaderboard evaluation against. If supported function calling (FC), we will follow its function calling format provided by official documentations. Else, we will construct system message to prompt the model to generate function calls in the right format.
+|Model | Type |
 |---|---|
-|gorilla-openfunctions-v2 | Supported|
-|gpt-3.5-{turbo-0613, turbo-1106, turbo-0125}| Supported|
-|gpt-4-{0613, 1106-preview, 0125-preview}| Supported|
-|glaiveai 💻|  Supported| 
-|Nexusflow-Raven-v2| Supported|
-|fireworks-ai | Supported|
-|mistral-large-2402 | Supported|
-|claude-{2.1,instant-1.2}| Not supported|
-|mistral-{tiny,small,medium}| Not supported|
-|deepseek-7b 💻| Not supported|
-|llama-v2-{7b,13b,70b} 💻| Not supported|
+|gorilla-openfunctions-v2 | Function Calling|
+|gpt-3.5-turbo-0125-FC| Function Calling|
+|gpt-3.5-turbo-0125| Prompt|
+|gpt-4-{0613,1106-preview,0125-preview}-FC| Function Calling|
+|gpt-4-{0613,1106-preview,0125-preview}|Prompt|
+|glaiveai/glaive-function-calling-v1 💻|  Function Calling| 
+|Nexusflow-Raven-v2 | Function Calling|
+|fire-function-v1-FC | Function Calling|
+|mistral-large-2402-FC-{Any,Auto} | Function Calling|
+|mistral-large-2402 | Prompt|
+|mistral-medium-2312 | Prompt|
+|mistral-small-2402-FC-{Any,Auto} | Function Calling|
+|mistral-small-2402 | Prompt|
+|mistral-tiny-2312 | Prompt|
+|claude-3-{opus,sonnet}-20240229-FC | Function Calling |
+|claude-3-haiku-20240307-FC | Function Calling |
+|claude-3-{opus,sonnet}-20240229 | Prompt |
+|claude-{2.1,instant-1.2}| Prompt|
+|gemini-1.0-pro | Function Calling|
+|databrick-dbrx-instruct | Prompt|
+|google/gemma-7b-it 💻| Prompt|
+|deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
 
-Here {MODEL}💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls.
+Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
 
-If you are thinking about adding more OSS models to evaluate. Here are the codes you need to change 
-* In `openfunctions_evaluation.py`, add `model_name` and `model_id` to `model_id_dict`. Check vllm for more details of what to put.
-* In `openfunctions_ast_checker.py`, add parser that parse model output in the format of either JSON schema or function calling schema(i.e. `[func1(param1=val1...)...]`).
-*  In `openfunctions_executable_checker.py`, make sure  to parse the model output in the format of list of function calls string i.e. `["func_call_1","func_call_2"...]` where `func_call_n` is executable strings using `exec()`
+
+For model names with {.}, it means that the model has multiple versions. For example, we provide evaluation on three versions of GPT-4: `gpt-4-0125-preview`, `gpt-4-1106-preview`, and `gpt-4-0613`.
+
+For Mistral large and small models, we provide evaluation on both of there `Any` and `Auto` settings. More information about this can be found in [here](https://docs.mistral.ai/guides/function-calling/).
+
+
+For inferencing `Gemini-1.0-pro`, you need to fill in `model_handler/gemini_handler.py` with your GCP project ID that has access to Vertex AI endpoint.
+For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure workspace and setup an endpoint for inference. 
 
 
 ## Changelog
+* [#294](https://github.com/ShishirPatil/gorilla/pull/294) Leaderboard V2.0 with new models (`Claude-3-Haiku`, `Databrick-DBRX-Instruct`), more advanced AST checker, and updated evaluation datasets. Cost and latency statistics during evaluation are also measured. We also released the manual that our checker is based on, available [here](https://docs.google.com/document/d/1XJkr-OOtBhzEAjahoqNeFOndm8Tm_yIJ3KmXLm8AwiA/edit?usp=sharing). Stay tuned for a detailed blog post on the insights from the new leaderboard!
 * [#237](https://github.com/ShishirPatil/gorilla/pull/237) and [238](https://github.com/ShishirPatil/gorilla/pull/238) leaderboard update resulting from [#223](https://github.com/ShishirPatil/gorilla/pull/223); 3 new models: `mistral-large-2402`, `gemini-1.0-pro`, and `gemma`.
 * [#223](https://github.com/ShishirPatil/gorilla/pull/223) modifications to REST evaluation. 
 
 
 ## Contributing
+
+To add new model to the Function Calling Leaderboard, here are a few things you need to do:
+
+1. Take a look at the `model_handler/handler.py`. This is the base handler object where all handlers are inherited from 
+2. Create your handler and define the following functions 
+    1. `__init__`: on initialization, you need to create a `self.client` object if you have an existing endpoint(e.g. `self.client = OpenAI()`) or follow `model_handler/oss_handler.py` for starting a vLLM serving.
+    2. `inference`: inference function takes in prompt, functions, as well as a optional programming language parameters. It will make call to the endpoint, compile result in desired format, as well as logging the token number and latency
+    3. `decode_ast`: decode_ast will convert the response from raw output in the format of `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}] This format will be used to check for exact matching the parameters.
+    4. `decode_execute`: deocde_execute will convert the response from raw output in the format of `"[func1(param1=val1),func2(param2=val2)]"`
+3. Modify `model_handler/handler_map.py`. This mapping contains key as the exact model name and value as the handler object of the specific model. 
+4. If your model is price based, please update the pricing detail, i.e. price per million tokens under `eval_runner_helper.py`
+5. Raise a [Pull Request](https://github.com/ShishirPatil/gorilla/pulls) with your new Model Handler. We will run the model handler if an endpoint is established. If self-hosting is required and the model size is large, we might not be able to accommodate model hosting therefore an OpenAI compatible endpoint for evaluation is desired. 
+6. Feel Free to join [Gorilla Discord Leaderboard Channel](https://discord.gg/rgyHBXvw) and reach out to us for any questions or concerns in adding new models. We are happy to help you!
+
 
 All the leaderboard statistics, and data used to train the models is released under Apache 2.0.
 Gorilla is an open source effort from UC Berkeley and we welcome contributors. 
