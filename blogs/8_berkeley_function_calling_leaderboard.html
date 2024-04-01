@@ -63,6 +63,7 @@
                     <li><a href="8_berkeley_function_calling_leaderboard.html#categories">Evaluation Categories 📊</a>
                     </li>
                     <li><a href="8_berkeley_function_calling_leaderboard.html#metrics">Evaluation Metrics 📈</a></li>
+                    <li><a href="8_berkeley_function_calling_leaderboard.html#cost">Cost & Latency</a></li>
                     <li><a href="8_berkeley_function_calling_leaderboard.html#prompt">Prompting 🖊️</a></li>
                     <li><a href="8_berkeley_function_calling_leaderboard.html#mistakes">Common Mistakes</a></li>
                     <li><a href="8_berkeley_function_calling_leaderboard.html#conclusion">Conclusion</a></li>
@@ -870,7 +871,7 @@
                         </p>
                     </div>
                     <div class="body">
-                        <h3 id="prompt">Cost & Latency</h3>
+                        <h3 id="cost">Cost & Latency</h3>
                         <p>In our recent update, we have also paid close attention to the <b>cost</b> and <b>latency</b>.</p>
 
             <ul>
@@ -880,7 +881,7 @@
                                         <b>Latency</b>: we measure the latency by timing each request to the endpoint ignoring the function document preprocessing time.</li>
                                     <li>
                                         <b>Cost</b>: we follows the formula to derive the cost per 1000 function callings. 
-                                        <img src="XXXX.png" width="100%">
+                                        <img src="../assets/img/blog_post_8_token_formula.jpg" width="100%">
                                     </li>
                                 </ul>
                             </li>
@@ -888,7 +889,7 @@
                                     <ul><li><b>Latency</b>: For ~7B Models, we evaluated on single A100 40GB. For ~40B Models, we evaluated on 4*A100 40GB.  Since we batched and evaluated the model, we derive latency by dividing the total time with the number of evaluation dataset entries.
                                     </li>
                                     <li><b>Cost</b>: Since open source model does not have a price tag, we estimate the cost by:
-                                        <img src="XXXX.png" width="100%">
+                                        <img src="../assets/img/blog_post_8_gpu_formula.jpg" width="100%">
                                     </li>
                                     </ul>
                             </li>
