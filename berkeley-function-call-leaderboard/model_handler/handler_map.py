@@ -45,7 +45,7 @@ handler_map = {
     "google/gemma-7b-it": GemmaHandler,
     "glaiveai/glaive-function-calling-v1": GlaiveHandler,
     "deepseek-ai/deepseek-coder-6.7b-instruct": DeepseekHandler,
-    "meetkai/functionary-small-v2.2": FunctionaryHandler,
-    "meetkai/functionary-medium-v2.2": FunctionaryHandler,
+    "meetkai/functionary-small-v2.2-FC": FunctionaryHandler,
+    "meetkai/functionary-medium-v2.2-FC": FunctionaryHandler,
     "databricks-dbrx-instruct": DatabricksHandler,
 }

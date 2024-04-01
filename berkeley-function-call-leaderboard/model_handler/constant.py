@@ -124,8 +124,8 @@ UNDERSCORE_TO_DOT = [
     "mistral-small-2402-FC-Auto",
     "mistral-small-2402-FC",
     "gemini-1.0-pro",
-    "meetkai/functionary-small-v2.2",
-    "meetkai/functionary-medium-v2.2",
+    "meetkai/functionary-small-v2.2-FC",
+    "meetkai/functionary-medium-v2.2-FC",
 ]
 
 TEST_CATEGORIES = {

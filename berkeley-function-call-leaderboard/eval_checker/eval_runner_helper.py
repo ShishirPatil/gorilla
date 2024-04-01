@@ -81,6 +81,18 @@ MODEL_METADATA_MAPPING = {
         "Mistral AI",
         "Proprietary",
     ],
+    "mistral-small-2402": [
+        "Mistral-Small-2402 (Prompt)",
+        "https://docs.mistral.ai/guides/model-selection/",
+        "Mistral AI",
+        "Proprietary",
+    ],
+    "mistral-large-2402": [
+        "Mistral-Large-2402 (Prompt)",
+        "https://docs.mistral.ai/guides/model-selection/",
+        "Mistral AI",
+        "Proprietary",
+    ],
     "claude-3-sonnet-20240229-FC": [
         "Claude-3-Sonnet-20240229 (FC)",
         "https://www.anthropic.com/news/claude-3-family",
@@ -111,13 +123,13 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
-    "meetkai_functionary-small-v2.2": [
+    "meetkai_functionary-small-v2.2-FC": [
         "Functionary-Small (FC)",
         "https://huggingface.co/meetkai/functionary-small-v2.2",
         "MeetKai",
         "N/A",
     ],
-    "meetkai_functionary-medium-v2.2": [
+    "meetkai_functionary-medium-v2.2-FC": [
         "Functionary-Medium-v2.2 (FC)",
         "https://huggingface.co/meetkai/functionary-medium-v2.2",
         "MeetKai",
