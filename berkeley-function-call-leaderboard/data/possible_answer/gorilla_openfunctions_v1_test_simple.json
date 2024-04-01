@@ -1,400 +1,400 @@
-{"calculate_triangle_area": {"base": [10], "height": [5], "unit": ["units", "unit",""]}}
-{"math.factorial": {"number": [5]}}
-{"math.hypot": {"x": [4], "y": [5], "z": [""]}}
-{"algebra.quadratic_roots": {"a": [1], "b": [-3], "c": [2]}}
-{"solve_quadratic_equation": {"a": [2], "b": [6], "c": [5]}}
-{"solve_quadratic_1": {"a": [3], "b": [-11], "c": [-4], "root_type": ["", "real", "all"]}}
-{"solve_quadratic": {"a": [2], "b": [5], "c": [3]}}
-{"calculate_circumference_1": {"radius": [4], "unit": ["inches", "in"]}}
-{"geometry.area_circle": {"radius": [10], "units": ["meters", ""]}}
-{"geometry.calculate_area_circle": {"radius": [5], "unit": ["units", ""]}}
-{"calculate_area": {"base": [6], "height": [10], "unit": ["cm", "centimeter",""]}}
-{"calculate_triangle_area": {"base": [10], "height": [5]}}
-{"geometry.circumference_1": {"radius": [3], "units": ["cm", "centimeter",""]}}
-{"calculate_area_under_curve_1": {"function": ["x^2","x**2"], "interval": [[1, 3]], "method": [""]}}
-{"calculate_derivative": {"function": ["3x^2 + 2x - 1","3*x**2+2*x-1"], "x_value": [""]}}
-{"integrate": {"function": ["x^3","x**3"], "start_x": [-2], "end_x": [3], "method": ["simpson"]}}
-{"calculus.derivative": {"function": ["2*x^2","2x^2","2**x^2"], "value": [1], "function_variable": ["x"]}}
-{"get_prime_factors": {"number": [450], "formatted": [true]}}
-{"number_analysis.prime_factors_1": {"number": [123456]}}
-{"math.gcd_1": {"num1": [40], "num2": [50]}}
-{"math.hcf": {"number1": [36], "number2": [24]}}
-{"number_theory.gcd": {"number1": [36], "number2": [48]}}
-{"math.gcd": {"num1": [12], "num2": [15]}}
-{"prime_factorize": {"number": [60], "return_type": ["dictionary", "Dictionary"]}}
-{"math.gcd": {"num1": [12], "num2": [18]}}
-{"calculate_final_velocity": {"height": [150], "initial_velocity": [0], "gravity": [9.81,""]}}
-{"calculate_velocity_1": {"distance": [50], "duration": [2], "unit": [""]}}
-{"final_velocity": {"initial_velocity": [10], "acceleration": [2], "time": [5]}}
-{"calculate_displacement": {"initial_velocity": [10], "time": [5], "acceleration": [9.8, 0]}}
-{"calculate_final_speed": {"initial_speed": [0], "time": [5], "gravity": [-9.81, ""]}}
-{"kinematics.final_velocity_from_distance": {"acceleration": [4], "distance": [300], "initial_velocity": [""]}}
-{"calculate_final_velocity": {"initial_velocity": [0], "acceleration": [9.8], "time": [5]}}
-{"calculate_final_speed": {"initial_velocity": [0], "height": [100], "gravity": [9.8, ""]}}
-{"get_directions_1": {"start_location": ["Sydney"], "end_location": ["Melbourne"], "route_type": ["fastest", ""]}}
-{"travel_itinerary_generator": {"destination": ["Tokyo"], "days": [7], "daily_budget": [100], "exploration_type": ["nature"]}}
-{"vegan_restaurant.find_nearby": {"location": ["New York City, NY"], "operating_hours": [23, 11]}}
-{"get_shortest_driving_distance": {"origin": ["New York City"], "destination": ["Washington D.C."], "unit": ["kilometers", "km", "miles", "mi", ""]}}
-{"route.estimate_time": {"start_location": ["San Francisco"], "end_location": ["Los Angeles"], "stops": [["Santa Barbara", "Monterey"], ["Monterey", "Santa Barbara"]]}}
-{"calculate_electrostatic_potential": {"charge1": [1e-09], "charge2": [2e-09], "distance": [0.05], "constant": [""]}}
-{"calculate_electric_field": {"charge": [2], "distance": [3], "permitivity": [""]}}
-{"calculate_magnetic_field": {"current": [5], "radius": [4], "permeability": [""]}}
-{"electromagnetic_force": {"charge1": [5], "charge2": [7], "distance": [3], "medium_permittivity": [""]}}
-{"calculate_resonant_frequency": {"inductance": [0.05], "capacitance": [0.0001], "round_off": ["", 2]}}
-{"calculate_magnetic_field_strength": {"current": [20], "distance": [10], "permeability": [""]}}
-{"calculate_electric_field_strength": {"charge": [0.01], "distance": [4], "medium": [""]}}
-{"thermo.calculate_energy": {"mass": [100], "phase_transition": ["vaporization"], "substance": ["water", ""]}}
-{"calculate_final_temperature": {"mass1": [20], "temperature1": [30], "mass2": [15], "temperature2": [60], "specific_heat_capacity": [""]}}
-{"get_boiling_melting_points": {"substance": ["water"], "sea_level": [5000]}}
-{"calculate_density": {"mass": [45], "volume": [15], "unit": [""]}}
-{"calc_absolute_pressure": {"atm_pressure": [1], "gauge_pressure": [2]}}
-{"entropy_change.calculate": {"substance": ["ice"], "mass": [1], "initial_temperature": [0], "final_temperature": [100], "pressure": ["", 1]}}
-{"calculate_entropy_change": {"initial_temp": [300], "final_temp": [400], "heat_capacity": [5], "isothermal": ["", true]}}
-{"calc_heat_capacity": {"temp": [298], "volume": [10], "gas": ["air", ""]}}
-{"fetch_DNA_sequence": {"DNA_id": ["DNA123"], "format": [""], "upstream": [""]}}
-{"get_protein_sequence_1": {"gene": ["BRCA1"], "species": ["Homo sapiens", ""]}}
-{"biology.get_cell_info_1": {"cell_type": ["human"], "detailed": [true]}}
-{"cellbio.get_proteins": {"cell_compartment": ["plasma membrane"], "include_description": ["", true, false]}}
-{"calculate_cell_density": {"optical_density": [0.6], "dilution": [5], "calibration_factor": [1000000000.0, "1e9",""]}}
-{"cell_biology.function_lookup": {"molecule": ["ATP synthase"], "organelle": ["mitochondria"], "specific_function": [true]}}
-{"calculate_molecular_weight": {"compound": ["C6H12O6"], "to_unit": ["grams/mole", ""]}}
-{"mutation_type.find": {"snp_id": ["rs6034464"], "species": ["Homo sapiens", ""]}}
-{"diabetes_prediction": {"weight": [150], "height": [70], "activity_level": ["lightly active"]}}
-{"analyze_dna_sequence": {"sequence": ["'AGTCGATCGAACGTACGTACG'"], "reference_sequence": ["'AGTCCATCGAACGTACGTACG'"], "mutation_type": ["'substitution'"]}}
-{"genetics.calculate_similarity_1": {"species1": ["Human","human"], "species2": ["Chimp","chimp","Chimpanzee","chimpanzee"], "format": ["percentage", ""]}}
-{"calculate_genotype_frequency": {"allele_frequency": [0.3], "genotype": ["AA"]}}
-{"calculate_density": {"country": ["Brazil"], "year": ["2022"], "population": [213000000], "land_area": [8500000]}}
-{"ecology_data.precipitation_stats_1": {"location": ["Amazon rainforest"], "time_frame": ["six_months"]}}
-{"identify_bird_1": {"color": ["green"], "habitat": ["forest"], "size": ["small"]}}
-{"forest_growth_forecast": {"location": ["Yellowstone National Park"], "years": [5], "include_human_impact": [true,false]}}
-{"ecology.get_turtle_population": {"location": ["Mississippi river"], "year": [2020], "species": [true, ""]}}
-{"calculate_vehicle_emission": {"vehicle_type": ["gas"], "miles_driven": [1500], "emission_factor": [""]}}
-{"generate_DNA_sequence": {"length": [100], "preferences": [["G", "C"],["C", "G"]]}}
-{"calculate_fitness": {"trait_values": [[0.8, 0.7]], "trait_contributions": [[0.4, 0.6]]}}
-{"population_projections_1": {"country": ["United States", "USA"], "years": [20], "growth_rate": [""]}}
-{"calculate_bacteria_evolution_rate": {"start_population": [5000], "duplication_frequency": [1], "duration": [6], "generation_time": [20, ""]}}
-{"elephant_population_estimate": {"current_population": [35000], "growth_rate": [0.015], "years": [5]}}
-{"prediction.evolution": {"species": ["Homo Sapiens", "homo sapiens", "Homo sapiens"], "years": [50], "model": ["Darwin", "darwin"]}}
-{"restaurant.find_nearby_1": {"location": ["Los Angeles, CA"], "dietary_preference": [["Vegan"]]}}
-{"average_temperature": {"location": ["Austin"], "days": [3], "temp_unit": ["Celsius", "C"]}}
-{"create_histogram": {"data": [[85, 90, 88, 92, 86, 89, 91]], "bins": [5]}}
-{"find_restaurants": {"location": ["Manhattan", "\"Manhattan\"", "'Manhattan'", "NYC", "'NYC'", "\"NYC\"", "New York City", "New York City, NY", "'New York City'", "\"New York City\""], "food_type": ["'Thai'", "\"Thai\""], "number": [5], "dietary_requirements": [["vegan"], ["Vegan"]]}}
-{"map_routing.fastest_route": {"start_location": ["San Francisco", "SF"], "end_location": ["Los Angeles", "LA"], "avoid_tolls": [true]}}
-{"calculate_average": {"numbers": [[12, 15, 18, 20, 21, 26, 30]]}}
-{"calculate_distance": {"coord1": [[[33.4484, -112.0740], [33.4484, 112.0740]]], "coord2": [[34.0522, -118.2437], [34.0522, 118.2437]], "unit": ["miles","mi"]}}
-{"calculate_bmi": {"weight": [85], "height": [180], "unit": ["metric",""]}}
-{"geo_distance.calculate": {"start_location": ["Boston, MA"], "end_location": ["Washington, D.C."], "units": ["miles", ""]}}
-{"city_distance.find_shortest": {"start_city": ["New York"], "end_city": ["Los Angeles"], "transportation": ["train"], "allow_transfer": [true]}}
-{"array_sort": {"list": [[5, 3, 4, 1, 2]], "order": ["ascending"]}}
-{"calculate_BMI": {"weight_kg": [70], "height_m": [1.75]}}
-{"db_fetch_records": {"database_name": ["StudentDB"], "table_name": ["students"], "conditions": {"department": ["Science"], "school": ["Bluebird High School", "Bluebird HS"]}, "fetch_limit": [""]}}
-{"employee.fetch_data": {"company_name": ["ABC Ltd."], "employee_id": [345], "data_field": [["Personal Info", "Job History"]]}}
-{"get_restaurant": {"cuisine": ["sushi"], "location": ["Boston"], "condition": ["open on Sundays"]}}
-{"imdb.find_movies_by_actor": {"actor_name": ["Leonardo DiCaprio"], "year": [2010], "category": [""]}}
-{"get_theater_movie_releases": {"location": ["LA"], "timeframe": [7], "format": ["IMAX"]}}
-{"update_user_info": {"user_id": [43523], "update_info": [{"name": "John Doe", "email": "johndoe@email.com"}], "database": ["CustomerInfo", ""]}}
-{"calc_area_triangle": {"base": [5], "height": [3]}}
-{"database.query": {"table": ["users"], "conditions": [{"field": ["age"], "operation": [">"], "value": ["25"]}, {"field": ["job"], "operation": ["="], "value": ["engineer"]}]}}
-{"math.factorial": {"number": [5]}}
-{"calculate_clock_angle_1": {"hours": [6], "minutes": [30], "round_to": ["", 2]}}
-{"plot_sine_wave": {"start_range": [0], "end_range": [6.283185307179586], "frequency": [5], "amplitude": [1, ""], "phase_shift": [0, ""]}}
-{"light_travel_time": {"distance_in_light_years": [4], "speed_of_light": [299792458,""]}}
-{"calculate_speed": {"distance": [450], "time": [20], "to_unit": ["km/h", "kilometers per hour"]}}
-{"calculate_distance": {"body1": ["Earth"], "body2": ["Moon"], "unit": ["miles", "mi"]}}
-{"mathematics.calculate_area_under_curve_1": {"polynomial": [[3, 2, -4]], "limits": [[-1, 2]]}}
-{"geometry.area_triangle": {"base": [6], "height": [10], "unit": ["", "square meters"]}}
-{"math.power": {"base": [3], "exponent": [4], "mod": [""]}}
-{"train_random_forest_classifier": {"dataset": ["your_dataset_name"], "max_depth": [5], "n_estimators": [100]}}
-{"calculate_bmi": {"weight": [70], "height": [175], "system": ["metric", ""]}}
-{"run_linear_regression": {"predictors": [["Age", "Income", "Education"]], "target": ["Purchase_Amount"], "standardize": [true]}}
-{"random_forest.train_1": {"n_estimators": [100], "max_depth": [5], "data": ["my_data"]}}
-{"predict_house_price": {"bedrooms": [3], "bathrooms": [2], "area": [1800], "location": ["San Francisco", "San Francisco, CA"]}}
-{"random.normalvariate": {"mu": [0], "sigma": [1]}}
-{"calculate_probability": {"total_outcomes": [52], "favorable_outcomes": [4], "round_to": [""]}}
-{"probability.dice_roll": {"desired_number": [6], "number_of_rolls": [2], "die_sides": [6, ""]}}
-{"prob_dist.binomial": {"trials": [10], "successes": [5], "p": [0.5,""]}}
-{"calculate_binomial_probability": {"number_of_trials": [8], "number_of_successes": [5], "probability_of_success": ["", "0.5"]}}
-{"probabilities.calculate_single": {"total_outcomes": ["52"], "event_outcomes": ["4"], "round": ["2", ""]}}
-{"probability_of_event": {"success_outcomes": [13], "total_outcomes": [52], "format_as_ratio": [true]}}
-{"stats.t_test": {"array_1": [[10, 15, 12, 14, 11]], "array_2": [[18, 16, 17, 20, 22]], "alpha": [0.05]}}
-{"hypothesis_testing.ttest_ind": {"sample1": [[22, 33, 42, 12, 34]], "sample2": [[23, 45, 44, 14, 38]], "significance_level": [0.05]}}
-{"run_two_sample_ttest": {"group1": [[3, 4, 5, 6, 4]], "group2": [[7, 8, 9, 8, 7]], "equal_variance": [true]}}
-{"calc_binomial_prob": {"num_trials": [100], "num_success": [60], "prob_success": [0.5]}}
-{"chi_squared_test": {"table": [[[10, 20], [30, 40]]], "alpha": [0.05, ""]}}
-{"hypothesis_testing.two_sample_t_test": {"group1": [[12.4, 15.6, 11.2, 18.9]], "group2": [[10.5, 9.8, 15.2, 13.8]], "alpha": [0.05, ""]}}
-{"t_test": {"dataset_A": [[12, 24, 36]], "dataset_B": [[15, 30, 45]], "alpha": [0.05, ""]}}
-{"predict_house_price": {"area": [2500], "rooms": [5], "year": [1990], "location": ["San Francisco", "SF"]}}
-{"linear_regression.get_r_squared": {"dataset_path": ["C:/data/cars.csv"], "independent_variables": [["engine_size", "fuel_economy"]], "dependent_variable": ["car_price"]}}
-{"calculate_NPV": {"cash_flows": [[200, 300, 400, 500]], "discount_rate": [0.1], "initial_investment": [2000]}}
-{"finance.calculate_quarterly_dividend_per_share": {"total_payout": [50000000], "outstanding_shares": [100000000]}}
-{"calculate_discounted_cash_flow": {"coupon_payment": [100], "period": [5], "discount_rate": [0.04], "face_value": [""]}}
-{"finance_calculator.npv": {"cash_flows": [[-50000, 10000, 15000, 20000, 25000, 30000]], "discount_rate": [0.08], "years": [""]}}
-{"calculate_compound_interest": {"principal": [10000], "rate": [0.05], "time": [10], "n": [4, ""]}}
-{"calculate_return_on_equity": {"net_income": [2000000], "shareholder_equity": [10000000], "dividends_paid": [200000, 0]}}
-{"finance.predict_future_value": {"present_value": [5000], "annual_interest_rate": [0.05], "compounding_periods_per_year": [12], "time_years": [3]}}
-{"investment.predictProfit": {"investment_amount": [5000], "annual_return": [0.07], "years": [5]}}
-{"calculate_return_on_investment": {"purchase_price": [20], "sale_price": [25], "dividend": [2, ""]}}
-{"compound_interest": {"principal": [10000], "annual_rate": [0.05, 5], "compounding_freq": ["monthly"], "time_in_years": [5]}}
-{"calculate_stock_return": {"investment_amount": [5000], "annual_growth_rate": [0.06], "holding_period": [5], "dividends": [""]}}
-{"portfolio_future_value": {"stock": ["X"], "invested_amount": [5000], "expected_annual_return": [0.05], "years": ["7"]}}
-{"estimate_mutual_fund_return": {"yearly_yield": [0.05], "investment_amount": [2000], "years": [3]}}
-{"calculate_cagr": {"initial_value": [2000], "final_value": [3000], "period_in_years": [4]}}
-{"get_metal_price": {"metal": ["Gold", "gold"], "measure": ["ounce"]}}
-{"get_stock_price": {"company_name": ["Amazon", "AMZN"], "date": ["2022-03-11"], "exchange": ["NASDAQ", ""]}}
-{"get_stock_price": {"company": ["AAPL"], "days": [5], "exchange": ["NASDAQ", ""]}}
-{"market_performance.get_data": {"indexes": [["S&P 500", "Dow Jones"]], "days": [5], "detailed": ["", true, false]}}
-{"calculate_compounded_interest": {"principal": [5000], "interest_rate": [0.05], "period": [10], "compounding_frequency": ["Annually",""]}}
-{"stock_price": {"company": ["Amazon", "AMZN"], "days": [3], "data_type": ["Close", ""]}}
-{"get_stock_prices": {"companies": [["Microsoft", "Google"]], "duration": ["2 weeks"]}}
-{"finance.calculate_future_value": {"initial_investment": [20000], "rate_of_return": [0.08], "years": [5], "contribution": [""]}}
-{"get_stock_price": {"company_names": [["Apple", "Microsoft"], [["Apple"], ["Microsoft"]],["AAPL", "MSFT"]]}}
-{"calculate_roi": {"deposit": [1000], "annual_interest_rate": [0.03], "years": [1]}}
-{"highest_grossing_banks": {"country": ["U.S", "United States", "USA"], "year": [2020], "top_n": [""]}}
-{"calculate_mutual_fund_balance": {"investment_amount": [50000], "annual_yield": [0.05], "years": [3]}}
-{"calculate_compounded_interest_1": {"principal": [5000], "rate": [0.03], "time": [5], "n": [4]}}
-{"calculate_future_value_1": {"present_value": [5000], "annual_interest_rate": [0.05], "years": [10], "compounds_per_year": [""]}}
-{"calculate_future_value": {"initial_investment": [1000], "interest_rate": [0.05], "duration": [2], "compounded": [""]}}
-{"crime_record.get_record": {"case_number": ["CA123456"], "county": ["San Diego"], "details": [true]}}
-{"criminal_history.check_felonies": {"full_name": ["John Doe"], "birth_date": ["01-01-1980"], "state": ["California", "CA"]}}
-{"get_criminal_records": {"name": ["Mr. X"], "location": ["New York, NY"], "from_year": [2012], "to_year": [2015]}}
-{"get_act_details": {"act_name": ["Criminal Law Amendment Act", "Criminal Law Amendment"], "amendment_year": [2013]}}
-{"get_case_info": {"docket": ["2022/AL2562"], "court": ["California", "CA"], "info_type": ["victim"]}}
-{"crime_statute_lookup": {"jurisdiction": ["California", "CA"], "crime": ["theft"], "detail_level": ["detailed", ""]}}
-{"generate_law_contract_1": {"parties": [["John", "Alice"], ["John","Alice"]], "contract_type": ["Rental Agreement", "rental agreement"], "location": ["California", "CA"]}}
-{"property_records.get": {"address": ["123 main street"], "parcel_number": ["1234567890"], "county": ["Santa Clara"], "include_owner": [true]}}
-{"get_crime_rate": {"city": ["San Francisco"], "state": ["California"], "type": ["violent","Violent"], "year": [2020]}}
-{"civil_cases.retrieve": {"year": [2020], "crime_type": ["theft"], "location": ["Los Angeles"]}}
-{"lawyer.find_nearby": {"city":["Chicago, IL."], "specialty":[["Divorce"]], "fee":[400]}}
-{"law.civil.get_case_details": {"case_title": ["Roe v. Wade"], "include_dissent": [true]}}
-{"lawsuit_search": {"company": ["Google", "GOOG"], "start_date": ["01-01-2021"], "location": ["California"], "status": ["ongoing", ""]}}
-{"court_case.search": {"docket_number": ["123456"], "location": ["Texas"], "full_text": [false, ""]}}
-{"law_case_search.find_historical": {"subject": ["fraud"], "from_year": [2010], "to_year": [2015]}}
-{"fetch_law_case_details_1": {"case_number": [43403], "court": ["New York"], "year": [2018]}}
-{"legal_case.fetch": {"case_id": ["R vs Adams", "R_vs_Adams"], "details": [true]}}
-{"law_case_search": {"topic": ["land disputes"], "year_range": [[2015, 2021]], "location": ["New York"], "judicial_system": ["state", ""]}}
-{"get_top_cases_1": {"field_of_law": ["constitutional law"], "top_number": [10], "country": ["China", "CN"]}}
-{"lawyer.get_experience": {"name": ["John Doe"], "law_type": ["Bankruptcy"]}}
-{"lawsuit_details.find_1": {"company_name": ["Apple Inc."], "year": [2010], "case_type": ["Patent", "IPR"]}}
-{"get_lawsuit_cases": {"company_name": ["Facebook"], "year": [2018], "status": ["open", "closed", "all", ""]}}
-{"get_lawsuit_details": {"case_number": ["LAX2019080202"], "court_location": ["Los Angeles"], "additional_details": ["", ["attorneys", "plaintiffs", "defendants", "charges", "court_updates"]]}}
-{"find_latest_court_case": {"company1": ["Apple"], "company2": ["Samsung"], "country": ["USA", ""]}}
-{"lawsuits_search": {"company_name": ["Google"], "location": ["California", "CA"], "year": [2020], "case_type": [""]}}
-{"get_lawsuit_details": {"case_number": ["123456-ABC"], "court_location": ["Los Angeles"], "with_verdict": [true]}}
-{"lawsuit_info": {"case_number": ["XYZ123"], "year": [""], "location": [""]}}
-{"lawsuit_search": {"entity": ["Apple"], "county": ["Santa Clara County"], "state": ["California",""]}}
-{"lawsuit.check_case": {"case_id": [1234], "closed_status": [true]}}
-{"detailed_weather_forecast": {"location": ["New York"], "duration": [72], "include_precipitation": [true]}}
-{"current_weather_condition": {"city": ["Tokyo"], "country": ["Japan"], "measurement": ["c", "Celsius",""]}}
-{"get_current_weather": {"location": ["Seattle"], "include_temperature": [true,""], "include_humidity": [true,""]}}
-{"weather.humidity_forecast": {"location": ["Miami"], "days": [7], "min_humidity": [""]}}
-{"weather_forecast_detailed": {"location": ["New York"], "days": [3], "details": [true]}}
-{"park_information": {"park_name": ["Yellowstone", "Yellowstone National Park"], "information": [["Elevation", "Area"]]}}
-{"locate_tallest_mountains": {"location": ["Denver, Colorado", "Denver", "CO"], "radius": [50], "amount": [5]}}
-{"calculate_slope_gradient": {"point1": [[40.7128, -74.006]], "point2": [[34.0522, -118.2437]], "unit": ["degree", "percent", "ratio"]}}
-{"local_nursery.find": {"location": ["Toronto"], "plant_types": [["Annual"]]}}
-{"get_plants_for_slope": {"slope_type": ["hill", "steep", "moderate"], "num_results": [3]}}
-{"calculate_carbon_footprint": {"daily_miles": [20], "meat_meals_per_week": [3], "annual_trash_weight": [500], "flights_per_year": [""]}}
-{"air_quality": {"location": ["London"], "date": ["2022-08-16", "16/08/2022", "Aug.16,2022", "2022/08/16"]}}
-{"get_air_quality_index": {"location": ["San Diego"], "time": ["12pm", "12:00"]}}
-{"calculate_daily_water_intake": {"weight": [70], "activity_level": [""], "climate": [""]}}
-{"environmental_data.air_quality_index": {"location": ["San Jose", "'San Jose'"], "days": [3]}}
-{"calculate_emissions_1": {"distance": [12000], "fuel_type": ["gas"], "fuel_efficiency": [""], "efficiency_reduction": [0, ""]}}
-{"estimate_population": {"species": ["panda", "pandas"], "country": ["China", "CN"], "year": [""]}}
-{"calculate_emission_savings": {"energy_type": ["renewable"], "usage_duration": [3], "region": ["California", "CA"]}}
-{"get_air_quality": {"location": ["Chicago"], "detail": ["", true], "historical": ["", "today"]}}
-{"restaurant.find_nearby": {"location": ["Seattle", "Seattle, WA"], "cuisine": ["Chinese"], "max_distance": [10]}}
-{"get_traffic_info_1": {"start_location": ["Boston"], "end_location": ["New York", "NYC"], "mode": ["driving"]}}
-{"parks.find_nearby": {"location": ["London", "London, UK"], "amenities": [["Tennis Court"]]}}
-{"calculate_shortest_distance": {"start_location": ["New York, USA", "New York City", "New York City, NY", "NYC", "NY"], "end_location": ["Miami, USA", "Miami", "Miami, FL", "FL"], "route_preference": ["Shortest"]}}
-{"map_service.get_directions": {"start": ["New York", "NYC"], "end": ["Los Angeles", "LA"], "avoid": [["highways", "tolls"]]}}
-{"public_library.find_nearby": {"location": ["Boston, MA", "Boston, Massachusetts"], "facilities": [["Fiction", "Wi-Fi"], ["Wi-Fi", "Fiction"]]}}
-{"get_news": {"topic": ["Bitcoin"], "quantity": [5], "region": ["US", "United States", "USA"]}}
-{"send_email": {"to": ["john.doe@example.com"], "subject": ["Meeting"], "body": ["Let's meet at 10 AM tomorrow", "Let\\'s meet at 10 AM tomorrow"], "cc": [""], "bcc": [""]}}
-{"get_stock_info_1": {"company_name": ["Apple Inc."], "detail_level": ["detailed"], "market": ["", "NASDAQ"]}}
-{"flight.book": {"departure_location": ["San Francisco", "SF"], "destination_location": ["London"], "date": ["2022-04-27", "04/27/2022", "Apr 27, 2022"], "time": ["afternoon"], "direct_flight": [true]}}
-{"event_finder.find_upcoming": {"location": ["New York", "New York, NY", "NYC"], "genre": ["Rock", "rock"], "days_ahead": [30, ""]}}
-{"movie_details.brief": {"title": ["Interstellar"], "extra_info": ["", false]}}
-{"sentiment_analysis": {"text": ["I love the food here! It's always fresh and delicious.", "I love the food here! It\\'s always fresh and delicious."], "language": ["english", "English", "en"]}}
-{"fMRI.analyze": {"data_source": ["~/data/myfMRI.nii"], "sequence_type": ["multi-band"], "smooth": [6], "voxel_size": [2]}}
-{"patient.get_mri_report": {"patient_id": ["546382"], "mri_type": ["brain"], "status": ["concluded"]}}
-{"get_neuron_coordinates": {"neuron_type": ["GABA"], "brain_region": ["All", "all part of the brain", "entire brain"]}}
-{"calculate_neuronal_activity": {"input_synaptic_rate": [200], "weight": [0.5], "decay_rate": [0.1]}}
-{"population_growth_estimate": {"location": ["London"], "years": [5], "rate": [""]}}
-{"calculate_bmi": {"weight": [70], "height": [180], "unit": ["","metric"]}}
-{"group_dynamics.pattern": {"total": [50], "extroverts": [15], "introverts": [35]}}
-{"social_media_analytics.most_followed": {"topic": ["psychology"], "sub_topics": [["behaviour", "group dynamics"]], "region": [""]}}
-{"psych_research.get_preference": {"category": ["reading"], "option_one": ["digital reading", "digital"], "option_two": ["physical book", "physical"], "demographic": ["", "all"]}}
-{"get_zodiac_compatibility": {"sign1": ["Aries"], "sign2": ["Gemini"], "scale": ["percentage", ""]}}
-{"get_personality_traits": {"type": ["ENFJ"], "traits": [["strengths", "weaknesses"]]}}
-{"get_personality_traits": {"hobby": ["jogging"], "trait_count": [3]}}
-{"get_bigfive_scores": {"characteristics": [["efficient", "organized", "easy going", "compassionate"]], "scale": ["high", "medium", "low", ""]}}
-{"historic_leader_search": {"location": ["France"], "date": [1510], "title": ["King", ""]}}
-{"history.get_key_events": {"country": ["Germany", "DE"], "start_year": [1871], "end_year": [1945], "event_type": ["War", ["War"]]}}
-{"monarch.getMonarchOfYear": {"location": ["England", "ENG"], "year": [1800], "fullName": [true]}}
-{"european_history.get_event_date": {"event_name": ["Treaty of Tordesillas"], "format": ["YYYY"]}}
-{"history_eu.fetch_events_1": {"century": [19], "region": ["Northern", "Southern", "Eastern", "Western"], "category": ["Wars"]}}
-{"get_event_date": {"event": ["Treaty of Lisbon", "Signing of the Treaty of Lisbon"], "location": [""]}}
-{"us_history.get_event_info": {"event_name": ["American Civil War", "Civil War"], "specific_info": ["Start Date"]}}
-{"get_historical_GDP": {"country": ["United States", "US"], "start_year": [1960], "end_year": [2000]}}
-{"us_history.get_president": {"event": ["American Civil War"], "year": [1861]}}
-{"US_president.in_year": {"year": [1861], "full_name": [true,""]}}
-{"history_api.get_president_by_year": {"year": [1940], "full_term_only": ["", true, false]}}
-{"US_President_During_Event": {"event": ["Civil War"], "country": ["USA", "United States of America",""]}}
-{"get_scientist_for_discovery": {"discovery": ["Theory of Evolution", "theory of evolution"]}}
-{"get_discoverer": {"discovery": ["neutron"], "detail": [true]}}
-{"publication_year.find": {"author": ["Isaac Newton"], "work_title": ["Law of Universal Gravitation", "Universal Law of Gravitation"], "location": [""]}}
-{"discoverer.get": {"element_name": ["'radium'", "\"radium\"","radium"], "year": [""], "first": [true, ""]}}
-{"science_history.get_discovery_details": {"discovery": ["Gravity"], "method_used": ["", "default"]}}
-{"historical_contrib.get_contrib": {"scientist": ["Albert Einstein"], "date": ["1915-03-17", "03/17/1915", "Mar.17,1915"], "category": [""]}}
-{"science_history.get_invention": {"invention_name": ["theory of relativity"], "want_year": [true]}}
-{"religion.history_info": {"religion": ["Christianity"], "till_century": [14], "include_people": [true, ""]}}
-{"get_time_difference": {"place1": ["San Francisco", "SF"], "place2": ["Sydney"]}}
-{"get_earliest_reference": {"name": ["Jesus Christ"], "source": ["historical records", "scriptures"]}}
-{"get_religion_history": {"religion": ["Christianity"], "century": [16], "sort_by": ["importance"], "count": [10]}}
-{"retrieve_religion_info_1": {"religion_name": ["Buddhism"], "detail_level": ["full"]}}
-{"get_religion_history": {"religion": ["Christianity"], "start_year": [300], "end_year": [400], "event_type": ["all", "crusade", "schism", "reform", ""]}}
-{"religious_history.get_papal_biography": {"papal_name": ["Innocent III"], "include_contributions": [true]}}
-{"generate_circle_image": {"radius": [50], "color": ["Red"], "background": [""]}}
-{"identify_color_rgb_1": {"color_name": ["Sea Green"], "standard": ["basic",""]}}
-{"mix_paint_color": {"color1": ["yellow"], "color2": ["blue"], "lightness": [60]}}
-{"calculate_paint_needed": {"coverage_rate": [400], "length": [30], "height": [12]}}
-{"paint_requirement.calculate": {"area": [{"width": [20], "height": [12]}], "paint_coverage": [350], "exclusion": [{"type": ["window"], "area": [15]}]}}
-{"draw_rectangle": {"width": [20], "height": [10], "color": ["red", "'red'"]}}
-{"modify_painting": {"size": ["12x18"], "medium": ["oil"], "dominant_color": ["red"]}}
-{"get_sculpture_info": {"artist_name": ["James Plensa"], "year": [""], "detail": [true]}}
-{"sculpture.get_details": {"artist": ["Michelangelo"], "title": ["David"], "detail": ["size", ""]}}
-{"sculpture_search": {"location": ["Chicago"], "time_frame": ["19th century"], "material": [""]}}
-{"get_sculpture_value_1": {"sculpture": ["The Thinker"], "artist": ["Rodin"], "year": [""]}}
-{"find_exhibition": {"location": ["New York", "NY", "New York City", "New York City, NY", "NYC"], "art_form": ["sculpture", "modern sculpture"], "month": ["upcoming", ""], "user_ratings": ["high"]}}
-{"sculpture_locator.find_by_artist": {"artist": ["Michelangelo"], "material": ["Marble"], "location": ["Rome", "Rome, Italy"]}}
-{"calculate_compound_interest": {"principle": [10000], "interest_rate": [0.05], "time": [10], "compounds_per_year": [1, ""]}}
-{"building.get_dimensions": {"building_name": ["Empire State Building", "Empire State"], "unit": ["feet"]}}
-{"analyze_structure": {"building_id": ["B1004"], "floors": [[2, 3, 4]], "mode": ["dynamic", "static"]}}
-{"calculate_circle_dimensions": {"radius": [5]}}
-{"museum.get_hours": {"name": ["Louvre Museum"], "location": ["Paris", "Paris, France"], "day": [""]}}
-{"museum_info": {"museum_name": ["Metropolitan Museum of Art", "The Metropolitan Museum of Art", "Met Museum"], "info_type": ["opening_hours", ""]}}
-{"metropolitan_museum.get_top_artworks": {"number": [5], "sort_by": ["popularity"]}}
-{"museum_working_hours.get": {"museum": ["Louvre Museum", "Louvre"], "location": ["Paris", "Paris, France"], "day": [""]}}
-{"museum_info": {"museum": ["The British Museum"], "date": ["this weekend", "2023-06-20", "06/20/2023", "Jun.20,2023"], "information": [["opening_hours", "ticket_price"], ["ticket_price", "opening_hours"]]}}
-{"get_instrument_details": {"instrument": ["piano"], "manufacturer": ["Yamaha"], "features": [["price", "rating"]]}}
-{"instrument_price.get_1": {"brand": ["Fender"], "model": ["American Professional II Stratocaster"], "finish": ["Rosewood"]}}
-{"find_instrument_1": {"budget": [1000], "type": ["acoustic"], "make": ["Violin", "violin"]}}
-{"get_instrument_info": {"name": ["Violin"], "maker": ["Stradivarius"], "year": [1721]}}
-{"find_flute_1": {"brand": ["Yamaha"], "specs": [["open hole", "C foot", "silver headjoint"]]}}
-{"guitar_price.find": {"model": ["Gibson Les Paul"], "condition": ["Excellent"], "location": ["Chicago", "Chicago, IL", "Chicago, Illinois"]}}
-{"concert_info.get": {"location": ["New York", "New York City", "New York City, NY", "NYC", "NY"], "date": ["next month", "2023-06-01", "06/01/2023", "Jun.1,2023", "June 2023"], "genre": ["Pop"]}}
-{"find_concert": {"location": ["Chicago"], "price": [100], "genre": ["Rock"]}}
-{"concert.get_details": {"artist": ["Beyonce"], "location": ["San Diego", "San Diego, California", "CA"], "date": ["04-2022", "April 2022"]}}
-{"concert.search": {"genre": ["classical"], "location": ["Los Angeles", "LA"], "date": ["this weekend"], "price_range": ["cheap"]}}
-{"concert_booking.book_ticket": {"artist": ["Eminem"], "city": ["New York City", "New York City, NY", "NYC"], "num_tickets": [2, "2"]}}
-{"concert.find_nearby": {"location": ["Seattle", "Seattle, WA"], "genre": ["jazz", "Jazz"]}}
-{"concert.find_details": {"artist": ["The Weeknd"], "month": ["December"], "year": [""]}}
-{"music_generator.generate_melody": {"key": ["C"], "start_note": ["C4"], "length": [16], "tempo": [120, ""]}}
-{"compose_melody": {"progression": [["C", "F", "G"]], "measures": [4], "instrument": ["Piano", ""]}}
-{"music_composer.create_mix": {"scale": ["C Major"], "note_duration": ["quarter"], "track_length": [180]}}
-{"music_generation.create_chord_progression": {"key": ["C"], "chords": [4], "progression_type": ["major", ""]}}
-{"get_song_lyrics": {"song_title": ["Bohemian Rhapsody"], "artist_name": ["Queen"], "lang": ["English", ""]}}
-{"music_generator.generate_scale_progression": {"key": ["C"], "tempo": [80], "duration": [4], "scale_type": ["major", ""]}}
-{"music.theory.chordProgression_1": {"progression": [["I", "V", "vi", "IV"]], "returnAllPossibleKeys": [true, false, ""], "assumeMajor": [ true, false, ""]}}
-{"music_theory.key_signature": {"key": ["C#"], "scale_type": ["major", ""]}}
-{"musical_scale": {"key": ["C#", "C sharp"], "scale_type": ["major", ""]}}
-{"music.calculate_note_duration": {"first_note_frequency": [440], "second_note_frequency": [880], "tempo": [""]}}
-{"get_third_chord": {"key": ["C"], "type": ["major", "Major"]}}
-{"calculate_batting_average": {"hits": [180], "at_bats": [600], "decimal_places": [3, ""]}}
-{"soccer_stat.get_player_stats": {"player_name": ["Cristiano Ronaldo"], "season": ["2019-2020"], "league": [""]}}
-{"player_stats.getLastGame": {"player_name": ["LeBron James"], "team": ["Los Angeles Lakers", "LAL", "Lakers"], "metrics": [["Points", "Rebounds"]]}}
-{"sports_stats.get_performance": {"player_name": ["Messi", "Lionel Messi"], "tournament": ["La Liga"], "season": ["2020-2021"], "performance_indicator": [["Goals Scored", "Assists Made"]]}}
-{"average_batting_score": {"player_name": ["Virat Kohli"], "matches": [10], "match_format": ["T20", ""]}}
-{"game_result.get_winner_1": {"teams": [["Lakers", "Clippers"], ["Clippers", "Lakers"]], "date": ["2021-01-28", "01/28/2021", "Jan.28,2021"], "venue": [""]}}
-{"sports.match_schedule": {"team_name": ["Manchester United", "Man United", "Man U", "MUFC"], "num_matches": [5], "league": ["English Premier League", "Premier League"]}}
-{"nfl_data.player_record": {"player_name": ["Tom Brady"], "season_year": [2020], "team": [""]}}
-{"get_career_stats": {"player_name": ["LeBron James"], "team": [""]}}
-{"sports_db.find_athlete": {"name": ["Lebron James"], "sport": ["Basketball"], "team": [""]}}
-{"player_statistic": {"player_name": ["Ronaldo", "Cristiano Ronaldo"], "year": [2021], "team_name": [""]}}
-{"celebrity_net_worth.get": {"name": ["Lionel Messi", "Messi"], "currency": ["EUR", "euro"]}}
-{"sports_celebrity.get_major_achievements": {"celebrity_name": ["Lionel Messi", "Messi"], "sports": ["Football", "Soccer", ""], "team": [""]}}
-{"get_defense_ranking": {"season": [2021], "top": [1]}}
-{"get_sport_ranking": {"sport": ["Tennis"], "player_name": ["Serena Williams"], "gender": ["", "male", "female"]}}
-{"get_team_rank_1": {"team_name": ["LA Lakers"], "league": ["NBA"], "season": ["2021"], "type": ["regular"]}}
-{"get_team_ranking": {"team_name": ["Germany"], "year": [2021], "gender": ["men", ""]}}
-{"sports_ranking": {"team": ["Manchester United", "Man United", "Man U", "MUFC"], "league": ["Premier League"], "season": [""]}}
-{"sports_ranking.get_team_position": {"team": ["Golden State Warriors", "GSW"], "season": ["current", "2022-2023"], "detailed": [true]}}
-{"sports_ranking": {"team": ["Barcelona", "FC Barcelona"], "league": ["La Liga"], "season": ["2021"]}}
-{"sports_ranking.get_current": {"team": ["Liverpool Football Club", "Liverpool", "LFC"], "league": ["Premier League", "EPL", "English Premier League"], "season": [""]}}
-{"sports_ranking.get_top_player": {"sport": ["tennis"], "gender": ["women", "female", "ladies"]}}
-{"team_score.get_latest": {"team": ["Los Angeles Lakers", "Lakers"], "include_opponent": [true]}}
-{"sports.match_results": {"team1": ["Chicago Bulls"], "team2": ["Los Angeles Lakers"], "season": [""]}}
-{"get_team_score": {"team_name": ["Los Angeles Lakers", "Lakers"], "league": ["NBA"], "include_player_stats": ["", true, false]}}
-{"sports_team.get_schedule": {"team_name": ["Manchester United", "Man United", "Man U", "MUFC"], "num_of_games": [6], "league": ["Premier League"]}}
-{"boardgame.get_info": {"name": ["Ticket to Ride"], "parameters": [["rating", "player count"], ["player count", "rating"]], "language": [""]}}
-{"monopoly_odds_calculator": {"number": [7], "dice_number": [2], "dice_faces": [6, ""]}}
-{"board_game_info": {"game_name": ["Catan"], "info_required": [["average_review_rating", "age_range"]]}}
-{"board_game.chess.get_top_players": {"location": ["New York", "New York City", "New York City, NY", "NYC"], "minimum_rating": [2300], "number_of_players": [""]}}
-{"chess.rating": {"player_name": ["Magnus Carlsen"], "variant": ["classical", "Classical", "CLASSICAL", ""]}}
-{"detailed_weather_forecast": {"location": ["London, United Kingdom", "London"], "days": [3], "details": [["high_low_temperature", "humidity", "precipitation"]]}}
-{"blackjack.check_winner": {"player_cards": [["A", "10"]], "dealer_cards": [["10", "9"]], "ace_value": [1]}}
-{"find_card_in_deck": {"rank": ["Queen"], "suit": ["Hearts"], "deck": [""]}}
-{"cards.shuffle_and_draw": {"num_cards": [3]}}
-{"poker_game_winner_1": {"players": [["Alex", "Sam", "Robert", "Steve"]], "cards": [{"Alex": ["A of spades", "K of spades"], "Sam": ["2 of diamonds", "3 of clubs"], "Robert": ["Q of hearts", "10 of hearts"], "Steve": ["4 of spades", "5 of spades"]}], "type": ["Texas Holdem", ""]}}
-{"card_game_probability.calculate": {"total_cards": [52], "desired_cards": [13], "cards_drawn": [""]}}
-{"poker_probability.full_house": {"deck_size": [52], "hand_size": [5]}}
-{"card_games.poker_determine_winner": {"player1": ["John"], "hand1": [["8\u2665", "10\u2665", "J\u2665", "Q\u2665", "K\u2665"]], "player2": ["Mike"], "hand2": [["9\u2660", "J\u2660", "10\u2660", "Q\u2660", "K\u2660"]]}}
-{"deck_of_cards.odds": {"suit": ["hearts"], "deck_type": ["without_joker", "normal"]}}
-{"game_list.get_games": {"release_year": [2019], "multiplayer": [true], "ESRB_rating": ["Everyone"]}}
-{"game_stats.fetch_player_statistics": {"game": ["Zelda"], "username": ["Sam"], "platform": ["Switch"]}}
-{"get_game_item_stats": {"game": ["Legend of Zelda: Breath of the Wild"], "item": ["Guardian Sword+"], "stat": ["Power", "power", "power rating"]}}
-{"game_valuation": {"game_name": ["Super Mario Bros."], "release_year": [1985], "condition": ["Like New", "New"]}}
-{"get_collectables_in_season": {"game_name": ["Animal Crossing: New Horizons"], "season": ["Spring"], "item_type": ["", "all"]}}
-{"soccer.get_last_match": {"team_name": ["Liverpool F.C.", "Liverpool"], "include_stats": [true]}}
-{"create_player_profile": {"player_name": ["StarPlayer"], "_class": ["Mage"], "starting_level": [5]}}
-{"game_score.highest": {"game": ["Overwatch"], "platform": ["PC"], "region": ["Global", ""]}}
-{"get_highest_scoring_player": {"game": ["Valorant"], "season": ["2022", "2022 season"]}}
-{"multiplayer_game_finder": {"platform": ["Windows 10"], "rating": [4.5], "genre": [""]}}
-{"gamespot.getAverageUserScore": {"game_name": ["The Legend of Zelda: Breath of the Wild"], "platform": ["Nintendo Switch", "all platforms"]}}
-{"find_recipes_1": {"diet": ["gluten-free"], "meal_type": ["dinner"], "ingredients": [""]}}
-{"get_vegan_recipe": {"dish_type": ["soup"], "cooking_time": [30], "ingredient_preference": [["vegan"], [""]]}}
-{"recipe_info.get_calories": {"website": ["Foodnetwork.com"], "recipe": ["Beef Lasagna"], "optional_meal_time": [""]}}
-{"recipe_finder.find": {"servings": [2], "diet": ["vegan"], "prep_time": [30, ""]}}
-{"get_recipe": {"dish_name": ["chocolate cake", "vegan chocolate cake"], "diet_preference": ["vegan", ""]}}
-{"recipe_search": {"diet": [["Gluten Free"], ["GF"], ["gluten free"]], "time_limit": [30], "dish": ["cookie"]}}
-{"recipe_search": {"dietary_restriction": ["Vegetarian"], "ingredients": [["pasta", "cheese"]], "servings": [2]}}
-{"find_recipe": {"recipeName": ["pasta carbonara"], "maxCalories": [500]}}
-{"restaurant_finder": {"city": ["New York City", "New York City, NY", "NYC", "New York"], "cuisine": ["Italian"], "diet": ["Gluten-free"]}}
-{"get_best_sushi_places": {"city": ["Tokyo"], "top": [5], "review_rate": [4.0, "4", 4, "4.0"]}}
-{"find_closest": {"location": ["Boston", "Boston, MA"], "cuisine": ["Sushi", "sushi"], "amenities": [["Patio"],["patio"]]}}
-{"find_restaurant": {"location": ["Brooklyn", "Brooklyn, NY"], "type": ["Italian"], "diet_option": ["Gluten-free"]}}
-{"cooking_conversion.convert": {"quantity": [2], "from_unit": ["pound","pounds", "lb", "lbs"], "to_unit": ["ounce","ounces","oz"], "item": ["butter"]}}
-{"recipe.unit_conversion": {"value": [2], "from_unit": ["tablespoon", "tbsp"], "to_unit": ["teaspoon", "tsp"], "precision": [0, ""]}}
-{"find_recipe_1": {"dietary_restrictions": ["vegan"], "recipe_type": ["brownies"], "time": [30]}}
-{"calculate_cooking_time_1": {"weight_kg": [1.5], "cooking_method": ["", "roast"], "temp_celsius": ["", 180]}}
-{"grocery_store.find_nearby": {"location": ["Houston", "Houston, TX"], "categories": [["Organic", "Vegetables", "Fruits"], ["Organic", "Fruits", "Vegetables"]]}}
-{"safeway.order": {"location": ["Palo Alto", "Palo Alto, CA"], "items": [["olive oil", "rice"], ["olive oil", "bag of rice"]], "quantity": [[3, 1]]}}
-{"whole_foods.check_price": {"location": ["Los Angeles", "LA"], "items": [["tomatoes", "lettuce"]]}}
-{"whole_foods.find_top_brands": {"product": ["bananas"], "number": [5], "organic": [true]}}
-{"walmart.purchase": {"loc": ["San Jose", "San Jose, CA", "CA"], "product_list": [["apples", "rice", "bottled water"]], "pack_size": [[1, 1, 12]]}}
-{"grocery_info.nutritional_info_1": {"store": ["Walmart"], "food": ["avocado"], "information": [["Protein", "Calories", "Carbohydrates"]]}}
-{"walmart.check_price": {"items": [["pumpkins", "eggs"]], "quantities": [[3, 24], [3, 2]], "store_location": ["Los Angeles", "LA"]}}
-{"time_zone_converter": {"city": ["London"], "country": ["UK", "United Kingdom"], "display_format": ["24h", "24 hour"]}}
-{"get_current_time": {"city": ["Sydney"], "country": ["Australia"], "format": [""]}}
-{"timezone.convert": {"time": ["3pm"], "from_timezone": ["America/New_York", "New York", "NYC", "New York City"], "to_timezone": ["Europe/London", "London"]}}
-{"get_current_time": {"location": ["Sydney"], "country": ["Australia"], "timezone": [""]}}
-{"hotel_booking_1": {"location": ["Manhattan, New York", "Manhattan, NY", "NYC", "New York City"], "room_type": ["single"], "duration": [3], "start_date": ["2023-03-10", "03/10/2023", "Mar.10,2023", "March 10th, 2023"], "preferences": ["pet_friendly"]}}
-{"hilton_hotel.check_availability": {"location": ["Paris"], "check_in_date": ["2023-04-04", "04/04/2023", "Apr.4,2023"], "check_out_date": ["2023-04-08", "04/08/2023", "Apr.8,2023"], "no_of_adults": [2], "hotel_chain": ["Hilton",""]}}
-{"book_hotel_1": {"hotel_name": ["Hilton Hotel"], "location": ["Chicago"], "room_type": ["single"], "start_date": ["2022-12-10", "10/12/2022", "Dec 10, 2022", "December 10, 2022"], "nights": [2]}}
-{"book_room": {"hotel_name": ["The Plaza"], "room_type": ["Single", "single"], "num_nights": [2]}}
-{"hotel_booking.book": {"city": ["Paris", "Paris, France"], "from_date": ["07-10-2022", "2022-07-10", "10/07/2022", "Jul.10,2022"], "to_date": ["07-20-2022", "2022-07-20", "20/07/2022", "Jul.20,2022"], "adults": [2], "children": [1], "room_type": ["Deluxe", ""]}}
-{"hotel_bookings.book_room": {"location": ["Los Angeles", "Los Angeles, CA", "LA"], "room_type": ["King Size", "king size"], "check_in_date": ["15-10-2023", "15th October", "2023-10-15", "10/15/2023", "Oct.15,2023"], "no_of_nights": [2], "no_of_rooms": [""]}}
-{"book_hotel": {"hotel_name": ["Hotel Paradise"], "location": ["Las Vegas", "LV"], "room_type": ["luxury"], "start_date": ["05-12-2022", "2022-05-12", "12/05/2022", "May.12,2022"], "stay_duration": [3], "view": ["city view", "city"]}}
-{"hotel_booking": {"hotel_name": ["Plaza Hotel"], "location": ["New York", "New York City", "New York City, NY", "NYC", "NY"], "start_date": ["2022-06-01", "06/01/2022", "Jun.1,2022"], "end_date": ["2022-06-04", "06/04/2022", "Jun.4,2022"], "rooms": [1,""]}}
-{"currency_exchange.convert": {"base_currency": ["USD"], "target_currency": ["CAD"], "amount": [500]}}
-{"currency_converter_1": {"base_currency": ["USD"], "target_currency": ["GBP"], "amount": ["200"]}}
-{"currency_conversion.convert": {"amount": [150], "from_currency": ["EUR", "Euros"], "to_currency": ["CAD", "Canadian dollars"]}}
-{"get_exchange_rate_with_fee": {"base_currency": ["GBP"], "target_currency": ["JPY"], "fee": [0.02]}}
-{"latest_exchange_rate": {"source_currency": ["GBP", "British Pounds", "Pounds Sterling"], "target_currency": ["JPY", "Japanese Yen"], "amount": [""]}}
-{"convert_currency": {"base_currency": ["JPY"], "target_currency": ["USD"], "amount": [20000]}}
-{"maps.get_distance_duration": {"start_location": ["Eiffel Tower"], "end_location": ["Louvre Museum"], "traffic": [""]}}
-{"parking_lot.find_nearest": {"location": ["Central Park, NY", "Central Park, New York", "Central Park", "New York", "NYC"], "radius": [2], "type": ["public", ""]}}
-{"hospital.locate": {"location": ["Denver, Colorado", "Denver, CO"], "radius": [5], "department": ["Pediatrics"]}}
-{"distance_calculator.calculate": {"origin": ["New York", "New York City", "New York City, NY", "NYC"], "destination": ["Boston"], "consider_terrain": [true]}}
-{"get_museum_hours_1": {"museum_name": ["Metropolitan Museum of Art", "The Met"], "day": ["Saturday"]}}
-{"restaurant_search": {"location": ["New York City", "New York City, NY", "NYC"], "cuisine": ["Italian"], "rating": [4], "accepts_credit_cards": [true]}}
+{"calculate_triangle_area":{"base":[10],"height":[5],"unit":["units",""]}}
+{"math.factorial":{"number":[5]}}
+{"math.hypot":{"x":[4],"y":[5],"z":["",0]}}
+{"algebra.quadratic_roots":{"a":[1],"b":[-3],"c":[2]}}
+{"solve_quadratic_equation":{"a":[2],"b":[6],"c":[5]}}
+{"solve_quadratic":{"a":[3],"b":[-11],"c":[-4],"root_type":["","real"]}}
+{"solve_quadratic":{"a":[2],"b":[5],"c":[3]}}
+{"calculate_circumference":{"radius":[4],"unit":["inches","in"]}}
+{"geometry.area_circle":{"radius":[10],"units":["meters",""]}}
+{"geometry.calculate_area_circle":{"radius":[5],"unit":["units",""]}}
+{"calculate_area":{"base":[6],"height":[10],"unit":["cm",""]}}
+{"calculate_triangle_area":{"base":[10],"height":[5]}}
+{"geometry.circumference":{"radius":[3],"units":["cm",""]}}
+{"calculate_area_under_curve":{"function":["x^2","x**2"],"interval":[[1.00,3.00]],"method":["","trapezoidal"]}}
+{"calculate_derivative":{"function":["3x^2 + 2x - 1","3*x**2+2*x-1"],"x_value":["",0.0]}}
+{"integrate":{"function":["x^3","x**3"],"start_x":[-2],"end_x":[3],"method":["simpson"]}}
+{"calculus.derivative":{"function":["2*x^2","2x^2","2**x^2"],"value":[1],"function_variable":["x",""]}}
+{"get_prime_factors":{"number":[450],"formatted":[true,""]}}
+{"number_analysis.prime_factors":{"number":[123456]}}
+{"math.gcd":{"num1":[40],"num2":[50]}}
+{"math.hcf":{"number1":[36],"number2":[24]}}
+{"number_theory.gcd":{"number1":[36],"number2":[48]}}
+{"math.gcd":{"num1":[12],"num2":[15]}}
+{"prime_factorize":{"number":[60],"return_type":["dictionary"]}}
+{"math.gcd":{"num1":[12],"num2":[18]}}
+{"calculate_final_velocity":{"height":[150],"initial_velocity":[0],"gravity":[9.81,""]}}
+{"calculate_velocity":{"distance":[50],"duration":[2],"unit":["","km/h"]}}
+{"final_velocity":{"initial_velocity":[10],"acceleration":[2],"time":[5]}}
+{"calculate_displacement":{"initial_velocity":[10],"time":[5],"acceleration":[9.8]}}
+{"calculate_final_speed":{"initial_speed":[0],"time":[5],"gravity":[-9.81,""]}}
+{"kinematics.final_velocity_from_distance":{"acceleration":[4],"distance":[300],"initial_velocity":["",0.00]}}
+{"calculate_final_velocity":{"initial_velocity":[0],"acceleration":[9.8],"time":[5]}}
+{"calculate_final_speed":{"initial_velocity":[0],"height":[100],"gravity":[9.8,""]}}
+{"get_directions":{"start_location":["Sydney"],"end_location":["Melbourne"],"route_type":["fastest",""]}}
+{"travel_itinerary_generator":{"destination":["Tokyo"],"days":[7],"daily_budget":[100],"exploration_type":["nature"]}}
+{"vegan_restaurant.find_nearby":{"location":["New York, NY"],"operating_hours":[23]}}
+{"get_shortest_driving_distance":{"origin":["New York City"],"destination":["Washington D.C."],"unit":["km",""]}}
+{"route.estimate_time":{"start_location":["San Francisco"],"end_location":["Los Angeles"],"stops":[["Santa Barbara","Monterey"],["Monterey","Santa Barbara"]]}}
+{"calculate_electrostatic_potential":{"charge1":[1e-09],"charge2":[2e-09],"distance":[0.05],"constant":["",8990000000.0]}}
+{"calculate_electric_field":{"charge":[2],"distance":[3],"permitivity":["",8.854e-12]}}
+{"calculate_magnetic_field":{"current":[5],"radius":[4],"permeability":["",125700000000.0]}}
+{"electromagnetic_force":{"charge1":[5],"charge2":[7],"distance":[3],"medium_permittivity":["",8.854e-12]}}
+{"calculate_resonant_frequency":{"inductance":[0.05],"capacitance":[0.0001],"round_off":["",2]}}
+{"calculate_magnetic_field_strength":{"current":[20],"distance":[10],"permeability":["",1.257e-06]}}
+{"calculate_electric_field_strength":{"charge":[0.01],"distance":[4],"medium":["","vacuum"]}}
+{"thermo.calculate_energy":{"mass":[100],"phase_transition":["vaporization"],"substance":["water",""]}}
+{"calculate_final_temperature":{"mass1":[20],"temperature1":[30],"mass2":[15],"temperature2":[60],"specific_heat_capacity":["",4.2]}}
+{"get_boiling_melting_points":{"substance":["water"],"sea_level":[5000]}}
+{"calculate_density":{"mass":[45],"volume":[15],"unit":["","kg/m\u00b3"]}}
+{"calc_absolute_pressure":{"atm_pressure":[1],"gauge_pressure":[2]}}
+{"entropy_change.calculate":{"substance":["ice"],"mass":[1],"initial_temperature":[0],"final_temperature":[100],"pressure":["",1]}}
+{"calculate_entropy_change":{"initial_temp":[300],"final_temp":[400],"heat_capacity":[5],"isothermal":["",true]}}
+{"calc_heat_capacity":{"temp":[298],"volume":[10],"gas":["air",""]}}
+{"fetch_DNA_sequence":{"DNA_id":["DNA123"],"format":["","fasta"],"upstream":["",0]}}
+{"get_protein_sequence":{"gene":["BRCA1"],"species":["Homo sapiens",""]}}
+{"biology.get_cell_info":{"cell_type":["human"],"detailed":[true]}}
+{"cellbio.get_proteins":{"cell_compartment":["plasma membrane"],"include_description":["",true,false]}}
+{"calculate_cell_density":{"optical_density":[0.6],"dilution":[5],"calibration_factor":[1000000000.0,""]}}
+{"cell_biology.function_lookup":{"molecule":["ATP synthase"],"organelle":["mitochondria"],"specific_function":[true]}}
+{"calculate_molecular_weight":{"compound":["C6H12O6"],"to_unit":["grams/mole","g/mol"]}}
+{"mutation_type.find":{"snp_id":["rs6034464"],"species":["Homo sapiens",""]}}
+{"diabetes_prediction":{"weight":[150],"height":[70],"activity_level":["lightly active"]}}
+{"analyze_dna_sequence":{"sequence":["AGTCGATCGAACGTACGTACG"],"reference_sequence":["AGTCCATCGAACGTACGTACG"],"mutation_type":["substitution"]}}
+{"genetics.calculate_similarity":{"species1":["Human","human"],"species2":["Chimp","chimp","Chimpanzee","chimpanzee"],"format":["percentage",""]}}
+{"calculate_genotype_frequency":{"allele_frequency":[0.3],"genotype":["AA"]}}
+{"calculate_density":{"country":["Brazil"],"year":["2022"],"population":[213000000],"land_area":[8500000]}}
+{"ecology_data.precipitation_stats":{"location":["Amazon rainforest"],"time_frame":["six_months"]}}
+{"identify_bird":{"color":["green"],"habitat":["forest"],"size":["small"]}}
+{"forest_growth_forecast":{"location":["Yellowstone National Park"],"years":[5],"include_human_impact":[true]}}
+{"ecology.get_turtle_population":{"location":["Mississippi river"],"year":[2020],"species":[true]}}
+{"calculate_vehicle_emission":{"vehicle_type":["gas"],"miles_driven":[1500],"emission_factor":["",355.48]}}
+{"generate_DNA_sequence":{"length":[100],"preferences":[["G","C"],["C","G"]]}}
+{"calculate_fitness":{"trait_values":[[0.8,0.7]],"trait_contributions":[[0.4,0.6]]}}
+{"population_projections":{"country":["United States","USA"],"years":[20],"growth_rate":["",1.2]}}
+{"calculate_bacteria_evolution_rate":{"start_population":[5000],"duplication_frequency":[1],"duration":[6],"generation_time":[20,""]}}
+{"elephant_population_estimate":{"current_population":[35000],"growth_rate":[0.015],"years":[5]}}
+{"prediction.evolution":{"species":["Homo Sapiens","homo sapiens","Homo sapiens"],"years":[50],"model":["Darwin"]}}
+{"restaurant.find_nearby":{"location":["Los Angeles, CA"],"dietary_preference":[["Vegan"]]}}
+{"average_temperature":{"location":["Austin"],"days":[3],"temp_unit":["Celsius"]}}
+{"create_histogram":{"data":[[85,90,88,92,86,89,91]],"bins":[5]}}
+{"find_restaurants":{"location":["Manhattan, New York City", "Manhattan", "Manhattan, New York"],"food_type":["'Thai'"],"number":[5],"dietary_requirements":[["vegan"],["Vegan"]]}}
+{"map_routing.fastest_route":{"start_location":["San Francisco","SF"],"end_location":["Los Angeles","LA"],"avoid_tolls":[true]}}
+{"calculate_average":{"numbers":[[12.0,15.0,18.0,20.0,21.0,26.0,30.0]]}}
+{"calculate_distance":{"coord1":[[[33.4484,-112.074],[33.4484,112.074]]],"coord2":[[34.0522,-118.2437],[34.0522,118.2437]],"unit":["miles"]}}
+{"calculate_bmi":{"weight":[85],"height":[180],"unit":["metric",""]}}
+{"geo_distance.calculate":{"start_location":["Boston, MA"],"end_location":["Washington, D.C."],"units":["miles",""]}}
+{"city_distance.find_shortest":{"start_city":["New York"],"end_city":["Los Angeles"],"transportation":["train"],"allow_transfer":[true]}}
+{"array_sort":{"list":[[5.0,3.0,4.0,1.0,2.0]],"order":["ascending"]}}
+{"calculate_BMI":{"weight_kg":[70],"height_m":[1.75]}}
+{"db_fetch_records":{"database_name":["StudentDB"],"table_name":["students"],"conditions":[{"department":["Science"],"school":["Bluebird High School","Bluebird HS"]}],"fetch_limit":["",0]}}
+{"employee.fetch_data":{"company_name":["ABC Ltd."],"employee_id":[345],"data_field":[["Personal Info","Job History"]]}}
+{"get_restaurant":{"cuisine":["sushi"],"location":["Boston"],"condition":["open on Sundays"]}}
+{"imdb.find_movies_by_actor":{"actor_name":["Leonardo DiCaprio"],"year":[2010],"category":["","all"]}}
+{"get_theater_movie_releases":{"location":["LA"],"timeframe":[7],"format":["IMAX"]}}
+{"update_user_info":{"user_id":[43523],"update_info":[{"name":["John Doe"],"email":["johndoe@email.com"]}],"database":["CustomerInfo",""]}}
+{"calc_area_triangle":{"base":[5],"height":[3]}}
+{"database.query":{"table":["user"],"conditions":[[{"field":["age"],"operation":[">"],"value":["25"]},{"field":["job"],"operation":["="],"value":["engineer"]}]]}}
+{"math.factorial":{"number":[5]}}
+{"calculate_clock_angle":{"hours":[6],"minutes":[30],"round_to":["",2]}}
+{"plot_sine_wave":{"start_range":[0],"end_range":[6.283185307179586],"frequency":[5],"amplitude":[1,""],"phase_shift":[0,""]}}
+{"light_travel_time":{"distance_in_light_years":[4],"speed_of_light":[299792458,""]}}
+{"calculate_speed":{"distance":[450],"time":[20],"to_unit":["km/h"]}}
+{"calculate_distance":{"body1":["Earth"],"body2":["Moon"],"unit":["mi"]}}
+{"mathematics.calculate_area_under_curve":{"polynomial":[[3.0,2.0,-4.0]],"limits":[[-1.0,2.0]]}}
+{"geometry.area_triangle":{"base":[6],"height":[10],"unit":["","square meters"]}}
+{"math.power":{"base":[3],"exponent":[4],"mod":["",1]}}
+{"train_random_forest_classifier":{"dataset":["your_dataset_name"],"max_depth":[5],"n_estimators":[100]}}
+{"calculate_bmi":{"weight":[70],"height":[175],"system":["metric",""]}}
+{"run_linear_regression":{"predictors":[["Age","Income","Education"]],"target":["Purchase_Amount"],"standardize":[true]}}
+{"random_forest.train":{"n_estimators":[100],"max_depth":[5],"data":["my_data"]}}
+{"predict_house_price":{"bedrooms":[3],"bathrooms":[2],"area":[1800],"location":["San Francisco","San Francisco, CA"]}}
+{"random.normalvariate":{"mu":[0],"sigma":[1]}}
+{"calculate_probability":{"total_outcomes":[52],"favorable_outcomes":[4],"round_to":["",2]}}
+{"probability.dice_roll":{"desired_number":[6],"number_of_rolls":[2],"die_sides":[6,""]}}
+{"prob_dist.binomial":{"trials":[10],"successes":[5],"p":[0.5,""]}}
+{"calculate_binomial_probability":{"number_of_trials":[8],"number_of_successes":[5],"probability_of_success":["", 0.5]}}
+{"probabilities.calculate_single":{"total_outcomes":[52],"event_outcomes":[4],"round":[2,""]}}
+{"probability_of_event":{"success_outcomes":[13],"total_outcomes":[52],"format_as_ratio":[true]}}
+{"stats.t_test":{"array":[[10,15,12,14,11]],"array_2":[[18,16,17,20,22]],"alpha":[0.05]}}
+{"hypothesis_testing.ttest_ind":{"sample1":[[22,33,42,12,34]],"sample2":[[23,45,44,14,38]],"significance_level":[0.05]}}
+{"run_two_sample_ttest":{"group1":[[3,4,5,6,4]],"group2":[[7,8,9,8,7]],"equal_variance":[true]}}
+{"calc_binomial_prob":{"num_trials":[100],"num_success":[60],"prob_success":[0.5]}}
+{"chi_squared_test":{"table":[[[10,20],[30,40]]],"alpha":[0.05,""]}}
+{"hypothesis_testing.two_sample_t_test":{"group1":[[12.4,15.6,11.2,18.9]],"group2":[[10.5,9.8,15.2,13.8]],"alpha":[0.05,""]}}
+{"t_test":{"dataset_A":[[12,24,36]],"dataset_B":[[15,30,45]],"alpha":[0.05,""]}}
+{"predict_house_price":{"area":[2500],"rooms":[5],"year":[1990],"location":["San Francisco","SF"]}}
+{"linear_regression.get_r_squared":{"dataset_path":["C:/data/cars.csv"],"independent_variables":[["engine_size","fuel_economy"]],"dependent_variable":["car_price"]}}
+{"calculate_NPV":{"cash_flows":[[200,300,400,500]],"discount_rate":[0.1],"initial_investment":[2000]}}
+{"finance.calculate_quarterly_dividend_per_share":{"total_payout":[50000000],"outstanding_shares":[100000000]}}
+{"calculate_discounted_cash_flow":{"coupon_payment":[100],"period":[5],"discount_rate":[0.04],"face_value":["",1000]}}
+{"finance_calculator.npv":{"cash_flows":[[-50000,10000,15000,20000,25000,30000]],"discount_rate":[0.08],"years":["",[]]}}
+{"calculate_compound_interest":{"principal":[10000],"rate":[0.05],"time":[10],"n":[4]}}
+{"calculate_return_on_equity":{"net_income":[2000000],"shareholder_equity":[10000000],"dividends_paid":[200000]}}
+{"finance.predict_future_value":{"present_value":[5000],"annual_interest_rate":[0.05],"compounding_periods_per_year":[12],"time_years":[3]}}
+{"investment.predictProfit":{"investment_amount":[5000],"annual_return":[0.07],"years":[5]}}
+{"calculate_return_on_investment":{"purchase_price":[20],"sale_price":[25],"dividend":[2]}}
+{"compound_interest":{"principal":[10000],"annual_rate":[0.05],"compounding_freq":["monthly"],"time_in_years":[5]}}
+{"calculate_stock_return":{"investment_amount":[5000],"annual_growth_rate":[0.06],"holding_period":[5],"dividends":["",false]}}
+{"portfolio_future_value":{"stock":["X"],"invested_amount":[5000],"expected_annual_return":[0.05],"years":[7]}}
+{"estimate_mutual_fund_return":{"yearly_yield":[0.05],"investment_amount":[2000],"years":[3]}}
+{"calculate_cagr":{"initial_value":[2000],"final_value":[3000],"period_in_years":[4]}}
+{"get_metal_price":{"metal":["Gold","gold"],"measure":["ounce"]}}
+{"get_stock_price":{"company_name":["Amazon","AMZN"],"date":["2022-03-11"],"exchange":["NASDAQ",""]}}
+{"get_stock_price":{"company":["AAPL"],"days":[5],"exchange":["NASDAQ",""]}}
+{"market_performance.get_data":{"indexes":[["S&P 500","Dow Jones"]],"days":[5],"detailed":["",true,false]}}
+{"calculate_compounded_interest":{"principal":[5000],"interest_rate":[0.05],"period":[10],"compounding_frequency":["Annually",""]}}
+{"stock_price":{"company":["Amazon","AMZN"],"days":[3],"data_type":["Close",""]}}
+{"get_stock_prices":{"companies":[["Microsoft","Google"]],"duration":["2 weeks"]}}
+{"finance.calculate_future_value":{"initial_investment":[20000],"rate_of_return":[0.08],"years":[5],"contribution":["",0]}}
+{"get_stock_price":{"company_names":[["Apple","Microsoft"],[["Apple"],["Microsoft"]],["AAPL","MSFT"]]}}
+{"calculate_roi":{"deposit":[1000],"annual_interest_rate":[0.03],"years":[1]}}
+{"highest_grossing_banks":{"country":["U.S","United States","USA","U.S."],"year":[2020],"top_n":[1]}}
+{"calculate_mutual_fund_balance":{"investment_amount":[50000],"annual_yield":[0.05],"years":[3]}}
+{"calculate_compounded_interest":{"principal":[5000],"rate":[0.03],"time":[5],"n":[4]}}
+{"calculate_future_value":{"present_value":[5000],"annual_interest_rate":[0.05],"years":[10],"compounds_per_year":["",1]}}
+{"calculate_future_value":{"initial_investment":[1000],"interest_rate":[0.05],"duration":[2],"compounded":["",1]}}
+{"crime_record.get_record":{"case_number":["CA123456"],"county":["San Diego"],"details":[true]}}
+{"criminal_history.check_felonies":{"full_name":["John Doe"],"birth_date":["01-01-1980"],"state":["California","CA"]}}
+{"get_criminal_records":{"name":["Mr. X"],"location":["New York, NY"],"from_year":[2012],"to_year":[2015]}}
+{"get_act_details":{"act_name":["Criminal Law Amendment Act","Criminal Law Amendment"],"amendment_year":[2013]}}
+{"get_case_info":{"docket":["2022/AL2562"],"court":["California","CA"],"info_type":["victim"]}}
+{"crime_statute_lookup":{"jurisdiction":["California","CA"],"crime":["theft"],"detail_level":["detailed"]}}
+{"generate_law_contract":{"parties":[["John","Alice"],["John","Alice"]],"contract_type":["Rental Agreement","rental agreement"],"location":["California","CA"]}}
+{"property_records.get":{"address":["123 main street"],"parcel_number":["1234567890"],"county":["Santa Clara"],"include_owner":[true]}}
+{"get_crime_rate":{"city":["San Francisco"],"state":["California"],"type":["violent",""],"year":[2020]}}
+{"civil_cases.retrieve":{"year":[2020],"crime_type":["theft"],"location":["Los Angeles","Los Angeles, California"]}}
+{"lawyer.find_nearby":{"city":["Chicago, IL.", "Chicago, IL"],"specialty":[["Divorce"]],"fee":[400]}}
+{"law.civil.get_case_details":{"case_title":["Roe v. Wade"],"include_dissent":[true]}}
+{"lawsuit_search":{"company":["Google","GOOG"],"start_date":["01-01-2021"],"location":["California"],"status":["ongoing",""]}}
+{"court_case.search":{"docket_number":["123456"],"location":["Texas"],"full_text":[false,""]}}
+{"law_case_search.find_historical":{"subject":["fraud"],"from_year":[2010],"to_year":[2015]}}
+{"fetch_law_case_details":{"case_number":[43403],"court":["New York"],"year":[2018]}}
+{"legal_case.fetch":{"case_id":["R vs Adams","R_vs_Adams"],"details":[true]}}
+{"law_case_search":{"topic":["land disputes"],"year_range":[[2015,2021]],"location":["New York"],"judicial_system":["state"]}}
+{"get_top_cases":{"field_of_law":["constitutional law"],"top_number":[10],"country":["China","CN"]}}
+{"lawyer.get_experience":{"name":["John Doe"],"law_type":["Bankruptcy"]}}
+{"lawsuit_details.find":{"company_name":["Apple Inc."],"year":[2010],"case_type":["Patent","IPR"]}}
+{"get_lawsuit_cases":{"company_name":["Facebook"],"year":[2018],"status":["all",""]}}
+{"get_lawsuit_details":{"case_number":["LAX2019080202"],"court_location":["Los Angeles"],"additional_details":["",["attorneys","plaintiffs","defendants","charges","court_updates"]]}}
+{"find_latest_court_case":{"company1":["Apple"],"company2":["Samsung"],"country":["USA",""]}}
+{"lawsuits_search":{"company_name":["Google"],"location":["California","CA"],"year":[2020],"case_type":["","all"]}}
+{"get_lawsuit_details":{"case_number":["123456-ABC"],"court_location":["Los Angeles"],"with_verdict":[true]}}
+{"lawsuit_info":{"case_number":["XYZ123"],"year":[""],"location":["","all"]}}
+{"lawsuit_search":{"entity":["Apple"],"county":["Santa Clara County"],"state":["California",""]}}
+{"lawsuit.check_case":{"case_id":[1234],"closed_status":[true]}}
+{"detailed_weather_forecast":{"location":["New York","New York, USA"],"duration":[72],"include_precipitation":[true]}}
+{"current_weather_condition":{"city":["Tokyo"],"country":["Japan"],"measurement":["c",""]}}
+{"get_current_weather":{"location":["Seattle","Seattle, Washington"],"include_temperature":[true,""],"include_humidity":[true,""]}}
+{"weather.humidity_forecast":{"location":["Miami"],"days":[7],"min_humidity":["",0]}}
+{"weather_forecast_detailed":{"location":["New York","New York, USA"],"days":[3],"details":[true]}}
+{"park_information":{"park_name":["Yellowstone","Yellowstone National Park"],"information":[["Elevation","Area"]]}}
+{"locate_tallest_mountains":{"location":["Denver, Colorado","Denver","CO"],"radius":[50],"amount":[5]}}
+{"calculate_slope_gradient":{"point1":[[40.7128,-74.006]],"point2":[[34.0522,-118.2437]],"unit":["degree",""]}}
+{"local_nursery.find":{"location":["Toronto"],"plant_types":[["Annual"]]}}
+{"get_plants_for_slope":{"slope_type":["hill","steep","moderate"],"num_results":[3]}}
+{"calculate_carbon_footprint":{"daily_miles":[20],"meat_meals_per_week":[3],"annual_trash_weight":[500],"flights_per_year":["",0]}}
+{"air_quality":{"location":["London"],"date":["2022-08-16","16/08/2022","Aug.16,2022","2022/08/16"]}}
+{"get_air_quality_index":{"location":["San Diego"],"time":["12pm","12:00"]}}
+{"calculate_daily_water_intake":{"weight":[70],"activity_level":["","moderate"],"climate":["","temperate"]}}
+{"environmental_data.air_quality_index":{"location":["San Jose","'San Jose'"],"days":[3]}}
+{"calculate_emissions":{"distance":[12000],"fuel_type":["gas"],"fuel_efficiency":["", 20.00],"efficiency_reduction":[0,""]}}
+{"estimate_population":{"species":["panda","pandas"],"country":["China","CN"],"year":["",2024]}}
+{"calculate_emission_savings":{"energy_type":["renewable"],"usage_duration":[3],"region":["California","CA"]}}
+{"get_air_quality":{"location":["Chicago"],"detail":[true],"historical":["","today"]}}
+{"restaurant.find_nearby":{"location":["Seattle","Seattle, WA"],"cuisine":["Chinese"],"max_distance":[10]}}
+{"get_traffic_info":{"start_location":["Boston"],"end_location":["New York","NYC"],"mode":["driving",""]}}
+{"parks.find_nearby":{"location":["London","London, UK"],"amenities":[["Tennis Court"]]}}
+{"calculate_shortest_distance":{"start_location":["New York, USA","New York City","New York City, NY","NYC","NY"],"end_location":["Miami, USA","Miami","Miami, FL","FL"],"route_preference":["Shortest"]}}
+{"map_service.get_directions":{"start":["New York","NYC"],"end":["Los Angeles","LA"],"avoid":[["highways","tolls"]]}}
+{"public_library.find_nearby":{"location":["Boston, MA","Boston, Massachusetts"],"facilities":[["Fiction","Wi-Fi"],["Wi-Fi","Fiction"]]}}
+{"get_news":{"topic":["Bitcoin"],"quantity":[5],"region":["US",""]}}
+{"send_email":{"to":["john.doe@example.com"],"subject":["Meeting"],"body":["Let's meet at 10 AM tomorrow","Let\\'s meet at 10 AM tomorrow"],"cc":[""],"bcc":[""]}}
+{"get_stock_info":{"company_name":["Apple Inc."],"detail_level":["detailed"],"market":["","NASDAQ"]}}
+{"flight.book":{"departure_location":["San Francisco","SF"],"destination_location":["London"],"date":["2022-04-27","04/27/2022","Apr 27, 2022"],"time":["afternoon",""],"direct_flight":[true]}}
+{"event_finder.find_upcoming":{"location":["New York","New York, NY","NYC"],"genre":["Rock","rock"],"days_ahead":[30]}}
+{"movie_details.brief":{"title":["Interstellar"],"extra_info":["",false]}}
+{"sentiment_analysis":{"text":["I love the food here! It's always fresh and delicious.","I love the food here! It\\'s always fresh and delicious."],"language":["english","English","en"]}}
+{"fMRI.analyze":{"data_source":["~/data/myfMRI.nii"],"sequence_type":["multi-band"],"smooth":[6],"voxel_size":[2]}}
+{"patient.get_mri_report":{"patient_id":["546382"],"mri_type":["brain"],"status":["concluded"]}}
+{"get_neuron_coordinates":{"neuron_type":["GABA"],"brain_region":["All","all part of the brain","entire brain"]}}
+{"calculate_neuronal_activity":{"input_synaptic_rate":[200],"weight":[0.5],"decay_rate":[0.1]}}
+{"population_growth_estimate":{"location":["London"],"years":[5],"rate":["", 1.2]}}
+{"calculate_bmi":{"weight":[70],"height":[180],"unit":["","metric"]}}
+{"group_dynamics.pattern":{"total":[50],"extroverts":[15],"introverts":[35]}}
+{"social_media_analytics.most_followed":{"topic":["psychology"],"sub_topics":[["behaviour","group dynamics"]],"region":["","all"]}}
+{"psych_research.get_preference":{"category":["reading"],"option_one":["digital reading","digital"],"option_two":["physical book","physical","physical books"],"demographic":["","all"]}}
+{"get_zodiac_compatibility":{"sign1":["Aries"],"sign2":["Gemini"],"scale":["percentage",""]}}
+{"get_personality_traits":{"type":["ENFJ"],"traits":[["strengths","weaknesses"]]}}
+{"get_personality_traits":{"hobby":["jogging"],"trait_count":[3]}}
+{"get_bigfive_scores":{"characteristics":[["efficient","organized","easy going","compassionate"]],"scale":["medium",""]}}
+{"historic_leader_search":{"location":["France"],"date":[1510],"title":["King",""]}}
+{"history.get_key_events":{"country":["Germany","DE"],"start_year":[1871],"end_year":[1945],"event_type":[["War"]]}}
+{"monarch.getMonarchOfYear":{"location":["England","ENG"],"year":[1800],"fullName":[true]}}
+{"european_history.get_event_date":{"event_name":["Treaty of Tordesillas"],"format":["YYYY"]}}
+{"history_eu.fetch_events":{"century":[19],"region":["Northern","Southern","Eastern","Western"],"category":["Wars"]}}
+{"get_event_date":{"event":["Treaty of Lisbon","Signing of the Treaty of Lisbon"],"location":[""]}}
+{"us_history.get_event_info":{"event_name":["American Civil War","Civil War"],"specific_info":["Start Date"]}}
+{"get_historical_GDP":{"country":["United States","US"],"start_year":[1960],"end_year":[2000]}}
+{"us_history.get_president":{"event":["American Civil War"],"year":[1861]}}
+{"US_president.in_year":{"year":[1861],"full_name":[true,""]}}
+{"history_api.get_president_by_year":{"year":[1940],"full_term_only":["",true,false]}}
+{"US_President_During_Event":{"event":["Civil War"],"country":["USA",""]}}
+{"get_scientist_for_discovery":{"discovery":["Theory of Evolution","theory of evolution"]}}
+{"get_discoverer":{"discovery":["neutron"],"detail":[true]}}
+{"publication_year.find":{"author":["Isaac Newton"],"work_title":["Law of Universal Gravitation","Universal Law of Gravitation","The law of universal gravitation"],"location":["","all"]}}
+{"discoverer.get":{"element_name":["'radium'","\"radium\"","radium"],"year":["",0],"first":[true,""]}}
+{"science_history.get_discovery_details":{"discovery":["Gravity"],"method_used":["","default"]}}
+{"historical_contrib.get_contrib":{"scientist":["Albert Einstein"],"date":["1915-03-17","03/17/1915","Mar.17,1915"],"category":["","all"]}}
+{"science_history.get_invention":{"invention_name":["theory of relativity", "Theory of Relativity"],"want_year":[true]}}
+{"religion.history_info":{"religion":["Christianity"],"till_century":[14],"include_people":[true]}}
+{"get_time_difference":{"place1":["San Francisco","SF"],"place2":["Sydney"]}}
+{"get_earliest_reference":{"name":["Jesus Christ"],"source":["historical records"]}}
+{"get_religion_history":{"religion":["Christianity"],"century":[16],"sort_by":["importance"],"count":[10]}}
+{"retrieve_religion_info":{"religion_name":["Buddhism"],"detail_level":["full"]}}
+{"get_religion_history":{"religion":["Christianity"],"start_year":[300],"end_year":[400],"event_type":["all",""]}}
+{"religious_history.get_papal_biography":{"papal_name":["Innocent III"],"include_contributions":[true]}}
+{"generate_circle_image":{"radius":[50],"color":["Red"],"background":["","white"]}}
+{"identify_color_rgb":{"color_name":["Sea Green"],"standard":["basic",""]}}
+{"mix_paint_color":{"color1":["yellow"],"color2":["blue"],"lightness":[60]}}
+{"calculate_paint_needed":{"coverage_rate":[400],"length":[30],"height":[12]}}
+{"paint_requirement.calculate":{"area":[{"width":[20],"height":[12]}],"paint_coverage":[350],"exclusion":[{"type":["window"],"area":[15]}]}}
+{"draw_rectangle":{"width":[20],"height":[10],"color":["red"]}}
+{"modify_painting":{"size":["12x18"],"medium":["oil"],"dominant_color":["red"]}}
+{"get_sculpture_info":{"artist_name":["James Plensa"],"year":[""],"detail":[true]}}
+{"sculpture.get_details":{"artist":["Michelangelo"],"title":["David"],"detail":["size"]}}
+{"sculpture_search":{"location":["Chicago","Chicago, IL"],"time_frame":["19th century"],"material":["","all"]}}
+{"get_sculpture_value":{"sculpture":["The Thinker"],"artist":["Rodin"],"year":[""]}}
+{"find_exhibition":{"location":["New York City, NY"],"art_form":["sculpture","modern sculpture"],"month":[""],"user_ratings":["high"]}}
+{"sculpture_locator.find_by_artist":{"artist":["Michelangelo"],"material":["Marble"],"location":["Rome","Rome, Italy"]}}
+{"calculate_compound_interest":{"principle":[10000],"interest_rate":[0.05],"time":[10],"compounds_per_year":[1,""]}}
+{"building.get_dimensions":{"building_name":["Empire State Building","Empire State"],"unit":["feet"]}}
+{"analyze_structure":{"building_id":["B1004"],"floors":[[2,3,4]],"mode":["dynamic"]}}
+{"calculate_circle_dimensions":{"radius":[5]}}
+{"museum.get_hours":{"name":["Louvre Museum"],"location":["Paris","Paris, France"],"day":["","Monday"]}}
+{"museum_info":{"museum_name":["Metropolitan Museum of Art","The Metropolitan Museum of Art","Met Museum"],"info_type":["opening_hours",""]}}
+{"metropolitan_museum.get_top_artworks":{"number":[5],"sort_by":["popularity",""]}}
+{"museum_working_hours.get":{"museum":["Louvre Museum","Louvre"],"location":["Paris","Paris, France"],"day":["","Monday"]}}
+{"museum_info":{"museum":["The British Museum"],"date":["this weekend","2023-06-20","06/20/2023","Jun.20,2023"],"information":[["opening_hours","ticket_price"],["ticket_price","opening_hours"]]}}
+{"get_instrument_details":{"instrument":["piano"],"manufacturer":["Yamaha"],"features":[["price","rating"]]}}
+{"instrument_price.get":{"brand":["Fender"],"model":["American Professional II Stratocaster"],"finish":["Rosewood"]}}
+{"find_instrument":{"budget":[1000],"type":["acoustic"],"make":["Violin","violin"]}}
+{"get_instrument_info":{"name":["Violin"],"maker":["Stradivarius"],"year":[1721]}}
+{"find_flute":{"brand":["Yamaha"],"specs":[["open hole","C foot","silver headjoint"]]}}
+{"guitar_price.find":{"model":["Gibson Les Paul"],"condition":["Excellent"],"location":["Chicago","Chicago, IL","Chicago, Illinois"]}}
+{"concert_info.get":{"location":["New York City, NY","New York"],"date":["next month","2023-06-01","06/01/2023","Jun.1,2023","June 2023"],"genre":["Pop"]}}
+{"find_concert":{"location":["Chicago","Chicago, IL"],"price":[100],"genre":["Rock"]}}
+{"concert.get_details":{"artist":["Beyonce"],"location":["San Diego","San Diego, California","CA"],"date":["04-2022","April 2022"]}}
+{"concert.search":{"genre":["classical"],"location":["Los Angeles","LA"],"date":["this weekend"],"price_range":["cheap"]}}
+{"concert_booking.book_ticket":{"artist":["Eminem"],"city":["New York City","New York City, NY","NYC"],"num_tickets":[2]}}
+{"concert.find_nearby":{"location":["Seattle","Seattle, WA"],"genre":["jazz","Jazz"]}}
+{"concert.find_details":{"artist":["The Weeknd"],"month":["December"],"year":["",2022]}}
+{"music_generator.generate_melody":{"key":["C"],"start_note":["C4"],"length":[16],"tempo":[120,""]}}
+{"compose_melody":{"progression":[["C","F","G"]],"measures":[4],"instrument":["Piano",""]}}
+{"music_composer.create_mix":{"scale":["C Major"],"note_duration":["quarter"],"track_length":[180]}}
+{"music_generation.create_chord_progression":{"key":["C"],"chords":[4],"progression_type":["major",""]}}
+{"get_song_lyrics":{"song_title":["Bohemian Rhapsody"],"artist_name":["Queen"],"lang":["English",""]}}
+{"music_generator.generate_scale_progression":{"key":["C"],"tempo":[80],"duration":[4],"scale_type":["major",""]}}
+{"music.theory.chordProgression":{"progression":[["I","V","vi","IV"]],"returnAllPossibleKeys":[true,false,""],"assumeMajor":[true,false,""]}}
+{"music_theory.key_signature":{"key":["C#"],"scale_type":["major",""]}}
+{"musical_scale":{"key":["C#","C sharp"],"scale_type":["major",""]}}
+{"music.calculate_note_duration":{"first_note_frequency":[440],"second_note_frequency":[880],"tempo":["",120]}}
+{"get_third_chord":{"key":["C"],"type":["major",""]}}
+{"calculate_batting_average":{"hits":[180],"at_bats":[600],"decimal_places":[3,""]}}
+{"soccer_stat.get_player_stats":{"player_name":["Cristiano Ronaldo"],"season":["2019-2020"],"league":[""]}}
+{"player_stats.getLastGame":{"player_name":["LeBron James"],"team":["Los Angeles Lakers","LAL","Lakers"],"metrics":[["Points","Rebounds"]]}}
+{"sports_stats.get_performance":{"player_name":["Messi","Lionel Messi"],"tournament":["La Liga"],"season":["2020-2021"],"performance_indicator":[["Goals Scored","Assists Made"]]}}
+{"average_batting_score":{"player_name":["Virat Kohli"],"matches":[10],"match_format":["T20",""]}}
+{"game_result.get_winner":{"teams":[["Lakers","Clippers"],["Clippers","Lakers"]],"date":["2021-01-28","01/28/2021","Jan.28,2021"],"venue":["",true]}}
+{"sports.match_schedule":{"team_name":["Manchester United","Man United","Man U","MUFC"],"num_matches":[5],"league":["English Premier League",""]}}
+{"nfl_data.player_record":{"player_name":["Tom Brady"],"season_year":[2020],"team":[""]}}
+{"get_career_stats":{"player_name":["LeBron James"],"team":[""]}}
+{"sports_db.find_athlete":{"name":["Lebron James"],"sport":["Basketball"],"team":[""]}}
+{"player_statistic":{"player_name":["Ronaldo","Cristiano Ronaldo"],"year":[2021],"team_name":[""]}}
+{"celebrity_net_worth.get":{"name":["Lionel Messi","Messi"],"currency":["EUR","euro"]}}
+{"sports_celebrity.get_major_achievements":{"celebrity_name":["Lionel Messi","Messi"],"sports":["Football","Soccer",""],"team":["","all"]}}
+{"get_defense_ranking":{"season":[2021],"top":[1,""]}}
+{"get_sport_ranking":{"sport":["Tennis"],"player_name":["Serena Williams"],"gender":["","all"]}}
+{"get_team_rank":{"team_name":["LA Lakers"],"league":["NBA"],"season":["2021"],"type":["regular"]}}
+{"get_team_ranking":{"team_name":["Germany"],"year":[2021],"gender":["men",""]}}
+{"sports_ranking":{"team":["Manchester United","Man United","Man U","MUFC"],"league":["Premier League"],"season":[""]}}
+{"sports_ranking.get_team_position":{"team":["Golden State Warriors","GSW"],"season":["current","2022-2023"],"detailed":[true]}}
+{"sports_ranking":{"team":["Barcelona","FC Barcelona"],"league":["La Liga"],"season":["2021"]}}
+{"sports_ranking.get_current":{"team":["Liverpool Football Club","Liverpool","LFC"],"league":["Premier League","EPL","English Premier League"],"season":[""]}}
+{"sports_ranking.get_top_player":{"sport":["tennis"],"gender":["women","female","ladies"]}}
+{"team_score.get_latest":{"team":["Los Angeles Lakers","Lakers"],"include_opponent":[true]}}
+{"sports.match_results":{"team1":["Chicago Bulls"],"team2":["Los Angeles Lakers"],"season":[""]}}
+{"get_team_score":{"team_name":["Los Angeles Lakers","Lakers"],"league":["NBA"],"include_player_stats":["",true,false]}}
+{"sports_team.get_schedule":{"team_name":["Manchester United","Man United","Man U","MUFC"],"num_of_games":[6],"league":["Premier League"],"location":[""]}}
+{"boardgame.get_info":{"name":["Ticket to Ride"],"parameters":[["rating","player count"],["player count","rating"]],"language":["","English"]}}
+{"monopoly_odds_calculator":{"number":[7],"dice_number":[2],"dice_faces":[6,""]}}
+{"board_game_info":{"game_name":["Catan"],"info_required":[["average_review_rating","age_range"]]}}
+{"board_game.chess.get_top_players":{"location":["New York","New York City","New York City, NY","NYC"],"minimum_rating":[2300],"number_of_players":["",10]}}
+{"chess.rating":{"player_name":["Magnus Carlsen"],"variant":["classical",""]}}
+{"detailed_weather_forecast":{"location":["London, United Kingdom","London"],"days":[3],"details":[["high_low_temperature","humidity","precipitation"]]}}
+{"blackjack.check_winner":{"player_cards":[["A","10"]],"dealer_cards":[["10","9"]],"ace_value":[1]}}
+{"find_card_in_deck":{"rank":["Queen"],"suit":["Hearts"],"deck":[""]}}
+{"cards.shuffle_and_draw":{"num_cards":[3]}}
+{"poker_game_winner":{"players":[["Alex","Sam","Robert","Steve"]],"cards":[{"Alex":[["A of spades","K of spades"]],"Sam":[["2 of diamonds","3 of clubs"]],"Robert":[["Q of hearts","10 of hearts"]],"Steve":[["4 of spades","5 of spades"]]}],"type":["Texas Holdem",""]}}
+{"card_game_probability.calculate":{"total_cards":[52],"desired_cards":[13],"cards_drawn":["",1]}}
+{"poker_probability.full_house":{"deck_size":[52],"hand_size":[5]}}
+{"card_games.poker_determine_winner":{"player1":["John"],"hand1":[["8\u2665","10\u2665","J\u2665","Q\u2665","K\u2665"]],"player2":["Mike"],"hand2":[["9\u2660","J\u2660","10\u2660","Q\u2660","K\u2660"]]}}
+{"deck_of_cards.odds":{"suit":["hearts"],"deck_type":["without_joker","normal"]}}
+{"game_list.get_games":{"release_year":[2019],"multiplayer":[true],"ESRB_rating":["Everyone"]}}
+{"game_stats.fetch_player_statistics":{"game":["Zelda"],"username":["Sam"],"platform":["Switch"]}}
+{"get_game_item_stats":{"game":["Legend of Zelda: Breath of the Wild"],"item":["Guardian Sword+"],"stat":["Power","power","power rating"]}}
+{"game_valuation":{"game_name":["Super Mario Bros."],"release_year":[1985],"condition":["Like New","New"]}}
+{"get_collectables_in_season":{"game_name":["Animal Crossing: New Horizons"],"season":["Spring"],"item_type":["","all"]}}
+{"soccer.get_last_match":{"team_name":["Liverpool F.C.","Liverpool"],"include_stats":[true]}}
+{"create_player_profile":{"player_name":["StarPlayer"],"_class":["Mage"],"starting_level":[5]}}
+{"game_score.highest":{"game":["Overwatch"],"platform":["PC"],"region":["Global",""]}}
+{"get_highest_scoring_player":{"game":["Valorant"],"season":["2022","2022 season"]}}
+{"multiplayer_game_finder":{"platform":["Windows 10"],"rating":[4.5],"genre":["","Action"]}}
+{"gamespot.getAverageUserScore":{"game_name":["The Legend of Zelda: Breath of the Wild"],"platform":["Nintendo Switch","all platforms"]}}
+{"find_recipes":{"diet":["gluten-free"],"meal_type":["dinner"],"ingredients":[""]}}
+{"get_vegan_recipe":{"dish_type":["soup"],"cooking_time":[30],"ingredient_preference":[["vegan"]]}}
+{"recipe_info.get_calories":{"website":["Foodnetwork.com"],"recipe":["Beef Lasagna"],"optional_meal_time":[""]}}
+{"recipe_finder.find":{"servings":[2],"diet":["vegan"],"prep_time":[30]}}
+{"get_recipe":{"dish_name":["chocolate cake","vegan chocolate cake"],"diet_preference":["vegan"]}}
+{"recipe_search":{"diet":[["Gluten Free"],["GF"],["gluten free"]],"time_limit":[30],"dish":["cookie"]}}
+{"recipe_search":{"dietary_restriction":["Vegetarian"],"ingredients":[["pasta","cheese"]],"servings":[2]}}
+{"find_recipe":{"recipeName":["pasta carbonara"],"maxCalories":[500]}}
+{"restaurant_finder":{"city":["New York City","New York City, NY","NYC","New York"],"cuisine":["Italian"],"diet":["Gluten-free"]}}
+{"get_best_sushi_places":{"city":["Tokyo"],"top":[5],"review_rate":[4.0]}}
+{"find_closest":{"location":["Boston","Boston, MA"],"cuisine":["Sushi","sushi"],"amenities":[["Patio"]]}}
+{"find_restaurant":{"location":["Brooklyn","Brooklyn, NY"],"type":["Italian"],"diet_option":["Gluten-free"]}}
+{"cooking_conversion.convert":{"quantity":[2],"from_unit":["pound","pounds","lb","lbs"],"to_unit":["ounce","ounces","oz"],"item":["butter"]}}
+{"recipe.unit_conversion":{"value":[2],"from_unit":["tablespoon","tbsp"],"to_unit":["teaspoon","tsp"],"precision":[0,""]}}
+{"find_recipe":{"dietary_restrictions":["vegan"],"recipe_type":["dessert"],"time":[30]}}
+{"calculate_cooking_time":{"weight_kg":[1.5],"cooking_method":["","roast"],"temp_celsius":["",180]}}
+{"grocery_store.find_nearby":{"location":["Houston","Houston, TX"],"categories":[["Organic","Vegetables","Fruits"],["Organic","Fruits","Vegetables"]]}}
+{"safeway.order":{"location":["Palo Alto","Palo Alto, CA"],"items":[["olive oil","rice"],["olive oil","bag of rice"]],"quantity":[[3,1]]}}
+{"whole_foods.check_price":{"location":["Los Angeles","LA"],"items":[["tomatoes","lettuce"]]}}
+{"whole_foods.find_top_brands":{"product":["bananas"],"number":[5,""],"organic":[true]}}
+{"walmart.purchase":{"loc":["San Jose","San Jose, CA","CA"],"product_list":[["apples","rice","bottled water"]],"pack_size":[[1,1,12]]}}
+{"grocery_info.nutritional_info":{"store":["Walmart"],"food":["avocado","Avocado"],"information":[["Protein","Calories","Carbohydrates"]]}}
+{"walmart.check_price":{"items":[["pumpkins","eggs"],["pumpkin","egg"]],"quantities":[[3,24],[3,2]],"store_location":["Los Angeles","LA"]}}
+{"time_zone_converter":{"city":["London"],"country":["UK","United Kingdom"],"display_format":["24h","24 hour"]}}
+{"get_current_time":{"city":["Sydney"],"country":["Australia"],"format":["","HH:MM:SS"]}}
+{"timezone.convert":{"time":["3pm"],"from_timezone":["America/New_York","New York","NYC","New York City"],"to_timezone":["Europe/London","London"]}}
+{"get_current_time":{"location":["Sydney"],"country":["Australia"],"timezone":[""]}}
+{"hotel_booking":{"location":["Manhattan, New York","Manhattan, NY","NYC","New York City"],"room_type":["single"],"duration":[3],"start_date":["2023-03-10","03/10/2023","Mar.10,2023","March 10th, 2023"],"preferences":[["pet_friendly"]]}}
+{"hilton_hotel.check_availability":{"location":["Paris"],"check_in_date":["2023-04-04","04/04/2023","Apr.4,2023"," April 4"],"check_out_date":["2023-04-08","04/08/2023","Apr.8,2023"],"no_of_adults":[2],"hotel_chain":["Hilton",""]}}
+{"book_hotel":{"hotel_name":["Hilton Hotel","Hilton"],"location":["Chicago"],"room_type":["single"],"start_date":["2022-12-10","10/12/2022","Dec 10, 2022","December 10, 2022"],"nights":[2]}}
+{"book_room":{"hotel_name":["The Plaza"],"room_type":["Single","single"],"num_nights":[2]}}
+{"hotel_booking.book":{"city":["Paris","Paris, France"],"from_date":["07-10-2022","2022-07-10","10/07/2022","Jul.10,2022"],"to_date":["07-20-2022","2022-07-20","20/07/2022","Jul.20,2022"],"adults":[2],"children":[1],"room_type":["Standard",""]}}
+{"hotel_bookings.book_room":{"location":["Los Angeles","Los Angeles, CA","LA"],"room_type":["King Size","king size"],"check_in_date":["15-10-2023","15th October","2023-10-15","10/15/2023","Oct.15,2023"],"no_of_nights":[2],"no_of_rooms":["",1]}}
+{"book_hotel":{"hotel_name":["Hotel Paradise"],"location":["Las Vegas","LV"],"room_type":["luxury","Luxury"],"start_date":["05-12-2022","2022-05-12","12/05/2022","May.12,2022","May 12, 2022"],"stay_duration":[3],"view":["city view","city"]}}
+{"hotel_booking":{"hotel_name":["Plaza Hotel"],"location":["New York","New York City","New York City, NY","NYC","NY"],"start_date":["2022-06-01","06/01/2022","Jun.1,2022"],"end_date":["2022-06-04","06/04/2022","Jun.4,2022"],"rooms":[1,""]}}
+{"currency_exchange.convert":{"base_currency":["USD"],"target_currency":["CAD"],"amount":[500]}}
+{"currency_converter":{"base_currency":["USD"],"target_currency":["GBP"],"amount":[200.00]}}
+{"currency_conversion.convert":{"amount":[150],"from_currency":["EUR","Euros"],"to_currency":["CAD","Canadian dollars"]}}
+{"get_exchange_rate_with_fee":{"base_currency":["GBP"],"target_currency":["JPY"],"fee":[0.02]}}
+{"latest_exchange_rate":{"source_currency":["GBP","British Pounds","Pounds Sterling"],"target_currency":["JPY","Japanese Yen"],"amount":["", 1.00]}}
+{"convert_currency":{"base_currency":["JPY"],"target_currency":["USD"],"amount":[20000]}}
+{"maps.get_distance_duration":{"start_location":["Eiffel Tower"],"end_location":["Louvre Museum"],"traffic":["",false]}}
+{"parking_lot.find_nearest":{"location":["Central Park, NY"],"radius":[2],"type":["public",""]}}
+{"hospital.locate":{"location":["Denver, Colorado","Denver, CO"],"radius":[5],"department":["Pediatrics"]}}
+{"distance_calculator.calculate":{"origin":["New York","New York City","New York City, NY","NYC"],"destination":["Boston"],"consider_terrain":[true]}}
+{"get_museum_hours":{"museum_name":["Metropolitan Museum of Art","The Met"],"day":["Saturday"]}}
+{"restaurant_search":{"location":["New York City","New York City, NY","NYC"],"cuisine":["Italian"],"rating":[4],"accepts_credit_cards":[true]}}

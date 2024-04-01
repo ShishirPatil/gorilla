@@ -1,50 +1,50 @@
-{"validateUserInput": {"inputField": ["document.getElementById('userInputField')"], "isComplete": ["true"]}}
-{"getActiveDataEntries": {"listElement": [""], "attribute": ["data-active", ""], "value": [true, ""]}}
-{"extractLastTransactionId": {"filepath": ["/var/log/db.log"], "status": [["completed", "failed"]], "encoding": ["utf-8"], "processFunction": ["processTransactionId"]}}
-{"submitAtCoordinate": {"action": ["submit"], "formId": ["loginForm"], "coordinates": [[0.6, 0.3]]}}
-{"emailFormatValidator": {"email": ["example@domain.com"], "domain": ["domain.com", ""]}}
-{"manageReactState": {"store": [{"initialState": ["initialStateObject"], "reducers": ["reducersMap"], "middlewares": [["loggerMiddleware"]], "enhancers": [["applyMiddleware(...)"]]}], "context": ["React.createContext()"], "hooks": [{"useStateSelector": ["useStateSelectorHook"], "useDispatchAction": ["useDispatchActionHook"]}]}}
-{"mapTransitions": {"category": ["transition"], "limit": [4]}}
-{"getNextKeyValues": {"ctx": ["dataAnalysisContext"], "currentKey": ["userId"]}}
-{"doesEmailInputExist": {"formElem": ["emailForm"], "inputName": ["emailAddress"]}}
-{"validateApiResponse": {"jsonPayload": [""], "keyToCheck": [""], "processingCallback": [""]}}
-{"fetchSalesDepartmentRecords": {"databaseName": ["employeeRecords"], "queryFunction": ["function(record) { return record.department === 'Sales'; }"]}}
-{"prioritizeAndSort": {"items": [""], "priorityStatus": ["urgent"], "ascending": [true]}}
-{"performDataFetch": {"apiEndpoint": ["https://api.example.com/data"], "requestConfig": [{"method": ["GET"]}], "expectedResponse": [{"key": ["value"]}], "handleErrors": [true, "true", "True", "1"]}}
-{"DynamicChartGenerator": {"userData": [""], "scalingFactor": [3], "dashboard": [""], "options": [""]}}
-{"chartDataAccessorFactory": {"chart": {"nm": ["BarChart"], "mn": ["chartModule"]}, "library": [""], "configObject": ["config"]}}
-{"ChartSeriesGenerator": {"labels": [""], "data": [""], "color": ["defaultColor", ""], "chartLayout": [""]}}
-{"rotateVertices_1": {"vertices": ["[10, 15]", "[20, 25]"], "pivot": ["[12, 17]"], "angle": ["30"]}}
-{"generateNotificationHandler": {"app": [""], "priorityLevel": [3], "messagingService": [""], "notificationType": [2]}}
-{"calculateFinalVelocity": {"time": [5], "gravity": [9.81], "initialVelocity": [0]}}
-{"configureShaderMaterial": {"property": ["materialProps"], "textures": ["textureList"], "object3D": ["meshObject"]}}
-{"buttonAddClickHandler": {"element": [""], "callback": ["handleButtonClick"], "options": [{"stopPropagation": true}, ""]}}
-{"findProductById": {"products": ["[{'name': 'Product A', 'productId': 122}, {'name': 'Product B', 'productId': 123}, {'name': 'Product C', 'productId': 124}]"], "id": [123]}}
-{"resetStateProperty_1": {"stateProperty": ["userSession"]}}
-{"createAuthToken": {"username": ["johndoe"], "validity": [3600], "options": {"issuer": ["myapp.net"], "role": ["admin"], "algorithm": ["HS256"]}}}
-{"getUniqueSorted": {"array": ["[3, 1, 2, 1, 4, 3]"]}}
-{"trackSubmitWithValidation": {"obj": ["formHandler"], "validationFlags": [["isRequired", "isValidEmail"]]}}
-{"contentUpdater": {"elementID": ["contentBox"], "newContent": ["New content here"], "action": ["update"]}}
-{"validateReactProp": {"obj": ["serviceProvider"], "componentName": ["UserProfile"]}}
-{"filterBooksByAuthor": {"library": [""], "author": ["J.K. Rowling"]}}
-{"EventScheduler": {"events": ["{'setupStage': setupStageFunction, 'startConcert': ['setupStage', startConcertFunction], 'cleanupStage': ['setupStage', 'startConcert', cleanupStageFunction]}"], "concurrencyLimit": [3], "callback": [""]}}
-{"setText": {"newText": ["Hello, World!"], "start": [5], "length": [7, ""]}}
-{"transformAllDecoratorsOfDeclaration": {"node": ["myNode"], "container": ["myContainer"], "allDecorators": ["decoratorsList"]}}
-{"pollQueue": {"queue": ["fileWatchQueue"], "pollingInterval": [500], "pollIndex": [0], "chunkSize": [10]}}
-{"emitNewLineBeforeLeadingComments": {"lineMap": ["tsLineMap"], "writer": ["tsWriter"], "node": ["{pos: 42}"], "leadingComments": ["[]"]}}
-{"forEachType_1": {"type": ["unionTypeObj"], "f": ["processType"]}}
-{"areDeclarationFlagsIdentical": {"left": [""], "right": [""]}}
-{"updateBreak": {"node": ["breakNode"], "label": ["loopEnd"]}}
-{"addInitializedPropertyStatements": {"statements": ["shapeStatements"], "property": [["width", "height"]], "receiver": ["shape"]}}
-{"getDirectoryToWatchFromFailedLookupLocationDirectory": {"dir": ["/projects/myApp/node_modules/react"], "dirPath": ["/projects/myApp/node_modules/react"]}}
-{"maybeAddJsSyntheticRestParameter": {"declaration": ["funcDeclaration"], "parameters": ["funcParameters"]}}
-{"assignOwnDefaults": {"objectValue": ["undefined"], "sourceValue": ["10"], "key": ["maxItems"], "object": ["{}"]}}
-{"queue_1": {"worker": ["myWorkerFunction"], "concurrency": [5], "payload": [""]}}
-{"B": {"t": [5], "e": [""], "n": [""]}}
-{"invokeCallback": {"callback": ["processResult"], "error": ["null"], "value": ["Operation successful"]}}
-{"skipThrough": {"node": ["currentNode"], "st": ["nodeState"], "c": ["processNode"]}}
-{"Sde": {"t": ["https://github.com/yarnpkg/berry"], "e": {"startingCwd": ["/home/user/projects"], "configuration": [{}]}}}
-{"vOe": {"r": ["packageInfo"], "e": ["version"], "t": ["1.2.3"]}}
-{"sTe": {"r": ["2023-04-01", "04/01/2023", "Apr.1,2023"], "e": ["2023-04-15", "04/15/2023", "Apr.15,2023"], "t": ["days"]}}
-{"updateDOMListeners": {"oldVnode": [""], "vnode": [""]}}
-{"convertEnumeratedValue": {"key": ["contenteditable"], "value": ["plaintext-only"]}}
+{"validateUserInput":{"inputField":["userInputField"],"isComplete":[true]}}
+{"getActiveDataEntries":{"listElement":["listElement"],"attribute":["data-active", ""],"value":[true,""]}}
+{"extractLastTransactionId":{"filepath":["/var/log/db.log"],"status":[["completed","failed"]],"encoding":["utf-8"],"processFunction":["processFunction"]}}
+{"submitAtCoordinate":{"action":["submit"],"formId":["loginForm"],"coordinates":[[0.6,0.3]]}}
+{"emailFormatValidator":{"email":["example@domain.com"],"domain":["domain.com"]}}
+{"manageReactState":{"store":[{"initialState":"initialStateObject","reducers":["reducersMap"],"middlewares":[["loggerMiddleware"]],"enhancers":[["applyMiddleware('myMiddleWare')"]]}],"context":["React.createContext()"],"hooks":[{"useStateSelector":"useStateSelectorHook","useDispatchAction":"useDispatchActionHook"}]}}
+{"mapTransitions":{"category":["transition"],"limit":[4.0]}}
+{"getNextKeyValues":{"ctx":["dataAnalysisContext"],"currentKey":["userId"]}}
+{"doesEmailInputExist":{"formElem":["emailForm"],"inputName":["emailAddress"]}}
+{"validateApiResponse":{"jsonPayload":["responseData"],"keyToCheck":["expectedKey"],"processingCallback":["processKeyFunction"]}}
+{"fetchSalesDepartmentRecords":{"databaseName":["employeeRecords"],"queryFunction":["getSales"]}}
+{"prioritizeAndSort":{"items":["myItemList"],"priorityStatus":["urgent"],"ascending":[true]}}
+{"performDataFetch":{"apiEndpoint":["https://api.example.com/data"],"requestConfig":[{"method":"GET"}],"expectedResponse":[{"key":"value"}],"handleErrors":[true]}}
+{"DynamicChartGenerator":{"userData":[["userDataArray"]],"scalingFactor":[3.0],"dashboard":["dashboardElement"],"options":["", {}]}}
+{"chartDataAccessorFactory":{"chart":[{"nm":["BarChart"],"mn":["chartModule"]}],"library":["visualizationLibrary"],"configObject":["config"]}}
+{"ChartSeriesGenerator":{"labels":["axisLabelsArray"],"data":["dataPointsArray"],"color":["defaultColor"],"chartLayout":["chartLayoutObject"]}}
+{"rotateVertices":{"vertices":[[10.0,15.0],[20.0,25.0]],"pivot":[[12.0,17.0]],"angle":[30.0]}}
+{"generateNotificationHandler":{"app":["app"],"priorityLevel":[3],"messagingService":["messagingSvc"],"notificationType":[2]}}
+{"calculateFinalVelocity":{"time":[5.0],"gravity":[9.81],"initialVelocity":[0.0]}}
+{"configureShaderMaterial":{"property":["materialProps"],"textures":["textureList"],"object3D":["meshObject"]}}
+{"buttonAddClickHandler":{"element":["myButton"],"callback":["handleButtonClick"],"options":[{"stopPropagation":[true]}]}}
+{"findProductById":{"products":["Product A","Product B","Product C"],"id":[123]}}
+{"resetStateProperty":{"stateProperty":["userSession"]}}
+{"createAuthToken":{"username":["johndoe"],"validity":[3600],"options":[{"issuer":["myapp.net"],"role":["admin"],"algorithm":["HS256"]}]}}
+{"getUniqueSorted":{"array":[[3,1,2,1,4,3]]}}
+{"trackSubmitWithValidation":{"obj":["formHandler"],"validationFlags":[["isRequired","isValidEmail"]]}}
+{"contentUpdater":{"elementID":["contentBox"],"newContent":["Hello World"],"action":["update"]}}
+{"validateReactProp":{"obj":["serviceProvider"],"componentName":["UserProfile"]}}
+{"filterBooksByAuthor":{"library":[["bookA","bookB","bookC"]],"author":["J.K. Rowling"]}}
+{"EventScheduler":{"events":[{"setupStage": ["setupStageFunction"],"cleanupStage": ["cleanupStageFunction"]}],"concurrencyLimit":[3.0]}}
+{"setText":{"newText":["Hello, World!"],"start":[5.0],"length":[7.0]}}
+{"transformAllDecoratorsOfDeclaration":{"node":["myNode"],"container":["myContainer"]}}
+{"pollQueue":{"queue":["fileWatchQueue"],"pollingInterval":[500.0],"pollIndex":[0.0],"chunkSize":[10.0]}}
+{"emitNewLineBeforeLeadingComments":{"lineMap":["tsLineMap"],"writer":["tsWriter"],"node":[42]}}
+{"forEachType":{"type":["unionTypeObj"],"f":["processType"]}}
+{"areDeclarationFlagsIdentical":{"left":["parameterObjects"],"right":["variableDeclarationObject"]}}
+{"updateBreak":{"node":["breakNode"],"label":["loopEnd"]}}
+{"addInitializedPropertyStatements":{"statements":["shapeStatements"],"property":[["width","height"],["height","width"]],"receiver":["shape"]}}
+{"getDirectoryToWatchFromFailedLookupLocationDirectory":{"dir":["/projects/myApp/node_modules/react"],"dirPath":["/projects/myApp/node_modules/react"]}}
+{"maybeAddJsSyntheticRestParameter":{"declaration":["funcDeclaration"],"parameters":["funcParameters"]}}
+{"assignOwnDefaults":{"objectValue":[12.0],"sourceValue":[10.0],"key":["maxItems"],"object":[{}]}}
+{"queue":{"worker":["myWorkerFunction"],"concurrency":[5.0],"payload":["", 0.0]}}
+{"B":{"t":[5.0]}}
+{"invokeCallback":{"callback":["processResult"],"error":["null"],"value":["Operation successful"]}}
+{"skipThrough":{"node":["currentNode"],"st":["nodeState"],"c":["processNode"]}}
+{"Sde":{"t":["https://github.com/yarnpkg/berry"],"e":[{"startingCwd":["/home/user/projects"]}]}}
+{"vOe":{"r":["packageInfo"],"e":["version"],"t":["1.2.3"]}}
+{"sTe":{"r":["2023-04-01"],"e":["2023-04-15"],"t":["days"]}}
+{"updateDOMListeners":{"oldVnode":["oldVirtualNode"],"vnode":["newVirtualNode"]}}
+{"convertEnumeratedValue":{"key":["contenteditable"],"value":["plaintext-only"]}}

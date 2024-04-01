@@ -18,12 +18,11 @@ and our [release blog](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function
 
 ## Dataset Composition
 
-
-![image/png](https://cdn-uploads.huggingface.co/production/uploads/6471b9f6094820190c324eec/n_OdVmWCNOT4ythWcxEG0.png)
+![image/png](https://cdn-uploads.huggingface.co/production/uploads/63814d392dd1f3e7bf59862f/IE-HwJL1OUSi-Tc2fT-oo.png)
 
 | # | Category |
 |---|----------|
-|200 |	Relevance|
+|200 |	Chatting Capability|
 |100 |	Simple (Exec)|
 |50  |	Multiple (Exec)|
 |50  |	Parallel (Exec)|
@@ -32,7 +31,7 @@ and our [release blog](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function
 |200 |	Multiple (AST)|
 |200 |	Parallel (AST)|
 |200 |	Parallel & Multiple (AST)|
-|240 |	No Valid FN|
+|240 |	Relevance|
 |70  |	REST|
 |100 |	Java|
 |100 |	SQL|
@@ -42,8 +41,9 @@ and our [release blog](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function
 
 ### Dataset Description
 
+**Chatting Capability**: In Chatting Capability, we design scenarios where no functions are passed in, and the users ask generic questions - this is similar to using the model as a general-purpose chatbot. We evaluate if the model is able to output chat messages and recognize that it does not need to invoke any functions. Note the difference with “Relevance” where the model is expected to also evaluate if any of the function input are relevant or not.
 
-**Simple**: Generic evaluation contains the simplest but most commonly seen format: the user supplies one JSON function document, with one and only one function call will be invoked. 
+**Simple**: In simple function category, we contain the simplest but most commonly seen format: the user supplies one JSON function document, with one and only one function call will be invoked. 
 
 **Multiple Function**: In multiple function category, a user question that only invokes one function call out of 2 - 4 JSON function documentations. The model needs to be capable of selecting the best function to invoke according to user provided context.
 
@@ -51,7 +51,7 @@ and our [release blog](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function
 
 **Parallel Multiple Function**: Parallel Multiple function is the combination of parallel function and multiple function. In other words, the model is provided with multiple function documentations, each of the corresponding function calls will be invoked 0 or more times. 
 
-**Relevance detection**: In relevance detection, we design a scenario where none of the provided functions are relevant and supposed to be invoked. We expect the model’s output to be no function call. 
+**Relevance (Function Relevance Detection)**: In relevance detection, we design a scenario where none of the provided functions are relevant and supposed to be invoked. We expect the model’s output to be no function call. 
 
 **REST**: A majority of the real world API calls are from REST API calls. Python makes REST API calls through requests.get() . As a result, we include requests.get function along with a hardcoded URL and description of the purpose of the function and its parameters. Our evaluation includes two variations. The first type requires embedding the parameters inside the URL, called path parameters, for example the {Year} and {CountryCode} in  GET /api/v3/PublicHolidays/{Year}/{CountryCode}. The second type requires the model to put parameters into the params and/or headers of requests.get(.). For examples, XXX. The model is not given which type of REST API call it is going to make but needs to make a decision on how it’s going to be invoked. 
 We execute all teh REST calls to evaluate correctness. 
@@ -67,7 +67,7 @@ We evaluate all Java and Javascript API calls through AST.
 
 **Execute**: Everything trailing by "Exec" means that there exists an actual function or API that can be invoked for the documentation provided. As a result, the way to measure accuracy is by actually running the function call with function source code loaded.
 
-**AST**: For all fields flagged with AST, we match the Abstract Syntax Tree (AST) with the documentation to evaluate the answer. 
+**AST**: For all fields flagged with "AST", we match the Abstract Syntax Tree (AST) with the documentation to evaluate the answer. 
 
 
 

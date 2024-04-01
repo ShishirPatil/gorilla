@@ -5,7 +5,7 @@ import requests
 import xml.etree.ElementTree as ET
 
 api_key = {}
-with open("./function_credential_config.json") as f:
+with open("../function_credential_config.json") as f:
     data = json.loads(f.read())
     for item in data:
         for k,v in item.items():
@@ -50,7 +50,7 @@ def quadratic_roots(a,b,c):
     """
     root1 = (-b + (b**2 - 4*a*c)**0.5) / (2*a)
     root2 = (-b - (b**2 - 4*a*c)**0.5) / (2*a)
-    return root1, root2
+    return [root1, root2]
 
 def geometry_area_circle(radius):
     """
@@ -203,8 +203,9 @@ def estimate_derivative(function, x):
             function (function): The function to calculate the derivative of.
             x (integer): The point to calculate the derivative at.
     """
+    func = eval(function)
     h = 0.0000000001
-    return (function(x + h) - function(x)) / h
+    return (func(x + h) - function(x)) / h
 
 def calculate_cosine_similarity(vectorA, vectorB):
     """
@@ -309,8 +310,8 @@ def convert_currency(amount, from_currency, to_currency):
     Returns:
     float: The converted amount in the target currency.
     """
-    api_key = api_key["EXCHANGERATE-API-KEY"]
-    base_url = f"https://v6.exchangerate-api.com/v6/{api_key}/latest/{from_currency}"
+    key = api_key["EXCHANGERATE-API-KEY"]
+    base_url = f"https://v6.exchangerate-api.com/v6/{key}/latest/{from_currency}"
     response = requests.get(base_url)
 
     if response.status_code == 200:
@@ -503,7 +504,7 @@ def get_stock_price_by_stock_name(stock_name):
     """
     url = "https://yahoo-finance15.p.rapidapi.com/api/v1/markets/quote"
 
-    querystring = {"ticker": stock_name}
+    querystring = {"ticker": stock_name, "type": 'STOCKS'}
 
     headers = {
         "X-RapidAPI-Key": api_key["RAPID-API-KEY"],
@@ -694,7 +695,7 @@ def calculate_nutritional_needs(weight, height, age, gender, activity_level, goa
 
     return {'calories': tdee, 'proteins_g': proteins, 'fats_g': fats, 'carbohydrates_g': carbohydrates}
 
-def book_room(room_type, check_in_date, check_out_date, customer_id,discount_code=None):
+def book_room(room_type, price, check_in_date, check_out_date, customer_id,discount_code=None):
     """
     Books a room for a customer.
     Args:
@@ -708,7 +709,6 @@ def book_room(room_type, check_in_date, check_out_date, customer_id,discount_cod
     booked_room = room_type
 
     # Calculate price and apply discount if applicable
-    price = booked_room['price']
     if discount_code and discount_code == "DISCOUNT10":
         price *= 0.9  # Apply 10% discount
 
