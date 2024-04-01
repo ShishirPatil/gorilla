@@ -127,13 +127,13 @@ MODEL_METADATA_MAPPING = {
         "Functionary-Small (FC)",
         "https://huggingface.co/meetkai/functionary-small-v2.2",
         "MeetKai",
-        "N/A",
+        "MIT",
     ],
     "meetkai_functionary-medium-v2.2-FC": [
         "Functionary-Medium-v2.2 (FC)",
         "https://huggingface.co/meetkai/functionary-medium-v2.2",
         "MeetKai",
-        "N/A",
+        "MIT",
     ],
     "claude-2.1": [
         "Claude-2.1 (Prompt)",
