@@ -623,6 +623,7 @@ function generateChart(csvData) {
     for (let i = 1; i < csvData.length; i += 1) {
         var row = csvData[i];
         var model_name = row[2];
+
         var dataPoint = {
             label: model_name,
             data: [
