@@ -31,7 +31,6 @@ The git clones need to be under the `./berkeley-function-call-leaderboard/eval_c
 
 ```bash
 cd ./berkeley-function-call-leaderboard/eval_checker
-pip3 install tree_sitter
 git clone https://github.com/tree-sitter/tree-sitter-java.git
 git clone https://github.com/tree-sitter/tree-sitter-javascript.git
 ```
