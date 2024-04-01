@@ -1,5 +1,5 @@
 #model_info_dashboard {
-    width: 90%;
+    width: 100%;
     border-collapse: collapse;
     justify-content: center;
 }
@@ -7,7 +7,7 @@
 #model_info_dashboard th,
 #model_info_dashboard td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 9px;
     text-align: center;
 }
 

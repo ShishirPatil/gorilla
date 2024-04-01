@@ -62,8 +62,8 @@
                     <li><a href="8_berkeley_function_calling_leaderboard.html#benchmarking">Dataset Composition</a></li>
                     <li><a href="8_berkeley_function_calling_leaderboard.html#categories">Evaluation Categories 📊</a>
                     </li>
-                    <li><a href="8_berkeley_function_calling_leaderboard.html#metrics">Evaluation Metrics📈</a></li>
-                    <li><a href="8_berkeley_function_calling_leaderboard.html#prompt">Prompting</a></li>
+                    <li><a href="8_berkeley_function_calling_leaderboard.html#metrics">Evaluation Metrics 📈</a></li>
+                    <li><a href="8_berkeley_function_calling_leaderboard.html#prompt">Prompting 🖊️</a></li>
                     <li><a href="8_berkeley_function_calling_leaderboard.html#mistakes">Common Mistakes</a></li>
                     <li><a href="8_berkeley_function_calling_leaderboard.html#conclusion">Conclusion</a></li>
                     <li><a href="8_berkeley_function_calling_leaderboard.html#citation">Citation</a></li>
@@ -180,7 +180,7 @@
 
 
                         <p style="text-align: center; margin-bottom: 0">
-                            <img src="../assets/img/blog_post_8_Leaderboard.jpg"
+                            <img src="../assets/img/blog_post_8_Leaderboard.png"
                                 alt="Berkeley Function-Calling Leaderboard (BFCL)" width="100%">
                             <i style="font-size: 0.9em;">
                                 LLMs' performance on <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley
@@ -213,7 +213,7 @@
                     </div>
 
                     <!-- OpenFunction BenchMarking  -->
-                    <h4 id="benchmarking">Dataset Composition</h4>
+                    <h3 id="benchmarking">Dataset Composition</h3>
 
                     <div class="body">
                         <p>The Gorilla OpenFunctions evaluation dataset grows from its previous <a
@@ -251,7 +251,7 @@
                             </i>
                         </p>
                     </div>
-                    <h4 id="categories">Evaluation Categories 📊</h4>
+                    <h3 id="categories">Evaluation Categories 📊</h2>
                     <div class="body">
                         <p> We break down the majority of the evaluation in two categories:</p>
                         <ul>
@@ -532,7 +532,7 @@
 
                     <br>
 
-                    <h4 id="metrics">Evaluation Metrics📈</h4>
+                    <h3 id="metrics">Evaluation Metrics📈</h3>
                     <div class="body">
                         <p>We use two popular method to evaluate the accuracy of the model generated answers: AST
                             evaluation and Executable evaluation. Ideally one should use execution checker, but when we
@@ -540,10 +540,10 @@
                             we use the AST as a complement to the execution checker. </p>
                         <ul>
                             <li style="margin-bottom: 5px;">Abstract Syntax Tree (AST) Evaluation</li>
-                            <li style="margin-bottom: 5px;">Evaluation by Executing APIs</li>
+                            <li style="margin-bottom: 5px;">Executable Function Evaluation</li>
                         </ul>
                     </div>
-                    <h5>Abstract Syntax Tree (AST) Evaluation 🌳</h5>
+                    <h4>Abstract Syntax Tree (AST) Evaluation 🌳</h4>
                     <div class="body">
                         <p>For simple function evaluations, the evaluation process focuses on comparing <i>single model
                             output function</i>
@@ -552,6 +552,7 @@
                             Here is a flow chart that shows the step-by-step evaluation process.
                         </p>
                         <img src="../assets/img/blog_post_8_flowchart.jpeg">
+                        <h5>Parsing Function Through AST</h5>
                         <p>The evaluation process starts by parsing the
                             function call using AST tree.</p>
                         <p><b>Example</b>:</p>
@@ -575,7 +576,7 @@
         ], ctx=Load()))
     ], type_ignores=[])
 </code></pre>
-
+                        <h5>Function Matching</h5>
                         <p>The procedure first extracts the function name and verify that it is consistent with the one
                             in possible answer.
                         <ul>
@@ -589,6 +590,7 @@
                             </li>
                         </ul>
                         </p>
+                        <h5>Required Paramters Matching</h5>
                         <p>
                             Then, it extracts the arguments from the AST and check if each parameter can be found and
                             exact
@@ -604,6 +606,7 @@
                             </li>
                         </ul>
                         </p>
+                        <h5>Parameter Type & Value Matching</h5>
                         <p>
                         The evaluation procesure is strict on <b>typing</b>. Here are the
                         acceptable answers for each data type:
@@ -733,7 +736,7 @@
                                 the evaluation takes into account both scenarios when checking the type.
                             </li>
                             <li>
-                                For the Java and JavaScript test category, all the parameter values
+                                For the <b>Java</b> and <b>JavaScript</b> test category, all the parameter values
                                 (in
                                 the input) are in the string format. The evaluation procedure will call the
                                 <code>java_type_converter</code> or the
@@ -741,18 +744,18 @@
                                 helper method to
                                 convert
                                 the
-                                string version of a Java/JS type into their corresponding Python
+                                string version of a <b>Java</b>/<b>JS</b> type into their corresponding Python
                                 format,
                                 since
-                                we perform checking with Python data types. For example, a HashMap
-                                in Java
+                                we perform checking with Python data types. For example, a <code>HashMap</code>
+                                in <b>Java</b>
                                 will
                                 be converted to a dictionary in Python. During this process, the
                                 converter
                                 will
                                 also perform the type checking for those parameters; e.g. if the
                                 parameter
-                                should be a long type in Java, the converter will check to make sure
+                                should be a long type in <b>Java</b>, the converter will check to make sure
                                 that
                                 the
                                 string input does have an <code>"L"</code> at the end (because
@@ -777,19 +780,42 @@
                             and <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">REST</code>.
                         </p>
                     </div>
-
+                    <div>
+                            <h5>Multiple/Parallel/Parallel-Multiple Functions Evaluation
+                            </h5>
+                            <p>The <b>multiple, parallel, or parallel-multiple function
+                                    calls evaluation process</b> extends the idea in the simple function
+                                evaluation to support multiple model outputs and possible answers.
+                            </p>
+                            <ul>
+                                <li>The evaluation process first associate each possible answer with its function
+                                    description. Then it iterates over the model outputs, and calls the <b>simple
+                                    function evaluation</b> on each function (which takes in one <i>model output</i>,
+                                    <i>one
+                                        possible answer</i>, and one <i>function doc</i>).
+                                    <ul>
+                                        <li>The order of model outputs relative to possible answers is not required. A
+                                            model output can match with any possible answer.
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>The evaluation employs an <i>all-or-nothing</i> approach to evaluation. Failure to find
+                                    a match across all model outputs for any given possible answer results in a <i>failed evaluation</i>.
+                                </li>
+                            </ul>
+                        </div>
 
                     <div>
-                        <h3 id="exec">Executable Function Evaluation ⚙️
-                        </h3>
+                        <h4 id="exec">Executable Function Evaluation ⚙️
+                        </h4>
                         <p>
                             In the <code>executable</code> test category, we execute the generated API call to check
                             for response correctness. The
                             evaluation process differs for <code>Non-REST</code> and <code>REST</code> tests due
                             to their distinct characteristics:
                         </p>
-                        <h4>Executable Function (<code>Non-REST</code>) Evaluation:
-                        </h4>
+                        <h5>Executable Function (<code>Non-REST</code>) Evaluation:
+                        </h5>
                         <ul>
                             <li>
                                 Execution involves running the specified function and examining its output.
@@ -808,7 +834,7 @@
                                 </ul>
                             </li>
                         </ul>
-                        <h4>Executable Function (<code>REST</code>) Evaluation:
+                        <h5>Executable Function (<code>REST</code>) Evaluation:
                         </h4>
                         <ul>
                             <li>These tests involve executing API calls and assessing:
@@ -818,7 +844,7 @@
                                     </li>
                                     <li><b>Response type accuracy</b>: Ensuring the API response matches the
                                         expected
-                                        structure (e.g., list of JSON objects).
+                                        structure (e.g., <code>list of JSON</code> objects).
                                     </li>
                                     <li><b>JSON key consistency</b>: Checking for consistency in <i>JSON key
                                             sets</i>
@@ -859,134 +885,38 @@
                         </p>
                     </div>
                     <div class="body">
-                        <h4 id="prompt">Prompting</h4>
-                        <!-- Leaderboard Section -->
+                        <h3 id="prompt">Cost & Latency</h3>
+                        <p>In our recent update, we have also paid close attention to the <b>cost</b> and <b>latency</b>.</p>
+
+            <ul>
+                            <li>For models from service providers such as OpenAI, Mistral, Google, Anthropic, and etc:
+                                <ul>
+                                    <li>
+                                        <b>Latency</b>: we measure the latency by timing each request to the endpoint ignoring the function document preprocessing time.</li>
+                                    <li>
+                                        <b>Cost</b>: we follows the formula to derive the cost per 1000 function callings. 
+                                        <img src="XXXX.png" width="100%">
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>For models that we evaluate using local hosting. This includes Deepseek, Gemma, and etc.:
+                                    <ul><li><b>Latency</b>: For ~7B Models, we evaluated on single A100 40GB. For ~40B Models, we evaluated on 4*A100 40GB.  Since we batched and evaluated the model, we derive latency by dividing the total time with the number of evaluation dataset entries.
+                                    </li>
+                                    <li><b>Cost</b>: Since open source model does not have a price tag, we estimate the cost by:
+                                        <img src="XXXX.png" width="100%">
+                                    </li>
+                                    </ul>
+                            </li>
+                            
+                        </ul>
+                        <p>For firefunctions-v1, Nexusflow-Raven-v2, and Meetkai-Functionary, we use their endpoints while their services are free, so we did not include cost for their models.</p>
+                        <p><i>This specific piece of insight will help individuals or enterprises to decide which model to incorporate based on the demand and budget.</i>
+</p>
                     </div>
                     <div class="body">
-
-
-                        <div>
-                            <h4>Multiple/Parallel/Parallel-Multiple Functions Evaluation
-                            </h4>
-                            <p>The <b>multiple, parallel, or parallel-multiple function
-                                    calls evaluation process</b> extends the principles applied in the simple function
-                                evaluation to accommodate a
-                                collection of model outputs and corresponding possible answers.
-                            </p>
-                            <ul>
-                                <li>The checker first associate each possible answer with its corresponding function
-                                    description, using the function name as the identifier.
-                                </li>
-                                <li>The checker then iterates over the model outputs, and calls the simple
-                                    function checker on each of them (which takes in one <i>model output item</i>,
-                                    <i>one
-                                        possible answer item</i>, and one <i>function description</i>).
-                                    <ul>
-                                        <li>The order of model outputs relative to possible answers is not a
-                                            consideration in
-                                            this evaluation context, reflecting the inherently <i>simultaneous
-                                                execution</i> of
-                                            these
-                                            test
-                                            categories (so the order of execution could vary depending on the
-                                            scheduler). A
-                                            model output
-                                            can correspond to any possible answer item, provided it fulfills the
-                                            evaluation
-                                            criteria
-                                            outlined in the simple function checker section.
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>The checker employs an <i>all-or-nothing</i> approach to evaluation. Failure to find
-                                    a match
-                                    across
-                                    all model outputs for any given possible answer
-                                    item results in a <i>failed evaluation</i>.
-                                </li>
-                            </ul>
-                        </div>
-
-
-                        <div>
-                            <h3 id="exec">Executable Function Evaluation
-                            </h3>
-                            <p>
-                                In the <code>executable</code> test category, we execute the generated API call to check
-                                for response correctness. The
-                                evaluation process differs for <code>Non-REST</code> and <code>REST</code> tests due
-                                to their distinct characteristics:
-                            </p>
-                            <h4>Executable Function (<code></code>Non-REST</code>) Evaluation:
-                            </h4>
-                            <ul>
-                                <li>
-                                    Execution involves running the specified function and examining its output.
-                                </li>
-                                <li>Evaluation criteria (either of the following must be met, depending on the
-                                    executable function example):
-                                    <ul>
-                                        <li><b>Exact match</b>: The output must exactly match the expected result.
-                                        </li>
-                                        <li><b>Type match</b>: The output must match the
-                                            expected data type. For example, both
-                                            <code>[1, 2, 3]</code> and <code>[1.5,
-                                            2.4]</code>
-                                            are accepted if the expected type is a list.
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <h4>Executable Function (REST) Evaluation:
-                            </h4>
-                            <ul>
-                                <li>These tests involve executing API calls and assessing:
-                                    <ul>
-                                        <li>
-                                            <b>Effective execution</b>: Assessing the success of API call executions.
-                                        </li>
-                                        <li><b>Response type accuracy</b>: Ensuring the API response matches the
-                                            expected
-                                            structure (e.g., list of JSON objects).
-                                        </li>
-                                        <li><b>JSON key consistency</b>: Checking for consistency in <i>JSON key
-                                                sets</i>
-                                            between generated and expected responses.
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    Ground truth REST responses were initially gathered and stored in JSON format for
-                                    comparison.
-                                </li>
-                                <li>Given the <i>variable nature</i> of REST responses (e.g., changing weather data),
-                                    the
-                                    checker
-                                    focuses on <i>structural invariance</i> and <i>real-time execution success</i>
-                                    rather than
-                                    static values.
-                                    <ul>
-                                        <li>In particular, the checker verifies that the response type matches the
-                                            ground truth
-                                            (e.g., expecting a list of JSON objects) and checks for consistency in the
-                                            number of
-                                            elements and JSON key sets.
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <p>
-                                <b>Acknowledgment</b>: Given the potential for updates in REST API response structures
-                                by their
-                                developers, the evaluation methodology includes regularly reviewing and updating the
-                                ground
-                                truth in response to such changes, ensuring the checker remains accurate and relevant.
-                            </p>
-                        </div>
-
-
+                        <h3 id="prompt">Prompting 🖊️</h3>
                         <div id="model_info_dashboard">
-                            <h2>Model Manual</h2>
+                            <h4 class="text-center">Model Manual</h4>
                             <p class="text-center">
                                 The model manual provided some basic insights and function calling features support by
                                 the model we evaluated on. We also highlight models from open source community and
@@ -1309,6 +1239,7 @@
 
                         </div>
                     </div>
+                    <br></br>
                     As the above model manual has shown, our evaluation involves both function calling and non-function
                     calling models.
                     For function calling models, since they are specifically designed to generate function calls, we did
