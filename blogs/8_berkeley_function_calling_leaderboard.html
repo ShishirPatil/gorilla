@@ -218,7 +218,7 @@
                     <div class="body">
                         <p>The Gorilla OpenFunctions evaluation dataset grows from its previous <a
                                 href=4_open_functions.html><code
-                                    style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">OpenFunctions-v0</code>'s
+                                    >OpenFunctions-v0</code>'s
                                 100 entries</a> to 1900
                             entries! The evaluation dataset improve its quality and demonstrate diversity in:</p>
                         <ul>
@@ -231,11 +231,11 @@
 
                         <p>Our evaluation JSON functions are scraped and generated from different sources of website. We
                             intentially include domains like using functions related to <code
-                                style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Mathematics-Algebra</code>,
+                                >Mathematics-Algebra</code>,
                             <code
-                                style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Sports-Soccer</code>,
+                                >Sports-Soccer</code>,
                             <code
-                                style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Finance-Mortgage</code>,
+                                >Finance-Mortgage</code>,
                             and etc. We include 40 sub-domains of functions within our
                             generic evaluations. This allows us to understand the model performance not just in
                             data-abundant domains like computing, and cloud, but also niche domains like sports, and
@@ -315,11 +315,11 @@
                         <p><strong>REST API:</strong> A majority of the real world API calls are from REST API calls.
                             Python
                             mainly makes REST API calls through <code
-                                style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">requests.get()</code>,
+                                >requests.get()</code>,
                             <code
-                                style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">requests.post()</code>,
+                                >requests.post()</code>,
                             <ode><code
-                                    style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">requests.delete()</code>
+                                    >requests.delete()</code>
                                 and
                                 etc that are included in the python requests library. GET requests are the most common
                                 ones
@@ -327,26 +327,26 @@
                                 capabilities to generate executable REST API calls through complex function
                                 documentations,
                                 using <code
-                                    style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">requests.get()</code>
+                                    >requests.get()</code>
                                 along with the API's hardcoded URL and description of the purpose of
                                 the function and its parameters. Our evaluation includes two variations. The first type
                                 requires passing the parameters inside the URL, called path parameters, for example the
                                 <code
-                                    style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">{Year}</code>
+                                    >{Year}</code>
                                 and <code
-                                    style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">{CountryCode}</code>
+                                    >{CountryCode}</code>
                                 in <code
-                                    style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">GET /api/v3/PublicHolidays/{Year}/{CountryCode}</code>.
+                                    >GET /api/v3/PublicHolidays/{Year}/{CountryCode}</code>.
                                 The second type
                                 requires the model to put parameters as key/value pairs into the <code
-                                    style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">params</code>
+                                    >params</code>
                                 and/or <code
-                                    style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">headers</code>
+                                    >headers</code>
                                 of
                                 <code
-                                    style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">requests.get(.)</code>.
+                                    >requests.get(.)</code>.
                                 For example, <code
-                                    style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">params={'lang': 'fr'}</code>
+                                    >params={'lang': 'fr'}</code>
                                 in the function call. The model is not
                                 given which type of REST API call it is going to make but needs to make a decision on
                                 how
@@ -357,20 +357,20 @@
                             perform AST evaluation on REST mainly because of the immense possible answer for complicated
                             defined APIs that enumeration of all possible answer is unexhausive. </p>
                         <p><strong>SQL:</strong> SQL evaluation data includes our customized <code
-                                style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">sql.execute</code>
+                                >sql.execute</code>
                             functions that
                             contains sql_keyword, table_name, columns, and conditions. Those four parameters provide
                             necessary information to construct a simple SQL query like <code
-                                style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">SELECT column_A from table_B where column_C == D</code>
+                                >SELECT column_A from table_B where column_C == D</code>
                             Through this, we want to see if through function calling, SQL query can
                             be reliably constructed and utilized rather than training a SQL specific model. In our
                             evaluation dataset, we restricted the scenarios and supported simple keywords, including
-                            <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">SELECT</code>,
+                            <code>SELECT</code>,
                             <code
-                                style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">INSERT INTO</code>,
-                            <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">UPDATE</code>,
-                            <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">DELETE</code>,
-                            <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">CREATE</code>.
+                                >INSERT INTO</code>,
+                            <code>UPDATE</code>,
+                            <code>DELETE</code>,
+                            <code>CREATE</code>.
                             We included 100 examples for SQL AST evaluation. Note that SQL AST evaluation will not be
                             shown in our leaderboard calculations. We use SQL evaluation testing the generalization
                             ability of function calling for programming languages that are not included in the training
@@ -388,7 +388,7 @@
                             most
                             programming languages, each programming language has language specific types. For example,
                             Java has <code
-                                style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">HashMap</code>
+                                >HashMap</code>
                             type. The goal of this test category is to understand how
                             well the function calling model can be extended to not just Python type but all the
                             language specific typings. We included 100 examples for Java AST evaluation and 70 examples
@@ -408,10 +408,10 @@
                             parallel multiple functions). Here, we display a table organizing counts of evaluation data
                             points of each leaderboard categories, which compose of more granular categories listed in
                             the blog. Specifically, we categorize REST executable evaluation as <code
-                                style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Simple Function (Evaluation by Executing APIs)</code>
+                                >Simple Function (Evaluation by Executing APIs)</code>
                             because we considered cases where one REST API call is being called. For Java + Javascript
                             evaluation, we categorize these into <code
-                                style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Simple Function (Abstract Syntax Tree (AST) Evaluation)</code>
+                                >Simple Function (Abstract Syntax Tree (AST) Evaluation)</code>
                             since our current version of evaluation set didn't included multiple, parallel, and parallel
                             multiple cases of diverse programming languages.</p>
                         <p>The final counts of each of the nine categories shown in BFCL with composition of more
@@ -535,9 +535,9 @@
                     <h3 id="metrics">Evaluation Metrics📈</h3>
                     <div class="body">
                         <p>We use two popular method to evaluate the accuracy of the model generated answers: AST
-                            evaluation and Executable evaluation. Ideally one should use execution checker, but when we
+                            evaluation and Executable evaluation. Ideally one should use execution evaluation, but when we
                             evaluate the answers, not all the results are easily executable (e.g., Java functions). So
-                            we use the AST as a complement to the execution checker. </p>
+                            we use the AST as a complement to the execution evaluation. </p>
                         <ul>
                             <li style="margin-bottom: 5px;">Abstract Syntax Tree (AST) Evaluation</li>
                             <li style="margin-bottom: 5px;">Executable Function Evaluation</li>
@@ -545,7 +545,7 @@
                     </div>
                     <h4>Abstract Syntax Tree (AST) Evaluation 🌳</h4>
                     <div class="body">
-                        <p>For simple function evaluations, the evaluation process focuses on comparing <i>single model
+                        <p>For <b>simple function evaluations</b>, the evaluation process focuses on comparing <i>single model
                             output function</i>
                             against its <i>function doc</i> and <i>possible answers</i>.
 
@@ -613,18 +613,18 @@
                         </p>
                         <ul>
                             <li style="margin-bottom: 5px;">For <code
-                                    style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">bool</code>:
+                                    >bool</code>:
                                 <ul>
                                     <li style="margin-bottom: 5px;">The procedure checks the direct matching of boolean values, and
                                         don't allow leniency on the string versions of boolean values. </li>
                                 </ul>
                             </li>
                             <li style="margin-bottom: 5px;">For <code
-                                    style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">integer</code>,
+                                    >integer</code>,
                                 <code
-                                    style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">float</code>:
+                                    >float</code>:
                                 <ul>
-                                    <li style="margin-bottom: 5px;">If the function description specified that it's a
+                                    <li style="margin-bottom: 5px;">If the function documentation specified that it's a
                                         <code>float</code>, then it should be a <code>float</code> in the model output
                                         (such as
                                         <code>5.0</code>); an <code>int</code>
@@ -654,17 +654,17 @@
                             </li>
 
                             <li style="margin-bottom: 5px;">For <code
-                                    style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">String</code>:
+                                    >String</code>:
                                 <ul>
                                     <li>The evaluation procesure is <i>case-insensitive</i>.</li>
                                     <li style="margin-bottom: 5px;">Possibile date <code
-                                            style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">["20th June", "2023-06-20", "06/20/2023", "Jun.20,2023"]</code>
+                                            >["20th June", "2023-06-20", "06/20/2023", "Jun.20,2023"]</code>
                                     </li>
                                     <li style="margin-bottom: 5px;">Possible Location <code
-                                            style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">["New York City", "NYC"]</code>
+                                            >["New York City", "NYC"]</code>
                                     </li>
                                     <li style="margin-bottom: 5px;">Possible Anything <code
-                                            style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">["Manchester United", "Man United", "Man U", "MUFC"]</code>
+                                            >["Manchester United", "Man United", "Man U", "MUFC"]</code>
                                     </li>
                                 </ul>
                             </li>
@@ -776,8 +776,8 @@
 
 
                         <p>This checking mechanism applies to everything except for <code
-                                style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">executable_*</code>
-                            and <code style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">REST</code>.
+                                >executable_*</code>
+                            and <code>REST</code>.
                         </p>
                     </div>
                     <div>
@@ -789,7 +789,7 @@
                             </p>
                             <ul>
                                 <li>The evaluation process first associate each possible answer with its function
-                                    description. Then it iterates over the model outputs, and calls the <b>simple
+                                    doc. Then it iterates over the model outputs, and calls the <b>simple
                                     function evaluation</b> on each function (which takes in one <i>model output</i>,
                                     <i>one
                                         possible answer</i>, and one <i>function doc</i>).
@@ -881,7 +881,7 @@
                             by their
                             developers, the evaluation methodology includes regularly reviewing and updating the
                             ground
-                            truth in response to such changes, ensuring the checker remains accurate and relevant.
+                            truth in response to such changes, ensuring the evaluation remains accurate and relevant.
                         </p>
                     </div>
                     <div class="body">
@@ -1314,20 +1314,20 @@ USER_MESSAGE_FOR_CHAT_MODEL = "Questions:{user_prompt}\nHere is a list of functi
 
                                 <p>In this case, we need to manually convert float into number to make the function
                                     OpenAI compatible. In addition to that, <code
-                                        style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">number</code>s
+                                        >number</code>s
                                     convey less information compared to <code
-                                        style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">float</code>s
+                                        >float</code>s
                                     in terms of precision and type consistency.</p>
                                 <p>In Gorilla OpenFunctions-v2, we improve the flexibility of the function documents by
                                     not restricting the typing of the parameters. In another word, the user can supply
                                     <code
-                                        style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Tuple</code>,
+                                        >Tuple</code>,
                                     <code
-                                        style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Float</code>,
+                                        >Float</code>,
                                     and even language specific types like <code
-                                        style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Hashmap</code>
+                                        >Hashmap</code>
                                     and <code
-                                        style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">Linked List</code>
+                                        >Linked List</code>
                                     in Java!
                                 </p>
                             </li>
@@ -1411,14 +1411,14 @@ Gorilla-openfunctions-v2 output:
                                     extracted but not executable</p>
                                 <p><b>Example</b>:
                                     <code
-                                        style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">mistral-medium</code>
+                                        >mistral-medium</code>
                                     generate result like:
                                     <code
-                                        style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">solve\\_quadratic\\_equation(a=2, b=6, c=5)</code>.
+                                        >solve\\_quadratic\\_equation(a=2, b=6, c=5)</code>.
                                     With
                                     gorilla-openfunctions-v2, we are able to directly output
                                     <code
-                                        style="background-color: #eee; padding: 2px 4px; border-radius: 4px;">solve_quadratic_equation(a=3, b=2, c=1)</code>
+                                        >solve_quadratic_equation(a=3, b=2, c=1)</code>
                                     which is executable upon receiving the
                                     result.
                                 </p>
