@@ -98,10 +98,10 @@
                         <a class="author" href="https://fanjia-yan.github.io/">Fanjia Yan<sup>*</sup></a>
                         <a class="author" href="https://huanzhimao.com/">Huanzhi Mao<sup>*</sup></a>
                         <a class="author" href="https://charliejcj.github.io/">Charlie Cheng-Jie Ji<sup>*</sup></a>
-                        <a class="author" href="https://tianjunz.github.io">Tianjun Zhang</a>
-                        <a class="author" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G. Patil</a>
                         <a class="author" href="https://people.eecs.berkeley.edu/~istoica">Ion Stoica</a>
                         <a class="author" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a>
+                        <a class="author" href="https://tianjunz.github.io">Tianjun Zhang</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G. Patil</a>
                         <p></p>
                     </h4>
                 </div>
@@ -110,17 +110,16 @@
 
                 <div class="preview">
                     <p>
-                        Large Language Models (LLMs) have caught everyone's attention because of their
-                        capability to perform general tasks. Beyond chatting, it is increasingly common to integrate these
-                        models to power many AI applications and softwares (e.g., Langchain, Llama Index, AutoGPT,
+                        Beyond chatting, it is increasingly common to integrate Large Language Models (LLMs)
+                        to power many applications and softwares (e.g., Langchain, Llama Index, AutoGPT,
                         Voyager). Models like GPT, Gemini, Llama, Mistral etc, have demonstrated huge potential in this
                         direction with function calling (also called tool calling) capabilities.
                     </p>
                     <p>
                         We present <b><a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley
-                                Function-Calling Leaderboard</a> (BFCL), the first comprehensive evaluation on LLMs ability to call functions and tools</b>. We built this dataset from our learnings to be representative of most users'
+                                Function-Calling Leaderboard</a> (BFCL), the first comprehensive evaluation on the LLMs ability to call functions and tools</b>. We built this dataset from our learnings,  to be representative of most users'
                                 function calling use-cases, for example, in agents, as a part of enterprise workflows, etc.  We consider function
-                        calls of various forms including parallel and multiple, diverse languages including javascript, etc, and actually execute the functions. We also evaluate the model's ability to withhold picking any function when the right function is not available. And one more thing - the leaderboard now also includes cost and latency for all the different models!  
+                        calls of various forms including parallel (one function input, multiple invocations of the function output) and multiple (multiple functions input, one function output), diverse languages including java, javascript, etc. Further, we even execute these functions to execute the models, and we also evaluate the model's ability to withhold picking any function when the right function is not available. And one more thing - the leaderboard now also includes cost and latency for all the different models!  
 
                     </p>
                     <p>
@@ -162,7 +161,7 @@
                                 simple, parallel, multiple, executable functions calling scenarios as well as function
                                 relevance detection</b>.</p>
                         <p>The leaderboard is shown below in the Figure, we can see that the latest checkpoint of GPT-4 (from OpenAI) leads the evaluation, with open-source model (OpenFunctions-v2), 
-                            Mistral-medium model (from Mistral AI) and Claude-2.1 (from Anthropic) following close-behind. </p>
+                            Mistral-medium model (from Mistral AI) and Claude-2.1 (from Anthropic) following close-behind. This blog post includes more information on the dataset, the evaluation methodology, some common-failure patterns, and more! </p>
 
 
                         <p style="text-align: center; margin-bottom: 0">
@@ -197,6 +196,7 @@
                             </i>
                         </p>
                     </div>
+                    <br>
 
                     <!-- OpenFunction BenchMarking  -->
                     <h3 id="benchmarking">Dataset Composition</h3>
@@ -237,6 +237,7 @@
                             </i>
                         </p>
                     </div>
+                    <br>
                     <h3 id="categories">Evaluation Categories 📊</h2>
                     <div class="body">
                         <p> We break down the majority of the evaluation in two categories:</p>
@@ -537,7 +538,20 @@
 
                             Here is a flow chart that shows the step-by-step evaluation process.
                         </p>
-                        <img src="../assets/img/blog_post_8_flowchart.jpeg">
+
+                        <p style="text-align: center; margin-bottom: 0">
+                            <img src="../assets/img/blog_post_8_flowchart.jpeg"
+                                alt="Flowchart on how we evaluate the models" width="100%">
+                            <i style="font-size: 0.9em;">
+                                Evaluating function calls. The function description, and possible answer are used to evaluate the model's output function. 
+                            </i>
+                        </p>
+                        <br>
+
+
+
+
+
                         <h5>Parsing Function Through AST</h5>
                         <p>The evaluation process starts by parsing the
                             function call using AST tree.</p>
@@ -900,13 +914,12 @@
 </p>
                     </div>
                     <div class="body">
-                        <h3 id="prompt">Prompting 🖊️</h3>
+                        <h3 id="prompt">When to function-call (tool-call) and when to prompt? 🖊️</h3>
                         <div id="model_info_dashboard">
-                            <h4 class="text-center">Model Manual</h4>
+                            <!-- <h4 class="text-center">Model Manual</h4> -->
                             <p class="text-center">
-                                The model manual provided some basic insights and function calling features support by
-                                the model we evaluated on. We also highlight models from open source community and
-                                acknowledge their impressive effort!
+                                The model cards below present insights and function calling features support by
+                                the different models we evaluate. 
                             </p>
                             <div class="table-container">
                                 <table>
@@ -1307,11 +1320,11 @@
                         </div>
                     </div>
                     <br></br>
-                    As the above model manual has shown, our evaluation involves both function calling and non-function
+                    From the model cards above, we highlight that our evaluation involves both function calling and non-function
                     calling models.
                     For function calling models, since they are specifically designed to generate function calls, we did
                     not provide any system prompt but instead toggle the function calling mode on and put the function
-                    definitions where it should be. For chat model, we explicitly provides system message.
+                    definitions where it should be. For non-function call models, we simply prompt them with system messages.
                     We provide all the prompts we used to evaluate our propatiery and open-source models. For function
                     calling models, since they are specifically designed to generate function calls, we did not provide
                     any system prompt but instead toggle the function calling mode on and put the function definitions
