@@ -109,26 +109,17 @@
 
                 <div class="preview">
                     <p>
-                        Since late 2022, Large Language Models (LLMs) have caught everyone's attention because of their
-                        capability to perform general tasks. Beyond chatting, it is natural to adopt and integrate these
-                        models to develop many AI applications and softwares (e.g., Langchain, Llama Index, AutoGPT,
+                        Large Language Models (LLMs) have caught everyone's attention because of their
+                        capability to perform general tasks. Beyond chatting, it is increasingly common to integrate these
+                        models to power many AI applications and softwares (e.g., Langchain, Llama Index, AutoGPT,
                         Voyager). Models like GPT, Gemini, Llama, Mistral etc, have demonstrated huge potential in this
-                        route by interacting with the external world with function calling and execution.
+                        direction with function calling (also called tool calling) capabilities.
                     </p>
                     <p>
                         We present <b><a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley
-                                Function-Calling Leaderboard</a> (BFCL), the first comprehensive and
-                            executable function calling evaluation for LLMs function calling</b>. Different from prior
-                        function
-                        calling evaluations, such as the Anyscale function calling dataset, we consider function
-                        callings of various forms, different function calling scenarios, and the executability of
-                        function calls. We built this dataset from our learnings to be representative of most users'
-                        function calling use-cases, for example, in agents, as a part of enterprise workflows, etc. To
-                        this end, our evaluation dataset spans diverse categories, and across multiple languges. We also
-                        release our model Gorilla OpenFunctions-v2, the best open-source models so far to handle
-                        function calls with multiple programming languages and parallel and multiple function calls. We
-                        also provide a specific debugging feature that when the provided function is not suitable for
-                        your task, the model will output an “Error Message”.
+                                Function-Calling Leaderboard</a> (BFCL), the first comprehensive evaluation on LLMs ability to call functions and tools</b>. We built this dataset from our learnings to be representative of most users'
+                                function calling use-cases, for example, in agents, as a part of enterprise workflows, etc.  We consider function
+                        calls of various forms including parallel and multiple, diverse languages including javascript, etc, and actually execute the functions. We also evaluate the model's ability to withhold picking any function when the right function is not available. And one more thing - the leaderboard now also includes cost and latency for all the different models!  
 
                     </p>
                     <p>
@@ -169,14 +160,8 @@
                                 includes 100 Java, 50 JavaScript, 70 REST API, 100 SQL, and 1,680 Python on various
                                 simple, parallel, multiple, executable functions calling scenarios as well as function
                                 relevance detection</b>.</p>
-                        <p>The leaderboard is shown below in the Figure, we can see that <b>GPT-4 (from OpenAI) function
-                                calling is still leading the evaluation, whereas the Gorilla OpenFunctions-v2 (from
-                                Gorilla LLM) almost gets similar performance to them</b>. Ranking below is the
-                            Mistral-medium model (from Mistral AI) and Claude-2.1 (from Anthropic). This suggests that a
-                            finetuned open-source model can also perform almost close to propatiery models in function
-                            calling tasks without chaining them together.</p>
-                        <p>We tried our best to cover real-world use cases and diverse languages. We will continue to
-                            expand our testing domains and come up with creative use cases in the future.</p>
+                        <p>The leaderboard is shown below in the Figure, we can see that the latest checkpoint of GPT-4 (from OpenAI) leads the evaluation, with open-source model (OpenFunctions-v2), 
+                            Mistral-medium model (from Mistral AI) and Claude-2.1 (from Anthropic) following close-behind. </p>
 
 
                         <p style="text-align: center; margin-bottom: 0">
@@ -219,11 +204,11 @@
                         <p>The Gorilla OpenFunctions evaluation dataset grows from its previous <a
                                 href=4_open_functions.html><code
                                     >OpenFunctions-v0</code>'s
-                                100 entries</a> to 1900
-                            entries! The evaluation dataset improve its quality and demonstrate diversity in:</p>
+                                100 data-points</a> to 1,900
+                            data-points! Beyond improvements in quality, the expanded dataset demonstrates diversity in:</p>
                         <ul>
                             <li style="margin-bottom: 5px;">Domains of functions documentations</li>
-                            <li style="margin-bottom: 5px;">Number of function documents and function calls QA pairs
+                            <li style="margin-bottom: 5px;">Number of function documents and function call(s) pairs
                             </li>
                             <li style="margin-bottom: 5px;">Data types of different programming languages</li>
                             <li style="margin-bottom: 5px;">Executability of real-world examples </li>
