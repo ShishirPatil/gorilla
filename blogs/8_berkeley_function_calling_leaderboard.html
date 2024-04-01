@@ -111,15 +111,15 @@
                 <div class="preview">
                     <p>
                         Beyond chatting, it is increasingly common to integrate Large Language Models (LLMs)
-                        to power many applications and softwares (e.g., Langchain, Llama Index, AutoGPT,
+                        to power many applications and software (e.g., Langchain, Llama Index, AutoGPT,
                         Voyager). Models like GPT, Gemini, Llama, Mistral etc, have demonstrated huge potential in this
                         direction with function calling (also called tool calling) capabilities.
                     </p>
                     <p>
                         We present <b><a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley
-                                Function-Calling Leaderboard</a> (BFCL), the first comprehensive evaluation on the LLMs ability to call functions and tools</b>. We built this dataset from our learnings,  to be representative of most users'
+                                Function-Calling Leaderboard</a> (BFCL), the first comprehensive evaluation on the LLM's ability to call functions and tools</b>. We built this dataset from our learnings,  to be representative of most users'
                                 function calling use-cases, for example, in agents, as a part of enterprise workflows, etc.  We consider function
-                        calls of various forms including parallel (one function input, multiple invocations of the function output) and multiple (multiple functions input, one function output), diverse languages including java, javascript, etc. Further, we even execute these functions to execute the models, and we also evaluate the model's ability to withhold picking any function when the right function is not available. And one more thing - the leaderboard now also includes cost and latency for all the different models!  
+                        calls of various forms including parallel (one function input, multiple invocations of the function output) and multiple (multiple functions input, one function output), diverse languages including Java, JavaScript, etc. Further, we even execute these functions to execute the models, and we also evaluate the model's ability to withhold picking any function when the right function is not available. And one more thing - the leaderboard now also includes cost and latency for all the different models!  
 
                     </p>
                     <p>
@@ -149,19 +149,19 @@
 
                     <div class="body">
                         <p><a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function-Calling
-                                Leaderboard</a> (BFCL) aims to provide a through study of the function calling
+                                Leaderboard</a> (BFCL) aims to provide a thorough study of the function-calling
                             capability of different LLMs. It consists of 2k question-function-answer pairs with multiple
                             languages (python, java, javascript, restAPI), diverse application domains and complex
-                            usecases (multiple function calls where the LLM needs to select one or more functions from
+                            use cases (multiple function calls where the LLM needs to select one or more functions from
                             multiple functions provided, and parallel function calls that the LLM needs to make multiple
                             function calls together). We also investigate function relevance detection, to determine how
                             the model will react when the provided function is not suitable to answer the user's
-                            question (in such case an "Error Message will be provided"). In more details, <b>BFCL
+                            question (in such case an "Error Message will be provided"). In more detail, <b>BFCL
                                 includes 100 Java, 50 JavaScript, 70 REST API, 100 SQL, and 1,680 Python on various
                                 simple, parallel, multiple, executable functions calling scenarios as well as function
                                 relevance detection</b>.</p>
-                        <p>The leaderboard is shown below in the Figure, we can see that the latest checkpoint of GPT-4 (from OpenAI) leads the evaluation, with open-source model (OpenFunctions-v2), 
-                            Mistral-medium model (from Mistral AI) and Claude-2.1 (from Anthropic) following close-behind. This blog post includes more information on the dataset, the evaluation methodology, some common-failure patterns, and more! </p>
+                        <p>The leaderboard is shown below in the Figure, we can see that the latest checkpoint of GPT-4 (from OpenAI) leads the evaluation, with the open-source model (OpenFunctions-v2), 
+                            Mistral-medium model (from Mistral AI) and Claude-2.1 (from Anthropic) following close behind. This blog post includes more information on the dataset, the evaluation methodology, some common failure patterns, and more! </p>
 
 
                         <p style="text-align: center; margin-bottom: 0">
@@ -181,7 +181,7 @@
                             organized into nine distinct categories: <b></b>function relevance detection, AST (Abstract
                             Syntax Tree) tree analysis, and execution function call verification across simple,
                             multiple, and parallel multiple function scenarios</b>. Through this approach, it becomes
-                            evident where our tests reveal unsatisfactory performance by the models. Specifically, in
+                            evident that tests reveal unsatisfactory performance by the models. Specifically, in
                             simple function calling, both proprietary and open-source models exhibit comparable
                             performance. However, when it comes to handling multiple and parallel function calls, the
                             GPT-series models demonstrate superior performance over their open-source counterparts.</p>
@@ -205,26 +205,26 @@
                         <p>The Gorilla OpenFunctions evaluation dataset grows from its previous <a
                                 href=4_open_functions.html><code
                                     >OpenFunctions-v0</code>'s
-                                100 data-points</a> to 2,000
-                            data-points! Beyond improvements in quality, the expanded dataset demonstrates diversity in:</p>
+                                100 data points</a> to 2,000
+                            data points! Beyond improvements in quality, the expanded dataset demonstrates diversity in:</p>
                         <ul>
-                            <li style="margin-bottom: 5px;">Domains of functions documentations</li>
+                            <li style="margin-bottom: 5px;">Domains of functions documentation</li>
                             <li style="margin-bottom: 5px;">Number of function documents and function call(s) pairs
                             </li>
                             <li style="margin-bottom: 5px;">Data types of different programming languages</li>
                             <li style="margin-bottom: 5px;">Executability of real-world examples </li>
                         </ul>
 
-                        <p>Our evaluation JSON functions are scraped and generated from different sources of website. We
-                            intentially include domains like using functions related to <code
+                        <p>Our evaluation JSON functions are scraped and generated from different sources of websites. We
+                            intentionally include domains like using functions related to <code
                                 >Mathematics-Algebra</code>,
                             <code
                                 >Sports-Soccer</code>,
                             <code
-                                >Finance-Mortgage</code>,
-                            and etc. We include 40 sub-domains of functions within our
+                                >Finance-Mortgage</code>, 
+                            etc. We include 40 sub-domains of functions within our
                             generic evaluations. This allows us to understand the model performance not just in
-                            data-abundant domains like computing, and cloud, but also niche domains like sports, and
+                            data-abundant domains like computing, and cloud, but also in niche domains like sports, and
                             law.
                         </p>
 
@@ -240,7 +240,7 @@
                     <br>
                     <h3 id="categories">Evaluation Categories 📊</h2>
                     <div class="body">
-                        <p> We break down the majority of the evaluation in two categories:</p>
+                        <p> We break down the majority of the evaluation into two categories:</p>
                         <ul>
                             <li style="margin-bottom: 5px;"><b>Python</b>: Simple Function, Multiple Function, Parallel
                                 Function, Parallel Multiple
@@ -257,20 +257,20 @@
                         <p><strong>Multiple Function:</strong> Multiple function category contains a user question that
                             only
                             invokes one function call out of 2 to 4 JSON function documentations. The model needs to be
-                            capable of selecting the best function to invoke according to user provided context.</p>
+                            capable of selecting the best function to invoke according to user-provided context.</p>
                         <p><strong>Parallel Function:</strong> Parallel function is defined as invoking multiple
                             function
                             calls in parallel with one user query. The model needs to digest how many function calls
                             need to be made and the question to model can be a single sentence or multiple sentence.</p>
                         <p><strong>Parallel Multiple Function:</strong> Parallel Multiple function is the combination of
-                            parallel function and multiple function. In another word, the model is provided with
-                            multiple function documentations, each of the corresponding function calls will be invoked
+                            parallel function and multiple function. In other words, the model is provided with
+                            multiple function documentation, and each of the corresponding function calls will be invoked
                             zero
                             or more times. </p>
                         <p>Each category has both AST and its corresponding executable evaluations. In the executable
-                            evalution data, we manually write
-                            python functions drawing inspiration from free REST API endpoints (e.g. get weather) and
-                            functions (e.g. linear regression) that compute directly. Executable category is designed
+                            evaluation data, we manually write
+                            Python functions drawing inspiration from free REST API endpoints (e.g. get weather) and
+                            functions (e.g. linear regression) that compute directly. The executable category is designed
                             to understand whether the function call generation is able to be stably utilized in
                             applications utilizing function calls in the real world.
                         </p>
@@ -288,36 +288,35 @@
                             functions are passed in, and the users ask generic questions - this is similar to using the
                             model as a general-purpose chatbot. We evaluate if the model is able to output chat messages
                             and recognize that it does not need to invoke any functions. Note the difference with
-                            “Relevance” where the model is expected to also evaluate if any of the function input are
+                            “Relevance” where the model is expected to also evaluate if any of the function inputs are
                             relevant or not. We include this category for internal model evaluation and exclude the
-                            statistics from live leaderboard. We currently are working on better evaluation on
-                            chatability and ensure the chat is relevant and coherent with users' request and open to
+                            statistics from the live leaderboard. We currently are working on a better evaluation of
+                            chat ability and ensuring the chat is relevant and coherent with users' requests and open to
                             suggestions and feedback from the community. </p>
                         <p><strong>Function Relevance Detection:</strong> In function relevance detection, we design
                             scenarios
                             where none of the provided functions are relevant and supposed to be invoked. We expect the
-                            model's output to be no function call. This scenario provides insight to whether a model
+                            model's output to be no function call. This scenario provides insight into whether a model
                             will hallucinate on its function and parameter to generate function code despite lacking the
                             function information or instructions from the users to do so. </p>
-                        <p><strong>REST API:</strong> A majority of the real world API calls are from REST API calls.
+                        <p><strong>REST API:</strong> A majority of the real-world API calls are from REST API calls.
                             Python
                             mainly makes REST API calls through <code
                                 >requests.get()</code>,
                             <code
                                 >requests.post()</code>,
                             <ode><code
-                                    >requests.delete()</code>
-                                and
-                                etc that are included in the python requests library. GET requests are the most common
+                                    >requests.delete()</code>, 
+                                etc that are included in the Python requests library. GET requests are the most common
                                 ones
-                                used in real world. As a result, we include real world GET requests to test the model's
+                                used in the real world. As a result, we include real-world GET requests to test the model's
                                 capabilities to generate executable REST API calls through complex function
                                 documentations,
                                 using <code
                                     >requests.get()</code>
                                 along with the API's hardcoded URL and description of the purpose of
                                 the function and its parameters. Our evaluation includes two variations. The first type
-                                requires passing the parameters inside the URL, called path parameters, for example the
+                                requires passing the parameters inside the URL, called path parameters, for example, the
                                 <code
                                     >{Year}</code>
                                 and <code
@@ -339,31 +338,31 @@
                                 how
                                 it's going to be invoked.
                         </p>
-                        <p>For REST API, we use a executable evaluation to check for the executable outputs' effective
+                        <p>For REST API, we use an executable evaluation to check for the executable outputs' effective
                             execution, response type and response JSON key consistencies. On the AST, we chose not to
-                            perform AST evaluation on REST mainly because of the immense possible answer for complicated
-                            defined APIs that enumeration of all possible answer is unexhausive. </p>
+                            perform AST evaluation on REST mainly because of the immense number of possible answer for complicated
+                            defined APIs that enumeration of all possible answers is exhaustive. </p>
                         <p><strong>SQL:</strong> SQL evaluation data includes our customized <code
                                 >sql.execute</code>
                             functions that
-                            contains sql_keyword, table_name, columns, and conditions. Those four parameters provide
+                            contain sql_keyword, table_name, columns, and conditions. Those four parameters provide the
                             necessary information to construct a simple SQL query like <code
                                 >SELECT column_A from table_B where column_C == D</code>
                             Through this, we want to see if through function calling, SQL query can
-                            be reliably constructed and utilized rather than training a SQL specific model. In our
+                            be reliably constructed and utilized rather than training a SQL-specific model. In our
                             evaluation dataset, we restricted the scenarios and supported simple keywords, including
                             <code>SELECT</code>,
                             <code
                                 >INSERT INTO</code>,
                             <code>UPDATE</code>,
-                            <code>DELETE</code>,
+                            <code>DELETE</code>, and 
                             <code>CREATE</code>.
                             We included 100 examples for SQL AST evaluation. Note that SQL AST evaluation will not be
-                            shown in our leaderboard calculations. We use SQL evaluation testing the generalization
+                            shown in our leaderboard calculations. We use SQL evaluation to test the generalization
                             ability of function calling for programming languages that are not included in the training
                             set for Gorilla OpenFunctions-v2. We opted to exclude SQL performance from the AST
                             evaluation in the BFCL due to the multiplicity of methods to construct SQL function calls
-                            achieving identical outcomes. We're currently working on better evaluation of SQL and are
+                            achieving identical outcomes. We're currently working on a better evaluation of SQL and are
                             open to suggestions and feedback from the community. Therefore, SQL has been omitted from
                             the current leaderboard to pave the way for a more comprehensive evaluation in subsequent
                             iterations.
@@ -373,12 +372,12 @@
 
                         <p><strong>Java + Javascript:</strong> Despite function calling formats being the same across
                             most
-                            programming languages, each programming language has language specific types. For example,
-                            Java has <code
+                            programming languages, each programming language has language-specific types. For example,
+                            Java has the <code
                                 >HashMap</code>
                             type. The goal of this test category is to understand how
                             well the function calling model can be extended to not just Python type but all the
-                            language specific typings. We included 100 examples for Java AST evaluation and 70 examples
+                            language-specific typings. We included 100 examples for Java AST evaluation and 70 examples
                             for Javascript AST evaluation.
                         </p>
                         <p>The categories outlined above provide insight into the performance of different models across
@@ -393,16 +392,16 @@
                             categories showcased in our Berkeley Function-Calling Leaderboard BFCL, which we group by on
                             both evaluation method (AST or execution) and type of functions (simple, parallel, multiple,
                             parallel multiple functions). Here, we display a table organizing counts of evaluation data
-                            points of each leaderboard categories, which compose of more granular categories listed in
+                            points of each leaderboard category, which is composed of more granular categories listed in
                             the blog. Specifically, we categorize REST executable evaluation as <code
                                 >Simple Function (Evaluation by Executing APIs)</code>
                             because we considered cases where one REST API call is being called. For Java + Javascript
                             evaluation, we categorize these into <code
                                 >Simple Function (Abstract Syntax Tree (AST) Evaluation)</code>
-                            since our current version of evaluation set didn't included multiple, parallel, and parallel
+                            since our current version of the evaluation set didn't include multiple, parallel, and parallel
                             multiple cases of diverse programming languages.</p>
-                        <p>The final counts of each of the nine categories shown in BFCL with composition of more
-                            granular types is shown in the following table</p>
+                        <p>The final counts of each of the nine categories shown in BFCL with the composition of more
+                            granular types are shown in the following table</p>
                     </div>
 
                     <div class="table-container">
@@ -521,7 +520,7 @@
 
                     <h3 id="metrics">Evaluation Metrics📈</h3>
                     <div class="body">
-                        <p>We use two popular method to evaluate the accuracy of the model generated answers: AST
+                        <p>We use two popular methods to evaluate the accuracy of the model-generated answers: AST
                             evaluation and Executable evaluation. Ideally one should use execution evaluation, but when we
                             evaluate the answers, not all the results are easily executable (e.g., Java functions). So
                             we use the AST as a complement to the execution evaluation. </p>
@@ -532,7 +531,7 @@
                     </div>
                     <h4>Abstract Syntax Tree (AST) Evaluation 🌳</h4>
                     <div class="body">
-                        <p>For <b>simple function evaluations</b>, the evaluation process focuses on comparing <i>single model
+                        <p>For <b>simple function evaluations</b>, the evaluation process focuses on comparing a <i>single model
                             output function</i>
                             against its <i>function doc</i> and <i>possible answers</i>.
 
@@ -554,7 +553,7 @@
 
                         <h5>Parsing Function Through AST</h5>
                         <p>The evaluation process starts by parsing the
-                            function call using AST tree.</p>
+                            function call using the AST tree.</p>
                         <p><b>Example</b>:</p>
                         <pre
                             style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">calculate_triangle_area(<span style="color: #333;">base</span>=<span style="color: #333;">10</span></span>, height=<sp5 style="color: #333;">5</span>)
@@ -577,7 +576,7 @@
     ], type_ignores=[])
 </code></pre>
                         <h5>Function Matching</h5>
-                        <p>The procedure first extracts the function name and verify that it is consistent with the one
+                        <p>The procedure first extracts the function name and verifies that it is consistent with the one
                             in possible answer.
                         <ul>
                             <li>Here, note that the function name may contain a <code>.</code>. Given that
@@ -608,7 +607,7 @@
                         </p>
                         <h5>Parameter Type & Value Matching</h5>
                         <p>
-                        The evaluation procesure is strict on <b>typing</b>. Here are the
+                        The evaluation process is strict on <b>typing</b>. Here are the
                         acceptable answers for each data type:
                         </p>
                         <ul>
@@ -616,7 +615,7 @@
                                     >bool</code>:
                                 <ul>
                                     <li style="margin-bottom: 5px;">The procedure checks the direct matching of boolean values, and
-                                        don't allow leniency on the string versions of boolean values. </li>
+                                        doesn't allow leniency on the string versions of boolean values. </li>
                                 </ul>
                             </li>
                             <li style="margin-bottom: 5px;">For <code
@@ -624,7 +623,7 @@
                                 <code
                                     >float</code>:
                                 <ul>
-                                    <li style="margin-bottom: 5px;">If the function documentation specified that it's a
+                                    <li style="margin-bottom: 5px;">If the function documentation specifies that it's a
                                         <code>float</code>, then it should be a <code>float</code> in the model output
                                         (such as
                                         <code>5.0</code>); an <code>int</code>
@@ -636,7 +635,7 @@
                             <li style="margin-bottom: 5px;">For <code>List</code>, <code>Tuple</code>:
                                 <ul>
                                     <li style="margin-bottom: 5px;">
-                                        <b>Order matters</b>, and the elements <b>must match exactly</b>. For example,
+                                        <b>Order matters</b> and the elements <b>must match exactly</b>. For example,
                                         <code>[1,2,3]</code> is not equal to <code>[2,3,1]</code>. So for questions
                                         where the order in the list doesn't
                                         matter,
@@ -656,9 +655,9 @@
                             <li style="margin-bottom: 5px;">For <code
                                     >String</code>:
                                 <ul>
-                                    <li>The evaluation procesure is <i>case-insensitive</i>.</li>
-                                    <li style="margin-bottom: 5px;">Possibile date <code
-                                            >["20th June", "2023-06-20", "06/20/2023", "Jun.20,2023"]</code>
+                                    <li>The evaluation process is <i>case-insensitive</i>.</li>
+                                    <li style="margin-bottom: 5px;">Possible date <code
+                                            >["20th June", "2023-06-20", "06/20/2023", "Jun.20, 2023"]</code>
                                     </li>
                                     <li style="margin-bottom: 5px;">Possible Location <code
                                             >["New York City", "NYC"]</code>
@@ -671,7 +670,7 @@
                             <li>For <code>Dict</code>:
                                 <ul>
                                     <li>
-                                        The evaluation focuses on <i>key presence</i> and the
+                                        The evaluation focuses on the <i>key presence</i> and the
                                         <i>accuracy
                                             of
                                             associated values</i> as per the possible answers.
@@ -704,7 +703,7 @@
                                         <code>""</code>),
                                         the model can choose to use the <i>default value</i> for that parameter, or
                                         not
-                                        providing value. Both are considered correct.
+                                        provide value. Both are considered correct.
                                     </li>
                                     <li>For parameters that aren't listed as <i>required</i> in the function doc,
                                         and the
@@ -736,7 +735,7 @@
                                 the evaluation takes into account both scenarios when checking the type.
                             </li>
                             <li>
-                                For the <b>Java</b> and <b>JavaScript</b> test category, all the parameter values
+                                For the <b>Java</b> and <b>JavaScript</b> test categories, all the parameter values
                                 (in
                                 the input) are in the string format. The evaluation procedure will call the
                                 <code>java_type_converter</code> or the
@@ -766,7 +765,7 @@
                         </ul>
 
 
-                        <p><b>Here are some examples of possible answer:</b></p>
+                        <p><b>Here are some examples of possible answers:</b></p>
                         <pre
                             style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">{"calculate_triangle_area": {"base": <span style="color: red;">[10]</span>, "height": <span style="color: red;">[5]</span>, "unit": <span style="color: red;">["units", "unit"]</span>}}</pre>
 
@@ -788,8 +787,8 @@
                                 evaluation to support multiple model outputs and possible answers.
                             </p>
                             <ul>
-                                <li>The evaluation process first associate each possible answer with its function
-                                    doc. Then it iterates over the model outputs, and calls the <b>simple
+                                <li>The evaluation process first associates each possible answer with its function
+                                    doc. Then it iterates over the model outputs and calls the <b>simple
                                     function evaluation</b> on each function (which takes in one <i>model output</i>,
                                     <i>one
                                         possible answer</i>, and one <i>function doc</i>).
@@ -894,22 +893,22 @@
                                     <li>
                                         <b>Latency</b>: we measure the latency by timing each request to the endpoint ignoring the function document preprocessing time.</li>
                                     <li>
-                                        <b>Cost</b>: we follows the formula to derive the cost per 1000 function callings. 
+                                        <b>Cost</b>: we follow the formula to derive the cost per 1000 function callings. 
                                         <img src="../assets/img/blog_post_8_token_formula.jpg" width="100%">
                                     </li>
                                 </ul>
                             </li>
                             <li>For models that we evaluate using local hosting. This includes Deepseek, Gemma, and etc.:
-                                    <ul><li><b>Latency</b>: For ~7B Models, we evaluated on single A100 40GB. For ~40B Models, we evaluated on 4*A100 40GB.  Since we batched and evaluated the model, we derive latency by dividing the total time with the number of evaluation dataset entries.
+                                    <ul><li><b>Latency</b>: For ~7B Models, we evaluated on single A100 40GB. For ~40B Models, we evaluated on 4*A100 40GB. Since we batched and evaluated the model, we derive latency by dividing the total time by the number of evaluation dataset entries.
                                     </li>
-                                    <li><b>Cost</b>: Since open source model does not have a price tag, we estimate the cost by:
+                                    <li><b>Cost</b>: Since the open source model does not have a price tag, we estimate the cost by:
                                         <img src="../assets/img/blog_post_8_gpu_formula.jpg" width="100%">
                                     </li>
                                     </ul>
                             </li>
                             
                         </ul>
-                        <p>For firefunctions-v1, Nexusflow-Raven-v2, and Meetkai-Functionary, we use their endpoints while their services are free, so we did not include cost for their models.</p>
+                        <p>For firefunctions-v1, Nexusflow-Raven-v2, and Meetkai-Functionary, we use their endpoints while their services are free, so we did not include the cost for their models.</p>
                         <p><i>This specific piece of insight will help individuals or enterprises to decide which model to incorporate based on the demand and budget.</i>
 </p>
                     </div>
@@ -918,7 +917,7 @@
                         <div id="model_info_dashboard">
                             <!-- <h4 class="text-center">Model Manual</h4> -->
                             <p class="text-center">
-                                The model cards below present insights and function calling features support by
+                                The model cards below present insights and function-calling features supported by
                                 the different models we evaluate. 
                             </p>
                             <div class="table-container">
@@ -1320,20 +1319,16 @@
                         </div>
                     </div>
                     <br></br>
-                    From the model cards above, we highlight that our evaluation involves both function calling and non-function
-                    calling models.
+                    From the model cards above, we highlight that our evaluation involves both function-calling and non-function-calling models.
                     For function calling models, since they are specifically designed to generate function calls, we did
                     not provide any system prompt but instead toggle the function calling mode on and put the function
-                    definitions where it should be. For non-function call models, we simply prompt them with system messages.
-                    We provide all the prompts we used to evaluate our propatiery and open-source models. For function
-                    calling models, since they are specifically designed to generate function calls, we did not provide
-                    any system prompt but instead toggle the function calling mode on and put the function definitions
-                    where it should be. For chat model, we explicitly provides <b>system message</b>.
+                    definitions where they should be. For non-function call models, we simply prompt them with system messages.
+                    We provide all the prompts we used to evaluate our propriety and open-source models. 
                     <ol>
                         <li style="margin-bottom: 5px;">For all the function calling models, we did not supply any
-                            system prompt but instead toggle the function calling mode on and put the function
-                            definitions where it should be.</li>
-                        <li style="margin-bottom: 5px;">For chat model, we explicitly provides system message:
+                            system prompt but instead, toggle the function calling mode on and put the function
+                            definitions where they should be.</li>
+                        <li style="margin-bottom: 5px;">For chat model, we explicitly provide a <b>system message</b>:
                             <pre
                                 style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">
 SYSTEM_PROMPT_FOR_CHAT_MODEL = """
@@ -1358,7 +1353,7 @@ USER_MESSAGE_FOR_CHAT_MODEL = "Questions:{user_prompt}\nHere is a list of functi
                         <ol>
                             <li style="margin-bottom: 5px;">
                                 <p>GPTs' <em>function documents are difficult to format</em> and their <em>typings are
-                                        restrictive</em> in real world scenarios.</p>
+                                        restrictive</em> in real-world scenarios.</p>
 
                                 <pre
                                     style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">"Function": 
@@ -1399,21 +1394,21 @@ USER_MESSAGE_FOR_CHAT_MODEL = "Questions:{user_prompt}\nHere is a list of functi
                                         >float</code>s
                                     in terms of precision and type consistency.</p>
                                 <p>In Gorilla OpenFunctions-v2, we improve the flexibility of the function documents by
-                                    not restricting the typing of the parameters. In another word, the user can supply
+                                    not restricting the typing of the parameters. In other words, the user can supply
                                     <code
                                         >Tuple</code>,
                                     <code
                                         >Float</code>,
-                                    and even language specific types like <code
+                                    and even language-specific types like <code
                                         >Hashmap</code>
                                     and <code
                                         >Linked List</code>
                                     in Java!
                                 </p>
                             </li>
-                            <li style="margin-bottom: 5px;"> GPT underperforms in scenario where the <em>parameters are
-                                    not immediately available</em> in user question but instead requires some implicit
-                                converion. Here is an example:
+                            <li style="margin-bottom: 5px;"> GPT underperforms in scenarios where the <em>parameters are
+                                    not immediately available</em> in the user question but instead require some implicit
+                                    conversions. Here is an example:
 
                                 <p></p>
                                 <pre
@@ -1486,13 +1481,13 @@ Gorilla-openfunctions-v2 output:
 
 
                             <li style="margin-bottom: 5px;">
-                                <p>Chat Model tend to generate <em>malformed function call</em> in which parameters can
+                                <p>Chat Models tend to generate <em>malformed function calls</em> in which parameters can
                                     be
                                     extracted but not executable</p>
                                 <p><b>Example</b>:
                                     <code
                                         >mistral-medium</code>
-                                    generate result like:
+                                    generates results like
                                     <code
                                         >solve\\_quadratic\\_equation(a=2, b=6, c=5)</code>.
                                     With
@@ -1505,9 +1500,9 @@ Gorilla-openfunctions-v2 output:
                             </li>
 
                             <li style="margin-bottom: 5px;">
-                                <p>REST API <em>missing urls</em>:</p>
+                                <p>REST API <em>missing URLs</em>:</p>
                                 <p>
-                                    A discrepancy arises due to the absence of required url in REST API requests made by
+                                    A discrepancy arises due to the absence of the required URL in REST API requests made by
                                     GPT-4 for fetching weather data. While the GPT-4 output omits the necessary URL, the
                                     Gorilla Openfunctions-v2 model successfully includes the correct API endpoint,
                                     enabling it to successfully execute and retrieve the requested weather information
@@ -1581,9 +1576,9 @@ Gorilla-Openfunctions-v2 output:
                         <p>We provide a comprehensive and systematic evaluation of LLMs for function calling with
                             Gorilla Open Functions Leaderboard. The studies here suggest that in terms of simple
                             function calling (without complex planning and chained function calling), finetuning an
-                            open-source can be as effective as propatiery models. Furthermore, we provide Gorilla
+                            open-source can be as effective as propriety models. Furthermore, we provide Gorilla
                             Open Functions v2, an open-source model that can help users with building AI
-                            applications with function calling and interacting with json compatible output.
+                            applications with function calling and interacting with JSON compatible output.
                         </p>
 
                     </div>
