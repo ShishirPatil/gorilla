@@ -251,17 +251,7 @@ function generateChart(csvData) {
     for (let i = 1; i < csvData.length; i += 1) {
         var row = csvData[i];
         var model_name = row[2];
-        console.log([
-            csvData[i][17],
-            csvData[i][9],
-            csvData[i][10],
-            csvData[i][11],
-            csvData[i][12],
-            csvData[i][13],
-            csvData[i][14],
-            csvData[i][15],
-            csvData[i][16],
-        ]);
+
         var dataPoint = {
             label: model_name,
             data: [
