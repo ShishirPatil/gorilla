@@ -119,7 +119,7 @@ Step 3: Select the quantization method you want to use, download the quantized m
 3. After loading, it will give a confirmation message as following. ![Alt text](image-3.png)
 4. Then go to `Chat` page, use default setting for llama based quantized models, ![Alt text](image-4.png)
 5. *Real-time inference* video demo
-![Alt text](Presentation1_final.gif)
+![Alt text](real-time-inference-local.gif)
 
 
 ### 4. Private Inference using Gorilla hosted endpoint on Replicate
