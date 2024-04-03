@@ -364,13 +364,47 @@ const csvFilePath = "./data.csv";
 fetch(csvFilePath)
     .then((response) => response.text())
     .then((csvText) => {
-        const data = parseCSV(csvText);
-        addToTable(data);
-        generateChart(data);
+        const leaderboard_data = parseCSV_leaderboard(csvText);
+        addToTable(leaderboard_data);
     })
     .catch((error) => console.error(error));
 
-function parseCSV(text) {
+function parseCSV_leaderboard(text) {
+    result = text.split("\n");
+    // Skip the first row of the CSV (headers)
+    for (let i = 1; i < result.length; i += 1) {
+        result[i] = result[i].split(",");
+        result[i] = result[i].map((value) => {
+            if (value.endsWith("%")) {
+                return parseFloat(value.slice(0, -1));
+            }
+            return value;
+        });
+        result[i].splice(9, 3);
+        result[i].splice(13, 2);
+        result[i].splice(result[i].length, 0, result[i][4]);
+        result[i].splice(result[i].length, 0, result[i][5]);
+        result[i].splice(4, 2);
+        result[i].splice(4, 0, result[i][result[i].length - 5]);
+        result[i].splice(5, 0, result[i][result[i].length - 4]);
+        result[i].splice(8, 0, result[i][result[i].length - 6]);
+        result[i].splice(9, 0, result[i][result[i].length - 5]);
+        result[i].splice(10, 0, result[i][result[i].length - 4]);
+        result[i].splice(11, 0, result[i][result[i].length - 3]);
+        result[i].splice(result[i].length - 5, 3);
+    }
+    return result;
+}
+
+fetch(csvFilePath)
+    .then((response) => response.text())
+    .then((csvText) => {
+        const chart_data = parseCSV_chart(csvText);
+        generateChart(chart_data);
+    })
+    .catch((error) => console.error(error));
+
+function parseCSV_chart(text) {
     result = text.split("\n");
     // Skip the first row of the CSV (headers)
     for (let i = 1; i < result.length; i += 1) {
@@ -412,10 +446,10 @@ function addToTable(dataArray) {
                     td.textContent = cell;
                 }
 
-                if (cellIndex >= 6 && cellIndex <= 10) {
+                if (cellIndex >= 4 && cellIndex <= 8) {
                     // summary-row class for specific columns
                     td.className = "summary-row";
-                } else if (cellIndex >= 11) {
+                } else if (cellIndex >= 9 && cellIndex <= 20) {
                     // detail-row class for specific columns
                     td.className = "detail-row";
                 }
