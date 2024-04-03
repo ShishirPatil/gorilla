@@ -1,9 +1,27 @@
 .navbar a:not(:last-child)::after {
     content: "|";
+    margin: 0 2px;
     color: #000;
 }
+
 @media only screen and (min-width: 768px) {
     .navbar a:not(:last-child)::after {
         margin: 0 10px;
+    }
+}
+
+pre {
+    white-space: pre-wrap;
+    width: 100%;
+    overflow-x: auto;
+    background-color: #f4f4f4;
+}
+
+
+@media screen and (max-width: 768px) {
+    body, p, h1, h2, h3, .author-date, .blog-title, .author, .date {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 }
