@@ -383,9 +383,16 @@ function parseCSV(text) {
         });
         result[i].splice(9, 3);
         result[i].splice(13, 2);
-        result[i].splice(8, 0, result[i][result[i].length - 4]);
-        result[i].splice(9, 0, result[i][result[i].length - 3]);
-        result[i].splice(10, 0, result[i][result[i].length - 2]);
+        result[i].splice(result[i].length, 0, result[i][4]);
+        result[i].splice(result[i].length, 0, result[i][5]);
+        result[i].splice(4, 2);
+        result[i].splice(4, 0, result[i][result[i].length - 5]);
+        result[i].splice(5, 0, result[i][result[i].length - 4]);
+        result[i].splice(8, 0, result[i][result[i].length - 6]);
+        result[i].splice(9, 0, result[i][result[i].length - 5]);
+        result[i].splice(10, 0, result[i][result[i].length - 4]);
+        result[i].splice(11, 0, result[i][result[i].length - 3]);
+        result[i].splice(result[i].length - 5, 3);
     }
     return result;
 }
@@ -412,10 +419,10 @@ function addToTable(dataArray) {
                     td.textContent = cell;
                 }
 
-                if (cellIndex >= 6 && cellIndex <= 10) {
+                if (cellIndex >= 4 && cellIndex <= 8) {
                     // summary-row class for specific columns
                     td.className = "summary-row";
-                } else if (cellIndex >= 11) {
+                } else if (cellIndex >= 9 && cellIndex <= 20) {
                     // detail-row class for specific columns
                     td.className = "detail-row";
                 }
