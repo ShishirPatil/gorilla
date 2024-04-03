@@ -26,11 +26,11 @@
 }
 
 #leaderboard td:nth-child(2) {
-    background-color: #e57e81;
+    background-color: #7efd7e;
 }
 
 #leaderboard td:nth-child(4) {
-    background-color: #9be67d;
+    background-color: #d8787b;
 }
 
 #leaderboard td:nth-child(5) {
@@ -50,7 +50,7 @@
 }
 
 #leaderboard td:nth-child(9) {
-    background-color: #9be67d;
+    background-color: #d8787b;
 }
 
 #leaderboard td:nth-child(10),
