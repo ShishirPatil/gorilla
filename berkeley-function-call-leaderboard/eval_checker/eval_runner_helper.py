@@ -135,6 +135,18 @@ MODEL_METADATA_MAPPING = {
         "MeetKai",
         "MIT",
     ],
+    "meetkai_functionary-small-v2.4-FC": [
+        "Functionary-Small-v2.4 (FC)",
+        "https://huggingface.co/meetkai/functionary-small-v2.4",
+        "MeetKai",
+        "MIT",
+    ],
+    "meetkai_functionary-medium-v2.4-FC": [
+        "Functionary-Medium-v2.4 (FC)",
+        "https://huggingface.co/meetkai/functionary-medium-v2.4",
+        "MeetKai",
+        "MIT",
+    ],
     "claude-2.1": [
         "Claude-2.1 (Prompt)",
         "https://www.anthropic.com/news/claude-2-1",
@@ -307,6 +319,14 @@ OSS_OUTPUT_TOKEN = {
     "google/gemma-7b-it": 130206,
 }
 
+
+NO_COST_MODELS = [
+    "Nexusflow-Raven-v2",
+    "fire-function-v1-FC",
+    "meetkai_functionary-medium-v2.4-FC",
+    "meetkai_functionary-small-v2.2-FC",
+    "meetkai_functionary-small-v2.4-FC",
+]
 
 A100_PRICE_PER_HOUR = (
     10.879 / 8
@@ -514,6 +534,9 @@ def get_metric(model_name, cost_data, latency_data):
         if model_name not in INPUT_PRICE_PER_MILLION_TOKEN:
             cost = sum(latency_data["data"]) * A100_PRICE_PER_HOUR / 3600
             cost = round(cost, 2)
+
+    if model_name in NO_COST_MODELS:
+        cost = "N/A"
 
     return cost, mean_latency, std_latency
 

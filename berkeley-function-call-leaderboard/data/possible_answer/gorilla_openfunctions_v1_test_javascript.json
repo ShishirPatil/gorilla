@@ -3,14 +3,14 @@
 {"extractLastTransactionId":{"filepath":["/var/log/db.log"],"status":[["completed","failed"]],"encoding":["utf-8"],"processFunction":["processFunction"]}}
 {"submitAtCoordinate":{"action":["submit"],"formId":["loginForm"],"coordinates":[[0.6,0.3]]}}
 {"emailFormatValidator":{"email":["example@domain.com"],"domain":["domain.com"]}}
-{"manageReactState":{"store":[{"initialState":"initialStateObject","reducers":["reducersMap"],"middlewares":[["loggerMiddleware"]],"enhancers":[["applyMiddleware('myMiddleWare')"]]}],"context":["React.createContext()"],"hooks":[{"useStateSelector":"useStateSelectorHook","useDispatchAction":"useDispatchActionHook"}]}}
+{"manageReactState":{"store":[{"initialState":["initialStateObject"],"reducers":["reducersMap"],"middlewares":[["loggerMiddleware"]],"enhancers":[["applyMiddleware('myMiddleWare')"]]}],"context":["React.createContext()"],"hooks":[{"useStateSelector":"useStateSelectorHook","useDispatchAction":"useDispatchActionHook"}]}}
 {"mapTransitions":{"category":["transition"],"limit":[4.0]}}
 {"getNextKeyValues":{"ctx":["dataAnalysisContext"],"currentKey":["userId"]}}
 {"doesEmailInputExist":{"formElem":["emailForm"],"inputName":["emailAddress"]}}
 {"validateApiResponse":{"jsonPayload":["responseData"],"keyToCheck":["expectedKey"],"processingCallback":["processKeyFunction"]}}
 {"fetchSalesDepartmentRecords":{"databaseName":["employeeRecords"],"queryFunction":["getSales"]}}
 {"prioritizeAndSort":{"items":["myItemList"],"priorityStatus":["urgent"],"ascending":[true]}}
-{"performDataFetch":{"apiEndpoint":["https://api.example.com/data"],"requestConfig":[{"method":"GET"}],"expectedResponse":[{"key":"value"}],"handleErrors":[true]}}
+{"performDataFetch":{"apiEndpoint":["https://api.example.com/data"],"requestConfig":[{"method":["GET"]}],"expectedResponse":[{"key":["value"]}],"handleErrors":[true]}}
 {"DynamicChartGenerator":{"userData":[["userDataArray"]],"scalingFactor":[3.0],"dashboard":["dashboardElement"],"options":["", {}]}}
 {"chartDataAccessorFactory":{"chart":[{"nm":["BarChart"],"mn":["chartModule"]}],"library":["visualizationLibrary"],"configObject":["config"]}}
 {"ChartSeriesGenerator":{"labels":["axisLabelsArray"],"data":["dataPointsArray"],"color":["defaultColor"],"chartLayout":["chartLayoutObject"]}}
@@ -19,7 +19,7 @@
 {"calculateFinalVelocity":{"time":[5.0],"gravity":[9.81],"initialVelocity":[0.0]}}
 {"configureShaderMaterial":{"property":["materialProps"],"textures":["textureList"],"object3D":["meshObject"]}}
 {"buttonAddClickHandler":{"element":["myButton"],"callback":["handleButtonClick"],"options":[{"stopPropagation":[true]}]}}
-{"findProductById":{"products":["Product A","Product B","Product C"],"id":[123]}}
+{"findProductById":{"products":[["Product A","Product B","Product C"]],"id":[123]}}
 {"resetStateProperty":{"stateProperty":["userSession"]}}
 {"createAuthToken":{"username":["johndoe"],"validity":[3600],"options":[{"issuer":["myapp.net"],"role":["admin"],"algorithm":["HS256"]}]}}
 {"getUniqueSorted":{"array":[[3,1,2,1,4,3]]}}

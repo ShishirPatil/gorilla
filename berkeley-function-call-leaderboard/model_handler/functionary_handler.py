@@ -15,7 +15,7 @@ class FunctionaryHandler(OpenAIHandler):
         self.client = OpenAI(base_url="http://localhost:8000/v1", api_key="functionary")
 
     def write(self, result, file_to_open):
-        model_name =self.model_name
+        model_name = self.model_name
         if not os.path.exists("./result"):
             os.mkdir("./result")
         if not os.path.exists("./result/" + model_name.replace("/", "_")):

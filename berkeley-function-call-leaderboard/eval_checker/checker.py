@@ -1,6 +1,11 @@
 from js_type_converter import js_type_converter
 from java_type_converter import java_type_converter
-from model_handler.constant import UNDERSCORE_TO_DOT, JAVA_TYPE_CONVERSION, JS_TYPE_CONVERSION
+from model_handler.constant import (
+    UNDERSCORE_TO_DOT,
+    JAVA_TYPE_CONVERSION,
+    JS_TYPE_CONVERSION,
+)
+from custome_exception import NoAPIKeyError
 import re
 import requests  # Do not remove this import even though it seems to be unused. It's used in the executable_checker_rest function.
 import time
@@ -12,7 +17,7 @@ PYTHON_TYPE_MAPPING = {
     "float": float,
     "boolean": bool,
     "array": list,
-    "tuple": tuple,
+    "tuple": list,
     "dict": dict,
     "any": str,
 }
@@ -79,10 +84,22 @@ def type_checker(
         "error_type": "type_error:simple",
     }
 
+    is_variable = False
+    # check for the case where a variable is used instead of a actual value.
+    # use the type in possible_answer as the expected type
+    possible_answer_type = get_possible_answer_type(possible_answer)
+    # if possible_answer only contains optional parameters, we can't determine the type
+    if possible_answer_type != None:
+        # we are being precise here.
+        # in fact, possible_answer_type should always be string, as that's how we treat varibale in possible_answer
+        if possible_answer_type != expected_type_converted:
+            is_variable = True
+
     # value is the same type as in function description
     if type(value) == expected_type_converted:
         # We don't need to do recursive check for simple types
         if nested_type_converted == None:
+            result["is_variable"] = is_variable
             return result
         else:
             for possible_answer_item in possible_answer:
@@ -103,7 +120,7 @@ def type_checker(
                             break
 
                 if flag:
-                    return {"valid": True, "error": [], "is_variable": False}
+                    return {"valid": True, "error": [], "is_variable": is_variable}
 
             result["valid"] = False
             result["error"] = [
@@ -130,14 +147,23 @@ def type_checker(
     return result
 
 
-def string_checker(param: str, model_output: str, possible_answer: list):
-    lower_possible_answer = list(possible_answer)
-    lower_model_output = model_output.lower()
-    for i in range(len(lower_possible_answer)):
-        if type(lower_possible_answer[i]) == str:
-            lower_possible_answer[i] = lower_possible_answer[i].lower()
+def standardize_string(input_string: str):
+    # This function standardizes the string by removing all the spaces, ",./-_*^" punctuation, and converting it to lowercase
+    # It will also convert all the single quotes to double quotes
+    # This is used to compare the model output with the possible answers
+    # We don't want to punish model for answer like April 1, 2024 vs April 1,2024, vs April 1 2024
+    regex_string = r"[ \,\.\/\-\_\*\^]"
+    return re.sub(regex_string, "", input_string).lower().replace("'", '"')
 
-    if lower_model_output not in lower_possible_answer:
+
+def string_checker(param: str, model_output: str, possible_answer: list):
+    standardize_possible_answer = []
+    standardize_model_output = standardize_string(model_output)
+    for i in range(len(possible_answer)):
+        if type(possible_answer[i]) == str:
+            standardize_possible_answer.append(standardize_string(possible_answer[i]))
+
+    if standardize_model_output not in standardize_possible_answer:
         return {
             "valid": False,
             "error": [
@@ -149,18 +175,35 @@ def string_checker(param: str, model_output: str, possible_answer: list):
     return {"valid": True, "error": []}
 
 
-def tuple_checker(param: str, model_output: tuple, possible_answer: list):
+def list_checker(param: str, model_output: list, possible_answer: list):
     # Convert the tuple to a list
 
-    model_output = list(model_output)
+    standardize_model_output = list(model_output)
 
-    if model_output not in possible_answer:
+    # If the element in the list is a string, we need to standardize it
+    for i in range(len(standardize_model_output)):
+        if type(standardize_model_output[i]) == str:
+            standardize_model_output[i] = standardize_string(model_output[i])
+
+    standardize_possible_answer = []
+    # We also need to standardize the possible answers
+    for i in range(len(possible_answer)):
+        standardize_possible_answer.append([])
+        for j in range(len(possible_answer[i])):
+            if type(possible_answer[i][j]) == str:
+                standardize_possible_answer[i].append(
+                    standardize_string(possible_answer[i][j])
+                )
+            else:
+                standardize_possible_answer[i].append(possible_answer[i][j])
+
+    if standardize_model_output not in standardize_possible_answer:
         return {
             "valid": False,
             "error": [
                 f"Invalid value for parameter {repr(param)}: {repr(model_output)}. Expected one of {possible_answer}."
             ],
-            "error_type": "value_error:tuple",
+            "error_type": "value_error:list/tuple",
         }
 
     return {"valid": True, "error": []}
@@ -203,10 +246,24 @@ def dict_checker(param: str, model_output: dict, possible_answers: list):
                     flag = False
                     break
             else:
-                if value not in possible_answer[key]:
+                standardize_value = value
+                # If the value is a string, we need to standardize it
+                if type(value) == str:
+                    standardize_value = standardize_string(value)
+                # We also need to standardize the possible answers
+                standardize_possible_answer = []
+                for i in range(len(possible_answer[key])):
+                    if type(possible_answer[key][i]) == str:
+                        standardize_possible_answer.append(
+                            standardize_string(possible_answer[key][i])
+                        )
+                    else:
+                        standardize_possible_answer.append(possible_answer[key][i])
+
+                if standardize_value not in standardize_possible_answer:
                     result["valid"] = False
                     result["error"].append(
-                        f"Invalid value for parameter {repr(key)}: {repr(value)}. Expected one of {possible_answer[key]}."
+                        f"Invalid value for parameter {repr(key)}: {repr(value)}. Expected one of {standardize_possible_answer}."
                     )
                     result["error_type"] = "value_error:dict_value"
                     flag = False
@@ -335,6 +392,9 @@ def simple_function_checker(
                 nested_type = param_details[param]["items"]["type"]
                 nested_type_converted = PYTHON_TYPE_MAPPING[nested_type]
 
+        if expected_type_description == "tuple":
+            value = list(value)
+
         # Type checking
         # In fact, we only check for Python here.
         # Type check for other languages are handled by the type converter, and so their value (after conversion) is always correct.
@@ -367,17 +427,16 @@ def simple_function_checker(
                     return result
                 continue
 
-            # Special handle for tuples
-            elif expected_type_converted == tuple:
-                result = tuple_checker(param, value, possible_answer[param])
-                if not result["valid"]:
-                    return result
-                continue
-
             # Special handle for strings
             elif expected_type_converted == str:
                 # We don't check for case sensitivity for string, as long as it's not a variable
                 result = string_checker(param, value, possible_answer[param])
+                if not result["valid"]:
+                    return result
+                continue
+
+            elif expected_type_converted == list:
+                result = list_checker(param, value, possible_answer[param])
                 if not result["valid"]:
                     return result
                 continue
@@ -564,6 +623,8 @@ def executable_checker(decoded_result, func_description):
                 exec_dict,
             )
             exec_output = exec_dict["result"]
+        except NoAPIKeyError as e:
+            raise e
         except Exception as e:
             result["valid"] = False
             result["error"].append(
