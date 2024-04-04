@@ -120,5 +120,9 @@ pre {
     }
 }
 
-
-
+.navbar {
+    display: flex;
+    justify-content: flex-end; 
+    align-items: flex-start; 
+    flex-wrap: wrap;
+}
