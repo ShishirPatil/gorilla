@@ -15,7 +15,7 @@
 
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">x
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How to Use Gorilla</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
@@ -659,10 +659,15 @@ chat_model = ChatOpenAI(
         }
 
         .blog-post {
-            margin: 20px;
             padding: 20px;
-            max-width: 1000px;
+            max-width: 70%;
             justify-content: center;
+        }
+        
+        @media only screen and (max-width: 768px) {
+            .blog-post {
+                max-width: 100%;
+            }
         }
 
         .blog-post img {
