@@ -1,0 +1,27 @@
+.treemap-container {
+    padding: 20px;
+    margin: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background: white;
+    margin-bottom: 30px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 75%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .treemap-container {
+        display: none;
+    }
+}
+
+
+.plotly-graph-div {
+    width: 100%;
+    min-height: 85vh;
+}

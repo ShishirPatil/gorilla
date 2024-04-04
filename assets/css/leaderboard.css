@@ -26,34 +26,57 @@
 }
 
 #leaderboard td:nth-child(2) {
-    background-color: #e57e81;
+    background-color: #7efd7e;
 }
 
-#leaderboard td:nth-child(7),
-#leaderboard td:nth-child(6),
+#leaderboard td:nth-child(4) {
+    background-color: #d8787b;
+}
+
+#leaderboard td:nth-child(5) {
+    background-color: #8f8fff;
+}
+
+#leaderboard td:nth-child(6) {
+    background-color: #75f1ff;
+}
+
+#leaderboard td:nth-child(7) {
+    background-color: #88ffc4;
+}
+
 #leaderboard td:nth-child(8) {
-    background-color: #48eac9;
+    background-color: #ffdf75;
 }
 
-#leaderboard td:nth-child(11),
-#leaderboard td:nth-child(10),
-#leaderboard td:nth-child(12),
 #leaderboard td:nth-child(9) {
-    background-color: #7ad5f0;
+    background-color: #d8787b;
+}
+
+#leaderboard td:nth-child(10),
+#leaderboard td:nth-child(11) {
+    background-color: #8f8fff;
 }
 
 
-#leaderboard td:nth-child(15),
+#leaderboard td:nth-child(12),
+#leaderboard td:nth-child(13),
 #leaderboard td:nth-child(14),
+#leaderboard td:nth-child(15) {
+    background-color: #75f1ff;
+}
+
+
 #leaderboard td:nth-child(16),
-#leaderboard td:nth-child(13) {
-    background-color: #d5f8d5;
+#leaderboard td:nth-child(17),
+#leaderboard td:nth-child(18),
+#leaderboard td:nth-child(19) {
+    background-color: #88ffc4;
 }
 
-#leaderboard td:nth-child(17) {
-    background-color: #65d57f;
+#leaderboard td:nth-child(20) {
+    background-color: #ffdf75;
 }
-
 
 
 /* Ensure the table uses the full width of its container */

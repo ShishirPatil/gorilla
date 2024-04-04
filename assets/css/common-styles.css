@@ -29,9 +29,10 @@ body {
     border-radius: 8px;
     background: white;
     margin-bottom: 30px;
-    width: 80%;
     max-width: 1200px; 
     justify-content: center;
+    width: 100%;
+    max-width: 75%;
     display: flex;
     flex-direction: row;
 }
@@ -48,12 +49,7 @@ h2 {
     width: 65%;
 }
 
-/* Make the container responsive */
-.container {
-    width: 100%;
-    max-width: 75%;
-    margin: auto;
-}
+
 
 @media only screen and (max-width: 768px) {
     .container {
