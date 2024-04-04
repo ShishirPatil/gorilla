@@ -124,7 +124,7 @@ MODEL_METADATA_MAPPING = {
         "Proprietary",
     ],
     "meetkai_functionary-small-v2.2-FC": [
-        "Functionary-Small (FC)",
+        "Functionary-Small-v2.2 (FC)",
         "https://huggingface.co/meetkai/functionary-small-v2.2",
         "MeetKai",
         "MIT",
