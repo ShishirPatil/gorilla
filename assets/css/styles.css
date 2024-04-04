@@ -30,19 +30,3 @@ body, html, p, h1, h2, h3, .author-date, .blog-title, .author, .date {
     overflow-wrap: break-word;
 }
 
-
-.container {
-    max-width: 100%;
-    width: auto;
-}
-
-
-@media (max-width: 768px) {
-    h1 {
-        font-size: 24px; 
-    }
-
-    h2 {
-        font-size: 18px;
-    }
-}
