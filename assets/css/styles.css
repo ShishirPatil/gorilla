@@ -1,0 +1,48 @@
+.navbar a:not(:last-child)::after {
+    content: "|";
+    margin: 0 2px;
+    color: #000;
+}
+
+@media only screen and (min-width: 768px) {
+    .navbar a:not(:last-child)::after {
+        margin: 0 10px;
+    }
+}
+
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+pre {
+    white-space: pre-wrap;
+    width: 100%;
+    overflow-x: auto;
+    background-color: #f4f4f4;
+}
+
+
+body, html, p, h1, h2, h3, .author-date, .blog-title, .author, .date {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+
+.container {
+    max-width: 100%;
+    width: auto;
+}
+
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 24px; 
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+}
