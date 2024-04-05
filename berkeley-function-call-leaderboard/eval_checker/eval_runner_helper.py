@@ -730,7 +730,7 @@ def oss_file_formatter(input_file_path, output_dir):
                 new_json = {"id": original_idx, "result": data[i]["text"]}
                 f.write(json.dumps(new_json) + "\n")
                 original_idx += 1
-
+    print(f"OSS model `result.json` file has been successfully expanded to formatted files in {output_dir}.")
 
 def collapse_json_objects(file_path):
     with open(file_path, "r") as file:
