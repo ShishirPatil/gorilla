@@ -243,6 +243,18 @@ MODEL_METADATA_MAPPING = {
         "Databricks",
         "Databricks Open Model",
     ],
+    "command-r-plus-FC": [
+        "Command-R-Plus (FC)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
+    "command-r-plus": [
+        "Command-R-Plus (Prompt)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {

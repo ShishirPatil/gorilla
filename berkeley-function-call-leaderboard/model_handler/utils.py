@@ -58,6 +58,7 @@ def convert_to_tool(
             model_style == ModelStyle.OpenAI
             or model_style == ModelStyle.Mistral
             or model_style == ModelStyle.Google
+            or model_style == ModelStyle.COHERE
         ):
             # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
             item["name"] = re.sub(r"\.", "_", item["name"])
@@ -74,6 +75,7 @@ def convert_to_tool(
                 ModelStyle.Google,
                 ModelStyle.Anthropic,
                 ModelStyle.FIREWORK_AI,
+                ModelStyle.COHERE
             ]
             and stringify_parameters
         ):
@@ -99,12 +101,37 @@ def convert_to_tool(
                 if "additionalProperties" in params:
                     params["description"] += str(params["additionalProperties"])
                     del params["additionalProperties"]
+        if model_style == ModelStyle.COHERE:
+            for params in item["parameters"]["properties"].values():
+                if "default" in params:
+                    params["description"] += " The default value is: " + str(params["default"])
+                    del params["default"]
+                if "additionalProperties" in params:
+                    params["description"] += " Additional properties: " + str(params["additionalProperties"])
+                    del params["additionalProperties"]
         if model_style in [
             ModelStyle.Anthropic,
             ModelStyle.Google,
             ModelStyle.OSSMODEL,
         ]:
             oai_tool.append(item)
+        elif model_style == ModelStyle.COHERE:
+            parameter = item["parameters"]["properties"]
+            if "required" in item["parameters"]:
+                required = item["parameters"]["required"]
+            else:
+                required = []
+            parameter_definitions = {}
+            for key, value in parameter.items():
+                value["required"] = key in required
+                parameter_definitions[key] = value
+            oai_tool.append(
+                {
+                    "name": item["name"],
+                    "description": item["description"],
+                    "parameter_definitions": parameter_definitions,
+                }
+            )
         elif model_style in [
             ModelStyle.OpenAI,
             ModelStyle.Mistral,
