@@ -1,9 +1,10 @@
 /* Bars to separate titles in nav bar */
 /* For computers */
+/*
 .navbar {
     padding: 10px;
     font-size: 18px;
-    text-align: center; /* Center align by default */
+    text-align: center;
 }
 
 .navbar a:not(:last-child)::after {
@@ -12,17 +13,15 @@
     color: #000;
 }
 
-/* For screens larger than 500px */
 @media (min-width: 500px) {
     .navbar {
         position: absolute;
         top: 0;
         right: 20px;
-        text-align: right; /* Align links to the right */
+        text-align: right;
     }
 }
 
-/* For phones */
 @media (max-width: 500px) {
 
     .navbar {
@@ -34,7 +33,7 @@
         justify-content: center;
     }
 }
-
+*/
 /* Citation */
 .citation {
     display: inline-block;
