@@ -23,7 +23,7 @@
 {"sports_data.basketball.most_points_single_game":{"league":["NBA"]}}
 {"basketball.player_stats.get":{"player_name":["LeBron James"],"stats_fields":[["points per game","assists","minutes per game"],["points per game","minutes per game","assists"],["assists","points per game","minutes per game"],["assists","minutes per game","points per game"],["minutes per game","points per game","assists"],["minutes per game","assists","points per game"],["points","assists","minutes"],["points","minutes","assists"],["assists","points","minutes"],["assists","minutes","points"],["minutes","points","assists"],["minutes","assists","points"], ["points_per_game","assists","minutes_per_game"],["points_per_game","minutes_per_game","assists"],["assists","points_per_game","minutes_per_game"],["assists","minutes_per_game","points_per_game"],["minutes_per_game","points_per_game","assists"],["minutes_per_game","assists","points_per_game"]]}}
 {"route_planner.calculate_route":{"start":["London"],"destination":["Edinburgh"],"method":["fastest",""]}}
-{"video_games.store_price":{"game_title":["Assassins Creed Valhalla"],"platform":["PlayStation","PS"],"region":["United States",""]}}
+{"video_games.store_price":{"game_title":["Assassins Creed Valhalla"],"platform":["PlayStation","PS"],"region":["United States","US", ""]}}
 {"game_rewards.get":{"game":["Fortnite"],"platform":["Playstation","PS"],"mission":[""],"trophy":[""]}}
 {"maps.shortest_path":{"start_location":["Paris, France","Paris"],"end_location":["Rome, Italy","Rome"],"mode":["transit"]}}
 {"solve.quadratic_equation":{"a":[2],"b":[3],"c":[-4]}}
@@ -51,7 +51,7 @@
 {"house_price_forecast":{"location":["New York","New York, NY","NYC","New York City"],"months":[1],"features":[[],""]}}
 {"dice_roll_probability":{"desired_sum":[7],"sides_per_die":[6],"n_rolls":[2]}}
 {"currency_conversion":{"amount":[100],"from_currency":["Euro","EUR"],"to_currency":["USD","US Dollar"]}}
-{"linear_regression":{"independent_var":[["interest rates","unemployment rates"],["interest_rate","unemployment_rate"]],"dependent_var":["house_price","house price"],"forecast_period":[5]}}
+{"linear_regression":{"independent_var":[["interest rates","unemployment rates"],["interest_rate","unemployment_rate"], ["interest rate","unemployment rate"]],"dependent_var":["house_price","house price"],"forecast_period":[5]}}
 {"corporate_finance.dividend_data":{"company":["Apple Inc","Apple","Apple Inc."],"years":[5],"frequency":["","annually"]}}
 {"stock_forecast":{"company":["Google","GOOG"],"days":[3],"model":["","regression"]}}
 {"avg_closing_price":{"company":["Apple"],"days":[60],"data_source":["yahoo finance",""]}}
@@ -135,7 +135,7 @@
 {"crime_record.get_record":{"case_number":["CA123456"],"county":["San Diego","San Diego County"],"details":[true]}}
 {"get_case_info":{"docket":["2022/AL2562"],"court":["California","CA"],"info_type":["victim"]}}
 {"get_crime_rate":{"city":["San Francisco","San Francisco, CA","SF"],"state":["California","CA"],"type":["violent", "Violent"],"year":[2020]}}
-{"lawsuit_search":{"company":["Google"],"start_date":["2021-01-01","01/01/2021","Jan.1,2021"],"location":["California","CA"],"status":["ongoing",""]}}
+{"lawsuit_search":{"company":["Google"],"start_date":["2021-01-01","01/01/2021","Jan.1,2021","January 1, 2021"],"location":["California","CA"],"status":["ongoing",""]}}
 {"legal_case.fetch":{"case_id":["R vs Adams", "R_vs_Adams"],"details":[true]}}
 {"lawsuit_details.find":{"company_name":["Apple Inc."],"year":[2010],"case_type":["Patent"]}}
 {"lawsuits_search":{"company_name":["Google"],"location":["California","CA"],"year":[2020],"case_type":["","all"]}}
@@ -146,7 +146,7 @@
 {"calculate_emissions":{"distance":[12000],"fuel_type":["gas","gasoline"],"fuel_efficiency":[25],"efficiency_reduction":["",0.0]}}
 {"restaurant.find_nearby":{"location":["Seattle","Seattle, WA"],"cuisine":["Chinese"],"max_distance":[10]}}
 {"map_service.get_directions":{"start":["New York","New York, NY","NYC"],"end":["Los Angeles","LA"],"avoid":[["highways","tolls"],["tolls","highways"]]}}
-{"get_stock_info":{"company_name":["Apple Inc."],"detail_level":["detailed"],"market":["NASDAQ",""]}}
+{"get_stock_info":{"company_name":["Apple Inc.","Apple"],"detail_level":["detailed"],"market":["NASDAQ",""]}}
 {"sentiment_analysis":{"text":["I love the food here! It is always fresh and delicious."],"language":["english","English"]}}
 {"calculate_neuronal_activity":{"input_synaptic_rate":[200],"weight":[0.5],"decay_rate":[0.1]}}
 {"social_media_analytics.most_followed":{"topic":["psychology", "Psychology"],"sub_topics":[["behaviour","group dynamics"],["group dynamics","behaviour"]],"region":["","global"]}}
@@ -186,9 +186,9 @@
 {"restaurant_search.find_closest":{"location":["Boston","Boston, MA"],"cuisine":["Sushi"],"amenities":[["Patio"]]}}
 {"find_recipe":{"dietary_restrictions":["vegan"],"recipe_type":["dessert"],"time":[30]}}
 {"whole_foods.check_price":{"location":["Los Angeles","LA"],"items":[["tomatoes","lettuce"],["lettuce","tomatoes"]]}}
-{"grocery_store.find_best":{"my_location":["Berkeley","Berkeley,California"],"rating":[4.5],"products":[["tomatoes","pet food"],["pet food","tomatoes"],["Tomatoes","Pet food"],["Pet food","Tomatoes"]]}}
+{"grocery_store.find_best":{"my_location":["Berkeley","Berkeley,California","Berkeley,CA","Berkeley, CA"],"rating":[4.5],"products":[["tomatoes","pet food"],["pet food","tomatoes"],["Tomatoes","Pet food"],["Pet food","Tomatoes"]]}}
 {"timezone.convert":{"time":["3pm"],"from_timezone":["America/New_York","New York","New York, NY","NY","NYC","Eastern Standard Time","EST"],"to_timezone":["Europe/London","London","British Summer Time","BST","Greenwich Mean Time","GMT"]}}
-{"book_hotel":{"hotel_name":["Hilton Hotel","Hilton"],"location":["Chicago"],"room_type":["single", "Single"],"start_date":["2022-12-10","10/12/2022","Dec.10,2022"],"nights":[2]}}
+{"book_hotel":{"hotel_name":["Hilton Hotel","Hilton"],"location":["Chicago"],"room_type":["single", "Single"],"start_date":["2022-12-10","10/12/2022","Dec.10,2022","10th December 2022","10 December 2022"],"nights":[2]}}
 {"book_hotel":{"hotel_name":["Hotel Paradise"],"location":["Las Vegas","Las Vegas, NV","LV"],"room_type":["luxury", "Luxury"],"start_date":["05-12-2022","2022-05-12","12/05/2022","May.12,2022","May 12, 2022"],"stay_duration":[3],"view":["city","city view"]}}
 {"currency_conversion.convert":{"amount":[150],"from_currency":["EUR"],"to_currency":["CAD"]}}
 {"maps.get_distance_duration":{"start_location":["Eiffel Tower"],"end_location":["Louvre Museum"],"traffic":["",false]}}

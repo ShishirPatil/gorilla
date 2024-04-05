@@ -23,7 +23,7 @@
 {"math.gcd":{"num1":[12],"num2":[15]}}
 {"prime_factorize":{"number":[60],"return_type":["dictionary"]}}
 {"math.gcd":{"num1":[12],"num2":[18]}}
-{"calculate_final_velocity":{"height":[150],"initial_velocity":[0],"gravity":[9.81,""]}}
+{"calculate_final_velocity":{"height":[150],"initial_velocity":[0,""],"gravity":[9.81,""]}}
 {"calculate_velocity":{"distance":[50],"duration":[2],"unit":["","km/h"]}}
 {"final_velocity":{"initial_velocity":[10],"acceleration":[2],"time":[5]}}
 {"calculate_displacement":{"initial_velocity":[10],"time":[5],"acceleration":[9.8]}}
@@ -60,7 +60,7 @@
 {"calculate_molecular_weight":{"compound":["C6H12O6"],"to_unit":["grams/mole","g/mol"]}}
 {"mutation_type.find":{"snp_id":["rs6034464"],"species":["Homo sapiens",""]}}
 {"diabetes_prediction":{"weight":[150],"height":[70],"activity_level":["lightly active"]}}
-{"analyze_dna_sequence":{"sequence":["AGTCGATCGAACGTACGTACG"],"reference_sequence":["AGTCCATCGAACGTACGTACG"],"mutation_type":["substitution"]}}
+{"analyze_dna_sequence":{"sequence":["AGTCGATCGAACGTACGTACG"],"reference_sequence":["AGTCCATCGAACGTACGTACG"],"mutation_type":["substitution",""]}}
 {"genetics.calculate_similarity":{"species1":["Human","human"],"species2":["Chimp","chimp","Chimpanzee","chimpanzee"],"format":["percentage",""]}}
 {"calculate_genotype_frequency":{"allele_frequency":[0.3],"genotype":["AA"]}}
 {"calculate_density":{"country":["Brazil"],"year":["2022"],"population":[213000000],"land_area":[8500000]}}
@@ -78,7 +78,7 @@
 {"restaurant.find_nearby":{"location":["Los Angeles, CA"],"dietary_preference":[["Vegan"]]}}
 {"average_temperature":{"location":["Austin"],"days":[3],"temp_unit":["Celsius"]}}
 {"create_histogram":{"data":[[85,90,88,92,86,89,91]],"bins":[5]}}
-{"find_restaurants":{"location":["Manhattan, New York City", "Manhattan", "Manhattan, New York"],"food_type":["'Thai'"],"number":[5],"dietary_requirements":[["vegan"],["Vegan"]]}}
+{"find_restaurants":{"location":["Manhattan, New York City", "Manhattan", "Manhattan, New York"],"food_type":["Thai"],"number":[5],"dietary_requirements":[["vegan"],["Vegan"]]}}
 {"map_routing.fastest_route":{"start_location":["San Francisco","SF"],"end_location":["Los Angeles","LA"],"avoid_tolls":[true]}}
 {"calculate_average":{"numbers":[[12.0,15.0,18.0,20.0,21.0,26.0,30.0]]}}
 {"calculate_distance":{"coord1":[[[33.4484,-112.074],[33.4484,112.074]]],"coord2":[[34.0522,-118.2437],[34.0522,118.2437]],"unit":["miles"]}}
@@ -166,13 +166,13 @@
 {"civil_cases.retrieve":{"year":[2020],"crime_type":["theft"],"location":["Los Angeles","Los Angeles, California"]}}
 {"lawyer.find_nearby":{"city":["Chicago, IL.", "Chicago, IL"],"specialty":[["Divorce"]],"fee":[400]}}
 {"law.civil.get_case_details":{"case_title":["Roe v. Wade"],"include_dissent":[true]}}
-{"lawsuit_search":{"company":["Google","GOOG"],"start_date":["01-01-2021"],"location":["California"],"status":["ongoing",""]}}
+{"lawsuit_search":{"company":["Google","GOOG"],"start_date":["01-01-2021","January 1, 2021"],"location":["California"],"status":["ongoing",""]}}
 {"court_case.search":{"docket_number":["123456"],"location":["Texas"],"full_text":[false,""]}}
 {"law_case_search.find_historical":{"subject":["fraud"],"from_year":[2010],"to_year":[2015]}}
 {"fetch_law_case_details":{"case_number":[43403],"court":["New York"],"year":[2018]}}
 {"legal_case.fetch":{"case_id":["R vs Adams","R_vs_Adams"],"details":[true]}}
 {"law_case_search":{"topic":["land disputes"],"year_range":[[2015,2021]],"location":["New York"],"judicial_system":["state"]}}
-{"get_top_cases":{"field_of_law":["constitutional law"],"top_number":[10],"country":["China","CN"]}}
+{"get_top_cases":{"field_of_law":["constitutional law","constitutional"],"top_number":[10],"country":["China","CN"]}}
 {"lawyer.get_experience":{"name":["John Doe"],"law_type":["Bankruptcy"]}}
 {"lawsuit_details.find":{"company_name":["Apple Inc."],"year":[2010],"case_type":["Patent","IPR"]}}
 {"get_lawsuit_cases":{"company_name":["Facebook"],"year":[2018],"status":["all",""]}}
@@ -188,7 +188,7 @@
 {"get_current_weather":{"location":["Seattle","Seattle, Washington"],"include_temperature":[true,""],"include_humidity":[true,""]}}
 {"weather.humidity_forecast":{"location":["Miami"],"days":[7],"min_humidity":["",0]}}
 {"weather_forecast_detailed":{"location":["New York","New York, USA"],"days":[3],"details":[true]}}
-{"park_information":{"park_name":["Yellowstone","Yellowstone National Park"],"information":[["Elevation","Area"]]}}
+{"park_information":{"park_name":["Yellowstone","Yellowstone National Park"],"information":[["Elevation","Area"],["Area","Elevation"]]}}
 {"locate_tallest_mountains":{"location":["Denver, Colorado","Denver","CO"],"radius":[50],"amount":[5]}}
 {"calculate_slope_gradient":{"point1":[[40.7128,-74.006]],"point2":[[34.0522,-118.2437]],"unit":["degree",""]}}
 {"local_nursery.find":{"location":["Toronto"],"plant_types":[["Annual"]]}}
@@ -209,12 +209,12 @@
 {"map_service.get_directions":{"start":["New York","NYC"],"end":["Los Angeles","LA"],"avoid":[["highways","tolls"]]}}
 {"public_library.find_nearby":{"location":["Boston, MA","Boston, Massachusetts"],"facilities":[["Fiction","Wi-Fi"],["Wi-Fi","Fiction"]]}}
 {"get_news":{"topic":["Bitcoin"],"quantity":[5],"region":["US",""]}}
-{"send_email":{"to":["john.doe@example.com"],"subject":["Meeting"],"body":["Let's meet at 10 AM tomorrow","Let\\'s meet at 10 AM tomorrow"],"cc":[""],"bcc":[""]}}
+{"send_email":{"to":["john.doe@example.com"],"subject":["Meeting"],"body":["Let's meet at 10 AM tomorrow","Let's meet at 10 AM tomorrow."],"cc":[""],"bcc":[""]}}
 {"get_stock_info":{"company_name":["Apple Inc."],"detail_level":["detailed"],"market":["","NASDAQ"]}}
 {"flight.book":{"departure_location":["San Francisco","SF"],"destination_location":["London"],"date":["2022-04-27","04/27/2022","Apr 27, 2022"],"time":["afternoon",""],"direct_flight":[true]}}
 {"event_finder.find_upcoming":{"location":["New York","New York, NY","NYC"],"genre":["Rock","rock"],"days_ahead":[30]}}
 {"movie_details.brief":{"title":["Interstellar"],"extra_info":["",false]}}
-{"sentiment_analysis":{"text":["I love the food here! It's always fresh and delicious.","I love the food here! It\\'s always fresh and delicious."],"language":["english","English","en"]}}
+{"sentiment_analysis":{"text":["I love the food here! It's always fresh and delicious."],"language":["english","English","en"]}}
 {"fMRI.analyze":{"data_source":["~/data/myfMRI.nii"],"sequence_type":["multi-band"],"smooth":[6],"voxel_size":[2]}}
 {"patient.get_mri_report":{"patient_id":["546382"],"mri_type":["brain"],"status":["concluded"]}}
 {"get_neuron_coordinates":{"neuron_type":["GABA"],"brain_region":["All","all part of the brain","entire brain"]}}
@@ -367,18 +367,18 @@
 {"recipe.unit_conversion":{"value":[2],"from_unit":["tablespoon","tbsp"],"to_unit":["teaspoon","tsp"],"precision":[0,""]}}
 {"find_recipe":{"dietary_restrictions":["vegan"],"recipe_type":["dessert"],"time":[30]}}
 {"calculate_cooking_time":{"weight_kg":[1.5],"cooking_method":["","roast"],"temp_celsius":["",180]}}
-{"grocery_store.find_nearby":{"location":["Houston","Houston, TX"],"categories":[["Organic","Vegetables","Fruits"],["Organic","Fruits","Vegetables"]]}}
+{"grocery_store.find_nearby":{"location":["Houston","Houston, TX"],"categories":[["Organic","Vegetables","Fruits"],["Organic","Fruits","Vegetables"],["Vegetables","Fruits","Organic"],["Fruits","Vegetables","Organic"],["Fruits","Organic","Vegetables"],["Vegetables","Organic","Fruits"]]}}
 {"safeway.order":{"location":["Palo Alto","Palo Alto, CA"],"items":[["olive oil","rice"],["olive oil","bag of rice"]],"quantity":[[3,1]]}}
 {"whole_foods.check_price":{"location":["Los Angeles","LA"],"items":[["tomatoes","lettuce"]]}}
 {"whole_foods.find_top_brands":{"product":["bananas"],"number":[5,""],"organic":[true]}}
-{"walmart.purchase":{"loc":["San Jose","San Jose, CA","CA"],"product_list":[["apples","rice","bottled water"]],"pack_size":[[1,1,12]]}}
+{"walmart.purchase":{"loc":["San Jose","San Jose, CA"],"product_list":[["apples","rice","bottled water"],["apples","rice","water"]],"pack_size":[[1,1,12]]}}
 {"grocery_info.nutritional_info":{"store":["Walmart"],"food":["avocado","Avocado"],"information":[["Protein","Calories","Carbohydrates"]]}}
 {"walmart.check_price":{"items":[["pumpkins","eggs"],["pumpkin","egg"]],"quantities":[[3,24],[3,2]],"store_location":["Los Angeles","LA"]}}
 {"time_zone_converter":{"city":["London"],"country":["UK","United Kingdom"],"display_format":["24h","24 hour"]}}
 {"get_current_time":{"city":["Sydney"],"country":["Australia"],"format":["","HH:MM:SS"]}}
 {"timezone.convert":{"time":["3pm"],"from_timezone":["America/New_York","New York","NYC","New York City"],"to_timezone":["Europe/London","London"]}}
 {"get_current_time":{"location":["Sydney"],"country":["Australia"],"timezone":[""]}}
-{"hotel_booking":{"location":["Manhattan, New York","Manhattan, NY","NYC","New York City"],"room_type":["single"],"duration":[3],"start_date":["2023-03-10","03/10/2023","Mar.10,2023","March 10th, 2023"],"preferences":[["pet_friendly"]]}}
+{"hotel_booking":{"location":["Manhattan, New York","Manhattan, NY","NYC","New York City"],"room_type":["single"],"duration":[3],"start_date":["2023-03-10","03/10/2023","Mar.10,2023","March 10th, 2023","March 10th,2023","March10th, 2023","March10th,2023"],"preferences":[["pet_friendly"]]}}
 {"hilton_hotel.check_availability":{"location":["Paris"],"check_in_date":["2023-04-04","04/04/2023","Apr.4,2023"," April 4"],"check_out_date":["2023-04-08","04/08/2023","Apr.8,2023"],"no_of_adults":[2],"hotel_chain":["Hilton",""]}}
 {"book_hotel":{"hotel_name":["Hilton Hotel","Hilton"],"location":["Chicago"],"room_type":["single"],"start_date":["2022-12-10","10/12/2022","Dec 10, 2022","December 10, 2022"],"nights":[2]}}
 {"book_room":{"hotel_name":["The Plaza"],"room_type":["Single","single"],"num_nights":[2]}}

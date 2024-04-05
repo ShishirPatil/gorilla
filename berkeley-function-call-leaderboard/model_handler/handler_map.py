@@ -47,5 +47,7 @@ handler_map = {
     "deepseek-ai/deepseek-coder-6.7b-instruct": DeepseekHandler,
     "meetkai/functionary-small-v2.2-FC": FunctionaryHandler,
     "meetkai/functionary-medium-v2.2-FC": FunctionaryHandler,
+    "meetkai/functionary-small-v2.4-FC": FunctionaryHandler,
+    "meetkai/functionary-medium-v2.4-FC": FunctionaryHandler,
     "databricks-dbrx-instruct": DatabricksHandler,
 }
