@@ -284,6 +284,7 @@ def runner(model_names, test_categories):
         if len(files) == 1 and files[0] == "result.json":
             result_json_file_path = os.path.join(subdir, "result.json")
             oss_file_formatter(result_json_file_path, subdir)
+            print(f"Detected OSS model: {model_name}. result.json has been split into individual test category files.")
 
         # Pattern to match JSON files in this subdirectory
         json_files_pattern = os.path.join(subdir, "*.json")
