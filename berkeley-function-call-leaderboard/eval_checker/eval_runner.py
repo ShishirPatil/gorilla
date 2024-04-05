@@ -268,14 +268,26 @@ def runner(model_names, test_categories):
     # Traverse each subdirectory
     for subdir in subdirs:
 
-        # Pattern to match JSON files in this subdirectory
-        json_files_pattern = os.path.join(subdir, "*.json")
-
         model_name = subdir.split(INPUT_PATH)[1]
         if model_names is not None and model_name not in model_names:
             continue
 
         model_name_escaped = model_name.replace("_", "/")
+
+        files = [
+            f
+            for f in os.listdir(subdir)
+            if os.path.isfile(os.path.join(subdir, f)) and not f.startswith(".")
+        ]  
+        # Check if there is only one file and that file is 'result.json'
+        # If so, this is an OSS model result file and we need to special process it first
+        if len(files) == 1 and files[0] == "result.json":
+            result_json_file_path = os.path.join(subdir, "result.json")
+            oss_file_formatter(result_json_file_path, subdir)
+
+        # Pattern to match JSON files in this subdirectory
+        json_files_pattern = os.path.join(subdir, "*.json")
+
         # Find and process all JSON files in the subdirectory
         for model_result_json in glob.glob(json_files_pattern):
 
