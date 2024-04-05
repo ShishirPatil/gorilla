@@ -333,6 +333,24 @@ A100_PRICE_PER_HOUR = (
 )  # Price got from AZure, 10.879 per hour for 8 A100, 3 years reserved
 
 
+FILENAME_INDEX_MAPPING = {
+    "executable_parallel_function": (0, 49),
+    "parallel_multiple_function": (50, 249),
+    "executable_simple": (250, 349),
+    "rest": (350, 419),
+    "sql": (420, 519),
+    "parallel_function": (520, 719),
+    "chatable": (720, 919),
+    "java": (920, 1019),
+    "javascript": (1020, 1069),
+    "executable_multiple_function": (1070, 1119),
+    "simple": (1120, 1519),
+    "relevance": (1520, 1759),
+    "executable_parallel_multiple_function": (1760, 1799),
+    "multiple_function": (1800, 1999),
+}
+
+
 def extract_after_test(input_string):
     parts = input_string.split("_test_")[1].split("_result")[0].split(".json")[0]
     return parts
@@ -695,6 +713,23 @@ def update_leaderboard_table_with_score_file(leaderboard_table, score_path):
                     "accuracy": accuracy,
                     "total_count": total_count,
                 }
+
+
+def oss_file_formatter(input_file_path, output_dir):
+    data = load_file(input_file_path)
+    assert len(data) == 2000, "OSS result.json file should have 2000 entries."
+
+    for key, value in FILENAME_INDEX_MAPPING.items():
+        start, end = value
+        output_file = os.path.join(
+            output_dir, f"gorilla_openfunctions_v1_test_{key}_result.json"
+        )
+        with open(output_file, "w") as f:
+            original_idx = 0
+            for i in range(start, end + 1):
+                new_json = {"id": original_idx, "result": data[i]["text"]}
+                f.write(json.dumps(new_json) + "\n")
+                original_idx += 1
 
 
 def collapse_json_objects(file_path):
