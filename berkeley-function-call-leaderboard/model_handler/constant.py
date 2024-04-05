@@ -126,6 +126,8 @@ UNDERSCORE_TO_DOT = [
     "gemini-1.0-pro",
     "meetkai/functionary-small-v2.2-FC",
     "meetkai/functionary-medium-v2.2-FC",
+    "meetkai/functionary-small-v2.4-FC",
+    "meetkai/functionary-medium-v2.4-FC",
 ]
 
 TEST_CATEGORIES = {
