@@ -99,7 +99,7 @@
                         <p></p>
                     </h4>
                 </div>
-                <b><i style="font-size: 1.0em;">Last updated: 2024-04-01</i></b>
+                <b><i style="font-size: 1.0em;">Last updated: 2024-04-01 <a href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard#changelog">[Change Log]</a></i></b>
                 <br></br>
 
                 <div class="preview">
@@ -702,6 +702,11 @@
                                 <li style="margin-bottom: 5px;">For <code>String</code>:
                                     <ul>
                                         <li>The evaluation process is <i>case-insensitive</i>.</li>
+                                        <li>All strings will be standardized before checking. This applies to both the model output and the possible answers. </li>
+                                        <ul>
+                                            <li>All white space is removed.</li>
+                                            <li>A subset of punctuations <code>,./-_*^</code> are removed to make the evaluation more robust and accurate.</li>
+                                        </ul>
                                         <li style="margin-bottom: 5px;">Possible date
                                             <code>["20th June", "2023-06-20", "06/20/2023", "Jun.20, 2023"]</code>
                                         </li>
