@@ -1,385 +1,432 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
-    <script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
+  <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-NRZJLJCSH6');
-    </script>
+  </script>
 
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Gorilla</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
-    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/Team-Clean.css">
-    <link rel="stylesheet" href="assets/css/contact_main_page.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>Gorilla</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+  <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="stylesheet" href="assets/css/Team-Clean.css">
+  <link rel="stylesheet" href="assets/css/contact_main_page.css">
 
 </head>
 
 <body>
-       <!-- Navigation Bar -->
-    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;; font-size: 18px;">
-        <a href="index.html">Home</a>
-        <a href="blog.html">Blogs</a>
-        <a href="leaderboard.html">Leaderboard</a>
-        <a href="apizoo/">API Zoo Index</a>
+  <!-- Navigation Bar -->
+  <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;; font-size: 18px;">
+    <a href="index.html">Home</a>
+    <a href="blog.html">Blogs</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="apizoo/">API Zoo Index</a>
+  </div>
+  <div class="highlight-clean" style="padding-bottom: 10px;">
+    <h1 class="text-center"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+    <div>
+      <p></p>
     </div>
-    <div class="highlight-clean" style="padding-bottom: 10px;">
-            <h1 class="text-center"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
-        <div><p></p></div>
-        <div class="container" style="max-width: 768px;background:white;">
-            <div class="row">
-                <div class="col-md-12">
-                    <h4 class="text-center" style="margin: 0px;">
-                        <a class="text-center" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G. Patil*</a>, 
-                        <a class="text-center" href="https://tianjunz.github.io//">Tianjun Zhang*</a>, 
-                        <a class="text-center" href="https://xinw.ai/">Xin Wang</a>, 
-                        <a class="text-center" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a></h4>
-                    <h4></h4>
-                    <h5 class="text-center">UC Berkeley, Microsoft Research</h5>
-                    <h6 class="text-center">sgp@berkeley.edu, tianjunz@berkeley.edu</h6>
-                </div>
-            </div>
-        </div>
-        <div><p></p></div>
-        <div class="buttons" style="margin-bottom: 8px;">
-            <a class="btn btn-primary" role="button" href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">Colab</a>
-            <a class="btn btn-primary" role="button" href="https://github.com/ShishirPatil/gorilla">GitHub</a>
-            <a class="btn btn-primary" role="button" href="https://arxiv.org/abs/2305.15334">Paper</a>
-            <a class="btn btn-primary" role="button" href="https://docs.google.com/forms/d/1iuWrfQbTb8_T5s4J75HNftPF-w1Jg1Aeg-gB64X8MJg/edit">Gorilla-Spotlight Signup</a>
-            <a class="btn btn-primary" role="button" href="https://discord.gg/grXXvj9Whz"> Discord</a>
-        </div>
-        <div><p></p></div>
-        <div class="container" style="max-width: 768px; background: #f0f7ff;">
-            <div class="row">
-                <div class="col-md-12 api-appstore">
-                    <h3 class="text-center">An API Appstore for LLMs</h3>
-                </div>
-                
-                <div class="col-md-12">
-                    <div class="spinner">
-                        <h3 class="text-center">Gorilla Used at
-                            <div class="spinner__text">
-                                <span class="spinner__text--top" data-texts="Microsoft, Nvidia, Tesla, Linkedin, Netflix, MIT, CMU, Cisco, Weaviate"></span>
-                                <span class="spinner__text--bottom" data-texts="Microsoft, Nvidia, Tesla, Linkedin, Netflix, MIT, CMU, Cisco, Weaviate"></span>
-                            </div>
-                        </h3>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Figure -->
-        <div><p></p></div>
-        <div class="container" style="max-width: 768px;" >
-            <div class="row">
-                <div class="col-md-12 text-center"><img src="assets/img/gorilla_method.png" 
-                    style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
-                </div>
-                <em>Gorilla is a LLM that can provide appropriate API calls. 
-                    It is trained on three massive machine learning hub datasets: Torch Hub, TensorFlow Hub and HuggingFace. 
-                    We are rapidly adding new domains, including Kubernetes, GCP, AWS, OpenAPI, and more.
-                    Zero-shot Gorilla outperforms GPT-4, Chat-GPT and Claude. 
-                    Gorilla is extremely reliable, and significantly reduces hallucination errors.</em>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contributions -->
-    <div class="container news-container" style="max-width: 768px;background: #f0f7ff;">
-        <div class="row">
-            <div class="col-md-12">
-                <h2>News</h2>
-            </div>
-            <div class="col-md-12">
-                <h5> 🥇 <a href="blogs/4_open_functions.html">Gorilla OpenFunctions!</a> Drop in replacement! <a href="https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd?usp=sharing">Examples</a></h5>
-                <h5> 🚀 <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">Try Gorilla in 60s!</a> No sign-ups, no installs, just colab!</h5>
-                <h5> 🤩 With Apache 2.0 licensed LLM models, you can use Gorilla comercially without any obligations!</h5>
-                <h5> 📣 We are excited to hear your feedback and we welcome API contributions as we build this open-source project. 
-                    Join us on <a href="https://discord.gg/grXXvj9Whz">Discord</a> or feel free to email us! </h5>                
-            </div>
-        </div>
-    </div>
-    
-
-    <script>
-        const spinnerTexts = document.querySelectorAll('[class^="spinner__text--"]')
-const texts = spinnerTexts[0].dataset.texts.split(',')
-const textPositions = [0, 1]
-
-function initializeSpinnerTexts() {
-  spinnerTexts.forEach((spinnerText, index) => {
-    // Initialize the spinner texts' text
-    spinnerText.innerText = texts[textPositions[index]]
-    
-    // Change text after every animation iteration
-    spinnerText.addEventListener('animationiteration', e => {
-      e.target.innerText = texts[++textPositions[index] % texts.length]
-    })
-  })
-}
-
-window.onload = initializeSpinnerTexts
-    </script>
-    <style>
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: white;
-        }
-    
-        .container {
-            padding: 20px;
-            margin: 0 auto;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            background: white;
-            margin-bottom: 30px;
-        }
-
-        .news-container {
-            max-height: 200px; 
-            overflow-y: auto; 
-        }
-    
-        h1, h2, h3, h4, h5, h6 {
-            color: #333;
-        }
-    
-        /* Button Background */
-        .btn-primary {
-            background:white;
-            border-color: white;
-        }
-    
-        .btn-primary:hover {
-            background: white;
-            border-color: white;
-        }
-    
-        /* Footer Gradient Background */
-        .container:last-child {
-            background: white; 
-            color: white;
-        }
-    
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-    
-        em {
-            font-style: italic;
-            color: black;
-        }
-
-        .api-appstore {
-            margin-bottom: 20px;
-        }
-
-
-        .spinner {
-  position: relative; /* Change to relative for responsiveness */
-  overflow: hidden;
-}
-
-.spinner__text {
-  position: relative;
-  display: inline-block;
-  width: 50px; /* Adjust the width as needed */
-  text-align: center;
-}
-
-.spinner__text--top,
-.spinner__text--bottom {
-  display: inline-block;
-  animation: 1s ease 1.05s infinite running none;
-}
-
-.spinner__text--top {
-  animation-name: spinTop;
-}
-
-/* Bottom text spinner has to be configured so that it is positioned
-right at the same position as the top one */
-.spinner__text--bottom {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  animation-name: spinBottom;
-}
-
-@keyframes spinTop {
-  from { transform: translateY(0%); }
-  to { transform: translateY(-100%); }
-}
-
-@keyframes spinBottom {
-  from {
-    opacity: 1;
-    transform: translateY(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-}
-
-@media screen and (max-width: 768px) {
-    .spinner {
-  position: relative; /* Change to relative for responsiveness */
-  overflow: hidden;
-}
-
-.spinner__text {
-  position: relative;
-  display: inline-block;
-  width: 50px; /* Adjust the width as needed */
-  text-align: center;
-}
-
-.spinner__text--top,
-.spinner__text--bottom {
-  display: inline-block;
-  animation: 1.5s ease 2s infinite running none;
-}
-
-.spinner__text--top {
-  animation-name: spinTop;
-}
-
-/* Bottom text spinner has to be configured so that it is positioned
-right at the same position as the top one */
-.spinner__text--bottom {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  animation-name: spinBottom;
-}
-
-@keyframes spinTop {
-  from { transform: translateY(0%); }
-  to { transform: translateY(-100%); }
-}
-
-@keyframes spinBottom {
-  from {
-    opacity: 1;
-    transform: translateY(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-}
-}
-
-    </style>
-<!-- Gorilla CLI and Spotlight -->
-
-<div class="container" style="max-width: 768px;">
-    <div class="row">
+    <div class="container" style="max-width: 768px;background:white;">
+      <div class="row">
         <div class="col-md-12">
-            <h2>Gorilla for your CLI and Spotlight Search</h2>
+          <h4 class="text-center" style="margin: 0px;">
+            <a class="text-center" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G. Patil*</a>,
+            <a class="text-center" href="https://tianjunz.github.io//">Tianjun Zhang*</a>,
+            <a class="text-center" href="https://xinw.ai/">Xin Wang</a>,
+            <a class="text-center" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a>
+          </h4>
+          <h4></h4>
+          <h5 class="text-center">UC Berkeley, Microsoft Research</h5>
+          <h6 class="text-center">sgp@berkeley.edu, tianjunz@berkeley.edu</h6>
         </div>
-        <div class="col-md-6">
-            <div class="responsive-iframe-container">
-                <iframe src="https://www.youtube.com/embed/4EdyWkcddPc"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <p class="text-center" style="color: black;">Gorilla powered CLI<br>
-                Get started with <code>pip install gorilla-cli</code></p>
-        </div>
-        <div class="col-md-6">
-            <div class="responsive-iframe-container">
-                <iframe src="https://www.youtube.com/embed/RMgM3tPTpXI"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <p class="text-center" style="color: black;">Gorilla Powered Spotlight Search<br>
-                <a
-                    href="https://docs.google.com/forms/d/1iuWrfQbTb8_T5s4J75HNftPF-w1Jg1Aeg-gB64X8MJg/edit">Gorilla-Spotlight Signup</a> </p>
-        </div>
+      </div>
     </div>
-</div>
+    <div>
+      <p></p>
+    </div>
+    <div class="buttons" style="margin-bottom: 8px;">
+      <a class="btn btn-primary" role="button"
+        href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">Colab</a>
+      <a class="btn btn-primary" role="button" href="https://github.com/ShishirPatil/gorilla">GitHub</a>
+      <a class="btn btn-primary" role="button" href="https://arxiv.org/abs/2305.15334">Paper</a>
+      <a class="btn btn-primary" role="button"
+        href="https://docs.google.com/forms/d/1iuWrfQbTb8_T5s4J75HNftPF-w1Jg1Aeg-gB64X8MJg/edit">Gorilla-Spotlight
+        Signup</a>
+      <a class="btn btn-primary" role="button" href="https://discord.gg/grXXvj9Whz"> Discord</a>
+    </div>
+    <div>
+      <p></p>
+    </div>
+    <div class="container" style="max-width: 768px; background: #f0f7ff;">
+      <div class="row">
+        <div class="col-md-12 api-appstore">
+          <h3 class="text-center">An API Appstore for LLMs</h3>
+        </div>
 
-<!-- Figure -->
-<div><p></p></div>
-<div class="container" style="max-width: 768px;background: #f0f7ff" >
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h2>Vision</h2>
-            <img src="assets/img/blog_post_1_teaser.gif" 
+        <div class="col-md-12">
+          <div class="spinner">
+            <h3 class="text-center">Gorilla Used at
+              <div class="spinner__text">
+                <span class="spinner__text--top"
+                  data-texts="Microsoft, Nvidia, Tesla, Linkedin, Netflix, MIT, CMU, Cisco, Weaviate"></span>
+                <span class="spinner__text--bottom"
+                  data-texts="Microsoft, Nvidia, Tesla, Linkedin, Netflix, MIT, CMU, Cisco, Weaviate"></span>
+              </div>
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Figure -->
+    <div>
+      <p></p>
+    </div>
+    <div class="container" style="max-width: 768px;">
+      <div class="row">
+        <div class="col-md-12 text-center"><img src="assets/img/gorilla_method.png"
             style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
         </div>
-        <em>Rather have the user at the center, Gorilla enables users to interact with a wide range of services through LLMs. Gorilla is an open-source, state-of-the-art
-            LLM that invokes API calls to interact with services! </em>
+        <em>Gorilla is a LLM that can provide appropriate API calls.
+          It is trained on three massive machine learning hub datasets: Torch Hub, TensorFlow Hub and HuggingFace.
+          We are rapidly adding new domains, including Kubernetes, GCP, AWS, OpenAPI, and more.
+          Zero-shot Gorilla outperforms GPT-4, Chat-GPT and Claude.
+          Gorilla is extremely reliable, and significantly reduces hallucination errors.</em>
+      </div>
     </div>
-</div>
+  </div>
 
-<!-- Abstract -->
-<div class="container" style="max-width: 768px;">
+  <!-- Contributions -->
+  <div class="container news-container" style="max-width: 768px;background: #f0f7ff;">
     <div class="row">
-        <div class="col-md-12">
-            <h2>Abstract</h2>
-            <p style="text-align: justify; color: black;">
-                Large Language Models (LLMs) have seen an impressive wave of advances recently,
-                with models now excelling in a variety of tasks, such as mathematical reasoning and program synthesis.
-                However, their potential to effectively use tools via API calls remains unfulfilled.
-                This is a challenging task even for today's state-of-the-art LLMs such as GPT-4,
-                largely due to their inability to generate accurate input arguments and their tendency to hallucinate the wrong usage of an API call.
-                We release Gorilla, a fine-tuned LLaMA-based model that surpasses the performance of GPT-4 on writing API calls.
-                When combined with a document retriever, Gorilla demonstrates a strong capability to adapt to test-time document changes, enabling flexible API updates and version changes.
-                Gorilla also substantially mitigates the issue of hallucination, commonly encountered when prompting LLMs directly.
-                To evaluate the model's ability, we introduce APIBench, a comprehensive dataset consisting of HuggingFace, TorchHub, and TensorHub APIs.
-                The successful integration of the retrieval system with Gorilla demonstrates the potential for LLMs to use tools more accurately, keep up with frequently updated documentation,
-                and consequently increase the reliability and applicability of their outputs.
-                Gorilla models and code are available at <a href="https://github.com/ShishirPatil/gorilla">https://github.com/ShishirPatil/gorilla</a>.
-                <br>
-            </p>
-        </div>
+      <div class="col-md-12">
+        <h2>News</h2>
+      </div>
+      <div class="col-md-12">
+        <h5> 🥇 <a href="blogs/4_open_functions.html">Gorilla OpenFunctions!</a> Drop in replacement! <a
+            href="https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd?usp=sharing">Examples</a>
+        </h5>
+        <h5> 🚀 <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">Try
+            Gorilla in 60s!</a> No sign-ups, no installs, just colab!</h5>
+        <h5> 🤩 With Apache 2.0 licensed LLM models, you can use Gorilla commercially without any obligations!</h5>
+        <h5> 📣 We are excited to hear your feedback and we welcome API contributions as we build this open-source
+          project.
+          Join us on <a href="https://discord.gg/grXXvj9Whz">Discord</a> or feel free to email us! </h5>
+      </div>
     </div>
-</div>
+  </div>
 
-<!-- Result -->
-<div class="container" style="max-width: 768px;background: #f0f7ff">
+
+  <script>
+    const spinnerTexts = document.querySelectorAll('[class^="spinner__text--"]')
+    const texts = spinnerTexts[0].dataset.texts.split(',')
+    const textPositions = [0, 1]
+
+    function initializeSpinnerTexts() {
+      spinnerTexts.forEach((spinnerText, index) => {
+        // Initialize the spinner texts' text
+        spinnerText.innerText = texts[textPositions[index]]
+
+        // Change text after every animation iteration
+        spinnerText.addEventListener('animationiteration', e => {
+          e.target.innerText = texts[++textPositions[index] % texts.length]
+        })
+      })
+    }
+
+    window.onload = initializeSpinnerTexts
+  </script>
+  <style>
+    body {
+      font-family: 'Source Sans Pro', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: white;
+    }
+
+    .container {
+      padding: 20px;
+      margin: 0 auto;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      background: white;
+      margin-bottom: 30px;
+    }
+
+    .news-container {
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: #333;
+    }
+
+    /* Button Background */
+    .btn-primary {
+      background: white;
+      border-color: white;
+    }
+
+    .btn-primary:hover {
+      background: white;
+      border-color: white;
+    }
+
+    /* Footer Gradient Background */
+    .container:last-child {
+      background: white;
+      color: white;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    em {
+      font-style: italic;
+      color: black;
+    }
+
+    .api-appstore {
+      margin-bottom: 20px;
+    }
+
+
+    .spinner {
+      position: relative;
+      /* Change to relative for responsiveness */
+      overflow: hidden;
+    }
+
+    .spinner__text {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      /* Adjust the width as needed */
+      text-align: center;
+    }
+
+    .spinner__text--top,
+    .spinner__text--bottom {
+      display: inline-block;
+      animation: 1s ease 1.05s infinite running none;
+    }
+
+    .spinner__text--top {
+      animation-name: spinTop;
+    }
+
+    /* Bottom text spinner has to be configured so that it is positioned
+right at the same position as the top one */
+    .spinner__text--bottom {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      animation-name: spinBottom;
+    }
+
+    @keyframes spinTop {
+      from {
+        transform: translateY(0%);
+      }
+
+      to {
+        transform: translateY(-100%);
+      }
+    }
+
+    @keyframes spinBottom {
+      from {
+        opacity: 1;
+        transform: translateY(100%);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      .spinner {
+        position: relative;
+        /* Change to relative for responsiveness */
+        overflow: hidden;
+      }
+
+      .spinner__text {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        /* Adjust the width as needed */
+        text-align: center;
+      }
+
+      .spinner__text--top,
+      .spinner__text--bottom {
+        display: inline-block;
+        animation: 1.5s ease 2s infinite running none;
+      }
+
+      .spinner__text--top {
+        animation-name: spinTop;
+      }
+
+      /* Bottom text spinner has to be configured so that it is positioned
+right at the same position as the top one */
+      .spinner__text--bottom {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        animation-name: spinBottom;
+      }
+
+      @keyframes spinTop {
+        from {
+          transform: translateY(0%);
+        }
+
+        to {
+          transform: translateY(-100%);
+        }
+      }
+
+      @keyframes spinBottom {
+        from {
+          opacity: 1;
+          transform: translateY(100%);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0%);
+        }
+      }
+    }
+  </style>
+  <!-- Gorilla CLI and Spotlight -->
+
+  <div class="container" style="max-width: 768px;">
     <div class="row">
-        <div class="col-md-12">
-            <h2>Example</h2>
+      <div class="col-md-12">
+        <h2>Gorilla for your CLI and Spotlight Search</h2>
+      </div>
+      <div class="col-md-6">
+        <div class="responsive-iframe-container">
+          <iframe src="https://www.youtube.com/embed/4EdyWkcddPc" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
         </div>
-        <div class="col-md-12 text-center"><img src="assets/img/results.png"
-                style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
+        <p class="text-center" style="color: black;">Gorilla powered CLI<br>
+          Get started with <code>pip install gorilla-cli</code></p>
+      </div>
+      <div class="col-md-6">
+        <div class="responsive-iframe-container">
+          <iframe src="https://www.youtube.com/embed/RMgM3tPTpXI" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
         </div>
-        <em>Example API calls generated by GPT-4, Claude, and Gorilla for the
-            given prompt. In this example, GPT-4 presents a model that doesn’t exist, and Claude
-            picks an incorrect library. In contrast, our model, Gorilla, can identify the task correctly
-            and suggest a fully-qualified API call.</em>
+        <p class="text-center" style="color: black;">Gorilla Powered Spotlight Search<br>
+          <a href="https://docs.google.com/forms/d/1iuWrfQbTb8_T5s4J75HNftPF-w1Jg1Aeg-gB64X8MJg/edit">Gorilla-Spotlight
+            Signup</a>
+        </p>
+      </div>
     </div>
-</div>
+  </div>
 
-<!-- Citation -->
-<div class="container" style="max-width: 768px">
+  <!-- Figure -->
+  <div>
+    <p></p>
+  </div>
+  <div class="container" style="max-width: 768px;background: #f0f7ff">
     <div class="row">
-        <div class="col-md-12">
-            <h2>Citation</h2>
-            <code>
+      <div class="col-md-12 text-center">
+        <h2>Vision</h2>
+        <img src="assets/img/blog_post_1_teaser.gif" style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
+      </div>
+      <em>Rather have the user at the center, Gorilla enables users to interact with a wide range of services through
+        LLMs. Gorilla is an open-source, state-of-the-art
+        LLM that invokes API calls to interact with services! </em>
+    </div>
+  </div>
+
+  <!-- Abstract -->
+  <div class="container" style="max-width: 768px;">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Abstract</h2>
+        <p style="text-align: justify; color: black;">
+          Large Language Models (LLMs) have seen an impressive wave of advances recently,
+          with models now excelling in a variety of tasks, such as mathematical reasoning and program synthesis.
+          However, their potential to effectively use tools via API calls remains unfulfilled.
+          This is a challenging task even for today's state-of-the-art LLMs such as GPT-4,
+          largely due to their inability to generate accurate input arguments and their tendency to hallucinate the
+          wrong usage of an API call.
+          We release Gorilla, a fine-tuned LLaMA-based model that surpasses the performance of GPT-4 on writing API
+          calls.
+          When combined with a document retriever, Gorilla demonstrates a strong capability to adapt to test-time
+          document changes, enabling flexible API updates and version changes.
+          Gorilla also substantially mitigates the issue of hallucination, commonly encountered when prompting LLMs
+          directly.
+          To evaluate the model's ability, we introduce APIBench, a comprehensive dataset consisting of HuggingFace,
+          TorchHub, and TensorHub APIs.
+          The successful integration of the retrieval system with Gorilla demonstrates the potential for LLMs to use
+          tools more accurately, keep up with frequently updated documentation,
+          and consequently increase the reliability and applicability of their outputs.
+          Gorilla models and code are available at <a
+            href="https://github.com/ShishirPatil/gorilla">https://github.com/ShishirPatil/gorilla</a>.
+          <br>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Result -->
+  <div class="container" style="max-width: 768px;background: #f0f7ff">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Example</h2>
+      </div>
+      <div class="col-md-12 text-center"><img src="assets/img/results.png" style="width: 80%;margin-bottom: 8px;"
+          alt="Gorilla LLM logo">
+      </div>
+      <em>Example API calls generated by GPT-4, Claude, and Gorilla for the
+        given prompt. In this example, GPT-4 presents a model that doesn’t exist, and Claude
+        picks an incorrect library. In contrast, our model, Gorilla, can identify the task correctly
+        and suggest a fully-qualified API call.</em>
+    </div>
+  </div>
+
+  <!-- Citation -->
+  <div class="container" style="max-width: 768px">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Citation</h2>
+        <code>
                 @article{patil2023gorilla,<br>
                     &nbsp;  title={Gorilla: Large Language Model Connected with Massive APIs}, <br>
                     &nbsp;  author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},<br>
@@ -387,74 +434,74 @@ right at the same position as the top one */
                     &nbsp;  year={2023},<br>
                 }
             </code>
-        </div>
+      </div>
     </div>
-</div>
-<!-- Contact Us -->
-<div class="container" style="max-width: 768px">
+  </div>
+  <!-- Contact Us -->
+  <div class="container" style="max-width: 768px">
     <div class="row">
-        <div class="col-md-12">
-            <h2>Contact Us</h2>
-            <div class="row">
-                <div class="col-md-12">
-                    <form name="submit-to-google-sheet">
-                        <input type="text" name="Name" style='color: black' placeholder="Your Name" required>
-                        <input type="Email" name="Email" style='color: black' placeholder="Your Email" required>
-                        <input type="Organization" name="Organization" style='color: black' placeholder="Your Organization">
-                        <textarea name="Message" rows="6" style='color: black' placeholder="Your Message"></textarea>
-                        <button type="submit" class="btn-secondary btn-secondary2">Submit</button>
-                    </form>
-                    <span id="msg"></span>
-                </div>
-            </div>
+      <div class="col-md-12">
+        <h2>Contact Us</h2>
+        <div class="row">
+          <div class="col-md-12">
+            <form name="submit-to-google-sheet">
+              <input type="text" name="Name" style='color: black' placeholder="Your Name" required>
+              <input type="Email" name="Email" style='color: black' placeholder="Your Email" required>
+              <input type="Organization" name="Organization" style='color: black' placeholder="Your Organization">
+              <textarea name="Message" rows="6" style='color: black' placeholder="Your Message"></textarea>
+              <button type="submit" class="btn-secondary btn-secondary2">Submit</button>
+            </form>
+            <span id="msg"></span>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<script>
-var tablinks = document.getElementsByClassName("tab-links");
-var tabcontents = document.getElementsByClassName("tab-contents");
+  </div>
+  <script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
 
-function opentab(tabname) {
-    for (tablink of tablinks) {
+    function opentab(tabname) {
+      for (tablink of tablinks) {
         tablink.classList.remove("active-link");
-    }
-    for (tabcontent of tabcontents) {
+      }
+      for (tabcontent of tabcontents) {
         tabcontent.classList.remove("active-tab");
+      }
+      event.currentTarget.classList.add("active-link");
+      document.getElementById(tabname).classList.add("active-tab");
     }
-    event.currentTarget.classList.add("active-link");
-    document.getElementById(tabname).classList.add("active-tab");
-}
-</script>
-<script>
+  </script>
+  <script>
 
     var sidemenu = document.getElementById("sidemenu");
 
     function openmenu() {
-        sidemenu.style.right = "0";
+      sidemenu.style.right = "0";
     }
     function closemenu() {
-        sidemenu.style.right = "-200px";
+      sidemenu.style.right = "-200px";
     }
 
-</script>
-<script>
+  </script>
+  <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxdAKyEA36HA_p0k3KwMzMigxgFCZ1XegRBPfjgxlNaOK2CsOnP9hrEV_6V1ARCAJw3vw/exec'
     const form = document.forms['submit-to-google-sheet']
     const msg = document.getElementById("msg")
-  
+
     form.addEventListener('submit', e => {
       e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      fetch(scriptURL, { method: 'POST', body: new FormData(form) })
         .then(response => {
-            msg.innerHTML = "<span style='color: black;'>Message Sent Successfully!</span>";
-            setTimeout(function() {
-                msg.innerHTML = ""
-            },5000)
-            form.reset()
+          msg.innerHTML = "<span style='color: black;'>Message Sent Successfully!</span>";
+          setTimeout(function () {
+            msg.innerHTML = ""
+          }, 5000)
+          form.reset()
         })
         .catch(error => console.error('Error!', error.message))
     })
-</script>
+  </script>
 
 </body>
 

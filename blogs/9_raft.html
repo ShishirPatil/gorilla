@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-    gtag('config', 'G-NRZJLJCSH6');
+        gtag('config', 'G-NRZJLJCSH6');
     </script>
 
 
@@ -34,31 +35,33 @@
     </div>
 
     <div class="highlight-clean-blog" style="padding-bottom: 10px;">
-        <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 RAFT: Adapting Language Model to Domain Specific RAG</h1>
+        <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 RAFT: Adapting Language Model to Domain Specific RAG
+        </h1>
 
 
         <div class="blog-container">
             <div class="blog-post">
                 <div class="col-md-12">
                     <h4 class="text-center" style="margin: 0px;">
-                         <p></p>
-                         <a class="author" href="https://tianjunz.github.io">Tianjun Zhang</a>
-                         <a class="author" href="https://shishirpatil.github.io/">Shishir G. Patil</a>
-                         <a class="author" href="https://www.linkedin.com/in/kaiwen129/">Kai Wen</a>
-                         <a class="author" href="https://naman-ntc.github.io/">Naman Jain</a> 
-                         <a class="author" href="https://sincerass.github.io/">Sheng Shen</a>
-                         <a class="author" href="https://people.eecs.berkeley.edu/~matei/">Matei Zaharia</a>
-                         <a class="author" href="https://people.eecs.berkeley.edu/~istoica">Ion Stoica</a>
-                         <a class="author" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a>
-                         <p></p>
+                        <p></p>
+                        <a class="author" href="https://tianjunz.github.io">Tianjun Zhang</a>
+                        <a class="author" href="https://shishirpatil.github.io/">Shishir G. Patil</a>
+                        <a class="author" href="https://www.linkedin.com/in/kaiwen129/">Kai Wen</a>
+                        <a class="author" href="https://naman-ntc.github.io/">Naman Jain</a>
+                        <a class="author" href="https://sincerass.github.io/">Sheng Shen</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~matei/">Matei Zaharia</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~istoica">Ion Stoica</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a>
+                        <p></p>
                     </h4>
                 </div>
                 <div class="col-md-12">
                     <h4 class="text-center" style="margin: 0px;">
-                         <p></p>
-                         <a class="author" href="https://cv.vidal.biz/"> Microsoft: Cédric Vidal </a>
-                         <a class="author" href="https://www.linkedin.com/in/surajsubramanian/"> Meta: Suraj Subramanian </a>
-                         <p></p>
+                        <p></p>
+                        <a class="author" href="https://cv.vidal.biz/"> Microsoft: Cédric Vidal </a>
+                        <a class="author" href="https://www.linkedin.com/in/surajsubramanian/"> Meta: Suraj Subramanian
+                        </a>
+                        <p></p>
                     </h4>
                 </div>
 
@@ -67,13 +70,32 @@
                 </p>
 
                 <div class="preview">
-                    <p>            
-                        When integrating Large Language Models (LLMs) into various applications, it often becomes necessary to incorporate new information, such as domain-specific knowledge or proprietary data, through techniques like retrieval-augmented generation (RAG)-based prompting or fine-tuning. However, the challenge lies in determining the most effective method for instilling this new knowledge into the model. In our latest blog, we introduce Retrieval Augmented Fine Tuning (RAFT), a straightforward and powerful fine-tuning recipe to enhance the model's performance in answering questions within specific domains in an "open-book" setting. Open-book refers to the paradigm, where the model can refer to documents to answer the question. RAFT operates by training the model to disregard any retrieved documents that do not contribute to answering a given question, thereby eliminating distractions. This is achieved by accurately identifying and quoting the relevant segments from helpful documents to address the question at hand. Moreover, RAFT's use of a chain-of-thought-style response further refines the model's reasoning abilities. When applied to domain-specific RAG, RAFT consistently improves performance across various datasets, including PubMed, HotpotQA, and Gorilla, offering a valuable post-training enhancement for pre-trained LLMs with domain-specific RAG capabilities.  In our previous blog about <a href="/blogs/3_retriever_aware_training.html">RAT (Retriever Aware Training)</a>, we explored optimization strategies for models interacting with APIs. RAFT builds on top of RAT, and generalizes beyond APIs for RAG applications.
+                    <p>
+                        When integrating Large Language Models (LLMs) into various applications, it often becomes
+                        necessary to incorporate new information, such as domain-specific knowledge or proprietary data,
+                        through techniques like retrieval-augmented generation (RAG)-based prompting or fine-tuning.
+                        However, the challenge lies in determining the most effective method for instilling this new
+                        knowledge into the model. In our latest blog, we introduce Retrieval Augmented Fine Tuning
+                        (RAFT), a straightforward and powerful fine-tuning recipe to enhance the model's performance in
+                        answering questions within specific domains in an "open-book" setting. Open-book refers to the
+                        paradigm, where the model can refer to documents to answer the question. RAFT operates by
+                        training the model to disregard any retrieved documents that do not contribute to answering a
+                        given question, thereby eliminating distractions. This is achieved by accurately identifying and
+                        quoting the relevant segments from helpful documents to address the question at hand. Moreover,
+                        RAFT's use of a chain-of-thought-style response further refines the model's reasoning abilities.
+                        When applied to domain-specific RAG, RAFT consistently improves performance across various
+                        datasets, including PubMed, HotpotQA, and Gorilla, offering a valuable post-training enhancement
+                        for pre-trained LLMs with domain-specific RAG capabilities. In our previous blog about <a
+                            href="/blogs/3_retriever_aware_training.html">RAT (Retriever Aware Training)</a>, we
+                        explored optimization strategies for models interacting with APIs. RAFT builds on top of RAT,
+                        and generalizes beyond APIs for RAG applications.
                     </p>
                     <p>
-                        The RAFT model is trained on top of the base model Llama2-7B from Meta and on Microsoft AI Studio. We provide a short tutorial on how to train your own RAFT model for RAG applications.
-                        For more details about RAFT please refer to our <a href="https://arxiv.org/abs/2403.10131">paper</a> and <a href="https://aka.ms/raft-blog
-                        ">Microsoft-Meta blog</a>. 
+                        The RAFT model is trained on top of the base model Llama2-7B from Meta and on Microsoft AI
+                        Studio. We provide a short tutorial on how to train your own RAFT model for RAG applications.
+                        For more details about RAFT please refer to our <a
+                            href="https://arxiv.org/abs/2403.10131">paper</a> and <a href="https://aka.ms/raft-blog
+                        ">Microsoft-Meta blog</a>.
                     </p>
                 </div>
 
@@ -81,63 +103,124 @@
 
                 <h3 id="analogy">Analogy: How to prepare a LLM for an Exam? 📝</h4>
 
-                <div class="body">
-                <p>    
-                RAFT is a general recipe to finetune a pretrained LLM to your domain-specific RAG settings. 
-                This is a common scenario where you want your LLM to answer questions grounded on a set of documents, for e.g., private files in an enterprise. 
-                Such a setting is different from the general RAG where the LLM does not know which domain (of documents) it will be tested on.
-                To better illustrate this setting, let's draw an analogy between deploying and using an LLM with the real-world setting of prepararing for an exam. 
-                </p>
-                <p><mark>Closed-Book Exam</mark> 
-                    A closed book exam often refers to the scenario where the LLMs do not have access to any additional documents or references to answer the questions during the exam.  
-                    For LLMs, this is equivalent to the scenario, for example, in which the LLM is used as a chatbot. In this scenario the LLM draws from the knowledge baked in during pre-training and supervised-finetuning to respond to the users' prompt. </p>
+                    <div class="body">
+                        <p>
+                            RAFT is a general recipe to finetune a pretrained LLM to your domain-specific RAG settings.
+                            This is a common scenario where you want your LLM to answer questions grounded on a set of
+                            documents, for e.g., private files in an enterprise.
+                            Such a setting is different from the general RAG where the LLM does not know which domain
+                            (of documents) it will be tested on.
+                            To better illustrate this setting, let's draw an analogy between deploying and using an LLM
+                            with the real-world setting of preparing for an exam.
+                        </p>
+                        <p><mark>Closed-Book Exam</mark>
+                            A closed book exam often refers to the scenario where the LLMs do not have access to any
+                            additional documents or references to answer the questions during the exam.
+                            For LLMs, this is equivalent to the scenario, for example, in which the LLM is used as a
+                            chatbot. In this scenario the LLM draws from the knowledge baked in during pre-training and
+                            supervised-finetuning to respond to the users' prompt. </p>
 
-                <p><mark>Open-Book Exam</mark> 
-                    In contrast, we liken the open-book exam setting to the scenario in which the LLM can refer to external sources of information (e.g., a website or a book chapter). 
-                    In such scenarios, typically, the LLM is paired with retriever which retrieves <em>k</em> documents (or specific segments of the document) which are appended to the users' prompt. It is only through these documents retrieved that the LLM gains access to <em>new knowledge</em>. 
-                    As a result, we argue that the LLM's performance in these settings, where it is trained as a general-purpose LLM is largely dependent on the quality of the retriever and how accurately the retriever can identify the most relevant piece of information. </p>
+                        <p><mark>Open-Book Exam</mark>
+                            In contrast, we liken the open-book exam setting to the scenario in which the LLM can refer
+                            to external sources of information (e.g., a website or a book chapter).
+                            In such scenarios, typically, the LLM is paired with retriever which retrieves <em>k</em>
+                            documents (or specific segments of the document) which are appended to the users' prompt. It
+                            is only through these documents retrieved that the LLM gains access to <em>new
+                                knowledge</em>.
+                            As a result, we argue that the LLM's performance in these settings, where it is trained as a
+                            general-purpose LLM is largely dependent on the quality of the retriever and how accurately
+                            the retriever can identify the most relevant piece of information. </p>
 
-                <p><mark>RAFT</mark> 
-                    RAFT focuses on a narrower but increasingly popular domain than the general open book exam, called the domain-specific open-book exam. In domain-specific open book exam, we know apriori the domain in which the LLM will be tested --- used for inference. The LLM  can respond to the users' prompt using use any and all information from this specific domain, which it has been fine-tuned on. 
-                    Examples of domain specific examples include enterprise documents, latest news, code repositories belonging to an organization, etc. 
-                    In all these scenarios, the LLM will be used to respond to the questions, whose answers can be found within a collection of documents (a small practical domain). The retrieval technique itself has little to no-impact on the mechanism (though it may impact the accuracy). 
-                    This paper mainly studies this, domain-specific open-book setting and how to adapt a pretrained LLM to this specific domain, including how to make it more robust to a varying number of retrieved documents and distractors.</p>
-                    
-                </div>
-                
-                <p style="text-align: center; margin-bottom: 0">
-                    <img src="../assets/img/blog_post_9_raft_openbook.png" alt="RAFT analogy to open-book" width="100%">
-                        <i style="font-size: 0.9em;">
-                            <mark>How to preapre a LLM for an Exam?</mark> Closed-Book vs. Open-Book vs. RAFT
-                        </i>
-                </p>
-                <p></p>
+                        <p><mark>RAFT</mark>
+                            RAFT focuses on a narrower but increasingly popular domain than the general open book exam,
+                            called the domain-specific open-book exam. In domain-specific open book exam, we know
+                            a priori the domain in which the LLM will be tested --- used for inference. The LLM can
+                            respond to the users' prompt using use any and all information from this specific domain,
+                            which it has been fine-tuned on.
+                            Examples of domain specific examples include enterprise documents, latest news, code
+                            repositories belonging to an organization, etc.
+                            In all these scenarios, the LLM will be used to respond to the questions, whose answers can
+                            be found within a collection of documents (a small practical domain). The retrieval
+                            technique itself has little to no-impact on the mechanism (though it may impact the
+                            accuracy).
+                            This paper mainly studies this, domain-specific open-book setting and how to adapt a
+                            pretrained LLM to this specific domain, including how to make it more robust to a varying
+                            number of retrieved documents and distractors.</p>
 
-                <!-- RAFT Adapting  -->
-                <h4 id="raft-domain-rag">RAFT: Adapting Language Model to Domain Specific RAG 📚</h4>
-            
-                <div class="body">
-                    <p>Retrieval Aware Fine-Tuning (RAFT), presents a novel recipe to prepare fine-tuning data to tailor the models for domain-specific open-book setting, equivalent to in-domain RAG. In RAFT, we prepare the training data such that each data point contains a question (<h:math> Q </h:math>), a set of documents (<h:math>D<sub>k</sub></h:math>), and a corresponding Chain-of-though style answer (<h:math>A<sup>*</sup></h:math>) generated from one of the document (<h:math>D<sup>*</sup></h:math>). We differentiate between two types of documents: <emph>oracle</emph> documents (<h:math>D*</h:math>) i.e. the documents from which the answer to the question can be deduced, and `distractor' documents (<h:math>D<sub>i</sub></h:math>) that do not contain answer-relevant information. As an implementation detail, the <emph>oracle</emph> document doesn't need to be a single document, but can be more than one document, as is the case in HotpotQA. Then, for $P$ fraction of the questions (<h:math>q<sub>i</sub></h:math>) in the dataset, we retain the oracle document (<h:math>d<sub>i</sub><sup>*</sup></h:math>) along with distractor documents (<h:math>d<sub>k-1</sub></h:math>). For <h:math>(1-P)</h:math> fraction of the questions (<h:math>q<sub>i</sub></h:math>) in the dataset, we include no oracle document and only include distractor documents (<h:math>d<sub>k</sub></h:math>). We then fine-tune the language model using standard supervised training (SFT) technique, training it to generate answers from the provided documents and question. The figure below illustrates the high-level design principal for RAFT. </p>
-
-                    <p>We demonstrate that our RAG approach trains the model to perform better RAG on the set of documents it is trained on i.e., in-domain. By removing the oracle documents in some instances of the training data, we are compelling the model to memorize domain-knowledge.  The training data for RAFT is as follows, and an example training data can be seen in the figure below: </p>
-                    <ul>
-                        <li> <h:math><b>P</b></h:math> % of data: <h:math><b>Q</b></h:math> + <h:math><b>D<sup>*</sup></b></h:math> + <h:math><b>D<sub>1</sub></b></h:math> + <h:math><b>D<sub>2</sub></b></h:math> + ... + <h:math><b>D<sub>k</sub></b></h:math> => <h:math><b>A<sup>*</sup></b></h:math> </li>
-                        <li> <h:math><b>1-P</b></h:math> % of data: <h:math><b>Q</b></h:math> + <h:math><b>D<sub>1</sub></b></h:math> + <h:math><b>D<sub>2</sub></b></h:math> + ... + <h:math><b>D<sub>k</sub></b></h:math> => <h:math><b>A<sup>*</sup></b></h:math> </li>
-                    </ul>
+                    </div>
 
                     <p style="text-align: center; margin-bottom: 0">
-                        <img src="../assets/img/blog_post_9_RAFT.png" alt="Data" width="95%">
-                            <i style="font-size: 0.9em;">
-                                Train and Test Configuration for RAFT
-                            </i>
+                        <img src="../assets/img/blog_post_9_raft_openbook.png" alt="RAFT analogy to open-book"
+                            width="100%">
+                        <i style="font-size: 0.9em;">
+                            <mark>How to prepare a LLM for an Exam?</mark> Closed-Book vs. Open-Book vs. RAFT
+                        </i>
                     </p>
                     <p></p>
 
-                    <p> We also provide one example of training data of our dataset. This involves questions, context, instruction and final CoT answer.
-                        In our answer, we use ##begin_quote## and ##end_quote## to denote the beginning and end of a quote that is directly copy pasted from the context. We found this an efficient way to prevent the model hallucinate and stick to the contexts provided.
-                    </p>
+                    <!-- RAFT Adapting  -->
+                    <h4 id="raft-domain-rag">RAFT: Adapting Language Model to Domain Specific RAG 📚</h4>
 
-                    <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
+                    <div class="body">
+                        <p>Retrieval Aware Fine-Tuning (RAFT), presents a novel recipe to prepare fine-tuning data to
+                            tailor the models for domain-specific open-book setting, equivalent to in-domain RAG. In
+                            RAFT, we prepare the training data such that each data point contains a question (<h:math> Q
+                            </h:math>), a set of documents (<h:math>D<sub>k</sub></h:math>), and a corresponding
+                            Chain-of-though style answer (<h:math>A<sup>*</sup></h:math>) generated from one of the
+                            document (<h:math>D<sup>*</sup></h:math>). We differentiate between two types of documents:
+                            <emph>oracle</emph> documents (<h:math>D*</h:math>) i.e. the documents from which the answer
+                            to the question can be deduced, and `distractor' documents (<h:math>D<sub>i</sub></h:math>)
+                            that do not contain answer-relevant information. As an implementation detail, the <emph>
+                                oracle</emph> document doesn't need to be a single document, but can be more than one
+                            document, as is the case in HotpotQA. Then, for $P$ fraction of the questions (<h:math>
+                                q<sub>i</sub></h:math>) in the dataset, we retain the oracle document (<h:math>
+                                d<sub>i</sub><sup>*</sup></h:math>) along with distractor documents (<h:math>
+                                d<sub>k-1</sub></h:math>). For <h:math>(1-P)</h:math> fraction of the questions (
+                            <h:math>q<sub>i</sub></h:math>) in the dataset, we include no oracle document and only
+                            include distractor documents (<h:math>d<sub>k</sub></h:math>). We then fine-tune the
+                            language model using standard supervised training (SFT) technique, training it to generate
+                            answers from the provided documents and question. The figure below illustrates the
+                            high-level design principal for RAFT.
+                        </p>
+
+                        <p>We demonstrate that our RAG approach trains the model to perform better RAG on the set of
+                            documents it is trained on i.e., in-domain. By removing the oracle documents in some
+                            instances of the training data, we are compelling the model to memorize domain-knowledge.
+                            The training data for RAFT is as follows, and an example training data can be seen in the
+                            figure below: </p>
+                        <ul>
+                            <li>
+                                <h:math><b>P</b></h:math> % of data: <h:math><b>Q</b></h:math> + <h:math>
+                                    <b>D<sup>*</sup></b>
+                                </h:math> + <h:math><b>D<sub>1</sub></b></h:math> + <h:math>
+                                    <b>D<sub>2</sub></b>
+                                </h:math> + ... + <h:math><b>D<sub>k</sub></b></h:math> =>
+                                <h:math><b>A<sup>*</sup></b></h:math>
+                            </li>
+                            <li>
+                                <h:math><b>1-P</b></h:math> % of data: <h:math><b>Q</b></h:math> + <h:math>
+                                    <b>D<sub>1</sub></b>
+                                </h:math> + <h:math><b>D<sub>2</sub></b></h:math> + ... +
+                                <h:math><b>D<sub>k</sub></b></h:math> => <h:math><b>A<sup>*</sup></b></h:math>
+                            </li>
+                        </ul>
+
+                        <p style="text-align: center; margin-bottom: 0">
+                            <img src="../assets/img/blog_post_9_RAFT.png" alt="Data" width="95%">
+                            <i style="font-size: 0.9em;">
+                                Train and Test Configuration for RAFT
+                            </i>
+                        </p>
+                        <p></p>
+
+                        <p> We also provide one example of training data of our dataset. This involves questions,
+                            context, instruction and final CoT answer.
+                            In our answer, we use ##begin_quote## and ##end_quote## to denote the beginning and end of a
+                            quote that is directly copy pasted from the context. We found this an efficient way to
+                            prevent the model hallucinate and stick to the contexts provided.
+                        </p>
+
+                        <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
 Question: The Oberoi family is part of a hotel company that has a head office in what city?
 
 context: [The Oberoi family is an Indian family that is famous for its involvement in hotels, namely through The Oberoi Group]...[It is located in city center of Jakarta, near Mega Kuningan, adjacent to the sister JW Marriott Hotel. It is operated by The Ritz-Carlton Hotel Company. The complex has two towers that comprises a hotel and the Airlangga Apartment respectively]...[The Oberoi Group is a hotel company with its head office in Delhi.]
@@ -146,53 +229,73 @@ Instruction: Given the question, context and answer above, provide a logical rea
 
 CoT Answer: ##Reason: The document ##begin_quote## The Oberoi family is an Indian family that is famous for its involvement in hotels, namely through The Oberoi Group. ##end_quote## establishes that the Oberoi family is involved in the Oberoi group, and the document ##begin_quote## The Oberoi Group is a hotel company with its head office in Delhi. ##end_quote## establishes the head office of The Oberoi Group. Therefore, the Oberoi family is part of a hotel company whose head office is in Delhi. ##Answer: Delhi
                     </pre>
-                    <p style="font-size: 0.9em; text-align: center;margin-bottom: 0">
-                        Example of our RAFT training data. 
-                    </p>
-                    <p></p>
-                    
-                 <h4 id="benchmarking">RAFT Evaluation 📊</h4>
+                        <p style="font-size: 0.9em; text-align: center;margin-bottom: 0">
+                            Example of our RAFT training data.
+                        </p>
+                        <p></p>
 
-                 <p>
-                    In our experiments, we use the following datasets to evaluate our model and all baselines. 
-                    We select these datasets from both popular and diverse domains including Wikipedia, Coding/API documents, and medical question answering.
-                    <ul>
-                        <li> Natural Questions (NQ), Trivia QA and Hotpot QA are the open-domain questions based on Wikipedia, mainly focused on common knowledge (e.g., movies, sports, etc). </li>
-                        <li> HuggingFace, Torch Hub, and TensorFlow Hub are from the APIBench proposed in the Gorilla paper. These benchmarks mainly concern about how to generate correct functional API calls based on the documentation. </li>
-                        <li> PubMed QA is the question-answering dataset tailored only for biomedical research question answering. It mainly focuses on answering medical and biology questions based on a given set of documents.</li>
-                    </ul>
-                 </p>
+                        <h4 id="benchmarking">RAFT Evaluation 📊</h4>
 
-                 <p>
-                    We consider the following baselines for our experiments: 
-                    <ul>
-                        <li> LlaMA2-7B-chat model with 0-shot prompting: this is the commonly used instruction-tuned model for QA tasks, with clearly written instructions but no reference documentation. </li>
-                        <li> LlaMA2-7B-chat model with RAG (Llama2 + RAG): similar to the previous setting, but differently we add on the reference context. This is the most used combination when dealing with domain-specific QA tasks.</li>
-                        <li> Domain-Specific Finetuning with 0-shot prompting (DSF): Performing standard instruction-finetuning without documents in the context. </li>
-                        <li> Domain-Specific Finetuning with RAG (DSF + RAG): Equip a domain-specific finetuned model with external knowledge using RAG. So, for the "knowledge" the model doesn't know, it can still refer to the context. </li>
-                    </ul>
-                 </p>
+                        <p>
+                            In our experiments, we use the following datasets to evaluate our model and all baselines.
+                            We select these datasets from both popular and diverse domains including Wikipedia,
+                            Coding/API documents, and medical question answering.
+                        <ul>
+                            <li> Natural Questions (NQ), Trivia QA and Hotpot QA are the open-domain questions based on
+                                Wikipedia, mainly focused on common knowledge (e.g., movies, sports, etc). </li>
+                            <li> HuggingFace, Torch Hub, and TensorFlow Hub are from the APIBench proposed in the
+                                Gorilla paper. These benchmarks mainly concern about how to generate correct functional
+                                API calls based on the documentation. </li>
+                            <li> PubMed QA is the question-answering dataset tailored only for biomedical research
+                                question answering. It mainly focuses on answering medical and biology questions based
+                                on a given set of documents.</li>
+                        </ul>
+                        </p>
 
-                 <p style="text-align: center; margin-bottom: 0">
-                    <img src="../assets/img/blog_post_9_table.png" alt="Gorilla Input and Output" width="95%">
-                        <i style="font-size: 0.9em;">
-                            Results of RAFT on Medical (PubMed), General-knowledge (HotPotQA), and API (Gorilla) benchmarks. 
-                        </i>
-                </p>
-                <p></p>
+                        <p>
+                            We consider the following baselines for our experiments:
+                        <ul>
+                            <li> LlaMA2-7B-chat model with 0-shot prompting: this is the commonly used instruction-tuned
+                                model for QA tasks, with clearly written instructions but no reference documentation.
+                            </li>
+                            <li> LlaMA2-7B-chat model with RAG (Llama2 + RAG): similar to the previous setting, but
+                                differently we add on the reference context. This is the most used combination when
+                                dealing with domain-specific QA tasks.</li>
+                            <li> Domain-Specific Finetuning with 0-shot prompting (DSF): Performing standard
+                                instruction-finetuning without documents in the context. </li>
+                            <li> Domain-Specific Finetuning with RAG (DSF + RAG): Equip a domain-specific finetuned
+                                model with external knowledge using RAG. So, for the "knowledge" the model doesn't know,
+                                it can still refer to the context. </li>
+                        </ul>
+                        </p>
+
+                        <p style="text-align: center; margin-bottom: 0">
+                            <img src="../assets/img/blog_post_9_table.png" alt="Gorilla Input and Output" width="95%">
+                            <i style="font-size: 0.9em;">
+                                Results of RAFT on Medical (PubMed), General-knowledge (HotPotQA), and API (Gorilla)
+                                benchmarks.
+                            </i>
+                        </p>
+                        <p></p>
 
 
-                <h4 id="benchmarking">Train your own RAFT 💡</h4>
+                        <h4 id="benchmarking">Train your own RAFT 💡</h4>
 
-                <p>
-                    We specially thanks to Microsoft and Meta for the joint blog and enbaling us to train your own RAFT model with Llama2-series models and Azure AI Studio. 
-                    The following steps are a short tutorial on how to train your own RAFT model for RAG applications, starting from dataset prepararation, to model finetuning and finally model depoloyment.
-                </p>
+                        <p>
+                            We specially thanks to Microsoft and Meta for the joint blog and enabling us to train your
+                            own RAFT model with Llama2-series models and Azure AI Studio.
+                            The following steps are a short tutorial on how to train your own RAFT model for RAG
+                            applications, starting from dataset preparation, to model finetuning and finally model
+                            deployment.
+                        </p>
 
-                <p><mark>Dataset Prepararation</mark>: We provide one example to prepare the dataset for RAFT. The dataset is a collection of questions, context, and answers. The context is a collection of documents, and the answer is a chain-of-thought style answer generated from one of the documents with the help of GPT-4. Please see one example below. 
-                </p>
+                        <p><mark>Dataset Preparation</mark>: We provide one example to prepare the dataset for RAFT.
+                            The dataset is a collection of questions, context, and answers. The context is a collection
+                            of documents, and the answer is a chain-of-thought style answer generated from one of the
+                            documents with the help of GPT-4. Please see one example below.
+                        </p>
 
-                <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
+                        <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
 Question: The Oberoi family is part of a hotel company that has a head office in what city?
 
 context: [The Oberoi family is an Indian family that is famous for its involvement in hotels, namely through The Oberoi Group]...[It is located in city center of Jakarta, near Mega Kuningan, adjacent to the sister JW Marriott Hotel. It is operated by The Ritz-Carlton Hotel Company. The complex has two towers that comprises a hotel and the Airlangga Apartment respectively]...[The Oberoi Group is a hotel company with its head office in Delhi.]
@@ -200,202 +303,251 @@ context: [The Oberoi family is an Indian family that is famous for its involveme
 CoT Answer: ##Reason: The document ##begin_quote## The Oberoi family is an Indian family that is famous for its involvement in hotels, namely through The Oberoi Group. ##end_quote## establishes that the Oberoi family is involved in the Oberoi group, and the document ##begin_quote## The Oberoi Group is a hotel company with its head office in Delhi. ##end_quote## establishes the head office of The Oberoi Group. Therefore, the Oberoi family is part of a hotel company whose head office is in Delhi. ##Answer: Delhi
                 </pre>
 
-                <p><mark>Model Finetuning</mark>: 
-                    We would train the model to output the CoT answer based on the question and the proivded context. The base model, Llama2-7B is suitable for RAG tasks, where the tasks require a combination of the model's ability to reason, understand language, have lower-latency inference, and be easily adaptable to diverse settings. Llama2-7B fit the bill well- it's a good base model for a lot of the general-knowledge, question-answering tasks, with encouraging math skills, and the ability to parse reasonably long documents due to its 4k pre-training. Llama2-7B is also a perfect model for training on 4 A100-40G GPUs and serving on a single one. Thereby in the pareto curve or performance, ease-of-deployment, and with the right licensing, the LLaMA2 model is quite apt for the RAFT task. With the help of Microsoft AI studio, users can also explore Llama-13b or 70b as well. Below is a screenshot that shows the model finetuning process on Azure AI Studio.
-                </p>
+                        <p><mark>Model Finetuning</mark>:
+                            We would train the model to output the CoT answer based on the question and the provided
+                            context. The base model, Llama2-7B is suitable for RAG tasks, where the tasks require a
+                            combination of the model's ability to reason, understand language, have lower-latency
+                            inference, and be easily adaptable to diverse settings. Llama2-7B fit the bill well- it's a
+                            good base model for a lot of the general-knowledge, question-answering tasks, with
+                            encouraging math skills, and the ability to parse reasonably long documents due to its 4k
+                            pre-training. Llama2-7B is also a perfect model for training on 4 A100-40G GPUs and serving
+                            on a single one. Thereby in the pareto curve or performance, ease-of-deployment, and with
+                            the right licensing, the LLaMA2 model is quite apt for the RAFT task. With the help of
+                            Microsoft AI studio, users can also explore Llama-13b or 70b as well. Below is a screenshot
+                            that shows the model finetuning process on Azure AI Studio.
+                        </p>
 
-                <p style="text-align: center; margin-bottom: 0">
-                    <img src="../assets/img/blog_post_9_finetune.png" alt="Gorilla Input and Output" width="95%">
-                        <i style="font-size: 0.9em;">
-                            Finetune Llama2-7B on Azure AI Studio
-                        </i>
-                </p>
-                <p></p>
+                        <p style="text-align: center; margin-bottom: 0">
+                            <img src="../assets/img/blog_post_9_finetune.png" alt="Gorilla Input and Output"
+                                width="95%">
+                            <i style="font-size: 0.9em;">
+                                Finetune Llama2-7B on Azure AI Studio
+                            </i>
+                        </p>
+                        <p></p>
 
-                <p><mark>Model Deployment</mark>: 
-                    Once the model is trained, you can freely deploy it on your own GPUs (or CPUs through llama.cpp); an alternative is to deploy it on Microsoft AI Studio. The following image shows the model deployment process on Azure AI Studio.
-                    Thanks to the help of Meta Llama-2 and Microsoft AI Studio, it is easy to fine-tune and deploy LLMs for enterprises, greatly enabling the deployments of custom models for different enterprises.
-                </p>
+                        <p><mark>Model Deployment</mark>:
+                            Once the model is trained, you can freely deploy it on your own GPUs (or CPUs through
+                            llama.cpp); an alternative is to deploy it on Microsoft AI Studio. The following image shows
+                            the model deployment process on Azure AI Studio.
+                            Thanks to the help of Meta Llama-2 and Microsoft AI Studio, it is easy to fine-tune and
+                            deploy LLMs for enterprises, greatly enabling the deployments of custom models for different
+                            enterprises.
+                        </p>
 
-                <p style="text-align: center; margin-bottom: 0">
-                    <img src="../assets/img/blog_post_9_raft_aistudio.png" alt="Gorilla Input and Output" width="95%">
-                        <i style="font-size: 0.9em;">
-                            Deploy Llama2-7B on Azure AI Studio
-                        </i>
-                </p>
-                <p></p>
-                
-<h4 id="benchmarking">Conclusion</h4>
-<div class="body">
-<p>
-    RAFT is a training strategy designed to enhance the model's performance in answering questions within a specific domain, in "open-book" settings. This technique demonstrates a fine-tuning recipe for LLMs for question-answering tasks based on a selected collection of documents. We have pinpointed several crucial design decisions, such as training the model alongside distractor documents, organizing the dataset so a portion lacks oracle documents in their context, and formulating answers in a chain-of-thought manner with direct quotations from the relevant text. Our evaluations on PubMed, Hotpot QA, and Gorilla API Bench underline RAFT's significant potential.  
+                        <p style="text-align: center; margin-bottom: 0">
+                            <img src="../assets/img/blog_post_9_raft_aistudio.png" alt="Gorilla Input and Output"
+                                width="95%">
+                            <i style="font-size: 0.9em;">
+                                Deploy Llama2-7B on Azure AI Studio
+                            </i>
+                        </p>
+                        <p></p>
 
-    Looking forward, we anticipate that in-domain Retrieval-Augmented Generation (RAG) will continue to gain interest within both industrial and academic spheres. Unlike general-RAG, our work addresses practical scenarios where LLMs are tasked with answering questions using domain-specific knowledge. Aligning with current trends, our findings suggest that smaller, fine-tuned models are capable of performing comparably well in domain-specific question-answering tasks, in contrast to their generic LLM counterparts.
-</p>
+                        <h4 id="benchmarking">Conclusion</h4>
+                        <div class="body">
+                            <p>
+                                RAFT is a training strategy designed to enhance the model's performance in answering
+                                questions within a specific domain, in "open-book" settings. This technique demonstrates
+                                a fine-tuning recipe for LLMs for question-answering tasks based on a selected
+                                collection of documents. We have pinpointed several crucial design decisions, such as
+                                training the model alongside distractor documents, organizing the dataset so a portion
+                                lacks oracle documents in their context, and formulating answers in a chain-of-thought
+                                manner with direct quotations from the relevant text. Our evaluations on PubMed, Hotpot
+                                QA, and Gorilla API Bench underline RAFT's significant potential.
 
-<p>
-                    We hope you enjoyed this blog post. We would love to hear from you on <a href="https://discord.gg/grXXvj9Whz">Discord</a>, <a href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter (#GorillaLLM)</a>, and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br> 
-                </p>
-                <p id="raft-bibtex">
-                    If you would like to cite RAFT:<br>
-                    @inproceedings{raft2024,<br>
-                    &nbsp; 	title={RAFT: Adapting Language Model to Domain Specific RAG},<br>
-                    &nbsp; 	author={Tianjun Zhang and Shishir G. Patil and Naman Jain and Sheng Shen and Matei Zaharia and Ion Stoica and Joseph E. Gonzalez},<br>
-                    &nbsp; 	year={2024},<br>
-                    &nbsp;	journal={arXiv preprint arXiv:2403.10131}<br>
-                }</p>
+                                Looking forward, we anticipate that in-domain Retrieval-Augmented Generation (RAG) will
+                                continue to gain interest within both industrial and academic spheres. Unlike
+                                general-RAG, our work addresses practical scenarios where LLMs are tasked with answering
+                                questions using domain-specific knowledge. Aligning with current trends, our findings
+                                suggest that smaller, fine-tuned models are capable of performing comparably well in
+                                domain-specific question-answering tasks, in contrast to their generic LLM counterparts.
+                            </p>
+
+                            <p>
+                                We hope you enjoyed this blog post. We would love to hear from you on <a
+                                    href="https://discord.gg/grXXvj9Whz">Discord</a>, <a
+                                    href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter
+                                    (#GorillaLLM)</a>, and <a
+                                    href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br>
+                            </p>
+                            <p id="raft-bibtex">
+                                If you would like to cite RAFT:<br>
+                                @inproceedings{raft2024,<br>
+                                &nbsp; title={RAFT: Adapting Language Model to Domain Specific RAG},<br>
+                                &nbsp; author={Tianjun Zhang and Shishir G. Patil and Naman Jain and Sheng Shen and
+                                Matei Zaharia and Ion Stoica and Joseph E. Gonzalez},<br>
+                                &nbsp; year={2024},<br>
+                                &nbsp; journal={arXiv preprint arXiv:2403.10131}<br>
+                                }</p>
 
 
 
+                        </div>
+                    </div>
             </div>
-        </div>
-    </div>
 
-    <style>
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: white;
-            justify-content: center;
-            align-items: center;
-        }
-        .centered-text {
-            text-align: center;
-            display: block; /* Ensure the <i> element takes up the full width available */
-            margin: 0 auto; /* Center the element horizontally */
-        }
-        .container {
-            display: flex;
-        }
+            <style>
+                body {
+                    font-family: 'Source Sans Pro', sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background: white;
+                    justify-content: center;
+                    align-items: center;
+                }
 
-        .code-block {
-            width: 100%;
-            padding: 10px;
-            flex: 1; /* This makes each code block take equal width */
-        }
-        .blog-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .blog-post {
-            margin: 20px;
-            padding: 20px;
-            max-width: 1000px; 
-            justify-content: center;
-        }
-        .blog-post img {
-            display: block;
-            margin: 0 auto;
-        }
-        .blog-title{
-            color: #055ada;
-            text-align: center;
-        }
+                .centered-text {
+                    text-align: center;
+                    display: block;
+                    /* Ensure the <i> element takes up the full width available */
+                    margin: 0 auto;
+                    /* Center the element horizontally */
+                }
 
-        .author {
-                font-size: 16px;
-                color: #1E90FF;
-                margin-right: 20px;
-        }
+                .container {
+                    display: flex;
+                }
 
-        .date {
-            font-size: 16px;
-            color: #7e8790;
-        }
+                .code-block {
+                    width: 100%;
+                    padding: 10px;
+                    flex: 1;
+                    /* This makes each code block take equal width */
+                }
 
-        .preview {
-            text-align: justify; 
-            text-justify: inter-word; 
-        }
+                .blog-container {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                }
 
-        .highlight-clean-blog {
-            color: #313437;
-            background-color: #fff;
-            padding: 50px 0;
-        }
+                .blog-post {
+                    margin: 20px;
+                    padding: 20px;
+                    max-width: 1000px;
+                    justify-content: center;
+                }
 
-        .box-index {
-        position: fixed;
-        top: 50%; 
-        left: 0px; 
-        transform: translateY(-50%);
-        background-color: #f9f9f9;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        max-width: 150px;
-        }
+                .blog-post img {
+                    display: block;
+                    margin: 0 auto;
+                }
 
-        .box-index h3 {
-        font-size: 1.2em;
-        margin-bottom: 10px;
-        }
+                .blog-title {
+                    color: #055ada;
+                    text-align: center;
+                }
 
-        .box-index ul {
-        list-style-type: disc;
-        padding: 0;
-        }
+                .author {
+                    font-size: 16px;
+                    color: #1E90FF;
+                    margin-right: 20px;
+                }
 
-        .box-index ul li {
-        margin-bottom: 10px;
-        }
+                .date {
+                    font-size: 16px;
+                    color: #7e8790;
+                }
 
-        .box-index ul li a {
-        text-decoration: none;
-        color: #333;
-        }
+                .preview {
+                    text-align: justify;
+                    text-justify: inter-word;
+                }
 
-        .box-index ul li a:hover {
-        color: #1E90FF;
-        }
+                .highlight-clean-blog {
+                    color: #313437;
+                    background-color: #fff;
+                    padding: 50px 0;
+                }
 
-        .more-blogs .sub-menu {
-            display: none;
-        }
+                .box-index {
+                    position: fixed;
+                    top: 50%;
+                    left: 0px;
+                    transform: translateY(-50%);
+                    background-color: #f9f9f9;
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    max-width: 150px;
+                }
 
-        .more-blogs .sub-menu.expanded {
-            display: block;
-            max-height: 200px; /* Adjust the max height as needed */
-            overflow-y: auto;
-        }
+                .box-index h3 {
+                    font-size: 1.2em;
+                    margin-bottom: 10px;
+                }
 
-        .more-blogs .sub-menu li {
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
+                .box-index ul {
+                    list-style-type: disc;
+                    padding: 0;
+                }
 
-        .more-blogs .sub-menu li:last-child {
-            border-bottom: none;
-        }
+                .box-index ul li {
+                    margin-bottom: 10px;
+                }
 
-        .more-blogs .caret {
-            transition: transform 0.3s ease-in-out;
-            display: inline-block;
-            transform: rotate(0deg);
-            font-size: 12px; /* Adjust the font size to change the caret size */
-        }
+                .box-index ul li a {
+                    text-decoration: none;
+                    color: #333;
+                }
 
-        .more-blogs.expanded .caret {
-            transform: rotate(90deg);
-        }
+                .box-index ul li a:hover {
+                    color: #1E90FF;
+                }
 
-        @media screen and (max-width: 768px) {
-        .blog-post {
-            padding: 10px; /* Adjust spacing for smaller screens */
-        }
-        .blog-post img {
-            max-width: 80%; /* Reduce image size for smaller screens */
-        }
-        .box-index {
-        display: none; /* Hide the index on smaller screens */
-        }
-    }
+                .more-blogs .sub-menu {
+                    display: none;
+                }
 
-    </style>
+                .more-blogs .sub-menu.expanded {
+                    display: block;
+                    max-height: 200px;
+                    /* Adjust the max height as needed */
+                    overflow-y: auto;
+                }
+
+                .more-blogs .sub-menu li {
+                    padding: 10px;
+                    border-bottom: 1px solid #ccc;
+                }
+
+                .more-blogs .sub-menu li:last-child {
+                    border-bottom: none;
+                }
+
+                .more-blogs .caret {
+                    transition: transform 0.3s ease-in-out;
+                    display: inline-block;
+                    transform: rotate(0deg);
+                    font-size: 12px;
+                    /* Adjust the font size to change the caret size */
+                }
+
+                .more-blogs.expanded .caret {
+                    transform: rotate(90deg);
+                }
+
+                @media screen and (max-width: 768px) {
+                    .blog-post {
+                        padding: 10px;
+                        /* Adjust spacing for smaller screens */
+                    }
+
+                    .blog-post img {
+                        max-width: 80%;
+                        /* Reduce image size for smaller screens */
+                    }
+
+                    .box-index {
+                        display: none;
+                        /* Hide the index on smaller screens */
+                    }
+                }
+            </style>
 </body>
+
 </html>
 
 <script>
