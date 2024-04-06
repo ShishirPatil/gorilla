@@ -114,7 +114,7 @@ If you want to run all evaluation at the same time, you can use `all` as the tes
 
 Running proprietary model like GPTs, Claude, Mistral-X will requires an API-Key which can be supplied in `openfunctions_evaluation.py`.
 
-If decided to run OSS model, openfunctions evaluation uses vllm and therefore requires GPU for hosting and inferencing. If you have questions or concerns about evaluating OSS models, please reach out to us in our [discord channel](https://discord.gg/rgyHBXvw).
+If decided to run OSS model, openfunctions evaluation uses vllm and therefore requires GPU for hosting and inferencing. If you have questions or concerns about evaluating OSS models, please reach out to us in our [discord channel](https://discord.gg/grXXvj9Whz).
 
 
 
@@ -237,7 +237,7 @@ To add new model to the Function Calling Leaderboard, here are a few things you 
 3. Modify `model_handler/handler_map.py`. This mapping contains key as the exact model name and value as the handler object of the specific model. 
 4. If your model is price based, please update the pricing detail, i.e. price per million tokens under `eval_runner_helper.py`
 5. Raise a [Pull Request](https://github.com/ShishirPatil/gorilla/pulls) with your new Model Handler. We will run the model handler if an endpoint is established. If self-hosting is required and the model size is large, we might not be able to accommodate model hosting therefore an OpenAI compatible endpoint for evaluation is desired. 
-6. Feel Free to join [Gorilla Discord Leaderboard Channel](https://discord.gg/rgyHBXvw) and reach out to us for any questions or concerns in adding new models. We are happy to help you!
+6. Feel Free to join [Gorilla Discord](https://discord.gg/grXXvj9Whz) #leaderboard and reach out to us for any questions or concerns in adding new models. We are happy to help you!
 
 
 All the leaderboard statistics, and data used to train the models is released under Apache 2.0.
