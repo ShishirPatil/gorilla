@@ -71,13 +71,13 @@ To run the executable test categories, there are 4 API keys to fill out:
     * Covid 19: https://rapidapi.com/api-sports/api/covid-193
     * Time zone by Location: https://rapidapi.com/BertoldVdb/api/timezone-by-location
 
-    All the Rapid APIs we use have free tier usage. As a result, you need to subscribe to those API providers in order to have the executable test enviornment setup but it will be free of charge!
+    All the Rapid APIs we use have free tier usage. As a result, you need to subscribe to those API providers in order to have the executable test environment setup but it will be free of charge!
 
 2. Exchange Rate API:https://www.exchangerate-api.com
 3. OMDB API: http://www.omdbapi.com/apikey.aspx
 4. Geocode API: https://geocode.maps.co/
 
-The `apply_function_credential_config.py` inputs an input file, optionally an outputs file. If the output file is not given as an argument, it will overwrites your original file with the claned data.
+The `apply_function_credential_config.py` inputs an input file, optionally an outputs file. If the output file is not given as an argument, it will overwrites your original file with the cleaned data.
 
 ```bash
     python apply_function_credential_config.py --input_file ./data/gorilla_openfunctions_v1_test_rest.json
