@@ -41,14 +41,14 @@ Community members can submit to Gorilla API Zoo using the following JSON list fo
 | :---       | :----: |          :----         |   :---:   |
 | user_name     | String       | Name of User   | ✅ |
 | api_name      | String       | Name of API (maximum 20 words)   | ✅ |
-| api_call | String | One line of code that starts with the function call, fullowed by a full list of argument names and values | ✅ |
+| api_call | String | One line of code that starts with the function call, followed by a full list of argument names and values | ✅ |
 | api_version | String | Version of API | ✅ |
 | api_arguments | JSON | JSON of all the restricted keywords in the arguments list | ✅ |
 | functionality | String | Short description of the function (maximum 20 words) | ✅ |
 | env_requirements | List[String] | List of all the library dependencies | [Optional]:fire: |
 | example_code | String | A string containing example code to use the API | [Optional]:fire: |
 | meta_data | JSON | A JSON file of containing additional information about the API | [Optional]:fire: |
-| Questions | List[String] | A question describing a real-life scenario that uses this API. Please donnot include specific API name. | [Optional]:fire: |
+| Questions | List[String] | A question describing a real-life scenario that uses this API. Please do not include specific API name. | [Optional]:fire: |
 
 **Example Submission**:
 
@@ -85,7 +85,7 @@ Community members can submit to Gorilla API Zoo using the following JSON list fo
 
 ### Option 2: URL JSON
 
-We also provide you with a much simpler approach for you to contribute! Provide a simple url to your API documentation, we'll process it for you. Keep in mind, there might be some errors that can creep in with this process and hence we recommend the approach above, or atleast come back to verify if the api documentation we generated for these url's are accurate! They API document generated from the urls will be stored as mentined in the directory structure above.
+We also provide you with a much simpler approach for you to contribute! Provide a simple url to your API documentation, we'll process it for you. Keep in mind, there might be some errors that can creep in with this process and hence we recommend the approach above, or at least come back to verify if the api documentation we generated for these url's are accurate! They API document generated from the urls will be stored as mentioned in the directory structure above.
 
 Submit a json file containing the list of json objects: 
 

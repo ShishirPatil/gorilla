@@ -8,9 +8,9 @@
 
 ## Introduction
 Gorilla OpenFunctions extends Large Language Model(LLM) Chat Completion feature to formulate 
-executable APIs call given natural language instructions and API context. With OpenFunctions v2 7B paramter model,
+executable APIs call given natural language instructions and API context. With OpenFunctions v2 7B parameter model,
 we now support:
-1. Multiple functions - choose betwen functions 
+1. Multiple functions - choose between functions 
 2. Parallel functions - call the same function `N` time with different parameter values
 3. Multiple & parallel - both of the above in a single chatcompletion call (one generation)
 4. Relevance detection - when chatting, chat. When asked for function, returns a function
