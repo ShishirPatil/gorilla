@@ -109,6 +109,15 @@ def convert_to_tool(
                 if "additionalProperties" in params:
                     params["description"] += " Additional properties: " + str(params["additionalProperties"])
                     del params["additionalProperties"]
+                if "items" in params:
+                    params["description"] += " List Items type: " + str(params["items"])
+                    del params["items"]
+                if "properties" in params:
+                    params["description"] += " Dictionary properties: " + str(params["properties"])
+                    del params["properties"]
+                if "enum" in params:
+                    params["description"] += " Possible enum values: " + str(params["enum"])
+                    del params["enum"]
         if model_style in [
             ModelStyle.Anthropic,
             ModelStyle.Google,
