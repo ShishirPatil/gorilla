@@ -10,7 +10,7 @@ class HermesHandler(OSSHandler):
         super().__init__(model_name, temperature, top_p, max_tokens)
 
     def _format_prompt(prompt, function, test_category):
-        # Hermes use Langchain to OpenAI conversion. It does not use tool call but function call. Therefore, it uses the Anthropic 
+        # Hermes use Langchain to OpenAI conversion. It does not use tool call but function call.
         function = convert_to_tool(
             function, GORILLA_TO_OPENAPI, ModelStyle.OSSMODEL, test_category, True
         )
