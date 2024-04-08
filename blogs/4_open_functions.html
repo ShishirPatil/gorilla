@@ -120,7 +120,7 @@
                         <ol>
                         <li>Define Your Functions: Provide a JSON file containing descriptions of your custom functions. Each function should contain fields: <code>name</code> (the name of the API), <code>api_call</code> (how to invoke this API), <code>description</code> (which describes the functionality of the API), and lastly, <code>parameters</code> (a list of parameters pertaining to the API call). Below is an example of API documentation that can feed into OpenFunctions.</li>
                         <pre><code>
-    function_documentaion = {  
+    function_documentation = {  
         "name" : "Order Food on Uber",
         "api_call": "uber.eat.order",
         "description": "Order food on uber eat given a list of items and the quantity of items respectively",
@@ -142,13 +142,13 @@
         }
                         </code></pre>
                         <li>Ask Your Question: Describe what you want as if talking to another person.</li>
-                        <code>I want to order five burgers and six chicken wings from McDonlad.</code>
+                        <code>I want to order five burgers and six chicken wings from McDonald.</code>
                         <li>Get Your Function Call: The model will return a Python function call based on your request.</li>
                         This opens up possibilities for developers and non-developers alike, allowing them to leverage complex functionalities without writing extensive code.</p>
                         <p>Input:</p>
                         <pre><code>
-    get_gorilla_response(prompt="I want to order five burgers and six chicken wings from McDonlad.", 
-                         functions=[function_documentaion])</code></pre>
+    get_gorilla_response(prompt="I want to order five burgers and six chicken wings from McDonald.", 
+                         functions=[function_documentation])</code></pre>
                         <p>Output:</p>
                         <pre><code>
     uber.eat.order(restaurants="McDonald",item=["chicken wings", "burgers"], quantity=[6,5])</code></pre></ol></p>
@@ -160,7 +160,7 @@
                     <p>We are benchmarking our model against current state-of-the-art model, GPT-4-0613, as well as  GPT-4's and GPT-3.5-turbo's function calling features. Our test dataset consists of 116 distinct query and API documentation pairs, crafted by feeding few-shot examples into GPT-3.5-turbo and asking the model to generate APIs from different domains, including travel, finance, scheduling meetings.</p>
                         <img src="../assets/img/blog_post_4_OpenFunctions_Distribution.png" alt="Open functions types of data" width="85%" >
                             <i class="centered-text" style="font-size: 0.9em;" width="85%">
-                                Suprisingly, we observe that GPT-4 and GPT-3.5 function calling perform better than the state-of-the-art GPT-4-Turbo and GPT-4 model tailored for function calling. Our OpenFunctions model is closely behind with tiny margin.
+                                Surprisingly, we observe that GPT-4 and GPT-3.5 function calling perform better than the state-of-the-art GPT-4-Turbo and GPT-4 model tailored for function calling. Our OpenFunctions model is closely behind with tiny margin.
                             </i>
                         <br>
                     <p> To evaluate the quality of the output, we perform a side-by-side examination between a model's output and the 'gold' answer. From the graph above, we can see that GPT-4 and GPT-3.5-Turbo return function calls with a higher success rate, around 95%, compared to GPT-4 function calls. Our 7B parameter llama-v2-based OpenFunctions model follows GPT-4 function calling with a 87.39% success rate.</p>
@@ -174,7 +174,7 @@
         amount of $200,000, an interest rate of <span style="color:#ff0000;">4%</span>, and a 
         loan term of 30 years.",
 "GPT-4 output":
-    "{"name": "financ.calculate_mortgage_payment",
+    "{"name": "finance.calculate_mortgage_payment",
     "arguments": "{"loan_amount": 200000,
                     "interest_rate": <span style="color:#ff0000;">4</span>,
                     "loan_term": 30}"
@@ -286,7 +286,7 @@
                     <p>We are happy to release two models: <code>gorilla-openfunctions-v0</code> and  <code>gorilla-openfunctions-v1</code>. 
                     The <code>gorilla-openfunctions-v0</code> LLM is a 7B parameter model trained on top of the 7B LLaMA-v2-chat instruction-tuned model. 
                     It takes-in the users prompt along with a SINGLE API call and returns the function with the right arguments.
-                    <code>gorilla-openfunctions-v1</code> is a 7B paramter model trained on top of the 7B LLaMA-v2 pre-trained model. <code>gorilla-openfunctions-v1</code> 
+                    <code>gorilla-openfunctions-v1</code> is a 7B parameter model trained on top of the 7B LLaMA-v2 pre-trained model. <code>gorilla-openfunctions-v1</code> 
                     is our advanced model that takes-in the users prompt along with MULTIPLE API calls and returns the function with the right arguments. 
                     It also supports parallel functions! <code>gorilla-openfunctions-v1</code> is in early pre-view, and you can expect it to get much better over the next few days! 
                     All of the results in this blog are generated using <code>gorilla-openfunctions-v0</code>.
