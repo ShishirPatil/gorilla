@@ -89,7 +89,7 @@
                         Calendar, and order a pizza for you. These are all online tasks that can be accomplished through
                         API calls, and Gorilla automatically generates relevant calls given a task.
                         With this functionality, Gorilla effectively has the ability to take actions in the world by
-                        interacting with thousands of services and tools to accompish a wide variety of user-defined
+                        interacting with thousands of services and tools to accomplish a wide variety of user-defined
                         tasks. Gorilla usage falls into 3 primary categories:
 
                     <ol type="I">
@@ -359,7 +359,7 @@
                             <li> Provide a query and set of functions (example below):
                                 <br>
                                 <pre>
-    query = "Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes"
+    query = "Call me an Uber ride type \"Plus\" in Berkeley at zip code 94704 in 10 minutes"
     function_documentation = {  
         "name": "Uber Carpool",
         "api_name": "uber.ride",
@@ -387,7 +387,7 @@
                             <li> Define a response function (example below):
                                 <br>
                                 <pre>
-    def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes", 
+    def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley at zip code 94704 in 10 minutes", 
                              model="gorilla-openfunctions-v2", functions=[]):
         openai.api_key = "EMPTY"
         openai.api_base = "http://luigi.millennium.berkeley.edu:8000/v1"
