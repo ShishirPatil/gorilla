@@ -203,7 +203,7 @@ Below is *a table of model we support* to run our leaderboard evaluation against
 |deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
 |meetkai_functionary-{small,medium}-v2.4-FC| Function Calling|
 |meetkai_functionary-small-v2.2-FC| Function Calling|
-|NousResearch/Hermes-2-Pro-Mistral-7B💻| Function Calling|
+|NousResearch/Hermes-2-Pro-Mistral-7B 💻| Function Calling|
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
 
