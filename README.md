@@ -19,7 +19,7 @@
 
 **:newspaper_roll: Checkout our paper!** [![arXiv](https://img.shields.io/badge/arXiv-2305.15334-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334)
 
-**:wave: Join our Discord!** [![Discord](https://img.shields.io/discord/1111172801899012102?label=Discord&logo=discord&logoColor=green&style=flat-square)](https://discord.gg/SwTyuTAxX3)
+**:wave: Join our Discord!** [![Discord](https://img.shields.io/discord/1111172801899012102?label=Discord&logo=discord&logoColor=green&style=flat-square)](https://discord.gg/grXXvj9Whz)
 
 
 `Gorilla` enables LLMs to use tools by invoking APIs. Given a natural language query, Gorilla comes up with the semantically- and syntactically- correct API to invoke. With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (and growing) API calls accurately while reducing hallucination. We also release APIBench, the largest collection of APIs, curated and easy to be trained on! Join us, as we try to expand the largest API store and teach LLMs how to write them! Hop on our Discord, or open a PR, or email us if you would like to have your API incorporated as well.
@@ -130,7 +130,7 @@ In the immediate future, we plan to release the following:
 - [ ] BFCL metrics to evaluate contamination 
 - [ ] BFCL systems metrics including cost and latency
 - [ ] BFCL update with "live" data and user-votes
-- [ ] Openfunctions-v3 model to support more languges and multi-turn capability 
+- [ ] Openfunctions-v3 model to support more languages and multi-turn capability 
 - [x] Berkeley Function Calling leaderboard (BFCL) for evaluating tool-calling/function-calling models [Feb 26, 2024]
 - [x] Openfunctions-v2 with more languages (Java, JS, Python), relevance detection [Feb 26, 2024]
 - [x] API Zoo Index for easy access to all APIs [Feb 16, 2024]
