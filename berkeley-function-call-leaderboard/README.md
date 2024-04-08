@@ -210,7 +210,7 @@ Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm,
 
 For model names with {.}, it means that the model has multiple versions. For example, we provide evaluation on three versions of GPT-4: `gpt-4-0125-preview`, `gpt-4-1106-preview`, and `gpt-4-0613`.
 
-For Mistral large and small models, we provide evaluation on both of there `Any` and `Auto` settings. More information about this can be found in [here](https://docs.mistral.ai/guides/function-calling/).
+For Mistral large and small models, we provide evaluation on both of their `Any` and `Auto` settings. More information about this can be found [here](https://docs.mistral.ai/guides/function-calling/).
 
 
 For inferencing `Gemini-1.0-pro`, you need to fill in `model_handler/gemini_handler.py` with your GCP project ID that has access to Vertex AI endpoint.
@@ -218,7 +218,8 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 
 ## Changelog
-* [April 8, 2024] [#327](https://github.com/ShishirPatil/gorilla/pull/327): Introduces support for `NousResearch/Hermes-2-Pro-Mistral-7B`, [#328](https://github.com/ShishirPatil/gorilla/pull/328) `NousResearch/Hermes-2-Pro-Mistral-7B` evaluated results added to leaderboard.
+
+* [April 8, 2024] [#327](https://github.com/ShishirPatil/gorilla/pull/327): Add new model `NousResearch/Hermes-2-Pro-Mistral-7B` to the leaderboard.
 * [April 3, 2024] [#309](https://github.com/ShishirPatil/gorilla/pull/309): Bug fix for evaluation dataset possible answers. Implement **string standardization** for the AST evaluation pipeline, i.e. removing white spaces and a subset of punctuations (`,./-_*^`) to make the AST evaluation more robust and accurate. Fixed AST evaluation issue for type `tuple`. Add 2 new models `meetkai/functionary-small-v2.4 (FC)`, `meetkai/functionary-medium-v2.4 (FC)` to the leaderboard.
 * [April 1, 2024] [#299](https://github.com/ShishirPatil/gorilla/pull/299): Leaderboard update with new models (`Claude-3-Haiku`, `Databrick-DBRX-Instruct`), more advanced AST evaluation procedure, and updated evaluation datasets. Cost and latency statistics during evaluation are also measured. We also released the manual that our evaluation procedure is based on, available [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#metrics).
 * [Mar 11, 2024] [#254](https://github.com/ShishirPatil/gorilla/pull/254): Leaderboard update with 3 new models: `Claude-3-Opus-20240229 (Prompt)`, `Claude-3-Sonnet-20240229 (Prompt)`, and `meetkai/functionary-medium-v2.2 (FC)`
@@ -228,16 +229,16 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 ## Contributing
 
-To add new model to the Function Calling Leaderboard, here are a few things you need to do:
+To add a new model to the Function Calling Leaderboard, here are a few things you need to do:
 
 1. Take a look at the `model_handler/handler.py`. This is the base handler object where all handlers are inherited from 
 2. Create your handler and define the following functions 
     1. `__init__`: on initialization, you need to create a `self.client` object if you have an existing endpoint(e.g. `self.client = OpenAI()`) or follow `model_handler/oss_handler.py` for starting a vLLM serving.
-    2. `inference`: inference function takes in prompt, functions, as well as a optional programming language parameters. It will make call to the endpoint, compile result in desired format, as well as logging the token number and latency
+    2. `inference`: inference function takes in prompt, functions, as well as a optional programming language parameters. It will make call to the endpoint, compile result in the desired format, as well as logging the token number and latency
     3. `decode_ast`: decode_ast will convert the response from raw output in the format of `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}] This format will be used to check for exact matching the parameters.
     4. `decode_execute`: deocde_execute will convert the response from raw output in the format of `"[func1(param1=val1),func2(param2=val2)]"`
-3. Modify `model_handler/handler_map.py`. This mapping contains key as the exact model name and value as the handler object of the specific model. 
-4. If your model is price based, please update the pricing detail, i.e. price per million tokens under `eval_runner_helper.py`
+3. Modify `model_handler/handler_map.py`. This mapping contains the key as the exact model name and value as the handler object of the specific model. 
+4. If your model is price-based, please update the pricing detail, i.e. price per million tokens under `eval_runner_helper.py`
 5. Raise a [Pull Request](https://github.com/ShishirPatil/gorilla/pulls) with your new Model Handler. We will run the model handler if an endpoint is established. If self-hosting is required and the model size is large, we might not be able to accommodate model hosting therefore an OpenAI compatible endpoint for evaluation is desired. 
 6. Feel Free to join [Gorilla Discord](https://discord.gg/grXXvj9Whz) `#leaderboard` and reach out to us for any questions or concerns in adding new models. We are happy to help you!
 

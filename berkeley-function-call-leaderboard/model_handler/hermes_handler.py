@@ -27,7 +27,12 @@ You are a function calling AI model. You are provided with function signatures w
 {prompt}
 <|im_end|>
         """
-        return formatted_prompt.format(function=function, pydantic_format=pydantic_format,tool_call_format=tool_call_format,prompt=prompt)
+        return formatted_prompt.format(
+            function=function,
+            pydantic_format=pydantic_format,
+            tool_call_format=tool_call_format,
+            prompt=prompt,
+        )
 
     def inference(
         self, question_file, test_category, num_gpus, format_prompt_func=_format_prompt
@@ -47,18 +52,19 @@ You are a function calling AI model. You are provided with function signatures w
                 flag = False
             else:
                 if flag:
-                    line = line.replace("'", "\"")
+                    line = line.replace("'", '"')
                     tool_result = json.loads(line)
                     if language == "Python":
                         pass
                     else:
                         # all values of the json are casted to string for java and javascript
                         for key in tool_result["arguments"]:
-                            tool_result["arguments"][key] = str(tool_result["arguments"][key])
+                            tool_result["arguments"][key] = str(
+                                tool_result["arguments"][key]
+                            )
                     func_call.append({tool_result["name"]: tool_result["arguments"]})
                 flag = False
         return func_call
-
 
     def decode_execute(self, result):
         lines = result.split("\n")
@@ -71,9 +77,11 @@ You are a function calling AI model. You are provided with function signatures w
                 flag = False
             else:
                 if flag:
-                    line = line.replace("'", "\"")
+                    line = line.replace("'", '"')
                     tool_result = json.loads(line)
-                    function_call_list.append({tool_result["name"]: tool_result["arguments"]})
+                    function_call_list.append(
+                        {tool_result["name"]: tool_result["arguments"]}
+                    )
                 flag = False
         execution_list = []
         for function_call in function_call_list:
