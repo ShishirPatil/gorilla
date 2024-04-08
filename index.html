@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/Team-Clean.css">
     <link rel="stylesheet" href="assets/css/contact_main_page.css">
-
+    <link rel="stylesheet" href="assets/css/main_page.css">
 </head>
 
 <body>
@@ -34,8 +34,7 @@
         <a href="apizoo/">API Zoo Index</a>
     </div>
     <div class="highlight-clean" style="padding-bottom: 10px;">
-            <h1 class="text-center"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
-        <div><p></p></div>
+        <h1 class="text-center" style="margin-left: 10px; margin-right: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
         <div class="container" style="max-width: 768px;background:white;">
             <div class="row">
                 <div class="col-md-12">
@@ -84,11 +83,11 @@
                 <div class="col-md-12 text-center"><img src="assets/img/gorilla_method.png" 
                     style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
                 </div>
-                <em>Gorilla is a LLM that can provide appropriate API calls. 
+                <p class="col-md-12" style="color: black;margin-bottom: 2px; margin-left: 10px; margin-right: 10px;">Gorilla is a LLM that can provide appropriate API calls. 
                     It is trained on three massive machine learning hub datasets: Torch Hub, TensorFlow Hub and HuggingFace. 
                     We are rapidly adding new domains, including Kubernetes, GCP, AWS, OpenAPI, and more.
                     Zero-shot Gorilla outperforms GPT-4, Chat-GPT and Claude. 
-                    Gorilla is extremely reliable, and significantly reduces hallucination errors.</em>
+                    Gorilla is extremely reliable, and significantly reduces hallucination errors.</p>
             </div>
         </div>
     </div>
@@ -96,7 +95,7 @@
     <!-- Contributions -->
     <div class="container news-container" style="max-width: 768px;background: #f0f7ff;">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 text-center">
                 <h2>News</h2>
             </div>
             <div class="col-md-12">
@@ -129,173 +128,15 @@ function initializeSpinnerTexts() {
 
 window.onload = initializeSpinnerTexts
     </script>
-    <style>
-        body {
-            font-family: 'Source Sans Pro', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: white;
-        }
-    
-        .container {
-            padding: 20px;
-            margin: 0 auto;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            background: white;
-            margin-bottom: 30px;
-        }
-
-        .news-container {
-            max-height: 200px; 
-            overflow-y: auto; 
-        }
-    
-        h1, h2, h3, h4, h5, h6 {
-            color: #333;
-        }
-    
-        /* Button Background */
-        .btn-primary {
-            background:white;
-            border-color: white;
-        }
-    
-        .btn-primary:hover {
-            background: white;
-            border-color: white;
-        }
-    
-        /* Footer Gradient Background */
-        .container:last-child {
-            background: white; 
-            color: white;
-        }
-    
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-    
-        em {
-            font-style: italic;
-            color: black;
-        }
-
-        .api-appstore {
-            margin-bottom: 20px;
-        }
-
-
-        .spinner {
-  position: relative; /* Change to relative for responsiveness */
-  overflow: hidden;
-}
-
-.spinner__text {
-  position: relative;
-  display: inline-block;
-  width: 50px; /* Adjust the width as needed */
-  text-align: center;
-}
-
-.spinner__text--top,
-.spinner__text--bottom {
-  display: inline-block;
-  animation: 1s ease 1.05s infinite running none;
-}
-
-.spinner__text--top {
-  animation-name: spinTop;
-}
-
-/* Bottom text spinner has to be configured so that it is positioned
-right at the same position as the top one */
-.spinner__text--bottom {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  animation-name: spinBottom;
-}
-
-@keyframes spinTop {
-  from { transform: translateY(0%); }
-  to { transform: translateY(-100%); }
-}
-
-@keyframes spinBottom {
-  from {
-    opacity: 1;
-    transform: translateY(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-}
-
-@media screen and (max-width: 768px) {
-    .spinner {
-  position: relative; /* Change to relative for responsiveness */
-  overflow: hidden;
-}
-
-.spinner__text {
-  position: relative;
-  display: inline-block;
-  width: 50px; /* Adjust the width as needed */
-  text-align: center;
-}
-
-.spinner__text--top,
-.spinner__text--bottom {
-  display: inline-block;
-  animation: 1.5s ease 2s infinite running none;
-}
-
-.spinner__text--top {
-  animation-name: spinTop;
-}
-
-/* Bottom text spinner has to be configured so that it is positioned
-right at the same position as the top one */
-.spinner__text--bottom {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  animation-name: spinBottom;
-}
-
-@keyframes spinTop {
-  from { transform: translateY(0%); }
-  to { transform: translateY(-100%); }
-}
-
-@keyframes spinBottom {
-  from {
-    opacity: 1;
-    transform: translateY(100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0%);
-  }
-}
-}
-
-    </style>
 <!-- Gorilla CLI and Spotlight -->
 
 <div class="container" style="max-width: 768px;">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 text-center">
             <h2>Gorilla for your CLI and Spotlight Search</h2>
         </div>
         <div class="col-md-6">
-            <div class="responsive-iframe-container">
+            <div class="col-md-12 text-center">
                 <iframe src="https://www.youtube.com/embed/4EdyWkcddPc"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -306,7 +147,7 @@ right at the same position as the top one */
                 Get started with <code>pip install gorilla-cli</code></p>
         </div>
         <div class="col-md-6">
-            <div class="responsive-iframe-container">
+            <div class="col-md-12 text-center">
                 <iframe src="https://www.youtube.com/embed/RMgM3tPTpXI"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -329,7 +170,7 @@ right at the same position as the top one */
             <img src="assets/img/blog_post_1_teaser.gif" 
             style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
         </div>
-        <em>Rather have the user at the center, Gorilla enables users to interact with a wide range of services through LLMs. Gorilla is an open-source, state-of-the-art
+        <em class="col-md-12" style="margin-left: 10px; margin-right: 10px;">Rather have the user at the center, Gorilla enables users to interact with a wide range of services through LLMs. Gorilla is an open-source, state-of-the-art
             LLM that invokes API calls to interact with services! </em>
     </div>
 </div>
@@ -337,9 +178,11 @@ right at the same position as the top one */
 <!-- Abstract -->
 <div class="container" style="max-width: 768px;">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 text-center">
             <h2>Abstract</h2>
-            <p style="text-align: justify; color: black;">
+        </div>
+        <div>
+            <p class="col-md-12" style="color: black;margin-bottom: 2px">
                 Large Language Models (LLMs) have seen an impressive wave of advances recently,
                 with models now excelling in a variety of tasks, such as mathematical reasoning and program synthesis.
                 However, their potential to effectively use tools via API calls remains unfulfilled.
@@ -361,13 +204,13 @@ right at the same position as the top one */
 <!-- Result -->
 <div class="container" style="max-width: 768px;background: #f0f7ff">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 text-center">
             <h2>Example</h2>
         </div>
         <div class="col-md-12 text-center"><img src="assets/img/results.png"
-                style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
+                style="width: 80%;margin-bottom: 14px;" alt="Gorilla LLM logo">
         </div>
-        <em>Example API calls generated by GPT-4, Claude, and Gorilla for the
+        <em class="col-md-12" style="margin-left: 10px; margin-right: 10px;">Example API calls generated by GPT-4, Claude, and Gorilla for the
             given prompt. In this example, GPT-4 presents a model that doesn’t exist, and Claude
             picks an incorrect library. In contrast, our model, Gorilla, can identify the task correctly
             and suggest a fully-qualified API call.</em>
@@ -377,14 +220,16 @@ right at the same position as the top one */
 <!-- Citation -->
 <div class="container" style="max-width: 768px">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 text-center">
             <h2>Citation</h2>
-            <code>
+        </div>
+        <div class="col-md-12">
+            <code class="citation">
                 @article{patil2023gorilla,<br>
-                    &nbsp;  title={Gorilla: Large Language Model Connected with Massive APIs}, <br>
-                    &nbsp;  author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},<br>
-                    &nbsp;  journal={arXiv preprint arXiv:2305.15334},<br>
-                    &nbsp;  year={2023},<br>
+                    <code class="citation" style="padding-left: 5px;">  title={Gorilla: Large Language Model Connected with Massive APIs},<br>
+                    author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},<br>
+                    journal={arXiv preprint arXiv:2305.15334},<br>
+                    year={2023},</code><br>
                 }
             </code>
         </div>
@@ -393,7 +238,7 @@ right at the same position as the top one */
 <!-- Contact Us -->
 <div class="container" style="max-width: 768px">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 text-center">
             <h2>Contact Us</h2>
             <div class="row">
                 <div class="col-md-12">

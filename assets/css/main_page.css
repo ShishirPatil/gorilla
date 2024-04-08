@@ -1,0 +1,207 @@
+/* Bars to separate titles in nav bar */
+/* For computers */
+/*
+.navbar {
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.navbar a:not(:last-child)::after {
+    content: "|";
+    margin: 0 7px;
+    color: #000;
+}
+
+@media (min-width: 500px) {
+    .navbar {
+        position: absolute;
+        top: 0;
+        right: 20px;
+        text-align: right;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .navbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+*/
+/* Citation */
+.citation {
+    display: inline-block;
+    top: 0px;
+    margin-left: 12px;
+}
+
+/* Spinner Text */
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: white;
+}
+
+.container {
+    padding: 20px;
+    margin: 0 auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background: white;
+    margin-bottom: 30px;
+}
+
+.news-container {
+    max-height: 200px; 
+    overflow-y: auto; 
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #333;
+}
+
+/* Button Background */
+.btn-primary {
+    background:white;
+    border-color: white;
+}
+
+.btn-primary:hover {
+    background: white;
+    border-color: white;
+}
+
+/* Footer Gradient Background */
+.container:last-child {
+    background: white; 
+    color: white;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+em {
+    font-style: italic;
+    color: black;
+}
+
+.api-appstore {
+    margin-bottom: 20px;
+}
+
+
+.spinner {
+position: relative; /* Change to relative for responsiveness */
+overflow: hidden;
+}
+
+.spinner__text {
+position: relative;
+display: inline-block;
+width: 50px; /* Adjust the width as needed */
+text-align: center;
+}
+
+.spinner__text--top,
+.spinner__text--bottom {
+display: inline-block;
+animation: 1s ease 1.05s infinite running none;
+}
+
+.spinner__text--top {
+animation-name: spinTop;
+}
+
+/* Bottom text spinner has to be configured so that it is positioned
+right at the same position as the top one */
+.spinner__text--bottom {
+position: absolute;
+top: 0;
+left: 0;
+opacity: 0;
+animation-name: spinBottom;
+}
+
+@keyframes spinTop {
+from { transform: translateY(0%); }
+to { transform: translateY(-100%); }
+}
+
+@keyframes spinBottom {
+from {
+opacity: 1;
+transform: translateY(100%);
+}
+to {
+opacity: 1;
+transform: translateY(0%);
+}
+}
+
+@media screen and (max-width: 768px) {
+.spinner {
+position: relative; /* Change to relative for responsiveness */
+overflow: hidden;
+}
+
+.spinner__text {
+position: relative;
+display: inline-block;
+width: 50px; /* Adjust the width as needed */
+text-align: center;
+}
+
+.spinner__text--top,
+.spinner__text--bottom {
+display: inline-block;
+animation: 1.5s ease 2s infinite running none;
+}
+
+.spinner__text--top {
+animation-name: spinTop;
+}
+
+/* Bottom text spinner has to be configured so that it is positioned
+right at the same position as the top one */
+.spinner__text--bottom {
+position: absolute;
+top: 0;
+left: 0;
+opacity: 0;
+animation-name: spinBottom;
+}
+
+@keyframes spinTop {
+from { transform: translateY(0%); }
+to { transform: translateY(-100%); }
+}
+
+@keyframes spinBottom {
+from {
+opacity: 1;
+transform: translateY(100%);
+}
+to {
+opacity: 1;
+transform: translateY(0%);
+}
+}
+}
+
+/* Citations */
+@media (max-width: 768px) {
+    .citation-line {
+        text-indent: 3px; /* Adjust the indentation as needed */
+        display: block;
+    }
+}
