@@ -44,7 +44,7 @@ ln -s eval_checker/tree-sitter-javascript tree-sitter-javascript
 
 ## Prepare Evaluation Dataset
 
-To download the evaluation dataset from huggingface, from the current directory `./openfunctions/berkeley-function-call-leaderboard`, run the following command:
+To download the evaluation dataset from huggingface, from the current directory `./berkeley-function-call-leaderboard`, run the following command:
 
 ```bash
     huggingface-cli download gorilla-llm/Berkeley-Function-Calling-Leaderboard --local-dir ./data --repo-type dataset
