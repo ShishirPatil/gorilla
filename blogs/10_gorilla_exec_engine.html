@@ -31,12 +31,25 @@
         <a href="/apizoo/">API Zoo Index</a>
     </div>
     <div class="highlight-clean-blog" style="padding-bottom: 10px;">
-        <h1 class="text-center" style="padding-bottom: 10px;"> GoEx: An LLM Interface for AN LLM Future</h1>
+        <h1 class="text-center" style="padding-bottom: 10px;"> GoEx: An LLM Interface for an LLM Future</h1>
 
         <div class="blog-container">
             <div class="blog-post">
                 <div class="author-date">
-                    <p class="author"> <a href=""> TEMP AUTHOR </a> </p>
+                    <p class="author"> <a href="https://shishirpatil.github.io/">Shishir G. Patil</a></p>
+                    <p class="author"> <a href="https://tianjunz.github.io/">Tianjun Zhang</a></p>
+                    <p class="author"> <a href="https://www.vivi.sh/">Vivian Fang</a></p>
+                    <p class="author"> <a href="https://www.linkedin.com/in/noppapon/">Noppapon C.</a></p>
+                    <p class="author"> <a href="https://www.linkedin.com/in/royh021/">Roy Huang</a></p>
+                    <p class="author"> <a href="https://www.linkedin.com/in/aaron-hao/">Aaron Hao</a></p>
+                </div>
+                <div class="author-date">
+                    <p class="author"> <a href="https://www.linkedin.com/in/martincasado/">Martin Casado</a></p>
+                    <p class="author"> <a href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a></p>
+                    <p class="author"> <a href="https://people.eecs.berkeley.edu/~raluca/">Raluca Ada Popa</a></p>
+                    <p class="author"> <a href="https://people.eecs.berkeley.edu/~istoica/">Ion Stoica</a></p>
+                </div>
+                <div class ="author-date">
                     <p class="date">Apr 9, 2024</p>
                 </div>
 
@@ -56,7 +69,8 @@
                         between communicating services. However, this vision has substantial challenges; 
                         after all, who would trust an unknown ML actor to execute foreign, untested code? 
                         The Gorilla Exec Engine provides a first step towards this idea: a runtime environment 
-                        that provides abstractions for authorization and information security.
+                        that provides abstractions for authorization and information security. The Exec Engine
+                        is completely open source, under Apache 2.0 license. 
                     </p>
                 </div>
 
@@ -159,12 +173,19 @@
                         <p>
                             <i>
                                 Check out the repo 
-                                <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">
+                                <a href="https://github.com/ShishirPatil/gorilla/tree/main/exec-engine">
                                     here at github.
                                 </a>
                                 Let us know what you think!
                             </i>
                             <br>
+                        <div class="responsive-iframe-container" style="text-align: center;">
+                            <iframe src="https://www.youtube.com/embed/ARSCy7sJHQA?si=xhpDuOn_ezil6CQH"  frameborder="0"
+                                style="width: 70%; height: 400px;"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
                         <p>
                             The Gorilla CLI is an easy to use demo of the gorilla engine, 
                             right in your terminal. It has functionality for RESTful, database, 
@@ -177,16 +198,16 @@
                         </ol>
                         </p>
                         <p>
-                            The CLI can be easily used through pip. For more information on how to execute check out the repo. 
+                            The CLI can be easily installed through pip. For more information on installation and execution check out the repo. 
                         </p>
                         <h4>
                            <li>RESTful API Calls: 
                         </h4>
                         <img src="..\assets\img\blog_10\rest-diagram.png" alt="How to Use Gorilla Image"
-                        style="width: 100%;">
+                        style="width: 60%;">
                         <p width="80%" style="text-align:center; padding-bottom: -10px">
                             <i style="font-size: 0.9em;">
-                                GoEx restful calls store credentials in the "Secret Intelligent Vault", stored locally and automatically retrieved during queries. In all situation, the option of reverse call is attempted.
+                                GoEx restful calls store credentials in the "Secret Intelligent Vault", stored locally and automatically retrieved during queries. In all situations, the option of reverse call is attempted.
                             </i>
                         </p>
                         <p>
@@ -198,26 +219,20 @@
                             <li>Slack</li>
                             <li>Dropbox</li>
                             <li>Github</li>
-                            <li>Spotify</li>
+                            <li>Spotify<i> (Awaiting Approval)</i></li>
                         </ul>
-                        <br>
-                        <i>
-                            Note on Spotify: our Spotify application is still under review, if there are any Spotify
-                            employees reading this put in the good word for us!
-                        </i>
-                        <br>
                         <br>
                         <p>
                             We provide two different ways to authenticate:
                         </p>
                         <ol>
                             <li>
-                                OAuth Authentication: Simply specify a service, and we will open a browser for you to 
+                                <b>OAuth Authentication:</b> Simply specify a service, and we will open a browser for you to 
                                 sign and provide credentials. These credentials are stored in your local filesystem, 
                                 and are not recorded by us. 
                             </li>
                             <li>
-                                API Key: Add in raw API keys directly in the terminal, and they will be saved in local files for future use.
+                                <b>API Key:</b> Add in raw API keys directly in the terminal, and they will be saved in local files for future use.
                             </li>
                         </ol>
                         <br>
@@ -231,14 +246,38 @@
                             though in all cases the LLM is prompted to make an attempt at generating one. To call the reverse 
                             call, simply select the reverse option in the terminal.
                         </p>
- 
-
+                        
+                        <h5>Function Calling</h5>
+                        <p>
+                            For some RESTful calls we offer the option of generating API calls with Function Calling. 
+                            This feature allows the user to predefine functions that are guaranteed to work, and have the LLM 
+                            be prompted using them to increase success rate. Currently only a limited number of Slack functions 
+                            are available. Users can enable this by specifying <code>-generate_mode function_in_context</code>.
+                        </p>
+                        <p>
+                            There are two different ways to use function calling:
+                        </p>
+                        <ol>
+                            <li>
+                                <b>Function In Context: </b>This mode feeds in the code of each function as input to the LLM, 
+                                which then chooses the right executable call with the correct arguments. 
+                            </li>
+                            <li>
+                                <b>Function Calling Native: </b> Native function calling relies on existing OpenAI function calling: 
+                                providing a description of the set of usable functions, and receiving an executable call. 
+                                See <a href=https://platform.openai.com/docs/guides/function-calling>OpenAI Function Calling</a> for more details. 
+                            </li>
+                        </ol>
+                        <br>
+                        <p>A full example that is supported by our system would look like this:</p>
+                        <code>goex execute -prompt add a smile emoji to the latest message sent to channel {CHANNEL_ID} on slack -type rest -generate_mode function_in_context</code>
+                        
                         <h4 id="integrate-third-party">
                             <li>Databases (CLI Only) 
                         </h4>
 
                         <img src="..\assets\img\blog_10\db-diagram.png" alt="Database diagram"
-                        style="width: 100%;">
+                        style="width: 60%;">
                         <p width="80%" style="text-align:center; padding-bottom: -10px">
                             <i style="font-size: 0.9em;">
                                 GoEx offers two modes of execution, Reversal and Versioning. See below for details.
@@ -250,10 +289,16 @@
                             down the line. 
                         </p>
                         <p>
-                            We support a large number of operations, including but not limited to, insertion, deletion, table 
+                            We support a large number of operations, including but not limited to: insertion, deletion, table 
                             creation, modifications and more. Here is a video demonstrating how it works with the CLI:
                         </p>
-
+                        <div class="responsive-iframe-container" style="text-align: center;">
+                            <iframe src="https://www.youtube.com/embed/oW5aww589nE?si=BxcW64itZ3Je15N_"  frameborder="0"
+                                style="width: 70%; height: 400px;"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
                         <h5>Steps</h5>
                         <ol>
                             <li>
@@ -261,6 +306,7 @@
                             </li>
                             <li>
                                 Ask your question. The following is an example:
+                                <br>
                                 <code>
                                     goex execute -prompt "Create a new table for storing user information called users, with each user having a current balance column denoting their bank balance" -type db
                                 </code>
@@ -268,10 +314,11 @@
                             <li>
                                 GoEx executes and asks you for confirmation (Commit/Undo)
                             </li>
-                        </ol>    
-                        
-                        Super simple and straightforward flow! More details here in the <a href= "https://github.com/gorilla-llm/exec-engine?tab=readme-ov-file#database">repo.</a>
-                        
+                        </ol>
+                        <br>    
+                        <p>
+                        Super simple and straightforward flow! More details here in the <a href= "https://github.com/ShishirPatil/gorilla/tree/main/exec-engine?tab=readme-ov-file#database">repo.</a>
+                        </p>
                         <p>
                             The database works with two options:
                         </p>
@@ -300,19 +347,12 @@
                             </li>
                             <br>
                         </ul>
-                        <div class="responsive-iframe-container" style="text-align: center;">
-                            <iframe src="https://www.youtube.com/embed/oW5aww589nE?si=BxcW64itZ3Je15N_"  frameborder="0"
-                                style="width: 70%; height: 400px;"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
                         
                         <h4>
                             <li>Filesystem (CLI Only)
                         </h4>
                         <img src="..\assets\img\blog_10\fs-diagram.png" alt="Filesystem Diagram"
-                        style="width: 100%;">
+                        style="width: 65%;">
                         <p width="80%" style="text-align:center; padding-bottom: -10px">
                             <i style="font-size: 0.9em;">
                                 Similar to databases, filesystem calls have two modes
@@ -326,7 +366,14 @@
                         <p>
                             We support almost every common file-related operation, and rest assured that the execution will only take 
                             place within the specified directory, so the rest of your filesystem is safe!
-                        </p>    
+                        </p>
+                        <div class="responsive-iframe-container" style="text-align: center;">
+                            <iframe src="https://www.youtube.com/embed/vLlVpdelz0U?si=1HBb-GFgsMeBcIra"  frameborder="0"
+                                style="width: 70%; height: 400px;"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>    
                         <h5>Steps</h5>
                         <ol>
                             <li>
@@ -334,6 +381,7 @@
                             </li>
                             <li>
                                 Ask your question. The following is an example:
+                                <br>
                                 <code>
                                     goex execute -prompt "Write a witty LLM joke into joke.txt" -type fs
                                 </code>
@@ -342,16 +390,34 @@
                                 GoEx executes and asks you for confirmation (Commit/Undo)
                             </li>
                         </ol>
+                        <br>`
                         <p>
-                            Another super simple and straightforward flow! More details here in the <a href= "https://github.com/gorilla-llm/exec-engine?tab=readme-ov-file#filesystem">repo.</a>
+                            Another super simple and straightforward flow! More details here in the <a href= "https://github.com/ShishirPatil/gorilla/tree/main/exec-engine?tab=readme-ov-file#filesystem">repo.</a>
                         </p>
-                        <div class="responsive-iframe-container" style="text-align: center;">
-                            <iframe src="https://www.youtube.com/embed/vLlVpdelz0U?si=1HBb-GFgsMeBcIra"  frameborder="0"
-                                style="width: 70%; height: 400px;"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
+
+                        <p>
+                            To keep your system safe, we also have commits and undos available after the action 
+                            is executed. Committing means you agree to the changes permanently. Undo means you want 
+                            to undo the action you just took. We have two options for undoing:
+                        </p>
+                        <ul>
+                            <li>    
+                                <b>Option 1:</b>
+                                 The LLM will generate an undo call to undo the original action.
+                            </li>
+                            <li>
+                                <b>Option 2:</b> 
+                                Use Git to track file changes and do a <code>git clean -fd</code> followed 
+                                by <code>git reset —hard HEAD</code> to undo the changes.
+                            </li>
+                        </ul>
+                        <br>
+                        <p>
+                            Comparing the two options, option 2 is optimized to use Git LFS if the directory exceeds a 
+                            certain size (200 MB is the default). But for the highest optimization 
+                            with large directories, use option 1. Option 2 is great if you cannot 
+                            sacrifice any potential faulty undos generated by the LLM.
+                        </p>
                         <h4>
                             <li>GoEx Web-App
                         </h4>
@@ -369,7 +435,7 @@
                             </iframe>
                         </div>
                         <p class="text-center">
-                            Explore GoEx without any installation using the GoEx Web-App
+                            <i>Explore GoEx without any installation using the GoEx Web-App</i>
                         </p>
                         <p>
                             Currently the web app does not support all security functionality that the Gorilla CLI provides. Notably, the CLI does not 
@@ -384,25 +450,40 @@
                             but any number of raw API keys can be added in the browser for different services. 
                         </p>
                         <img src="..\assets\img\blog_10\frontend.png" alt="How to Use Gorilla Image"
-                            style="width: 100%;">
+                            style="width: 80%;">
                         <p width="80%" style="text-align:center; padding-bottom: -10px">
                             <i style="font-size: 0.9em;">
                                 User flow progresses as follows: first the user specifies a prompt, then reviews the generated code. 
                                 Then, the user chooses to execute the code, sending along the credentials to our Exec Engine server. This server acts 
                                 as an interface to the Exec Engine code that powers the CLI. The response is then sent back to the user to verify. Any 
-                                code changes can be made directly in the browser, then executed again. Bookingkeeping for user information is located in 
+                                code changes can be made directly in the browser, then executed again. Bookkeeping for user information is located in 
                                 a separate server for clarity.                       
                             </i>
                         </p>
 
                         <h4><li>Summary</h4>
                         <p>
-                            This blog post went over the numerous methods use LLM powered API calls with GoEx. GoEx represents the first
-                            step toward an interconnected, LLM powered landscape.
+                            In the evolution of LLMs from chatbots to empowering services and applications, slowly moving
+                            away from passively providing information to actively and autonomously making decisions has
+                            become an increasing trend. We introduce the concept of post-facto validation 
+                            as a execution paradigm for these new system. We present GoEx as a means to this vision, a critical
+                            step toward an LLM tool usage capabilities. 
+                            <br>
                             Be sure to check out our <a href="https://discord.gg/grXXvj9Whz">Discord community</a> for
                             updates and any questions as well as our <a
                                 href="https://github.com/ShishirPatil/gorilla">official repo</a> on Github.
                         </p>
+                        <h4><li>Citations</h4>
+                        <pre
+                            style="white-space: pre-wrap; width: 100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">
+                            <code>
+    @inproceedings{gorilla-exec-engine,
+        title={Gorilla Exec Engine},
+        author={Shishir G. Patil, Tianjun Zhang, Vivian Fang, Noppapon C., Roy Huang, Aaron Hao, Martin Casado, Joseph E. Gonzalez, Raluca Ada Popa, Ion Stoica},
+        year={2024},
+        howpublished={\url{https://gorilla.cs.berkeley.edu//blogs/10_gorilla_exec_engine.html}},
+    }                   </code>
+                        </pre>
                     </ol>
                 </div>
             </div>
