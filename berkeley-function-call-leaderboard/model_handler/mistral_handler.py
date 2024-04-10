@@ -96,7 +96,7 @@ class MistralHandler(BaseHandler):
                 decoded_output.append({name: params})
             return decoded_output
         else:
-            func = result.replace('", "', ",").replace('["', "[").replace('"]', "]")
+            func = result
             func = func.replace("\\_", "_")
             if not func.startswith("["):
                 func = "[" + func

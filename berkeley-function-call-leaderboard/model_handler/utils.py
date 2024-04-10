@@ -237,7 +237,10 @@ def resolve_ast_by_type(value):
     elif isinstance(value, ast.Ellipsis):
         output = "..."
     elif isinstance(value, ast.Subscript):
-        output = ast.unparse(value.body[0].value)
+        try:
+            output = ast.unparse(value.body[0].value)
+        except:
+            output = ast.unparse(value.value) + "[" + ast.unparse(value.slice) + "]"
     else:
         raise Exception(f"Unsupported AST type: {type(value)}")
     return output

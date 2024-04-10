@@ -127,7 +127,7 @@ class ClaudeHandler(BaseHandler):
                             value[k] = str(v)
                 return result
         else:
-            func = result.replace('", "', ",").replace('["', "[").replace('"]', "]")
+            func = result
             if " " == func[0]:
                 func = func[1:]
             if not func.startswith("["):
@@ -151,7 +151,7 @@ class ClaudeHandler(BaseHandler):
                     )
             return execution_list
         else:
-            func = result.replace('", "', ",").replace('["', "[").replace('"]', "]")
+            func = result
             if " " == func[0]:
                 func = func[1:]
             if not func.startswith("["):
