@@ -3,6 +3,7 @@ from model_handler.model_style import ModelStyle
 from model_handler.constant import JAVA_TYPE_CONVERSION, JS_TYPE_CONVERSION
 from model_handler.java_parser import parse_java_function_call
 from model_handler.js_parser import parse_javascript_function_call
+from model_handler.constant import GORILLA_TO_OPENAPI
 
 
 def _cast_to_openai_type(properties, mapping, test_category):
@@ -11,6 +12,9 @@ def _cast_to_openai_type(properties, mapping, test_category):
             properties[key]["type"] = "string"
         else:
             var_type = value["type"]
+            if mapping == GORILLA_TO_OPENAPI and var_type == "float":
+                properties[key]["format"] = "float"
+                properties[key]["description"] += " This is a float type value."
             if var_type in mapping:
                 properties[key]["type"] = mapping[var_type]
             else:
@@ -233,7 +237,10 @@ def resolve_ast_by_type(value):
     elif isinstance(value, ast.Ellipsis):
         output = "..."
     elif isinstance(value, ast.Subscript):
-        output = ast.unparse(value.body[0].value)
+        try:
+            output = ast.unparse(value.body[0].value)
+        except:
+            output = ast.unparse(value.value) + "[" + ast.unparse(value.slice) + "]"
     else:
         raise Exception(f"Unsupported AST type: {type(value)}")
     return output
