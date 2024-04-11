@@ -113,76 +113,86 @@
                             <li> Moving from Chatbots to Autonomous Agents 🚀
                         </h4>
                         <p>
-                            In the example above, the LLM is autonomously empowering microservices, services, and applications, with little human supervision. Broadening the scope, different applications can be built on top of the GoEx engine, such as a Slack bot that can autonomously send messages, a Spotify bot that can autonomously create playlists, or a Dropbox bot that can autonomously create folders.
+                            In the example above, the LLM is autonomously using microservices, services, and applications, with 
+                            little human supervision. Different autonomous LLM-powered applications can be built on top of the 
+                            GoEX engine, such as a Slack bot that can send messages, a Spotify bot that can create playlists, or 
+                            a Dropbox bot that can create folders and files. However, in designing such systems, several critical 
+                            challenges must be addressed:
                         </p>
-                        <p>
-                            The 
-                        </p>
-
+                        <ol>
+                            <li>
+                                <b>Hallucination, stochasticity, and unpredictability.</b> LLM-based applications place an unpredictable and
+                                hallucination-prone LLM at the helm of a system traditionally reliant on trust. Currently, services and APIs
+                                assume a human-in-the-loop, or clear specifications to govern how and which tools are used in an application.
+                                For example, the user clicks the “Send” button after confirming the recipient and body of the email.
+                                In contrast, an LLM-powered assistant may send an email that <strong>goes against the user's intentions</strong>, and may
+                                even perform actions unintended by the user.
+                                <!-- LLMs are not only capable of being stochastic, but crucially, -->
+                                <!-- are capable of unpredictable and unbounded behavior even when trained not to do so. -->
+                            </li>
+                            <li>
+                                <b>Unreliability.</b> Given their unpredictability and impossibility to comprehensively test, it is difficult for a user
+                                to trust an LLM off the shelf.
+                                <!-- Consequently, LLM-powered applications are challenging for users to adopt -->
+                                <!-- as LLMs are untrusted components that would be running within a trusted execution context. Trivially, one -->
+                                <!-- can ensure safety by restricting the LLM to have no credentials, at the expense of losing utility. -->
+                                However, the growing utility of
+                                LLM-based systems means that we need mechanisms to express the safety-utility tradeoff to developers and users.
+                            </li>
+                            <li>
+                                <b>Delayed feedback and downstream visibility.</b> Lastly, from a system-design principle, unlike chatbots and
+                                agents of today, LLM-powered systems of the future will not have immediate human feedback. This means
+                                that the intermediate state of the system is not immediately visible to the user and often only downstream
+                                effects are visible. An LLM-powered assistant may interact with many other tools (e.g., querying a database,
+                                browsing the web, or filtering push notifications) before composing and sending an email. Such interactions
+                                before the email is sent are invisible to the user.
+                            </li>
+                        </ol>
                         <img src="..\assets\img\blog_10\goex_intro_image.png" alt="How to Use Gorilla Image"
                             style="width: 70%;">
                         <p width="80%" style="text-align:center;padding-bottom: -10px">
                             <i style="font-size: 0.9em;">
-                                GoEx offers a new way to interface with LLMs, providing abstractions for authorization, execution, and error handling.
+                                We are moving towards a world where LLM-powered applications are evolving from chatbots to autonomous LLM-agents 
+                                interacting with external applications and services with minimal and punctuated human supervision. GoEX offers a 
+                                new way to interface with LLMs, providing abstractions for authorization, execution, and error handling.
                             </i>
                         </p>
+                        <h4>
+                            <li> GoEX Runtime Design 🛠️
+                        </h4>
 
+                        <p>
+                            In the realm of LLM-powered-systems, we introduce <strong>“post-facto LLM validation,”</strong> which contrasts with traditional “pre-facto” methods. In “post-facto validation,” humans evaluate the outcomes of actions executed by the LLM, rather than overseeing the intermediate processes. This approach assumes that validating results over processes, acknowledging that while verifying outcomes is crucial, understanding and correcting processes based on those outcomes is equally important.
+                            Forgoing “pre-facto validation” means execution of actions without prior validation, which introduces risks and potentially leads to undesirable outcomes. We propose two abstractions to mitigate the risk associated with post-facto validation: <i>undoing</i> an action, and <i>damage confinement</i>.
+                        </p>
                         <ol>
-                            <li><b>Post-Facto Validation:</b>
-                                <br>
-                                <ul>
-                                    In the context of API calls, it is often easier to verify the correctness of the call by 
-                                    analyzing its result, rather than the process. Take this example:
-                                </ul>
-                                
-                                <ul>
-                                    This code was generated with the prompt: "Send a message to my most recently used Slack channel." 
-                                    At first glance, it's hard to tell whether the generated code is correct or not. Upon running it, the code
-                                    instead sends the message to the first slack channel returned by Slack. Unfortunately for our developers, this one happened
-                                    to ping everyone in Sky Lab's general channel.
-                                </ul>
-                                <ul>
-                                    Regardless, it often easier to find mistakes after execution, motivating the following paradigm. 
-                                </ul>
                             </li>
-                            <li> <b>Reversibility/ Undo Command:</b>
-                                <br>
-                                <ul>
-                                    In order to be able to rectify mistakes made by the LLM, we propose having a
-                                    generated “undo” function. If an API call changes some state, then most likely
-                                    there will be another API call that undoes that action. We choose to undo erroneous 
-                                    actions rather than just mitigating them.
-                                </ul>
+                            <li> <b>Reversibility/Undoing an Action</b>
+                                <p>
+                                    When possible, actions executed by an LLM should give users the right to undo an action. This could require maintaining multiple versions of the system state, leading to high costs in terms of memory and computational resources. Furthermore, the feasibility of implementing undoing an action is often dependent on the level of access granted to the system. For instance, in file systems or databases, where root access is available, undoing actions is possible. However, in scenarios where such privileged access is not granted, such as in email clients like Gmail, the ability to undo an action may be limited or require alternative approaches. One potential solution is for the runtime to make a local copy of the email before deleting, which introduces additional state to the runtime but enables undo for email deletion.
+                                    Read our <a href="https://arxiv.org/abs/2404.06921">paper</a> for more details on how we implement undoing actions in the GoEX runtime.
+                                </p>
                             </li>
-                            <li> <b>Blast Radius</b>
-                                <ul>
-                                    Blast radius is another term we define as the scope of what the LLM can do. 
-                                    It provides an upper bound on the amount of damage that an LLM could do. One 
-                                    way that we reduce the blast radius of LLMs is to only provide the relevant 
-                                    credentials during each execution. If I’m trying to create a new playlist on 
-                                    Spotify, the LLM should not have access to my Gmail credentials. In this way, 
-                                    we mitigate the risks of running unverified code. Another form of blast radius 
-                                    control comes in the form of OAuth scopes. OAuth services attach certain permissions 
-                                    to each generated token. For instance, I want to be able to read my files on Dropbox, 
-                                    I don’t need write access. During authentication, this scope is specified, and attached 
-                                    to the generated authentication token. 
-                                </ul>
-                            </li>
-                            <li><b>Credential Security</b>
-                                <ul>
-                                    When we pass in input to the LLM, we want to avoid giving it sensitive information as 
-                                    much as possible. Many consumers would not feel comfortable providing secret keys to an LLM.
-                                    There are many ways to rectify this, for instance, giving LLM dummy keys or placeholder text 
-                                    to use. In Gorilla Exec Engine, we store credentials in the local file system. We then provide 
-                                    the file path to the object to the LLM so it can indirectly use them. In this way, none of the 
-                                    sensitive information is leaked to the model, but they are still usable during execution.  
-                                </ul>
+                            <li> <b>Damage Confinement</b>
+                                <p>
+                                    Not all applications or tools provide the ability to undo an action. For example, emails currently cannot be unsent after some time has elapsed. In scenarios like these, we fall back to "damage confinement" or "blast-radius confinement," as it is necessary to provide users with mechanisms to quantify and assess the associated risks of the actions their LLM-powered application may take. Damage confinement can be viewed as a quantification of the user's risk appetite.
+                                </p>
+                                <p>
+                                    One approach to address this challenge is through the implementation of coarse-grained access control mechanisms. A user could permit their LLM to only read emails instead of sending emails, thus confining the blast radius to an tolerable level.
+                                </p>
                             </li>
                         </ol>
+
+
+                        <img src="../assets/img/blog_10/simple_overview.png" alt="GoEX Runtime Design Image"
+                            style="width: 70%;">
+                        <p width="80%" style="text-align:center;padding-bottom: -10px">
+                            <i style="font-size: 0.9em;">
+                            Design of the GoEX runtime, which provides abstractions for authorization, execution, and error handling. 
+                            </i>
                         </p>
-                        </li>
                         <h4>
-                            <li> GoEx CLI 🖥️
+                            <li> GoEx CLI Overview 🖥️
                         </h4>
                         <p>
                             <i>
@@ -207,9 +217,6 @@
                         <p>
                             The CLI can be easily installed through pip. For more information on installation and execution check out the repo. 
                         </p>
-
-                        <img src="..\assets\img\blog_10\simple_overview.png" alt="How to Use Gorilla Image"
-                        style="width: 60%;">
                         <h5>
                             RESTful API Calls: 
                         </h5>
