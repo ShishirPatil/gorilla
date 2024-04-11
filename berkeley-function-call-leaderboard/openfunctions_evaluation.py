@@ -36,23 +36,22 @@ test_categories = {
     "sql": "gorilla_openfunctions_v1_test_sql.json",
 }
 
-def build_handler(model_name):
-    handler = handler_map[model_name](model_name, args.temperature, args.top_p, args.max_tokens)
+def build_handler(model_name, temperature, top_p, max_tokens):
+    handler = handler_map[model_name](model_name, temperature, top_p, max_tokens)
     return handler
 
 def load_file(test_category):
-    if args.test_category == "all":
+    if test_category == "all":
         test_cate,files_to_open = list(test_categories.keys()),list(test_categories.values())
     else:
-        test_cate,files_to_open = [args.test_category], [test_categories[args.test_category]]   
+        test_cate,files_to_open = [test_category], [test_categories[test_category]]   
     return test_cate,files_to_open
 
 if __name__ == "__main__":
     args = get_args()
-    model = args.model
-    handler = build_handler(args.model)
+    handler = build_handler(args.model, args.temperature, args.top_p, args.max_tokens)
     if handler.model_style == ModelStyle.OSSMODEL:
-       result = handler.inference(question_file="eval_data_total.json",test_categories=args.test_categories,num_gpus=args.num_gpus)
+       result = handler.inference(question_file="eval_data_total.json",test_category=args.test_category,num_gpus=args.num_gpus)
        for res in result[0]:
            handler.write(res, "result.json")
     else:
