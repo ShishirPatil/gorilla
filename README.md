@@ -3,7 +3,7 @@
 
 <img src="https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/img/logo.png" width=50% height=50%>
 
-**🚒  GoEX: A Runtime for executing LLM generated actions like code, API calls, etc** Dive into our [release blog](https://gorilla.cs.berkeley.edu/blogs/10_gorilla_exec_engine.html) or the [paper](https://arxiv.org/abs/2404.06921) for all the details.
+**🚒  GoEx: A Runtime for executing LLM generated actions like code & API calls** GoEx presents “undo” and “damage confinement” abstractions for mitigating the risk of unintended actions taken in LLM-powered systems. [Release blog](https://gorilla.cs.berkeley.edu/blogs/10_gorilla_exec_engine.html) [Paper](https://arxiv.org/abs/2404.06921).
 
 **🎉 Berkeley Function Calling Leaderboard** How do models stack up for function calling? :dart: Releasing the [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard). Read more in our [Release Blog](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html). 
 

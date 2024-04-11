@@ -21,8 +21,8 @@ with open('requirements.txt') as f:
 
 
 setup(
-    name="gorilla-execution-engine",
-    version="0.0.1",
+    name="goex",
+    version="0.0.2",
     author="Shishir Patil, Tianjun Zhang, Vivian Fang, Noppapon Chalermchockcharoenkit, Roy Huang, Aaron Hao",
     author_email="shishirpatil@berkeley.edu",
     url="https://github.com/ShishirPatil/gorilla/",
