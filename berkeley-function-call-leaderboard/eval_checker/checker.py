@@ -5,7 +5,7 @@ from model_handler.constant import (
     JAVA_TYPE_CONVERSION,
     JS_TYPE_CONVERSION,
 )
-from custome_exception import NoAPIKeyError
+from custom_exception import NoAPIKeyError
 import re
 import requests  # Do not remove this import even though it seems to be unused. It's used in the executable_checker_rest function.
 import time
