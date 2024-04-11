@@ -14,8 +14,8 @@
 {"corporate_finance.revenue_forecast":{"company":["XYZ"],"product":["A", "Product A"],"sales_units_increase_percentage":[10]}}
 {"finance.property_depreciation":{"initial_cost":[200000],"depreciation_rate":[3],"years":[5],"monthly":[false,true,""]}}
 {"solarFarm.potential":{"coordinates":[[43.653225,-79.383186]],"panelArea":[80000],"month":["December","Dec"]}}
-{"population_genetics.calculate_ne":{"species":["tiger"],"generations":[100],"probability":[0.95]}}
-{"currency_conversion.get_rate":{"from_currency":["EUR"],"to_currency":["Dollar","USD"],"date":["2022-01-01","01/01/2022","1/1/2022","Jan.1,2022","January 1, 2022"]}}
+{"population_genetics.calculate_ne":{"species":["wild tiger", "tiger"],"generations":[100],"probability":[0.95]}}
+{"currency_conversion.get_rate":{"from_currency":["EUR", "Euro"],"to_currency":["Dollar","USD"],"date":["2022-01-01","01/01/2022","1/1/2022","Jan.1,2022","January 1, 2022","2022-1-1"]}}
 {"european_history.battle_details":{"battle":["Battle of Stalingrad", "Stalingrad"]}}
 {"religion_history.get_schisms":{"religion":["Christianity"],"count":[3]}}
 {"sculpture_price.calculate":{"material":["marble"],"size":[3],"complexity":["medium",""]}}
@@ -66,18 +66,18 @@
 {"geodistance.find":{"origin":["New York City","NYC"],"destination":["Los Angeles","LA"],"unit":["miles",""]}}
 {"traffic_estimate":{"start_location":["Las Vegas"],"end_location":["Los Angeles"],"time_period":["weekend"]}}
 {"translate":{"text":["Hello, how are you?"],"source_language":["English"],"target_language":["French"]}}
-{"library.search_books":{"location":["New York","New York, NY","New York City","NYC"],"genre":["Historical Fiction","historical fiction"],"title":[""]}}
+{"library.search_books":{"location":["New York","New York, NY","New York City","New York City, NY","NYC", "New York public library"],"genre":["Historical Fiction","historical fiction"],"title":[""]}}
 {"five_factor_model.analyse":{"talkative":[true],"nervous":[true],"artistic_interests":[false],"lazy":[true],"forgiving":[true]}}
 {"european_history.get_monarchs":{"country":["France"],"century":[18]}}
 {"get_population":{"year":[1954],"category":["veterans"]}}
 {"us_history.population_by_state_year":{"state":["California","CA"],"year":[1970]}}
 {"religion.get_origin":{"religion":["Buddhism"]}}
-{"art_auction.fetch_artwork_price":{"artwork_name":["Starry Night"],"artist":["Van Gogh"],"platform":["auction_platform"]}}
+{"art_auction.fetch_artwork_price":{"artwork_name":["Starry Night"],"artist":["Van Gogh"],"platform":["all", ""]}}
 {"paint_color.trends":{"room":["living room","Living room"],"period":["","Daily"]}}
 {"sculpture.create_custom":{"item":["horse","Horse"],"material":["Bronze","bronze"],"size":["",12]}}
 {"artwork_search.find":{"type":["sculpture"],"location":["New York","New York, NY","New York City","NYC"],"era":["contemporary",""]}}
 {"museum_info":{"museum":["Natural History Museum"],"city":["London"],"features":[["timings","exhibitions","accessibility"],["exhibitions","timings","accessibility"],["exhibitions","accessibility","timings"],["accessibility","timings","exhibitions"],["accessibility","exhibitions","timings"],["timings","accessibility","exhibitions"]]}}
-{"exhibition_info":{"museum_name":["Museum of Modern Art","MOMA"],"month":["",1]}}
+{"exhibition_info":{"museum_name":["Museum of Modern Art","MOMA", "Museum of Modern Art, New York"],"month":["",1]}}
 {"music_shop.find_nearby":{"location":["Nashville, TN","Nashville"],"services":[["Violin Lessons"]],"instruments":[["Guitars"]]}}
 {"concert.book_ticket":{"artist":["Eminem"],"location":["New York City","NYC"],"add_ons":[["Backstage Pass"]]}}
 {"music.generate":{"key":["C Major"],"tempo":[120],"time_signature":["","4/4"]}}
@@ -89,7 +89,7 @@
 {"video_games.get_player_count":{"game_title":["World of Warcraft"],"year":[2020],"platform":[""]}}
 {"recipe_search":{"ingredients":[["chicken","mushrooms"],["mushrooms","chicken"]],"calories":[500],"meal":["lunch",""]}}
 {"restaurant.find_group":{"location":["Seattle","Seattle, WA"],"cuisine":[["Seafood"]],"group_size":[5]}}
-{"recipe.find":{"mainIngredient":["apple pie"],"ingredientLimit":[4]}}
+{"recipe.find":{"mainIngredient":["apple pie", "apple"],"ingredientLimit":[4]}}
 {"walmart.vegan_products":{"location":["Denver, CO","Denver"],"categories":[["vegan","gluten-free"],["gluten-free","vegan"]]}}
 {"hotel.book":{"location":["New York","New York, NY","NYC"],"roomType":["deluxe","Deluxe"],"nights":[2],"additional_services":[["breakfast"]]}}
 {"hotel_room_pricing.get":{"hotelName":["Hilton New York"],"roomType":["suite with queen size bed"],"nights":[3]}}
@@ -112,7 +112,7 @@
 {"calculate_genotype_frequency":{"allele_frequency":[0.3],"genotype":["AA"]}}
 {"forest_growth_forecast":{"location":["Yellowstone National Park"],"years":[5],"include_human_impact":[true]}}
 {"calculate_fitness":{"trait_values":[[0.8,0.7]],"trait_contributions":[[0.4,0.6]]}}
-{"prediction.evolution":{"species":["Homo Sapiens","Homo sapiens"],"years":[50],"model":["Darwin"]}}
+{"prediction.evolution":{"species":["Homo Sapiens","Homo sapiens"],"years":[50],"model":["Darwin", ""]}}
 {"find_restaurants":{"location":["Manhattan"],"food_type":["Thai"],"number":[5],"dietary_requirements":[["vegan"]]}}
 {"calculate_bmi":{"weight":[85],"height":[180],"unit":["","metric"]}}
 {"calculate_BMI":{"weight_kg":[70],"height_m":[1.75]}}
@@ -143,11 +143,11 @@
 {"weather.humidity_forecast":{"location":["Miami","Miami, Florida","FL"],"days":[7],"min_humidity":["",0]}}
 {"calculate_slope_gradient":{"point1":[[40.7128,-74.006]],"point2":[[34.0522,-118.2437]],"unit":["degree",""]}}
 {"air_quality":{"location":["London"],"date":["2022-08-16","16/08/2022","Aug.16,2022","2022/08/16","16\\08\\2022"]}}
-{"calculate_emissions":{"distance":[12000],"fuel_type":["gas","gasoline"],"fuel_efficiency":[25],"efficiency_reduction":["",0.0]}}
+{"calculate_emissions":{"distance":[12000],"fuel_type":["gas","gasoline"],"fuel_efficiency":[20],"efficiency_reduction":["",0.0]}}
 {"restaurant.find_nearby":{"location":["Seattle","Seattle, WA"],"cuisine":["Chinese"],"max_distance":[10]}}
 {"map_service.get_directions":{"start":["New York","New York, NY","NYC"],"end":["Los Angeles","LA"],"avoid":[["highways","tolls"],["tolls","highways"]]}}
 {"get_stock_info":{"company_name":["Apple Inc.","Apple"],"detail_level":["detailed"],"market":["NASDAQ",""]}}
-{"sentiment_analysis":{"text":["I love the food here! It is always fresh and delicious."],"language":["english","English"]}}
+{"sentiment_analysis":{"text":["I love the food here! It's always fresh and delicious."],"language":["english","English"]}}
 {"calculate_neuronal_activity":{"input_synaptic_rate":[200],"weight":[0.5],"decay_rate":[0.1]}}
 {"social_media_analytics.most_followed":{"topic":["psychology", "Psychology"],"sub_topics":[["behaviour","group dynamics"],["group dynamics","behaviour"]],"region":["","global"]}}
 {"history.get_key_events":{"country":["Germany"],"start_year":[1871],"end_year":[1945],"event_type":[["War"]]}}
@@ -156,10 +156,10 @@
 {"get_discoverer":{"discovery":["neutron"],"detail":[true]}}
 {"historical_contrib.get_contrib":{"scientist":["Albert Einstein"],"date":["1915-03-17","03/17/1915","Mar.17,1915"],"category":["","all"]}}
 {"get_earliest_reference":{"name":["Jesus Christ"],"source":["historical records"]}}
-{"religious_history.get_papal_biography":{"papal_name":["Innocent III"],"include_contributions":[true]}}
+{"religious_history.get_papal_biography":{"papal_name":["Innocent III","Pope Innocent III"],"include_contributions":[true]}}
 {"calculate_paint_needed":{"coverage_rate":[400],"length":[30],"height":[12]}}
 {"get_sculpture_info":{"artist_name":["James Plensa"],"detail":[true],"year":[2000,""]}}
-{"find_exhibition":{"location":["New York","New York, NY","New York City","NYC","NY"],"art_form":["sculpture", "modern sculpture"],"month":["upcoming","next month","upcoming month","next"],"user_ratings":["high",""]}}
+{"find_exhibition":{"location":["New York","New York, NY","New York City","NYC","NY"],"art_form":["sculpture", "modern sculpture"],"month":["upcoming","next month","upcoming month","next",""],"user_ratings":["high",""]}}
 {"analyze_structure":{"building_id":["B1004"],"floors":[[2,3,4]],"mode":["dynamic"]}}
 {"metropolitan_museum.get_top_artworks":{"number":[5],"sort_by":["popularity"]}}
 {"instrument_price.get":{"brand":["Fender"],"model":["American Professional II Stratocaster"],"finish":["Rosewood"]}}
