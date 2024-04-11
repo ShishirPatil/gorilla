@@ -115,6 +115,7 @@ To test out database interactions locally, each database server requires its own
   Press `Ctrl-D` to exit out and now your `.db` file will be created!
 
 - Run `demo/env_setup.py` to get your environment variables set up
+  Use default values if you are running just the demo.
 
   ```
   python3 demo/env_setup.py

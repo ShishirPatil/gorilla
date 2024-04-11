@@ -51,11 +51,15 @@ class DBManager:
     
     def task_to_prompt(self, task_description, forward=True):
         """Format the schemas of all tables into a prompt for GPT, including a task description."""
-        if not self.schema:
-            return "No schema information available."
+        prompt = ""
+
+        if self.schema == None:
+            raise Exception("Please connect to the database first.")
         
-        prompt = "Given the following table schemas in a sqlite database:\n\n"
-        prompt += self.get_schema_as_string()
+        if self.schema:
+            "No schema information available."
+            prompt += "Given the following table schemas in a sqlite database:\n\n"
+            prompt += self.get_schema_as_string()
         
         if forward:
             prompt += f"Task: {task_description}\n\n"
@@ -146,7 +150,13 @@ class SQLiteManager(DBManager):
         if not self.conn:
             self.connect()
         try:
-            self.cursor.execute(call)
+            commands_list = [cmd.strip() for cmd in call.split(';') if cmd.strip() and not cmd.strip().startswith('--')]
+            for command in commands_list:
+                if command.upper().startswith('SELECT'):
+                    self.cursor.execute(command)
+                    print(self.cursor.fetchall())
+                else:
+                    self.cursor.execute(command)
             self.update_schema_info()
             return 0
         except Exception as e:
