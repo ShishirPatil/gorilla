@@ -27,15 +27,15 @@ If you plan to evaluate on OSS models, we are using vLLM for inference and refer
 ### Checker Setup (required for Java, JavaScript test categories)
 We use `tree-sitter` to do the AST parsing for Java and JavaScript test categories. Thus, you need to install `tree-sitter`.
 
-The git clones need to be under the `./berkeley-function-call-leaderboard/eval_checker` folder.
+The git clones need to be under the `/berkeley-function-call-leaderboard/eval_checker` folder.
 
 ```bash
-cd ./berkeley-function-call-leaderboard/eval_checker
+cd ./eval_checker
 git clone https://github.com/tree-sitter/tree-sitter-java.git
 git clone https://github.com/tree-sitter/tree-sitter-javascript.git
 ```
 
-Now, move back to `./berkeley-function-call-leaderboard` by `cd ..`, and create two symbolic links to the `tree-sitter-java` and `tree-sitter-javascript` directories. This is required to run `openfunctions_evaluation.py`.
+Now, move back to `/berkeley-function-call-leaderboard` by `cd ..`, and create two symbolic links to the `tree-sitter-java` and `tree-sitter-javascript` directories. This is required to run `openfunctions_evaluation.py`.
 
 ```
 ln -s eval_checker/tree-sitter-java tree-sitter-java
