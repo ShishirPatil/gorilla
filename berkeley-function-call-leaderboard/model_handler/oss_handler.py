@@ -104,7 +104,7 @@ class OSSHandler(BaseHandler):
         return ans_jsons, {"input_tokens": 0, "output_tokens": 0, "latency": 0}
 
     def decode_ast(self, result, language="Python"):
-        func = result.replace('", "', ",").replace('["', "[").replace('"]', "]")
+        func = result
         if " " == func[0]:
             func = func[1:]
         if not func.startswith("["):
