@@ -53,7 +53,8 @@ def restful_callback(prompt, generate_mode):
     else:
         api_string_extension = "from {services} API...".format(services=services)
     with Halo(text=f"{GORILLA_EMOJI}fetching response {api_string_extension}".format(api_string_extension), spinner="dots"):
-        response, forward_call, backward_call = prompt_execute(engine, prompt, services=services, creds=creds, max_attempt=get_config('max_attempt'))
+        response, forward_call, backward_call = prompt_execute(
+            engine, prompt, services=services, creds=creds, max_attempt=get_config('max_attempt'), model=get_config('model'))
         if response['output']:
             print('\n', '\n'.join(response["output"][0]))
         else:
@@ -150,7 +151,7 @@ def fs_callback(prompt, generate_mode):
     else:
         engine.set_dry_run(Filesystem_Type, False)
     
-    api_call, neg_api_call = engine.gen_api_pair(prompt, Filesystem_Type, None)
+    api_call, neg_api_call = engine.gen_api_pair(prompt, Filesystem_Type, None, model=get_config('model'))
     print(black("Do you want to execute the following filesystem command...", 'bold') + '\n' + magenta(api_call, 'bold'))
     answer = questionary.select("", 
                                 choices=["Yes", "No"]).ask()
@@ -224,7 +225,7 @@ def db_callback(prompt, generate_mode):
         engine.set_dry_run(SQL_Type, False)
 
     engine.initialize_db(debug_manager=db_manager)
-    api_call, neg_api_call = engine.gen_api_pair(prompt, SQL_Type, None)
+    api_call, neg_api_call = engine.gen_api_pair(prompt, SQL_Type, None, model=get_config('model'))
     if neg_api_call == None and option == 1:
         print("Error: option 1 requires negation API call. neg_api_call is None.")
         return

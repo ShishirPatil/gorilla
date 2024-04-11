@@ -15,21 +15,26 @@ GoEx provides a new way to interact with your favorite APIs! Powered by LLMs, Go
 
 ## Install
 
-Set up Conda first with a new environment
+1.) Navigate inside the goex folder and set up a clean environment with **Conda** or **Python venv**
+```sh
+python3 -m venv goex-env
+source goex-env/bin/activate
+```
+**OR**
 
 ```sh
 conda create --name goex python=3.10 -y
 conda activate goex
 ```
 
-Install the `goex` CLI tool
+2.) Install the `goex` CLI tool
 
 ```sh
 pip install -e .
 ```
 
-**Rest API Dependencies**\
-Mkcert to support OAuth2 token exchange [required for services that require https for redirect URL e.g Slack]
+
+3.) Install and initialize Mkcert to support OAuth2 token exchange [required for services that require https for redirect URL e.g Slack]
 
 Mac:
 
@@ -59,21 +64,23 @@ goex -h
 
 ### RESTful API
 
-Give authorizations and perform OAuth2 token exchanges with services Gorilla currently support
+Give authorizations and perform OAuth2 token exchanges with services Gorilla currently support.
 
 ```sh
 goex -authorize <service> # gmail, slack, spotify, github, dropbox
 ```
 
-After a service is authorized, user could interact with it by providing a prompt
+After a service is authorized, user will be able to interact with it by providing a prompt.
 
 ```sh
-#example 1
+# example 1 
+# please first run goex -authorize slack
 goex execute -prompt send a funny joke to the user with email gorilla@yahoo.com on slack -type rest
 ```
 
 ```sh
-#example 2
+# example 2
+# this action needs user to authorize gmail
 goex execute -prompt who are the senders of the 5 latest emails in my gmail inbox -type rest
 ```
 

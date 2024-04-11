@@ -80,14 +80,14 @@ class PythonAPIExecutor(APIExecutor):
     
     # try_get_backward_call will try to see if there is a corresponding backward call for the input forward call
     # if not, it will prompt the LLM to come up with one
-    def try_get_backward_call(self, forward_call, prompt, credentials, api_type, generate_mode='default'):
+    def try_get_backward_call(self, forward_call, prompt, credentials, api_type, generate_mode='default', model="gpt-4-turbo-preview"):
         if self.negation_manager != None:
             # look up if there is a corresponding backward call in reverse_db
             negation_call = self.negation_manager.get_success(forward_call)
             if negation_call != None:
                 return negation_call
             
-        return generate_reverse_command(forward_call, prompt, credentials, api_type, generate_mode)
+        return generate_reverse_command(forward_call, prompt, credentials, api_type, generate_mode, openai_model=model)
 
     def execute_api_call(self, command: str, credentials: list = None) -> int:
         """Execute API call.

@@ -173,7 +173,7 @@ async def prompt_engine(request: Request):
         prompt = request_content['prompt']
         engine = ExecutionEngine() # should we be making a new engine for each request?
         engine.api_executor = PythonAPIExecutor(engine.docker_sandbox)
-        forward_call, backward_call = engine.gen_api_pair(prompt, api_type=RESTful_Type, credentials=creds)
+        forward_call, backward_call = engine.gen_api_pair(prompt, api_type=RESTful_Type, credentials=creds, model="gpt-4-turbo-preview")
         return {"forward_call" : forward_call, "backward_call" : backward_call}
     except Exception as e:
         print(e)
