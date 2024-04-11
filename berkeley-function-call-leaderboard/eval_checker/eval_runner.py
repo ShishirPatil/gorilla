@@ -332,7 +332,7 @@ def runner(model_names, test_categories, api_sanity_check):
                 record_result(
                     LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
                 )
-                print(f"✅ Test completed: {test_category}. Accuracy: {accuracy}")
+                print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
                 continue
 
             # Find the corresponding test file
@@ -353,7 +353,8 @@ def runner(model_names, test_categories, api_sanity_check):
                 record_result(
                     LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
                 )
-                print(f"✅ Test completed: {test_category}. Accuracy: {accuracy}")
+                print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
+                
 
                 continue
 
@@ -374,7 +375,7 @@ def runner(model_names, test_categories, api_sanity_check):
             record_result(
                 LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
             )
-            print(f"✅ Test completed: {test_category}. Accuracy: {accuracy}")
+            print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
 
 
     # This function reads all the score files from local folder and updates the leaderboard table.
