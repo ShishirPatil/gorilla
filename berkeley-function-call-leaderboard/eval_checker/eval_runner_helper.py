@@ -32,6 +32,7 @@ COLUMNS = [
     "Latency Standard Deviation (s)",
 ]
 
+# Note that we don't need to substitute `_` with `/` in the model name here.
 MODEL_METADATA_MAPPING = {
     "gpt-4-1106-preview-FC": [
         "GPT-4-1106-Preview (FC)",
