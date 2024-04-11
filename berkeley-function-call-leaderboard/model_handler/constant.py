@@ -1,4 +1,4 @@
-SYSTEM_PROMPT_FOR_CHAT_MODEL = """"
+SYSTEM_PROMPT_FOR_CHAT_MODEL = """
     You are an expert in composing functions. You are given a question and a set of possible functions. 
     Based on the question, you will need to make one or more function/tool calls to achieve the purpose. 
     If none of the function can be used, point it out. If the given question lacks the parameters required by the function,
