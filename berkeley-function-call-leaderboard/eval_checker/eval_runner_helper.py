@@ -249,6 +249,12 @@ MODEL_METADATA_MAPPING = {
         "Databricks",
         "Databricks Open Model",
     ],
+    "NousResearch_Hermes-2-Pro-Mistral-7B": [
+        "Hermes-2-Pro-Mistral-7B (FC)",
+        "https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B",
+        "NousResearch",
+        "apache-2.0",
+    ]
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
