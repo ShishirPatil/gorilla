@@ -152,7 +152,10 @@ Navigate to the `./berkeley-function-call-leaderboard/eval_checker` directory an
         - `relevance`: Function calls with irrelevant function documentation.
     - If no test category is provided, the script will run all available test categories.
 > If you want to run the `all` or `executable` or `python` category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API! 
+
 > If you do not wish to provide API keys for REST API testing, set `test_category` to `ast` or any non-executable category.
+
+> By default, if the test categories include `executable`, the evaluation process will perform the REST API sanity check first to ensure that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, the evaluation process will be stopped by default as the result will be inaccurate. You can choose to bypass this check by setting the `--skip-api-sanity-check` flag.
 
 ### Example Usage
 
