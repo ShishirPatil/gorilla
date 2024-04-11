@@ -195,7 +195,6 @@ class ExecutionEngine:
     def _undo_transaction(self, api_type):
         if api_type == SQL_Type:
             self.db_manager.rollback_db_calls()
-            print("DB transaction cleared.")
         elif api_type == Filesystem_Type:
             self.fs_manager.revert()
         else:
@@ -204,7 +203,6 @@ class ExecutionEngine:
     def _commit_transaction(self, api_type, message=None):
         if api_type == SQL_Type:
             self.db_manager.commit_db_calls()
-            print("DB transaction committed.")
         elif api_type == Filesystem_Type:
             if not message:
                 message = 'Auto-commit via FSManager'
@@ -243,7 +241,7 @@ class ExecutionEngine:
         """Execute a file system API call"""
         if not self.fs_initialized:
             self.initialize_fs()
-        self.fs_manager.initialize_version_control()  # make sure that git exists on every call
+            self.fs_manager.initialize_version_control()  # make sure that git exists on every call
         self.fs_manager.execute(call, display=True)
 
     def _exec_restful_call(self, call) -> bool:

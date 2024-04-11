@@ -6,6 +6,7 @@ dist
 **/*.lic
 .vscode
 .idea
+.env
 .editorconfig
 .DS_Store
 **/*.pyc

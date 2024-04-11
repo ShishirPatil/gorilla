@@ -27,7 +27,6 @@ class FSManager:
             self.fs_path = os.getcwd()
         else:
             self.fs_path = os.path.abspath(fs_path)
-            print(self.fs_path)
             if not os.path.exists(self.fs_path) or not os.path.isdir(self.fs_path):
                 raise Exception("Please provide a valid directory")
             
@@ -73,6 +72,7 @@ class FSManager:
                     if self._exceed_directory_size(os.getcwd()):
                         self.execute('git lfs install')  # Initialize git LFS
                         print("Initialized current directory as a Git LFS repository.")
+                    self.execute('git add .')
                     self.execute("git commit --allow-empty -n -m init")
                 except Exception as e:
                     print(f"Error during Git initialization: {e}")
