@@ -106,7 +106,7 @@ To generate leaderboard statistics, there are two steps:
 1. Inference the evaluation data and obtain the results from specific models 
 
 ```bash
-    python openfunctions_evaluation.py --model MODEL_NAME --test_category TEST_CATEGORY
+    python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
 ```
 For TEST_CATEGORY, we have `executable_simple`, `executable_parallel_function`, `executable_multiple_function`, `executable_parallel_multiple_function`, `simple`, `relevance`, `parallel_function`, `multiple_function`, `parallel_multiple_function`, `java`, `javascript`, `rest`, `sql`, `chatable`.
 
@@ -153,7 +153,7 @@ Navigate to the `./berkeley-function-call-leaderboard/eval_checker` directory an
     - If no test category is provided, the script will run all available test categories.
 > If you want to run the `all` or `executable` or `python` category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API! 
 
-> If you do not wish to provide API keys for REST API testing, set `test_category` to `ast` or any non-executable category.
+> If you do not wish to provide API keys for REST API testing, set `test-category` to `ast` or any non-executable category.
 
 > By default, if the test categories include `executable`, the evaluation process will perform the REST API sanity check first to ensure that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, the evaluation process will be stopped by default as the result will be inaccurate. You can choose to bypass this check by setting the `--skip-api-sanity-check` flag.
 
@@ -168,13 +168,13 @@ If you want to run all tests for the `gorilla-openfunctions-v2` model, you can u
 If you want to runn `rest` tests for all GPT models, you can use the following command:
 
 ```bash
-    python ./eval_runner.py --model gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test_category rest
+    python ./eval_runner.py --model gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest
 ```
 
 If you want to run `rest` and `javascript` tests for all GPT models and `gorilla-openfunctions-v2`, you can use the following command:
 
 ```bash
-    python ./eval_runner.py --model gorilla-openfunctions-v2 gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test_category rest javascript
+    python ./eval_runner.py --model gorilla-openfunctions-v2 gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest javascript
 ```
 
 
