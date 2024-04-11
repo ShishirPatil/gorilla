@@ -126,7 +126,7 @@ If decided to run OSS model, openfunctions evaluation uses vllm and therefore re
 Navigate to the `./berkeley-function-call-leaderboard/eval_checker` directory and run the `eval_runner.py` script with the desired parameters. The basic syntax is as follows:
 
 ```bash
-    python ./eval_runner.py --model MODEL_NAME --test_category {TEST_CATEGORY,all,ast,executable,python,non-python}
+    python ./eval_runner.py --model MODEL_NAME --test-category {TEST_CATEGORY,all,ast,executable,python,non-python}
 ```
 
 - `MODEL_NAME`: Optional. The name of the model you wish to evaluate. This parameter can accept multiple model names separated by spaces. Eg, `--model gorilla-openfunctions-v2 gpt-4-0125-preview`.
