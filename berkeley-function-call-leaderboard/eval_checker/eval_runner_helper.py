@@ -1,8 +1,13 @@
 import json
 from model_handler.handler_map import handler_map
+from custom_exception import BadAPIStatusError
 import os
 import glob
+import subprocess
 import statistics
+from tqdm import tqdm
+
+REST_API_GROUND_TRUTH_FILE_PATH = "api_status_ground_truth_function_calls.json"
 
 COLUMNS = [
     "Rank",
@@ -32,6 +37,7 @@ COLUMNS = [
     "Latency Standard Deviation (s)",
 ]
 
+# Note that we don't need to substitute `_` with `/` in the model name here.
 MODEL_METADATA_MAPPING = {
     "gpt-4-1106-preview-FC": [
         "GPT-4-1106-Preview (FC)",
@@ -400,15 +406,16 @@ def get_handler(model_name):
     return handler_map[model_name](model_name)
 
 
-def write_list_of_dicts_to_file(subdir, filename, data):
-    # Ensure the subdirectory exists
-    os.makedirs(subdir, exist_ok=True)
+def write_list_of_dicts_to_file(filename, data, subdir=None):
+    if subdir:
+        # Ensure the subdirectory exists
+        os.makedirs(subdir, exist_ok=True)
 
-    # Construct the full path to the file
-    filepath = os.path.join(subdir, filename)
+        # Construct the full path to the file
+        filename = os.path.join(subdir, filename)
+        
     # Write the list of dictionaries to the file in JSON format
-
-    with open(filepath, "w") as f:
+    with open(filename, "w") as f:
         for i, entry in enumerate(data):
             json_str = json.dumps(entry)
             f.write(json_str)
@@ -456,6 +463,35 @@ def is_empty_output(decoded_output):
         return True
     if len(decoded_output) == 1 and len(decoded_output[0]) == 0:
         return True
+
+
+def api_status_sanity_check():
+    
+    # We only need to import the executable_checker_rest in this function. So a local import is used.
+    from checker import executable_checker_rest
+    
+    ground_truth_dummy = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
+
+    # Use the ground truth data to make sure the API is working correctly
+    command = F"cd .. ; python apply_function_credential_config.py --input_file ./eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
+    try:
+        subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
+    except subprocess.CalledProcessError as e:
+        write_list_of_dicts_to_file(REST_API_GROUND_TRUTH_FILE_PATH, ground_truth_dummy)
+        raise RuntimeError(e.stderr) from e
+    
+    ground_truth_replaced = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
+    write_list_of_dicts_to_file(REST_API_GROUND_TRUTH_FILE_PATH, ground_truth_dummy)
+    
+    correct_count = 0
+    for idx, data in tqdm(enumerate(ground_truth_replaced), total=len(ground_truth_replaced)):
+        status = executable_checker_rest(data["ground_truth"], idx)
+        if status["valid"]:
+            correct_count += 1
+            
+    if correct_count != len(ground_truth_replaced):
+        error_msg = f"API Status Test Failed. {len(ground_truth_replaced) - correct_count} out of {len(ground_truth_replaced)} API behaviors are not as expected. Be careful with executable test category results; they may be inaccurate."
+        raise BadAPIStatusError(error_msg)
 
 
 def calculate_weighted_accuracy(accuracy_dict_list):
@@ -680,7 +716,6 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
     data.insert(0, COLUMNS)
 
     filepath = os.path.join(output_path, "data.csv")
-
     with open(filepath, "w") as f:
         for i, row in enumerate(data):
             if i < len(data) - 1:
@@ -718,6 +753,7 @@ def update_leaderboard_table_with_score_file(leaderboard_table, score_path):
 def oss_file_formatter(input_file_path, output_dir):
     data = load_file(input_file_path)
     assert len(data) == 2000, "OSS result.json file should have 2000 entries."
+
 
     for key, value in FILENAME_INDEX_MAPPING.items():
         start, end = value

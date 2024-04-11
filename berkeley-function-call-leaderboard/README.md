@@ -27,15 +27,15 @@ If you plan to evaluate on OSS models, we are using vLLM for inference and refer
 ### Checker Setup (required for Java, JavaScript test categories)
 We use `tree-sitter` to do the AST parsing for Java and JavaScript test categories. Thus, you need to install `tree-sitter`.
 
-The git clones need to be under the `./berkeley-function-call-leaderboard/eval_checker` folder.
+The git clones need to be under the `/berkeley-function-call-leaderboard/eval_checker` folder.
 
 ```bash
-cd ./berkeley-function-call-leaderboard/eval_checker
+cd ./eval_checker
 git clone https://github.com/tree-sitter/tree-sitter-java.git
 git clone https://github.com/tree-sitter/tree-sitter-javascript.git
 ```
 
-Now, move back to `./berkeley-function-call-leaderboard` by `cd ..`, and create two symbolic links to the `tree-sitter-java` and `tree-sitter-javascript` directories. This is required to run `openfunctions_evaluation.py`.
+Now, move back to `/berkeley-function-call-leaderboard` by `cd ..`, and create two symbolic links to the `tree-sitter-java` and `tree-sitter-javascript` directories. This is required to run `openfunctions_evaluation.py`.
 
 ```
 ln -s eval_checker/tree-sitter-java tree-sitter-java
@@ -106,7 +106,7 @@ To generate leaderboard statistics, there are two steps:
 1. Inference the evaluation data and obtain the results from specific models 
 
 ```bash
-    python openfunctions_evaluation.py --model MODEL_NAME --test_category TEST_CATEGORY
+    python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
 ```
 For TEST_CATEGORY, we have `executable_simple`, `executable_parallel_function`, `executable_multiple_function`, `executable_parallel_multiple_function`, `simple`, `relevance`, `parallel_function`, `multiple_function`, `parallel_multiple_function`, `java`, `javascript`, `rest`, `sql`, `chatable`.
 
@@ -126,7 +126,7 @@ If decided to run OSS model, openfunctions evaluation uses vllm and therefore re
 Navigate to the `./berkeley-function-call-leaderboard/eval_checker` directory and run the `eval_runner.py` script with the desired parameters. The basic syntax is as follows:
 
 ```bash
-    python ./eval_runner.py --model MODEL_NAME --test_category {TEST_CATEGORY,all,ast,executable,python,non-python}
+    python ./eval_runner.py --model MODEL_NAME --test-category {TEST_CATEGORY,all,ast,executable,python,non-python}
 ```
 
 - `MODEL_NAME`: Optional. The name of the model you wish to evaluate. This parameter can accept multiple model names separated by spaces. Eg, `--model gorilla-openfunctions-v2 gpt-4-0125-preview`.
@@ -152,7 +152,10 @@ Navigate to the `./berkeley-function-call-leaderboard/eval_checker` directory an
         - `relevance`: Function calls with irrelevant function documentation.
     - If no test category is provided, the script will run all available test categories.
 > If you want to run the `all` or `executable` or `python` category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API! 
-> If you do not wish to provide API keys for REST API testing, set `test_category` to `ast` or any non-executable category.
+
+> If you do not wish to provide API keys for REST API testing, set `test-category` to `ast` or any non-executable category.
+
+> By default, if the test categories include `executable`, the evaluation process will perform the REST API sanity check first to ensure that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, the evaluation process will be stopped by default as the result will be inaccurate. You can choose to bypass this check by setting the `--skip-api-sanity-check` flag.
 
 ### Example Usage
 
@@ -165,13 +168,13 @@ If you want to run all tests for the `gorilla-openfunctions-v2` model, you can u
 If you want to runn `rest` tests for all GPT models, you can use the following command:
 
 ```bash
-    python ./eval_runner.py --model gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test_category rest
+    python ./eval_runner.py --model gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest
 ```
 
 If you want to run `rest` and `javascript` tests for all GPT models and `gorilla-openfunctions-v2`, you can use the following command:
 
 ```bash
-    python ./eval_runner.py --model gorilla-openfunctions-v2 gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test_category rest javascript
+    python ./eval_runner.py --model gorilla-openfunctions-v2 gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest javascript
 ```
 
 
@@ -218,6 +221,7 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 ## Changelog
 
+* [April 10, 2024] [#339](https://github.com/ShishirPatil/gorilla/pull/339): Introduce REST API sanity check for the executable test category. It ensures that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, the evaluation process will be stopped by default as the result will be inaccurate. Users can choose to bypass this check by setting the `--skip-api-sanity-check` flag.
 * [April 9, 2024] [#338](https://github.com/ShishirPatil/gorilla/pull/338): Bug fix in the evaluation datasets (including both prompts and function docs). Bug fix for possible answers as well.
 * [April 8, 2024] [#330](https://github.com/ShishirPatil/gorilla/pull/330): Fixed an oversight that was introduced in [#299](https://github.com/ShishirPatil/gorilla/pull/299). For function-calling (FC) models that cannot take `float` type in input, when the parameter type is a `float`, the evaluation procedure will convert that type to `number` in the model input and mention in the parameter description that `This is a float type value.`. An additional field `format: float` will also be included in the model input to make it clear about the type. Updated the model handler for Claude, Mistral, and OSS to better parse the model output.
 * [April 3, 2024] [#309](https://github.com/ShishirPatil/gorilla/pull/309): Bug fix for evaluation dataset possible answers. Implement **string standardization** for the AST evaluation pipeline, i.e. removing white spaces and a subset of punctuations (`,./-_*^`) to make the AST evaluation more robust and accurate. Fixed AST evaluation issue for type `tuple`. Add 2 new models `meetkai/functionary-small-v2.4 (FC)`, `meetkai/functionary-medium-v2.4 (FC)` to the leaderboard.
