@@ -243,7 +243,7 @@ class ExecutionEngine:
         """Execute a file system API call"""
         if not self.fs_initialized:
             self.initialize_fs()
-        self.fs_manager.initialize_version_control()  # make sure that git exists on every call
+            self.fs_manager.initialize_version_control()  # make sure that git exists on every call
         self.fs_manager.execute(call, display=True)
 
     def _exec_restful_call(self, call) -> bool:
