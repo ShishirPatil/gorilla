@@ -117,7 +117,7 @@ def convert_to_function_call(function_call_list):
 
 def generate_command(content, credentials = None, api_type=RESTful_Type, generate_mode='default', openai_model="gpt-4-turbo-preview"):
     client = OpenAI()
-    openai_model = os.environ.get("OPENAI_MODEL")
+
     # defaults to getting the key using os.environ.get("OPENAI_API_KEY")
     # if you saved the key under a different environment variable name, you can do something like:
     # client = OpenAI(
@@ -200,7 +200,6 @@ def generate_command(content, credentials = None, api_type=RESTful_Type, generat
     
 def generate_reverse_command(forward_call, prompt, credentials=None, api_type=RESTful_Type, generate_mode='default', openai_model="gpt-4-turbo-preview"):
     client = OpenAI()
-    openai_model = os.environ.get("OPENAI_MODEL")
 
     if api_type == RESTful_Type:
 
@@ -267,10 +266,10 @@ def generate_reverse_command(forward_call, prompt, credentials=None, api_type=RE
         code = matches.group(1)
         return code
     
-def prompt_execute(engine, prompt, services=None, creds=None, max_attempt=3):
+def prompt_execute(engine, prompt, services=None, creds=None, max_attempt=3, model="gpt-4-turbo-preview"):
     ret = defaultdict(list)
     for _ in range(max_attempt):
-        forward_call, backward_call = engine.gen_api_pair(prompt, api_type=RESTful_Type, credentials=creds)
+        forward_call, backward_call = engine.gen_api_pair(prompt, api_type=RESTful_Type, credentials=creds, model=model)
         response = engine.api_executor.execute_api_call(forward_call, services)
         
         if response and response['output']:

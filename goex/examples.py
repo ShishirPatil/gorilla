@@ -68,7 +68,7 @@ def prompt_api_execute(prompt):
     engine = ExecutionEngine()
     engine.api_executor = PythonAPIExecutor(engine.docker_sandbox)
     creds, services = engine.api_executor.prepare_credentials(prompt)
-    forward_call, backward_call = engine.gen_api_pair(prompt, api_type=RESTful_Type, credentials=creds)
+    forward_call, backward_call = engine.gen_api_pair(prompt, api_type=RESTful_Type, credentials=creds, model="gpt-4-turbo-preview")
     print(forward_call)
     output = engine.api_executor.execute_api_call(forward_call, services)
     return output

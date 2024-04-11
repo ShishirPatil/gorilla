@@ -47,34 +47,35 @@ class ExecutionEngine:
             RESTful_Type: deque(maxlen=history_length),
         }
 
-    def gen_api_pair(self, input_prompt: str, api_type: str, credentials) -> list:
+    def gen_api_pair(self, input_prompt: str, api_type: str, credentials, model) -> list:
         """Generate an API call and its reversal"""
         if api_type == RESTful_Type:
-            forward_call = generate_command(input_prompt, credentials, generate_mode=self.generate_mode)
-            backward_call = self.api_executor.try_get_backward_call(forward_call, input_prompt, credentials, api_type, generate_mode=self.generate_mode)
+            forward_call = generate_command(input_prompt, credentials, generate_mode=self.generate_mode, openai_model=model)
+            backward_call = self.api_executor.try_get_backward_call(forward_call, input_prompt, credentials, api_type,
+                                                                     generate_mode=self.generate_mode, model=model)
             return forward_call, backward_call
             
         elif api_type == SQL_Type:
             input_p = self.db_manager.task_to_prompt(input_prompt)
-            forward_call = generate_command(input_p, credentials, api_type=SQL_Type, generate_mode=self.generate_mode)
+            forward_call = generate_command(input_p, credentials, api_type=SQL_Type, generate_mode=self.generate_mode, openai_model=model)
 
             reverse_p = self.db_manager.task_to_prompt(forward_call, forward=False)
-            backward_call = generate_command(reverse_p, credentials, api_type=SQL_Type, generate_mode=self.generate_mode)
+            backward_call = generate_command(reverse_p, credentials, api_type=SQL_Type, generate_mode=self.generate_mode, openai_model=model)
             return forward_call, backward_call
 
         elif api_type == Filesystem_Type:
             input_p = self.fs_manager.task_to_prompt(input_prompt)
-            forward_call = generate_command(input_p, credentials, api_type=Filesystem_Type, generate_mode=self.generate_mode)
+            forward_call = generate_command(input_p, credentials, api_type=Filesystem_Type, generate_mode=self.generate_mode, openai_model=model)
 
             reverse_p = self.fs_manager.task_to_prompt(forward_call, forward=False)
-            backward_call = generate_command(reverse_p, credentials, api_type=Filesystem_Type, generate_mode=self.generate_mode)
+            backward_call = generate_command(reverse_p, credentials, api_type=Filesystem_Type, generate_mode=self.generate_mode, openai_model=model)
             return forward_call, backward_call
         raise NotImplementedError
 
 
     def run_prompt(self, input_prompt: str, api_type: str):
         credentials = None          # TODO: Work out credentials logic
-        api_call, neg_api_call = self.gen_api_pair(input_prompt, api_type, credentials)
+        api_call, neg_api_call = self.gen_api_pair(input_prompt, api_type, credentials, model="gpt-4-turbo-preview")
 
         exec_result = self.exec_api_call(api_call, api_type, neg_api_call)
 
