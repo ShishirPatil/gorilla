@@ -3,7 +3,7 @@ import math
 import random
 import requests
 import xml.etree.ElementTree as ET
-from custome_exception import NoAPIKeyError
+from custom_exception import NoAPIKeyError
 
 
 api_key = {}

@@ -1,0 +1,70 @@
+{"idx": 0, "ground_truth": "requests.get(url='https://timezone-by-location.p.rapidapi.com/timezone', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'timezone-by-location.p.rapidapi.com'}, params={'lat': 48.8584, 'lon': 2.2945, 'c': 1})"}
+{"idx": 1, "ground_truth": "requests.get(url='https://timezone-by-location.p.rapidapi.com/timezone', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'timezone-by-location.p.rapidapi.com'}, params={'lat': 40.7128, 'lon': -74.0060})"}
+{"idx": 2, "ground_truth": "requests.get(url='https://timezone-by-location.p.rapidapi.com/timezone', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'timezone-by-location.p.rapidapi.com'}, params={'lat': 40.712776, 'lon': -74.005974, 'c': 1})"}
+{"idx": 3, "ground_truth": "requests.get(url='https://timezone-by-location.p.rapidapi.com/timezone', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'timezone-by-location.p.rapidapi.com'}, params={'lat': 40.712776, 'lon': -74.005974})"}
+{"idx": 4, "ground_truth": "requests.get(url='https://timezone-by-location.p.rapidapi.com/timezone', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'timezone-by-location.p.rapidapi.com'}, params={'lat': 40.7128, 'lon': -74.0060, 'c': 1})"}
+{"idx": 5, "ground_truth": "requests.get(url='https://timezone-by-location.p.rapidapi.com/timezone', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'timezone-by-location.p.rapidapi.com'}, params={'lat': 48.8584, 'lon': 2.2945})"}
+{"idx": 6, "ground_truth": "requests.get(url='https://covid-193.p.rapidapi.com/statistics', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'covid-193.p.rapidapi.com'}, timeout=10, params={'country': 'Uganda'}, stream=False)"}
+{"idx": 7, "ground_truth": "requests.get(url='https://covid-193.p.rapidapi.com/statistics', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'covid-193.p.rapidapi.com'}, timeout=25, params={'country': 'France'})"}
+{"idx": 8, "ground_truth": "requests.get(url='https://covid-193.p.rapidapi.com/statistics', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'covid-193.p.rapidapi.com'}, params={'country': 'Japan'})"}
+{"idx": 9, "ground_truth": "requests.get(url='https://covid-193.p.rapidapi.com/statistics', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'covid-193.p.rapidapi.com'}, timeout=10, params={'country': 'UK'}, stream=False)"}
+{"idx": 10, "ground_truth": "requests.get(url='https://covid-193.p.rapidapi.com/statistics', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'covid-193.p.rapidapi.com'}, params={'country': 'Iran'})"}
+{"idx": 11, "ground_truth": "requests.get(url='https://covid-193.p.rapidapi.com/statistics', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'covid-193.p.rapidapi.com'}, params={'country': 'India'})"}
+{"idx": 12, "ground_truth": "requests.get(url='https://covid-193.p.rapidapi.com/statistics', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'covid-193.p.rapidapi.com'}, timeout=5, params={'country': 'China'})"}
+{"idx": 13, "ground_truth": "requests.get(url='https://v6.exchangerate-api.com/v6/YOUR-EXCHANGERATE-API-KEY/latest/EUR')"}
+{"idx": 14, "ground_truth": "requests.get(url='https://v6.exchangerate-api.com/v6/YOUR-EXCHANGERATE-API-KEY/latest/EUR')"}
+{"idx": 15, "ground_truth": "requests.get(url='https://v6.exchangerate-api.com/v6/YOUR-EXCHANGERATE-API-KEY/latest/USD')"}
+{"idx": 16, "ground_truth": "requests.get(url='https://v6.exchangerate-api.com/v6/YOUR-EXCHANGERATE-API-KEY/latest/EUR')"}
+{"idx": 17, "ground_truth": "requests.get(url='https://v6.exchangerate-api.com/v6/YOUR-EXCHANGERATE-API-KEY/latest/EUR')"}
+{"idx": 18, "ground_truth": "requests.get(url='https://v6.exchangerate-api.com/v6/YOUR-EXCHANGERATE-API-KEY/latest/EUR')"}
+{"idx": 19, "ground_truth": "requests.get(url='https://v6.exchangerate-api.com/v6/YOUR-EXCHANGERATE-API-KEY/latest/EUR')"}
+{"idx": 20, "ground_truth": "requests.get(url='https://v6.exchangerate-api.com/v6/YOUR-EXCHANGERATE-API-KEY/latest/EUR')"}
+{"idx": 21, "ground_truth": "requests.get(url='https://v6.exchangerate-api.com/v6/YOUR-EXCHANGERATE-API-KEY/latest/EUR')"}
+{"idx": 22, "ground_truth": "requests.get(url='https://v6.exchangerate-api.com/v6/YOUR-EXCHANGERATE-API-KEY/latest/EUR')"}
+{"idx": 23, "ground_truth": "requests.get(url='https://yahoo-finance15.p.rapidapi.com/api/v1/markets/search', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'}, params={'search': 'Meta'})"}
+{"idx": 24, "ground_truth": "requests.get(url='https://yahoo-finance15.p.rapidapi.com/api/v1/markets/search', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'}, params={'search': 'Tesla'})"}
+{"idx": 25, "ground_truth": "requests.get(url='https://yahoo-finance15.p.rapidapi.com/api/v1/markets/search', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'}, params={'search': 'Tesla'})"}
+{"idx": 26, "ground_truth": "requests.get(url='https://yahoo-finance15.p.rapidapi.com/api/v1/markets/search', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'}, params={'search': 'Apple'})"}
+{"idx": 27, "ground_truth": "requests.get(url='https://yahoo-finance15.p.rapidapi.com/api/v1/markets/search', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'}, params={'search': 'Tesla'})"}
+{"idx": 28, "ground_truth": "requests.get(url='https://yahoo-finance15.p.rapidapi.com/api/v1/markets/search', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'yahoo-finance15.p.rapidapi.com'}, params={'search': 'Tesla'})"}
+{"idx": 29, "ground_truth": "requests.get(url='http://ip-api.com/json', params={'fields': 'query,status,country', 'lang': 'fr'})"}
+{"idx": 30, "ground_truth": "requests.get(url='http://ip-api.com/json', params={'lang': 'fr'})"}
+{"idx": 31, "ground_truth": "requests.get(url='http://ip-api.com/json', params={'fields': 'country,city,timezone', 'lang': 'fr'})"}
+{"idx": 32, "ground_truth": "requests.get(url='http://ip-api.com/json', params={'fields': 'city,country,isp', 'lang': 'es'})"}
+{"idx": 33, "ground_truth": "requests.get(url='http://ip-api.com/json', params={'fields': 'query,status,country', 'lang': 'de'})"}
+{"idx": 34, "ground_truth": "requests.get(url='http://ip-api.com/json', params={'fields': 'query,country', 'lang': 'es'})"}
+{"idx": 35, "ground_truth": "requests.get(url='https://geocode.maps.co/search', params={'q': '5331 Rexford Court, Montgomery AL 36116', 'api_key': 'YOUR-GEOCODE-API-KEY', 'format': 'geojson'})"}
+{"idx": 36, "ground_truth": "requests.get(url='https://geocode.maps.co/search', params={'q': '886 Cannery Row, Monterey, CA', 'api_key': 'YOUR-GEOCODE-API-KEY', 'format': 'json'})"}
+{"idx": 37, "ground_truth": "requests.get(url='https://geocode.maps.co/search', params={'q': '1600 Amphitheatre Parkway, Mountain View, CA', 'api_key': 'YOUR-GEOCODE-API-KEY', 'format': 'json'})"}
+{"idx": 38, "ground_truth": "requests.get(url='https://geocode.maps.co/search', params={'q': '450 Jane Stanford Way Stanford, CA 94305\u20132004, CA', 'api_key': 'YOUR-GEOCODE-API-KEY', 'format': 'json'})"}
+{"idx": 39, "ground_truth": "requests.get(url='https://geocode.maps.co/reverse', params={'lat': 37.4224764, 'lon': -122.0842499, 'api_key': 'YOUR-GEOCODE-API-KEY', 'format': 'geojson'})"}
+{"idx": 40, "ground_truth": "requests.get(url='https://geocode.maps.co/reverse', params={'lat': 63.65687, 'lon': 117.05229, 'api_key': 'YOUR-GEOCODE-API-KEY'})"}
+{"idx": 41, "ground_truth": "requests.get(url='https://geocode.maps.co/search', params={'q': 'Soda Hall, Berkeley, CA', 'api_key': 'YOUR-GEOCODE-API-KEY', 'format': 'geojson'})"}
+{"idx": 42, "ground_truth": "requests.get(url='https://geocode.maps.co/reverse', params={'lat': 39.4224764, 'lon': -112.0842499, 'api_key': 'YOUR-GEOCODE-API-KEY', 'format': 'geojson'})"}
+{"idx": 43, "ground_truth": "requests.get(url='https://geocode.maps.co/reverse', params={'lat': 40.748817, 'lon': -73.985428, 'api_key': 'YOUR-GEOCODE-API-KEY', 'format': 'geojson'})"}
+{"idx": 44, "ground_truth": "requests.get(url='https://geocode.maps.co/reverse', params={'lat': 48.8584, 'lon': 2.2945, 'api_key': 'YOUR-GEOCODE-API-KEY', 'format': 'json'})"}
+{"idx": 45, "ground_truth": "requests.get(url='https://api.open-meteo.com/v1/forecast', params={'latitude': '35.6895', 'longitude': '139.6917', 'daily': ['temperature_2m_max', 'temperature_2m_min', 'windspeed_10m_max', 'precipitation_sum'], 'temperature_unit': 'fahrenheit', 'timezone': 'auto'})"}
+{"idx": 46, "ground_truth": "requests.get(url='https://api.open-meteo.com/v1/forecast', params={'latitude': '35.68', 'longitude': '-121.34', 'forecast_days': 10, 'daily': ['temperature_2m_max', 'precipitation_sum'], 'temperature_unit': 'fahrenheit', 'precipitation_unit': 'inch'})"}
+{"idx": 47, "ground_truth": "requests.get(url='https://api.open-meteo.com/v1/forecast', params={'latitude': '35.6895', 'longitude': '139.6917', 'daily': ['temperature_2m_max', 'wind_speed_10m_max', 'precipitation_probability_mean'], 'temperature_unit': 'celsius', 'wind_speed_unit': 'kmh', 'precipitation_unit': 'mm'})"}
+{"idx": 48, "ground_truth": "requests.get(url='https://api.open-meteo.com/v1/forecast', params={'latitude': '47.8095', 'longitude': '13.0550', 'daily': ['temperature_2m_max', 'temperature_2m_min', 'windspeed_10m_max', 'precipitation_sum'], 'temperature_unit': 'fahrenheit', 'wind_speed_unit': 'mph', 'timezone': 'Europe/Vienna', 'forecast_days': 7})"}
+{"idx": 49, "ground_truth": "requests.get(url='https://api.open-meteo.com/v1/forecast', params={'latitude': '39.113014', 'longitude': '-105.358887', 'daily': ['temperature_2m_max', 'temperature_2m_min', 'windspeed_10m_max', 'precipitation_sum'], 'temperature_unit': 'fahrenheit', 'wind_speed_unit': 'mph', 'precipitation_unit': 'mm', 'timezone': 'auto', 'forecast_days': 10})"}
+{"idx": 50, "ground_truth": "requests.get(url='https://api.open-meteo.com/v1/forecast', params={'latitude': '37.8651', 'longitude': '-119.5383', 'hourly': ['temperature', 'windspeed', 'precipitation'], 'forecast_days': 10, 'temperature_unit': 'fahrenheit', 'wind_speed_unit': 'mph', 'precipitation_unit': 'inch', 'timezone': 'auto'})"}
+{"idx": 51, "ground_truth": "requests.get(url='https://api.open-meteo.com/v1/forecast', params={'latitude': '46.0207,46.4836', 'longitude': '7.7491,9.8355', 'daily': ['temperature_2m_max', 'temperature_2m_min', 'windspeed_10m_max', 'precipitation_sum'], 'temperature_unit': 'fahrenheit', 'wind_speed_unit': 'mph', 'precipitation_unit': 'inch', 'timezone': 'auto', 'start_date': '2023-04-15', 'end_date': '2023-04-21'})"}
+{"idx": 52, "ground_truth": "requests.get(url='https://api.open-meteo.com/v1/forecast', params={'latitude': '46.2028', 'longitude': '-121.4905', 'elevation': '3743', 'daily': ['temperature_2m_max', 'temperature_2m_min', 'precipitation_sum'], 'forecast_days': 10})"}
+{"idx": 53, "ground_truth": "requests.get(url='https://mashape-community-urban-dictionary.p.rapidapi.com/define', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'mashape-community-urban-dictionary.p.rapidapi.com'}, params={'term': 'yeet'})"}
+{"idx": 54, "ground_truth": "requests.get(url='https://mashape-community-urban-dictionary.p.rapidapi.com/define', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'mashape-community-urban-dictionary.p.rapidapi.com'}, params={'term': 'artwash'})"}
+{"idx": 55, "ground_truth": "requests.get(url='https://mashape-community-urban-dictionary.p.rapidapi.com/define', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'mashape-community-urban-dictionary.p.rapidapi.com'}, params={'term': 'lit'})"}
+{"idx": 56, "ground_truth": "requests.get(url='https://mashape-community-urban-dictionary.p.rapidapi.com/define', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'mashape-community-urban-dictionary.p.rapidapi.com'}, params={'term': 'bet'})"}
+{"idx": 57, "ground_truth": "requests.get(url='https://mashape-community-urban-dictionary.p.rapidapi.com/define', headers={'X-RapidAPI-Key': 'YOUR-RAPID-API-KEY', 'X-RapidAPI-Host': 'mashape-community-urban-dictionary.p.rapidapi.com'}, params={'term': 'swole'})"}
+{"idx": 58, "ground_truth": "requests.get(url='http://www.omdbapi.com/', params={'t': 'Barbie', 'y': '2023', 'apikey': 'YOUR-OMDB-API-KEY'})"}
+{"idx": 59, "ground_truth": "requests.get(url='http://www.omdbapi.com/', params={'t': 'The Social Network', 'y': '2010', 'apikey': 'YOUR-OMDB-API-KEY'})"}
+{"idx": 60, "ground_truth": "requests.get(url='http://www.omdbapi.com/', params={'t': 'The Social Network', 'plot': 'full', 'apikey': 'YOUR-OMDB-API-KEY'})"}
+{"idx": 61, "ground_truth": "requests.get(url='http://www.omdbapi.com/', params={'t': 'Inception', 'y': '2010', 'plot': 'full', 'r': 'json','apikey': 'YOUR-OMDB-API-KEY'})"}
+{"idx": 62, "ground_truth": "requests.get(url='http://www.omdbapi.com/', params={'t': 'Gorilla', 'plot': 'full', 'r': 'json', 'apikey': 'YOUR-OMDB-API-KEY'})"}
+{"idx": 63, "ground_truth": "requests.get(url='http://www.omdbapi.com/', params={'t': 'Oppenheimer', 'y': '2023', 'plot': 'full', 'r': 'json', 'apikey': 'YOUR-OMDB-API-KEY'})"}
+{"idx": 64, "ground_truth": "requests.get(url='http://www.omdbapi.com/', params={'t': 'Oppenheimer', 'plot': 'full', 'r': 'json', 'apikey': 'YOUR-OMDB-API-KEY'})"}
+{"idx": 65, "ground_truth": "requests.get(url='https://date.nager.at/api/v3/LongWeekend/2023/CA')"}
+{"idx": 66, "ground_truth": "requests.get(url='https://date.nager.at/api/v3/LongWeekend/2023/CA')"}
+{"idx": 67, "ground_truth": "requests.get(url='https://date.nager.at/api/v3/LongWeekend/2023/FR')"}
+{"idx": 68, "ground_truth": "requests.get(url='https://date.nager.at/api/v3/LongWeekend/2023/JP')"}
+{"idx": 69, "ground_truth": "requests.get(url='https://date.nager.at/api/v3/LongWeekend/2023/CA')"}
