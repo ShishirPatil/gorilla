@@ -12,3 +12,7 @@ dist
 ./berkeley-function-call-leaderboard/function_credential_config.json
 ./berkeley-function-call-leaderboard/eval_checker/tree-sitter-java
 ./berkeley-function-call-leaderboard/eval_checker/tree-sitter-javascript
+goex/exec_engine/checkpoints/
+goex/exec_engine/credentials/secret_store.json
+goex/docker/*/requirements.txt
+goex/docker/misc/images.json
