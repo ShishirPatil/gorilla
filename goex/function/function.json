@@ -1,0 +1,190 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "slack_send_message",
+      "description": "Send an slack message to a channel.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "The channel id to send the message to. Example: 'D04HS7LEX17'."
+          },
+          "text": {
+            "type": "string",
+            "description": "The text of the message. Example: 'hello bob'."
+          }
+        },
+        "required": ["channel_id", "text"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "slack_send_message_dummy",
+      "description": "Send an slack message to a channel without specifying channel id.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "The text of the message. Example: 'hello bob'."
+          }
+        },
+        "required": ["text"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "slack_delete_most_recent_message",
+      "description": "Delete the latest message you sent in a channel.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "The channel id to delete the message from. Example: 'D04HS7LEX17'."
+          }
+        },
+        "required": ["channel_id"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "slack_delete_most_recent_message_dummy",
+      "description": "Delete the latest message you sent in a channel without specifying channel id.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "slack_list_channels",
+      "description": "List all the channels in your slack workspace.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "slack_add_emoji_reaction",
+      "description": "Add an emoji reaction to a message in the channel.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "The id of the channel to add emoji reaction to. Example: 'D04HS7LEX17'."
+          },
+          "emoji_name": {
+            "type": "string",
+            "description": "The name of the emoji to add. Example: 'thumbsup'."
+          },
+          "timestamp_id": {
+            "type": "string",
+            "description": "The timestamp id of the message to add emoji reaction to. Example: '1712451307.299279'."
+          }
+        },
+        "required": ["channel_id", "emoji_name", "timestamp_id"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "slack_remove_latest_emoji_reaction",
+      "description": "Remove an emoji reaction to the latest message in the channel.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "The channel id to remove emoji reaction from. Example: 'D04HS7LEX17'."
+          },
+          "emoji_name": {
+            "type": "string",
+            "description": "The name of the emoji to add. Example: 'thumbsup'."
+          }
+        },
+        "required": ["channel_id", "emoji_name"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "slack_upload_file",
+      "description": "Upload a file to a channel.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "The channel id to delete the message from. Example: 'D04HS7LEX17'."
+          },
+          "initial_comment": {
+            "type": "string",
+            "description": "Initial text comments we add to the file. Example: 'Personal file'."
+          },
+          "file_name": {
+            "type": "string",
+            "description": "The name of the file to be uploaded Example: 'README.md'."
+          }
+        },
+        "required": ["channel_id", "initial_comment", "file_name"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "slack_delete_latest_file",
+      "description": "Delete the latest file and its corresponding message in a channel.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "The channel id to delete the file from. Example: 'D04HS7LEX17'."
+          }
+        },
+        "required": ["channel_id"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "slack_read_messages",
+      "description": "Read the most recent k messages in a channel.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "description": "The channel id to read messages from. Example: 'D04HS7LEX17'."
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Number of messages to be read from the channel. Default: 10. Example: 1."
+          }
+        },
+        "required": ["channel_id"]
+      }
+    }
+  }
+]
