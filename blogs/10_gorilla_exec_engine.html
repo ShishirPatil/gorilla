@@ -31,7 +31,7 @@
         <a href="/apizoo/">API Zoo Index</a>
     </div>
     <div class="highlight-clean-blog" style="padding-bottom: 10px;">
-        <h1 class="text-center" style="padding-bottom: 10px;"> GoEx: An LLM Interface for an LLM Future</h1>
+        <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 GoEX: A Runtime for Autonomous LLM Applications</h1>
 
         <div class="blog-container">
             <div class="blog-post">
@@ -49,41 +49,82 @@
                     <p class="author"> <a href="https://people.eecs.berkeley.edu/~raluca/">Raluca Ada Popa</a></p>
                     <p class="author"> <a href="https://people.eecs.berkeley.edu/~istoica/">Ion Stoica</a></p>
                 </div>
+
                 <div class ="author-date">
-                    <p class="date">Apr 9, 2024</p>
+                    <p class="date">
+                        shishirpatil@berkeley.edu, tianjunz@berkeley.edu
+                    </p> 
                 </div>
 
-                <img src="..\assets\img\blog_10\goex_intro_image.png" alt="How to Use Gorilla Image"
-                    style="width: 100%;">
-                <p width="80%" style="text-align:center; padding-bottom: -10px">
-                    <i style="font-size: 0.9em;">
-                        GoEx offers a new way to interface with LLMs, providing abstractions for authorization, execution, and error handling.
-                    </i>
-                </p>
+                <!-- <div class ="author-date">
+                    <p class="date">Apr 9, 2024</p>
+                </div> -->
+
+
 
                 <div class="Introduction">
                     <p>
-                        Beyond its current use as a human centric chatbot, LLM technology is advancing 
-                        towards interaction between applications and services. We believe the future lies
-                        in LLM powered microservices and applications, with little to no human supervision 
-                        between communicating services. However, this vision has substantial challenges; 
-                        after all, who would trust an unknown ML actor to execute foreign, untested code? 
-                        The Gorilla Exec Engine provides a first step towards this idea: a runtime environment 
-                        that provides abstractions for authorization and information security. The Exec Engine
-                        is completely open source, under Apache 2.0 license. 
+                        Large Language Models (LLMs) are evolving beyond their role of providing information within dialogue systems to 
+                        actively engaging with tools and performing actions on real-world applications and services. Today, humans 
+                        verify the correctness and appropriateness of the LLM-generated outputs (e.g., code, functions, or actions) 
+                        before putting them into real-world execution. 
+                        This poses significant challenges as code comprehension is well known to be notoriously difficult. 
+                        In this paper, we study how humans can efficiently collaborate with, delegate to, and supervise autonomous LLMs in the future. 
+                        We argue that in many cases, “post-facto validation”—verifying the correctness of a proposed action after seeing the 
+                        output—is much easier than the aforementioned “pre-facto validation” setting. The core concept behind enabling a post-facto
+                        validation system is the integration of an intuitive undo feature, and establishing a damage confinement for
+                        the LLM-generated actions as effective strategies to mitigate the associated risks. Using this, a human can
+                        now either revert the effect of an LLM-generated output or be confident that the potential risk is bounded.
+                        We believe this is critical to unlock the potential for LLM agents to interact with applications and services
+                        with limited (post-facto) human involvement. We describe the design and implementation of our open-source
+                        runtime for executing LLM actions, Gorilla Execution Engine (GoEx), and present open research questions
+                        towards realizing the goal of LLMs and applications interacting with each other with minimal human super-
+                        vision. 
+                        The Exec Engine is completely open source, under Apache 2.0 license. 
+                    </p>
+                    <p>
+                        Quick Links:
+                        <li>
+                            Paper: <a href="https://arxiv.org/abs/2404.06921">https://arxiv.org/abs/2404.06921</a>
+                        </li>
+                        <li>
+                            Github: <a href="https://github.com/ShishirPatil/gorilla">https://github.com/ShishirPatil/gorilla</a>
+                        </li>
                     </p>
                 </div>
-
-
+                
 
                 <div class="body">
                     <ol type="I">
                         <h4>
-                            <li> Motivating Concepts for GoEx
+                            <li> GoEx Slack Demo 🤖
+                        </h4>
+
+                        Let's first take a look at a demo of GoEx in action. In this example, Vivian uses GoEx to send a message "Hello Tianjun, it's nice to meet you! Let's get you setup..." to the a Tianjun in Slack. The user can choose to either commit or undo the action if the generated code is incorrect.
+
+                        <img src="../assets/img/blog_10/blog_post_10_demo.gif" alt="GoEX Slack Demo" style="width: 100%;">
+                        <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                            <i style="font-size: 0.9em;">
+                                GoEx provides a simple and intuitive interface for executing LLM generated code, with the option to commit or undo the action.
+                            </i>
+                        </p>
+
+                        <h4>
+                            <li> Moving from Chatbots to Autonomous Agents 🚀
                         </h4>
                         <p>
-                            There are a couple concepts and concerns that arise in the context of executing LLM 
-                            generated code. Here are a couple we address with Exec Engine:
+                            In the example above, the LLM is autonomously empowering microservices, services, and applications, with little human supervision. Broadening the scope, different applications can be built on top of the GoEx engine, such as a Slack bot that can autonomously send messages, a Spotify bot that can autonomously create playlists, or a Dropbox bot that can autonomously create folders.
+                        </p>
+                        <p>
+                            The 
+                        </p>
+
+                        <img src="..\assets\img\blog_10\goex_intro_image.png" alt="How to Use Gorilla Image"
+                            style="width: 70%;">
+                        <p width="80%" style="text-align:center;padding-bottom: -10px">
+                            <i style="font-size: 0.9em;">
+                                GoEx offers a new way to interface with LLMs, providing abstractions for authorization, execution, and error handling.
+                            </i>
                         </p>
 
                         <ol>
@@ -93,34 +134,7 @@
                                     In the context of API calls, it is often easier to verify the correctness of the call by 
                                     analyzing its result, rather than the process. Take this example:
                                 </ul>
-                                <pre
-                                style="white-space: pre-wrap; width: 100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">
-                                    <code>
-    def send_message_to_latest_channel(message):
-        # List the user's channels
-        channels_url = 'https://slack.com/api/conversations.list'
-        params = {'exclude_archived': 'true', 'limit': 1, 'types': 'public_channel,private_channel'}
-        channels_response = requests.get(channels_url, headers=headers, params=params).json()
-
-        if not channels_response['ok']:
-            raise Exception('Failed to list channels')
-
-        channel_id = channels_response['channels'][0]['id']
-
-        # Send a message to the most recent channel
-        message_url = 'https://slack.com/api/chat.postMessage'
-        message_data = {'channel': channel_id, 'text': message}
-        message_response = requests.post(message_url, headers=headers, data=message_data).json()
-
-        if not message_response['ok']:
-            raise Exception('Failed to send message')
-
-        print('Message sent successfully to the most recent channel')
-
-    # Example usage
-    send_message_to_latest_channel('Hello from your most recent slack channel!')
-                                    </code>
-                                </pre>
+                                
                                 <ul>
                                     This code was generated with the prompt: "Send a message to my most recently used Slack channel." 
                                     At first glance, it's hard to tell whether the generated code is correct or not. Upon running it, the code
@@ -168,7 +182,7 @@
                         </p>
                         </li>
                         <h4>
-                            <li> Gorilla CLI 🖥️
+                            <li> GoEx CLI 🖥️
                         </h4>
                         <p>
                             <i>
@@ -179,13 +193,6 @@
                                 Let us know what you think!
                             </i>
                             <br>
-                        <div class="responsive-iframe-container" style="text-align: center;">
-                            <iframe src="https://www.youtube.com/embed/ARSCy7sJHQA?si=xhpDuOn_ezil6CQH"  frameborder="0"
-                                style="width: 70%; height: 400px;"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen>
-                            </iframe>
-                        </div>
                         <p>
                             The Gorilla CLI is an easy to use demo of the gorilla engine, 
                             right in your terminal. It has functionality for RESTful, database, 
@@ -200,16 +207,12 @@
                         <p>
                             The CLI can be easily installed through pip. For more information on installation and execution check out the repo. 
                         </p>
-                        <h4>
-                           <li>RESTful API Calls: 
-                        </h4>
-                        <img src="..\assets\img\blog_10\rest-diagram.png" alt="How to Use Gorilla Image"
+
+                        <img src="..\assets\img\blog_10\simple_overview.png" alt="How to Use Gorilla Image"
                         style="width: 60%;">
-                        <p width="80%" style="text-align:center; padding-bottom: -10px">
-                            <i style="font-size: 0.9em;">
-                                GoEx restful calls store credentials in the "Secret Intelligent Vault", stored locally and automatically retrieved during queries. In all situations, the option of reverse call is attempted.
-                            </i>
-                        </p>
+                        <h5>
+                            RESTful API Calls: 
+                        </h5>
                         <p>
                             Specify a natural language request and we will automatically provide credentials to execute 
                             a RestAPI call. Some services OAuth services we current support include the following: 
@@ -269,20 +272,9 @@
                             </li>
                         </ol>
                         <br>
-                        <p>A full example that is supported by our system would look like this:</p>
-                        <code>goex execute -prompt add a smile emoji to the latest message sent to channel {CHANNEL_ID} on slack -type rest -generate_mode function_in_context</code>
-                        
-                        <h4 id="integrate-third-party">
-                            <li>Databases (CLI Only) 
-                        </h4>
-
-                        <img src="..\assets\img\blog_10\db-diagram.png" alt="Database diagram"
-                        style="width: 60%;">
-                        <p width="80%" style="text-align:center; padding-bottom: -10px">
-                            <i style="font-size: 0.9em;">
-                                GoEx offers two modes of execution, Reversal and Versioning. See below for details.
-                            </i>
-                        </p>
+                        <h5>
+                            Databases (CLI Only) 
+                        </h5>
                         <p>
                             With databases, all you need to do is to provide your database connection config and the engine 
                             will handle the rest. We currently support MySQL and SQLite, and will add support for other DBs 
@@ -322,42 +314,10 @@
                         <p>
                             The database works with two options:
                         </p>
-                        <ul>
-                            <li>
-                                <b>Option 1 (Reversal):</b>
-                                Makes use of a reverse database operation to perform the undo. It is done by prompting the LLM with 
-                                the original operation (action call) along with the schema to generate the reversal operation (undo call). 
-                                Committing would require no action, and undoing would just be performing the undo call after the action call 
-                                is done. This option scales better as additional users can continue perform database actions without needing 
-                                to wait for the previous user to finish their transaction at the cost of relying on the LLM to come up with 
-                                an undo call, which may or may not have unexpected behaviors.
-                            </li>
-                            <li>
-                                <b>Option 2 (Versioning):</b>
-                                Makes use of the traditional ACID transaction guarantees of the database and holds off on completing a 
-                                transaction until the user specifies to do so, or rolls back to the previous state. Committing would involve 
-                                committing the transaction, and undoing is synonymous to a rollback transaction. This branch is able to provide 
-                                reversal guarantees that branch 1 cannot, at the expense of higher performance overhead.
-                                <br>
-                                <br>
-                                This can be changed by doing: 
-                                <code>
-                                    goex -set_config option {1 or 2}
-                                </code>
-                            </li>
-                            <br>
-                        </ul>
                         
-                        <h4>
-                            <li>Filesystem (CLI Only)
-                        </h4>
-                        <img src="..\assets\img\blog_10\fs-diagram.png" alt="Filesystem Diagram"
-                        style="width: 65%;">
-                        <p width="80%" style="text-align:center; padding-bottom: -10px">
-                            <i style="font-size: 0.9em;">
-                                Similar to databases, filesystem calls have two modes
-                            </i>
-                        </p>
+                        <h5>
+                            Filesystem (CLI Only)
+                        </h5>
                         <p>
                             With filesystems, all you need to do is to enter a directory path at which you want GoEx to execute in, 
                             and the engine will handle the rest. We currently support only Unix file system commands, and will add 
@@ -394,30 +354,73 @@
                         <p>
                             Another super simple and straightforward flow! More details here in the <a href= "https://github.com/ShishirPatil/gorilla/tree/main/exec-engine?tab=readme-ov-file#filesystem">repo.</a>
                         </p>
+                        <br>
+                        <h4>
+                            <li>Slack Example Walkthrough 
+                        </h4>
+                        To get yourself started with GoEx, follow along with this example. This example requires a slack account. We will be walking through the process of sending a message to someone on slack.
 
-                        <p>
-                            To keep your system safe, we also have commits and undos available after the action 
-                            is executed. Committing means you agree to the changes permanently. Undo means you want 
-                            to undo the action you just took. We have two options for undoing:
-                        </p>
-                        <ul>
-                            <li>    
-                                <b>Option 1:</b>
-                                 The LLM will generate an undo call to undo the original action.
+                        <ol>
+                            <li>
+                                <b>Enviroment Setup and Installation:</b> 
+                                <p>
+                                    We highly recommend using a new enviroment for GoEx. We will use conda for this example. <br>
+                                    <code>conda create --name goex python=3.10 -y</code><br>
+                                    <code>conda activate goex</code><br>
+                                </p>
+                                <p>
+                                    We then install goex using the following command in the exec-engine folder. You will need to clone from the Gorilla repository. <br>
+                                    <code>pip install -e .</code><br>
+                                </p>
+                                <p>
+                                    We use Mkcert to support OAuth2 token exchange. This is necessary for all OAuth services.<br>
+                                    <code>brew install mkcert</code><br>
+                                    <code>mkcert -install</code><br>
+                                    <code>mkcert localhost</code><br>
+                                    <i>Windows users can use choco to install mkcert</i>
+                                </p>
                             </li>
                             <li>
-                                <b>Option 2:</b> 
-                                Use Git to track file changes and do a <code>git clean -fd</code> followed 
-                                by <code>git reset —hard HEAD</code> to undo the changes.
+                                <b>Slack Authorization:</b> 
+                                <p>
+                                    To authorize for slack use the following command:<br>
+                                    <code>goex -authorize slack</code>
+                                </p>
+                                This will open a window in your browser that prompts you to sign in. The link should also be printed in the terminal like this:
+                                <img src="..\assets\img\blog_10\slack_auth_terminal.png" alt=""
+                                style="width: 100%;"><br>
+                                You will be asked to give GoEx permission to a workspace of your choice. Something like this should show up:
+                                <img src="..\assets\img\blog_10\slack_request_screen.png" alt=""
+                                style="width: 100%;">
                             </li>
-                        </ul>
-                        <br>
-                        <p>
-                            Comparing the two options, option 2 is optimized to use Git LFS if the directory exceeds a 
-                            certain size (200 MB is the default). But for the highest optimization 
-                            with large directories, use option 1. Option 2 is great if you cannot 
-                            sacrifice any potential faulty undos generated by the LLM.
-                        </p>
+                            <li>
+                                <b>Execute with GoEx!</b>
+                                <p>
+                                    To execute prompts with goex, specify the server in your prompt, and add the type of execution. 
+                                    <i>(rest, db, fs)</i>. Feel free to play around with the prompt.  <b>Make sure to have docker desktop running in the background.</b><br>
+                                    <code>goex execute -prompt send a funny joke to the user with email gorilla@yahoo.com on slack -type rest</code><br>
+                                </p>
+                                <p>
+                                    Hopefully, after running you should see your new message:
+                                    <img src="..\assets\img\blog_10\slack_message_result.png" alt=""
+                                    style="width: 100%;">
+                                </p>
+
+                                <p>
+                                    Your output should look something like this:
+                                    <img src="..\assets\img\blog_10\slack_commit_undo.png" alt=""
+                                    style="width: 100%;">
+                                </p>
+                                <p>
+                                    To unsend the message, select the undo option with the keyboard arrows and hit enter. 
+                                </p>
+                                <p>
+                                    If you're having trouble sending a message with email, try using the slack channel ID or slack handle. 
+                                </p>
+                            </li>
+                        </ol>
+                        
+                        Congratulations! You've succesfully sent a message using the power of LLMs!
                         <h4>
                             <li>GoEx Web-App
                         </h4>
@@ -448,17 +451,6 @@
                             We do not store any sensitive information on our servers. Currently, authentication can come in the form of OAuth 
                             credentials as well as raw API keys. The number of OAuth services we provide are limited to the ones we add support for, 
                             but any number of raw API keys can be added in the browser for different services. 
-                        </p>
-                        <img src="..\assets\img\blog_10\frontend.png" alt="How to Use Gorilla Image"
-                            style="width: 80%;">
-                        <p width="80%" style="text-align:center; padding-bottom: -10px">
-                            <i style="font-size: 0.9em;">
-                                User flow progresses as follows: first the user specifies a prompt, then reviews the generated code. 
-                                Then, the user chooses to execute the code, sending along the credentials to our Exec Engine server. This server acts 
-                                as an interface to the Exec Engine code that powers the CLI. The response is then sent back to the user to verify. Any 
-                                code changes can be made directly in the browser, then executed again. Bookkeeping for user information is located in 
-                                a separate server for clarity.                       
-                            </i>
                         </p>
 
                         <h4><li>Summary</h4>
