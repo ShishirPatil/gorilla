@@ -62,6 +62,7 @@ def convert_to_tool(
             model_style == ModelStyle.OpenAI
             or model_style == ModelStyle.Mistral
             or model_style == ModelStyle.Google
+            or model_style == ModelStyle.OSSMODEL
         ):
             # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
             item["name"] = re.sub(r"\.", "_", item["name"])
@@ -78,6 +79,7 @@ def convert_to_tool(
                 ModelStyle.Google,
                 ModelStyle.Anthropic,
                 ModelStyle.FIREWORK_AI,
+                ModelStyle.OSSMODEL,
             ]
             and stringify_parameters
         ):
@@ -257,6 +259,8 @@ def augment_prompt_by_languge(prompt, test_category):
 
 
 def language_specific_pre_processing(function, test_category, string_param):
+    if type(function) is dict:
+        function = [function]
     for item in function:
         properties = item["parameters"]["properties"]
         if test_category == "java":

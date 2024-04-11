@@ -11,6 +11,7 @@ from model_handler.glaive_handler import GlaiveHandler
 from model_handler.deepseek_handler import DeepseekHandler
 from model_handler.functionary_handler import FunctionaryHandler
 from model_handler.databricks_handler import DatabricksHandler
+from model_handler.hermes_handler import HermesHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -50,4 +51,5 @@ handler_map = {
     "meetkai/functionary-small-v2.4-FC": FunctionaryHandler,
     "meetkai/functionary-medium-v2.4-FC": FunctionaryHandler,
     "databricks-dbrx-instruct": DatabricksHandler,
+    "NousResearch/Hermes-2-Pro-Mistral-7B": HermesHandler,
 }
