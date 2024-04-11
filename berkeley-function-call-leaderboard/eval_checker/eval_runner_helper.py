@@ -752,6 +752,8 @@ def update_leaderboard_table_with_score_file(leaderboard_table, score_path):
 
 def oss_file_formatter(input_file_path, output_dir):
     data = load_file(input_file_path)
+    assert len(data) == 2000, "OSS result.json file should have 2000 entries."
+
 
     for key, value in FILENAME_INDEX_MAPPING.items():
         start, end = value
