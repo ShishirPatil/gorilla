@@ -4,7 +4,7 @@
 
 GoEx provides a new way to interact with your favorite APIs! Powered by LLMs, GoEx executes generated code, taking into consideration any credentials you may need to access APIs. Execution security is ensured by creating reverse calls that undo any unwanted effects. Ask GoEx for anything!
 
-## Contents
+## Contents <!-- omit from toc -->
 
 - [Install](#install)
 - [CLI Usage](#cli-usage)
