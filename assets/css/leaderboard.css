@@ -54,27 +54,28 @@
 }
 
 #leaderboard td:nth-child(10),
-#leaderboard td:nth-child(11) {
+#leaderboard td:nth-child(11),
+#leaderboard td:nth-child(12) {
     background-color: #8f8fff;
 }
 
 
-#leaderboard td:nth-child(12),
 #leaderboard td:nth-child(13),
 #leaderboard td:nth-child(14),
-#leaderboard td:nth-child(15) {
+#leaderboard td:nth-child(15),
+#leaderboard td:nth-child(16) {
     background-color: #75f1ff;
 }
 
 
-#leaderboard td:nth-child(16),
 #leaderboard td:nth-child(17),
 #leaderboard td:nth-child(18),
-#leaderboard td:nth-child(19) {
+#leaderboard td:nth-child(19),
+#leaderboard td:nth-child(20) {
     background-color: #88ffc4;
 }
 
-#leaderboard td:nth-child(20) {
+#leaderboard td:nth-child(21) {
     background-color: #ffdf75;
 }
 

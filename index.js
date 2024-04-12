@@ -385,13 +385,14 @@ function parseCSV_leaderboard(text) {
         result[i].splice(result[i].length, 0, result[i][4]);
         result[i].splice(result[i].length, 0, result[i][5]);
         result[i].splice(4, 2);
-        result[i].splice(4, 0, result[i][result[i].length - 5]);
-        result[i].splice(5, 0, result[i][result[i].length - 4]);
-        result[i].splice(8, 0, result[i][result[i].length - 6]);
-        result[i].splice(9, 0, result[i][result[i].length - 5]);
-        result[i].splice(10, 0, result[i][result[i].length - 4]);
-        result[i].splice(11, 0, result[i][result[i].length - 3]);
-        result[i].splice(result[i].length - 5, 3);
+        result[i].splice(4, 0, result[i][result[i].length - 6]);
+        result[i].splice(5, 0, result[i][result[i].length - 5]);
+        result[i].splice(8, 0, result[i][result[i].length - 7]);
+        result[i].splice(9, 0, result[i][result[i].length - 6]);
+        result[i].splice(10, 0, result[i][result[i].length - 5]);
+        result[i].splice(11, 0, result[i][result[i].length - 4]);
+        result[i].splice(12, 0, result[i][result[i].length - 3]);
+        result[i].splice(result[i].length - 6, 4);
     }
     return result;
 }
@@ -415,11 +416,6 @@ function parseCSV_chart(text) {
             }
             return value;
         });
-        result[i].splice(9, 3);
-        result[i].splice(13, 2);
-        result[i].splice(8, 0, result[i][result[i].length - 4]);
-        result[i].splice(9, 0, result[i][result[i].length - 3]);
-        result[i].splice(10, 0, result[i][result[i].length - 2]);
     }
     return result;
 }
@@ -449,7 +445,7 @@ function addToTable(dataArray) {
                 if (cellIndex >= 4 && cellIndex <= 8) {
                     // summary-row class for specific columns
                     td.className = "summary-row";
-                } else if (cellIndex >= 9 && cellIndex <= 20) {
+                } else if (cellIndex >= 9 && cellIndex <= 21) {
                     // detail-row class for specific columns
                     td.className = "detail-row";
                 }
@@ -661,15 +657,15 @@ function generateChart(csvData) {
         var dataPoint = {
             label: model_name,
             data: [
+                csvData[i][21],
                 csvData[i][8],
-                csvData[i][11],
                 csvData[i][12],
                 csvData[i][13],
                 csvData[i][14],
                 csvData[i][15],
-                csvData[i][16],
-                csvData[i][17],
                 csvData[i][18],
+                csvData[i][19],
+                csvData[i][20],
             ],
             fill: true,
             backgroundColor: convertRGBtoRGBA(color[i - 1]),
