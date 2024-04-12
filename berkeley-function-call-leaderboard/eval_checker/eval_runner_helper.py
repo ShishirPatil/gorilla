@@ -725,9 +725,9 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
     for i in range(len(data)):
         data[i][0] = str(i + 1)
         data[i][1] = "{:.2f}%".format(data[i][1] * 100)
-        for j in range(6, len(data[i]) - 3):
+        for j in range(6, len(data[i]) - 4):
             data[i][j] = "{:.2f}%".format(data[i][j] * 100)
-        for j in range(len(data[i]) - 3, len(data[i])):
+        for j in range(len(data[i]) - 4, len(data[i])):
             data[i][j] = str(data[i][j])
 
     data.insert(0, COLUMNS)
