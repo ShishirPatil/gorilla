@@ -99,6 +99,7 @@ Also provide your API keys in your environment variables.
     export MISTRAL_API_KEY=XXXXXX
     export FIRE_WORKS_API_KEY=XXXXXX
     export ANTHROPIC_API_KEY=XXXXXX
+    export CO_API_KEY=XXXXXX
 ```
 
 To generate leaderboard statistics, there are two steps:
@@ -180,6 +181,8 @@ Below is *a table of model we support* to run our leaderboard evaluation against
 |Model | Type |
 |---|---|
 |gorilla-openfunctions-v2 | Function Calling|
+|cohere-command-r-plus-FC | Function Calling|
+|cohere-command-r-plus | Prompt|
 |gpt-3.5-turbo-0125-FC| Function Calling|
 |gpt-3.5-turbo-0125| Prompt|
 |gpt-4-{0613,1106-preview,0125-preview}-FC| Function Calling|
