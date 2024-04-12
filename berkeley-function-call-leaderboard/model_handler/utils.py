@@ -3,6 +3,7 @@ from model_handler.model_style import ModelStyle
 from model_handler.constant import JAVA_TYPE_CONVERSION, JS_TYPE_CONVERSION
 from model_handler.java_parser import parse_java_function_call
 from model_handler.js_parser import parse_javascript_function_call
+from model_handler.constant import GORILLA_TO_OPENAPI
 
 
 def _cast_to_openai_type(properties, mapping, test_category):
@@ -12,6 +13,9 @@ def _cast_to_openai_type(properties, mapping, test_category):
             var_type = "string"
         else:
             var_type = value["type"]
+            if mapping == GORILLA_TO_OPENAPI and var_type == "float":
+                properties[key]["format"] = "float"
+                properties[key]["description"] += " This is a float type value."
             if var_type in mapping:
                 properties[key]["type"] = mapping[var_type]
             else:
@@ -60,6 +64,7 @@ def convert_to_tool(
             model_style == ModelStyle.OpenAI
             or model_style == ModelStyle.Mistral
             or model_style == ModelStyle.Google
+            or model_style == ModelStyle.OSSMODEL
             or model_style == ModelStyle.COHERE
         ):
             # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
@@ -77,7 +82,8 @@ def convert_to_tool(
                 ModelStyle.Google,
                 ModelStyle.Anthropic,
                 ModelStyle.FIREWORK_AI,
-                ModelStyle.COHERE
+                ModelStyle.OSSMODEL,
+                ModelStyle.COHERE,
             ]
             and stringify_parameters
         ):
@@ -306,7 +312,10 @@ def resolve_ast_by_type(value):
     elif isinstance(value, ast.Ellipsis):
         output = "..."
     elif isinstance(value, ast.Subscript):
-        output = ast.unparse(value.body[0].value)
+        try:
+            output = ast.unparse(value.body[0].value)
+        except:
+            output = ast.unparse(value.value) + "[" + ast.unparse(value.slice) + "]"
     else:
         raise Exception(f"Unsupported AST type: {type(value)}")
     return output
@@ -323,6 +332,8 @@ def augment_prompt_by_languge(prompt, test_category):
 
 
 def language_specific_pre_processing(function, test_category, string_param):
+    if type(function) is dict:
+        function = [function]
     for item in function:
         properties = item["parameters"]["properties"]
         if test_category == "java":

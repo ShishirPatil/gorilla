@@ -1,12 +1,11 @@
 from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
-from model_handler.constant import MODEL_ID_DICT
 from model_handler.utils import (
     ast_parse,
     augment_prompt_by_languge,
     language_specific_pre_processing,
 )
-from tqdm import tqdm
+from eval_checker.eval_runner import FILENAME_INDEX_MAPPING
 import shortuuid, ray, os, json, torch
 
 
@@ -41,12 +40,18 @@ class OSSHandler(BaseHandler):
         max_tokens,
         top_p,
         format_prompt_func,
+        index,
     ):
         from vllm import LLM, SamplingParams
 
         prompts = []
         ans_jsons = []
         for line in question_jsons:
+            for key, value in FILENAME_INDEX_MAPPING.items():
+                start, end = value
+                if index >= start and index < end:
+                    test_category = key
+                    break
             ques_json = line
             prompt = augment_prompt_by_languge(ques_json["question"], test_category)
             functions = language_specific_pre_processing(
@@ -95,6 +100,7 @@ class OSSHandler(BaseHandler):
                     self.max_tokens,
                     self.top_p,
                     format_prompt_func,
+                    i,
                 )
             )
         ans_jsons = []
@@ -104,7 +110,7 @@ class OSSHandler(BaseHandler):
         return ans_jsons, {"input_tokens": 0, "output_tokens": 0, "latency": 0}
 
     def decode_ast(self, result, language="Python"):
-        func = result.replace('", "', ",").replace('["', "[").replace('"]', "]")
+        func = result
         if " " == func[0]:
             func = func[1:]
         if not func.startswith("["):
