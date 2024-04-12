@@ -321,6 +321,7 @@ OSS_LATENCY = {
     "deepseek-ai/deepseek-coder-6.7b-instruct": 2040,
     "google/gemma-7b-it": 161,
     "glaiveai/glaive-function-calling-v1": 99,
+    "NousResearch/Hermes-2-Pro-Mistral-7B": 666,
 }
 
 OSS_INPUT_TOKEN = {
