@@ -6,6 +6,7 @@ import glob
 import subprocess
 import statistics
 from tqdm import tqdm
+import numpy as np
 
 REST_API_GROUND_TRUTH_FILE_PATH = "api_status_ground_truth_function_calls.json"
 
@@ -35,6 +36,7 @@ COLUMNS = [
     "Cost ($ Per 1k Function Calls)",
     "Latency Mean (s)",
     "Latency Standard Deviation (s)",
+    "Latency 95th Percentile (s)",
 ]
 
 # Note that we don't need to substitute `_` with `/` in the model name here.
@@ -335,6 +337,7 @@ OSS_LATENCY = {
     "deepseek-ai/deepseek-coder-6.7b-instruct": 2040,
     "google/gemma-7b-it": 161,
     "glaiveai/glaive-function-calling-v1": 99,
+    "NousResearch/Hermes-2-Pro-Mistral-7B": 666,
 }
 
 OSS_INPUT_TOKEN = {
@@ -495,7 +498,7 @@ def api_status_sanity_check():
     ground_truth_dummy = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
 
     # Use the ground truth data to make sure the API is working correctly
-    command = F"cd .. ; python apply_function_credential_config.py --input_file ./eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
+    command = f"cd .. ; python apply_function_credential_config.py --input_file ./eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
     try:
         subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
     except subprocess.CalledProcessError as e:
@@ -506,7 +509,9 @@ def api_status_sanity_check():
     write_list_of_dicts_to_file(REST_API_GROUND_TRUTH_FILE_PATH, ground_truth_dummy)
 
     correct_count = 0
-    for idx, data in tqdm(enumerate(ground_truth_replaced), total=len(ground_truth_replaced)):
+    for idx, data in tqdm(
+        enumerate(ground_truth_replaced), total=len(ground_truth_replaced)
+    ):
         status = executable_checker_rest(data["ground_truth"], idx)
         if status["valid"]:
             correct_count += 1
@@ -579,7 +584,7 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
 
 def get_metric(model_name, cost_data, latency_data):
 
-    cost, mean_latency, std_latency = "N/A", "N/A", "N/A"
+    cost, mean_latency, std_latency, percentile_95_latency = "N/A", "N/A", "N/A", "N/A"
 
     if (
         model_name in INPUT_PRICE_PER_MILLION_TOKEN
@@ -596,7 +601,11 @@ def get_metric(model_name, cost_data, latency_data):
         cost = round(cost, 2)
 
     if model_name in OSS_LATENCY:
-        mean_latency, std_latency = OSS_LATENCY[model_name] / 1700, "N/A"
+        mean_latency, std_latency, percentile_95_latency = (
+            OSS_LATENCY[model_name] / 1700,
+            "N/A",
+            "N/A",
+        )
         mean_latency = round(mean_latency, 2)
         cost = mean_latency * 1000 * A100_PRICE_PER_HOUR / 3600
         cost = round(cost, 2)
@@ -604,8 +613,10 @@ def get_metric(model_name, cost_data, latency_data):
     elif len(latency_data["data"]) != 0:
         mean_latency = statistics.mean(latency_data["data"])
         std_latency = statistics.stdev(latency_data["data"])
+        percentile_95_latency = np.percentile(latency_data["data"], 95)
         mean_latency = round(mean_latency, 2)
         std_latency = round(std_latency, 2)
+        percentile_95_latency = round(percentile_95_latency, 2)
 
         if model_name not in INPUT_PRICE_PER_MILLION_TOKEN:
             cost = sum(latency_data["data"]) * A100_PRICE_PER_HOUR / 3600
@@ -614,7 +625,7 @@ def get_metric(model_name, cost_data, latency_data):
     if model_name in NO_COST_MODELS:
         cost = "N/A"
 
-    return cost, mean_latency, std_latency
+    return cost, mean_latency, std_latency, percentile_95_latency
 
 
 def generate_leaderboard_csv(leaderboard_table, output_path):
@@ -686,7 +697,7 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
             ]
         )
 
-        cost, latency_mean, latency_std = get_metric(
+        cost, latency_mean, latency_std, percentile_95_latency = get_metric(
             model_name_escaped, cost_data, latency_data
         )
 
@@ -723,6 +734,7 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
                 cost,
                 latency_mean,
                 latency_std,
+                percentile_95_latency,
             ]
         )
 
@@ -730,9 +742,9 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
     for i in range(len(data)):
         data[i][0] = str(i + 1)
         data[i][1] = "{:.2f}%".format(data[i][1] * 100)
-        for j in range(6, len(data[i]) - 3):
+        for j in range(6, len(data[i]) - 4):
             data[i][j] = "{:.2f}%".format(data[i][j] * 100)
-        for j in range(len(data[i]) - 3, len(data[i])):
+        for j in range(len(data[i]) - 4, len(data[i])):
             data[i][j] = str(data[i][j])
 
     data.insert(0, COLUMNS)
@@ -775,7 +787,6 @@ def update_leaderboard_table_with_score_file(leaderboard_table, score_path):
 def oss_file_formatter(input_file_path, output_dir):
     data = load_file(input_file_path)
     assert len(data) == 2000, "OSS result.json file should have 2000 entries."
-
 
     for key, value in FILENAME_INDEX_MAPPING.items():
         start, end = value
