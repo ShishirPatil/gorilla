@@ -27,7 +27,7 @@
 {"calculate_velocity":{"distance":[50],"duration":[2],"unit":["","km/h"]}}
 {"final_velocity":{"initial_velocity":[10],"acceleration":[2],"time":[5]}}
 {"calculate_displacement":{"initial_velocity":[10],"time":[5],"acceleration":[9.8]}}
-{"calculate_final_speed":{"initial_speed":[0],"time":[5],"gravity":[-9.81,""]}}
+{"calculate_final_speed":{"initial_speed":[0, ""],"time":[5],"gravity":[-9.81,""]}}
 {"kinematics.final_velocity_from_distance":{"acceleration":[4],"distance":[300],"initial_velocity":["",0.00]}}
 {"calculate_final_velocity":{"initial_velocity":[0],"acceleration":[9.8],"time":[5]}}
 {"calculate_final_speed":{"initial_velocity":[0],"height":[100],"gravity":[9.8,""]}}
@@ -81,7 +81,7 @@
 {"find_restaurants":{"location":["Manhattan, New York City", "Manhattan", "Manhattan, New York"],"food_type":["Thai"],"number":[5],"dietary_requirements":[["vegan"],["Vegan"]]}}
 {"map_routing.fastest_route":{"start_location":["San Francisco","SF"],"end_location":["Los Angeles","LA"],"avoid_tolls":[true]}}
 {"calculate_average":{"numbers":[[12.0,15.0,18.0,20.0,21.0,26.0,30.0]]}}
-{"calculate_distance":{"coord1":[[[33.4484,-112.074],[33.4484,112.074]]],"coord2":[[34.0522,-118.2437],[34.0522,118.2437]],"unit":["miles"]}}
+{"calculate_distance":{"coord1":[[33.4484,-112.074]],"coord2":[[34.0522,-118.2437]],"unit":["miles"]}}
 {"calculate_bmi":{"weight":[85],"height":[180],"unit":["metric",""]}}
 {"geo_distance.calculate":{"start_location":["Boston, MA"],"end_location":["Washington, D.C."],"units":["miles",""]}}
 {"city_distance.find_shortest":{"start_city":["New York"],"end_city":["Los Angeles"],"transportation":["train"],"allow_transfer":[true]}}
@@ -89,7 +89,7 @@
 {"calculate_BMI":{"weight_kg":[70],"height_m":[1.75]}}
 {"db_fetch_records":{"database_name":["StudentDB"],"table_name":["students"],"conditions":[{"department":["Science"],"school":["Bluebird High School","Bluebird HS"]}],"fetch_limit":["",0]}}
 {"employee.fetch_data":{"company_name":["ABC Ltd."],"employee_id":[345],"data_field":[["Personal Info","Job History"]]}}
-{"get_restaurant":{"cuisine":["sushi"],"location":["Boston"],"condition":["open on Sundays"]}}
+{"get_restaurant":{"cuisine":["sushi"],"location":["Boston"],"condition":["open on Sundays","opens on Sundays"]}}
 {"imdb.find_movies_by_actor":{"actor_name":["Leonardo DiCaprio"],"year":[2010],"category":["","all"]}}
 {"get_theater_movie_releases":{"location":["LA"],"timeframe":[7],"format":["IMAX"]}}
 {"update_user_info":{"user_id":[43523],"update_info":[{"name":["John Doe"],"email":["johndoe@email.com"]}],"database":["CustomerInfo",""]}}
@@ -100,7 +100,7 @@
 {"plot_sine_wave":{"start_range":[0],"end_range":[6.283185307179586],"frequency":[5],"amplitude":[1,""],"phase_shift":[0,""]}}
 {"light_travel_time":{"distance_in_light_years":[4],"speed_of_light":[299792458,""]}}
 {"calculate_speed":{"distance":[450],"time":[20],"to_unit":["km/h"]}}
-{"calculate_distance":{"body1":["Earth"],"body2":["Moon"],"unit":["mi"]}}
+{"calculate_distance":{"body1":["Earth"],"body2":["Moon"],"unit":["mi","miles","mile"]}}
 {"mathematics.calculate_area_under_curve":{"polynomial":[[3.0,2.0,-4.0]],"limits":[[-1.0,2.0]]}}
 {"geometry.area_triangle":{"base":[6],"height":[10],"unit":["","square meters"]}}
 {"math.power":{"base":[3],"exponent":[4],"mod":["",1]}}
@@ -116,7 +116,7 @@
 {"calculate_binomial_probability":{"number_of_trials":[8],"number_of_successes":[5],"probability_of_success":["", 0.5]}}
 {"probabilities.calculate_single":{"total_outcomes":[52],"event_outcomes":[4],"round":[2,""]}}
 {"probability_of_event":{"success_outcomes":[13],"total_outcomes":[52],"format_as_ratio":[true]}}
-{"stats.t_test":{"array":[[10,15,12,14,11]],"array_2":[[18,16,17,20,22]],"alpha":[0.05]}}
+{"stats.t_test":{"array_1":[[10,15,12,14,11]],"array_2":[[18,16,17,20,22]],"alpha":[0.05]}}
 {"hypothesis_testing.ttest_ind":{"sample1":[[22,33,42,12,34]],"sample2":[[23,45,44,14,38]],"significance_level":[0.05]}}
 {"run_two_sample_ttest":{"group1":[[3,4,5,6,4]],"group2":[[7,8,9,8,7]],"equal_variance":[true]}}
 {"calc_binomial_prob":{"num_trials":[100],"num_success":[60],"prob_success":[0.5]}}
@@ -162,7 +162,7 @@
 {"crime_statute_lookup":{"jurisdiction":["California","CA"],"crime":["theft"],"detail_level":["detailed"]}}
 {"generate_law_contract":{"parties":[["John","Alice"],["John","Alice"]],"contract_type":["Rental Agreement","rental agreement"],"location":["California","CA"]}}
 {"property_records.get":{"address":["123 main street"],"parcel_number":["1234567890"],"county":["Santa Clara"],"include_owner":[true]}}
-{"get_crime_rate":{"city":["San Francisco"],"state":["California"],"type":["violent",""],"year":[2020]}}
+{"get_crime_rate":{"city":["San Francisco"],"state":["California","CA"],"type":["violent",""],"year":[2020]}}
 {"civil_cases.retrieve":{"year":[2020],"crime_type":["theft"],"location":["Los Angeles","Los Angeles, California"]}}
 {"lawyer.find_nearby":{"city":["Chicago, IL.", "Chicago, IL"],"specialty":[["Divorce"]],"fee":[400]}}
 {"law.civil.get_case_details":{"case_title":["Roe v. Wade"],"include_dissent":[true]}}
@@ -186,7 +186,7 @@
 {"detailed_weather_forecast":{"location":["New York","New York, USA"],"duration":[72],"include_precipitation":[true]}}
 {"current_weather_condition":{"city":["Tokyo"],"country":["Japan"],"measurement":["c",""]}}
 {"get_current_weather":{"location":["Seattle","Seattle, Washington"],"include_temperature":[true,""],"include_humidity":[true,""]}}
-{"weather.humidity_forecast":{"location":["Miami"],"days":[7],"min_humidity":["",0]}}
+{"weather.humidity_forecast":{"location":["Miami","Miami, Florida"],"days":[7],"min_humidity":["",0]}}
 {"weather_forecast_detailed":{"location":["New York","New York, USA"],"days":[3],"details":[true]}}
 {"park_information":{"park_name":["Yellowstone","Yellowstone National Park"],"information":[["Elevation","Area"],["Area","Elevation"]]}}
 {"locate_tallest_mountains":{"location":["Denver, Colorado","Denver","CO"],"radius":[50],"amount":[5]}}
@@ -206,7 +206,7 @@
 {"get_traffic_info":{"start_location":["Boston"],"end_location":["New York","NYC"],"mode":["driving",""]}}
 {"parks.find_nearby":{"location":["London","London, UK"],"amenities":[["Tennis Court"]]}}
 {"calculate_shortest_distance":{"start_location":["New York, USA","New York City","New York City, NY","NYC","NY"],"end_location":["Miami, USA","Miami","Miami, FL","FL"],"route_preference":["Shortest"]}}
-{"map_service.get_directions":{"start":["New York","NYC"],"end":["Los Angeles","LA"],"avoid":[["highways","tolls"]]}}
+{"map_service.get_directions":{"start":["New York","NYC"],"end":["Los Angeles","LA"],"avoid":[["highways","tolls"],["tolls","highways"]]}}
 {"public_library.find_nearby":{"location":["Boston, MA","Boston, Massachusetts"],"facilities":[["Fiction","Wi-Fi"],["Wi-Fi","Fiction"]]}}
 {"get_news":{"topic":["Bitcoin"],"quantity":[5],"region":["US",""]}}
 {"send_email":{"to":["john.doe@example.com"],"subject":["Meeting"],"body":["Let's meet at 10 AM tomorrow","Let's meet at 10 AM tomorrow."],"cc":[""],"bcc":[""]}}
@@ -216,7 +216,7 @@
 {"movie_details.brief":{"title":["Interstellar"],"extra_info":["",false]}}
 {"sentiment_analysis":{"text":["I love the food here! It's always fresh and delicious."],"language":["english","English","en"]}}
 {"fMRI.analyze":{"data_source":["~/data/myfMRI.nii"],"sequence_type":["multi-band"],"smooth":[6],"voxel_size":[2]}}
-{"patient.get_mri_report":{"patient_id":["546382"],"mri_type":["brain"],"status":["concluded"]}}
+{"patient.get_mri_report":{"patient_id":["546382"],"mri_type":["brain",""],"status":["concluded"]}}
 {"get_neuron_coordinates":{"neuron_type":["GABA"],"brain_region":["All","all part of the brain","entire brain"]}}
 {"calculate_neuronal_activity":{"input_synaptic_rate":[200],"weight":[0.5],"decay_rate":[0.1]}}
 {"population_growth_estimate":{"location":["London"],"years":[5],"rate":["", 1.2]}}
@@ -253,7 +253,7 @@
 {"get_religion_history":{"religion":["Christianity"],"century":[16],"sort_by":["importance"],"count":[10]}}
 {"retrieve_religion_info":{"religion_name":["Buddhism"],"detail_level":["full"]}}
 {"get_religion_history":{"religion":["Christianity"],"start_year":[300],"end_year":[400],"event_type":["all",""]}}
-{"religious_history.get_papal_biography":{"papal_name":["Innocent III"],"include_contributions":[true]}}
+{"religious_history.get_papal_biography":{"papal_name":["Innocent III","Pope Innocent III"],"include_contributions":[true]}}
 {"generate_circle_image":{"radius":[50],"color":["Red"],"background":["","white"]}}
 {"identify_color_rgb":{"color_name":["Sea Green"],"standard":["basic",""]}}
 {"mix_paint_color":{"color1":["yellow"],"color2":["blue"],"lightness":[60]}}
@@ -278,7 +278,7 @@
 {"museum_info":{"museum":["The British Museum"],"date":["this weekend","2023-06-20","06/20/2023","Jun.20,2023"],"information":[["opening_hours","ticket_price"],["ticket_price","opening_hours"]]}}
 {"get_instrument_details":{"instrument":["piano"],"manufacturer":["Yamaha"],"features":[["price","rating"]]}}
 {"instrument_price.get":{"brand":["Fender"],"model":["American Professional II Stratocaster"],"finish":["Rosewood"]}}
-{"find_instrument":{"budget":[1000],"type":["acoustic"],"make":["Violin","violin"]}}
+{"find_instrument":{"budget":[1000],"type":["acoustic"],"make":[""]}}
 {"get_instrument_info":{"name":["Violin"],"maker":["Stradivarius"],"year":[1721]}}
 {"find_flute":{"brand":["Yamaha"],"specs":[["open hole","C foot","silver headjoint"]]}}
 {"guitar_price.find":{"model":["Gibson Les Paul"],"condition":["Excellent"],"location":["Chicago","Chicago, IL","Chicago, Illinois"]}}
@@ -318,10 +318,10 @@
 {"get_team_rank":{"team_name":["LA Lakers"],"league":["NBA"],"season":["2021"],"type":["regular"]}}
 {"get_team_ranking":{"team_name":["Germany"],"year":[2021],"gender":["men",""]}}
 {"sports_ranking":{"team":["Manchester United","Man United","Man U","MUFC"],"league":["Premier League"],"season":[""]}}
-{"sports_ranking.get_team_position":{"team":["Golden State Warriors","GSW"],"season":["current","2022-2023"],"detailed":[true]}}
+{"sports_ranking.get_team_position":{"team":["Golden State Warriors","GSW"],"season":["2022-2023"],"detailed":[true]}}
 {"sports_ranking":{"team":["Barcelona","FC Barcelona"],"league":["La Liga"],"season":["2021"]}}
 {"sports_ranking.get_current":{"team":["Liverpool Football Club","Liverpool","LFC"],"league":["Premier League","EPL","English Premier League"],"season":[""]}}
-{"sports_ranking.get_top_player":{"sport":["tennis"],"gender":["women","female","ladies"]}}
+{"sports_ranking.get_top_player":{"sport":["tennis"],"gender":["woman"]}}
 {"team_score.get_latest":{"team":["Los Angeles Lakers","Lakers"],"include_opponent":[true]}}
 {"sports.match_results":{"team1":["Chicago Bulls"],"team2":["Los Angeles Lakers"],"season":[""]}}
 {"get_team_score":{"team_name":["Los Angeles Lakers","Lakers"],"league":["NBA"],"include_player_stats":["",true,false]}}
@@ -352,7 +352,7 @@
 {"multiplayer_game_finder":{"platform":["Windows 10"],"rating":[4.5],"genre":["","Action"]}}
 {"gamespot.getAverageUserScore":{"game_name":["The Legend of Zelda: Breath of the Wild"],"platform":["Nintendo Switch","all platforms"]}}
 {"find_recipes":{"diet":["gluten-free"],"meal_type":["dinner"],"ingredients":[""]}}
-{"get_vegan_recipe":{"dish_type":["soup"],"cooking_time":[30],"ingredient_preference":[["vegan"]]}}
+{"get_vegan_recipe":{"dish_type":["soup"],"cooking_time":[30],"ingredient_preference":[""]}}
 {"recipe_info.get_calories":{"website":["Foodnetwork.com"],"recipe":["Beef Lasagna"],"optional_meal_time":[""]}}
 {"recipe_finder.find":{"servings":[2],"diet":["vegan"],"prep_time":[30]}}
 {"get_recipe":{"dish_name":["chocolate cake","vegan chocolate cake"],"diet_preference":["vegan"]}}
@@ -385,7 +385,7 @@
 {"hotel_booking.book":{"city":["Paris","Paris, France"],"from_date":["07-10-2022","2022-07-10","10/07/2022","Jul.10,2022"],"to_date":["07-20-2022","2022-07-20","20/07/2022","Jul.20,2022"],"adults":[2],"children":[1],"room_type":["Standard",""]}}
 {"hotel_bookings.book_room":{"location":["Los Angeles","Los Angeles, CA","LA"],"room_type":["King Size","king size"],"check_in_date":["15-10-2023","15th October","2023-10-15","10/15/2023","Oct.15,2023"],"no_of_nights":[2],"no_of_rooms":["",1]}}
 {"book_hotel":{"hotel_name":["Hotel Paradise"],"location":["Las Vegas","LV"],"room_type":["luxury","Luxury"],"start_date":["05-12-2022","2022-05-12","12/05/2022","May.12,2022","May 12, 2022"],"stay_duration":[3],"view":["city view","city"]}}
-{"hotel_booking":{"hotel_name":["Plaza Hotel"],"location":["New York","New York City","New York City, NY","NYC","NY"],"start_date":["2022-06-01","06/01/2022","Jun.1,2022"],"end_date":["2022-06-04","06/04/2022","Jun.4,2022"],"rooms":[1,""]}}
+{"hotel_booking":{"hotel_name":["Plaza Hotel"],"location":["New York City, NY", "New York, NY"],"start_date":["2022-06-01","06/01/2022","Jun.1,2022"],"end_date":["2022-06-04","06/04/2022","Jun.4,2022"],"rooms":[1,""]}}
 {"currency_exchange.convert":{"base_currency":["USD"],"target_currency":["CAD"],"amount":[500]}}
 {"currency_converter":{"base_currency":["USD"],"target_currency":["GBP"],"amount":[200.00]}}
 {"currency_conversion.convert":{"amount":[150],"from_currency":["EUR","Euros"],"to_currency":["CAD","Canadian dollars"]}}
@@ -395,6 +395,6 @@
 {"maps.get_distance_duration":{"start_location":["Eiffel Tower"],"end_location":["Louvre Museum"],"traffic":["",false]}}
 {"parking_lot.find_nearest":{"location":["Central Park, NY"],"radius":[2],"type":["public",""]}}
 {"hospital.locate":{"location":["Denver, Colorado","Denver, CO"],"radius":[5],"department":["Pediatrics"]}}
-{"distance_calculator.calculate":{"origin":["New York","New York City","New York City, NY","NYC"],"destination":["Boston"],"consider_terrain":[true]}}
+{"distance_calculator.calculate":{"origin":["New York","New York City","New York City, NY", "New York, NY","NYC"],"destination":["Boston"],"consider_terrain":[true]}}
 {"get_museum_hours":{"museum_name":["Metropolitan Museum of Art","The Met"],"day":["Saturday"]}}
 {"restaurant_search":{"location":["New York City","New York City, NY","NYC"],"cuisine":["Italian"],"rating":[4],"accepts_credit_cards":[true]}}

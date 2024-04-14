@@ -4,7 +4,7 @@ import docker
 import os
 from pathlib import Path
 
-import exec_engine.container_utils.container_utils as utils
+from exec_engine.container_utils import container_utils as utils
 from exec_engine.container_utils.code_parser import extract_dependencies
 from exec_engine.credentials.credentials_utils import get_cred_paths, CREDS_FOLDER_PATH
 
