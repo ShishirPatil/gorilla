@@ -7,3 +7,4 @@ shortuuid
 mistralai
 anthropic
 openai
+numpy
