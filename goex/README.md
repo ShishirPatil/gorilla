@@ -16,10 +16,12 @@ GoEx provides a new way to interact with your favorite APIs! Powered by LLMs, Go
 ## Install
 
 **1.)** Navigate inside the goex folder and set up a clean environment with **Conda** or **Python venv**
+
 ```sh
 python3 -m venv goex-env
 source goex-env/bin/activate
 ```
+
 OR
 
 ```sh
@@ -33,8 +35,7 @@ conda activate goex
 pip install -e .
 ```
 
-
-**3.)** Install and initialize Mkcert** to support OAuth2 token exchange [required for services that require https for redirect URL e.g Slack]
+**3.)** Install and initialize Mkcert to support OAuth2 token exchange [required for services that require https for redirect URL e.g Slack]
 
 Mac:
 
@@ -75,7 +76,7 @@ goex -authorize <service> # gmail, slack, spotify, github, dropbox
 After a service is authorized, user will be able to interact with it by providing a prompt.
 
 ```sh
-# example 1 
+# example 1
 # please first run goex -authorize slack
 goex execute -prompt send a funny joke to the user with email gorilla@yahoo.com on slack -type rest
 ```
@@ -113,9 +114,10 @@ To test out database interactions locally, each database server requires its own
   sqlite> .database
   ```
 
-  And now your `.db` file will be created!
+  Press `Ctrl-D` to exit out and now your `.db` file will be created!
 
 - Run `demo/env_setup.py` to get your environment variables set up
+  Use default values if you are running just the demo.
 
   ```
   python3 demo/env_setup.py
@@ -172,7 +174,12 @@ goex execute -prompt "In the users table, add 500 to everyone's current balance"
 
 ### Filesystem
 
-The goex command will be executed at the path pointed to by `fspath` in `user_config.json`. If `fspath` is not specified or is equal to `""`, execution will occur in the user's current working directory. Below is an example of how to set this up.
+The goex command will be executed at the path pointed to by `fs_path` in `user_config.json`. If `fs_path` is not specified or is equal to `""`, execution will occur in the user's current working directory. Below is an example of how to set this up.
+
+Make sure to have Git LFS installed on your machine!
+
+Mac: `brew install git-lfs`
+Windows/Linux: git-lfs.com and download
 
 #### Try it out!
 
@@ -180,7 +187,7 @@ Let's first create a testing folder.
 
 ```
 mkdir test
-goex -set_config fspath test
+goex -set_config fs_path test
 ```
 
 ##### Create a Simple File
