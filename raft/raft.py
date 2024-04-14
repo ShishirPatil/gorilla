@@ -185,7 +185,7 @@ def add_chunk_to_dataset(
     doctype: DocType = "api", 
     x: int = 5, 
     num_distract: int = 3, 
-    p: float = 1.0
+    p: float = 0.8
 ) -> None:
     """
     Given a chunk, create {Q, A, D} triplets and add them to the dataset.
