@@ -99,7 +99,7 @@ Also provide your API keys in your environment variables.
     export MISTRAL_API_KEY=XXXXXX
     export FIRE_WORKS_API_KEY=XXXXXX
     export ANTHROPIC_API_KEY=XXXXXX
-    export CO_API_KEY=XXXXXX
+    export COHERE_API_KEY=XXXXXX
 ```
 
 To generate leaderboard statistics, there are two steps:
