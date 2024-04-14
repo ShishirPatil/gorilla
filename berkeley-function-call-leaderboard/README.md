@@ -178,6 +178,10 @@ If you want to run `rest` and `javascript` tests for all GPT models and `gorilla
     python ./eval_runner.py --model gorilla-openfunctions-v2 gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest javascript
 ```
 
+### Checker Optimization
+
+Some companies have proposed some optimization strategies in their models' handler, which we (BFCL) think is unfair to other models, as those optimizations are not generalizable to all models. Therefore, we have disabled those optimizations during the evaluation process by default. You can enable those optimizations by setting the `USE_{COMPANY}_OPTIMIZATION` flag to `True` in the `model_handler/constants.py` file.
+
 
 ## Models Available
 Below is *a table of models we support* to run our leaderboard evaluation against. If supported function calling (FC), we will follow its function calling format provided by official documentation. Otherwise, we will construct a system message to prompt the model to generate function calls in the right format.
