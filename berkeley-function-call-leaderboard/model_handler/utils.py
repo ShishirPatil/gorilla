@@ -3,7 +3,7 @@ from model_handler.model_style import ModelStyle
 from model_handler.constant import JAVA_TYPE_CONVERSION, JS_TYPE_CONVERSION
 from model_handler.java_parser import parse_java_function_call
 from model_handler.js_parser import parse_javascript_function_call
-from model_handler.constant import GORILLA_TO_OPENAPI
+from model_handler.constant import GORILLA_TO_OPENAPI, USE_COHERE_OPTIMIZATION
 
 
 def _cast_to_openai_type(properties, mapping, test_category):
@@ -110,57 +110,74 @@ def convert_to_tool(
                     params["description"] += str(params["additionalProperties"])
                     del params["additionalProperties"]
         if model_style == ModelStyle.COHERE:
-            if "required" not in item["parameters"]:
-                item["parameters"]["required"] = []
-            for param_name, params in item["parameters"]["properties"].items():
-                if "description" not in params:
-                    params["description"] = ""
+            if USE_COHERE_OPTIMIZATION:
+                if "required" not in item["parameters"]:
+                    item["parameters"]["required"] = []
+                for param_name, params in item["parameters"]["properties"].items():
+                    if "description" not in params:
+                        params["description"] = ""
 
-                if "default" in params:
-                    params["description"] += " The default value is: " + str(params["default"])
-                    if param_name not in item["parameters"]["required"]:
-                        item["parameters"]["required"].append(param_name)
-                    del params["default"]
-                if "additionalProperties" in params:
-                    params["description"] += " Additional properties: " + str(params["additionalProperties"])
-                    del params["additionalProperties"]
-                if "items" in params:
-                    inner_type = ""
-                    if "items" in params["items"] and "type" in params["items"]["items"]:
-                        # 2D list
-                        inner_type = params["items"]["items"]["type"]
-                        params["type"] = f"list[list[{inner_type}]]"
-                    elif "type" in params["items"]:
-                        # 1D list
-                        inner_type = params["items"]["type"]
-                        params["type"] = f"list[{inner_type}]"
-                    if "items" in params and "enum" in params["items"] and params["items"]["enum"]:
-                        params["description"] += " Possible enum values: "
-                        params["description"] += ", ".join(params["items"]["enum"])
-                        params["description"] += "."
+                    if "default" in params:
+                        params["description"] += " The default value is: " + str(params["default"])
+                        if param_name not in item["parameters"]["required"]:
+                            item["parameters"]["required"].append(param_name)
+                        del params["default"]
+                    if "additionalProperties" in params:
+                        params["description"] += " Additional properties: " + str(params["additionalProperties"])
+                        del params["additionalProperties"]
+                    if "items" in params:
+                        inner_type = ""
+                        if "items" in params["items"] and "type" in params["items"]["items"]:
+                            # 2D list
+                            inner_type = params["items"]["items"]["type"]
+                            params["type"] = f"list[list[{inner_type}]]"
+                        elif "type" in params["items"]:
+                            # 1D list
+                            inner_type = params["items"]["type"]
+                            params["type"] = f"list[{inner_type}]"
+                        if "items" in params and "enum" in params["items"] and params["items"]["enum"]:
+                            params["description"] += " Possible enum values: "
+                            params["description"] += ", ".join(params["items"]["enum"])
+                            params["description"] += "."
 
-                    del params["items"]
-                if "properties" in params:
-                    params["description"] += " Dictionary properties:"
-                    for name, property_ in params["properties"].items():
-                        property_type = property_.get("type", mapping["string"])
-                        property_description = property_.get("description", "")
-                        params["description"] += f" {name} ({property_type}): {property_description}"
-                    del params["properties"]
-                if "enum" in params:
-                    params["description"] += " Possible enum values: " + str(params["enum"])
-                    del params["enum"]
-                # add ranges to description
-                if "percentage" not in params["description"]:
+                        del params["items"]
+                    if "properties" in params:
+                        params["description"] += " Dictionary properties:"
+                        for name, property_ in params["properties"].items():
+                            property_type = property_.get("type", mapping["string"])
+                            property_description = property_.get("description", "")
+                            params["description"] += f" {name} ({property_type}): {property_description}"
+                        del params["properties"]
+                    if "enum" in params:
+                        params["description"] += " Possible enum values: " + str(params["enum"])
+                        del params["enum"]
+                    # add ranges to description
+                    if "percentage" not in params["description"]:
+                        params["description"] = params["description"].replace(
+                            "rate ", "rate (from 0.0 to 1.0) "
+                        )
                     params["description"] = params["description"].replace(
-                        "rate ", "rate (from 0.0 to 1.0) "
+                        "percentage ", "percentage (from 0 to 100) "
                     )
-                params["description"] = params["description"].replace(
-                    "percentage ", "percentage (from 0 to 100) "
-                )
-                params["description"] = params["description"].replace(
-                    "currency ", "currency (3 letter ISO code) "
-                )
+                    params["description"] = params["description"].replace(
+                        "currency ", "currency (3 letter ISO code) "
+                    )
+            else: 
+                for params in item["parameters"]["properties"].values():
+                    if "description" not in params:
+                        params["description"] = ""
+                    if "default" in params:
+                        params["description"] += " The default value is: " + str(params["default"])
+                        del params["default"]
+                    if "additionalProperties" in params:
+                        params["description"] += " Additional properties: " + str(params["additionalProperties"])
+                        del params["additionalProperties"]
+                    if "items" in params:
+                        params["description"] += " List Items type: " + str(params["items"])
+                        del params["items"]
+                    if "properties" in params:
+                        params["description"] += " Dictionary properties: " + str(params["properties"])
+                        del params["properties"]
         if model_style in [
             ModelStyle.Anthropic,
             ModelStyle.Google,
