@@ -1,0 +1,69 @@
+.card-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.row {
+    margin-bottom: 30px;
+}
+
+.card {
+    height: 35vh;
+    transition: transform 0.6s; 
+    transform-style: preserve-3d; 
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+    border-radius: 10px; 
+    overflow: hidden;
+}
+
+/* Inner Card Style (for flipping effect) */
+.card-inner {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column; /* Keeps items in a vertical stack */
+    justify-content: flex-start; /* Aligns items to the start of the flex container (top) */
+    align-items: center; /* Centers items horizontally */
+}
+
+.card-title {
+    width: 100%; /* Ensures the title spans the full width of the card */
+    padding: 10px;
+    margin-top: 0; /* Adjusts spacing at the top if needed */
+    text-align: center; /* Keeps the title text centered */
+}
+
+
+.card-back {
+    transform: rotateY(180deg); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-container {
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.card-image img {
+    width: 100%; 
+    height: 100%;
+    object-fit: contain; /* Adjusts to ensure the whole image is visible */
+    border-radius: 8px; 
+}
