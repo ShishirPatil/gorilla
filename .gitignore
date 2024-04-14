@@ -14,6 +14,8 @@ dist
 ./berkeley-function-call-leaderboard/eval_checker/tree-sitter-java
 ./berkeley-function-call-leaderboard/eval_checker/tree-sitter-javascript
 goex/exec_engine/checkpoints/
-goex/exec_engine/credentials/secret_store.json
+goex/exec_engine/credentials/*
+!goex/exec_engine/credentials/credentials_utils.py
+!goex/exec_engine/credentials/supported.txt
 goex/docker/*/requirements.txt
 goex/docker/misc/images.json
