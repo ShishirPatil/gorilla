@@ -5,7 +5,7 @@ from model_handler.utils import (
     augment_prompt_by_languge,
     language_specific_pre_processing,
 )
-from eval_checker.eval_runner import FILENAME_INDEX_MAPPING
+from eval_checker.eval_runner_constant import FILENAME_INDEX_MAPPING
 import shortuuid, ray, os, json, torch
 
 
