@@ -57,32 +57,3 @@ body {
     text-decoration: none;
     color: #fff;
 }
-/* ---------contact-------- */
-.btn-secondary.btn-secondary2 {
-    display: inline-block;
-    background: #ff004f;
-}
-.btn-secondary.btn-secondary2 {
-    display: inline-block;
-    background: #ff004f;
-}
-.contact-right form {
-    width: 100%;
-}
-form input, form textarea {
-    width: 100%;
-    border: 0;
-    outline: none;
-    background: #f0f7ff;
-    padding: 15px;
-    margin: 15px 0;
-    color: #ababab;
-    font-size: 18px;
-    border-radius: 6px;
-}
-form .btn-secondary2 {
-    padding: 14px 60px;
-    font-size: 18px;
-    margin-top: 20px;
-    cursor: pointer;
-}
