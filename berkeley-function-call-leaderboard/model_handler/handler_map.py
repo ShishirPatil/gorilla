@@ -1,21 +1,23 @@
-from model_handler.gorilla_handler import GorillaHandler
-from model_handler.gpt_handler import OpenAIHandler
 from model_handler.claude_handler import ClaudeHandler
-from model_handler.mistral_handler import MistralHandler
+from model_handler.databricks_handler import DatabricksHandler
+from model_handler.deepseek_handler import DeepseekHandler
 from model_handler.firework_ai_handler import FireworkAIHandler
-from model_handler.nexus_handler import NexusHandler
+from model_handler.functionary_handler import FunctionaryHandler
 from model_handler.gemini_handler import GeminiHandler
-from model_handler.oss_handler import OSSHandler
 from model_handler.gemma_handler import GemmaHandler
 from model_handler.glaive_handler import GlaiveHandler
-from model_handler.deepseek_handler import DeepseekHandler
-from model_handler.functionary_handler import FunctionaryHandler
-from model_handler.databricks_handler import DatabricksHandler
+from model_handler.gorilla_handler import GorillaHandler
+from model_handler.gpt_handler import OpenAIHandler
 from model_handler.hermes_handler import HermesHandler
+from model_handler.mistral_handler import MistralHandler
+from model_handler.nexus_handler import NexusHandler
+from model_handler.openfunctions_handler import OpenfunctionsHandler
+from model_handler.oss_handler import OSSHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
     "gorilla-openfunctions-v2": GorillaHandler,
+    "gorilla-llm/gorilla-openfunctions-v2": OpenfunctionsHandler,
     "gpt-4-1106-preview-FC": OpenAIHandler,
     "gpt-4-1106-preview": OpenAIHandler,
     "gpt-4-0125-preview-FC": OpenAIHandler,
