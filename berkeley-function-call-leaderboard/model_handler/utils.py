@@ -33,19 +33,18 @@ def _cast_to_openai_type(properties, mapping, test_category):
                     properties[key]["properties"], mapping, test_category
                 )
             elif "items" in properties[key]:
-                items_type = properties[key]["items"]["type"]
                 properties[key]["items"]["type"] = mapping[
                     properties[key]["items"]["type"]
                 ]
                 if (
-                    items_type == "array"
+                    properties[key]["items"]["type"] == "array"
                     and "items" in properties[key]["items"]
                 ):
                     properties[key]["items"]["items"]["type"] = mapping[
                         properties[key]["items"]["items"]["type"]
                     ]
                 elif (
-                    items_type == "object"
+                    properties[key]["items"]["type"] == "object"
                     and "properties" in properties[key]["items"]
                 ):
                     properties[key]["items"]["properties"] = _cast_to_openai_type(
