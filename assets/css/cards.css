@@ -1,5 +1,5 @@
 .card-container {
-    width: 80%;
+    width: 70%;
     margin: 0 auto;
 }
 
@@ -8,7 +8,7 @@
 }
 
 .card {
-    height: 35vh;
+    height:40vh;
     transition: transform 0.6s; 
     transform-style: preserve-3d; 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
@@ -37,9 +37,16 @@
 
 .card-title {
     width: 100%; /* Ensures the title spans the full width of the card */
-    padding: 10px;
+    /* padding: 10px; */
     margin-top: 0; /* Adjusts spacing at the top if needed */
     text-align: center; /* Keeps the title text centered */
+}
+
+.card-bio {
+    width: 100%; /* Ensures the bio spans the full width of the card */
+    padding: 10px;
+    margin-bottom: 0; /* Adjusts spacing at the bottom if needed */
+    text-align: center; /* Keeps the bio text centered */
 }
 
 

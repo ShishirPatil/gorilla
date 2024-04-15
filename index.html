@@ -95,11 +95,13 @@
         <div class="card-container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="card" onclick="window.location.href='https://example.com/page1';">
+                    <div class="card" onclick="window.location.href='blogs/7_open_functions_v2.html';">
                         <div class="card-inner">
                             <div class="card-front">
-                                <div class="card-title">Title 1</div>
-                                <div class="card-image"><img src="assets/img/blog_post_8_gpu_formula.jpg" alt="Image 1">
+                                <div class="card-title">Gorilla OpenFunctions</div>
+                                <div class="card-bio">Teach LLM tool use</div>
+                                <div class="card-image"><img
+                                        src="assets/img/blog_post_4_gorilla_open_function_calling.png" alt="Image 1">
                                 </div>
                             </div>
                             <div class="card-back">
@@ -109,11 +111,13 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card" onclick="window.location.href='https://example.com/page2';">
+                    <div class="card"
+                        onclick="window.location.href='blogs/8_berkeley_function_calling_leaderboard.html';">
                         <div class="card-inner">
                             <div class="card-front">
-                                <div class="card-title">Title 1</div>
-                                <div class="card-image"><img src="assets/img/blog_post_8_Leaderboard.png" alt="Image 1">
+                                <div class="card-title">Function Calling Leaderboard</div>
+                                <div class="card-bio">Benchmarking LLMs on function calling capabilities</div>
+                                <div class="card-image"><img src="assets/img/leaderboard-summary.jpg" alt="Image 1">
                                 </div>
                             </div>
                             <div class="card-back">
@@ -125,11 +129,13 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="card" onclick="window.location.href='https://example.com/page1';">
+                    <div class="card" onclick="window.location.href='blogs/9_raft.html';">
                         <div class="card-inner">
                             <div class="card-front">
-                                <div class="card-title">Title 1</div>
-                                <div class="card-image"><img src="assets/img/blog_post_8_gpu_formula.jpg" alt="Image 1">
+                                <div class="card-title">RAFT</div>
+                                <div class="card-bio">Better way to do RAG</div>
+                                <div class="card-image"><img src="assets/img/blog_post_9_raft_openbook.png"
+                                        alt="Image 1">
                                 </div>
                             </div>
                             <div class="card-back">
@@ -139,11 +145,12 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card" onclick="window.location.href='https://example.com/page2';">
+                    <div class="card" onclick="window.location.href='blogs/10_gorilla_exec_engine.html';">
                         <div class="card-inner">
                             <div class="card-front">
-                                <div class="card-title">Title 1</div>
-                                <div class="card-image"><img src="assets/img/blog_post_8_Leaderboard.png" alt="Image 1">
+                                <div class="card-title">GoEX</div>
+                                <div class="card-bio">Runtime for executing LLM actions</div>
+                                <div class="card-image"><img src="assets/img/blog_post_10_intro.png" alt="Image 1">
                                 </div>
                             </div>
                             <div class="card-back">
@@ -273,18 +280,16 @@
             <div class="col-md-12 text-center">
                 <h2>Citation</h2>
             </div>
-            <div>
-                <div class="col-md-12">
-                    <code class="citation">
-                    @article{patil2023gorilla,<br>
-                        <code class="citation" style="padding-left: 5px;">  title={Gorilla: Large Language Model Connected with Massive APIs},<br>
-                        author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},<br>
-                        journal={arXiv preprint arXiv:2305.15334},<br>
-                        year={2023},</code><br>
-                    }
-                    </code>
-                </div>
-            </div>
+            <pre>
+                            <code>
+@article{patil2023gorilla,
+    title={Gorilla: Large Language Model Connected with Massive APIs},
+    author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},
+    journal={arXiv preprint arXiv:2305.15334},
+    year={2023},
+}
+                </code>
+            </pre>
         </div>
     </div>
     <!-- Contact Us -->
@@ -309,6 +314,13 @@
             </div>
         </div>
     </div>
+    <section class="section" id="BibTeX">
+        <div class="container is-max-desktop content">
+            <h2 class="title">BibTeX</h2>
+            <pre><code>BibTex Code Here</code></pre>
+        </div>
+    </section>
+
     <script>
         var tablinks = document.getElementsByClassName("tab-links");
         var tabcontents = document.getElementsByClassName("tab-contents");
