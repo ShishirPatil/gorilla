@@ -17,7 +17,7 @@ from model_handler.constant import (
 import time
 import cohere
 
-from constant import USE_COHERE_OPTIMIZATION
+from model_handler.constant import USE_COHERE_OPTIMIZATION
 
 
 class CohereHandler(BaseHandler):
