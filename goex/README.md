@@ -15,27 +15,27 @@ GoEx provides a new way to interact with your favorite APIs! Powered by LLMs, Go
 
 ## Install
 
-1.) Navigate inside the goex folder and set up a clean environment with **Conda** or **Python venv**
+**1.)** Navigate inside the goex folder and set up a clean environment with **Conda** or **Python venv**
 
 ```sh
 python3 -m venv goex-env
 source goex-env/bin/activate
 ```
 
-**OR**
+OR
 
 ```sh
 conda create --name goex python=3.10 -y
 conda activate goex
 ```
 
-2.) Install the `goex` CLI tool
+**2.)** Install the `goex` CLI tool
 
 ```sh
 pip install -e .
 ```
 
-3.) Install and initialize Mkcert to support OAuth2 token exchange [required for services that require https for redirect URL e.g Slack]
+**3.)** Install and initialize Mkcert to support OAuth2 token exchange [required for services that require https for redirect URL e.g Slack]
 
 Mac:
 
@@ -54,6 +54,8 @@ mkcert localhost
 ```
 
 Mkcert creates a local certificate authority, enabling Gorilla to establish secure communication for OAuth2 token exchange between localhost and interacting services. The command may prompt the user to pass in their password.
+
+**4.)** Install [**Docker**](https://docs.docker.com/engine/install/). Docker is necessary for Goex to execute LLM-generated code in a sandboxed environment. Executions via the CLI will not be successful without Docker running locally.
 
 ## CLI Usage
 
