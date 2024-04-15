@@ -356,7 +356,8 @@ A100_PRICE_PER_HOUR = (
 
 
 def extract_after_test(input_string):
-    parts = input_string.split("_test_")[1].split("_result")[0].split(".json")[0]
+    parts = input_string.split("_test_")[1].split("_result")[
+        0].split(".json")[0]
     return parts
 
 
@@ -473,13 +474,16 @@ def api_status_sanity_check():
     # Use the ground truth data to make sure the API is working correctly
     command = f"cd .. ; python apply_function_credential_config.py --input_file ./eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
     try:
-        subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
+        subprocess.run(command, shell=True, capture_output=True,
+                       text=True, check=True)
     except subprocess.CalledProcessError as e:
-        write_list_of_dicts_to_file(REST_API_GROUND_TRUTH_FILE_PATH, ground_truth_dummy)
+        write_list_of_dicts_to_file(
+            REST_API_GROUND_TRUTH_FILE_PATH, ground_truth_dummy)
         raise RuntimeError(e.stderr) from e
 
     ground_truth_replaced = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
-    write_list_of_dicts_to_file(REST_API_GROUND_TRUTH_FILE_PATH, ground_truth_dummy)
+    write_list_of_dicts_to_file(
+        REST_API_GROUND_TRUTH_FILE_PATH, ground_truth_dummy)
 
     correct_count = 0
     for idx, data in tqdm(
@@ -499,7 +503,8 @@ def calculate_weighted_accuracy(accuracy_dict_list):
     total_accuracy = 0
     for accuracy_dict in accuracy_dict_list:
         total_count += accuracy_dict["total_count"]
-        total_accuracy += accuracy_dict["accuracy"] * accuracy_dict["total_count"]
+        total_accuracy += accuracy_dict["accuracy"] * \
+            accuracy_dict["total_count"]
 
     if total_count == 0:
         return {"accuracy": 0, "total_count": 0}
@@ -530,7 +535,8 @@ def record_result(leaderboard_table, model_name, test_category, accuracy, total_
 def record_cost_latency(leaderboard_table, model_name, model_output_data):
     if model_name not in leaderboard_table:
         leaderboard_table[model_name] = {}
-        leaderboard_table[model_name]["cost"] = {"input_data": [], "output_data": []}
+        leaderboard_table[model_name]["cost"] = {
+            "input_data": [], "output_data": []}
         leaderboard_table[model_name]["latency"] = {"data": []}
 
     input_token = []
@@ -605,7 +611,8 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
     data = []
     for model_name, value in leaderboard_table.items():
         model_name_escaped = model_name.replace("_", "/")
-        python_simple_ast = value.get("simple", {"accuracy": 0, "total_count": 0})
+        python_simple_ast = value.get(
+            "simple", {"accuracy": 0, "total_count": 0})
         python_multiple_ast = value.get(
             "multiple_function", {"accuracy": 0, "total_count": 0}
         )
@@ -625,7 +632,8 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
             "executable_parallel_function", {"accuracy": 0, "total_count": 0}
         )
         python_parallel_multiple_exec = value.get(
-            "executable_parallel_multiple_function", {"accuracy": 0, "total_count": 0}
+            "executable_parallel_multiple_function", {
+                "accuracy": 0, "total_count": 0}
         )
         java_simple_ast = value.get("java", {"accuracy": 0, "total_count": 0})
         javascript_simple_ast = value.get(
@@ -743,12 +751,12 @@ def update_leaderboard_table_with_score_file(leaderboard_table, score_path):
         # Pattern to match JSON files in this subdirectory
         json_files_pattern = os.path.join(subdir, "*.json")
         model_name = subdir.split(score_path)[1]
-        model_name_escaped = model_name.replace("_", "/")
         # Find and process all JSON files in the subdirectory
         for model_score_json in glob.glob(json_files_pattern):
             metadata = load_file(model_score_json)[0]
             accuracy, total_count = metadata["accuracy"], metadata["total_count"]
-            test_category = model_score_json.split("_score.json")[0].split("/")[-1]
+            test_category = model_score_json.split("_score.json")[
+                0].split("/")[-1]
             if model_name not in leaderboard_table:
                 leaderboard_table[model_name] = {}
             if test_category not in leaderboard_table[model_name]:
@@ -790,7 +798,7 @@ def collapse_json_objects(file_path):
         elif char == "}":
             depth -= 1
             if depth == 0:
-                obj = content[obj_start : i + 1]
+                obj = content[obj_start: i + 1]
                 objects.append(obj)
 
     with open(file_path, "w") as out_file:
