@@ -10,7 +10,6 @@ def _cast_to_openai_type(properties, mapping, test_category):
     for key, value in properties.items():
         if "type" not in value:
             properties[key]["type"] = "string"
-            var_type = "string"
         else:
             var_type = value["type"]
             if mapping == GORILLA_TO_OPENAPI and var_type == "float":
@@ -28,7 +27,7 @@ def _cast_to_openai_type(properties, mapping, test_category):
         # - list of list of dict
         # - dict of any
 
-        if var_type == "array" or var_type == "object":
+        if properties[key]["type"] == "array" or properties[key]["type"] == "object":
             if "properties" in properties[key]:
                 properties[key]["properties"] = _cast_to_openai_type(
                     properties[key]["properties"], mapping, test_category
