@@ -27,7 +27,6 @@ body {
     border-radius: 8px;
     background: white;
     margin-bottom: 30px;
-    max-width: 1200px; 
     justify-content: center;
     width: 100%;
     max-width: 75%;
@@ -52,7 +51,7 @@ h2 {
 @media only screen and (max-width: 768px) {
     .container {
         flex-direction: column;
-        width: 100%;
+        width: 95%;
         max-width: none;
     }
     #author {
