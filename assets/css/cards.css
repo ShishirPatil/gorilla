@@ -24,7 +24,7 @@
         /* add space between cards */
         margin-bottom: 30px;
     }
-    .row {
+    .card-container .row {
         margin-bottom: 0;
     }
 }
