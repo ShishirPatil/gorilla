@@ -75,12 +75,12 @@
         <div class="container" style="max-width: 768px; background: #e5effc;">
             <div>
                 <div class="col-md-12 api-appstore">
-                    <h3 class="text-center">An API Appstore for LLMs</h3>
+                    <h3>An API Appstore for LLMs</h3>
                 </div>
 
                 <div class="col-md-12">
                     <div class="spinner">
-                        <h3 class="text-center">Gorilla Used at
+                        <h3>Gorilla Used at
                             <div class="spinner__text">
                                 <span class="spinner__text--top"
                                     data-texts="Microsoft, Nvidia, Tesla, Linkedin, Netflix, MIT, CMU, Cisco, Weaviate"></span>
@@ -97,7 +97,7 @@
     <div class="card-container">
         <div class="row">
             <div class="col-md-6">
-                <a class="card" href='blogs/7_open_functions_v2.html'>
+                <div class="card" onclick="window.location.href='blogs/7_open_functions_v2.html';">
                     <div class="card-inner">
                         <div class="card-front">
                             <div class="card-title">Gorilla OpenFunctions</div>
@@ -107,30 +107,82 @@
                             </div>
                         </div>
                         <div class="card-back">
-                            <p>Short description for card 1.</p>
+                            <p>
+                                🎁In OpenFunctions-v2, we natively train the model to support parallel functions
+                                (generate multiple functions at a time) and multiple functions (select one or more
+                                functions). Java/REST/Python APIs are also supported for the first time with extended
+                                data types📷
+                            <ul>
+                                <li>
+                                    Read More: <a
+                                        href="https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html">Blog</a>
+                                </li>
+                                <li>How well to other function-calling models perform: <a
+                                        href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function
+                                        Calling
+                                        Leaderboard</a></li>
+                                <li>Play with the model online: <a
+                                        href="https://gorilla.cs.berkeley.edu/leaderboard.html#api-explorer">Gorilla
+                                        OpenFunctions-v2
+                                        Web Demo</a></li>
+                                <li>Check out the project: <a
+                                        href="https://github.com/ShishirPatil/gorilla/tree/main/openfunctions">GitHub
+                                        Code</a>
+                                </li>
+                                <li>Model (6.91B) on HuggingFace 🤗: <a
+                                        href="https://huggingface.co/gorilla-llm/gorilla-openfunctions-v2">gorilla-llm/gorilla-openfunctions-v2</a>
+                                </li>
+                            </ul>
+                            </p>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
             <div class="col-md-6">
-                <a class="card" href='blogs/8_berkeley_function_calling_leaderboard.html'>
+                <div class="card" onclick="window.location.href='blogs/8_berkeley_function_calling_leaderboard.html';">
                     <div class="card-inner">
                         <div class="card-front">
-                            <div class="card-title">Function Calling Leaderboard</div>
+                            <div class="card-title">BFCL</div>
                             <p class="card-bio">Benchmarking LLMs on function calling capabilities</p>
                             <div class="card-image"><img src="assets/img/leaderboard-summary.jpg" alt="Image 1">
                             </div>
                         </div>
                         <div class="card-back">
-                            <p>Short description for card 1.</p>
+                            <p>
+                                🏆 Berkeley Function-Calling Leaderboard (BFCL) 📊 aims to provide a thorough study of
+                                the function-calling capability of different LLMs. It consists of 2k 📝
+                                question-function-answer pairs with multiple languages (🐍 Python, ☕ Java, 🟨
+                                JavaScript, 🌐 REST API), diverse application domains, and complex use cases (multiple
+                                and parallel function calls). We also investigate function relevance detection 🕵️‍♂️,
+                                to determine how the model will react when the provided function is not suitable to
+                                answer the user's question.
+                            <ul>
+                                <li>
+                                    Read More: <a
+                                        href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html">Blog</a>
+                                </li>
+                                <li>Live Leaderboard: <a
+                                        href="https://gorilla.cs.berkeley.edu/leaderboard.html">Website</a>
+                                </li>
+                                <li>BFCL Evaluation Dataset: <a
+                                        href="https://huggingface.co/datasets/gorilla-llm/Berkeley-Function-Calling-Leaderboard">
+                                        HuggingFace Dataset 🤗</a></li>
+                                <li>Gradio Demo: <a
+                                        href="https://huggingface.co/spaces/gorilla-llm/berkeley-function-calling-leaderboard">
+                                        HuggingFace Space 🤗 </a></li>
+                                <li>Reproducibility: <a
+                                        href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard">Github
+                                        Code</a></li>
+                            </ul>
+                            </p>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <a class="card" href='blogs/9_raft.html'>
+                <div class="card" onclick="window.location.href='blogs/9_raft.html';">
                     <div class="card-inner">
                         <div class="card-front">
                             <div class="card-title">RAFT</div>
@@ -139,25 +191,77 @@
                             </div>
                         </div>
                         <div class="card-back">
-                            <p>Short description for card 1.</p>
+                            <p>
+                                RAFT: Retriever-Aware FineTuning for domain-specific RAG 🚀
+                                Drawing parallels between LLMs and students in open-book (RAG) 📔 and closed-book exams
+                                (SFT) 🧠, we present a better recipe for fine-tuning a base LLM for RAG-focused
+                                challenges. Discover how RAFT prepares LLMs to excel with a specific document set,
+                                mirroring students' prep for finals! 🎓
+                            <ul>
+                                <li>
+                                    Read More: <a href="https://gorilla.cs.berkeley.edu/blogs/9_raft.html">Blog</a>
+                                </li>
+                                <li>
+                                    Read More: <a
+                                        href="https://techcommunity.microsoft.com/t5/ai-ai-platform-blog/raft-a-new-way-to-teach-llms-to-be-better-at-rag/ba-p/4084674">MSFT-META
+                                        Blog</a>
+                                </li>
+                                <li>
+                                    Paper: <a
+                                        href="https://arxiv.org/abs/2403.10131">https://arxiv.org/abs/2403.10131</a>
+                                </li>
+                                <li>
+                                    Reproducibility: <a
+                                        href="https://github.com/ShishirPatil/gorilla/tree/main/raft">Github Code</a>
+                                    </p>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
             <div class="col-md-6">
-                <a class="card" href='blogs/10_gorilla_exec_engine.html'>
+                <div class="card" onclick="window.location.href='blogs/10_gorilla_exec_engine.html';">
                     <div class="card-inner">
                         <div class="card-front">
                             <div class="card-title">GoEX</div>
-                            <p class="card-bio">Runtime for executing LLM actions</p>
+                            <p class="card-bio">Runtime for executing LLM-generated actions</p>
                             <div class="card-image"><img src="assets/img/blog_post_10_intro.png" alt="Image 1">
                             </div>
                         </div>
                         <div class="card-back">
-                            <p>Short description for card 1.</p>
+                            <p>
+                                Gorilla Execution Engine (GoEX) is a runtime for LLM-generated actions like code, API
+                                calls,
+                                and more. Featuring
+                                "post-facto validation" for assessing LLM actions after execution 🔍 Key to our approach
+                                is
+                                "undo" 🔄 and "damage confinement" abstractions to manage unintended actions & risks.
+                                This
+                                paves the way for fully autonomous LLM agents, enhancing interaction between apps &
+                                services
+                                with human-out-of-loop🚀
+                            <ul>
+                                <li>
+                                    Read More: <a
+                                        href="https://gorilla.cs.berkeley.edu/blogs/10_gorilla_exec_engine.html">Blog</a>
+                                </li>
+                                <li>
+                                    Paper: <a
+                                        href="https://arxiv.org/abs/2404.06921">https://arxiv.org/abs/2404.06921</a>
+                                </li>
+                                <li>
+                                    Try it out: <a href="https://goex.gorilla-llm.com/index">Web Demo</a>
+                                </li>
+                                <li>
+                                    Reproducibility: <a
+                                        href="https://github.com/ShishirPatil/gorilla/tree/main/goex">GitHub Code</a>
+                                </li>
+                            </ul>
+                            </p>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
     </div>
@@ -252,37 +356,20 @@
 
     <!-- Citation -->
     <div class="container" style="background: #e5effc">
-            <div class="col-md-6 contact-us">
-                <h2 class="text-center">Contact Us</h2>
-                <form name="submit-to-google-sheet" style="width: 80%; margin: 0 auto">
-                    <input type="text" name="Name" placeholder="Your Name" required />
-                    <input type="Email" name="Email" placeholder="Your Email" required />
-                    <input type="Organization" name="Organization" placeholder="Your Organization" />
-                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
-                    <button type="submit" class="btn-secondary2">Submit</button>
-                </form>
-                <span id="msg"></span>
-            </div>
-            <!-- <div class="col-md-6">
-                <h2 class="text-center">Contact Us</h2>
-                <div class="row">
-                    <div class="col-md-12">
-                        <form name="submit-to-google-sheet">
-                            <input type="text" name="Name" style='color: black' placeholder="Your Name" required>
-                            <input type="Email" name="Email" style='color: black' placeholder="Your Email" required>
-                            <input type="Organization" name="Organization" style='color: black'
-                                placeholder="Your Organization">
-                            <textarea name="Message" rows="6" style='color: black'
-                                placeholder="Your Message"></textarea>
-                            <button type="submit" class="btn-secondary btn-secondary2">Submit</button>
-                        </form>
-                        <span id="msg"></span>
-                    </div>
-                </div>
-            </div> -->
-            <div class="col-md-6">
-                <h2 class="text-center">Citation</h2>
-                <pre>
+        <div class="col-md-6 contact-us">
+            <h2 class="text-center">Contact Us</h2>
+            <form name="submit-to-google-sheet" style="width: 80%; margin: 0 auto">
+                <input type="text" name="Name" placeholder="Your Name" required />
+                <input type="Email" name="Email" placeholder="Your Email" required />
+                <input type="Organization" name="Organization" placeholder="Your Organization" />
+                <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                <button type="submit" class="btn-secondary2">Submit</button>
+            </form>
+            <span id="msg"></span>
+        </div>
+        <div class="col-md-6">
+            <h2 class="text-center">Citation</h2>
+            <pre>
                             <code>
 @article{patil2023gorilla,
     title={Gorilla: Large Language Model Connected with Massive APIs},
@@ -292,72 +379,72 @@
 }
                 </code>
             </pre>
-            </div>
+        </div>
     </div>
 
-            <script>
-                var tablinks = document.getElementsByClassName("tab-links");
-                var tabcontents = document.getElementsByClassName("tab-contents");
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
 
-                function opentab(tabname) {
-                    for (tablink of tablinks) {
-                        tablink.classList.remove("active-link");
-                    }
-                    for (tabcontent of tabcontents) {
-                        tabcontent.classList.remove("active-tab");
-                    }
-                    event.currentTarget.classList.add("active-link");
-                    document.getElementById(tabname).classList.add("active-tab");
-                }
-            </script>
-            <script>
+        function opentab(tabname) {
+            for (tablink of tablinks) {
+                tablink.classList.remove("active-link");
+            }
+            for (tabcontent of tabcontents) {
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+    </script>
+    <script>
 
-                var sidemenu = document.getElementById("sidemenu");
+        var sidemenu = document.getElementById("sidemenu");
 
-                function openmenu() {
-                    sidemenu.style.right = "0";
-                }
-                function closemenu() {
-                    sidemenu.style.right = "-200px";
-                }
+        function openmenu() {
+            sidemenu.style.right = "0";
+        }
+        function closemenu() {
+            sidemenu.style.right = "-200px";
+        }
 
-            </script>
-            <script>
-                const scriptURL = 'https://script.google.com/macros/s/AKfycbxdAKyEA36HA_p0k3KwMzMigxgFCZ1XegRBPfjgxlNaOK2CsOnP9hrEV_6V1ARCAJw3vw/exec'
-                const form = document.forms['submit-to-google-sheet']
-                const msg = document.getElementById("msg")
+    </script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxdAKyEA36HA_p0k3KwMzMigxgFCZ1XegRBPfjgxlNaOK2CsOnP9hrEV_6V1ARCAJw3vw/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
 
-                form.addEventListener('submit', e => {
-                    e.preventDefault()
-                    fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                        .then(response => {
-                            msg.innerHTML = "<span style='color: black;'>Message Sent Successfully!</span>";
-                            setTimeout(function () {
-                                msg.innerHTML = ""
-                            }, 5000)
-                            form.reset()
-                        })
-                        .catch(error => console.error('Error!', error.message))
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    msg.innerHTML = "<span style='color: black;'>Message Sent Successfully!</span>";
+                    setTimeout(function () {
+                        msg.innerHTML = ""
+                    }, 5000)
+                    form.reset()
                 })
+                .catch(error => console.error('Error!', error.message))
+        })
 
-                const spinnerTexts = document.querySelectorAll('[class^="spinner__text--"]')
-                const texts = spinnerTexts[0].dataset.texts.split(',')
-                const textPositions = [0, 1]
+        const spinnerTexts = document.querySelectorAll('[class^="spinner__text--"]')
+        const texts = spinnerTexts[0].dataset.texts.split(',')
+        const textPositions = [0, 1]
 
-                function initializeSpinnerTexts() {
-                    spinnerTexts.forEach((spinnerText, index) => {
-                        // Initialize the spinner texts' text
-                        spinnerText.innerText = texts[textPositions[index]]
+        function initializeSpinnerTexts() {
+            spinnerTexts.forEach((spinnerText, index) => {
+                // Initialize the spinner texts' text
+                spinnerText.innerText = texts[textPositions[index]]
 
-                        // Change text after every animation iteration
-                        spinnerText.addEventListener('animationiteration', e => {
-                            e.target.innerText = texts[++textPositions[index] % texts.length]
-                        })
-                    })
-                }
+                // Change text after every animation iteration
+                spinnerText.addEventListener('animationiteration', e => {
+                    e.target.innerText = texts[++textPositions[index] % texts.length]
+                })
+            })
+        }
 
-                window.onload = initializeSpinnerTexts
-            </script>
+        window.onload = initializeSpinnerTexts
+    </script>
 
 </body>
 

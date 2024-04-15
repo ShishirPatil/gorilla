@@ -14,6 +14,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
     border-radius: 10px; 
     overflow: hidden;
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {
@@ -63,16 +64,14 @@
     text-align: center; /* Keeps the bio text centered */
 }
 
+
 .card:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .card-back {
     transform: rotateY(180deg); 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    align-items: normal;
 }
 
 .card:hover .card-inner {
