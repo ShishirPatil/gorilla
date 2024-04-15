@@ -100,9 +100,11 @@ Unless the user asks for a different style of answer, you should answer in full 
                 ]
             except:
                 result = response.text
+        api_metadata = response.meta
         metadata = {}
-        metadata["input_tokens"] = response.meta["billed_units"]["input_tokens"]
-        metadata["output_tokens"] = response.meta["billed_units"]["output_tokens"]
+        if api_metadata is not None:
+            metadata["input_tokens"] = api_metadata.billed_units.input_tokens
+            metadata["output_tokens"] = api_metadata.billed_units.output_tokens
         metadata["latency"] = latency
         return result, metadata
 

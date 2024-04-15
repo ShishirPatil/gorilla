@@ -8,4 +8,4 @@ mistralai
 anthropic
 openai
 numpy
-cohere~=5.2.2
+cohere~=5.2.5
