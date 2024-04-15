@@ -7,6 +7,7 @@ import subprocess
 import statistics
 from tqdm import tqdm
 import numpy as np
+from eval_runner_constant import FILENAME_INDEX_MAPPING
 
 REST_API_GROUND_TRUTH_FILE_PATH = "api_status_ground_truth_function_calls.json"
 
@@ -362,24 +363,6 @@ NO_COST_MODELS = [
 A100_PRICE_PER_HOUR = (
     10.879 / 8
 )  # Price got from AZure, 10.879 per hour for 8 A100, 3 years reserved
-
-
-FILENAME_INDEX_MAPPING = {
-    "executable_parallel_function": (0, 49),
-    "parallel_multiple_function": (50, 249),
-    "executable_simple": (250, 349),
-    "rest": (350, 419),
-    "sql": (420, 519),
-    "parallel_function": (520, 719),
-    "chatable": (720, 919),
-    "java": (920, 1019),
-    "javascript": (1020, 1069),
-    "executable_multiple_function": (1070, 1119),
-    "simple": (1120, 1519),
-    "relevance": (1520, 1759),
-    "executable_parallel_multiple_function": (1760, 1799),
-    "multiple_function": (1800, 1999),
-}
 
 
 def extract_after_test(input_string):
