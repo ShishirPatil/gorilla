@@ -71,6 +71,13 @@ form[name="submit-to-google-sheet"] textarea {
     border-right: 5px solid white; /* Creates a white border line on the right */
 }
 
+@media screen and (max-width: 768px) {
+    .col-md-6.contact-us {
+        border-right: none; /* Remove the border line on smaller screens */
+    }
+    
+}
+
 .shorter-container {
     padding: 10px; /* Reduced from 20px */
 }
@@ -80,3 +87,27 @@ form[name="submit-to-google-sheet"] textarea {
     margin-bottom: 10px; /* Smaller margin for headings */
 }
 
+pre {
+    -webkit-overflow-scrolling: touch;
+    background-color: #f5f5f5;
+    color: #4a4a4a;
+    font-size: 0.875em;
+    overflow-x: auto;
+    padding: 1.25rem 1.5rem;
+    white-space: pre;
+    word-wrap: normal;
+}
+
+pre code {
+    background-color: transparent;
+    color: currentColor;
+    font-size: 1em;
+    padding: 0;
+}
+
+code,
+pre {
+    -moz-osx-font-smoothing: auto;
+    -webkit-font-smoothing: auto;
+    font-family: monospace;
+}
