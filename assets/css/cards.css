@@ -43,7 +43,7 @@
     height: 100%;
     backface-visibility: hidden;
     display: flex;
-    padding: 20px;
+    padding: 10px 15px;
     flex-direction: column; /* Keeps items in a vertical stack */
     justify-content: flex-start; /* Aligns items to the start of the flex container (top) */
     align-items: center; /* Centers items horizontally */
@@ -58,7 +58,7 @@
 
 .card-bio {
     width: 100%; /* Ensures the bio spans the full width of the card */
-    padding: 0 10px;
+    padding: 0;
     font-size: 18px;
     text-align: center; /* Keeps the bio text centered */
 }
@@ -77,11 +77,6 @@
 
 .card:hover .card-inner {
     transform: rotateY(180deg);
-}
-
-.card-container {
-    margin-bottom: 20px;
-    justify-content: center;
 }
 
 .card-image img {
