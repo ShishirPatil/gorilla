@@ -71,6 +71,13 @@ form[name="submit-to-google-sheet"] textarea {
     border-right: 5px solid white; /* Creates a white border line on the right */
 }
 
+@media screen and (max-width: 768px) {
+    .col-md-6.contact-us {
+        border-right: none; /* Remove the border line on smaller screens */
+    }
+    
+}
+
 .shorter-container {
     padding: 10px; /* Reduced from 20px */
 }
