@@ -13,8 +13,7 @@
     transform-style: preserve-3d; 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
     border-radius: 10px; 
-    text-wrap: normal;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .card-shorter {
@@ -73,16 +72,18 @@
 }
 
 
-.card:hover {
+.card:hover, .card:active {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .card-back {
     transform: rotateY(180deg); 
     align-items: normal;
+    text-wrap: normal;
+    overflow-y: auto;
 }
 
-.card:hover .card-inner {
+.card:hover .card-inner, .card:active .card-inner {
     transform: rotateY(180deg);
 }
 
