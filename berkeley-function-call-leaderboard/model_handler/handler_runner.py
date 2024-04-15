@@ -39,7 +39,7 @@ def main():
         args.data_path, args.test_category, args.num_gpus)
 
     for index in tqdm(range(len(result_json))):
-        model_handler.write(result_json[index], "result.json")
+        model_handler.write(result_json[index], "result.json", args.model_name)
 
 
 if __name__ == '__main__':

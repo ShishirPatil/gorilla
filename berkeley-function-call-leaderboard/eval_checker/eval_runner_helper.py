@@ -72,6 +72,12 @@ MODEL_METADATA_MAPPING = {
         "Gorilla LLM",
         "Apache 2.0",
     ],
+    "gorilla-llm/gorilla-openfunctions-v2": [
+        "Gorilla-OpenFunctions-v2 (FC) from HuggingFace",
+        "https://huggingface.co/gorilla-llm/gorilla-openfunctions-v2",
+        "Gorilla LLM",
+        "Apache 2.0",
+    ],
     "claude-3-opus-20240229-FC": [
         "Claude-3-Opus-20240229 (FC)",
         "https://www.anthropic.com/news/claude-3-family",
@@ -678,10 +684,10 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
             [
                 "N/A",
                 overall_accuracy["accuracy"],
-                MODEL_METADATA_MAPPING[model_name][0],
-                MODEL_METADATA_MAPPING[model_name][1],
-                MODEL_METADATA_MAPPING[model_name][2],
-                MODEL_METADATA_MAPPING[model_name][3],
+                MODEL_METADATA_MAPPING[model_name_escaped][0],
+                MODEL_METADATA_MAPPING[model_name_escaped][1],
+                MODEL_METADATA_MAPPING[model_name_escaped][2],
+                MODEL_METADATA_MAPPING[model_name_escaped][3],
                 summary_ast["accuracy"],
                 summary_exec["accuracy"],
                 simple_ast["accuracy"],
@@ -737,6 +743,7 @@ def update_leaderboard_table_with_score_file(leaderboard_table, score_path):
         # Pattern to match JSON files in this subdirectory
         json_files_pattern = os.path.join(subdir, "*.json")
         model_name = subdir.split(score_path)[1]
+        model_name_escaped = model_name.replace("_", "/")
         # Find and process all JSON files in the subdirectory
         for model_score_json in glob.glob(json_files_pattern):
             metadata = load_file(model_score_json)[0]

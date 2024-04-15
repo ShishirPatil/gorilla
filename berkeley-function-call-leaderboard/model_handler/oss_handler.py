@@ -6,7 +6,11 @@ from model_handler.utils import (
     language_specific_pre_processing,
 )
 from eval_checker.eval_runner_constant import FILENAME_INDEX_MAPPING
-import shortuuid, ray, os, json, torch
+import shortuuid
+import ray
+import os
+import json
+import torch
 
 
 class OSSHandler(BaseHandler):
@@ -93,7 +97,7 @@ class OSSHandler(BaseHandler):
         for i in range(0, len(ques_jsons), chunk_size):
             ans_handles.append(
                 self._batch_generate.remote(
-                    ques_jsons[i : i + chunk_size],
+                    ques_jsons[i: i + chunk_size],
                     test_category,
                     self.model_name,
                     self.temperature,
@@ -123,13 +127,17 @@ class OSSHandler(BaseHandler):
     def decode_execute(self, result):
         return result
 
-    def write(self, result, file_to_open):
+    def write(self, result, file_to_open, model_subfolder_name=""):
+        if not model_subfolder_name:
+            model_subfolder_name = self.model_name
         if not os.path.exists("./result"):
             os.mkdir("./result")
-        if not os.path.exists("./result/" + self.model_name.replace("/", "_")):
-            os.mkdir("./result/" + self.model_name.replace("/", "_"))
+        if not os.path.exists("./result/" + model_subfolder_name.replace("/", "_")):
+            os.mkdir("./result/" + model_subfolder_name.replace("/", "_"))
         with open(
-            "./result/" + self.model_name.replace("/", "_") + "/" + file_to_open, "a+"
+            "./result/" +
+                model_subfolder_name.replace(
+                    "/", "_") + "/" + file_to_open, "a+"
         ) as f:
             f.write(json.dumps(result) + "\n")
 
