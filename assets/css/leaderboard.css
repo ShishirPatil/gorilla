@@ -114,7 +114,7 @@ th:not(.detail-header)  {
     -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS devices */
     width: 100%; /* Full width of the parent */
     max-width: 100%; /* Ensure the container does not exceed the width of the parent */
-    max-height: 500px; /* Set the maximum height of the table to 8 rows */
+    max-height: 600px; /* Set the maximum height of the table to 8 rows */
     display: block;
     border: 1px solid #ddd; /* Optional: Adds a border for better visibility */
     align-items: center;
