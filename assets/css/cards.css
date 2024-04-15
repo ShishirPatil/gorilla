@@ -13,8 +13,12 @@
     transform-style: preserve-3d; 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
     border-radius: 10px; 
-    overflow: hidden;
-    cursor: pointer;
+    text-wrap: normal;
+    overflow-y: auto;
+}
+
+.card-shorter {
+    height: 35vh;
 }
 
 @media (max-width: 768px) {
@@ -24,6 +28,10 @@
     .card {
         /* add space between cards */
         margin-bottom: 30px;
+        height: 45vh;
+    }
+    .card-shorter {
+        height: 40vh;
     }
     .card-container .row {
         margin-bottom: 0;
@@ -53,7 +61,7 @@
 .card-title {
     width: 100%; /* Ensures the title spans the full width of the card */
     font-weight: bold;
-    font-size: 24px;
+    font-size: 26px;
     text-align: center; /* Keeps the title text centered */
 }
 
