@@ -30,3 +30,9 @@ body, html, p, h1, h2, h3, .author-date, .blog-title, .author, .date {
     overflow-wrap: break-word;
 }
 
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
