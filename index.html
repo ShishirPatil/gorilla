@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-    gtag('config', 'G-NRZJLJCSH6');
+        gtag('config', 'G-NRZJLJCSH6');
     </script>
 
 
@@ -21,13 +22,29 @@
     <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/Team-Clean.css">
-    <link rel="stylesheet" href="assets/css/contact_main_page.css">
     <link rel="stylesheet" href="assets/css/main_page.css">
+    <link rel="stylesheet" href="assets/css/cards.css">
+    <link rel="stylesheet" href="assets/css/contact.css" />
+
+    <style>
+        .custom-cursor-gorilla {
+            cursor: url('assets/img/gorilla-16.png'), auto !important;
+        }
+        .custom-cursor-mag {
+            cursor: url('assets/img/mag-16.png'), auto !important;
+        }
+        .custom-cursor-trophy {
+            cursor: url('assets/img/trophy-16.png'), auto !important;
+        }
+        .custom-cursor-steam {
+            cursor: url('assets/img/steam-16.png'), auto !important;
+        }
+    </style>
 
 </head>
 
 <body>
-       <!-- Navigation Bar -->
+    <!-- Navigation Bar -->
     <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100;; font-size: 18px;">
         <a href="index.html">Home</a>
         <a href="blog.html">Blogs</a>
@@ -35,276 +52,399 @@
         <a href="apizoo/">API Zoo Index</a>
     </div>
     <div class="highlight-clean" style="padding-bottom: 10px;">
-            <h1 class="text-center"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
-        <div><p></p></div>
+        <h1 class="text-center"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+        <div>
+            <p></p>
+        </div>
         <div class="container" style="max-width: 768px;background:white;">
             <div class="row">
                 <div class="col-md-12">
                     <h4 class="text-center" style="margin: 0px;">
-                        <a class="text-center" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G. Patil*</a>, 
-                        <a class="text-center" href="https://tianjunz.github.io//">Tianjun Zhang*</a>, 
-                        <a class="text-center" href="https://xinw.ai/">Xin Wang</a>, 
-                        <a class="text-center" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a></h4>
-                    <h4></h4>
-                    <h5 class="text-center">UC Berkeley, Microsoft Research</h5>
-                    <h6 class="text-center">sgp@berkeley.edu, tianjunz@berkeley.edu</h6>
+                        <a class="text-center" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G.
+                            Patil*</a>,
+                        <a class="text-center" href="https://tianjunz.github.io/">Tianjun Zhang*</a>
+                        <h4></h4>
+                        <h5 class="text-center">UC Berkeley</h5>
+                        <h6 class="text-center">sgp@berkeley.edu, tianjunz@berkeley.edu</h6>
                 </div>
             </div>
         </div>
-        <div><p></p></div>
+        <div>
+            <p></p>
+        </div>
         <div class="buttons" style="margin-bottom: 8px;">
-            <a class="btn btn-primary" role="button" href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">Colab</a>
+
             <a class="btn btn-primary" role="button" href="https://github.com/ShishirPatil/gorilla">GitHub</a>
-            <a class="btn btn-primary" role="button" href="https://arxiv.org/abs/2305.15334">Paper</a>
-            <a class="btn btn-primary" role="button" href="https://docs.google.com/forms/d/1iuWrfQbTb8_T5s4J75HNftPF-w1Jg1Aeg-gB64X8MJg/edit">Gorilla-Spotlight Signup</a>
+            <a class="btn btn-primary" role="button" href="https://arxiv.org/abs/2305.15334">Gorilla Paper</a>
+            <a class="btn btn-primary" role="button" href="https://arxiv.org/abs/2403.10131">RAFT Paper</a>
+            <a class="btn btn-primary" role="button" href="https://arxiv.org/abs/2404.06921">GoEX Paper</a>
             <a class="btn btn-primary" role="button" href="https://discord.gg/grXXvj9Whz"> Discord</a>
         </div>
-        <div><p></p></div>
-        <div class="container" style="max-width: 768px; background: #f0f7ff;">
-            <div class="row">
+        <div>
+            <p></p>
+        </div>
+        <div class="container" style="max-width: 768px; background: #e5effc;">
+            <div>
                 <div class="col-md-12 api-appstore">
-                    <h3 class="text-center">An API Appstore for LLMs</h3>
+                    <h3>An API Appstore for LLMs</h3>
                 </div>
-                
+
                 <div class="col-md-12">
                     <div class="spinner">
-                        <h3 class="text-center">Gorilla Used at
+                        <h3>Gorilla Used at
                             <div class="spinner__text">
-                                <span class="spinner__text--top" data-texts="Microsoft, Nvidia, Tesla, Linkedin, Netflix, MIT, CMU, Cisco, Weaviate"></span>
-                                <span class="spinner__text--bottom" data-texts="Microsoft, Nvidia, Tesla, Linkedin, Netflix, MIT, CMU, Cisco, Weaviate"></span>
+                                <span class="spinner__text--top"
+                                    data-texts="Microsoft, Nvidia, Tesla, OpenAI, Linkedin, Netflix, MIT, Cisco, Weaviate, Anthropic, Cohere"></span>
+                                <span class="spinner__text--bottom"
+                                    data-texts="Microsoft, Nvidia, Tesla, OpenAI, Linkedin, Netflix, MIT, Cisco, Weaviate, Anthropic, Cohere"></span>
                             </div>
                         </h3>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Figure -->
-        <div><p></p></div>
-        <div class="container" style="max-width: 768px;" >
-            <div class="row">
-                <div class="col-md-12 text-center"><img src="assets/img/gorilla_method.png" 
-                    style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
+    </div>
+
+    <div class="card-container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card custom-cursor-gorilla" style="background-color: #e9edc9;">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-title">Gorilla OpenFunctions</div>
+                            <p class="card-bio">Teach LLM tool use</p>
+                            <div class="card-image"><img src="assets/img/blog_post_4_gorilla_open_function_calling.png"
+                                    alt="Image 1">
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <p>
+                                🎁In OpenFunctions-v2, we natively train the model to support parallel functions
+                                (generate multiple functions at a time) and multiple functions (select one or more
+                                functions). Java/REST/Python APIs are also supported for the first time with extended
+                                data types📷
+                            <ul>
+                                <li>
+                                    Read More: <a
+                                        href="https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html">Blog</a>
+                                </li>
+                                <li>How well to other function-calling models perform: <a
+                                        href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function
+                                        Calling
+                                        Leaderboard</a></li>
+                                <li>Play with the model online: <a
+                                        href="https://gorilla.cs.berkeley.edu/leaderboard.html#api-explorer">Gorilla
+                                        OpenFunctions-v2
+                                        Web Demo</a></li>
+                                <li>Check out the project: <a
+                                        href="https://github.com/ShishirPatil/gorilla/tree/main/openfunctions">GitHub
+                                        Code</a>
+                                </li>
+                                <li>Model (6.91B) on HuggingFace 🤗: <a
+                                        href="https://huggingface.co/gorilla-llm/gorilla-openfunctions-v2">gorilla-llm/gorilla-openfunctions-v2</a>
+                                </li>
+                            </ul>
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <em class="col-md-12">Gorilla is a LLM that can provide appropriate API calls. 
-                    It is trained on three massive machine learning hub datasets: Torch Hub, TensorFlow Hub and HuggingFace. 
-                    We are rapidly adding new domains, including Kubernetes, GCP, AWS, OpenAPI, and more.
-                    Zero-shot Gorilla outperforms GPT-4, Chat-GPT and Claude. 
-                    Gorilla is extremely reliable, and significantly reduces hallucination errors.</em>
+            </div>
+            <div class="col-md-6">
+                <div class="card custom-cursor-trophy" style="background-color: #dbebe9;">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-title">BFCL</div>
+                            <p class="card-bio">Benchmarking LLMs on function calling capabilities</p>
+                            <div class="card-image"><img src="assets/img/leaderboard-summary.jpg" alt="Image 1">
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <p>
+                                🏆 Berkeley Function-Calling Leaderboard (BFCL) 📊 aims to provide a thorough study of
+                                the function-calling capability of different LLMs. It consists of 2k 📝
+                                question-function-answer pairs with multiple languages (🐍 Python, ☕ Java, 🟨
+                                JavaScript, 🌐 REST API), diverse application domains, and complex use cases (multiple
+                                and parallel function calls). We also investigate function relevance detection 🕵️‍♂️,
+                                to determine how the model will react when the provided function is not suitable to
+                                answer the user's question.
+                            <ul>
+                                <li>
+                                    Read More: <a
+                                        href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html">Blog</a>
+                                </li>
+                                <li>Live Leaderboard: <a
+                                        href="https://gorilla.cs.berkeley.edu/leaderboard.html">Website</a>
+                                </li>
+                                <li>BFCL Evaluation Dataset: <a
+                                        href="https://huggingface.co/datasets/gorilla-llm/Berkeley-Function-Calling-Leaderboard">
+                                        HuggingFace Dataset 🤗</a></li>
+                                <li>Gradio Demo: <a
+                                        href="https://huggingface.co/spaces/gorilla-llm/berkeley-function-calling-leaderboard">
+                                        HuggingFace Space 🤗 </a></li>
+                                <li>Reproducibility: <a
+                                        href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard">Github
+                                        Code</a></li>
+                            </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-shorter custom-cursor-mag" style="background-color: antiquewhite;">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-title">RAFT</div>
+                            <p class="card-bio">Better way to do RAG</p>
+                            <div class="card-image"><img src="assets/img/blog_post_9_raft_openbook.png" alt="Image 1">
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <p>
+                                RAFT: Retriever-Aware FineTuning for domain-specific RAG 🚀
+                                Drawing parallels between LLMs and students in open-book (RAG) 📔 and closed-book exams
+                                (SFT) 🧠, we present a better recipe for fine-tuning a base LLM for RAG-focused
+                                challenges. Discover how RAFT prepares LLMs to excel with a specific document set,
+                                mirroring students' prep for finals! 🎓
+                            <ul>
+                                <li>
+                                    Read More: <a href="https://gorilla.cs.berkeley.edu/blogs/9_raft.html">Blog</a>
+                                </li>
+                                <li>
+                                    Read More: <a
+                                        href="https://techcommunity.microsoft.com/t5/ai-ai-platform-blog/raft-a-new-way-to-teach-llms-to-be-better-at-rag/ba-p/4084674">MSFT-META
+                                        Blog</a>
+                                </li>
+                                <li>
+                                    Paper: <a
+                                        href="https://arxiv.org/abs/2403.10131">https://arxiv.org/abs/2403.10131</a>
+                                </li>
+                                <li>
+                                    Reproducibility: <a
+                                        href="https://github.com/ShishirPatil/gorilla/tree/main/raft">Github Code</a>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-shorter custom-cursor-steam" style="background-color: #fefae0;">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div class="card-title">GoEX</div>
+                            <p class="card-bio">Runtime for executing LLM-generated actions</p>
+                            <div class="card-image"><img src="assets/img/blog_post_10_intro.png" alt="Image 1">
+                            </div>
+                        </div>
+                        <div class="card-back">
+                            <p>
+                                Gorilla Execution Engine (GoEX) is a runtime for LLM-generated actions like code, API
+                                calls,
+                                and more. Featuring
+                                "post-facto validation" for assessing LLM actions after execution 🔍 Key to our approach
+                                is
+                                "undo" 🔄 and "damage confinement" abstractions to manage unintended actions & risks.
+                                This
+                                paves the way for fully autonomous LLM agents, enhancing interaction between apps &
+                                services
+                                with human-out-of-loop🚀
+                            <ul>
+                                <li>
+                                    Read More: <a
+                                        href="https://gorilla.cs.berkeley.edu/blogs/10_gorilla_exec_engine.html">Blog</a>
+                                </li>
+                                <li>
+                                    Paper: <a
+                                        href="https://arxiv.org/abs/2404.06921">https://arxiv.org/abs/2404.06921</a>
+                                </li>
+                                <li>
+                                    Try it out: <a href="https://goex.gorilla-llm.com/index">Web Demo</a>
+                                </li>
+                                <li>
+                                    Reproducibility: <a
+                                        href="https://github.com/ShishirPatil/gorilla/tree/main/goex">GitHub Code</a>
+                                </li>
+                            </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Contributions -->
-    <div class="container news-container" style="max-width: 768px;background: #f0f7ff;">
+    <div class="container news-container" style="background: #e5effc;">
         <div class="row">
             <div class="col-md-12 text-center">
                 <h2>News</h2>
             </div>
             <div class="col-md-12">
-                <h5> 🥇 <a href="blogs/4_open_functions.html">Gorilla OpenFunctions!</a> Drop in replacement! <a href="https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd?usp=sharing">Examples</a></h5>
-                <h5> 🚀 <a href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">Try Gorilla in 60s!</a> No sign-ups, no installs, just colab!</h5>
-                <h5> 🤩 With Apache 2.0 licensed LLM models, you can use Gorilla commercially without any obligations!</h5>
-                <h5> 📣 We are excited to hear your feedback and we welcome API contributions as we build this open-source project. 
-                    Join us on <a href="https://discord.gg/grXXvj9Whz">Discord</a> or feel free to email us! </h5>                
+                <h5> 🥇 <a href="blogs/4_open_functions.html">Gorilla OpenFunctions!</a> Drop in replacement! <a
+                        href="https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd?usp=sharing">Examples</a>
+                </h5>
+                <h5> 🚀 <a
+                        href="https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing">Try
+                        Gorilla in 60s!</a> No sign-ups, no installs, just colab!</h5>
+                <h5> 🤩 With Apache 2.0 licensed LLM models, you can use Gorilla commercially without any obligations!
+                </h5>
+                <h5> 📣 We are excited to hear your feedback and we welcome API contributions as we build this
+                    open-source project.
+                    Join us on <a href="https://discord.gg/grXXvj9Whz">Discord</a> or feel free to email us! </h5>
             </div>
         </div>
     </div>
-    
+
+    <!-- Gorilla CLI and Spotlight -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>Gorilla for your CLI and Spotlight Search</h2>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12 text-center">
+                    <iframe src="https://www.youtube.com/embed/4EdyWkcddPc" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="text-center" style="color: black;">Gorilla powered CLI<br>
+                    Get started with <code>pip install gorilla-cli</code></p>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12 text-center">
+                    <iframe src="https://www.youtube.com/embed/RMgM3tPTpXI" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <p class="text-center" style="color: black;">Gorilla Powered Spotlight Search<br>
+                    <a href="https://docs.google.com/forms/d/1iuWrfQbTb8_T5s4J75HNftPF-w1Jg1Aeg-gB64X8MJg/edit">Gorilla-Spotlight
+                        Signup</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Figure -->
+    <div class="container" style="background: #e5effc">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>Vision</h2>
+                <img src="assets/img/blog_post_1_teaser.gif" style="width: 80%;margin-bottom: 8px;"
+                    alt="Gorilla LLM logo">
+            </div>
+            <em class="col-md-12">Rather have the user at the center, Gorilla enables users to interact with a wide
+                range of services through LLMs. Gorilla is an open-source, state-of-the-art
+                LLM that invokes API calls to interact with services! </em>
+        </div>
+    </div>
+
+
+    <!-- Citation -->
+    <div class="container" style="background: #e5effc">
+        <div class="col-md-6 contact-us">
+            <h2 class="text-center">Contact Us</h2>
+            <form class="submit-to-google-sheet" name="submit-to-google-sheet">
+                <input type="text" name="Name" placeholder="Your Name" required />
+                <input type="Email" name="Email" placeholder="Your Email" required />
+                <input type="Organization" name="Organization" placeholder="Your Organization" />
+                <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                <button type="submit" class="btn-secondary2">Submit</button>
+            </form>
+            <span id="msg"></span>
+        </div>
+        <div class="col-md-6">
+            <h2 class="text-center">Citation</h2>
+            <pre>
+                            <code>
+@article{patil2023gorilla,
+    title={Gorilla: Large Language Model Connected with Massive APIs},
+    author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},
+    journal={arXiv preprint arXiv:2305.15334},
+    year={2023},
+}
+                </code>
+            </pre>
+        </div>
+    </div>
 
     <script>
-        const spinnerTexts = document.querySelectorAll('[class^="spinner__text--"]')
-const texts = spinnerTexts[0].dataset.texts.split(',')
-const textPositions = [0, 1]
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
 
-function initializeSpinnerTexts() {
-  spinnerTexts.forEach((spinnerText, index) => {
-    // Initialize the spinner texts' text
-    spinnerText.innerText = texts[textPositions[index]]
-    
-    // Change text after every animation iteration
-    spinnerText.addEventListener('animationiteration', e => {
-      e.target.innerText = texts[++textPositions[index] % texts.length]
-    })
-  })
-}
-
-window.onload = initializeSpinnerTexts
+        function opentab(tabname) {
+            for (tablink of tablinks) {
+                tablink.classList.remove("active-link");
+            }
+            for (tabcontent of tabcontents) {
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
     </script>
+    <script>
 
-<!-- Gorilla CLI and Spotlight -->
+        var sidemenu = document.getElementById("sidemenu");
 
-<div class="container" style="max-width: 768px;">
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h2>Gorilla for your CLI and Spotlight Search</h2>
-        </div>
-        <div class="col-md-6">
-            <div class="col-md-12 text-center">
-                <iframe src="https://www.youtube.com/embed/4EdyWkcddPc"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <p class="text-center" style="color: black;">Gorilla powered CLI<br>
-                Get started with <code>pip install gorilla-cli</code></p>
-        </div>
-        <div class="col-md-6">
-            <div class="col-md-12 text-center">
-                <iframe src="https://www.youtube.com/embed/RMgM3tPTpXI"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen>
-                </iframe>
-            </div>
-            <p class="text-center" style="color: black;">Gorilla Powered Spotlight Search<br>
-                <a
-                    href="https://docs.google.com/forms/d/1iuWrfQbTb8_T5s4J75HNftPF-w1Jg1Aeg-gB64X8MJg/edit">Gorilla-Spotlight Signup</a> </p>
-        </div>
-    </div>
-</div>
+        function openmenu() {
+            sidemenu.style.right = "0";
+        }
+        function closemenu() {
+            sidemenu.style.right = "-200px";
+        }
 
-<!-- Figure -->
-<div><p></p></div>
-<div class="container" style="max-width: 768px;background: #f0f7ff" >
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h2>Vision</h2>
-            <img src="assets/img/blog_post_1_teaser.gif" 
-            style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
-        </div>
-        <em class="col-md-12">Rather have the user at the center, Gorilla enables users to interact with a wide range of services through LLMs. Gorilla is an open-source, state-of-the-art
-            LLM that invokes API calls to interact with services! </em>
-    </div>
-</div>
+    </script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxdAKyEA36HA_p0k3KwMzMigxgFCZ1XegRBPfjgxlNaOK2CsOnP9hrEV_6V1ARCAJw3vw/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
 
-<!-- Abstract -->
-<div class="container" style="max-width: 768px;">
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h2>Abstract</h2>
-        </div>
-        <div class = "col-md-12">
-            <p style="color: black;">
-                Large Language Models (LLMs) have seen an impressive wave of advances recently,
-                with models now excelling in a variety of tasks, such as mathematical reasoning and program synthesis.
-                However, their potential to effectively use tools via API calls remains unfulfilled.
-                This is a challenging task even for today's state-of-the-art LLMs such as GPT-4,
-                largely due to their inability to generate accurate input arguments and their tendency to hallucinate the wrong usage of an API call.
-                We release Gorilla, a fine-tuned LLaMA-based model that surpasses the performance of GPT-4 on writing API calls.
-                When combined with a document retriever, Gorilla demonstrates a strong capability to adapt to test-time document changes, enabling flexible API updates and version changes.
-                Gorilla also substantially mitigates the issue of hallucination, commonly encountered when prompting LLMs directly.
-                To evaluate the model's ability, we introduce APIBench, a comprehensive dataset consisting of HuggingFace, TorchHub, and TensorHub APIs.
-                The successful integration of the retrieval system with Gorilla demonstrates the potential for LLMs to use tools more accurately, keep up with frequently updated documentation,
-                and consequently increase the reliability and applicability of their outputs.
-                Gorilla models and code are available at <a href="https://github.com/ShishirPatil/gorilla">https://github.com/ShishirPatil/gorilla</a>.
-                <br>
-            </p>
-        </div>
-    </div>
-</div>
-
-<!-- Result -->
-<div class="container" style="max-width: 768px;background: #f0f7ff">
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h2>Example</h2>
-        </div>
-        <div class="col-md-12 text-center"><img src="assets/img/results.png"
-                style="width: 80%;margin-bottom: 8px;" alt="Gorilla LLM logo">
-        </div>
-        <em class="col-md-12">Example API calls generated by GPT-4, Claude, and Gorilla for the
-            given prompt. In this example, GPT-4 presents a model that doesn’t exist, and Claude
-            picks an incorrect library. In contrast, our model, Gorilla, can identify the task correctly
-            and suggest a fully-qualified API call.</em>
-    </div>
-</div>
-
-<!-- Citation -->
-<div class="container" style="max-width: 768px">
-    <div class="row">
-        <div class="col-md-12 text-center">
-            <h2>Citation</h2>
-        </div>
-        <div>
-            <div class="col-md-12">
-                <code class="citation">
-                    @article{patil2023gorilla,<br>
-                        <code class="citation" style="padding-left: 5px;">  title={Gorilla: Large Language Model Connected with Massive APIs},<br>
-                        author={Shishir G. Patil and Tianjun Zhang and Xin Wang and Joseph E. Gonzalez},<br>
-                        journal={arXiv preprint arXiv:2305.15334},<br>
-                        year={2023},</code><br>
-                    }
-                </code>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Contact Us -->
-<div class="container" style="max-width: 768px">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="text-center">Contact Us</h2>
-            <div class="row">
-                <div class="col-md-12">
-                    <form name="submit-to-google-sheet">
-                        <input type="text" name="Name" style='color: black' placeholder="Your Name" required>
-                        <input type="Email" name="Email" style='color: black' placeholder="Your Email" required>
-                        <input type="Organization" name="Organization" style='color: black' placeholder="Your Organization">
-                        <textarea name="Message" rows="6" style='color: black' placeholder="Your Message"></textarea>
-                        <button type="submit" class="btn-secondary btn-secondary2">Submit</button>
-                    </form>
-                    <span id="msg"></span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<script>
-var tablinks = document.getElementsByClassName("tab-links");
-var tabcontents = document.getElementsByClassName("tab-contents");
-
-function opentab(tabname) {
-    for (tablink of tablinks) {
-        tablink.classList.remove("active-link");
-    }
-    for (tabcontent of tabcontents) {
-        tabcontent.classList.remove("active-tab");
-    }
-    event.currentTarget.classList.add("active-link");
-    document.getElementById(tabname).classList.add("active-tab");
-}
-</script>
-<script>
-
-    var sidemenu = document.getElementById("sidemenu");
-
-    function openmenu() {
-        sidemenu.style.right = "0";
-    }
-    function closemenu() {
-        sidemenu.style.right = "-200px";
-    }
-
-</script>
-<script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxdAKyEA36HA_p0k3KwMzMigxgFCZ1XegRBPfjgxlNaOK2CsOnP9hrEV_6V1ARCAJw3vw/exec'
-    const form = document.forms['submit-to-google-sheet']
-    const msg = document.getElementById("msg")
-  
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => {
-            msg.innerHTML = "<span style='color: black;'>Message Sent Successfully!</span>";
-            setTimeout(function() {
-                msg.innerHTML = ""
-            },5000)
-            form.reset()
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    msg.innerHTML = "<span style='color: black;'>Message Sent Successfully!</span>";
+                    setTimeout(function () {
+                        msg.innerHTML = ""
+                    }, 5000)
+                    form.reset()
+                })
+                .catch(error => console.error('Error!', error.message))
         })
-        .catch(error => console.error('Error!', error.message))
-    })
-</script>
+
+        const spinnerTexts = document.querySelectorAll('[class^="spinner__text--"]')
+        const texts = spinnerTexts[0].dataset.texts.split(',')
+        const textPositions = [0, 1]
+
+        function initializeSpinnerTexts() {
+            spinnerTexts.forEach((spinnerText, index) => {
+                // Initialize the spinner texts' text
+                spinnerText.innerText = texts[textPositions[index]]
+
+                // Change text after every animation iteration
+                spinnerText.addEventListener('animationiteration', e => {
+                    e.target.innerText = texts[++textPositions[index] % texts.length]
+                })
+            })
+        }
+
+        window.onload = initializeSpinnerTexts
+        document.addEventListener('DOMContentLoaded', function () {
+            var cards = document.querySelectorAll('.card');
+
+            for (var i = 0; i < cards.length; i++) {
+                cards[i].addEventListener('click', function () {
+                    this.classList.toggle('card-flipped');
+                });
+            }
+        });
+    </script>
 
 </body>
 
