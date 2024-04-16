@@ -188,8 +188,8 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |Model | Type |
 |---|---|
 |gorilla-openfunctions-v2 | Function Calling|
-|cohere-command-r-plus-FC | Function Calling|
-|cohere-command-r-plus | Prompt|
+|command-r-plus-FC | Function Calling|
+|command-r-plus | Prompt|
 |gpt-3.5-turbo-0125-FC| Function Calling|
 |gpt-3.5-turbo-0125| Prompt|
 |gpt-4-{0613,1106-preview,0125-preview}-FC| Function Calling|
