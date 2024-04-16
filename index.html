@@ -422,6 +422,15 @@
         }
 
         window.onload = initializeSpinnerTexts
+        document.addEventListener('DOMContentLoaded', function () {
+            var cards = document.querySelectorAll('.card');
+
+            for (var i = 0; i < cards.length; i++) {
+                cards[i].addEventListener('click', function () {
+                    this.classList.toggle('card-flipped');
+                });
+            }
+        });
     </script>
 
 </body>
