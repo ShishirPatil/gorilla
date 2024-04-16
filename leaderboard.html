@@ -121,10 +121,10 @@
                             <th class="summary-small-header">AST Summary</th>
                             <th class="summary-small-header">Exec Summary</th>
                             <th class="summary-small-header">Relevance</th>
-                            <th class="detail-small-header">Cost ($ Per 1k Function Calls)</th>
+                            <th class="detail-small-header">Cost ($)</th>
                             <th class="detail-small-header">Mean</th>
-                            <th class="detail-small-header">Standard Deviation</th>
-                            <th class="detail-small-header">95th Percentile</th>
+                            <th class="detail-small-header">SD</th>
+                            <th class="detail-small-header">P95</th>
                             <th class="detail-small-header">Simple Function</th>
                             <th class="detail-small-header">Multiple Functions</th>
                             <th class="detail-small-header">Parallel Functions</th>
@@ -276,7 +276,7 @@
         <!-- Contact Us Section -->
         <div class="col-md-6 contact-us">
             <h2>Contact Us</h2>
-            <form name="submit-to-google-sheet" style="width: 80%; margin: 0 auto">
+            <form class="submit-to-google-sheet" name="submit-to-google-sheet">
                 <input type="text" name="Name" placeholder="Your Name" required />
                 <input type="Email" name="Email" placeholder="Your Email" required />
                 <input type="Organization" name="Organization" placeholder="Your Organization" />
@@ -289,20 +289,17 @@
         <!-- Citation Section -->
         <div class="col-md-6">
             <h2>Citation</h2>
-
-            <div style="background: white">
+            <pre>
                 <code>
-            @misc{berkeley-function-calling-leaderboard,<br />
-            &nbsp; title={Berkeley Function Calling Leaderboard}, <br />
-            &nbsp; author={Fanjia Yan and Huanzhi Mao and Charlie Cheng-Jie Ji
-            and Tianjun Zhang and Shishir G. Patil and Ion Stoica and Joseph E.
-            Gonzalez},<br />
-            &nbsp;
-            howpublished={\url{https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html}},<br />
-            &nbsp; year={2024},<br />
-            }
-          </code>
-            </div>
+@misc{berkeley-function-calling-leaderboard,
+    title={Berkeley Function Calling Leaderboard}, 
+    author={Fanjia Yan and Huanzhi Mao and Charlie Cheng-Jie Ji
+    and Tianjun Zhang and Shishir G. Patil and Ion Stoica and Joseph E.
+    Gonzalez},
+    howpublished={\url{https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html}},
+    year={2024},
+}
+          </code></pre>
         </div>
     </div>
 </body>
