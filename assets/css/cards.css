@@ -8,11 +8,11 @@
 }
 
 .card {
-    height:40vh;
-    transition: transform 0.6s; 
-    transform-style: preserve-3d; 
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
-    border-radius: 10px; 
+    height: 40vh;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
     overflow: hidden;
 }
 
@@ -22,16 +22,20 @@
 
 @media (max-width: 768px) {
     .card-container {
-        width: 95%; /* Full width on smaller screens */
+        width: 95%;
+        /* Full width on smaller screens */
     }
+
     .card {
         /* add space between cards */
         margin-bottom: 30px;
         height: 45vh;
     }
+
     .card-shorter {
         height: 40vh;
     }
+
     .card-container .row {
         margin-bottom: 0;
     }
@@ -45,51 +49,61 @@
     transform-style: preserve-3d;
 }
 
-.card-front, .card-back {
+.card-front,
+.card-back {
     position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
     display: flex;
     padding: 10px 15px;
-    flex-direction: column; /* Keeps items in a vertical stack */
-    justify-content: flex-start; /* Aligns items to the start of the flex container (top) */
-    align-items: center; /* Centers items horizontally */
+    flex-direction: column;
+    /* Keeps items in a vertical stack */
+    justify-content: flex-start;
+    /* Aligns items to the start of the flex container (top) */
+    align-items: center;
+    /* Centers items horizontally */
 }
 
 .card-title {
-    width: 100%; /* Ensures the title spans the full width of the card */
+    width: 100%;
+    /* Ensures the title spans the full width of the card */
     font-weight: bold;
     font-size: 26px;
-    text-align: center; /* Keeps the title text centered */
+    text-align: center;
+    /* Keeps the title text centered */
 }
 
 .card-bio {
-    width: 100%; /* Ensures the bio spans the full width of the card */
+    width: 100%;
+    /* Ensures the bio spans the full width of the card */
     padding: 0;
     font-size: 18px;
-    text-align: center; /* Keeps the bio text centered */
+    text-align: center;
+    /* Keeps the bio text centered */
 }
 
-
-.card:hover, .card:active {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+.card:hover,
+.card:active {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .card-back {
-    transform: rotateY(180deg); 
+    transform: rotateY(180deg);
     align-items: normal;
     text-wrap: normal;
     overflow-y: auto;
 }
 
-.card:hover .card-inner, .card:active .card-inner {
+.card:hover .card-inner,
+.card:active .card-inner {
     transform: rotateY(180deg);
 }
 
 .card-image img {
-    width: 100%; 
+    width: 100%;
     height: auto;
-    object-fit: cover; /* Adjusts to ensure the whole image is visible */
-    border-radius: 8px; 
+    object-fit: cover;
+    /* Adjusts to ensure the whole image is visible */
+    border-radius: 8px;
 }
