@@ -102,17 +102,10 @@
 .card:active .card-inner {
     transform: rotateY(180deg);
 }
-
-@media screen and (max-width: 768px) {
-    .card:hover .card-inner,
-    .card:active .card-inner {
-        transform: none;
-    }
-    .card-flipped .card-inner {
-        transform: rotateY(180deg);
-    }
-    
+.card-flipped .card-inner {
+    transform: rotateY(180deg);
 }
+
 
 
 @-moz-document url-prefix() {

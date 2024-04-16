@@ -422,15 +422,32 @@
         }
 
         window.onload = initializeSpinnerTexts
-        document.addEventListener('DOMContentLoaded', function () {
-            var cards = document.querySelectorAll('.card');
 
-            for (var i = 0; i < cards.length; i++) {
-                cards[i].addEventListener('click', function () {
-                    this.classList.toggle('card-flipped');
-                });
-            }
-        });
+            document.addEventListener('DOMContentLoaded', function () {
+                var cards = document.querySelectorAll('.card');
+
+                // Function to check if the device supports touch events
+                function isTouchDevice() {
+                    return ('ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0);
+                }
+
+                // If it's a touch device, add click event listeners
+                if (isTouchDevice()) {
+                    for (var i = 0; i < cards.length; i++) {
+                        cards[i].addEventListener('click', function () {
+                            // This checks if the card is already flipped
+                            if (this.classList.contains('card-flipped')) {
+                                this.classList.remove('card-flipped');
+                            } else {
+                                // First, remove 'card-flipped' from all cards
+                                cards.forEach(card => card.classList.remove('card-flipped'));
+                                // Then, add 'card-flipped' to the clicked card
+                                this.classList.add('card-flipped');
+                            }
+                        });
+                    }
+                }
+            });
     </script>
 
 </body>
