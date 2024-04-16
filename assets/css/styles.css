@@ -24,7 +24,16 @@ pre {
 }
 
 
-body, html, p, h1, h2, h3, .author-date, .blog-title, .author, .date {
+body,
+html,
+p,
+h1,
+h2,
+h3,
+.author-date,
+.blog-title,
+.author,
+.date {
     white-space: normal;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -36,3 +45,7 @@ body, html, p, h1, h2, h3, .author-date, .blog-title, .author, .date {
 *::after {
     box-sizing: border-box;
 }
+
+/* .custom-cursor {
+    cursor: url("../img/gorilla.png"), auto !important;
+} */
