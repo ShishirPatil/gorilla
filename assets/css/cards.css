@@ -98,17 +98,25 @@
     overflow-y: auto;
 }
 
-.card:hover .card-inner,
-.card:active .card-inner {
-    transform: rotateY(180deg);
-}
-.card-flipped .card-inner {
-    transform: rotateY(180deg);
+
+@media screen and (max-width: 768px) {
+    .card-flipped .card-inner {
+        transform: rotateY(180deg);
+    }
+
 }
 
+@media screen and (min-width: 768px) {
 
+    .card:hover .card-inner,
+    .card:active .card-inner {
+        transform: rotateY(180deg);
+    }
+
+}
 
 @-moz-document url-prefix() {
+
     .card:hover .card-front,
     .card:active .card-front {
         opacity: 0;
@@ -117,15 +125,18 @@
     .card-back {
         opacity: 0;
     }
+
     .card-front,
     .card-back {
         transition: transform 0.6s, opacity 0.2s ease-in;
-        opacity: 1; /* Ensure the opacity is fully opaque when visible */
+        opacity: 1;
+        /* Ensure the opacity is fully opaque when visible */
     }
 
     .card-front {
         transition: transform 0.6s, opacity 0.2s ease-in;
-        opacity: 1; /* This ensures the card front becomes visible again */
+        opacity: 1;
+        /* This ensures the card front becomes visible again */
     }
 }
 
