@@ -45,7 +45,3 @@ h3,
 *::after {
     box-sizing: border-box;
 }
-
-/* .custom-cursor {
-    cursor: url("../img/gorilla.png"), auto !important;
-} */
