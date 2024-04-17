@@ -66,6 +66,18 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
+    "gpt-4-turbo-2024-04-09-FC": [
+        "GPT-4-turbo-2024-04-09 (FC)",
+        "https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo",
+        "OpenAI",
+        "Proprietary",
+    ],
+    "gpt-4-turbo-2024-04-09": [
+        "GPT-4-turbo-2024-04-09 (Prompt)",
+        "https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo",
+        "OpenAI",
+        "Proprietary",
+    ],
     "gorilla-openfunctions-v2": [
         "Gorilla-OpenFunctions-v2 (FC)",
         "https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html",
@@ -116,6 +128,12 @@ MODEL_METADATA_MAPPING = {
     ],
     "claude-3-haiku-20240307-FC": [
         "Claude-3-Haiku-20240307 (FC)",
+        "https://www.anthropic.com/news/claude-3-family",
+        "Anthropic",
+        "Proprietary",
+    ],
+    "claude-3-haiku-20240307": [
+        "Claude-3-Haiku-20240307 (Prompt)",
         "https://www.anthropic.com/news/claude-3-family",
         "Anthropic",
         "Proprietary",
@@ -279,6 +297,8 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-4-1106-preview": 10,
     "gpt-4-0125-preview": 10,
     "gpt-4-0125-preview-FC": 10,
+    "gpt-4-turbo-2024-04-09-FC": 10,
+    "gpt-4-turbo-2024-04-09": 10,
     "gpt-4-0613": 30,
     "gpt-4-0613-FC": 30,
     "gpt-3.5-turbo-0125": 1.5,
@@ -302,6 +322,8 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-small-2402-FC-Any": 6,
     "mistral-small-2402-FC-Auto": 6,
     "mistral-tiny-2312": 0.25,
+    "gpt-4-turbo-2024-04-09-FC": 30,
+    "gpt-4-turbo-2024-04-09": 30,
     "gpt-4-1106-preview": 30,
     "gpt-4-1106-preview-FC": 30,
     "gpt-4-0125-preview-FC": 30,
@@ -313,7 +335,6 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "gemini-1.0-pro": 2,
     "databricks-dbrx-instruct": 6.75,
 }
-
 
 # The latency of the open-source models are hardcoded here.
 # Because we do batching when generating the data, so the latency is not accurate from the result data.

@@ -112,7 +112,9 @@ JS_TYPE_CONVERSION = {
     "any": str,
 }
 
+# If there is any underscore in folder name, you should change it to `/` in the following strings
 UNDERSCORE_TO_DOT = [
+    "gpt-4-turbo-2024-04-09-FC",
     "gpt-4-1106-preview-FC",
     "gpt-4-0125-preview-FC",
     "gpt-4-0613-FC",
