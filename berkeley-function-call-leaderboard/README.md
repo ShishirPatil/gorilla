@@ -185,9 +185,9 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |gorilla-openfunctions-v2 | Function Calling|
 |gpt-3.5-turbo-0125-FC| Function Calling|
 |gpt-3.5-turbo-0125| Prompt|
-|gpt-4-{0613,1106-preview,0125-preview}-FC| Function Calling|
-|gpt-4-{0613,1106-preview,0125-preview}|Prompt|
-|glaiveai/glaive-function-calling-v1 💻|  Function Calling| 
+|gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}-FC| Function Calling|
+|gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}| Prompt|
+|glaiveai/glaive-function-calling-v1 💻| Function Calling|
 |Nexusflow-Raven-v2 | Function Calling|
 |fire-function-v1-FC | Function Calling|
 |mistral-large-2402-FC-{Any,Auto} | Function Calling|
@@ -196,9 +196,8 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |mistral-small-2402-FC-{Any,Auto} | Function Calling|
 |mistral-small-2402 | Prompt|
 |mistral-tiny-2312 | Prompt|
-|claude-3-{opus,sonnet}-20240229-FC | Function Calling |
-|claude-3-haiku-20240307-FC | Function Calling |
-|claude-3-{opus,sonnet}-20240229 | Prompt |
+|claude-3-{opus-20240229,sonnet-20240229,haiku-20240307}-FC | Function Calling |
+|claude-3-{opus-20240229,sonnet-20240229,haiku-20240307} | Prompt |
 |claude-{2.1,instant-1.2}| Prompt|
 |gemini-1.0-pro | Function Calling|
 |databrick-dbrx-instruct | Prompt|
@@ -222,7 +221,7 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 ## Changelog
 
-* [April 16, 2024] [#366](https://github.com/ShishirPatil/gorilla/pull/366): Switch to use Anthropic's new Tool Use Beta `tools-2024-04-04` when generating Claude 3 FC series data.
+* [April 16, 2024] [#366](https://github.com/ShishirPatil/gorilla/pull/366): Switch to use Anthropic's new Tool Use Beta `tools-2024-04-04` when generating Claude 3 FC series data. `gpt-4-turbo-2024-04-09` and `gpt-4-turbo-2024-04-09-FC` are also added to the leaderboard.
 * [April 11, 2024] [#347](https://github.com/ShishirPatil/gorilla/pull/347): Add the 95th percentile latency to the leaderboard statistics. This metric is useful for understanding the latency distribution of the models, especially the worst-case scenario.
 * [April 10, 2024] [#339](https://github.com/ShishirPatil/gorilla/pull/339): Introduce REST API sanity check for the executable test category. It ensures that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, the evaluation process will be stopped by default as the result will be inaccurate. Users can choose to bypass this check by setting the `--skip-api-sanity-check` flag.
 * [April 9, 2024] [#338](https://github.com/ShishirPatil/gorilla/pull/338): Bug fix in the evaluation datasets (including both prompts and function docs). Bug fix for possible answers as well.
