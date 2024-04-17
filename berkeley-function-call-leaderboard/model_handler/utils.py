@@ -1,4 +1,8 @@
-import re, ast, builtins, ast, json
+import re
+import ast
+import builtins
+import ast
+import json
 from model_handler.model_style import ModelStyle
 from model_handler.constant import JAVA_TYPE_CONVERSION, JS_TYPE_CONVERSION
 from model_handler.java_parser import parse_java_function_call
@@ -103,7 +107,8 @@ def convert_to_tool(
                 if "maximum" in params:
                     del params["maximum"]
                 if "additionalProperties" in params:
-                    params["description"] += str(params["additionalProperties"])
+                    params["description"] += str(
+                        params["additionalProperties"])
                     del params["additionalProperties"]
         if model_style in [
             ModelStyle.Anthropic,
@@ -270,7 +275,8 @@ def language_specific_pre_processing(function, test_category, string_param):
                         "description"
                     ] += "This parameter can be of any type of Java object."
                     properties[key]["description"] += (
-                        "This is Java" + value["type"] + " in string representation."
+                        "This is Java" + value["type"] +
+                        " in string representation."
                     )
         elif test_category == "javascript":
             for key, value in properties.items():
@@ -286,7 +292,7 @@ def language_specific_pre_processing(function, test_category, string_param):
                         + value["type"]
                         + " in string representation."
                     )
-        return function
+    return function
 
 
 def construct_tool_use_system_prompt(tools):

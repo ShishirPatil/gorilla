@@ -116,7 +116,24 @@ Running proprietary models like GPTs, Claude, Mistral-X will require an API-Key 
 
 If decided to run OSS model, openfunction evaluation uses vllm and therefore requires GPU for hosting and inferencing. If you have questions or concerns about evaluating OSS models, please reach out to us in our [discord channel](https://discord.gg/grXXvj9Whz).
 
+## Local Inference with vLLM
 
+### Running the Inference
+
+You can run inference on local LLM with `handler_runner.py` script, navigate to `./berkeley-function-call-leaderboard/` and run the following command, e.g, inference on gorilla-llm/gorilla-openfunctions-v2 checkpoint from HuggingFace
+
+(Note: you need to make sure the model-name is registered in `handler_map.py`)
+
+```bash
+python /model_handler/handler_runner.py --data-path ./data/gorilla_openfunctions_v1_test_all.json --model-name gorilla-llm/gorilla-openfunctions-v2 --model-path {PATH_TO_MODEL}/gorilla-openfunctions-v2/
+```
+The result will be generated under the following folder:
+
+`/gorilla/berkeley-function-call-leaderboard/result/gorilla-llm_gorilla-openfunctions-v2`
+
+### Running the Checker on Inference Result
+
+`python {PATH_TO_REPO}/gorilla/berkeley-function-call-leaderboard/eval_checker/eval_runner.py --model gorilla-llm/gorilla-openfunctions-v2 --skip-api-sanity-check --test-category simple sql relevance parallel_multiple_function parallel_function multiple_function`
 
 
 ## Checking the Evaluation Results
