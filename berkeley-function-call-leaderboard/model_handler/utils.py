@@ -110,22 +110,6 @@ def convert_to_tool(
                 if "additionalProperties" in params:
                     params["description"] += "The additional properties:" +str(params["additionalProperties"])
                     del params["additionalProperties"]
-        if model_style == ModelStyle.COHERE:
-            for params in item["parameters"]["properties"].values():
-                if "description" not in params:
-                    params["description"] = ""
-                if "default" in params:
-                    params["description"] += " The default value is: " + str(params["default"])
-                    del params["default"]
-                if "additionalProperties" in params:
-                    params["description"] += " Additional properties: " + str(params["additionalProperties"])
-                    del params["additionalProperties"]
-                if "items" in params:
-                    params["description"] += " List Items type: " + str(params["items"])
-                    del params["items"]
-                if "properties" in params:
-                    params["description"] += " Dictionary properties: " + str(params["properties"])
-                    del params["properties"]
         if model_style in [
             ModelStyle.Anthropic_Prompt,
             ModelStyle.Google,
