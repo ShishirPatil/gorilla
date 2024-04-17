@@ -106,7 +106,7 @@ To generate leaderboard statistics, there are two steps:
 1. Inference the evaluation data and obtain the results from specific models 
 
 ```bash
-    python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
+    python openfunctions_evaluation.py --model MODEL_NAME --test_category TEST_CATEGORY
 ```
 For TEST_CATEGORY, we have `executable_simple`, `executable_parallel_function`, `executable_multiple_function`, `executable_parallel_multiple_function`, `simple`, `relevance`, `parallel_function`, `multiple_function`, `parallel_multiple_function`, `java`, `javascript`, `rest`, `sql`, `chatable`.
 
