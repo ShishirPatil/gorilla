@@ -89,7 +89,6 @@ em {
 
 .spinner {
     position: relative;
-    /* Change to relative for responsiveness */
     overflow: hidden;
 }
 
@@ -97,7 +96,6 @@ em {
     position: relative;
     display: inline-block;
     width: 50px;
-    /* Adjust the width as needed */
     text-align: center;
 }
 
@@ -111,8 +109,6 @@ em {
     animation-name: spinTop;
 }
 
-/* Bottom text spinner has to be configured so that it is positioned
-right at the same position as the top one */
 .spinner__text--bottom {
     position: absolute;
     top: 0;
@@ -146,7 +142,6 @@ right at the same position as the top one */
 @media screen and (max-width: 768px) {
     .spinner {
         position: relative;
-        /* Change to relative for responsiveness */
         overflow: hidden;
     }
 
@@ -154,7 +149,6 @@ right at the same position as the top one */
         position: relative;
         display: inline-block;
         width: 50px;
-        /* Adjust the width as needed */
         text-align: center;
     }
 
@@ -168,8 +162,6 @@ right at the same position as the top one */
         animation-name: spinTop;
     }
 
-    /* Bottom text spinner has to be configured so that it is positioned
-right at the same position as the top one */
     .spinner__text--bottom {
         position: absolute;
         top: 0;
