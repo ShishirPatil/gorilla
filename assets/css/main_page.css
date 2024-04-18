@@ -77,16 +77,11 @@ em {
     color: black;
 }
 
+
 .api-appstore {
     margin-bottom: 20px;
 }
 
-.spinner-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
 .spinner {
     position: relative;
     overflow: hidden;
@@ -141,7 +136,11 @@ em {
 
 @media screen and (max-width: 768px) {
     .spinner-all-text-style {
-        font-size: 18px;
+        font-size: 26px;
+    }
+    .spinner-container {
+        /* still keep as row */
+        flex-direction: row; 
     }
     
 }
