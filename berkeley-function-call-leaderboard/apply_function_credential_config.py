@@ -3,8 +3,8 @@ import argparse
 
 
 parser = argparse.ArgumentParser(description="Replace placeholders in the function credential config file.")
-parser.add_argument("--input_file", help="Path to the function credential config file.", required=True)
-parser.add_argument("--output_file", help="Path to the output file.", default="")
+parser.add_argument("--input-file", help="Path to the function credential config file.", required=True)
+parser.add_argument("--output-file", help="Path to the output file.", default="")
 args = parser.parse_args()
 
 # Load the configuration with actual API keys
