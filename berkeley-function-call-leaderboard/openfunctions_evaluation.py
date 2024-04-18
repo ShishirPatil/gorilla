@@ -8,12 +8,12 @@ def get_args():
     # Refer to model_choice for supported models.
     parser.add_argument("--model", type=str, default="gorilla-openfunctions-v2")
     # Refer to test_categories for supported categories.
-    parser.add_argument("--test_category", type=str, default="all")
+    parser.add_argument("--test-category", type=str, default="all")
 
     # Parameters for the model that you want to test.
     parser.add_argument("--temperature", type=float, default=0.7)
-    parser.add_argument("--top_p", type=float, default=1)
-    parser.add_argument("--max_tokens", type=int, default=1200)
+    parser.add_argument("--top-p", type=float, default=1)
+    parser.add_argument("--max-tokens", type=int, default=1200)
     parser.add_argument("--num-gpus", default=1, type=int)
     parser.add_argument("--timeout", default=60, type=int)
 
