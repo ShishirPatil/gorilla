@@ -18,9 +18,9 @@
     overflow: hidden;
 }
 
-.card-shorter {
+/* .card-shorter {
     height: 35vh;
-}
+} */
 
 @media (max-width: 768px) {
     .card-container {

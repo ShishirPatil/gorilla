@@ -30,14 +30,17 @@
         .custom-cursor-gorilla {
             cursor: url('assets/img/gorilla-16.png'), auto !important;
         }
+
         .custom-cursor-mag {
-            cursor: url('assets/img/mag-16.png'), auto !important;
+            cursor: url('assets/img/book-16.png'), auto !important;
         }
+
         .custom-cursor-trophy {
             cursor: url('assets/img/trophy-16.png'), auto !important;
         }
+
         .custom-cursor-steam {
-            cursor: url('assets/img/steam-16.png'), auto !important;
+            cursor: url('assets/img/fire_engine-16.png'), auto !important;
         }
     </style>
 
@@ -83,20 +86,20 @@
         <div>
             <p></p>
         </div>
-        <div class="container" style="max-width: 768px; background: #e5effc;">
+        <div class="container spinner-container" style="max-width: 768px; background: #e5effc;">
             <div>
                 <div class="col-md-12 api-appstore">
-                    <h3>An API Appstore for LLMs</h3>
+                    <h3 class="spinner-all-text-style">An API Appstore for LLMs</h3>
                 </div>
 
                 <div class="col-md-12">
                     <div class="spinner">
-                        <h3>Gorilla Used at
+                        <h3 class="spinner-all-text-style">Gorilla Used at
                             <div class="spinner__text">
                                 <span class="spinner__text--top"
-                                    data-texts="Microsoft, Nvidia, Tesla, OpenAI, Linkedin, Netflix, MIT, Cisco, Weaviate, Anthropic, Cohere"></span>
+                                    data-texts="Microsoft, Nvidia, Tesla, OpenAI, Linkedin, Netflix, MIT, Cisco, Anthopic, Weaviate, Cohere"></span>
                                 <span class="spinner__text--bottom"
-                                    data-texts="Microsoft, Nvidia, Tesla, OpenAI, Linkedin, Netflix, MIT, Cisco, Weaviate, Anthropic, Cohere"></span>
+                                    data-texts="Microsoft, Nvidia, Tesla, OpenAI, Linkedin, Netflix, MIT, Cisco, Anthopic, Weaviate, Cohere"></span>
                             </div>
                         </h3>
                     </div>
@@ -193,7 +196,7 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="card card-shorter custom-cursor-mag" style="background-color: antiquewhite;">
+                <div class="card custom-cursor-mag" style="background-color: antiquewhite;">
                     <div class="card-inner">
                         <div class="card-front">
                             <div class="card-title">RAFT</div>
@@ -232,7 +235,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="card card-shorter custom-cursor-steam" style="background-color: #fefae0;">
+                <div class="card custom-cursor-steam" style="background-color: #fefae0;">
                     <div class="card-inner">
                         <div class="card-front">
                             <div class="card-title">GoEX</div>
@@ -284,6 +287,20 @@
                 <h2>News</h2>
             </div>
             <div class="col-md-12">
+                <h5>🚒 <a href="https://goex.gorilla-llm.com/index">GoEx</a>: A Runtime for executing LLM generated
+                    actions like code & API calls GoEx presents “undo”
+                    and “damage confinement” abstractions for mitigating the risk of unintended actions taken in
+                    LLM-powered systems. <a
+                        href="https://gorilla.cs.berkeley.edu/blogs/10_gorilla_exec_engine.html">Release blog</a>, <a
+                        href="https://arxiv.org/abs/2404.06921">Paper</a>.</h5>
+                <h5>🎉 <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function Calling
+                        Leaderboard</a>! How do models stack up for function calling? 🎯 Read more in our <a
+                        href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html">Release
+                        Blog</a>.
+                </h5>
+                <h5>🏆 <a href="https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html">Gorilla OpenFunctions
+                        v2</a> Sets new SoTA for open-source LLMs 💪 On-par with GPT-4 🙌 Supports more
+                    languages 👌</h5>
                 <h5> 🥇 <a href="blogs/4_open_functions.html">Gorilla OpenFunctions!</a> Drop in replacement! <a
                         href="https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd?usp=sharing">Examples</a>
                 </h5>
@@ -300,13 +317,13 @@
     </div>
 
     <!-- Gorilla CLI and Spotlight -->
-    <div class="container">
+    <div class="container video-container">
         <div class="row">
             <div class="col-md-12 text-center">
                 <h2>Gorilla for your CLI and Spotlight Search</h2>
             </div>
             <div class="col-md-6">
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 text-center video-section-container">
                     <iframe src="https://www.youtube.com/embed/4EdyWkcddPc" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
@@ -316,7 +333,7 @@
                     Get started with <code>pip install gorilla-cli</code></p>
             </div>
             <div class="col-md-6">
-                <div class="col-md-12 text-center">
+                <div class="col-md-12 text-center video-section-container">
                     <iframe src="https://www.youtube.com/embed/RMgM3tPTpXI" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen>
@@ -335,7 +352,7 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <h2>Vision</h2>
-                <img src="assets/img/blog_post_1_teaser.gif" style="width: 80%;margin-bottom: 8px;"
+                <img src="assets/img/blog_post_1_teaser.gif" style="width: 75%;margin-bottom: 8px;"
                     alt="Gorilla LLM logo">
             </div>
             <em class="col-md-12">Rather have the user at the center, Gorilla enables users to interact with a wide
@@ -373,78 +390,9 @@
         </div>
     </div>
 
-    <script>
-        var tablinks = document.getElementsByClassName("tab-links");
-        var tabcontents = document.getElementsByClassName("tab-contents");
 
-        function opentab(tabname) {
-            for (tablink of tablinks) {
-                tablink.classList.remove("active-link");
-            }
-            for (tabcontent of tabcontents) {
-                tabcontent.classList.remove("active-tab");
-            }
-            event.currentTarget.classList.add("active-link");
-            document.getElementById(tabname).classList.add("active-tab");
-        }
-    </script>
-    <script>
+    <script src="indexPage.js"></script>
 
-        var sidemenu = document.getElementById("sidemenu");
-
-        function openmenu() {
-            sidemenu.style.right = "0";
-        }
-        function closemenu() {
-            sidemenu.style.right = "-200px";
-        }
-
-    </script>
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxdAKyEA36HA_p0k3KwMzMigxgFCZ1XegRBPfjgxlNaOK2CsOnP9hrEV_6V1ARCAJw3vw/exec'
-        const form = document.forms['submit-to-google-sheet']
-        const msg = document.getElementById("msg")
-
-        form.addEventListener('submit', e => {
-            e.preventDefault()
-            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
-                .then(response => {
-                    msg.innerHTML = "<span style='color: black;'>Message Sent Successfully!</span>";
-                    setTimeout(function () {
-                        msg.innerHTML = ""
-                    }, 5000)
-                    form.reset()
-                })
-                .catch(error => console.error('Error!', error.message))
-        })
-
-        const spinnerTexts = document.querySelectorAll('[class^="spinner__text--"]')
-        const texts = spinnerTexts[0].dataset.texts.split(',')
-        const textPositions = [0, 1]
-
-        function initializeSpinnerTexts() {
-            spinnerTexts.forEach((spinnerText, index) => {
-                // Initialize the spinner texts' text
-                spinnerText.innerText = texts[textPositions[index]]
-
-                // Change text after every animation iteration
-                spinnerText.addEventListener('animationiteration', e => {
-                    e.target.innerText = texts[++textPositions[index] % texts.length]
-                })
-            })
-        }
-
-        window.onload = initializeSpinnerTexts
-        document.addEventListener('DOMContentLoaded', function () {
-            var cards = document.querySelectorAll('.card');
-
-            for (var i = 0; i < cards.length; i++) {
-                cards[i].addEventListener('click', function () {
-                    this.classList.toggle('card-flipped');
-                });
-            }
-        });
-    </script>
 
 </body>
 
