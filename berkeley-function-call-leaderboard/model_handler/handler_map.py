@@ -1,7 +1,7 @@
 from model_handler.gorilla_handler import GorillaHandler
 from model_handler.gpt_handler import OpenAIHandler
 from model_handler.claude_fc_handler import ClaudeFCHandler
-from model_handler.claude_prompt_handler import ClaudePromptHandler
+from model_handler.claude_prompt_handler import ClaudePromptingHandler
 from model_handler.mistral_handler import MistralHandler
 from model_handler.firework_ai_handler import FireworkAIHandler
 from model_handler.nexus_handler import NexusHandler
@@ -27,13 +27,13 @@ handler_map = {
     "gpt-4-0613": OpenAIHandler,
     "gpt-3.5-turbo-0125-FC": OpenAIHandler,
     "gpt-3.5-turbo-0125": OpenAIHandler,
-    "claude-2.1": ClaudePromptHandler,
-    "claude-instant-1.2": ClaudePromptHandler,
-    "claude-3-opus-20240229": ClaudePromptHandler,
+    "claude-2.1": ClaudePromptingHandler,
+    "claude-instant-1.2": ClaudePromptingHandler,
+    "claude-3-opus-20240229": ClaudePromptingHandler,
     "claude-3-opus-20240229-FC": ClaudeFCHandler,
-    "claude-3-sonnet-20240229": ClaudePromptHandler,
+    "claude-3-sonnet-20240229": ClaudePromptingHandler,
     "claude-3-sonnet-20240229-FC": ClaudeFCHandler,
-    "claude-3-haiku-20240307": ClaudePromptHandler,
+    "claude-3-haiku-20240307": ClaudePromptingHandler,
     "claude-3-haiku-20240307-FC": ClaudeFCHandler,
     "mistral-large-2402": MistralHandler,
     "mistral-large-2402-FC-Any": MistralHandler,

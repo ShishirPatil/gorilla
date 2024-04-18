@@ -3,7 +3,7 @@ from anthropic import Anthropic
 from anthropic.types import TextBlock
 from anthropic.types.beta.tools import ToolUseBlock
 from model_handler.model_style import ModelStyle
-from model_handler.claude_prompt_handler import ClaudePromptHandler
+from model_handler.claude_prompt_handler import ClaudePromptingHandler
 from model_handler.utils import (
     convert_to_tool,
     augment_prompt_by_languge,
@@ -24,7 +24,7 @@ class ClaudeFCHandler(BaseHandler):
 
     def inference(self, prompt, functions, test_category):
         if "FC" not in self.model_name:
-            handler = ClaudePromptHandler(self.model_name, self.temperature, self.top_p, self.max_tokens)
+            handler = ClaudePromptingHandler(self.model_name, self.temperature, self.top_p, self.max_tokens)
             return handler.inference(prompt, functions, test_category)
         else:
             prompt = augment_prompt_by_languge(prompt, test_category)
