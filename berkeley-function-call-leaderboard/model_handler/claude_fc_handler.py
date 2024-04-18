@@ -38,7 +38,7 @@ class ClaudeFCHandler(BaseHandler):
             start_time = time.time()
             response = self.client.beta.tools.messages.create(
                 model=self.model_name.strip("-FC"),
-                max_tokens=2048,
+                max_tokens=self.max_tokens,
                 tools=claude_tool,
                 messages=message,
             )
