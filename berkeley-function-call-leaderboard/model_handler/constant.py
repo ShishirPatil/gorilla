@@ -119,6 +119,9 @@ UNDERSCORE_TO_DOT = [
     "gpt-4-0125-preview-FC",
     "gpt-4-0613-FC",
     "gpt-3.5-turbo-0125-FC",
+    "claude-3-opus-20240229-FC",
+    "claude-3-sonnet-20240229-FC",
+    "claude-3-haiku-20240307-FC",
     "mistral-large-2402-FC",
     "mistral-large-2402-FC-Any",
     "mistral-large-2402-FC-Auto",
@@ -130,7 +133,7 @@ UNDERSCORE_TO_DOT = [
     "meetkai/functionary-medium-v2.2-FC",
     "meetkai/functionary-small-v2.4-FC",
     "meetkai/functionary-medium-v2.4-FC",
-    "NousResearch/Hermes-2-Pro-Mistral-7B"
+    "NousResearch/Hermes-2-Pro-Mistral-7B",
 ]
 
 TEST_CATEGORIES = {
