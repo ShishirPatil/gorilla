@@ -171,3 +171,16 @@ pre {
     -webkit-font-smoothing: auto;
     font-family: monospace;
 }
+
+iframe {
+    position: relative;
+    width: 30vw;
+    height: 45vh;
+}
+
+@media only screen and (max-width: 768px) {
+    iframe {
+        width: 100%;
+        height: 25vh;
+    }
+}
