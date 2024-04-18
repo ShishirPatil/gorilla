@@ -64,12 +64,6 @@ h6 {
     border-color: white;
 }
 
-/* Footer Gradient Background */
-.container:last-child {
-    background: white;
-    color: white;
-}
-
 img {
     max-width: 100%;
     max-height: 100%;
@@ -87,6 +81,12 @@ em {
     margin-bottom: 20px;
 }
 
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 .spinner {
     position: relative;
     overflow: hidden;
@@ -95,14 +95,13 @@ em {
 .spinner__text {
     position: relative;
     display: inline-block;
-    width: 50px;
     text-align: center;
 }
 
 .spinner__text--top,
 .spinner__text--bottom {
     display: inline-block;
-    animation: 1s ease 1.05s infinite running none;
+    animation: 1s ease 1s infinite;
 }
 
 .spinner__text--top {
@@ -116,6 +115,7 @@ em {
     opacity: 0;
     animation-name: spinBottom;
 }
+
 
 @keyframes spinTop {
     from {
@@ -140,59 +140,11 @@ em {
 }
 
 @media screen and (max-width: 768px) {
-    .spinner {
-        position: relative;
-        overflow: hidden;
+    .spinner-all-text-style {
+        font-size: 18px;
     }
-
-    .spinner__text {
-        position: relative;
-        display: inline-block;
-        width: 50px;
-        text-align: center;
-    }
-
-    .spinner__text--top,
-    .spinner__text--bottom {
-        display: inline-block;
-        animation: 1.5s ease 2s infinite running none;
-    }
-
-    .spinner__text--top {
-        animation-name: spinTop;
-    }
-
-    .spinner__text--bottom {
-        position: absolute;
-        top: 0;
-        left: 0;
-        opacity: 0;
-        animation-name: spinBottom;
-    }
-
-    @keyframes spinTop {
-        from {
-            transform: translateY(0%);
-        }
-
-        to {
-            transform: translateY(-100%);
-        }
-    }
-
-    @keyframes spinBottom {
-        from {
-            opacity: 1;
-            transform: translateY(100%);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0%);
-        }
-    }
+    
 }
-
 
 
 pre {

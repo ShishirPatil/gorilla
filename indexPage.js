@@ -41,22 +41,18 @@ form.addEventListener('submit', e => {
 })
 
 const spinnerTexts = document.querySelectorAll('[class^="spinner__text--"]')
-const texts = spinnerTexts[0].dataset.texts.split(',')
+const texts = spinnerTexts[0].dataset.texts.split(',').map(text => text.trim());
 const textPositions = [0, 1]
 
-function initializeSpinnerTexts() {
-    spinnerTexts.forEach((spinnerText, index) => {
-        // Initialize the spinner texts' text
-        spinnerText.innerText = texts[textPositions[index]]
-
-        // Change text after every animation iteration
-        spinnerText.addEventListener('animationiteration', e => {
-            e.target.innerText = texts[++textPositions[index] % texts.length]
-        })
+spinnerTexts.forEach((spinnerText, index) => {
+    // Initialize the spinner texts' text
+    spinnerText.innerText = texts[textPositions[index]]
+    // Change text after every animation iteration
+    spinnerText.addEventListener('animationiteration', e => {
+        e.target.innerText = texts[++textPositions[index] % texts.length]
     })
-}
+})
 
-window.onload = initializeSpinnerTexts
 
 document.addEventListener('DOMContentLoaded', function () {
     var cards = document.querySelectorAll('.card');
