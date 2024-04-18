@@ -80,7 +80,7 @@ To run the executable test categories, there are 4 API keys to fill out:
 The `apply_function_credential_config.py` inputs an input file, optionally an outputs file. If the output file is not given as an argument, it will overwrites your original file with the cleaned data.
 
 ```bash
-    python apply_function_credential_config.py --input_file ./data/gorilla_openfunctions_v1_test_rest.json
+    python apply_function_credential_config.py --input-file ./data/gorilla_openfunctions_v1_test_rest.json
 ```
 
 Then, use `eval_data_compilation.py` to compile all files by using
@@ -106,7 +106,7 @@ To generate leaderboard statistics, there are two steps:
 1. Inference the evaluation data and obtain the results from specific models 
 
 ```bash
-    python openfunctions_evaluation.py --model MODEL_NAME --test_category TEST_CATEGORY
+    python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
 ```
 For TEST_CATEGORY, we have `executable_simple`, `executable_parallel_function`, `executable_multiple_function`, `executable_parallel_multiple_function`, `simple`, `relevance`, `parallel_function`, `multiple_function`, `parallel_multiple_function`, `java`, `javascript`, `rest`, `sql`, `chatable`.
 
