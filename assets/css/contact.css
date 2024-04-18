@@ -75,7 +75,6 @@ form[name="submit-to-google-sheet"] textarea {
     .col-md-6.contact-us {
         border-right: none; /* Remove the border line on smaller screens */
     }
-    
 }
 
 .shorter-container {
@@ -87,39 +86,3 @@ form[name="submit-to-google-sheet"] textarea {
     margin-bottom: 10px; /* Smaller margin for headings */
 }
 
-
-.submit-to-google-sheet {
-    width: 80%; 
-    margin: 0 auto;
-}
-
-@media screen and (max-width: 768px) {
-    .submit-to-google-sheet {
-        width: 100%; /* Full width on smaller screens */
-    }
-}
-
-pre {
-    -webkit-overflow-scrolling: touch;
-    background-color: #f5f5f5;
-    color: #4a4a4a;
-    font-size: 0.875em;
-    overflow-x: auto;
-    padding: 1.25rem 1.5rem;
-    white-space: pre;
-    word-wrap: normal;
-}
-
-pre code {
-    background-color: transparent;
-    color: currentColor;
-    font-size: 1em;
-    padding: 0;
-}
-
-code,
-pre {
-    -moz-osx-font-smoothing: auto;
-    -webkit-font-smoothing: auto;
-    font-family: monospace;
-}
