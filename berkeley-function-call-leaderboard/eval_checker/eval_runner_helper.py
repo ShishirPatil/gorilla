@@ -1,13 +1,13 @@
-import json
-from model_handler.handler_map import handler_map
-from custom_exception import BadAPIStatusError
-import os
 import glob
-import subprocess
+import json
+import os
 import statistics
-from tqdm import tqdm
+import subprocess
+
 import numpy as np
-from eval_runner_constant import FILENAME_INDEX_MAPPING
+from custom_exception import BadAPIStatusError
+from model_handler.handler_map import handler_map
+from tqdm import tqdm
 
 REST_API_GROUND_TRUTH_FILE_PATH = "api_status_ground_truth_function_calls.json"
 
@@ -476,14 +476,18 @@ def api_status_sanity_check():
     write_list_of_dicts_to_file(REST_API_GROUND_TRUTH_FILE_PATH, ground_truth_dummy)
 
     correct_count = 0
+    errors = []
     for idx, data in tqdm(
         enumerate(ground_truth_replaced), total=len(ground_truth_replaced)
     ):
         status = executable_checker_rest(data["ground_truth"], idx)
         if status["valid"]:
             correct_count += 1
+        else:
+            errors.append((data, status))
 
     if correct_count != len(ground_truth_replaced):
+        [print("Data:", data, "\nError:", status['error']) for data, status in errors]
         error_msg = f"API Status Test Failed. {len(ground_truth_replaced) - correct_count} out of {len(ground_truth_replaced)} API behaviors are not as expected. Be careful with executable test category results; they may be inaccurate."
         raise BadAPIStatusError(error_msg)
 
