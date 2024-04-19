@@ -1,18 +1,18 @@
-from model_handler.gorilla_handler import GorillaHandler
-from model_handler.gpt_handler import OpenAIHandler
 from model_handler.claude_fc_handler import ClaudeFCHandler
 from model_handler.claude_prompt_handler import ClaudePromptingHandler
-from model_handler.mistral_handler import MistralHandler
+from model_handler.databricks_handler import DatabricksHandler
+from model_handler.deepseek_handler import DeepseekHandler
 from model_handler.firework_ai_handler import FireworkAIHandler
-from model_handler.nexus_handler import NexusHandler
+from model_handler.functionary_handler import FunctionaryHandler
 from model_handler.gemini_handler import GeminiHandler
-from model_handler.oss_handler import OSSHandler
 from model_handler.gemma_handler import GemmaHandler
 from model_handler.glaive_handler import GlaiveHandler
-from model_handler.deepseek_handler import DeepseekHandler
-from model_handler.functionary_handler import FunctionaryHandler
-from model_handler.databricks_handler import DatabricksHandler
+from model_handler.gorilla_handler import GorillaHandler
+from model_handler.gpt_handler import OpenAIHandler
 from model_handler.hermes_handler import HermesHandler
+from model_handler.mistral_handler import MistralHandler
+from model_handler.nexus_handler import NexusHandler
+from model_handler.oss_handler import OSSHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -56,4 +56,5 @@ handler_map = {
     "meetkai/functionary-medium-v2.4-FC": FunctionaryHandler,
     "databricks-dbrx-instruct": DatabricksHandler,
     "NousResearch/Hermes-2-Pro-Mistral-7B": HermesHandler,
+    "meta-llama/Llama-2-7b-chat-hf": OSSHandler,
 }
