@@ -1,3 +1,10 @@
+import json
+import os
+
+import ray
+import shortuuid
+import torch
+from eval_checker.eval_runner_constant import FILENAME_INDEX_MAPPING
 from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
 from model_handler.utils import (
@@ -5,8 +12,6 @@ from model_handler.utils import (
     augment_prompt_by_languge,
     language_specific_pre_processing,
 )
-from eval_checker.eval_runner_constant import FILENAME_INDEX_MAPPING
-import shortuuid, ray, os, json, torch
 
 
 class OSSHandler(BaseHandler):
@@ -57,7 +62,7 @@ class OSSHandler(BaseHandler):
             functions = language_specific_pre_processing(
                 ques_json["function"], test_category, False
             )
-            prompts.append(format_prompt_func(prompt, functions, test_category))
+            prompts.append(format_prompt_func(prompt, functions))
             ans_id = shortuuid.uuid()
             ans_jsons.append(
                 {
