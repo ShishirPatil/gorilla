@@ -4,6 +4,14 @@ RAFT is a recipe to adapting LLMs to domain-specific RAG. You can learn more in 
 
 The input data from the user can be either a general text document (pdf, json, or txt) for general QA or an API documentation in the API Zoo JSONL format for API calling. 
 
+## Dev environment with Codespaces
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ShishirPatil/gorilla/tree/codespaces?devcontainer_path=.devcontainer%2Fraft%2Fdevcontainer.json)
+
+Everything is setup automatically in the dev container, open a terminal into the `raft` folder:
+
+Note: The `raft` virtual env will be activated in your shell when entering into the `raft` folder.
+
 ## Install Dependencies
 
 Dependencies can be installed using the following command: 
