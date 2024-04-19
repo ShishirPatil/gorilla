@@ -56,5 +56,4 @@ handler_map = {
     "meetkai/functionary-medium-v2.4-FC": FunctionaryHandler,
     "databricks-dbrx-instruct": DatabricksHandler,
     "NousResearch/Hermes-2-Pro-Mistral-7B": HermesHandler,
-    "meta-llama/Llama-2-7b-chat-hf": OSSHandler,
 }
