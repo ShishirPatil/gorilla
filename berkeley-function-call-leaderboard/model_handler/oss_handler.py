@@ -23,7 +23,7 @@ class OSSHandler(BaseHandler):
     def _init_model(self):
         ray.init(ignore_reinit_error=True, num_cpus=8)
 
-    def _format_prompt(prompt, function):
+    def _format_prompt(prompt, function, test_category):
         SYSTEM_PROMPT = """
             You are an helpful assistant who has access to the following functions to help the user, you can use the functions if needed-
         """
@@ -62,7 +62,7 @@ class OSSHandler(BaseHandler):
             functions = language_specific_pre_processing(
                 ques_json["function"], test_category, False
             )
-            prompts.append(format_prompt_func(prompt, functions))
+            prompts.append(format_prompt_func(prompt, functions, test_category))
             ans_id = shortuuid.uuid()
             ans_jsons.append(
                 {
