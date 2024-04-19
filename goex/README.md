@@ -15,7 +15,7 @@ GoEx provides a new way to interact with your favorite APIs! Powered by LLMs, Go
 
 ## Dev environment with Codespaces
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/cedricvidal/gorilla/tree/codespaces?devcontainer_path=.devcontainer%2Fgoex%2Fdevcontainer.json)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ShishirPatil/gorilla/tree/codespaces?devcontainer_path=.devcontainer%2Fgoex%2Fdevcontainer.json)
 
 Everything is setup automatically in the dev container, open a terminal into the `goex` folder and run GoEX:
 
