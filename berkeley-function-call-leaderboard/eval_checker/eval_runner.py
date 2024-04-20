@@ -18,7 +18,7 @@ def single_executable_file_runner(
 
     result = []
     correct_count = 0
-    for i in tqdm(range(len(model_result))):
+    for i in tqdm(range(len(model_result)), desc="Running tests"):
         raw_result = model_result[i]["result"]
         try:
             decoded_result = handler.decode_execute(raw_result)
@@ -343,7 +343,8 @@ def runner(model_names, test_categories, api_sanity_check):
                 # We only test the API with ground truth once
                 if not API_TESTED and api_sanity_check:
                     print("---- Sanity checking API status ----")
-                    api_status_sanity_check()
+                    api_status_sanity_check_rest()
+                    api_status_sanity_check_executable()
                     print("---- Sanity check Passed 💯 ----")
                     API_TESTED = True
                     
@@ -459,6 +460,7 @@ if __name__ == "__main__":
         help="A list of test categories to run the evaluation on",
     )
     parser.add_argument(
+        "-s",
         "--skip-api-sanity-check",
         action='store_false',  
         default=True,    # Default value is True, meaning the sanity check is performed unless the flag is specified
