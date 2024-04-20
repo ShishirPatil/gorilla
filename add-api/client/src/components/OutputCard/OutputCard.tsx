@@ -31,7 +31,7 @@ const OutputCard: React.FC<OutputCardProps> = () => {
     try {
       await raisePullRequest(username, editedResults);
     } catch (error) {
-      alert(`An error occurred while storing Option1 content: ${error}`);
+      alert(`An error while raising a pull request: ${error}`);
     }
   };
 

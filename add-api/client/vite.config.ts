@@ -9,7 +9,8 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: 'http://34.133.163.39/addapi/',
-        changeOrigin: true,
+        // target: 'http://localhost:8080',
+        changeOrigin: false,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
     }
@@ -17,5 +18,5 @@ export default defineConfig({
   build: {
     outDir: '../build'
   },
-  base: '/add-api/build'
+  base: '/addapi/'
 })
