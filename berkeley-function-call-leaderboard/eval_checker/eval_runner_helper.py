@@ -11,7 +11,7 @@ from tqdm import tqdm
 from eval_runner_constant import FILENAME_INDEX_MAPPING
 
 REST_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_REST.json"
-EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_EXECUTABLE.json"
+EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_executable.json"
 
 COLUMNS = [
     "Rank",
