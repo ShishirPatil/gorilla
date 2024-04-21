@@ -589,32 +589,66 @@ def parallel_function_checker_no_order(
     return {"valid": True, "error": []}
 
 
+def patten_matcher(exec_output, expected_result, function_call):
+    if type(exec_output) != type(expected_result):
+        return {
+            "valid": False,
+            "error": [
+                f"Wrong execution result type for {repr(function_call)}. Expected type: {type(expected_result)}, but got: {type(exec_output)}."
+            ],
+            "error_type": "executable_checker:wrong_result_type",
+        }
+    if type(exec_output) == dict:
+        for key, value in expected_result.items():
+            if key not in exec_output:
+                return {
+                    "valid": False,
+                    "error": [
+                        f"Wrong execution result pattern for {repr(function_call)}. Expect type Dict, but key {repr(key)} not found in the model output."
+                    ],
+                    "error_type": "executable_checker:wrong_result_type:dict_key_not_found",
+                }
+        for key, value in exec_output.items():
+            if key not in expected_result:
+                return {
+                    "valid": False,
+                    "error": [
+                        f"Wrong execution result pattern for {repr(function_call)}. Expect type Dict, but key {repr(key)} not expected in the model output."
+                    ],
+                    "error_type": "executable_checker:wrong_result_type:dict_extra_key",
+                }
+    if type(exec_output) == list:
+        if len(exec_output) != len(expected_result):
+            return {
+                "valid": False,
+                "error": [
+                    f"Wrong execution result pattern for {repr(function_call)}. Expect type list, but wrong number of elements in the output. Expected length: {len(expected_result)}, but got: {len(exec_output)}."
+                ],
+                "error_type": "executable_checker:wrong_result_type:list_length",
+            }
+    return {"valid": True, "error": [], "error_type": "executable_checker:unclear"}
+
+
 #### Main function ####
-def executable_checker(decoded_result, func_description):
+def executable_checker(decoded_result: list, func_description: dict):
     result = {"valid": True, "error": [], "error_type": "executable_checker:unclear"}
 
     exec_dict = {}
     expected_exec_result = func_description["execution_result"]
     expected_exec_result_type = func_description["execution_result_type"]
 
-    if type(expected_exec_result_type) is str:
-        if len(expected_exec_result) > 1:
-            expected_exec_result_type = [expected_exec_result_type] * len(
-                expected_exec_result
-            )
-        elif len(expected_exec_result) == 1:
-            expected_exec_result_type = [expected_exec_result_type]
-
     if len(decoded_result) != len(expected_exec_result):
         return {
             "valid": False,
-            "error": ["Wrong number of functions provided."],
+            "error": [
+                f"Wrong number of functions provided. Expected {len(expected_exec_result)}, but got {len(decoded_result)}."
+            ],
             "error_type": "value_error:exec_result_count",
         }
 
-    for function_call, expected_result, expected_type in zip(
-        decoded_result, expected_exec_result, expected_exec_result_type
-    ):
+    for i in range(len(expected_exec_result)):
+        function_call = decoded_result[i]
+        expected_result = expected_exec_result[i]
         try:
             exec(
                 "from executable_python_function import *"
@@ -631,23 +665,41 @@ def executable_checker(decoded_result, func_description):
                 f"Error in execution: {repr(function_call)}. Error: {str(e)}"
             )
             result["error_type"] = "executable_checker:execution_error"
-            continue
+            return result
 
-        if expected_type == "exact_match":
-            if not (exec_output == expected_result or [exec_output] == expected_result):
+        # We need to special handle the case where the execution result is a tuple and convert it to a list
+        # Because when json is stored, the tuple is converted to a list, and so the expected result is a list when loaded from json
+        if isinstance(exec_output, tuple):
+            exec_output = list(exec_output)
+
+        if expected_exec_result_type == "exact_match":
+            if exec_output != expected_result:
                 result["valid"] = False
                 result["error"].append(
-                    f"Wrong execution result for: {repr(function_call)}. Expected: {expected_result}, but got: {exec_output}."
+                    f"Wrong execution result for {repr(function_call)}. Expected: {expected_result}, but got: {exec_output}."
                 )
                 result["error_type"] = "executable_checker:wrong_result"
+                return result
 
+        elif expected_exec_result_type == "real_time_match":
+            # Allow for 5% difference
+            if type(expected_result) == float or type(expected_result) == int:
+                if not (
+                    expected_result * 0.95 <= exec_output <= expected_result * 1.05
+                ):
+                    result["valid"] = False
+                    result["error"].append(
+                        f"Wrong execution result for {repr(function_call)}. Expected: {expected_result}, but got: {exec_output}. 5% difference allowed."
+                    )
+                    result["error_type"] = "executable_checker:wrong_result_real_time"
+                    return result
         else:
-            if not (type(exec_output) == type(expected_result)):
-                result["valid"] = False
-                result["error"].append(
-                    f"Worng type for: {repr(function_call)}. Expected type: {type(expected_result)}, but got: {type(exec_output)}."
-                )
-                result["error_type"] = "executable_checker:wrong_result_type"
+            # Pattern matching
+            pattern_match_result = patten_matcher(
+                exec_output, expected_result, function_call
+            )
+            if not pattern_match_result["valid"]:
+                return pattern_match_result
 
     return result
 
