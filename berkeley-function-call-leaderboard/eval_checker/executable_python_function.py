@@ -1,10 +1,8 @@
 import json
 import math
-import random
 import requests
-import xml.etree.ElementTree as ET
 from custom_exception import NoAPIKeyError
-
+import time
 
 api_key = {}
 with open("../function_credential_config.json") as f:
@@ -42,10 +40,10 @@ def math_factorial(n):
     Args:
         n (integer): The number to calculate the factorial of.
     """
-    if n == 0:
-        return 1
-    else:
-        return n * math_factorial(n - 1)
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
 
 
 def quadratic_roots(a, b, c):
@@ -55,10 +53,24 @@ def quadratic_roots(a, b, c):
         a (integer): The first coefficient.
         b (integer): The second coefficient.
         c (integer): The third coefficient.
+    Returns:
+        A list of roots, where each root is either a float or a dictionary
+        with 'real' and 'imaginary' parts for complex roots.
     """
-    root1 = (-b + (b**2 - 4 * a * c) ** 0.5) / (2 * a)
-    root2 = (-b - (b**2 - 4 * a * c) ** 0.5) / (2 * a)
-    return [root1, root2]
+    discriminant = b**2 - 4 * a * c
+    if discriminant >= 0:
+        root1 = (-b + discriminant**0.5) / (2 * a)
+        root2 = (-b - discriminant**0.5) / (2 * a)
+        roots = [root1, root2]
+    else:
+        real_part = -b / (2 * a)
+        imaginary_part = (abs(discriminant) ** 0.5) / (2 * a)
+        roots = [
+            {"real": real_part, "imaginary": imaginary_part},
+            {"real": real_part, "imaginary": -imaginary_part},
+        ]
+
+    return roots
 
 
 def geometry_area_circle(radius):
@@ -90,7 +102,7 @@ def math_gcd(a, b):
     """
     Calculates the greatest common divisor of two numbers.
     Args:
-        a (integer): The first number.
+        a (integer): The first number. This should be the larger number.
         b (integer): The second number.
     """
     if b == 0:
@@ -103,7 +115,7 @@ def math_lcm(a, b):
     """
     Calculates the least common multiple of two numbers.
     Args:
-        a (integer): The first number.
+        a (integer): The first number. This should be the larger number.
         b (integer): The second number.
     """
     return a * b / math_gcd(a, b)
@@ -232,7 +244,7 @@ def estimate_derivative(function, x):
     """
     func = eval(function)
     h = 0.0000000001
-    return (func(x + h) - function(x)) / h
+    return (func(x + h) - func(x)) / h
 
 
 def calculate_cosine_similarity(vectorA, vectorB):
@@ -283,7 +295,7 @@ def sort_array(array, reverse=False):
     Sorts an array of numbers.
     Args:
         array (list): The array of numbers.
-        reverse (optional bool): Whether to sort the array in reverse order.
+        reverse (optional bool): Whether to sort the array in reverse order, i.e., descending order.
     """
     return sorted(array, reverse=reverse)
 
@@ -319,6 +331,7 @@ def get_coordinates_from_city(city_name):
     Returns:
     tuple: The latitude and longitude of the city.
     """
+    time.sleep(2)  # To avoid rate limiting
     url = "https://geocode.maps.co/search"
     params = {"q": city_name}
 
@@ -413,7 +426,7 @@ def get_covid_death_by_country(country):
     """
     Finds the most up to date total deaths of a country result from COVID.
     Args:
-        country (str): The country to find the total deaths of.
+        country (str): The country to find the total deaths of, in the format of the country's full name.
     """
     url = "https://covid-193.p.rapidapi.com/statistics"
 
@@ -547,9 +560,9 @@ def get_stock_price_by_stock_name(stock_name):
     Args:
         stock_name (str): The stock name of the product.
     """
-    url = "https://yahoo-finance15.p.rapidapi.com/api/v1/markets/quote"
+    url = "https://yahoo-finance15.p.rapidapi.com/api/v1/markets/stock/quotes"
 
-    querystring = {"ticker": stock_name, "type": "STOCKS"}
+    querystring = {"ticker": stock_name}
 
     headers = {
         "X-RapidAPI-Key": api_key["RAPID-API-KEY"],
@@ -558,7 +571,7 @@ def get_stock_price_by_stock_name(stock_name):
 
     response = requests.get(url, headers=headers, params=querystring)
     try:
-        return response.json()["body"]["primaryData"]["lastSalePrice"]
+        return response.json()["body"][0]["regularMarketPrice"]
     except:
         return response.json()
 
@@ -569,7 +582,7 @@ def get_stock_history(stock_name, interval, diffandsplits="true"):
     Args:
         stock_name (str): The stock name of the product.
         interval (str): The interval of the stock history. Allows one of following : 5m|15m|30m|1h|1d|1wk|1mo|3mo
-        diffandsplits (optional bool): The diffandsplits of the stock history. Allows one of following : true|false
+        diffandsplits (optional bool): The diff and splits of the stock history. Allows one of following : true|false
     """
     url = "https://yahoo-finance15.p.rapidapi.com/api/v1/markets/stock/history"
 
@@ -592,7 +605,7 @@ def retrieve_city_based_on_zipcode(zipcode):
     """
     Finds the city of a zipcode.
     Args:
-        zipcode (str): The zipcode of the product.
+        zipcode (str): The zipcode of the city.
     """
     url = f"http://ziptasticapi.com/{zipcode}"
     response = requests.get(url)
@@ -702,8 +715,8 @@ def calculate_investment_value(
         initial_investment (integer): The initial investment amount.
         annual_contribution (integer): The annual contribution amount.
         years (integer): The number of years to calculate the investment value for.
-        annual_return (float): The annual return rate in percentage.
-        inflation_rate (list): The inflation rate for each year in percentage.
+        annual_return (float): The annual return rate, ranging from 0 to 1.
+        inflation_rate (list): The inflation rate for each year in percentage, ranging from 0 to 1.
         adjust_for_inflation (optional bool): Whether to adjust the investment value for inflation.
     """
     current_value = initial_investment
