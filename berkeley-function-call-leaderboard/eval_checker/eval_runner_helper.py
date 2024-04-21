@@ -8,8 +8,10 @@ import numpy as np
 from custom_exception import BadAPIStatusError
 from model_handler.handler_map import handler_map
 from tqdm import tqdm
+from eval_runner_constant import FILENAME_INDEX_MAPPING
 
-REST_API_GROUND_TRUTH_FILE_PATH = "api_status_ground_truth_function_calls.json"
+REST_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_REST.json"
+EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_executable.json"
 
 COLUMNS = [
     "Rank",
@@ -386,6 +388,10 @@ def is_executable(test_category):
     return "executable" in test_category or "rest" in test_category
 
 
+def is_rest(test_category):
+    return "rest" in test_category
+
+
 def is_relevance(test_category):
     return "relevance" in test_category
 
@@ -478,7 +484,7 @@ def is_empty_output(decoded_output):
         return True
 
 
-def api_status_sanity_check():
+def api_status_sanity_check_rest():
 
     # We only need to import the executable_checker_rest in this function. So a local import is used.
     from checker import executable_checker_rest
@@ -486,7 +492,7 @@ def api_status_sanity_check():
     ground_truth_dummy = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
 
     # Use the ground truth data to make sure the API is working correctly
-    command = f"cd .. ; python apply_function_credential_config.py --input_file ./eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
+    command = f"cd .. ; python apply_function_credential_config.py --input-file ./eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
     try:
         subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
     except subprocess.CalledProcessError as e:
@@ -508,8 +514,33 @@ def api_status_sanity_check():
             errors.append((data, status))
 
     if correct_count != len(ground_truth_replaced):
-        [print("Data:", data, "\nError:", status['error']) for data, status in errors]
-        error_msg = f"API Status Test Failed. {len(ground_truth_replaced) - correct_count} out of {len(ground_truth_replaced)} API behaviors are not as expected. Be careful with executable test category results; they may be inaccurate."
+        [print("Data:", data, "\nError:", status["error"]) for data, status in errors]
+        error_msg = f"API Status Test Failed for REST Section. {len(ground_truth_replaced) - correct_count} out of {len(ground_truth_replaced)} API behaviors are not as expected. Be careful with executable test category results; they may be inaccurate."
+        raise BadAPIStatusError(error_msg)
+
+
+def api_status_sanity_check_executable():
+    from checker import executable_checker
+
+    ground_truth = load_file(EXECTUABLE_API_GROUND_TRUTH_FILE_PATH)
+    correct_count = 0
+    errors = []
+    for data in tqdm(ground_truth, total=len(ground_truth)):
+        status = executable_checker(
+            data["result"],
+            {
+                "execution_result": data["execution_result"],
+                "execution_result_type": data["execution_result_type"],
+            },
+        )
+        if status["valid"]:
+            correct_count += 1
+        else:
+            errors.append((data, status))
+
+    if correct_count != len(ground_truth):
+        [print("Data:", data, "\nError:", status["error"]) for data, status in errors]
+        error_msg = f"API Status Test Failed for Executable Section. {len(ground_truth) - correct_count} out of {len(ground_truth)} API behaviors are not as expected. Be careful with executable test category results; they may be inaccurate."
         raise BadAPIStatusError(error_msg)
 
 
@@ -561,7 +592,7 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
             if data["latency"] > 60:
                 print("*" * 100)
                 print(
-                    f"Warning: Latency for one of {model_name} response is {data['latency']}."
+                    f"❗️Warning: Latency for one of {model_name} response is {data['latency']}."
                 )
                 print("*" * 100)
         if "input_token_count" in data:
@@ -696,7 +727,7 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
         if overall_accuracy["total_count"] != 1700:
             print("-" * 100)
             print(
-                f"Warning: Total count for {model_name} is {overall_accuracy['total_count']}"
+                f"❗️Warning: Total count for {model_name} is {overall_accuracy['total_count']}"
             )
 
         data.append(
