@@ -259,12 +259,17 @@ def single_ast_file_runner(
 
 #### Main runner function ####
 def runner(model_names, test_categories, api_sanity_check):
-    
+
     # A flag to indicate if the API has been tested.
-    # We should always test the API with ground truth first before running the executable tests. 
+    # We should always test the API with ground truth first before running the executable tests.
     # Sometimes the API may not be working as expected and we want to catch that before running the evaluation to ensure the results are accurate.
     API_TESTED = False
-    
+
+    # Before running the executable evaluation, we need to get the expected output from the ground truth.
+    # So we need a list of all the test categories that we have ran the ground truth evaluation on.
+    # We only get the expected output once for each test category.
+    EXECUTABLE_TEST_CATEGORIES_HAVE_RUN = []
+
     # Get a list of all entries in the folder
     entries = os.scandir(INPUT_PATH)
 
@@ -284,20 +289,21 @@ def runner(model_names, test_categories, api_sanity_check):
             f
             for f in os.listdir(subdir)
             if os.path.isfile(os.path.join(subdir, f)) and not f.startswith(".")
-        ]  
+        ]
         # Check if there is only one file and that file is 'result.json'
         # If so, this is an OSS model result file and we need to special process it first
         if len(files) == 1 and files[0] == "result.json":
             result_json_file_path = os.path.join(subdir, "result.json")
             oss_file_formatter(result_json_file_path, subdir)
-            print(f"Detected OSS model: {model_name}. result.json has been split into individual test category files.")
-
+            print(
+                f"Detected OSS model: {model_name}. result.json has been split into individual test category files."
+            )
 
         # Pattern to match JSON files in this subdirectory
         json_files_pattern = os.path.join(subdir, "*.json")
-        
+
         print(f"🦍 Model: {model_name}")
-        
+
         # Find and process all JSON files in the subdirectory
         for model_result_json in glob.glob(json_files_pattern):
 
@@ -319,7 +325,7 @@ def runner(model_names, test_categories, api_sanity_check):
                 language = "Java"
             if is_js(test_category):
                 language = "JavaScript"
-            
+
             print(f"🔍 Running test: {test_category}")
 
             model_result = load_file(model_result_json)
@@ -347,7 +353,18 @@ def runner(model_names, test_categories, api_sanity_check):
                     api_status_sanity_check_executable()
                     print("---- Sanity check Passed 💯 ----")
                     API_TESTED = True
-                    
+
+                if (
+                    test_category not in EXECUTABLE_TEST_CATEGORIES_HAVE_RUN
+                    and not is_rest(test_category)
+                ):
+                    print(
+                        f"---- Getting expected output from ground truth for {test_category} ----"
+                    )
+                    get_executable_expected_output(prompt_file)
+                    print(f"---- Expected output obtained for {test_category} 🌟 ----")
+                    EXECUTABLE_TEST_CATEGORIES_HAVE_RUN.append(test_category)
+
                 accuracy, total_count = single_executable_file_runner(
                     handler, model_result, prompt, model_name, test_category
                 )
@@ -355,7 +372,6 @@ def runner(model_names, test_categories, api_sanity_check):
                     LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
                 )
                 print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
-                
 
                 continue
 
@@ -378,12 +394,17 @@ def runner(model_names, test_categories, api_sanity_check):
             )
             print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
 
-
     # This function reads all the score files from local folder and updates the leaderboard table.
     # This is helpful when you only want to run the evaluation for a subset of models and test categories.
     update_leaderboard_table_with_score_file(LEADERBOARD_TABLE, OUTPUT_PATH)
     # Write the leaderboard table to a file
     generate_leaderboard_csv(LEADERBOARD_TABLE, OUTPUT_PATH)
+
+    # Clean up the executable expected output files
+    # They should be re-generated the next time the evaluation is run
+    clean_up_executable_expected_output(
+        PROMPT_PATH, EXECUTABLE_TEST_CATEGORIES_HAVE_RUN
+    )
 
 
 ARG_PARSE_MAPPING = {
@@ -462,8 +483,8 @@ if __name__ == "__main__":
     parser.add_argument(
         "-s",
         "--skip-api-sanity-check",
-        action='store_false',  
-        default=True,    # Default value is True, meaning the sanity check is performed unless the flag is specified
+        action="store_false",
+        default=True,  # Default value is True, meaning the sanity check is performed unless the flag is specified
         help="Skip the REST API status sanity check before running the evaluation. By default, the sanity check is performed.",
     )
 
