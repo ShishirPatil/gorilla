@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import GitHubAuthButton from './GitHubAuthButton';
 import { loginWithGithub } from '../api/apiService';
@@ -23,14 +23,12 @@ const NavbarContainer = styled.div`
   }
 `;
 
-const NavBar: React.FC = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+interface NavBarProps {
+    isLoggedIn: boolean;
+    setIsLoggedIn: (isLoggedIn: boolean) => void;
+}
 
-    useEffect(() => {
-        const accessToken = localStorage.getItem('accessToken');
-        setIsLoggedIn(!!accessToken);
-    }, []);
-
+const NavBar: React.FC<NavBarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
     const handleLogin = () => {
         loginWithGithub();
     };
