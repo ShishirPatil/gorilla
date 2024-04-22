@@ -8,7 +8,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://34.133.163.39/addapi/',
+        target: 'http://34.133.163.39/addapi',
         // target: 'http://localhost:8080',
         changeOrigin: false,
         rewrite: (path) => path.replace(/^\/api/, ''),

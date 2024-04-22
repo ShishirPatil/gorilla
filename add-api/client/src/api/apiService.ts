@@ -1,7 +1,9 @@
 import { ConvertResult, ConvertedURL } from "../types/types";
 
 // apiService.js
-const BACKEND_BASEURL = "/api";
+const VIRTUAL_API_BASE = "/api";
+const BACKEND_URL = "http://34.133.163.39/addapi/";
+// const BACKEND_URL = "http://localhost:8080/";
 const GITHUB_CLIENT_ID = "752573cfa527a1b392ad";
 
 export const convertUrls = async (
@@ -10,7 +12,7 @@ export const convertUrls = async (
   urls: string[]
 ): Promise<ConvertResult> => {
   try {
-    const response = await fetch(`${BACKEND_BASEURL}/convert`, {
+    const response = await fetch(`${VIRTUAL_API_BASE}/convert`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",
@@ -54,7 +56,7 @@ export const raisePullRequest = async (
     return;
   }
   try {
-    const response = await fetch(`${BACKEND_BASEURL}/raise-pr`, {
+    const response = await fetch(`${VIRTUAL_API_BASE}/raise-pr`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -107,7 +109,7 @@ Please investigate the conversion process for potential issues.
 export async function getAccessToken(codeParam: string) {
   try {
     const response = await fetch(
-      `${BACKEND_BASEURL}/get-access-token?code=${codeParam}`, {
+      `${VIRTUAL_API_BASE}/get-access-token?code=${codeParam}`, {
         method: "GET",
       }
     );
@@ -127,16 +129,19 @@ export async function checkAccessToken(accessToken: string | null) {
     return false;
   }
   try {
-    const response = await fetch(`${BACKEND_BASEURL}/check-access-token`, {
+    const response = await fetch(`${VIRTUAL_API_BASE}/check-access-token`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify({ access_token: accessToken }),
     });
+
     if (!response.ok) {
       // If the backend service doesn't return a 200 status, handle it as a failure
       console.error("Failed to verify access token with the backend.");
+      console.error(response);
       return false;
     }
     const data = await response.json();
@@ -150,21 +155,24 @@ export async function checkAccessToken(accessToken: string | null) {
 
 export function loginWithGithub(): void {
   "will be redirected to get-access-token, where the code will available in the url parameters.";
-  function generateRandomHex(size: number) {
+  // Generates a random hexadecimal string using window.crypto for security
+  function generateRandomHex(size: number): string {
     const buffer = new Uint8Array(size);
     window.crypto.getRandomValues(buffer);
-    return Array.from(buffer, (byte) =>
-      byte.toString(16).padStart(2, "0")
-    ).join("");
+    return Array.from(buffer, byte => byte.toString(16).padStart(2, '0')).join('');
   }
-  const severCallBackUrl = "http://localhost:8080/get-access-token";
-  const state = generateRandomHex(16); // Generate a 16-byte hex string as the state
-  const githubUrl = new URL("https://github.com/login/oauth/authorize");
-  githubUrl.searchParams.set("client_id", GITHUB_CLIENT_ID);
-  githubUrl.searchParams.set("redirect_uri", severCallBackUrl);
-  githubUrl.searchParams.set("scope", "repo");
-  githubUrl.searchParams.set("state", state);
-  githubUrl.searchParams.set("allowed_signup", "true");
-
-  window.location.assign(githubUrl.toString());
+   // Construct the GitHub authorization URL with necessary query parameters
+   const state = generateRandomHex(16); // Generate a secure random state
+   const githubUrl = new URL('https://github.com/login/oauth/authorize');
+   githubUrl.searchParams.append('client_id', GITHUB_CLIENT_ID);
+   githubUrl.searchParams.append('redirect_uri', `${BACKEND_URL}get-access-token`);
+   githubUrl.searchParams.append('scope', 'repo');
+   githubUrl.searchParams.append('state', state);
+   githubUrl.searchParams.append('allowed_signup', 'true');
+ 
+   // Store state in sessionStorage for later validation
+   sessionStorage.setItem('oauth_state', state);
+ 
+   // Redirect user to GitHub OAuth page
+   window.location.href = githubUrl.toString();
 }
