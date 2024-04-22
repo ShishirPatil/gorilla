@@ -879,8 +879,16 @@
                                         <li><b>Type match</b>: The output must match the
                                             expected data type. For example, both
                                             <code>[1, 2, 3]</code> and <code>[1.5,
-                                            2.4]</code>
-                                            are accepted if the expected type is a list.
+                                            2.4, 6]</code>
+                                            are accepted if the expected type is a <code>list</code>. In addition, the following types have some special requirements:
+                                            <ul>
+                                                <li>
+                                                    For <code>List</code>, the length must match the expected length. The type of each element is not checked.
+                                                </li>
+                                                <li>
+                                                    For <code>Dict</code>, the keys must match the keys present in the expected output. This means no extra keys nor missing keys. The type of each value is not checked.
+                                                </li>
+                                            </ul>
                                         </li>
                                     </ul>
                                 </li>
