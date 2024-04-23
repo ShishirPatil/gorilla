@@ -166,7 +166,7 @@ export function loginWithGithub(): void {
    const githubUrl = new URL('https://github.com/login/oauth/authorize');
    githubUrl.searchParams.append('client_id', GITHUB_CLIENT_ID);
    githubUrl.searchParams.append('redirect_uri', `${BACKEND_URL}get-access-token`);
-   githubUrl.searchParams.append('scope', 'repo');
+   githubUrl.searchParams.append('scope', 'public_repo');
    githubUrl.searchParams.append('state', state);
    githubUrl.searchParams.append('allowed_signup', 'true');
  
