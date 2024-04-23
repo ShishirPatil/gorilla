@@ -8,6 +8,7 @@ import PyPDF2
 import random
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_openai.embeddings import OpenAIEmbeddings
+from client_utils import build_openai_client, build_langchain_embeddings
 
 DocType = Literal["api", "pdf", "json", "txt"]
 
@@ -24,7 +25,9 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--questions", type=int, default=5, help="The number of data points / triplets to generate per chunk")
     parser.add_argument("--chunk_size", type=int, default=512, help="The size of each chunk in number of tokens")
     parser.add_argument("--doctype", type=str, default="pdf", help="The type of the document, must be one of the accepted doctypes", choices=["pdf", "txt", "json", "api"])
-    parser.add_argument("--openai_key", type=str, default="", help="Your OpenAI key used to make queries to GPT-3.5 or GPT-4")
+    parser.add_argument("--openai_key", type=str, default=None, help="Your OpenAI key used to make queries to GPT-3.5 or GPT-4")
+    parser.add_argument("--embedding-model", type=str, default="text-embedding-ada-002", help="The embedding model to use to encode documents chunks (text-embedding-ada-002, ...)")
+    parser.add_argument("--completion-model", type=str, default="gpt-4", help="The model to use to generate questions and answers (gpt-3.5, gpt-4, ...)")
 
     args = parser.parse_args()
     return args
@@ -34,7 +37,8 @@ def get_chunks(
     file_path: str, 
     doctype: DocType = "pdf", 
     chunk_size: int = 512, 
-    openai_key: str | None = None
+    openai_key: str | None = None,
+    model: str = None
 ) -> list[str]:
     """
     Takes in a `file_path` and `doctype`, retrieves the document, breaks it down into chunks of size
@@ -73,18 +77,20 @@ def get_chunks(
             raise TypeError("Document is not one of the accepted types: api, pdf, json, txt")
         
         num_chunks = len(text) / chunk_size 
-        text_splitter = SemanticChunker(OpenAIEmbeddings(openai_api_key=OPENAPI_API_KEY), number_of_chunks=num_chunks)
+
+        embeddings = build_langchain_embeddings(openai_api_key=OPENAPI_API_KEY, model=model)
+        text_splitter = SemanticChunker(embeddings, number_of_chunks=num_chunks)
         chunks = text_splitter.create_documents([text])
         chunks = [chunk.page_content for chunk in chunks]
             
     return chunks
 
-def generate_instructions(api_call: Any, x=5) -> list[str]:
+def generate_instructions(api_call: Any, x=5, model: str = None) -> list[str]:
     """
     Generates `x` questions / use cases for `api_call`. Used when the input document is of type `api`.
     """
     response = client.chat.completions.create(
-        model="gpt-4",
+        model=model,
         messages=[
             {"role": "system", "content": "You are a synthetic instruction-api pair generator. Given an API endpoint in the form of a JSON object, generate %s example queries of instructions a user could ask and would be answered by invoking the API call. For example, if the given API call is the `service.users().getProfile(userId='me').execute()` call from the Gmail API, an example query could be 'How can I fetch my Gmail account's email address?'" % (x)},
             {"role": "system", "content": "The API endpoint is a JSON object with required params: user_name, api_name, api_call, api_version, api_arguments, functionality, and optional params: env_requirements, example_code, meta_data, Questions"},
@@ -100,13 +106,13 @@ def generate_instructions(api_call: Any, x=5) -> list[str]:
 
     return queries
 
-def generate_instructions_gen(chunk: Any, x: int = 5) -> list[str]:
+def generate_instructions_gen(chunk: Any, x: int = 5, model: str = None) -> list[str]:
     """
     Generates `x` questions / use cases for `chunk`. Used when the input document is of general types 
     `pdf`, `json`, or `txt`.
     """
     response = client.chat.completions.create(
-        model="gpt-4",
+        model=model,
         messages=[
             {"role": "system", "content": "You are a synthetic question-answer pair generator. Given a chunk of context about some topic(s), generate %s example questions a user could ask and would be answered using information from the chunk. For example, if the given context was a Wikipedia paragraph about the United States, an example question could be 'How many states are in the United States?'" % (x)},
             {"role": "system", "content": "The questions should be able to be answered in a few words or less. Include only the questions in your response."},
@@ -165,13 +171,13 @@ def encode_question_gen(question: str, chunk: Any) -> list[str]:
     prompts.append({"role": "user", "content": prompt})
     return prompts
 
-def generate_label(question: str, context: Any, doctype: DocType = "pdf") -> str | None:
+def generate_label(question: str, context: Any, doctype: DocType = "pdf", model: str = None) -> str | None:
     """
     Generates the label / answer to `question` using `context` and GPT-4.
     """
     question = encode_question(question, context) if doctype == "api" else encode_question_gen(question, context)
     response = client.chat.completions.create(
-        model="gpt-4",
+        model=model,
         messages=question,
         n=1,
         temperature=0
@@ -185,14 +191,15 @@ def add_chunk_to_dataset(
     doctype: DocType = "api", 
     x: int = 5, 
     num_distract: int = 3, 
-    p: float = 0.8
+    p: float = 0.8,
+    model: str = None
 ) -> None:
     """
     Given a chunk, create {Q, A, D} triplets and add them to the dataset.
     """
     global ds
     i = chunks.index(chunk)
-    qs = generate_instructions(chunk, x) if doctype == "api" else generate_instructions_gen(chunk, x)
+    qs = generate_instructions(chunk, x, model) if doctype == "api" else generate_instructions_gen(chunk, x, model)
     for q in qs:
         datapt = {
             "id": None,
@@ -230,7 +237,7 @@ def add_chunk_to_dataset(
         datapt["oracle_context"] = chunk
 
         # add answer to q
-        datapt["cot_answer"] = generate_label(q, chunk, doctype) 
+        datapt["cot_answer"] = generate_label(q, chunk, doctype, model=model) 
 
         # construct model instruction 
         context = ""
@@ -260,19 +267,19 @@ if __name__ == "__main__":
     
     OPENAPI_API_KEY = args.openai_key
 
-    client = OpenAI(
+    client = build_openai_client(
         api_key=OPENAPI_API_KEY,
     )
 
     CHUNK_SIZE = args.chunk_size
     NUM_DISTRACT_DOCS = args.distractors
 
-    chunks = get_chunks(args.datapath, args.doctype, CHUNK_SIZE, OPENAPI_API_KEY)
+    chunks = get_chunks(args.datapath, args.doctype, CHUNK_SIZE, OPENAPI_API_KEY, model=args.embedding_model)
 
     ds = None
 
     for chunk in chunks:
-        add_chunk_to_dataset(chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS)
+        add_chunk_to_dataset(chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
     
     # Save as .arrow format
     ds.save_to_disk(args.output)
