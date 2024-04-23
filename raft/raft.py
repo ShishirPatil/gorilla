@@ -1,3 +1,5 @@
+from logconf import log_setup
+import logging
 from typing import Literal, Any
 import argparse
 from openai import OpenAI
@@ -9,6 +11,12 @@ import random
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_openai.embeddings import OpenAIEmbeddings
 from client_utils import build_openai_client, build_langchain_embeddings
+
+log_setup()
+
+logger_raft = logging.getLogger("raft")
+logger_chunking = logging.getLogger("chunking")
+logger_gen = logging.getLogger("gen")
 
 DocType = Literal["api", "pdf", "json", "txt"]
 
@@ -45,7 +53,9 @@ def get_chunks(
     `chunk_size`, and returns the chunks.
     """
     chunks = []
-    
+
+    logger_chunking.info(f"Retrieving chunks from {file_path} of type {doctype}")
+
     if doctype == "api":
         with open(file_path) as f:
             api_docs_json = json.load(f)
@@ -76,7 +86,8 @@ def get_chunks(
         else:
             raise TypeError("Document is not one of the accepted types: api, pdf, json, txt")
         
-        num_chunks = len(text) / chunk_size 
+        num_chunks = len(text) / chunk_size
+        logger_chunking.info(f"Splitting text into {num_chunks} chunks using the {model} model.")
 
         embeddings = build_langchain_embeddings(openai_api_key=OPENAPI_API_KEY, model=model)
         text_splitter = SemanticChunker(embeddings, number_of_chunks=num_chunks)
