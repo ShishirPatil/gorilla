@@ -18,17 +18,10 @@
     <title>RAFT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
-    <link rel="stylesheet" href="assets/css/Highlight-Clean.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <link rel="stylesheet" href="assets/css/Team-Clean.css">
-    <style>
-        /* Bars to separate titles in nav bar */
-        .navbar a:not(:last-child)::after {
-            content: "|";
-            margin: 0 10px;
-            color: #000;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/Highlight-Clean.css">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/Team-Clean.css">
+
 </head>
 
 <body>
@@ -79,7 +72,7 @@
                     </p>
                     <p>
                         The RAFT model is trained on top of the base model Llama2-7B from Meta and on Microsoft AI Studio. We provide a short tutorial on how to train your own RAFT model for RAG applications.
-                        For more details about RAFT please refer to our <a href="https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/RAFT.pdf ">paper</a> and <a href="https://aka.ms/raft-blog
+                        For more details about RAFT please refer to our <a href="https://arxiv.org/abs/2403.10131">paper</a> and <a href="https://aka.ms/raft-blog
                         ">Microsoft-Meta blog</a>. 
                     </p>
                 </div>
@@ -105,7 +98,7 @@
                     As a result, we argue that the LLM's performance in these settings, where it is trained as a general-purpose LLM is largely dependent on the quality of the retriever and how accurately the retriever can identify the most relevant piece of information. </p>
 
                 <p><mark>RAFT</mark> 
-                    RAFT focuses on a narrower but increasingly popular domain than the general open book exam, called the domain-specific open-book exam. In domain-specific open book exam, we know apriori the domain in which the LLM will be tested --- used for inference. The LLM  can respond to the users' prompt using use any and all information from this specific domain, which it has been fine-tuned on. 
+                    RAFT focuses on a narrower but increasingly popular domain than the general open book exam, called the domain-specific open-book exam. In domain-specific open book exam, we know a priori the domain in which the LLM will be tested --- used for inference. The LLM  can respond to the users' prompt using use any and all information from this specific domain, which it has been fine-tuned on. 
                     Examples of domain specific examples include enterprise documents, latest news, code repositories belonging to an organization, etc. 
                     In all these scenarios, the LLM will be used to respond to the questions, whose answers can be found within a collection of documents (a small practical domain). The retrieval technique itself has little to no-impact on the mechanism (though it may impact the accuracy). 
                     This paper mainly studies this, domain-specific open-book setting and how to adapt a pretrained LLM to this specific domain, including how to make it more robust to a varying number of retrieved documents and distractors.</p>
@@ -115,7 +108,7 @@
                 <p style="text-align: center; margin-bottom: 0">
                     <img src="../assets/img/blog_post_9_raft_openbook.png" alt="RAFT analogy to open-book" width="100%">
                         <i style="font-size: 0.9em;">
-                            <mark>How to preapre a LLM for an Exam?</mark> Closed-Book vs. Open-Book vs. RAFT
+                            <mark>How to prepare a LLM for an Exam?</mark> Closed-Book vs. Open-Book vs. RAFT
                         </i>
                 </p>
                 <p></p>
@@ -192,11 +185,11 @@ CoT Answer: ##Reason: The document ##begin_quote## The Oberoi family is an India
                 <h4 id="benchmarking">Train your own RAFT 💡</h4>
 
                 <p>
-                    We specially thanks to Microsoft and Meta for the joint blog and enbaling us to train your own RAFT model with Llama2-series models and Azure AI Studio. 
-                    The following steps are a short tutorial on how to train your own RAFT model for RAG applications, starting from dataset prepararation, to model finetuning and finally model depoloyment.
+                    We specially thanks to Microsoft and Meta for the joint blog and enabling us to train your own RAFT model with Llama2-series models and Azure AI Studio. 
+                    The following steps are a short tutorial on how to train your own RAFT model for RAG applications, starting from dataset preparation, to model finetuning and finally model deployment.
                 </p>
 
-                <p><mark>Dataset Prepararation</mark>: We provide one example to prepare the dataset for RAFT. The dataset is a collection of questions, context, and answers. The context is a collection of documents, and the answer is a chain-of-thought style answer generated from one of the documents with the help of GPT-4. Please see one example below. 
+                <p><mark>Dataset Preparation</mark>: We provide one example to prepare the dataset for RAFT. The dataset is a collection of questions, context, and answers. The context is a collection of documents, and the answer is a chain-of-thought style answer generated from one of the documents with the help of GPT-4. Please see one example below. 
                 </p>
 
                 <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4;">
@@ -208,7 +201,7 @@ CoT Answer: ##Reason: The document ##begin_quote## The Oberoi family is an India
                 </pre>
 
                 <p><mark>Model Finetuning</mark>: 
-                    We would train the model to output the CoT answer based on the question and the proivded context. The base model, Llama2-7B is suitable for RAG tasks, where the tasks require a combination of the model's ability to reason, understand language, have lower-latency inference, and be easily adaptable to diverse settings. Llama2-7B fit the bill well- it's a good base model for a lot of the general-knowledge, question-answering tasks, with encouraging math skills, and the ability to parse reasonably long documents due to its 4k pre-training. Llama2-7B is also a perfect model for training on 4 A100-40G GPUs and serving on a single one. Thereby in the pareto curve or performance, ease-of-deployment, and with the right licensing, the LLaMA2 model is quite apt for the RAFT task. With the help of Microsoft AI studio, users can also explore Llama-13b or 70b as well. Below is a screenshot that shows the model finetuning process on Azure AI Studio.
+                    We would train the model to output the CoT answer based on the question and the provided context. The base model, Llama2-7B is suitable for RAG tasks, where the tasks require a combination of the model's ability to reason, understand language, have lower-latency inference, and be easily adaptable to diverse settings. Llama2-7B fit the bill well- it's a good base model for a lot of the general-knowledge, question-answering tasks, with encouraging math skills, and the ability to parse reasonably long documents due to its 4k pre-training. Llama2-7B is also a perfect model for training on 4 A100-40G GPUs and serving on a single one. Thereby in the pareto curve or performance, ease-of-deployment, and with the right licensing, the LLaMA2 model is quite apt for the RAFT task. With the help of Microsoft AI studio, users can also explore Llama-13b or 70b as well. Below is a screenshot that shows the model finetuning process on Azure AI Studio.
                 </p>
 
                 <p style="text-align: center; margin-bottom: 0">
@@ -241,16 +234,16 @@ CoT Answer: ##Reason: The document ##begin_quote## The Oberoi family is an India
 </p>
 
 <p>
-                        We hope you enjoyed this blog post. We would love to hear from you on <a href="https://discord.gg/SwTyuTAxX3">Discord</a>, <a href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter (#GorillaLLM)</a>, and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br> 
-                    </p>
-                    <!-- <p id="gorilla-bibtex">
-                        If you would like to cite Gorilla:<br>
-                        @inproceedings{berkeley-function-calling-leaderboard,<br>
-                        &nbsp; 	title={Berkeley Function Calling Leaderboard},<br>
-                        &nbsp; 	author={Fanjia Yan and Charlie Cheng-Jie Ji and Huanzhi Mao and Tianjun Zhang and Shishir G. Patil and Ion Stoica and Joseph E. Gonzalez},<br>
-                        &nbsp; 	year={2024},<br>
-                        &nbsp;	howpublished={\url{https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html}},<br>
-                    }</p> -->
+                    We hope you enjoyed this blog post. We would love to hear from you on <a href="https://discord.gg/grXXvj9Whz">Discord</a>, <a href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter (#GorillaLLM)</a>, and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br> 
+                </p>
+                <p id="raft-bibtex">
+                    If you would like to cite RAFT:<br>
+                    @inproceedings{raft2024,<br>
+                    &nbsp; 	title={RAFT: Adapting Language Model to Domain Specific RAG},<br>
+                    &nbsp; 	author={Tianjun Zhang and Shishir G. Patil and Naman Jain and Sheng Shen and Matei Zaharia and Ion Stoica and Joseph E. Gonzalez},<br>
+                    &nbsp; 	year={2024},<br>
+                    &nbsp;	journal={arXiv preprint arXiv:2403.10131}<br>
+                }</p>
 
 
 

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-NRZJLJCSH6');
+    </script>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gorilla Execution Engine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar" style="position: absolute; top: 0; right: 20px; padding: 10px; z-index: 100; font-size: 18px;">
+        <a href="/index.html">Home</a>
+        <a href="/blog.html">Blogs</a>
+        <a href="/leaderboard.html">Leaderboard</a>
+        <a href="/apizoo/">API Zoo Index</a>
+    </div>
+    <div class="highlight-clean-blog" style="padding-bottom: 10px;">
+        <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 GoEx: A Runtime for Autonomous LLM Applications</h1>
+
+        <div class="blog-container">
+            <div class="blog-post">
+                <div class="col-md-12">
+                    <h4 class="text-center" style="margin-left: 15%; margin-right: 15%;">
+                        <p></p>
+                        <a class="author" href="https://shishirpatil.github.io/">Shishir G. Patil</a>
+                        <a class="author" href="https://tianjunz.github.io/">Tianjun Zhang</a>
+                        <a class="author" href="https://www.vivi.sh/">Vivian Fang</a>
+                        <a class="author" href="https://www.linkedin.com/in/noppapon/">Noppapon C.</a>
+                        <a class="author" href="https://www.linkedin.com/in/royh021/">Roy Huang</a>
+                        <a class="author" href="https://www.linkedin.com/in/aaron-hao/">Aaron Hao</a>
+                        <a class="author" href="https://www.linkedin.com/in/martincasado/">Martin Casado</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~jegonzal/">Joseph E. Gonzalez</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~raluca/">Raluca Ada Popa</a>
+                        <a class="author" href="https://people.eecs.berkeley.edu/~istoica/">Ion Stoica</a>
+                        <p></p>
+                    </h4>
+                </div>
+
+                <div class ="author-date">
+                    <p class="date">
+                        shishirpatil@berkeley.edu, tianjunz@berkeley.edu
+                    </p> 
+                </div>
+
+                <p style="text-align: center; margin-bottom: 0">
+                    <img src="../assets/img/blog_post_10_logo.png" alt="GoEx organizations" width="30%">
+                    <br>
+                </p>
+
+                <!-- <div class ="author-date">
+                    <p class="date">Apr 9, 2024</p>
+                </div> -->
+
+
+
+                <div class="preview">
+                    <p>
+                        Large Language Models (LLMs) are evolving beyond their role of providing information within dialogue systems to actively engaging with tools and performing actions on real-world applications and services. Today, humans verify the correctness and appropriateness of the LLM-generated outputs (e.g., code, functions, or actions) before putting them into real-world execution. 
+                        This poses significant challenges as code comprehension is well known to be notoriously difficult. We study how humans can efficiently collaborate with, delegate to, and supervise autonomous LLMs in the future. 
+                        We argue that in many cases, "post-facto validation"—verifying the correctness of a proposed action after seeing the output—is much easier than the aforementioned "pre-facto validation" setting. The core concept behind enabling a post-facto validation system is the integration of an intuitive <i>undo</i> feature, and establishing a <i>damage confinement</i> for
+                        the LLM-generated actions as effective strategies to mitigate the associated risks. Using this, a human can
+                        now either revert the effect of an LLM-generated output or be confident that the potential risk is bounded.
+                        We believe this is critical to unlock the potential for LLM agents to interact with applications and services
+                        with limited (post-facto) human involvement. We describe the design and implementation of our open-source
+                        runtime for executing LLM actions, Gorilla Execution Engine (GoEx), and present open research questions
+                        towards realizing the goal of LLMs and applications interacting with each other with minimal human supervision. 
+                        GoEx is completely open source, under the Apache 2.0 license. 
+                    </p>
+                    <p>
+                        Quick Links:
+                        <ul>
+                            <li>
+                                Paper: <a href="https://arxiv.org/abs/2404.06921">https://arxiv.org/abs/2404.06921</a>
+                            </li>
+                            <li>
+                                Github: <a href="https://github.com/ShishirPatil/gorilla/tree/main/goex">https://github.com/ShishirPatil/gorilla/tree/main/goex</a>
+                            </li>
+                        </ul>
+                    </p>
+                </div>
+                
+
+                <div class="body">
+                    <ol type="I">
+                        <h4>
+                            <li> GoEx Slack Demo 🤖
+                        </h4>
+
+                        Let's first take a look at a demo of GoEx in action. In this example, Vivian uses GoEx to send a message, "Hello Tianjun, it's nice to meet you! Let's get you set up..." to Tianjun in Slack. The user can choose to either commit or undo the action if the generated and executed code is incorrect.
+
+                        <!-- <img src="../assets/img/blog_post_10_demo.gif" alt="GoEx Slack Demo" style="width: 100%;"> -->
+                        
+                        <div class="responsive-iframe-container" style="text-align: center;">
+                            <iframe src="https://www.youtube.com/embed/WPSRsqXdbk4?si=2btfdSptBM1QHRrX" frameborder="0"
+                                style="width: 70%; height: 400px;"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                            <i style="font-size: 0.9em;">
+                                GoEx provides a simple and intuitive interface for executing LLM generated code, with the option to commit or undo the action.
+                            </i>
+                        </p>
+
+                        <h4>
+                            <li> Moving from Chatbots to Autonomous Agents 🚀
+                        </h4>
+                        <p>
+                            In the example above, the LLM is autonomously using microservices, services, and applications, with little human supervision. Different autonomous LLM-powered applications can be built on top of the GoEx engine, such as a Slack bot that can send messages, a Spotify bot that can create playlists, or a Dropbox bot that can create folders and files. However, in designing such systems, several critical challenges must be addressed:
+                        </p>
+                        <p>
+                            <ol>
+                                <li>
+                                    <b>Hallucination, stochasticity, and unpredictability.</b> LLM-based applications place an unpredictable and
+                                    hallucination-prone LLM at the helm of a system traditionally reliant on trust. Currently, services and APIs
+                                    assume a human-in-the-loop, or clear specifications to govern how and which tools are used in an application.
+                                    For example, the user clicks the “Send” button after confirming the recipient and body of the email.
+                                    In contrast, an LLM-powered assistant may send an email that <strong>goes against the user's intentions</strong>, and may
+                                    even perform actions unintended by the user.
+                                    <!-- LLMs are not only capable of being stochastic, but crucially, -->
+                                    <!-- are capable of unpredictable and unbounded behavior even when trained not to do so. -->
+                                </li>
+                                <li>
+                                    <b>Unreliability.</b> Given their unpredictability and impossibility to comprehensively test, it is difficult for a user
+                                    to trust an LLM off the shelf.
+                                    <!-- Consequently, LLM-powered applications are challenging for users to adopt -->
+                                    <!-- as LLMs are untrusted components that would be running within a trusted execution context. Trivially, one -->
+                                    <!-- can ensure safety by restricting the LLM to have no credentials, at the expense of losing utility. -->
+                                    However, the growing utility of
+                                    LLM-based systems means that we need mechanisms to express the safety-utility tradeoff to developers and users.
+                                </li>
+                                <li>
+                                    <b>Delayed feedback and downstream visibility.</b> Lastly, from a system-design principle, unlike chatbots and
+                                    agents of today, LLM-powered systems of the future will not have immediate human feedback. This means
+                                    that the intermediate state of the system is not immediately visible to the user and often only downstream
+                                    effects are visible. An LLM-powered assistant may interact with many other tools (e.g., querying a database,
+                                    browsing the web, or filtering push notifications) before composing and sending an email. Such interactions
+                                    before the email is sent are invisible to the user.
+                                </li>
+                            </ol>
+                        </p>
+
+                        <img src="../assets/img/blog_post_10_intro.png" alt="How to Use Gorilla Image"
+                            style="width: 70%;">
+                        <p width="80%" style="text-align:center;padding-bottom: -10px">
+                            <i style="font-size: 0.9em;">
+                                We are moving towards a world where LLM-powered applications are evolving from chatbots to autonomous LLM-agents interacting with external applications and services with minimal and punctuated human supervision. GoEx offers a new way to interface with LLMs, providing abstractions for authorization, execution, and error handling.
+                            </i>
+                        </p>
+
+                        <h4>
+                            <li> GoEx Runtime Design 🛠️
+                        </h4>
+
+                        <p>
+                            In the realm of LLM-powered-systems, we introduce <strong>“post-facto LLM validation,”</strong> which contrasts with traditional “pre-facto” methods. In “post-facto validation,” humans evaluate the outcomes of actions executed by the LLM, rather than overseeing the intermediate processes. This approach assumes that validating results over processes, acknowledging that while verifying outcomes is crucial, understanding and correcting processes based on those outcomes is equally important.
+                            Forgoing “pre-facto validation” means execution of actions without prior validation, which introduces risks and potentially leads to undesirable outcomes. We propose two abstractions to mitigate the risk associated with post-facto validation: <i>undoing</i> an action, and <i>damage confinement</i>.
+                        </p>
+                        <ol>
+                            </li>
+                            <li> <b>Reversibility/Undoing an Action</b>
+                                <p>
+                                    When possible, actions executed by an LLM should give users the right to undo an action. This could require maintaining multiple versions of the system state, leading to high costs in terms of memory and computational resources. Furthermore, the feasibility of implementing undoing an action is often dependent on the level of access granted to the system. For instance, in file systems or databases, where root access is available, undoing actions is possible. However, in scenarios where such privileged access is not granted, such as in email clients like Gmail, the ability to undo an action may be limited or require alternative approaches. One potential solution is for the runtime to make a local copy of the email before deleting, which introduces additional state to the runtime but enables undo for email deletion.
+                                    Read our <a href="https://arxiv.org/abs/2404.06921">paper</a> for more details on how we implement undoing actions in the GoEx runtime.
+                                </p>
+                            </li>
+                            <li> <b>Damage Confinement</b>
+                                <p>
+                                    Not all applications or tools provide the ability to undo an action. For example, emails currently cannot be unsent after some time has elapsed. In scenarios like these, we fall back to "damage confinement" or "blast-radius confinement," as it is necessary to provide users with mechanisms to quantify and assess the associated risks of the actions their LLM-powered application may take. Damage confinement can be viewed as a quantification of the user's risk appetite.
+                                </p>
+                                <p>
+                                    One approach to address this challenge is through the implementation of coarse-grained access control mechanisms. A user could permit their LLM to only read emails instead of sending emails, thus confining the blast radius to an tolerable level.
+                                </p>
+                            </li>
+                        </ol>
+                        <img src="../assets/img/blog_post_10_design.png" alt="GoEx Runtime Design Image"
+                            style="width: 70%;">
+                        <p width="80%" style="text-align:center;padding-bottom: -10px">
+                            <i style="font-size: 0.9em;">
+                               Design of the GoEx runtime, which provides abstractions for authorization, execution, and error handling. 
+                            </i>
+                        </p>
+                        </p>
+                        </li>
+
+                        <h4>
+                            <li>GoEx Web App
+                        </h4>
+                        <p>
+                            You can try out the GoEx web app, hosted <a href= "https://goex.gorilla-llm.com/">here.</a> 
+                            Currently, the web app supports only RESTful calls. The web app displays generated LLM code, allowing users not only to see, 
+                            but to edit the model output. Then, users can decide whether to run the forward or reverse call and view the output. 
+                            To save your queries for later, you can log in with Google, automatically saving all content under your account. 
+                        </p>
+                        <img src="../assets/img/blog_post_10_web_app.gif" alt="GoEx Runtime Design Image"
+                            style="width: 70%;">
+                        <p width="80%" style="text-align:center;padding-bottom: -10px">
+                            <i style="font-size: 0.9em;">
+                                Try GoEx without any installation using the GoEx web app.
+                            </i>
+                        </p>
+                        <p>
+                            <b>Currently, the web app does not support all security functionality that the GoEx CLI provides.</b> Notably, the CLI does not 
+                            expose API keys to the LLM model, instead passing in a file path to retrieve sensitive information. This is not possible 
+                            on a web browser, and so the queries generated using the front end involve passing raw credentials to the LLM model.
+                            In the web app, all sensitive credentials are stored in browser local storage, then retrieved when necessary to execute. 
+                            <!-- Our decision to store this data in local storage was motivated by a desire to provide security assurances to the user.  -->
+                            We do not store any sensitive information on our servers. Currently, authentication can come in the form of OAuth 
+                            credentials as well as raw API keys. The number of OAuth services we provide are limited to the ones we add support for, 
+                            but any number of raw API keys can be added in the browser for different services. 
+                        </p>
+
+
+                        <h4>
+                            <li> GoEx CLI Overview 🖥️
+                        </h4>
+                        <p>
+                            <i>
+                                We provide all our code at the repo 
+                                <a href="https://github.com/ShishirPatil/gorilla/tree/main/goex"> here at github.
+                                </a>
+                                Let us know what you think!
+                            </i>
+                            <br>
+                        <p>
+                            The Gorilla CLI is an easy to use demo of the gorilla engine, 
+                            right in your terminal. It has functionality for RESTful, database, 
+                            filesystem calls. Here are the three types of APIs it supports:
+                        </p>
+                        <ol>
+                            <li>RESTful: Gmail, Slack, Dropbox, Github, Spotify (awaiting approval) </li>
+                            <li>Database</li>
+                            <li>Filesystem</li>
+                        </ol>
+                        </p>
+                        <p>
+                            The CLI can be easily installed through <code>pip</code>. For more information on installation and execution check out the repo. 
+                        </p>
+                        
+                        <h4>
+                            <li>Slack Example Walkthrough 
+                        </h4>
+                        To get yourself started with GoEx, follow along with this example. This example requires a slack account. We will be walking through the process of sending a message to someone on slack. You can refer to our <a href="https://github.com/ShishirPatil/gorilla/tree/main/goex">Github repo</a> for more examples and documentation.
+
+                        <ol>
+                            <li>
+                                <b>Enviroment Setup and Installation:</b> 
+                                <p>
+                                    We highly recommend using a new environment for GoEx. We will use conda for this example. <br>
+                                    <code>conda create --name goex python=3.10 -y</code><br>
+                                    <code>conda activate goex</code><br>
+                                </p>
+                                <p>
+                                    We then install goex using the following command in the exec-engine folder. You will need to clone from the Gorilla repository. <br>
+                                    <code>pip install -e .</code><br>
+                                </p>
+                                <p>
+                                    We use Mkcert to support OAuth2 token exchange. This is necessary for all OAuth services.<br>
+                                    <code>brew install mkcert</code><br>
+                                    <code>mkcert -install</code><br>
+                                    <code>mkcert localhost</code><br>
+                                    <i>Windows users can use choco to install mkcert.</i>
+                                </p>
+                            </li>
+                            <li>
+                                <b>Slack Authorization:</b> 
+                                <p>
+                                    To authorize for slack use the following command:<br>
+                                    <code>goex -authorize slack</code>
+                                </p>
+                                This will open a window in your browser that prompts you to sign in. The link should also be printed in the terminal like this:
+                                <img src="..\assets\img\blog_10\slack_auth_terminal.png" alt=""
+                                style="width: 100%;"><br>
+                                You will be asked to give GoEx permission to a workspace of your choice. Something like this should show up:
+                                <img src="..\assets\img\blog_10\slack_request_screen.png" alt=""
+                                style="width: 100%;">
+                            </li>
+                            <li>
+                                <b>Execute with GoEx!</b>
+                                <p>
+                                    To execute prompts with goex, specify the server in your prompt, and add the type of execution. 
+                                    <i>(rest, db, fs)</i>. Feel free to play around with the prompt.  <b>Make sure to have docker desktop running in the background.</b><br>
+                                    <code>goex execute -prompt send a funny joke to the user with email gorilla@yahoo.com on slack -type rest</code><br>
+                                </p>
+                                <p>
+                                    Hopefully, after running you should see your new message:
+                                    <img src="..\assets\img\blog_10\slack_message_result.png" alt=""
+                                    style="width: 100%;">
+                                </p>
+
+                                <p>
+                                    Your output should look something like this:
+                                    <img src="..\assets\img\blog_10\slack_commit_undo.png" alt=""
+                                    style="width: 100%;">
+                                </p>
+                                <p>
+                                    To unsend the message, select the undo option with the keyboard arrows and hit enter. 
+                                </p>
+                                <p>
+                                    If you're having trouble sending a message with email, try using the slack channel ID or slack handle. 
+                                </p>
+                            </li>
+                        </ol>
+                        
+                        Congratulations! You've succesfully sent a message using the power of LLMs!
+                        
+                        <h4><li>Summary</h4>
+                        <p>
+                            In the evolution of LLMs from chatbots to empowering services and applications, slowly moving
+                            away from passively providing information to actively and autonomously making decisions has
+                            become an increasing trend. We introduce the concept of post-facto validation 
+                            as a execution paradigm for these new system. We present GoEx as a means to this vision, a critical
+                            step toward an LLM tool usage capabilities. 
+                        </p>
+                        <p>
+                            Be sure to check out our <a href="https://discord.gg/grXXvj9Whz">Discord community</a> for
+                            updates and any questions as well as our <a
+                                href="https://github.com/ShishirPatil/gorilla/tree/main/goex">official repo</a> on Github.
+                        </p>
+                        <h4><li>Citation</h4>
+                        <pre
+                            style="white-space: pre-wrap; width: 100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">
+                            <code>
+    @inproceedings{gorilla-exec-engine,
+        title={GoEx: Perspectives and Designs Towards a Runtime for Autonomous LLM Applications},
+        author={Shishir G. Patil and Tianjun Zhang and Vivian Fang and Noppapon C. and Roy Huang and Aaron Hao and Martin Casado and Joseph E. Gonzalez and Raluca Ada Popa and Ion Stoica},
+        year={2024},
+        journal={arXiv preprint arXiv:2404.06921}
+    }                   </code>
+                        </pre>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: white;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .blog-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .blog-post {
+            padding: 20px;
+            max-width: 1000px;
+            justify-content: center;
+        }
+        
+        @media only screen and (max-width: 768px) {
+            .blog-post {
+                max-width: 100%;
+            }
+        }
+
+        .blog-post img {
+            display: block;
+            margin: 0 auto;
+        }
+
+        .blog-title {
+            color: #055ada;
+            text-align: center;
+        }
+
+        .author-date {
+            display: flex;
+            margin-bottom: 0px;
+            justify-content: center;
+        }
+
+        .author {
+            font-size: 16px;
+            color: #1E90FF;
+            margin-right: 20px;
+        }
+
+        .date {
+            font-size: 16px;
+            color: #7e8790;
+        }
+
+        .preview {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        .highlight-clean-blog {
+            color: #313437;
+            background-color: #fff;
+            padding: 50px 0;
+        }
+
+        .box-index {
+            position: fixed;
+            top: 50%;
+            left: 0px;
+            transform: translateY(-50%);
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 150px;
+        }
+
+        .box-index h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .box-index ul {
+            list-style-type: disc;
+            padding: 0;
+        }
+
+        .box-index ul li {
+            margin-bottom: 10px;
+        }
+
+        .box-index ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .box-index ul li a:hover {
+            color: #1E90FF;
+        }
+
+
+        .more-blogs .sub-menu {
+            display: none;
+        }
+
+        .more-blogs .sub-menu.expanded {
+            display: block;
+            max-height: 200px;
+            /* Adjust the max height as needed */
+            overflow-y: auto;
+        }
+
+        .more-blogs .sub-menu li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .more-blogs .sub-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .more-blogs .caret {
+            transition: transform 0.3s ease-in-out;
+            display: inline-block;
+            transform: rotate(0deg);
+            font-size: 12px;
+            /* Adjust the font size to change the caret size */
+        }
+
+        .more-blogs.expanded .caret {
+            transform: rotate(90deg);
+        }
+
+        @media screen and (max-width: 768px) {
+            .blog-post {
+                padding: 10px;
+                /* Adjust spacing for smaller screens */
+            }
+
+            .blog-post img {
+                max-width: 80%;
+                /* Reduce image size for smaller screens */
+            }
+
+            .box-index {
+                display: none;
+                /* Hide the index on smaller screens */
+            }
+        }
+
+        .container {
+            max-width: 100%;
+            width: auto;
+        }
+
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 24px; 
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+        }
+
+    </style>
+</body>
+
+</html>
+
+<script>
+    function toggleMoreBlogs() {
+        var subMenu = document.querySelector('.more-blogs .sub-menu');
+        var parentItem = document.querySelector('.more-blogs');
+        subMenu.classList.toggle('expanded');
+        parentItem.classList.toggle('expanded');
+    }
+</script>

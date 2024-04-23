@@ -20,14 +20,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
     <link rel="stylesheet" href="../assets/css/blog.css">
-    <style>
-        /* Bars to separate titles in nav bar */
-        .navbar a:not(:last-child)::after {
-            content: "|";
-            margin: 0 10px;
-            color: #000;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+
 </head>
 
 <body>
@@ -38,12 +32,9 @@
         <a href="/leaderboard.html">Leaderboard</a>
         <a href="/apizoo/">API Zoo Index</a>
     </div>
-    <div class="header-container">
-        <h1 id="header-h1"> 🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
-    </div>
-    <div style="padding-bottom: 10px;">
-
-        <div class="box-index">
+    <div class="highlight-clean-blog" style="padding-bottom: 10px;">
+        <h1 class="text-center" style="padding-bottom: 10px;">🦍 Gorilla: Large Language Model Connected with Massive APIs</h1>
+        <div class=" box-index">
             <h3>Blog 7: Gorilla OpenFunctions v2</h3>
             <ul>
                 <ul>
@@ -173,7 +164,7 @@
             functions=functions,
         )
         <span style="color: #60a0b0; font-style: italic;"># completion.choices[0].message.content, string format of the function call</span> 
-        <span style="color: #60a0b0; font-style: italic;"># completion.choices[0].message.functionsl, Json format of the function call</span>
+        <span style="color: #60a0b0; font-style: italic;"># completion.choices[0].message.functions, Json format of the function call</span>
         <span style="color: #d14;">return</span> completion.choices[0]</pre>
 
                         <li style="margin-bottom: 5px;">Prompt the model:</li>
@@ -211,7 +202,7 @@
 </pre>
 
                     <p>With the example above, you can use Gorilla OpenFunctions-v2 to provide a well formatted output,
-                        or call a function with your own definiton! Then you can use this freely within your
+                        or call a function with your own definition! Then you can use this freely within your
                         applications and chatbot!</p>
 
                     <p>Note: Gorilla through our hosted end-point is currently only supported with
@@ -240,7 +231,7 @@
                             python, REST API).
                         </i>
                     </p>
-                    <p> To dive into details about how our model performs in each category, we provide a detailed table below from the <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function-Calling Leaderboard</a>. We see that when compared to the current state-of-the-art, GPT-4's function calling, in Python, Gorilla OpenFunctions-v2 does better at simple function calling cateogry, but not as good on function calls that involve multiple and parallel functions. This new feature continues to be an exciting area of research for us, and the open-source community in general. It is worth highlighting that our model provides a very stable executable function calls - function calls that were evaluated by actually executing them - with no intervention in-between. Unsurprisingly, having been trained, our model outperforms GPT-4 on function calls on the programming languages other than Python (e.g., Java, Javascript and REST APIs). For REST APIs, our model provides more stable outputs that includes all the required fields including the <strong>url</strong>, <strong>params</strong> and <strong>header</strong> making our model ripe for immediate adoption.</p>
+                    <p> To dive into details about how our model performs in each category, we provide a detailed table below from the <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function-Calling Leaderboard</a>. We see that when compared to the current state-of-the-art, GPT-4's function calling, in Python, Gorilla OpenFunctions-v2 does better at simple function calling category, but not as good on function calls that involve multiple and parallel functions. This new feature continues to be an exciting area of research for us, and the open-source community in general. It is worth highlighting that our model provides a very stable executable function calls - function calls that were evaluated by actually executing them - with no intervention in-between. Unsurprisingly, having been trained, our model outperforms GPT-4 on function calls on the programming languages other than Python (e.g., Java, Javascript and REST APIs). For REST APIs, our model provides more stable outputs that includes all the required fields including the <strong>url</strong>, <strong>params</strong> and <strong>header</strong> making our model ripe for immediate adoption.</p>
                     <p style="text-align: center; margin-bottom: 0">
                         <img src="../assets/img/blog_post_7_open_function_v2_leaderboard.png" alt="Open functions types of data" style="width:100%" >
                         <br>
@@ -356,7 +347,7 @@ wind speed, and precipitation for the next 10 days?"
                 <div class="body">
                     <p>
                         Gorilla OpenFunctions-v2 is a 6.91B parameter model trained further upon on the
-                        Deepseek-Coder-7B-Instruct-v1.5 6.91B model. To trian the model, we collect in total of <b>65,283
+                        Deepseek-Coder-7B-Instruct-v1.5 6.91B model. To train the model, we collect in total of <b>65,283
                         question-function-answer pairs</b> from three different sources: Python packages (19,353), Java
                         repositories (16,586), Javascript Repositories (4,245), public-API (6,009), and Command Line
                         Tools (19,090) from various cloud providers. The data composition is shown in the figure below.
@@ -366,10 +357,10 @@ wind speed, and precipitation for the next 10 days?"
                         dataset. First, we change the function names. This is critical to ensure the model does not
                         "memorize" the API mapping. Second, we add random (randomly chosen, and random number of)
                         functions to make our data-set compatible with parallel functions. This way we can
-                        generate multuiple-function datasets from simple functions. Third, we adopt similar strategies
+                        generate multiple-function datasets from simple functions. Third, we adopt similar strategies
                         of perturbing the prompt to generate scenarios of parallel-functions. We then extend it to also
                         include multiple- and parallel- functions in the same data-points. Finally, we mix some portion
-                        of the dataset in which the functions provided during the input is not sufficinet to the task.
+                        of the dataset in which the functions provided during the input is not sufficient to the task.
                         We flag these as `Relevance Detection` scenarios. As with most LLM training, we extensively
                         varied the extents of each data augmentation to train a robust model.
                     </p>
@@ -388,7 +379,7 @@ wind speed, and precipitation for the next 10 days?"
 </pre>
 
                         </li>
-                        <li style="margin-bottom: 5px;"><strong>Multiple Functions Transformation:</strong> Transform the original function with multiple function calls inlcuded in the training, so that the model can learn to choose which function call to use.
+                        <li style="margin-bottom: 5px;"><strong>Multiple Functions Transformation:</strong> Transform the original function with multiple function calls included in the training, so that the model can learn to choose which function call to use.
                         <pre style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">
 <span style="color: #333;">query1</span> + [{'name': <span style="color: #d14;">'func1'</span>, 'description': <span style="color: #d14;">'order takeout'</span>}] -> <span style="color: #333;">ans1</span> => 
 <span style="color: #333;">query2</span> + [{'name': <span style="color: #d14;">'func1'</span>, 'description': <span style="color: #d14;">'order takeout'</span>}] -> [<span style="color: #333;">ans1</span>, <span style="color: #333;">ans2</span>]
@@ -444,7 +435,7 @@ wind speed, and precipitation for the next 10 days?"
 
                     <p>
                         We hope you enjoyed this blog post. We would love to hear from you on <a
-                            href="https://discord.gg/3apqwwME">Discord</a>, Twitter (#GorillaLLM), and <a
+                            href="https://discord.gg/grXXvj9Whz">Discord</a>, Twitter (#GorillaLLM), and <a
                             href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br>
                     </p>
                     <p id="gorilla-bibtex">
@@ -463,7 +454,6 @@ wind speed, and precipitation for the next 10 days?"
 
     <style>
         body {
-            font-family: Arial, sans-serif; 
             margin: 0;
             padding: 0;
             background: white;

@@ -1,0 +1,47 @@
+.navbar a:not(:last-child)::after {
+    content: "|";
+    margin: 0 2px;
+    color: #000;
+}
+
+@media only screen and (min-width: 768px) {
+    .navbar a:not(:last-child)::after {
+        margin: 0 10px;
+    }
+}
+
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+pre {
+    white-space: pre-wrap;
+    width: 100%;
+    overflow-x: auto;
+    background-color: #f4f4f4;
+}
+
+
+body,
+html,
+p,
+h1,
+h2,
+h3,
+.author-date,
+.blog-title,
+.author,
+.date {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}

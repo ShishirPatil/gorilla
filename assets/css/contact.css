@@ -71,17 +71,18 @@ form[name="submit-to-google-sheet"] textarea {
     border-right: 5px solid white; /* Creates a white border line on the right */
 }
 
-.shorter-container {
-    padding: 10px; /* Reduced from 20px */
+@media screen and (max-width: 768px) {
+    .col-md-6.contact-us {
+        border-right: none; /* Remove the border line on smaller screens */
+    }
 }
 
-.row, .col-md-6 {
-    padding: 5px; /* Smaller padding inside each column */
+.shorter-container {
+    padding: 10px; /* Reduced from 20px */
 }
 
 .shorter-container h2 {
     margin-top: 0;
     margin-bottom: 10px; /* Smaller margin for headings */
 }
-
 

@@ -26,34 +26,58 @@
 }
 
 #leaderboard td:nth-child(2) {
-    background-color: #e57e81;
+    background-color: #7efd7e;
 }
 
-#leaderboard td:nth-child(7),
-#leaderboard td:nth-child(6),
+#leaderboard td:nth-child(4) {
+    background-color: #d8787b;
+}
+
+#leaderboard td:nth-child(5) {
+    background-color: #8f8fff;
+}
+
+#leaderboard td:nth-child(6) {
+    background-color: #75f1ff;
+}
+
+#leaderboard td:nth-child(7) {
+    background-color: #88ffc4;
+}
+
 #leaderboard td:nth-child(8) {
-    background-color: #48eac9;
+    background-color: #ffdf75;
 }
 
-#leaderboard td:nth-child(11),
-#leaderboard td:nth-child(10),
-#leaderboard td:nth-child(12),
 #leaderboard td:nth-child(9) {
-    background-color: #7ad5f0;
+    background-color: #d8787b;
+}
+
+#leaderboard td:nth-child(10),
+#leaderboard td:nth-child(11),
+#leaderboard td:nth-child(12) {
+    background-color: #8f8fff;
 }
 
 
-#leaderboard td:nth-child(15),
+#leaderboard td:nth-child(13),
 #leaderboard td:nth-child(14),
-#leaderboard td:nth-child(16),
-#leaderboard td:nth-child(13) {
-    background-color: #d5f8d5;
+#leaderboard td:nth-child(15),
+#leaderboard td:nth-child(16) {
+    background-color: #75f1ff;
 }
 
-#leaderboard td:nth-child(17) {
-    background-color: #65d57f;
+
+#leaderboard td:nth-child(17),
+#leaderboard td:nth-child(18),
+#leaderboard td:nth-child(19),
+#leaderboard td:nth-child(20) {
+    background-color: #88ffc4;
 }
 
+#leaderboard td:nth-child(21) {
+    background-color: #ffdf75;
+}
 
 
 /* Ensure the table uses the full width of its container */
@@ -90,7 +114,7 @@ th:not(.detail-header)  {
     -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS devices */
     width: 100%; /* Full width of the parent */
     max-width: 100%; /* Ensure the container does not exceed the width of the parent */
-    max-height: 500px; /* Set the maximum height of the table to 8 rows */
+    max-height: 600px; /* Set the maximum height of the table to 8 rows */
     display: block;
     border: 1px solid #ddd; /* Optional: Adds a border for better visibility */
     align-items: center;

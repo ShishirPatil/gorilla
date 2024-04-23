@@ -5,6 +5,8 @@
       <span class="nav-separator">|</span>
       <a href="../blog.html">Blog</a>
       <span class="nav-separator">|</span>
+      <a href="../leaderboard.html">Leaderboard</a>
+      <span class="nav-separator">|</span>
       <a href="apizoo/">API Zoo Index</a>
       <span class="nav-separator">|</span>
       <a href="../addapi/">Add Your API</a>
