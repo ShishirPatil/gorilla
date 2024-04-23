@@ -359,10 +359,10 @@ def runner(model_names, test_categories, api_sanity_check):
                     and not is_rest(test_category)
                 ):
                     print(
-                        f"---- Getting expected output from ground truth for {test_category} ----"
+                        f"---- Getting real-time execution result from ground truth for {test_category} ----"
                     )
                     get_executable_expected_output(prompt_file)
-                    print(f"---- Expected output obtained for {test_category} 🌟 ----")
+                    print(f"---- Ground truth real-time execution result obtained for {test_category} 🌟 ----")
                     EXECUTABLE_TEST_CATEGORIES_HAVE_RUN.append(test_category)
 
                 accuracy, total_count = single_executable_file_runner(
