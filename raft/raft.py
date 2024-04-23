@@ -1,3 +1,5 @@
+import mdc
+from mdc import MDC
 from logconf import log_setup
 import logging
 from typing import Literal, Any
@@ -11,12 +13,11 @@ import random
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_openai.embeddings import OpenAIEmbeddings
 from client_utils import build_openai_client, build_langchain_embeddings
+from math import ceil
 
 log_setup()
 
-logger_raft = logging.getLogger("raft")
-logger_chunking = logging.getLogger("chunking")
-logger_gen = logging.getLogger("gen")
+logger = logging.getLogger("raft")
 
 DocType = Literal["api", "pdf", "json", "txt"]
 
@@ -54,7 +55,7 @@ def get_chunks(
     """
     chunks = []
 
-    logger_chunking.info(f"Retrieving chunks from {file_path} of type {doctype}")
+    logger.info(f"Retrieving chunks from {file_path} of type {doctype}")
 
     if doctype == "api":
         with open(file_path) as f:
@@ -86,17 +87,17 @@ def get_chunks(
         else:
             raise TypeError("Document is not one of the accepted types: api, pdf, json, txt")
         
-        num_chunks = len(text) / chunk_size
-        logger_chunking.info(f"Splitting text into {num_chunks} chunks using the {model} model.")
+        num_chunks = ceil(len(text) / chunk_size)
+        logger.info(f"Splitting text into {num_chunks} chunks using the {model} model.")
 
-        embeddings = build_langchain_embeddings(openai_api_key=OPENAPI_API_KEY, model=model)
+        embeddings = build_langchain_embeddings(openai_api_key=openai_key, model=model)
         text_splitter = SemanticChunker(embeddings, number_of_chunks=num_chunks)
         chunks = text_splitter.create_documents([text])
         chunks = [chunk.page_content for chunk in chunks]
             
     return chunks
 
-def generate_instructions(api_call: Any, x=5, model: str = None) -> list[str]:
+def generate_instructions(client: OpenAI, api_call: Any, x=5, model: str = None) -> list[str]:
     """
     Generates `x` questions / use cases for `api_call`. Used when the input document is of type `api`.
     """
@@ -117,7 +118,7 @@ def generate_instructions(api_call: Any, x=5, model: str = None) -> list[str]:
 
     return queries
 
-def generate_instructions_gen(chunk: Any, x: int = 5, model: str = None) -> list[str]:
+def generate_instructions_gen(client: OpenAI, chunk: Any, x: int = 5, model: str = None) -> list[str]:
     """
     Generates `x` questions / use cases for `chunk`. Used when the input document is of general types 
     `pdf`, `json`, or `txt`.
@@ -182,7 +183,7 @@ def encode_question_gen(question: str, chunk: Any) -> list[str]:
     prompts.append({"role": "user", "content": prompt})
     return prompts
 
-def generate_label(question: str, context: Any, doctype: DocType = "pdf", model: str = None) -> str | None:
+def generate_label(client: OpenAI, question: str, context: Any, doctype: DocType = "pdf", model: str = None) -> str | None:
     """
     Generates the label / answer to `question` using `context` and GPT-4.
     """
@@ -197,6 +198,7 @@ def generate_label(question: str, context: Any, doctype: DocType = "pdf", model:
     return response
 
 def add_chunk_to_dataset(
+    client: OpenAI,
     chunks: list[str], 
     chunk: str, 
     doctype: DocType = "api", 
@@ -210,7 +212,7 @@ def add_chunk_to_dataset(
     """
     global ds
     i = chunks.index(chunk)
-    qs = generate_instructions(chunk, x, model) if doctype == "api" else generate_instructions_gen(chunk, x, model)
+    qs = generate_instructions(client, chunk, x, model) if doctype == "api" else generate_instructions_gen(client, chunk, x, model)
     for q in qs:
         datapt = {
             "id": None,
@@ -248,7 +250,7 @@ def add_chunk_to_dataset(
         datapt["oracle_context"] = chunk
 
         # add answer to q
-        datapt["cot_answer"] = generate_label(q, chunk, doctype, model=model) 
+        datapt["cot_answer"] = generate_label(client, q, chunk, doctype, model=model) 
 
         # construct model instruction 
         context = ""
@@ -271,8 +273,9 @@ def add_chunk_to_dataset(
         else:
             ds = ds.add_item(datapt)
 
+def main():
+    global ds
 
-if __name__ == "__main__":
     # run code
     args = get_args()
     
@@ -289,11 +292,19 @@ if __name__ == "__main__":
 
     ds = None
 
-    for chunk in chunks:
-        add_chunk_to_dataset(chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
+    num_chunks = len(chunks)
+    for i, chunk in enumerate(chunks):
+        perc = ceil(i / num_chunks * 100)
+        with MDC(progress=f"{perc}%"):
+            logger.info(f"Adding chunk {i}/{num_chunks}")
+            add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
     
     # Save as .arrow format
     ds.save_to_disk(args.output)
     
     # Save as .jsonl format
     ds.to_json(args.output + ".jsonl")
+
+if __name__ == "__main__":
+    with MDC(progress="0%"):
+        main()

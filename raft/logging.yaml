@@ -3,9 +3,9 @@ disable_existing_loggers: False
 
 formatters:
     simple:
-        format: '%(asctime)s %(levelname)5s %(name)s %(message)s'
+        format: '%(asctime)s %(levelname)5s [%(progress)4s] %(name)s %(message)s'
     colored:
-        format: '%(asctime)s %(levelname)5s %(name)s %(message)s'
+        format: "%(asctime)s %(levelname)5s [%(progress)4s] %(name)s %(message)s"
         class: coloredlogs.ColoredFormatter
 
 handlers:
@@ -22,9 +22,13 @@ handlers:
         filename: raft.log
 
 root:
-    level: DEBUG
+    level: INFO
     handlers: [console, file]
 
 loggers:
+    raft:
+        level: INFO
     langchain_community.utils.math:
         level: INFO
+    httpx:
+        level: WARN
