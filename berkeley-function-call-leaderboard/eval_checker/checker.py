@@ -589,7 +589,9 @@ def parallel_function_checker_no_order(
     return {"valid": True, "error": []}
 
 
-def patten_matcher(exec_output, expected_result, function_call):
+def patten_matcher(exec_output, expected_result, function_call, is_sanity_check):
+    result = {"valid": True, "error": [], "error_type": "executable_checker:unclear"}
+
     if type(exec_output) != type(expected_result):
         return {
             "valid": False,
@@ -599,6 +601,20 @@ def patten_matcher(exec_output, expected_result, function_call):
             "error_type": "executable_checker:wrong_result_type",
         }
     if type(exec_output) == dict:
+        # We loose the requirement for the sanity check as the expected result used in the sanity check might not be the most up-to-date one.
+        # This happens when the key is a timestamp or a random number.
+        if is_sanity_check:
+            if len(exec_output) != len(expected_result):
+                return {
+                    "valid": False,
+                    "error": [
+                        f"Wrong execution result pattern for {repr(function_call)}. Expect type Dict, but wrong number of elements in the output. Expected length: {len(expected_result)}, but got: {len(exec_output)}."
+                    ],
+                    "error_type": "executable_checker:wrong_result_type:dict_length",
+                }
+            else:
+                return result
+
         for key, value in expected_result.items():
             if key not in exec_output:
                 return {
@@ -626,11 +642,13 @@ def patten_matcher(exec_output, expected_result, function_call):
                 ],
                 "error_type": "executable_checker:wrong_result_type:list_length",
             }
-    return {"valid": True, "error": [], "error_type": "executable_checker:unclear"}
+    return result
 
 
 #### Main function ####
-def executable_checker(decoded_result: list, func_description: dict):
+def executable_checker(
+    decoded_result: list, func_description: dict, is_sanity_check=False
+):
     result = {"valid": True, "error": [], "error_type": "executable_checker:unclear"}
 
     exec_dict = {}
@@ -696,7 +714,7 @@ def executable_checker(decoded_result: list, func_description: dict):
         else:
             # Pattern matching
             pattern_match_result = patten_matcher(
-                exec_output, expected_result, function_call
+                exec_output, expected_result, function_call, is_sanity_check
             )
             if not pattern_match_result["valid"]:
                 return pattern_match_result

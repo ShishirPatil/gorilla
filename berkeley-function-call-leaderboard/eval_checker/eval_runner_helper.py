@@ -536,6 +536,7 @@ def api_status_sanity_check_executable():
                 "execution_result": data["execution_result"],
                 "execution_result_type": data["execution_result_type"],
             },
+            True
         )
         if status["valid"]:
             correct_count += 1

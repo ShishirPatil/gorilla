@@ -571,7 +571,7 @@ def get_stock_price_by_stock_name(stock_name):
 
     response = requests.get(url, headers=headers, params=querystring)
     try:
-        return response.json()["body"][0]["regularMarketPrice"]
+        return float(response.json()["body"][0]["regularMarketPrice"])
     except:
         return response.json()
 
