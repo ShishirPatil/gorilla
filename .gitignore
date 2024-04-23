@@ -1,11 +1,3 @@
 _site/
 .jekyll-cache/
-*__pycache__
 *.DS_Store
-**/node_modules
-
-# add-api ignores
-addapi/addapi-server
-
-
-
