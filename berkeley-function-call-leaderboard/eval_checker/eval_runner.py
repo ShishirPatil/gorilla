@@ -364,6 +364,8 @@ def runner(model_names, test_categories, api_sanity_check):
                     get_executable_expected_output(prompt_file)
                     print(f"---- Ground truth real-time execution result obtained for {test_category} 🌟 ----")
                     EXECUTABLE_TEST_CATEGORIES_HAVE_RUN.append(test_category)
+                    # Need to re-load the prompt file after getting the expected output, as the prompt file has been updated
+                    prompt = load_file(prompt_file)
 
                 accuracy, total_count = single_executable_file_runner(
                     handler, model_result, prompt, model_name, test_category
