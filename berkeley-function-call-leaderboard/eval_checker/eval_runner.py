@@ -26,9 +26,9 @@ def single_executable_file_runner(
             result.append(
                 {
                     "id": i + 1,
-                    "valid": False,
                     "model_name": model_name,
                     "test_category": test_category,
+                    "valid": False,
                     "error": [f"Failed to decode executable. {str(e)}"],
                     "error_type": "executable_decoder:decoder_failed",
                     "prompt": prompt[i],
@@ -43,9 +43,9 @@ def single_executable_file_runner(
                 result.append(
                     {
                         "id": i + 1,
-                        "valid": False,
                         "model_name": model_name,
                         "test_category": test_category,
+                        "valid": False,
                         "error": [
                             "Did not output in the specified format. Note: the model_result is wrapped in a string to ensure json serializability."
                         ],
@@ -64,9 +64,9 @@ def single_executable_file_runner(
                 result.append(
                     {
                         "id": i + 1,
-                        "valid": False,
                         "model_name": model_name,
                         "test_category": test_category,
+                        "valid": False,
                         "error": [
                             "Did not output in the specified format. Note: the model_result is wrapped in a string to ensure json serializability."
                         ],
