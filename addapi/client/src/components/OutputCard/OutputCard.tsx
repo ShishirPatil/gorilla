@@ -69,7 +69,7 @@ const OutputCard: React.FC<OutputCardProps> = () => {
     return Object.entries(urlResults).map(([url, convertedURL]) => (
       <div key={url}>
         <div className="d-flex justify-content-between align-items-center">
-          <h5>{url}</h5>
+          <h5 className="text-truncate" style={{ maxWidth: '80%' }} title={url}>{url}</h5>
           <div>
             <IconButton icon={faSyncAlt} onClick={() => { handleRegenerateUrl(url); }} ariaLabel="Regenerate" />
             <IconButton icon={faThumbsDown} onClick={() => { handleReportIssue(url, convertedURL); }} ariaLabel="Dislike" className='btn-danger' />

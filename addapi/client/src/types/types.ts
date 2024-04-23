@@ -6,7 +6,7 @@ export interface ApiCallDetail {
   api_version: string | null;
   api_arguments: string[][];
   functionality: string;
-  env_requirements: string | null;
+  env_requirements: string[] | string | null;
   example_code: string;
   meta_data: string | null;
   Questions: string[];

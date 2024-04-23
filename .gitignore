@@ -5,7 +5,7 @@ _site/
 **/node_modules
 
 # add-api ignores
-add-api/addapi-server
+addapi/addapi-server
 
 
 

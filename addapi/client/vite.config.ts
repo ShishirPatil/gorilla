@@ -16,7 +16,8 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: '../build'
+    outDir: '../addapi-build',
+    emptyOutDir: true,
   },
   base: '/addapi/'
 })
