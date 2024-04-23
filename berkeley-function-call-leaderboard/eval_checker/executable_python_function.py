@@ -636,7 +636,7 @@ def get_time_zone_by_coord(long, lat):
     """
     url = "https://timezone-by-location.p.rapidapi.com/timezone"
 
-    querystring = {"lat": long, "lon": lat, "c": "1", "s": "0"}
+    querystring = {"lat": lat, "lon": long, "c": "1", "s": "0"}
 
     headers = {
         "X-RapidAPI-Key": api_key["RAPID-API-KEY"],
