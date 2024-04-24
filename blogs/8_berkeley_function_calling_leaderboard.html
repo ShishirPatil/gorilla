@@ -881,7 +881,11 @@
                                     <ul>
                                         <li><b>Exact match</b>: The output must exactly match the expected result.
                                         </li>
-                                        <li><b>Type match</b>: The output must match the
+                                        <li><b>Real-time match</b>: A looser form of exact match, which the output
+                                            (numerical) must be within a certain percentage threshold (20%) from the
+                                            expected result to accomodate the live updates of API responses.
+                                        </li>
+                                        <li><b>Structural match</b>: The output must match the
                                             expected data type. For example, both
                                             <code>[1, 2, 3]</code> and <code>[1.5,
                                             2.4, 6]</code>
@@ -957,6 +961,31 @@
                                     also reviewed and updated regurlarly to ensure the evaluation remains accurate and
                                     relevant.
                                 </p>
+                        </div>
+                        <div>
+                            <h5>Multiple/Parallel/Parallel-Multiple Executable Functions Evaluation
+                            </h5>
+                            <p>The <b>multiple, parallel, or parallel-multiple executable function
+                                    evaluation process</b> extends the idea in the simple executable function
+                                evaluation.
+                            </p>
+                            <ul>
+                                <li>The evaluation process first executes each model-generated function call. Then, it
+                                    iterates over the real-time executed outputs with the ground truth execution
+                                    outputs, and calls the simple executable function evaluation procedure on each pair.
+                                    <ul>
+                                        <li>The order of model execution outputs relative to
+                                            the ground truth execution
+                                            outputs is not required.
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>The evaluation employs an <i>all-or-nothing</i> approach. Failure to find a match
+                                    across all model execution outputs for any given ground truth execution output with
+                                    its respective evaluation criteria results in a <i>failed
+                                        evaluation</i>.
+                                </li>
+                            </ul>
                         </div>
                         <div class="body">
                             <h3 id="cost">Cost & Latency</h3>
