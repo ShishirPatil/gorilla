@@ -17,6 +17,8 @@ from model_handler.constant import (
 import time
 import cohere
 
+from model_handler.constant import USE_COHERE_OPTIMIZATION
+
 
 class CohereHandler(BaseHandler):
     client: cohere.Client
@@ -28,14 +30,23 @@ class CohereHandler(BaseHandler):
         self.client = cohere.Client(api_key=os.getenv("COHERE_API_KEY"))
 
         # System prompt for function calling.
-        self.preamble = """## Task & Context
-You help people answer their questions and other requests interactively. You will be asked a very wide array of requests on all kinds of topics. You will be equipped with a wide range of search engines or similar tools to help you, which you can use to research your answer. You should focus on serving the user's needs as best you can, which will be wide-ranging.
+        if USE_COHERE_OPTIMIZATION:
+            self.preamble = """## Task & Context
+    You help people answer their questions and other requests interactively. You will be asked a very wide array of requests on all kinds of topics. You will be equipped with a wide range of search engines or similar tools to help you, which you can use to research your answer. You should focus on serving the user's needs as best you can, which will be wide-ranging.
 
-When a question is irrelevant or unrelated to the available tools you should choose to directly answer. This is especially important when the question or available tools are about specialist subject like math or biology or physics: DO NOT ANSWER UNRELATED QUESTIONS.
+    When a question is irrelevant or unrelated to the available tools you should choose to directly answer. This is especially important when the question or available tools are about specialist subject like math or biology or physics: DO NOT ANSWER UNRELATED QUESTIONS.
 
-## Style Guide
-Unless the user asks for a different style of answer, you should answer in full sentences, using proper grammar and spelling.
-"""
+    ## Style Guide
+    Unless the user asks for a different style of answer, you should answer in full sentences, using proper grammar and spelling.
+    """
+        else:
+            self.preamble = """
+        ## Task & Context
+        You help people answer their questions and other requests interactively. You will be asked a very wide array of requests on all kinds of topics. You will be equipped with a wide range of search engines or similar tools to help you, which you use to research your answer. You should focus on serving the user's needs as best you can, which will be wide-ranging.
+
+        ## Style Guide
+        Unless the user asks for a different style of answer, you should answer in full sentences, using proper grammar and spelling.
+        """
 
     def inference(self, prompt, functions, test_category):
         if "FC" not in self.model_name:
@@ -69,14 +80,24 @@ Unless the user asks for a different style of answer, you should answer in full 
             start_time = time.time()
             if len(cohere_tool) > 0:
                 try:
-                    response = self.client.chat(
+                    if USE_COHERE_OPTIMIZATION:
+                        response = self.client.chat(
+                            message=message,
+                            model=self.model_name.replace("-FC", ""),
+                            preamble=self.preamble,
+                            tools=cohere_tool,
+                            # The API default is used for the following parameters in FC:
+                            temperature=None,
+                            max_tokens=None,
+                        )   
+                    else:
+                        response = self.client.chat(
                         message=message,
                         model=self.model_name.replace("-FC", ""),
-                        preamble=self.preamble,
+                        temperature=self.temperature,
+                        max_tokens=self.max_tokens,
                         tools=cohere_tool,
-                        # The API default is used for the following parameters in FC:
-                        temperature=None,
-                        max_tokens=None,
+                        preamble=self.preamble,
                     )
                 except Exception as e:
                     return "Error", {
@@ -123,14 +144,18 @@ Unless the user asks for a different style of answer, you should answer in full 
                 if language == "Python":
                     pass
                 else:
-                    # all values of the json are cast to string for java and javascript
-                    for key, value in params.items():
-                        value = str(value)
-                        # Booleans are converted from JSON -> Python, and then turned into a string.
-                        # Use e.g. 'true' instead of the Python 'True'.
-                        if isinstance(params[key], bool):
-                            value = value.lower()
-                        params[key] = value
+                    if USE_COHERE_OPTIMIZATION:
+                        # all values of the json are cast to string for java and javascript
+                        for key, value in params.items():
+                            value = str(value)
+                            # Booleans are converted from JSON -> Python, and then turned into a string.
+                            # Use e.g. 'true' instead of the Python 'True'.
+                            if isinstance(params[key], bool):
+                                value = value.lower()
+                            params[key] = value
+                    else:
+                        for key in params:
+                            params[key] = str(params[key])
                 decoded_output.append({name: params})
         return decoded_output
 

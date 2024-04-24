@@ -1,3 +1,5 @@
+USE_COHERE_OPTIMIZATION = False
+
 SYSTEM_PROMPT_FOR_CHAT_MODEL = """
     You are an expert in composing functions. You are given a question and a set of possible functions. 
     Based on the question, you will need to make one or more function/tool calls to achieve the purpose. 
