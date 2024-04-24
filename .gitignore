@@ -10,12 +10,45 @@ dist
 .editorconfig
 .DS_Store
 **/*.pyc
-./berkeley-function-call-leaderboard/function_credential_config.json
-./berkeley-function-call-leaderboard/eval_checker/tree-sitter-java
-./berkeley-function-call-leaderboard/eval_checker/tree-sitter-javascript
 goex/exec_engine/checkpoints/
 goex/exec_engine/credentials/*
 !goex/exec_engine/credentials/credentials_utils.py
 !goex/exec_engine/credentials/supported.txt
 goex/docker/*/requirements.txt
 goex/docker/misc/images.json
+
+################## Berkley Function Call Leaderboard ##########################
+
+# Ignore API keys
+berkeley-function-call-leaderboard/function_credential_config.json
+
+# Ignore tree-sitter
+berkeley-function-call-leaderboard/eval_checker/tree-sitter-java
+berkeley-function-call-leaderboard/eval_checker/tree-sitter-javascript
+berkeley-function-call-leaderboard/tree-sitter-java
+berkeley-function-call-leaderboard/tree-sitter-javascript
+
+# Ignore Evaluation Dataset files that we download from https://huggingface.co/datasets/gorilla-llm/Berkeley-Function-Calling-Leaderboard/tree/main
+berkeley-function-call-leaderboard/eval_data_total.json
+berkeley-function-call-leaderboard/data/.gitattributes
+berkeley-function-call-leaderboard/data/gorilla_openfunctions_v1_test_chatable.json
+berkeley-function-call-leaderboard/data/gorilla_openfunctions_v1_test_executable_multiple_function.json
+berkeley-function-call-leaderboard/data/gorilla_openfunctions_v1_test_executable_parallel_multiple_function.json
+berkeley-function-call-leaderboard/data/gorilla_openfunctions_v1_test_executable_simple.json
+berkeley-function-call-leaderboard/data/gorilla_openfunctions_v1_test_relevance.json
+berkeley-function-call-leaderboard/data/gorilla_openfunctions_v1_test_parallel_function.json
+berkeley-function-call-leaderboard/data/gorilla_openfunctions_v1_test_multiple_function.json
+berkeley-function-call-leaderboard/data/gorilla_openfunctions_v1_test_parallel_multiple_function.json
+berkeley-function-call-leaderboard/data/gorilla_openfunctions_v1_test_rest.json
+berkeley-function-call-leaderboard/data/gorilla_openfunctions_v1_test_javascript.json
+berkeley-function-call-leaderboard/data/gorilla_openfunctions_v1_test_simple.json
+berkeley-function-call-leaderboard/data/gorilla_openfunctions_v1_test_sql.json
+berkeley-function-call-leaderboard/data/gorilla_openfunctions_v1_test_java.json
+berkeley-function-call-leaderboard/data/gorilla_openfunctions_v1_test_executable_parallel_function.json
+berkeley-function-call-leaderboard/data/README.md
+
+# Ignore inference results
+berkeley-function-call-leaderboard/result/
+
+# Ignore leaderboard score
+berkeley-function-call-leaderboard/score/

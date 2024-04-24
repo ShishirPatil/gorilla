@@ -1,15 +1,17 @@
-import json
-from model_handler.handler_map import handler_map
-from custom_exception import BadAPIStatusError
-import os
 import glob
-import subprocess
+import json
+import os
 import statistics
-from tqdm import tqdm
+import subprocess
+
 import numpy as np
+from custom_exception import BadAPIStatusError
+from model_handler.handler_map import handler_map
+from tqdm import tqdm
 from eval_runner_constant import FILENAME_INDEX_MAPPING
 
-REST_API_GROUND_TRUTH_FILE_PATH = "api_status_ground_truth_function_calls.json"
+REST_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_REST.json"
+EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_executable.json"
 
 COLUMNS = [
     "Rank",
@@ -66,6 +68,18 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
+    "gpt-4-turbo-2024-04-09-FC": [
+        "GPT-4-turbo-2024-04-09 (FC)",
+        "https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo",
+        "OpenAI",
+        "Proprietary",
+    ],
+    "gpt-4-turbo-2024-04-09": [
+        "GPT-4-turbo-2024-04-09 (Prompt)",
+        "https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo",
+        "OpenAI",
+        "Proprietary",
+    ],
     "gorilla-openfunctions-v2": [
         "Gorilla-OpenFunctions-v2 (FC)",
         "https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html",
@@ -73,7 +87,7 @@ MODEL_METADATA_MAPPING = {
         "Apache 2.0",
     ],
     "claude-3-opus-20240229-FC": [
-        "Claude-3-Opus-20240229 (FC)",
+        "Claude-3-Opus-20240229 (FC tools-2024-04-04)",
         "https://www.anthropic.com/news/claude-3-family",
         "Anthropic",
         "Proprietary",
@@ -103,7 +117,7 @@ MODEL_METADATA_MAPPING = {
         "Proprietary",
     ],
     "claude-3-sonnet-20240229-FC": [
-        "Claude-3-Sonnet-20240229 (FC)",
+        "Claude-3-Sonnet-20240229 (FC tools-2024-04-04)",
         "https://www.anthropic.com/news/claude-3-family",
         "Anthropic",
         "Proprietary",
@@ -115,7 +129,13 @@ MODEL_METADATA_MAPPING = {
         "Proprietary",
     ],
     "claude-3-haiku-20240307-FC": [
-        "Claude-3-Haiku-20240307 (FC)",
+        "Claude-3-Haiku-20240307 (FC tools-2024-04-04)",
+        "https://www.anthropic.com/news/claude-3-family",
+        "Anthropic",
+        "Proprietary",
+    ],
+    "claude-3-haiku-20240307": [
+        "Claude-3-Haiku-20240307 (Prompt)",
         "https://www.anthropic.com/news/claude-3-family",
         "Anthropic",
         "Proprietary",
@@ -291,6 +311,8 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-4-1106-preview": 10,
     "gpt-4-0125-preview": 10,
     "gpt-4-0125-preview-FC": 10,
+    "gpt-4-turbo-2024-04-09-FC": 10,
+    "gpt-4-turbo-2024-04-09": 10,
     "gpt-4-0613": 30,
     "gpt-4-0613-FC": 30,
     "gpt-3.5-turbo-0125": 1.5,
@@ -316,6 +338,8 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-small-2402-FC-Any": 6,
     "mistral-small-2402-FC-Auto": 6,
     "mistral-tiny-2312": 0.25,
+    "gpt-4-turbo-2024-04-09-FC": 30,
+    "gpt-4-turbo-2024-04-09": 30,
     "gpt-4-1106-preview": 30,
     "gpt-4-1106-preview-FC": 30,
     "gpt-4-0125-preview-FC": 30,
@@ -329,7 +353,6 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus-FC": 15,
     "command-r-plus": 15,
 }
-
 
 # The latency of the open-source models are hardcoded here.
 # Because we do batching when generating the data, so the latency is not accurate from the result data.
@@ -379,6 +402,10 @@ def find_file_with_suffix(folder_path, suffix):
 
 def is_executable(test_category):
     return "executable" in test_category or "rest" in test_category
+
+
+def is_rest(test_category):
+    return "rest" in test_category
 
 
 def is_relevance(test_category):
@@ -473,7 +500,7 @@ def is_empty_output(decoded_output):
         return True
 
 
-def api_status_sanity_check():
+def api_status_sanity_check_rest():
 
     # We only need to import the executable_checker_rest in this function. So a local import is used.
     from checker import executable_checker_rest
@@ -481,7 +508,7 @@ def api_status_sanity_check():
     ground_truth_dummy = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
 
     # Use the ground truth data to make sure the API is working correctly
-    command = f"cd .. ; python apply_function_credential_config.py --input_file ./eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
+    command = f"cd .. ; python apply_function_credential_config.py --input-file ./eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
     try:
         subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
     except subprocess.CalledProcessError as e:
@@ -492,15 +519,44 @@ def api_status_sanity_check():
     write_list_of_dicts_to_file(REST_API_GROUND_TRUTH_FILE_PATH, ground_truth_dummy)
 
     correct_count = 0
+    errors = []
     for idx, data in tqdm(
         enumerate(ground_truth_replaced), total=len(ground_truth_replaced)
     ):
         status = executable_checker_rest(data["ground_truth"], idx)
         if status["valid"]:
             correct_count += 1
+        else:
+            errors.append((data, status))
 
     if correct_count != len(ground_truth_replaced):
-        error_msg = f"API Status Test Failed. {len(ground_truth_replaced) - correct_count} out of {len(ground_truth_replaced)} API behaviors are not as expected. Be careful with executable test category results; they may be inaccurate."
+        [print("Data:", data, "\nError:", status["error"]) for data, status in errors]
+        error_msg = f"API Status Test Failed for REST Section. {len(ground_truth_replaced) - correct_count} out of {len(ground_truth_replaced)} API behaviors are not as expected. Be careful with executable test category results; they may be inaccurate."
+        raise BadAPIStatusError(error_msg)
+
+
+def api_status_sanity_check_executable():
+    from checker import executable_checker
+
+    ground_truth = load_file(EXECTUABLE_API_GROUND_TRUTH_FILE_PATH)
+    correct_count = 0
+    errors = []
+    for data in tqdm(ground_truth, total=len(ground_truth)):
+        status = executable_checker(
+            data["result"],
+            {
+                "execution_result": data["execution_result"],
+                "execution_result_type": data["execution_result_type"],
+            },
+        )
+        if status["valid"]:
+            correct_count += 1
+        else:
+            errors.append((data, status))
+
+    if correct_count != len(ground_truth):
+        [print("Data:", data, "\nError:", status["error"]) for data, status in errors]
+        error_msg = f"API Status Test Failed for Executable Section. {len(ground_truth) - correct_count} out of {len(ground_truth)} API behaviors are not as expected. Be careful with executable test category results; they may be inaccurate."
         raise BadAPIStatusError(error_msg)
 
 
@@ -552,7 +608,7 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
             if data["latency"] > 60:
                 print("*" * 100)
                 print(
-                    f"Warning: Latency for one of {model_name} response is {data['latency']}."
+                    f"❗️Warning: Latency for one of {model_name} response is {data['latency']}."
                 )
                 print("*" * 100)
         if "input_token_count" in data:
@@ -687,7 +743,7 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
         if overall_accuracy["total_count"] != 1700:
             print("-" * 100)
             print(
-                f"Warning: Total count for {model_name} is {overall_accuracy['total_count']}"
+                f"❗️Warning: Total count for {model_name} is {overall_accuracy['total_count']}"
             )
 
         data.append(

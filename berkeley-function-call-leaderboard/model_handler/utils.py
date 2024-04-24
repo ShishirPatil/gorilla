@@ -63,6 +63,7 @@ def convert_to_tool(
             or model_style == ModelStyle.Mistral
             or model_style == ModelStyle.Google
             or model_style == ModelStyle.OSSMODEL
+            or model_style == ModelStyle.Anthropic_FC
             or model_style == ModelStyle.COHERE
         ):
             # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
@@ -78,7 +79,8 @@ def convert_to_tool(
                 ModelStyle.OpenAI,
                 ModelStyle.Mistral,
                 ModelStyle.Google,
-                ModelStyle.Anthropic,
+                ModelStyle.Anthropic_Prompt,
+                ModelStyle.Anthropic_FC,
                 ModelStyle.FIREWORK_AI,
                 ModelStyle.OSSMODEL,
                 ModelStyle.COHERE,
@@ -94,18 +96,21 @@ def convert_to_tool(
                 for key, value in properties.items():
                     if value["type"] in JS_TYPE_CONVERSION:
                         properties[key]["type"] = "string"
+        if model_style == ModelStyle.Anthropic_FC:
+            item["input_schema"] = item["parameters"]
+            del item["parameters"]
         if model_style == ModelStyle.Google:
             # Remove fields that are not supported by Gemini today.
             for params in item["parameters"]["properties"].values():
                 if "default" in params:
-                    params["description"] += str(params["default"])
+                    params["description"] += "The Default is:" + str(params["default"])
                     del params["default"]
                 if "optional" in params:
                     del params["optional"]
                 if "maximum" in params:
                     del params["maximum"]
                 if "additionalProperties" in params:
-                    params["description"] += str(params["additionalProperties"])
+                    params["description"] += "The additional properties:" +str(params["additionalProperties"])
                     del params["additionalProperties"]
         if model_style == ModelStyle.COHERE:
             if USE_COHERE_OPTIMIZATION:
@@ -160,7 +165,7 @@ def convert_to_tool(
                     params["description"] = params["description"].replace(
                         "currency ", "currency (3 letter ISO code) "
                     )
-            else: 
+            else:
                 for params in item["parameters"]["properties"].values():
                     if "description" not in params:
                         params["description"] = ""
@@ -177,7 +182,7 @@ def convert_to_tool(
                         params["description"] += " Dictionary properties: " + str(params["properties"])
                         del params["properties"]
         if model_style in [
-            ModelStyle.Anthropic,
+            ModelStyle.Anthropic_Prompt,
             ModelStyle.Google,
             ModelStyle.OSSMODEL,
         ]:
@@ -349,6 +354,8 @@ def augment_prompt_by_languge(prompt, test_category):
 def language_specific_pre_processing(function, test_category, string_param):
     if type(function) is dict:
         function = [function]
+    if len(function) == 0:
+       return function
     for item in function:
         properties = item["parameters"]["properties"]
         if test_category == "java":
