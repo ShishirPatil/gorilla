@@ -8,7 +8,7 @@ import numpy as np
 from custom_exception import BadAPIStatusError
 from model_handler.handler_map import handler_map
 from tqdm import tqdm
-from eval_runner_constant import FILENAME_INDEX_MAPPING
+from eval_checker_constant import FILENAME_INDEX_MAPPING
 
 REST_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_REST.json"
 EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_executable.json"
@@ -279,13 +279,25 @@ MODEL_METADATA_MAPPING = {
         "apache-2.0",
     ],
     "command-r-plus-FC": [
-        "Command-R-Plus (FC)",
+        "Command-R-Plus (FC) (Original)",
         "https://txt.cohere.com/command-r-plus-microsoft-azure",
         "Cohere For AI",
         "cc-by-nc-4.0",
     ],
     "command-r-plus": [
-        "Command-R-Plus (Prompt)",
+        "Command-R-Plus (Prompt) (Original)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
+    "command-r-plus-FC-optimized": [
+        "Command-R-Plus (FC) (Optimized)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
+    "command-r-plus-optimized": [
+        "Command-R-Plus (Prompt) (Optimized)",
         "https://txt.cohere.com/command-r-plus-microsoft-azure",
         "Cohere For AI",
         "cc-by-nc-4.0",
@@ -538,7 +550,7 @@ def api_status_sanity_check_rest():
 
 
 def api_status_sanity_check_executable():
-    from checker import executable_checker
+    from checker import executable_checker_simple
 
     ground_truth = load_file(EXECTUABLE_API_GROUND_TRUTH_FILE_PATH)
     correct_count = 0
@@ -546,12 +558,10 @@ def api_status_sanity_check_executable():
     for data in tqdm(
         ground_truth, total=len(ground_truth), desc="API Status Test (Non-REST)"
     ):
-        status = executable_checker(
-            data["result"],
-            {
-                "execution_result": data["execution_result"],
-                "execution_result_type": data["execution_result_type"],
-            },
+        status = executable_checker_simple(
+            data["ground_truth"][0],
+            data["execution_result"][0],
+            data["execution_result_type"][0],
             True
         )
         if status["valid"]:
