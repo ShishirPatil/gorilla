@@ -59,4 +59,6 @@ handler_map = {
     "NousResearch/Hermes-2-Pro-Mistral-7B": HermesHandler,
     "command-r-plus-FC": CohereHandler,
     "command-r-plus": CohereHandler,
+    "command-r-plus-FC-optimized": CohereHandler,
+    "command-r-plus-optimized": CohereHandler,
 }
