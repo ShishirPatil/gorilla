@@ -13,6 +13,7 @@ from model_handler.hermes_handler import HermesHandler
 from model_handler.mistral_handler import MistralHandler
 from model_handler.nexus_handler import NexusHandler
 from model_handler.oss_handler import OSSHandler
+from model_handler.cohere_handler import CohereHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -56,4 +57,6 @@ handler_map = {
     "meetkai/functionary-medium-v2.4-FC": FunctionaryHandler,
     "databricks-dbrx-instruct": DatabricksHandler,
     "NousResearch/Hermes-2-Pro-Mistral-7B": HermesHandler,
+    "command-r-plus-FC": CohereHandler,
+    "command-r-plus": CohereHandler,
 }
