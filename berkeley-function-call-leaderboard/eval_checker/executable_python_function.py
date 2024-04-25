@@ -472,69 +472,69 @@ def get_active_covid_case_by_country(country):
 
 
 def get_rating_by_amazon_ASIN(ASIN):
-    """
-    Finds the rating of a product by its Amazon ASIN.
-    Args:
-        ASIN (str): The Amazon ASIN of the product.
-    """
     url = "https://real-time-amazon-data.p.rapidapi.com/product-details"
-
     querystring = {"asin": ASIN, "country": "US"}
-
     headers = {
         "X-RapidAPI-Key": api_key["RAPID-API-KEY"],
         "X-RapidAPI-Host": "real-time-amazon-data.p.rapidapi.com",
     }
 
-    response = requests.get(url, headers=headers, params=querystring)
-    try:
-        return response.json()["data"]["product_star_rating"]
-    except:
-        return response.json()
+    retries = 0
+    max_retries = 5
+    while retries < max_retries:
+        response = requests.get(url, headers=headers, params=querystring)
+        try:
+            return response.json()["data"]["product_star_rating"]
+        except KeyError:
+            wait_time = 2**retries  # Exponential backoff: 1, 2, 4 seconds
+            time.sleep(wait_time)
+            retries += 1
+
+    return None
 
 
 def get_price_by_amazon_ASIN(ASIN):
-    """
-    Finds the price of a product by its Amazon ASIN.
-    Args:
-        ASIN (str): The Amazon ASIN of the product.
-    """
     url = "https://real-time-amazon-data.p.rapidapi.com/product-details"
-
     querystring = {"asin": ASIN, "country": "US"}
-
     headers = {
         "X-RapidAPI-Key": api_key["RAPID-API-KEY"],
         "X-RapidAPI-Host": "real-time-amazon-data.p.rapidapi.com",
     }
 
-    response = requests.get(url, headers=headers, params=querystring)
-    try:
-        return response.json()["data"]["product_price"]
-    except:
-        return response.json()
+    retries = 0
+    max_retries = 5
+    while retries < max_retries:
+        response = requests.get(url, headers=headers, params=querystring)
+        try:
+            return response.json()["data"]["product_price"]
+        except KeyError:
+            wait_time = 2**retries  # Exponential backoff: 1, 2, 4 seconds
+            time.sleep(wait_time)
+            retries += 1
+
+    return None
 
 
 def get_product_name_by_amazon_ASIN(ASIN):
-    """
-    Finds the name of a product by its Amazon ASIN.
-    Args:
-        ASIN (str): The Amazon ASIN of the product.
-    """
     url = "https://real-time-amazon-data.p.rapidapi.com/product-details"
-
     querystring = {"asin": ASIN, "country": "US"}
-
     headers = {
         "X-RapidAPI-Key": api_key["RAPID-API-KEY"],
         "X-RapidAPI-Host": "real-time-amazon-data.p.rapidapi.com",
     }
 
-    response = requests.get(url, headers=headers, params=querystring)
-    try:
-        return response.json()["data"]["product_title"]
-    except:
-        return response.json()
+    retries = 0
+    max_retries = 5
+    while retries < max_retries:
+        response = requests.get(url, headers=headers, params=querystring)
+        try:
+            return response.json()["data"]["product_title"]
+        except KeyError:
+            wait_time = 2**retries  # Exponential backoff: 1, 2, 4 seconds
+            time.sleep(wait_time)
+            retries += 1
+
+    return None
 
 
 def get_company_name_by_stock_name(stock_name):
