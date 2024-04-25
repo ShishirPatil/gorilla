@@ -99,7 +99,9 @@
                         <p></p>
                     </h4>
                 </div>
-                <b><i style="font-size: 1.0em;">Last updated: 2024-04-05 <a href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard#changelog">[Change Log]</a></i></b>
+                <b><i style="font-size: 1.0em;">Last updated: 2024-04-19 <a
+                            href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard#changelog">[Change
+                            Log]</a></i></b>
                 <br></br>
 
                 <div class="preview">
@@ -437,7 +439,8 @@
                                 <code>Simple Function (Abstract Syntax Tree (AST) Evaluation)</code>
                                 since our current version of the evaluation set didn't include multiple, parallel, and
                                 parallel
-                                multiple cases of diverse programming languages.</p>
+                                multiple cases of diverse programming languages.
+                            </p>
                             <p>The final counts of each of the nine categories shown in BFCL with the composition of
                                 more
                                 granular types are shown in the following table</p>
@@ -702,10 +705,12 @@
                                 <li style="margin-bottom: 5px;">For <code>String</code>:
                                     <ul>
                                         <li>The evaluation process is <i>case-insensitive</i>.</li>
-                                        <li>All strings will be standardized before checking. This applies to both the model output and the possible answers. </li>
+                                        <li>All strings will be standardized before checking. This applies to both the
+                                            model output and the possible answers. </li>
                                         <ul>
                                             <li>All white space is removed.</li>
-                                            <li>A subset of punctuations <code>,./-_*^</code> are removed to make the evaluation more robust and accurate.</li>
+                                            <li>A subset of punctuations <code>,./-_*^</code> are removed to make the
+                                                evaluation more robust and accurate.</li>
                                         </ul>
                                         <li style="margin-bottom: 5px;">Possible date
                                             <code>["20th June", "2023-06-20", "06/20/2023", "Jun.20, 2023"]</code>
@@ -876,11 +881,27 @@
                                     <ul>
                                         <li><b>Exact match</b>: The output must exactly match the expected result.
                                         </li>
-                                        <li><b>Type match</b>: The output must match the
+                                        <li><b>Real-time match</b>: A looser form of exact match that only applies to numerical execution result, where the execution result
+                                            must be within a certain percentage threshold (20%) from the
+                                            expected result to accommodate the live updates of API responses.
+                                        </li>
+                                        <li><b>Structural match</b>: The output must match the
                                             expected data type. For example, both
                                             <code>[1, 2, 3]</code> and <code>[1.5,
-                                            2.4]</code>
-                                            are accepted if the expected type is a list.
+                                            2.4, 6]</code>
+                                            are accepted if the expected type is a <code>list</code>. In addition, the
+                                            following types have some special requirements:
+                                            <ul>
+                                                <li>
+                                                    For <code>List</code>, the length must match the expected length.
+                                                    The type of each element is not checked.
+                                                </li>
+                                                <li>
+                                                    For <code>Dict</code>, the keys must match the keys present in the
+                                                    expected output. This means no extra keys nor missing keys. The type
+                                                    of each value is not checked.
+                                                </li>
+                                            </ul>
                                         </li>
                                     </ul>
                                 </li>
@@ -933,19 +954,44 @@
                                 </ul>
                                 <p>
                                     <b>Acknowledgment</b>: Given the potential for updates in <code>REST</code> API
-                                    response
-                                    structures
-                                    by their
-                                    developers, the evaluation methodology includes regularly reviewing and updating the
-                                    ground
-                                    truth in response to such changes, ensuring the evaluation remains accurate and
+                                    response structures by their developers, the evaluation methodology has an optional
+                                    API sanity check to ensure that all
+                                    APIs involved during the evaluation process are working as expected before running
+                                    any executable category tests. Ground truth for the <code>REST</code> category are
+                                    also reviewed and updated regurlarly to ensure the evaluation remains accurate and
                                     relevant.
                                 </p>
+                        </div>
+                        <div>
+                            <h5>Multiple/Parallel/Parallel-Multiple Executable Functions Evaluation
+                            </h5>
+                            <p>The <b>multiple, parallel, or parallel-multiple executable function
+                                    evaluation process</b> extends the idea in the simple executable function
+                                evaluation.
+                            </p>
+                            <ul>
+                                <li>The evaluation process first executes each model-generated function call. Then, it
+                                    iterates over the real-time executed outputs with the ground truth execution
+                                    outputs, and calls the simple executable function evaluation procedure on each pair.
+                                    <ul>
+                                        <li>The order of model execution outputs relative to
+                                            the ground truth execution
+                                            outputs is not required.
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>The evaluation employs an <i>all-or-nothing</i> approach. Failure to find a match
+                                    across all model execution outputs for any given ground truth execution output with
+                                    its respective evaluation criteria results in a <i>failed
+                                        evaluation</i>.
+                                </li>
+                            </ul>
                         </div>
                         <div class="body">
                             <h3 id="cost">Cost & Latency</h3>
                             <p>In our recent update, we have also paid close attention to the <b>cost</b> and
-                                <b>latency</b>.</p>
+                                <b>latency</b>.
+                            </p>
 
                             <ul>
                                 <li>For models from service providers such as OpenAI, Mistral, Google, Anthropic, and
