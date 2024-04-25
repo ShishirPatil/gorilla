@@ -188,32 +188,32 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |Model | Type |
 |---|---|
 |gorilla-openfunctions-v2 | Function Calling|
-|meta-llama/Meta-Llama-3-{8B,70B}-Instruct | Prompt|
+|claude-3-{opus-20240229,sonnet-20240229,haiku-20240307}-FC | Function Calling |
+|claude-3-{opus-20240229,sonnet-20240229,haiku-20240307} | Prompt |
+|claude-{2.1,instant-1.2}| Prompt|
+|command-r-plus-FC | Function Calling|
+|command-r-plus | Prompt|
+|databrick-dbrx-instruct | Prompt|
+|deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
+|fire-function-v1-FC | Function Calling|
+|gemini-1.0-pro | Function Calling|
+|gemini-1.5-pro-preview-0409 | Function Calling|
+|glaiveai/glaive-function-calling-v1 💻| Function Calling|
 |gpt-3.5-turbo-0125-FC| Function Calling|
 |gpt-3.5-turbo-0125| Prompt|
 |gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}-FC| Function Calling|
 |gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}| Prompt|
-|glaiveai/glaive-function-calling-v1 💻| Function Calling|
-|Nexusflow-Raven-v2 | Function Calling|
-|fire-function-v1-FC | Function Calling|
+|google/gemma-7b-it 💻| Prompt|
+|meetkai/functionary-{small,medium}-v2.4-FC| Function Calling|
+|meetkai/functionary-small-v2.2-FC| Function Calling|
+|meta-llama/Meta-Llama-3-{8B,70B}-Instruct | Prompt|
 |mistral-large-2402-FC-{Any,Auto} | Function Calling|
 |mistral-large-2402 | Prompt|
 |mistral-medium-2312 | Prompt|
 |mistral-small-2402-FC-{Any,Auto} | Function Calling|
 |mistral-small-2402 | Prompt|
 |mistral-tiny-2312 | Prompt|
-|claude-3-{opus-20240229,sonnet-20240229,haiku-20240307}-FC | Function Calling |
-|claude-3-{opus-20240229,sonnet-20240229,haiku-20240307} | Prompt |
-|claude-{2.1,instant-1.2}| Prompt|
-|command-r-plus-FC | Function Calling|
-|command-r-plus | Prompt|
-|gemini-1.0-pro | Function Calling|
-|gemini-1.5-pro-preview-0409 | Function Calling|
-|databrick-dbrx-instruct | Prompt|
-|google/gemma-7b-it 💻| Prompt|
-|deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
-|meetkai/functionary-{small,medium}-v2.4-FC| Function Calling|
-|meetkai/functionary-small-v2.2-FC| Function Calling|
+|Nexusflow-Raven-v2 | Function Calling|
 |NousResearch/Hermes-2-Pro-Mistral-7B 💻| Function Calling|
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function-calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
