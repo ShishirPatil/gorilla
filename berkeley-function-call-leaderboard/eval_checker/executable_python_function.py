@@ -312,7 +312,7 @@ def get_weather_data(coordinates):
     """
     lat, long = coordinates
     url = "https://api.open-meteo.com/v1/forecast"
-    params = {"latitude": lat, "longitude": long, "current": "temperature_2m"}
+    params = {"latitude": lat, "longitude": long, "current": "temperature_2m", "temperature_unit": "fahrenheit"}
 
     response = requests.get(url, params=params)
     if response.status_code == 200:
@@ -582,11 +582,11 @@ def get_stock_history(stock_name, interval, diffandsplits="true"):
     Args:
         stock_name (str): The stock name of the product.
         interval (str): The interval of the stock history. Allows one of following : 5m|15m|30m|1h|1d|1wk|1mo|3mo
-        diffandsplits (optional bool): The diff and splits of the stock history. Allows one of following : true|false
+        diffandsplits (optional str): The diff and splits of the stock history. Allows one of following : 'true'|'false'
     """
     url = "https://yahoo-finance15.p.rapidapi.com/api/v1/markets/stock/history"
 
-    querystring = {"symbol": stock_name, "interval": interval}
+    querystring = {"symbol": stock_name, "interval": interval, "diffandsplits": diffandsplits}
 
     headers = {
         "X-RapidAPI-Key": api_key["RAPID-API-KEY"],
