@@ -2,7 +2,7 @@ import sys
 
 sys.path.append("../")
 
-from checker import ast_checker, executable_checker, executable_checker_rest
+from checker import ast_checker, exec_checker, executable_checker_rest
 from eval_runner_helper import *
 from tqdm import tqdm
 import argparse
@@ -79,7 +79,7 @@ def single_executable_file_runner(
                 continue
 
             prompt_item = prompt[i]
-            checker_result = executable_checker(decoded_result, prompt_item)
+            checker_result = exec_checker(decoded_result, prompt_item, test_category)
 
         if checker_result["valid"]:
             correct_count += 1
@@ -94,6 +94,8 @@ def single_executable_file_runner(
             temp["prompt"] = prompt[i]
             temp["model_result_raw"] = raw_result
             temp["model_result_decoded"] = decoded_result
+            if "model_executed_output" in checker_result:
+                temp["model_executed_output"] = checker_result["model_executed_output"]
             result.append(temp)
 
     accuracy = correct_count / len(model_result)
