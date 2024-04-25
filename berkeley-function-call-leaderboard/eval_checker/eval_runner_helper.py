@@ -278,6 +278,18 @@ MODEL_METADATA_MAPPING = {
         "NousResearch",
         "apache-2.0",
     ],
+    "command-r-plus-FC": [
+        "Command-R-Plus (FC)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
+    "command-r-plus": [
+        "Command-R-Plus (Prompt)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -307,6 +319,8 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-3.5-turbo-0125-FC": 1.5,
     "gemini-1.0-pro": 1,
     "databricks-dbrx-instruct": 2.25,
+    "command-r-plus-FC": 3,
+    "command-r-plus": 3,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -336,6 +350,8 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-3.5-turbo-0125-FC": 2,
     "gemini-1.0-pro": 2,
     "databricks-dbrx-instruct": 6.75,
+    "command-r-plus-FC": 15,
+    "command-r-plus": 15,
 }
 
 # The latency of the open-source models are hardcoded here.
