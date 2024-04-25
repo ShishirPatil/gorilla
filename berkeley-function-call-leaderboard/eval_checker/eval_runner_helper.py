@@ -278,6 +278,24 @@ MODEL_METADATA_MAPPING = {
         "NousResearch",
         "apache-2.0",
     ],
+    "gemini-1.5-pro-preview-0409": [
+        "Gemini-1.5-Pro (FC)",
+        "https://deepmind.google/technologies/gemini/#introduction",
+        "Google",
+        "Proprietary",
+    ],
+    "meta-llama_Meta-Llama-3-8B-Instruct":[
+        "Meta-Llama-3-8B-Instruct (Prompt)",
+        "https://llama.meta.com/llama3",
+        "Meta",
+        "Meta Llama 3 Community",
+    ],
+    "meta-llama_Meta-Llama-3-70B-Instruct":[
+        "Meta-Llama-3-70B-Instruct (Prompt)",
+        "https://llama.meta.com/llama3",
+        "Meta",
+        "Meta Llama 3 Community",
+    ],
     "command-r-plus-FC": [
         "Command-R-Plus (FC) (Original)",
         "https://txt.cohere.com/command-r-plus-microsoft-azure",
@@ -333,6 +351,8 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "databricks-dbrx-instruct": 2.25,
     "command-r-plus-FC": 3,
     "command-r-plus": 3,
+    "command-r-plus-FC-optimized": 3,
+    "command-r-plus-optimized": 3,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -364,6 +384,8 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "databricks-dbrx-instruct": 6.75,
     "command-r-plus-FC": 15,
     "command-r-plus": 15,
+    "command-r-plus-FC-optimized": 15,
+    "command-r-plus-optimized": 15,
 }
 
 # The latency of the open-source models are hardcoded here.
