@@ -287,7 +287,7 @@ def calculate_future_value(present_value, interest_rate, periods):
         interest_rate (integer): The interest rate of the investment.
         periods (integer): The number of periods.
     """
-    return present_value * (1 + interest_rate / 100) ** periods
+    return present_value * (1 + interest_rate) ** periods
 
 
 def sort_array(array, reverse=False):
@@ -338,7 +338,7 @@ def get_coordinates_from_city(city_name):
     """
     time.sleep(2)  # To avoid rate limiting
     url = "https://geocode.maps.co/search"
-    params = {"q": city_name}
+    params = {"q": city_name, "api_key": api_key["GEOCODE-API-KEY"]}
 
     response = requests.get(url, params=params)
     if response.status_code == 200:
