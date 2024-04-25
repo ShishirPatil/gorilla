@@ -131,6 +131,7 @@ UNDERSCORE_TO_DOT = [
     "mistral-small-2402-FC-Auto",
     "mistral-small-2402-FC",
     "gemini-1.0-pro",
+    "gemini-1.5-pro-preview-0409",
     "meetkai/functionary-small-v2.2-FC",
     "meetkai/functionary-medium-v2.2-FC",
     "meetkai/functionary-small-v2.4-FC",
