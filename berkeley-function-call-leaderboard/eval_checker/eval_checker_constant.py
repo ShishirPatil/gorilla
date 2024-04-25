@@ -1,3 +1,5 @@
+REAL_TIME_MATCH_ALLOWED_DIFFERENCE = 0.2
+
 FILENAME_INDEX_MAPPING = {
     "executable_parallel_function": (0, 49),
     "parallel_multiple_function": (50, 249),

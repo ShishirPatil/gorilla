@@ -8,7 +8,7 @@ import numpy as np
 from custom_exception import BadAPIStatusError
 from model_handler.handler_map import handler_map
 from tqdm import tqdm
-from eval_runner_constant import FILENAME_INDEX_MAPPING
+from eval_checker_constant import FILENAME_INDEX_MAPPING
 
 REST_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_REST.json"
 EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_executable.json"
@@ -279,13 +279,25 @@ MODEL_METADATA_MAPPING = {
         "apache-2.0",
     ],
     "command-r-plus-FC": [
-        "Command-R-Plus (FC)",
+        "Command-R-Plus (FC) (Original)",
         "https://txt.cohere.com/command-r-plus-microsoft-azure",
         "Cohere For AI",
         "cc-by-nc-4.0",
     ],
     "command-r-plus": [
-        "Command-R-Plus (Prompt)",
+        "Command-R-Plus (Prompt) (Original)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
+    "command-r-plus-FC-optimized": [
+        "Command-R-Plus (FC) (Optimized)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
+    "command-r-plus-optimized": [
+        "Command-R-Plus (Prompt) (Optimized)",
         "https://txt.cohere.com/command-r-plus-microsoft-azure",
         "Cohere For AI",
         "cc-by-nc-4.0",
@@ -521,7 +533,9 @@ def api_status_sanity_check_rest():
     correct_count = 0
     errors = []
     for idx, data in tqdm(
-        enumerate(ground_truth_replaced), total=len(ground_truth_replaced)
+        enumerate(ground_truth_replaced),
+        total=len(ground_truth_replaced),
+        desc="API Status Test (REST)",
     ):
         status = executable_checker_rest(data["ground_truth"], idx)
         if status["valid"]:
@@ -536,18 +550,19 @@ def api_status_sanity_check_rest():
 
 
 def api_status_sanity_check_executable():
-    from checker import executable_checker
+    from checker import executable_checker_simple
 
     ground_truth = load_file(EXECTUABLE_API_GROUND_TRUTH_FILE_PATH)
     correct_count = 0
     errors = []
-    for data in tqdm(ground_truth, total=len(ground_truth)):
-        status = executable_checker(
-            data["result"],
-            {
-                "execution_result": data["execution_result"],
-                "execution_result_type": data["execution_result_type"],
-            },
+    for data in tqdm(
+        ground_truth, total=len(ground_truth), desc="API Status Test (Non-REST)"
+    ):
+        status = executable_checker_simple(
+            data["ground_truth"][0],
+            data["execution_result"][0],
+            data["execution_result_type"][0],
+            True,
         )
         if status["valid"]:
             correct_count += 1
@@ -558,6 +573,35 @@ def api_status_sanity_check_executable():
         [print("Data:", data, "\nError:", status["error"]) for data, status in errors]
         error_msg = f"API Status Test Failed for Executable Section. {len(ground_truth) - correct_count} out of {len(ground_truth)} API behaviors are not as expected. Be careful with executable test category results; they may be inaccurate."
         raise BadAPIStatusError(error_msg)
+
+
+def get_executable_expected_output(prompt_file_path):
+    # Before we run the evaluation, we need to add the "execution_result" field to the prompt file, using the ground truth data.
+    prompt_content = load_file(prompt_file_path)
+    exec_dict = {}
+    for item in tqdm(prompt_content, desc="Getting Executable Expected Output"):
+        execution_result = []
+        ground_truth = item["ground_truth"]
+        for i in range(len(ground_truth)):
+            exec(
+                "from executable_python_function import *"
+                + "\nresult="
+                + ground_truth[i],
+                exec_dict,
+            )
+            execution_result.append(exec_dict["result"])
+        item["execution_result"] = execution_result
+
+    write_list_of_dicts_to_file(prompt_file_path, prompt_content)
+
+
+def clean_up_executable_expected_output(prompt_path, categories):
+    for category in categories:
+        prompt_file = find_file_with_suffix(prompt_path, category)
+        prompt_content = load_file(prompt_file)
+        for item in prompt_content:
+            del item["execution_result"]
+        write_list_of_dicts_to_file(prompt_file, prompt_content)
 
 
 def calculate_weighted_accuracy(accuracy_dict_list):
