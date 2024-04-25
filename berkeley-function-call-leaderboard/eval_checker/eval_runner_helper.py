@@ -348,11 +348,14 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-3.5-turbo-0125": 1.5,
     "gpt-3.5-turbo-0125-FC": 1.5,
     "gemini-1.0-pro": 1,
+    "gemini-1.5-pro": 7,
     "databricks-dbrx-instruct": 2.25,
     "command-r-plus-FC": 3,
     "command-r-plus": 3,
     "command-r-plus-FC-optimized": 3,
     "command-r-plus-optimized": 3,
+    "meta-llama/Meta-Llama-3-8B-Instruct": 0.15,
+    "meta-llama/Meta-Llama-3-70B-Instruct": 1,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -381,11 +384,14 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-3.5-turbo-0125": 2,
     "gpt-3.5-turbo-0125-FC": 2,
     "gemini-1.0-pro": 2,
+    "gemini-1.5-pro": 14,
     "databricks-dbrx-instruct": 6.75,
     "command-r-plus-FC": 15,
     "command-r-plus": 15,
     "command-r-plus-FC-optimized": 15,
     "command-r-plus-optimized": 15,
+    "meta-llama/Meta-Llama-3-8B-Instruct": 0.15,
+    "meta-llama/Meta-Llama-3-70B-Instruct": 1,
 }
 
 # The latency of the open-source models are hardcoded here.
@@ -396,6 +402,8 @@ OSS_LATENCY = {
     "google/gemma-7b-it": 161,
     "glaiveai/glaive-function-calling-v1": 99,
     "NousResearch/Hermes-2-Pro-Mistral-7B": 666,
+    "meta-llama/Meta-Llama-3-8B-Instruct": 73,
+    "meta-llama/Meta-Llama-3-70B-Instruct": 304,
 }
 
 OSS_INPUT_TOKEN = {
