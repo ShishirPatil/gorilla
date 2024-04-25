@@ -307,24 +307,14 @@ def resolve_ast_by_type(value):
     elif isinstance(
         value, ast.BinOp
     ):  # Added this condition to handle function calls as arguments
-        binops = value
-        left = resolve_ast_by_type(binops.left)
-        if isinstance(binops.op, ast.Add):
-            operator = "+"
-        elif isinstance(binops.op, ast.Sub):
-            operator = "-"
-        elif isinstance(binops.op, ast.Mult):
-            operator = "*"
-        elif isinstance(binops.op, ast.Div):
-            operator = "/"
-        elif isinstance(binops.op, ast.Mod):
-            operator = "%"
-        right = resolve_ast_by_type(binops.right)
-        output = f"{left} {operator} {right}"
+        output = eval(ast.unparse(value))
     elif isinstance(value, ast.Name):
         output = value.id
     elif isinstance(value, ast.Call):
-        output = resolve_ast_call(value)
+        if len(value.keywords)==0:
+            output = ast.unparse(value)
+        else:
+            output = resolve_ast_call(value)
     elif isinstance(value, ast.Tuple):
         output = tuple(resolve_ast_by_type(v) for v in value.elts)
     elif isinstance(value, ast.Lambda):
