@@ -1,0 +1,34 @@
+version: 1
+disable_existing_loggers: False
+
+formatters:
+    simple:
+        format: '%(asctime)s %(levelname)5s [%(progress)4s] %(name)s %(message)s'
+    colored:
+        format: "%(asctime)s %(levelname)5s [%(progress)4s] %(name)s %(message)s"
+        class: coloredlogs.ColoredFormatter
+
+handlers:
+    console:
+        class: logging.StreamHandler
+        level: INFO
+        formatter: colored
+        stream: ext://sys.stdout
+
+    file:
+        class: logging.FileHandler
+        level: DEBUG
+        formatter: simple
+        filename: raft.log
+
+root:
+    level: INFO
+    handlers: [console, file]
+
+loggers:
+    raft:
+        level: INFO
+    langchain_community.utils.math:
+        level: INFO
+    httpx:
+        level: WARN

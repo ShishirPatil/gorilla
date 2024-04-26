@@ -3,6 +3,9 @@ from typing import Any
 from dotenv import load_dotenv
 from langchain_openai import OpenAIEmbeddings, AzureOpenAIEmbeddings
 from openai import AzureOpenAI, OpenAI
+import logging
+
+logger = logging.getLogger("client_utils")
 
 load_dotenv()  # take environment variables from .env.
 
@@ -29,7 +32,7 @@ def build_langchain_embeddings(**kwargs: Any) -> OpenAIEmbeddings:
 def is_azure():
     azure = "AZURE_OPENAI_ENDPOINT" in env or "AZURE_OPENAI_KEY" in env or "AZURE_OPENAI_AD_TOKEN" in env
     if azure:
-        print("Using Azure OpenAI environment variables")
+        logger.debug("Using Azure OpenAI environment variables")
     else:
-        print("Using OpenAI environment variables.")
+        logger.debug("Using OpenAI environment variables")
     return azure
