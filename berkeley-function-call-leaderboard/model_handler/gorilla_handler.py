@@ -48,6 +48,8 @@ class GorillaHandler(BaseHandler):
             functions = [functions]
         try:
             result, metadata = self._get_gorilla_response(prompt, functions)
+        except KeyboardInterrupt:
+            raise KeyboardInterrupt
         except:
             result = "Error"
             metadata = {"input_tokens": 0, "output_tokens": 0, "latency": 0}

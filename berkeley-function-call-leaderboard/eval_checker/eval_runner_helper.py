@@ -1,8 +1,17 @@
-import json
-from model_handler.handler_map import handler_map
-import os
 import glob
+import json
+import os
 import statistics
+import subprocess
+
+import numpy as np
+from custom_exception import BadAPIStatusError
+from model_handler.handler_map import handler_map
+from tqdm import tqdm
+from eval_checker_constant import FILENAME_INDEX_MAPPING
+
+REST_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_REST.json"
+EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_executable.json"
 
 COLUMNS = [
     "Rank",
@@ -30,8 +39,10 @@ COLUMNS = [
     "Cost ($ Per 1k Function Calls)",
     "Latency Mean (s)",
     "Latency Standard Deviation (s)",
+    "Latency 95th Percentile (s)",
 ]
 
+# Note that we don't need to substitute `_` with `/` in the model name here.
 MODEL_METADATA_MAPPING = {
     "gpt-4-1106-preview-FC": [
         "GPT-4-1106-Preview (FC)",
@@ -57,6 +68,18 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
+    "gpt-4-turbo-2024-04-09-FC": [
+        "GPT-4-turbo-2024-04-09 (FC)",
+        "https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo",
+        "OpenAI",
+        "Proprietary",
+    ],
+    "gpt-4-turbo-2024-04-09": [
+        "GPT-4-turbo-2024-04-09 (Prompt)",
+        "https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo",
+        "OpenAI",
+        "Proprietary",
+    ],
     "gorilla-openfunctions-v2": [
         "Gorilla-OpenFunctions-v2 (FC)",
         "https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html",
@@ -64,7 +87,7 @@ MODEL_METADATA_MAPPING = {
         "Apache 2.0",
     ],
     "claude-3-opus-20240229-FC": [
-        "Claude-3-Opus-20240229 (FC)",
+        "Claude-3-Opus-20240229 (FC tools-2024-04-04)",
         "https://www.anthropic.com/news/claude-3-family",
         "Anthropic",
         "Proprietary",
@@ -94,7 +117,7 @@ MODEL_METADATA_MAPPING = {
         "Proprietary",
     ],
     "claude-3-sonnet-20240229-FC": [
-        "Claude-3-Sonnet-20240229 (FC)",
+        "Claude-3-Sonnet-20240229 (FC tools-2024-04-04)",
         "https://www.anthropic.com/news/claude-3-family",
         "Anthropic",
         "Proprietary",
@@ -106,7 +129,13 @@ MODEL_METADATA_MAPPING = {
         "Proprietary",
     ],
     "claude-3-haiku-20240307-FC": [
-        "Claude-3-Haiku-20240307 (FC)",
+        "Claude-3-Haiku-20240307 (FC tools-2024-04-04)",
+        "https://www.anthropic.com/news/claude-3-family",
+        "Anthropic",
+        "Proprietary",
+    ],
+    "claude-3-haiku-20240307": [
+        "Claude-3-Haiku-20240307 (Prompt)",
         "https://www.anthropic.com/news/claude-3-family",
         "Anthropic",
         "Proprietary",
@@ -243,6 +272,36 @@ MODEL_METADATA_MAPPING = {
         "Databricks",
         "Databricks Open Model",
     ],
+    "NousResearch_Hermes-2-Pro-Mistral-7B": [
+        "Hermes-2-Pro-Mistral-7B (FC)",
+        "https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B",
+        "NousResearch",
+        "apache-2.0",
+    ],
+    "command-r-plus-FC": [
+        "Command-R-Plus (FC) (Original)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
+    "command-r-plus": [
+        "Command-R-Plus (Prompt) (Original)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
+    "command-r-plus-FC-optimized": [
+        "Command-R-Plus (FC) (Optimized)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
+    "command-r-plus-optimized": [
+        "Command-R-Plus (Prompt) (Optimized)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -264,12 +323,16 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-4-1106-preview": 10,
     "gpt-4-0125-preview": 10,
     "gpt-4-0125-preview-FC": 10,
+    "gpt-4-turbo-2024-04-09-FC": 10,
+    "gpt-4-turbo-2024-04-09": 10,
     "gpt-4-0613": 30,
     "gpt-4-0613-FC": 30,
     "gpt-3.5-turbo-0125": 1.5,
     "gpt-3.5-turbo-0125-FC": 1.5,
     "gemini-1.0-pro": 1,
     "databricks-dbrx-instruct": 2.25,
+    "command-r-plus-FC": 3,
+    "command-r-plus": 3,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -287,6 +350,8 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-small-2402-FC-Any": 6,
     "mistral-small-2402-FC-Auto": 6,
     "mistral-tiny-2312": 0.25,
+    "gpt-4-turbo-2024-04-09-FC": 30,
+    "gpt-4-turbo-2024-04-09": 30,
     "gpt-4-1106-preview": 30,
     "gpt-4-1106-preview-FC": 30,
     "gpt-4-0125-preview-FC": 30,
@@ -297,8 +362,9 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-3.5-turbo-0125-FC": 2,
     "gemini-1.0-pro": 2,
     "databricks-dbrx-instruct": 6.75,
+    "command-r-plus-FC": 15,
+    "command-r-plus": 15,
 }
-
 
 # The latency of the open-source models are hardcoded here.
 # Because we do batching when generating the data, so the latency is not accurate from the result data.
@@ -307,6 +373,7 @@ OSS_LATENCY = {
     "deepseek-ai/deepseek-coder-6.7b-instruct": 2040,
     "google/gemma-7b-it": 161,
     "glaiveai/glaive-function-calling-v1": 99,
+    "NousResearch/Hermes-2-Pro-Mistral-7B": 666,
 }
 
 OSS_INPUT_TOKEN = {
@@ -333,24 +400,6 @@ A100_PRICE_PER_HOUR = (
 )  # Price got from AZure, 10.879 per hour for 8 A100, 3 years reserved
 
 
-FILENAME_INDEX_MAPPING = {
-    "executable_parallel_function": (0, 49),
-    "parallel_multiple_function": (50, 249),
-    "executable_simple": (250, 349),
-    "rest": (350, 419),
-    "sql": (420, 519),
-    "parallel_function": (520, 719),
-    "chatable": (720, 919),
-    "java": (920, 1019),
-    "javascript": (1020, 1069),
-    "executable_multiple_function": (1070, 1119),
-    "simple": (1120, 1519),
-    "relevance": (1520, 1759),
-    "executable_parallel_multiple_function": (1760, 1799),
-    "multiple_function": (1800, 1999),
-}
-
-
 def extract_after_test(input_string):
     parts = input_string.split("_test_")[1].split("_result")[0].split(".json")[0]
     return parts
@@ -365,6 +414,10 @@ def find_file_with_suffix(folder_path, suffix):
 
 def is_executable(test_category):
     return "executable" in test_category or "rest" in test_category
+
+
+def is_rest(test_category):
+    return "rest" in test_category
 
 
 def is_relevance(test_category):
@@ -400,15 +453,16 @@ def get_handler(model_name):
     return handler_map[model_name](model_name)
 
 
-def write_list_of_dicts_to_file(subdir, filename, data):
-    # Ensure the subdirectory exists
-    os.makedirs(subdir, exist_ok=True)
+def write_list_of_dicts_to_file(filename, data, subdir=None):
+    if subdir:
+        # Ensure the subdirectory exists
+        os.makedirs(subdir, exist_ok=True)
 
-    # Construct the full path to the file
-    filepath = os.path.join(subdir, filename)
+        # Construct the full path to the file
+        filename = os.path.join(subdir, filename)
+
     # Write the list of dictionaries to the file in JSON format
-
-    with open(filepath, "w") as f:
+    with open(filename, "w") as f:
         for i, entry in enumerate(data):
             json_str = json.dumps(entry)
             f.write(json_str)
@@ -456,6 +510,98 @@ def is_empty_output(decoded_output):
         return True
     if len(decoded_output) == 1 and len(decoded_output[0]) == 0:
         return True
+
+
+def api_status_sanity_check_rest():
+
+    # We only need to import the executable_checker_rest in this function. So a local import is used.
+    from checker import executable_checker_rest
+
+    ground_truth_dummy = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
+
+    # Use the ground truth data to make sure the API is working correctly
+    command = f"cd .. ; python apply_function_credential_config.py --input-file ./eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
+    try:
+        subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
+    except subprocess.CalledProcessError as e:
+        write_list_of_dicts_to_file(REST_API_GROUND_TRUTH_FILE_PATH, ground_truth_dummy)
+        raise RuntimeError(e.stderr) from e
+
+    ground_truth_replaced = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
+    write_list_of_dicts_to_file(REST_API_GROUND_TRUTH_FILE_PATH, ground_truth_dummy)
+
+    correct_count = 0
+    errors = []
+    for idx, data in tqdm(
+        enumerate(ground_truth_replaced),
+        total=len(ground_truth_replaced),
+        desc="API Status Test (REST)",
+    ):
+        status = executable_checker_rest(data["ground_truth"], idx)
+        if status["valid"]:
+            correct_count += 1
+        else:
+            errors.append((data, status))
+
+    if correct_count != len(ground_truth_replaced):
+        [print("Data:", data, "\nError:", status["error"]) for data, status in errors]
+        error_msg = f"API Status Test Failed for REST Section. {len(ground_truth_replaced) - correct_count} out of {len(ground_truth_replaced)} API behaviors are not as expected. Be careful with executable test category results; they may be inaccurate."
+        raise BadAPIStatusError(error_msg)
+
+
+def api_status_sanity_check_executable():
+    from checker import executable_checker_simple
+
+    ground_truth = load_file(EXECTUABLE_API_GROUND_TRUTH_FILE_PATH)
+    correct_count = 0
+    errors = []
+    for data in tqdm(
+        ground_truth, total=len(ground_truth), desc="API Status Test (Non-REST)"
+    ):
+        status = executable_checker_simple(
+            data["ground_truth"][0],
+            data["execution_result"][0],
+            data["execution_result_type"][0],
+            True,
+        )
+        if status["valid"]:
+            correct_count += 1
+        else:
+            errors.append((data, status))
+
+    if correct_count != len(ground_truth):
+        [print("Data:", data, "\nError:", status["error"]) for data, status in errors]
+        error_msg = f"API Status Test Failed for Executable Section. {len(ground_truth) - correct_count} out of {len(ground_truth)} API behaviors are not as expected. Be careful with executable test category results; they may be inaccurate."
+        raise BadAPIStatusError(error_msg)
+
+
+def get_executable_expected_output(prompt_file_path):
+    # Before we run the evaluation, we need to add the "execution_result" field to the prompt file, using the ground truth data.
+    prompt_content = load_file(prompt_file_path)
+    exec_dict = {}
+    for item in tqdm(prompt_content, desc="Getting Executable Expected Output"):
+        execution_result = []
+        ground_truth = item["ground_truth"]
+        for i in range(len(ground_truth)):
+            exec(
+                "from executable_python_function import *"
+                + "\nresult="
+                + ground_truth[i],
+                exec_dict,
+            )
+            execution_result.append(exec_dict["result"])
+        item["execution_result"] = execution_result
+
+    write_list_of_dicts_to_file(prompt_file_path, prompt_content)
+
+
+def clean_up_executable_expected_output(prompt_path, categories):
+    for category in categories:
+        prompt_file = find_file_with_suffix(prompt_path, category)
+        prompt_content = load_file(prompt_file)
+        for item in prompt_content:
+            del item["execution_result"]
+        write_list_of_dicts_to_file(prompt_file, prompt_content)
 
 
 def calculate_weighted_accuracy(accuracy_dict_list):
@@ -506,7 +652,7 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
             if data["latency"] > 60:
                 print("*" * 100)
                 print(
-                    f"Warning: Latency for one of {model_name} response is {data['latency']}."
+                    f"❗️Warning: Latency for one of {model_name} response is {data['latency']}."
                 )
                 print("*" * 100)
         if "input_token_count" in data:
@@ -521,7 +667,7 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
 
 def get_metric(model_name, cost_data, latency_data):
 
-    cost, mean_latency, std_latency = "N/A", "N/A", "N/A"
+    cost, mean_latency, std_latency, percentile_95_latency = "N/A", "N/A", "N/A", "N/A"
 
     if (
         model_name in INPUT_PRICE_PER_MILLION_TOKEN
@@ -538,7 +684,11 @@ def get_metric(model_name, cost_data, latency_data):
         cost = round(cost, 2)
 
     if model_name in OSS_LATENCY:
-        mean_latency, std_latency = OSS_LATENCY[model_name] / 1700, "N/A"
+        mean_latency, std_latency, percentile_95_latency = (
+            OSS_LATENCY[model_name] / 1700,
+            "N/A",
+            "N/A",
+        )
         mean_latency = round(mean_latency, 2)
         cost = mean_latency * 1000 * A100_PRICE_PER_HOUR / 3600
         cost = round(cost, 2)
@@ -546,8 +696,10 @@ def get_metric(model_name, cost_data, latency_data):
     elif len(latency_data["data"]) != 0:
         mean_latency = statistics.mean(latency_data["data"])
         std_latency = statistics.stdev(latency_data["data"])
+        percentile_95_latency = np.percentile(latency_data["data"], 95)
         mean_latency = round(mean_latency, 2)
         std_latency = round(std_latency, 2)
+        percentile_95_latency = round(percentile_95_latency, 2)
 
         if model_name not in INPUT_PRICE_PER_MILLION_TOKEN:
             cost = sum(latency_data["data"]) * A100_PRICE_PER_HOUR / 3600
@@ -556,7 +708,7 @@ def get_metric(model_name, cost_data, latency_data):
     if model_name in NO_COST_MODELS:
         cost = "N/A"
 
-    return cost, mean_latency, std_latency
+    return cost, mean_latency, std_latency, percentile_95_latency
 
 
 def generate_leaderboard_csv(leaderboard_table, output_path):
@@ -628,14 +780,14 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
             ]
         )
 
-        cost, latency_mean, latency_std = get_metric(
+        cost, latency_mean, latency_std, percentile_95_latency = get_metric(
             model_name_escaped, cost_data, latency_data
         )
 
         if overall_accuracy["total_count"] != 1700:
             print("-" * 100)
             print(
-                f"Warning: Total count for {model_name} is {overall_accuracy['total_count']}"
+                f"❗️Warning: Total count for {model_name} is {overall_accuracy['total_count']}"
             )
 
         data.append(
@@ -665,6 +817,7 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
                 cost,
                 latency_mean,
                 latency_std,
+                percentile_95_latency,
             ]
         )
 
@@ -672,15 +825,14 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
     for i in range(len(data)):
         data[i][0] = str(i + 1)
         data[i][1] = "{:.2f}%".format(data[i][1] * 100)
-        for j in range(6, len(data[i]) - 3):
+        for j in range(6, len(data[i]) - 4):
             data[i][j] = "{:.2f}%".format(data[i][j] * 100)
-        for j in range(len(data[i]) - 3, len(data[i])):
+        for j in range(len(data[i]) - 4, len(data[i])):
             data[i][j] = str(data[i][j])
 
     data.insert(0, COLUMNS)
 
     filepath = os.path.join(output_path, "data.csv")
-
     with open(filepath, "w") as f:
         for i, row in enumerate(data):
             if i < len(data) - 1:

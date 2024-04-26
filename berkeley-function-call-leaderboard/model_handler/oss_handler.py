@@ -1,14 +1,17 @@
+import json
+import os
+
+import ray
+import shortuuid
+import torch
+from eval_checker.eval_checker_constant import FILENAME_INDEX_MAPPING
 from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
-from model_handler.constant import MODEL_ID_DICT
 from model_handler.utils import (
     ast_parse,
     augment_prompt_by_languge,
     language_specific_pre_processing,
 )
-from tqdm import tqdm
-import shortuuid, ray, os, json, torch
-
 
 class OSSHandler(BaseHandler):
     def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
@@ -19,7 +22,7 @@ class OSSHandler(BaseHandler):
     def _init_model(self):
         ray.init(ignore_reinit_error=True, num_cpus=8)
 
-    def _format_prompt(prompt, function):
+    def _format_prompt(prompt, function, test_category):
         SYSTEM_PROMPT = """
             You are an helpful assistant who has access to the following functions to help the user, you can use the functions if needed-
         """
@@ -41,12 +44,18 @@ class OSSHandler(BaseHandler):
         max_tokens,
         top_p,
         format_prompt_func,
+        index,
     ):
         from vllm import LLM, SamplingParams
 
         prompts = []
         ans_jsons = []
         for line in question_jsons:
+            for key, value in FILENAME_INDEX_MAPPING.items():
+                start, end = value
+                if index >= start and index < end:
+                    test_category = key
+                    break
             ques_json = line
             prompt = augment_prompt_by_languge(ques_json["question"], test_category)
             functions = language_specific_pre_processing(
@@ -95,6 +104,7 @@ class OSSHandler(BaseHandler):
                     self.max_tokens,
                     self.top_p,
                     format_prompt_func,
+                    i,
                 )
             )
         ans_jsons = []

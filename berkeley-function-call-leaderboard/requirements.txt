@@ -7,3 +7,5 @@ shortuuid
 mistralai
 anthropic
 openai
+numpy
+cohere~=5.2.5
