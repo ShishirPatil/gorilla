@@ -43,7 +43,10 @@ class GeminiHandler(BaseHandler):
         }
 
         # NOTE: To run the gemini model, you need to provide your own GCP project ID, which can be found in the GCP console.
-        API_URL = "https://us-central1-aiplatform.googleapis.com/v1beta1/projects/{YOUR_GCP_PROJECT_ID_HERE}/locations/us-central1/publishers/google/models/gemini-1.0-pro:generateContent"
+        if self.model_name == "gemini-1.5-pro-preview-0409":
+            API_URL = "https://us-central1-aiplatform.googleapis.com/v1beta1/projects/{YOUR_GCP_PROJECT_ID_HERE}/locations/us-central1/publishers/google/models/gemini-1.5-pro-preview-0409:generateContent"
+        else:
+            API_URL = "https://us-central1-aiplatform.googleapis.com/v1beta1/projects/{YOUR_GCP_PROJECT_ID_HERE}/locations/us-central1/publishers/google/models/gemini-1.0-pro:generateContent"
         headers = {
             "Authorization": "Bearer " + token,
             "Content-Type": "application/json",
