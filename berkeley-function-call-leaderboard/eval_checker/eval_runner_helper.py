@@ -401,23 +401,13 @@ OSS_LATENCY = {
     "meta-llama/Meta-Llama-3-70B-Instruct": 307,
 }
 
-OSS_INPUT_TOKEN = {
-    "deepseek-ai/deepseek-coder-6.7b-instruct": 884190,
-    "google/gemma-7b-it": 733701,
-}
-
-OSS_OUTPUT_TOKEN = {
-    "deepseek-ai/deepseek-coder-6.7b-instruct": 2009421,
-    "google/gemma-7b-it": 130206,
-}
-
 
 NO_COST_MODELS = [
     "Nexusflow-Raven-v2",
     "fire-function-v1-FC",
-    "meetkai_functionary-medium-v2.4-FC",
-    "meetkai_functionary-small-v2.2-FC",
-    "meetkai_functionary-small-v2.4-FC",
+    "meetkai/functionary-medium-v2.4-FC",
+    "meetkai/functionary-small-v2.2-FC",
+    "meetkai/functionary-small-v2.4-FC",
 ]
 
 # Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
@@ -729,7 +719,7 @@ def get_metric(model_name, cost_data, latency_data):
         if model_name not in INPUT_PRICE_PER_MILLION_TOKEN:
             cost = sum(latency_data["data"]) * V100_x8_PRICE_PER_HOUR / 3600
             cost = round(cost, 2)
-
+            
     if model_name in NO_COST_MODELS:
         cost = "N/A"
 
