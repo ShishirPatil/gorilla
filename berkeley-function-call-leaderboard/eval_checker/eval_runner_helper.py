@@ -336,6 +336,7 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-medium-2312": 2.7,
     "mistral-small-2402-FC-Any": 2,
     "mistral-small-2402-FC-Auto": 2,
+    "mistral-small-2402": 2,
     "mistral-tiny-2312": 0.25,
     "gpt-4-1106-preview-FC": 10,
     "gpt-4-1106-preview": 10,
@@ -367,6 +368,7 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-instant-1.2": 5.51,
     "mistral-large-2402-FC-Any": 24,
     "mistral-large-2402-FC-Auto": 24,
+    "mistral-small-2402": 24,
     "mistral-medium-2312": 8.1,
     "mistral-small-2402-FC-Any": 6,
     "mistral-small-2402-FC-Auto": 6,
@@ -720,7 +722,7 @@ def get_metric(model_name, cost_data, latency_data):
         if model_name not in INPUT_PRICE_PER_MILLION_TOKEN:
             cost = sum(latency_data["data"]) * V100_x8_PRICE_PER_HOUR / 3600
             cost = round(cost, 2)
-            
+
     if model_name in NO_COST_MODELS:
         cost = "N/A"
 
