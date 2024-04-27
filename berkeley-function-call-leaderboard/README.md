@@ -230,7 +230,7 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 ## Changelog
 
-* [April 27, 2024] [#390](https://github.com/ShishirPatil/gorilla/pull/390): Bug fix in cost and latency calculation for open-source models, which are now all calculated when serving the model with [vLLM](https://github.com/vllm-project/vllm) using 8 V100 GPUs for consistency.
+* [April 27, 2024] [#390](https://github.com/ShishirPatil/gorilla/pull/390): Bug fix in cost and latency calculation for open-source models, which are now all calculated when serving the model with [vLLM](https://github.com/vllm-project/vllm) using 8 V100 GPUs for consistency. $$\text{Cost} = (\text{Latency per 1000 function call} * \text{8xV100 pay-as-you-go-price per hour}) / 3600$$
 * [April 25, 2024] [#386](https://github.com/ShishirPatil/gorilla/pull/386): Add 5 new models to the leaderboard: `meta-llama/Meta-Llama-3-8B-Instruct`, `meta-llama/Meta-Llama-3-70B-Instruct`, `gemini-1.5-pro-preview-0409`, `command-r-plus`, `command-r-plus-FC`.
 * [April 19, 2024] [#377](https://github.com/ShishirPatil/gorilla/pull/377): 
     - Bug fix for the evaluation dataset in the executable test categories. This includes updates to both prompts and function docs. 
