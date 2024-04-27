@@ -99,7 +99,7 @@
                         <p></p>
                     </h4>
                 </div>
-                <b><i style="font-size: 1.0em;">Last updated: 2024-04-19 <a
+                <b><i style="font-size: 1.0em;">Last updated: 2024-04-27 <a
                             href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard#changelog">[Change
                             Log]</a></i></b>
                 <br></br>
@@ -881,7 +881,8 @@
                                     <ul>
                                         <li><b>Exact match</b>: The output must exactly match the expected result.
                                         </li>
-                                        <li><b>Real-time match</b>: A looser form of exact match that only applies to numerical execution result, where the execution result
+                                        <li><b>Real-time match</b>: A looser form of exact match that only applies to
+                                            numerical execution result, where the execution result
                                             must be within a certain percentage threshold (20%) from the
                                             expected result to accommodate the live updates of API responses.
                                         </li>
@@ -1011,14 +1012,14 @@
                                 <li>For models that we evaluate using local hosting. This includes Deepseek, Gemma, and
                                     etc.:
                                     <ul>
-                                        <li><b>Latency</b>: For ~7B Models, we evaluated on single A100 40GB. For ~40B
-                                            Models, we evaluated on 4*A100 40GB. Since we batched and evaluated the
+                                        <li><b>Latency</b>: We calculated the number when serving the model with vLLM
+                                            using 8 V100 GPUs. Since we batched and evaluated the
                                             model, we derive latency by dividing the total time by the number of
                                             evaluation dataset entries.
                                         </li>
                                         <li><b>Cost</b>: Since the open source model does not have a price tag, we
                                             estimate the cost by:
-                                            <img src="../assets/img/blog_post_8_gpu_formula.jpg" width="50%">
+                                            <img src="../assets/img/blog_post_8_gpu_formula.jpg" width="90%">
                                         </li>
                                     </ul>
                                 </li>
