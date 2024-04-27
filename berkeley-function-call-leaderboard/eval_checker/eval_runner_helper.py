@@ -284,13 +284,13 @@ MODEL_METADATA_MAPPING = {
         "Google",
         "Proprietary",
     ],
-    "meta-llama_Meta-Llama-3-8B-Instruct":[
+    "meta-llama_Meta-Llama-3-8B-Instruct": [
         "Meta-Llama-3-8B-Instruct (Prompt)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama_Meta-Llama-3-70B-Instruct":[
+    "meta-llama_Meta-Llama-3-70B-Instruct": [
         "Meta-Llama-3-70B-Instruct (Prompt)",
         "https://llama.meta.com/llama3",
         "Meta",
@@ -354,8 +354,6 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus": 3,
     "command-r-plus-FC-optimized": 3,
     "command-r-plus-optimized": 3,
-    "meta-llama/Meta-Llama-3-8B-Instruct": 0.15,
-    "meta-llama/Meta-Llama-3-70B-Instruct": 1,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -390,20 +388,17 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus": 15,
     "command-r-plus-FC-optimized": 15,
     "command-r-plus-optimized": 15,
-    "meta-llama/Meta-Llama-3-8B-Instruct": 0.15,
-    "meta-llama/Meta-Llama-3-70B-Instruct": 1,
 }
 
 # The latency of the open-source models are hardcoded here.
 # Because we do batching when generating the data, so the latency is not accurate from the result data.
-# This is the latency for the whole batch of data.
+# This is the latency for the whole batch of data, when using 8 V100 GPUs.
 OSS_LATENCY = {
-    "deepseek-ai/deepseek-coder-6.7b-instruct": 2040,
-    "google/gemma-7b-it": 161,
-    "glaiveai/glaive-function-calling-v1": 99,
-    "NousResearch/Hermes-2-Pro-Mistral-7B": 666,
+    "deepseek-ai/deepseek-coder-6.7b-instruct": 909,
+    "google/gemma-7b-it": 95,
+    "NousResearch/Hermes-2-Pro-Mistral-7B": 135,
     "meta-llama/Meta-Llama-3-8B-Instruct": 73,
-    "meta-llama/Meta-Llama-3-70B-Instruct": 304,
+    "meta-llama/Meta-Llama-3-70B-Instruct": 307,
 }
 
 OSS_INPUT_TOKEN = {
@@ -425,9 +420,9 @@ NO_COST_MODELS = [
     "meetkai_functionary-small-v2.4-FC",
 ]
 
-A100_PRICE_PER_HOUR = (
-    10.879 / 8
-)  # Price got from AZure, 10.879 per hour for 8 A100, 3 years reserved
+# Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
+# Reference: https://azure.microsoft.com/en-us/pricing/details/machine-learning/
+V100_x8_PRICE_PER_HOUR = 22.032
 
 
 def extract_after_test(input_string):
@@ -720,7 +715,7 @@ def get_metric(model_name, cost_data, latency_data):
             "N/A",
         )
         mean_latency = round(mean_latency, 2)
-        cost = mean_latency * 1000 * A100_PRICE_PER_HOUR / 3600
+        cost = mean_latency * 1000 * V100_x8_PRICE_PER_HOUR / 3600
         cost = round(cost, 2)
 
     elif len(latency_data["data"]) != 0:
@@ -732,7 +727,7 @@ def get_metric(model_name, cost_data, latency_data):
         percentile_95_latency = round(percentile_95_latency, 2)
 
         if model_name not in INPUT_PRICE_PER_MILLION_TOKEN:
-            cost = sum(latency_data["data"]) * A100_PRICE_PER_HOUR / 3600
+            cost = sum(latency_data["data"]) * V100_x8_PRICE_PER_HOUR / 3600
             cost = round(cost, 2)
 
     if model_name in NO_COST_MODELS:
