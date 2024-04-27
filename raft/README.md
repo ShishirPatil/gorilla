@@ -27,7 +27,9 @@ Arguments:
 - `--completion-model` - The model to use to generate questions and answers. Defaults to `gpt-4`.
 
 
-## Usage with OpenAI API
+## Usage
+
+### Usage with OpenAI API
 
 Run the following command with your desired arguments to generate the dataset.  
 ```bash 
@@ -47,7 +49,7 @@ OPENAI_API_KEY=<replace_me>
 - Each data point / triplet also contains other attributes (e.g. metadata), such as `id`, `type`, and `cot_answer`.
 - Uses the HuggingFace Dataset API to create a dataset from all triplets and saves it at `OUTPUT_PATH` in the .arrow and .jsonl formats.
 
-## Usage with Azure OpenAI API
+### Usage with Azure OpenAI API
 
 Create a file `.env` like so. All standard Azure OpenAI environement variables are supported.
 
@@ -66,6 +68,45 @@ In addition, if you used non default Azure OpenAI deployment names, you'll need 
 --completion-model my-gpt-deployment-name
 --embedding-model my-ada-deployment-name
 ```
+
+### Configuring different endpoints for the completion and embedding models
+
+When using a non OpenAI endpoint, it is often the case that the endpoints for the embedding and completion models
+are different.
+
+In that situation, it is possible to override default OpenAI and Azure OpenAI environment variables with `COMPLETION_` or `EMBEDDING_` prefixed environment variables. Here is an example:
+
+```
+# Llama 3 70b Instruct completion model
+# Uses an OpenAI v1 compatible endpoint on Azure MaaS
+
+COMPLETION_OPENAI_BASE_URL=https://Meta-Llama-3-70B-Instruct-<replace_me>-serverless.eastus2.inference.ai.azure.com/v1
+COMPLETION_OPENAI_API_KEY=<replace_me>
+
+# Ada 2 embedding model
+# Uses an Azure OpenAI endpoint
+
+EMBEDDING_AZURE_OPENAI_ENDPOINT=https://<replace_me>.openai.azure.com/
+EMBEDDING_AZURE_OPENAI_API_KEY=<replace_me>
+EMBEDDING_OPENAI_API_VERSION=<replace_me>
+```
+
+Running the `raft.py` CLI will look like:
+
+```
+cd raft
+python3 raft.py \
+    --datapath $PWD/sample_data/UC_Berkeley.pdf \
+    --output $PWD/output \
+    --distractors 3 \
+    --doctype pdf \
+    --chunk_size 512 \
+    --questions 5 \
+    --completion-model Meta-Llama-3-70B-Instruct-<replace_me> \
+    --embedding-model text-embedding-ada-002
+```
+
+**Note**: The `--completion-model` and `--embedding-model` in the case of an Azure OpenAI endpoint must be set to the deployment name.
 
 ### Example Usage
 
