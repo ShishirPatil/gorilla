@@ -100,6 +100,7 @@ Also provide your API keys in your environment variables.
     export FIRE_WORKS_API_KEY=XXXXXX
     export ANTHROPIC_API_KEY=XXXXXX
     export COHERE_API_KEY=XXXXXX
+    export NVIDIA_API_KEY=nvapi-XXXXXX
 ```
 
 To generate leaderboard statistics, there are two steps:
@@ -215,6 +216,7 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |mistral-tiny-2312 | Prompt|
 |Nexusflow-Raven-v2 | Function Calling|
 |NousResearch/Hermes-2-Pro-Mistral-7B 💻| Function Calling|
+|snowflake/arctic | Prompt| 
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function-calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
 
@@ -229,7 +231,7 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 
 ## Changelog
-
+* [April 28, 2024] [#397](https://github.com/ShishirPatil/gorilla/pull/397): Add new model `snowflake/arctic` to the leaderboard. Note that there are multiple ways to inference the model, and we choose to do it via Nvidia API catalog. 
 * [April 27, 2024] [#390](https://github.com/ShishirPatil/gorilla/pull/390): Bug fix in cost and latency calculation for open-source models, which are now all calculated when serving the model with [vLLM](https://github.com/vllm-project/vllm) using 8 V100 GPUs for consistency. $$\text{Cost} = \text{Latency per 1000 function call} * (\text{8xV100 azure-pay-as-you-go-price per hour / 3600})$$
 * [April 25, 2024] [#386](https://github.com/ShishirPatil/gorilla/pull/386): Add 5 new models to the leaderboard: `meta-llama/Meta-Llama-3-8B-Instruct`, `meta-llama/Meta-Llama-3-70B-Instruct`, `gemini-1.5-pro-preview-0409`, `command-r-plus`, `command-r-plus-FC`.
 * [April 19, 2024] [#377](https://github.com/ShishirPatil/gorilla/pull/377): 

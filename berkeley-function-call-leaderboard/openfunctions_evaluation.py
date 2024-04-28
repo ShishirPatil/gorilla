@@ -79,13 +79,13 @@ if __name__ == "__main__":
             num_existing_result = 0  # if the result file already exists, skip the test cases that have been tested.
             if os.path.exists(
                 "./result/"
-                + args.model
+                + args.model.replace("/", "_")
                 + "/"
                 + file_to_open.replace(".json", "_result.json")
             ):
                 with open(
                     "./result/"
-                    + args.model
+                    + args.model.replace("/", "_")
                     + "/"
                     + file_to_open.replace(".json", "_result.json")
                 ) as f:

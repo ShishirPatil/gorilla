@@ -320,6 +320,12 @@ MODEL_METADATA_MAPPING = {
         "Cohere For AI",
         "cc-by-nc-4.0",
     ],
+    "snowflake_arctic": [
+        "Snowflake/snowflake-arctic-instruct (Prompt)",
+        "https://huggingface.co/Snowflake/snowflake-arctic-instruct",
+        "Snowflake",
+        "apache-2.0",
+    ]
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -411,6 +417,7 @@ NO_COST_MODELS = [
     "meetkai/functionary-medium-v2.4-FC",
     "meetkai/functionary-small-v2.2-FC",
     "meetkai/functionary-small-v2.4-FC",
+    "snowflake/arctic",
 ]
 
 # Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
