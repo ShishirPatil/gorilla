@@ -15,6 +15,7 @@ from model_handler.mistral_handler import MistralHandler
 from model_handler.nexus_handler import NexusHandler
 from model_handler.oss_handler import OSSHandler
 from model_handler.cohere_handler import CohereHandler
+from model_handler.arctic_handler import ArcticHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -65,4 +66,5 @@ handler_map = {
     "command-r-plus": CohereHandler,
     "command-r-plus-FC-optimized": CohereHandler,
     "command-r-plus-optimized": CohereHandler,
+    "snowflake/arctic": ArcticHandler,
 }
