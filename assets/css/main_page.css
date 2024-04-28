@@ -77,14 +77,35 @@ em {
     color: black;
 }
 
-
 .api-appstore {
+    text-align: center; 
     margin-bottom: 20px;
+    bottom: 10px;
 }
 
 .spinner {
     position: relative;
     overflow: hidden;
+    left: 35%;
+}
+
+/* The spinner is hard to center as the length of the text are changing all the time, so we use the left margin to mimic a close-to-centering effect. */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .spinner {
+        left: 25%; 
+    }
+}
+
+@media (max-width: 768px) {
+    .spinner {
+        left: 10%;
+    }
+}
+
+@media (max-width: 380px) {
+    .spinner {
+        left: 5%; 
+    }
 }
 
 .spinner__text {
@@ -109,6 +130,7 @@ em {
     left: 0;
     opacity: 0;
     animation-name: spinBottom;
+    
 }
 
 

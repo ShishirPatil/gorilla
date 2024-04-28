@@ -51,10 +51,10 @@
         z-index: 100;
         font-size: 18px;
       ">
-        <a href="#leaderboard">Leaderboard</a>
-        <a href="#api-explorer">Try it Out!</a>
+        <a href="index.html">Home</a>
         <a href="blogs/8_berkeley_function_calling_leaderboard.html">Blog</a>
-        <a href="index.html">Gorilla</a>
+        <a href="#api-explorer">Try it Out!</a>
+        <a href="#leaderboard">Leaderboard</a>
     </div>
 
     <div class="highlight-clean" style="padding-bottom: 10px">
@@ -151,7 +151,9 @@
             <p>
                 <b>Cost</b> is calculated as an estimate of the cost per 1000 function calls, in USD.
                 <b>Latency</b> is measured in seconds.
-                For <b>Open-Source Models</b>, the cost and latency are all calculated when serving with <a href="https://github.com/vllm-project/vllm">vLLM</a> using 8 V100 GPUs.
+                For <b>Open-Source Models</b>, the cost and latency are calculated when serving with <a
+                    href="https://github.com/vllm-project/vllm">vLLM</a> using 8 V100 GPUs. The formula can be found in
+                the <a href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#cost">blog</a>.
             </p>
             <p>
                 <b>AST Summary</b> is the unweighted average of the four test categories under AST Evaluation.
