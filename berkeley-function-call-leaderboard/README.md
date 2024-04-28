@@ -100,6 +100,7 @@ Also provide your API keys in your environment variables.
     export FIRE_WORKS_API_KEY=XXXXXX
     export ANTHROPIC_API_KEY=XXXXXX
     export COHERE_API_KEY=XXXXXX
+    export NVIDIA_API_KEY=nvapi-XXXXXX
 ```
 
 To generate leaderboard statistics, there are two steps:
