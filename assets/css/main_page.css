@@ -98,13 +98,13 @@ em {
 
 @media (max-width: 768px) {
     .spinner {
-        left: 10%;
+        left: 15%;
     }
 }
 
 @media (max-width: 380px) {
     .spinner {
-        left: 5%; 
+        left: 15%; 
     }
 }
 
@@ -156,9 +156,19 @@ em {
     }
 }
 
+.spinner-small-text-style {
+    font-size: 26px;
+}
+.spinner-big-text-style {
+    font-size: 30px;
+}
+
 @media screen and (max-width: 768px) {
-    .spinner-all-text-style {
-        font-size: 26px;
+    .spinner-small-text-style {
+        font-size: 18px;
+    }
+    .spinner-big-text-style {
+        font-size: 22px;
     }
     .spinner-container {
         /* still keep as row */
