@@ -138,20 +138,14 @@ th:not(.detail-header)  {
 
 #myChart {
     display: block;
-    margin: auto; /* Center the canvas */
-    width: 80%; /* Adjust the width to your preference */
+    margin: auto; 
+    width: 100%; 
     height: auto; /* This will maintain the aspect ratio */
-    max-height: 600px; /* Optional: to ensure it doesn't get too tall */
+    max-height: 100vh;
     align-items: center;
     justify-content: center;
 }
 
-
-@media only screen and (max-width: 768px) {
-    #myChart {
-        width: 100%; /* Adjust the width to your preference */
-    }
-  }
 
 .detail-row {
     display: none; /* Hide detail rows initially */
@@ -190,3 +184,4 @@ th:not(.detail-header)  {
     transition: background-color 0.3s ease;
     /* Smooth transition for hover effect */
 }
+

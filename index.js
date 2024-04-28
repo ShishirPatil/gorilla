@@ -647,8 +647,6 @@ function convertRGBtoRGBA(rgbString) {
 }
 
 function generateChart(csvData) {
-    const ctx = document.getElementById("myChart");
-
     var dataset = [];
     for (let i = 1; i < csvData.length; i += 1) {
         var row = csvData[i];
@@ -697,6 +695,8 @@ function generateChart(csvData) {
         datasets: dataset,
     };
 
+    const ctx = document.getElementById('myChart').getContext('2d');
+
     new Chart(ctx, {
         type: "radar",
         data: data,
@@ -706,13 +706,32 @@ function generateChart(csvData) {
                     borderWidth: 3,
                 },
             },
-            scale: {
+            scales: {
                 r: {
-                    beginAtZero: true, // Ensures that the scale starts from 0
-                    // max: 100, // Sets the maximum value of the scale
-                    min: 0, 
+                    beginAtZero: true,
+                    min: 0,
+                    pointLabels: {
+                        font: {
+                            size: 13 // column font
+                        }
+                    },
+                    ticks: {
+                        font: {
+                            size: 10 // scale font
+                        }
+                    }
                 }
-            }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        boxWidth: 15,
+                        font: {
+                            size: 13 // legend labels font
+                        }
+                    }
+                }
+            },
         },
     });
 }
