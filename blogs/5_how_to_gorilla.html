@@ -447,12 +447,12 @@
                             Install dependencies, create a langchain agent and start prompting!
                         <ol>
                             <li> Install dependencies:
-                                <br><code>pip install transformers[sentencepiece] datasets langchain openai==0.28.1 &> /dev/null</code>
+                                <br><code>pip install transformers[sentencepiece] datasets langchain openai &> /dev/null</code>
                             </li>
                             <li>Define Langchain Chat Agent:
                                 <br>
                                 <pre>
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 chat_model = ChatOpenAI(
     openai_api_base="http://zanino.millennium.berkeley.edu:8000/v1",
     openai_api_key="EMPTY",
@@ -462,8 +462,8 @@ chat_model = ChatOpenAI(
                                     </pre>
                             </li>
                             <li> Prompt:
-                                <br><code>example = chat_model.predict("I want to translate from English to Chinese")</code>
-                                <br><code>print(example)</code>
+                                <br><code>example = chat_model.invoke("I want to translate from English to Chinese")</code>
+                                <br><code>print(example.content)</code>
                             </li>
                         </ol>
                         </p>
