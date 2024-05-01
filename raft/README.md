@@ -23,20 +23,49 @@ Arguments:
 - `--chunk_size` - the size of each chunk in number of tokens
 - `--questions` - the number of data points / triplets to generate per chunk
 - `--openai_key` - your OpenAI key used to make queries to GPT-3.5 or GPT-4
+- `--embedding-model` - The embedding model to use to encode documents chunks. Defaults to `text-embedding-ada-002`.
+- `--completion-model` - The model to use to generate questions and answers. Defaults to `gpt-4`.
 
 
-
-## Usage
+## Usage with OpenAI API
 
 Run the following command with your desired arguments to generate the dataset.  
 ```bash 
 python3 raft.py --datapath PATH_TO_DATA --output OUTPUT_PATH --distractors 3 --doctype pdf --chunk_size 512 --questions 5 --openai_key YOUR_OPENAI_KEY
 ```
+
+**Note**: As an alternative to passing the OpenAI key with the `--openai_key` argument, you also store the standard OpenAI environment variables in a file called `.env` like so. All standard OpenAI env variables are supported.
+
+```
+# OpenAI
+OPENAI_API_KEY=<replace_me>
+```
+
 `raft.py` does the following:  
 - Takes a document located at `PATH_TO_DATA`, breaks it into chunks of size `chunk_size` tokens if the data is a pdf, json, or txt, or chunks of one API endpoint if the data is an API documentation, as denoted by `doctype`.
 - For each chunk, uses GPT-4 to synthetically generate `questions` question-answer pairs and adds `distractors` distractor chunks to each pair, creating {Q, A, D} triplets. Each triplet represents one datapoint in the dataset, where Q is the question/use-case, A is the answer, and D is the relevant chunk + distractor chunks. 
 - Each data point / triplet also contains other attributes (e.g. metadata), such as `id`, `type`, and `cot_answer`.
 - Uses the HuggingFace Dataset API to create a dataset from all triplets and saves it at `OUTPUT_PATH` in the .arrow and .jsonl formats.
+
+## Usage with Azure OpenAI API
+
+Create a file `.env` like so. All standard Azure OpenAI environement variables are supported.
+
+```
+# Azure OpenAI API
+AZURE_OPENAI_ENDPOINT=https://<endpoint_sub_domain>.openai.azure.com/
+AZURE_OPENAI_API_KEY=<replace_me>
+OPENAI_API_VERSION=2023-05-15
+```
+
+**Note**: make sure your strip the path from the endpoint and keep just the domain. The full base URL will automatically be built based on the other env variables.
+
+In addition, if you used non default Azure OpenAI deployment names, you'll need to specify them using the following CLI arguments:
+
+```
+--completion-model my-gpt-deployment-name
+--embedding-model my-ada-deployment-name
+```
 
 ### Example Usage
 
@@ -107,7 +136,7 @@ For each question-answer pair, append 4 randomly selected chunks as distractor d
 
 
  #### 5. Finetune your own model on Microsoft AI Studio
- Once the dataset is prepared, follow the instructions in `azure-ai-studio-ft/howto.md` to finetune and deploy your own RAFT model. Make sure to use domain `instruction` as input and `cot_answer` as output.
+ Once the dataset is prepared, follow the instructions in [azure-ai-studio-ft/howto.md](azure-ai-studio-ft/howto.md) to finetune and deploy your own RAFT model. Make sure to use domain `instruction` as input and `cot_answer` as output.
 
  #### 6. Evaluate RAFT model
  After deploying your model in AI Studio, use command to evaluate the RAFT model. Make sure to fill in `base_url`, `api_key` and `model_name` in the `eval.py`, these can be found in the AI Studio. 

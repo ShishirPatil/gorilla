@@ -1,3 +1,5 @@
+USE_COHERE_OPTIMIZATION = False
+
 SYSTEM_PROMPT_FOR_CHAT_MODEL = """
     You are an expert in composing functions. You are given a question and a set of possible functions. 
     Based on the question, you will need to make one or more function/tool calls to achieve the purpose. 
@@ -129,11 +131,14 @@ UNDERSCORE_TO_DOT = [
     "mistral-small-2402-FC-Auto",
     "mistral-small-2402-FC",
     "gemini-1.0-pro",
+    "gemini-1.5-pro-preview-0409",
     "meetkai/functionary-small-v2.2-FC",
     "meetkai/functionary-medium-v2.2-FC",
     "meetkai/functionary-small-v2.4-FC",
     "meetkai/functionary-medium-v2.4-FC",
     "NousResearch/Hermes-2-Pro-Mistral-7B",
+    "command-r-plus-FC",
+    "command-r-plus-FC-optimized",
 ]
 
 TEST_CATEGORIES = {

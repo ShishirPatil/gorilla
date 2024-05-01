@@ -8,8 +8,10 @@ import numpy as np
 from custom_exception import BadAPIStatusError
 from model_handler.handler_map import handler_map
 from tqdm import tqdm
+from eval_checker_constant import FILENAME_INDEX_MAPPING
 
-REST_API_GROUND_TRUTH_FILE_PATH = "api_status_ground_truth_function_calls.json"
+REST_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_REST.json"
+EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_executable.json"
 
 COLUMNS = [
     "Rank",
@@ -276,6 +278,54 @@ MODEL_METADATA_MAPPING = {
         "NousResearch",
         "apache-2.0",
     ],
+    "gemini-1.5-pro-preview-0409": [
+        "Gemini-1.5-Pro (FC)",
+        "https://deepmind.google/technologies/gemini/#introduction",
+        "Google",
+        "Proprietary",
+    ],
+    "meta-llama_Meta-Llama-3-8B-Instruct": [
+        "Meta-Llama-3-8B-Instruct (Prompt)",
+        "https://llama.meta.com/llama3",
+        "Meta",
+        "Meta Llama 3 Community",
+    ],
+    "meta-llama_Meta-Llama-3-70B-Instruct": [
+        "Meta-Llama-3-70B-Instruct (Prompt)",
+        "https://llama.meta.com/llama3",
+        "Meta",
+        "Meta Llama 3 Community",
+    ],
+    "command-r-plus-FC": [
+        "Command-R-Plus (FC) (Original)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
+    "command-r-plus": [
+        "Command-R-Plus (Prompt) (Original)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
+    "command-r-plus-FC-optimized": [
+        "Command-R-Plus (FC) (Optimized)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
+    "command-r-plus-optimized": [
+        "Command-R-Plus (Prompt) (Optimized)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
+    "snowflake_arctic": [
+        "Snowflake/snowflake-arctic-instruct (Prompt)",
+        "https://huggingface.co/Snowflake/snowflake-arctic-instruct",
+        "Snowflake",
+        "apache-2.0",
+    ]
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -292,6 +342,7 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-medium-2312": 2.7,
     "mistral-small-2402-FC-Any": 2,
     "mistral-small-2402-FC-Auto": 2,
+    "mistral-small-2402": 2,
     "mistral-tiny-2312": 0.25,
     "gpt-4-1106-preview-FC": 10,
     "gpt-4-1106-preview": 10,
@@ -304,7 +355,12 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-3.5-turbo-0125": 1.5,
     "gpt-3.5-turbo-0125-FC": 1.5,
     "gemini-1.0-pro": 1,
+    "gemini-1.5-pro-preview-0409": 7,
     "databricks-dbrx-instruct": 2.25,
+    "command-r-plus-FC": 3,
+    "command-r-plus": 3,
+    "command-r-plus-FC-optimized": 3,
+    "command-r-plus-optimized": 3,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -318,6 +374,7 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-instant-1.2": 5.51,
     "mistral-large-2402-FC-Any": 24,
     "mistral-large-2402-FC-Auto": 24,
+    "mistral-small-2402": 24,
     "mistral-medium-2312": 8.1,
     "mistral-small-2402-FC-Any": 6,
     "mistral-small-2402-FC-Auto": 6,
@@ -333,41 +390,39 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-3.5-turbo-0125": 2,
     "gpt-3.5-turbo-0125-FC": 2,
     "gemini-1.0-pro": 2,
+    "gemini-1.5-pro-preview-0409": 14,
     "databricks-dbrx-instruct": 6.75,
+    "command-r-plus-FC": 15,
+    "command-r-plus": 15,
+    "command-r-plus-FC-optimized": 15,
+    "command-r-plus-optimized": 15,
 }
 
 # The latency of the open-source models are hardcoded here.
 # Because we do batching when generating the data, so the latency is not accurate from the result data.
-# This is the latency for the whole batch of data.
+# This is the latency for the whole batch of data, when using 8 V100 GPUs.
 OSS_LATENCY = {
-    "deepseek-ai/deepseek-coder-6.7b-instruct": 2040,
-    "google/gemma-7b-it": 161,
-    "glaiveai/glaive-function-calling-v1": 99,
-    "NousResearch/Hermes-2-Pro-Mistral-7B": 666,
-}
-
-OSS_INPUT_TOKEN = {
-    "deepseek-ai/deepseek-coder-6.7b-instruct": 884190,
-    "google/gemma-7b-it": 733701,
-}
-
-OSS_OUTPUT_TOKEN = {
-    "deepseek-ai/deepseek-coder-6.7b-instruct": 2009421,
-    "google/gemma-7b-it": 130206,
+    "deepseek-ai/deepseek-coder-6.7b-instruct": 909,
+    "google/gemma-7b-it": 95,
+    "NousResearch/Hermes-2-Pro-Mistral-7B": 135,
+    "meta-llama/Meta-Llama-3-8B-Instruct": 73,
+    "meta-llama/Meta-Llama-3-70B-Instruct": 307,
+    "gorilla-openfunctions-v2": 83,
 }
 
 
 NO_COST_MODELS = [
     "Nexusflow-Raven-v2",
     "fire-function-v1-FC",
-    "meetkai_functionary-medium-v2.4-FC",
-    "meetkai_functionary-small-v2.2-FC",
-    "meetkai_functionary-small-v2.4-FC",
+    "meetkai/functionary-medium-v2.4-FC",
+    "meetkai/functionary-small-v2.2-FC",
+    "meetkai/functionary-small-v2.4-FC",
+    "snowflake/arctic",
 ]
 
-A100_PRICE_PER_HOUR = (
-    10.879 / 8
-)  # Price got from AZure, 10.879 per hour for 8 A100, 3 years reserved
+# Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
+# Reference: https://azure.microsoft.com/en-us/pricing/details/machine-learning/
+V100_x8_PRICE_PER_HOUR = 22.032
 
 
 def extract_after_test(input_string):
@@ -384,6 +439,10 @@ def find_file_with_suffix(folder_path, suffix):
 
 def is_executable(test_category):
     return "executable" in test_category or "rest" in test_category
+
+
+def is_rest(test_category):
+    return "rest" in test_category
 
 
 def is_relevance(test_category):
@@ -478,7 +537,7 @@ def is_empty_output(decoded_output):
         return True
 
 
-def api_status_sanity_check():
+def api_status_sanity_check_rest():
 
     # We only need to import the executable_checker_rest in this function. So a local import is used.
     from checker import executable_checker_rest
@@ -486,7 +545,7 @@ def api_status_sanity_check():
     ground_truth_dummy = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
 
     # Use the ground truth data to make sure the API is working correctly
-    command = f"cd .. ; python apply_function_credential_config.py --input_file ./eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
+    command = f"cd .. ; python apply_function_credential_config.py --input-file ./eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
     try:
         subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
     except subprocess.CalledProcessError as e:
@@ -499,7 +558,9 @@ def api_status_sanity_check():
     correct_count = 0
     errors = []
     for idx, data in tqdm(
-        enumerate(ground_truth_replaced), total=len(ground_truth_replaced)
+        enumerate(ground_truth_replaced),
+        total=len(ground_truth_replaced),
+        desc="API Status Test (REST)",
     ):
         status = executable_checker_rest(data["ground_truth"], idx)
         if status["valid"]:
@@ -508,9 +569,64 @@ def api_status_sanity_check():
             errors.append((data, status))
 
     if correct_count != len(ground_truth_replaced):
-        [print("Data:", data, "\nError:", status['error']) for data, status in errors]
-        error_msg = f"API Status Test Failed. {len(ground_truth_replaced) - correct_count} out of {len(ground_truth_replaced)} API behaviors are not as expected. Be careful with executable test category results; they may be inaccurate."
+        [print("Data:", data, "\nError:", status["error"]) for data, status in errors]
+        error_msg = f"API Status Test Failed for REST Section. {len(ground_truth_replaced) - correct_count} out of {len(ground_truth_replaced)} API behaviors are not as expected. Be careful with executable test category results; they may be inaccurate."
         raise BadAPIStatusError(error_msg)
+
+
+def api_status_sanity_check_executable():
+    from checker import executable_checker_simple
+
+    ground_truth = load_file(EXECTUABLE_API_GROUND_TRUTH_FILE_PATH)
+    correct_count = 0
+    errors = []
+    for data in tqdm(
+        ground_truth, total=len(ground_truth), desc="API Status Test (Non-REST)"
+    ):
+        status = executable_checker_simple(
+            data["ground_truth"][0],
+            data["execution_result"][0],
+            data["execution_result_type"][0],
+            True,
+        )
+        if status["valid"]:
+            correct_count += 1
+        else:
+            errors.append((data, status))
+
+    if correct_count != len(ground_truth):
+        [print("Data:", data, "\nError:", status["error"]) for data, status in errors]
+        error_msg = f"API Status Test Failed for Executable Section. {len(ground_truth) - correct_count} out of {len(ground_truth)} API behaviors are not as expected. Be careful with executable test category results; they may be inaccurate."
+        raise BadAPIStatusError(error_msg)
+
+
+def get_executable_expected_output(prompt_file_path):
+    # Before we run the evaluation, we need to add the "execution_result" field to the prompt file, using the ground truth data.
+    prompt_content = load_file(prompt_file_path)
+    exec_dict = {}
+    for item in tqdm(prompt_content, desc="Getting Executable Expected Output"):
+        execution_result = []
+        ground_truth = item["ground_truth"]
+        for i in range(len(ground_truth)):
+            exec(
+                "from executable_python_function import *"
+                + "\nresult="
+                + ground_truth[i],
+                exec_dict,
+            )
+            execution_result.append(exec_dict["result"])
+        item["execution_result"] = execution_result
+
+    write_list_of_dicts_to_file(prompt_file_path, prompt_content)
+
+
+def clean_up_executable_expected_output(prompt_path, categories):
+    for category in categories:
+        prompt_file = find_file_with_suffix(prompt_path, category)
+        prompt_content = load_file(prompt_file)
+        for item in prompt_content:
+            del item["execution_result"]
+        write_list_of_dicts_to_file(prompt_file, prompt_content)
 
 
 def calculate_weighted_accuracy(accuracy_dict_list):
@@ -561,7 +677,7 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
             if data["latency"] > 60:
                 print("*" * 100)
                 print(
-                    f"Warning: Latency for one of {model_name} response is {data['latency']}."
+                    f"❗️Warning: Latency for one of {model_name} response is {data['latency']}."
                 )
                 print("*" * 100)
         if "input_token_count" in data:
@@ -599,7 +715,7 @@ def get_metric(model_name, cost_data, latency_data):
             "N/A",
         )
         mean_latency = round(mean_latency, 2)
-        cost = mean_latency * 1000 * A100_PRICE_PER_HOUR / 3600
+        cost = mean_latency * 1000 * V100_x8_PRICE_PER_HOUR / 3600
         cost = round(cost, 2)
 
     elif len(latency_data["data"]) != 0:
@@ -611,7 +727,7 @@ def get_metric(model_name, cost_data, latency_data):
         percentile_95_latency = round(percentile_95_latency, 2)
 
         if model_name not in INPUT_PRICE_PER_MILLION_TOKEN:
-            cost = sum(latency_data["data"]) * A100_PRICE_PER_HOUR / 3600
+            cost = sum(latency_data["data"]) * V100_x8_PRICE_PER_HOUR / 3600
             cost = round(cost, 2)
 
     if model_name in NO_COST_MODELS:
@@ -696,7 +812,7 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
         if overall_accuracy["total_count"] != 1700:
             print("-" * 100)
             print(
-                f"Warning: Total count for {model_name} is {overall_accuracy['total_count']}"
+                f"❗️Warning: Total count for {model_name} is {overall_accuracy['total_count']}"
             )
 
         data.append(

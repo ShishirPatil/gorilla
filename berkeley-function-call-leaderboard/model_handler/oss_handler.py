@@ -1,3 +1,10 @@
+import json
+import os
+
+import ray
+import shortuuid
+import torch
+from eval_checker.eval_checker_constant import FILENAME_INDEX_MAPPING
 from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
 from model_handler.utils import (
@@ -5,9 +12,6 @@ from model_handler.utils import (
     augment_prompt_by_languge,
     language_specific_pre_processing,
 )
-from eval_checker.eval_runner_constant import FILENAME_INDEX_MAPPING
-import shortuuid, ray, os, json, torch
-
 
 class OSSHandler(BaseHandler):
     def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
@@ -18,7 +22,7 @@ class OSSHandler(BaseHandler):
     def _init_model(self):
         ray.init(ignore_reinit_error=True, num_cpus=8)
 
-    def _format_prompt(prompt, function):
+    def _format_prompt(prompt, function, test_category):
         SYSTEM_PROMPT = """
             You are an helpful assistant who has access to the following functions to help the user, you can use the functions if needed-
         """
