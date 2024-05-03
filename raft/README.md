@@ -31,7 +31,7 @@ Arguments:
 
 Run the following command with your desired arguments to generate the dataset.  
 ```bash 
-python3 raft.py --datapath PATH_TO_DATA --output OUTPUT_PATH --distractors 3 --doctype pdf --chunk_size 512 --questions 5 --openai_key YOUR_OPENAI_KEY
+python3 raft.py --datapath PATH_TO_DATA --output OUTPUT_PATH --distractors 3 --p 1.0 --doctype pdf --chunk_size 512 --questions 5 --openai_key YOUR_OPENAI_KEY
 ```
 
 **Note**: As an alternative to passing the OpenAI key with the `--openai_key` argument, you also store the standard OpenAI environment variables in a file called `.env` like so. All standard OpenAI env variables are supported.
