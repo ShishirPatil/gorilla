@@ -25,6 +25,7 @@ Arguments:
 - `--openai_key` - your OpenAI key used to make queries to GPT-3.5 or GPT-4
 - `--embedding-model` - The embedding model to use to encode documents chunks. Defaults to `text-embedding-ada-002`.
 - `--completion-model` - The model to use to generate questions and answers. Defaults to `gpt-4`.
+- `--fast` - Fast mode flag. By default, this flag is not included and the script runs in safe mode, where it saves checkpoint datasets, allowing the script to recover and continue where it left off in the case of an interruption. Include this flag to run RAFT without recovery. 
 
 
 ## Usage with OpenAI API
@@ -49,7 +50,7 @@ OPENAI_API_KEY=<replace_me>
 
 ## Usage with Azure OpenAI API
 
-Create a file `.env` like so. All standard Azure OpenAI environement variables are supported.
+Create a file `.env` like so. All standard Azure OpenAI environment variables are supported.
 
 ```
 # Azure OpenAI API
