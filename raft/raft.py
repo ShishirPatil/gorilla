@@ -24,7 +24,7 @@ logger = logging.getLogger("raft")
 DocType = Literal["api", "pdf", "json", "txt"]
 
 # Every N chunks, save checkpoint
-N = 3
+N = 15
 
 def get_args() -> argparse.Namespace:
     """
