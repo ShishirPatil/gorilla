@@ -24,7 +24,7 @@ logger = logging.getLogger("raft")
 DocType = Literal["api", "pdf", "json", "txt"]
 
 # Every N chunks, save checkpoint
-N = 5
+N = 3
 
 def get_args() -> argparse.Namespace:
     """
@@ -42,6 +42,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--openai_key", type=str, default=None, help="Your OpenAI key used to make queries to GPT-3.5 or GPT-4")
     parser.add_argument("--embedding_model", type=str, default="text-embedding-ada-002", help="The embedding model to use to encode documents chunks (text-embedding-ada-002, ...)")
     parser.add_argument("--completion_model", type=str, default="gpt-4", help="The model to use to generate questions and answers (gpt-3.5, gpt-4, ...)")
+    parser.add_argument("--fast", action="store_true", help="Run the script in fast mode (no recovery implemented)")
 
     args = parser.parse_args()
     return args
@@ -307,38 +308,43 @@ def main():
 
     num_chunks = len(chunks)
 
-    start = 0
-    if os.path.exists("checkpoint.txt"):
-        start = int(load_checkpoint("checkpoint.txt"))
+    if not args.fast:
+        start = 0
+        if os.path.exists("checkpoint.txt"):
+            start = int(load_checkpoint("checkpoint.txt"))
 
-    print("start", (start//N)*N)
+        for i in range((start//N)*N, len(chunks)):
+            chunk = chunks[i]
+            save_checkpoint(i, "checkpoint.txt")
 
-    for i in range((start//N)*N, len(chunks)):
-        chunk = chunks[i]
-        save_checkpoint(i, "checkpoint.txt")
+            perc = ceil(i / num_chunks * 100)
+            with MDC(progress=f"{perc}%"):
+                logger.info(f"Adding chunk {i}/{num_chunks}")
+                add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
 
-        perc = ceil(i / num_chunks * 100)
-        with MDC(progress=f"{perc}%"):
-            logger.info(f"Adding chunk {i}/{num_chunks}")
-            add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
-
-        if (i+1) % N == 0:
-            ds.save_to_disk(args.output + "-checkpoints-" + str(i))
-            ds = None
+            if (i+1) % N == 0:
+                ds.save_to_disk(args.output + "-checkpoints-" + str(i))
+                ds = None
     
     
-    if ds:
-        ds.save_to_disk(args.output + "-checkpoints-last")
+        if ds:
+            ds.save_to_disk(args.output + "-checkpoints-last")
 
-    ds_list = []
+        ds_list = []
 
-    for filename in os.listdir(os.path.dirname(args.output)):
-        if "-checkpoints-" in filename:
-            for f in os.listdir(os.path.dirname(args.output) + "/" + filename):
-                if f.endswith(".arrow"):
-                    ds_list.append(Dataset.from_file(os.path.dirname(args.output) + "/" + filename + "/" + f))
+        for filename in os.listdir(os.path.dirname(args.output)):
+            if "-checkpoints-" in filename:
+                for f in os.listdir(os.path.dirname(args.output) + "/" + filename):
+                    if f.endswith(".arrow"):
+                        ds_list.append(Dataset.from_file(os.path.dirname(args.output) + "/" + filename + "/" + f))
 
-    ds = datasets.concatenate_datasets(ds_list)
+        ds = datasets.concatenate_datasets(ds_list)
+    else:
+        for i, chunk in enumerate(chunks):
+            perc = ceil(i / num_chunks * 100)
+            with MDC(progress=f"{perc}%"):
+                logger.info(f"Adding chunk {i}/{num_chunks}")
+                add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
     
     # Save as .arrow format
     ds.save_to_disk(args.output)
@@ -346,9 +352,11 @@ def main():
     # Save as .jsonl format
     ds.to_json(args.output + ".jsonl")
 
-    for filename in os.listdir(os.path.dirname(args.output)):
-        if "-checkpoints-" in filename:
-            shutil.rmtree(os.path.dirname(args.output) + "/" + filename)
+    if not args.fast:
+        os.remove("checkpoint.txt")
+        for filename in os.listdir(os.path.dirname(args.output)):
+            if "-checkpoints-" in filename:
+                shutil.rmtree(os.path.dirname(args.output) + "/" + filename)
 
 if __name__ == "__main__":
     with MDC(progress="0%"):
