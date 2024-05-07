@@ -170,7 +170,7 @@
 {"court_case.search":{"docket_number":["123456"],"location":["Texas"],"full_text":[false,""]}}
 {"law_case_search.find_historical":{"subject":["fraud"],"from_year":[2010],"to_year":[2015]}}
 {"fetch_law_case_details":{"case_number":[43403],"court":["New York"],"year":[2018]}}
-{"legal_case.fetch":{"case_id":["R vs Adams","R_vs_Adams"],"details":[true]}}
+{"legal_case.fetch":{"case_id":["R vs Adams"],"details":[true]}}
 {"law_case_search":{"topic":["land disputes"],"year_range":[[2015,2021]],"location":["New York"],"judicial_system":["state"]}}
 {"get_top_cases":{"field_of_law":["constitutional law","constitutional"],"top_number":[10],"country":["China","CN"]}}
 {"lawyer.get_experience":{"name":["John Doe"],"law_type":["Bankruptcy"]}}
