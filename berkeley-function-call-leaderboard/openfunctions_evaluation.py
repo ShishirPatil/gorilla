@@ -1,8 +1,11 @@
-import argparse, json, os
-from tqdm import tqdm
+import argparse
+import json
+import os
+
+from model_handler.constant import USE_COHERE_OPTIMIZATION
 from model_handler.handler_map import handler_map
 from model_handler.model_style import ModelStyle
-from model_handler.constant import USE_COHERE_OPTIMIZATION
+from tqdm import tqdm
 
 
 def get_args():
@@ -31,6 +34,7 @@ test_categories = {
     "simple": "gorilla_openfunctions_v1_test_simple.json",
     "relevance": "gorilla_openfunctions_v1_test_relevance.json",
     "parallel_function": "gorilla_openfunctions_v1_test_parallel_function.json",
+    "parallel_function_local": "gorilla_openfunctions_v1_test_parallel_function_local.json",
     "multiple_function": "gorilla_openfunctions_v1_test_multiple_function.json",
     "parallel_multiple_function": "gorilla_openfunctions_v1_test_parallel_multiple_function.json",
     "java": "gorilla_openfunctions_v1_test_java.json",

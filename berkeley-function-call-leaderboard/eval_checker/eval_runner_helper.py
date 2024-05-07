@@ -6,9 +6,9 @@ import subprocess
 
 import numpy as np
 from custom_exception import BadAPIStatusError
+from eval_checker_constant import FILENAME_INDEX_MAPPING
 from model_handler.handler_map import handler_map
 from tqdm import tqdm
-from eval_checker_constant import FILENAME_INDEX_MAPPING
 
 REST_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_REST.json"
 EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_executable.json"
@@ -230,6 +230,12 @@ MODEL_METADATA_MAPPING = {
         "Fireworks",
         "Apache 2.0",
     ],
+    "llama-v3-70b-instruct-hf": [
+        "FireFunction-v1 (FC)",
+        "https://huggingface.co/fireworks-ai/firefunction-v1",
+        "Fireworks",
+        "Apache 2.0",
+    ],
     "gemini-1.0-pro": [
         "Gemini-1.0-Pro (FC)",
         "https://deepmind.google/technologies/gemini/#introduction",
@@ -325,7 +331,7 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/Snowflake/snowflake-arctic-instruct",
         "Snowflake",
         "apache-2.0",
-    ]
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
