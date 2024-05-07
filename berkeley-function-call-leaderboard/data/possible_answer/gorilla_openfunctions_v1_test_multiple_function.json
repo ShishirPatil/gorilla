@@ -127,7 +127,7 @@
 {"t_test":{"dataset_A":[[12,24,36]],"dataset_B":[[15,30,45]],"alpha":["",0.05]}}
 {"finance.calculate_quarterly_dividend_per_share":{"total_payout":[50000000],"outstanding_shares":[100000000]}}
 {"calculate_return_on_equity":{"net_income":[2000000],"shareholder_equity":[10000000],"dividends_paid":[200000]}}
-{"compound_interest":{"principal":[10000],"annual_rate":[0.05],"compounding_freq":["monthly"],"time_in_years":[5]}}
+{"compound_interest":{"principal":[10000],"annual_rate":[5],"compounding_freq":["monthly"],"time_in_years":[5]}}
 {"calculate_cagr":{"initial_value":[2000],"final_value":[3000],"period_in_years":[4]}}
 {"market_performance.get_data":{"indexes":[["S&P 500","Dow Jones"]],"days":[5],"detailed":["",false]}}
 {"finance.calculate_future_value":{"initial_investment":[20000],"rate_of_return":[0.08],"years":[5],"contribution":["",0]}}
