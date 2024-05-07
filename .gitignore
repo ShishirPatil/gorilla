@@ -52,3 +52,6 @@ berkeley-function-call-leaderboard/result/
 
 # Ignore leaderboard score
 berkeley-function-call-leaderboard/score/
+
+.direnv/
+.venv
