@@ -2,11 +2,12 @@ import sys
 
 sys.path.append("../")
 
-from checker import ast_checker, exec_checker, executable_checker_rest
-from eval_runner_helper import *
-from tqdm import tqdm
 import argparse
 
+from tqdm import tqdm
+
+from checker import ast_checker, exec_checker, executable_checker_rest
+from eval_runner_helper import *
 
 # NOTE: This file should be run in the `eval_checker` directory
 

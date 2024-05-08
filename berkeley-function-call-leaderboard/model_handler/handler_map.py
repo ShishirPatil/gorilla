@@ -47,6 +47,7 @@ handler_map = {
     "mistral-small-2402-FC-Auto": MistralHandler,
     "mistral-tiny-2312": MistralHandler,
     "fire-function-v1-FC": FireworkAIHandler,
+    "dt-fc-rc-v3": FireworkAIHandler,
     "Nexusflow-Raven-v2": NexusHandler,
     "gemini-1.0-pro": GeminiHandler,
     "gemini-1.5-pro-preview-0409": GeminiHandler,

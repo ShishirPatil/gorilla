@@ -53,7 +53,12 @@ def find_description(func_descriptions, name):
 def get_possible_answer_type(possible_answer: list):
     for answer in possible_answer:
         if answer != "":  # Optional parameter
-            return type(answer)
+            if type(answer) == float:
+                # check if it can be downcasted
+                if int(answer) == answer:
+                    return int
+            else:
+                return type(answer)
     return None
 
 

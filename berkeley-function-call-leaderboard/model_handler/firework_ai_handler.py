@@ -7,7 +7,9 @@ from openai import OpenAI
 class FireworkAIHandler(OpenAIHandler):
     def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
-        self.model_name = "accounts/fireworks/models/firefunction-v1-FC"
+        #self.model_name = "accounts/fireworks/models/dt-fc-rc-v3-FC"
+        self.model_name = "accounts/fireworks/models/dt-fc-rc-v10-FC"
+        #self.model_name = "accounts/fireworks/models/fc-pawel-v2-v15-FC"
         self.model_style = ModelStyle.FIREWORK_AI
 
         self.client = OpenAI(
