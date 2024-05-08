@@ -285,7 +285,7 @@ def save_checkpoint(state, filename):
 
 def load_checkpoint(filename):
     with open(filename, 'r') as f:
-        return eval(f.read())
+        return int(f.read())
 
 def main():
     global ds
