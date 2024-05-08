@@ -33,13 +33,14 @@ Arguments:
 - `--openai_key` - your OpenAI key used to make queries to GPT-3.5 or GPT-4
 - `--embedding-model` - The embedding model to use to encode documents chunks. Defaults to `text-embedding-ada-002`.
 - `--completion-model` - The model to use to generate questions and answers. Defaults to `gpt-4`.
+- `--fast` - Fast mode flag. By default, this flag is not included and the script runs in safe mode, where it saves checkpoint datasets, allowing the script to recover and continue where it left off in the case of an interruption. Include this flag to run RAFT without recovery. 
 
 
 ## Usage with OpenAI API
 
 Run the following command with your desired arguments to generate the dataset.  
 ```bash 
-python3 raft.py --datapath PATH_TO_DATA --output OUTPUT_PATH --distractors 3 --doctype pdf --chunk_size 512 --questions 5 --openai_key YOUR_OPENAI_KEY
+python3 raft.py --datapath PATH_TO_DATA --output OUTPUT_PATH --distractors 3 --p 1.0 --doctype pdf --chunk_size 512 --questions 5 --openai_key YOUR_OPENAI_KEY
 ```
 
 **Note**: As an alternative to passing the OpenAI key with the `--openai_key` argument, you also store the standard OpenAI environment variables in a file called `.env` like so. All standard OpenAI env variables are supported.
@@ -57,7 +58,7 @@ OPENAI_API_KEY=<replace_me>
 
 ## Usage with Azure OpenAI API
 
-Create a file `.env` like so. All standard Azure OpenAI environement variables are supported.
+Create a file `.env` like so. All standard Azure OpenAI environment variables are supported.
 
 ```
 # Azure OpenAI API

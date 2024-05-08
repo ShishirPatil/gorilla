@@ -10,10 +10,12 @@ from model_handler.glaive_handler import GlaiveHandler
 from model_handler.gorilla_handler import GorillaHandler
 from model_handler.gpt_handler import OpenAIHandler
 from model_handler.hermes_handler import HermesHandler
+from model_handler.llama_handler import LlamaHandler
 from model_handler.mistral_handler import MistralHandler
 from model_handler.nexus_handler import NexusHandler
 from model_handler.oss_handler import OSSHandler
 from model_handler.cohere_handler import CohereHandler
+from model_handler.arctic_handler import ArcticHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -47,6 +49,7 @@ handler_map = {
     "fire-function-v1-FC": FireworkAIHandler,
     "Nexusflow-Raven-v2": NexusHandler,
     "gemini-1.0-pro": GeminiHandler,
+    "gemini-1.5-pro-preview-0409": GeminiHandler,
     "gemma": OSSHandler,
     "google/gemma-7b-it": GemmaHandler,
     "glaiveai/glaive-function-calling-v1": GlaiveHandler,
@@ -57,8 +60,11 @@ handler_map = {
     "meetkai/functionary-medium-v2.4-FC": FunctionaryHandler,
     "databricks-dbrx-instruct": DatabricksHandler,
     "NousResearch/Hermes-2-Pro-Mistral-7B": HermesHandler,
+    "meta-llama/Meta-Llama-3-8B-Instruct": LlamaHandler,
+    "meta-llama/Meta-Llama-3-70B-Instruct": LlamaHandler,
     "command-r-plus-FC": CohereHandler,
     "command-r-plus": CohereHandler,
     "command-r-plus-FC-optimized": CohereHandler,
     "command-r-plus-optimized": CohereHandler,
+    "snowflake/arctic": ArcticHandler,
 }

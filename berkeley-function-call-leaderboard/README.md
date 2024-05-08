@@ -100,6 +100,7 @@ Also provide your API keys in your environment variables.
     export FIRE_WORKS_API_KEY=XXXXXX
     export ANTHROPIC_API_KEY=XXXXXX
     export COHERE_API_KEY=XXXXXX
+    export NVIDIA_API_KEY=nvapi-XXXXXX
 ```
 
 To generate leaderboard statistics, there are two steps:
@@ -188,31 +189,34 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |Model | Type |
 |---|---|
 |gorilla-openfunctions-v2 | Function Calling|
+|claude-3-{opus-20240229,sonnet-20240229,haiku-20240307}-FC | Function Calling |
+|claude-3-{opus-20240229,sonnet-20240229,haiku-20240307} | Prompt |
+|claude-{2.1,instant-1.2}| Prompt|
 |command-r-plus-FC | Function Calling|
 |command-r-plus | Prompt|
+|databrick-dbrx-instruct | Prompt|
+|deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
+|fire-function-v1-FC | Function Calling|
+|gemini-1.0-pro | Function Calling|
+|gemini-1.5-pro-preview-0409 | Function Calling|
+|glaiveai/glaive-function-calling-v1 💻| Function Calling|
 |gpt-3.5-turbo-0125-FC| Function Calling|
 |gpt-3.5-turbo-0125| Prompt|
 |gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}-FC| Function Calling|
 |gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}| Prompt|
-|glaiveai/glaive-function-calling-v1 💻| Function Calling|
-|Nexusflow-Raven-v2 | Function Calling|
-|fire-function-v1-FC | Function Calling|
+|google/gemma-7b-it 💻| Prompt|
+|meetkai/functionary-{small,medium}-v2.4-FC| Function Calling|
+|meetkai/functionary-small-v2.2-FC| Function Calling|
+|meta-llama/Meta-Llama-3-{8B,70B}-Instruct | Prompt|
 |mistral-large-2402-FC-{Any,Auto} | Function Calling|
 |mistral-large-2402 | Prompt|
 |mistral-medium-2312 | Prompt|
 |mistral-small-2402-FC-{Any,Auto} | Function Calling|
 |mistral-small-2402 | Prompt|
 |mistral-tiny-2312 | Prompt|
-|claude-3-{opus-20240229,sonnet-20240229,haiku-20240307}-FC | Function Calling |
-|claude-3-{opus-20240229,sonnet-20240229,haiku-20240307} | Prompt |
-|claude-{2.1,instant-1.2}| Prompt|
-|gemini-1.0-pro | Function Calling|
-|databrick-dbrx-instruct | Prompt|
-|google/gemma-7b-it 💻| Prompt|
-|deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
-|meetkai_functionary-{small,medium}-v2.4-FC| Function Calling|
-|meetkai_functionary-small-v2.2-FC| Function Calling|
+|Nexusflow-Raven-v2 | Function Calling|
 |NousResearch/Hermes-2-Pro-Mistral-7B 💻| Function Calling|
+|snowflake/arctic | Prompt| 
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function-calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
 
@@ -227,9 +231,12 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 
 ## Changelog
-
+* [May 6, 2024] [#412](https://github.com/ShishirPatil/gorilla/pull/412): Bug fix in evaluation dataset for AST categories. This includes updates to both prompts and function docs.
+* [April 28, 2024] [#397](https://github.com/ShishirPatil/gorilla/pull/397): Add new model `snowflake/arctic` to the leaderboard. Note that there are multiple ways to inference the model, and we choose to do it via Nvidia API catalog. 
+* [April 27, 2024] [#390](https://github.com/ShishirPatil/gorilla/pull/390): Bug fix in cost and latency calculation for open-source models, which are now all calculated when serving the model with [vLLM](https://github.com/vllm-project/vllm) using 8 V100 GPUs for consistency. $$\text{Cost} = \text{Latency per 1000 function call} * (\text{8xV100 azure-pay-as-you-go-price per hour / 3600})$$
+* [April 25, 2024] [#386](https://github.com/ShishirPatil/gorilla/pull/386): Add 5 new models to the leaderboard: `meta-llama/Meta-Llama-3-8B-Instruct`, `meta-llama/Meta-Llama-3-70B-Instruct`, `gemini-1.5-pro-preview-0409`, `command-r-plus`, `command-r-plus-FC`.
 * [April 19, 2024] [#377](https://github.com/ShishirPatil/gorilla/pull/377): 
-    - Bug fix for the evaluation dataset in the executable test categories. This includes updates to both prompts and function docs. 
+    - Bug fix for the evaluation dataset in the executable test categories. This includes updates to both prompts and function docs.
     - The `evaluation_result` field has been removed to accommodate the variability in API execution results across different evaluation runs. Instead, a human-verified `ground_truth` is now included for the executable test categories. During each evaluation run, `evaluation_result` is generated anew using the `ground_truth`, and then compared against the model output. 
     - A stricter metric has been adopted when using the `structural_match` (aka. type match) evaluation criteria ---- For `list` results, the lengths are compared; for `dict` results, the keys are matched. This is to account for the fast-changing nature of some of the real-time API results while ensuring the evaluation remains meaningful.
     - Added another evaluation criteria `real_time_match` for the executable category, which is a looser form of `exact_match` specifically for numerical execution results. The execution result must be within a certain percentage threshold (20%) from the expected result to accommodate the live updates of API responses. User can change this threshold value in `eval_checker_constant.py`.

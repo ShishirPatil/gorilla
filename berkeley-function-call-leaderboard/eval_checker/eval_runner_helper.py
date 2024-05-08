@@ -278,6 +278,24 @@ MODEL_METADATA_MAPPING = {
         "NousResearch",
         "apache-2.0",
     ],
+    "gemini-1.5-pro-preview-0409": [
+        "Gemini-1.5-Pro (FC)",
+        "https://deepmind.google/technologies/gemini/#introduction",
+        "Google",
+        "Proprietary",
+    ],
+    "meta-llama_Meta-Llama-3-8B-Instruct": [
+        "Meta-Llama-3-8B-Instruct (Prompt)",
+        "https://llama.meta.com/llama3",
+        "Meta",
+        "Meta Llama 3 Community",
+    ],
+    "meta-llama_Meta-Llama-3-70B-Instruct": [
+        "Meta-Llama-3-70B-Instruct (Prompt)",
+        "https://llama.meta.com/llama3",
+        "Meta",
+        "Meta Llama 3 Community",
+    ],
     "command-r-plus-FC": [
         "Command-R-Plus (FC) (Original)",
         "https://txt.cohere.com/command-r-plus-microsoft-azure",
@@ -302,6 +320,12 @@ MODEL_METADATA_MAPPING = {
         "Cohere For AI",
         "cc-by-nc-4.0",
     ],
+    "snowflake_arctic": [
+        "Snowflake/snowflake-arctic-instruct (Prompt)",
+        "https://huggingface.co/Snowflake/snowflake-arctic-instruct",
+        "Snowflake",
+        "apache-2.0",
+    ]
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -318,6 +342,7 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-medium-2312": 2.7,
     "mistral-small-2402-FC-Any": 2,
     "mistral-small-2402-FC-Auto": 2,
+    "mistral-small-2402": 2,
     "mistral-tiny-2312": 0.25,
     "gpt-4-1106-preview-FC": 10,
     "gpt-4-1106-preview": 10,
@@ -330,9 +355,12 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-3.5-turbo-0125": 1.5,
     "gpt-3.5-turbo-0125-FC": 1.5,
     "gemini-1.0-pro": 1,
+    "gemini-1.5-pro-preview-0409": 7,
     "databricks-dbrx-instruct": 2.25,
     "command-r-plus-FC": 3,
     "command-r-plus": 3,
+    "command-r-plus-FC-optimized": 3,
+    "command-r-plus-optimized": 3,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -346,6 +374,7 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-instant-1.2": 5.51,
     "mistral-large-2402-FC-Any": 24,
     "mistral-large-2402-FC-Auto": 24,
+    "mistral-small-2402": 24,
     "mistral-medium-2312": 8.1,
     "mistral-small-2402-FC-Any": 6,
     "mistral-small-2402-FC-Auto": 6,
@@ -361,43 +390,39 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-3.5-turbo-0125": 2,
     "gpt-3.5-turbo-0125-FC": 2,
     "gemini-1.0-pro": 2,
+    "gemini-1.5-pro-preview-0409": 14,
     "databricks-dbrx-instruct": 6.75,
     "command-r-plus-FC": 15,
     "command-r-plus": 15,
+    "command-r-plus-FC-optimized": 15,
+    "command-r-plus-optimized": 15,
 }
 
 # The latency of the open-source models are hardcoded here.
 # Because we do batching when generating the data, so the latency is not accurate from the result data.
-# This is the latency for the whole batch of data.
+# This is the latency for the whole batch of data, when using 8 V100 GPUs.
 OSS_LATENCY = {
-    "deepseek-ai/deepseek-coder-6.7b-instruct": 2040,
-    "google/gemma-7b-it": 161,
-    "glaiveai/glaive-function-calling-v1": 99,
-    "NousResearch/Hermes-2-Pro-Mistral-7B": 666,
-}
-
-OSS_INPUT_TOKEN = {
-    "deepseek-ai/deepseek-coder-6.7b-instruct": 884190,
-    "google/gemma-7b-it": 733701,
-}
-
-OSS_OUTPUT_TOKEN = {
-    "deepseek-ai/deepseek-coder-6.7b-instruct": 2009421,
-    "google/gemma-7b-it": 130206,
+    "deepseek-ai/deepseek-coder-6.7b-instruct": 909,
+    "google/gemma-7b-it": 95,
+    "NousResearch/Hermes-2-Pro-Mistral-7B": 135,
+    "meta-llama/Meta-Llama-3-8B-Instruct": 73,
+    "meta-llama/Meta-Llama-3-70B-Instruct": 307,
+    "gorilla-openfunctions-v2": 83,
 }
 
 
 NO_COST_MODELS = [
     "Nexusflow-Raven-v2",
     "fire-function-v1-FC",
-    "meetkai_functionary-medium-v2.4-FC",
-    "meetkai_functionary-small-v2.2-FC",
-    "meetkai_functionary-small-v2.4-FC",
+    "meetkai/functionary-medium-v2.4-FC",
+    "meetkai/functionary-small-v2.2-FC",
+    "meetkai/functionary-small-v2.4-FC",
+    "snowflake/arctic",
 ]
 
-A100_PRICE_PER_HOUR = (
-    10.879 / 8
-)  # Price got from AZure, 10.879 per hour for 8 A100, 3 years reserved
+# Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
+# Reference: https://azure.microsoft.com/en-us/pricing/details/machine-learning/
+V100_x8_PRICE_PER_HOUR = 22.032
 
 
 def extract_after_test(input_string):
@@ -690,7 +715,7 @@ def get_metric(model_name, cost_data, latency_data):
             "N/A",
         )
         mean_latency = round(mean_latency, 2)
-        cost = mean_latency * 1000 * A100_PRICE_PER_HOUR / 3600
+        cost = mean_latency * 1000 * V100_x8_PRICE_PER_HOUR / 3600
         cost = round(cost, 2)
 
     elif len(latency_data["data"]) != 0:
@@ -702,7 +727,7 @@ def get_metric(model_name, cost_data, latency_data):
         percentile_95_latency = round(percentile_95_latency, 2)
 
         if model_name not in INPUT_PRICE_PER_MILLION_TOKEN:
-            cost = sum(latency_data["data"]) * A100_PRICE_PER_HOUR / 3600
+            cost = sum(latency_data["data"]) * V100_x8_PRICE_PER_HOUR / 3600
             cost = round(cost, 2)
 
     if model_name in NO_COST_MODELS:
