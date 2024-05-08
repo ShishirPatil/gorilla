@@ -325,6 +325,18 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/Snowflake/snowflake-arctic-instruct",
         "Snowflake",
         "apache-2.0",
+    ],
+    "reka-flash": [
+        "Reka Flash",
+        "https://www.reka.ai/news/reka-flash-efficient-and-capable-multimodal-language-models",
+        "Reka AI",
+        "Proprietary",
+    ],
+    "reka-core": [
+        "Reka Core",
+        "https://www.reka.ai/news/reka-core-our-frontier-class-multimodal-language-model",
+        "Reka AI",
+        "Proprietary",
     ]
 }
 

@@ -16,6 +16,7 @@ from model_handler.nexus_handler import NexusHandler
 from model_handler.oss_handler import OSSHandler
 from model_handler.cohere_handler import CohereHandler
 from model_handler.arctic_handler import ArcticHandler
+from model_handler.reka_handler import RekaHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -67,4 +68,6 @@ handler_map = {
     "command-r-plus-FC-optimized": CohereHandler,
     "command-r-plus-optimized": CohereHandler,
     "snowflake/arctic": ArcticHandler,
+    "reka-flash": RekaHandler,
+    "reka-core": RekaHandler,
 }

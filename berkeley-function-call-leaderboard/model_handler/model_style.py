@@ -12,3 +12,4 @@ class ModelStyle(Enum):
     NEXUS = "nexus"
     OSSMODEL = "ossmodel"
     COHERE = "cohere"
+    Reka = "reka"

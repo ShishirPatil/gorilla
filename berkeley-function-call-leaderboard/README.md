@@ -61,6 +61,8 @@ The evaluation datasets are now stored in the `./data` folder. The possible answ
 ## Execution Evaluation Data Post-processing 
 Input your API keys into `function_credential_config.json`, so that the original placeholder values in questions, params, and answers will be cleaned. 
 
+Note to Reka folks: Our keys are located inside 1Password Shared folder (under "Tooluse benchmark API creds").
+
 To run the executable test categories, there are 4 API keys to fill out:
 
 1. RAPID-API Key: https://rapidapi.com/hub
