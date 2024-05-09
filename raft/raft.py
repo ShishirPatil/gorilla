@@ -5,11 +5,13 @@ import logging
 from typing import Literal, Any
 import argparse
 from openai import OpenAI
+import datasets
 from datasets import Dataset, load_dataset
 from transformers import AutoTokenizer
 import json
 import PyPDF2
 import random
+import os, shutil
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_openai.embeddings import OpenAIEmbeddings
 from client_utils import build_openai_client, build_langchain_embeddings
@@ -20,6 +22,9 @@ log_setup()
 logger = logging.getLogger("raft")
 
 DocType = Literal["api", "pdf", "json", "txt"]
+
+# Every N chunks, save checkpoint
+N = 15
 
 def get_args() -> argparse.Namespace:
     """
@@ -35,8 +40,9 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--chunk_size", type=int, default=512, help="The size of each chunk in number of tokens")
     parser.add_argument("--doctype", type=str, default="pdf", help="The type of the document, must be one of the accepted doctypes", choices=["pdf", "txt", "json", "api"])
     parser.add_argument("--openai_key", type=str, default=None, help="Your OpenAI key used to make queries to GPT-3.5 or GPT-4")
-    parser.add_argument("--embedding-model", type=str, default="text-embedding-ada-002", help="The embedding model to use to encode documents chunks (text-embedding-ada-002, ...)")
-    parser.add_argument("--completion-model", type=str, default="gpt-4", help="The model to use to generate questions and answers (gpt-3.5, gpt-4, ...)")
+    parser.add_argument("--embedding_model", type=str, default="text-embedding-ada-002", help="The embedding model to use to encode documents chunks (text-embedding-ada-002, ...)")
+    parser.add_argument("--completion_model", type=str, default="gpt-4", help="The model to use to generate questions and answers (gpt-3.5, gpt-4, ...)")
+    parser.add_argument("--fast", action="store_true", help="Run the script in fast mode (no recovery implemented)")
 
     args = parser.parse_args()
     return args
@@ -273,6 +279,14 @@ def add_chunk_to_dataset(
         else:
             ds = ds.add_item(datapt)
 
+def save_checkpoint(state, filename):
+    with open(filename, 'w') as f:
+        f.write(str(state))
+
+def load_checkpoint(filename):
+    with open(filename, 'r') as f:
+        return int(f.read())
+
 def main():
     global ds
 
@@ -293,17 +307,56 @@ def main():
     ds = None
 
     num_chunks = len(chunks)
-    for i, chunk in enumerate(chunks):
-        perc = ceil(i / num_chunks * 100)
-        with MDC(progress=f"{perc}%"):
-            logger.info(f"Adding chunk {i}/{num_chunks}")
-            add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
+
+    if not args.fast:
+        start = 0
+        if os.path.exists("checkpoint.txt"):
+            start = int(load_checkpoint("checkpoint.txt"))
+
+        for i in range((start//N)*N, len(chunks)):
+            chunk = chunks[i]
+            save_checkpoint(i, "checkpoint.txt")
+
+            perc = ceil(i / num_chunks * 100)
+            with MDC(progress=f"{perc}%"):
+                logger.info(f"Adding chunk {i}/{num_chunks}")
+                add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
+
+            if (i+1) % N == 0:
+                ds.save_to_disk(args.output + "-checkpoints-" + str(i))
+                ds = None
+    
+    
+        if ds:
+            ds.save_to_disk(args.output + "-checkpoints-last")
+
+        ds_list = []
+
+        for filename in os.listdir(os.path.dirname(args.output)):
+            if "-checkpoints-" in filename:
+                for f in os.listdir(os.path.dirname(args.output) + "/" + filename):
+                    if f.endswith(".arrow"):
+                        ds_list.append(Dataset.from_file(os.path.dirname(args.output) + "/" + filename + "/" + f))
+
+        ds = datasets.concatenate_datasets(ds_list)
+    else:
+        for i, chunk in enumerate(chunks):
+            perc = ceil(i / num_chunks * 100)
+            with MDC(progress=f"{perc}%"):
+                logger.info(f"Adding chunk {i}/{num_chunks}")
+                add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
     
     # Save as .arrow format
     ds.save_to_disk(args.output)
-    
+
     # Save as .jsonl format
     ds.to_json(args.output + ".jsonl")
+
+    if not args.fast:
+        os.remove("checkpoint.txt")
+        for filename in os.listdir(os.path.dirname(args.output)):
+            if "-checkpoints-" in filename:
+                shutil.rmtree(os.path.dirname(args.output) + "/" + filename)
 
 if __name__ == "__main__":
     with MDC(progress="0%"):
