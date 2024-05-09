@@ -43,10 +43,7 @@ class GeminiHandler(BaseHandler):
         }
 
         # NOTE: To run the gemini model, you need to provide your own GCP project ID, which can be found in the GCP console.
-        if self.model_name == "gemini-1.5-pro-preview-0409":
-            API_URL = "https://us-central1-aiplatform.googleapis.com/v1beta1/projects/{YOUR_GCP_PROJECT_ID_HERE}/locations/us-central1/publishers/google/models/gemini-1.5-pro-preview-0409:generateContent"
-        else:
-            API_URL = "https://us-central1-aiplatform.googleapis.com/v1beta1/projects/{YOUR_GCP_PROJECT_ID_HERE}/locations/us-central1/publishers/google/models/gemini-1.0-pro:generateContent"
+        API_URL = "https://us-central1-aiplatform.googleapis.com/v1beta1/projects/{YOUR_GCP_PROJECT_ID_HERE}/locations/us-central1/publishers/google/models/" + self.model_name + ":generateContent"
         headers = {
             "Authorization": "Bearer " + token,
             "Content-Type": "application/json",
@@ -65,22 +62,19 @@ class GeminiHandler(BaseHandler):
                 "output_tokens": 0,
                 "latency": latency,
             }
-        contents = result["candidates"][0]["content"]["parts"][0]
-        if "functionCall" in contents:
-            if (
-                "name" in contents["functionCall"]
-                and "args" in contents["functionCall"]
-            ):
-                result = {
-                    contents["functionCall"]["name"]: json.dumps(
-                        contents["functionCall"]["args"]
-                    )
-                }
-
+        parts = []
+        for part in result["candidates"][0]["content"]["parts"]:
+            if "functionCall" in part:
+                if (
+                    "name" in part["functionCall"]
+                    and "args" in part["functionCall"]
+                ):
+                    parts.append({part["functionCall"]["name"]: json.dumps(part["functionCall"]["args"])})
+                else:
+                    parts.append("Parsing error: " + json.dumps(part["functionCall"]))
             else:
-                result = "Parsing error: " + json.dumps(contents["functionCall"])
-        else:
-            result = contents["text"]
+                parts.append(part["text"])
+        result = parts
         metatdata = {}
         metatdata["input_tokens"] = json.loads(response.content)["usageMetadata"][
             "promptTokenCount"
