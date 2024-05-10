@@ -16,6 +16,7 @@ from langchain_experimental.text_splitter import SemanticChunker
 from langchain_openai.embeddings import OpenAIEmbeddings
 from client_utils import build_openai_client, build_langchain_embeddings
 from math import ceil
+from format import DatasetConverter, datasetFormats, outputDatasetTypes
 
 log_setup()
 
@@ -34,6 +35,9 @@ def get_args() -> argparse.Namespace:
 
     parser.add_argument("--datapath", type=str, default="", help="The path at which the document is located")
     parser.add_argument("--output", type=str, default="./", help="The path at which to save the dataset")
+    parser.add_argument("--output-format", type=str, default="hf", help="Format to convert the dataset to. Defaults to hf.", choices=datasetFormats)
+    parser.add_argument("--output-type", type=str, default="jsonl", help="Type to export the dataset to. Defaults to jsonl.", choices=outputDatasetTypes)
+    parser.add_argument("--output-chat-system-prompt", type=str, help="The system prompt to use when the output format is chat")
     parser.add_argument("--distractors", type=int, default=3, help="The number of distractor documents to include per data point / triplet")
     parser.add_argument("--p", type=float, default=1.0, help="The percentage that the oracle document is included in the context")
     parser.add_argument("--questions", type=int, default=5, help="The number of data points / triplets to generate per chunk")
@@ -292,7 +296,11 @@ def main():
 
     # run code
     args = get_args()
-    
+
+    # Validate arguments
+    if args.output_chat_system_prompt and args.output_format != "chat":
+        raise Exception("Parameter --output-chat-system-prompt can only be used with --output-format chat")
+
     OPENAPI_API_KEY = args.openai_key
 
     client = build_openai_client(
@@ -350,7 +358,14 @@ def main():
     ds.save_to_disk(args.output)
 
     # Save as .jsonl format
-    ds.to_json(args.output + ".jsonl")
+    formatter = DatasetConverter()
+
+    # Extract format specific params
+    format_params = {}
+    if args.output_chat_system_prompt:
+        format_params['system_prompt'] = args.output_chat_system_prompt
+
+    formatter.convert(ds=ds, format=args.output_format, output_path=args.output, output_type=args.output_type, params=format_params)
 
     if not args.fast:
         os.remove("checkpoint.txt")
