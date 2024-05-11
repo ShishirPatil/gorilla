@@ -188,7 +188,7 @@ def encode_question_gen(question: str, chunk: Any) -> list[str]:
         - First provide step-by-step reasoning on how to answer the question. 
         - In the reasoning, if you need to copy paste some sentences from the context, include them in ##begin_quote## and ##end_quote##. This would mean that things outside of ##begin_quote## and ##end_quote## are not directly copy paste from the context. 
         - End your response with final answer in the form <ANSWER>: $answer, the answer should be succinct.
-        You MUST being your final answer with the tag "<ANSWER>:".
+        You MUST begin your final answer with the tag "<ANSWER>:".
     """.format(question=question, context=str(chunk))
     prompts.append({"role": "system", "content": "You are a helpful question answerer who can provide an answer given a question and relevant context."})
     prompts.append({"role": "user", "content": prompt})
