@@ -13,7 +13,7 @@ outputDatasetTypes = list(get_args(OutputDatasetType))
 InputDatasetType = Literal["arrow", "jsonl"]
 inputDatasetTypes = list(get_args(InputDatasetType))
 
-DatasetFormat = Literal["hf", "completion", "chat"]
+DatasetFormat = Literal["hf", "completion", "chat", "eval"]
 datasetFormats = list(get_args(DatasetFormat))
 
 def get_args() -> argparse.Namespace:
@@ -61,7 +61,8 @@ class DatasetConverter():
         self.formats = {
             "hf": HuggingFaceDatasetFormatter(),
             "completion": OpenAiCompletionDatasetFormatter(),
-            "chat": OpenAiChatDatasetFormatter()
+            "chat": OpenAiChatDatasetFormatter(),
+            "eval": EvalDatasetFormatter(),
         }
         self.exporters = {
             "parquet": ParquetDatasetExporter(),
@@ -126,6 +127,16 @@ class OpenAiChatDatasetFormatter(OpenAiCompletionDatasetFormatter):
 
         newds = newds.map(format_messages)
         return _remove_all_columns_but(newds, ['messages'])
+
+
+class EvalDatasetFormatter(DatasetFormatter):
+    def format(self, ds: Dataset, params: Dict[str, str]) -> Dataset:
+        newds = ds.rename_columns({'question': 'question', 'cot_answer': 'answer', 'context': 'context_sentences'})
+        def transforms(examples):
+            examples["context"] = ['\n'.join(context['sentences'][0]) for context in examples["context_sentences"]]
+            return examples
+        newds.set_transform(transforms)
+        return _remove_all_columns_but(newds, ['question', 'answer', 'context'])
 
 def append_extension(path: str, extension: str) -> str:
     suffix = "." + extension
