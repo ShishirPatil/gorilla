@@ -135,14 +135,27 @@ class OpenAiChatDatasetFormatter(OpenAiCompletionDatasetFormatter):
         newds = newds.map(format_messages)
         return _remove_all_columns_but(newds, ['messages'])
 
+def extract_final_answer(cot_answer: str) -> str:
+    """
+    Extracts the final answer from the cot_answer field
+    """
+    return cot_answer.split("<ANSWER>: ")[-1]
+
+def extract_context(instruction: str) -> str:
+    """
+    Extracts the context from the instruction field.
+    Keeps all <DOCUMENTS/> and removes the last line with the question.
+    """
+    return "\n".join(instruction.split("\n")[:-1])
 
 class EvalDatasetFormatter(DatasetFormatter):
+    """
+    Returns the Dataset in a format suitable for evaluation. Extracts final answer separates context from question.
+    """
     def format(self, ds: Dataset, params: Dict[str, str]) -> Dataset:
-        newds = ds.rename_columns({'question': 'question', 'cot_answer': 'answer', 'context': 'context_sentences'})
-        def transforms(examples):
-            examples["context"] = ['\n'.join(context['sentences'][0]) for context in examples["context_sentences"]]
-            return examples
-        newds.set_transform(transforms)
+        newds = ds.rename_columns({'context': 'context_sentences'})
+        newds = newds.map(lambda examples: {"answer": [extract_final_answer(answer) for answer in examples['cot_answer']]}, batched=True)
+        newds = newds.map(lambda examples: {"context": [extract_context(instruction) for instruction in examples['instruction']]}, batched=True)
         return _remove_all_columns_but(newds, ['question', 'answer', 'context'])
 
 def append_extension(path: str, extension: str) -> str:
