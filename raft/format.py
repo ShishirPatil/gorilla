@@ -2,6 +2,8 @@ from abc import ABC, abstractmethod
 import argparse
 from datasets import Dataset, load_dataset
 from typing import Dict, Literal, Any, get_args
+from logconf import log_setup
+import logging
 
 """
 This file allows to convert raw HuggingFace Datasets into files suitable to fine tune completion and chat models.
@@ -167,6 +169,8 @@ def main():
     """
     When raft.py is executed from the command line.
     """
+
+    log_setup()
     args = get_args()
     input_type = args.input_type
 
@@ -183,6 +187,9 @@ def main():
     format_params = {}
     if args.output_chat_system_prompt:
         format_params['system_prompt'] = args.output_chat_system_prompt
+
+    logger = logging.getLogger("raft")
+    logger.info(f"Converting {args.input_type} file {args.input} to {args.output_type} {args.output_format} file {args.output}")
 
     formatter.convert(ds=ds, format=args.output_format, output_path=args.output, output_type=args.output_type, params=format_params)
 
