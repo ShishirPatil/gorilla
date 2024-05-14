@@ -30,6 +30,8 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--output-format", type=str, required=True, help="Format to convert the dataset to", choices=datasetFormats)
     parser.add_argument("--output-type", type=str, default="jsonl", help="Type to export the dataset to. Defaults to jsonl.", choices=outputDatasetTypes)
     parser.add_argument("--output-chat-system-prompt", type=str, help="The system prompt to use when the output format is chat")
+    parser.add_argument("--output-completion-prompt-column", type=str, default="prompt", help="The prompt column name to use for the completion format")
+    parser.add_argument("--output-completion-completion-column", type=str, default="completion", help="The completion column name to use for the completion format")
 
     args = parser.parse_args()
     return args
@@ -104,11 +106,14 @@ def _remove_all_columns_but(ds: Dataset, keep_columns) -> Dataset:
 class OpenAiCompletionDatasetFormatter(DatasetFormatter):
     """
     Returns the Dataset in the OpenAI Completion Fine-tuning file format with two fields "prompt" and "completion".
+    Field names can be customized because different systems have different expectations.
     https://platform.openai.com/docs/guides/fine-tuning/preparing-your-dataset
     """
     def format(self, ds: Dataset, params: Dict[str, str]) -> Dataset:
-        newds = ds.rename_columns({'instruction': 'prompt', 'cot_answer': 'completion'})
-        return _remove_all_columns_but(newds, ['prompt', 'completion'])
+        prompt_column = params['prompt_column']
+        completion_column = params['completion_column']
+        newds = ds.rename_columns({'instruction': prompt_column, 'cot_answer': completion_column})
+        return _remove_all_columns_but(newds, [prompt_column, completion_column])
 
 class OpenAiChatDatasetFormatter(OpenAiCompletionDatasetFormatter):
     """
@@ -187,6 +192,10 @@ def main():
     format_params = {}
     if args.output_chat_system_prompt:
         format_params['system_prompt'] = args.output_chat_system_prompt
+
+    if args.output_format == "completion":
+        format_params['prompt_column'] = args.output_completion_prompt_column
+        format_params['completion_column'] = args.output_completion_completion_column
 
     logger = logging.getLogger("raft")
     logger.info(f"Converting {args.input_type} file {args.input} to {args.output_type} {args.output_format} file {args.output}")
