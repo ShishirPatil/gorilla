@@ -17,6 +17,7 @@ from langchain_openai.embeddings import OpenAIEmbeddings
 from client_utils import build_openai_client, build_langchain_embeddings
 from math import ceil
 from format import DatasetConverter, datasetFormats, outputDatasetTypes
+from pathlib import Path
 
 log_setup()
 
@@ -317,14 +318,20 @@ def main():
 
     num_chunks = len(chunks)
 
-    if not args.fast:
-        start = 0
-        if os.path.exists("checkpoint.txt"):
-            start = int(load_checkpoint("checkpoint.txt"))
+    output_path = Path(args.output).absolute()
+    output_path_parent = output_path.parent
 
-        for i in range((start//N)*N, len(chunks)):
+    if not args.fast:
+        checkpoint_path = Path("checkpoint.txt").absolute()
+        logger.info(f"Using checkpoint file {checkpoint_path}")
+
+        start = 0
+        if checkpoint_path.exists():
+            # Resume from last chunk not checkpointed
+            start = int(load_checkpoint(checkpoint_path))
+
+        for i in range(start, len(chunks)):
             chunk = chunks[i]
-            save_checkpoint(i, "checkpoint.txt")
 
             perc = ceil(i / num_chunks * 100)
             with MDC(progress=f"{perc}%"):
@@ -332,20 +339,23 @@ def main():
                 add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
 
             if (i+1) % N == 0:
-                ds.save_to_disk(args.output + "-checkpoints-" + str(i))
+                ds.save_to_disk(output_path + "-checkpoints-" + str(i))
+
+                # Save next chunk as checkpoint
+                save_checkpoint(i + 1, checkpoint_path)
                 ds = None
     
     
         if ds:
-            ds.save_to_disk(args.output + "-checkpoints-last")
+            ds.save_to_disk(output_path + "-checkpoints-last")
 
         ds_list = []
 
-        for filename in os.listdir(os.path.dirname(args.output)):
-            if "-checkpoints-" in filename:
-                for f in os.listdir(os.path.dirname(args.output) + "/" + filename):
-                    if f.endswith(".arrow"):
-                        ds_list.append(Dataset.from_file(os.path.dirname(args.output) + "/" + filename + "/" + f))
+        for dir_path in output_path_parent.iterdir():
+            if dir_path.is_dir() and "-checkpoints-" in dir_path.name:
+                for f in dir_path.iterdir():
+                    if f.is_file() and f.suffix == ".arrow":
+                        ds_list.append(Dataset.from_file(str(f)))
 
         ds = datasets.concatenate_datasets(ds_list)
     else:
@@ -356,7 +366,7 @@ def main():
                 add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
     
     # Save as .arrow format
-    ds.save_to_disk(args.output)
+    ds.save_to_disk(output_path)
 
     # Save as .jsonl format
     formatter = DatasetConverter()
@@ -366,13 +376,13 @@ def main():
     if args.output_chat_system_prompt:
         format_params['system_prompt'] = args.output_chat_system_prompt
 
-    formatter.convert(ds=ds, format=args.output_format, output_path=args.output, output_type=args.output_type, params=format_params)
+    formatter.convert(ds=ds, format=args.output_format, output_path=str(output_path), output_type=args.output_type, params=format_params)
 
     if not args.fast:
-        os.remove("checkpoint.txt")
-        for filename in os.listdir(os.path.dirname(args.output)):
-            if "-checkpoints-" in filename:
-                shutil.rmtree(os.path.dirname(args.output) + "/" + filename)
+        checkpoint_path.unlink()
+        for dir_path in output_path_parent.iterdir():
+            if dir_path.is_dir() and "-checkpoints-" in dir_path.name:
+                shutil.rmtree(dir_path)
 
 if __name__ == "__main__":
     with MDC(progress="0%"):
