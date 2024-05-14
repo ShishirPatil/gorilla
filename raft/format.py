@@ -168,7 +168,13 @@ def main():
     When raft.py is executed from the command line.
     """
     args = get_args()
-    ds = load_dataset(args.input_type, data_files={"train": args.input})['train']
+    input_type = args.input_type
+
+    # datasets except json when loading jsonl files
+    if input_type == "jsonl":
+        input_type = "json"
+
+    ds = load_dataset(input_type, data_files={"train": args.input})['train']
     formatter = DatasetConverter()
 
     if args.output_chat_system_prompt and args.output_format != "chat":
