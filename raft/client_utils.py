@@ -1,5 +1,4 @@
 from typing import Any
-from dotenv import load_dotenv
 from langchain_openai import OpenAIEmbeddings, AzureOpenAIEmbeddings
 from openai import AzureOpenAI, OpenAI
 import logging
@@ -8,14 +7,12 @@ from os import environ
 
 logger = logging.getLogger("client_utils")
 
-load_dotenv()  # take environment variables from .env.
-
-def build_openai_client(**kwargs: Any) -> OpenAI:
+def build_openai_client(env_prefix : str = "COMPLETION", **kwargs: Any) -> OpenAI:
     """
     Build OpenAI client based on the environment variables.
     """
 
-    env = read_env_config("COMPLETION")
+    env = read_env_config(env_prefix)
     with set_env(**env):
         if is_azure():
             client = AzureOpenAI(**kwargs)

@@ -18,8 +18,11 @@ from client_utils import build_openai_client, build_langchain_embeddings
 from math import ceil
 from format import DatasetConverter, datasetFormats, outputDatasetTypes
 from pathlib import Path
+from dotenv import load_dotenv
 
 log_setup()
+
+load_dotenv()  # take environment variables from .env.
 
 logger = logging.getLogger("raft")
 
