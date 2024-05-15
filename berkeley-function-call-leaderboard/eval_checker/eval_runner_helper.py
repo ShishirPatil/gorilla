@@ -254,8 +254,14 @@ MODEL_METADATA_MAPPING = {
         "Google",
         "Proprietary",
     ],
+    "gemini-1.5-pro-preview-0409": [
+        "Gemini-1.5-Pro-Preview-0409 (FC)",
+        "https://deepmind.google/technologies/gemini/#introduction",
+        "Google",
+        "Proprietary",
+    ],
     "gemini-1.0-pro": [
-        "Gemini-1.0-Pro (FC)",
+        "Gemini-1.0-Pro-001 (FC)",
         "https://deepmind.google/technologies/gemini/#introduction",
         "Google",
         "Proprietary",
@@ -301,12 +307,6 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B",
         "NousResearch",
         "apache-2.0",
-    ],
-    "gemini-1.5-pro-preview-0409": [
-        "Gemini-1.5-Pro (FC)",
-        "https://deepmind.google/technologies/gemini/#introduction",
-        "Google",
-        "Proprietary",
     ],
     "meta-llama_Meta-Llama-3-8B-Instruct": [
         "Meta-Llama-3-8B-Instruct (Prompt)",
