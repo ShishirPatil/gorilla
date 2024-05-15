@@ -189,12 +189,29 @@ prompt_templates = {
         You MUST begin your final answer with the tag "<ANSWER>:".
     """,
     "llama": """
-        Question: {question}\nContext: {context}\n
-        Answer this question using the information given in the context above. Here is things to pay attention to: 
+        Question: {question}
+        Context: {context}
+
+        Answer this question using the information given in the context above.
+        
+        Instructions:
         - First provide step-by-step reasoning on how to answer the question. 
         - In the reasoning, if you need to copy paste some sentences from the context, include them in ##begin_quote## and ##end_quote##. This would mean that things outside of ##begin_quote## and ##end_quote## are not directly copy paste from the context. 
         - End your response with final answer in the form <ANSWER>: $answer, the answer should be succinct.
-        You MUST begin your final answer with the tag "<ANSWER>:".
+        - You MUST begin your final answer with the tag "<ANSWER>:".
+
+        Here are some samples:
+
+        Example question: What movement did the arrest of Jack Weinberg in Sproul Plaza give rise to?
+        Example answer: To answer the question, we need to identify the movement that was sparked by the arrest of Jack Weinberg in Sproul Plaza. 
+        The context provided gives us the necessary information to determine this.
+        First, we look for the part of the context that directly mentions Jack Weinberg's arrest. 
+        We find it in the sentence: ##begin_quote##The arrest in Sproul Plaza of Jack Weinberg, a recent Berkeley alumnus and chair of Campus CORE, 
+        prompted a series of student-led acts of formal remonstrance and civil disobedience that ultimately gave rise to the Free Speech Movement##end_quote##.
+        From this sentence, we understand that the arrest of Jack Weinberg led to student-led acts which then gave rise to a specific movement. 
+        The name of the movement is explicitly mentioned in the same sentence as the "Free Speech Movement."
+        Therefore, based on the context provided, we can conclude that the arrest of Jack Weinberg in Sproul Plaza gave rise to the Free Speech Movement.
+        <ANSWER>: Free Speech Movement
     """
     }
 
