@@ -116,6 +116,7 @@ JS_TYPE_CONVERSION = {
 
 # If there is any underscore in folder name, you should change it to `/` in the following strings
 UNDERSCORE_TO_DOT = [
+    "gpt-4o-2024-05-13-FC",
     "gpt-4-turbo-2024-04-09-FC",
     "gpt-4-1106-preview-FC",
     "gpt-4-0125-preview-FC",
@@ -132,6 +133,8 @@ UNDERSCORE_TO_DOT = [
     "mistral-small-2402-FC",
     "gemini-1.0-pro",
     "gemini-1.5-pro-preview-0409",
+    "gemini-1.5-pro-preview-0514",
+    "gemini-1.5-flash-preview-0514",
     "meetkai/functionary-small-v2.2-FC",
     "meetkai/functionary-medium-v2.2-FC",
     "meetkai/functionary-small-v2.4-FC",
