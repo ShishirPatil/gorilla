@@ -198,12 +198,15 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
 |fire-function-v1-FC | Function Calling|
 |gemini-1.0-pro | Function Calling|
-|gemini-1.5-pro-preview-0409 | Function Calling|
+|gemini-1.5-pro-preview-{0409,0514} | Function Calling|
+|gemini-1.5-flash-preview-0514 | Function Calling|
 |glaiveai/glaive-function-calling-v1 💻| Function Calling|
 |gpt-3.5-turbo-0125-FC| Function Calling|
 |gpt-3.5-turbo-0125| Prompt|
 |gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}-FC| Function Calling|
 |gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}| Prompt|
+|gpt-4o-2024-05-13-FC | Function Calling|
+|gpt-4o-2024-05-13| Prompt|
 |google/gemma-7b-it 💻| Prompt|
 |meetkai/functionary-{small,medium}-v2.4-FC| Function Calling|
 |meetkai/functionary-small-v2.2-FC| Function Calling|
@@ -232,6 +235,17 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 ## Changelog
 
+* [May 14, 2024] [#426](https://github.com/ShishirPatil/gorilla/pull/426):
+    - Add the following new models to the leaderboard:
+        + `gpt-4o-2024-05-13`
+        + `gpt-4o-2024-05-13-FC`
+        + `gemini-1.5-pro-preview-0514`
+        + `gemini-1.5-flash-preview-0514`
+    - Update price for the following models:
+        + All Gemini Series
+        + `Claude-2.1 (Prompt)` and `Claude-instant-1.2 (Prompt)`
+        + `Mistral-large` and `Mistral-Small`
+        + `GPT-3.5-Turbo-0125`
 * [May 8, 2024] [#406](https://github.com/ShishirPatil/gorilla/pull/406) and [#421](https://github.com/ShishirPatil/gorilla/pull/421): Update the `gemini_handler.py` to better handle parallel function calls for Gemini models.
 * [May 6, 2024] [#412](https://github.com/ShishirPatil/gorilla/pull/412): Bug fix in evaluation dataset for AST categories. This includes updates to both prompts and function docs.
 * [May 2, 2024] [#405](https://github.com/ShishirPatil/gorilla/pull/405): Bug fix in the possible answers for the AST Simple evaluation dataset. Prompt and function docs are not affected.

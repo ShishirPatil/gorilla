@@ -76,25 +76,21 @@ class GeminiHandler(BaseHandler):
                 else:
                     parts.append(part["text"])
             result = parts
-        # This try-except is necessary because sometimes `result["candidates"][0]` does not have the key "content"
-        except Exception as e:
-            result = f"Parsing error: {e}" 
-            
-        metatdata = {}
-        try:
+            metatdata = {}
             metatdata["input_tokens"] = json.loads(response.content)["usageMetadata"][
                 "promptTokenCount"
             ]
-        except:
-            metatdata["input_tokens"] = 0  # We special handle the 0 value when aggregating the results. 0 token will be ignored and not be counted in the average.
-        try:
             metatdata["output_tokens"] = json.loads(response.content)["usageMetadata"][
                 "candidatesTokenCount"
             ]
-        except:
-            metatdata["output_tokens"] = 0  # We special handle the 0 value when aggregating the results. 0 token will be ignored and not be counted in the average.
-            
-        metatdata["latency"] = latency
+            metatdata["latency"] = latency
+        except Exception as e:
+            result = "Parsing error: " + json.dumps(result)
+            metatdata = {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "latency": latency,
+            }
         return result, metatdata
 
     def inference(self, prompt, functions, test_category):
