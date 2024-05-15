@@ -49,6 +49,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--completion_model", type=str, default="gpt-4", help="The model to use to generate questions and answers (gpt-3.5, gpt-4, ...)")
     parser.add_argument("--fast", action="store_true", help="Run the script in fast mode (no recovery implemented)")
     parser.add_argument("--checkpoint-size", default=15, type=int, help="The size of checkpoints. Ignored when --fast is set.)")
+    parser.add_argument("--system-prompt-key", default="gpt", help="The system prompt to use to generate the dataset")
 
     args = parser.parse_args()
     return args
@@ -177,30 +178,43 @@ def encode_question(question: str, api: Any) -> list[str]:
     prompts.append({"role": "user", "content": prompt})
     return prompts
 
-def encode_question_gen(question: str, chunk: Any) -> list[str]:
-    """
-    Encode multiple prompt instructions into a single string for the general case (`pdf`, `json`, or `txt`).
-    """
-    
-    prompts = []
-        
-    prompt = """
+
+prompt_templates = {
+    "gpt": """
         Question: {question}\nContext: {context}\n
         Answer this question using the information given in the context above. Here is things to pay attention to: 
         - First provide step-by-step reasoning on how to answer the question. 
         - In the reasoning, if you need to copy paste some sentences from the context, include them in ##begin_quote## and ##end_quote##. This would mean that things outside of ##begin_quote## and ##end_quote## are not directly copy paste from the context. 
         - End your response with final answer in the form <ANSWER>: $answer, the answer should be succinct.
         You MUST begin your final answer with the tag "<ANSWER>:".
-    """.format(question=question, context=str(chunk))
+    """,
+    "llama": """
+        Question: {question}\nContext: {context}\n
+        Answer this question using the information given in the context above. Here is things to pay attention to: 
+        - First provide step-by-step reasoning on how to answer the question. 
+        - In the reasoning, if you need to copy paste some sentences from the context, include them in ##begin_quote## and ##end_quote##. This would mean that things outside of ##begin_quote## and ##end_quote## are not directly copy paste from the context. 
+        - End your response with final answer in the form <ANSWER>: $answer, the answer should be succinct.
+        You MUST begin your final answer with the tag "<ANSWER>:".
+    """
+    }
+
+def encode_question_gen(question: str, chunk: Any, prompt_key : str = "gpt") -> list[str]:
+    """
+    Encode multiple prompt instructions into a single string for the general case (`pdf`, `json`, or `txt`).
+    """
+    
+    prompts = []
+
+    prompt = prompt_templates[prompt_key].format(question=question, context=str(chunk))
     prompts.append({"role": "system", "content": "You are a helpful question answerer who can provide an answer given a question and relevant context."})
     prompts.append({"role": "user", "content": prompt})
     return prompts
 
-def generate_label(client: OpenAI, question: str, context: Any, doctype: DocType = "pdf", model: str = None) -> str | None:
+def generate_label(client: OpenAI, question: str, context: Any, doctype: DocType = "pdf", model: str = None, prompt_key : str = "gpt") -> str | None:
     """
     Generates the label / answer to `question` using `context` and GPT-4.
     """
-    question = encode_question(question, context) if doctype == "api" else encode_question_gen(question, context)
+    question = encode_question(question, context) if doctype == "api" else encode_question_gen(question, context, prompt_key)
     response = client.chat.completions.create(
         model=model,
         messages=question,
@@ -218,7 +232,8 @@ def add_chunk_to_dataset(
     x: int = 5, 
     num_distract: int = 3, 
     p: float = 0.8,
-    model: str = None
+    model: str = None,
+    prompt_key: str = "gpt"
 ) -> None:
     """
     Given a chunk, create {Q, A, D} triplets and add them to the dataset.
@@ -263,7 +278,7 @@ def add_chunk_to_dataset(
         datapt["oracle_context"] = chunk
 
         # add answer to q
-        datapt["cot_answer"] = generate_label(client, q, chunk, doctype, model=model) 
+        datapt["cot_answer"] = generate_label(client, q, chunk, doctype, model=model, prompt_key=prompt_key)
 
         # construct model instruction 
         context = ""
@@ -320,8 +335,9 @@ def main():
     num_chunks = len(chunks)
 
     output_path = Path(args.output).absolute()
-    output_name = output_path.name
-    output_path_parent = output_path.parent
+
+    system_prompt_key = args.system_prompt_key
+    logger.info(f"Using system prompt key {system_prompt_key}")
 
     N = args.checkpoint_size
 
@@ -343,7 +359,7 @@ def main():
             perc = ceil((i+1) / num_chunks * 100)
             with MDC(progress=f"{perc}%"):
                 logger.info(f"Adding chunk {i+1}/{num_chunks}")
-                add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
+                add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model, prompt_key=system_prompt_key)
 
             if (i+1) % N == 0:
                 ds.save_to_disk(checkpoint_path)
@@ -372,7 +388,7 @@ def main():
             perc = ceil((i+1) / num_chunks * 100)
             with MDC(progress=f"{perc}%"):
                 logger.info(f"Adding chunk {i+1}/{num_chunks}")
-                add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
+                add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model, prompt_key=system_prompt_key)
     
     # Save as .arrow format
     datasets.enable_progress_bars()
