@@ -62,26 +62,38 @@ class GeminiHandler(BaseHandler):
                 "output_tokens": 0,
                 "latency": latency,
             }
-        parts = []
-        for part in result["candidates"][0]["content"]["parts"]:
-            if "functionCall" in part:
-                if (
-                    "name" in part["functionCall"]
-                    and "args" in part["functionCall"]
-                ):
-                    parts.append({part["functionCall"]["name"]: json.dumps(part["functionCall"]["args"])})
+        try:
+            parts = []
+            for part in result["candidates"][0]["content"]["parts"]:
+                if "functionCall" in part:
+                    if (
+                        "name" in part["functionCall"]
+                        and "args" in part["functionCall"]
+                    ):
+                        parts.append({part["functionCall"]["name"]: json.dumps(part["functionCall"]["args"])})
+                    else:
+                        parts.append("Parsing error: " + json.dumps(part["functionCall"]))
                 else:
-                    parts.append("Parsing error: " + json.dumps(part["functionCall"]))
-            else:
-                parts.append(part["text"])
-        result = parts
+                    parts.append(part["text"])
+            result = parts
+        # This try-except is necessary because sometimes `result["candidates"][0]` does not have the key "content"
+        except Exception as e:
+            result = f"Parsing error: {e}" 
+            
         metatdata = {}
-        metatdata["input_tokens"] = json.loads(response.content)["usageMetadata"][
-            "promptTokenCount"
-        ]
-        metatdata["output_tokens"] = json.loads(response.content)["usageMetadata"][
-            "candidatesTokenCount"
-        ]
+        try:
+            metatdata["input_tokens"] = json.loads(response.content)["usageMetadata"][
+                "promptTokenCount"
+            ]
+        except:
+            metatdata["input_tokens"] = 0  # We special handle the 0 value when aggregating the results. 0 token will be ignored and not be counted in the average.
+        try:
+            metatdata["output_tokens"] = json.loads(response.content)["usageMetadata"][
+                "candidatesTokenCount"
+            ]
+        except:
+            metatdata["output_tokens"] = 0  # We special handle the 0 value when aggregating the results. 0 token will be ignored and not be counted in the average.
+            
         metatdata["latency"] = latency
         return result, metatdata
 
