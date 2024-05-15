@@ -199,11 +199,15 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |fire-function-v1-FC | Function Calling|
 |gemini-1.0-pro | Function Calling|
 |gemini-1.5-pro-preview-0409 | Function Calling|
+|gemini-1.5-pro-preview-0514 | Function Calling|
+|gemini-1.5-flash-preview-0514 | Function Calling|
 |glaiveai/glaive-function-calling-v1 💻| Function Calling|
 |gpt-3.5-turbo-0125-FC| Function Calling|
 |gpt-3.5-turbo-0125| Prompt|
 |gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}-FC| Function Calling|
 |gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}| Prompt|
+|gpt-4o-2024-05-13-FC | Function Calling|
+|gpt-4o-2024-05-13| Prompt|
 |google/gemma-7b-it 💻| Prompt|
 |meetkai/functionary-{small,medium}-v2.4-FC| Function Calling|
 |meetkai/functionary-small-v2.2-FC| Function Calling|
