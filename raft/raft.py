@@ -336,9 +336,9 @@ def main():
         for i in range(start, len(chunks)):
             chunk = chunks[i]
 
-            perc = ceil(i / num_chunks * 100)
+            perc = ceil((i+1) / num_chunks * 100)
             with MDC(progress=f"{perc}%"):
-                logger.info(f"Adding chunk {i}/{num_chunks}")
+                logger.info(f"Adding chunk {i+1}/{num_chunks}")
                 add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
 
             if (i+1) % N == 0:
@@ -363,9 +363,9 @@ def main():
         ds = datasets.concatenate_datasets(ds_list)
     else:
         for i, chunk in enumerate(chunks):
-            perc = ceil(i / num_chunks * 100)
+            perc = ceil((i+1) / num_chunks * 100)
             with MDC(progress=f"{perc}%"):
-                logger.info(f"Adding chunk {i}/{num_chunks}")
+                logger.info(f"Adding chunk {i+1}/{num_chunks}")
                 add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
     
     # Save as .arrow format
