@@ -28,9 +28,6 @@ logger = logging.getLogger("raft")
 
 DocType = Literal["api", "pdf", "json", "txt"]
 
-# Every N chunks, save checkpoint
-N = 15
-
 def get_args() -> argparse.Namespace:
     """
     Parses and returns the arguments specified by the user's command
@@ -51,6 +48,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--embedding_model", type=str, default="text-embedding-ada-002", help="The embedding model to use to encode documents chunks (text-embedding-ada-002, ...)")
     parser.add_argument("--completion_model", type=str, default="gpt-4", help="The model to use to generate questions and answers (gpt-3.5, gpt-4, ...)")
     parser.add_argument("--fast", action="store_true", help="Run the script in fast mode (no recovery implemented)")
+    parser.add_argument("--checkpoint-size", default=15, type=int, help="The size of checkpoints. Ignored when --fast is set.)")
 
     args = parser.parse_args()
     return args
@@ -323,6 +321,8 @@ def main():
 
     output_path = Path(args.output).absolute()
     output_path_parent = output_path.parent
+
+    N = args.checkpoint_size
 
     if not args.fast:
         checkpoint_path = Path("checkpoint.txt").absolute()
