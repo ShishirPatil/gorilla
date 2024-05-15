@@ -127,28 +127,55 @@ def generate_instructions(client: OpenAI, api_call: Any, x=5, model: str = None)
         ]
     )
 
-    queries = response.choices[0].message.content.split('\n')
+    content = response.choices[0].message.content
+    queries = content.split('\n')
     queries = [strip_str(q) for q in queries]
     queries = [q for q in queries if any(c.isalpha() for c in q)]
 
     return queries
 
-def generate_instructions_gen(client: OpenAI, chunk: Any, x: int = 5, model: str = None) -> list[str]:
+build_qa_messages = {
+    "gpt": lambda chunk, x : [
+            {"role": "system", "content": "You are a synthetic question-answer pair generator. Given a chunk of context about some topic(s), generate %s example questions a user could ask and would be answered using information from the chunk. For example, if the given context was a Wikipedia paragraph about the United States, an example question could be 'How many states are in the United States?'" % (x)},
+            {"role": "system", "content": "The questions should be able to be answered in a few words or less. Include only the questions in your response."},
+            {"role": "user", "content": str(chunk)}
+        ],
+    "llama": lambda chunk, x : [
+            {"role": "system", "content": 
+                """You are a synthetic question generator.
+                
+                Instructions:
+                - Given a chunk of context about some topic(s), generate %s example questions a user could ask
+                - Questions should be answerable using only information from the chunk.
+                - Generate one question per line
+                - Generate only questions
+                - Questions should be succinct
+
+                Here are some samples:
+                Context: A Wikipedia paragraph about the United States, 
+                Question: How many states are in the United States?
+
+                Context: A Wikipedia paragraph about vampire bats, 
+                Question: What are the different species of vampire bats?
+                """ % (x)},
+            {"role": "system", "content": "The questions should be able to be answered in a few words or less. Include only the questions in your response."},
+            {"role": "user", "content": str(chunk)}
+        ]
+}
+
+def generate_instructions_gen(client: OpenAI, chunk: Any, x: int = 5, model: str = None, prompt_key : str = "gpt") -> list[str]:
     """
     Generates `x` questions / use cases for `chunk`. Used when the input document is of general types 
     `pdf`, `json`, or `txt`.
     """
     response = client.chat.completions.create(
         model=model,
-        messages=[
-            {"role": "system", "content": "You are a synthetic question-answer pair generator. Given a chunk of context about some topic(s), generate %s example questions a user could ask and would be answered using information from the chunk. For example, if the given context was a Wikipedia paragraph about the United States, an example question could be 'How many states are in the United States?'" % (x)},
-            {"role": "system", "content": "The questions should be able to be answered in a few words or less. Include only the questions in your response."},
-            {"role": "user", "content": str(chunk)}
-        ]
+        messages=build_qa_messages[prompt_key](chunk, x)
     )
 
-    queries = response.choices[0].message.content.split('\n')
-    queries = [strip_str(q) for q in queries]
+    content = response.choices[0].message.content
+    queries = content.split('\n')
+    #queries = [strip_str(q) for q in queries]
     queries = [q for q in queries if any(c.isalpha() for c in q)]
 
     return queries 
@@ -197,9 +224,11 @@ prompt_templates = {
         Answer this question using the information given in the context above.
         
         Instructions:
-        - First provide step-by-step reasoning on how to answer the question. 
-        - In the reasoning, if you need to copy paste some sentences from the context, include them in ##begin_quote## and ##end_quote##. This would mean that things outside of ##begin_quote## and ##end_quote## are not directly copy paste from the context. 
-        - End your response with final answer in the form <ANSWER>: $answer, the answer should be succinct.
+        - Provide step-by-step reasoning on how to answer the question.
+        - Explain which parts of the context are meaningful and why.
+        - Copy paste the relevant sentences from the context in ##begin_quote## and ##end_quote##.
+        - Provide a summary of how you reached your answer.
+        - End your response with the final answer in the form <ANSWER>: $answer, the answer should be succinct.
         - You MUST begin your final answer with the tag "<ANSWER>:".
 
         Here are some samples:
@@ -259,7 +288,7 @@ def add_chunk_to_dataset(
     """
     global ds
     i = chunks.index(chunk)
-    qs = generate_instructions(client, chunk, x, model) if doctype == "api" else generate_instructions_gen(client, chunk, x, model)
+    qs = generate_instructions(client, chunk, x, model) if doctype == "api" else generate_instructions_gen(client, chunk, x, model, prompt_key)
     for q in qs:
         datapt = {
             "id": None,
