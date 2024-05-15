@@ -325,6 +325,7 @@ def main():
 
     N = args.checkpoint_size
 
+    datasets.disable_progress_bars()
     if not args.fast:
         checkpoints_dir = Path(str(output_path) + "-checkpoints").absolute()
         checkpoints_state_path = checkpoints_dir / "checkpoint.txt"
@@ -346,6 +347,8 @@ def main():
 
             if (i+1) % N == 0:
                 ds.save_to_disk(checkpoint_path)
+                if N > 1 and logger.isEnabledFor(logging.INFO):
+                    logger.info(f"Saving checkpoint {checkpoint_path}")
 
                 # Save next chunk as checkpoint
                 save_checkpoint(i + 1, checkpoints_state_path)
@@ -372,6 +375,7 @@ def main():
                 add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
     
     # Save as .arrow format
+    datasets.enable_progress_bars()
     ds.save_to_disk(str(output_path))
 
     # Save as .jsonl format
