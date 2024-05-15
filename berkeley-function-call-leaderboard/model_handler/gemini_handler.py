@@ -63,26 +63,34 @@ class GeminiHandler(BaseHandler):
                 "latency": latency,
             }
         parts = []
-        for part in result["candidates"][0]["content"]["parts"]:
-            if "functionCall" in part:
-                if (
-                    "name" in part["functionCall"]
-                    and "args" in part["functionCall"]
-                ):
-                    parts.append({part["functionCall"]["name"]: json.dumps(part["functionCall"]["args"])})
+        try:
+            for part in result["candidates"][0]["content"]["parts"]:
+                if "functionCall" in part:
+                    if (
+                        "name" in part["functionCall"]
+                        and "args" in part["functionCall"]
+                    ):
+                        parts.append({part["functionCall"]["name"]: json.dumps(part["functionCall"]["args"])})
+                    else:
+                        parts.append("Parsing error: " + json.dumps(part["functionCall"]))
                 else:
-                    parts.append("Parsing error: " + json.dumps(part["functionCall"]))
-            else:
-                parts.append(part["text"])
-        result = parts
-        metatdata = {}
-        metatdata["input_tokens"] = json.loads(response.content)["usageMetadata"][
-            "promptTokenCount"
-        ]
-        metatdata["output_tokens"] = json.loads(response.content)["usageMetadata"][
-            "candidatesTokenCount"
-        ]
-        metatdata["latency"] = latency
+                    parts.append(part["text"])
+            result = parts
+            metatdata = {}
+            metatdata["input_tokens"] = json.loads(response.content)["usageMetadata"][
+                "promptTokenCount"
+            ]
+            metatdata["output_tokens"] = json.loads(response.content)["usageMetadata"][
+                "candidatesTokenCount"
+            ]
+            metatdata["latency"] = latency
+        except Exception as e:
+            result = "Parsing error: " + json.dumps(result)
+            metatdata = {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "latency": latency,
+            }
         return result, metatdata
 
     def inference(self, prompt, functions, test_category):

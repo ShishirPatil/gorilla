@@ -44,6 +44,18 @@ COLUMNS = [
 
 # Note that we don't need to substitute `_` with `/` in the model name here.
 MODEL_METADATA_MAPPING = {
+    "gpt-4o-2024-05-13-FC": [
+        "GPT-4o-2024-05-13 (FC)",
+        "https://openai.com/index/hello-gpt-4o/",
+        "OpenAI",
+        "Proprietary",
+    ],
+    "gpt-4o-2024-05-13": [
+        "GPT-4o-2024-05-13 (Prompt)",
+        "https://openai.com/index/hello-gpt-4o/",
+        "OpenAI",
+        "Proprietary",
+    ],
     "gpt-4-1106-preview-FC": [
         "GPT-4-1106-Preview (FC)",
         "https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo",
@@ -229,6 +241,18 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/fireworks-ai/firefunction-v1",
         "Fireworks",
         "Apache 2.0",
+    ],
+    "gemini-1.5-pro-preview-0514": [
+        "Gemini-1.5-Pro-Preview-0514 (FC)",
+        "https://deepmind.google/technologies/gemini/pro/",
+        "Google",
+        "Proprietary",
+    ],
+    "gemini-1.5-flash-preview-0514": [
+        "Gemini-1.5-Flash-Preview-0514 (FC)",
+        "https://deepmind.google/technologies/gemini/flash/",
+        "Google",
+        "Proprietary",
     ],
     "gemini-1.0-pro": [
         "Gemini-1.0-Pro (FC)",
