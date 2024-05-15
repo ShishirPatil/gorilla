@@ -596,6 +596,10 @@ const shown_model_list = [
     "Gorilla-OpenFunctions-v2 (FC)",
 ];
 const color = [
+    "rgb(255, 99, 132)",
+    "rgb(54, 162, 235)",
+    "rgb(75, 192, 192)",
+    "rgb(255, 206, 86)",
     "rgb(54, 162, 235)",
     "rgb(255, 165, 0)",
     "rgb(65, 105, 225)",
