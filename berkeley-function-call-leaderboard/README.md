@@ -198,8 +198,7 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
 |fire-function-v1-FC | Function Calling|
 |gemini-1.0-pro | Function Calling|
-|gemini-1.5-pro-preview-0409 | Function Calling|
-|gemini-1.5-pro-preview-0514 | Function Calling|
+|gemini-1.5-pro-preview-{0409,0514} | Function Calling|
 |gemini-1.5-flash-preview-0514 | Function Calling|
 |glaiveai/glaive-function-calling-v1 💻| Function Calling|
 |gpt-3.5-turbo-0125-FC| Function Calling|
