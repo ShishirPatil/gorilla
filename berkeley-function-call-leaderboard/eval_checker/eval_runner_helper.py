@@ -713,9 +713,11 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
                 )
                 print("*" * 100)
         if "input_token_count" in data:
-            input_token.append(data["input_token_count"])
+            if data["input_token_count"] != 0:
+                input_token.append(data["input_token_count"])
         if "output_token_count" in data:
-            output_token.append(data["output_token_count"])
+            if data["output_token_count"] != 0:
+                output_token.append(data["output_token_count"])
 
     leaderboard_table[model_name]["cost"]["input_data"].extend(input_token)
     leaderboard_table[model_name]["cost"]["output_data"].extend(output_token)

@@ -62,8 +62,8 @@ class GeminiHandler(BaseHandler):
                 "output_tokens": 0,
                 "latency": latency,
             }
-        parts = []
         try:
+            parts = []
             for part in result["candidates"][0]["content"]["parts"]:
                 if "functionCall" in part:
                     if (
