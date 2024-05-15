@@ -320,21 +320,24 @@ def main():
     num_chunks = len(chunks)
 
     output_path = Path(args.output).absolute()
+    output_name = output_path.name
     output_path_parent = output_path.parent
 
     N = args.checkpoint_size
 
     if not args.fast:
-        checkpoint_path = Path("checkpoint.txt").absolute()
-        logger.info(f"Using checkpoint file {checkpoint_path}")
+        checkpoints_dir = Path(str(output_path) + "-checkpoints").absolute()
+        checkpoints_state_path = checkpoints_dir / "checkpoint.txt"
+        logger.info(f"Using checkpoint file {checkpoints_state_path}")
 
         start = 0
-        if checkpoint_path.exists():
+        if checkpoints_state_path.exists():
             # Resume from last chunk not checkpointed
-            start = int(load_checkpoint(checkpoint_path))
+            start = int(load_checkpoint(checkpoints_state_path))
 
         for i in range(start, len(chunks)):
             chunk = chunks[i]
+            checkpoint_path = checkpoints_dir / ("checkpoint-" + str(i))
 
             perc = ceil((i+1) / num_chunks * 100)
             with MDC(progress=f"{perc}%"):
@@ -342,20 +345,20 @@ def main():
                 add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
 
             if (i+1) % N == 0:
-                ds.save_to_disk(output_path + "-checkpoints-" + str(i))
+                ds.save_to_disk(checkpoint_path)
 
                 # Save next chunk as checkpoint
-                save_checkpoint(i + 1, checkpoint_path)
+                save_checkpoint(i + 1, checkpoints_state_path)
                 ds = None
     
     
         if ds:
-            ds.save_to_disk(output_path + "-checkpoints-last")
+            ds.save_to_disk(str(output_path) + "-checkpoints-last")
 
         ds_list = []
 
-        for dir_path in output_path_parent.iterdir():
-            if dir_path.is_dir() and "-checkpoints-" in dir_path.name:
+        for dir_path in checkpoints_dir.iterdir():
+            if dir_path.is_dir() and dir_path.name.startswith("checkpoint-"):
                 for f in dir_path.iterdir():
                     if f.is_file() and f.suffix == ".arrow":
                         ds_list.append(Dataset.from_file(str(f)))
@@ -369,7 +372,7 @@ def main():
                 add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
     
     # Save as .arrow format
-    ds.save_to_disk(output_path)
+    ds.save_to_disk(str(output_path))
 
     # Save as .jsonl format
     formatter = DatasetConverter()
@@ -382,10 +385,7 @@ def main():
     formatter.convert(ds=ds, format=args.output_format, output_path=str(output_path), output_type=args.output_type, params=format_params)
 
     if not args.fast:
-        checkpoint_path.unlink()
-        for dir_path in output_path_parent.iterdir():
-            if dir_path.is_dir() and "-checkpoints-" in dir_path.name:
-                shutil.rmtree(dir_path)
+        shutil.rmtree(checkpoints_dir)
 
 if __name__ == "__main__":
     with MDC(progress="0%"):
