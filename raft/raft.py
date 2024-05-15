@@ -39,6 +39,8 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--output-format", type=str, default="hf", help="Format to convert the dataset to. Defaults to hf.", choices=datasetFormats)
     parser.add_argument("--output-type", type=str, default="jsonl", help="Type to export the dataset to. Defaults to jsonl.", choices=outputDatasetTypes)
     parser.add_argument("--output-chat-system-prompt", type=str, help="The system prompt to use when the output format is chat")
+    parser.add_argument("--output-completion-prompt-column", type=str, default="prompt", help="The prompt column name to use for the completion format")
+    parser.add_argument("--output-completion-completion-column", type=str, default="completion", help="The completion column name to use for the completion format")
     parser.add_argument("--distractors", type=int, default=3, help="The number of distractor documents to include per data point / triplet")
     parser.add_argument("--p", type=float, default=1.0, help="The percentage that the oracle document is included in the context")
     parser.add_argument("--questions", type=int, default=5, help="The number of data points / triplets to generate per chunk")
@@ -418,6 +420,10 @@ def main():
     format_params = {}
     if args.output_chat_system_prompt:
         format_params['system_prompt'] = args.output_chat_system_prompt
+
+    if args.output_format == "completion":
+        format_params['prompt_column'] = args.output_completion_prompt_column
+        format_params['completion_column'] = args.output_completion_completion_column
 
     formatter.convert(ds=ds, format=args.output_format, output_path=str(output_path), output_type=args.output_type, params=format_params)
 
