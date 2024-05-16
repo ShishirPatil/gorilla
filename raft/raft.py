@@ -136,7 +136,10 @@ def generate_instructions(client: OpenAI, api_call: Any, x=5, model: str = None)
 
 build_qa_messages = {
     "gpt": lambda chunk, x : [
-            {"role": "system", "content": "You are a synthetic question-answer pair generator. Given a chunk of context about some topic(s), generate %s example questions a user could ask and would be answered using information from the chunk. For example, if the given context was a Wikipedia paragraph about the United States, an example question could be 'How many states are in the United States?'" % (x)},
+            {"role": "system", "content": """You are a synthetic question-answer pair generator. Given a chunk of context about 
+             some topic(s), generate %s example questions a user could ask and would be answered using information from the chunk. 
+             For example, if the given context was a Wikipedia paragraph about the United States, an example question could be 
+             'How many states are in the United States?'""" % (x)},
             {"role": "system", "content": "The questions should be able to be answered in a few words or less. Include only the questions in your response."},
             {"role": "user", "content": str(chunk)}
         ],
