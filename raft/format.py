@@ -32,6 +32,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--output-chat-system-prompt", type=str, help="The system prompt to use when the output format is chat")
     parser.add_argument("--output-completion-prompt-column", type=str, default="prompt", help="The prompt column name to use for the completion format")
     parser.add_argument("--output-completion-completion-column", type=str, default="completion", help="The completion column name to use for the completion format")
+    parser.add_argument("--output-completion-stop", type=str, default="<STOP>", help="The stop keyword to use for the completion format")
 
     args = parser.parse_args()
     return args
@@ -81,7 +82,7 @@ class DatasetConverter():
             raise Exception(f"Output Type {output_type} is not supported, pleased select one of {self.exporters.keys()}")
 
         formatter = self.formats[format]
-        newds = formatter.format(ds, params)
+        newds = formatter.format(ds, **params)
         exporter = self.exporters[output_type]
         exporter.export(newds, output_path)
 
@@ -89,7 +90,7 @@ class HuggingFaceDatasetFormatter(DatasetFormatter):
     """
     Returns the HuggingFace Dataset as is
     """
-    def format(self, ds: Dataset, params: Dict[str, str]) -> Dataset:
+    def format(self, ds: Dataset) -> Dataset:
         return ds
 
 def _remove_all_columns_but(ds: Dataset, keep_columns) -> Dataset:
@@ -109,10 +110,9 @@ class OpenAiCompletionDatasetFormatter(DatasetFormatter):
     Field names can be customized because different systems have different expectations.
     https://platform.openai.com/docs/guides/fine-tuning/preparing-your-dataset
     """
-    def format(self, ds: Dataset, params: Dict[str, str]) -> Dataset:
-        prompt_column = params['prompt_column']
-        completion_column = params['completion_column']
-        newds = ds.rename_columns({'instruction': prompt_column, 'cot_answer': completion_column})
+    def format(self, ds: Dataset, prompt_column: str = 'prompt', completion_column : str = 'completion', stop: str = '<STOP>') -> Dataset:
+        newds = ds.rename_columns({'instruction': prompt_column})
+        newds = newds.map(lambda examples: {completion_column: [answer + stop for answer in examples['cot_answer']]}, batched=True)
         return _remove_all_columns_but(newds, [prompt_column, completion_column])
 
 class OpenAiChatDatasetFormatter(OpenAiCompletionDatasetFormatter):
@@ -120,13 +120,12 @@ class OpenAiChatDatasetFormatter(OpenAiCompletionDatasetFormatter):
     Returns the Dataset in the OpenAI Chat Fine-tuning file format with one field "messages".
     https://platform.openai.com/docs/guides/fine-tuning/preparing-your-dataset
     """
-    def format(self, ds: Dataset, params: Dict[str, str]) -> Dataset:
+    def format(self, ds: Dataset, system_prompt: str, **params) -> Dataset:
         newds = super().format(ds, params)
 
         def format_messages(row):
             messages = []
-            if 'system_prompt' in params:
-                system_prompt = params['system_prompt']
+            if system_prompt:
                 messages.append({ "role": "system", "content": system_prompt})
             messages.extend([{ "role": "user", "content": row['prompt']}, { "role": "assistant", "content": row['completion']}])
             chat_row = {"messages": messages}
@@ -152,7 +151,7 @@ class EvalDatasetFormatter(DatasetFormatter):
     """
     Returns the Dataset in a format suitable for evaluation. Extracts final answer separates context from question.
     """
-    def format(self, ds: Dataset, params: Dict[str, str]) -> Dataset:
+    def format(self, ds: Dataset) -> Dataset:
         newds = ds.rename_columns({'context': 'context_sentences'})
         newds = newds.map(lambda examples: {"gold_answer": [extract_final_answer(answer) for answer in examples['cot_answer']]}, batched=True)
         newds = newds.map(lambda examples: {"context": [extract_context(instruction) for instruction in examples['instruction']]}, batched=True)
@@ -209,6 +208,7 @@ def main():
     if args.output_format == "completion":
         format_params['prompt_column'] = args.output_completion_prompt_column
         format_params['completion_column'] = args.output_completion_completion_column
+        format_params['stop'] = args.output_completion_stop
 
     logger = logging.getLogger("raft")
     logger.info(f"Converting {args.input_type} file {args.input} to {args.output_type} {args.output_format} file {args.output}")
