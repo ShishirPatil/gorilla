@@ -154,8 +154,9 @@ class EvalDatasetFormatter(DatasetFormatter):
     def format(self, ds: Dataset) -> Dataset:
         newds = ds.rename_columns({'context': 'context_sentences'})
         newds = newds.map(lambda examples: {"gold_answer": [extract_final_answer(answer) for answer in examples['cot_answer']]}, batched=True)
+        newds = newds.map(lambda examples: {"final_answer": [extract_final_answer(answer) for answer in examples['answer']]}, batched=True)
         newds = newds.map(lambda examples: {"context": [extract_context(instruction) for instruction in examples['instruction']]}, batched=True)
-        return _remove_all_columns_but(newds, ['question', 'gold_answer', 'answer', 'context'])
+        return _remove_all_columns_but(newds, ['question', 'gold_answer', 'answer', 'context', 'final_answer'])
 
 def append_extension(path: str, extension: str) -> str:
     suffix = "." + extension
