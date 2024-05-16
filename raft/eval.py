@@ -54,6 +54,7 @@ if __name__ == "__main__":
             prompt=prompt,
             temperature=0.2,
             max_tokens=1024,
+            stop='<STOP>'
         )
 
         try:
