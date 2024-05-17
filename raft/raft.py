@@ -7,6 +7,7 @@ import argparse
 from openai import OpenAI
 import datasets
 from datasets import Dataset, load_dataset
+import pyarrow as pa
 from transformers import AutoTokenizer
 import json
 import PyPDF2
@@ -34,7 +35,7 @@ def get_args() -> argparse.Namespace:
     """
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--datapath", type=str, default="", help="The path at which the document is located")
+    parser.add_argument("--datapath", type=Path, default="", help="The path at which the document is located")
     parser.add_argument("--output", type=str, default="./", help="The path at which to save the dataset")
     parser.add_argument("--output-format", type=str, default="hf", help="Format to convert the dataset to. Defaults to hf.", choices=datasetFormats)
     parser.add_argument("--output-type", type=str, default="jsonl", help="Type to export the dataset to. Defaults to jsonl.", choices=outputDatasetTypes)
@@ -58,22 +59,22 @@ def get_args() -> argparse.Namespace:
 
 
 def get_chunks(
-    file_path: str, 
+    data_path: Path, 
     doctype: DocType = "pdf", 
     chunk_size: int = 512, 
     openai_key: str | None = None,
     model: str = None
 ) -> list[str]:
     """
-    Takes in a `file_path` and `doctype`, retrieves the document, breaks it down into chunks of size
+    Takes in a `data_path` and `doctype`, retrieves the document, breaks it down into chunks of size
     `chunk_size`, and returns the chunks.
     """
     chunks = []
 
-    logger.info(f"Retrieving chunks from {file_path} of type {doctype}")
+    logger.info(f"Retrieving chunks from {data_path} of type {doctype}")
 
     if doctype == "api":
-        with open(file_path) as f:
+        with open(data_path) as f:
             api_docs_json = json.load(f)
         chunks = list(api_docs_json)
         chunks = [str(api_doc_json) for api_doc_json in api_docs_json]
@@ -83,33 +84,49 @@ def get_chunks(
                 raise TypeError(f"API documentation is not in the format specified by the Gorilla API Store: Missing field `{field}`")
 
     else:
-        if doctype == "json":
-            with open(file_path, 'r') as f:
-                data = json.load(f)
-            text = data["text"]
-        elif doctype == "pdf":
-            text = ""
-            with open(file_path, 'rb') as file:
-                reader = PyPDF2.PdfReader(file)
-                num_pages = len(reader.pages)
-                for page_num in range(num_pages):
-                    page = reader.pages[page_num]
-                    text += page.extract_text()
-        elif doctype == "txt":
-            with open(file_path, 'r') as file:
-                data = file.read()
-            text = str(data)
-        else:
-            raise TypeError("Document is not one of the accepted types: api, pdf, json, txt")
-        
-        num_chunks = ceil(len(text) / chunk_size)
-        logger.info(f"Splitting text into {num_chunks} chunks using the {model} model.")
-
         embeddings = build_langchain_embeddings(openai_api_key=openai_key, model=model)
-        text_splitter = SemanticChunker(embeddings, number_of_chunks=num_chunks)
-        chunks = text_splitter.create_documents([text])
-        chunks = [chunk.page_content for chunk in chunks]
-            
+        chunks = []
+        file_paths = [data_path]
+        if data_path.is_dir():
+            file_paths = data_path.rglob('**/*.' + doctype)
+        for file_path in file_paths:
+            logger.info(f"Retrieving chunks from {file_path} using the {model} model.")
+            doc_chunks = get_doc_chunks(embeddings, file_path, doctype, chunk_size)
+            chunks.extend(doc_chunks)
+
+    return chunks
+
+def get_doc_chunks(
+    embeddings: OpenAIEmbeddings,
+    file_path: Path, 
+    doctype: DocType = "pdf", 
+    chunk_size: int = 512,
+ ) -> list[str]:
+    if doctype == "json":
+        with open(file_path, 'r') as f:
+            data = json.load(f)
+        text = data["text"]
+    elif doctype == "pdf":
+        text = ""
+        with open(file_path, 'rb') as file:
+            reader = PyPDF2.PdfReader(file)
+            num_pages = len(reader.pages)
+            for page_num in range(num_pages):
+                page = reader.pages[page_num]
+                text += page.extract_text()
+    elif doctype == "txt":
+        with open(file_path, 'r') as file:
+            data = file.read()
+        text = str(data)
+    else:
+        raise TypeError("Document is not one of the accepted types: api, pdf, json, txt")
+    
+    num_chunks = ceil(len(text) / chunk_size)
+    logger.info(f"Splitting text into {num_chunks} chunks.")
+
+    text_splitter = SemanticChunker(embeddings, number_of_chunks=num_chunks)
+    chunks = text_splitter.create_documents([text])
+    chunks = [chunk.page_content for chunk in chunks]
     return chunks
 
 def generate_instructions(client: OpenAI, api_call: Any, x=5, model: str = None) -> list[str]:
@@ -379,13 +396,30 @@ def main():
     CHUNK_SIZE = args.chunk_size
     NUM_DISTRACT_DOCS = args.distractors
 
-    chunks = get_chunks(args.datapath, args.doctype, CHUNK_SIZE, OPENAPI_API_KEY, model=args.embedding_model)
+    output_path = Path(args.output).absolute()
+
+    checkpoints_dir = Path(str(output_path) + "-checkpoints").absolute()
+    datapath: Path = args.datapath
+    chunks_ds: Dataset = None
+    chunks = None
+    checkpoints_chunks_path = checkpoints_dir / "chunks"
+    if not args.fast:
+        logger.info(f"Using checkpoint chunks {checkpoints_chunks_path}")
+        if checkpoints_chunks_path.exists():
+            chunks_ds = Dataset.load_from_disk(checkpoints_chunks_path)
+            chunks = chunks_ds['chunk']
+
+    if not chunks:
+        chunks = get_chunks(datapath, args.doctype, CHUNK_SIZE, OPENAPI_API_KEY, model=args.embedding_model)
+
+    if not args.fast and not chunks_ds:
+        chunks_table = pa.table({ "chunk": chunks })
+        chunks_ds = Dataset(chunks_table)
+        chunks_ds.save_to_disk(checkpoints_chunks_path)
 
     ds = None
 
     num_chunks = len(chunks)
-
-    output_path = Path(args.output).absolute()
 
     system_prompt_key = args.system_prompt_key
     logger.info(f"Using system prompt key {system_prompt_key}")
@@ -394,7 +428,6 @@ def main():
 
     datasets.disable_progress_bars()
     if not args.fast:
-        checkpoints_dir = Path(str(output_path) + "-checkpoints").absolute()
         checkpoints_state_path = checkpoints_dir / "checkpoint.txt"
         logger.info(f"Using checkpoint file {checkpoints_state_path}")
 
