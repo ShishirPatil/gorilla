@@ -377,6 +377,36 @@ def load_checkpoint(filename):
     with open(filename, 'r') as f:
         return int(f.read())
 
+def build_chunks_with_checkpoint(
+        datapath: Path, 
+        doctype: str,
+        CHUNK_SIZE: int, 
+        OPENAPI_API_KEY: str,
+        embedding_model: str,
+        checkpoint: bool, 
+        checkpoints_dir: Path, 
+        ):
+    """
+    Builds chunks and checkpoints them if asked
+    """
+    chunks_ds: Dataset = None
+    chunks = None
+    checkpoints_chunks_path = checkpoints_dir / "chunks"
+    if checkpoint:
+        logger.info(f"Using checkpoint chunks {checkpoints_chunks_path}")
+        if checkpoints_chunks_path.exists():
+            chunks_ds = Dataset.load_from_disk(checkpoints_chunks_path)
+            chunks = chunks_ds['chunk']
+
+    if not chunks:
+        chunks = get_chunks(datapath, doctype, CHUNK_SIZE, OPENAPI_API_KEY, model=embedding_model)
+
+    if checkpoint and not chunks_ds:
+        chunks_table = pa.table({ "chunk": chunks })
+        chunks_ds = Dataset(chunks_table)
+        chunks_ds.save_to_disk(checkpoints_chunks_path)
+    return chunks
+
 def main():
     global ds
 
@@ -400,22 +430,9 @@ def main():
 
     checkpoints_dir = Path(str(output_path) + "-checkpoints").absolute()
     datapath: Path = args.datapath
-    chunks_ds: Dataset = None
-    chunks = None
-    checkpoints_chunks_path = checkpoints_dir / "chunks"
-    if not args.fast:
-        logger.info(f"Using checkpoint chunks {checkpoints_chunks_path}")
-        if checkpoints_chunks_path.exists():
-            chunks_ds = Dataset.load_from_disk(checkpoints_chunks_path)
-            chunks = chunks_ds['chunk']
 
-    if not chunks:
-        chunks = get_chunks(datapath, args.doctype, CHUNK_SIZE, OPENAPI_API_KEY, model=args.embedding_model)
-
-    if not args.fast and not chunks_ds:
-        chunks_table = pa.table({ "chunk": chunks })
-        chunks_ds = Dataset(chunks_table)
-        chunks_ds.save_to_disk(checkpoints_chunks_path)
+    chunks = build_chunks_with_checkpoint(
+        datapath, args.doctype, CHUNK_SIZE, OPENAPI_API_KEY, args.embedding_model, not args.fast, checkpoints_dir)
 
     ds = None
 
