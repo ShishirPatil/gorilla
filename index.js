@@ -946,3 +946,41 @@ document.querySelectorAll("th:not(.detail-header)").forEach(function (header) {
 });
 
 document.getElementById("rank-col").click(); // Sort by rank by default
+
+
+// Code to make the first three columns sticky
+function adjustStickyColumns() {
+    const table = document.getElementById("leaderboard-table");
+    const headers = table.querySelectorAll("th");
+    const firstColumn = table.querySelectorAll("th:nth-child(1), td:nth-child(1)");
+    const secondColumn = table.querySelectorAll("th:nth-child(2), td:nth-child(2)");
+    const thirdColumn = table.querySelectorAll("th:nth-child(3), td:nth-child(3)");
+    // Reset left values
+    headers.forEach(header => header.style.left = '');
+    firstColumn.forEach(cell => cell.style.left = '');
+    secondColumn.forEach(cell => cell.style.left = '');
+    thirdColumn.forEach(cell => cell.style.left = '');
+    // Calculate widths
+    let firstColumnWidth = firstColumn[0].offsetWidth;
+    let secondColumnWidth = secondColumn[0].offsetWidth;
+    let thirdColumnWidth = thirdColumn[0].offsetWidth;
+    // Set left for the first column
+    firstColumn.forEach(cell => {
+        cell.style.left = "0px";
+    });
+    // Set left for the second column
+    secondColumn.forEach(cell => {
+        cell.style.left = `${firstColumnWidth}px`;
+    });
+    // Set left for the third column
+    thirdColumn.forEach(cell => {
+        cell.style.left = `${firstColumnWidth + secondColumnWidth}px`;
+    });
+}
+// Initial adjustment
+adjustStickyColumns();
+// Adjust on window resize
+window.addEventListener("resize", adjustStickyColumns);
+// Re-adjust on table content load (if table content is loaded dynamically)
+const observer = new MutationObserver(adjustStickyColumns);
+observer.observe(document.getElementById('leaderboard-table'), { childList: true, subtree: true });
