@@ -196,7 +196,9 @@ def main():
     if input_type == "jsonl":
         input_type = "json"
 
+    logger = logging.getLogger("raft")
     ds = load_dataset(input_type, data_files={"train": args.input})['train']
+    logger.info(f"Dataset has {ds.num_rows} rows")
     formatter = DatasetConverter()
 
     if args.output_chat_system_prompt and args.output_format != "chat":
@@ -211,7 +213,6 @@ def main():
         format_params['completion_column'] = args.output_completion_completion_column
         format_params['stop'] = args.output_completion_stop
 
-    logger = logging.getLogger("raft")
     logger.info(f"Converting {args.input_type} file {args.input} to {args.output_type} {args.output_format} file {args.output}")
 
     formatter.convert(ds=ds, format=args.output_format, output_path=args.output, output_type=args.output_type, params=format_params)
