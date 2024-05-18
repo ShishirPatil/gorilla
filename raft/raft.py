@@ -12,7 +12,6 @@ from transformers import AutoTokenizer
 import json
 import PyPDF2
 import random
-import os, shutil
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_openai.embeddings import OpenAIEmbeddings
 from client_utils import build_openai_client, build_langchain_embeddings
@@ -489,7 +488,7 @@ def main():
     formatter.convert(ds=ds, format=args.output_format, output_path=str(output_path), output_type=args.output_type, params=format_params)
 
     if not args.fast:
-        shutil.rmtree(checkpoints_dir)
+        checkpointing.delete_checkpoints()
 
 if __name__ == "__main__":
     with MDC(progress="0%"):
