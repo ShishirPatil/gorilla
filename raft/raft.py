@@ -55,6 +55,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--completion_model", type=str, default="gpt-4", help="The model to use to generate questions and answers (gpt-3.5, gpt-4, ...)")
     parser.add_argument("--fast", action="store_true", help="Run the script in fast mode (no recovery implemented)")
     parser.add_argument("--system-prompt-key", default="gpt", help="The system prompt to use to generate the dataset")
+    parser.add_argument("--workers", type=int, default=2, help="The number of worker threads to use to generate the dataset")
 
     args = parser.parse_args()
     return args
@@ -422,8 +423,10 @@ def main():
 
     ds = None
 
-    num_chunks = min(4, len(chunks))
+    num_chunks = len(chunks)
     num_questions = args.questions
+    max_workers = args.workers
+    logger.info(f"Using {max_workers} chunk worker threads")
 
     system_prompt_key = args.system_prompt_key
     logger.info(f"Using system prompt key {system_prompt_key}")
@@ -446,8 +449,9 @@ def main():
         futures = []
         processed_chunks = 0
         with tqdm(total=len(missing_checkpoints) * num_questions) as pbar:
+            pbar.set_description(f"Generating")
             pbar.set_postfix({'chunks': processed_chunks})
-            with ThreadPoolExecutor(max_workers=2) as executor:
+            with ThreadPoolExecutor(max_workers=max_workers) as executor:
                 for i in missing_checkpoints:
                     futures.append(executor.submit(process_chunk, i, pbar))
                 for future in as_completed(futures):
