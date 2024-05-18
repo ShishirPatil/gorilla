@@ -51,7 +51,6 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--embedding_model", type=str, default="text-embedding-ada-002", help="The embedding model to use to encode documents chunks (text-embedding-ada-002, ...)")
     parser.add_argument("--completion_model", type=str, default="gpt-4", help="The model to use to generate questions and answers (gpt-3.5, gpt-4, ...)")
     parser.add_argument("--fast", action="store_true", help="Run the script in fast mode (no recovery implemented)")
-    parser.add_argument("--checkpoint-size", default=15, type=int, help="The size of checkpoints. Ignored when --fast is set.)")
     parser.add_argument("--system-prompt-key", default="gpt", help="The system prompt to use to generate the dataset")
 
     args = parser.parse_args()
@@ -433,33 +432,21 @@ def main():
     system_prompt_key = args.system_prompt_key
     logger.info(f"Using system prompt key {system_prompt_key}")
 
-    N = args.checkpoint_size
-
     datasets.disable_progress_bars()
     if not args.fast:
         checkpointing = Checkpointing(checkpoints_dir)
 
-        start = checkpointing.load_checkpoint_state()
-
-        for i in range(start, num_chunks):
+        missing_checkpoints = checkpointing.missing_checkpoints(num_chunks)
+        for i in missing_checkpoints:
             chunk = chunks[i]
 
             perc = ceil((i+1) / num_chunks * 100)
             with MDC(progress=f"{perc}%"):
                 logger.info(f"Adding chunk {i+1}/{num_chunks}")
                 add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model, prompt_key=system_prompt_key)
-
-            if (i+1) % N == 0:
                 checkpointing.save_checkpoint(ds, i)
-                if N > 1 and logger.isEnabledFor(logging.INFO):
-                    logger.info(f"Saving checkpoint {i}")
 
-                # Save next chunk as checkpoint
-                checkpointing.save_checkpoint_state(i + 1)
-                ds = None
-
-        if ds:
-            ds.save_to_disk(str(output_path) + "-checkpoints-last")
+            ds = None
 
         ds = checkpointing.collect_checkpoints()
     else:
