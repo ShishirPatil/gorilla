@@ -20,6 +20,7 @@ from math import ceil
 from format import DatasetConverter, datasetFormats, outputDatasetTypes
 from pathlib import Path
 from dotenv import load_dotenv
+from checkpointing import Checkpointing
 
 log_setup()
 
@@ -369,14 +370,6 @@ def add_chunk_to_dataset(
         else:
             ds = ds.add_item(datapt)
 
-def save_checkpoint(state, filename):
-    with open(filename, 'w') as f:
-        f.write(str(state))
-
-def load_checkpoint(filename):
-    with open(filename, 'r') as f:
-        return int(f.read())
-
 def build_or_load_chunks(
         datapath: Path, 
         doctype: str,
@@ -445,17 +438,12 @@ def main():
 
     datasets.disable_progress_bars()
     if not args.fast:
-        checkpoints_state_path = checkpoints_dir / "checkpoint.txt"
-        logger.info(f"Using checkpoint file {checkpoints_state_path}")
+        checkpointing = Checkpointing(checkpoints_dir)
 
-        start = 0
-        if checkpoints_state_path.exists():
-            # Resume from last chunk not checkpointed
-            start = int(load_checkpoint(checkpoints_state_path))
+        start = checkpointing.load_checkpoint_state()
 
-        for i in range(start, len(chunks)):
+        for i in range(start, num_chunks):
             chunk = chunks[i]
-            checkpoint_path = checkpoints_dir / ("checkpoint-" + str(i))
 
             perc = ceil((i+1) / num_chunks * 100)
             with MDC(progress=f"{perc}%"):
@@ -463,27 +451,18 @@ def main():
                 add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model, prompt_key=system_prompt_key)
 
             if (i+1) % N == 0:
-                ds.save_to_disk(checkpoint_path)
+                checkpointing.save_checkpoint(ds, i)
                 if N > 1 and logger.isEnabledFor(logging.INFO):
-                    logger.info(f"Saving checkpoint {checkpoint_path}")
+                    logger.info(f"Saving checkpoint {i}")
 
                 # Save next chunk as checkpoint
-                save_checkpoint(i + 1, checkpoints_state_path)
+                checkpointing.save_checkpoint_state(i + 1)
                 ds = None
-    
-    
+
         if ds:
             ds.save_to_disk(str(output_path) + "-checkpoints-last")
 
-        ds_list = []
-
-        for dir_path in checkpoints_dir.iterdir():
-            if dir_path.is_dir() and dir_path.name.startswith("checkpoint-"):
-                for f in dir_path.iterdir():
-                    if f.is_file() and f.suffix == ".arrow":
-                        ds_list.append(Dataset.from_file(str(f)))
-
-        ds = datasets.concatenate_datasets(ds_list)
+        ds = checkpointing.collect_checkpoints()
     else:
         for i, chunk in enumerate(chunks):
             perc = ceil((i+1) / num_chunks * 100)
