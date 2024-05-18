@@ -425,17 +425,19 @@ def main():
 
     num_chunks = len(chunks)
     num_questions = args.questions
-    max_workers = args.workers
-    logger.info(f"Using {max_workers} chunk worker threads")
 
     system_prompt_key = args.system_prompt_key
     logger.info(f"Using system prompt key {system_prompt_key}")
 
     datasets.disable_progress_bars()
     if not args.fast:
+        max_workers = args.workers
+        logger.info(f"Using {max_workers} chunk worker threads")
+
         checkpointing = Checkpointing(checkpoints_dir)
 
         missing_checkpoints = checkpointing.missing_checkpoints(num_chunks)
+        done_checkpoints_count = num_chunks - len(missing_checkpoints)
 
         def process_chunk(i, pbar):
             chunk = chunks[i]
@@ -448,8 +450,7 @@ def main():
 
         futures = []
         processed_chunks = 0
-        with tqdm(total=len(missing_checkpoints) * num_questions) as pbar:
-            pbar.set_description(f"Generating")
+        with tqdm(total=num_chunks * num_questions, desc="Generating", unit="question", initial=done_checkpoints_count * num_questions) as pbar:
             pbar.set_postfix({'chunks': processed_chunks})
             with ThreadPoolExecutor(max_workers=max_workers) as executor:
                 for i in missing_checkpoints:
