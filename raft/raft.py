@@ -6,7 +6,7 @@ from typing import Literal, Any
 import argparse
 from openai import OpenAI
 import datasets
-from datasets import Dataset, load_dataset
+from datasets import Dataset, concatenate_datasets
 import pyarrow as pa
 from transformers import AutoTokenizer
 import json
@@ -20,6 +20,7 @@ from format import DatasetConverter, datasetFormats, outputDatasetTypes
 from pathlib import Path
 from dotenv import load_dotenv
 from checkpointing import Checkpointing
+import uuid
 
 log_setup()
 
@@ -305,9 +306,9 @@ def add_chunk_to_dataset(
     """
     Given a chunk, create {Q, A, D} triplets and add them to the dataset.
     """
-    global ds
     i = chunks.index(chunk)
     qs = generate_instructions(client, chunk, x, model) if doctype == "api" else generate_instructions_gen(client, chunk, x, model, prompt_key)
+    datas = []
     for q in qs:
         datapt = {
             "id": None,
@@ -318,7 +319,7 @@ def add_chunk_to_dataset(
             "cot_answer": None
         }
 
-        datapt["id"] = f"seed_task_{0 if not ds else ds.num_rows}"
+        datapt["id"] = str(uuid.uuid4())
         datapt["type"] = "api call" if doctype == "api" else "general"
         datapt["question"] = q
 
@@ -354,19 +355,8 @@ def add_chunk_to_dataset(
         context += q
         datapt["instruction"] = context
 
-        # add to dataset
-        if not ds:
-            # init ds
-            datapt["id"] = [datapt["id"]]
-            datapt["type"] = [datapt["type"]]
-            datapt["question"] = [datapt["question"]]
-            datapt["context"] = [datapt["context"]]
-            datapt["oracle_context"] = [datapt["oracle_context"]]
-            datapt["cot_answer"] = [datapt["cot_answer"]]
-            datapt["instruction"] = [datapt["instruction"]]
-            ds = Dataset.from_dict(datapt)
-        else:
-            ds = ds.add_item(datapt)
+        datas.append(datapt)
+    return datas
 
 def build_or_load_chunks(
         datapath: Path, 
@@ -399,7 +389,6 @@ def build_or_load_chunks(
     return chunks
 
 def main():
-    global ds
 
     # run code
     args = get_args()
@@ -427,7 +416,7 @@ def main():
 
     ds = None
 
-    num_chunks = len(chunks)
+    num_chunks = min(4, len(chunks))
 
     system_prompt_key = args.system_prompt_key
     logger.info(f"Using system prompt key {system_prompt_key}")
@@ -443,19 +432,21 @@ def main():
             perc = ceil((i+1) / num_chunks * 100)
             with MDC(progress=f"{perc}%"):
                 logger.info(f"Adding chunk {i+1}/{num_chunks}")
-                add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model, prompt_key=system_prompt_key)
-                checkpointing.save_checkpoint(ds, i)
-
-            ds = None
+                chunk_datas = add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model, prompt_key=system_prompt_key)
+                chunk_ds = Dataset.from_list(chunk_datas)
+                checkpointing.save_checkpoint(chunk_ds, i)
 
         ds = checkpointing.collect_checkpoints()
     else:
         for i, chunk in enumerate(chunks):
             perc = ceil((i+1) / num_chunks * 100)
+            datas = []
             with MDC(progress=f"{perc}%"):
                 logger.info(f"Adding chunk {i+1}/{num_chunks}")
-                add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model, prompt_key=system_prompt_key)
-    
+                chunk_datas = add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model, prompt_key=system_prompt_key)
+                datas.extend(chunk_datas)
+            ds = Dataset.from_list(datas)
+
     # Save as .arrow format
     datasets.enable_progress_bars()
     ds.save_to_disk(str(output_path))
