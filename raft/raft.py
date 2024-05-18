@@ -1,5 +1,7 @@
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import mdc
 from mdc import MDC
+from tqdm import tqdm
 from logconf import log_setup
 import logging
 from typing import Literal, Any
@@ -301,7 +303,8 @@ def add_chunk_to_dataset(
     num_distract: int = 3, 
     p: float = 0.8,
     model: str = None,
-    prompt_key: str = "gpt"
+    prompt_key: str = "gpt",
+    pbar = None
 ) -> None:
     """
     Given a chunk, create {Q, A, D} triplets and add them to the dataset.
@@ -356,6 +359,9 @@ def add_chunk_to_dataset(
         datapt["instruction"] = context
 
         datas.append(datapt)
+        if pbar:
+            pbar.update(1)
+
     return datas
 
 def build_or_load_chunks(
@@ -417,6 +423,7 @@ def main():
     ds = None
 
     num_chunks = min(4, len(chunks))
+    num_questions = args.questions
 
     system_prompt_key = args.system_prompt_key
     logger.info(f"Using system prompt key {system_prompt_key}")
@@ -426,15 +433,27 @@ def main():
         checkpointing = Checkpointing(checkpoints_dir)
 
         missing_checkpoints = checkpointing.missing_checkpoints(num_chunks)
-        for i in missing_checkpoints:
+
+        def process_chunk(i, pbar):
             chunk = chunks[i]
 
             perc = ceil((i+1) / num_chunks * 100)
             with MDC(progress=f"{perc}%"):
-                logger.info(f"Adding chunk {i+1}/{num_chunks}")
-                chunk_datas = add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model, prompt_key=system_prompt_key)
+                chunk_datas = add_chunk_to_dataset(client, chunks, chunk, args.doctype, num_questions, NUM_DISTRACT_DOCS, model=args.completion_model, prompt_key=system_prompt_key, pbar=pbar)
                 chunk_ds = Dataset.from_list(chunk_datas)
                 checkpointing.save_checkpoint(chunk_ds, i)
+
+        futures = []
+        processed_chunks = 0
+        with tqdm(total=len(missing_checkpoints) * num_questions) as pbar:
+            pbar.set_postfix({'chunks': processed_chunks})
+            with ThreadPoolExecutor(max_workers=2) as executor:
+                for i in missing_checkpoints:
+                    futures.append(executor.submit(process_chunk, i, pbar))
+                for future in as_completed(futures):
+                    future.result()
+                    processed_chunks += 1
+                    pbar.set_postfix({'chunks': processed_chunks})
 
         ds = checkpointing.collect_checkpoints()
     else:
@@ -443,7 +462,7 @@ def main():
             datas = []
             with MDC(progress=f"{perc}%"):
                 logger.info(f"Adding chunk {i+1}/{num_chunks}")
-                chunk_datas = add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model, prompt_key=system_prompt_key)
+                chunk_datas = add_chunk_to_dataset(client, chunks, chunk, args.doctype, num_questions, NUM_DISTRACT_DOCS, model=args.completion_model, prompt_key=system_prompt_key)
                 datas.extend(chunk_datas)
             ds = Dataset.from_list(datas)
 
