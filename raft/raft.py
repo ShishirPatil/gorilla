@@ -436,8 +436,8 @@ def main():
     checkpoints_dir = Path(str(output_path) + "-checkpoints").absolute()
     datapath: Path = args.datapath
 
-    chunks = build_or_load_chunks(
-        datapath, args.doctype, CHUNK_SIZE, OPENAPI_API_KEY, args.embedding_model, checkpoints_dir)
+    # Chunks
+    chunks = build_or_load_chunks(datapath, args.doctype, CHUNK_SIZE, OPENAPI_API_KEY, args.embedding_model, checkpoints_dir)
 
     ds = None
 
