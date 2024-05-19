@@ -320,7 +320,7 @@ def gen_chunk_cots(
     qs = generate_chunk_instructions(client, chunk, x, model) if doctype == "api" else generate_instructions_gen(client, chunk, x, model, prompt_key)
     datas = []
     for q in qs:
-        datapt = generate_question_cot_answer(client, chunks, chunk, doctype, num_distract, p, model, prompt_key, chunk_index, q)
+        datapt = generate_question_cot_answer(client, chunks, chunk, chunk_index, q, doctype, num_distract, p, model, prompt_key)
 
         datas.append(datapt)
         if pbar:
@@ -329,16 +329,17 @@ def gen_chunk_cots(
     return datas
 
 def generate_question_cot_answer(
-        client, 
-        chunks, 
-        chunk, 
-        doctype, 
-        num_distract, 
-        p, 
-        model, 
-        prompt_key, 
+        client: OpenAI,
+        chunks: list[str], 
+        chunk: str, 
         chunk_index, 
-        question):
+        question,
+        doctype: DocType = "api", 
+        num_distract: int = 3, 
+        p: float = 0.8,
+        model: str = None,
+        prompt_key: str = "gpt",
+        ):
     datapt = {
             "id": None,
             "type": None,
@@ -443,42 +444,21 @@ def main():
 
     num_chunks = len(chunks)
     num_questions = args.questions
+    max_workers = args.workers
+    doc_type = args.doctype
+    completion_model = args.completion_model
 
     system_prompt_key = args.system_prompt_key
+
     logger.info(f"Using system prompt key {system_prompt_key}")
 
-    datasets.disable_progress_bars()
+    #datasets.disable_progress_bars()
 
-    max_workers = args.workers
     logger.info(f"Using {max_workers} chunk worker threads")
 
-    checkpointing = Checkpointing(checkpoints_dir)
+    questions_ds = stage_questions(client, checkpoints_dir, chunks, num_questions, max_workers, doc_type, completion_model, system_prompt_key)
 
-    missing_checkpoints = checkpointing.missing_checkpoints(num_chunks)
-    done_checkpoints_count = num_chunks - len(missing_checkpoints)
-
-    def process_chunk(i, pbar):
-        chunk = chunks[i]
-
-        perc = ceil((i+1) / num_chunks * 100)
-        with MDC(progress=f"{perc}%"):
-            chunk_datas = gen_chunk_cots(client, chunks, chunk, args.doctype, num_questions, NUM_DISTRACT_DOCS, model=args.completion_model, prompt_key=system_prompt_key, pbar=pbar)
-            chunk_ds = Dataset.from_list(chunk_datas)
-            checkpointing.save_checkpoint(chunk_ds, i)
-
-    futures = []
-    processed_chunks = done_checkpoints_count
-    with tqdm(total=num_chunks * num_questions, desc="Generating", unit="question", initial=done_checkpoints_count * num_questions) as pbar:
-        pbar.set_postfix({'chunks': processed_chunks})
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            for i in missing_checkpoints:
-                futures.append(executor.submit(process_chunk, i, pbar))
-            for future in as_completed(futures):
-                future.result()
-                processed_chunks += 1
-                pbar.set_postfix({'chunks': processed_chunks})
-
-    ds = checkpointing.collect_checkpoints()
+    ds = stage_cot(client, NUM_DISTRACT_DOCS, checkpoints_dir, chunks, questions_ds, num_questions, max_workers, doc_type, completion_model, system_prompt_key)
 
     # Save as .arrow format
     datasets.enable_progress_bars()
@@ -498,7 +478,95 @@ def main():
 
     formatter.convert(ds=ds, format=args.output_format, output_path=str(output_path), output_type=args.output_type, params=format_params)
 
-#    checkpointing.delete_checkpoints()
+
+def stage_questions(client, checkpoints_dir, chunks, num_questions, max_workers, doc_type, completion_model, system_prompt_key):
+    checkpointing = Checkpointing(checkpoints_dir / "questions")
+    num_chunks = len(chunks)
+    missing_checkpoints = checkpointing.missing_checkpoints(num_chunks)
+    done_checkpoints_count = num_chunks - len(missing_checkpoints)
+
+    def process_chunk(i):
+        chunk = chunks[i]
+
+        questions = generate_chunk_instructions(client, chunk, num_questions, completion_model) if doc_type == "api" else generate_instructions_gen(client, chunk, num_questions, completion_model, system_prompt_key)
+        chunk_question_pairs = [{"chunk": chunk, "chunk_id": i, "question": question} for question in questions]
+        questions_ds = Dataset.from_list(chunk_question_pairs)
+        checkpointing.save_checkpoint(questions_ds, i)
+
+    futures = []
+    with tqdm(total=num_chunks, desc="Generating", unit="question", initial=done_checkpoints_count) as pbar:
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            for i in missing_checkpoints:
+                futures.append(executor.submit(process_chunk, i))
+            for future in as_completed(futures):
+                future.result()
+                pbar.update(1)
+
+    ds = checkpointing.collect_checkpoints()
+    #checkpointing.delete_checkpoints()
+
+    return ds
+
+def constant_hash(func): 
+    return ConstantHash(func)
+
+class ConstantHash:
+    def __init__(self, f, id = None):
+        self.f = f
+        if not id:
+            id = f.__name__
+        self.id = id
+
+    def __call__(self, *args, **kwargs):
+        return self.f(*args, **kwargs)
+
+    def __reduce__(self) -> str | tuple[Any, ...]:
+        return (self.__class__, (self.id,))
+
+def stage_cot(client, NUM_DISTRACT_DOCS, checkpoints_dir, chunks, questions_ds: Dataset, questions_per_chunk, max_workers, doc_type, completion_model, system_prompt_key):
+
+    @constant_hash
+    def process_batch(batch):
+        def process_example(chunk, chunk_id, question):
+            return generate_question_cot_answer(client, chunks, chunk, chunk_id, question, doc_type, model=completion_model, prompt_key=system_prompt_key, num_distract=NUM_DISTRACT_DOCS)
+        results = [process_example(chunk, chunk_id, question) for chunk, chunk_id, question in zip(batch['chunk'], batch['chunk_id'], batch['question'])]
+        table = pa.Table.from_pylist(results)
+        return table
+
+    return questions_ds.map(process_batch, batched=True, batch_size=questions_per_chunk, cache_file_name=str(checkpoints_dir / "cot.arrow"), desc="COT", writer_batch_size=1)
+
+def stage_cot_(client, NUM_DISTRACT_DOCS, checkpoints_dir, chunks, questions_ds: Dataset, questions_per_chunk, max_workers, doc_type, completion_model, system_prompt_key):
+
+    total_questions = len(questions_ds)
+    checkpointing = Checkpointing(checkpoints_dir / "cot")
+    missing_checkpoints = checkpointing.missing_checkpoints(total_questions / questions_per_chunk)
+    done_checkpoints_count = total_questions - len(missing_checkpoints)
+
+    def process_question(chunk_question, i, rank, pbar):
+        chunk = chunk_question["chunk"]
+        question = chunk_question["question"]
+        chunk_datas = gen_chunk_cots(client, chunks, chunk, doc_type, total_questions, NUM_DISTRACT_DOCS, model=completion_model, prompt_key=system_prompt_key, pbar=pbar)
+        chunk_ds = Dataset.from_list(chunk_datas)
+        checkpointing.save_checkpoint(chunk_ds, i)
+
+    futures = []
+    processed_chunks = done_checkpoints_count
+    with tqdm(total=total_questions, desc="COT", unit="cot", initial=done_checkpoints_count) as pbar:
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+
+            def submit_batch(example, idx, rank):
+                futures.append(executor.submit(process_question, example, idx, rank, pbar))
+
+            questions_ds.map(submit_batch, batched=True, batch_size=questions_per_chunk, with_indices=True, with_rank=True)
+            for future in as_completed(futures):
+                future.result()
+                processed_chunks += 1
+                pbar.set_postfix({'chunks': processed_chunks})
+
+    ds = checkpointing.collect_checkpoints()
+    #checkpointing.delete_checkpoints()
+
+    return ds
 
 if __name__ == "__main__":
     with MDC(progress="0%"):
