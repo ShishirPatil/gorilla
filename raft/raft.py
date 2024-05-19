@@ -201,7 +201,8 @@ def generate_instructions_gen(client: OpenAI, chunk: Any, x: int = 5, model: str
     """
     response = client.chat.completions.create(
         model=model,
-        messages=build_qa_messages[prompt_key](chunk, x)
+        messages=build_qa_messages[prompt_key](chunk, x),
+        max_tokens=min(25 * x, 512), # 25 tokens per question
     )
 
     content = response.choices[0].message.content
@@ -298,7 +299,8 @@ def generate_label(client: OpenAI, question: str, context: Any, doctype: DocType
         model=model,
         messages=question,
         n=1,
-        temperature=0
+        temperature=0,
+        max_tokens=512,
     )
     response = response.choices[0].message.content
     return response
@@ -439,6 +441,8 @@ def main():
     checkpoints_dir = Path(str(output_path) + "-checkpoints").absolute()
     datapath: Path = args.datapath
 
+    datasets.disable_progress_bars()
+
     # Chunks
     chunks = build_or_load_chunks(datapath, args.doctype, CHUNK_SIZE, OPENAPI_API_KEY, args.embedding_model, checkpoints_dir)
 
@@ -453,8 +457,6 @@ def main():
     system_prompt_key = args.system_prompt_key
 
     logger.info(f"Using system prompt key {system_prompt_key}")
-
-    datasets.disable_progress_bars()
 
     logger.info(f"Using {max_workers} chunk worker threads")
 
@@ -494,14 +496,18 @@ def stage_questions(client, checkpoints_dir, chunks, num_questions, max_workers,
         chunk_question_pairs = [{"chunk": chunk, "chunk_id": i, "question": question} for question in questions]
         questions_ds = Dataset.from_list(chunk_question_pairs)
         checkpointing.save_checkpoint(questions_ds, i)
+        return questions_ds
 
     futures = []
-    with tqdm(total=num_chunks, desc="Generating questions", unit="question", initial=done_checkpoints_count) as pbar:
+    gen_questions_count = 0
+    with tqdm(total=num_chunks, desc="Generating questions", unit="chunk", initial=done_checkpoints_count) as pbar:
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             for i in missing_checkpoints:
                 futures.append(executor.submit(process_chunk, i))
             for future in as_completed(futures):
-                future.result()
+                questions_ds = future.result()
+                gen_questions_count += len(questions_ds)
+                pbar.set_postfix({'questions': gen_questions_count})
                 pbar.update(1)
 
     ds = checkpointing.collect_checkpoints()
@@ -511,7 +517,7 @@ def stage_questions(client, checkpoints_dir, chunks, num_questions, max_workers,
 
 def stage_cot_answers(client, NUM_DISTRACT_DOCS, checkpoints_dir, chunks, questions_ds: Dataset, questions_per_chunk, max_workers, doc_type, completion_model, system_prompt_key):
 
-    checkpointing = Checkpointing(checkpoints_dir / "cot")
+    checkpointing = Checkpointing(checkpoints_dir / "answers")
 
     @constant_hash
     def process_batch(batch, batch_id, pbar):
@@ -534,7 +540,7 @@ def stage_cot_answers(client, NUM_DISTRACT_DOCS, checkpoints_dir, chunks, questi
     futures = []
     processed_batchs = 0
     datasets = []
-    with tqdm(total=len(questions_ds), desc="Generating COT answers", unit="cot") as pbar:
+    with tqdm(total=len(questions_ds), desc="Generating COT answers", unit="answer") as pbar:
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
 
             counter = itertools.count()
