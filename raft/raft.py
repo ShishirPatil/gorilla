@@ -492,6 +492,8 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
     futures = []
     gen_questions_count = 0
     answers_ds_list = []
+    completion_state = CompleterState()
+    tps = 0
     with tqdm(total=num_chunks, desc="Generating", unit="chunk") as pbar:
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             for i in range(0, num_chunks):
@@ -501,6 +503,11 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
                 answers_ds_list.append(answers_ds)
                 gen_questions_count += len(answers_ds)
                 pbar.set_postfix({'qa': gen_questions_count})
+                state = chat_completer.get_and_reset()
+                if state:
+                    tps = state.total_tokens / state.duration
+                    completion_state += state
+                pbar.set_postfix({'tok/s': tps, 'tok': completion_state.total_tokens})
                 pbar.update(1)
 
     ds = concatenate_datasets(answers_ds_list)
