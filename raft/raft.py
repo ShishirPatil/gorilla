@@ -53,7 +53,6 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--openai_key", type=str, default=None, help="Your OpenAI key used to make queries to GPT-3.5 or GPT-4")
     parser.add_argument("--embedding_model", type=str, default="text-embedding-ada-002", help="The embedding model to use to encode documents chunks (text-embedding-ada-002, ...)")
     parser.add_argument("--completion_model", type=str, default="gpt-4", help="The model to use to generate questions and answers (gpt-3.5, gpt-4, ...)")
-    parser.add_argument("--fast", action="store_true", help="Run the script in fast mode (no recovery implemented)")
     parser.add_argument("--system-prompt-key", default="gpt", help="The system prompt to use to generate the dataset")
     parser.add_argument("--workers", type=int, default=2, help="The number of worker threads to use to generate the dataset")
 
@@ -139,7 +138,7 @@ def get_doc_chunks(
     chunks = [chunk.page_content for chunk in chunks]
     return chunks
 
-def generate_instructions(client: OpenAI, api_call: Any, x=5, model: str = None) -> list[str]:
+def generate_chunk_instructions(client: OpenAI, api_call: Any, x=5, model: str = None) -> list[str]:
     """
     Generates `x` questions / use cases for `api_call`. Used when the input document is of type `api`.
     """
@@ -302,7 +301,7 @@ def generate_label(client: OpenAI, question: str, context: Any, doctype: DocType
     response = response.choices[0].message.content
     return response
 
-def add_chunk_to_dataset(
+def gen_chunk_cots(
     client: OpenAI,
     chunks: list[str], 
     chunk: str, 
@@ -317,11 +316,30 @@ def add_chunk_to_dataset(
     """
     Given a chunk, create {Q, A, D} triplets and add them to the dataset.
     """
-    i = chunks.index(chunk)
-    qs = generate_instructions(client, chunk, x, model) if doctype == "api" else generate_instructions_gen(client, chunk, x, model, prompt_key)
+    chunk_index = chunks.index(chunk)
+    qs = generate_chunk_instructions(client, chunk, x, model) if doctype == "api" else generate_instructions_gen(client, chunk, x, model, prompt_key)
     datas = []
     for q in qs:
-        datapt = {
+        datapt = generate_question_cot_answer(client, chunks, chunk, doctype, num_distract, p, model, prompt_key, chunk_index, q)
+
+        datas.append(datapt)
+        if pbar:
+            pbar.update(1)
+
+    return datas
+
+def generate_question_cot_answer(
+        client, 
+        chunks, 
+        chunk, 
+        doctype, 
+        num_distract, 
+        p, 
+        model, 
+        prompt_key, 
+        chunk_index, 
+        question):
+    datapt = {
             "id": None,
             "type": None,
             "question": None,
@@ -330,47 +348,42 @@ def add_chunk_to_dataset(
             "cot_answer": None
         }
 
-        datapt["id"] = str(uuid.uuid4())
-        datapt["type"] = "api call" if doctype == "api" else "general"
-        datapt["question"] = q
+    datapt["id"] = str(uuid.uuid4())
+    datapt["type"] = "api call" if doctype == "api" else "general"
+    datapt["question"] = question
 
-        # add num_distract distractor docs
-        docs = [chunk]
-        indices = list(range(0, len(chunks)))
-        indices.remove(i)
-        for j in random.sample(indices, num_distract):
-            docs.append(chunks[j])
-        # decides whether to add oracle document
-        oracle = random.uniform(0, 1) < p
-        if not oracle:
-            docs[0] = chunks[random.sample(indices, 1)[0]]
-        random.shuffle(docs)
+    # add num_distract distractor docs
+    docs = [chunk]
+    indices = list(range(0, len(chunks)))
+    indices.remove(chunk_index)
+    for j in random.sample(indices, num_distract):
+        docs.append(chunks[j])
+    # decides whether to add oracle document
+    oracle = random.uniform(0, 1) < p
+    if not oracle:
+        docs[0] = chunks[random.sample(indices, 1)[0]]
+    random.shuffle(docs)
 
-        d = {
-            "title": [],
-            "sentences": []
-        }
+    d = {
+        "title": [],
+        "sentences": []
+    }
 
-        d["title"].append(["placeholder_title"]*(num_distract+1))
-        d["sentences"].append(docs)
-        datapt["context"] = d
-        datapt["oracle_context"] = chunk
+    d["title"].append(["placeholder_title"]*(num_distract+1))
+    d["sentences"].append(docs)
+    datapt["context"] = d
+    datapt["oracle_context"] = chunk
 
-        # add answer to q
-        datapt["cot_answer"] = generate_label(client, q, chunk, doctype, model=model, prompt_key=prompt_key)
+    # add answer to q
+    datapt["cot_answer"] = generate_label(client, question, chunk, doctype, model=model, prompt_key=prompt_key)
 
-        # construct model instruction 
-        context = ""
-        for doc in docs:
-            context += "<DOCUMENT>" + str(doc) + "</DOCUMENT>\n"
-        context += q
-        datapt["instruction"] = context
-
-        datas.append(datapt)
-        if pbar:
-            pbar.update(1)
-
-    return datas
+    # construct model instruction 
+    context = ""
+    for doc in docs:
+        context += "<DOCUMENT>" + str(doc) + "</DOCUMENT>\n"
+    context += question
+    datapt["instruction"] = context
+    return datapt
 
 def build_or_load_chunks(
         datapath: Path, 
@@ -378,7 +391,6 @@ def build_or_load_chunks(
         CHUNK_SIZE: int, 
         OPENAPI_API_KEY: str,
         embedding_model: str,
-        checkpoint: bool, 
         checkpoints_dir: Path, 
         ):
     """
@@ -387,16 +399,15 @@ def build_or_load_chunks(
     chunks_ds: Dataset = None
     chunks = None
     checkpoints_chunks_path = checkpoints_dir / "chunks"
-    if checkpoint:
-        logger.info(f"Using checkpoint chunks {checkpoints_chunks_path}")
-        if checkpoints_chunks_path.exists():
-            chunks_ds = Dataset.load_from_disk(checkpoints_chunks_path)
-            chunks = chunks_ds['chunk']
+    logger.info(f"Using checkpoint chunks {checkpoints_chunks_path}")
+    if checkpoints_chunks_path.exists():
+        chunks_ds = Dataset.load_from_disk(checkpoints_chunks_path)
+        chunks = chunks_ds['chunk']
 
     if not chunks:
         chunks = get_chunks(datapath, doctype, CHUNK_SIZE, OPENAPI_API_KEY, model=embedding_model)
 
-    if checkpoint and not chunks_ds:
+    if not chunks_ds:
         chunks_table = pa.table({ "chunk": chunks })
         chunks_ds = Dataset(chunks_table)
         chunks_ds.save_to_disk(checkpoints_chunks_path)
@@ -426,7 +437,7 @@ def main():
     datapath: Path = args.datapath
 
     chunks = build_or_load_chunks(
-        datapath, args.doctype, CHUNK_SIZE, OPENAPI_API_KEY, args.embedding_model, not args.fast, checkpoints_dir)
+        datapath, args.doctype, CHUNK_SIZE, OPENAPI_API_KEY, args.embedding_model, checkpoints_dir)
 
     ds = None
 
@@ -437,46 +448,37 @@ def main():
     logger.info(f"Using system prompt key {system_prompt_key}")
 
     datasets.disable_progress_bars()
-    if not args.fast:
-        max_workers = args.workers
-        logger.info(f"Using {max_workers} chunk worker threads")
 
-        checkpointing = Checkpointing(checkpoints_dir)
+    max_workers = args.workers
+    logger.info(f"Using {max_workers} chunk worker threads")
 
-        missing_checkpoints = checkpointing.missing_checkpoints(num_chunks)
-        done_checkpoints_count = num_chunks - len(missing_checkpoints)
+    checkpointing = Checkpointing(checkpoints_dir)
 
-        def process_chunk(i, pbar):
-            chunk = chunks[i]
+    missing_checkpoints = checkpointing.missing_checkpoints(num_chunks)
+    done_checkpoints_count = num_chunks - len(missing_checkpoints)
 
-            perc = ceil((i+1) / num_chunks * 100)
-            with MDC(progress=f"{perc}%"):
-                chunk_datas = add_chunk_to_dataset(client, chunks, chunk, args.doctype, num_questions, NUM_DISTRACT_DOCS, model=args.completion_model, prompt_key=system_prompt_key, pbar=pbar)
-                chunk_ds = Dataset.from_list(chunk_datas)
-                checkpointing.save_checkpoint(chunk_ds, i)
+    def process_chunk(i, pbar):
+        chunk = chunks[i]
 
-        futures = []
-        processed_chunks = done_checkpoints_count
-        with tqdm(total=num_chunks * num_questions, desc="Generating", unit="question", initial=done_checkpoints_count * num_questions) as pbar:
-            pbar.set_postfix({'chunks': processed_chunks})
-            with ThreadPoolExecutor(max_workers=max_workers) as executor:
-                for i in missing_checkpoints:
-                    futures.append(executor.submit(process_chunk, i, pbar))
-                for future in as_completed(futures):
-                    future.result()
-                    processed_chunks += 1
-                    pbar.set_postfix({'chunks': processed_chunks})
+        perc = ceil((i+1) / num_chunks * 100)
+        with MDC(progress=f"{perc}%"):
+            chunk_datas = gen_chunk_cots(client, chunks, chunk, args.doctype, num_questions, NUM_DISTRACT_DOCS, model=args.completion_model, prompt_key=system_prompt_key, pbar=pbar)
+            chunk_ds = Dataset.from_list(chunk_datas)
+            checkpointing.save_checkpoint(chunk_ds, i)
 
-        ds = checkpointing.collect_checkpoints()
-    else:
-        for i, chunk in enumerate(chunks):
-            perc = ceil((i+1) / num_chunks * 100)
-            datas = []
-            with MDC(progress=f"{perc}%"):
-                logger.info(f"Adding chunk {i+1}/{num_chunks}")
-                chunk_datas = add_chunk_to_dataset(client, chunks, chunk, args.doctype, num_questions, NUM_DISTRACT_DOCS, model=args.completion_model, prompt_key=system_prompt_key)
-                datas.extend(chunk_datas)
-            ds = Dataset.from_list(datas)
+    futures = []
+    processed_chunks = done_checkpoints_count
+    with tqdm(total=num_chunks * num_questions, desc="Generating", unit="question", initial=done_checkpoints_count * num_questions) as pbar:
+        pbar.set_postfix({'chunks': processed_chunks})
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            for i in missing_checkpoints:
+                futures.append(executor.submit(process_chunk, i, pbar))
+            for future in as_completed(futures):
+                future.result()
+                processed_chunks += 1
+                pbar.set_postfix({'chunks': processed_chunks})
+
+    ds = checkpointing.collect_checkpoints()
 
     # Save as .arrow format
     datasets.enable_progress_bars()
@@ -496,8 +498,7 @@ def main():
 
     formatter.convert(ds=ds, format=args.output_format, output_path=str(output_path), output_type=args.output_type, params=format_params)
 
-#    if not args.fast:
-#        checkpointing.delete_checkpoints()
+#    checkpointing.delete_checkpoints()
 
 if __name__ == "__main__":
     with MDC(progress="0%"):
