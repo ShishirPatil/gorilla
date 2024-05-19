@@ -1,4 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import itertools
 import mdc
 from mdc import MDC
 from tqdm import tqdm
@@ -458,7 +459,7 @@ def main():
 
     questions_ds = stage_questions(client, checkpoints_dir, chunks, num_questions, max_workers, doc_type, completion_model, system_prompt_key)
 
-    ds = stage_cot(client, NUM_DISTRACT_DOCS, checkpoints_dir, chunks, questions_ds, num_questions, max_workers, doc_type, completion_model, system_prompt_key)
+    ds = stage_cot_answers(client, NUM_DISTRACT_DOCS, checkpoints_dir, chunks, questions_ds, num_questions, max_workers, doc_type, completion_model, system_prompt_key)
 
     # Save as .arrow format
     datasets.enable_progress_bars()
@@ -523,17 +524,34 @@ class ConstantHash:
     def __reduce__(self) -> str | tuple[Any, ...]:
         return (self.__class__, (self.id,))
 
-def stage_cot(client, NUM_DISTRACT_DOCS, checkpoints_dir, chunks, questions_ds: Dataset, questions_per_chunk, max_workers, doc_type, completion_model, system_prompt_key):
+def stage_cot_answers(client, NUM_DISTRACT_DOCS, checkpoints_dir, chunks, questions_ds: Dataset, questions_per_chunk, max_workers, doc_type, completion_model, system_prompt_key):
 
     @constant_hash
-    def process_batch(batch):
+    def process_batch(batch, batch_id, pbar):
         def process_example(chunk, chunk_id, question):
-            return generate_question_cot_answer(client, chunks, chunk, chunk_id, question, doc_type, model=completion_model, prompt_key=system_prompt_key, num_distract=NUM_DISTRACT_DOCS)
+            cot_answer = generate_question_cot_answer(client, chunks, chunk, chunk_id, question, doc_type, model=completion_model, prompt_key=system_prompt_key, num_distract=NUM_DISTRACT_DOCS)
+            pbar.update(1)
+            return cot_answer
+
         results = [process_example(chunk, chunk_id, question) for chunk, chunk_id, question in zip(batch['chunk'], batch['chunk_id'], batch['question'])]
         table = pa.Table.from_pylist(results)
         return table
 
-    return questions_ds.map(process_batch, batched=True, batch_size=questions_per_chunk, cache_file_name=str(checkpoints_dir / "cot.arrow"), desc="COT", writer_batch_size=1)
+    futures = []
+    processed_batchs = 0
+    datasets = []
+    with tqdm(total=len(questions_ds), desc="COT", unit="cot") as pbar:
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+
+            counter = itertools.count()
+            questions_ds.map(lambda batch: futures.append(executor.submit(process_batch, batch, next(counter), pbar)), batched=True, batch_size=questions_per_chunk)
+
+            for future in as_completed(futures):
+                datasets.append(Dataset(future.result()))
+                processed_batchs += 1
+                pbar.set_postfix({'batch': processed_batchs})
+
+    return concatenate_datasets(datasets)
 
 def stage_cot_(client, NUM_DISTRACT_DOCS, checkpoints_dir, chunks, questions_ds: Dataset, questions_per_chunk, max_workers, doc_type, completion_model, system_prompt_key):
 
