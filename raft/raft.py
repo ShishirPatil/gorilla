@@ -22,9 +22,8 @@ from math import ceil
 from format import DatasetConverter, datasetFormats, outputDatasetTypes
 from pathlib import Path
 from dotenv import load_dotenv
-from checkpointing import Checkpointing
+from checkpointing import Checkpointing, checkpointed
 import uuid
-from hf_utils import constant_hash
 
 log_setup()
 
@@ -452,18 +451,6 @@ def main():
         format_params['completion_column'] = args.output_completion_completion_column
 
     formatter.convert(ds=cot_answers_ds, format=args.output_format, output_path=str(output_path), output_type=args.output_type, params=format_params)
-
-def checkpointed(checkpointing: Checkpointing):
-    def wrapped(func):
-        def wrapper(chunk_id, *args, **kwargs):
-            ds = checkpointing.load_checkpoint(chunk_id)
-            if ds:
-                return ds
-            ds = func(chunk_id=chunk_id, *args, **kwargs)
-            checkpointing.save_checkpoint(ds, chunk_id)
-            return ds
-        return wrapper
-    return wrapped
 
 def stage_generate(client, checkpoints_dir, chunks, num_questions, max_workers, doctype, completion_model, system_prompt_key, num_distract, p):
     """

@@ -57,3 +57,15 @@ class Checkpointing:
 
     def delete_checkpoints(self):
         shutil.rmtree(self.checkpoints_dir)
+
+def checkpointed(checkpointing: Checkpointing):
+    def wrapped(func):
+        def wrapper(chunk_id, *args, **kwargs):
+            ds = checkpointing.load_checkpoint(chunk_id)
+            if ds:
+                return ds
+            ds = func(chunk_id=chunk_id, *args, **kwargs)
+            checkpointing.save_checkpoint(ds, chunk_id)
+            return ds
+        return wrapper
+    return wrapped
