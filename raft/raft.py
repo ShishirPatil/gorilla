@@ -17,7 +17,7 @@ import PyPDF2
 import random
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_openai.embeddings import OpenAIEmbeddings
-from client_utils import build_openai_client, build_langchain_embeddings
+from client_utils import build_openai_client, build_langchain_embeddings, CompleterState, ChatCompleter
 from math import ceil
 from format import DatasetConverter, datasetFormats, outputDatasetTypes
 from pathlib import Path
@@ -139,11 +139,11 @@ def get_doc_chunks(
     chunks = [chunk.page_content for chunk in chunks]
     return chunks
 
-def generate_chunk_instructions(client: OpenAI, chunk: Any, x=5, model: str = None) -> list[str]:
+def generate_chunk_instructions(chat_completer: ChatCompleter, chunk: Any, x=5, model: str = None) -> list[str]:
     """
     Generates `x` questions / use cases for `api_call`. Used when the input document is of type `api`.
     """
-    response = client.chat.completions.create(
+    response = chat_completer(
         model=model,
         messages=[
             {"role": "system", "content": "You are a synthetic instruction-api pair generator. Given an API endpoint in the form of a JSON object, generate %s example queries of instructions a user could ask and would be answered by invoking the API call. For example, if the given API call is the `service.users().getProfile(userId='me').execute()` call from the Gmail API, an example query could be 'How can I fetch my Gmail account's email address?'" % (x)},
@@ -193,12 +193,12 @@ build_qa_messages = {
         ]
 }
 
-def generate_instructions_gen(client: OpenAI, chunk: Any, x: int = 5, model: str = None, prompt_key : str = "gpt") -> list[str]:
+def generate_instructions_gen(chat_completer: ChatCompleter, chunk: Any, x: int = 5, model: str = None, prompt_key : str = "gpt") -> list[str]:
     """
     Generates `x` questions / use cases for `chunk`. Used when the input document is of general types 
     `pdf`, `json`, or `txt`.
     """
-    response = client.chat.completions.create(
+    response = chat_completer(
         model=model,
         messages=build_qa_messages[prompt_key](chunk, x),
         max_tokens=min(25 * x, 512), # 25 tokens per question
@@ -289,12 +289,12 @@ def encode_question_gen(question: str, chunk: Any, prompt_key : str = "gpt") -> 
     prompts.append({"role": "user", "content": prompt})
     return prompts
 
-def generate_label(client: OpenAI, question: str, context: Any, doctype: DocType = "pdf", model: str = None, prompt_key : str = "gpt") -> str | None:
+def generate_label(chat_completer: ChatCompleter, question: str, context: Any, doctype: DocType = "pdf", model: str = None, prompt_key : str = "gpt") -> str | None:
     """
     Generates the label / answer to `question` using `context` and GPT-4.
     """
     question = encode_question(question, context) if doctype == "api" else encode_question_gen(question, context, prompt_key)
-    response = client.chat.completions.create(
+    response = chat_completer(
         model=model,
         messages=question,
         n=1,
@@ -305,7 +305,7 @@ def generate_label(client: OpenAI, question: str, context: Any, doctype: DocType
     return response
 
 def generate_question_cot_answer(
-        client: OpenAI,
+        chat_completer: ChatCompleter,
         chunks: list[str], 
         chunk: str, 
         chunk_id, 
@@ -352,7 +352,7 @@ def generate_question_cot_answer(
     datapt["oracle_context"] = chunk
 
     # add answer to q
-    datapt["cot_answer"] = generate_label(client, question, chunk, doctype, model=model, prompt_key=prompt_key)
+    datapt["cot_answer"] = generate_label(chat_completer, question, chunk, doctype, model=model, prompt_key=prompt_key)
 
     # construct model instruction 
     context = ""
@@ -404,6 +404,7 @@ def main():
     client = build_openai_client(
         api_key=OPENAPI_API_KEY,
     )
+    chat_completer = ChatCompleter(client)
 
     CHUNK_SIZE = args.chunk_size
     NUM_DISTRACT_DOCS = args.distractors
@@ -432,7 +433,7 @@ def main():
 
     logger.info(f"Using {max_workers} chunk worker threads")
 
-    cot_answers_ds = stage_generate(client, checkpoints_dir, chunks, num_questions, max_workers, doctype, completion_model, system_prompt_key, num_distract=NUM_DISTRACT_DOCS, p=args.p)
+    cot_answers_ds = stage_generate(chat_completer, checkpoints_dir, chunks, num_questions, max_workers, doctype, completion_model, system_prompt_key, num_distract=NUM_DISTRACT_DOCS, p=args.p)
 
     # Save as .arrow format
     datasets.enable_progress_bars()
@@ -452,7 +453,7 @@ def main():
 
     formatter.convert(ds=cot_answers_ds, format=args.output_format, output_path=str(output_path), output_type=args.output_type, params=format_params)
 
-def stage_generate(client, checkpoints_dir, chunks, num_questions, max_workers, doctype, completion_model, system_prompt_key, num_distract, p):
+def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_questions, max_workers, doctype, completion_model, system_prompt_key, num_distract, p):
     """
     Given a chunk, create {Q, A, D} triplets and add them to the dataset.
     """
@@ -484,8 +485,8 @@ def stage_generate(client, checkpoints_dir, chunks, num_questions, max_workers, 
 
     def process_chunk(i):
         chunk = chunks[i]
-        questions_ds = generate_chunk_instructions_ds(chunk=chunk, chunk_id=i, client=client, x=num_questions, model=completion_model, doctype=doctype, prompt_key=system_prompt_key)
-        answers_ds = generate_question_cot_answers(questions_ds=questions_ds, chunk=chunk, chunk_id=i, client=client, model=completion_model, doctype=doctype, prompt_key=system_prompt_key, num_distract=num_distract, p=p)
+        questions_ds = generate_chunk_instructions_ds(chunk=chunk, chunk_id=i, chat_completer=chat_completer, x=num_questions, model=completion_model, doctype=doctype, prompt_key=system_prompt_key)
+        answers_ds = generate_question_cot_answers(questions_ds=questions_ds, chunk=chunk, chunk_id=i, chat_completer=chat_completer, model=completion_model, doctype=doctype, prompt_key=system_prompt_key, num_distract=num_distract, p=p)
         return answers_ds
 
     futures = []
