@@ -36,6 +36,12 @@ class Checkpointing:
         checkpoint_path = self.checkpoints_dir / ("checkpoint-" + str(num))
         ds.save_to_disk(checkpoint_path)
 
+    def load_checkpoint(self, num: int):
+        checkpoint_path = self.checkpoints_dir / ("checkpoint-" + str(num))
+        if checkpoint_path.exists():
+            return Dataset.load_from_disk(checkpoint_path)
+        return None
+
     def get_checkpoints(self) -> List[Checkpoint]:
         checkpoints = []
         for dir_path in self.checkpoints_dir.iterdir():
