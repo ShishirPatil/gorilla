@@ -441,7 +441,7 @@ def main():
     # Chunks
     chunks = build_or_load_chunks(datapath, args.doctype, CHUNK_SIZE, OPENAPI_API_KEY, args.embedding_model, checkpoints_dir)
 
-    ds = None
+    cot_answers_ds = None
 
     num_chunks = len(chunks)
     num_questions = args.questions
@@ -459,11 +459,11 @@ def main():
 
     questions_ds = stage_questions(client, checkpoints_dir, chunks, num_questions, max_workers, doc_type, completion_model, system_prompt_key)
 
-    ds = stage_cot_answers(client, NUM_DISTRACT_DOCS, checkpoints_dir, chunks, questions_ds, num_questions, max_workers, doc_type, completion_model, system_prompt_key)
+    cot_answers_ds = stage_cot_answers(client, NUM_DISTRACT_DOCS, checkpoints_dir, chunks, questions_ds, num_questions, max_workers, doc_type, completion_model, system_prompt_key)
 
     # Save as .arrow format
     datasets.enable_progress_bars()
-    ds.save_to_disk(str(output_path))
+    cot_answers_ds.save_to_disk(str(output_path))
 
     # Save as .jsonl format
     formatter = DatasetConverter()
@@ -477,7 +477,7 @@ def main():
         format_params['prompt_column'] = args.output_completion_prompt_column
         format_params['completion_column'] = args.output_completion_completion_column
 
-    formatter.convert(ds=ds, format=args.output_format, output_path=str(output_path), output_type=args.output_type, params=format_params)
+    formatter.convert(ds=cot_answers_ds, format=args.output_format, output_path=str(output_path), output_type=args.output_type, params=format_params)
 
 
 def stage_questions(client, checkpoints_dir, chunks, num_questions, max_workers, doc_type, completion_model, system_prompt_key):
