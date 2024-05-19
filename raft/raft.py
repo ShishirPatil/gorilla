@@ -92,7 +92,7 @@ def get_chunks(
         chunks = []
         file_paths = [data_path]
         if data_path.is_dir():
-            file_paths = data_path.rglob('**/*.' + doctype)
+            file_paths = list(data_path.rglob('**/*.' + doctype))
 
         futures = []
         with tqdm(total=len(file_paths), desc="Chunking", unit="file") as pbar:
@@ -140,7 +140,7 @@ def get_doc_chunks(
     chunks = [chunk.page_content for chunk in chunks]
     return chunks
 
-def generate_chunk_instructions(client: OpenAI, api_call: Any, x=5, model: str = None) -> list[str]:
+def generate_chunk_instructions(client: OpenAI, chunk: Any, x=5, model: str = None) -> list[str]:
     """
     Generates `x` questions / use cases for `api_call`. Used when the input document is of type `api`.
     """
@@ -151,7 +151,7 @@ def generate_chunk_instructions(client: OpenAI, api_call: Any, x=5, model: str =
             {"role": "system", "content": "The API endpoint is a JSON object with required params: user_name, api_name, api_call, api_version, api_arguments, functionality, and optional params: env_requirements, example_code, meta_data, Questions"},
             {"role": "system", "content": "For instance, if the api call contains: {'user_name': 'felixzhu555', 'api_name': 'Google Maps - Address Validation', 'api_call': 'Client.addressvalidation(addressLines, regionCode=region_code, locality=locality, enableUspsCass=boolean)', 'api_version': '4.10.0', 'api_arguments': {}, 'functionality': 'Validate an address and its components, standardize the address for mailing, and determine the best known geocode for it.', 'env_requirements': ['googlemaps'], 'example_code': 'client = googlemaps.Client(key='YOUR_API_KEY')\nresponse = client.addressvalidation('1600 Amphitheatre Pk', regionCode='US', locality='Mountain View', enableUspsCass=True)', 'meta_data': {'description': 'The googlemaps python client is an abstraction for the Google Maps API that requires python 3.5+. Each Google Maps web service request requires an API key or client ID. API keys are generated in the 'Credentials' page of the 'APIs & Services' tab of Google Cloud console. This key should be kept secret on your server.'}, 'questions': []}, an example instruction would be 'Validate the following address: University Avenue and, Oxford St, Berkeley, CA 94720.'"},
             {"role": "system", "content": "Don't mention 'API' or use any hints or the name of the API. In one-third of the queries, make sure to include a specific example, like 'Validate this address: 123 Harrison St, Oakland CA'. Include ONLY the queries in your response."},
-            {"role": "user", "content": str(api_call)}
+            {"role": "user", "content": str(chunk)}
         ]
     )
 
@@ -305,38 +305,11 @@ def generate_label(client: OpenAI, question: str, context: Any, doctype: DocType
     response = response.choices[0].message.content
     return response
 
-def gen_chunk_cots(
-    client: OpenAI,
-    chunks: list[str], 
-    chunk: str, 
-    doctype: DocType = "api", 
-    x: int = 5, 
-    num_distract: int = 3, 
-    p: float = 0.8,
-    model: str = None,
-    prompt_key: str = "gpt",
-    pbar = None
-) -> None:
-    """
-    Given a chunk, create {Q, A, D} triplets and add them to the dataset.
-    """
-    chunk_index = chunks.index(chunk)
-    qs = generate_chunk_instructions(client, chunk, x, model) if doctype == "api" else generate_instructions_gen(client, chunk, x, model, prompt_key)
-    datas = []
-    for q in qs:
-        datapt = generate_question_cot_answer(client, chunks, chunk, chunk_index, q, doctype, num_distract, p, model, prompt_key)
-
-        datas.append(datapt)
-        if pbar:
-            pbar.update(1)
-
-    return datas
-
 def generate_question_cot_answer(
         client: OpenAI,
         chunks: list[str], 
         chunk: str, 
-        chunk_index, 
+        chunk_id, 
         question,
         doctype: DocType = "api", 
         num_distract: int = 3, 
@@ -360,7 +333,7 @@ def generate_question_cot_answer(
     # add num_distract distractor docs
     docs = [chunk]
     indices = list(range(0, len(chunks)))
-    indices.remove(chunk_index)
+    indices.remove(chunk_id)
     for j in random.sample(indices, num_distract):
         docs.append(chunks[j])
     # decides whether to add oracle document
@@ -451,7 +424,7 @@ def main():
     num_chunks = len(chunks)
     num_questions = args.questions
     max_workers = args.workers
-    doc_type = args.doctype
+    doctype = args.doctype
     completion_model = args.completion_model
 
     system_prompt_key = args.system_prompt_key
@@ -460,9 +433,7 @@ def main():
 
     logger.info(f"Using {max_workers} chunk worker threads")
 
-    questions_ds = stage_questions(client, checkpoints_dir, chunks, num_questions, max_workers, doc_type, completion_model, system_prompt_key)
-
-    cot_answers_ds = stage_cot_answers(client, NUM_DISTRACT_DOCS, checkpoints_dir, chunks, questions_ds, num_questions, max_workers, doc_type, completion_model, system_prompt_key)
+    cot_answers_ds = stage_generate(client, checkpoints_dir, chunks, num_questions, max_workers, doctype, completion_model, system_prompt_key, num_distract=NUM_DISTRACT_DOCS, p=args.p)
 
     # Save as .arrow format
     datasets.enable_progress_bars()
@@ -482,81 +453,72 @@ def main():
 
     formatter.convert(ds=cot_answers_ds, format=args.output_format, output_path=str(output_path), output_type=args.output_type, params=format_params)
 
+def checkpointed(checkpointing: Checkpointing):
+    def wrapped(func):
+        def wrapper(chunk_id, *args, **kwargs):
+            ds = checkpointing.load_checkpoint(chunk_id)
+            if ds:
+                return ds
+            ds = func(chunk_id=chunk_id, *args, **kwargs)
+            checkpointing.save_checkpoint(ds, chunk_id)
+            return ds
+        return wrapper
+    return wrapped
 
-def stage_questions(client, checkpoints_dir, chunks, num_questions, max_workers, doc_type, completion_model, system_prompt_key):
-    checkpointing = Checkpointing(checkpoints_dir / "questions")
+def stage_generate(client, checkpoints_dir, chunks, num_questions, max_workers, doctype, completion_model, system_prompt_key, num_distract, p):
+    """
+    Given a chunk, create {Q, A, D} triplets and add them to the dataset.
+    """
+
+    questions_checkpointing = Checkpointing(checkpoints_dir / "questions")
+    answers_checkpointing = Checkpointing(checkpoints_dir / "answers")
     num_chunks = len(chunks)
-    missing_checkpoints = checkpointing.missing_checkpoints(num_chunks)
-    done_checkpoints_count = num_chunks - len(missing_checkpoints)
+
+    @checkpointed(questions_checkpointing)
+    def generate_chunk_instructions_ds(chunk: str, chunk_id: int, doctype: str, *args, **kwargs):
+        """
+        Generates a dataset of instructions for a given chunk.
+        """
+        questions = generate_chunk_instructions(chunk=chunk, *args, **kwargs) if doctype == "api" else generate_instructions_gen(chunk=chunk, *args, **kwargs)
+        chunk_question_pairs = [{"chunk": chunk, "chunk_id": chunk_id, "question": question} for question in questions]
+        questions_ds = Dataset.from_list(chunk_question_pairs)
+        return questions_ds
+
+    @checkpointed(answers_checkpointing)
+    def generate_question_cot_answers(questions_ds, chunk_id: int, chunk: str, *args, **kwargs):
+        def process_example(chunk, question):
+            cot_answer = generate_question_cot_answer(chunk=chunk, chunk_id=chunk_id, chunks=chunks, question=question, *args, **kwargs)
+            return cot_answer
+
+        results = [process_example(chunk, question) for chunk, question in zip(questions_ds['chunk'], questions_ds['question'])]
+        table = pa.Table.from_pylist(results)
+        ds = Dataset(table)
+        return ds
 
     def process_chunk(i):
         chunk = chunks[i]
-
-        questions = generate_chunk_instructions(client, chunk, num_questions, completion_model) if doc_type == "api" else generate_instructions_gen(client, chunk, num_questions, completion_model, system_prompt_key)
-        chunk_question_pairs = [{"chunk": chunk, "chunk_id": i, "question": question} for question in questions]
-        questions_ds = Dataset.from_list(chunk_question_pairs)
-        checkpointing.save_checkpoint(questions_ds, i)
-        return questions_ds
+        questions_ds = generate_chunk_instructions_ds(chunk=chunk, chunk_id=i, client=client, x=num_questions, model=completion_model, doctype=doctype, prompt_key=system_prompt_key)
+        answers_ds = generate_question_cot_answers(questions_ds=questions_ds, chunk=chunk, chunk_id=i, client=client, model=completion_model, doctype=doctype, prompt_key=system_prompt_key, num_distract=num_distract, p=p)
+        return answers_ds
 
     futures = []
     gen_questions_count = 0
-    with tqdm(total=num_chunks, desc="Generating questions", unit="chunk", initial=done_checkpoints_count) as pbar:
+    answers_ds_list = []
+    with tqdm(total=num_chunks, desc="Generating", unit="chunk") as pbar:
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            for i in missing_checkpoints:
+            for i in range(0, num_chunks):
                 futures.append(executor.submit(process_chunk, i))
             for future in as_completed(futures):
-                questions_ds = future.result()
-                gen_questions_count += len(questions_ds)
-                pbar.set_postfix({'questions': gen_questions_count})
+                answers_ds = future.result()
+                answers_ds_list.append(answers_ds)
+                gen_questions_count += len(answers_ds)
+                pbar.set_postfix({'qa': gen_questions_count})
                 pbar.update(1)
 
-    ds = checkpointing.collect_checkpoints()
+    ds = concatenate_datasets(answers_ds_list)
     #checkpointing.delete_checkpoints()
 
     return ds
-
-def stage_cot_answers(client, NUM_DISTRACT_DOCS, checkpoints_dir, chunks, questions_ds: Dataset, questions_per_chunk, max_workers, doc_type, completion_model, system_prompt_key):
-
-    checkpointing = Checkpointing(checkpoints_dir / "answers")
-
-    @constant_hash
-    def process_batch(batch, batch_id, pbar):
-        ds = checkpointing.load_checkpoint(batch_id)
-        if ds:
-            pbar.update(len(ds))
-            return ds
-
-        def process_example(chunk, chunk_id, question):
-            cot_answer = generate_question_cot_answer(client, chunks, chunk, chunk_id, question, doc_type, model=completion_model, prompt_key=system_prompt_key, num_distract=NUM_DISTRACT_DOCS)
-            pbar.update(1)
-            return cot_answer
-
-        results = [process_example(chunk, chunk_id, question) for chunk, chunk_id, question in zip(batch['chunk'], batch['chunk_id'], batch['question'])]
-        table = pa.Table.from_pylist(results)
-        ds = Dataset(table)
-        checkpointing.save_checkpoint(ds, batch_id)
-        return ds
-
-    futures = []
-    processed_batchs = 0
-    datasets = []
-    with tqdm(total=len(questions_ds), desc="Generating COT answers", unit="answer") as pbar:
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-
-            counter = itertools.count()
-
-            @constant_hash
-            def submit_batch(batch):
-                futures.append(executor.submit(process_batch, batch, next(counter), pbar))
- 
-            questions_ds.map(submit_batch, batched=True, batch_size=questions_per_chunk)
-
-            for future in as_completed(futures):
-                datasets.append(future.result())
-                processed_batchs += 1
-                pbar.set_postfix({'batch': processed_batchs})
-
-    return concatenate_datasets(datasets)
 
 if __name__ == "__main__":
     with MDC(progress="0%"):
