@@ -74,7 +74,7 @@ def get_chunks(
     """
     chunks = []
 
-    logger.info(f"Retrieving chunks from {data_path} of type {doctype}")
+    logger.info(f"Retrieving chunks from {data_path} of type {doctype} using the {model} model.")
 
     if doctype == "api":
         with open(data_path) as f:
@@ -92,10 +92,17 @@ def get_chunks(
         file_paths = [data_path]
         if data_path.is_dir():
             file_paths = data_path.rglob('**/*.' + doctype)
-        for file_path in file_paths:
-            logger.info(f"Retrieving chunks from {file_path} using the {model} model.")
-            doc_chunks = get_doc_chunks(embeddings, file_path, doctype, chunk_size)
-            chunks.extend(doc_chunks)
+
+        futures = []
+        with tqdm(total=len(file_paths), desc="Chunking", unit="file") as pbar:
+            with ThreadPoolExecutor(max_workers=2) as executor:
+                for file_path in file_paths:
+                    futures.append(executor.submit(get_doc_chunks, embeddings, file_path, doctype, chunk_size))
+                for future in as_completed(futures):
+                    doc_chunks = future.result()
+                    chunks.extend(doc_chunks)
+                    pbar.set_postfix({'chunks': len(chunks)})
+                    pbar.update(1)
 
     return chunks
 
@@ -125,7 +132,7 @@ def get_doc_chunks(
         raise TypeError("Document is not one of the accepted types: api, pdf, json, txt")
     
     num_chunks = ceil(len(text) / chunk_size)
-    logger.info(f"Splitting text into {num_chunks} chunks.")
+    logger.debug(f"Splitting text into {num_chunks} chunks.")
 
     text_splitter = SemanticChunker(embeddings, number_of_chunks=num_chunks)
     chunks = text_splitter.create_documents([text])
@@ -449,7 +456,7 @@ def main():
                 checkpointing.save_checkpoint(chunk_ds, i)
 
         futures = []
-        processed_chunks = 0
+        processed_chunks = done_checkpoints_count
         with tqdm(total=num_chunks * num_questions, desc="Generating", unit="question", initial=done_checkpoints_count * num_questions) as pbar:
             pbar.set_postfix({'chunks': processed_chunks})
             with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -489,8 +496,8 @@ def main():
 
     formatter.convert(ds=ds, format=args.output_format, output_path=str(output_path), output_type=args.output_type, params=format_params)
 
-    if not args.fast:
-        checkpointing.delete_checkpoints()
+#    if not args.fast:
+#        checkpointing.delete_checkpoints()
 
 if __name__ == "__main__":
     with MDC(progress="0%"):
