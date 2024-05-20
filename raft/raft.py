@@ -492,7 +492,7 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
     futures = []
     gen_questions_count = 0
     answers_ds_list = []
-    completion_state = UsageStats()
+    usage_stats = UsageStats()
 
     # we use the checkpointing to keep track of the chunks that have already been processed
     # the answers are generated after the questions so the process might have been stopped in between a batch of answers and matching questions
@@ -512,11 +512,11 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
                 answers_ds_list.append(answers_ds)
                 gen_questions_count += len(answers_ds)
                 pbar.set_postfix({'qa': gen_questions_count})
-                state = chat_completer.get_stats_and_reset()
-                if state:
-                    tps = state.total_tokens / state.duration
-                    completion_state += state
-                pbar.set_postfix({'tok/s': tps, 'tok': completion_state.total_tokens})
+                stats = chat_completer.get_stats_and_reset()
+                if stats:
+                    tps = stats.total_tokens / stats.duration
+                    usage_stats += stats
+                pbar.set_postfix({'last tok/s': tps, 'avg tok/s': usage_stats.total_tokens / usage_stats.duration})
                 pbar.update(1)
 
     ds = concatenate_datasets(answers_ds_list)
