@@ -493,10 +493,19 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
     gen_questions_count = 0
     answers_ds_list = []
     completion_state = UsageStats()
+
+    # we use the checkpointing to keep track of the chunks that have already been processed
+    # the answers are generated after the questions so the process might have been stopped in between a batch of answers and matching questions
+    # so we need to use the answers checkpointing to keep track of which chunks we need to process
+    # if the questions for a given chunk have already been checkpointed, they will just be loaded from the checkpoint
+    # we set the tqdm's initial position to avoid having cached data skew the stats
+    missing_chunks = answers_checkpointing.missing_checkpoints(num_chunks)
+    
+    done_chunks = num_chunks - len(missing_chunks)
     tps = 0
-    with tqdm(total=num_chunks, desc="Generating", unit="chunk") as pbar:
+    with tqdm(total=num_chunks, desc="Generating", unit="chunk", initial=done_chunks) as pbar:
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            for i in range(0, num_chunks):
+            for i in missing_chunks:
                 futures.append(executor.submit(process_chunk, i))
             for future in as_completed(futures):
                 answers_ds = future.result()
