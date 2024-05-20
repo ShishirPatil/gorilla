@@ -111,8 +111,9 @@ class OpenAiCompletionDatasetFormatter(DatasetFormatter):
     https://platform.openai.com/docs/guides/fine-tuning/preparing-your-dataset
     """
     def format(self, ds: Dataset, prompt_column: str = 'prompt', completion_column : str = 'completion', stop: str = '<STOP>') -> Dataset:
-        newds = ds.rename_columns({'instruction': prompt_column})
-        newds = newds.map(lambda examples: {completion_column: [answer + stop for answer in examples['cot_answer']]}, batched=True)
+        newds = ds.filter(lambda example: example['cot_answer'] and example['instruction'], desc="Filter out empty examples")
+        newds = newds.rename_columns({'instruction': prompt_column})
+        newds = newds.map(lambda examples: {completion_column: [answer + stop for answer in examples['cot_answer']]}, batched=True, desc=f"Rename fields and add {stop} token")
         return _remove_all_columns_but(newds, [prompt_column, completion_column])
 
 class OpenAiChatDatasetFormatter(OpenAiCompletionDatasetFormatter):
