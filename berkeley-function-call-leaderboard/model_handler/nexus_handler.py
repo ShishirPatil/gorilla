@@ -99,7 +99,6 @@ class NexusHandler(BaseHandler):
         raven_prompt = "\n".join(self.generate_functions_from_dict(functions)) + "\n\n"
         raven_prompt += "Setting: Allowed to issue multiple calls with semicolon\n"
         raven_prompt += "User Query:" + user_prompt.replace("\n", "") + "<human_end>"
-        print (raven_prompt)
         return raven_prompt
 
 
