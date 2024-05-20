@@ -1,6 +1,4 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import itertools
-import mdc
 from mdc import MDC
 from tqdm import tqdm
 from logconf import log_setup
@@ -24,6 +22,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from checkpointing import Checkpointing, checkpointed
 import uuid
+import shutil
 
 log_setup()
 
@@ -56,6 +55,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--completion_model", type=str, default="gpt-4", help="The model to use to generate questions and answers (gpt-3.5, gpt-4, ...)")
     parser.add_argument("--system-prompt-key", default="gpt", help="The system prompt to use to generate the dataset")
     parser.add_argument("--workers", type=int, default=2, help="The number of worker threads to use to generate the dataset")
+    parser.add_argument("--auto-clean-checkpoints", type=bool, default=False, help="Whether to auto clean the checkpoints after the dataset is generated")
 
     args = parser.parse_args()
     return args
@@ -412,6 +412,10 @@ def main():
     output_path = Path(args.output).absolute()
 
     checkpoints_dir = Path(str(output_path) + "-checkpoints").absolute()
+    auto_clean_checkpoints = args.auto_clean_checkpoints
+    if auto_clean_checkpoints:
+        logger.info(f"Checkpoints will be automatically deleted after dataset generation. Remove --auto-clean-checkpoints to deactivate.")
+
     datapath: Path = args.datapath
 
     datasets.disable_progress_bars()
@@ -431,7 +435,7 @@ def main():
 
     logger.info(f"Using system prompt key {system_prompt_key}")
 
-    logger.info(f"Using {max_workers} chunk worker threads")
+    logger.info(f"Using {max_workers} worker threads")
 
     cot_answers_ds = stage_generate(chat_completer, checkpoints_dir, chunks, num_questions, max_workers, doctype, completion_model, system_prompt_key, num_distract=NUM_DISTRACT_DOCS, p=args.p)
 
@@ -452,6 +456,10 @@ def main():
         format_params['completion_column'] = args.output_completion_completion_column
 
     formatter.convert(ds=cot_answers_ds, format=args.output_format, output_path=str(output_path), output_type=args.output_type, params=format_params)
+
+    # Warning, this deletes all intermediary checkpoint files
+    if auto_clean_checkpoints:
+        shutil.rmtree(checkpoints_dir)
 
 def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_questions, max_workers, doctype, completion_model, system_prompt_key, num_distract, p):
     """
@@ -519,8 +527,7 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
                 pbar.set_postfix({'last tok/s': tps, 'avg tok/s': usage_stats.total_tokens / usage_stats.duration})
                 pbar.update(1)
 
-    ds = concatenate_datasets(answers_ds_list)
-    #checkpointing.delete_checkpoints()
+    ds = answers_checkpointing.collect_checkpoints()
 
     return ds
 
