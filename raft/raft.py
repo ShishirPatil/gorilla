@@ -17,7 +17,7 @@ import PyPDF2
 import random
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_openai.embeddings import OpenAIEmbeddings
-from client_utils import build_openai_client, build_langchain_embeddings, CompleterState, ChatCompleter
+from client_utils import build_openai_client, build_langchain_embeddings, UsageStats, ChatCompleter
 from math import ceil
 from format import DatasetConverter, datasetFormats, outputDatasetTypes
 from pathlib import Path
@@ -492,7 +492,7 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
     futures = []
     gen_questions_count = 0
     answers_ds_list = []
-    completion_state = CompleterState()
+    completion_state = UsageStats()
     tps = 0
     with tqdm(total=num_chunks, desc="Generating", unit="chunk") as pbar:
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -503,7 +503,7 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
                 answers_ds_list.append(answers_ds)
                 gen_questions_count += len(answers_ds)
                 pbar.set_postfix({'qa': gen_questions_count})
-                state = chat_completer.get_and_reset()
+                state = chat_completer.get_stats_and_reset()
                 if state:
                     tps = state.total_tokens / state.duration
                     completion_state += state

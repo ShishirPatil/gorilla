@@ -59,7 +59,7 @@ def safe_max(a: Any, b: Any) -> Any:
         return a
     return max(a, b)
 
-class CompleterState:
+class UsageStats:
     def __init__(self) -> None:
         self.start = time.time()
         self.completion_tokens = 0
@@ -69,46 +69,46 @@ class CompleterState:
         self.duration = 0
         self.calls = 0
 
-    def __add__(self, other: 'CompleterState') -> 'CompleterState':
-        state = CompleterState()
-        state.start = safe_min(self.start, other.start)
-        state.end = safe_max(self.end, other.end)
-        state.completion_tokens = self.completion_tokens + other.completion_tokens
-        state.prompt_tokens = self.prompt_tokens + other.prompt_tokens
-        state.total_tokens = self.total_tokens + other.total_tokens
-        state.duration = self.duration + other.duration
-        state.calls = self.calls + other.calls
-        return state
+    def __add__(self, other: 'UsageStats') -> 'UsageStats':
+        stats = UsageStats()
+        stats.start = safe_min(self.start, other.start)
+        stats.end = safe_max(self.end, other.end)
+        stats.completion_tokens = self.completion_tokens + other.completion_tokens
+        stats.prompt_tokens = self.prompt_tokens + other.prompt_tokens
+        stats.total_tokens = self.total_tokens + other.total_tokens
+        stats.duration = self.duration + other.duration
+        stats.calls = self.calls + other.calls
+        return stats
 
 class ChatCompleter:
     def __init__(self, client):
         self.client = client
-        self.state = None
+        self.stats = None
         self.lock = Lock()
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
         response = self.client.chat.completions.create(*args, **kwds)
         self.lock.acquire()
         try:
-            if not self.state:
-                self.state = CompleterState()
-            self.state.completion_tokens += response.usage.completion_tokens
-            self.state.prompt_tokens += response.usage.prompt_tokens
-            self.state.total_tokens += response.usage.total_tokens
-            self.state.calls += 1
+            if not self.stats:
+                self.stats = UsageStats()
+            self.stats.completion_tokens += response.usage.completion_tokens
+            self.stats.prompt_tokens += response.usage.prompt_tokens
+            self.stats.total_tokens += response.usage.total_tokens
+            self.stats.calls += 1
             return response
         finally:
             self.lock.release()
     
-    def get_and_reset(self) -> CompleterState:
+    def get_stats_and_reset(self) -> UsageStats:
         self.lock.acquire()
         try:
             end = time.time()
-            state = self.state
-            if state:
-                state.end = end
-                state.duration = end - self.state.start
-                self.state = None
-            return state
+            stats = self.stats
+            if stats:
+                stats.end = end
+                stats.duration = end - self.stats.start
+                self.stats = None
+            return stats
         finally:
             self.lock.release()
