@@ -461,6 +461,8 @@ def main():
     if auto_clean_checkpoints:
         shutil.rmtree(checkpoints_dir)
 
+    logger.info(f"Dataset saved to {output_path}")
+
 def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_questions, max_workers, doctype, completion_model, system_prompt_key, num_distract, p):
     """
     Given a chunk, create {Q, A, D} triplets and add them to the dataset.
