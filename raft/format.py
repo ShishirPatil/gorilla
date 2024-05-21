@@ -100,7 +100,10 @@ def _remove_all_columns_but(ds: Dataset, keep_columns) -> Dataset:
     """
     remove_columns = list(ds.column_names)
     for keep in keep_columns:
-        remove_columns.remove(keep)
+        try:
+            remove_columns.remove(keep)
+        except ValueError:
+            raise Exception(f"Column {keep} not found in {remove_columns}")
     ds = ds.remove_columns(remove_columns)
     return ds
 
@@ -153,11 +156,12 @@ class EvalDatasetFormatter(DatasetFormatter):
     Returns the Dataset in a format suitable for evaluation. Extracts final answer separates context from question.
     """
     def format(self, ds: Dataset) -> Dataset:
-        newds = ds.rename_columns({'context': 'context_sentences'})
-        newds = newds.map(lambda examples: {"gold_answer": [extract_final_answer(answer) for answer in examples['cot_answer']]}, batched=True)
-        newds = newds.map(lambda examples: {"final_answer": [extract_final_answer(answer) for answer in examples['answer']]}, batched=True)
+        newds = ds.filter(lambda example: example['cot_answer'] and example['instruction'] and example['context'], desc="Filter out empty examples")
+        newds = newds.rename_columns({'context': 'context_sentences'})
+        newds = newds.map(lambda examples: {"gold_final_answer": [extract_final_answer(answer) for answer in examples['cot_answer']]}, batched=True)
+        #newds = newds.map(lambda examples: {"final_answer": [extract_final_answer(answer) for answer in examples['answer']]}, batched=True)
         newds = newds.map(lambda examples: {"context": [extract_context(instruction) for instruction in examples['instruction']]}, batched=True)
-        return _remove_all_columns_but(newds, ['question', 'gold_answer', 'answer', 'context', 'final_answer'])
+        return _remove_all_columns_but(newds, ['question', 'gold_final_answer', 'context'])
 
 def append_extension(path: str, extension: str) -> str:
     suffix = "." + extension
