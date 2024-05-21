@@ -1,4 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
 from mdc import MDC
 from tqdm import tqdm
 from logconf import log_setup
@@ -392,6 +393,8 @@ def build_or_load_chunks(
 
 def main():
 
+    main_start = time.time()
+
     # run code
     args = get_args()
 
@@ -461,7 +464,9 @@ def main():
     if auto_clean_checkpoints:
         shutil.rmtree(checkpoints_dir)
 
+    logger.info(f"Generated {len(cot_answers_ds)} question/answer/CoT/documents samples")
     logger.info(f"Dataset saved to {output_path}")
+    logger.info(f"Done in {time.time() - main_start:.2f}s")
 
 def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_questions, max_workers, doctype, completion_model, system_prompt_key, num_distract, p):
     """
@@ -530,6 +535,7 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
                 pbar.update(1)
 
     ds = answers_checkpointing.collect_checkpoints()
+    logger.info(f"Consumed {usage_stats.prompt_tokens} prompt tokens, {usage_stats.completion_tokens} completion tokens, {usage_stats.total_tokens} total tokens")
 
     return ds
 
