@@ -1,9 +1,6 @@
 from typing import Any
-import string
-import re
-from openai import OpenAI 
-from openai import AzureOpenAI
-from openai.types.chat import ChatCompletionMessageParam, ChatCompletion
+from openai import RateLimitError
+from openai.types.chat import ChatCompletion
 import multiprocessing as mp
 import time
 import argparse
@@ -15,6 +12,7 @@ from logconf import log_setup
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dotenv import load_dotenv
+from tenacity import retry, wait_exponential, retry_if_exception_type
 
 load_dotenv(dotenv_path=".env.eval")  # take environment variables from .env.
 
@@ -29,6 +27,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--model", type=str, default="gpt-4", help="The model to evaluate")
     parser.add_argument("--input-prompt-key", type=str, default="instruction", help="The column to use as input prompt")
     parser.add_argument("--output-answer-key", type=str, default="answer", help="The column to use as output answer")
+    parser.add_argument("--workers", type=int, default=2, help="The number of worker threads to use to evaluate the dataset")
 
     args = parser.parse_args()
     return args
@@ -46,6 +45,7 @@ if __name__ == "__main__":
     prompt_key = args.input_prompt_key
     answer_key = args.output_answer_key
 
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), reraise=True, retry=retry_if_exception_type(RateLimitError))
     def get_openai_response(
         prompt: str
     ) -> str | ChatCompletion | None :
@@ -84,7 +84,7 @@ if __name__ == "__main__":
     if os.path.isfile(write_file_name):
         os.remove(write_file_name)
 
-    num_workers = 20
+    num_workers = args.workers
     file_write_lock = mp.Lock()
     inputs = []
     with open(args.question_file, 'r') as f:
