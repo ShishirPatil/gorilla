@@ -279,10 +279,13 @@ To add a new model to the Function Calling Leaderboard, here are a few things yo
 2. Create your handler and define the following functions 
     1. `__init__`: on initialization, you need to create a `self.client` object if you have an existing endpoint(e.g. `self.client = OpenAI()`) or follow `model_handler/oss_handler.py` for starting a vLLM serving.
     2. `inference`: inference function takes in prompt, functions, as well as optional programming language parameters. It will make call to the endpoint, compile result in the desired format, as well as logging the token number and latency
-    3. `decode_ast`: decode_ast will convert the response from raw output in the format of `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}] This format will be used to check for exact matching the parameters.
+    3. `decode_ast`: decode_ast will convert the response from raw output in the format of `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}]` This format will be used to check for exact matching the parameters.
     4. `decode_execute`: deocde_execute will convert the response from raw output in the format of `"[func1(param1=val1),func2(param2=val2)]"`
-3. Modify `model_handler/handler_map.py`. This mapping contains the key as the exact model name and value as the handler object of the specific model. 
-4. If your model is price-based, please update the pricing detail, i.e. price per million tokens under `eval_runner_helper.py`
+3. Modify `model_handler/handler_map.py`. This mapping contains the key as the exact model name and value as the handler object of the specific model.
+4. Modify `eval_checker/eval_runner_helper.py`:
+    - Update the `MODEL_METADATA_MAPPING` with the model display name, URL, license and company information. The key should be the same as the one in `model_handler/handler_map.py`.
+    - If your model is price-based, you should update the `INPUT_PRICE_PER_MILLION_TOKEN` and `OUTPUT_PRICE_PER_MILLION_TOKEN`. - If your model doesn't have a cost, you should add it to the `NO_COST_MODELS` list.
+    - If your model is open-source and is hosted locally, the `OSS_LATENCY` list needs to be updated with the latency for the whole batch of data generation. This information will affect the cost calculation.
 5. Raise a [Pull Request](https://github.com/ShishirPatil/gorilla/pulls) with your new Model Handler. We will run the model handler if an endpoint is established. If self-hosting is required and the model size is large, we might not be able to accommodate model hosting therefore an OpenAI compatible endpoint for evaluation is desired. 
 6. Feel Free to join [Gorilla Discord](https://discord.gg/grXXvj9Whz) `#leaderboard` and reach out to us for any questions or concerns about adding new models. We are happy to help you!
 
