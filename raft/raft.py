@@ -526,12 +526,11 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
                 answers_ds = future.result()
                 answers_ds_list.append(answers_ds)
                 gen_questions_count += len(answers_ds)
-                pbar.set_postfix({'qa': gen_questions_count})
                 stats = chat_completer.get_stats_and_reset()
                 if stats:
                     tps = stats.total_tokens / stats.duration
                     usage_stats += stats
-                pbar.set_postfix({'last tok/s': tps, 'avg tok/s': usage_stats.total_tokens / usage_stats.duration})
+                pbar.set_postfix({'qa': gen_questions_count, 'last tok/s': tps, 'avg tok/s': usage_stats.total_tokens / usage_stats.duration})
                 pbar.update(1)
 
     ds = answers_checkpointing.collect_checkpoints()
