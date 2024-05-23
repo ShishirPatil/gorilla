@@ -142,7 +142,9 @@ def extract_final_answer(cot_answer: str) -> str:
     """
     Extracts the final answer from the cot_answer field
     """
-    return cot_answer.split("<ANSWER>: ")[-1]
+    if cot_answer:
+        return cot_answer.split("<ANSWER>: ")[-1]
+    return None
 
 def extract_context(instruction: str) -> str:
     """
@@ -159,9 +161,12 @@ class EvalDatasetFormatter(DatasetFormatter):
         newds = ds.filter(lambda example: example['cot_answer'] and example['instruction'] and example['context'], desc="Filter out empty examples")
         newds = newds.rename_columns({'context': 'context_sentences'})
         newds = newds.map(lambda examples: {"gold_final_answer": [extract_final_answer(answer) for answer in examples['cot_answer']]}, batched=True)
-        #newds = newds.map(lambda examples: {"final_answer": [extract_final_answer(answer) for answer in examples['answer']]}, batched=True)
+        keep_columns = ['question', 'gold_final_answer', 'context']
+        if 'answer' in newds.column_names:
+            [keep_columns.append(col) for col in ['answer', 'final_answer']]
+            newds = newds.map(lambda examples: {"final_answer": [extract_final_answer(answer) for answer in examples['answer']]}, batched=True)
         newds = newds.map(lambda examples: {"context": [extract_context(instruction) for instruction in examples['instruction']]}, batched=True)
-        return _remove_all_columns_but(newds, ['question', 'gold_final_answer', 'context'])
+        return _remove_all_columns_but(newds, keep_columns)
 
 def append_extension(path: str, extension: str) -> str:
     suffix = "." + extension
