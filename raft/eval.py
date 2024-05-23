@@ -6,13 +6,14 @@ import time
 import argparse
 import json
 import os
-from client_utils import build_openai_client
+from client_utils import StatsCompleter, UsageStats, build_openai_client
 import logging
 from logconf import log_setup
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dotenv import load_dotenv
-from tenacity import retry, wait_exponential, retry_if_exception_type
+from tenacity import Retrying, retry, wait_exponential, retry_if_exception_type
+from client_utils import CompletionsCompleter
 
 load_dotenv(dotenv_path=".env.eval")  # take environment variables from .env.
 
@@ -37,6 +38,12 @@ if __name__ == "__main__":
 
     log_setup()
     client = build_openai_client(env_prefix = "EVAL")
+
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), reraise=True, retry=retry_if_exception_type(RateLimitError))
+    def retry_complete(*args, **kwargs):
+        return client.completions.create(*args, **kwargs)
+
+    completions_completer = StatsCompleter(retry_complete)
     args = get_args()
 
     logger = logging.getLogger('eval')
@@ -45,11 +52,10 @@ if __name__ == "__main__":
     prompt_key = args.input_prompt_key
     answer_key = args.output_answer_key
 
-    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), reraise=True, retry=retry_if_exception_type(RateLimitError))
     def get_openai_response(
         prompt: str
-    ) -> str | ChatCompletion | None :
-        response = client.completions.create(
+    ) -> str | None :
+        response = completions_completer(
             model=model,
             prompt=prompt,
             temperature=0.2,
@@ -91,16 +97,29 @@ if __name__ == "__main__":
         for line in f:
             inputs.append(json.loads(line))
 
-    logger.info(f'number of inputs: {len(inputs)}')
+    logger.info(f'number of questions: {len(inputs)}')
     start_time = time.time()
-    with tqdm(total=len(inputs)) as pbar:
+    usage_stats = UsageStats()
+    tps = 0
+    retrying: Retrying = retry_complete.retry
+    with tqdm(total=len(inputs), unit="answers") as pbar:
         with ThreadPoolExecutor(num_workers) as executor:
             futures = [executor.submit(get_answer, input) for input in inputs]
 
             for future in as_completed(futures):
                 result = future.result()
+                stats = completions_completer.get_stats_and_reset()
+                if stats:
+                    tps = stats.total_tokens / stats.duration
+                    usage_stats += stats
+
+                retry_stats = retrying.statistics
+                if len(retry_stats.__dict__.keys()) > 0:
+                    logger.info(f"retrying stats: {retry_stats}")
+                pbar.set_postfix({'last tok/s': tps, 'avg tok/s': usage_stats.total_tokens / usage_stats.duration})
                 pbar.update(1)
                 write_result_to_file(result, write_file_name)
 
     end_time = time.time()
     logger.info(f"total time used: {end_time - start_time}")
+    
