@@ -1,3 +1,4 @@
+from abc import ABC
 from typing import Any
 from langchain_openai import OpenAIEmbeddings, AzureOpenAIEmbeddings
 from openai import AzureOpenAI, OpenAI
@@ -80,14 +81,14 @@ class UsageStats:
         stats.calls = self.calls + other.calls
         return stats
 
-class ChatCompleter:
-    def __init__(self, client):
-        self.client = client
+class StatsCompleter(ABC):
+    def __init__(self, create_func):
+        self.create_func = create_func
         self.stats = None
         self.lock = Lock()
 
     def __call__(self, *args: Any, **kwds: Any) -> Any:
-        response = self.client.chat.completions.create(*args, **kwds)
+        response = self.create_func(*args, **kwds)
         self.lock.acquire()
         try:
             if not self.stats:
@@ -112,3 +113,11 @@ class ChatCompleter:
             return stats
         finally:
             self.lock.release()
+
+class ChatCompleter(StatsCompleter):
+    def __init__(self, client):
+        super().__init__(client.chat.completions.create)
+
+class CompletionsCompleter(StatsCompleter):
+    def __init__(self, client):
+        super().__init__(client.completions.create)
