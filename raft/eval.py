@@ -12,7 +12,7 @@ from logconf import log_setup
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dotenv import load_dotenv
-from tenacity import Retrying, retry, wait_exponential, retry_if_exception_type
+from tenacity import Retrying, retry, wait_exponential, retry_if_exception_type, before_sleep_log
 from client_utils import CompletionsCompleter
 
 load_dotenv()  # take environment variables from .env.
@@ -39,14 +39,14 @@ if __name__ == "__main__":
     log_setup()
     client = build_openai_client(env_prefix = "EVAL")
 
-    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), reraise=True, retry=retry_if_exception_type(RateLimitError))
+    logger = logging.getLogger('eval')
+
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), reraise=True, retry=retry_if_exception_type(RateLimitError), before_sleep=before_sleep_log(logger, logging.INFO))
     def retry_complete(*args, **kwargs):
         return client.completions.create(*args, **kwargs)
 
     completions_completer = StatsCompleter(retry_complete)
     args = get_args()
-
-    logger = logging.getLogger('eval')
 
     model = args.model
     prompt_key = args.input_prompt_key
@@ -71,8 +71,11 @@ if __name__ == "__main__":
 
     def get_answer(input_json: dict[str, Any]) -> dict[str, Any]:
         prompt = input_json[prompt_key]
-        result = get_openai_response(prompt)
-        input_json[answer_key] = result
+        try:
+            result = get_openai_response(prompt)
+            input_json[answer_key] = result
+        except Exception as e:
+            input_json['error'] = str(e)
         return input_json
 
     def write_result_to_file(
