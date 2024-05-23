@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 from tenacity import Retrying, retry, wait_exponential, retry_if_exception_type
 from client_utils import CompletionsCompleter
 
-load_dotenv(dotenv_path=".env.eval")  # take environment variables from .env.
+load_dotenv()  # take environment variables from .env.
 
 def get_args() -> argparse.Namespace:
     """
@@ -114,7 +114,7 @@ if __name__ == "__main__":
                     usage_stats += stats
 
                 retry_stats = retrying.statistics
-                if len(retry_stats.__dict__.keys()) > 0:
+                if len(retry_stats.keys()) > 0:
                     logger.info(f"retrying stats: {retry_stats}")
                 pbar.set_postfix({'last tok/s': tps, 'avg tok/s': usage_stats.total_tokens / usage_stats.duration})
                 pbar.update(1)
