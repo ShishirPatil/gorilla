@@ -1,0 +1,6 @@
+[submodule "berkeley-function-call-leaderboard/eval_checker/tree-sitter-java"]
+	path = berkeley-function-call-leaderboard/eval_checker/tree-sitter-java
+	url = https://github.com/tree-sitter/tree-sitter-java
+[submodule "berkeley-function-call-leaderboard/eval_checker/tree-sitter-javascript"]
+	path = berkeley-function-call-leaderboard/eval_checker/tree-sitter-javascript
+	url = https://github.com/tree-sitter/tree-sitter-java

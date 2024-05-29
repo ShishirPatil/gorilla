@@ -15,13 +15,13 @@ from model_handler.constant import (
 )
 from openai import OpenAI
 import os, time, json
+import requests
 
 
-class OpenAIHandler(BaseHandler):
+class YiHandler(BaseHandler):
     def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
         self.model_style = ModelStyle.OpenAI
-        self.client = OpenAI(base_url='https://one-api.boolv.tech/v1', api_key=os.getenv("OPENAI_API_KEY"))
 
     def inference(self, prompt,functions,test_category):
         if "FC" not in self.model_name:
@@ -40,16 +40,29 @@ class OpenAIHandler(BaseHandler):
                     ),
                 },
             ]
-            start_time = time.time()
-            response = self.client.chat.completions.create(
-                messages=message,
-                model=self.model_name,
-                temperature=self.temperature,
-                max_tokens=self.max_tokens,
-                top_p=self.top_p,
+            requestData = {
+                "model": self.model_name,
+                "messages": [{"role": "user", "content": prompt}],
+                "functions": functions,
+                "temperature": self.temperature,
+                "top_p": self.top_p,
+                "max_tokens": self.max_tokens,
+            }
+            url = "https://api.lingyiwanwu.com/v1/chat/completions"
+            start = time.time()
+            response = requests.post(
+                url,
+                headers={
+                    "Content-Type": "application/json",
+                    #"Authorization": "EMPTY",  # Hosted for free with ❤️ from UC Berkeley
+                    "Authorization": "Bearer popai"
+                },
+                data=json.dumps(requestData),
             )
-            latency = time.time() - start_time
-            result = response.choices[0].message.content
+
+            latency = time.time() - start
+            res = response.json()
+            result = res['choices'][0]['message']['content']
         else:
             prompt = augment_prompt_by_languge(prompt, test_category)
             functions = language_specific_pre_processing(functions, test_category, True)
@@ -86,8 +99,8 @@ class OpenAIHandler(BaseHandler):
             except:
                 result = response.choices[0].message.content
         metadata = {}
-        metadata["input_tokens"] = response.usage.prompt_tokens
-        metadata["output_tokens"] = response.usage.completion_tokens
+        metadata["input_tokens"] = 10 #response.usage.prompt_tokens
+        metadata["output_tokens"] = 10 #response.usage.completion_tokens
         metadata["latency"] = latency
         return result,metadata
     
