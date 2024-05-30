@@ -19,7 +19,7 @@ def get_args():
     parser.add_argument("--num-gpus", default=1, type=int)
     parser.add_argument("--timeout", default=60, type=int)
     # NOTE: Number of workers to use for parallel generation
-    parser.add_arguments("--num-workers", default=1, type=int)
+    parser.add_argument("--num-workers", default=1, type=int)
 
     args = parser.parse_args()
     return args
