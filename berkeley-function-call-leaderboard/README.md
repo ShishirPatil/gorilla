@@ -17,10 +17,10 @@ Read more about the technical details and interesting insights in our blog post!
 Before generating the leaderboard statistics, you should install dependencies using the following command: 
 
 ```bash
-    conda create -n BFCL python=3.10
-    conda activate BFCL
-    pip install -r requirements.txt # Inside ./berkeley-function-call-leaderboard
-    pip install vllm # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
+conda create -n BFCL python=3.10
+conda activate BFCL
+pip install -r requirements.txt # Inside ./berkeley-function-call-leaderboard
+pip install vllm # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
 ```
 If you plan to evaluate on OSS models, we are using vLLM for inference and refer to https://github.com/vllm-project/vllm for detail. We recommend to inference on at least V100s, A100s, and latest GPUs that are supported by vLLM. 
 
@@ -47,7 +47,7 @@ ln -s eval_checker/tree-sitter-javascript tree-sitter-javascript
 To download the evaluation dataset from huggingface, from the current directory `./berkeley-function-call-leaderboard`, run the following command:
 
 ```bash
-    huggingface-cli download gorilla-llm/Berkeley-Function-Calling-Leaderboard --local-dir ./data --repo-type dataset
+huggingface-cli download gorilla-llm/Berkeley-Function-Calling-Leaderboard --local-dir ./data --repo-type dataset
 ```
 
 
@@ -80,13 +80,13 @@ To run the executable test categories, there are 4 API keys to fill out:
 The `apply_function_credential_config.py` inputs an input file, optionally an outputs file. If the output file is not given as an argument, it will overwrites your original file with the cleaned data.
 
 ```bash
-    python apply_function_credential_config.py --input-file ./data/gorilla_openfunctions_v1_test_rest.json
+python apply_function_credential_config.py --input-file ./data/gorilla_openfunctions_v1_test_rest.json
 ```
 
 Then, use `eval_data_compilation.py` to compile all files by using
 
 ```bash
-    python eval_data_compilation.py
+python eval_data_compilation.py
 ```
 ## Berkeley Function-Calling Leaderboard Statistics
 
@@ -95,12 +95,12 @@ To run Mistral Models function calling, you need to have `mistralai >= 0.1.3`.
 Also provide your API keys in your environment variables.
 
 ```bash
-    export OPENAI_API_KEY=sk-XXXXXX
-    export MISTRAL_API_KEY=XXXXXX
-    export FIRE_WORKS_API_KEY=XXXXXX
-    export ANTHROPIC_API_KEY=XXXXXX
-    export COHERE_API_KEY=XXXXXX
-    export NVIDIA_API_KEY=nvapi-XXXXXX
+export OPENAI_API_KEY=sk-XXXXXX
+export MISTRAL_API_KEY=XXXXXX
+export FIRE_WORKS_API_KEY=XXXXXX
+export ANTHROPIC_API_KEY=XXXXXX
+export COHERE_API_KEY=XXXXXX
+export NVIDIA_API_KEY=nvapi-XXXXXX
 ```
 
 To generate leaderboard statistics, there are two steps:
@@ -108,7 +108,7 @@ To generate leaderboard statistics, there are two steps:
 1. Inference the evaluation data and obtain the results from specific models 
 
 ```bash
-    python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
+python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
 ```
 For TEST_CATEGORY, we have `executable_simple`, `executable_parallel_function`, `executable_multiple_function`, `executable_parallel_multiple_function`, `simple`, `relevance`, `parallel_function`, `multiple_function`, `parallel_multiple_function`, `java`, `javascript`, `rest`, `sql`, `chatable`.
 
@@ -128,7 +128,7 @@ If decided to run OSS model, openfunction evaluation uses vllm and therefore req
 Navigate to the `./berkeley-function-call-leaderboard/eval_checker` directory and run the `eval_runner.py` script with the desired parameters. The basic syntax is as follows:
 
 ```bash
-    python ./eval_runner.py --model MODEL_NAME --test-category {TEST_CATEGORY,all,ast,executable,python,non-python}
+python ./eval_runner.py --model MODEL_NAME --test-category {TEST_CATEGORY,all,ast,executable,python,non-python}
 ```
 
 - `MODEL_NAME`: Optional. The name of the model you wish to evaluate. This parameter can accept multiple model names separated by spaces. Eg, `--model gorilla-openfunctions-v2 gpt-4-0125-preview`.
@@ -164,19 +164,19 @@ Navigate to the `./berkeley-function-call-leaderboard/eval_checker` directory an
 If you want to run all tests for the `gorilla-openfunctions-v2` model, you can use the following command:
 
 ```bash
-    python ./eval_runner.py --model gorilla-openfunctions-v2
+python ./eval_runner.py --model gorilla-openfunctions-v2
 ```
 
 If you want to runn `rest` tests for all GPT models, you can use the following command:
 
 ```bash
-    python ./eval_runner.py --model gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest
+python ./eval_runner.py --model gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest
 ```
 
 If you want to run `rest` and `javascript` tests for all GPT models and `gorilla-openfunctions-v2`, you can use the following command:
 
 ```bash
-    python ./eval_runner.py --model gorilla-openfunctions-v2 gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest javascript
+python ./eval_runner.py --model gorilla-openfunctions-v2 gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest javascript
 ```
 
 ### Model-Specific Optimization
