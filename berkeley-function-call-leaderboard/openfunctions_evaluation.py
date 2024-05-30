@@ -18,6 +18,8 @@ def get_args():
     parser.add_argument("--max-tokens", type=int, default=1200)
     parser.add_argument("--num-gpus", default=1, type=int)
     parser.add_argument("--timeout", default=60, type=int)
+    # NOTE: Number of workers to use for parallel generation
+    parser.add_arguments("--num-workers", default=1, type=int)
 
     args = parser.parse_args()
     return args
@@ -117,7 +119,11 @@ if __name__ == "__main__":
                 ) as f:
                     for line in f:
                         num_existing_result += 1
-            for index, test_case in enumerate(tqdm(test_cases)):
+
+            # try to parallelize the generation
+            def inference_helper(params):
+                index = params['idx']
+                test_case = params['test_case']
                 if index < num_existing_result:
                     continue
                 user_question, functions = test_case["question"], test_case["function"]
@@ -133,4 +139,30 @@ if __name__ == "__main__":
                     "output_token_count": metadata["output_tokens"],
                     "latency": metadata["latency"],
                 }
-                handler.write(result_to_write, file_to_open)
+                return result_to_write
+
+            from concurrent.futures import ThreadPoolExecutor
+            # TODO: hacky way to get idxs in there.
+            generation_params = [{'test_case': test_case, 'idx': idx} for idx, test_case in enumerate(test_cases)]
+            # NOTE: I'm not being too careful about concurrency issues here. But seems to work well. Go Hogwild!
+            with ThreadPoolExecutor(max_workers=args.num_workers) as executor:
+                for result_to_write in tqdm(executor.map(inference_helper, generation_params), total=len(generation_params)):
+                    handler.write(result_to_write, file_to_open)
+
+            # for index, test_case in enumerate(tqdm(test_cases)):
+            #     if index < num_existing_result:
+            #         continue
+            #     user_question, functions = test_case["question"], test_case["function"]
+            #     if type(functions) is dict or type(functions) is str:
+            #         functions = [functions]
+            #     result, metadata = handler.inference(
+            #         user_question, functions, test_category
+            #     )
+            #     result_to_write = {
+            #         "idx": index,
+            #         "result": result,
+            #         "input_token_count": metadata["input_tokens"],
+            #         "output_token_count": metadata["output_tokens"],
+            #         "latency": metadata["latency"],
+            #     }
+            #     handler.write(result_to_write, file_to_open)
