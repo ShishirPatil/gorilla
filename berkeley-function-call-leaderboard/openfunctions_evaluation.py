@@ -125,7 +125,7 @@ if __name__ == "__main__":
                 index = params['idx']
                 test_case = params['test_case']
                 if index < num_existing_result:
-                    continue
+                    return None
                 user_question, functions = test_case["question"], test_case["function"]
                 if type(functions) is dict or type(functions) is str:
                     functions = [functions]
@@ -147,7 +147,8 @@ if __name__ == "__main__":
             # NOTE: I'm not being too careful about concurrency issues here. But seems to work well. Go Hogwild!
             with ThreadPoolExecutor(max_workers=args.num_workers) as executor:
                 for result_to_write in tqdm(executor.map(inference_helper, generation_params), total=len(generation_params)):
-                    handler.write(result_to_write, file_to_open)
+                    if result_to_write is not None:
+                        handler.write(result_to_write, file_to_open)
 
             # for index, test_case in enumerate(tqdm(test_cases)):
             #     if index < num_existing_result:
