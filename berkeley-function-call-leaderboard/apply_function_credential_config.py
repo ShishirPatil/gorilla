@@ -1,3 +1,4 @@
+import os
 import json
 import argparse
 
@@ -12,10 +13,10 @@ with open("function_credential_config.json") as f:
     function_credential_config = json.load(f)
 
 PLACEHOLDERS = {
-    "YOUR-GEOCODE-API-KEY": function_credential_config[3]["GEOCODE-API-KEY"],
-    "YOUR-RAPID-API-KEY": function_credential_config[0]["RAPID-API-KEY"],
-    "YOUR-OMDB-API-KEY": function_credential_config[2]["OMDB-API-KEY"],
-    "YOUR-EXCHANGERATE-API-KEY": function_credential_config[1]["EXCHANGERATE-API-KEY"]
+    "YOUR-GEOCODE-API-KEY": os.environ.get("GEOCODE_API_KEY", function_credential_config[3]["GEOCODE-API-KEY"]),
+    "YOUR-RAPID-API-KEY": os.environ.get("RAPID_API_KEY", function_credential_config[0]["RAPID-API-KEY"]),
+    "YOUR-OMDB-API-KEY": os.environ.get("OMDB_API_KEY", function_credential_config[2]["OMDB-API-KEY"]),
+    "YOUR-EXCHANGERATE-API-KEY": os.environ.get("EXCHANGERATE_API_KEY", function_credential_config[1]["EXCHANGERATE-API-KEY"]),
 }
 
 

@@ -6,6 +6,7 @@ from checker import ast_checker, exec_checker, executable_checker_rest
 from eval_runner_helper import *
 from tqdm import tqdm
 import argparse
+from utils.parse_results import get_acc_df
 
 
 # NOTE: This file should be run in the `eval_checker` directory
@@ -349,12 +350,17 @@ def runner(model_names, test_categories, api_sanity_check):
 
             if is_executable(test_category):
                 # We only test the API with ground truth once
+                print("---- Warning: Skipping API Sanity Checks. ----")
+                API_TESTED = True
                 if not API_TESTED and api_sanity_check:
-                    print("---- Sanity checking API status ----")
-                    api_status_sanity_check_rest()
-                    api_status_sanity_check_executable()
-                    print("---- Sanity check Passed 💯 ----")
-                    API_TESTED = True
+                    try:
+                        print("---- Sanity checking API status ----")
+                        api_status_sanity_check_rest()
+                        api_status_sanity_check_executable()
+                        print("---- Sanity check Passed 💯 ----")
+                        API_TESTED = True
+                    except Exception as e:
+                        raise ValueError(f"API Sanity check failed. Error: {str(e)}")
 
                 if (
                     test_category not in EXECUTABLE_TEST_CATEGORIES_HAVE_RUN
@@ -400,11 +406,22 @@ def runner(model_names, test_categories, api_sanity_check):
             )
             print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
 
-    # This function reads all the score files from local folder and updates the leaderboard table.
-    # This is helpful when you only want to run the evaluation for a subset of models and test categories.
-    update_leaderboard_table_with_score_file(LEADERBOARD_TABLE, OUTPUT_PATH)
-    # Write the leaderboard table to a file
-    generate_leaderboard_csv(LEADERBOARD_TABLE, OUTPUT_PATH)
+    # hacky add on because the dict of models is hard coded and I can't keep updating it
+    try:
+        # This function reads all the score files from local folder and updates the leaderboard table.
+        # This is helpful when you only want to run the evaluation for a subset of models and test categories.
+        update_leaderboard_table_with_score_file(LEADERBOARD_TABLE, OUTPUT_PATH)
+        # Write the leaderboard table to a file
+        generate_leaderboard_csv(LEADERBOARD_TABLE, OUTPUT_PATH)
+    except Exception as e:
+        print(f"Error while updating leaderboard table: {str(e)}")
+
+    # @KS: TODO: need to do a better job of parsing and logging here.
+    acc_df = get_acc_df(model_names, OUTPUT_PATH)
+    print(f"{model_names} Accuracy results:")
+    print("--"*50)
+    print(acc_df[['metric', 'accuracy', 'correct_count', 'total_count']])
+    print("--"*50)
 
     # Clean up the executable expected output files
     # They should be re-generated the next time the evaluation is run

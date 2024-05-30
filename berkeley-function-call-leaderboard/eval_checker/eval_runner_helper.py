@@ -302,6 +302,12 @@ MODEL_METADATA_MAPPING = {
         "Databricks",
         "Databricks Open Model",
     ],
+    "databricks-dbrx-instruct-FC": [
+        "DBRX-Instruct (FC)",
+        "https://www.databricks.com/blog/introducing-dbrx-new-state-art-open-llm",
+        "Databricks",
+        "Databricks Open Model",
+    ],
     "NousResearch_Hermes-2-Pro-Mistral-7B": [
         "Hermes-2-Pro-Mistral-7B (FC)",
         "https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B",

@@ -1,50 +1,46 @@
 from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
 from model_handler.utils import (
+    convert_to_tool,
+    convert_to_function_call,
+    augment_prompt_by_languge,
     language_specific_pre_processing,
     ast_parse,
-    convert_to_tool,
-    augment_prompt_by_languge,
-    convert_to_function_call,
 )
 from model_handler.constant import (
-    SYSTEM_PROMPT_FOR_CHAT_MODEL,
-    USER_PROMPT_FOR_CHAT_MODEL,
     GORILLA_TO_OPENAPI,
+    GORILLA_TO_PYTHON,
+    USER_PROMPT_FOR_CHAT_MODEL,
+    SYSTEM_PROMPT_FOR_CHAT_MODEL,
 )
-import time
 from openai import OpenAI
-import re
-import os
-import json
+import os, time, json
 
 
-class DatabricksHandler(BaseHandler):
+class GenericVLLMHandler(BaseHandler):
     def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
-        self.model_name = model_name
+        super().__init__(model_name, temperature, top_p, max_tokens)
         self.model_style = ModelStyle.OpenAI
-        self.temperature = temperature
-        self.top_p = top_p
-        self.max_tokens = max_tokens
-
-        # NOTE: To run the Databricks model, you need to provide your own Databricks API key and your own Azure endpoint URL.
         # TODO: to avoid changing BFCL too much, just passing these as environment variables
-        if os.environ.get("DATABRICKS_API_KEY") is None or os.environ.get("DATABRICKS_ENDPOINT_URL") is None:
-            raise ValueError("DATABRICKS_API_KEY or DATABRICKS_ENDPOINT_URL environment variables are not set. Please set them to use the DatabricksHandler.")
+        if os.environ.get("VLLM_ENDPOINT_KEY") is None or os.environ.get("VLLM_ENDPOINT_URL") is None or os.environ.get("VLLM_MODEL_NAME") is None:
+            raise ValueError("VLLM_ENDPOINT_KEY or VLLM_ENDPOINT_URL or VLLM_MODEL_NAME environment variables are not set. Please set them to use the GenericVLLMHandler.")
         self.client = OpenAI(
-            api_key=os.environ["DATABRICKS_TOKEN"],
-            base_url=os.environ["DATABRICKS_ENDPOINT_URL"],
+            api_key=os.environ["VLLM_ENDPOINT_KEY"],
+            base_url=os.environ["VLLM_ENDPOINT_URL"],
         )
 
-    def inference(self, prompt, functions, test_category):
-        # TODO: do this more elegantly, for now hacky way to get the error message out of the try block
-        API_FAILURE_MESSAGE = None
+    def inference(self, prompt,functions,test_category):
+        # TODO: do this more elegantly
+        API_FAILURE_MESSAGE = None # hacky way to get the error message out of the try block
+
         if "FC" not in self.model_name:
-            functions = language_specific_pre_processing(functions, test_category, False)
-            if type(functions) is not list:
-                functions = [functions]
+            prompt = augment_prompt_by_languge(prompt,test_category)
+            functions = language_specific_pre_processing(functions,test_category,False)
             message = [
-                {"role": "system", "content": SYSTEM_PROMPT_FOR_CHAT_MODEL},
+                {
+                    "role": "system",
+                    "content": SYSTEM_PROMPT_FOR_CHAT_MODEL,
+                },
                 {
                     "role": "user",
                     "content": "Questions:"
@@ -56,7 +52,7 @@ class DatabricksHandler(BaseHandler):
             start_time = time.time()
             response = self.client.chat.completions.create(
                 messages=message,
-                model=self.model_name,
+                model=os.environ.get("VLLM_MODEL_NAME", self.model_name),
                 temperature=self.temperature,
                 max_tokens=self.max_tokens,
                 top_p=self.top_p,
@@ -69,17 +65,15 @@ class DatabricksHandler(BaseHandler):
             if type(functions) is not list:
                 functions = [functions]
             message = [{"role": "user", "content": "Questions:" + prompt}]
-
             oai_tool = convert_to_tool(
                 functions, GORILLA_TO_OPENAPI, self.model_style, test_category, True
             )
-
             start_time = time.time()
-            if len(functions) > 0:
+            if len(oai_tool) > 0:
                 try:
                     response = self.client.chat.completions.create(
                         messages=message,
-                        model=self.model_name.replace("-FC", ""),
+                        model=os.environ.get("VLLM_MODEL_NAME", self.model_name).replace("-FC", ""),
                         temperature=self.temperature,
                         max_tokens=self.max_tokens,
                         top_p=self.top_p,
@@ -98,7 +92,7 @@ class DatabricksHandler(BaseHandler):
                 print(f"Functions = {functions}")
                 response = self.client.chat.completions.create(
                     messages=message,
-                    model=self.model_name.replace("-FC", ""),
+                    model=os.environ.get("VLLM_MODEL_NAME", self.model_name).replace("-FC", ""),
                     temperature=self.temperature,
                     max_tokens=self.max_tokens,
                     top_p=self.top_p,
@@ -124,25 +118,12 @@ class DatabricksHandler(BaseHandler):
             metadata["input_tokens"] = response.usage.prompt_tokens
             metadata["output_tokens"] = response.usage.completion_tokens
         metadata["latency"] = latency
-        return result, metadata
-
-    def decode_ast(self, result, language="Python"):
+        return result,metadata
+    
+    def decode_ast(self,result,language="Python"):
         if "FC" not in self.model_name:
-            func = re.sub(r"'([^']*)'", r"\1", result)
-            func = func.replace("\n    ", "")
-            if not func.startswith("["):
-                func = "[" + func
-            if not func.endswith("]"):
-                func = func + "]"
-            if func.startswith("['"):
-                func = func.replace("['", "[")
-            try:
-                decoded_output = ast_parse(func, language)
-            except:
-                decoded_output = ast_parse(result, language)
+            decoded_output = ast_parse(result,language)
         else:
-            # TODO: it's possible this is causing errors in AST parsing. For now defaulting to gpt_handler parsing
-            # there's different pre-processing for GPT, Claude, Mistral etc.
             decoded_output = []
             for invoked_function in result:
                 name = list(invoked_function.keys())[0]
@@ -155,23 +136,12 @@ class DatabricksHandler(BaseHandler):
                         params[key] = str(params[key])
                 decoded_output.append({name: params})
         return decoded_output
-
-    def decode_execute(self, result, language="Python"):
+    
+    def decode_execute(self,result):
         if "FC" not in self.model_name:
-            func = re.sub(r"'([^']*)'", r"\1", result)
-            func = func.replace("\n    ", "")
-            if not func.startswith("["):
-                func = "[" + func
-            if not func.endswith("]"):
-                func = func + "]"
-            if func.startswith("['"):
-                func = func.replace("['", "[")
-            try:
-                decode_output = ast_parse(func, language)
-            except:
-                decode_output = ast_parse(result, language)
+            decoded_output = ast_parse(result)
             execution_list = []
-            for function_call in decode_output:
+            for function_call in decoded_output:
                 for key, value in function_call.items():
                     execution_list.append(
                         f"{key}({','.join([f'{k}={repr(v)}' for k, v in value.items()])})"

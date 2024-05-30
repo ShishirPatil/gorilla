@@ -16,6 +16,7 @@ from model_handler.nexus_handler import NexusHandler
 from model_handler.oss_handler import OSSHandler
 from model_handler.cohere_handler import CohereHandler
 from model_handler.arctic_handler import ArcticHandler
+from model_handler.generic_vllm_handler import GenericVLLMHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -63,6 +64,7 @@ handler_map = {
     "meetkai/functionary-small-v2.4-FC": FunctionaryHandler,
     "meetkai/functionary-medium-v2.4-FC": FunctionaryHandler,
     "databricks-dbrx-instruct": DatabricksHandler,
+    "databricks-dbrx-instruct-FC": DatabricksHandler,
     "NousResearch/Hermes-2-Pro-Mistral-7B": HermesHandler,
     "meta-llama/Meta-Llama-3-8B-Instruct": LlamaHandler,
     "meta-llama/Meta-Llama-3-70B-Instruct": LlamaHandler,
@@ -71,4 +73,6 @@ handler_map = {
     "command-r-plus-FC-optimized": CohereHandler,
     "command-r-plus-optimized": CohereHandler,
     "snowflake/arctic": ArcticHandler,
+    "generic-vllm-model": GenericVLLMHandler,
+    "generic-vllm-model-FC": GenericVLLMHandler,
 }
