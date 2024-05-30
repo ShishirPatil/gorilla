@@ -1,7 +1,8 @@
 from model_handler.handler import BaseHandler
 from anthropic import Anthropic
 from anthropic.types import TextBlock
-from anthropic.types.beta.tools import ToolUseBlock
+# from anthropic.types.beta.tools import ToolUseBlock # this is with the older version of anthropic~0.25.0
+from anthropic.types import ToolUseBlock
 from model_handler.model_style import ModelStyle
 from model_handler.claude_prompt_handler import ClaudePromptingHandler
 from model_handler.utils import (
