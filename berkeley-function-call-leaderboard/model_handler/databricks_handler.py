@@ -32,7 +32,7 @@ class DatabricksHandler(BaseHandler):
         if os.environ.get("DATABRICKS_API_KEY") is None or os.environ.get("DATABRICKS_ENDPOINT_URL") is None:
             raise ValueError("DATABRICKS_API_KEY or DATABRICKS_ENDPOINT_URL environment variables are not set. Please set them to use the DatabricksHandler.")
         self.client = OpenAI(
-            api_key=os.environ["DATABRICKS_TOKEN"],
+            api_key=os.environ["DATABRICKS_API_KEY"],
             base_url=os.environ["DATABRICKS_ENDPOINT_URL"],
         )
 
