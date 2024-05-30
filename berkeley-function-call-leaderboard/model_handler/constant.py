@@ -144,9 +144,7 @@ UNDERSCORE_TO_DOT = [
     "command-r-plus-FC-optimized",
     "databricks-dbrx-instruct-FC",
     # TODO: not sure if I should be doing this for the generic endpoints/models. But it seems fair to do whatever we do for OAI models
-    "generic-vllm-model",
     "generic-vllm-model-FC",
-    "generic-oai-compatible-model",
     "generic-oai-compatible-model-FC",
 ]
 
