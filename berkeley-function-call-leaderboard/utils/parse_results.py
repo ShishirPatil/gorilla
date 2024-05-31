@@ -26,8 +26,10 @@ def get_acc_df(models=['databricks-dbrx-instruct-old-run'], scores_path='score')
         acc_df['metric'] = acc_df['filename'].apply(lambda x: x.split('/')[-1].split('.')[0])
 
         overall_acc = acc_df.correct_count.sum() / acc_df.total_count.sum()
-        if model == "generic-vllm-model":
+        if model in ["generic-vllm-model", "generic-vllm-model-FC"]:
             model_name = os.environ.get("VLLM_MODEL_NAME", model)
+        elif model in ["generic-oai-compatible-model", "generic-oai-compatible-model-FC"]:
+            model_name = os.environ.get("ENDPOINT_MODEL_NAME", model)
         else:
             model_name = model
 

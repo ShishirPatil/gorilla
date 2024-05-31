@@ -418,7 +418,15 @@ def runner(model_names, test_categories, api_sanity_check):
 
     # @KS: TODO: need to do a better job of parsing and logging here.
     acc_df = get_acc_df(model_names, OUTPUT_PATH)
-    print(f"{model_names} Accuracy results:")
+    # get "real" model names
+    real_model_names = []
+    for model in model_names:
+        if model in ["generic-vllm-model", "generic-vllm-model-FC"]:
+            real_model_names.append(os.environ.get("VLLM_MODEL_NAME"))
+        elif model in ["generic-oai-compatible-model", "generic-oai-compatible-model-FC"]:
+            real_model_names.append(os.environ.get("ENDPOINT_MODEL_NAME"))
+
+    print(f"{model_names} | {real_model_names} | Accuracy results:")
     print("--"*50)
     print(acc_df[['metric', 'accuracy', 'correct_count', 'total_count']])
     print("--"*50)
