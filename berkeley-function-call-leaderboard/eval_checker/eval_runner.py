@@ -428,7 +428,7 @@ def runner(model_names, test_categories, api_sanity_check):
 
     print(f"{model_names} | {real_model_names} | Accuracy results:")
     print("--"*50)
-    print(acc_df[['metric', 'accuracy', 'correct_count', 'total_count']])
+    print(acc_df[['metric', 'accuracy', 'correct_count', 'total_count']].sort_values('metric', ascending=False))
     print("--"*50)
 
     # Clean up the executable expected output files
