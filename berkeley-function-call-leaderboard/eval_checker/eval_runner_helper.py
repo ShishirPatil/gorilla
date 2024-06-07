@@ -470,8 +470,7 @@ def extract_after_test(input_string):
 
 def find_file_with_suffix(folder_path, suffix):
     json_files_pattern = os.path.join(folder_path, "*.json")
-    for json_file in glob.glob(json_files_pattern):
-        print(json_file)
+    for json_file in glob.glob(json_files_pattern)
         if extract_after_test(json_file) == suffix:
             return json_file
 
