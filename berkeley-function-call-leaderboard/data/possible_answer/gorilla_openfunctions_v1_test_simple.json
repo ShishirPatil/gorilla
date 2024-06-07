@@ -78,7 +78,7 @@
 {"restaurant.find_nearby":{"location":["Los Angeles, CA"],"dietary_preference":[["Vegan"]]}}
 {"average_temperature":{"location":["Austin"],"days":[3],"temp_unit":["Celsius"]}}
 {"create_histogram":{"data":[[85,90,88,92,86,89,91]],"bins":[5]}}
-{"find_restaurants":{"location":["Manhattan, New York City", "Manhattan", "Manhattan, New York"],"food_type":["Thai"],"number":[5],"dietary_requirements":[["vegan"],["Vegan"]]}}
+{"find_restaurants":{"location":["Manhattan, New York City", "Manhattan", "Manhattan, New York", "Manhattan, NY", "Manhattan, NYC"],"food_type":["Thai"],"number":[5],"dietary_requirements":[["vegan"],["Vegan"]]}}
 {"map_routing.fastest_route":{"start_location":["San Francisco","SF"],"end_location":["Los Angeles","LA"],"avoid_tolls":[true]}}
 {"calculate_average":{"numbers":[[12.0,15.0,18.0,20.0,21.0,26.0,30.0]]}}
 {"calculate_distance":{"coord1":[[33.4484,-112.074]],"coord2":[[34.0522,-118.2437]],"unit":["miles"]}}
@@ -97,7 +97,7 @@
 {"database.query":{"table":["user"],"conditions":[[{"field":["age"],"operation":[">"],"value":["25"]},{"field":["job"],"operation":["="],"value":["engineer"]}]]}}
 {"math.factorial":{"number":[5]}}
 {"calculate_clock_angle":{"hours":[6],"minutes":[30],"round_to":["",2]}}
-{"plot_sine_wave":{"start_range":[0],"end_range":[6.283185307179586],"frequency":[5],"amplitude":[1,""],"phase_shift":[0,""]}}
+{"plot_sine_wave":{"start_range":[0.0000],"end_range":[6.2832],"frequency":[5],"amplitude":[1,""],"phase_shift":[0,""]}}
 {"light_travel_time":{"distance_in_light_years":[4],"speed_of_light":[299792458,""]}}
 {"calculate_speed":{"distance":[450],"time":[20],"to_unit":["km/h"]}}
 {"calculate_distance":{"body1":["Earth"],"body2":["Moon"],"unit":["mi","miles","mile"]}}
@@ -134,10 +134,10 @@
 {"finance.predict_future_value":{"present_value":[5000],"annual_interest_rate":[0.05],"compounding_periods_per_year":[12],"time_years":[3]}}
 {"investment.predictProfit":{"investment_amount":[5000],"annual_return":[0.07],"years":[5]}}
 {"calculate_return_on_investment":{"purchase_price":[20],"sale_price":[25],"dividend":[2]}}
-{"compound_interest":{"principal":[10000],"annual_rate":[0.05],"compounding_freq":["monthly"],"time_in_years":[5]}}
+{"compound_interest":{"principal":[10000],"annual_rate":[5],"compounding_freq":["monthly"],"time_in_years":[5]}}
 {"calculate_stock_return":{"investment_amount":[5000],"annual_growth_rate":[0.06],"holding_period":[5],"dividends":["",false]}}
 {"portfolio_future_value":{"stock":["X"],"invested_amount":[5000],"expected_annual_return":[0.05],"years":[7]}}
-{"estimate_mutual_fund_return":{"yearly_yield":[0.05],"investment_amount":[2000],"years":[3]}}
+{"estimate_mutual_fund_return":{"yearly_yield":[5],"investment_amount":[2000],"years":[3]}}
 {"calculate_cagr":{"initial_value":[2000],"final_value":[3000],"period_in_years":[4]}}
 {"get_metal_price":{"metal":["Gold","gold"],"measure":["ounce"]}}
 {"get_stock_price":{"company_name":["Amazon","AMZN"],"date":["2022-03-11"],"exchange":["NASDAQ",""]}}
@@ -170,7 +170,7 @@
 {"court_case.search":{"docket_number":["123456"],"location":["Texas"],"full_text":[false,""]}}
 {"law_case_search.find_historical":{"subject":["fraud"],"from_year":[2010],"to_year":[2015]}}
 {"fetch_law_case_details":{"case_number":[43403],"court":["New York"],"year":[2018]}}
-{"legal_case.fetch":{"case_id":["R vs Adams","R_vs_Adams"],"details":[true]}}
+{"legal_case.fetch":{"case_id":["R vs Adams"],"details":[true]}}
 {"law_case_search":{"topic":["land disputes"],"year_range":[[2015,2021]],"location":["New York"],"judicial_system":["state"]}}
 {"get_top_cases":{"field_of_law":["constitutional law","constitutional"],"top_number":[10],"country":["China","CN"]}}
 {"lawyer.get_experience":{"name":["John Doe"],"law_type":["Bankruptcy"]}}
@@ -233,7 +233,7 @@
 {"monarch.getMonarchOfYear":{"location":["England","ENG"],"year":[1800],"fullName":[true]}}
 {"european_history.get_event_date":{"event_name":["Treaty of Tordesillas"],"format":["YYYY"]}}
 {"history_eu.fetch_events":{"century":[19],"region":["Northern","Southern","Eastern","Western"],"category":["Wars"]}}
-{"get_event_date":{"event":["Treaty of Lisbon","Signing of the Treaty of Lisbon"],"location":[""]}}
+{"get_event_date":{"event":["Treaty of Lisbon","Signing of the Treaty of Lisbon", "The signing of the Treaty of Lisbon"],"location":[""]}}
 {"us_history.get_event_info":{"event_name":["American Civil War","Civil War"],"specific_info":["Start Date"]}}
 {"get_historical_GDP":{"country":["United States","US"],"start_year":[1960],"end_year":[2000]}}
 {"us_history.get_president":{"event":["American Civil War"],"year":[1861]}}
@@ -247,7 +247,7 @@
 {"science_history.get_discovery_details":{"discovery":["Gravity"],"method_used":["","default"]}}
 {"historical_contrib.get_contrib":{"scientist":["Albert Einstein"],"date":["1915-03-17","03/17/1915","Mar.17,1915"],"category":["","all"]}}
 {"science_history.get_invention":{"invention_name":["theory of relativity", "Theory of Relativity"],"want_year":[true]}}
-{"religion.history_info":{"religion":["Christianity"],"till_century":[14],"include_people":[true]}}
+{"religion.history_info":{"religion":["Christianity"],"till_century":[14],"include_people":[false, ""]}}
 {"get_time_difference":{"place1":["San Francisco","SF"],"place2":["Sydney"]}}
 {"get_earliest_reference":{"name":["Jesus Christ"],"source":["historical records"]}}
 {"get_religion_history":{"religion":["Christianity"],"century":[16],"sort_by":["importance"],"count":[10]}}
@@ -321,7 +321,7 @@
 {"sports_ranking.get_team_position":{"team":["Golden State Warriors","GSW"],"season":["2022-2023"],"detailed":[true]}}
 {"sports_ranking":{"team":["Barcelona","FC Barcelona"],"league":["La Liga"],"season":["2021"]}}
 {"sports_ranking.get_current":{"team":["Liverpool Football Club","Liverpool","LFC"],"league":["Premier League","EPL","English Premier League"],"season":[""]}}
-{"sports_ranking.get_top_player":{"sport":["tennis"],"gender":["woman"]}}
+{"sports_ranking.get_top_player":{"sport":["tennis"],"gender":["women"]}}
 {"team_score.get_latest":{"team":["Los Angeles Lakers","Lakers"],"include_opponent":[true]}}
 {"sports.match_results":{"team1":["Chicago Bulls"],"team2":["Los Angeles Lakers"],"season":[""]}}
 {"get_team_score":{"team_name":["Los Angeles Lakers","Lakers"],"league":["NBA"],"include_player_stats":["",true,false]}}
@@ -364,7 +364,7 @@
 {"find_closest":{"location":["Boston","Boston, MA"],"cuisine":["Sushi","sushi"],"amenities":[["Patio"]]}}
 {"find_restaurant":{"location":["Brooklyn","Brooklyn, NY"],"type":["Italian"],"diet_option":["Gluten-free"]}}
 {"cooking_conversion.convert":{"quantity":[2],"from_unit":["pound","pounds","lb","lbs"],"to_unit":["ounce","ounces","oz"],"item":["butter"]}}
-{"recipe.unit_conversion":{"value":[2],"from_unit":["tablespoon","tbsp"],"to_unit":["teaspoon","tsp"],"precision":[0,""]}}
+{"recipe.unit_conversion":{"value":[2],"from_unit":["tablespoon","tbsp"],"to_unit":["teaspoon","tsp"],"precision":[1,""]}}
 {"find_recipe":{"dietary_restrictions":["vegan"],"recipe_type":["dessert"],"time":[30]}}
 {"calculate_cooking_time":{"weight_kg":[1.5],"cooking_method":["","roast"],"temp_celsius":["",180]}}
 {"grocery_store.find_nearby":{"location":["Houston","Houston, TX"],"categories":[["Organic","Vegetables","Fruits"],["Organic","Fruits","Vegetables"],["Vegetables","Fruits","Organic"],["Fruits","Vegetables","Organic"],["Fruits","Organic","Vegetables"],["Vegetables","Organic","Fruits"]]}}
@@ -379,7 +379,7 @@
 {"timezone.convert":{"time":["3pm"],"from_timezone":["America/New_York","New York","NYC","New York City"],"to_timezone":["Europe/London","London"]}}
 {"get_current_time":{"location":["Sydney"],"country":["Australia"],"timezone":[""]}}
 {"hotel_booking":{"location":["Manhattan, New York","Manhattan, NY","NYC","New York City"],"room_type":["single"],"duration":[3],"start_date":["2023-03-10","03/10/2023","Mar.10,2023","March 10th, 2023","March 10th,2023","March10th, 2023","March10th,2023"],"preferences":[["pet_friendly"]]}}
-{"hilton_hotel.check_availability":{"location":["Paris"],"check_in_date":["2023-04-04","04/04/2023","Apr.4,2023"," April 4"],"check_out_date":["2023-04-08","04/08/2023","Apr.8,2023"],"no_of_adults":[2],"hotel_chain":["Hilton",""]}}
+{"hilton_hotel.check_availability":{"location":["Paris"],"check_in_date":["2023-04-04"],"check_out_date":["2023-04-08"],"no_of_adults":[2],"hotel_chain":["Hilton",""]}}
 {"book_hotel":{"hotel_name":["Hilton Hotel","Hilton"],"location":["Chicago"],"room_type":["single"],"start_date":["2022-12-10","10/12/2022","Dec 10, 2022","December 10, 2022"],"nights":[2]}}
 {"book_room":{"hotel_name":["The Plaza"],"room_type":["Single","single"],"num_nights":[2]}}
 {"hotel_booking.book":{"city":["Paris","Paris, France"],"from_date":["07-10-2022","2022-07-10","10/07/2022","Jul.10,2022"],"to_date":["07-20-2022","2022-07-20","20/07/2022","Jul.20,2022"],"adults":[2],"children":[1],"room_type":["Standard",""]}}

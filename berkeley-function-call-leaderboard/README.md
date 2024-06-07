@@ -17,10 +17,10 @@ Read more about the technical details and interesting insights in our blog post!
 Before generating the leaderboard statistics, you should install dependencies using the following command: 
 
 ```bash
-    conda create -n BFCL python=3.10
-    conda activate BFCL
-    pip install -r requirements.txt # Inside ./berkeley-function-call-leaderboard
-    pip install vllm # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
+conda create -n BFCL python=3.10
+conda activate BFCL
+pip install -r requirements.txt # Inside ./berkeley-function-call-leaderboard
+pip install vllm # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
 ```
 If you plan to evaluate on OSS models, we are using vLLM for inference and refer to https://github.com/vllm-project/vllm for detail. We recommend to inference on at least V100s, A100s, and latest GPUs that are supported by vLLM. 
 
@@ -47,7 +47,7 @@ ln -s eval_checker/tree-sitter-javascript tree-sitter-javascript
 To download the evaluation dataset from huggingface, from the current directory `./berkeley-function-call-leaderboard`, run the following command:
 
 ```bash
-    huggingface-cli download gorilla-llm/Berkeley-Function-Calling-Leaderboard --local-dir ./data --repo-type dataset
+huggingface-cli download gorilla-llm/Berkeley-Function-Calling-Leaderboard --local-dir ./data --repo-type dataset
 ```
 
 
@@ -80,13 +80,13 @@ To run the executable test categories, there are 4 API keys to fill out:
 The `apply_function_credential_config.py` inputs an input file, optionally an outputs file. If the output file is not given as an argument, it will overwrites your original file with the cleaned data.
 
 ```bash
-    python apply_function_credential_config.py --input-file ./data/gorilla_openfunctions_v1_test_rest.json
+python apply_function_credential_config.py --input-file ./data/gorilla_openfunctions_v1_test_rest.json
 ```
 
 Then, use `eval_data_compilation.py` to compile all files by using
 
 ```bash
-    python eval_data_compilation.py
+python eval_data_compilation.py
 ```
 ## Berkeley Function-Calling Leaderboard Statistics
 
@@ -95,12 +95,12 @@ To run Mistral Models function calling, you need to have `mistralai >= 0.1.3`.
 Also provide your API keys in your environment variables.
 
 ```bash
-    export OPENAI_API_KEY=sk-XXXXXX
-    export MISTRAL_API_KEY=XXXXXX
-    export FIRE_WORKS_API_KEY=XXXXXX
-    export ANTHROPIC_API_KEY=XXXXXX
-    export COHERE_API_KEY=XXXXXX
-    export NVIDIA_API_KEY=nvapi-XXXXXX
+export OPENAI_API_KEY=sk-XXXXXX
+export MISTRAL_API_KEY=XXXXXX
+export FIRE_WORKS_API_KEY=XXXXXX
+export ANTHROPIC_API_KEY=XXXXXX
+export COHERE_API_KEY=XXXXXX
+export NVIDIA_API_KEY=nvapi-XXXXXX
 ```
 
 To generate leaderboard statistics, there are two steps:
@@ -108,7 +108,7 @@ To generate leaderboard statistics, there are two steps:
 1. Inference the evaluation data and obtain the results from specific models 
 
 ```bash
-    python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
+python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
 ```
 For TEST_CATEGORY, we have `executable_simple`, `executable_parallel_function`, `executable_multiple_function`, `executable_parallel_multiple_function`, `simple`, `relevance`, `parallel_function`, `multiple_function`, `parallel_multiple_function`, `java`, `javascript`, `rest`, `sql`, `chatable`.
 
@@ -128,7 +128,7 @@ If decided to run OSS model, openfunction evaluation uses vllm and therefore req
 Navigate to the `./berkeley-function-call-leaderboard/eval_checker` directory and run the `eval_runner.py` script with the desired parameters. The basic syntax is as follows:
 
 ```bash
-    python ./eval_runner.py --model MODEL_NAME --test-category {TEST_CATEGORY,all,ast,executable,python,non-python}
+python ./eval_runner.py --model MODEL_NAME --test-category {TEST_CATEGORY,all,ast,executable,python,non-python}
 ```
 
 - `MODEL_NAME`: Optional. The name of the model you wish to evaluate. This parameter can accept multiple model names separated by spaces. Eg, `--model gorilla-openfunctions-v2 gpt-4-0125-preview`.
@@ -164,19 +164,19 @@ Navigate to the `./berkeley-function-call-leaderboard/eval_checker` directory an
 If you want to run all tests for the `gorilla-openfunctions-v2` model, you can use the following command:
 
 ```bash
-    python ./eval_runner.py --model gorilla-openfunctions-v2
+python ./eval_runner.py --model gorilla-openfunctions-v2
 ```
 
 If you want to runn `rest` tests for all GPT models, you can use the following command:
 
 ```bash
-    python ./eval_runner.py --model gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest
+python ./eval_runner.py --model gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest
 ```
 
 If you want to run `rest` and `javascript` tests for all GPT models and `gorilla-openfunctions-v2`, you can use the following command:
 
 ```bash
-    python ./eval_runner.py --model gorilla-openfunctions-v2 gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest javascript
+python ./eval_runner.py --model gorilla-openfunctions-v2 gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest javascript
 ```
 
 ### Model-Specific Optimization
@@ -198,12 +198,15 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
 |fire-function-v1-FC | Function Calling|
 |gemini-1.0-pro | Function Calling|
-|gemini-1.5-pro-preview-0409 | Function Calling|
+|gemini-1.5-pro-preview-{0409,0514} | Function Calling|
+|gemini-1.5-flash-preview-0514 | Function Calling|
 |glaiveai/glaive-function-calling-v1 💻| Function Calling|
 |gpt-3.5-turbo-0125-FC| Function Calling|
 |gpt-3.5-turbo-0125| Prompt|
 |gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}-FC| Function Calling|
 |gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}| Prompt|
+|gpt-4o-2024-05-13-FC | Function Calling|
+|gpt-4o-2024-05-13| Prompt|
 |google/gemma-7b-it 💻| Prompt|
 |meetkai/functionary-{small,medium}-v2.4-FC| Function Calling|
 |meetkai/functionary-small-v2.2-FC| Function Calling|
@@ -231,11 +234,26 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 
 ## Changelog
+
+* [May 14, 2024] [#426](https://github.com/ShishirPatil/gorilla/pull/426):
+    - Add the following new models to the leaderboard:
+        + `gpt-4o-2024-05-13`
+        + `gpt-4o-2024-05-13-FC`
+        + `gemini-1.5-pro-preview-0514`
+        + `gemini-1.5-flash-preview-0514`
+    - Update price for the following models:
+        + All Gemini Series
+        + `Claude-2.1 (Prompt)` and `Claude-instant-1.2 (Prompt)`
+        + `Mistral-large` and `Mistral-Small`
+        + `GPT-3.5-Turbo-0125`
+* [May 8, 2024] [#406](https://github.com/ShishirPatil/gorilla/pull/406) and [#421](https://github.com/ShishirPatil/gorilla/pull/421): Update the `gemini_handler.py` to better handle parallel function calls for Gemini models.
+* [May 6, 2024] [#412](https://github.com/ShishirPatil/gorilla/pull/412): Bug fix in evaluation dataset for AST categories. This includes updates to both prompts and function docs.
+* [May 2, 2024] [#405](https://github.com/ShishirPatil/gorilla/pull/405): Bug fix in the possible answers for the AST Simple evaluation dataset. Prompt and function docs are not affected.
 * [April 28, 2024] [#397](https://github.com/ShishirPatil/gorilla/pull/397): Add new model `snowflake/arctic` to the leaderboard. Note that there are multiple ways to inference the model, and we choose to do it via Nvidia API catalog. 
 * [April 27, 2024] [#390](https://github.com/ShishirPatil/gorilla/pull/390): Bug fix in cost and latency calculation for open-source models, which are now all calculated when serving the model with [vLLM](https://github.com/vllm-project/vllm) using 8 V100 GPUs for consistency. $$\text{Cost} = \text{Latency per 1000 function call} * (\text{8xV100 azure-pay-as-you-go-price per hour / 3600})$$
 * [April 25, 2024] [#386](https://github.com/ShishirPatil/gorilla/pull/386): Add 5 new models to the leaderboard: `meta-llama/Meta-Llama-3-8B-Instruct`, `meta-llama/Meta-Llama-3-70B-Instruct`, `gemini-1.5-pro-preview-0409`, `command-r-plus`, `command-r-plus-FC`.
 * [April 19, 2024] [#377](https://github.com/ShishirPatil/gorilla/pull/377): 
-    - Bug fix for the evaluation dataset in the executable test categories. This includes updates to both prompts and function docs. 
+    - Bug fix for the evaluation dataset in the executable test categories. This includes updates to both prompts and function docs.
     - The `evaluation_result` field has been removed to accommodate the variability in API execution results across different evaluation runs. Instead, a human-verified `ground_truth` is now included for the executable test categories. During each evaluation run, `evaluation_result` is generated anew using the `ground_truth`, and then compared against the model output. 
     - A stricter metric has been adopted when using the `structural_match` (aka. type match) evaluation criteria ---- For `list` results, the lengths are compared; for `dict` results, the keys are matched. This is to account for the fast-changing nature of some of the real-time API results while ensuring the evaluation remains meaningful.
     - Added another evaluation criteria `real_time_match` for the executable category, which is a looser form of `exact_match` specifically for numerical execution results. The execution result must be within a certain percentage threshold (20%) from the expected result to accommodate the live updates of API responses. User can change this threshold value in `eval_checker_constant.py`.

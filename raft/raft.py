@@ -5,21 +5,27 @@ import logging
 from typing import Literal, Any
 import argparse
 from openai import OpenAI
+import datasets
 from datasets import Dataset, load_dataset
 from transformers import AutoTokenizer
 import json
 import PyPDF2
 import random
+import os, shutil
 from langchain_experimental.text_splitter import SemanticChunker
 from langchain_openai.embeddings import OpenAIEmbeddings
 from client_utils import build_openai_client, build_langchain_embeddings
 from math import ceil
+from format import DatasetConverter, datasetFormats, outputDatasetTypes
 
 log_setup()
 
 logger = logging.getLogger("raft")
 
 DocType = Literal["api", "pdf", "json", "txt"]
+
+# Every N chunks, save checkpoint
+N = 15
 
 def get_args() -> argparse.Namespace:
     """
@@ -29,14 +35,18 @@ def get_args() -> argparse.Namespace:
 
     parser.add_argument("--datapath", type=str, default="", help="The path at which the document is located")
     parser.add_argument("--output", type=str, default="./", help="The path at which to save the dataset")
+    parser.add_argument("--output-format", type=str, default="hf", help="Format to convert the dataset to. Defaults to hf.", choices=datasetFormats)
+    parser.add_argument("--output-type", type=str, default="jsonl", help="Type to export the dataset to. Defaults to jsonl.", choices=outputDatasetTypes)
+    parser.add_argument("--output-chat-system-prompt", type=str, help="The system prompt to use when the output format is chat")
     parser.add_argument("--distractors", type=int, default=3, help="The number of distractor documents to include per data point / triplet")
     parser.add_argument("--p", type=float, default=1.0, help="The percentage that the oracle document is included in the context")
     parser.add_argument("--questions", type=int, default=5, help="The number of data points / triplets to generate per chunk")
     parser.add_argument("--chunk_size", type=int, default=512, help="The size of each chunk in number of tokens")
     parser.add_argument("--doctype", type=str, default="pdf", help="The type of the document, must be one of the accepted doctypes", choices=["pdf", "txt", "json", "api"])
     parser.add_argument("--openai_key", type=str, default=None, help="Your OpenAI key used to make queries to GPT-3.5 or GPT-4")
-    parser.add_argument("--embedding-model", type=str, default="text-embedding-ada-002", help="The embedding model to use to encode documents chunks (text-embedding-ada-002, ...)")
-    parser.add_argument("--completion-model", type=str, default="gpt-4", help="The model to use to generate questions and answers (gpt-3.5, gpt-4, ...)")
+    parser.add_argument("--embedding_model", type=str, default="text-embedding-ada-002", help="The embedding model to use to encode documents chunks (text-embedding-ada-002, ...)")
+    parser.add_argument("--completion_model", type=str, default="gpt-4", help="The model to use to generate questions and answers (gpt-3.5, gpt-4, ...)")
+    parser.add_argument("--fast", action="store_true", help="Run the script in fast mode (no recovery implemented)")
 
     args = parser.parse_args()
     return args
@@ -178,6 +188,7 @@ def encode_question_gen(question: str, chunk: Any) -> list[str]:
         - First provide step-by-step reasoning on how to answer the question. 
         - In the reasoning, if you need to copy paste some sentences from the context, include them in ##begin_quote## and ##end_quote##. This would mean that things outside of ##begin_quote## and ##end_quote## are not directly copy paste from the context. 
         - End your response with final answer in the form <ANSWER>: $answer, the answer should be succinct.
+        You MUST begin your final answer with the tag "<ANSWER>:".
     """.format(question=question, context=str(chunk))
     prompts.append({"role": "system", "content": "You are a helpful question answerer who can provide an answer given a question and relevant context."})
     prompts.append({"role": "user", "content": prompt})
@@ -273,12 +284,24 @@ def add_chunk_to_dataset(
         else:
             ds = ds.add_item(datapt)
 
+def save_checkpoint(state, filename):
+    with open(filename, 'w') as f:
+        f.write(str(state))
+
+def load_checkpoint(filename):
+    with open(filename, 'r') as f:
+        return int(f.read())
+
 def main():
     global ds
 
     # run code
     args = get_args()
-    
+
+    # Validate arguments
+    if args.output_chat_system_prompt and args.output_format != "chat":
+        raise Exception("Parameter --output-chat-system-prompt can only be used with --output-format chat")
+
     OPENAPI_API_KEY = args.openai_key
 
     client = build_openai_client(
@@ -293,17 +316,63 @@ def main():
     ds = None
 
     num_chunks = len(chunks)
-    for i, chunk in enumerate(chunks):
-        perc = ceil(i / num_chunks * 100)
-        with MDC(progress=f"{perc}%"):
-            logger.info(f"Adding chunk {i}/{num_chunks}")
-            add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
+
+    if not args.fast:
+        start = 0
+        if os.path.exists("checkpoint.txt"):
+            start = int(load_checkpoint("checkpoint.txt"))
+
+        for i in range((start//N)*N, len(chunks)):
+            chunk = chunks[i]
+            save_checkpoint(i, "checkpoint.txt")
+
+            perc = ceil(i / num_chunks * 100)
+            with MDC(progress=f"{perc}%"):
+                logger.info(f"Adding chunk {i}/{num_chunks}")
+                add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
+
+            if (i+1) % N == 0:
+                ds.save_to_disk(args.output + "-checkpoints-" + str(i))
+                ds = None
+    
+    
+        if ds:
+            ds.save_to_disk(args.output + "-checkpoints-last")
+
+        ds_list = []
+
+        for filename in os.listdir(os.path.dirname(args.output)):
+            if "-checkpoints-" in filename:
+                for f in os.listdir(os.path.dirname(args.output) + "/" + filename):
+                    if f.endswith(".arrow"):
+                        ds_list.append(Dataset.from_file(os.path.dirname(args.output) + "/" + filename + "/" + f))
+
+        ds = datasets.concatenate_datasets(ds_list)
+    else:
+        for i, chunk in enumerate(chunks):
+            perc = ceil(i / num_chunks * 100)
+            with MDC(progress=f"{perc}%"):
+                logger.info(f"Adding chunk {i}/{num_chunks}")
+                add_chunk_to_dataset(client, chunks, chunk, args.doctype, args.questions, NUM_DISTRACT_DOCS, model=args.completion_model)
     
     # Save as .arrow format
     ds.save_to_disk(args.output)
-    
+
     # Save as .jsonl format
-    ds.to_json(args.output + ".jsonl")
+    formatter = DatasetConverter()
+
+    # Extract format specific params
+    format_params = {}
+    if args.output_chat_system_prompt:
+        format_params['system_prompt'] = args.output_chat_system_prompt
+
+    formatter.convert(ds=ds, format=args.output_format, output_path=args.output, output_type=args.output_type, params=format_params)
+
+    if not args.fast:
+        os.remove("checkpoint.txt")
+        for filename in os.listdir(os.path.dirname(args.output)):
+            if "-checkpoints-" in filename:
+                shutil.rmtree(os.path.dirname(args.output) + "/" + filename)
 
 if __name__ == "__main__":
     with MDC(progress="0%"):

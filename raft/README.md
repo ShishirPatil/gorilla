@@ -4,6 +4,14 @@ RAFT is a recipe to adapting LLMs to domain-specific RAG. You can learn more in 
 
 The input data from the user can be either a general text document (pdf, json, or txt) for general QA or an API documentation in the API Zoo JSONL format for API calling. 
 
+## Dev environment with Codespaces
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ShishirPatil/gorilla/tree/codespaces?devcontainer_path=.devcontainer%2Fraft%2Fdevcontainer.json)
+
+Everything is setup automatically in the dev container, open a terminal into the `raft` folder:
+
+Note: The `raft` virtual env will be activated in your shell when entering into the `raft` folder.
+
 ## Install Dependencies
 
 Dependencies can be installed using the following command: 
@@ -11,9 +19,13 @@ Dependencies can be installed using the following command:
 ```bash
 pip install -r requirements.txt
 ```
+
 Arguments:
 - `--datapath` - the path at which the document is located
 - `--output` - the path at which to save the dataset
+- `--output-format` - the format of the output dataset. Defaults to `hf` for HuggingFace. Can be one of `hf`, `completion`, `chat`.
+- `--output-type` - the type of the output dataset file. Defaults to `jsonl`. Can be one of `jsonl`, `parquet`.
+- `--output-chat-system-prompt` - The system prompt to use when the output format is `chat`. Optional.
 - `--distractors` - the number of distractor documents to include per data point / triplet
 - `--doctype` - the type of the document, must be one of the accepted doctypes
   - currently accepted doctypes: `pdf`, `txt`, `json`, `api`
@@ -25,13 +37,25 @@ Arguments:
 - `--openai_key` - your OpenAI key used to make queries to GPT-3.5 or GPT-4
 - `--embedding-model` - The embedding model to use to encode documents chunks. Defaults to `text-embedding-ada-002`.
 - `--completion-model` - The model to use to generate questions and answers. Defaults to `gpt-4`.
+- `--fast` - Fast mode flag. By default, this flag is not included and the script runs in safe mode, where it saves checkpoint datasets, allowing the script to recover and continue where it left off in the case of an interruption. Include this flag to run RAFT without recovery. 
 
 
-## Usage with OpenAI API
+## Usage
+
+### Usage with OpenAI API
 
 Run the following command with your desired arguments to generate the dataset.  
 ```bash 
-python3 raft.py --datapath PATH_TO_DATA --output OUTPUT_PATH --distractors 3 --doctype pdf --chunk_size 512 --questions 5 --openai_key YOUR_OPENAI_KEY
+python3 raft.py \
+  --datapath PATH_TO_DATA \
+  --output OUTPUT_PATH \
+  --output-format hf \ # or completion or chat
+  --distractors 3 \
+  --p 1.0 \
+  --doctype pdf \
+  --chunk_size 512 \
+  --questions 5 \
+  --openai_key YOUR_OPENAI_KEY
 ```
 
 **Note**: As an alternative to passing the OpenAI key with the `--openai_key` argument, you also store the standard OpenAI environment variables in a file called `.env` like so. All standard OpenAI env variables are supported.
@@ -47,9 +71,9 @@ OPENAI_API_KEY=<replace_me>
 - Each data point / triplet also contains other attributes (e.g. metadata), such as `id`, `type`, and `cot_answer`.
 - Uses the HuggingFace Dataset API to create a dataset from all triplets and saves it at `OUTPUT_PATH` in the .arrow and .jsonl formats.
 
-## Usage with Azure OpenAI API
+### Usage with Azure OpenAI API
 
-Create a file `.env` like so. All standard Azure OpenAI environement variables are supported.
+Create a file `.env` like so. All standard Azure OpenAI environment variables are supported.
 
 ```
 # Azure OpenAI API
@@ -66,6 +90,45 @@ In addition, if you used non default Azure OpenAI deployment names, you'll need 
 --completion-model my-gpt-deployment-name
 --embedding-model my-ada-deployment-name
 ```
+
+### Configuring different endpoints for the completion and embedding models
+
+When using a non OpenAI endpoint, it is often the case that the endpoints for the embedding and completion models
+are different.
+
+In that situation, it is possible to override default OpenAI and Azure OpenAI environment variables with `COMPLETION_` or `EMBEDDING_` prefixed environment variables. Here is an example:
+
+```
+# Llama 3 70b Instruct completion model
+# Uses an OpenAI v1 compatible endpoint on Azure MaaS
+
+COMPLETION_OPENAI_BASE_URL=https://Meta-Llama-3-70B-Instruct-<replace_me>-serverless.eastus2.inference.ai.azure.com/v1
+COMPLETION_OPENAI_API_KEY=<replace_me>
+
+# Ada 2 embedding model
+# Uses an Azure OpenAI endpoint
+
+EMBEDDING_AZURE_OPENAI_ENDPOINT=https://<replace_me>.openai.azure.com/
+EMBEDDING_AZURE_OPENAI_API_KEY=<replace_me>
+EMBEDDING_OPENAI_API_VERSION=<replace_me>
+```
+
+Running the `raft.py` CLI will look like:
+
+```
+cd raft
+python3 raft.py \
+    --datapath $PWD/sample_data/UC_Berkeley.pdf \
+    --output $PWD/output \
+    --distractors 3 \
+    --doctype pdf \
+    --chunk_size 512 \
+    --questions 5 \
+    --completion-model Meta-Llama-3-70B-Instruct-<replace_me> \
+    --embedding-model text-embedding-ada-002
+```
+
+**Note**: The `--completion-model` and `--embedding-model` in the case of an Azure OpenAI endpoint must be set to the deployment name.
 
 ### Example Usage
 
@@ -127,28 +190,45 @@ For each question-answer pair, append 4 randomly selected chunks as distractor d
   },
   'answer': '"In God We Trust"',
   'cot_answer': None
- }
+}
 
- ```
+```
 
- #### 4. Generate and save dataset
- RAFT repeats steps 2 and 3 for each chunk and saves the dataset to the path specified by the `--output` argument.
+#### 4. Generate and save dataset
+RAFT repeats steps 2 and 3 for each chunk and saves the dataset to the path specified by the `--output` argument.
 
 
- #### 5. Finetune your own model on Microsoft AI Studio
- Once the dataset is prepared, follow the instructions in [azure-ai-studio-ft/howto.md](azure-ai-studio-ft/howto.md) to finetune and deploy your own RAFT model. Make sure to use domain `instruction` as input and `cot_answer` as output.
+#### 5. Convert the dataset to the format expected for fine tuning
 
- #### 6. Evaluate RAFT model
- After deploying your model in AI Studio, use command to evaluate the RAFT model. Make sure to fill in `base_url`, `api_key` and `model_name` in the `eval.py`, these can be found in the AI Studio. 
- ```bash 
- python3 eval.py --question-file YOUR_EVAL_FILE.jsonl --answer-file YOUR_ANSWER_FILE
- ```
+If you specified the `--output-format completion` or `--output-format chat` argument for the `raft.py` script, you can skip this part.
 
- The `YOUR_EVAL_FILE.jsonl` is in the format where
+Otherwise, you need to convert the dataset to the format expected for fine-tuning a `completion` model in Azure with the following command:
+
+```
+python3 format.py --input output/data-00000-of-00001.arrow --output output.completion.jsonl --output-format completion
+```
+
+**Note**: the `format.py` script also has its own help
+
+```
+python3 format.py --help
+```
+
+**Note**: If fine tuning a chat model, then you need to use `--output-format chat` and optionally add the `--output-chat-system-prompt` parameter to configure the system prompt included in the dataset.
+
+#### 6. Finetune your own model on Microsoft AI Studio
+Once the dataset is prepared, follow the instructions in [azure-ai-studio-ft/howto.md](azure-ai-studio-ft/howto.md) to finetune and deploy your own RAFT model. Make sure to use `prompt` as input and `completion` as output when fine tuning a `completion` model and the `messages` column as input when fine tuning a `chat` model.
+
+#### 7. Evaluate RAFT model
+After deploying your model in AI Studio, use command to evaluate the RAFT model. Make sure to fill in `base_url`, `api_key` and `model_name` in the `eval.py`, these can be found in the AI Studio. 
+```bash 
+python3 eval.py --question-file YOUR_EVAL_FILE.jsonl --answer-file YOUR_ANSWER_FILE
+```
+
+The `YOUR_EVAL_FILE.jsonl` is in the format where
 ```python
 {
   'instruction': '<DOCUMENT> document1 </DOCUMENT>\n<DOCUMENT> document2 </DOCUMENT> ...\n{question}",
   'gold_answer': '{answer}'
- }
-
+}
 ```
