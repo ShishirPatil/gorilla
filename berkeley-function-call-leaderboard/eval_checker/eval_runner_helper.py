@@ -446,6 +446,7 @@ OSS_LATENCY = {
     "meta-llama/Meta-Llama-3-8B-Instruct": 73,
     "meta-llama/Meta-Llama-3-70B-Instruct": 307,
     "gorilla-openfunctions-v2": 83,
+    "THUDM_glm-4-9b-chat": 223
 }
 
 
@@ -456,6 +457,7 @@ NO_COST_MODELS = [
     "meetkai/functionary-small-v2.2-FC",
     "meetkai/functionary-small-v2.4-FC",
     "snowflake/arctic",
+    "THUDM/glm-4-9b-chat",
 ]
 
 # Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
