@@ -349,6 +349,12 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/Snowflake/snowflake-arctic-instruct",
         "Snowflake",
         "apache-2.0",
+    ],
+    "THUDM_glm-4-9b-chat": [
+        "GLM-4-9b-Chat (FC)",
+        "https://huggingface.co/THUDM/glm-4-9b-chat",
+        "THUDM",
+        "glm-4"
     ]
 }
 
@@ -465,6 +471,7 @@ def extract_after_test(input_string):
 def find_file_with_suffix(folder_path, suffix):
     json_files_pattern = os.path.join(folder_path, "*.json")
     for json_file in glob.glob(json_files_pattern):
+        print(json_file)
         if extract_after_test(json_file) == suffix:
             return json_file
 
