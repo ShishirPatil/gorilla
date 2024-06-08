@@ -80,7 +80,7 @@ class GenericOAICompatibleModelHandler(BaseHandler):
             if type(functions) is not list:
                 functions = [functions]
             message = [
-                {"role": "system", "content": SYSTEM_PROMPT_FOR_FC_MODEL},
+                # {"role": "system", "content": SYSTEM_PROMPT_FOR_FC_MODEL},
                 {"role": "user", "content": "Questions:" + prompt}]
             oai_tool = convert_to_tool(
                 functions, GORILLA_TO_OPENAPI, self.model_style, test_category, True
