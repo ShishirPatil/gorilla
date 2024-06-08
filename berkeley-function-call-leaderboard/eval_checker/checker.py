@@ -395,7 +395,7 @@ def simple_function_checker(
 
         # We convert all tuple value to list when the expected type is tuple.
         # The conversion is necessary because any tuple in the possible answer would become a list after being processed through json.dump() and json.load().
-        # This does introduce some false positive (eg, when the model provides a list value instead of tuple), but it's necessary to make the checker work.
+        # This does introduce some false positive (eg, when the model provides a list value instead of tuple). We hope to find a better solution in the future.
         if expected_type_description == "tuple" and type(value) == tuple:
             value = list(value)
 
