@@ -275,7 +275,7 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 To add a new model to the Function Calling Leaderboard, here are a few things you need to do:
 
-1. Take a look at the `model_handler/handler.py`. This is the base handler object where all handlers are inherited from 
+1. Take a look at the `model_handler/handler.py`. This is the base handler object which all handlers are inherited from. Also, free feel to take a look at the existing model handers; very likely you can re-use some of the existing code if the new model outputs in a similar format.
 2. Create your handler and define the following functions 
     1. `__init__`: on initialization, you need to create a `self.client` object if you have an existing endpoint(e.g. `self.client = OpenAI()`) or follow `model_handler/oss_handler.py` for starting a vLLM serving.
     2. `inference`: inference function takes in prompt, functions, as well as optional programming language parameters. It will make call to the endpoint, compile result in the desired format, as well as logging the token number and latency
