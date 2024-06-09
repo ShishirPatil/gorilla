@@ -396,6 +396,9 @@ def simple_function_checker(
         if expected_type_description == "tuple":
             value = list(value)
 
+        if expected_type_description == "float":
+            value = float(value)
+
         # Type checking
         # In fact, we only check for Python here.
         # Type check for other languages are handled by the type converter, and so their value (after conversion) is always correct.

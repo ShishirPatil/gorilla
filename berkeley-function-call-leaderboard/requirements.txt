@@ -1,6 +1,6 @@
 requests
 tqdm
-tree_sitter
+tree_sitter~=0.21.0
 torch 
 ray
 shortuuid
