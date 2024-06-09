@@ -772,6 +772,8 @@ def get_metric(model_name, cost_data, latency_data):
 def generate_leaderboard_csv(leaderboard_table, output_path):
     data = []
     for model_name, value in leaderboard_table.items():
+        model_name_escaped = model_name.replace("_", "/")
+
         python_simple_ast = value.get("simple", {"accuracy": 0, "total_count": 0})
         python_multiple_ast = value.get(
             "multiple_function", {"accuracy": 0, "total_count": 0}
@@ -851,10 +853,10 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
             [
                 "N/A",
                 overall_accuracy["accuracy"],
-                MODEL_METADATA_MAPPING[model_name][0],
-                MODEL_METADATA_MAPPING[model_name][1],
-                MODEL_METADATA_MAPPING[model_name][2],
-                MODEL_METADATA_MAPPING[model_name][3],
+                MODEL_METADATA_MAPPING[model_name_escaped][0],
+                MODEL_METADATA_MAPPING[model_name_escaped][1],
+                MODEL_METADATA_MAPPING[model_name_escaped][2],
+                MODEL_METADATA_MAPPING[model_name_escaped][3],
                 summary_ast["accuracy"],
                 summary_exec["accuracy"],
                 simple_ast["accuracy"],
