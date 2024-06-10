@@ -44,47 +44,9 @@
         <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive
             APIs</h1>
 
-
-
-        <div class="box-index">
-            <h3>Blog 11: Agent Marketplace</h3>
-            <ul>
-                <ul>
-                    <li><a href="11_agent_marketplace.html">Agent Marketplace
-                        </a></li>
-                    <li><a href="11_agent_marketplace.html#benefits">Key Benefits of LLM Agents</a></li>
-                    <li><a href="11_agent_marketplace.html#marketplace">Dynamic Integration of Service Agents</a>
-                    </li>
-                    <li><a href="11_agent_marketplace.html#contributing">Contributing to the Marketplace</a></li>
-                    <li><a href="11_agent_marketplace.html#api-integration">Advanced API Integration and Customization</a></li>
-                    <li><a href="11_agent_marketplace.html#integration-with-gorilla">Integration with Gorilla</a></li>
-                    <li><a href="11_agent_marketplace.html#future-directions">Future Direction</a></li>
-                    <li><a href="11_agent_marketplace.html#join-us">Join Us</a></li>
-                    <li><a href="11_agent_marketplace.html#citation">Citation</a></li>
-                    <li class="more-blogs">
-                        <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span
-                                class="caret">&#9654;</span></a>
-                        <ul class="sub-menu">
-                            <li><a href="7_open_functions_v2.html">Gorilla OpenFunctions-v2</a></li>
-                            <li><a href="6_api_zoo.html">The API Zoo: A Keystone for Building API-connected LLMs</a>
-                            </li>
-                            <li><a href="5_how_to_gorilla.html">How to Use Gorilla: A Step-by-Step Walkthrough
-                            <li><a href="4_open_functions.html">Gorilla OpenFunctions
-                                </a></li>
-                            </a>
-                    </li>
-                    <!-- Add more blog entries as needed -->
-                </ul>
-                </li>
-            </ul>
-            <!-- Add more entries as needed -->
-            </ul>
-        </div>
-
-
         <div class="blog-container">
             <div class="blog-post">
-                <h2 class="blog-title">Agent Marketplace: Revolutionizing Service Access Through LLM Agents</h2>
+                <h2 class="blog-title">Agent Marketplace: Search and Deploy LLM Agents</h2>
                 <div class="col-md-12">
                     <h4 class="text-center">
                         <a class="author" href="https://www.linkedin.com/in/nithik-yekollu-7298671a8/">Nithik Yekollu</a>
@@ -94,6 +56,11 @@
 
                     <p style="text-align: center; margin-bottom: 40">
                         <img src="../assets/img/blog_post_11_agent_marketplace_landing.png" alt="RAFT organizations" width="70%">
+                    </p>
+                    <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                        <i style="font-size: 0.9em;">
+                            The marketplace landing page allows users to search and filter across 150+ verified agents.
+                        </i>
                     </p>
                 </div>
         
@@ -127,13 +94,23 @@
                         Similarly, the <strong>Google Jobs Agent</strong> leverages the Google Jobs Tool to fetch current job postings based on specific user queries. This integration showcases the LLM's ability to handle complex information retrieval tasks, providing users with real-time job market updates directly through the agents on our platform.
                     </p>                    
                     <div class="demo-container">
-                        <div class="demo">
+                        <div class="demo gif-container">
                             <h4 id="yahoo-finance-demo">Yahoo Finance Agent Demo</h4>
-                            <img src="../assets/img/blog_post_11_yahoo_finance_demo.gif" alt="Yahoo Finance Demo" style="width: 100%; height: auto;">
+                            <img src="../assets/img/blog_post_11_yahoo_finance_demo.gif" alt="Yahoo Finance Demo">
+                            <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                                <i style="font-size: 0.9em;">
+                                    Yahoo Finance agent responding to queries of market with current news. 
+                                </i>
+                            </p>
                         </div>
-                        <div class="demo">
+                        <div class="demo gif-container">
                             <h4 id="google-jobs-demo">Google Jobs Agent Demo</h4>
-                            <img src="../assets/img/blog_post_11_google_jobs_demo.gif" alt="Google Jobs Demo" style="width: 100%; height: auto;">
+                            <img src="../assets/img/blog_post_11_google_jobs_demo.gif" alt="Google Jobs Demo">
+                            <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -10px">
+                                <i style="font-size: 0.9em;">
+                                    Google Jobs agent providing real time postings of request occupation.
+                                </i>
+                            </p>
                         </div>
                     </div>
                     <h4 id="contributing">Contributing to the Marketplace</h4>
@@ -401,10 +378,17 @@
             text-align: center; /* Centers the content within each demo */
             max-width: 50%; /* Limiting each demo to half of the container's width */
         }
-        
+
         .demo img {
             width: 100%; /* Makes the image fill the container */
             height: auto; /* Keeps the image aspect ratio intact */
+        }
+
+        .gif-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .more-blogs.expanded .caret {
