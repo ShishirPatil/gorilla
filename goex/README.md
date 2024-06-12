@@ -57,12 +57,20 @@ Mkcert creates a local certificate authority, enabling Gorilla to establish secu
 
 **4.)** Install [**Docker**](https://docs.docker.com/engine/install/). Docker is necessary for Goex to execute LLM-generated code in a sandboxed environment. Executions via the CLI will not be successful without Docker running locally.
 
+- At this point you should have Docker running in the background
+
 ## CLI Usage
 
 List all commands Gorilla currently supports and their usage:
 
 ```sh
 goex -h
+```
+
+Make sure to export your OpenAI API key as an environment variable.
+
+```sh
+export OPENAI_API_KEY=your_key
 ```
 
 ### RESTful API
@@ -156,15 +164,16 @@ goex execute -prompt "In the users table, add 500 to everyone's current balance"
   brew install mysql
   ```
 
-- If you don't have your own server, import the example database using `demo/mysql_setup.py` by running:
-  ```sh
-  cd demo
-  python3 mysql_setup.py testdb
-  ```
 - Put the user, password, host, and database name info into `.env` by running this script
 
   ```
   python3 demo/env_setup.py
+  ```
+
+- If you don't have your own server, import the example database using `demo/mysql_setup.py` by running:
+
+  ```sh
+  python3 demo/mysql_setup.py testdb
   ```
 
 - Set GoEx to use MySQL for DB operations
@@ -202,18 +211,6 @@ You can tell Gorilla-Ex to write code for you, and directly have it be written o
 
 ```
 goex execute -prompt "Write a Python program that is a calculator into a file called calculator.py" -type fs
-```
-
-##### Log Compilation
-
-```
-goex execute -prompt "Create 5 log files named according to some fake dates and insert some placeholder log content into them" -type fs
-```
-
-Here you will have 5 log files with some placeholder content. You can execute the command below to compile the log file contents into a single CSV for easy analysis.
-
-```
-goex execute -prompt "Compile the log file contents into a single CSV with the date as the identifying column here." -type fs
 ```
 
 ## Credentials & Authorization Token
