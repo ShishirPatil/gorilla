@@ -45,6 +45,10 @@ mkcert -install
 mkcert localhost
 ```
 
+Linux:
+
+Refer to the offical [**Mkcert Linux Installation Instructions**](https://github.com/FiloSottile/mkcert?tab=readme-ov-file#linux)
+
 Windows:
 
 ```sh
