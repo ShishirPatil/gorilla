@@ -37,7 +37,7 @@ pip install -e .
 
 **3.)** Install and initialize Mkcert to support OAuth2 token exchange [required for services that require https for redirect URL e.g Slack]
 
-Mac:
+**Mac**
 
 ```sh
 brew install mkcert
@@ -45,11 +45,22 @@ mkcert -install
 mkcert localhost
 ```
 
-Linux:
+**Linux**
 
-Refer to the offical [**Mkcert Linux Installation Instructions**](https://github.com/FiloSottile/mkcert?tab=readme-ov-file#linux)
+_Debian (Ubuntu 22.04+ or Debian 12+)_:
 
-Windows:
+```sh
+apt install libnss3-tools
+apt install mkcert
+mkcert -install
+mkcert localhost
+```
+
+_Others_:
+
+Refer to the official [**Mkcert Linux Installation Instructions**](https://github.com/FiloSottile/mkcert?tab=readme-ov-file#linux)
+
+**Windows**
 
 ```sh
 choco install mkcert
