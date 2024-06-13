@@ -47,17 +47,6 @@ mkcert localhost
 
 **Linux**
 
-_Debian (Ubuntu 22.04+ or Debian 12+)_:
-
-```sh
-apt install libnss3-tools
-apt install mkcert
-mkcert -install
-mkcert localhost
-```
-
-_Others_:
-
 Refer to the official [**Mkcert Linux Installation Instructions**](https://github.com/FiloSottile/mkcert?tab=readme-ov-file#linux)
 
 **Windows**
