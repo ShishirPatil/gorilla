@@ -840,7 +840,7 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
         )
 
         cost, latency_mean, latency_std, percentile_95_latency = get_metric(
-            model_name, cost_data, latency_data
+            model_name_escaped, cost_data, latency_data
         )
 
         if overall_accuracy["total_count"] != 1700:
