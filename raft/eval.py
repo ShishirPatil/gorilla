@@ -1,6 +1,6 @@
 from typing import Any
 from openai import RateLimitError
-from openai.types.chat import ChatCompletion
+from openai.types.chat import ChatCompletionMessageParam
 import multiprocessing as mp
 import time
 import argparse
@@ -26,6 +26,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--question-file", type=str, required=True)
     parser.add_argument("--answer-file", type=str, default="answer.jsonl")
     parser.add_argument("--model", type=str, default="gpt-4", help="The model to evaluate")
+    parser.add_argument("--mode", type=str, default="chat", help="The model API mode. 'chat' or 'completion' mode. Defaults to 'chat' mode.")
     parser.add_argument("--input-prompt-key", type=str, default="instruction", help="The column to use as input prompt")
     parser.add_argument("--output-answer-key", type=str, default="answer", help="The column to use as output answer")
     parser.add_argument("--workers", type=int, default=2, help="The number of worker threads to use to evaluate the dataset")
@@ -41,20 +42,46 @@ if __name__ == "__main__":
 
     logger = logging.getLogger('eval')
 
-    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), reraise=True, retry=retry_if_exception_type(RateLimitError), before_sleep=before_sleep_log(logger, logging.INFO))
-    def retry_complete(*args, **kwargs):
-        return client.completions.create(*args, **kwargs)
-
-    completions_completer = StatsCompleter(retry_complete)
     args = get_args()
-
     model = args.model
+    mode = args.mode
     prompt_key = args.input_prompt_key
     answer_key = args.output_answer_key
 
-    def get_openai_response(
-        prompt: str
-    ) -> str | None :
+    if mode not in ['chat', 'completion']:
+        raise ValueError("Invalid --mode. Mode must be either 'chat' or 'completion'")
+
+    # Chat or completion mode function
+    complete = client.chat.completions.create if mode == 'chat' else client.completions.create
+
+    # Wrap with retry decorator
+    @retry(wait=wait_exponential(multiplier=1, min=10, max=120), reraise=True, retry=retry_if_exception_type(RateLimitError), before_sleep=before_sleep_log(logger, logging.INFO))
+    def retry_complete(*args, **kwargs):
+        return complete(*args, **kwargs)
+
+    # Wrap with statistics completer
+    completions_completer = StatsCompleter(retry_complete)
+
+    def get_answer(input_json: dict[str, Any]) -> dict[str, Any]:
+        message = [{"role": "user", "content": input_json['instruction']}]
+        result = get_openai_response(message)
+        input_json['model_answer'] = result
+        return input_json
+
+    # Evaluate a chat model
+    def get_openai_response_chat(prompt: str | list[ChatCompletionMessageParam]) -> str | None :
+        messages = [{"role": "user", "content": prompt}]
+        response = completions_completer(
+            model=model,
+            messages=messages,
+            temperature=0.2,
+            max_tokens=1024,
+            stop='<STOP>'
+        )
+        return response.choices[0].text
+
+    # Evaluate a completion model
+    def get_openai_response_completion(prompt: str) -> str | None :
         response = completions_completer(
             model=model,
             prompt=prompt,
@@ -62,12 +89,10 @@ if __name__ == "__main__":
             max_tokens=1024,
             stop='<STOP>'
         )
+        return response.choices[0].text
 
-        try:
-            return response.choices[0].text
-        except Exception as e:
-            print(e)
-            return response
+    # Chat or completion mode function
+    get_openai_response = get_openai_response_chat if mode == 'chat' else get_openai_response_completion
 
     def get_answer(input_json: dict[str, Any]) -> dict[str, Any]:
         prompt = input_json[prompt_key]
