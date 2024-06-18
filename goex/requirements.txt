@@ -9,7 +9,7 @@ mysql-connector-python
 openai==1.12.0
 pandas==2.2.0
 protobuf==4.25.3
-pymysql==1.1.0
+pymysql==1.1.1
 python-dotenv==1.0.1
 Requests==2.31.0
 simple-colors
