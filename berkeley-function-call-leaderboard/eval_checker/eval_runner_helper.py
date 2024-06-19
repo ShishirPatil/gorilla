@@ -236,9 +236,15 @@ MODEL_METADATA_MAPPING = {
         "Nexusflow",
         "Apache 2.0",
     ],
-    "fire-function-v1-FC": [
+    "firefunction-v1-FC": [
         "FireFunction-v1 (FC)",
         "https://huggingface.co/fireworks-ai/firefunction-v1",
+        "Fireworks",
+        "Apache 2.0",
+    ],
+    "firefunction-v2-FC": [
+        "FireFunction-v2 (FC)",
+        "https://huggingface.co/fireworks-ai/firefunction-v2",
         "Fireworks",
         "Apache 2.0",
     ],
@@ -349,7 +355,7 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/Snowflake/snowflake-arctic-instruct",
         "Snowflake",
         "apache-2.0",
-    ]
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -445,7 +451,8 @@ OSS_LATENCY = {
 
 NO_COST_MODELS = [
     "Nexusflow-Raven-v2",
-    "fire-function-v1-FC",
+    "firefunction-v1-FC",
+    "firefunction-v2-FC",
     "meetkai/functionary-medium-v2.4-FC",
     "meetkai/functionary-small-v2.2-FC",
     "meetkai/functionary-small-v2.4-FC",
