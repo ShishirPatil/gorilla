@@ -9,49 +9,99 @@ import requests, time
 
 
 class NexusHandler(BaseHandler):
-    def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
+    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
+        temperature = 0.001
         super().__init__(model_name, temperature, top_p, max_tokens)
         self.model_style = ModelStyle.NEXUS
+
+    def generate_functions_from_dict(self, func_dicts):
+        func_template = """
+    Function:
+    def {func_name}({func_args}) -> None:
+        \"\"\"
+        {description}
+
+        Parameters:
+        {param_descriptions}
+        \"\"\"
+
+    """
+
+        functions = []
+        for func_dict in func_dicts:
+            func_name = func_dict['name']
+            description = func_dict['description']
+            parameters = func_dict['parameters']['properties']
+            required_params = func_dict['parameters'].get('required', [])
+
+            func_args_list = []
+            param_descriptions = []
+
+            for param, details in parameters.items():
+                param_type = details['type']
+                if 'enum' in details:
+                    param_type = f"""String[{', '.join(f"'{e}'" for e in details['enum'])}]"""
+
+                param_type = param_type.replace("string", "str").replace("number", "float").replace("integer", "int").replace("object", "dict").replace("array", "list").replace("boolean", "bool")
+
+                type_hint = param_type
+
+                if param in required_params:
+                    func_args_list.append(f"{param}: {type_hint}")
+                else:
+                    func_args_list.append(f"{param}: {type_hint} = None")
+
+                param_description = f"{param} ({param_type}): {details.get('description', 'No description available. Please make a good guess.')}"
+
+                if 'enum' in details:
+                    param_description += f""". Choose one of {', '.join(f"'{e}'" for e in details['enum'])}."""
+
+                if param not in required_params:
+                    param_description += " (Optional)"
+                param_descriptions.append(param_description)
+
+            func_args = ', '.join(func_args_list)
+            param_descriptions_str = '\n    '.join(param_descriptions)
+
+            function_str = func_template.format(
+                func_name=func_name,
+                func_args=func_args,
+                description=description,
+                param_descriptions=param_descriptions_str
+            )
+
+            functions.append(function_str)
+
+        functions.append(
+    '''
+    Function:
+    def out_of_domain(user_query: str) -> str:
+        """
+        This function is designed to handle out-of-domain queries from the user.
+        If the user provides any input user query that is out of the domain of the other APIs provided above,
+        this function should be used with the input user query as the string.
+
+        - user_query (str): The input string that is out of domain.
+
+        Returns nothing.
+        """
+
+    ''')
+
+        return functions
+
 
     def _format_raven_function(self, user_prompt, functions):
         """
         Nexus-Raven requires a specific format for the function description.
         This function formats the function description in the required format.
         """
-        raven_prompt = """"""
-        for function in functions:
-            # Extracting details from the JSON
-            func_name = function["name"]  # Extracting the function name
-            func_desc = function["description"]
-            if "properties" not in function["parameters"]:
-                function["parameters"]["properties"] = function["parameters"].copy()
-                function["parameters"]["type"] = "object"
-                for key in list(function["parameters"].keys()).copy():
-                    if key != "properties" and key != "type" and key != "required":
-                        del function["parameters"][key]
-                for key in list(function["parameters"]["properties"].keys()).copy():
-                    if key == "required" or key == "type":
-                        del function["parameters"]["properties"][key]
-            params = function["parameters"]["properties"]
-
-            raven_prompt += "Function: " + "\n"
-            raven_prompt += f"def {func_name}(" + "\n"
-            raven_prompt += '"""\n'
-            raven_prompt += func_desc + "\n\n"
-            raven_prompt += "Args:" + "\n"
-            for param in params:
-                if "type" not in params[param].keys():
-                    param_type = "object"
-                else:
-                    param_type = params[param]["type"]
-                if "description" not in params[param].keys():
-                    param_desc = ""
-                else:
-                    param_desc = params[param]["description"]
-                raven_prompt += f"\t{param}({param_type}): {param_desc}" + "\n"
-            raven_prompt += "\n"
-        raven_prompt += "User Query:" + user_prompt + "<human_end>"
+        raven_prompt = "\n".join(self.generate_functions_from_dict(functions)) + "\n\n"
+        raven_prompt += "Setting: Allowed to issue multiple calls with semicolon\n"
+        raven_prompt += "User Query:" + user_prompt.replace("\n", "") + "<human_end>"
         return raven_prompt
+
+
 
     def _query_raven(self, prompt):
         """
@@ -98,6 +148,9 @@ class NexusHandler(BaseHandler):
         result = result.replace(";", ",")
         func = "[" + result + "]"
         decoded_output = ast_parse(func, language)
+        if "out_of_domain" in result:
+            return "irrelevant"
+
         return decoded_output
 
     def decode_execute(self, result):
