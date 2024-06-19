@@ -196,7 +196,7 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |command-r-plus | Prompt|
 |databrick-dbrx-instruct | Prompt|
 |deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
-|fire-function-v1-FC | Function Calling|
+|firefunction-{v1,v2}-FC | Function Calling|
 |gemini-1.0-pro | Function Calling|
 |gemini-1.5-pro-preview-{0409,0514} | Function Calling|
 |gemini-1.5-flash-preview-0514 | Function Calling|
