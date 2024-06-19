@@ -126,3 +126,12 @@ pre {
     align-items: flex-start; 
     flex-wrap: wrap;
 }
+
+.blog-title-marketplace {
+    text-align: center;
+    font-size: 2.5rem;
+    margin: 20px 0 10px 0;
+    color: #007bff;
+    font-family: 'Arial';
+  }
+  
