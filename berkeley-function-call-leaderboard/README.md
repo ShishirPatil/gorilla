@@ -235,6 +235,7 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 ## Changelog
 
+* [June 7, 2024] [#407](https://github.com/ShishirPatil/gorilla/pull/407), [#462](https://github.com/ShishirPatil/gorilla/pull/462): Update the AST evaluation logic to allow the use of `int` values for Python parameters expecting `float` values. This is to accommodate the Python auto-conversion feature from `int` to `float`.
 * [May 14, 2024] [#426](https://github.com/ShishirPatil/gorilla/pull/426):
     - Add the following new models to the leaderboard:
         + `gpt-4o-2024-05-13`

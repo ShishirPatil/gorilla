@@ -393,10 +393,18 @@ def simple_function_checker(
                 nested_type = param_details[param]["items"]["type"]
                 nested_type_converted = PYTHON_TYPE_MAPPING[nested_type]
 
-        if expected_type_description == "tuple":
+        # We convert all tuple value to list when the expected type is tuple.
+        # The conversion is necessary because any tuple in the possible answer would become a list after being processed through json.dump() and json.load().
+        # This does introduce some false positive (eg, when the model provides a list value instead of tuple). We hope to find a better solution in the future.
+        if expected_type_description == "tuple" and type(value) == tuple:
             value = list(value)
 
-        if expected_type_description == "float":
+        # Allow python auto conversion from int to float
+        if (
+            language == "Python"
+            and expected_type_description == "float"
+            and type(value) == int
+        ):
             value = float(value)
 
         # Type checking
