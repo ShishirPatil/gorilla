@@ -235,6 +235,8 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 ## Changelog
 
+* [June 18, 2024] [#470](https://github.com/ShishirPatil/gorilla/pull/470): Add new model `firefunction-v2-FC` to the leaderboard.
+* [June 15, 2024] [#437](https://github.com/ShishirPatil/gorilla/pull/437): Fix prompting issues for `Nexusflow-Raven-v2 (FC)`.
 * [May 14, 2024] [#426](https://github.com/ShishirPatil/gorilla/pull/426):
     - Add the following new models to the leaderboard:
         + `gpt-4o-2024-05-13`
