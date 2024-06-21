@@ -105,6 +105,7 @@ def get_response(prompt, model, tokenizer, device):
         do_sample=True,
         temperature=0.7,
         max_new_tokens=1024,
+        pad_token_id=tokenizer.eos_token_id
     )
     output_ids = output_ids[0][len(input_ids[0]) :]
     outputs = tokenizer.decode(output_ids, skip_special_tokens=True).strip()
