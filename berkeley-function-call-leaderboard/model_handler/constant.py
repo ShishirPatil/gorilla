@@ -125,6 +125,7 @@ UNDERSCORE_TO_DOT = [
     "claude-3-opus-20240229-FC",
     "claude-3-sonnet-20240229-FC",
     "claude-3-haiku-20240307-FC",
+    "claude-3-5-sonnet-20240620-FC",
     "mistral-large-2402-FC",
     "mistral-large-2402-FC-Any",
     "mistral-large-2402-FC-Auto",

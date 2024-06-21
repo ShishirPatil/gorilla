@@ -191,6 +191,8 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |gorilla-openfunctions-v2 | Function Calling|
 |claude-3-{opus-20240229,sonnet-20240229,haiku-20240307}-FC | Function Calling |
 |claude-3-{opus-20240229,sonnet-20240229,haiku-20240307} | Prompt |
+|claude-3-5-sonnet-20240620-FC | Function Calling |
+|claude-3-5-sonnet-20240620 | Prompt |
 |claude-{2.1,instant-1.2}| Prompt|
 |command-r-plus-FC | Function Calling|
 |command-r-plus | Prompt|
