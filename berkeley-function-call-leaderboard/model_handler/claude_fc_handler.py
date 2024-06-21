@@ -38,7 +38,7 @@ class ClaudeFCHandler(BaseHandler):
             )
             message = [{"role": "user", "content": prompt}]
             start_time = time.time()
-            print(claude_tool)
+
             response = self.client.messages.create(
                 model=self.model_name.strip("-FC"),
                 max_tokens=self.max_tokens,

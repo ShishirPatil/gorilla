@@ -152,13 +152,13 @@ MODEL_METADATA_MAPPING = {
         "Anthropic",
         "Proprietary",
     ],
-    "claide-3-5-sonnet-20240620-FC": [
+    "claude-3-5-sonnet-20240620-FC": [
         "Claude-3.5-Sonnet-20240620 (FC)",
         "https://www.anthropic.com/news/claude-3-5-sonnet",
         "Anthropic",
         "Proprietary",
     ],
-    "claide-3-5-sonnet-20240620": [
+    "claude-3-5-sonnet-20240620": [
         "Claude-3.5-Sonnet-20240620 (Prompt)",
         "https://www.anthropic.com/news/claude-3-5-sonnet",
         "Anthropic",
