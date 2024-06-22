@@ -35,6 +35,9 @@
 <body>
     <!-- Navigation Bar -->
     <div class="highlight-clean-blog" style="padding-bottom: 5px;">
+        <div class="navButtonsContainer" style="justify-content:flex-end;padding-right:80px; padding-top:40px;">
+            <button class="navButton" onclick="window.location.href='https://www.llm-agents.info/'">Go to the marketplace</button>
+        </div>
         <div class="blog-container">
             <div class="blog-post">
                 <h1>
@@ -458,6 +461,30 @@
 
         .more-blogs.expanded .caret {
             transform: rotate(90deg);
+        }
+
+        .navButtonsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            padding: 10px 0;
+        }
+
+        .navButton {
+            padding: 10px 15px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            outline: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .navButton:hover {
+            background-color: #0056b3;
         }
 
         @media screen and (max-width: 1200px) {
