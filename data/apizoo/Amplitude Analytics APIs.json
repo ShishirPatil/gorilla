@@ -1,0 +1,1581 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: iOS Attribution",
+        "api_call": "https://api.amplitude.com/attribution",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "api_key",
+                        "value": "{{api_key}}",
+                        "description": "Required. Your API key.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "event",
+                        "value": "{\"event_type\":\"[YOUR COMPANY] Install\", \"idfa\": \"AEBE52E7-03EE-455A-B3C4-E57283966239\", \"user_properties\": {\"[YOUR COMPANY] media source\": \"facebook\", \"[YOUR COMPANY] campaign\": \"refer-a-friend\"}, \"platform\": \"ios\"}",
+                        "description": "Required. A request parameter representing the event, in JSON format. ",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "## Required Event Argument Keys\n\nYou must include the following keys within the event argument:\n\n| Required Key | Description | Example"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Android Attribution",
+        "api_call": "https://api2.amplitude.com/attribution?api_key={{api_key}}&event={\"event_type\":\"[YOUR COMPANY] Install\",\"adid\": \"AEBE52E7-03EE-455A-B3C4-E57283966239\", \"user_properties\": {\"[YOUR COMPANY] media source\": \"facebook\", \"[YOUR COMPANY] campaign\": \"refer-a-friend\"}, \"platform\": \"android\"}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "See the documentation of iOS Attribution for full details."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Batch Event Upload",
+        "api_call": "https://api2.amplitude.com/batch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"api_key\": \"{{api_key}}\",\n    \"events\": [\n        {\n            <Insert Event info here>\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Batch Event Upload\n\nUse this request to bulk upload events to Amplitude.\n\nIf you have used our HTTP API before, note"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get all Cohorts",
+        "api_call": "https://amplitude.com/api/3/cohorts?includeSyncInfo=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get all discoverable cohorts for an app. The `id` returned for each cohort is used to get a single cohort.\n\nEach"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get a single Cohort",
+        "api_call": "https://amplitude.com/api/5/cohorts/request/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a discoverable cohort using its `cohort_id`.\n\nThis is phase one in the download a cohort operation. The `request_id` returned in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get Cohort Status",
+        "api_call": "https://amplitude.com/api/5/cohorts/request-status/:request_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Poll the request status. This is the second phase in a cohort download operation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Cohort Download",
+        "api_call": "https://amplitude.com/api/5/cohorts/request/:requestId/file",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "For small cohorts, the response body contains cohort data.\n\nFor large cohorts, the data must be downloaded. If the cohort is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Upload IDs",
+        "api_call": "https://amplitude.com/api/3/cohorts/upload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Test Cohort\",\n    \"app_id\": 153957,\n    \"id_type\": \"BY_AMP_ID\",\n    \"ids\": [\n        \"us-east-1:ffffe36b-5758-4869-8552-c764690b2b59\", \n        \"us-east-1:ffffe322-9d03-4016-a5bd-7a9681fdf491\"\n    ],\n    \"owner\": \"datamonster@amplitude.com\",\n    \"published\": true\n}"
+            }
+        },
+        "functionality": "Generate a new cohort or update an existing cohort by uploading a set of User IDs or Amplitude IDs.\n\n## Body"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Update Membership",
+        "api_call": "https://amplitude.com/api/3/cohorts/membership",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n \"cohort_id\":\"1a2bc3d\",\n \"memberships\": [\n   {\n      \"ids\" : [\"111\",\u201d222\u201d],\n      \"id_type\" : \"BY_ID\",\n      \"operation\" : \"ADD\"\n    },\n    {\n      \"ids\" : [\"333\",\u201d444\u201d],\n      \"id_type\" : \"BY_ID\",\n      \"operation\" : \"REMOVE\"\n    },\n    {\n      \"ids\" : [\"asd\",\u201dqwe\u201d],\n      \"id_type\" : \"BY_NAME\",\n      \"operation\" : \"ADD\"\n    }\n  ],\n \"skip_invalid_ids\":true,"
+            }
+        },
+        "functionality": "Perform incremental update (add / remove) to existing cohort membership.\n\n# Request Body\n\n| Parameter | Description |\n| --- | --- |\n|"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Create Data Request",
+        "api_call": "https://amplitude.com/api/2/dsar/requests",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "disabled": true
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"userId\": 12345,\n    \"startDate\": \"2020-04-24\",\n    \"endDate\": \"2022-02-20\"\n}"
+            }
+        },
+        "functionality": "Create a request for user data.\n\n## Body Parameters\n\n| **Name** | **Description** |\n| --- | --- |\n| `userId` | Required if"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get Request Status",
+        "api_call": "https://amplitude.com/api/2/dsar/requests/:request_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "Retrieves a request's status.\n\n## Response Body\n\n| Name | Description |\n| --- | --- |\n| `requestId` | Integer. The ID of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get Output File",
+        "api_call": "https://analytics.amplitude.com/api/2/dsar/requests/:request_id/outputs/:output_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Encoding",
+                    "value": "application/gzip",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "Download a returned output file.\n\nThe download link is valid for two days. Most clients used to send API requests automatically"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Create Chart Annotation",
+        "api_call": "https://amplitude.com/api/2/annotations?app_id=&date=&label=&chart_id=&details=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "# Create Annotation\n\nCreates an annotation with the specified parameters."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get Chart Annotation",
+        "api_call": "https://amplitude.com/api/2/annotations?id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "# Get Annotation\n\nGets the annotation specified by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get all global chart annotations",
+        "api_call": "https://amplitude.com/api/2/annotations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets all global chart annotations in a project."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Funnel Analysis",
+        "api_call": "https://amplitude.com/api/2/funnels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This is the basic request format for the Funnel Analysis API, including all available parameters."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Retention analysis",
+        "api_call": "https://amplitude.com/api/2/retention",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This is the basic request format with all parameters."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: User activity",
+        "api_call": "https://amplitude.com/api/2/useractivity?user=&offset=&limit=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This is the basic GET request format and all parameters."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: User composition",
+        "api_call": "https://amplitude.com/api/2/composition?start=&end=&p=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get users",
+        "api_call": "https://amplitude.com/api/2/users?start=&end=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the number of active or new users."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Session length distribution",
+        "api_call": "https://amplitude.com/api/2/sessions/length?start=&end=&timeHistogramConfigBinTimeUnit=&timeHistogramConfigBinMin=&timeHistogramConfigBinMax=&timeHistogramConfigBinSize=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the number of sessions for each pre-defined length (\"bucket\") period during a specified date range.\n\n## timeHistogramConfigBin Format\n\n`timeHistogramConfigBinTimeUnit`\u00a0is any of\u00a0`['hours',"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Average sessions per user",
+        "api_call": "https://amplitude.com/api/2/sessions/peruser?start=&end=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the average number of sessions per user on each day in the specified date range.  \n\n## Returns\n\n| Attribute"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Average session length",
+        "api_call": "https://amplitude.com/api/2/sessions/average?start=&end=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the average session length (in seconds) for each day in the specified date range.\n\n\n## Returns\n\n| Attribute | Description |\n|"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get user",
+        "api_call": "https://amplitude.com/api/2/usersearch?user=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Search for a user with a specified Amplitude ID, Device ID, User ID, or User ID prefix. Exceeding the request"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Event Segmentation Chart",
+        "api_call": "https://amplitude.com/api/2/segmentation?e =&start=&end=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This is the basic request format for the Event Segmentation API, including all available parameters."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get events list",
+        "api_call": "https://amplitude.com/api/2/events/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the list of events with the current week's totals, uniques, and % DAU."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get Results from existing chart",
+        "api_call": "https://amplitude.com/api/3/chart/:chart_id/query",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get JSON results from any existing (saved) chart via chart ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Real-time Active Users",
+        "api_call": "",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get active user numbers with minute granularity for the last two days."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Revenue LTV",
+        "api_call": "https://amplitude.com/api/2/revenue/ltv?start=&end=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get the lifetime value of new users."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Basic Call",
+        "api_call": "https://analytics.amplitude.com/api/2/event-streaming/delivery-metrics-summary?sync_id=&time_period=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The `sync_ID` is in the URL of the streaming settings page. For example: \\`https://analytics.amplitude.com/amplitude/connections/project/PROJECT_ID/setup-integration/event_streaming/DESTINATION_TYPE/**SYNC_ID**/settings\\`\n\nThe `sync_ID` in the URL is base64-encoded."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Last Four Hours",
+        "api_call": "https://analytics.amplitude.com/api/2/event-streaming/delivery-metrics-summary?sync_id=30005775&time_period=FOUR_HOURS",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The `sync_ID` is under the sync title on the destination's settings page in Amplitude Data.\n\n<img src=\"https://content.pstmn.io/7563c03b-67bc-419a-ace8-fdd77768c81e/c3RyZWFtSUQucG5n\" width=\"200\">"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Custom Period",
+        "api_call": "https://analytics.amplitude.com/api/2/event-streaming/delivery-metrics-summary?sync_id=30005775&time_period=CUSTOM&start=2023-01-01T07:00:00+01:00&end=2023-01-31T07:00:00+01:00",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get Export",
+        "api_call": "https://amplitude.com/api/2/export?start=&end=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "## Considerations\n\n*   The specified date range is the time of when the event data was uploaded to Amplitude"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Create Group",
+        "api_call": "https://api2.amplitude.com/groupidentify?api_key={{api_key}}&identification={\"group_properties\":{ },\"group_value\":\" \",\"group_type\":\" \"}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "## Keys for the Identification Argument\n\n| Key | Type | Description | Example |\n| --- | --- | --- |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Upload Request",
+        "api_call": "https://api.amplitude.com/2/httpapi",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"api_key\": \"{{api_key}}\",\n  \"events\": [\n    {\n      \"user_id\": \"datamonster@gmail.com\",\n      \"device_id\": \"C8F9E604-F01A-4BD9-95C6-8E5357DF265D\",\n      \"event_type\": \"watch_tutorial\",\n      \"time\": 1396381378123,\n      \"event_properties\": {\n        \"load_time\": 0.8371,\n        \"source\": \"notification\",\n        \"dates\": [\n          \"monday\",\n          \"tuesday\"\n        ]\n      },\n      \"user_properties\": {\n        \"age\": 25,\n        \"gender\": \"female\",\n        \"interests\": [\n          \"chess\",\n          \"football\",\n          \"music\"\n        ]\n      },\n      \"groups\": {\n        \"team_id\": \"1\",\n        \"company_name\": [\n          \"Amplitude\",\n          \"DataMonster\"\n        ]\n      },\n      \"app_version\": \"2.1.3\",\n      \"platform\": \"iOS\",\n      \"os_name\": \"Android\",\n      \"os_version\": \"4.2.2\",\n      \"device_brand\": \"Verizon\",\n      \"device_manufacturer\": \"Apple\",\n      \"device_model\": \"iPhone 9,1\",\n      \"carrier\": \"Verizon\",\n      \"country\": \"United States\",\n      \"region\": \"California\",\n      \"city\": \"San Francisco\",\n      \"dma\": \"San Francisco-Oakland-San Jose, CA\",\n      \"language\": \"English\",\n      \"price\": 4.99,\n      \"quantity\": 3,\n      \"revenue\": -1.99,\n      \"productId\": \"Google Pay Store Product Id\",\n      \"revenueType\": \"Refund\",\n      \"location_lat\": 37.77,\n      \"location_lng\": -122.39,\n      \"ip\": \"127.0.0.1\",\n      \"idfa\": \"AEBE52E7-03EE-455A-B3C4-E57283966239\",\n      \"idfv\": \"BCCE52E7-03EE-321A-B3D4-E57123966239\",\n      \"adid\": \"AEBE52E7-03EE-455A-B3C4-E57283966239\",\n      \"android_id\": \"BCCE52E7-03EE-321A-B3D4-E57123966239\",\n      \"event_id\": 23,\n      \"session_id\": 1396381378123,\n      \"insert_id\": \"5f0adeff-6668-4427-8d02-57d803a2b841\"\n    }\n  ]\n}"
+            }
+        },
+        "functionality": "## Upload Request Body\n\n| Name | Description |\n| --- | --- |\n| `api_key` | Required. String. Amplitude project API key."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: HTTP API $identify",
+        "api_call": "https://api2.amplitude.com/2/httpapi",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"api_key\": \"{{api_key}}\",\n    \"events\": [\n        {\n            \"user_id\": \"casey@amplitude.com\",\n            \"event_type\": \"$identify\",\n            \"user_properties\": {\n                \"$add\": {\n                    \"friendCount\": 1\n                }\n            }\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Use `event_type = $identify` to send user properties as an event. `$identify` is a function within the HTTP that essentially"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Identify API call Example",
+        "api_call": "https://api2.amplitude.com/identify",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "api-key",
+                        "value": "{{api_key}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "identification",
+                        "value": "[{\"user_id\":\"value\", \"user_properties\":{\"propertyNameToUpdate\":\"newValue\"}}]",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "# Keys for the Identification Argument\n\n| Key | Type | Description |\n| --- | --- | --- |\n| user_id |"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: GET that shows limits of GET param length",
+        "api_call": "https://api2.amplitude.com/identify?api_key={{api_key}}&identification=[{\"user_id\":\"77\", \"user_properties\":{\"propertyNameToUpdate\":\"YXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\"}}]",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get all lookup tables",
+        "api_call": "https://amplitude.com/api/2/lookup_table",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves a list of lookup tables in the project."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get all lookup tables Copy",
+        "api_call": "https://amplitude.com/api/2/lookup_table",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves a list of lookup tables in the project."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get a single lookup table",
+        "api_call": "https://amplitude.com/api/2/lookup_table/:name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a single lookup table by name."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Create lookup table",
+        "api_call": "https://amplitude.com/api/2/lookup_table/:name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "type": "file",
+                        "value": null
+                    }
+                ]
+            }
+        },
+        "functionality": "Create a new lookup table by uploading a CSV file."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Update lookup table",
+        "api_call": "https://amplitude.com/api/2/lookup_table/:name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "contentType": "text/csv",
+                        "type": "file",
+                        "value": null
+                    }
+                ]
+            }
+        },
+        "functionality": "Update a lookup table, by name."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Delete a table",
+        "api_call": "https://amplitude.com/api/2/lookup_table/:name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Delete a lookup table, by name."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Create Release: Query Parameters",
+        "api_call": "https://amplitude.com/api/2/release?version=&release_start=&title=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Create a release."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Create Release: JSON Body",
+        "api_call": "https://amplitude.com/api/2/release",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "\n{\n  \"chart_visibility\": \"true\",\n  \"created_by\": \"\",\n  \"description\": \"Releasing the new paid feature. \",\n  \"platforms\": \"iOS\",\n  \"release_end\": \"2022-01-01 00:00:00\",\n  \"release_start\": \"2022-01-01 00:00:00\",\n  \"title\": \"Big new feature\",\n  \"version\": \"3.5\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a release."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get Users",
+        "api_call": "https://core.amplitude.com/scim/1/Users?startIndex=&itemsPerPage=&filter=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets a list of users within Amplitude for that organization. This includes both pending and joined users, and supports pagination"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get User by ID",
+        "api_call": "https://core.amplitude.com/scim/1/Users/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Gets a user by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Create User",
+        "api_call": "https://core.amplitude.com/scim/1/Users/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"schemas\":[\n      \"urn:ietf:params:scim:schemas:core:2.0:User\"\n   ],\n   \"id\":\"<USER EMAIL>\",\n   \"userName\":\"<USER EMAIL>\",\n   \"name\":{\n      \"givenName\":\"<USER GIVEN NAME>\",\n      \"familyName\":\"<USER FAMILY NAME>\"\n   },\n   \"emails\":[\n      {\n         \"value\":\"<USER EMAIL>\",\n         \"primary\":true\n      }\n   ],\n   \"meta\":{\n      \"resourceType\":\"User\"\n   }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new user within Amplitude, sends an invitation link to the email requested, and returns a `201` Resource Created"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: User Update",
+        "api_call": "https://core.amplitude.com/scim/1/Users/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"schemas\":[\n      \"urn:ietf:params:scim:schemas:core:2.0:User\"\n   ],\n   \"id\":\"<USER EMAIL>\",\n   \"userName\":\"<USER EMAIL>\",\n   \"name\":{\n      \"givenName\":\"<USER GIVEN NAME>\",\n      \"familyName\":\"<USER FAMILY NAME>\"\n   },\n   \"active\": true,\n   \"emails\":[\n      {\n         \"value\":\"<USER EMAIL>\",\n         \"primary\":true\n      }\n   ],\n   \"meta\":{\n      \"resourceType\":\"User\"\n   }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates the Amplitude user with the given ID. `id` must be a valid email address, and the user must have"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: User Update",
+        "api_call": "https://core.amplitude.com/scim/1/Users/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"schemas\":[\n      \"urn:ietf:params:scim:schemas:core:2.0:User\"\n   ],\n   \"id\":\"<USER EMAIL>\",\n   \"userName\":\"<USER EMAIL>\",\n   \"name\":{\n      \"givenName\":\"<USER GIVEN NAME>\",\n      \"familyName\":\"<USER FAMILY NAME>\"\n   },\n   \"active\": true,\n   \"emails\":[\n      {\n         \"value\":\"<USER EMAIL>\",\n         \"primary\":true\n      }\n   ],\n   \"meta\":{\n      \"resourceType\":\"User\"\n   }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "`PUT`Updates an existing user with the given ID within Amplitude. The ID\u00a0**must**\u00a0be a valid email, and the user must have"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Delete User",
+        "api_call": "https://core.amplitude.com/scim/1/Users/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"schemas\":[\n      \"urn:ietf:params:scim:schemas:core:2.0:User\"\n   ],\n   \"id\":\"<USER EMAIL>\",\n   \"userName\":\"<USER EMAIL>\",\n   \"name\":{\n      \"givenName\":\"<USER GIVEN NAME>\",\n      \"familyName\":\"<USER FAMILY NAME>\"\n   },\n   \"active\": true,\n   \"emails\":[\n      {\n         \"value\":\"<USER EMAIL>\",\n         \"primary\":true\n      }\n   ],\n   \"meta\":{\n      \"resourceType\":\"User\"\n   }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Deletes the Amplitude user with the given ID. The ID must be a valid email, and the user must have"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get Groups",
+        "api_call": "https://core.amplitude.com/scim/1/Groups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get all groups in an Amplitude organization."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Create Groups",
+        "api_call": "https://core.amplitude.com/scim/1/Groups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"schemas\":[\n      \"urn:ietf:params:scim:schemas:core:2.0:Group\"\n   ],\n   \"displayName\":\"Group Name\",\n   \"members\":[\n      {\n         \"value\":\"MEMBER EMAIL\"\n      },\n      {\n         \"value\":\"MEMBER EMAIL\"\n      }\n   ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a group."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get Group by ID",
+        "api_call": "https://core.amplitude.com/scim/1/Groups/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a group by ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Update Group",
+        "api_call": "https://core.amplitude.com/scim/1/Groups/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"schemas\": [\"urn:ietf:params:scim:api:messages:2.0:PatchOp\"],\n    \"Operations\": [{\n        \"op\": \"replace\",\n        \"value\": {\n            \"id\": \"<GROUP ID>\",\n            \"displayName\": \"New Name\"\n        }\n    }]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Update a group."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Delete Group",
+        "api_call": "https://core.amplitude.com/scim/1/Groups/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Create an Event Category",
+        "api_call": "https://amplitude.com/api/2/taxonomy/category",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "category_name",
+                        "value": "",
+                        "description": "Required. Name of the category. ",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "Create an event category in your project."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get all Event Categories",
+        "api_call": "https://amplitude.com/api/2/taxonomy/category",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get all event categories in your project."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get an Event Category",
+        "api_call": "https://amplitude.com/api/2/taxonomy/category/:category_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": []
+            }
+        },
+        "functionality": "Get the ID of an event category in your project."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Update an Event Category",
+        "api_call": "https://amplitude.com/api/2/taxonomy/category/:category_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "category_name",
+                        "value": "Converted",
+                        "description": "Required. New name of the event category. ",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "Update an event category."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Delete an Event Category",
+        "api_call": "https://amplitude.com/api/2/taxonomy/category/:category_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Delete an event category."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Create Event Type",
+        "api_call": "https://amplitude.com/api/2/taxonomy/event",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "event_type",
+                        "value": "",
+                        "description": "Required. String. The name of the event type. ",
+                        "type": "text"
+                    },
+                    {
+                        "key": "category",
+                        "value": "",
+                        "description": "Optional. String. The event type's category. ",
+                        "type": "text"
+                    },
+                    {
+                        "key": "description",
+                        "value": "",
+                        "description": "Optional. String. Details about the event type. ",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "Creates an event type.\n\nNote: You must [initialize the schema](https://help.amplitude.com/hc/en-us/articles/360047579451) before you can add event types via the API."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get all Event Types",
+        "api_call": "https://amplitude.com/api/2/taxonomy/event",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": []
+            }
+        },
+        "functionality": "Retrieves all event types in a project. There are no required parameters for this request."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get an Event Type",
+        "api_call": "https://amplitude.com/api/2/taxonomy/event/:event_type",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": []
+            }
+        },
+        "functionality": "Get a single event type, by name."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Update an Event Type",
+        "api_call": "https://amplitude.com/api/2/taxonomy/event/:event_type",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "new_event_type",
+                        "value": "",
+                        "description": "Optional. String. The event type's new name. ",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "category",
+                        "value": "",
+                        "description": "Optional. Current category name of the event type.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "description",
+                        "value": "",
+                        "description": "Optional. String. Details to add to the event type. ",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "display_name",
+                        "value": "",
+                        "description": "Optional. String. Display name of an event type.  You can update the display name for an event type only after it is ingested into Amplitude.",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Update an event type."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Delete Event Type",
+        "api_call": "https://amplitude.com/api/2/taxonomy/event/:event_type",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": []
+            }
+        },
+        "functionality": "Delete an event type."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Create Event Property",
+        "api_call": "https://amplitude.com/api/2/taxonomy/event-property",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "event_type",
+                        "value": "",
+                        "description": "Required. Name of the event type to which the event properties belong to.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "event_property",
+                        "value": "",
+                        "description": "Required. Name of the event property. ",
+                        "type": "text"
+                    },
+                    {
+                        "key": "description",
+                        "value": "",
+                        "description": "Optional. String. The event property's description.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "type",
+                        "value": "",
+                        "description": "Optional. String. Available only with Govern Add-on. Data type of the event property. Acceptable values are 'string', 'number', 'boolean', 'enum', and 'any'",
+                        "type": "text"
+                    },
+                    {
+                        "key": "regex",
+                        "value": "",
+                        "description": "Optional. String. Available only with Govern Add-on. Regular expression, custom regex that can be used for pattern matching or more complex values. (e.g. property zip code must have pattern [0-9]{5} )",
+                        "type": "text"
+                    },
+                    {
+                        "key": "enum_values",
+                        "value": "",
+                        "description": "Optional. String. Available only with Govern Add-on. List of allowed values.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "is_array_type",
+                        "value": "",
+                        "description": "Optional. Boolean. Available only with Govern Add-on. True or false values only.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "is_required",
+                        "value": "",
+                        "description": "Optional. Boolean. Available only with Govern Add-on. Marks the property as required. ",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "Creates event property."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get Event Properties",
+        "api_call": "https://amplitude.com/api/2/taxonomy/event-property",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "event_type",
+                        "value": "",
+                        "description": "Required. Name of the event type to which the event properties belong to.",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "Gets all of an event's properties."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get Event Property",
+        "api_call": "https://amplitude.com/api/2/taxonomy/event-property?event_property",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "event_type",
+                        "value": "",
+                        "description": "Required. Name of the event type to which the event properties belong to.",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "Gets an event property."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Update Event Property",
+        "api_call": "https://amplitude.com/api/2/taxonomy/event-property/:event-property",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "event_type",
+                        "value": "",
+                        "description": "Required. Name of the event type to which the event properties belong to.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "description",
+                        "value": "",
+                        "description": "Optional. String. The event property's description.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "new_event_property_value",
+                        "value": "",
+                        "description": "Optional. String. Available only with Govern Add-on. The new name of the event property.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "type",
+                        "value": "",
+                        "description": "Optional. String. Available only with Govern Add-on. Data type of the event property. Acceptable values are 'string', 'number', 'boolean', 'enum', and 'any'",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "regex",
+                        "value": "",
+                        "description": "Optional. String. Available only with Govern Add-on. Regular expression, custom regex that can be used for pattern matching or more complex values. (e.g. property zip code must have pattern [0-9]{5} )",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "enum_values",
+                        "value": "",
+                        "description": "Optional. String. Available only with Govern Add-on. List of allowed values.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "is_array_type",
+                        "value": "",
+                        "description": "Optional. Boolean. Available only with Govern Add-on. True or false values only.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "is_required",
+                        "value": "",
+                        "description": "Optional. Boolean. Available only with Govern Add-on. Marks the property as required. ",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Updates an event property."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Delete Event Property",
+        "api_call": "https://amplitude.com/api/2/taxonomy/event-property/:event-property",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "event_type",
+                        "value": "",
+                        "description": "Required. Name of the event type to which the event properties belong to.",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "Deletes an event property."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Create User Property",
+        "api_call": "https://amplitude.com/api/2/taxonomy/user-property",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "user_property",
+                        "value": "",
+                        "description": "Optional. String. Name of the user property type.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "description",
+                        "value": "",
+                        "description": "Optional. String. Details to add to the user property type. ",
+                        "type": "text"
+                    },
+                    {
+                        "key": "type",
+                        "value": "",
+                        "description": "Optional. String. Data type of the user property. Acceptable values are `string` `number`, `boolean`, `enum`, and `any`.",
+                        "type": "text"
+                    },
+                    {
+                        "key": "regex",
+                        "value": "",
+                        "description": "Optional. String. Regular expression or custom regex that can be used for pattern matching and more complex values (e.g. 'zip code' property must have pattern [0-9]{5} ).",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "enum_values",
+                        "value": "",
+                        "description": "Optional. String. List of allowed values, separated by comma. For example: red, yellow, blue.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "is_array_type",
+                        "value": "",
+                        "description": "Optional. Specifies whether or not property value is an array. Allowable values are 'true' and 'false'.",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "Create a user property."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get User Property",
+        "api_call": "https://amplitude.com/api/2/taxonomy/user-property/:user_property",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves a single user property, by name."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get All User Properties",
+        "api_call": "https://amplitude.com/api/2/taxonomy/user-property",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves all user properties in your account. This call doesn't have any required parameters."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Update User Property",
+        "api_call": "https://amplitude.com/api/2/taxonomy/user-property/:user_property",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "new_user_property_value",
+                        "value": "",
+                        "description": "Optional. String. New name of the user property type.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "description",
+                        "value": "",
+                        "description": "Optional. String. Details to add to the user property type. ",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "type",
+                        "value": "",
+                        "description": "Optional. String. Data type of the user property. Acceptable values are `string` `number`, `boolean`, `enum`, and `any`.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "regex",
+                        "value": "",
+                        "description": "Optional. String. Regular expression or custom regex that can be used for pattern matching and more complex values (e.g. 'zip code' property must have pattern [0-9]{5} ).",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "enum_values",
+                        "value": "",
+                        "description": "Optional. String. List of allowed values, separated by comma. For example: red, yellow, blue.",
+                        "type": "text",
+                        "disabled": true
+                    },
+                    {
+                        "key": "is_array_type",
+                        "value": "",
+                        "description": "Optional. Specifies whether or not property value is an array. Allowable values are 'true' and 'false'.",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Update a user property."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Delete User Property",
+        "api_call": "https://amplitude.com/api/2/taxonomy/user-property/:user_property",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a single user property, by name."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Mapping Request",
+        "api_call": "https://api.amplitude.com/usermap?mapping=[{\"user_id\":\"<USER_ID\", \"global_user_id\": \"<GLOBAL_USER_ID\"}]&api_key={{api_key}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Maps a user ID to a global user ID. You can map a single user ID per JSON mapping object."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Unmapping Request",
+        "api_call": "https://api.amplitude.com/usermap?mapping=[{\"user_id\":\"<USER_ID\", \"unmap\": true}]&api_key={{api_key}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "Unmaps a user ID to any associated global ID. You can unmap a single user ID per JSON mapping object."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: POST Deletion Request (JSON)",
+        "api_call": "https://amplitude.com/api/2/deletions/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"amplitude_ids\": [\n        <ID>,\n        <ID>\n\n    ],\n    \"user_ids\": [\n        <ID>,\n        <ID>\n    ],\n    \"ignore_invalid_id\": \"true\",\n    \"delete_from_org\": \"false\",\n    \"requester\": \"<REQUESTER USERNAME>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Request a user be scheduled for deletion using a JSON body. Specify up to 100 users at a time. A"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: GET Deletion Requests",
+        "api_call": "https://amplitude.com/api/2/deletions/users?start_day=&end_day=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves a list list deletion jobs scheduled in a time range; this time range should include the date you made"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: DELETE Deletion Request",
+        "api_call": "https://amplitude.com/api/2/deletions/users/:amplitude_id_or_user_id/:date",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": []
+            }
+        },
+        "functionality": "Removes the specified ID from a deletion job."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get User Profile",
+        "api_call": "https://profile-api.amplitude.com/v1/userprofile?user_id=12345",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "Retrieves a single user profile."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get Prediction Propensity",
+        "api_call": "https://profile-api.amplitude.com/v1/userprofile?user_id=&get_propensity=&prediction_id=&propensity_type=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "**This feature is available in accounts with Amplitude Recommend.**\n\nWhen you create a prediction in Amplitude Recommend, you can sync the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get Computations",
+        "api_call": "https://profile-api.amplitude.com/v1/userprofile?get_computations=&comp_id=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "**This feature is available in accounts with Amplitude Recommend.**\n\nComputations convert events into a new user property you can use to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get a Single Computation",
+        "api_call": "https://profile-api.amplitude.com/v1/userprofile?user_id=12345&get_computations=true&comp_id=1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "**This feature is available in accounts with Amplitude Recommend.**\n\nRetrieves a single computation by ID. Find the computation ID by navigating"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get User Properties",
+        "api_call": "https://profile-api.amplitude.com/v1/userprofile?user_id=12345&get_amp_props=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "Retrieves the user's properties."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get Cohort IDs",
+        "api_call": "https://profile-api.amplitude.com/v1/userprofile?user_id=&get_cohort_ids=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "Retrieves a user's cohort IDs."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Amplitude Analytics APIs: Get Multiple Recommendations Copy",
+        "api_call": "https://profile-api.amplitude.com/v1/userprofile?user_id=12345&get_recs=true&rec_id=testRecId,testRecId2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "**This feature is available in accounts with Amplitude Recommend.**\n\nRetrieves multiple recommendations for a user."
+    }
+]

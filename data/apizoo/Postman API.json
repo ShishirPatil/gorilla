@@ -1,0 +1,1248 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Create a schema",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/schemas",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"type\": \"{{schemaType}}\",\n    \"files\": [\n        {\n            \"path\": \"{{filePath1}}\",\n            \"content\": \"{{content1}}\"\n        },\n         {\n            \"path\": \"{{filePath2}}\",\n            \"content\": \"{{content2}}\"\n        },\n         {\n            \"path\": \"{{filePath3}}\",\n            \"content\": \"{{content3}}\"\n        },\n         {\n            \"path\": \"{{filePath4}}\",\n            \"content\": \"{{content4}}\"\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a schema for an API. The request body must contain the following:\n\n- `type` \u2014 A **string** value that contains"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Create or update a schema file",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/schemas/{{schemaId}}/files/{{filePath}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"content\": \"{{fileContent}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates or updates an API schema file. The request body must contain the following properties:\n\n- `content` \u2014 A **string** value"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get a schema",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/schemas/{{schemaId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ]
+        },
+        "functionality": "Gets information about API schema. You can use the `versionId` query parameter to get a schema published in an API"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get schema files",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/schemas/{{schemaId}}/files",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ]
+        },
+        "functionality": "Gets the files in an API schema. You can use the `versionId` query parameter to get schema files published in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get schema file contents",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/schemas/{{schemaId}}/files/{{filePath}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ]
+        },
+        "functionality": "Gets an API schema file contents at the defined path. You can use the `versionId` query parameter to get schema"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Delete a schema file",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/schemas/{{schemaId}}/files/{{filePath}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ]
+        },
+        "functionality": "Deletes a file in an API schema."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Create a version",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{apiReleaseName}}\",\n    \"releaseNotes\": \"{{apiReleaseDescription}}\",\n    \"collections\": [\n        {\n            \"id\": \"{{collectionId}}\"\n        }\n    ],\n    \"schemas\": [\n        {\n            \"id\": \"{{schemaId}}\" \n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new API version asynchronously and immediately returns an HTTP `202 Accepted` response. The response contains a polling link"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get all versions",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ]
+        },
+        "functionality": "Gets all the published versions of an API."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get a version",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{versionId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ]
+        },
+        "functionality": "Gets information about an API version.\n\n**Note:**\n\n- For API editors, this endpoint returns an HTTP `302 Found` status code when the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Update a version",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{apiVersionId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{apiVersionName}}\",\n    \"releaseNotes\": \"{{releaseNotes}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates an API version. Include at least one of the following properties in the request body:\n\n- `name` \u2014 A **string**"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Delete a version",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{versionId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "value",
+                        "value": "{{postman-API-key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "key",
+                        "value": "X-API-KEY",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ]
+        },
+        "functionality": "Deletes an API version.\n\n**Note:**\n\nThis endpoint returns an HTTP `404 Not Found` response when an API version is pending publication."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get a collection",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/collections/{{collectionId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ]
+        },
+        "functionality": "Gets a collection attached to an API. You can use the `versionId` query parameter to get a collection published in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Add a collection",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"operationType\": \"{{operationType}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Adds a collection to an API. To do this, use the following `operationType` values:\n\n- `COPY_COLLECTION` \u2014 Copies a collection from"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Sync collection with schema",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/collections/{{collectionId}}/sync-with-schema-tasks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ]
+        },
+        "functionality": "Syncs a collection attached to an API with the API schema.\n\nThis is an asynchronous endpoint that returns an HTTP `202"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get an API's tags",
+        "api_call": "https://api.getpostman.com/apis/{{apiUid}}/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ]
+        },
+        "functionality": "Gets all the tags associated with an API."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Update an API's tags",
+        "api_call": "https://api.getpostman.com/apis/{{apiUid}}/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"tags\": [\n        {\n            \"slug\": \"{{tagName}}\"\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Gets all the tags associated with an API. This endpoint replaces all existing tags with those you pass in the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Create an API",
+        "api_call": "https://api.getpostman.com/apis?workspaceId={{workspaceId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{apiName}}\",\n    \"summary\": \"{{apiSummary}}\",\n    \"description\": \"{{apiDescription}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates an API. Include the following properties in the request body:\n\n- `name` \u2014 A **string** value that contains the API's"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Update an API",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{apiName}}\",\n    \"summary\": \"{{apiSummary}}\",\n    \"description\": \"{{apiDescription}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates an API. Include at least one of the following properties in the request body:\n\n- `name` \u2014 A **string** value"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get all APIs",
+        "api_call": "https://api.getpostman.com/apis?workspaceId={{workspaceId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ]
+        },
+        "functionality": "Gets information about all APIs in a workspace.\n\n**Note:**\n\nThis endpoint only returns APIs created or migrated in Postman v10 and higher."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get an API",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ]
+        },
+        "functionality": "Gets information about an API.\n\n**Note:**\n\n- Git-connected APIs will **only** return the `versions` and `gitInfo` query responses. This is because schema"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Delete an API",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ]
+        },
+        "functionality": "Deletes an API."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get status of an asynchronous task",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/tasks/{{taskId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.api.v10+json"
+                }
+            ]
+        },
+        "functionality": "Gets the status of an asynchronous task."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get a folder",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}/folders/{{folderId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets information about a folder in a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Create a folder",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}/folders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{folderName}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a folder in a collection. For a complete list of properties, refer to \"Folder\" in the [collection.json schema file](https://schema.postman.com/collection/json/v2.1.0/draft-07/collection.json).\n\nYou"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Update a folder",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}/folders/{{folderId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{folderName}}\",\n    \"description\": \"{{folderDescription}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates a folder in a collection. For a complete list of properties, refer to \"Folder\" in the [collection.json schema file](https://schema.postman.com/collection/json/v2.1.0/draft-07/collection.json).\n\n**Note:**\n\nThis"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Delete a folder",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}/folders/{{folderId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a folder in a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get a request",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}/requests/{{requestId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets information about a request in a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Create a request",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}/requests",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{requestName}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a request in a collection. For a complete list of properties, see the [Collection Format Request documentation](https://learning.postman.com/collection-format/reference/request/).\n\n**Note:**\n\nIt is recommended"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Update a request",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}/requests/{{requestId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{requestName}}\",\n    \"method\": \"{{requestMethod}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates a request in a collection. For a complete list of properties, see the [Collection Format Request documentation](https://learning.postman.com/collection-format/reference/request/).\n\n**Note:**\n\n- You must"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Delete a request",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}/requests/{{requestId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/vnd.postman.v2+json",
+                    "description": "You must include this header to use this endpoint."
+                }
+            ]
+        },
+        "functionality": "Deletes a request in a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get a response",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}/responses/{{responseId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets information about a response in a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Create a response",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}/responses?request={{requestId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{responseName}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a request response in a collection. For a complete list of properties, see the [Collection Format Response documentation](https://learning.postman.com/collection-format/reference/response/#reference-diagram).\n\n**Note:**\n\nIt is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Update a response",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}/responses/{{responseId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"{{responseName}}\",\n    \"responseCode\": {\n        \"code\": {{responseHTTPcode}},\n        \"name\": \"{{responseCodeName}}\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates a response in a collection. For a complete list of properties, see the [Collection Format Response documentation](https://learning.postman.com/collection-format/reference/response/#reference-diagram).\n\n**Note:**\n\n- You must"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Delete a response",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}/responses/{{responseId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a response in a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get a collection's tags",
+        "api_call": "https://api.getpostman.com/collections/{{collectionUid}}/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets all the tags associated with a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Update a collection's tags",
+        "api_call": "https://api.getpostman.com/collections/{{collectionUid}}/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"tags\": [\n        {\n            \"slug\": \"{{tagName}}\"\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates a collection's associated tags. This endpoint replaces all existing tags with those you pass in the request body.\n\n**Note:**\n\n- You"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Create a fork",
+        "api_call": "https://api.getpostman.com/collections/fork/{{collectionId}}?workspace={{workspaceId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"label\": \"{{collectionForkName}}\"\n}"
+            }
+        },
+        "functionality": "Creates a [fork](https://learning.postman.com/docs/collaborating-in-postman/version-control/#creating-a-fork) from an existing collection into a workspace. Include the following required request body properties:\n\n*   `label`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Merge a fork",
+        "api_call": "https://api.getpostman.com/collections/merge",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "name": "Content-Type",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"strategy\": \"{{mergeStrategy}}\",\n    \"source\": \"{{forkCollectionId}}\",\n    \"destination\": \"{{destinationCollectionId}}\"\n}"
+            }
+        },
+        "functionality": "Merges a forked collection back into its destination collection. Include the following required properties in the request body:\n\n*  "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Transform collection to OpenAPI",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}/transformations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Transforms an existing Postman Collection into a stringified OpenAPI definition.\n\n**Note:**\n\nThis does **not** create an API."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Transfer folders",
+        "api_call": "https://api.getpostman.com/collection-folders-transfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"ids\": [\n        \"{{folderUid}}\"\n    ],\n    \"target\": {\n        \"model\": \"{{modelType}}\",\n        \"id\": \"{{modelUid}}\"\n    },\n    \"location\": {\n        \"position\": \"{{position}}\",\n        \"model\": \"{{modelId}}\",\n        \"id\": \"{{modelUid}}\"\n    },\n    \"mode\": \"{{modeType}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Copies or moves folders into a collection or folder. Include the following in the request body:\n\n- `ids` \u2014 A list"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Transfer requests",
+        "api_call": "https://api.getpostman.com/collection-requests-transfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"ids\": [\n        \"{{folderUid}}\"\n    ],\n    \"target\": {\n        \"model\": \"{{modelType}}\",\n        \"id\": \"{{modelUid}}\"\n    },\n    \"location\": {\n        \"position\": \"{{position}}\",\n        \"model\": \"{{modelId}}\",\n        \"id\": \"{{modelUid}}\"\n    },\n    \"mode\": \"{{modeType}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Copies or moves requests into a collection or folder. Include the following in the request body:\n\n- `ids` \u2014 A list"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Transfer responses",
+        "api_call": "https://api.getpostman.com/collection-responses-transfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"ids\": [\n        \"{{folderUid}}\"\n    ],\n    \"target\": {\n        \"model\": \"request\",\n        \"id\": \"{{modelUid}}\"\n    },\n    \"location\": {\n        \"position\": \"{{position}}\",\n        \"model\": \"response\",\n        \"id\": \"{{modelUid}}\"\n    },\n    \"mode\": \"{{modeType}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Copies or moves responses into a request. Include the following in the request body:\n\n- `ids` \u2014 A list **string** values"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Create a collection",
+        "api_call": "https://api.getpostman.com/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"collection\": {\n        \"info\": {\n            \"name\": \"{{collectionName}}\",\n            \"schema\": \"{{collectionSchemaUrl}}\"\n        },\n        \"item\": [\n            {\n                \"request\": {}\n            }\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "Creates a collection using the [Postman Collection v2 schema format](https://schema.postman.com/json/collection/v2.1.0/docs/index.html). Include a `collection` object in the request body that contains"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get a collection",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets information about a collection. For a complete list of this endpoint's possible values, use the [collection.json schema file](https://schema.postman.com/json/collection/v2.1.0/collection.json)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Delete a collection",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a collection."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Replace a collection's data",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"collection\": {\n        \"info\": {\n            \"name\": \"{{collectionName}}\",\n            \"schema\": \"{{collectionSchemaUrl}}\"\n        },\n        \"item\": [\n            { \n                // Refer to the collection.json schema file (https://schema.postman.com/json/collection/v2.1.0/collection.json).\n            }\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "Replaces the contents of a collection using the [Postman Collection v2 schema format](https://schema.postman.com/json/collection/v2.1.0/docs/index.html). Include the collection's ID values in the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Update part of a collection",
+        "api_call": "https://api.getpostman.com/collections/{{collectionId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"collection\": {\n        \"info\": {\n            \"name\": \"{{collectionName}}\",\n            \"description\": \"{{collectionDescription}}\"\n        },\n        \"variables\": [\n            // Refer to \"#/definitions/variable\" in the collection.json schema file (https://schema.postman.com/json/collection/v2.1.0/collection.json).\n        ],\n        \"auth\": {\n            // Refer to \"#/definitions/auth-attribute\" in the collection.json schema file (https://schema.postman.com/json/collection/v2.1.0/collection.json).\n        },\n        \"events\": [\n            // Refer to \"#/definitions/event\" in the collection.json schema file (https://schema.postman.com/json/collection/v2.1.0/collection.json).\n        ]\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates specific collection information, such as its name, events, or its variables. For more information about the `auth`, `variables`, and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get all collections",
+        "api_call": "https://api.getpostman.com/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets all of your [collections](https://www.getpostman.com/docs/collections). The response includes all of your subscribed collections."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get a mock server's call logs",
+        "api_call": "https://api.getpostman.com/mocks/{{mockId}}/call-logs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets a mock server's call logs. You can get a maximum of 6.5MB of call logs **or** a total of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get a server response",
+        "api_call": "https://api.getpostman.com/mocks/{{mockId}}/server-responses/{{serverResponseId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets information about a server response."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get all server responses",
+        "api_call": "https://api.getpostman.com/mocks/{{mockId}}/server-responses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets all of a mock server's server responses."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Create a server response",
+        "api_call": "https://api.getpostman.com/mocks/{{mockId}}/server-responses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"serverResponse\": {\n        \"name\": \"{{serverStubName}}\",\n        \"statusCode\": {{statusCode}},\n        \"headers\": [\n            {\n                \"key\": \"{{headerKey}}\",\n                \"value\": \"{{headerValue}}\"\n            }\n        ],\n        \"body\": \"{{serverStubBody}}\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a server response. Server responses let you simulate 5xx server-level responses, such as 500 or 503.\n\nServer-level responses are agnostic"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Update a server response",
+        "api_call": "https://api.getpostman.com/mocks/{{mockId}}/server-responses/{{serverResponseId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"serverResponse\": {\n        \"name\": \"{{serverStubName}}\",\n        \"statusCode\": \"{{statusCode}}\",\n        \"headers\": [\n            {\n                \"key\": \"{{headerKey}}\",\n                \"value\": \"{{headerValue}}\"\n            }\n        ],\n        \"body\": \"{{serverStubBody}}\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates a mock server's server response. Include at least one of the following properties in the request body:\n\n- `name` \u2014"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Delete a server response",
+        "api_call": "https://api.getpostman.com/mocks/{{mockId}}/server-responses/{{serverResponseId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Deletes a mock server's server response."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Respond to an element add request",
+        "api_call": "https://api.getpostman.com/network/private/network-entity/request/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"response\": {\n        \"message\": {{responderMessage}}\n    },\n    \"status\": {{responseStatus}}\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Responds to a user's request to add an element to the [Private API Network](https://learning.postman.com/docs/collaborating-in-postman/adding-private-network/). Include the following in the request"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get all element add requests",
+        "api_call": "https://api.getpostman.com/network/private/network-entity/request/all",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets a list requests to add elements to the\u00a0[Private API Network](https://learning.postman.com/docs/collaborating-in-postman/adding-private-network/)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get all elements and folders",
+        "api_call": "https://api.getpostman.com/network/private",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets information about the folders and elements added to your [Private API Network](https://learning.postman.com/docs/collaborating-in-postman/adding-private-network/). Elements are APIs, collections, and workspaces.\n\n**Note:**\n\nThe `limit`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Add an element or folder",
+        "api_call": "https://api.getpostman.com/network/private",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"{{elementType}}\": {\n        \"id\": \"{{elementId}}\",\n        \"parentFolderId\": {{parentFolderId}}\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Publishes a element or creates a folder in your [Private API Network](https://learning.postman.com/docs/collaborating-in-postman/adding-private-network/). An element is a Postman API, collection, or"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Update an element or folder",
+        "api_call": "https://api.getpostman.com/network/private/{{elementType}}/{{elementId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"{{elementType}}\": {\n        \"parentFolderId\": {{parentFolderId}}\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates an element or folder in your [Private API Network](https://learning.postman.com/docs/collaborating-in-postman/adding-private-network/). When you call this endpoint, the `elementType` property must be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Remove an element or folder",
+        "api_call": "https://api.getpostman.com/network/private/{{elementType}}/{{elementId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Removes an element or delete a folder from your [Private API Network](https://learning.postman.com/docs/collaborating-in-postman/adding-private-network/).\n\n**Note:**\n\nRemoving an API, collection, or workspace element does **not**"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get a workspace's tags",
+        "api_call": "https://api.getpostman.com/workspaces/{{workspaceId}}/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets all the tags associated with a workspace."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Update a workspace's tags",
+        "api_call": "https://api.getpostman.com/workspaces/{{workspaceId}}/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"tags\": [\n        {\n            \"slug\": \"{{tagName}}\"\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates a workspace's associated tags. This endpoint replaces all existing tags with those you pass in the request body.\n\n**Note:**\n\n- You"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get global variables",
+        "api_call": "https://api.getpostman.com/workspaces/{{workspaceId}}/global-variables",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets a workspace's global [variables](https://learning.postman.com/docs/sending-requests/variables/#variable-scopes)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Update global variables",
+        "api_call": "https://api.getpostman.com/workspaces/{{workspaceId}}/global-variables",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"values\": [\n    {\n      \"key\": \"{{keyName}}\",\n      \"type\": \"{{keyType}}\",\n      \"value\": \"{{keyValue}}\",\n      \"enabled\": {{boolean}}\n    }\n  ]\n}"
+            }
+        },
+        "functionality": "Updates and replaces a workspace's global [variables](https://learning.postman.com/docs/sending-requests/variables/#variable-scopes). This endpoint replaces all existing global variables with the variables you pass in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get all roles",
+        "api_call": "https://api.getpostman.com/workspaces-roles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets information about all roles in a workspace, based on the team's [plan](https://www.postman.com/pricing/)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Update user or user group roles",
+        "api_call": "https://api.getpostman.com/workspaces/{{workspaceId}}/roles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"roles\": [\n        {\n            \"op\": \"{{operationType}}\",\n            \"path\": \"{{pathValue}}\",\n            \"value\": [\n                {\n                    \"id\": \"{{userId}}\",\n                    \"role\": {{workspaceRoleId}}\n                }\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates the roles of users or [user groups](https://learning.postman.com/docs/collaborating-in-postman/user-groups/) in a workspace. Include the following values in the `roles` array of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get elements by tag",
+        "api_call": "https://api.getpostman.com/tags/:slug/entities",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets Postman elements (entities) by a given tag. Tags enable you to organize and search [workspaces](https://learning.postman.com/docs/collaborating-in-postman/using-workspaces/managing-workspaces/#tagging-a-workspace), [APIs](https://learning.postman.com/docs/designing-and-developing-your-api/managing-apis/#tagging-apis), and [collections](https://learning.postman.com/docs/collections/using-collections/#tagging-a-collection) that"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Update detected secret resolution status",
+        "api_call": "https://api.getpostman.com/detected-secrets/{{secretId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"resolution\": \"{{secretResolutionStatus}}\",\n    \"workspaceId\": \"{{workspaceId}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates the resolution status of a secret detected in a workspace.\n\nInclude the following in the request body:\n\n- `resolution` \u2014 The"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get detected secrets locations",
+        "api_call": "https://api.getpostman.com/detected-secrets/{{secretId}}/locations?workspaceId={{workspaceId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets the locations of secrets detected by Postman's [Secret Scanner](https://learning.postman.com/docs/administration/secret-scanner/)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Search detected secrets",
+        "api_call": "https://api.getpostman.com/detected-secrets-queries",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"secretTypes\": [\n        \"{{secretTypeIds}}\"\n    ],\n    \"resolved\": {{boolean}},\n    \"statuses\": [\n        \"{{secretStatuses}}\"\n    ],\n    \"workspaceIds\": [\n        \"{{workspaceIds}}\"\n    ],\n    \"workspaceVisiblities\": [\n        \"{{workspaceVisibility}}\"\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns all secrets detected by Postman's [Secret Scanner](https://learning.postman.com/docs/administration/secret-scanner/), grouped by workspace. If you pass an empty request body, this endpoint"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get secret types",
+        "api_call": "https://api.getpostman.com/secret-types",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets the metadata of the secret types supported by Postman's [Secret Scanner](https://learning.postman.com/docs/administration/secret-scanner/). You can use a secret type's ID in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get authenticated user",
+        "api_call": "https://api.getpostman.com/me",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets information about the authenticated user.\n\n**Note:**\n\nThis API returns a different response for users with the [Guest role](https://learning.postman.com/docs/collaborating-in-postman/roles-and-permissions/#team-roles)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: Get accounts",
+        "api_call": "https://api.getpostman.com/accounts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets Postman billing account details for the given team."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Postman API: List account invoices",
+        "api_call": "https://api.getpostman.com/accounts/:accountId/invoices?status=PAID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets all invoices for a Postman billing account filtered by the status of the invoice."
+    }
+]
