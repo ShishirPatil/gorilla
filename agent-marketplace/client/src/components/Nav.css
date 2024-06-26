@@ -1,0 +1,67 @@
+
+.navButtonsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 10px 0;
+  }
+  
+  .navButtonsContainer.mobile {
+    justify-content: center;
+    flex-direction: row;
+    
+  }
+  
+  .navButton {
+    padding: 10px 15px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navButton.mobile {
+    font-size: 12px;
+    padding: 8px 12px;
+    margin: 0 3px;
+    background-color: #007bff;
+  }
+  
+  .filterContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+  }
+  
+  .filterContainer.mobile {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+  .navButtonsContainer {
+    flex-direction: 'row';
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: 'center';
+    align-items: 'center';
+    
+  }
+
+  .navButton {
+    justify-content: 'left';
+    flex-direction:'row';
+
+  }
+}
+  
+  /* Add more styles as needed */
+  

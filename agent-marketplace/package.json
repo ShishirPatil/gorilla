@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "axios": "^1.7.2",
+    "codemirror": "^5.65.16",
+    "cors": "^2.8.5",
+    "react-codemirror2": "^8.0.0",
+    "react-ga4": "^2.1.0",
+    "react-star-rating-component": "^1.4.1",
+    "realm-web": "^2.0.0"
+  }
+}
