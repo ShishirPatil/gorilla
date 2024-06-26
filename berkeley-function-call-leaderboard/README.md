@@ -191,12 +191,14 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |gorilla-openfunctions-v2 | Function Calling|
 |claude-3-{opus-20240229,sonnet-20240229,haiku-20240307}-FC | Function Calling |
 |claude-3-{opus-20240229,sonnet-20240229,haiku-20240307} | Prompt |
+|claude-3-5-sonnet-20240620-FC | Function Calling |
+|claude-3-5-sonnet-20240620 | Prompt |
 |claude-{2.1,instant-1.2}| Prompt|
 |command-r-plus-FC | Function Calling|
 |command-r-plus | Prompt|
 |databrick-dbrx-instruct | Prompt|
 |deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
-|fire-function-v1-FC | Function Calling|
+|firefunction-{v1,v2}-FC | Function Calling|
 |gemini-1.0-pro | Function Calling|
 |gemini-1.5-pro-preview-{0409,0514} | Function Calling|
 |gemini-1.5-flash-preview-0514 | Function Calling|
@@ -235,7 +237,7 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 
 ## Changelog
-* [Jun 7, 2024] Add `glm-4-9b-chat` to the leaderboard
+* [June 7, 2024] [#407](https://github.com/ShishirPatil/gorilla/pull/407), [#462](https://github.com/ShishirPatil/gorilla/pull/462): Update the AST evaluation logic to allow the use of `int` values for Python parameters expecting `float` values. This is to accommodate the Python auto-conversion feature from `int` to `float`.
 * [May 14, 2024] [#426](https://github.com/ShishirPatil/gorilla/pull/426):
     - Add the following new models to the leaderboard:
         + `gpt-4o-2024-05-13`

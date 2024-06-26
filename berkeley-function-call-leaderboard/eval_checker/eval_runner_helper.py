@@ -152,6 +152,18 @@ MODEL_METADATA_MAPPING = {
         "Anthropic",
         "Proprietary",
     ],
+    "claude-3-5-sonnet-20240620-FC": [
+        "Claude-3.5-Sonnet-20240620 (FC)",
+        "https://www.anthropic.com/news/claude-3-5-sonnet",
+        "Anthropic",
+        "Proprietary",
+    ],
+    "claude-3-5-sonnet-20240620": [
+        "Claude-3.5-Sonnet-20240620 (Prompt)",
+        "https://www.anthropic.com/news/claude-3-5-sonnet",
+        "Anthropic",
+        "Proprietary",
+    ],
     "gpt-3.5-turbo-0125-FC": [
         "GPT-3.5-Turbo-0125 (FC)",
         "https://platform.openai.com/docs/models/gpt-3-5-turbo",
@@ -236,9 +248,15 @@ MODEL_METADATA_MAPPING = {
         "Nexusflow",
         "Apache 2.0",
     ],
-    "fire-function-v1-FC": [
+    "firefunction-v1-FC": [
         "FireFunction-v1 (FC)",
         "https://huggingface.co/fireworks-ai/firefunction-v1",
+        "Fireworks",
+        "Apache 2.0",
+    ],
+    "firefunction-v2-FC": [
+        "FireFunction-v2 (FC)",
+        "https://huggingface.co/fireworks-ai/firefunction-v2",
         "Fireworks",
         "Apache 2.0",
     ],
@@ -365,6 +383,8 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-3-sonnet-20240229": 3,
     "claude-3-haiku-20240307-FC": 0.25,
     "claude-3-haiku-20240307": 0.25,
+    "claude-3-5-sonnet-20240620-FC": 3,
+    "claude-3-5-sonnet-20240620": 3,
     "claude-2.1": 8,
     "claude-instant-1.2": 0.8,
     "mistral-large-2402-FC-Any": 4,
@@ -402,6 +422,8 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-3-opus-20240229": 75,
     "claude-3-sonnet-20240229-FC": 15,
     "claude-3-sonnet-20240229": 15,
+    "claude-3-5-sonnet-20240620-FC": 15,
+    "claude-3-5-sonnet-20240620": 15,
     "claude-3-haiku-20240307-FC": 1.25,
     "claude-3-haiku-20240307": 1.25,
     "claude-2.1": 24,
@@ -452,7 +474,8 @@ OSS_LATENCY = {
 
 NO_COST_MODELS = [
     "Nexusflow-Raven-v2",
-    "fire-function-v1-FC",
+    "firefunction-v1-FC",
+    "firefunction-v2-FC",
     "meetkai/functionary-medium-v2.4-FC",
     "meetkai/functionary-small-v2.2-FC",
     "meetkai/functionary-small-v2.4-FC",

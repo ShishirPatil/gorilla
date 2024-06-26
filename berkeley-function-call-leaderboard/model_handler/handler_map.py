@@ -1,5 +1,7 @@
+from model_handler.arctic_handler import ArcticHandler
 from model_handler.claude_fc_handler import ClaudeFCHandler
 from model_handler.claude_prompt_handler import ClaudePromptingHandler
+from model_handler.cohere_handler import CohereHandler
 from model_handler.databricks_handler import DatabricksHandler
 from model_handler.deepseek_handler import DeepseekHandler
 from model_handler.firework_ai_handler import FireworkAIHandler
@@ -41,6 +43,8 @@ handler_map = {
     "claude-3-sonnet-20240229-FC": ClaudeFCHandler,
     "claude-3-haiku-20240307": ClaudePromptingHandler,
     "claude-3-haiku-20240307-FC": ClaudeFCHandler,
+    "claude-3-5-sonnet-20240620": ClaudePromptingHandler,
+    "claude-3-5-sonnet-20240620-FC": ClaudeFCHandler,
     "mistral-large-2402": MistralHandler,
     "mistral-large-2402-FC-Any": MistralHandler,
     "mistral-large-2402-FC-Auto": MistralHandler,
@@ -49,7 +53,8 @@ handler_map = {
     "mistral-small-2402-FC-Any": MistralHandler,
     "mistral-small-2402-FC-Auto": MistralHandler,
     "mistral-tiny-2312": MistralHandler,
-    "fire-function-v1-FC": FireworkAIHandler,
+    "firefunction-v1-FC": FireworkAIHandler,
+    "firefunction-v2-FC": FireworkAIHandler,
     "Nexusflow-Raven-v2": NexusHandler,
     "gemini-1.0-pro": GeminiHandler,
     "gemini-1.5-pro-preview-0409": GeminiHandler,
