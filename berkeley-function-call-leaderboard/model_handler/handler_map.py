@@ -40,6 +40,8 @@ handler_map = {
     "claude-3-sonnet-20240229-FC": ClaudeFCHandler,
     "claude-3-haiku-20240307": ClaudePromptingHandler,
     "claude-3-haiku-20240307-FC": ClaudeFCHandler,
+    "claude-3-5-sonnet-20240620": ClaudePromptingHandler,
+    "claude-3-5-sonnet-20240620-FC": ClaudeFCHandler,
     "mistral-large-2402": MistralHandler,
     "mistral-large-2402-FC-Any": MistralHandler,
     "mistral-large-2402-FC-Auto": MistralHandler,
