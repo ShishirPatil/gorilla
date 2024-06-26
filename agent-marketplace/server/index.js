@@ -53,9 +53,9 @@ app.post('/api/login', async (req, res) => {
             
             const token = jwt.sign(
                 { id: user._id }, // Payload
-                'secret123', // Secret key, should be in your environment variables
-                { expiresIn: '1h' } // Options, e.g., token expires in 1 hour
-            );
+                process.env.SECRET_KEY, // Secret key,
+                { expiresIn: '1h' } // Token expires in 1 hour
+            );        
 
            
 
