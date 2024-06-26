@@ -1,0 +1,3 @@
+[submodule "agent-marketplace"]
+	path = agent-marketplace
+	url = https://github.com/gorilla-llm/agent-marketplace.git
