@@ -1,0 +1,508 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Live Probabilities",
+        "api_call": "https://api.sportradar.com/soccer-probabilities/trial/v4/en/schedules/live/probabilities.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides top-level information for live matches. If probabilities are available for a match, pre-match and live probabilities will be displayed."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Season Outright Probabilities",
+        "api_call": "https://api.sportradar.com/soccer-probabilities/trial/v4/en/seasons/:season_id/outright_probabilities.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides a list of outright probabilities for each competitor from a given season."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Sport Event Probabilities",
+        "api_call": "https://api.sportradar.com/soccer-probabilities/trial/v4/en/sport_events/:sport_event_id/sport_event_probabilities.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides pre-match and live probabilities for a given match."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Sport Event Timeline Probabilities",
+        "api_call": "https://api.sportradar.com/soccer-probabilities/trial/v4/en/sport_events/:sport_event_id/timeline_probabilities.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides a timeline of pre-match and live probability changes for a given match. This also provides match information including player"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Sport Event Upcoming Probabilities",
+        "api_call": "https://api.sportradar.com/soccer-probabilities/trial/v4/en/sport_events/upcoming_probabilities.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides a list of IDs for upcoming sport events in the next 24 hours."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Competition Info",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/competitions/:urn_competition/info.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides the name, id, and parent id for a given competition."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Competition Seasons",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/competitions/:urn_competition/seasons.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides historical season information for a given competition. Valid competition IDs can be found in the Competitions feed."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Competitions",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/competitions.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides a list of all available Soccer competitions."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Competitor Mappings",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/competitors/mappings.json?offset=0&start=5&limit=5",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides competitor id mapping between previous versions of the Soccer API."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Competitor Merge Mappings",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/competitors/merge_mappings.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides the valid Sportradar Id in cases when two competitors have been merged into one."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Competitor Profile",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/competitors/:urn_competitor/profile.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides top-level information for a given team, including the full team roster, manager, home venue, and team colors."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Competitor Summaries",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/competitors/:urn_competitor/summaries.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides previous and upcoming match information for a given competitor, including statistics for past matches and scheduling info for upcoming"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Competitor vs Competitor",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/competitors/:urn_competitor/versus/:urn_competitor2/summaries.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides previous and upcoming matches between two teams including scoring information, player and team match statistics."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Daily Summaries",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/schedules/:urn_date/summaries.json?offset=0&limit=5",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides match information for a given day including team scoring, player and team match statistics."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: League Timeline",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/sport_events/:urn_sport_event/league_timeline.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides league-based post-match scoring, match statistics, and play-by-play event timeline."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Live Summaries",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/schedules/live/summaries.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides match information for all currently live matches including team scoring, player and team match statistics. This feed updates in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Live Timelines",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/schedules/live/timelines.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides a play-by-play event timeline for currently live matches. Matches appear a few minutes before kick-off and disappear a few"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Live Timelines Delta",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/schedules/live/timelines_delta.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides a 10 second live delta of match information, including scoring and a play-by-play event timeline."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Player Mappings",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/players/mappings.json?offset=0&start=5&limit=5",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides player id mapping between previous versions of the Soccer API."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Player Merge Mappings",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/players/merge_mappings.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides valid ids for players who have had their profiles merged. While Sportradar always strives to provide one unique player"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Player Profile",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/players/:urn_player/profile.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides player information, including current and historical team membership info."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Player Summaries",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/players/:urn_player/summaries.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides match info and statistics for the past 10 matches in which a given player participated."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Season Competitors",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons/:urn_season/competitors.json?offset=0&limit=5&start=5",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides a list of teams participating for a given season."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Season Form Standings",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons/:urn_season/form_standings.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides a form table of game results and splits for a given season. Table displays W/D/L (win/draw/loss) for a maximum"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Season Info",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons/:urn_season/info.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides detailed information for a given season, including participating teams and coverage level."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Season Leaders",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons/:urn_season/leaders.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides a list of leaders for a given season. Statistics include points, goals, assists, cards, and minutes played."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Season Lineups",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons/:urn_season/lineups.json?offset=0&start=5&limit=5",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides match lineups and substitutions for a given season."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Season Links",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons/:urn_season/stages_groups_cup_rounds.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides information about linked cup rounds for a given season.\u00a0\n\nUse this feed to compile full advancement brackets for relevant seasons/tournaments."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Season Missing Players",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons/:urn_season/missing_players.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides a list of injured and/or missing players for a given season."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Season Over/Under Statistics",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons/:urn_season/over_under_statistics.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides the over/under match goal totals for all teams in a given season."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Season Players",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons/:urn_season/players.json?offset=0&limit=5&start=5",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides names and ids for all participating players for a given season."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Season Probabilities",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons/:urn_season/probabilities.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides 3-way win probabilities (home team win, away team win, draw) for all matches for a given season."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Season Schedule",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons/:urn_season/schedules.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides basic match information for all matches for a given season, including scoring and match coverage."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Season Standings",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons/:urn_season/standings.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides detailed standings info for a given season."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Season Summaries",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons/:urn_season/summaries.json?offset=0&limit=5&start=5",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides information for all matches from a given season including scoring and statistics at the match level."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Season Transfers",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons/:urn_season/transfers.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides a list of all player transfers for a given season."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Seasonal Competitor Players",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons/:urn_season/competitor_players.json?offset=0&limit=5&start=5",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides player roster information for every team from a given season."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Seasonal Competitor Statistics",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons/:urn_season/competitors/:urn_competitor/statistics.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides team and player seasonal statistics for a given season."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Seasons",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/seasons.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides a list of historical season information for all competitions. Competitions will return a maximum of three seasons of data,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Sport Event Fun Facts",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/sport_events/:urn_sport_event/fun_facts.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides noteworthy, human-readable, facts based on statistical information about a given match and its competing teams."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Sport Event Lineups",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/sport_events/:urn_sport_event/lineups.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides detailed roster information for a given match. Starting players, substitutions, formation type, and channel availability are included if supported"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Sport Event Summary",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/sport_events/:urn_sport_event/summary.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides real-time match-level statistics for a given match. Including player and team stats, scoring info, and channel availability. Please note"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Sport Event Timeline",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/sport_events/:urn_sport_event/timeline.json",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides real-time match-level statistics and a play-by-play event timeline for a given match. This includes player and team stats, scoring"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Sport Events Created",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/sport_events/created.json?offset=0&start=5&limit=5",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides ids for sport events that have been created in the last 24 hours."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Sport Events Removed",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/sport_events/removed.json?offset=0&start=5&limit=5",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides ids for sport events that have been removed from the API."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Soccer v4: Sport Events Updated",
+        "api_call": "https://api.sportradar.com/soccer/trial/v4/:locale/sport_events/updated.json?offset=0&start=5&limit=5",
+        "api_version": "v4",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Provides ids for sport events that have been updated in the last 24 hours."
+    }
+]
