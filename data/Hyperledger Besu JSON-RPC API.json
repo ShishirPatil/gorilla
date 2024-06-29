@@ -1,0 +1,2242 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: admin_addPeer",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"admin_addPeer\",\n    \"params\": [\n        \"enode://c93f69ddd83d3db3e93e5165d60b4f5d93a9731df776beee94c5f8a0c770e41bdea69094136402db0cef7af63f0aa636ff676d4a88c6d37276dfa4160c21ed5f@127.0.0.1:30303\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Adds a static node\n\n> **Caution**\n>\n> If connections are timing out, ensure the node ID in the enode URL is correct.\n\n####"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: admin_changeLogLevel",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"admin_changeLogLevel\",\n    \"params\": [\n        \"DEBUG\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Changes the log level without restarting Besu. You can change the log level for all logs, or you\ncan change the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: admin_generateLogBloomCache",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"admin_generateLogBloomCache\",\n    \"params\": [\n        \"0x0\",\n        \"0x10000\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Generates cached log bloom indexes for blocks. APIs such as [`eth_getLogs`](#eth_getlogs) and\n[`eth_getFilterLogs`](#eth_getfilterlogs) use the cache for improved performance.\n\n> **note**\n>\n> Each"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: admin_logsRepairCache",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"admin_logsRepairCache\",\n    \"params\": [\n        \"1200\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Repairs cached logs by fixing all segments starting with the specified block number.\n\n#### Parameters\n\n`quantity` - Decimal index of the starting"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: admin_nodeInfo",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"admin_nodeInfo\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns networking information about the node. The information includes general information about\nthe node and specific information from each running Ethereum"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: admin_peers",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"admin_peers\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns networking information about connected remote nodes.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *array* of *objects* - Object returned for each remote node.\n\nProperties"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: admin_removePeer",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"admin_removePeer\",\n    \"params\": [\n        \"enode://f59c0ab603377b6ec88b89d5bb41b98fc385030ab1e4b03752db6f7dab364559d92c757c13116ae6408d2d33f0138e7812eb8b696b2a22fe3332c4b5127b22a3@127.0.0.1:30304\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Removes a [static node](https://besu.hyperledger.org/en/stable/HowTo/Find-and-Connect/Static-Nodes).\n\n#### Parameters\n\n`string` : [Enode URL](https://besu.hyperledger.org/en/stable/Concepts/Node-Keys#enode-url) of peer to remove.\n\n#### Returns\n\n`result` : `boolean` - `true` if peer removed"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: clique_discard",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"clique_discard\",\n    \"params\": [\n        \"0x42eb768f2244c8811c63729a21a3569731535f06\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Discards a proposal to [add or remove a signer with the specified address].\n\n#### Parameters\n\n`data` - 20-byte address of proposed signer.\n\n####"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: clique_getSignerMetrics",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"clique_getSignerMetrics\",\n    \"params\": [\n        \"1\",\n        \"100\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Provides validator metrics for the specified range:\n\n* Number of blocks from each validator.\n* Block number of the last block proposed"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: clique_getSigners",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"clique_getSigners\",\n    \"params\": [\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Lists [signers for the specified block].\n\n#### Parameters\n\n`quantity|tag` - Integer representing a block number or one of the string tags `latest`,\n`earliest`,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: clique_getSignersAtHash",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"clique_getSignersAtHash\",\n    \"params\": [\n        \"0x98b2ddb5106b03649d2d337d42154702796438b3c74fd25a5782940e84237a48\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Lists signers for the specified block.\n\n#### Parameters\n\n`data` - 32-byte block hash.\n\n#### Returns\n\n`result: array of data` - List of 20-byte addresses"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: clique_proposals",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"clique_proposals\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns\n[current proposals](https://besu.hyperledger.org/en/stable/HowTo/Configure/Consensus-Protocols/Clique#adding-and-removing-signers).\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result`:_object_ - Map of account addresses to corresponding boolean values indicating the\nproposal for each account.\n\nIf the boolean"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: clique_propose",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"clique_propose\",\n    \"params\": [\n        \"0x12eb759f2222d7711c63729a45c3585731521d01\",\n        true\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Propose to [add or remove a signer with the specified address].\n\n#### Parameters\n\n`data` - 20-byte address.\n\n`boolean` -  `true` to propose"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: debug_accountRange",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"debug_accountRange\",\n    \"params\": [\n        \"12345\",\n        0,\n        \"0\",\n        5\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "[Retesteth](https://github.com/ethereum/retesteth/wiki/Retesteth-Overview) uses\n`debug_accountRange` to implement debugging.\n\nReturns the accounts for a specified block.\n\n#### Parameters\n\n`blockHashOrNumber` : `data` - Block hash or number.\n\n`txIndex` :"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: debug_batchSendRawTransaction",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"debug_batchSendRawTransaction\",\n    \"params\": [\n        \"0xf868808203e882520894627306090abab3a6e1400e9345bc60c78a8bef57872386f26fc10000801ba0ac74ecfa0e9b85785f042c143ead4780931234cc9a032fce99fab1f45e0d90faa02fd17e8eb433d4ca47727653232045d4f81322619c0852d3fe8ddcfcedb66a43\",\n        \"0x416\",\n        \"0xf868018203e882520894627306090abab3a6e1400e9345bc60c78a8bef57872386f26fc10000801ca0b24ea1bee8fe36984c36acbf80979a4509f23fc17141851e08d505c0df158aa0a00472a05903d4cd7a811bd4d5c59cc105d93f5943f3393f253e92e65fc36e7ce0\",\n        \"0xf868808203e882520894627306090abab3a6e1400e9345bc60c78a8bef5787470de4df820000801ca0f7936b4de04792e3c65095cfbfd1399d231368f5f05f877588c0c8509f6c98c9a01834004dead527c8da1396eede42e1c60e41f38a77c2fd13a6e495479c729b99\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Sends a list of [signed transactions](https://besu.hyperledger.org/en/latest/HowTo/Send-Transactions/Transactions/).\nThis is used to quickly load a network with a lot of transactions.\nThis does the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: debug_getBadBlocks",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"debug_getBadBlocks\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns a list of invalid blocks.\nThis is used to detect and analyze consensus flaws.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *array* of [block"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: debug_metrics",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"debug_metrics\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns metrics providing information on the internal operation of Besu.\n\nThe available metrics might change over time. The JVM metrics might"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: debug_standardTraceBadBlockToFile",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"debug_standardTraceBadBlockToFile\",\n    \"params\": [\n        \"0x53741e9e94791466d117c5f9e41a2ed1de3f73d39920c621dfc2f294e7779baa\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Generates files containing the block trace of invalid blocks. A separate file is generated for each transaction in the block.\n\nUse"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: debug_standardTraceBlockToFile",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"debug_standardTraceBlockToFile\",\n    \"params\": [\n        \"0x2dc0b6c43144e314a86777b4bd4f987c0790a6a0b21560671d221ed81a23f2dc\",\n        {\n            \"txHash\": \"0x4ff04c4aec9517721179c8dd435f47fbbfc2ed26cd4926845ab687420d5580a6\",\n            \"disableMemory\": false\n        }\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Generates files containing the block trace. A separate file is generated for each\ntransaction in the block.\n\nYou can also specify a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: debug_storageRangeAt",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"debug_storageRangeAt\",\n    \"params\": [\n        \"0x2b76b3a2fc44c0e21ea183d06c846353279a7acf12abcc6fb9d5e8fb14ae2f8c\",\n        0,\n        \"0x0e0d2c8f7794e82164f11798276a188147fbd415\",\n        \"0x0000000000000000000000000000000000000000000000000000000000000000\",\n        1\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "[Remix](https://remix.ethereum.org/) uses `debug_storageRangeAt` to implement debugging. Use the\n_Debugger_ tab in Remix instead of calling `debug_storageRangeAt` directly.\n\nReturns the contract storage for"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: debug_traceBlock",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"debug_traceBlock\",\n    \"params\": [\n        \"0xf90277f90208a05a41d0e66b4120775176c09fcf39e7c0520517a13d2b57b18d33d342df038bfca01dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d4934794e6a7a1d47ff21b6321162aea7c6cb457d5476bcaa00e0df2706b0a4fb8bd08c9246d472abbe850af446405d9eba1db41db18b4a169a04513310fcb9f6f616972a3b948dc5d547f280849a87ebb5af0191f98b87be598a0fe2bf2a941abf41d72637e5b91750332a30283efd40c424dc522b77e6f0ed8c4b9010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000860153886c1bbd82b44382520b8252088455c426598b657468706f6f6c2e6f7267a0b48c515a9dde8d346c3337ea520aa995a4738bb595495506125449c1149d6cf488ba4f8ecd18aab215f869f86780862d79883d2000825208945df9b87991262f6ba471f09758cde1c0fc1de734827a69801ca088ff6cf0fefd94db46111149ae4bfc179e9b94721fffd821d38d16464b3f71d0a045e0aff800961cfce805daef7016b9b675c137a6a41a548f7b60a3484c06a33ac0\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns full trace of all invoked opcodes of all transactions included in the block.\n\n#### Parameters\n\n`Block` : `data` - RLP of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: debug_traceBlockByHash",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"debug_traceBlockByHash\",\n    \"params\": [\n        \"0xaceb3b2c9b25b0589230873921eb894b28722011b8df63977145517d754875a5\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns full trace of all invoked opcodes of all transactions included in the block.\n\n#### Parameters\n\n`block hash` : `data` - Block"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: debug_traceBlockByNumber",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"debug_traceBlockByNumber\",\n    \"params\": [\n        \"0x7224\",\n        {\n            \"disableStorage\": true\n        }\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns full trace of all invoked opcodes of all transactions included in the block.\n\n#### Parameters\n\n`quantity|tag` - Integer representing a block"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: debug_traceTransaction",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"debug_traceTransaction\",\n    \"params\": [\n        \"0x2cc6c94c21685b7e0f8ddabf277a5ccf98db157c62619cde8baea696a74ed18e\",\n        {\n            \"disableStorage\": true\n        }\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "[Remix](https://remix.ethereum.org/) uses `debug_traceTransaction` to implement debugging. Use the\n_Debugger_ tab in Remix instead of calling `debug_traceTransaction` directly.\n\nReruns the transaction with the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eea_sendRawTransaction",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eea_sendRawTransaction\",\n    \"params\": [\n        \"0xf869018203e882520894f17f52151ebef6c7334fad080c5704d77216b732881bc16d674ec80000801ba02da1c48b670996dcb1f447ef9ef00b33033c48a4fe938f420bec3e56bfd24071a062e0aa78a81bf0290afbc3a9d8e9a068e6d74caa66c5e0fa8a46deaae96b0833\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Distributes the\n[private transaction](https://besu.hyperledger.org/en/stable/HowTo/Send-Transactions/Creating-Sending-Private-Transactions),\ngenerates the [privacy marker transaction](https://besu.hyperledger.org/en/stable/Concepts/Privacy/Private-Transaction-Processing)\nand submits it to the transaction pool, and returns the transaction hash of the\n[privacy"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_accounts",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_accounts\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns a list of account addresses a client owns.\n\n> **note**\n> \n> This method returns an empty object because Besu [doesn't"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_blockNumber",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_blockNumber\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the index corresponding to the block number of the current chain head.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *QUANTITY* - Hexadecimal integer"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_call",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_call\",\n    \"params\": [\n        {\n            \"to\": \"0x69498dd54bd25aa0c886cf1f8b8ae0856d55ff13\",\n            \"value\": \"0x1\"\n        },\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Invokes a contract function locally and does not change the state of the blockchain.\n\nYou can interact with contracts using `eth_sendRawTransaction`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_chainId",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_chainId\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the [chain ID](https://besu.hyperledger.org/en/stable/Concepts/NetworkID-And-ChainID).\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *quantity* - Chain ID, in hexadecimal."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_coinbase",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_coinbase\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the client coinbase address. The coinbase address is the account to pay mining rewards to.\n\nTo set a coinbase address,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_estimateGas",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_estimateGas\",\n    \"params\": [\n        {\n            \"from\": \"0x687422eea2cb73b5d3e242ba5456b782919afc85\",\n            \"to\": \"0xdd37f65db31c107f773e82a4f85c693058fef7a9\",\n            \"value\": \"0x1\"\n        },\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns an estimate of the gas required for a transaction to complete. The estimation process\ndoes not use gas and the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_gasPrice",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_gasPrice\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns a percentile gas unit price for the most recent blocks, in Wei. By default,\nthe last 100 blocks are examined"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getBalance",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getBalance\",\n    \"params\": [\n        \"0xfe3b557e8fb62b89f4916b721be55ceb828dbd73\",\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the account balance of the specified address.\n\n#### Parameters\n\n`DATA` - 20-byte account address from which to retrieve the balance.\n\n`QUANTITY|TAG` -"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getBlockByHash",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getBlockByHash\",\n    \"params\": [\n        \"0xaf5526fcb88b2f0d163c9a78ee678bf95b20115dc3d4e2b7b1f5fc4a308724a0\",\n        false\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns information about the block by hash.\n\n#### Parameters\n\n`DATA` - 32-byte hash of a block.\n\n`Boolean` - If `true`, returns the full"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getBlockByNumber",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getBlockByNumber\",\n    \"params\": [\n        \"0xF\",\n        true\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns information about a block by block number.\n\n#### Parameters\n\n`QUANTITY|TAG` - Integer representing a block number or one of the string"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getBlockTransactionCountByHash",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getBlockTransactionCountByHash\",\n    \"params\": [\n        \"0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the number of transactions in the block matching the given block hash.\n\n#### Parameters\n\n`data` - 32-byte block hash.\n\n#### Returns\n\n`result` :"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getBlockTransactionCountByNumber",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getBlockTransactionCountByNumber\",\n    \"params\": [\n        \"0xe8\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the number of transactions in a block matching the specified block number.\n\n#### Parameters\n\n`QUANTITY|TAG` - Integer representing a block number"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getCode",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getCode\",\n    \"params\": [\n        \"0xa50a51c09a5c451c52bb714527e1974b686d8e77\",\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the code of the smart contract at the specified address. Besu stores compiled smart\ncontract code as a hexadecimal value.\n\n####"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getFilterChanges",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getFilterChanges\",\n    \"params\": [\n        \"0xf8bf5598d9e04fbe84523d42640b9b0e\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Polls the specified filter and returns an array of changes that have occurred since the last poll.\n\n#### Parameters\n\n`data` - Filter"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getFilterLogs",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getFilterLogs\",\n    \"params\": [\n        \"0x5ace5de3985749b6a1b2b0d3f3e1fb69\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns an array of [logs](https://besu.hyperledger.org/en/stable/Concepts/Events-and-Logs) for the specified filter.\n\nLeave the [`--auto-log-bloom-caching-enabled`](https://besu.hyperledger.org/en/stable/CLI/CLI-Syntax#auto-log-bloom-caching-enabled)\ncommand line option at the default value of `true` to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getLogs",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getLogs\",\n    \"params\": [\n        {\n            \"fromBlock\": \"earliest\",\n            \"toBlock\": \"latest\",\n            \"address\": \"0x2e1f232a9439c3d459fceca0beef13acc8259dd8\",\n            \"topics\": []\n        }\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns an array of [logs](https://besu.hyperledger.org/en/stable/Concepts/Events-and-Logs) matching a specified filter object.\n\nLeave the [`--auto-log-bloom-caching-enabled`](https://besu.hyperledger.org/en/stable/CLI/CLI-Syntax#auto-log-bloom-caching-enabled)\ncommand line option at the default value of `true`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getMinerDataByBlockHash",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getMinerDataByBlockHash\",\n    \"params\": [\n        \"0xbf137c3a7a1ebdfac21252765e5d7f40d115c2757e4a4abee929be88c624fdb7\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns miner data for the specified block.\n\n#### Parameters\n\n`data` - 32 byte block hash.\n\n#### Returns\n\n`result`: `object` - [Miner data](https://besu.hyperledger.org/en/stable/Reference/API-Objects#miner-data-object)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getMinerDataByBlockNumber",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getMinerDataByBlockNumber\",\n    \"params\": [\n        \"0x7689D2\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns miner data for the specified block.\n\n#### Parameters\n\n`quantity|tag` - Integer representing a block number or one of the string tags"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getProof",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getProof\",\n    \"params\": [\n        \"0a8156e7ee392d885d10eaa86afd0e323afdcd95\",\n        [\n            \"0x0000000000000000000000000000000000000000000000000000000000000347\"\n        ],\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the account and storage values of the specified account, including the Merkle proof.\n\nThe API allows IoT devices or mobile"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getStorageAt",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getStorageAt\",\n    \"params\": [\n        \"0x3B3F3E\",\n        \"0x0\",\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the value of a storage position at a specified address.\n\n#### Parameters\n\n`DATA` - A 20-byte storage address.\n\n`QUANTITY` - Integer index"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getTransactionByBlockHashAndIndex",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getTransactionByBlockHashAndIndex\",\n    \"params\": [\n        \"0xa52be92809541220ee0aaaede6047d9a6c5d0cd96a517c854d944ee70a0ebb44\",\n        \"0x1\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns transaction information for the specified block hash and transaction index position.\n\n#### Parameters\n\n`DATA` - 32-byte hash of a block.\n\n`QUANTITY` -"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getTransactionByBlockNumberAndIndex",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getTransactionByBlockNumberAndIndex\",\n    \"params\": [\n        \"latest\",\n        \"0x0\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns transaction information for the specified block number and transaction index position.\n\n#### Parameters\n\n`QUANTITY|TAG` - Integer representing a block number or"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getTransactionByHash",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getTransactionByHash\",\n    \"params\": [\n        \"0xa52be92809541220ee0aaaede6047d9a6c5d0cd96a517c854d944ee70a0ebb44\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns transaction information for the specified transaction hash.\n\n#### Parameters\n\n`DATA` - 32-byte transaction hash.\n\n#### Returns\n\nObject - [Transaction object](https://besu.hyperledger.org/en/stable/Reference/API-Objects#transaction-object), or `null` when"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getTransactionCount",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getTransactionCount\",\n    \"params\": [\n        \"0x9d8f8572f345e1ae53db1dFA4a7fce49B467bD7f\",\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the number of transactions sent from a specified address. Use the `pending` tag to get the\nnext account nonce not"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getTransactionReceipt",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getTransactionReceipt\",\n    \"params\": [\n        \"0x96c6830efd87a70020d4d1647c93402d747c05ecf6beeb068dee621f8d13d8d1\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the receipt of a transaction by transaction hash. Receipts for pending transactions are not\navailable.\n\nIf you enabled [revert reason](https://besu.hyperledger.org/en/stable/HowTo/Send-Transactions/Revert-Reason), the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getUncleByBlockHashAndIndex",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getUncleByBlockHashAndIndex\",\n    \"params\": [\n        \"0xc48fb64230a82f65a08e7280bd8745e7fea87bc7c206309dee32209fe9a985f7\",\n        \"0x0\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns uncle specified by block hash and index.\n\n#### Parameters\n\n`data` - 32-byte block hash.\n\n`quantity` - Index of the uncle.\n\n#### Returns\n\n`result` :"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getUncleByBlockNumberAndIndex",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getUncleByBlockNumberAndIndex\",\n    \"params\": [\n        \"0x7689D2\",\n        \"0x0\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns uncle specified by block number and index.\n\n#### Parameters\n\n`quantity|tag` - Index of the block, or one of the string tags"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getUncleCountByBlockHash",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getUncleCountByBlockHash\",\n    \"params\": [\n        \"0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the number of uncles in a block from a block matching the given block hash.\n\n#### Parameters\n\n`DATA` - 32-byte block"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getUncleCountByBlockNumber",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getUncleCountByBlockNumber\",\n    \"params\": [\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the number of uncles in a block matching the specified block number.\n\n#### Parameters\n\n`QUANTITY|TAG` - Integer representing either the index"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_getWork",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_getWork\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the hash of the current block, the seed hash, and the required target boundary condition.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : Array"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_hashrate",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_hashrate\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the number of hashes per second with which the node is mining.\n\nWhen the stratum server is enabled, this method"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_mining",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_mining\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Whether the client is actively mining new blocks. Besu pauses mining while the client synchronizes\nwith the network regardless of command"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_newBlockFilter",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_newBlockFilter\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a filter to retrieve new block hashes. To poll for new blocks, use\n[`eth_getFilterChanges`](#eth_getfilterchanges).\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`data` - Filter ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_newFilter",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_newFilter\",\n    \"params\": [\n        {\n            \"fromBlock\": \"earliest\",\n            \"toBlock\": \"latest\",\n            \"topics\": []\n        }\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a [log filter](https://besu.hyperledger.org/en/stable/Concepts/Events-and-Logs). To poll for logs associated with the\ncreated filter, use [`eth_getFilterChanges`](#eth_getfilterchanges). To get all logs associated with\nthe"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_newPendingTransactionFilter",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_newPendingTransactionFilter\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a filter to retrieve new pending transactions hashes. To poll for new pending transactions,\nuse [`eth_getFilterChanges`](#eth_getfilterchanges).\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`data` - Filter"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_protocolVersion",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_protocolVersion\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns current Ethereum protocol version.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *quantity* - Ethereum protocol version."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_sendRawTransaction",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_sendRawTransaction\",\n    \"params\": [\n        \"0xf86a018203e882520894f17f52151ebef6c7334fad080c5704d77216b732896c6b935b8bbd400000801ba093129415f03b4794fd1512e79ee7f097e4271f66721020f8407aac92179893a5a0451b875d89721ec98be55201092980b0a87bb1c48507fccb86da713596b2a09e\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Sends a [signed transaction](https://besu.hyperledger.org/en/stable/HowTo/Send-Transactions/Transactions).\nA transaction can send ether, deploy a contract, or interact with a contract.\nSet the maximum transaction fee"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_submitHashrate",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_submitHashrate\",\n    \"params\": [\n        \"0x0000000000000000000000000000000000000000000000000000000000500000\",\n        \"0x59daa26581d0acd1fce254fb7e85952f4c09d0915afd33d3886cd914bc7d283c\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Submits the mining hashrate.\n\nUsed by mining software such as [Ethminer](https://github.com/ethereum-mining/ethminer).\n\n#### Parameters\n\n* DATA, 32 Bytes - Hexadecimal string representation of the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_submitWork",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_submitWork\",\n    \"params\": [\n        \"0x0000000000000001\",\n        \"0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef\",\n        \"0xD1GE5700000000000000000000000000D1GE5700000000000000000000000000\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Submits a Proof of Work (Ethash) solution.\n\nUsed by mining software such as [Ethminer](https://github.com/ethereum-mining/ethminer).\n\n#### Parameters\n\n* DATA, 8 Bytes - Retrieved nonce.\n*"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_syncing",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_syncing\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns an object with data about the synchronization status, or `false` if not synchronizing.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *Object|Boolean* - Object"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: eth_uninstallFilter",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"eth_uninstallFilter\",\n    \"params\": [\n        \"0x70355a0b574b437eaa19fe95adfedc0a\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Uninstalls a filter with the specified ID. When a filter is no longer required, call this method.\n\nFilters time out when"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: ibft_discardValidatorVote",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"ibft_discardValidatorVote\",\n    \"params\": [\n        \"0x42eb768f2244c8811c63729a21a3569731535f06\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Discards a proposal to [add or remove a validator] with the specified address.\n\n#### Parameters\n\n`data` - 20-byte address of proposed validator.\n\n####"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: ibft_getPendingVotes",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"ibft_getPendingVotes\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns [votes](https://besu.hyperledger.org/en/stable/HowTo/Configure/Consensus-Protocols/IBFT#adding-and-removing-validators)\ncast in the current [epoch](https://besu.hyperledger.org/en/stable/HowTo/Configure/Consensus-Protocols/IBFT#genesis-file).\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result`: `object` - Map of account addresses to corresponding boolean values indicating the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: ibft_getSignerMetrics",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"ibft_getSignerMetrics\",\n    \"params\": [\n        \"1\",\n        \"100\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Provides validator metrics for the specified range:\n\n* Number of blocks from each validator.\n* Block number of the last block proposed"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: ibft_getValidatorsByBlockHash",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"ibft_getValidatorsByBlockHash\",\n    \"params\": [\n        \"0x98b2ddb5106b03649d2d337d42154702796438b3c74fd25a5782940e84237a48\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Lists the validators defined in the specified block.\n\n#### Parameters\n\n`data` - 32-byte block hash.\n\n#### Returns\n\n`result: array of data` - List of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: ibft_getValidatorsByBlockNumber",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"ibft_getValidatorsByBlockNumber\",\n    \"params\": [\n        \"0x09\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Lists the validators defined in the specified block.\n\n#### Parameters\n\n`quantity|tag` - Integer representing a block number or one of the string"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: ibft_proposeValidatorVote",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"ibft_proposeValidatorVote\",\n    \"params\": [\n        \"42d4287eac8078828cf5f3486cfe601a275a49a5\",\n        true\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Propose to [add or remove a validator] with the specified address.\n\n#### Parameters\n\n`data` - Account address\n\n`boolean` -  `true` to propose"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: miner_changeTargetGasLimit",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"miner_changeTargetGasLimit\",\n    \"params\": [\n        800000\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates the target gas limit set using the [`--target-gas-limit`](CLI/CLI-Syntax.md#target-gas-limit)\ncommand line option.\n\n#### Parameters\n\n`integer` : `quantity` - The target gas price in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: miner_start",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"miner_start\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Starts the mining process. To start mining, you must first specify a miner coinbase using the\n[`--miner-coinbase`](https://besu.hyperledger.org/en/stable/CLI/CLI-Syntax#miner-coinbase) command line option.\n\n#### Parameters\n\nNone\n\n####"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: miner_stop",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"miner_stop\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Stops the mining process on the client.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` :  `boolean` - `true` if mining stops, or if the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: rpc_modules",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"rpc_modules\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Lists [enabled APIs](https://besu.hyperledger.org/en/stable/HowTo/Interact/APIs/Using-JSON-RPC-API#api-methods-enabled-by-default)\nand the version of each.\n\n#### Parameters\n\nNone\n\n#### Returns\n\nEnabled APIs."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: net_version",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"net_version\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the [network ID](https://besu.hyperledger.org/en/stable/Concepts/NetworkID-And-ChainID).\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *string* - Current network ID.\n\n| Network ID | Chain | Network | Description\n|------------|-------|---------|-------------------------------|\n|"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: net_listening",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"net_listening\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Whether the client is actively listening for network connections.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` (*BOOLEAN*) - `true` if the client is actively listening"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: net_peerCount",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"net_peerCount\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the number of peers currently connected to the client.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *integer* - Number of connected peers in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: net_enode",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"net_enode\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the [enode URL](https://besu.hyperledger.org/en/stable/Concepts/Node-Keys#enode-url).\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *string* - [Enode URL](https://besu.hyperledger.org/en/stable/Concepts/Node-Keys#enode-url) of the node."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: net_services",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"net_services\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns enabled services (for example, `jsonrpc`) and the host and port for each service.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *objects* - Enabled"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: perm_addAccountsToAllowlist",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"perm_addAccountsToAllowlist\",\n    \"params\": [\n        [\n            \"0xb9b81ee349c3807e46bc71aa2632203c5b462032\",\n            \"0xb9b81ee349c3807e46bc71aa2632203c5b462034\"\n        ]\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Adds accounts (participants) to the\n[accounts permission list](https://besu.hyperledger.org/en/stable/HowTo/Limit-Access/Local-Permissioning#account-permissioning).\n\n#### Parameters\n\n`list of strings` - List of account addresses.\n\n> **Note**\n>\n> The parameters list contains"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: perm_addNodesToAllowlist",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"perm_addNodesToAllowlist\",\n    \"params\": [\n        [\n            \"enode://7e4ef30e9ec683f26ad76ffca5b5148fa7a6575f4cfad4eb0f52f9c3d8335f4a9b6f9e66fcc73ef95ed7a2a52784d4f372e7750ac8ae0b544309a5b391a23dd7@127.0.0.1:30303\",\n            \"enode://2feb33b3c6c4a8f77d84a5ce44954e83e5f163e7a65f7f7a7fec499ceb0ddd76a46ef635408c513d64c076470eac86b7f2c8ae4fcd112cb28ce82c0d64ec2c94@127.0.0.1:30304\"\n        ]\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Adds nodes to the\n[nodes allowlist](https://besu.hyperledger.org/en/stable/HowTo/Limit-Access/Local-Permissioning#node-allowlisting).\n\n#### Parameters\n\n`list of strings` - List of [enode URLs](https://besu.hyperledger.org/en/stable/Concepts/Node-Keys#enode-url).\n\n> **Note**\n>\n> The parameters list contains a list"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: perm_getAccountsAllowlist",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"perm_getAccountsAllowlist\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Lists accounts (participants) in the\n[accounts permissions list](https://besu.hyperledger.org/en/stable/HowTo/Limit-Access/Local-Permissioning#account-permissioning).\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result: list` - Accounts (participants) in the accounts allowlist."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: perm_getNodesAllowlist",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"perm_getNodesAllowlist\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Lists nodes in the\n[nodes allowlist](https://besu.hyperledger.org/en/stable/HowTo/Limit-Access/Local-Permissioning#node-allowlisting).\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result: list` - [Enode URLs](https://besu.hyperledger.org/en/stable/Concepts/Node-Keys#enode-url) of nodes in the nodes allowlist."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: perm_reloadPermissionsFromFile",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"perm_reloadPermissionsFromFile\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Reloads the accounts and nodes allowlists from the [permissions configuration file].\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` - `Success`, or `error` if the permissions"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: perm_removeAccountsFromAllowlist",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"perm_removeAccountsFromAllowlist\",\n    \"params\": [\n        [\n            \"0xb9b81ee349c3807e46bc71aa2632203c5b462032\",\n            \"0xb9b81ee349c3807e46bc71aa2632203c5b462034\"\n        ]\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Removes accounts (participants) from the\n[accounts permissions list](https://besu.hyperledger.org/en/stable/HowTo/Limit-Access/Local-Permissioning#account-permissioning).\n\n#### Parameters\n\n`list of strings` - List of account addresses.\n\n> **Note**\n>\n> The parameters list contains"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: perm_removeNodesFromAllowlist",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"perm_removeNodesFromAllowlist\",\n    \"params\": [\n        [\n            \"enode://7e4ef30e9ec683f26ad76ffca5b5148fa7a6575f4cfad4eb0f52f9c3d8335f4a9b6f9e66fcc73ef95ed7a2a52784d4f372e7750ac8ae0b544309a5b391a23dd7@127.0.0.1:30303\",\n            \"enode://2feb33b3c6c4a8f77d84a5ce44954e83e5f163e7a65f7f7a7fec499ceb0ddd76a46ef635408c513d64c076470eac86b7f2c8ae4fcd112cb28ce82c0d64ec2c94@127.0.0.1:30304\"\n        ]\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Removes nodes from the\n[nodes allowlist](https://besu.hyperledger.org/en/stable/HowTo/Limit-Access/Local-Permissioning#node-allowlisting).\n\n#### Parameters\n\n`list of strings` - List of [enode URLs](https://besu.hyperledger.org/en/stable/Concepts/Node-Keys#enode-url)\n\n> **Note**\n>\n> The parameters list contains a list"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: priv_call",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"priv_call\",\n    \"params\": [\n        \"tb8NVyQqZnHNegf/3mYsyB+HEud4SPWn90rz3GoskRw=\",\n        {\n            \"to\": \"0x69498dd54bd25aa0c886cf1f8b8ae0856d55ff13\",\n            \"data\": \"0x3fa4f245\"\n        },\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: priv_createPrivacyGroup",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"priv_createPrivacyGroup\",\n    \"params\": [\n        {\n            \"addresses\": [\n                \"sTZpbQhcOfd9ZaFDnC00e/N2Ofv9p4/ZTBbEeVtXJ3E=\",\n                \"quhb1pQPGN1w8ZSZSyiIfncEAlVY/M/rauSyQ5wVMRE=\"\n            ],\n            \"name\": \"Group A\",\n            \"description\": \"Description Group A\"\n        }\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a group of nodes, specified by their [Orion](https://docs.orion.consensys.net/) public key.\n\n#### Parameters\n\n`Object` - Request options:\n\n* `addresses`: `array of data` -"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: priv_deletePrivacyGroup",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"priv_deletePrivacyGroup\",\n    \"params\": [\n        \"ewuTVoc5nlvWMwTFdRRK/wvV0dcyQo/Pauvx5bNEbTk=\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Deletes the specified privacy group.\n\n#### Parameters\n\n`data` - Privacy group ID\n\n#### Returns\n\nPrivacy group ID that was deleted."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: priv_distributeRawTransaction",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"priv_distributeRawTransaction\",\n    \"params\": [\n        \"0xf869018203e882520894f17f52151ebef6c7334fad080c5704d77216b732881bc16d674ec80000801ba02da1c48b670996dcb1f447ef9ef00b33033c48a4fe938f420bec3e56bfd24071a062e0aa78a81bf0290afbc3a9d8e9a068e6d74caa66c5e0fa8a46deaae96b0833\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Distributes a signed, RLP encoded\n[private transaction](https://besu.hyperledger.org/en/stable/HowTo/Send-Transactions/Creating-Sending-Private-Transactions).\n\n> **tip**\n\n    If you want to sign the Privacy Marker Transaction outside"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: priv_findPrivacyGroup",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"priv_findPrivacyGroup\",\n    \"params\": [\n        [\n            \"negmDcN2P4ODpqn/6WkJ02zT/0w0bjhGpkZ8UP6vARk=\",\n            \"g59BmTeJIn7HIcnq8VQWgyh/pDbvbt2eyP0Ii60aDDw=\"\n        ]\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns a list of privacy groups containing only the listed members. For example, if the listed\nmembers are A and B,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: priv_getCode",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"priv_getCode\",\n    \"params\": [\n        \"1lJxSIP4JOp6uRn9wYsPeWwqoOP1c4nPQjylB4FExUA=\",\n        \"0xeaf1c1bd00ef0bec5e39fba81740f1c5d05aa201\",\n        \"latest\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the code of the private smart contract at the specified address. Compiled smart contract code\nis stored as a hexadecimal"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: priv_getEeaTransactionCount",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"priv_getEeaTransactionCount\",\n    \"params\": [\n        \"0xfe3b557e8fb62b89f4916b721be55ceb828dbd73\",\n        \"GGilEkXLaQ9yhhtbpBT03Me9iYa7U/mWXxrJhnbl1XY=\",\n        [\n            \"KkOjNLmCI6r+mICrC6l+XuEDjFEzQllaMQMpWLl4y1s=\",\n            \"eLb69r4K8/9WviwlfDiZ4jf97P9czyS3DkKu0QYGLjg=\"\n        ]\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the private transaction count for the specified account and\n[group of sender and recipients].\n\n> **Important**\n\n> If sending more than one"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: priv_getFilterChanges",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"priv_getFilterChanges\",\n    \"params\": [\n        \"4rFldHM792LeP/e2WPkTXZedjwKuTr/KwCFTt6mBbkI=\",\n        \"0x4a35b92809d73f4f53a2355d62125442\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Polls the specified filter for a private contract and returns an array of changes that have occurred\nsince the last poll.\n\nFilters"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: priv_getFilterLogs",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"priv_getFilterLogs\",\n    \"params\": [\n        \"4rFldHM792LeP/e2WPkTXZedjwKuTr/KwCFTt6mBbkI=\",\n        \"0x4a35b92809d73f4f53a2355d62125442\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns an array of [logs](https://besu.hyperledger.org/en/stable/Concepts/Events-and-Logs) for the specified filter for a private\ncontract.\n\nFor private contracts, `priv_getFilterLogs` is the same as [`eth_getFilterLogs`](#eth_getfilterlogs)\nfor"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: priv_getLogs",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"priv_getLogs\",\n    \"params\": [\n        \"vGy/TZgO6y8VPMVeJAQ99MF1NaTf5ohA3TFfzoEF71k=\",\n        {\n            \"fromBlock\": \"earliest\",\n            \"toBlock\": \"latest\",\n            \"addresses\": [\n                \"0x630c507ff633312087dc33c513b66276abcd2fc3\"\n            ],\n            \"topics\": [\n                \"0x85bea11d86cefb165374e0f727bacf21dc2f4ea816493981ecf72dcfb212a410\"\n            ]\n        }\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns an array of [logs](https://besu.hyperledger.org/en/stable/Concepts/Events-and-Logs) matching a specified filter object.\n\nFor private contracts, `priv_getLogs` is the same as [`eth_getLogs`](#eth_getlogs) for public"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: priv_getPrivacyPrecompileAddress",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"priv_getPrivacyPrecompileAddress\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the address of the\n[privacy precompiled contract](https://besu.hyperledger.org/en/stable/Concepts/Privacy/Private-Transaction-Processing). The address\nis derived and based on the value of the [`privacy-onchain-groups-enabled`](https://besu.hyperledger.org/en/stable/CLI/CLI-Syntax#privacy-onchain-groups-enabled)\noption.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: priv_getPrivateTransaction",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"priv_getPrivateTransaction\",\n    \"params\": [\n        \"0x623c4ce5275a87b91f4f1c521012d39ca19311c787bde405490f4c0426a71498\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the private transaction if you are a participant, otherwise, `null`.\n\n#### Parameters\n\n`data` - Transaction hash returned by [`eea_sendRawTransaction`](#eea_sendrawtransaction) or\n[`eea_sendTransaction`](https://docs.ethsigner.consensys.net/en/latest/Using-EthSigner/Using-EthSigner/#eea_sendtransaction).\n\n#### Returns\n\nObject"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: priv_getTransactionCount",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"priv_getTransactionCount\",\n    \"params\": [\n        \"0xfe3b557e8fb62b89f4916b721be55ceb828dbd73\",\n        \"kAbelwaVW7okoEn1+okO+AbA4Hhz/7DaCOWVQz9nx5M=\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the private transaction count for specified account and privacy group.\n\n> **important**\n\n> If sending more than one transaction to be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: priv_getTransactionReceipt",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"priv_getTransactionReceipt\",\n    \"params\": [\n        \"0xf3ab9693ad92e277bf785e1772f29fb1864904bbbe87b0470455ddb082caab9d\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns information about the private transaction after mining the transaction. Receipts for\npending transactions are not available.\n\n#### Parameters\n\n`data` - 32-byte hash"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: priv_newFilter",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"priv_newFilter\",\n    \"params\": [\n        \"4rFldHM792LeP/e2WPkTXZedjwKuTr/KwCFTt6mBbkI=\",\n        {\n            \"fromBlock\": \"earliest\",\n            \"toBlock\": \"latest\",\n            \"addresses\": [\n                \"0x991cc548c154b2953cc48c02f782e1314097dfbb\"\n            ],\n            \"topics\": [\n                \"0x85bea11d86cefb165374e0f727bacf21dc2f4ea816493981ecf72dcfb212a410\"\n            ]\n        }\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a [log filter](https://besu.hyperledger.org/en/stable/Concepts/Events-and-Logs) for a private contract. To poll for logs associated with the\ncreated filter, use [`priv_getFilterChanges`](#priv_getfilterchanges). To get"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: priv_uninstallFilter",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"priv_uninstallFilter\",\n    \"params\": [\n        \"4rFldHM792LeP/e2WPkTXZedjwKuTr/KwCFTt6mBbkI=\",\n        \"0x4a35b92809d73f4f53a2355d62125442\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Uninstalls a filter for a private contract with the specified ID. When a filter is no longer required,\ncall this method.\n\nFilters"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: trace_replayBlockTransactions",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"trace_replayBlockTransactions\",\n    \"params\": [\n        \"0x12\",\n        [\n            \"trace\",\n            \"vmTrace\",\n            \"stateDiff\"\n        ]\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Provides transaction processing tracing per block.\n\n> **important**\n\n    Your node must be an archive node (that is, synchronized"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: trace_block",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"trace_block\",\n    \"params\": [\n        \"0x6\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Provides transaction processing of [type `trace`](Trace-Types#trace) for the specified block.\n\n> **Important**\n>\n> Your node must be an archive node (that is,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: trace_transaction",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"trace_transaction\",\n    \"params\": [\n        \"0x4c253746668dca6ac3f7b9bc18248b558a95b5fc881d140872c2dff984d344a7\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Provides transaction processing of [type `trace`](Trace-Types#trace) for the specified transaction.\n\n> **Important**\n>\n> Your node must be an archive node (that is,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: txpool_besuPendingTransactions",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"txpool_besuPendingTransactions\",\n    \"params\": [\n        2,\n        {\n            \"from\": {\n                \"eq\": \"0xfe3b557e8fb62b89f4916b721be55ceb828dbd73\"\n            },\n            \"gas\": {\n                \"lt\": \"0x5209\"\n            },\n            \"nonce\": {\n                \"gt\": \"0x1\"\n            }\n        }\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Lists pending transactions that match the supplied filter conditions.\n\n#### Parameters\n\n* `QUANTITY` - Integer representing the maximum number of results to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: txpool_besuStatistics",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"txpool_besuStatistics\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Lists statistics about the node transaction pool.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` - Transaction pool statistics:\n\n* `maxSize` - Maximum number of transactions kept"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: txpool_besuTransactions",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"txpool_besuTransactions\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Lists transactions in the node transaction pool.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` - List of transactions."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: web3_clientVersion",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"web3_clientVersion\",\n    \"params\": [],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns the current client version.\n\n#### Parameters\n\nNone\n\n#### Returns\n\n`result` : *string* - Current client version."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Hyperledger Besu JSON-RPC API: web3_sha3",
+        "api_call": "http://{{rpc-http-host}}:{{rpc-http-port}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"jsonrpc\": \"2.0\",\n    \"method\": \"web3_sha3\",\n    \"params\": [\n        \"0x68656c6c6f20776f726c00\"\n    ],\n    \"id\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns a [SHA3](https://en.wikipedia.org/wiki/SHA-3) hash of the specified data. The result value\nis a [Keccak-256](https://keccak.team/keccak.html) hash, not the standardized SHA3-256.\n\n#### Parameters\n\n`DATA` -"
+    }
+]
