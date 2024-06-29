@@ -1,0 +1,338 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Retrieve a message",
+        "api_call": "https://mailosaur.com/api/messages/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of your messages in summary form. The summaries are returned sorted by received date, with the most"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Delete a message",
+        "api_call": "https://mailosaur.com/api/messages/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Permanently deletes a server. This operation cannot be undone. Also deletes all messages and associated attachments within the server."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: List all messages",
+        "api_call": "https://mailosaur.com/api/messages?server=SERVER_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of your messages in summary form. The summaries are returned sorted by received date, with the most"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Delete all messages",
+        "api_call": "https://mailosaur.com/api/messages?server=SERVER_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Permanently deletes all or specified messages held by the specified server. This operation cannot be undone. Also deletes any attachments"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Search for messages",
+        "api_call": "https://mailosaur.com/api/messages/search?server=SERVER_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"sentTo\": \"tempor dolor\",\n    \"sentFrom\": \"reprehenderit veniam ea nostrud\",\n    \"subject\": \"veniam qui labore sunt\",\n    \"body\": \"ipsum quis ullamco\",\n    \"receivedAfter\": \"1945-06-18T22:00:55.289Z\",\n    \"match\": \"ANY\"\n}"
+            }
+        },
+        "functionality": "Returns a list of messages matching the specified search criteria, in summary form. The messages are returned sorted by received"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Forward a message",
+        "api_call": "https://mailosaur.com/api/messages/:id/forward",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"to\": \"someone@example.com\",\n    \"html\": \"<p>Hello world.</p>\",\n    \"text\": \"Hello world.\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Reply to a message",
+        "api_call": "https://mailosaur.com/api/messages/:id/forward",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"to\": \"someone@example.com\",\n    \"html\": \"<p>Hello world.</p>\",\n    \"text\": \"Hello world.\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Send an email",
+        "api_call": "https://mailosaur.com/api/messages?server=SERVER_ID",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"to\": \"someone@example.com\",\n    \"html\": \"<p>Hello world.</p>\",\n    \"text\": \"Hello world.\",\n    \"send\": true\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Download an attachment",
+        "api_call": "https://mailosaur.com/api/files/attachments/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Downloads a single attachment. Simply supply the unique identifier for the required attachment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Download EML",
+        "api_call": "https://mailosaur.com/api/files/email/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Downloads an EML file representing the specified email. Simply supply the unique identifier for the required email."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Perform a spam test",
+        "api_call": "https://mailosaur.com/api/analysis/spam/:email",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Perform spam testing on the specified email."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: List all servers",
+        "api_call": "https://mailosaur.com/api/servers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of your virtual SMTP servers. Servers are returned sorted in alphabetical order."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Create a server",
+        "api_call": "https://mailosaur.com/api/servers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"nulla ex culpa\"\n}"
+            }
+        },
+        "functionality": "Creates a new virtual SMTP server and returns it."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Retrieve a server",
+        "api_call": "https://mailosaur.com/api/servers/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the detail for a single server. Simply supply the unique identifier for the required server."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Retrieve server password",
+        "api_call": "https://mailosaur.com/api/servers/:serverId/password",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Update a server",
+        "api_call": "https://mailosaur.com/api/servers/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"sint commo\"\n}"
+            }
+        },
+        "functionality": "Updates a single server and returns it."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Delete a server",
+        "api_call": "https://mailosaur.com/api/servers/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Permanently deletes a server. This operation cannot be undone. Also deletes all messages and associated attachments within the server."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Retrieve one-time password",
+        "api_call": "https://mailosaur.com/api/devices/otp",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"sharedSecret\": \"ONSWG4TFOQYTEMY=\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: List all devices",
+        "api_call": "https://mailosaur.com/api/devices",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of your virtual SMTP servers. Servers are returned sorted in alphabetical order."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Create a device",
+        "api_call": "https://mailosaur.com/api/devices",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"nulla ex culpa\",\n    \"sharedSecret\": \"ONSWG4TFOQYTEMY=\"\n}"
+            }
+        },
+        "functionality": "Creates a new virtual SMTP server and returns it."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Retrieve OTP for an existing device",
+        "api_call": "https://mailosaur.com/api/devices/:deviceId/otp",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the detail for a single server. Simply supply the unique identifier for the required server."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Delete a device",
+        "api_call": "https://mailosaur.com/api/devices/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "Permanently deletes a server. This operation cannot be undone. Also deletes all messages and associated attachments within the server."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Account Limits",
+        "api_call": "https://mailosaur.com/api/usage/limits",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieve account usage limits. Details the current limits and usage for your account. This endpoint requires authentication with an account-level"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Mailosaur: Transactions",
+        "api_call": "https://mailosaur.com/api/usage/transactions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Retrieves the last 31 days of transactional usage. This endpoint requires authentication with an account-level API key."
+    }
+]
