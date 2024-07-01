@@ -34,8 +34,7 @@ class OpenAIHandler(BaseHandler):
                 },
                 {
                     "role": "user",
-                    "content": "Questions:"
-                    + USER_PROMPT_FOR_CHAT_MODEL.format(
+                    "content": USER_PROMPT_FOR_CHAT_MODEL.format(
                         user_prompt=prompt, functions=str(functions)
                     ),
                 },
@@ -55,7 +54,7 @@ class OpenAIHandler(BaseHandler):
             functions = language_specific_pre_processing(functions, test_category, True)
             if type(functions) is not list:
                 functions = [functions]
-            message = [{"role": "user", "content": "Questions:" + prompt}]
+            message = [{"role": "user", "content": prompt}]
             oai_tool = convert_to_tool(
                 functions, GORILLA_TO_OPENAPI, self.model_style, test_category, True
             )
