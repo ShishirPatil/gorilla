@@ -367,6 +367,12 @@ MODEL_METADATA_MAPPING = {
         "Snowflake",
         "apache-2.0",
     ],
+    "nvidia/nemotron-4-340b-instruct": [
+        "Nemotron-4-340b-instruct (Prompt)",
+        "https://huggingface.co/nvidia/nemotron-4-340b-instruct",
+        "NVIDIA",
+        "nvidia-open-model-license"
+    ]
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -472,6 +478,7 @@ NO_COST_MODELS = [
     "meetkai/functionary-small-v2.2-FC",
     "meetkai/functionary-small-v2.4-FC",
     "snowflake/arctic",
+    "nvidia/nemotron-4-340b-instruct",
 ]
 
 # Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price

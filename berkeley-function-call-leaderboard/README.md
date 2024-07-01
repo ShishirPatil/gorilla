@@ -222,6 +222,7 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |Nexusflow-Raven-v2 | Function Calling|
 |NousResearch/Hermes-2-Pro-Mistral-7B 💻| Function Calling|
 |snowflake/arctic | Prompt| 
+|nvidia/nemotron-4-340b-instruct| Prompt|
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function-calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
 
