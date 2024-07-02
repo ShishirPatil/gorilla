@@ -3,6 +3,7 @@ import sys
 sys.path.append("../")
 
 from checker import ast_checker, exec_checker, executable_checker_rest
+from custom_exception import BadAPIStatusError
 from eval_runner_helper import *
 from tqdm import tqdm
 import argparse
@@ -351,9 +352,15 @@ def runner(model_names, test_categories, api_sanity_check):
                 # We only test the API with ground truth once
                 if not API_TESTED and api_sanity_check:
                     print("---- Sanity checking API status ----")
-                    api_status_sanity_check_rest()
-                    api_status_sanity_check_executable()
-                    print("---- Sanity check Passed 💯 ----")
+                    try:
+                        api_status_sanity_check_rest()
+                        api_status_sanity_check_executable()
+                        print("---- Sanity check Passed 💯 ----")
+                    except BadAPIStatusError as e:
+                        # Might be a good to capture this as variance bounds
+                        print(f"API Sanity Check completed. \nError:{e}")
+                        print("Continuing evaluation...")
+                    
                     API_TESTED = True
 
                 if (
@@ -487,11 +494,11 @@ if __name__ == "__main__":
         help="A list of test categories to run the evaluation on",
     )
     parser.add_argument(
-        "-s",
-        "--skip-api-sanity-check",
-        action="store_false",
-        default=True,  # Default value is True, meaning the sanity check is performed unless the flag is specified
-        help="Skip the REST API status sanity check before running the evaluation. By default, the sanity check is performed.",
+        "-c",
+        "--api-sanity-check",
+        action="store_true",
+        default=False,  # Default value is False, meaning the sanity check is skipped unless the flag is specified
+        help="Perform the REST API status sanity check before running the evaluation. By default, the sanity check is skipped.",
     )
 
     args = parser.parse_args()
