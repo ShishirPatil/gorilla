@@ -3,7 +3,9 @@ from tqdm import tqdm
 from model_handler.handler_map import handler_map
 from model_handler.model_style import ModelStyle
 from model_handler.constant import USE_COHERE_OPTIMIZATION
-
+import aiohttp
+import asyncio
+from functools import wraps,partial
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -40,12 +42,22 @@ test_categories = {
     "sql": "gorilla_openfunctions_v1_test_sql.json",
 }
 
+def make_async(func):
+    @wraps(func)
+    async def run(*args, loop=None, executor=None, **kwargs):
+        if loop is None:
+            loop = asyncio.get_running_loop()
+        pfunc = partial(func, *args, **kwargs)
+        return await loop.run_in_executor(executor, pfunc)
+    return run
 
+## automatically wraps the the handler to make handler.inference async
 def build_handler(model_name, temperature, top_p, max_tokens):
     handler = handler_map[model_name](model_name, temperature, top_p, max_tokens)
-    # detect if hanlder is async
-    is_async = hasattr(handler, 'inference') and asyncio.iscoroutinefunction(handler.inference)
-    return handler, is_async
+    
+    if not asyncio.iscoroutinefunction(handler.inference):
+        handler.inference = make_async(handler.inference)
+    return handler
 
 
 def load_file(test_category):
@@ -61,18 +73,13 @@ async def async_wrapper(sync_func, *args, **kwargs):
     loop = asyncio.get_running_loop()
     return await loop.run_in_executor(None, sync_func, *args, **kwargs)
 
-async def fetch_and_process(session, index, test_case, handler,is_async, test_category,file_to_open):
+async def fetch_and_process(session, index, test_case, handler, test_category, file_to_open):
     user_question, functions = test_case["question"], test_case["function"]
     if isinstance(functions, (dict, str)):
         functions = [functions]
 
-    # handle the case where some functions may not be async
-    if is_async:
-        result, metadata = await handler.inference(user_question, functions, test_category)
-    else:
-        result, metadata = await async_wrapper(handler.inference, user_question, functions, test_category)
-
     result, metadata = await handler.inference(user_question, functions, test_category)
+
     result_to_write = {
         "idx": index,
         "result": result,
@@ -82,19 +89,12 @@ async def fetch_and_process(session, index, test_case, handler,is_async, test_ca
     }
     await handler.write(result_to_write, file_to_open)
 
-
-import asyncio
-import aiohttp
-import json
-import os
-from tqdm import tqdm
-
 async def main():
     args = get_args()
     if USE_COHERE_OPTIMIZATION and "command-r-plus" in args.model:
         args.model = args.model + "-optimized"
     
-    handler, is_async = build_handler(args.model, args.temperature, args.top_p, args.max_tokens)
+    handler = build_handler(args.model, args.temperature, args.top_p, args.max_tokens)
 
     if handler.model_style == ModelStyle.OSSMODEL:
         result = await handler.inference(
@@ -138,7 +138,7 @@ async def main():
                             progress_bar.update(1)  # Update for skipped items
                             continue
                         test_case = test_cases[index]
-                        task = asyncio.create_task(fetch_and_process(session, index, test_case, handler,is_async, test_category, file_to_open))
+                        task = asyncio.create_task(fetch_and_process(session, index, test_case, handler, test_category, file_to_open))
                         task.add_done_callback(lambda _: progress_bar.update(1))  # Update progress when task is done
                         tasks.append(task)
                     await asyncio.gather(*tasks)
