@@ -9,3 +9,4 @@ anthropic~=0.29.0
 openai
 numpy
 cohere~=5.2.5
+aiofiles
