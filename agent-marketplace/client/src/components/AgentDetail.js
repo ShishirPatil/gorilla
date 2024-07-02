@@ -127,6 +127,12 @@ const AgentDetail = () => {
     },
   };
 
+  const topRightButtonDisabledStyle = {
+    ...topRightButtonStyle,
+    backgroundColor: '#4CAF50',
+    cursor: 'not-allowed',
+  };
+
   const headerStyle = {
     display: 'flex',
     alignItems: 'center',
@@ -160,10 +166,19 @@ const AgentDetail = () => {
     marginRight: '5px',
   };
 
-  let imagePath = `/${agent?.origin}.png`;
+  let imagePath = null;
   if (agent?.origin === 'llama') {
     imagePath = "/llama-index.png";
   }
+  if (agent?.origin === 'langchain') {
+    imagePath = "/langchain.png";
+  }
+  if (agent?.origin === 'crewai') {
+    imagePath = "/crewai.png";
+  }
+
+  const isSourceValid = agent?.source && agent.source.startsWith('http');
+  const validSourceMessage = isSourceValid ? `Check it out at ${agent?.origin}` : `Source: ${agent?.source}`;
 
   return (
     <>
@@ -190,8 +205,13 @@ const AgentDetail = () => {
         </div>
         <div style={headerStyle}>
           <h1>{agent?.name}</h1>
-          <button style={topRightButtonStyle} onClick={() => window.open(agent?.source, '_blank')}>
-            Check it out at {agent?.origin}<img src={imagePath} alt={agent?.origin} style={{ width: '25px', height: '25px', marginLeft: '5px' }} />
+          <button
+            style={isSourceValid ? topRightButtonStyle : topRightButtonDisabledStyle}
+            onClick={isSourceValid ? () => window.open(agent?.source, '_blank') : null}
+            disabled={!isSourceValid}
+          >
+            {validSourceMessage}
+            {imagePath && <img src={imagePath} alt="fa-arrow-right" style={standardizedImage} />}
           </button>
         </div>
         <p>{agent?.description}</p>
@@ -226,7 +246,13 @@ const AgentDetail = () => {
           onChange={(e) => setMarkdown(e.target.value)}
         />
         <button onClick={downloadMarkdown} style={{ ...backButtonStyle, backgroundColor: '#4CAF50', color: 'white', border: 'none' }}>Download Markdown with API Key</button>
-        <a href={agent?.source} target="_blank" rel="noopener noreferrer" style={{ display: 'block', marginTop: '20px', textDecoration: 'none', color: '#007bff' }}>Visit Source→</a>
+        {isSourceValid ? (
+          <a href={agent?.source} target="_blank" rel="noopener noreferrer" style={{ display: 'block', marginTop: '20px', textDecoration: 'none', color: '#007bff' }}>Visit Source→</a>
+        ) : (
+          <div style={{ display: 'block', marginTop: '20px', textDecoration: 'none', color: '#007bff' }}>
+            {validSourceMessage}
+          </div>
+        )}
         {agent.additionalResources && (
           <div style={{ marginTop: '20px' }}>
             <h2>Additional Resources</h2>

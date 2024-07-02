@@ -93,7 +93,7 @@ const AddAgent = () => {
         borderRadius: '5px',
         boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
         opacity: 1,
-        zIndex: 1,
+        zIndex: 1000,
         display: 'none'
     };
 

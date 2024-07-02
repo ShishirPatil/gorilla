@@ -143,6 +143,10 @@ const HomePage = () => {
     navigate('/add-agent');
   };
 
+  const navigateToForum = () => {
+    navigate('/forum');
+  };
+
   const handleLogout = () => {
     setUser(null); // Clears user from context
     localStorage.removeItem('user-info'); // Clears user info from localStorage if used for persisting login state
@@ -153,7 +157,9 @@ const HomePage = () => {
     if (fetchError) {
       return <p style={{ textAlign: 'center' }}>You have no agents.</p>;
     } else if (filteredAgents.length > 0) {
-      return filteredAgents.map(agent => <Card key={agent._id} agent={agent} />);
+      return filteredAgents.map(agent => (
+        <Card key={agent._id} agent={agent} filter={agent.tag || agent.origin} />
+      ));
     } else {
       return <p style={{ textAlign: 'center' }}>No agents found.</p>;
     }
@@ -176,6 +182,7 @@ const HomePage = () => {
           <button onClick={navigateToAddAgent} className={`navButton ${window.innerWidth <= 768 ? 'mobile' : ''}`}>Add New Agent</button>
           <button onClick={() => urlNavigate('/faqs')} className={`navButton ${window.innerWidth <= 768 ? 'mobile' : ''}`}>FAQs</button>
           <button onClick={() => window.location.href = 'https://gorilla.cs.berkeley.edu/blogs/11_agent_marketplace.html'} className={`navButton ${window.innerWidth <= 768 ? 'mobile' : ''}`}>Blog</button> {/* New Blog button */}
+          <button onClick={navigateToForum} className={`navButton ${window.innerWidth <= 768 ? 'mobile' : ''}`}>Forum</button> {/* New Forum button */}
         </div>
 
         <h1 style={{ textAlign: 'center', fontSize: '2.5rem', margin: '20px 0 10px 0', color: '#007bff', fontFamily: 'Arial' }}>Agents and Assistants Marketplace</h1>

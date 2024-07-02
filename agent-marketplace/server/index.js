@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const agentRoutes = require('./routes/agentRoutes'); 
 const reviewRoutes = require('./routes/reviewRoutes'); 
 const userRoutes = require('./routes/userRoute');
+const forumRoutes = require('./routes/forumRoutes');
 const { MongoClient } = require('mongodb');
 const jwt = require('jsonwebtoken');
 const User = require('./models/User'); // Adjust the path to where your user model file is located.
@@ -92,6 +93,8 @@ app.use('/api', userRoutes);
 
 // Use the review routes
 app.use('/api/reviews', reviewRoutes); 
+
+app.use('/api/forum', forumRoutes);
 
 console.log(process.env.PORT);
 

@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Card = ({ agent }) => {
+const Card = ({ agent, filter }) => {
   const navigate = useNavigate();
   const [isHovered, setIsHovered] = useState(false);
 
-  const getPastelColor = () => {
-    const pastelColors = [
-      '#a8e6cf', // Mint green
-      '#dcedc1', // Light green
-      '#ffd3b6', // Peach
-      '#ffaaa5', // Soft red
-      '#ff8b94', // Soft pink
-      '#a2d5f2', // Light blue
-    ];
-    return pastelColors[Math.floor(Math.random() * pastelColors.length)];
+  const getCardColor = (filter, isHovered) => {
+    const filterColors = {
+      AI: { normal: '#a8e6cf', hover: '#91d4b7' },           // Mint green
+      Data: { normal: '#dcedc1', hover: '#c6d7a8' },         // Light green
+      Integration: { normal: '#ffd3b6', hover: '#ffbfa0' },  // Peach
+      Communication: { normal: '#ffaaa5', hover: '#ff918f' }, // Soft red
+      Database: { normal: '#ff8b94', hover: '#ff6d78' },     // Soft pink
+      Finance: { normal: '#a2d5f2', hover: '#8bc3de' },      // Light blue
+    };
+    const color = filterColors[filter] || { normal: '#f8bbd0', hover: '#e1a2b8' };
+    return isHovered ? color.hover : color.normal;
   };
 
   // Function to render stars based on the rating
@@ -36,12 +37,12 @@ const Card = ({ agent }) => {
     cursor: 'pointer',
     boxShadow: isHovered ? '0 10px 20px rgba(0,0,0,0.2)' : '0 5px 15px rgba(0,0,0,0.1)',
     transform: isHovered ? 'translateY(-10px)' : 'none',
-    transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
+    transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     height: '250px', // Fixed height for all cards
-    backgroundColor: getPastelColor(),
+    backgroundColor: getCardColor(filter, isHovered)
   };
 
   const titleStyle = {
@@ -91,7 +92,7 @@ const Card = ({ agent }) => {
         {renderStars(agent.averageRating)}
         <span>{agent.averageRating.toFixed(1)}</span>
         <div style={reviewCountStyle}>
-        <span>(</span>
+          <span>(</span>
           <img src="user.png" alt="Reviews" style={reviewIconStyle} />
           <span>{agent.numberOfReviews})</span>
         </div>

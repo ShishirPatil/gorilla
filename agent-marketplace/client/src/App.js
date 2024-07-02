@@ -7,6 +7,8 @@ import FAQPage from './components/FAQPage';
 import Login from './components/Login'; 
 import Register from './components/Register'; 
 import UserContext from './UserContext';
+import PostDetail from './components/PostDetail';
+import Forum from './components/Forum'
 import ReactGA from 'react-ga4';
 
 const App = () => {
@@ -31,6 +33,8 @@ const App = () => {
         <Route path="/faqs" element={<FAQPage />} /> {/* FAQ Page Route */}
         <Route path="/login" element={<Login />} /> {/* Login Page Route */}
         <Route path="/register" element={<Register />} /> {/* Registration Page Route */}
+        <Route path="/forum" element={<Forum />} />
+        <Route path="/forum/posts/:postId" element={<PostDetail />} />
       </Routes>
     </UserContext.Provider>
   );

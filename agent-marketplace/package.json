@@ -5,6 +5,7 @@
     "cors": "^2.8.5",
     "react-codemirror2": "^8.0.0",
     "react-ga4": "^2.1.0",
+    "react-icons": "^5.2.1",
     "react-star-rating-component": "^1.4.1",
     "realm-web": "^2.0.0"
   }
