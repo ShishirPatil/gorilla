@@ -18,6 +18,7 @@ def get_args():
     parser.add_argument("--max-tokens", type=int, default=1200)
     parser.add_argument("--num-gpus", default=1, type=int)
     parser.add_argument("--timeout", default=60, type=int)
+    parser.add_argument('--batch-size', type=int, default=1, help='Batch size for processing (default: 1)')
 
     args = parser.parse_args()
     return args
@@ -54,20 +55,42 @@ def load_file(test_category):
         test_cate, files_to_open = [test_category], [test_categories[test_category]]
     return test_cate, files_to_open
 
+async def fetch_and_process(session, index, test_case, handler, test_category,file_to_open):
+    user_question, functions = test_case["question"], test_case["function"]
+    if isinstance(functions, (dict, str)):
+        functions = [functions]
+    result, metadata = await handler.inference(user_question, functions, test_category)
+    result_to_write = {
+        "idx": index,
+        "result": result,
+        "input_token_count": metadata["input_tokens"],
+        "output_token_count": metadata["output_tokens"],
+        "latency": metadata["latency"],
+    }
+    await handler.write(result_to_write, file_to_open)
 
-if __name__ == "__main__":
+
+import asyncio
+import aiohttp
+import json
+import os
+from tqdm import tqdm
+
+async def main():
     args = get_args()
     if USE_COHERE_OPTIMIZATION and "command-r-plus" in args.model:
         args.model = args.model + "-optimized"
+    
     handler = build_handler(args.model, args.temperature, args.top_p, args.max_tokens)
+
     if handler.model_style == ModelStyle.OSSMODEL:
-        result = handler.inference(
+        result = await handler.inference(
             question_file="eval_data_total.json",
             test_category=args.test_category,
             num_gpus=args.num_gpus,
         )
         for res in result[0]:
-            handler.write(res, "result.json")
+            await handler.write(res, "result.json")
     else:
         test_cate, files_to_open = load_file(args.test_category)
         for test_category, file_to_open in zip(test_cate, files_to_open):
@@ -76,35 +99,41 @@ if __name__ == "__main__":
             with open("./data/" + file_to_open) as f:
                 for line in f:
                     test_cases.append(json.loads(line))
-            num_existing_result = 0  # if the result file already exists, skip the test cases that have been tested.
-            if os.path.exists(
+
+            num_existing_result = 0
+            result_file_path = (
                 "./result/"
                 + args.model.replace("/", "_")
                 + "/"
                 + file_to_open.replace(".json", "_result.json")
-            ):
-                with open(
-                    "./result/"
-                    + args.model.replace("/", "_")
-                    + "/"
-                    + file_to_open.replace(".json", "_result.json")
-                ) as f:
+            )
+            if os.path.exists(result_file_path):
+                with open(result_file_path) as f:
                     for line in f:
                         num_existing_result += 1
-            for index, test_case in enumerate(tqdm(test_cases)):
-                if index < num_existing_result:
-                    continue
-                user_question, functions = test_case["question"], test_case["function"]
-                if type(functions) is dict or type(functions) is str:
-                    functions = [functions]
-                result, metadata = handler.inference(
-                    user_question, functions, test_category
-                )
-                result_to_write = {
-                    "idx": index,
-                    "result": result,
-                    "input_token_count": metadata["input_tokens"],
-                    "output_token_count": metadata["output_tokens"],
-                    "latency": metadata["latency"],
-                }
-                handler.write(result_to_write, file_to_open)
+
+            async with aiohttp.ClientSession() as session:
+                batch_size = args.batch_size    # Number of iterations to run at a time
+                tasks = []
+                # Create a tqdm progress bar for the entire dataset
+                progress_bar = tqdm(total=len(test_cases), desc="Processing test cases")
+                
+                for start_index in range(0, len(test_cases), batch_size):
+                    end_index = min(start_index + batch_size, len(test_cases))
+                    for index in range(start_index, end_index):
+                        if index < num_existing_result:
+                            progress_bar.update(1)  # Update for skipped items
+                            continue
+                        test_case = test_cases[index]
+                        task = asyncio.create_task(fetch_and_process(session, index, test_case, handler, test_category, file_to_open))
+                        task.add_done_callback(lambda _: progress_bar.update(1))  # Update progress when task is done
+                        tasks.append(task)
+                    await asyncio.gather(*tasks)
+                    tasks.clear()
+            progress_bar.close()
+            ## sort results since async entires could be out of order
+            handler.sort_results(file_to_open)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
