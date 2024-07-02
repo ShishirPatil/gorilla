@@ -350,7 +350,7 @@ def runner(model_names, test_categories, api_sanity_check):
 
             if is_executable(test_category):
                 # We only test the API with ground truth once
-                if (not API_TESTED) and (not api_sanity_check):
+                if not API_TESTED and api_sanity_check:
                     print("---- Sanity checking API status ----")
                     try:
                         api_status_sanity_check_rest()
@@ -494,7 +494,7 @@ if __name__ == "__main__":
         help="A list of test categories to run the evaluation on",
     )
     parser.add_argument(
-        "-s",
+        "-c",
         "--api-sanity-check",
         action="store_true",
         default=False,  # Default value is False, meaning the sanity check is skipped unless the flag is specified

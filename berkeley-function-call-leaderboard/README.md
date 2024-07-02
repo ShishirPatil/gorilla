@@ -151,7 +151,7 @@ python eval_runner.py --model MODEL_NAME --test-category {TEST_CATEGORY,all,ast,
 
 > If you do not wish to provide API keys for REST API testing, set `test-category` to `ast` or any non-executable category.
 
-> By setting the `--api-sanity-check` flag, or `-s` for short, if the test categories include `executable`, the evaluation process will perform the REST API sanity check first to ensure that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, we will flag those in the console and continue execution.
+> By setting the `--api-sanity-check` flag, or `-c` for short, if the test categories include `executable`, the evaluation process will perform the REST API sanity check first to ensure that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, we will flag those in the console and continue execution.
 
 ### Example Usage
 
