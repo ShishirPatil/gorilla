@@ -496,7 +496,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    model_names = args.model
     api_sanity_check = args.skip_api_sanity_check
     test_categories = None
     if args.test_category is not None:
@@ -506,5 +505,14 @@ if __name__ == "__main__":
                 test_categories.extend(ARG_PARSE_MAPPING[test_category])
             else:
                 test_categories.append(test_category)
+
+    model_names = args.model
+    if args.model is not None:
+        model_names = []
+        for model_name in args.model:
+            # Runner takes in the model name that contains "_", instead of "/", for the sake of file path issues.
+            # This is differnet than the model name format that the generation script "openfunctions_evaluation.py" takes in (where the name contains "/").
+            # We patch it here to avoid confusing the user.
+            model_names.append(model_name.replace("/", "_"))
 
     runner(model_names, test_categories, api_sanity_check)
