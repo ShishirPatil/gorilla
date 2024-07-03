@@ -42,7 +42,6 @@ COLUMNS = [
     "Latency 95th Percentile (s)",
 ]
 
-# Note that we don't need to substitute `_` with `/` in the model name here.
 MODEL_METADATA_MAPPING = {
     "gpt-4o-2024-05-13-FC": [
         "GPT-4o-2024-05-13 (FC)",
@@ -176,25 +175,25 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
-    "meetkai_functionary-small-v2.2-FC": [
+    "meetkai/functionary-small-v2.2-FC": [
         "Functionary-Small-v2.2 (FC)",
         "https://huggingface.co/meetkai/functionary-small-v2.2",
         "MeetKai",
         "MIT",
     ],
-    "meetkai_functionary-medium-v2.2-FC": [
+    "meetkai/functionary-medium-v2.2-FC": [
         "Functionary-Medium-v2.2 (FC)",
         "https://huggingface.co/meetkai/functionary-medium-v2.2",
         "MeetKai",
         "MIT",
     ],
-    "meetkai_functionary-small-v2.4-FC": [
+    "meetkai/functionary-small-v2.4-FC": [
         "Functionary-Small-v2.4 (FC)",
         "https://huggingface.co/meetkai/functionary-small-v2.4",
         "MeetKai",
         "MIT",
     ],
-    "meetkai_functionary-medium-v2.4-FC": [
+    "meetkai/functionary-medium-v2.4-FC": [
         "Functionary-Medium-v2.4 (FC)",
         "https://huggingface.co/meetkai/functionary-medium-v2.4",
         "MeetKai",
@@ -296,19 +295,19 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
-    "deepseek-ai_deepseek-coder-6.7b-instruct": [
+    "deepseek-ai/deepseek-coder-6.7b-instruct": [
         "Deepseek-v1.5 (Prompt)",
         "https://huggingface.co/deepseek-ai/deepseek-coder-7b-instruct-v1.5",
         "Deepseek",
         "Deepseek License",
     ],
-    "google_gemma-7b-it": [
+    "google/gemma-7b-it": [
         "Gemma-7b-it (Prompt)",
         "https://blog.google/technology/developers/gemma-open-models/",
         "Google",
         "gemma-terms-of-use",
     ],
-    "glaiveai_glaive-function-calling-v1": [
+    "glaiveai/glaive-function-calling-v1": [
         "Glaive-v1 (FC)",
         "https://huggingface.co/glaiveai/glaive-function-calling-v1",
         "Glaive",
@@ -320,19 +319,19 @@ MODEL_METADATA_MAPPING = {
         "Databricks",
         "Databricks Open Model",
     ],
-    "NousResearch_Hermes-2-Pro-Mistral-7B": [
+    "NousResearch/Hermes-2-Pro-Mistral-7B": [
         "Hermes-2-Pro-Mistral-7B (FC)",
         "https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B",
         "NousResearch",
         "apache-2.0",
     ],
-    "meta-llama_Meta-Llama-3-8B-Instruct": [
+    "meta-llama/Meta-Llama-3-8B-Instruct": [
         "Meta-Llama-3-8B-Instruct (Prompt)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama_Meta-Llama-3-70B-Instruct": [
+    "meta-llama/Meta-Llama-3-70B-Instruct": [
         "Meta-Llama-3-70B-Instruct (Prompt)",
         "https://llama.meta.com/llama3",
         "Meta",
@@ -362,7 +361,7 @@ MODEL_METADATA_MAPPING = {
         "Cohere For AI",
         "cc-by-nc-4.0",
     ],
-    "snowflake_arctic": [
+    "snowflake/arctic": [
         "Snowflake/snowflake-arctic-instruct (Prompt)",
         "https://huggingface.co/Snowflake/snowflake-arctic-instruct",
         "Snowflake",
@@ -805,6 +804,7 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
     data = []
     for model_name, value in leaderboard_table.items():
         model_name_escaped = model_name.replace("_", "/")
+
         python_simple_ast = value.get("simple", {"accuracy": 0, "total_count": 0})
         python_multiple_ast = value.get(
             "multiple_function", {"accuracy": 0, "total_count": 0}
@@ -884,10 +884,10 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
             [
                 "N/A",
                 overall_accuracy["accuracy"],
-                MODEL_METADATA_MAPPING[model_name][0],
-                MODEL_METADATA_MAPPING[model_name][1],
-                MODEL_METADATA_MAPPING[model_name][2],
-                MODEL_METADATA_MAPPING[model_name][3],
+                MODEL_METADATA_MAPPING[model_name_escaped][0],
+                MODEL_METADATA_MAPPING[model_name_escaped][1],
+                MODEL_METADATA_MAPPING[model_name_escaped][2],
+                MODEL_METADATA_MAPPING[model_name_escaped][3],
                 summary_ast["accuracy"],
                 summary_exec["accuracy"],
                 simple_ast["accuracy"],
