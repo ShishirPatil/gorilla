@@ -16,8 +16,6 @@ from model_handler.llama_handler import LlamaHandler
 from model_handler.mistral_handler import MistralHandler
 from model_handler.nexus_handler import NexusHandler
 from model_handler.oss_handler import OSSHandler
-from model_handler.cohere_handler import CohereHandler
-from model_handler.arctic_handler import ArcticHandler
 from model_handler.glm_handler import GLMHandler
 
 handler_map = {
