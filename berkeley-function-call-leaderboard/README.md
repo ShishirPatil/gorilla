@@ -191,12 +191,14 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |gorilla-openfunctions-v2 | Function Calling|
 |claude-3-{opus-20240229,sonnet-20240229,haiku-20240307}-FC | Function Calling |
 |claude-3-{opus-20240229,sonnet-20240229,haiku-20240307} | Prompt |
+|claude-3-5-sonnet-20240620-FC | Function Calling |
+|claude-3-5-sonnet-20240620 | Prompt |
 |claude-{2.1,instant-1.2}| Prompt|
 |command-r-plus-FC | Function Calling|
 |command-r-plus | Prompt|
 |databrick-dbrx-instruct | Prompt|
 |deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
-|fire-function-v1-FC | Function Calling|
+|firefunction-{v1,v2}-FC | Function Calling|
 |gemini-1.0-pro | Function Calling|
 |gemini-1.5-pro-preview-{0409,0514} | Function Calling|
 |gemini-1.5-flash-preview-0514 | Function Calling|
@@ -235,6 +237,9 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 ## Changelog
 
+* [June 18, 2024] [#470](https://github.com/ShishirPatil/gorilla/pull/470): Add new model `firefunction-v2-FC` to the leaderboard.
+* [June 15, 2024] [#437](https://github.com/ShishirPatil/gorilla/pull/437): Fix prompting issues for `Nexusflow-Raven-v2 (FC)`.
+* [June 7, 2024] [#407](https://github.com/ShishirPatil/gorilla/pull/407), [#462](https://github.com/ShishirPatil/gorilla/pull/462): Update the AST evaluation logic to allow the use of `int` values for Python parameters expecting `float` values. This is to accommodate the Python auto-conversion feature from `int` to `float`.
 * [May 14, 2024] [#426](https://github.com/ShishirPatil/gorilla/pull/426):
     - Add the following new models to the leaderboard:
         + `gpt-4o-2024-05-13`
@@ -275,14 +280,17 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 To add a new model to the Function Calling Leaderboard, here are a few things you need to do:
 
-1. Take a look at the `model_handler/handler.py`. This is the base handler object where all handlers are inherited from 
+1. Take a look at the `model_handler/handler.py`. This is the base handler object which all handlers are inherited from. Also, free feel to take a look at the existing model handers; very likely you can re-use some of the existing code if the new model outputs in a similar format.
 2. Create your handler and define the following functions 
     1. `__init__`: on initialization, you need to create a `self.client` object if you have an existing endpoint(e.g. `self.client = OpenAI()`) or follow `model_handler/oss_handler.py` for starting a vLLM serving.
     2. `inference`: inference function takes in prompt, functions, as well as optional programming language parameters. It will make call to the endpoint, compile result in the desired format, as well as logging the token number and latency
-    3. `decode_ast`: decode_ast will convert the response from raw output in the format of `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}] This format will be used to check for exact matching the parameters.
+    3. `decode_ast`: decode_ast will convert the response from raw output in the format of `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}]` This format will be used to check for exact matching the parameters.
     4. `decode_execute`: deocde_execute will convert the response from raw output in the format of `"[func1(param1=val1),func2(param2=val2)]"`
-3. Modify `model_handler/handler_map.py`. This mapping contains the key as the exact model name and value as the handler object of the specific model. 
-4. If your model is price-based, please update the pricing detail, i.e. price per million tokens under `eval_runner_helper.py`
+3. Modify `model_handler/handler_map.py`. This mapping contains the key as the exact model name and value as the handler object of the specific model.
+4. Modify `eval_checker/eval_runner_helper.py`:
+    - Update the `MODEL_METADATA_MAPPING` with the model display name, URL, license and company information. The key should be the same as the one in `model_handler/handler_map.py`.
+    - If your model is price-based, you should update the `INPUT_PRICE_PER_MILLION_TOKEN` and `OUTPUT_PRICE_PER_MILLION_TOKEN`. - If your model doesn't have a cost, you should add it to the `NO_COST_MODELS` list.
+    - If your model is open-source and is hosted locally, the `OSS_LATENCY` list needs to be updated with the latency for the whole batch of data generation. This information will affect the cost calculation.
 5. Raise a [Pull Request](https://github.com/ShishirPatil/gorilla/pulls) with your new Model Handler. We will run the model handler if an endpoint is established. If self-hosting is required and the model size is large, we might not be able to accommodate model hosting therefore an OpenAI compatible endpoint for evaluation is desired. 
 6. Feel Free to join [Gorilla Discord](https://discord.gg/grXXvj9Whz) `#leaderboard` and reach out to us for any questions or concerns about adding new models. We are happy to help you!
 
