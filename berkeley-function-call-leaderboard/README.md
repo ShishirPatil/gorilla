@@ -21,7 +21,7 @@ pip install -r requirements.txt # Inside gorilla/berkeley-function-call-leaderbo
 pip install vllm # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
 ```
 
-### Evaluation Checker Setup (required for Java, JavaScript function calls)
+### Evaluation Checker Setup (only required for Java and JavaScript test categories)
 
 We use `tree-sitter` for AST parsing of Java and JavaScript function calls.
 

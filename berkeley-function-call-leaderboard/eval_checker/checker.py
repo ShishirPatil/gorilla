@@ -1,5 +1,3 @@
-from js_type_converter import js_type_converter
-from java_type_converter import java_type_converter
 from model_handler.constant import (
     UNDERSCORE_TO_DOT,
     JAVA_TYPE_CONVERSION,
@@ -11,6 +9,11 @@ import re
 import requests  # Do not remove this import even though it seems to be unused. It's used in the executable_checker_rest function.
 import time
 import json
+
+# We switch to conditional import for the following two imports to avoid unnecessary installations.
+# User doesn't need to setup the tree-sitter packages if they are not running the test for that language.
+# from js_type_converter import js_type_converter
+# from java_type_converter import java_type_converter
 
 PYTHON_TYPE_MAPPING = {
     "string": str,
@@ -362,6 +365,8 @@ def simple_function_checker(
         nested_type_converted = None
 
         if language == "Java":
+            from java_type_converter import java_type_converter
+
             expected_type_converted = JAVA_TYPE_CONVERSION[expected_type_description]
 
             if expected_type_description in JAVA_TYPE_CONVERSION:
@@ -375,6 +380,8 @@ def simple_function_checker(
                     value = java_type_converter(value, expected_type_description)
 
         elif language == "JavaScript":
+            from js_type_converter import js_type_converter
+            
             expected_type_converted = JS_TYPE_CONVERSION[expected_type_description]
 
             if expected_type_description in JS_TYPE_CONVERSION:
