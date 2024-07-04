@@ -21,9 +21,8 @@ pip install -r requirements.txt # Inside gorilla/berkeley-function-call-leaderbo
 pip install vllm # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
 ```
 
-BFCL uses vLLM for inference of opensource models. To run Mistral Models' function calling, you need to have `mistralai >= 0.1.3`.
-
 ### Evaluation Checker Setup (required for Java, JavaScript function calls)
+
 We use `tree-sitter` for AST parsing of Java and JavaScript function calls.
 
 The git clones need to be under the `gorilla/berkeley-function-call-leaderboard/eval_checker` directory.
