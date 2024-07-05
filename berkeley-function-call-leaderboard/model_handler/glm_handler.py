@@ -4,7 +4,6 @@ from model_handler.constant import (
     SYSTEM_PROMPT_FOR_CHAT_MODEL,
     USER_PROMPT_FOR_CHAT_MODEL,
 )
-from transformers import AutoTokenizer
 from model_handler.model_style import ModelStyle
 from model_handler.utils import (
     convert_to_tool,
@@ -22,9 +21,6 @@ from eval_checker.eval_checker_constant import FILENAME_INDEX_MAPPING
 class GLMHandler(OSSHandler):
     def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
-        self.tokenizer = AutoTokenizer.from_pretrained(
-            model_name, trust_remote_code=True
-        )
         self.tensor_parallel_size = 8
 
     def apply_chat_template(self, prompt, function, test_category):
@@ -83,6 +79,11 @@ class GLMHandler(OSSHandler):
         return final_ans_jsons
 
     def inference(self, question_file, test_category, num_gpus):
+        from transformers import AutoTokenizer
+        self.tokenizer = AutoTokenizer.from_pretrained(
+            self.model_name, trust_remote_code=True
+        )
+        
         ques_jsons = []
         with open(question_file, "r") as ques_file:
             for line in ques_file:
