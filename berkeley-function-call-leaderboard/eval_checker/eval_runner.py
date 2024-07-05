@@ -503,7 +503,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    api_sanity_check = args.skip_api_sanity_check
+    api_sanity_check = args.api_sanity_check
     test_categories = None
     if args.test_category is not None:
         test_categories = []
