@@ -367,6 +367,12 @@ MODEL_METADATA_MAPPING = {
         "Snowflake",
         "apache-2.0",
     ],
+    "nvidia/nemotron-4-340b-instruct": [
+        "Nemotron-4-340b-instruct (Prompt)",
+        "https://huggingface.co/nvidia/nemotron-4-340b-instruct",
+        "NVIDIA",
+        "nvidia-open-model-license"
+    ],
     "THUDM/glm-4-9b-chat": [
         "GLM-4-9b-Chat (FC)",
         "https://huggingface.co/THUDM/glm-4-9b-chat",
@@ -479,6 +485,7 @@ NO_COST_MODELS = [
     "meetkai/functionary-small-v2.2-FC",
     "meetkai/functionary-small-v2.4-FC",
     "snowflake/arctic",
+    "nvidia/nemotron-4-340b-instruct",
     "THUDM/glm-4-9b-chat",
 ]
 
