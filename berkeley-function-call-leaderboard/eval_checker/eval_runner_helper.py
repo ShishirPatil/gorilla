@@ -367,7 +367,7 @@ MODEL_METADATA_MAPPING = {
         "Snowflake",
         "apache-2.0",
     ],
-    "THUDM_glm-4-9b-chat": [
+    "THUDM/glm-4-9b-chat": [
         "GLM-4-9b-Chat (FC)",
         "https://huggingface.co/THUDM/glm-4-9b-chat",
         "THUDM",
@@ -467,7 +467,7 @@ OSS_LATENCY = {
     "meta-llama/Meta-Llama-3-8B-Instruct": 73,
     "meta-llama/Meta-Llama-3-70B-Instruct": 307,
     "gorilla-openfunctions-v2": 83,
-    "THUDM_glm-4-9b-chat": 223
+    "THUDM/glm-4-9b-chat": 223
 }
 
 
