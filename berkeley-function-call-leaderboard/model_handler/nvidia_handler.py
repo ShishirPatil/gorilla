@@ -2,6 +2,7 @@ import time,os,json
 from openai import OpenAI
 from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
+from model_handler.utils import ast_parse
 from model_handler.utils import (
     augment_prompt_by_languge,
     language_specific_pre_processing,
@@ -62,3 +63,39 @@ class NvidiaHandler(BaseHandler):
             "./result/" + self.model_name.replace("/", "_") + "/" + file_to_open.replace(".json", "_result.json"), "a+"
         ) as f:
             f.write(json.dumps(result) + "\n")
+
+    def decode_ast(self, result, language="Python"):
+        result = result.replace("\n", "")
+        if not result.startswith("["):
+            result = "[ " + result
+        if not result.endswith("]"):
+            result = result + " ]"
+        if result.startswith("['"):
+            result = result.replace("['", "[")
+            result = result.replace("', '", ", ")
+            result = result.replace("','", ", ")
+        if result.endswith("']"):
+            result = result.replace("']", "]")
+        decode_output = ast_parse(result, language)
+        return decode_output
+        
+    def decode_execute(self, result, language="Python"):
+        result = result.replace("\n", "")
+        if not result.startswith("["):
+            result = "[ " + result
+        if not result.endswith("]"):
+            result = result + " ]"
+        if result.startswith("['"):
+            result = result.replace("['", "[")
+            result = result.replace("', '", ", ")
+            result = result.replace("','", ", ")
+        if result.endswith("']"):
+            result = result.replace("']", "]")
+        decode_output = ast_parse(result, language)
+        execution_list = []
+        for function_call in decode_output:
+            for key, value in function_call.items():
+                execution_list.append(
+                    f"{key}({','.join([f'{k}={repr(v)}' for k, v in value.items()])})"
+                )
+        return execution_list
