@@ -267,6 +267,8 @@ def runner(model_names, test_categories, api_sanity_check):
     # We should always test the API with ground truth first before running the executable tests.
     # Sometimes the API may not be working as expected and we want to catch that before running the evaluation to ensure the results are accurate.
     API_TESTED = False
+    API_STATUS_ERROR_REST = None
+    API_STATUS_ERROR_EXECUTABLE = None
 
     # Before running the executable evaluation, we need to get the expected output from the ground truth.
     # So we need a list of all the test categories that we have ran the ground truth evaluation on.
@@ -354,12 +356,16 @@ def runner(model_names, test_categories, api_sanity_check):
                     print("---- Sanity checking API status ----")
                     try:
                         api_status_sanity_check_rest()
-                        api_status_sanity_check_executable()
-                        print("---- Sanity check Passed 💯 ----")
                     except BadAPIStatusError as e:
-                        # Might be a good to capture this as variance bounds
-                        print(f"API Sanity Check completed. \nError:{e}")
-                        print("Continuing evaluation...")
+                        API_STATUS_ERROR_REST = e
+
+                    try:
+                        api_status_sanity_check_executable()
+                    except BadAPIStatusError as e:
+                        API_STATUS_ERROR_EXECUTABLE = e    
+
+                    display_api_status_error(API_STATUS_ERROR_REST, API_STATUS_ERROR_EXECUTABLE, display_success=True)
+                    print("Continuing evaluation...")
                     
                     API_TESTED = True
 
@@ -418,6 +424,10 @@ def runner(model_names, test_categories, api_sanity_check):
     clean_up_executable_expected_output(
         PROMPT_PATH, EXECUTABLE_TEST_CATEGORIES_HAVE_RUN
     )
+    
+    display_api_status_error(API_STATUS_ERROR_REST, API_STATUS_ERROR_EXECUTABLE, display_success=False)
+    
+    print(f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data.csv')} for evaluation results.")
 
 
 ARG_PARSE_MAPPING = {
