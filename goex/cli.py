@@ -265,6 +265,7 @@ def db_callback(prompt, generate_mode):
             print("Execution completed!")
         else:
             engine.exec_api_call(neg_api_call, api_type=SQL_Type)
+            engine.commit_api_call(SQL_Type)
             print("Execution undone.")
 
 
