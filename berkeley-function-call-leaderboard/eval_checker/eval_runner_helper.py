@@ -42,8 +42,19 @@ COLUMNS = [
     "Latency 95th Percentile (s)",
 ]
 
-# Note that we don't need to substitute `_` with `/` in the model name here.
 MODEL_METADATA_MAPPING = {
+    "gpt-4o-2024-05-13-FC": [
+        "GPT-4o-2024-05-13 (FC)",
+        "https://openai.com/index/hello-gpt-4o/",
+        "OpenAI",
+        "Proprietary",
+    ],
+    "gpt-4o-2024-05-13": [
+        "GPT-4o-2024-05-13 (Prompt)",
+        "https://openai.com/index/hello-gpt-4o/",
+        "OpenAI",
+        "Proprietary",
+    ],
     "gpt-4-1106-preview-FC": [
         "GPT-4-1106-Preview (FC)",
         "https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo",
@@ -140,6 +151,18 @@ MODEL_METADATA_MAPPING = {
         "Anthropic",
         "Proprietary",
     ],
+    "claude-3-5-sonnet-20240620-FC": [
+        "Claude-3.5-Sonnet-20240620 (FC)",
+        "https://www.anthropic.com/news/claude-3-5-sonnet",
+        "Anthropic",
+        "Proprietary",
+    ],
+    "claude-3-5-sonnet-20240620": [
+        "Claude-3.5-Sonnet-20240620 (Prompt)",
+        "https://www.anthropic.com/news/claude-3-5-sonnet",
+        "Anthropic",
+        "Proprietary",
+    ],
     "gpt-3.5-turbo-0125-FC": [
         "GPT-3.5-Turbo-0125 (FC)",
         "https://platform.openai.com/docs/models/gpt-3-5-turbo",
@@ -152,25 +175,25 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
-    "meetkai_functionary-small-v2.2-FC": [
+    "meetkai/functionary-small-v2.2-FC": [
         "Functionary-Small-v2.2 (FC)",
         "https://huggingface.co/meetkai/functionary-small-v2.2",
         "MeetKai",
         "MIT",
     ],
-    "meetkai_functionary-medium-v2.2-FC": [
+    "meetkai/functionary-medium-v2.2-FC": [
         "Functionary-Medium-v2.2 (FC)",
         "https://huggingface.co/meetkai/functionary-medium-v2.2",
         "MeetKai",
         "MIT",
     ],
-    "meetkai_functionary-small-v2.4-FC": [
+    "meetkai/functionary-small-v2.4-FC": [
         "Functionary-Small-v2.4 (FC)",
         "https://huggingface.co/meetkai/functionary-small-v2.4",
         "MeetKai",
         "MIT",
     ],
-    "meetkai_functionary-medium-v2.4-FC": [
+    "meetkai/functionary-medium-v2.4-FC": [
         "Functionary-Medium-v2.4 (FC)",
         "https://huggingface.co/meetkai/functionary-medium-v2.4",
         "MeetKai",
@@ -224,14 +247,38 @@ MODEL_METADATA_MAPPING = {
         "Nexusflow",
         "Apache 2.0",
     ],
-    "fire-function-v1-FC": [
+    "firefunction-v1-FC": [
         "FireFunction-v1 (FC)",
         "https://huggingface.co/fireworks-ai/firefunction-v1",
         "Fireworks",
         "Apache 2.0",
     ],
+    "firefunction-v2-FC": [
+        "FireFunction-v2 (FC)",
+        "https://huggingface.co/fireworks-ai/firefunction-v2",
+        "Fireworks",
+        "Apache 2.0",
+    ],
+    "gemini-1.5-pro-preview-0514": [
+        "Gemini-1.5-Pro-Preview-0514 (FC)",
+        "https://deepmind.google/technologies/gemini/pro/",
+        "Google",
+        "Proprietary",
+    ],
+    "gemini-1.5-flash-preview-0514": [
+        "Gemini-1.5-Flash-Preview-0514 (FC)",
+        "https://deepmind.google/technologies/gemini/flash/",
+        "Google",
+        "Proprietary",
+    ],
+    "gemini-1.5-pro-preview-0409": [
+        "Gemini-1.5-Pro-Preview-0409 (FC)",
+        "https://deepmind.google/technologies/gemini/#introduction",
+        "Google",
+        "Proprietary",
+    ],
     "gemini-1.0-pro": [
-        "Gemini-1.0-Pro (FC)",
+        "Gemini-1.0-Pro-001 (FC)",
         "https://deepmind.google/technologies/gemini/#introduction",
         "Google",
         "Proprietary",
@@ -248,19 +295,19 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
-    "deepseek-ai_deepseek-coder-6.7b-instruct": [
+    "deepseek-ai/deepseek-coder-6.7b-instruct": [
         "Deepseek-v1.5 (Prompt)",
         "https://huggingface.co/deepseek-ai/deepseek-coder-7b-instruct-v1.5",
         "Deepseek",
         "Deepseek License",
     ],
-    "google_gemma-7b-it": [
+    "google/gemma-7b-it": [
         "Gemma-7b-it (Prompt)",
         "https://blog.google/technology/developers/gemma-open-models/",
         "Google",
         "gemma-terms-of-use",
     ],
-    "glaiveai_glaive-function-calling-v1": [
+    "glaiveai/glaive-function-calling-v1": [
         "Glaive-v1 (FC)",
         "https://huggingface.co/glaiveai/glaive-function-calling-v1",
         "Glaive",
@@ -272,25 +319,19 @@ MODEL_METADATA_MAPPING = {
         "Databricks",
         "Databricks Open Model",
     ],
-    "NousResearch_Hermes-2-Pro-Mistral-7B": [
+    "NousResearch/Hermes-2-Pro-Mistral-7B": [
         "Hermes-2-Pro-Mistral-7B (FC)",
         "https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B",
         "NousResearch",
         "apache-2.0",
     ],
-    "gemini-1.5-pro-preview-0409": [
-        "Gemini-1.5-Pro (FC)",
-        "https://deepmind.google/technologies/gemini/#introduction",
-        "Google",
-        "Proprietary",
-    ],
-    "meta-llama_Meta-Llama-3-8B-Instruct": [
+    "meta-llama/Meta-Llama-3-8B-Instruct": [
         "Meta-Llama-3-8B-Instruct (Prompt)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama_Meta-Llama-3-70B-Instruct": [
+    "meta-llama/Meta-Llama-3-70B-Instruct": [
         "Meta-Llama-3-70B-Instruct (Prompt)",
         "https://llama.meta.com/llama3",
         "Meta",
@@ -320,11 +361,17 @@ MODEL_METADATA_MAPPING = {
         "Cohere For AI",
         "cc-by-nc-4.0",
     ],
-    "snowflake_arctic": [
+    "snowflake/arctic": [
         "Snowflake/snowflake-arctic-instruct (Prompt)",
         "https://huggingface.co/Snowflake/snowflake-arctic-instruct",
         "Snowflake",
         "apache-2.0",
+    ],
+    "nvidia/nemotron-4-340b-instruct": [
+        "Nemotron-4-340b-instruct (Prompt)",
+        "https://huggingface.co/nvidia/nemotron-4-340b-instruct",
+        "NVIDIA",
+        "nvidia-open-model-license"
     ]
 }
 
@@ -335,15 +382,19 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-3-sonnet-20240229": 3,
     "claude-3-haiku-20240307-FC": 0.25,
     "claude-3-haiku-20240307": 0.25,
-    "claude-2.1": 11.02,
-    "claude-instant-1.2": 1.63,
-    "mistral-large-2402-FC-Any": 8,
-    "mistral-large-2402-FC-Auto": 8,
+    "claude-3-5-sonnet-20240620-FC": 3,
+    "claude-3-5-sonnet-20240620": 3,
+    "claude-2.1": 8,
+    "claude-instant-1.2": 0.8,
+    "mistral-large-2402-FC-Any": 4,
+    "mistral-large-2402-FC-Auto": 4,
     "mistral-medium-2312": 2.7,
-    "mistral-small-2402-FC-Any": 2,
-    "mistral-small-2402-FC-Auto": 2,
-    "mistral-small-2402": 2,
+    "mistral-small-2402-FC-Any": 1,
+    "mistral-small-2402-FC-Auto": 1,
+    "mistral-small-2402": 1,
     "mistral-tiny-2312": 0.25,
+    "gpt-4o-2024-05-13-FC": 5,
+    "gpt-4o-2024-05-13": 5,
     "gpt-4-1106-preview-FC": 10,
     "gpt-4-1106-preview": 10,
     "gpt-4-0125-preview": 10,
@@ -352,10 +403,12 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-4-turbo-2024-04-09": 10,
     "gpt-4-0613": 30,
     "gpt-4-0613-FC": 30,
-    "gpt-3.5-turbo-0125": 1.5,
-    "gpt-3.5-turbo-0125-FC": 1.5,
-    "gemini-1.0-pro": 1,
-    "gemini-1.5-pro-preview-0409": 7,
+    "gpt-3.5-turbo-0125": 0.5,
+    "gpt-3.5-turbo-0125-FC": 0.5,
+    "gemini-1.0-pro": 0.5,
+    "gemini-1.5-pro-preview-0409": 3.5,
+    "gemini-1.5-pro-preview-0514": 3.5,
+    "gemini-1.5-flash-preview-0514": 0.35,
     "databricks-dbrx-instruct": 2.25,
     "command-r-plus-FC": 3,
     "command-r-plus": 3,
@@ -368,17 +421,21 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-3-opus-20240229": 75,
     "claude-3-sonnet-20240229-FC": 15,
     "claude-3-sonnet-20240229": 15,
+    "claude-3-5-sonnet-20240620-FC": 15,
+    "claude-3-5-sonnet-20240620": 15,
     "claude-3-haiku-20240307-FC": 1.25,
     "claude-3-haiku-20240307": 1.25,
-    "claude-2.1": 32.68,
-    "claude-instant-1.2": 5.51,
-    "mistral-large-2402-FC-Any": 24,
-    "mistral-large-2402-FC-Auto": 24,
-    "mistral-small-2402": 24,
+    "claude-2.1": 24,
+    "claude-instant-1.2": 2.4,
+    "mistral-large-2402-FC-Any": 12,
+    "mistral-large-2402-FC-Auto": 12,
+    "mistral-small-2402": 3,
     "mistral-medium-2312": 8.1,
-    "mistral-small-2402-FC-Any": 6,
-    "mistral-small-2402-FC-Auto": 6,
+    "mistral-small-2402-FC-Any": 3,
+    "mistral-small-2402-FC-Auto": 3,
     "mistral-tiny-2312": 0.25,
+    "gpt-4o-2024-05-13-FC": 15,
+    "gpt-4o-2024-05-13": 15,
     "gpt-4-turbo-2024-04-09-FC": 30,
     "gpt-4-turbo-2024-04-09": 30,
     "gpt-4-1106-preview": 30,
@@ -387,10 +444,12 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-4-0125-preview": 30,
     "gpt-4-0613": 60,
     "gpt-4-0613-FC": 60,
-    "gpt-3.5-turbo-0125": 2,
-    "gpt-3.5-turbo-0125-FC": 2,
-    "gemini-1.0-pro": 2,
-    "gemini-1.5-pro-preview-0409": 14,
+    "gpt-3.5-turbo-0125": 1.5,
+    "gpt-3.5-turbo-0125-FC": 1.5,
+    "gemini-1.0-pro": 1.5,
+    "gemini-1.5-pro-preview-0409": 10.50,
+    "gemini-1.5-pro-preview-0514": 10.50,
+    "gemini-1.5-flash-preview-0514": 0.53,
     "databricks-dbrx-instruct": 6.75,
     "command-r-plus-FC": 15,
     "command-r-plus": 15,
@@ -413,11 +472,13 @@ OSS_LATENCY = {
 
 NO_COST_MODELS = [
     "Nexusflow-Raven-v2",
-    "fire-function-v1-FC",
+    "firefunction-v1-FC",
+    "firefunction-v2-FC",
     "meetkai/functionary-medium-v2.4-FC",
     "meetkai/functionary-small-v2.2-FC",
     "meetkai/functionary-small-v2.4-FC",
     "snowflake/arctic",
+    "nvidia/nemotron-4-340b-instruct",
 ]
 
 # Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
@@ -681,9 +742,11 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
                 )
                 print("*" * 100)
         if "input_token_count" in data:
-            input_token.append(data["input_token_count"])
+            if data["input_token_count"] != 0:
+                input_token.append(data["input_token_count"])
         if "output_token_count" in data:
-            output_token.append(data["output_token_count"])
+            if data["output_token_count"] != 0:
+                output_token.append(data["output_token_count"])
 
     leaderboard_table[model_name]["cost"]["input_data"].extend(input_token)
     leaderboard_table[model_name]["cost"]["output_data"].extend(output_token)
@@ -740,6 +803,7 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
     data = []
     for model_name, value in leaderboard_table.items():
         model_name_escaped = model_name.replace("_", "/")
+
         python_simple_ast = value.get("simple", {"accuracy": 0, "total_count": 0})
         python_multiple_ast = value.get(
             "multiple_function", {"accuracy": 0, "total_count": 0}
@@ -819,10 +883,10 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
             [
                 "N/A",
                 overall_accuracy["accuracy"],
-                MODEL_METADATA_MAPPING[model_name][0],
-                MODEL_METADATA_MAPPING[model_name][1],
-                MODEL_METADATA_MAPPING[model_name][2],
-                MODEL_METADATA_MAPPING[model_name][3],
+                MODEL_METADATA_MAPPING[model_name_escaped][0],
+                MODEL_METADATA_MAPPING[model_name_escaped][1],
+                MODEL_METADATA_MAPPING[model_name_escaped][2],
+                MODEL_METADATA_MAPPING[model_name_escaped][3],
                 summary_ast["accuracy"],
                 summary_exec["accuracy"],
                 simple_ast["accuracy"],

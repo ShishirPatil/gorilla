@@ -1,11 +1,11 @@
 requests
 tqdm
-tree_sitter
+tree_sitter~=0.21.0
 torch 
 ray
 shortuuid
 mistralai
-anthropic
+anthropic~=0.29.0
 openai
 numpy
 cohere~=5.2.5

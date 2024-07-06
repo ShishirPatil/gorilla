@@ -1,5 +1,7 @@
+from model_handler.arctic_handler import ArcticHandler
 from model_handler.claude_fc_handler import ClaudeFCHandler
 from model_handler.claude_prompt_handler import ClaudePromptingHandler
+from model_handler.cohere_handler import CohereHandler
 from model_handler.databricks_handler import DatabricksHandler
 from model_handler.deepseek_handler import DeepseekHandler
 from model_handler.firework_ai_handler import FireworkAIHandler
@@ -14,12 +16,13 @@ from model_handler.llama_handler import LlamaHandler
 from model_handler.mistral_handler import MistralHandler
 from model_handler.nexus_handler import NexusHandler
 from model_handler.oss_handler import OSSHandler
-from model_handler.cohere_handler import CohereHandler
-from model_handler.arctic_handler import ArcticHandler
+from model_handler.nvidia_handler import NvidiaHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
     "gorilla-openfunctions-v2": GorillaHandler,
+    "gpt-4o-2024-05-13": OpenAIHandler,
+    "gpt-4o-2024-05-13-FC": OpenAIHandler,
     "gpt-4-turbo-2024-04-09-FC": OpenAIHandler,
     "gpt-4-turbo-2024-04-09": OpenAIHandler,
     "gpt-4-1106-preview-FC": OpenAIHandler,
@@ -38,6 +41,8 @@ handler_map = {
     "claude-3-sonnet-20240229-FC": ClaudeFCHandler,
     "claude-3-haiku-20240307": ClaudePromptingHandler,
     "claude-3-haiku-20240307-FC": ClaudeFCHandler,
+    "claude-3-5-sonnet-20240620": ClaudePromptingHandler,
+    "claude-3-5-sonnet-20240620-FC": ClaudeFCHandler,
     "mistral-large-2402": MistralHandler,
     "mistral-large-2402-FC-Any": MistralHandler,
     "mistral-large-2402-FC-Auto": MistralHandler,
@@ -46,10 +51,13 @@ handler_map = {
     "mistral-small-2402-FC-Any": MistralHandler,
     "mistral-small-2402-FC-Auto": MistralHandler,
     "mistral-tiny-2312": MistralHandler,
-    "fire-function-v1-FC": FireworkAIHandler,
+    "firefunction-v1-FC": FireworkAIHandler,
+    "firefunction-v2-FC": FireworkAIHandler,
     "Nexusflow-Raven-v2": NexusHandler,
     "gemini-1.0-pro": GeminiHandler,
     "gemini-1.5-pro-preview-0409": GeminiHandler,
+    "gemini-1.5-pro-preview-0514": GeminiHandler,
+    "gemini-1.5-flash-preview-0514": GeminiHandler,
     "gemma": OSSHandler,
     "google/gemma-7b-it": GemmaHandler,
     "glaiveai/glaive-function-calling-v1": GlaiveHandler,
@@ -67,4 +75,5 @@ handler_map = {
     "command-r-plus-FC-optimized": CohereHandler,
     "command-r-plus-optimized": CohereHandler,
     "snowflake/arctic": ArcticHandler,
+    "nvidia/nemotron-4-340b-instruct": NvidiaHandler,
 }
