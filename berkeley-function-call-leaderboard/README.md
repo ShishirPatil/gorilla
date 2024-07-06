@@ -238,6 +238,7 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 ## Changelog
 
+* [July 5, 2024] [#496](https://github.com/ShishirPatil/gorilla/pull/496): Update the API status check logic. It is now off by default, and will not stop/exit the evaluation process if any of the APIs are not reliable. Users can enable this feature by setting the `--api-sanity-check` flag or `-c` for short. The previous `--skip-api-sanity-check` or `-s` flag is now deprecated.
 * [July 3, 2024] [#489](https://github.com/ShishirPatil/gorilla/pull/489): Add new model `nvidia/nemotron-4-340b-instruct` to the leaderboard.
 * [June 18, 2024] [#470](https://github.com/ShishirPatil/gorilla/pull/470): Add new model `firefunction-v2-FC` to the leaderboard.
 * [June 15, 2024] [#437](https://github.com/ShishirPatil/gorilla/pull/437): Fix prompting issues for `Nexusflow-Raven-v2 (FC)`.
