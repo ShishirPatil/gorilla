@@ -23,7 +23,7 @@ def get_args():
     return args
 
 
-test_categories = {
+TEST_FILE_MAPPING = {
     "executable_simple": "gorilla_openfunctions_v1_test_executable_simple.json",
     "executable_parallel_function": "gorilla_openfunctions_v1_test_executable_parallel_function.json",
     "executable_multiple_function": "gorilla_openfunctions_v1_test_executable_multiple_function.json",
@@ -39,20 +39,80 @@ test_categories = {
     "sql": "gorilla_openfunctions_v1_test_sql.json",
 }
 
+ARG_PARSE_MAPPING = {
+    "ast": [
+        "simple",
+        "multiple_function",
+        "parallel_function",
+        "parallel_multiple_function",
+        "java",
+        "javascript",
+        "relevance",
+    ],
+    "executable": [
+        "executable_simple",
+        "executable_multiple_function",
+        "executable_parallel_function",
+        "executable_parallel_multiple_function",
+        "rest",
+    ],
+    "all": [
+        "simple",
+        "multiple_function",
+        "parallel_function",
+        "parallel_multiple_function",
+        "java",
+        "javascript",
+        "relevance",
+        "executable_simple",
+        "executable_multiple_function",
+        "executable_parallel_function",
+        "executable_parallel_multiple_function",
+        "rest",
+    ],
+    "non-python": [
+        "java",
+        "javascript",
+    ],
+    "python": [
+        "simple",
+        "multiple_function",
+        "parallel_function",
+        "parallel_multiple_function",
+        "relevance",
+        "executable_simple",
+        "executable_multiple_function",
+        "executable_parallel_function",
+        "executable_parallel_multiple_function",
+        "rest",
+    ],
+    "python-ast": [
+        "simple",
+        "multiple_function",
+        "parallel_function",
+        "parallel_multiple_function",
+        "relevance",
+    ],
+}
 
 def build_handler(model_name, temperature, top_p, max_tokens):
     handler = handler_map[model_name](model_name, temperature, top_p, max_tokens)
     return handler
 
 
-def load_file(test_category):
-    if test_category == "all":
-        test_cate, files_to_open = list(test_categories.keys()), list(
-            test_categories.values()
-        )
+def load_file(test_categories):   
+    test_to_run = []
+    files_to_open = []
+    
+    if test_categories in ARG_PARSE_MAPPING:
+        test_to_run = ARG_PARSE_MAPPING[test_categories]
+        for test_name in test_to_run:
+            files_to_open.append(TEST_FILE_MAPPING[test_name])
     else:
-        test_cate, files_to_open = [test_category], [test_categories[test_category]]
-    return test_cate, files_to_open
+        test_to_run.append(test_categories)
+        files_to_open.append(TEST_FILE_MAPPING[test_categories])
+    
+    return test_to_run, files_to_open
 
 
 if __name__ == "__main__":
@@ -69,8 +129,8 @@ if __name__ == "__main__":
         for res in result[0]:
             handler.write(res, "result.json")
     else:
-        test_cate, files_to_open = load_file(args.test_category)
-        for test_category, file_to_open in zip(test_cate, files_to_open):
+        test_to_run, files_to_open = load_file(args.test_category)
+        for test_category, file_to_open in zip(test_to_run, files_to_open):
             print("Generating: " + file_to_open)
             test_cases = []
             with open("./data/" + file_to_open) as f:
