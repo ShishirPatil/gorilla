@@ -460,6 +460,13 @@ ARG_PARSE_MAPPING = {
         "executable_parallel_multiple_function",
         "rest",
     ],
+    "python-ast": [
+        "simple",
+        "multiple_function",
+        "parallel_function",
+        "parallel_multiple_function",
+        "relevance",
+    ],
 }
 
 
