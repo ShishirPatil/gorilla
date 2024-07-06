@@ -370,6 +370,14 @@ def simple_function_checker(
             expected_type_converted = JAVA_TYPE_CONVERSION[expected_type_description]
 
             if expected_type_description in JAVA_TYPE_CONVERSION:
+                if type(value) != str:
+                    result["valid"] = False
+                    result["error"].append(
+                        f"Incorrect type for parameter {repr(param)}. Expected type String, got {type(value).__name__}. Parameter value: {repr(value)}."
+                    )
+                    result["error_type"] = "type_error:java"
+                    return result
+
                 if expected_type_description in NESTED_CONVERSION_TYPE_LIST:
                     nested_type = param_details[param]["items"]["type"]
                     nested_type_converted = JAVA_TYPE_CONVERSION[nested_type]
@@ -381,10 +389,18 @@ def simple_function_checker(
 
         elif language == "JavaScript":
             from js_type_converter import js_type_converter
-            
+
             expected_type_converted = JS_TYPE_CONVERSION[expected_type_description]
 
             if expected_type_description in JS_TYPE_CONVERSION:
+                if type(value) != str:
+                    result["valid"] = False
+                    result["error"].append(
+                        f"Incorrect type for parameter {repr(param)}. Expected type String, got {type(value).__name__}. Parameter value: {repr(value)}."
+                    )
+                    result["error_type"] = "type_error:js"
+                    return result
+
                 if expected_type_description in NESTED_CONVERSION_TYPE_LIST:
                     nested_type = param_details[param]["items"]["type"]
                     nested_type_converted = JS_TYPE_CONVERSION[nested_type]
