@@ -62,7 +62,7 @@ def process_file(input_file_path, output_file_path):
         for modified_line in modified_data:
             f.write(modified_line + '\n')  # Write each modified JSON object overwrite the output file
             
-    print(f"All placeholders have been replaced in {args.output_file} 🦍.")
+    print(f"All placeholders have been replaced for {input_file_path} 🦍.")
     
     
 def process_dir(input_dir, output_dir):
