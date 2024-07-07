@@ -39,7 +39,7 @@ TEST_FILE_MAPPING = {
     "sql": "gorilla_openfunctions_v1_test_sql.json",
 }
 
-ARG_PARSE_MAPPING = {
+TEST_COLLECTION_MAPPING = {
     "ast": [
         "simple",
         "multiple_function",
@@ -104,8 +104,8 @@ def load_file(test_categories):
     test_to_run = []
     files_to_open = []
     
-    if test_categories in ARG_PARSE_MAPPING:
-        test_to_run = ARG_PARSE_MAPPING[test_categories]
+    if test_categories in TEST_COLLECTION_MAPPING:
+        test_to_run = TEST_COLLECTION_MAPPING[test_categories]
         for test_name in test_to_run:
             files_to_open.append(TEST_FILE_MAPPING[test_name])
     else:

@@ -413,7 +413,7 @@ def runner(model_names, test_categories, api_sanity_check):
     )
 
 
-ARG_PARSE_MAPPING = {
+TEST_COLLECTION_MAPPING = {
     "ast": [
         "simple",
         "multiple_function",
@@ -508,8 +508,8 @@ if __name__ == "__main__":
     if args.test_category is not None:
         test_categories = []
         for test_category in args.test_category:
-            if test_category in ARG_PARSE_MAPPING:
-                test_categories.extend(ARG_PARSE_MAPPING[test_category])
+            if test_category in TEST_COLLECTION_MAPPING:
+                test_categories.extend(TEST_COLLECTION_MAPPING[test_category])
             else:
                 test_categories.append(test_category)
 
