@@ -1,13 +1,8 @@
-import json
 from tree_sitter import Language, Parser
+import tree_sitter_java
 
-Language.build_library(
-    # Store the library in the `build` directory
-    "build/tree_sitter.so",
-    # Include one or more languages
-    ["./tree-sitter-java"],
-)
-JAVA_LANGUAGE = Language("build/tree_sitter.so", "java")
+
+JAVA_LANGUAGE = Language(tree_sitter_java.language(), "java")
 parser = Parser()
 parser.set_language(JAVA_LANGUAGE)
 

@@ -1,38 +1,32 @@
-import json
 import os
 import time
 
-from model_handler.constant import GORILLA_TO_OPENAPI
-from model_handler.gpt_handler import OpenAIHandler
-from model_handler.model_style import ModelStyle
-from model_handler.utils import convert_to_tool, language_specific_pre_processing
 from openai import OpenAI
+
+from bfcl.model_handler.constants import GORILLA_TO_OPENAPI
+from bfcl.model_handler.base import ModelStyle
+from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
+from bfcl.model_handler.utils import convert_to_tool, language_specific_pre_processing
+
 
 
 class FireworkAIHandler(OpenAIHandler):
-    def __init__(self, model_name, temperature=0.0, top_p=1, max_tokens=1000) -> None:
-        super().__init__(model_name, temperature, top_p, max_tokens)
-        self.model_style = ModelStyle.FIREWORK_AI
-        self.temperature = 0.0
+    model_style = ModelStyle.FIREWORK_AI
 
+    def __init__(self, model_name, temperature=0.0, top_p=1, max_tokens=1000) -> None:
+        super().__init__(model_name=model_name, temperature=0.0, top_p=top_p, max_tokens=max_tokens)
         self.client = OpenAI(
             base_url="https://api.fireworks.ai/inference/v1",
-            api_key=os.getenv("FIRE_WORKS_API_KEY"),
+            api_key=os.getenv("FIREWORKS_API_KEY"),
         )
 
-    def write(self, result, file_to_open):
-        # This method is used to write the result to the file.
-        if not os.path.exists("./result"):
-            os.mkdir("./result")
-        if not os.path.exists(f"./result/{self.model_name}"):
-            os.mkdir(f"./result/{self.model_name}")
-        with open(
-            f"./result/{self.model_name}/"
-            + file_to_open.replace(".json", "_result.json"),
-            "a+",
-        ) as f:
-            f.write(json.dumps(result) + "\n")
-
+    @classmethod
+    def supported_models(cls):
+        return [
+            'firefunction-v1-FC',
+            'firefunction-v2-FC',
+        ]
+    
     def inference(self, prompt, functions, test_category):
         functions = language_specific_pre_processing(functions, test_category, True)
         if type(functions) is not list:

@@ -1,17 +1,18 @@
-USE_COHERE_OPTIMIZATION = False
+import os
 
-SYSTEM_PROMPT_FOR_CHAT_MODEL = """
-    You are an expert in composing functions. You are given a question and a set of possible functions. 
-    Based on the question, you will need to make one or more function/tool calls to achieve the purpose. 
-    If none of the function can be used, point it out. If the given question lacks the parameters required by the function,
-    also point it out. You should only return the function call in tools call sections.
-    """
+USE_COHERE_OPTIMIZATION = os.getenv('USE_COHERE_OPTIMIZATION', False)
 
-USER_PROMPT_FOR_CHAT_MODEL = """
-    Questions:{user_prompt}\nHere is a list of functions in JSON format that you can invoke:\n{functions}. 
-    Should you decide to return the function call(s),Put it in the format of [func1(params_name=params_value, params_name2=params_value2...), func2(params)]\n
-    NO other text MUST be included. 
-"""
+SYSTEM_PROMPT_FOR_CHAT_MODEL = """\
+You are an expert in composing functions. You are given a question and a set of possible functions. 
+Based on the question, you will need to make one or more function/tool calls to achieve the purpose. 
+If none of the function can be used, point it out. If the given question lacks the parameters required by the function,
+also point it out. You should only return the function call in tools call sections."""
+
+USER_PROMPT_FOR_CHAT_MODEL = """\
+Questions:{user_input}\nHere is a list of functions in JSON format that you can invoke:\n{functions}. 
+Should you decide to return the function call(s),Put it in the format of [func1(params_name=params_value, params_name2=params_value2...), func2(params)]\n
+NO other text MUST be included."""
+
 GORILLA_TO_OPENAPI = {
     "integer": "integer",
     "number": "number",
@@ -144,19 +145,3 @@ UNDERSCORE_TO_DOT = [
     "command-r-plus-FC",
     "command-r-plus-FC-optimized",
 ]
-
-TEST_CATEGORIES = {
-    "executable_simple": "gorilla_openfunctions_v1_test_executable_simple.json",
-    "executable_parallel_function": "gorilla_openfunctions_v1_test_executable_parallel_function.json",
-    "executable_multiple_function": "gorilla_openfunctions_v1_test_executable_multiple_function.json",
-    "executable_parallel_multiple_function": "gorilla_openfunctions_v1_test_executable_parallel_multiple_function.json",
-    "simple": "gorilla_openfunctions_v1_test_simple.json",
-    "relevance": "gorilla_openfunctions_v1_test_relevance.json",
-    "parallel_function": "gorilla_openfunctions_v1_test_parallel_function.json",
-    "multiple_function": "gorilla_openfunctions_v1_test_multiple_function.json",
-    "parallel_multiple_function": "gorilla_openfunctions_v1_test_parallel_multiple_function.json",
-    "java": "gorilla_openfunctions_v1_test_java.json",
-    "javascript": "gorilla_openfunctions_v1_test_javascript.json",
-    "rest": "gorilla_openfunctions_v1_test_rest.json",
-    "sql": "gorilla_openfunctions_v1_test_sql.json",
-}

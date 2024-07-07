@@ -1,9 +1,11 @@
-import re, ast, builtins, ast, json
-from model_handler.model_style import ModelStyle
-from model_handler.constant import JAVA_TYPE_CONVERSION, JS_TYPE_CONVERSION
-from model_handler.java_parser import parse_java_function_call
-from model_handler.js_parser import parse_javascript_function_call
-from model_handler.constant import GORILLA_TO_OPENAPI, USE_COHERE_OPTIMIZATION
+import re
+import ast
+import builtins
+import json
+
+from bfcl.model_handler import parser
+from bfcl.model_handler.base import ModelStyle
+from bfcl.model_handler import constants
 
 
 def _cast_to_openai_type(properties, mapping, test_category):
@@ -12,7 +14,7 @@ def _cast_to_openai_type(properties, mapping, test_category):
             properties[key]["type"] = "string"
         else:
             var_type = value["type"]
-            if mapping == GORILLA_TO_OPENAPI and var_type == "float":
+            if mapping == constants.GORILLA_TO_OPENAPI and var_type == "float":
                 properties[key]["format"] = "float"
                 properties[key]["description"] += " This is a float type value."
             if var_type in mapping:
@@ -58,13 +60,13 @@ def convert_to_tool(
 ):
     oai_tool = []
     for item in functions:
-        if "." in item["name"] and (
-            model_style == ModelStyle.OpenAI
-            or model_style == ModelStyle.Mistral
-            or model_style == ModelStyle.Google
-            or model_style == ModelStyle.OSSMODEL
-            or model_style == ModelStyle.Anthropic_FC
-            or model_style == ModelStyle.COHERE
+        if "." in item["name"] and model_style in (
+            ModelStyle.OPENAI,
+            ModelStyle.MISTRAL,
+            ModelStyle.GOOGLE,
+            ModelStyle.ANTHROPIC_FC,
+            ModelStyle.COHERE,
+            ModelStyle.OSS_MODEL,
         ):
             # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
             item["name"] = re.sub(r"\.", "_", item["name"])
@@ -73,33 +75,29 @@ def convert_to_tool(
             item["parameters"]["properties"], mapping, test_category
         )
         # When Java and Javascript, for OpenAPI compatible models, let it become string.
-        if (
-            model_style
-            in [
-                ModelStyle.OpenAI,
-                ModelStyle.Mistral,
-                ModelStyle.Google,
-                ModelStyle.Anthropic_Prompt,
-                ModelStyle.Anthropic_FC,
-                ModelStyle.FIREWORK_AI,
-                ModelStyle.OSSMODEL,
-                ModelStyle.COHERE,
-            ]
-            and stringify_parameters
+        if stringify_parameters and model_style in (
+            ModelStyle.OPENAI,
+            ModelStyle.MISTRAL,
+            ModelStyle.GOOGLE,
+            ModelStyle.ANTHROPIC_FC,
+            ModelStyle.ANTHROPIC_PROMPT,
+            ModelStyle.FIREWORK_AI,
+            ModelStyle.COHERE,
+            ModelStyle.OSS_MODEL,
         ):
             properties = item["parameters"]["properties"]
             if test_category == "java":
                 for key, value in properties.items():
-                    if value["type"] in JAVA_TYPE_CONVERSION:
+                    if value["type"] in constants.JAVA_TYPE_CONVERSION:
                         properties[key]["type"] = "string"
             elif test_category == "javascript":
                 for key, value in properties.items():
-                    if value["type"] in JS_TYPE_CONVERSION:
+                    if value["type"] in constants.JS_TYPE_CONVERSION:
                         properties[key]["type"] = "string"
-        if model_style == ModelStyle.Anthropic_FC:
+        if model_style == ModelStyle.ANTHROPIC_FC:
             item["input_schema"] = item["parameters"]
             del item["parameters"]
-        if model_style == ModelStyle.Google:
+        if model_style == ModelStyle.GOOGLE:
             # Remove fields that are not supported by Gemini today.
             for params in item["parameters"]["properties"].values():
                 if "default" in params:
@@ -113,7 +111,7 @@ def convert_to_tool(
                     params["description"] += "The additional properties:" +str(params["additionalProperties"])
                     del params["additionalProperties"]
         if model_style == ModelStyle.COHERE:
-            if USE_COHERE_OPTIMIZATION:
+            if constants.USE_COHERE_OPTIMIZATION:
                 if "required" not in item["parameters"]:
                     item["parameters"]["required"] = []
                 for param_name, params in item["parameters"]["properties"].items():
@@ -181,11 +179,11 @@ def convert_to_tool(
                     if "properties" in params:
                         params["description"] += " Dictionary properties: " + str(params["properties"])
                         del params["properties"]
-        if model_style in [
-            ModelStyle.Anthropic_Prompt,
-            ModelStyle.Google,
-            ModelStyle.OSSMODEL,
-        ]:
+        if model_style in (
+            ModelStyle.ANTHROPIC_PROMPT,
+            ModelStyle.GOOGLE,
+            ModelStyle.OSS_MODEL,
+        ):
             oai_tool.append(item)
         elif model_style == ModelStyle.COHERE:
             parameter = item["parameters"]["properties"]
@@ -204,11 +202,11 @@ def convert_to_tool(
                     "parameter_definitions": parameter_definitions,
                 }
             )
-        elif model_style in [
-            ModelStyle.OpenAI,
-            ModelStyle.Mistral,
+        elif model_style in (
+            ModelStyle.OPENAI,
+            ModelStyle.MISTRAL,
             ModelStyle.FIREWORK_AI,
-        ]:
+        ):
             oai_tool.append({"type": "function", "function": item})
     return oai_tool
 
@@ -250,20 +248,20 @@ def convert_value(value, type_str):
         return value
 
 
-def ast_parse(input_str, language="Python"):
-    if language == "Python":
+def ast_parse(input_str, language="python"):
+    if language.lower() == "python":
         parsed = ast.parse(input_str, mode="eval")
         extracted = []
         for elem in parsed.body.elts:
             assert isinstance(elem, ast.Call)
             extracted.append(resolve_ast_by_type(elem))
         return extracted
-    elif language == "Java":
-        return parse_java_function_call(
+    elif language.lower() == "java":
+        return parser.parse_java_function_call(
             input_str[1:-1]
         )  # Remove the [ and ] from the string
-    elif language == "JavaScript":
-        return parse_javascript_function_call(input_str[1:-1])
+    elif language.lower() == "javascript":
+        return parser.parse_javascript_function_call(input_str[1:-1])
     else:
         raise NotImplementedError(f"Unsupported language: {language}")
 
@@ -311,7 +309,7 @@ def resolve_ast_by_type(value):
     elif isinstance(value, ast.Name):
         output = value.id
     elif isinstance(value, ast.Call):
-        if len(value.keywords)==0:
+        if len(value.keywords) == 0:
             output = ast.unparse(value)
         else:
             output = resolve_ast_call(value)
@@ -446,7 +444,7 @@ def construct_format_parameters_prompt(parameters):
     return constructed_prompt
 
 
-def _function_calls_valid_format_and_invoke_extraction(last_completion):
+def function_calls_valid_format_and_invoke_extraction(last_completion):
     """Check if the function call follows a valid format and extract the attempted function calls if so. Does not check if the tools actually exist or if they are called with the requisite params."""
 
     # Check if there are any of the relevant XML tags present that would indicate an attempted function call.
@@ -562,7 +560,7 @@ def _function_calls_valid_format_and_invoke_extraction(last_completion):
     }
 
 
-def _convert_value(value, type_str):
+def convert_value(value, type_str):
     """Convert a string value into its appropriate Python data type based on the provided type string.
 
     Arg:

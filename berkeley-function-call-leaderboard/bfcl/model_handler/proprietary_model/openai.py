@@ -1,42 +1,50 @@
-from model_handler.handler import BaseHandler
-from model_handler.model_style import ModelStyle
-from model_handler.utils import (
-    convert_to_tool,
-    convert_to_function_call,
-    augment_prompt_by_languge,
-    language_specific_pre_processing,
-    ast_parse,
-)
-from model_handler.constant import (
-    GORILLA_TO_OPENAPI,
-    GORILLA_TO_PYTHON,
-    USER_PROMPT_FOR_CHAT_MODEL,
-    SYSTEM_PROMPT_FOR_CHAT_MODEL,
-)
+import time
+import os
+import json
+
 from openai import OpenAI
-import os, time, json
+
+from bfcl.model_handler import utils, constants
+from bfcl.model_handler.base import BaseHandler, ModelStyle
 
 
 class OpenAIHandler(BaseHandler):
+    model_style = ModelStyle.OPENAI
+
     def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
-        self.model_style = ModelStyle.OpenAI
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-    def inference(self, prompt,functions,test_category):
+    @classmethod
+    def supported_models(cls):
+        return [
+            'gpt-4o-2024-05-13',
+            'gpt-4o-2024-05-13-FC',
+            'gpt-4-turbo-2024-04-09',
+            'gpt-4-turbo-2024-04-09-FC',
+            'gpt-4-1106-preview',
+            'gpt-4-1106-preview-FC',
+            'gpt-4-0125-preview',
+            'gpt-4-0125-preview-FC',
+            'gpt-4-0613',
+            'gpt-4-0613-FC',
+            'gpt-3.5-turbo-0125',
+            'gpt-3.5-turbo-0125-FC',
+        ]
+
+    def inference(self, prompt, functions, test_category):
         if "FC" not in self.model_name:
-            prompt = augment_prompt_by_languge(prompt,test_category)
-            functions = language_specific_pre_processing(functions,test_category,False)
+            prompt = utils.augment_prompt_by_languge(prompt, test_category)
+            functions = utils.language_specific_pre_processing(functions, test_category, False)
             message = [
                 {
                     "role": "system",
-                    "content": SYSTEM_PROMPT_FOR_CHAT_MODEL,
+                    "content": constants.SYSTEM_PROMPT_FOR_CHAT_MODEL,
                 },
                 {
                     "role": "user",
-                    "content": USER_PROMPT_FOR_CHAT_MODEL.format(
-                        user_prompt=prompt, functions=str(functions)
-                    ),
+                    "content": constants.USER_PROMPT_FOR_CHAT_MODEL.format(user_prompt=prompt, 
+                                                                           functions=str(functions)),
                 },
             ]
             start_time = time.time()
@@ -50,13 +58,13 @@ class OpenAIHandler(BaseHandler):
             latency = time.time() - start_time
             result = response.choices[0].message.content
         else:
-            prompt = augment_prompt_by_languge(prompt, test_category)
-            functions = language_specific_pre_processing(functions, test_category, True)
+            prompt = utils.augment_prompt_by_languge(prompt, test_category)
+            functions = utils.language_specific_pre_processing(functions, test_category, True)
             if type(functions) is not list:
                 functions = [functions]
             message = [{"role": "user", "content": prompt}]
-            oai_tool = convert_to_tool(
-                functions, GORILLA_TO_OPENAPI, self.model_style, test_category, True
+            oai_tool = utils.convert_to_tool(
+                functions, constants.GORILLA_TO_OPENAPI, self.model_style, test_category, True
             )
             start_time = time.time()
             if len(oai_tool) > 0:
@@ -90,26 +98,24 @@ class OpenAIHandler(BaseHandler):
         metadata["latency"] = latency
         return result,metadata
     
-    def decode_ast(self,result,language="Python"):
+    def decode_ast(self, result, language="python"):
         if "FC" not in self.model_name:
-            decoded_output = ast_parse(result,language)
+            decoded_output = utils.ast_parse(result,language)
         else:
             decoded_output = []
             for invoked_function in result:
                 name = list(invoked_function.keys())[0]
                 params = json.loads(invoked_function[name])
-                if language == "Python":
-                    pass
-                else:
+                if language.lower() != "python":
                     # all values of the json are casted to string for java and javascript
                     for key in params:
                         params[key] = str(params[key])
                 decoded_output.append({name: params})
         return decoded_output
     
-    def decode_execute(self,result):
+    def decode_execute(self, result):
         if "FC" not in self.model_name:
-            decoded_output = ast_parse(result)
+            decoded_output = utils.ast_parse(result)
             execution_list = []
             for function_call in decoded_output:
                 for key, value in function_call.items():
@@ -118,5 +124,5 @@ class OpenAIHandler(BaseHandler):
                     )
             return execution_list
         else:
-            function_call = convert_to_function_call(result)
+            function_call = utils.convert_to_function_call(result)
             return function_call

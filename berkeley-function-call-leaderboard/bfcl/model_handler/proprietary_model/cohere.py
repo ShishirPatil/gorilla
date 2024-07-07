@@ -1,86 +1,88 @@
 import os
-
-from model_handler.handler import BaseHandler
-from model_handler.model_style import ModelStyle
-from model_handler.utils import (
-    augment_prompt_by_languge,
-    language_specific_pre_processing,
-    convert_to_tool,
-    ast_parse,
-    convert_to_function_call,
-)
-from model_handler.constant import (
-    SYSTEM_PROMPT_FOR_CHAT_MODEL,
-    USER_PROMPT_FOR_CHAT_MODEL,
-    GORILLA_TO_PYTHON,
-)
 import time
+
 import cohere
 
-from model_handler.constant import USE_COHERE_OPTIMIZATION
+from bfcl.model_handler import utils
+from bfcl.model_handler import constants
+from bfcl.model_handler.base import BaseHandler, ModelStyle
+
+
+OPTIMIZED_PREAMBLE = """## Task & Context
+You help people answer their questions and other requests interactively. You will be asked a very wide array of requests on all kinds of topics. You will be equipped with a wide range of search engines or similar tools to help you, which you can use to research your answer. You should focus on serving the user's needs as best you can, which will be wide-ranging.
+
+When a question is irrelevant or unrelated to the available tools you should choose to directly answer. This is especially important when the question or available tools are about specialist subject like math or biology or physics: DO NOT ANSWER UNRELATED QUESTIONS.
+
+## Style Guide
+Unless the user asks for a different style of answer, you should answer in full sentences, using proper grammar and spelling.
+"""
+
+PREAMBLE = """## Task & Context
+You help people answer their questions and other requests interactively. You will be asked a very wide array of requests on all kinds of topics. You will be equipped with a wide range of search engines or similar tools to help you, which you use to research your answer. You should focus on serving the user's needs as best you can, which will be wide-ranging.
+
+## Style Guide
+Unless the user asks for a different style of answer, you should answer in full sentences, using proper grammar and spelling.
+"""
 
 
 class CohereHandler(BaseHandler):
-    client: cohere.Client
+    model_style = ModelStyle.COHERE
 
-    def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
+    def __init__(
+        self, 
+        model_name, 
+        temperature=0.7, 
+        top_p=1, 
+        max_tokens=1000, 
+        use_cohere_optimization: bool = constants.USE_COHERE_OPTIMIZATION
+    ) -> None:
+        
         super().__init__(model_name, temperature, top_p, max_tokens)
-        self.model_style = ModelStyle.COHERE
-
+        self.use_cohere_optimization = use_cohere_optimization
         self.client = cohere.Client(api_key=os.getenv("COHERE_API_KEY"))
-
-        # System prompt for function calling.
-        if USE_COHERE_OPTIMIZATION:
-            self.preamble = """## Task & Context
-    You help people answer their questions and other requests interactively. You will be asked a very wide array of requests on all kinds of topics. You will be equipped with a wide range of search engines or similar tools to help you, which you can use to research your answer. You should focus on serving the user's needs as best you can, which will be wide-ranging.
-
-    When a question is irrelevant or unrelated to the available tools you should choose to directly answer. This is especially important when the question or available tools are about specialist subject like math or biology or physics: DO NOT ANSWER UNRELATED QUESTIONS.
-
-    ## Style Guide
-    Unless the user asks for a different style of answer, you should answer in full sentences, using proper grammar and spelling.
-    """
-        else:
-            self.preamble = """
-        ## Task & Context
-        You help people answer their questions and other requests interactively. You will be asked a very wide array of requests on all kinds of topics. You will be equipped with a wide range of search engines or similar tools to help you, which you use to research your answer. You should focus on serving the user's needs as best you can, which will be wide-ranging.
-
-        ## Style Guide
-        Unless the user asks for a different style of answer, you should answer in full sentences, using proper grammar and spelling.
-        """
+        self.preamble = OPTIMIZED_PREAMBLE if use_cohere_optimization else PREAMBLE
+    
+    @classmethod
+    def supported_models(cls):
+        return [
+            'command-r-plus',
+            'command-r-plus-FC',
+            'command-r-plus-optimized',
+            'command-r-plus-FC-optimized',
+        ]
 
     def inference(self, prompt, functions, test_category):
         if "FC" not in self.model_name:
-            prompt = augment_prompt_by_languge(prompt, test_category)
-            functions = language_specific_pre_processing(
+            prompt = utils.augment_prompt_by_languge(prompt, test_category)
+            functions = utils.language_specific_pre_processing(
                 functions, test_category, False
             )
-            message = USER_PROMPT_FOR_CHAT_MODEL.format(
-                user_prompt=prompt, functions=str(functions)
-            )
+            message = constants.USER_PROMPT_FOR_CHAT_MODEL.format(user_prompt=prompt, 
+                                                                  functions=str(functions))
             start_time = time.time()
             response = self.client.chat(
                 message=message,
                 model=self.model_name,
                 temperature=self.temperature,
                 max_tokens=self.max_tokens,
-                preamble=SYSTEM_PROMPT_FOR_CHAT_MODEL,
+                preamble=constants.SYSTEM_PROMPT_FOR_CHAT_MODEL,
             )
             latency = time.time() - start_time
             result = response.text
         else:
-            prompt = augment_prompt_by_languge(prompt, test_category)
-            functions = language_specific_pre_processing(functions, test_category, True)
+            prompt = utils.augment_prompt_by_languge(prompt, test_category)
+            functions = utils.language_specific_pre_processing(functions, test_category, True)
             if type(functions) is not list:
                 functions = [functions]
             message = prompt
             # Convert JSON schema into R+ compatible function calls.
-            cohere_tool = convert_to_tool(
-                functions, GORILLA_TO_PYTHON, self.model_style, test_category, True
+            cohere_tool = utils.convert_to_tool(
+                functions, constants.GORILLA_TO_PYTHON, self.model_style, test_category, True
             )
             start_time = time.time()
             if len(cohere_tool) > 0:
                 try:
-                    if USE_COHERE_OPTIMIZATION:
+                    if self.use_cohere_optimization:
                         response = self.client.chat(
                             message=message,
                             model=self.model_name.replace("-FC", ""),
@@ -129,13 +131,13 @@ class CohereHandler(BaseHandler):
         metadata["latency"] = latency
         return result, metadata
 
-    def decode_ast(self, result, language="Python"):
+    def decode_ast(self, result, language="python"):
         if "FC" not in self.model_name:
             if not result.startswith("["):
                 result = "[" + result
             if not result.endswith("]"):
                 result = result + "]"
-            decoded_output = ast_parse(result, language)
+            decoded_output = utils.ast_parse(result, language)
         else:
             decoded_output = []
             for invoked_function in result:
@@ -144,7 +146,7 @@ class CohereHandler(BaseHandler):
                 if language == "Python":
                     pass
                 else:
-                    if USE_COHERE_OPTIMIZATION:
+                    if self.use_cohere_optimization:
                         # all values of the json are cast to string for java and javascript
                         for key, value in params.items():
                             value = str(value)
@@ -165,7 +167,7 @@ class CohereHandler(BaseHandler):
                 result = "[" + result
             if not result.endswith("]"):
                 result = result + "]"
-            decoded_output = ast_parse(result)
+            decoded_output = utils.ast_parse(result)
             execution_list = []
             for function_call in decoded_output:
                 for key, value in function_call.items():
