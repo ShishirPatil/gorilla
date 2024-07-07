@@ -372,6 +372,12 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/nvidia/nemotron-4-340b-instruct",
         "NVIDIA",
         "nvidia-open-model-license"
+    ],
+    "THUDM/glm-4-9b-chat": [
+        "GLM-4-9b-Chat (FC)",
+        "https://huggingface.co/THUDM/glm-4-9b-chat",
+        "THUDM",
+        "glm-4"
     ]
 }
 
@@ -467,6 +473,7 @@ OSS_LATENCY = {
     "meta-llama/Meta-Llama-3-8B-Instruct": 73,
     "meta-llama/Meta-Llama-3-70B-Instruct": 307,
     "gorilla-openfunctions-v2": 83,
+    "THUDM/glm-4-9b-chat": 223
 }
 
 
@@ -479,6 +486,7 @@ NO_COST_MODELS = [
     "meetkai/functionary-small-v2.4-FC",
     "snowflake/arctic",
     "nvidia/nemotron-4-340b-instruct",
+    "THUDM/glm-4-9b-chat",
 ]
 
 # Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
