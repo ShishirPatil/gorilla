@@ -63,10 +63,41 @@ Then, use `eval_data_compilation.py` to compile all files by
 ```bash
 python eval_data_compilation.py
 ```
-## Berkeley Function-Calling Leaderboard Statistics
+
+## Available Test Category
+In the following two sections, the optional `--test-category` parameter can be used to specify the category of tests to run. You can specify multiple categories separated by spaces. Available options include:
+
+- `all`: Run all test categories.
+- `ast`: Abstract Syntax Tree tests.
+- `executable`: Executable code evaluation tests.
+- `python`: Tests specific to Python code.
+- `non-python`: Tests for code in languages other than Python, such as Java and JavaScript.
+- `python-ast`: Python Abstract Syntax Tree tests.
+- Individual test categories:
+    - `simple`: Simple function calls.
+    - `parallel_function`: Multiple function calls in parallel.
+    - `multiple_function`: Multiple function calls in sequence.
+    - `parallel_multiple_function`: Multiple function calls in parallel and in sequence.
+    - `executable_simple`: Executable function calls.
+    - `executable_parallel_function`: Executable multiple function calls in parallel.
+    - `executable_multiple_function`: Executable multiple function calls in sequence.
+    - `executable_parallel_multiple_function`: Executable multiple function calls in parallel and in sequence.
+    - `java`: Java function calls.
+    - `javascript`: JavaScript function calls.
+    - `rest`: REST API function calls.
+    - `relevance`: Function calls with irrelevant function documentation.
+- If no test category is provided, the script will run all available test categories. (same as `all`)
+
+> If you want to run the `all` or `executable` or `python` category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API!
+
+> If you do not wish to provide API keys for REST API testing, set `test-category` to `ast` or any non-executable category.
+
+> By setting the `--api-sanity-check` flag, or `-c` for short, if the test categories include `executable`, the evaluation process will perform the REST API sanity check first to ensure that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, we will flag those in the console and continue execution.
 
 
-Make sure models API keys are included in your environment variables.
+## Model Result Generation
+
+Make sure the model API keys are included in your environment variables.
 
 ```bash
 export OPENAI_API_KEY=sk-XXXXXX
@@ -84,16 +115,11 @@ To generate leaderboard statistics, there are two steps:
 ```bash
 python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
 ```
-For TEST_CATEGORY, we have `executable_simple`, `executable_parallel_function`, `executable_multiple_function`, `executable_parallel_multiple_function`, `simple`, `relevance`, `parallel_function`, `multiple_function`, `parallel_multiple_function`, `java`, `javascript`, `rest`, `sql`, `chatable`.
-
-If you want to run all evaluations at the same time, you can use `all` as the test category.
+For available options for `TEST_CATEGORY`, please refer to the [Available Test Category](#available-test-category) section.
 
 Running proprietary models like GPTs, Claude, Mistral-X will require an API-Key which can be supplied in `openfunctions_evaluation.py`.
 
 If decided to run OSS model, openfunction evaluation uses vllm and therefore requires GPU for hosting and inferencing. If you have questions or concerns about evaluating OSS models, please reach out to us in our [discord channel](https://discord.gg/grXXvj9Whz).
-
-
-
 
 ## Checking the Evaluation Results
 
@@ -105,34 +131,7 @@ Navigate to the `gorilla/berkeley-function-call-leaderboard/eval_checker` direct
 python eval_runner.py --model MODEL_NAME --test-category {TEST_CATEGORY,all,ast,executable,python,non-python}
 ```
 
-- `MODEL_NAME`: Optional. The name of the model you wish to evaluate. This parameter can accept multiple model names separated by spaces. Eg, `--model gorilla-openfunctions-v2 gpt-4-0125-preview`.
-    - If no model name is provided, the script will run the checker on all models exist in the `result` folder. This path can be changed by modifying the `INPUT_PATH` variable in the `eval_runner.py` script.
-- `TEST_CATEGORY`: Optional. The category of tests to run. You can specify multiple categories separated by spaces. Available options include:
-    - `all`: Run all test categories.
-    - `ast`: Abstract Syntax Tree tests.
-    - `executable`: Executable code evaluation tests.
-    - `python`: Tests specific to Python code.
-    - `non-python`: Tests for code in languages other than Python, such as Java and JavaScript.
-    - `python-ast`: Python Abstract Syntax Tree tests.
-    - Individual test categories:
-        - `simple`: Simple function calls.
-        - `parallel_function`: Multiple function calls in parallel.
-        - `multiple_function`: Multiple function calls in sequence.
-        - `parallel_multiple_function`: Multiple function calls in parallel and in sequence.
-        - `executable_simple`: Executable function calls.
-        - `executable_parallel_function`: Executable multiple function calls in parallel.
-        - `executable_multiple_function`: Executable multiple function calls in sequence.
-        - `executable_parallel_multiple_function`: Executable multiple function calls in parallel and in sequence.
-        - `java`: Java function calls.
-        - `javascript`: JavaScript function calls.
-        - `rest`: REST API function calls.
-        - `relevance`: Function calls with irrelevant function documentation.
-    - If no test category is provided, the script will run all available test categories.
-> If you want to run the `all` or `executable` or `python` category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API! 
-
-> If you do not wish to provide API keys for REST API testing, set `test-category` to `ast` or any non-executable category.
-
-> By setting the `--api-sanity-check` flag, or `-c` for short, if the test categories include `executable`, the evaluation process will perform the REST API sanity check first to ensure that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, we will flag those in the console and continue execution.
+For available options for `TEST_CATEGORY`, please refer to the [Available Test Category](#available-test-category) section.
 
 ### Example Usage
 
@@ -149,13 +148,13 @@ If you want to evaluate all offline tests (do not require RapidAPI keys) for Ope
 python eval_runner.py --model gpt-3.5-turbo-0125 --test-category ast
 ```
 
-If you want to run `rest` tests for all GPT models, you can use the following command:
+If you want to run `rest` tests for a few GPT models, you can use the following command:
 
 ```bash
 python eval_runner.py --model gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest
 ```
 
-If you want to run `rest` and `javascript` tests for all GPT models and `gorilla-openfunctions-v2`, you can use the following command:
+If you want to run `rest` and `javascript` tests for a few GPT models and `gorilla-openfunctions-v2`, you can use the following command:
 
 ```bash
 python eval_runner.py --model gorilla-openfunctions-v2 gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest javascript
