@@ -481,7 +481,7 @@ NO_COST_MODELS = [
     "nvidia/nemotron-4-340b-instruct",
 ]
 
-# Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
+# Price got from Azure, 22.032 per hour for 8 V100, Pay As You Go Total Price
 # Reference: https://azure.microsoft.com/en-us/pricing/details/machine-learning/
 V100_x8_PRICE_PER_HOUR = 22.032
 
