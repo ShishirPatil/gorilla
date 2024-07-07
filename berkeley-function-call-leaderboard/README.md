@@ -115,7 +115,8 @@ To generate leaderboard statistics, there are two steps:
 ```bash
 python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
 ```
-For available options for `TEST_CATEGORY`, please refer to the [Available Test Category](#available-test-category) section.
+
+For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section.
 
 Running proprietary models like GPTs, Claude, Mistral-X will require an API-Key which can be supplied in `openfunctions_evaluation.py`.
 
@@ -131,7 +132,7 @@ Navigate to the `gorilla/berkeley-function-call-leaderboard/eval_checker` direct
 python eval_runner.py --model MODEL_NAME --test-category {TEST_CATEGORY,all,ast,executable,python,non-python}
 ```
 
-For available options for `TEST_CATEGORY`, please refer to the [Available Test Category](#available-test-category) section.
+For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section.
 
 ### Example Usage
 
