@@ -113,6 +113,7 @@ python eval_runner.py --model MODEL_NAME --test-category {TEST_CATEGORY,all,ast,
     - `executable`: Executable code evaluation tests.
     - `python`: Tests specific to Python code.
     - `non-python`: Tests for code in languages other than Python, such as Java and JavaScript.
+    - `python-ast`: Python Abstract Syntax Tree tests.
     - Individual test categories:
         - `simple`: Simple function calls.
         - `parallel_function`: Multiple function calls in parallel.
