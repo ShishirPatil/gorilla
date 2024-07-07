@@ -5,8 +5,8 @@ import os
 from eval_checker import custom_exception
 
 parser = argparse.ArgumentParser(description="Replace placeholders in the function credential config file.")
-parser.add_argument("--input-dir", help="Path to the input directory containing the files.")
-parser.add_argument("--output-dir", help="Path to the output directory where the files will be placed.")
+parser.add_argument("--input-path", help="Path to the function credential config file. Can be a file or a directory.")
+parser.add_argument("--output-path", help="Path to the output file.")
 args = parser.parse_args()
 
 # Load the configuration with actual API keys
@@ -44,7 +44,28 @@ def replace_placeholders(data):
     return data
 
 
-def main(input_dir, output_dir):
+def process_file(input_file_path, output_file_path):
+    modified_data = []
+    with open(input_file_path, "r") as f:
+        lines = f.readlines()
+        for line in lines:
+            try:
+                data = json.loads(line)  # Parse each line as a JSON object
+                data = replace_placeholders(data)  # Replace placeholders
+                modified_data.append(json.dumps(data))  # Convert back to string and store
+            except json.JSONDecodeError:
+                # Handle the case where a line is not a valid JSON object
+                print("Invalid JSON line skipped.")
+                continue
+            
+    with open(output_file_path, 'w') as f:
+        for modified_line in modified_data:
+            f.write(modified_line + '\n')  # Write each modified JSON object overwrite the output file
+            
+    print(f"All placeholders have been replaced in {args.output_file} 🦍.")
+    
+    
+def process_dir(input_dir, output_dir):
     print(f"Input directory: {input_dir}")
     # Get a list of all entries in the folder
     entries = os.scandir(input_dir)
@@ -53,30 +74,12 @@ def main(input_dir, output_dir):
     for input_file_path in glob.glob(json_files_pattern):
         file_name = os.path.basename(input_file_path)
         output_file_path = os.path.join(output_dir, file_name)
-        
-        modified_data = []
-        with open(input_file_path, "r") as f:
-            lines = f.readlines()
-            for line in lines:
-                try:
-                    data = json.loads(line)  # Parse each line as a JSON object
-                    data = replace_placeholders(data)  # Replace placeholders
-                    modified_data.append(json.dumps(data))  # Convert back to string and store
-                except json.JSONDecodeError:
-                    # Handle the case where a line is not a valid JSON object
-                    print("Invalid JSON line skipped.")
-                    continue
-                
-        with open(output_file_path, 'w') as f:
-            for modified_line in modified_data:
-                f.write(modified_line + '\n')  # Write each modified JSON object overwrite the output file
-                
-        print(f"All placeholders have been replaced in {args.output_file} 🦍.")
+        process_file(input_file_path, output_file_path)
         
     # Process each subdirectory
     subdirs = [entry.path for entry in entries if entry.is_dir()]
     for subdir in subdirs:
-        main(subdir, subdir)
+        process_dir(subdir, subdir)
         
 
 if __name__ == "__main__":
@@ -86,12 +89,15 @@ if __name__ == "__main__":
             raise custom_exception.NoAPIKeyError()
     print("All API keys are present.")
     
-    input_dir = args.input_dir
-    if input_dir is None:
-        input_dir = "./data/" 
+    input_path = args.input_path
+    if input_path is None:
+        input_path = "./data/" 
     
-    output_dir = args.output_dir
-    if output_dir is None:
-        output_dir = input_dir
-        
-    main(input_dir, output_dir)
+    output_path = args.output_path
+    if output_path is None:
+        output_path = input_path
+    
+    if os.path.isdir(input_path):
+        process_dir(input_path, output_path)
+    else:
+        process_file(input_path, output_path)
