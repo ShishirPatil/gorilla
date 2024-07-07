@@ -139,7 +139,6 @@ If you want to run all tests for the `gorilla-openfunctions-v2` model, you can u
 
 ```bash
 python eval_runner.py --model gorilla-openfunctions-v2
-
 ```
 
 If you want to evaluate all offline tests (do not require RapidAPI keys) for OpenAI GPT-3.5, you can use the following command:
@@ -148,16 +147,16 @@ If you want to evaluate all offline tests (do not require RapidAPI keys) for Ope
 python eval_runner.py --model gpt-3.5-turbo-0125 --test-category ast
 ```
 
-If you want to run `rest` tests for a few GPT models, you can use the following command:
+If you want to run `rest` tests for a few Claude models, you can use the following command:
 
 ```bash
-python eval_runner.py --model gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest
+python eval_runner.py --model claude-3-5-sonnet-20240620 claude-3-opus-20240229 claude-3-sonnet-20240229 --test-category rest
 ```
 
-If you want to run `rest` and `javascript` tests for a few GPT models and `gorilla-openfunctions-v2`, you can use the following command:
+If you want to run `rest` and `javascript` tests for a few models and `gorilla-openfunctions-v2`, you can use the following command:
 
 ```bash
-python eval_runner.py --model gorilla-openfunctions-v2 gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest javascript
+python eval_runner.py --model gorilla-openfunctions-v2 claude-3-5-sonnet-20240620 gpt-4-0125-preview gemini-1.5-pro-preview-0514 --test-category rest javascript
 ```
 
 ### Model-Specific Optimization
