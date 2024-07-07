@@ -3,7 +3,7 @@ from tqdm import tqdm
 from model_handler.handler_map import handler_map
 from model_handler.model_style import ModelStyle
 from model_handler.constant import USE_COHERE_OPTIMIZATION
-
+from eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -39,61 +39,6 @@ TEST_FILE_MAPPING = {
     "sql": "gorilla_openfunctions_v1_test_sql.json",
 }
 
-TEST_COLLECTION_MAPPING = {
-    "ast": [
-        "simple",
-        "multiple_function",
-        "parallel_function",
-        "parallel_multiple_function",
-        "java",
-        "javascript",
-        "relevance",
-    ],
-    "executable": [
-        "executable_simple",
-        "executable_multiple_function",
-        "executable_parallel_function",
-        "executable_parallel_multiple_function",
-        "rest",
-    ],
-    "all": [
-        "simple",
-        "multiple_function",
-        "parallel_function",
-        "parallel_multiple_function",
-        "java",
-        "javascript",
-        "relevance",
-        "executable_simple",
-        "executable_multiple_function",
-        "executable_parallel_function",
-        "executable_parallel_multiple_function",
-        "rest",
-    ],
-    "non-python": [
-        "java",
-        "javascript",
-    ],
-    "python": [
-        "simple",
-        "multiple_function",
-        "parallel_function",
-        "parallel_multiple_function",
-        "relevance",
-        "executable_simple",
-        "executable_multiple_function",
-        "executable_parallel_function",
-        "executable_parallel_multiple_function",
-        "rest",
-    ],
-    "python-ast": [
-        "simple",
-        "multiple_function",
-        "parallel_function",
-        "parallel_multiple_function",
-        "relevance",
-    ],
-}
 
 def build_handler(model_name, temperature, top_p, max_tokens):
     handler = handler_map[model_name](model_name, temperature, top_p, max_tokens)

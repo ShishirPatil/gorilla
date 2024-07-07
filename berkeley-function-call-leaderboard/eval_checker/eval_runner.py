@@ -5,6 +5,7 @@ sys.path.append("../")
 from checker import ast_checker, exec_checker, executable_checker_rest
 from custom_exception import BadAPIStatusError
 from eval_runner_helper import *
+from eval_checker_constant import TEST_COLLECTION_MAPPING
 from tqdm import tqdm
 import argparse
 
@@ -428,63 +429,6 @@ def runner(model_names, test_categories, api_sanity_check):
     display_api_status_error(API_STATUS_ERROR_REST, API_STATUS_ERROR_EXECUTABLE, display_success=False)
     
     print(f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data.csv')} for evaluation results.")
-
-
-TEST_COLLECTION_MAPPING = {
-    "ast": [
-        "simple",
-        "multiple_function",
-        "parallel_function",
-        "parallel_multiple_function",
-        "java",
-        "javascript",
-        "relevance",
-    ],
-    "executable": [
-        "executable_simple",
-        "executable_multiple_function",
-        "executable_parallel_function",
-        "executable_parallel_multiple_function",
-        "rest",
-    ],
-    "all": [
-        "simple",
-        "multiple_function",
-        "parallel_function",
-        "parallel_multiple_function",
-        "java",
-        "javascript",
-        "relevance",
-        "executable_simple",
-        "executable_multiple_function",
-        "executable_parallel_function",
-        "executable_parallel_multiple_function",
-        "rest",
-    ],
-    "non-python": [
-        "java",
-        "javascript",
-    ],
-    "python": [
-        "simple",
-        "multiple_function",
-        "parallel_function",
-        "parallel_multiple_function",
-        "relevance",
-        "executable_simple",
-        "executable_multiple_function",
-        "executable_parallel_function",
-        "executable_parallel_multiple_function",
-        "rest",
-    ],
-    "python-ast": [
-        "simple",
-        "multiple_function",
-        "parallel_function",
-        "parallel_multiple_function",
-        "relevance",
-    ],
-}
 
 
 INPUT_PATH = "../result/"
