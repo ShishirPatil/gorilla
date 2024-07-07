@@ -4,7 +4,7 @@ tree_sitter~=0.21.0
 torch 
 ray
 shortuuid
-mistralai
+mistralai>=0.1.3
 anthropic~=0.29.0
 openai
 numpy
