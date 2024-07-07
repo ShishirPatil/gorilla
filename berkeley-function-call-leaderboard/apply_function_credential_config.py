@@ -58,9 +58,12 @@ def process_file(input_file_path, output_file_path):
                 print("Invalid JSON line skipped.")
                 continue
             
-    with open(output_file_path, 'w') as f:
-        for modified_line in modified_data:
-            f.write(modified_line + '\n')  # Write each modified JSON object overwrite the output file
+    # Write each modified JSON object overwrite the output file
+    with open(output_file_path, "w") as f:
+        for i, modified_line in enumerate(modified_data):
+            f.write(modified_line)
+            if i < len(data) - 1:
+                f.write("\n")        
             
     print(f"All placeholders have been replaced for {input_file_path} 🦍.")
     
@@ -77,9 +80,9 @@ def process_dir(input_dir, output_dir):
         process_file(input_file_path, output_file_path)
         
     # Process each subdirectory
-    subdirs = [entry.path for entry in entries if entry.is_dir()]
-    for subdir in subdirs:
-        process_dir(subdir, subdir)
+    # subdirs = [entry.path for entry in entries if entry.is_dir()]
+    # for subdir in subdirs:
+    #     process_dir(subdir, subdir)
         
 
 if __name__ == "__main__":
