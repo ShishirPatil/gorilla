@@ -21,25 +21,6 @@ pip install -r requirements.txt # Inside gorilla/berkeley-function-call-leaderbo
 pip install vllm # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
 ```
 
-### Evaluation Checker Setup (only required for Java and JavaScript test categories)
-
-We use `tree-sitter` for AST parsing of Java and JavaScript function calls.
-
-The git clones need to be under the `gorilla/berkeley-function-call-leaderboard/eval_checker` directory.
-
-```bash
-cd eval_checker # Navigate into gorilla/berkeley-function-call-leaderboard/eval_checker
-git clone https://github.com/tree-sitter/tree-sitter-java.git
-git clone https://github.com/tree-sitter/tree-sitter-javascript.git
-```
-
-Now, move back to `gorilla/berkeley-function-call-leaderboard`, and create two symbolic links to the `tree-sitter-java` and `tree-sitter-javascript` directories. This is required to run `openfunctions_evaluation.py`.
-
-```bash
-cd .. # Navigate into gorilla/berkeley-function-call-leaderboard
-ln -s eval_checker/tree-sitter-java tree-sitter-java
-ln -s eval_checker/tree-sitter-javascript tree-sitter-javascript
-```
 
 ## Prepare Evaluation Dataset
 
