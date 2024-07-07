@@ -3,6 +3,7 @@ import sys
 sys.path.append("../")
 
 from checker import ast_checker, exec_checker, executable_checker_rest
+from custom_exception import BadAPIStatusError
 from eval_runner_helper import *
 from tqdm import tqdm
 import argparse
@@ -266,6 +267,8 @@ def runner(model_names, test_categories, api_sanity_check):
     # We should always test the API with ground truth first before running the executable tests.
     # Sometimes the API may not be working as expected and we want to catch that before running the evaluation to ensure the results are accurate.
     API_TESTED = False
+    API_STATUS_ERROR_REST = None
+    API_STATUS_ERROR_EXECUTABLE = None
 
     # Before running the executable evaluation, we need to get the expected output from the ground truth.
     # So we need a list of all the test categories that we have ran the ground truth evaluation on.
@@ -351,9 +354,19 @@ def runner(model_names, test_categories, api_sanity_check):
                 # We only test the API with ground truth once
                 if not API_TESTED and api_sanity_check:
                     print("---- Sanity checking API status ----")
-                    api_status_sanity_check_rest()
-                    api_status_sanity_check_executable()
-                    print("---- Sanity check Passed 💯 ----")
+                    try:
+                        api_status_sanity_check_rest()
+                    except BadAPIStatusError as e:
+                        API_STATUS_ERROR_REST = e
+
+                    try:
+                        api_status_sanity_check_executable()
+                    except BadAPIStatusError as e:
+                        API_STATUS_ERROR_EXECUTABLE = e    
+
+                    display_api_status_error(API_STATUS_ERROR_REST, API_STATUS_ERROR_EXECUTABLE, display_success=True)
+                    print("Continuing evaluation...")
+                    
                     API_TESTED = True
 
                 if (
@@ -411,6 +424,10 @@ def runner(model_names, test_categories, api_sanity_check):
     clean_up_executable_expected_output(
         PROMPT_PATH, EXECUTABLE_TEST_CATEGORIES_HAVE_RUN
     )
+    
+    display_api_status_error(API_STATUS_ERROR_REST, API_STATUS_ERROR_EXECUTABLE, display_success=False)
+    
+    print(f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data.csv')} for evaluation results.")
 
 
 TEST_COLLECTION_MAPPING = {
@@ -494,16 +511,16 @@ if __name__ == "__main__":
         help="A list of test categories to run the evaluation on",
     )
     parser.add_argument(
-        "-s",
-        "--skip-api-sanity-check",
-        action="store_false",
-        default=True,  # Default value is True, meaning the sanity check is performed unless the flag is specified
-        help="Skip the REST API status sanity check before running the evaluation. By default, the sanity check is performed.",
+        "-c",
+        "--api-sanity-check",
+        action="store_true",
+        default=False,  # Default value is False, meaning the sanity check is skipped unless the flag is specified
+        help="Perform the REST API status sanity check before running the evaluation. By default, the sanity check is skipped.",
     )
 
     args = parser.parse_args()
 
-    api_sanity_check = args.skip_api_sanity_check
+    api_sanity_check = args.api_sanity_check
     test_categories = None
     if args.test_category is not None:
         test_categories = []
