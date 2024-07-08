@@ -91,7 +91,7 @@ class LeaderboardCategories(BaseModel):
             # Save data
             with open(self.output_file_path, 'w') as file:
                 for item in data:
-                    file.write(item + '\n')
+                    file.write(json.dumps(item) + '\n')
             print(f'Test data successfully saved at "{self.output_file_path}" 🦍')
 
         return data
