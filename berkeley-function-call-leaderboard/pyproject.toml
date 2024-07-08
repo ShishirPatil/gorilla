@@ -1,42 +1,47 @@
-[tool.poetry]
+[build-system]
+requires = ["setuptools>=40.8.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
 name = "bfcl"
 version = "0.1.0"
 description = "Berkeley Function Calling Leaderboard (BFCL)"
-authors = ["NAME <EMAIL>"]
+authors = [
+    {name="Shishir Patil", email="sgp@berkeley.edu"}
+]
 readme = "README.md"
-repository = "https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard"
-
-[tool.poetry.dependencies]
-python = ">=3.9,<3.12"
-requests = "*"
-tqdm = "*"
-numpy = "*"
-shortuuid = "*"
-huggingface_hub = "*"
-pydantic = "^2.8.2"
-python-dotenv = "^1.0.1"
-tree-sitter = "^0.21.0"
-datasets = "^2.19.2"
-openai = "^1.35.10"
-tree-sitter-java = "0.21.0"
-tree-sitter-javascript = "0.21.4"
-vllm = { version = "0.5.1", optional = true }
-mistralai = { version = "^0.4.2", optional = true }
-anthropic = { version = "^0.29.0", optional = true }
-cohere = { version = "^5.2.5", optional = true }
-
-[tool.poetry.extras]
-oss_eval = ["vllm"]
-proprietary_eval = [
-    "mistralai",
-    "anthropic",
-    "cohere"
+requires-python = ">=3.9"
+license = { "text" = "Apache 2.0" }
+dependencies = [
+    "requests",
+    "tqdm",
+    "numpy",
+    "huggingface_hub",
+    "pydantic>=2.8.2",
+    "python-dotenv>=1.0.1",
+    "tree-sitter~=0.21.0",
+    "tree-sitter-java==0.21.0",
+    "tree-sitter-javascript==0.21.4",
+    "openai>=1.35.10",
 ]
 
-[tool.poetry.scripts]
-bfcl_benchmark = "bfcl.benchmark:main"
-bfcl_eval = "bfcl.evaluate:main"
+[tool.setuptools.packages.find]
+include = ["bfcl*"]
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[project.scripts]
+bfcl_benchmark = "bfcl.benchmark:main"
+
+[project.urls]
+Repository = "https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard"
+
+[project.optional-dependencies]
+oss_eval = ["vllm==0.5.1"]
+proprietary_eval = [
+    "mistralai==0.4.2",
+    "anthropic==0.29.0",
+    "cohere==5.2.5",
+]
+all = [
+    "bfcl[oss_eval]",
+    "bfcl[proprietary_eval]",
+]
