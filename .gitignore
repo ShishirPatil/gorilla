@@ -55,5 +55,4 @@ berkeley-function-call-leaderboard/score/
 
 .direnv/
 .venv
-poetry.lock
 .cache
