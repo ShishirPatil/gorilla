@@ -60,37 +60,39 @@ if __name__ == "__main__":
     if USE_COHERE_OPTIMIZATION and "command-r-plus" in args.model:
         args.model = args.model + "-optimized"
     handler = build_handler(args.model, args.temperature, args.top_p, args.max_tokens)
-    if handler.model_style == ModelStyle.OSSMODEL:
-        result = handler.inference(
-            question_file="eval_data_total.json",
-            test_category=args.test_category,
-            num_gpus=args.num_gpus,
-        )
-        for res in result[0]:
-            handler.write(res, "result.json")
-    else:
-        test_cate, files_to_open = load_file(args.test_category)
-        for test_category, file_to_open in zip(test_cate, files_to_open):
-            print("Generating: " + file_to_open)
-            test_cases = []
-            with open("./data/" + file_to_open) as f:
-                for line in f:
-                    test_cases.append(json.loads(line))
-            num_existing_result = 0  # if the result file already exists, skip the test cases that have been tested.
-            if os.path.exists(
+
+    test_cate, files_to_open = load_file(args.test_category)
+    for test_category, file_to_open in zip(test_cate, files_to_open):
+        print("Generating: " + file_to_open)
+        test_cases = []
+        with open("./data/" + file_to_open) as f:
+            for line in f:
+                test_cases.append(json.loads(line))
+        num_existing_result = 0  # if the result file already exists, skip the test cases that have been tested.
+        if os.path.exists(
+            "./result/"
+            + args.model.replace("/", "_")
+            + "/"
+            + file_to_open.replace(".json", "_result.json")
+        ):
+            with open(
                 "./result/"
                 + args.model.replace("/", "_")
                 + "/"
                 + file_to_open.replace(".json", "_result.json")
-            ):
-                with open(
-                    "./result/"
-                    + args.model.replace("/", "_")
-                    + "/"
-                    + file_to_open.replace(".json", "_result.json")
-                ) as f:
-                    for line in f:
-                        num_existing_result += 1
+            ) as f:
+                for line in f:
+                    num_existing_result += 1
+        
+        if handler.model_style == ModelStyle.OSSMODEL:
+            result = handler.inference(
+                test_question = test_cases[num_existing_result:],
+                test_category = test_category,
+                num_gpus = args.num_gpus,
+            )
+            for res in result[0]:
+                handler.write(res, "result.json")
+        else:
             for index, test_case in enumerate(tqdm(test_cases)):
                 if index < num_existing_result:
                     continue
