@@ -38,14 +38,13 @@ class OssModelHandler(BaseHandler):
             user_input=user_input,
         )
 
-    def inference(self, inputs, test_category, num_gpus):
+    def inference(self, inputs, num_gpus):
         chunk_size = len(inputs) // num_gpus
         futures = []
         for i in range(0, len(inputs), chunk_size):
             futures.append(
                 self._batch_generate.remote(
                     inputs[i: i + chunk_size],
-                    test_category,
                     self.model_name,
                     self.sampling_params,
                     get_prompt_func=self.get_prompt,
@@ -79,9 +78,8 @@ class OssModelHandler(BaseHandler):
         get_prompt_func
     ):
         prompts = []
-        for line in inputs:
+        for _input in inputs:
             test_category = _input["test_category"]
-            _input = line
             prompt = utils.augment_prompt_by_languge(_input["question"], test_category)
             functions = utils.language_specific_pre_processing(_input["function"], test_category, False)
             prompts.append(get_prompt_func(prompt, functions, test_category))

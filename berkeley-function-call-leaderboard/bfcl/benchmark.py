@@ -19,13 +19,11 @@ def main() -> None:
     model_handler = _get_model_handler(args)
     test_inputs = test_categories.load_data()
     if model_handler.model_style == ModelStyle.OSS_MODEL:
-        result = model_handler.inference(
-            inputs=test_inputs,
-            test_category=test_categories,
-            num_gpus=args.num_gpus,
-        )
-        for res in result[0]:
-            model_handler.write(res, "result.json")
+        responses = model_handler.inference(inputs=test_inputs, num_gpus=args.num_gpus)
+        file_name = test_categories.output_file_path.name.replace('.jsonl', '_result.jsonl')
+        model_handler.write(responses, file_name)
+    else:
+        raise NotImplementedError()
 
 
 def get_args() -> argparse.Namespace:
@@ -87,8 +85,8 @@ def _get_model_handler(args) -> BaseHandler:
     elif args.model_type == ModelType.PROPRIETARY:
         from bfcl.model_handler.proprietary_model import MODEL_TO_HANDLER_CLS
     
-    assert (handler_cls := MODEL_TO_HANDLER_CLS.get(args.model_name)), \
-        f'Invalid model name! Please select a {args.model_type.value} model from {tuple(MODEL_TO_HANDLER_CLS)}'
+    assert (handler_cls := MODEL_TO_HANDLER_CLS.get(args.model)), \
+        f'Invalid model name "{args.model}"! Please select a {args.model_type.value} model from {tuple(MODEL_TO_HANDLER_CLS)}'
 
     return handler_cls(
         model_name=args.model, 
