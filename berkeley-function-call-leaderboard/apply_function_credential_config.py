@@ -69,6 +69,9 @@ def process_file(input_file_path, output_file_path):
     
     
 def process_dir(input_dir, output_dir):
+    # This function does not support nested directories
+    # To support nested directories, refer to this commit:
+    # https://github.com/ShishirPatil/gorilla/pull/508/commits/8b1e35590e5bce3bd52a7c6405775b1ce4a64945
     print(f"Input directory: {input_dir}")
     # Get a list of all entries in the folder
     entries = os.scandir(input_dir)
@@ -78,11 +81,6 @@ def process_dir(input_dir, output_dir):
         file_name = os.path.basename(input_file_path)
         output_file_path = os.path.join(output_dir, file_name)
         process_file(input_file_path, output_file_path)
-        
-    # Process each subdirectory
-    # subdirs = [entry.path for entry in entries if entry.is_dir()]
-    # for subdir in subdirs:
-    #     process_dir(subdir, subdir)
         
 
 if __name__ == "__main__":
