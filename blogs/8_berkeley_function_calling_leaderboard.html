@@ -670,13 +670,20 @@
                                 <li style="margin-bottom: 5px;">For <code>integer</code>,
                                     <code>float</code>:
                                     <ul>
-                                        <li style="margin-bottom: 5px;">If the function documentation specifies that
-                                            it's a
-                                            <code>float</code>, then it should be a <code>float</code> in the model
-                                            output
-                                            (such as
-                                            <code>5.0</code>); an <code>int</code>
+                                        <li>
+                                            For <b>Python tests only</b>, we allow the use of <code>int</code> values for
+                                            Python parameters expecting <code>float</code> values to accommodate the
+                                            Python auto-conversion feature from <code>int</code> to <code>float</code>.
+                                        </li>
+                                        <li>
+                                            For other non-Python languages, if the function documentation specifies
+                                            <code>float</code> parameter, then it should be a <code>float</code> in the
+                                            model output (such as <code>5.0</code>); an <code>int</code> 
                                             (such as <code>5</code>) will not be correct.
+                                        </li>
+                                        <li>
+                                            Supplying <code>float</code> value for <code>int</code> parameter is
+                                            not allowed in any language.
                                         </li>
 
                                     </ul>
@@ -1022,7 +1029,8 @@
                                             <img src="../assets/img/blog_post_8_gpu_formula.jpg" width="90%">
                                             We use the Azure ND40rs-v2 instance (8X V100 GPU) April 2024 pay-as-you-go
                                             pricing in the
-                                            cost calculation. This is not meant to be precise as price change all the time, but to give an idea of
+                                            cost calculation. This is not meant to be precise as price change all the
+                                            time, but to give an idea of
                                             what the magnitude of costs looks like, and understand the
                                             relative ordering when everything else is kept constant.
                                         </li>
