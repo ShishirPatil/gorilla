@@ -87,49 +87,30 @@ class LeaderboardCategories(BaseModel):
             self.test_categories = [cat for cat in CATEGORY_GROUP_MAPPING[self.test_group]]
         self.cache_dir = Path.cwd() / self.cache_dir
 
-    @property
-    def output_file_path(self) -> Path:
-        uid = self._generate_hash(self.model_dump_json(warnings=False))
-        file_name = f'{uid}.jsonl'
-        return self.cache_dir / file_name
-
-    def load_data(self) -> List[Dict]:
-        data = []
-        if self.output_file_path.exists():
-            print(f'Loading test data from "{self.output_file_path}" 🦍')
-            # Load cached data
-            with open(self.output_file_path, 'r') as file:
+    def load_test_data(self) -> Dict[LeaderboardCategory, List[Dict]]: # type: ignore
+        data = {}
+        for test_category, file_path in self._get_test_data():
+            data[test_category] = []
+            with open(file_path, 'r') as file:
                 for line in file:
                     item = json.loads(line)
-                    data.append(item)
-        else:
-            # Load data for each test category
-            for category, file_path in self._get_test_data():
-                with open(file_path, 'r') as file:
-                    for line in file:
-                        item = json.loads(line)
-                        item['test_category'] = category.value
-                        item['id'] = self._generate_hash(json.dumps(item))
-                        data.append(item)
-            
-            # Save data
-            with open(self.output_file_path, 'w') as file:
-                for item in data:
-                    file.write(json.dumps(item) + '\n')
-            print(f'Test data successfully saved at "{self.output_file_path}" 🦍')
-
+                    item['test_category'] = test_category.value
+                    item['id'] = self._generate_hash(json.dumps(item))
+                    data[test_category].append(item)
         return data
+    
+    def get_file_name(self, test_category: LeaderboardCategory) -> str: # type: ignore
+        return f'gorilla_openfunctions_{self.version.value}_test_{test_category.value}.json'
 
     def _get_test_data(self):
-        template = f'gorilla_openfunctions_{self.version.value}_test_{{}}.json'
-        for category in self.test_categories:
+        for test_category in self.test_categories:
             file_path = hf_hub_download(
                 repo_id='gorilla-llm/Berkeley-Function-Calling-Leaderboard',
-                filename=template.format(category.value),
+                filename=self.get_file_name(test_category),
                 repo_type='dataset',
                 cache_dir=self.cache_dir
             )
-            yield category, file_path
+            yield test_category, file_path
 
     def _generate_hash(self, input_str) -> str:
         hash_object = hashlib.sha256(input_str.encode('utf-8'))

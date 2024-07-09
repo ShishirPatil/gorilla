@@ -1,4 +1,5 @@
 import json
+from typing import List, Dict
 
 import ray
 import torch
@@ -29,7 +30,7 @@ class OssModelHandler(BaseHandler):
     def _init_model(self) -> None:
         ray.init(ignore_reinit_error=True, num_cpus=8)
 
-    def get_prompt(self, user_input, functions, test_category) -> str:
+    def get_prompt(self, user_input, functions) -> str:
         if isinstance(functions, list):
             functions = json.dumps(functions)
         return self.prompt_template.format(
@@ -38,7 +39,7 @@ class OssModelHandler(BaseHandler):
             user_input=user_input,
         )
 
-    def inference(self, inputs, num_gpus):
+    def inference(self, inputs, num_gpus) -> List[Dict]:
         chunk_size = len(inputs) // num_gpus
         futures = []
         for i in range(0, len(inputs), chunk_size):
@@ -79,16 +80,16 @@ class OssModelHandler(BaseHandler):
     ):
         prompts = []
         for _input in inputs:
-            test_category = _input["test_category"]
-            prompt = utils.augment_prompt_by_languge(_input["question"], test_category)
-            functions = utils.language_specific_pre_processing(_input["function"], test_category, False)
-            prompts.append(get_prompt_func(prompt, functions, test_category))
+            test_category = _input['test_category']
+            prompt = utils.augment_prompt_by_languge(_input['question'], test_category)
+            functions = utils.language_specific_pre_processing(_input['function'], test_category, False)
+            prompts.append(get_prompt_func(prompt, functions))
 
         print(f'Getting responses for {len(prompts)} samples...')
-        llm = LLM(model=model_path, dtype="float16", trust_remote_code=True)
+        llm = LLM(model=model_path, dtype='float16', trust_remote_code=True)
         outputs = llm.generate(prompts, sampling_params)
         responses = [
-            dict(id=_input['id'], response=output.outputs[0].text)
+            dict(id=_input['id'], test_category=_input['test_category'], response=output.outputs[0].text)
             for output, _input in zip(outputs, inputs)
         ]
         return responses

@@ -17,11 +17,19 @@ def main() -> None:
 
     test_categories = _get_test_categories(args)
     model_handler = _get_model_handler(args)
-    test_inputs = test_categories.load_data()
+    test_category_to_data = test_categories.load_test_data()
     if model_handler.model_style == ModelStyle.OSS_MODEL:
-        responses = model_handler.inference(inputs=test_inputs, num_gpus=args.num_gpus)
-        file_name = test_categories.output_file_path.name.replace('.jsonl', '_result.jsonl')
-        model_handler.write(responses, file_name)
+        # Combine all samples to use GPUs efficiently
+        test_inputs = sum(test_category_to_data.values(), []) 
+        combined_responses = model_handler.inference(inputs=test_inputs, num_gpus=args.num_gpus)
+        # Collect all the responses for each test category
+        test_category_to_responses = {} 
+        for response in combined_responses:
+            test_category_to_responses.setdefault(response['test_category'], []).append(response)
+        # Save responses for each test category
+        for test_category, responses in test_category_to_responses.items():
+            file_name = test_categories.get_file_name(test_category).replace('.json', '_result.jsonl')
+            model_handler.write(responses, file_name)
     else:
         raise NotImplementedError()
 
