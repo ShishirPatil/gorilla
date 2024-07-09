@@ -832,6 +832,7 @@ def get_metric(model_name, cost_data, latency_data):
 
 
 def generate_leaderboard_csv(leaderboard_table, output_path):
+    print("📈 Aggregating data to generate leaderboard score table...")
     data = []
     for model_name, value in leaderboard_table.items():
         model_name_escaped = model_name.replace("_", "/")
@@ -960,6 +961,8 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
                 f.write(",".join(row) + "\n")
             else:
                 f.write(",".join(row))
+
+    print("📈 Leaderboard data generated successfully! See {os.path.abspath(OUTPUT_PATH + 'data.csv')} for evaluation results.")
 
 
 def update_leaderboard_table_with_score_file(leaderboard_table, score_path):
