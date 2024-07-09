@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 from bfcl.model_handler.base import BaseHandler, ModelStyle
 from bfcl.types import (LeaderboardCategory, LeaderboardCategories,
-                        LeaderboardVersion, ModelType)
+                        LeaderboardVersion, ModelType, LeaderboardCategoryGroup)
 
 load_dotenv()
 
@@ -37,18 +37,25 @@ def get_args() -> argparse.Namespace:
     parser.add_argument(
         '--model-type', 
         type=ModelType,
-        choices=[category.value for category in ModelType], 
+        choices=[mtype.value for mtype in ModelType], 
         default=ModelType.PROPRIETARY.value,
         help="Model type: Open-source or Proprietary (default: 'proprietary')"
     )
     parser.add_argument(
-        '--test-category', 
+        '--test-group', 
+        type=LeaderboardCategoryGroup, 
+        choices=[group.value for group in LeaderboardCategoryGroup],
+        default=None,
+        help='Test category group (default: None)'
+    )
+    parser.add_argument(
+        '--test-categories', 
         type=str, 
-        default=LeaderboardCategory.ALL.value,
+        default=None,
         help=(
             'Comma-separated list of test categories '
-            f"({','.join(category.value for category in LeaderboardCategory)}). "
-            "(default: 'all')"
+            f"({','.join(cat.value for cat in LeaderboardCategory)}). "
+            "(default: None)"
         )
     )
     parser.add_argument(
@@ -68,15 +75,18 @@ def get_args() -> argparse.Namespace:
 
 
 def _get_test_categories(args) -> LeaderboardCategories:
-    if args.test_category == LeaderboardCategory.ALL.value:
-        categories = [category for category in LeaderboardCategory if category != LeaderboardCategory.ALL]
-    else:
+    if args.test_categories:
         categories = []
-        for value in args.test_category.split(','):
+        for value in args.test_categories.split(','):
             if value not in LeaderboardCategory._value2member_map_:
                 raise ValueError(f'Invalid test category: "{value}"!')
             categories.append(LeaderboardCategory(value))
-    return LeaderboardCategories(categories=categories, version=args.version)
+        args.test_categories = categories
+    return LeaderboardCategories(
+        test_group=args.test_group, 
+        test_categories=args.test_categories, 
+        version=args.version
+    )
 
 
 def _get_model_handler(args) -> BaseHandler:

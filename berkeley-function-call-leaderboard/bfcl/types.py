@@ -1,71 +1,95 @@
 import json
 import hashlib
 from enum import Enum
-from typing import Any, List, Dict
 from pathlib import Path
+from typing import Any, List, Dict, Type
 
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
 from huggingface_hub import hf_hub_download
+
+from bfcl.utils import CustomEnum
 
 
 class ModelType(str, Enum):
     OSS = 'oss'
     PROPRIETARY = 'proprietary'
 
-
-class LeaderboardExecutableCategory(str, Enum):
-    EXEC_SIMPLE = 'executable_simple'
-    EXEC_PARALLEL_FUNCTION = 'executable_parallel_function'
-    EXEC_MULTIPLE_FUNCTION = 'executable_multiple_function'
-    EXEC_PARALLEL_MULTIPLE_FUNCTION = 'executable_parallel_multiple_function'
-    REST = 'rest'
-
-
-class LeaderboardAstCategory(str, Enum):
-    SIMPLE = 'simple'
-    RELEVANCE = 'relevance'
-    PARALLEL_FUNCTION = 'parallel_function'
-    MULTIPLE_FUNCTION = 'multiple_function'
-    PARALLEL_MULTIPLE_FUNCTION = 'parallel_multiple_function'
+class LeaderboardNonPythonCategory(str, CustomEnum):
     JAVA = 'java'
     JAVASCRIPT = 'javascript'
 
+class LeaderboardAstCategory(str, CustomEnum):
+    SIMPLE = 'simple'
+    RELEVANCE = 'relevance'
+    MULTIPLE_FUNCTION = 'multiple_function'
+    PARALLEL_FUNCTION = 'parallel_function'
+    PARALLEL_MULTIPLE_FUNCTION = 'parallel_multiple_function'
+    JAVA = LeaderboardNonPythonCategory.JAVA.value
+    JAVASCRIPT = LeaderboardNonPythonCategory.JAVASCRIPT.value
 
-class LeaderboardCategory(str, Enum):
-    EXEC_SIMPLE = LeaderboardExecutableCategory.EXEC_SIMPLE.value
-    EXEC_PARALLEL_FUNCTION = LeaderboardExecutableCategory.EXEC_PARALLEL_FUNCTION.value
-    EXEC_MULTIPLE_FUNCTION = LeaderboardExecutableCategory.EXEC_MULTIPLE_FUNCTION.value
-    EXEC_PARALLEL_MULTIPLE_FUNCTION = LeaderboardExecutableCategory.EXEC_PARALLEL_MULTIPLE_FUNCTION.value
-    REST = LeaderboardExecutableCategory.REST.value
-    SIMPLE = LeaderboardAstCategory.SIMPLE.value
-    RELEVANCE = LeaderboardAstCategory.RELEVANCE.value
-    PARALLEL_FUNCTION = LeaderboardAstCategory.PARALLEL_FUNCTION.value
-    MULTIPLE_FUNCTION = LeaderboardAstCategory.MULTIPLE_FUNCTION.value
-    PARALLEL_MULTIPLE_FUNCTION = LeaderboardAstCategory.PARALLEL_MULTIPLE_FUNCTION.value
-    JAVA = LeaderboardAstCategory.JAVA.value
-    JAVASCRIPT = LeaderboardAstCategory.JAVASCRIPT.value
-    SQL = 'sql'
-    CHATABLE = 'chatable'
-    ALL = 'all'  # Adding the 'ALL' category
+class LeaderboardExecutableCategory(str, CustomEnum):
+    EXECUTABLE_SIMPLE = 'executable_simple'
+    EXECUTABLE_PARALLEL_FUNCTION = 'executable_parallel_function'
+    EXECUTABLE_MULTIPLE_FUNCTION = 'executable_multiple_function'
+    EXECUTABLE_PARALLEL_MULTIPLE_FUNCTION = 'executable_parallel_multiple_function'
+    REST = 'rest'
 
+LeaderboardPythonCategory: Type[CustomEnum] = (
+    LeaderboardAstCategory
+    .add(LeaderboardExecutableCategory)
+    .subtract(LeaderboardNonPythonCategory)
+    .rename('LeaderboardPythonCategory')
+)
+
+LeaderboardCategory: Type[CustomEnum] = (
+    LeaderboardPythonCategory
+    .add(LeaderboardNonPythonCategory)
+    .rename('LeaderboardCategory')
+    .update(dict(SQL='sql', CHATABLE='chatable'))
+)
+
+class LeaderboardCategoryGroup(str, Enum):
+    AST = 'ast'
+    EXECUTABLE = 'executable'
+    NON_PYTHON = 'non_python'
+    PYTHON = 'python'
+    ALL = 'all'
+
+CATEGORY_GROUP_MAPPING = {
+    LeaderboardCategoryGroup.AST: LeaderboardAstCategory,
+    LeaderboardCategoryGroup.EXECUTABLE: LeaderboardExecutableCategory,
+    LeaderboardCategoryGroup.NON_PYTHON: LeaderboardNonPythonCategory,
+    LeaderboardCategoryGroup.PYTHON: LeaderboardPythonCategory,
+    LeaderboardCategoryGroup.ALL: LeaderboardCategory
+}
 
 class LeaderboardVersion(str, Enum):
     V1 = 'v1'
 
 
 class LeaderboardCategories(BaseModel):
-    categories: List[LeaderboardCategory]
+    test_group: LeaderboardCategoryGroup | None = None
+    test_categories: List[LeaderboardCategory] | None = None # type: ignore
     version: LeaderboardVersion = LeaderboardVersion.V1
     cache_dir: Path | str = '.cache'
 
+    @model_validator(mode='before')
+    @classmethod
+    def check_either_field_provided(cls, values):
+        if values.get('test_group') is not None and values.get('test_categories') is not None:
+            raise ValueError("Provide either 'test_group' or 'test_categories', not both")
+        elif values.get('test_group') is None and values.get('test_categories') is None:
+            raise ValueError("Provide either 'test_group' or 'test_categories'")
+        return values
+
     def model_post_init(self, __context: Any) -> None:
-        if LeaderboardCategory.ALL in self.categories:
-            self.categories = [cat for cat in LeaderboardCategory if cat != LeaderboardCategory.ALL]
+        if self.test_group:
+            self.test_categories = [cat for cat in CATEGORY_GROUP_MAPPING[self.test_group]]
         self.cache_dir = Path.cwd() / self.cache_dir
-    
+
     @property
     def output_file_path(self) -> Path:
-        uid = self._generate_hash(self.model_dump_json())
+        uid = self._generate_hash(self.model_dump_json(warnings=False))
         file_name = f'{uid}.jsonl'
         return self.cache_dir / file_name
 
@@ -98,7 +122,7 @@ class LeaderboardCategories(BaseModel):
 
     def _get_test_data(self):
         template = f'gorilla_openfunctions_{self.version.value}_test_{{}}.json'
-        for category in self.categories:
+        for category in self.test_categories:
             file_path = hf_hub_download(
                 repo_id='gorilla-llm/Berkeley-Function-Calling-Leaderboard',
                 filename=template.format(category.value),
