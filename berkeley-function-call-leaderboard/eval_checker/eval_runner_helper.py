@@ -493,7 +493,9 @@ NO_COST_MODELS = [
 # Reference: https://azure.microsoft.com/en-us/pricing/details/machine-learning/
 V100_x8_PRICE_PER_HOUR = 22.032
 
-
+RED_FONT = "\033[91m"
+RESET = "\033[0m"
+    
 def extract_after_test(input_string):
     parts = input_string.split("_test_")[1].split("_result")[0].split(".json")[0]
     return parts
@@ -670,9 +672,6 @@ def display_api_status_error(rest_error, executable_error, display_success=False
         if display_success:
             print("🟢 All API Status Test Passed!")
         return None
-
-    RED_FONT = "\033[91m"
-    RESET = "\033[0m"
     
     print(f"\n{RED_FONT}{'-' * 18} Executable Categories' Error Bounds Based on API Health Status {'-' * 18}{RESET}\n")
 
@@ -906,12 +905,6 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
             model_name_escaped, cost_data, latency_data
         )
 
-        if overall_accuracy["total_count"] != 1700:
-            print("-" * 100)
-            print(
-                f"❗️Warning: Total count for {model_name} is {overall_accuracy['total_count']}"
-            )
-
         data.append(
             [
                 "N/A",
@@ -962,9 +955,45 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
             else:
                 f.write(",".join(row))
 
-    print("📈 Leaderboard data generated successfully! See {os.path.abspath(OUTPUT_PATH + 'data.csv')} for evaluation results.")
+    check_all_category_present(leaderboard_table)
+    print(f"📈 Leaderboard data generated successfully! See {os.path.abspath(output_path + 'data.csv')} for evaluation results.")
 
 
+def check_all_category_present(leaderboard_table):
+    leaderboard_categories = [
+        "simple",
+        "multiple_function",
+        "parallel_function",
+        "parallel_multiple_function",
+        "executable_simple",
+        "executable_multiple_function",
+        "executable_parallel_function",
+        "executable_parallel_multiple_function",
+        "java",
+        "javascript",
+        "rest",
+        "relevance",
+    ]
+    found_issues = False  # Use this flag to determine if it is the first time we found issues. This controls printing the header line. 
+    for model_name, value in leaderboard_table.items():
+        count = 0
+        not_present = []
+        for key in leaderboard_categories:
+            if key not in value:
+                count += 1
+                not_present.append(key)
+                
+        if count > 0:
+            if not found_issues:
+                print(f"\n{RED_FONT}{'-' * 3} The following models have missing test categories that are not evaluated or previously scored {'-' * 3}{RESET}\n")
+                found_issues = True
+                
+            print(f"❗️Note: {model_name} is missing the evaluation score for {count} categories: {not_present}\n")
+
+    if found_issues:
+        print(f"{RED_FONT}{'-' * 100}\n{RESET}")
+
+            
 def update_leaderboard_table_with_score_file(leaderboard_table, score_path):
 
     entries = os.scandir(score_path)
