@@ -339,12 +339,12 @@ def augment_prompt_by_languge(prompt, test_category):
     return prompt
 
 
-def language_specific_pre_processing(function, test_category, string_param):
-    if type(function) is dict:
-        function = [function]
-    if len(function) == 0:
-       return function
-    for item in function:
+def language_specific_pre_processing(functions, test_category, string_param):
+    if isinstance(functions, (dict, str)):
+        functions = [functions]
+    if len(functions) == 0:
+       return functions
+    for item in functions:
         properties = item["parameters"]["properties"]
         if test_category == "java":
             for key, value in properties.items():
@@ -369,7 +369,7 @@ def language_specific_pre_processing(function, test_category, string_param):
                         + value["type"]
                         + " in string representation."
                     )
-        return function
+        return functions
 
 
 def construct_tool_use_system_prompt(tools):

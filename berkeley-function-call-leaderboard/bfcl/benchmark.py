@@ -1,6 +1,8 @@
 import os
+import json
 import argparse
 
+from tqdm import tqdm
 from dotenv import load_dotenv
 
 from bfcl.model_handler.base import BaseHandler, ModelStyle
@@ -18,6 +20,8 @@ def main() -> None:
     test_categories = _get_test_categories(args)
     model_handler = _get_model_handler(args)
     test_category_to_data = test_categories.load_test_data()
+    get_file_name = lambda cat: test_categories.get_file_name(cat).replace('.json', '_result.jsonl')
+    print('Getting model responses...')
     if model_handler.model_style == ModelStyle.OSS_MODEL:
         # Combine all samples to use GPUs efficiently
         test_inputs = sum(test_category_to_data.values(), []) 
@@ -28,10 +32,32 @@ def main() -> None:
             test_category_to_responses.setdefault(response['test_category'], []).append(response)
         # Save responses for each test category
         for test_category, responses in test_category_to_responses.items():
-            file_name = test_categories.get_file_name(test_category).replace('.json', '_result.jsonl')
-            model_handler.write(responses, file_name)
+            model_handler.write(responses, file_name=get_file_name(test_category))
     else:
-        raise NotImplementedError()
+        # Proprietary models
+        for test_category, test_inputs in test_category_to_data.items():
+            # Check if model responses are already available for the test category
+            file_name = get_file_name(test_category)
+            responses = model_handler.load_model_responses(file_name)
+            if responses is not None and len(responses) == len(test_inputs):
+                continue
+            response_ids = set(rp['id'] for rp in responses) if responses else None
+            file_path = model_handler.model_dir / file_name
+            with open(file_path, 'a+') as file:
+                for test_input in tqdm(test_inputs, total=len(test_inputs), desc=f'{test_category.value}'):
+                    if response_ids and test_input['id'] in response_ids:
+                        continue
+                    # TODO: Handle rate limits
+                    try:
+                        response, metadata = model_handler.inference(
+                            prompt=test_input['question'], 
+                            functions=test_input['function'], 
+                            test_category=test_category,
+                        )
+                        row = dict(id=test_input['id'], response=response, **metadata)
+                        file.write(json.dumps(row) + '\n')
+                    except Exception as e:
+                        print('Failed to get response! Error:', e)
 
 
 def get_args() -> argparse.Namespace:

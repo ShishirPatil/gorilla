@@ -35,6 +35,8 @@ class BaseHandler(ABC):
 
         self.result_dir = Path.cwd() / 'result'
         self.result_dir.mkdir(exist_ok=True)
+        self.model_dir = self.result_dir / self.model_name.replace('/', '--')
+        self.model_dir.mkdir(exist_ok=True)
 
     @classmethod
     @abstractmethod
@@ -56,20 +58,20 @@ class BaseHandler(ABC):
         """Takes raw model output and converts it to the standard execute checker input."""
         pass
 
-    def write(self, responses: List[Dict], file_name):
+    def write(self, responses: List[Dict], file_name: str) -> None:
         """Write the model responses to the file."""
 
-        model_dir = self.result_dir / self.model_name.replace('/', '--')
-        model_dir.mkdir(exist_ok=True, parents=True)
-        file_path = model_dir / file_name
+        file_path = self.model_dir / file_name
         with open(file_path, 'w') as file:
             for response in responses:
                 file.write(json.dumps(response) + '\n')
         print(f'Saved model responses at "{file_path}".')
 
-    def load_result(self, file_path):
-        """Load the result from the file."""
+    def load_model_responses(self, file_name: str) -> List[Dict] | None:
+        """Load the model responses if available."""
 
-        with open(file_path, 'r') as f:
-            result = [json.loads(line) for line in f]
-        return result
+        file_path = self.model_dir / file_name
+        if file_path.exists():
+            with open(file_path, 'r') as f:
+                result = [json.loads(line) for line in f]
+            return result
