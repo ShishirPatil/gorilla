@@ -223,6 +223,18 @@ def calculate_permutations(n, k):
     return math_factorial(n) / math_factorial(n - k)
 
 
+def get_fibonacci_sequence(n):
+    """
+    Calculates the n numbers of the Fibonacci.
+    Args:
+        n (integer): The number of Fibonacci numbers to calculate.
+    """
+    sequence = [0, 1]
+    for i in range(2, n):
+        sequence.append(sequence[i - 1] + sequence[i - 2])
+    return sequence
+
+
 def get_fibonacci_number(n):
     """
     Calculates the nth Fibonacci number.
