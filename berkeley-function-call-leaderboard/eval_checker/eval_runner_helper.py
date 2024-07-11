@@ -956,7 +956,7 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
                 f.write(",".join(row))
 
     check_all_category_present(leaderboard_table)
-    print(f"📈 Leaderboard data generated successfully! See {os.path.abspath(output_path + 'data.csv')} for evaluation results.")
+    print(f"📈 Leaderboard statistics generated successfully! See {os.path.abspath(output_path + 'data.csv')} for evaluation results.")
 
 
 def check_all_category_present(leaderboard_table):
