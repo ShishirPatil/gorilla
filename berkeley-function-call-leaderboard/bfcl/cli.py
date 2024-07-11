@@ -3,8 +3,8 @@ import argparse
 
 from dotenv import load_dotenv
 
-from bfcl.benchmark import benchmark
-from bfcl.evaluate import evaluate
+from bfcl.evaluation import evaluate
+from bfcl.llm_generation import collect_model_responses
 from bfcl.model_handler.base import BaseHandler
 from bfcl.types import (LeaderboardCategory, Leaderboard, LeaderboardVersion, 
                         ModelType, LeaderboardCategoryGroup)
@@ -17,8 +17,8 @@ def main():
     leaderboard = _load_leaderboard(args)
     model_handler = _load_model_handler(args)
 
-    if args.command == 'benchmark':
-        benchmark(leaderboard, model_handler, args)
+    if args.command == 'llm_generation':
+        collect_model_responses(leaderboard, model_handler, args)
     else:
         evaluate(leaderboard, model_handler, args)
 
@@ -71,17 +71,17 @@ def _get_args() -> argparse.Namespace:
         help="Leaderboard version. (default: 'v1')",
     )
 
-    _add_benchmark_args(subparsers, common_parser)
+    _add_llm_generation_args(subparsers, common_parser)
     _add_evaluation_args(subparsers, common_parser)
 
     args = parser.parse_args()
     return args
 
 
-def _add_benchmark_args(subparsers, common_parser):
-    """Add benchmark-specific arguments."""
+def _add_llm_generation_args(subparsers, common_parser):
+    """Add LLM generation specific arguments."""
 
-    benchmark_parser = subparsers.add_parser('benchmark', parents=[common_parser], help='Run benchmark')
+    benchmark_parser = subparsers.add_parser('llm_generation', parents=[common_parser], help='Collect LLM responses')
     benchmark_parser.add_argument('--temperature', type=float, default=0.7, help='Temperature (default: 0.7)')
     benchmark_parser.add_argument('--top-p', type=float, default=1, help='Top-p (default: 1)')
     benchmark_parser.add_argument('--max-tokens', type=int, default=1000, help='Max tokens (default: 1000)')
@@ -92,7 +92,7 @@ def _add_benchmark_args(subparsers, common_parser):
 def _add_evaluation_args(subparsers, common_parser):
     """Add evaluation-specific arguments."""
 
-    evaluator_parser = subparsers.add_parser('evaluate', parents=[common_parser], help='Run evaluation')
+    evaluator_parser = subparsers.add_parser('evaluation', parents=[common_parser], help='Run evaluation')
     evaluator_parser.add_argument(
         '--perform-api-sanity-check',
         action='store_true',
