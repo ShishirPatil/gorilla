@@ -7,7 +7,7 @@ from bfcl.types import Leaderboard
 from bfcl.model_handler.base import ModelStyle, BaseHandler
 
 
-def benchmark(
+def collect_model_responses(
     leaderboard: Leaderboard, 
     model_handler: BaseHandler, 
     args: argparse.Namespace
