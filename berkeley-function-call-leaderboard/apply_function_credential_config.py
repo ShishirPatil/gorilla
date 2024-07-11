@@ -58,7 +58,7 @@ def process_file(input_file_path, output_file_path):
                 print("Invalid JSON line skipped.")
                 continue
             
-    # Write each modified JSON object overwrite the output file
+    # Write the modified data to the output file
     with open(output_file_path, "w") as f:
         for i, modified_line in enumerate(modified_data):
             f.write(modified_line)
