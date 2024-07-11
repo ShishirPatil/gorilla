@@ -29,7 +29,7 @@ dependencies = [
 include = ["bfcl*"]
 
 [project.scripts]
-bfcl_benchmark = "bfcl.benchmark:main"
+bfcl = "bfcl.cli:main"
 
 [project.urls]
 Repository = "https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard"

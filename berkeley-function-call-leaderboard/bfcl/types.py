@@ -67,7 +67,7 @@ class LeaderboardVersion(str, Enum):
     V1 = 'v1'
 
 
-class LeaderboardCategories(BaseModel):
+class Leaderboard(BaseModel):
     test_group: LeaderboardCategoryGroup | None = None
     test_categories: List[LeaderboardCategory] | None = None # type: ignore
     version: LeaderboardVersion = LeaderboardVersion.V1
