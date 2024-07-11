@@ -22,17 +22,6 @@ pip install vllm # If you have vLLM supported GPU(s) and want to run our evaluat
 ```
 
 
-## Prepare Evaluation Dataset
-
-Download the evaluation dataset from huggingface. From the current directory `gorilla/berkeley-function-call-leaderboard`, run the following command:
-
-```bash
-huggingface-cli download gorilla-llm/Berkeley-Function-Calling-Leaderboard --local-dir data --repo-type dataset
-```
-
-The evaluation datasets are now stored in the `data` subdirectory. The possible answers are stored in the `data/possible_answer` subdirectory.
-
-
 ## Execution Evaluation Data Post-processing (Can be Skipped: Necesary for Executable Test Categories)
 Add your keys into `function_credential_config.json`, so that the original placeholder values in questions, params, and answers will be reset.
 
