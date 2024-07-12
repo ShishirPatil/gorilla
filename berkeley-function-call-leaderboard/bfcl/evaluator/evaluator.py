@@ -8,7 +8,7 @@ from pydantic import BaseModel
 import bfcl.types as types
 from bfcl.model_handler.base import BaseHandler
 from bfcl.evaluator.metrics import LeaderboardModelMetrics
-from bfcl.evaluator.checker import ExecutableChecker
+from bfcl.evaluator import checker
 from bfcl.evaluator import utils as evaluator_utils
 
 
@@ -35,11 +35,11 @@ class LeaderboardEvaluator:
         self.model_name = model_handler.model_name
         self.model_handler = model_handler
         self.leaderboard = leaderboard
+        self.perform_api_sanity_check = perform_api_sanity_check
         self.test_category_to_data = leaderboard.load_test_data()
 
-        self._checker = ExecutableChecker(leaderboard.cache_dir)
-        if perform_api_sanity_check:
-            self._checker.perform_api_sanity_checks()
+        self._executable_checker = None
+        self._ast_checker = None
         self._model_metrics = LeaderboardModelMetrics(self.model_name)
         self._test_category_to_metrics = {}
 
@@ -49,13 +49,6 @@ class LeaderboardEvaluator:
             print(f'Skipping evaluation of test category "{test_category.value}" due to empty model responses!')
             return
 
-        if test_category == types.LeaderboardCategory.JAVA:
-            language = 'java'
-        elif test_category == types.LeaderboardCategory.JAVASCRIPT:
-            language = 'javascript'
-        else:
-            language = 'python'
-
         print('🔍 Running test:', test_category.value)
         self._model_metrics(model_responses)
 
@@ -63,7 +56,13 @@ class LeaderboardEvaluator:
         if test_category == types.LeaderboardCategory.RELEVANCE:
             result = self.run_relevance_evaluator(model_responses)
         elif test_category.value in types.LeaderboardExecutableCategory:
+            if self._executable_checker is None:
+                self._executable_checker = checker.ExecutableChecker(self.leaderboard.cache_dir)
+                if self.perform_api_sanity_check:
+                    self._executable_checker.perform_api_sanity_checks()
             result = self.run_executable_evaluator(test_category, model_responses)
+        elif test_category.value in types.LeaderboardAstCategory:
+            pass
         
         if result:
             accuracy = result['accuracy']
@@ -156,7 +155,8 @@ class LeaderboardEvaluator:
                     ground_truth = item["ground_truth"]
                     for i in range(len(ground_truth)):
                         exec(
-                            "from bfcl.evaluator.exec_python_functions import *" + "\nresult=" + ground_truth[i],
+                            "from bfcl.evaluator.checker.executable.exec_python_functions import *" 
+                            + "\nresult=" + ground_truth[i],
                             exec_dict,
                         )
                         execution_result.append(exec_dict["result"])
@@ -213,9 +213,9 @@ class LeaderboardEvaluator:
                     failed_model_responses.append(result)
                     continue
 
-                checker_result = self._checker.rest_executable_checker(
+                checker_result = self._executable_checker.rest_executable_checker(
                     decoded_result[0], 
-                    eval_ground_truth=self._checker.rest_eval_response_data[idx]
+                    eval_ground_truth=self._executable_checker.rest_eval_response_data[idx]
                 )
             else:
                 if not evaluator_utils.is_executable_format_output(decoded_result):
@@ -234,7 +234,7 @@ class LeaderboardEvaluator:
                     failed_model_responses.append(result)
                     continue
 
-                checker_result = self._checker.executable_checker(
+                checker_result = self._executable_checker.executable_checker(
                     decoded_result, 
                     test_example_id_to_data[response['id']], 
                     test_category

@@ -5,20 +5,12 @@ from pathlib import Path
 from typing import Dict, List
 
 from tqdm import tqdm
-from pydantic import BaseModel
 
 from bfcl.types import LeaderboardExecutableCategory
 from bfcl.evaluator.utils import display_api_status_error
-from bfcl.evaluator.exceptions import BadAPIStatusError, NoAPIKeyError
+from bfcl.evaluator.checker.types import CheckerResult
+from bfcl.evaluator.checker.executable.exceptions import BadAPIStatusError, NoAPIKeyError
 
-
-class CheckerResult(BaseModel):
-    is_valid: bool
-    error_type: str
-    error_message: str
-
-    class Config:
-        extra = 'allow'
 
 
 class ExecutableChecker:
@@ -26,7 +18,7 @@ class ExecutableChecker:
 
     def __init__(self, cache_dir: str) -> None:
         self.cache_dir = cache_dir
-        self.data_dir = Path(__file__, '..', '..', '..').resolve() / 'data'
+        self.data_dir = Path(__file__, '../../../../..').resolve() / 'data'
         self.rest_api_ground_truth_file_path = self.data_dir / 'api_status_check_ground_truth_REST.jsonl'
         self.executable_ground_truth_file_path = self.data_dir / 'api_status_check_ground_truth_executable.jsonl'
 
@@ -278,7 +270,7 @@ class ExecutableChecker:
                 # TODO: Instead of importing all the functions, we can use regex to extract
                 # the function name from the `function_call` and only import that function.
                 exec(
-                    "from bfcl.evaluator.exec_python_functions import *" + "\nresult=" + function_call,
+                    "from bfcl.evaluator.checker.executable.exec_python_functions import *" + "\nresult=" + function_call,
                     exec_dict,
                 )
                 exec_output = exec_dict["result"]
