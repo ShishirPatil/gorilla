@@ -14,7 +14,11 @@ def evaluate(
 ) -> None:
 
     print('🦍 Model:', args.model)
-    evaluator = LeaderboardEvaluator(model_handler=model_handler, leaderboard=leaderboard)
+    evaluator = LeaderboardEvaluator(
+        model_handler=model_handler, 
+        leaderboard=leaderboard,
+        perform_api_sanity_check=args.perform_api_sanity_check
+    )
     file_name_to_test_category = {}
     for test_category in leaderboard.test_categories:
         if test_category in (LeaderboardCategory.SQL, LeaderboardCategory.CHATABLE):

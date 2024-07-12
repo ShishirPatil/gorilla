@@ -2,11 +2,13 @@ import json
 from pathlib import Path
 from typing import List, Dict, Any
 
+from tqdm import tqdm
 from pydantic import BaseModel
 
+import bfcl.types as types
 from bfcl.model_handler.base import BaseHandler
-from bfcl.types import Leaderboard, LeaderboardCategory
 from bfcl.evaluator.metrics import LeaderboardModelMetrics
+from bfcl.evaluator.checker import ExecutableChecker
 from bfcl.evaluator import utils as evaluator_utils
 
 
@@ -19,12 +21,25 @@ class FailedResult(BaseModel):
     llm_response: str
     decoded_result: Any
 
+    class Config:
+        extra = 'allow'
+
 
 class LeaderboardEvaluator:
-    def __init__(self, model_handler: BaseHandler, leaderboard: Leaderboard) -> None:
+    def __init__(
+        self, 
+        model_handler: BaseHandler, 
+        leaderboard: types.Leaderboard,
+        perform_api_sanity_check: bool
+    ) -> None:
         self.model_name = model_handler.model_name
         self.model_handler = model_handler
         self.leaderboard = leaderboard
+        self.test_category_to_data = leaderboard.load_test_data()
+
+        self._checker = ExecutableChecker(leaderboard.cache_dir)
+        if perform_api_sanity_check:
+            self._checker.perform_api_sanity_checks()
         self._model_metrics = LeaderboardModelMetrics(self.model_name)
         self._test_category_to_metrics = {}
 
@@ -34,9 +49,9 @@ class LeaderboardEvaluator:
             print(f'Skipping evaluation of test category "{test_category.value}" due to empty model responses!')
             return
 
-        if test_category == LeaderboardCategory.JAVA:
+        if test_category == types.LeaderboardCategory.JAVA:
             language = 'java'
-        elif test_category == LeaderboardCategory.JAVASCRIPT:
+        elif test_category == types.LeaderboardCategory.JAVASCRIPT:
             language = 'javascript'
         else:
             language = 'python'
@@ -44,16 +59,19 @@ class LeaderboardEvaluator:
         print('🔍 Running test:', test_category.value)
         self._model_metrics(model_responses)
 
-        accuracy = None
-        if test_category == LeaderboardCategory.RELEVANCE:
+        result = None
+        if test_category == types.LeaderboardCategory.RELEVANCE:
             result = self.run_relevance_evaluator(model_responses)
+        elif test_category.value in types.LeaderboardExecutableCategory:
+            result = self.run_executable_evaluator(test_category, model_responses)
+        
+        if result:
             accuracy = result['accuracy']
-            
-        self._test_category_to_metrics[test_category] = dict(
-            accuracy=accuracy, 
-            total_count=result['total_count']
-        )
-        print(f"✅ Test completed: {test_category.value} | 🎯 Accuracy: {accuracy:.4f}")
+            self._test_category_to_metrics[test_category] = dict(
+                accuracy=accuracy, 
+                total_count=result['total_count']
+            )
+            print(f"✅ Test completed: {test_category.value} | 🎯 Accuracy: {accuracy:.4f}")
 
     def get_leaderboard_metrics(self) -> Dict:
         model_metrics = self._model_metrics.compute()
@@ -96,7 +114,7 @@ class LeaderboardEvaluator:
             else:
                 result = FailedResult(
                     example_id=response['id'],
-                    test_category=LeaderboardCategory.RELEVANCE.value,
+                    test_category=types.LeaderboardCategory.RELEVANCE.value,
                     is_valid=False,
                     error_type='relevance_error:decoder_success',
                     error_message='Valid syntax. Successfully decode AST when it should not.',
@@ -111,7 +129,127 @@ class LeaderboardEvaluator:
             total_count=len(model_responses),
             failed_model_responses=failed_model_responses,
         )
-        self._save_scores(LeaderboardCategory.RELEVANCE, result)
+        self._save_scores(types.LeaderboardCategory.RELEVANCE, result)
+        return result
+
+    def run_executable_evaluator(
+        self, 
+        test_category: types.LeaderboardCategory, 
+        model_responses: List[Dict]
+    ) -> Dict:
+        """Run executable function/API evaluator.
+        
+        Invoke function or API for the documentation provided. The accuracy 
+        is measured by actually running the function call with function 
+        source code loaded."""
+
+        test_data = self.test_category_to_data[test_category]
+        assert len(model_responses) == len(test_data)
+
+        if test_category != types.LeaderboardExecutableCategory.REST:
+            print(f"---- Getting real-time execution result from ground truth for '{test_category.value}' ----")
+            exec_dict = {}
+            for item in tqdm(test_data, desc="Getting Executable Expected Output"):
+                if item.get('execution_result'):
+                    # Execution result have already been added to the test dataset
+                    continue
+                execution_result = []
+                ground_truth = item["ground_truth"]
+                for i in range(len(ground_truth)):
+                    exec(
+                        "from bfcl.evaluator.exec_python_functions import *"
+                        + "\nresult="
+                        + ground_truth[i],
+                        exec_dict,
+                    )
+                    execution_result.append(exec_dict["result"])
+                item["execution_result"] = execution_result
+            print(f"---- Ground truth real-time execution result obtained for '{test_category.value}' 🌟 ----")
+
+        failed_model_responses = []
+        correct_count = 0
+        for idx, response in enumerate(model_responses):
+            model_response = response['response']
+            try:
+                decoded_result = self.model_handler.decode_execute(model_response)
+            except Exception as e:
+                result = FailedResult(
+                    example_id=response['id'],
+                    test_category=test_category.value,
+                    is_valid=False,
+                    error_type='executable_decoder:decoder_failed',
+                    error_message=f"Failed to decode executable. {str(e)}",
+                    llm_response=model_response,
+                    decoded_result=decoded_result,
+                )
+                failed_model_responses.append(result)
+                continue
+
+            if test_category == types.LeaderboardExecutableCategory.REST:
+                # REST is always single-functioned. Therefore we take the first one and pass 
+                # it to the REST checker.
+                if not evaluator_utils.is_rest_format_output(decoded_result):
+                    result = FailedResult(
+                        example_id=response['id'],
+                        test_category=test_category.value,
+                        is_valid=False,
+                        error_type='executable_decoder:rest_wrong_output_format',
+                        error_message=(
+                            'Did not output in the specified format. Note: the model_result is wrapped in a '
+                            'string to ensure json serializability.'
+                        ),
+                        llm_response=str(model_response),
+                        decoded_result=str(decoded_result),
+                    )
+                    failed_model_responses.append(result)
+                    continue
+
+                checker_result = self._checker.rest_executable_checker(
+                    decoded_result[0], 
+                    eval_ground_truth=self._checker.rest_eval_response_data[idx]
+                )
+            else:
+                if not evaluator_utils.is_executable_format_output(decoded_result):
+                    result = FailedResult(
+                        example_id=response['id'],
+                        test_category=test_category.value,
+                        is_valid=False,
+                        error_type='executable_decoder:wrong_output_format',
+                        error_message=(
+                            'Did not output in the specified format. Note: the model_result is wrapped in a '
+                            'string to ensure json serializability.'
+                        ),
+                        llm_response=str(model_response),
+                        decoded_result=str(decoded_result),
+                    )
+                    failed_model_responses.append(result)
+                    continue
+
+                checker_result = self._checker.executable_checker(decoded_result, test_data[idx], test_category)
+
+            if checker_result["valid"]:
+                correct_count += 1
+            else:
+                result = FailedResult(
+                    example_id=response['id'],
+                    test_category=test_category.value,
+                    is_valid=checker_result['valid'],
+                    error_type=checker_result['error_type'],
+                    error_message=checker_result['error'],
+                    llm_response=model_response,
+                    decoded_result=decoded_result,
+                )
+                if "model_executed_output" in checker_result:
+                    result.model_executed_output = checker_result["model_executed_output"]
+                failed_model_responses.append(result)
+
+        result = dict(
+            accuracy=correct_count / len(model_responses),
+            correct_count=correct_count,
+            total_count=len(model_responses),
+            failed_model_responses=failed_model_responses,
+        )
+        self._save_scores(test_category, result)
         return result
 
     def _save_scores(self, test_category, result) -> None:
