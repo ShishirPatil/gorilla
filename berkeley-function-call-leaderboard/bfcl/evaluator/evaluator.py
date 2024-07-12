@@ -99,7 +99,7 @@ class LeaderboardEvaluator:
 
         failed_model_responses = []
         correct_count = 0
-        for response in model_responses:
+        for response in tqdm(model_responses, total=len(model_responses), desc="Evaluating"):
             model_response = response['response']
             success = False
             decoded_result = None
@@ -145,30 +145,39 @@ class LeaderboardEvaluator:
 
         test_data = self.test_category_to_data[test_category]
         assert len(model_responses) == len(test_data)
-
+        test_example_id_to_data = {}
         if test_category != types.LeaderboardExecutableCategory.REST:
             print(f"---- Getting real-time execution result from ground truth for '{test_category.value}' ----")
             exec_dict = {}
             for item in tqdm(test_data, desc="Getting Executable Expected Output"):
-                if item.get('execution_result'):
-                    # Execution result have already been added to the test dataset
-                    continue
-                execution_result = []
-                ground_truth = item["ground_truth"]
-                for i in range(len(ground_truth)):
-                    exec(
-                        "from bfcl.evaluator.exec_python_functions import *"
-                        + "\nresult="
-                        + ground_truth[i],
-                        exec_dict,
-                    )
-                    execution_result.append(exec_dict["result"])
-                item["execution_result"] = execution_result
+                execution_result = item.get('execution_result')
+                if execution_result is None or not all(execution_result): # Check if cached value is None then try again.
+                    execution_result = []
+                    ground_truth = item["ground_truth"]
+                    for i in range(len(ground_truth)):
+                        exec(
+                            "from bfcl.evaluator.exec_python_functions import *" + "\nresult=" + ground_truth[i],
+                            exec_dict,
+                        )
+                        execution_result.append(exec_dict["result"])
+                    item["execution_result"] = execution_result
+                test_example_id_to_data[item['id']] = item
+            
+            # Save the test dataset with the added `execution_result` key
+            # TODO: Decide if you want to cache the execution results or not.
+            # Edge case: We don't validate the `execution_result` value, hence if the user didn't setup the 
+            # environment variables correctly and we get incorrect `execution_result` from the 
+            # `exec_python_functions`, those values will be cached.
+            file_path = self.leaderboard.test_data_cache_dir / self.leaderboard.get_file_name(test_category)
+            with open(file_path, 'w') as file:
+                for line in test_data:
+                    file.write(json.dumps(line) + '\n')
+
             print(f"---- Ground truth real-time execution result obtained for '{test_category.value}' 🌟 ----")
 
         failed_model_responses = []
         correct_count = 0
-        for idx, response in enumerate(model_responses):
+        for idx, response in tqdm(enumerate(model_responses), total=len(model_responses), desc="Evaluating"):
             model_response = response['response']
             try:
                 decoded_result = self.model_handler.decode_execute(model_response)
@@ -225,22 +234,26 @@ class LeaderboardEvaluator:
                     failed_model_responses.append(result)
                     continue
 
-                checker_result = self._checker.executable_checker(decoded_result, test_data[idx], test_category)
+                checker_result = self._checker.executable_checker(
+                    decoded_result, 
+                    test_example_id_to_data[response['id']], 
+                    test_category
+                )
 
-            if checker_result["valid"]:
+            if checker_result.is_valid:
                 correct_count += 1
             else:
                 result = FailedResult(
                     example_id=response['id'],
                     test_category=test_category.value,
-                    is_valid=checker_result['valid'],
-                    error_type=checker_result['error_type'],
-                    error_message=checker_result['error'],
+                    is_valid=checker_result.is_valid,
+                    error_type=checker_result.error_type,
+                    error_message=checker_result.error_message,
                     llm_response=model_response,
                     decoded_result=decoded_result,
                 )
-                if "model_executed_output" in checker_result:
-                    result.model_executed_output = checker_result["model_executed_output"]
+                if hasattr(checker_result, "model_executed_output"):
+                    result.model_executed_output = checker_result.model_executed_output
                 failed_model_responses.append(result)
 
         result = dict(

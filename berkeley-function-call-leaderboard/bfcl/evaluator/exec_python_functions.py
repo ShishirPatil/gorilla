@@ -3,6 +3,9 @@ import math
 import time
 
 import requests
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Make sure the env variables are populated
 env_vars = ('GEOCODE_API_KEY', 'RAPID_API_KEY', 'OMDB_API_KEY', 'EXCHANGERATE_API_KEY')

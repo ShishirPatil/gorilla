@@ -87,18 +87,33 @@ class Leaderboard(BaseModel):
             self.test_categories = [cat for cat in CATEGORY_GROUP_MAPPING[self.test_group]]
         self.cache_dir = Path.cwd() / self.cache_dir
 
+    @property
+    def test_data_cache_dir(self) -> Path:
+        test_data_dir = self.cache_dir / f'gorilla_openfunctions_{self.version.value}_test_data'
+        test_data_dir.mkdir(exist_ok=True, parents=True)
+        return test_data_dir
+
     def load_test_data(self) -> Dict[LeaderboardCategory, List[Dict]]: # type: ignore
         data = {}
-        for test_category, file_path in self._get_test_data():
+        for test_category, infile_path in self._get_test_data():
             data[test_category] = []
-            with open(file_path, 'r') as file:
-                for line in file:
-                    item = json.loads(line)
-                    item['test_category'] = test_category.value
-                    item['id'] = self._generate_hash(json.dumps(item))
-                    data[test_category].append(item)
+            # We add `id` and `test_category` to each dataset sample
+            # Save the dataset in the cache with the updated keys for user reference
+            outfile_path = self.test_data_cache_dir / self.get_file_name(test_category)
+            if outfile_path.exists():
+                with open(outfile_path, 'r') as file:
+                    for line in file:
+                        data[test_category].append(json.loads(line))
+            else:
+                with open(infile_path, 'r') as infile, open(outfile_path, 'w') as outfile:
+                    for line in infile:
+                        item = json.loads(line)
+                        item['test_category'] = test_category.value
+                        item['id'] = self._generate_hash(json.dumps(item))
+                        data[test_category].append(item)
+                        outfile.write(json.dumps(item) + '\n')
         return data
-    
+
     def get_file_name(self, test_category: LeaderboardCategory) -> str: # type: ignore
         return f'gorilla_openfunctions_{self.version.value}_test_{test_category.value}.json'
 

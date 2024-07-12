@@ -32,14 +32,14 @@ def display_api_status_error(rest_error, executable_error, display_success=False
     print(f"\n{RED_FONT}{'-' * 18} Executable Categories' Error Bounds Based on API Health Status {'-' * 18}{RESET}\n")
 
     if rest_error:
-        print(f"❗️ Warning: Unable to verify health of executable APIs used in executable test category (REST). Please contact API provider.\n")
+        print(f"❗️ Warning: Unable to verify health of executable APIs used in executable test group (REST). Please contact API provider.\n")
         print(f"{rest_error.error_rate} APIs affected:\n")
         for data, status in rest_error.errors:
             print(f"  - Test Case: {data['ground_truth']}")
             print(f"    Error Type: {status['error_type']}\n")
             
     if executable_error:
-        print(f"❗️ Warning: Unable to verify health of executable APIs used in executable test categories (Non-REST). Please contact API provider.\n")
+        print(f"❗️ Warning: Unable to verify health of executable APIs used in executable test group (Non-REST). Please contact API provider.\n")
         print(f"{executable_error.error_rate} APIs affected:\n")
         for data, status in executable_error.errors:
             print(f"  - Test Case: {data['ground_truth'][0]}")
