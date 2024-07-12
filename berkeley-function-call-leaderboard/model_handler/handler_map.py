@@ -80,5 +80,5 @@ handler_map = {
     "snowflake/arctic": ArcticHandler,
     "nvidia/nemotron-4-340b-instruct": NvidiaHandler,
     "THUDM/glm-4-9b-chat": GLMHandler,
-    "yi-large-fc": YiHandler,
+    "yi-large-FC": YiHandler,
 }
