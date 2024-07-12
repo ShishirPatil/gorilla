@@ -385,7 +385,7 @@ MODEL_METADATA_MAPPING = {
         "THUDM",
         "glm-4",
     ],
-    "yi-large-fc": [
+    "yi-large-FC": [
         "yi-large (FC)",
         "https://platform.01.ai/",
         "01.AI",
@@ -432,7 +432,7 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus": 3,
     "command-r-plus-FC-optimized": 3,
     "command-r-plus-optimized": 3,
-    "yi-large-fc": 3,
+    "yi-large-FC": 3,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -474,7 +474,7 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus": 15,
     "command-r-plus-FC-optimized": 15,
     "command-r-plus-optimized": 15,
-    "yi-large-fc": 3,
+    "yi-large-FC": 3,
 }
 
 # The latency of the open-source models are hardcoded here.
