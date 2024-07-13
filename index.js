@@ -361,6 +361,7 @@ PROMPTS = [
 
 const csvFilePath = "./data.csv";
 
+// Parse data for wagon wheel chart
 fetch(csvFilePath)
     .then((response) => response.text())
     .then((csvText) => {
@@ -384,44 +385,7 @@ function parseCSV_chart(text) {
     return result;
 }
 
-// function addToTable(dataArray) {
-//     const tbody = document
-//         .getElementById("leaderboard-table")
-//         .getElementsByTagName("tbody")[0];
-//     dataArray.forEach((row, index) => {
-//         // Assuming the first row of the CSV is headers and skipping it
-//         if (index > 0) {
-//             const tr = document.createElement("tr");
-
-//             for (let cellIndex = 0; cellIndex < row.length; cellIndex += 1) {
-//                 let cell = row[cellIndex];
-//                 const td = document.createElement("td");
-//                 if (cellIndex === 2) {
-//                     const a = document.createElement("a");
-//                     a.href = row[3];
-//                     cellIndex += 1;
-//                     a.textContent = cell;
-//                     td.appendChild(a);
-//                 } else {
-//                     td.textContent = cell;
-//                 }
-
-//                 if (cellIndex >= 4 && cellIndex <= 8) {
-//                     // summary-row class for specific columns
-//                     td.className = "summary-row";
-//                 } else if (cellIndex >= 9 && cellIndex <= 21) {
-//                     // detail-row class for specific columns
-//                     td.className = "detail-row";
-//                 }
-
-//                 tr.appendChild(td);
-//             }
-
-//             tbody.appendChild(tr);
-//         }
-//     });
-// }
-
+// For the example buttons
 function populateInput(index) {
     document.getElementById("input-text").value = PROMPTS[index];
     document.getElementById("input-function").value = JSON.stringify(
@@ -827,48 +791,18 @@ function sendFeedbackPositive() {
 //     );
 // }
 
-// function createComparer(columnIndex, isAscending) {
-//     return function (rowA, rowB) {
-//         var valueA = getCellValue(isAscending ? rowA : rowB, columnIndex);
-//         var valueB = getCellValue(isAscending ? rowB : rowA, columnIndex);
+function createComparer(columnIndex, isAscending) {
+    return function (rowA, rowB) {
+        var valueA = getCellValue(isAscending ? rowA : rowB, columnIndex);
+        var valueB = getCellValue(isAscending ? rowB : rowA, columnIndex);
 
-//         if (valueA !== "" && valueB !== "" && !isNaN(valueA) && !isNaN(valueB)) {
-//             return valueA - valueB; // Numeric comparison
-//         } else {
-//             return valueA.toString().localeCompare(valueB); // String comparison
-//         }
-//     };
-// }
-
-// document.querySelectorAll("th:not(.detail-header)").forEach(function (header) {
-//     var sortIndicator = document.createElement("span");
-//     header.appendChild(sortIndicator);
-
-//     header.addEventListener("click", function () {
-//         var table = header.closest("table");
-//         var tbody = table.querySelector("tbody");
-//         var columnIndex = Array.from(header.parentNode.children).indexOf(header);
-//         var isAscending = (header.asc = !header.asc);
-
-//         sortIndicator.textContent = isAscending ? " 🔼" : " 🔽";
-
-//         document.querySelectorAll("th span").forEach(function (otherIndicator) {
-//             if (otherIndicator !== sortIndicator) {
-//                 otherIndicator.textContent = ""; // Clear other indicators
-//             }
-//         });
-
-//         var rowsArray = Array.from(tbody.querySelectorAll("tr"));
-//         rowsArray
-//             .sort(createComparer(columnIndex, isAscending))
-//             .forEach(function (row) {
-//                 tbody.appendChild(row);
-//             });
-//     });
-// });
-
-// document.getElementById("rank-col").click(); // Sort by rank by default
-
+        if (valueA !== "" && valueB !== "" && !isNaN(valueA) && !isNaN(valueB)) {
+            return valueA - valueB; // Numeric comparison
+        } else {
+            return valueA.toString().localeCompare(valueB); // String comparison
+        }
+    };
+}
 
 
 function parseCSV_leaderboard(text) {
@@ -941,6 +875,7 @@ function switchTab(event, tabName) {
     }
     document.getElementById(tabName).style.display = "block";
     event.currentTarget.className += " active";
+    DataTable.tables({ visible: true, api: true }).columns.adjust();
 }
 
 
@@ -955,13 +890,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
             $('#summary-table').DataTable({
                 data: summary_table_data,
-                responsive: true,
-                lengthChange: false
+                orderCellsTop: true,
+                scrollX: true,
+                fixedHeader: true,
+                paging: false,
+                createdRow: function (row, data, dataIndex) {
+                    $(row).find('td').addClass('text-center');
+                }
             });
             $('#detail-table').DataTable({
                 data: detail_table_data,
-                responsive: true,
-                lengthChange: false
+                orderCellsTop: false,
+                scrollX: true,
+                fixedHeader: true,
+                paging: false,
+                createdRow: function (row, data, dataIndex) {
+                    $(row).find('td').addClass('text-center');
+                }
             });
         })
         .catch((error) => console.error(error));

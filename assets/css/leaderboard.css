@@ -12,6 +12,20 @@
     overflow-wrap: break-word; /* Ensures wrapping at break points */
 }
 
+
+
+.table-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS devices */
+    width: 100%; /* Full width of the parent */
+    max-width: 100%; /* Ensure the container does not exceed the width of the parent */
+    max-height: 600px; /* Set the maximum height of the table to 8 rows */
+    display: block;
+    border: 1px solid #ddd; /* Optional: Adds a border for better visibility */
+}
+
+
 .leaderboard tbody tr:nth-child(1) {
     background-color: #fff176;
     /* Lightest yellow for rank 1 */
@@ -83,38 +97,6 @@
 
 #detail-table td:nth-child(16) {
     background-color: #ffdf75;
-}
-
-
-/* Ensure the table uses the full width of its container */
-table {
-    table-layout: auto;
-    border-collapse: collapse; 
-    width: auto; /* Allows the table to expand naturally based on content */
-    border-collapse: collapse;
-    table-layout: auto; /* Default layout for the table */
-    align-items: center;
-    justify-content: center;
-}
-
-
-th:not(.detail-header)  {
-    cursor: pointer;
-}
-
-
-
-.table-container {
-    overflow-x: auto; /* Enable horizontal scrolling */
-    overflow-y: auto; /* Enable vertical scrolling */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS devices */
-    width: 100%; /* Full width of the parent */
-    max-width: 100%; /* Ensure the container does not exceed the width of the parent */
-    max-height: 600px; /* Set the maximum height of the table to 8 rows */
-    display: block;
-    border: 1px solid #ddd; /* Optional: Adds a border for better visibility */
-    align-items: center;
-    justify-content: center;
 }
 
 
