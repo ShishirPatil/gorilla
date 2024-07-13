@@ -254,7 +254,7 @@ class LeaderboardEvaluator:
         test_data = self.test_category_to_data[test_category]
         assert len(model_responses) == len(test_data)
         test_example_id_to_data = {}
-        if test_category != types.LeaderboardExecutableCategory.REST:
+        if test_category.value != types.LeaderboardExecutableCategory.REST.value:
             print(f"---- Getting real-time execution result from ground truth for '{test_category.value}' ----")
             exec_dict = {}
             for item in tqdm(test_data, desc="Getting Executable Expected Output"):
@@ -303,7 +303,7 @@ class LeaderboardEvaluator:
                 failed_model_responses.append(result)
                 continue
 
-            if test_category == types.LeaderboardExecutableCategory.REST:
+            if test_category.value == types.LeaderboardExecutableCategory.REST.value:
                 # REST is always single-functioned. Therefore we take the first one and pass 
                 # it to the REST checker.
                 if not evaluator_utils.is_rest_format_output(decoded_result):
