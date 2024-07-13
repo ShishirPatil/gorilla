@@ -1,4 +1,3 @@
-import json
 import argparse
 from pathlib import Path
 
@@ -21,7 +20,7 @@ def evaluate(
     )
     file_name_to_test_category = {}
     for test_category in leaderboard.test_categories:
-        if test_category in (LeaderboardCategory.SQL, LeaderboardCategory.CHATABLE):
+        if test_category.value in (LeaderboardCategory.SQL.value, LeaderboardCategory.CHATABLE.value):
             print(f'Evaluation for test category "{test_category.value}" is not currently supported!')
         else:
             file_name = leaderboard.get_file_name(test_category)
@@ -33,10 +32,5 @@ def evaluate(
             continue
         evaluator(file_path, test_category)
     
-    metrics = evaluator.get_leaderboard_metrics()
-    metrics_json = json.dumps(metrics, indent=2)
-    file_path = model_handler.model_dir / 'leaderboard_evaluation_result.json'
-    file_path.write_text(metrics_json)
-    print(f'Saved leaderboard evaluation result at "{file_path}"')
+    evaluator.generate_leaderboard_csv()
     print('🏁 Evaluation completed.')
-    print(metrics_json)

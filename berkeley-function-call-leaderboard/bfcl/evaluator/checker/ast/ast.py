@@ -542,9 +542,9 @@ class AstChecker:
 
     @staticmethod
     def get_language(test_category: LeaderboardAstCategory) -> str:
-        if test_category == LeaderboardAstCategory.JAVA:
+        if test_category.value == LeaderboardAstCategory.JAVA.value:
             language = 'java'
-        elif test_category == LeaderboardAstCategory.JAVASCRIPT:
+        elif test_category.value == LeaderboardAstCategory.JAVASCRIPT.value:
             language = 'javascript'
         else:
             language = 'python'

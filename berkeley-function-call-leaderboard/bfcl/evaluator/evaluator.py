@@ -1,15 +1,17 @@
 import json
+import warnings
 from pathlib import Path
 from typing import List, Dict, Any
 
+import pandas as pd
 from tqdm import tqdm
 from pydantic import BaseModel
 
 import bfcl.types as types
 from bfcl.model_handler.base import BaseHandler
 from bfcl.evaluator.metrics import LeaderboardModelMetrics
-from bfcl.evaluator import checker
-from bfcl.evaluator import utils as evaluator_utils
+from bfcl.evaluator import checker, utils as evaluator_utils
+from bfcl.evaluator.constants import MODEL_METADATA_MAPPING
 
 
 class FailedResult(BaseModel):
@@ -68,28 +70,133 @@ class LeaderboardEvaluator:
         
         if result:
             accuracy = result['accuracy']
-            self._test_category_to_metrics[test_category] = dict(
+            self._test_category_to_metrics[test_category.value] = dict(
                 accuracy=accuracy, 
                 total_count=result['total_count']
             )
             print(f"✅ Test completed: {test_category.value} | 🎯 Accuracy: {accuracy:.4f}")
+    
+    def generate_leaderboard_csv(self) -> None:
+        metrics = self._test_category_to_metrics
+        C = types.LeaderboardCategory
 
-    def get_leaderboard_metrics(self) -> Dict:
-        model_metrics = self._model_metrics.compute()
-        total_count = 0
-        weighted_total_accuracy = unweighted_total_accuracy = 0
-        test_category_to_accuracy = {}
-        for test_category, metrics in self._test_category_to_metrics.items():
-            test_category_to_accuracy[test_category.value] = metrics['accuracy']
-            total_count += metrics['total_count']
-            weighted_total_accuracy += metrics['accuracy'] * metrics['total_count']
-            unweighted_total_accuracy += metrics['accuracy']
-        return dict(
-            overall_accuracy_weighted=weighted_total_accuracy / total_count,
-            overall_accuracy_unweighted=unweighted_total_accuracy / len(self._test_category_to_metrics),
-            **test_category_to_accuracy,
-            **model_metrics,
+        python_simple_ast = metrics.get(C.SIMPLE.value, dict(accuracy=0, total_count=0))
+        python_multiple_ast = metrics.get(C.MULTIPLE_FUNCTION.value, dict(accuracy=0, total_count=0))
+        python_parallel_ast = metrics.get(C.PARALLEL_FUNCTION.value, dict(accuracy=0, total_count=0))
+        python_parallel_multiple_ast = metrics.get(C.PARALLEL_MULTIPLE_FUNCTION.value, dict(accuracy=0, total_count=0))
+        python_simple_exec = metrics.get(C.EXECUTABLE_SIMPLE.value, dict(accuracy=0, total_count=0))
+        python_multiple_exec = metrics.get(C.EXECUTABLE_MULTIPLE_FUNCTION.value, dict(accuracy=0, total_count=0))
+        python_parallel_exec = metrics.get(C.EXECUTABLE_PARALLEL_FUNCTION.value, dict(accuracy=0, total_count=0))
+        python_parallel_multiple_exec = metrics.get(C.EXECUTABLE_PARALLEL_MULTIPLE_FUNCTION.value, dict(accuracy=0, total_count=0))
+        java_simple_ast = metrics.get(C.JAVA.value, dict(accuracy=0, total_count=0))
+        javascript_simple_ast = metrics.get(C.JAVASCRIPT.value, dict(accuracy=0, total_count=0))
+        rest_simple_exec = metrics.get(C.REST.value, dict(accuracy=0, total_count=0))
+        relevance = metrics.get(C.RELEVANCE.value, dict(accuracy=0, total_count=0))
+
+        simple_ast = evaluator_utils.calculate_weighted_accuracy(
+            [python_simple_ast, java_simple_ast, javascript_simple_ast]
         )
+        multiple_ast = python_multiple_ast
+        parallel_ast = python_parallel_ast
+        parallel_multiple_ast = python_parallel_multiple_ast
+        simple_exec = evaluator_utils.calculate_weighted_accuracy(
+            [python_simple_exec, rest_simple_exec]
+        )
+        multiple_exec = python_multiple_exec
+        parallel_exec = python_parallel_exec
+        parallel_multiple_exec = python_parallel_multiple_exec
+
+        summary_ast = evaluator_utils.calculate_unweighted_accuracy(
+            [simple_ast, multiple_ast, parallel_ast, parallel_multiple_ast]
+        )
+        summary_exec = evaluator_utils.calculate_unweighted_accuracy(
+            [simple_exec, multiple_exec, parallel_exec, parallel_multiple_exec]
+        )
+        overall_accuracy = evaluator_utils.calculate_weighted_accuracy(
+            [
+                simple_ast,
+                multiple_ast,
+                parallel_ast,
+                parallel_multiple_ast,
+                simple_exec,
+                multiple_exec,
+                parallel_exec,
+                parallel_multiple_exec,
+                relevance,
+            ]
+        )
+
+        # if overall_accuracy["total_count"] != 1700:
+        #     print("-" * 100)
+        #     print(f"❗️Warning: Total count for {self.model_name} is {overall_accuracy['total_count']}")
+
+        # Model metrics - cost, mean_latency, std_latency, p95_latency
+        model_metrics = self._model_metrics.compute()
+        model_metadata = MODEL_METADATA_MAPPING.get(self.model_name)
+        if model_metadata is None:
+            warnings.warn(
+                f'Metadata not found for the model "{self.model_name}"! '
+                'Please add your model metadata in the `MODEL_METADATA_MAPPING` variable '
+                'in the `bfcl/evaluator/constants.py` file.'
+            )
+        
+        f_acc = lambda acc: "{:.2f}%".format(acc * 100)
+        rv_f_acc = lambda acc_str: float(acc_str.replace('%', '')) / 100
+        
+        row = {
+            "Rank": 0, # Temporary value of 0. Updated below.
+            "Overall Acc": f_acc(overall_accuracy["accuracy"]),
+            "Model": model_metadata[0] if model_metadata else self.model_name,
+            "Model Link": model_metadata[1] if model_metadata else "N/A",
+            "Organization": model_metadata[2] if model_metadata else "N/A",
+            "License": model_metadata[3] if model_metadata else "N/A",
+            "AST Summary": f_acc(summary_ast["accuracy"]),
+            "Exec Summary": f_acc(summary_exec["accuracy"]),
+            "Simple Function AST": f_acc(simple_ast["accuracy"]),
+            "Python Simple Function AST": f_acc(python_simple_ast["accuracy"]),
+            "Java Simple Function AST": f_acc(java_simple_ast["accuracy"]),
+            "JavaScript Simple Function AST": f_acc(javascript_simple_ast["accuracy"]),
+            "Multiple Functions AST": f_acc(multiple_ast["accuracy"]),
+            "Parallel Functions AST": f_acc(parallel_ast["accuracy"]),
+            "Parallel Multiple AST": f_acc(parallel_multiple_ast["accuracy"]),
+            "Simple Function Exec": f_acc(simple_exec["accuracy"]),
+            "Python Simple Function Exec": f_acc(python_simple_exec["accuracy"]),
+            "REST Simple Function Exec": f_acc(rest_simple_exec["accuracy"]),
+            "Multiple Functions Exec": f_acc(multiple_exec["accuracy"]),
+            "Parallel Functions Exec": f_acc(parallel_exec["accuracy"]),
+            "Parallel Multiple Exec": f_acc(parallel_multiple_exec["accuracy"]),
+            "Relevance Detection": f_acc(relevance["accuracy"]),
+            "Cost ($ Per 1k Function Calls)": str(model_metrics['cost']),
+            "Latency Mean (s)": str(model_metrics['mean_latency']),
+            "Latency Standard Deviation (s)": str(model_metrics['std_latency']),
+            "Latency 95th Percentile (s)": str(model_metrics['p95_latency']),
+        }
+
+        df_new = pd.DataFrame([row])
+        file_path = self.model_handler.result_dir / 'BFCL_leaderboard_result.csv'
+        if file_path.exists():
+            print('Found existing BFCL leaderboard file! Loading...')
+            existing_df = pd.read_csv(file_path, dtype=str)
+
+            # Check if model name already exists
+            if df_new["Model"].iloc[0] in existing_df["Model"].values:
+                print('Model already exists. Overwriting the row...')
+                existing_df.loc[existing_df["Model"] == df_new["Model"].iloc[0], :] = df_new.values
+            else:
+                print('Appending new model to the existing dataframe...')
+                existing_df = pd.concat((existing_df, df_new), ignore_index=True)
+            df = existing_df
+        else:
+            print('No existing BFCL leaderboard file found. Creating a new one...')
+            df = df_new
+
+        df["Overall Acc"] = df["Overall Acc"].apply(rv_f_acc)
+        df.sort_values("Overall Acc", ascending=False, inplace=True)
+        df["Overall Acc"] = df["Overall Acc"].apply(f_acc)
+        df['Rank'] = list(range(1, len(df) + 1))
+
+        df.to_csv(file_path, index=False)
+        print(f'🔒 Saved BFCL leaderboard result at "{file_path}".')
 
     def run_relevance_evaluator(self, model_responses: List[Dict]) -> Dict:
         """Run function relevance detection. 

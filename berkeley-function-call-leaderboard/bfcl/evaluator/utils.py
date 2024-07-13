@@ -64,3 +64,25 @@ def is_executable_format_output(decoded_output):
                 return False
         return True
     return False
+
+def calculate_weighted_accuracy(accuracy_dict_list):
+    total_count = 0
+    total_accuracy = 0
+    for accuracy_dict in accuracy_dict_list:
+        total_count += accuracy_dict["total_count"]
+        total_accuracy += accuracy_dict["accuracy"] * accuracy_dict["total_count"]
+
+    if total_count == 0:
+        return {"accuracy": 0, "total_count": 0}
+
+    return {"accuracy": total_accuracy / total_count, "total_count": total_count}
+
+def calculate_unweighted_accuracy(accuracy_dict_list):
+    total_accuracy = 0
+    for accuracy_dict in accuracy_dict_list:
+        total_accuracy += accuracy_dict["accuracy"]
+
+    if len(accuracy_dict_list) == 0:
+        return {"accuracy": 0, "total_count": 0}
+
+    return {"accuracy": total_accuracy / len(accuracy_dict_list), "total_count": 0}
