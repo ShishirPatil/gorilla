@@ -19,7 +19,7 @@ class FailedResult(BaseModel):
     error_type: str
     error_message: str
     llm_response: str
-    decoded_result: Any
+    decoded_result: Any | None = None
 
     class Config:
         extra = 'allow'
@@ -53,7 +53,7 @@ class LeaderboardEvaluator:
         self._model_metrics(model_responses)
 
         result = None
-        if test_category == types.LeaderboardCategory.RELEVANCE:
+        if test_category.value == types.LeaderboardCategory.RELEVANCE.value:
             result = self.run_relevance_evaluator(model_responses)
         elif test_category.value in types.LeaderboardExecutableCategory:
             if self._executable_checker is None:
@@ -62,7 +62,9 @@ class LeaderboardEvaluator:
                     self._executable_checker.perform_api_sanity_checks()
             result = self.run_executable_evaluator(test_category, model_responses)
         elif test_category.value in types.LeaderboardAstCategory:
-            pass
+            if self._ast_checker is None:
+                self._ast_checker = checker.AstChecker(self.model_name, self.leaderboard)
+            result = self.run_ast_evaluator(test_category, model_responses)
         
         if result:
             accuracy = result['accuracy']
@@ -256,6 +258,93 @@ class LeaderboardEvaluator:
                     result.model_executed_output = checker_result.model_executed_output
                 failed_model_responses.append(result)
 
+        result = dict(
+            accuracy=correct_count / len(model_responses),
+            correct_count=correct_count,
+            total_count=len(model_responses),
+            failed_model_responses=failed_model_responses,
+        )
+        self._save_scores(test_category, result)
+        return result
+
+    def run_ast_evaluator(
+        self, 
+        test_category: types.LeaderboardCategory, 
+        model_responses: List[Dict]
+    ) -> Dict:
+
+        self._ast_checker.load_possible_answers(test_category)
+        test_data = self.test_category_to_data[test_category]
+        possible_answers = self._ast_checker.test_category_to_possible_ans[test_category]
+        language = self._ast_checker.get_language(test_category)
+        assert len(model_responses) == len(test_data) == len(possible_answers), (
+            "No. of the model responses does not match the no. of test data or "
+            "no. of possible answers. Please check the input files for completeness."
+        )
+
+        test_example_id_to_data = {data['id']: data for data in test_data}
+        failed_model_responses = []
+        correct_count = 0
+        for idx, response in tqdm(enumerate(model_responses), total=len(model_responses), desc="Evaluating"):
+            model_result_item = response['response']
+            possible_answer_item = possible_answers[idx]
+
+            try:
+                model_result_item_raw = model_result_item
+                model_result_item = self.model_handler.decode_ast(model_result_item, language)
+            except Exception as e:
+                failed_model_responses.append(
+                    FailedResult(
+                        example_id=response['id'],
+                        test_category=test_category.value,
+                        is_valid=False,
+                        error_message=f"Invalid syntax. Failed to decode AST. {str(e)}",
+                        error_type="ast_decoder:decoder_failed",
+                        llm_response=model_result_item_raw,
+                        possible_answer=possible_answer_item,
+                    )
+                )
+                continue
+
+            decoder_output_valid = evaluator_utils.is_function_calling_format_output(model_result_item)
+            if not decoder_output_valid:
+                failed_model_responses.append(
+                    FailedResult(
+                        example_id=response['id'],
+                        test_category=test_category.value,
+                        is_valid=False,
+                        error_message="Did not output in the specified format. Note: the model_result is wrapped in a string to ensure json serializability.",
+                        error_type="ast_decoder:decoder_wrong_output_format",
+                        llm_response=str(model_result_item_raw),
+                        decoded_result=str(model_result_item),
+                        possible_answer=possible_answer_item,
+                    )
+                )
+                continue
+
+            checker_result = self._ast_checker(
+                idx,
+                test_example_id_to_data[response['id']]['function'],
+                model_result_item,
+                test_category,
+            )
+
+            if checker_result.is_valid:
+                correct_count += 1
+            else:
+                failed_model_responses.append(
+                    FailedResult(
+                        example_id=response['id'],
+                        test_category=test_category.value,
+                        is_valid=checker_result.is_valid,
+                        error_message=checker_result.error_message,
+                        error_type=checker_result.error_type,
+                        llm_response=model_result_item_raw,
+                        decoded_result=model_result_item,
+                        possible_answer=possible_answer_item,
+                    )
+                )
+        
         result = dict(
             accuracy=correct_count / len(model_responses),
             correct_count=correct_count,
