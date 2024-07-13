@@ -42,7 +42,7 @@
     <link href="https://cdn.datatables.net/fixedheader/4.0.1/css/fixedHeader.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/searchpanes/2.3.1/css/searchPanes.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/select/2.0.3/css/select.bootstrap5.min.css" rel="stylesheet">
-    
+
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
@@ -112,56 +112,78 @@
                     href="https://github.com/ShishirPatil/gorilla">code release</a>.
             </p>
             <div style="margin-bottom: 15px;">
-                <button id="expand-btn" onclick="toggleExpand()">Expand/Collapse Table</button>
                 <span style="margin-left: 10px;"><b><i style="font-size: 1.0em;">Last updated: 2024-07-06 <a
                                 href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard#changelog">[Change
                                 Log]</a></i></b></span>
             </div>
             <div class="table-container">
-                <table id="leaderboard-table">
-                    <thead>
-                        <tr>
-                            <th class="detail-header" colspan="3"></th>
-                            <th class="detail-header" colspan="1"></th>
-                            <th class="detail-header" colspan="3">Latency (s)</th>
-                            <th class="detail-header" colspan="4">
-                                Abstract Syntax Tree (AST) Evaluation
-                            </th>
-                            <th class="detail-header" colspan="4">
-                                Evaluation by Executing APIs
-                            </th>
-                            <th class="detail-header" colspan="1"></th>
-                            <th class="detail-header" colspan="5"></th>
-                        </tr>
-                        <tr>
-                            <th id="rank-col">Rank</th>
-                            <th>Overall Acc</th>
-                            <th>Model</th>
-                            <th class="summary-small-header">Cost ($)</th>
-                            <th class="summary-small-header">Average Latency (s)</th>
-                            <th class="summary-small-header">AST Summary</th>
-                            <th class="summary-small-header">Exec Summary</th>
-                            <th class="summary-small-header">Relevance</th>
-                            <th class="detail-small-header">Cost ($)</th>
-                            <th class="detail-small-header">Mean</th>
-                            <th class="detail-small-header">SD</th>
-                            <th class="detail-small-header">P95</th>
-                            <th class="detail-small-header">Simple Function</th>
-                            <th class="detail-small-header">Multiple Functions</th>
-                            <th class="detail-small-header">Parallel Functions</th>
-                            <th class="detail-small-header">Parallel Multiple</th>
-                            <th class="detail-small-header">Simple Function</th>
-                            <th class="detail-small-header">Multiple Functions</th>
-                            <th class="detail-small-header">Parallel Functions</th>
-                            <th class="detail-small-header">Parallel Multiple</th>
-                            <th class="detail-small-header">Relevance Detection</th>
-                            <th>Organization</th>
-                            <th>License</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-secondary"
+                        onclick="switchTab(event, 'summary-table-tab')">Summary</button>
+                    <button type="button" class="btn btn-secondary"
+                        onclick="switchTab(event, 'detail-table-tab')">Detail</button>
+                </div>
+                <div id="summary-table-tab" class="tab active">
+                    <table id="summary-table" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th id="rank-col">Rank</th>
+                                <th>Overall Acc</th>
+                                <th>Model</th>
+                                <th>Cost ($)</th>
+                                <th>Average Latency (s)</th>
+                                <th>AST Summary</th>
+                                <th>Exec Summary</th>
+                                <th>Relevance</th>
+                                <th>Organization</th>
+                                <th>License</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <div id="detail-table-tab" class="tab mt-4">
+                    <table id="detail-table" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th colspan="1"></th>
+                                <th colspan="1"></th>
+                                <th colspan="1"></th>
+                                <th colspan="1"></th>
+                                <th colspan="3">Latency (s)</th>
+                                <th colspan="4">
+                                    Abstract Syntax Tree (AST) Evaluation
+                                </th>
+                                <th colspan="4">
+                                    Evaluation by Executing APIs
+                                </th>
+                                <th colspan="1"></th>
+                                <th colspan="2"></th>
+                            </tr>
+                            <tr>
+                                <th id="rank-col">Rank</th>
+                                <th>Overall Acc</th>
+                                <th>Model</th>
+                                <th>Cost ($)</th>
+                                <th>Mean</th>
+                                <th>SD</th>
+                                <th>P95</th>
+                                <th>Simple Function</th>
+                                <th>Multiple Functions</th>
+                                <th>Parallel Functions</th>
+                                <th>Parallel Multiple</th>
+                                <th>Simple Function</th>
+                                <th>Multiple Functions</th>
+                                <th>Parallel Functions</th>
+                                <th>Parallel Multiple</th>
+                                <th>Relevance Detection</th>
+                                <th>Organization</th>
+                                <th>License</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
+
             <p></p>
             <p>
                 FC = native support for function/tool calling.

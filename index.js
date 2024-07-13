@@ -364,42 +364,6 @@ const csvFilePath = "./data.csv";
 fetch(csvFilePath)
     .then((response) => response.text())
     .then((csvText) => {
-        const leaderboard_data = parseCSV_leaderboard(csvText);
-        addToTable(leaderboard_data);
-    })
-    .catch((error) => console.error(error));
-
-function parseCSV_leaderboard(text) {
-    result = text.split("\n");
-    // Skip the first row of the CSV (headers)
-    for (let i = 1; i < result.length; i += 1) {
-        result[i] = result[i].split(",");
-        result[i] = result[i].map((value) => {
-            if (value.endsWith("%")) {
-                return parseFloat(value.slice(0, -1));
-            }
-            return value;
-        });
-        result[i].splice(9, 3);
-        result[i].splice(13, 2);
-        result[i].splice(result[i].length, 0, result[i][4]);
-        result[i].splice(result[i].length, 0, result[i][5]);
-        result[i].splice(4, 2);
-        result[i].splice(4, 0, result[i][result[i].length - 6]);
-        result[i].splice(5, 0, result[i][result[i].length - 5]);
-        result[i].splice(8, 0, result[i][result[i].length - 7]);
-        result[i].splice(9, 0, result[i][result[i].length - 6]);
-        result[i].splice(10, 0, result[i][result[i].length - 5]);
-        result[i].splice(11, 0, result[i][result[i].length - 4]);
-        result[i].splice(12, 0, result[i][result[i].length - 3]);
-        result[i].splice(result[i].length - 6, 4);
-    }
-    return result;
-}
-
-fetch(csvFilePath)
-    .then((response) => response.text())
-    .then((csvText) => {
         const chart_data = parseCSV_chart(csvText);
         generateChart(chart_data);
     })
@@ -420,43 +384,43 @@ function parseCSV_chart(text) {
     return result;
 }
 
-function addToTable(dataArray) {
-    const tbody = document
-        .getElementById("leaderboard-table")
-        .getElementsByTagName("tbody")[0];
-    dataArray.forEach((row, index) => {
-        // Assuming the first row of the CSV is headers and skipping it
-        if (index > 0) {
-            const tr = document.createElement("tr");
+// function addToTable(dataArray) {
+//     const tbody = document
+//         .getElementById("leaderboard-table")
+//         .getElementsByTagName("tbody")[0];
+//     dataArray.forEach((row, index) => {
+//         // Assuming the first row of the CSV is headers and skipping it
+//         if (index > 0) {
+//             const tr = document.createElement("tr");
 
-            for (let cellIndex = 0; cellIndex < row.length; cellIndex += 1) {
-                let cell = row[cellIndex];
-                const td = document.createElement("td");
-                if (cellIndex === 2) {
-                    const a = document.createElement("a");
-                    a.href = row[3];
-                    cellIndex += 1;
-                    a.textContent = cell;
-                    td.appendChild(a);
-                } else {
-                    td.textContent = cell;
-                }
+//             for (let cellIndex = 0; cellIndex < row.length; cellIndex += 1) {
+//                 let cell = row[cellIndex];
+//                 const td = document.createElement("td");
+//                 if (cellIndex === 2) {
+//                     const a = document.createElement("a");
+//                     a.href = row[3];
+//                     cellIndex += 1;
+//                     a.textContent = cell;
+//                     td.appendChild(a);
+//                 } else {
+//                     td.textContent = cell;
+//                 }
 
-                if (cellIndex >= 4 && cellIndex <= 8) {
-                    // summary-row class for specific columns
-                    td.className = "summary-row";
-                } else if (cellIndex >= 9 && cellIndex <= 21) {
-                    // detail-row class for specific columns
-                    td.className = "detail-row";
-                }
+//                 if (cellIndex >= 4 && cellIndex <= 8) {
+//                     // summary-row class for specific columns
+//                     td.className = "summary-row";
+//                 } else if (cellIndex >= 9 && cellIndex <= 21) {
+//                     // detail-row class for specific columns
+//                     td.className = "detail-row";
+//                 }
 
-                tr.appendChild(td);
-            }
+//                 tr.appendChild(td);
+//             }
 
-            tbody.appendChild(tr);
-        }
-    });
-}
+//             tbody.appendChild(tr);
+//         }
+//     });
+// }
 
 function populateInput(index) {
     document.getElementById("input-text").value = PROMPTS[index];
@@ -783,48 +747,6 @@ function generateChart(csvData) {
 //     }
 // });
 
-var expand = false;
-function toggleExpand() {
-    // Select all detail-row and detail-header elements
-    var elements = document.querySelectorAll(
-        ".summary-row, .summary-small-header"
-    );
-
-    // Toggle the visibility of each element
-    elements.forEach(function (element) {
-        if (expand) {
-            // Apply the appropriate display style based on the element's tag
-            if (element.tagName === "TR") {
-                element.style.display = "table-row";
-            } else if (element.tagName === "TD" || element.tagName === "TH") {
-                element.style.display = "table-cell";
-            }
-        } else {
-            element.style.display = "none"; // Hide element
-        }
-    });
-
-    // Select all detail-row and detail-header elements
-    var elements = document.querySelectorAll(
-        ".detail-row, .detail-header, .detail-small-header"
-    );
-
-    // Toggle the visibility of each element
-    elements.forEach(function (element) {
-        if (!expand) {
-            // Apply the appropriate display style based on the element's tag
-            if (element.tagName === "TR") {
-                element.style.display = "table-row";
-            } else if (element.tagName === "TD" || element.tagName === "TH") {
-                element.style.display = "table-cell";
-            }
-        } else {
-            element.style.display = "none"; // Hide element
-        }
-    });
-
-    expand = !expand;
-}
 
 function sendFeedback(vote) {
     fetch(
@@ -899,50 +821,148 @@ function sendFeedbackPositive() {
     sendFeedback("positive");
 }
 
-function getCellValue(row, columnIndex) {
-    return (
-        row.children[columnIndex].innerText || row.children[columnIndex].textContent
-    );
-}
+// function getCellValue(row, columnIndex) {
+//     return (
+//         row.children[columnIndex].innerText || row.children[columnIndex].textContent
+//     );
+// }
 
-function createComparer(columnIndex, isAscending) {
-    return function (rowA, rowB) {
-        var valueA = getCellValue(isAscending ? rowA : rowB, columnIndex);
-        var valueB = getCellValue(isAscending ? rowB : rowA, columnIndex);
+// function createComparer(columnIndex, isAscending) {
+//     return function (rowA, rowB) {
+//         var valueA = getCellValue(isAscending ? rowA : rowB, columnIndex);
+//         var valueB = getCellValue(isAscending ? rowB : rowA, columnIndex);
 
-        if (valueA !== "" && valueB !== "" && !isNaN(valueA) && !isNaN(valueB)) {
-            return valueA - valueB; // Numeric comparison
-        } else {
-            return valueA.toString().localeCompare(valueB); // String comparison
-        }
-    };
-}
+//         if (valueA !== "" && valueB !== "" && !isNaN(valueA) && !isNaN(valueB)) {
+//             return valueA - valueB; // Numeric comparison
+//         } else {
+//             return valueA.toString().localeCompare(valueB); // String comparison
+//         }
+//     };
+// }
 
-document.querySelectorAll("th:not(.detail-header)").forEach(function (header) {
-    var sortIndicator = document.createElement("span");
-    header.appendChild(sortIndicator);
+// document.querySelectorAll("th:not(.detail-header)").forEach(function (header) {
+//     var sortIndicator = document.createElement("span");
+//     header.appendChild(sortIndicator);
 
-    header.addEventListener("click", function () {
-        var table = header.closest("table");
-        var tbody = table.querySelector("tbody");
-        var columnIndex = Array.from(header.parentNode.children).indexOf(header);
-        var isAscending = (header.asc = !header.asc);
+//     header.addEventListener("click", function () {
+//         var table = header.closest("table");
+//         var tbody = table.querySelector("tbody");
+//         var columnIndex = Array.from(header.parentNode.children).indexOf(header);
+//         var isAscending = (header.asc = !header.asc);
 
-        sortIndicator.textContent = isAscending ? " 🔼" : " 🔽";
+//         sortIndicator.textContent = isAscending ? " 🔼" : " 🔽";
 
-        document.querySelectorAll("th span").forEach(function (otherIndicator) {
-            if (otherIndicator !== sortIndicator) {
-                otherIndicator.textContent = ""; // Clear other indicators
+//         document.querySelectorAll("th span").forEach(function (otherIndicator) {
+//             if (otherIndicator !== sortIndicator) {
+//                 otherIndicator.textContent = ""; // Clear other indicators
+//             }
+//         });
+
+//         var rowsArray = Array.from(tbody.querySelectorAll("tr"));
+//         rowsArray
+//             .sort(createComparer(columnIndex, isAscending))
+//             .forEach(function (row) {
+//                 tbody.appendChild(row);
+//             });
+//     });
+// });
+
+// document.getElementById("rank-col").click(); // Sort by rank by default
+
+
+
+function parseCSV_leaderboard(text) {
+    result = text.split("\n");
+    result.shift();  // Removes the first row of the CSV (headers)
+    for (let i = 0; i < result.length; i += 1) {
+        result[i] = result[i].split(",");
+        result[i] = result[i].map((value) => {
+            if (value.endsWith("%")) {
+                return parseFloat(value.slice(0, -1));
             }
+            return value;
         });
+    }
+    return result;
+}
 
-        var rowsArray = Array.from(tbody.querySelectorAll("tr"));
-        rowsArray
-            .sort(createComparer(columnIndex, isAscending))
-            .forEach(function (row) {
-                tbody.appendChild(row);
+function extract_leaderboard_summary_table(input_data) {
+    result = [];
+    for (let i = 0; i < input_data.length; i += 1) {
+        row = input_data[i];
+        row_data = [];
+        row_data.push(row[0]);
+        row_data.push(row[1]);
+        row_data.push(`<a href="${row[3]}">${row[2]}</a>`);
+        row_data.push(row[22]);
+        row_data.push(row[23]);
+        row_data.push(row[6]);
+        row_data.push(row[7]);
+        row_data.push(row[21]);
+        row_data.push(row[4]);
+        row_data.push(row[5]);
+
+        result.push(row_data);
+    }
+    return result;
+}
+
+
+function extract_leaderboard_detail_table(input_data) {
+    result = [];
+    for (let i = 0; i < input_data.length; i += 1) {
+        row = input_data[i];
+        row_data = [];
+        row_data.push(row[0]);
+        row_data.push(row[1]);
+        row_data.push(`<a href="${row[3]}">${row[2]}</a>`);
+        row_data.push(...row.slice(22, 26));
+        row_data.push(row[8]);
+        row_data.push(...row.slice(12, 16));
+        row_data.push(...row.slice(18, 22));
+        row_data.push(row[4]);
+        row_data.push(row[5]);
+
+        result.push(row_data);
+    }
+    return result;
+}
+
+
+function switchTab(event, tabName) {
+    var i, tabcontent, tabs;
+    tabcontent = document.getElementsByClassName("tab");
+    for (i = 0; i < tabcontent.length; i += 1) {
+        tabcontent[i].style.display = "none";
+    }
+    tabs = document.getElementsByClassName("tabs");
+    for (i = 0; i < tabs.length; i += 1) {
+        tabs[i].className = tabs[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    event.currentTarget.className += " active";
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    fetch(csvFilePath)
+        .then((response) => response.text())
+        .then((csvText) => {
+            const parsed_data = parseCSV_leaderboard(csvText);
+            const summary_table_data = extract_leaderboard_summary_table(parsed_data);
+            const detail_table_data = extract_leaderboard_detail_table(parsed_data);
+
+            $('#summary-table').DataTable({
+                data: summary_table_data,
+                responsive: true,
+                lengthChange: false
             });
-    });
+            $('#detail-table').DataTable({
+                data: detail_table_data,
+                responsive: true,
+                lengthChange: false
+            });
+        })
+        .catch((error) => console.error(error));
 });
-
-document.getElementById("rank-col").click(); // Sort by rank by default
