@@ -172,47 +172,6 @@ You can use the following links to obtain the API keys:
     * Time zone by Location: https://rapidapi.com/BertoldVdb/api/timezone-by-location
 
     All the Rapid APIs we use have free tier usage. As a result, you need to subscribe to those API providers in order to have the executable test environment setup but it will be free of charge!
-2. ExchangeRate API:https://www.exchangerate-api.com
+2. ExchangeRate API: https://www.exchangerate-api.com
 3. OMDB API: http://www.omdbapi.com/apikey.aspx
 4. Geocode API: https://geocode.maps.co/
-
-
-### Evaluation
-
-To view the full list of arguments for the evaluation sub-command, call:
-```bash
-$ bfcl evaluation -h
-```
-
-To perform evaluation of a proprietary/hosted model (e.g. [gorilla-openfunctions-v2](https://huggingface.co/gorilla-llm/gorilla-openfunctions-v2)) on all test categories, use:
-```bash
-$ bfcl evaluation \
-    --model gorilla-openfunctions-v2 \
-    --model_type proprietary \
-    --test-group all
-```
-
-#### Executable Test Category Evaluation
-
-To run the executable test categories, you need to provide the following API keys in the `.env` file:
-```ini
-RAPID_API_KEY=
-EXCHANGERATE_API_KEY=
-OMDB_API_KEY=
-GEOCODE_API_KEY=
-```
-
-You can use the following links to obtain the API keys:
-
-1. **Rapid API**: [Rapid API Hub](https://rapidapi.com/hub)
-    - Yahoo Finance: https://rapidapi.com/sparior/api/yahoo-finance15
-    - Real Time Amazon Data : https://rapidapi.com/letscrape-6bRBa3QguO5/api/real-time-amazon-data
-    - Urban Dictionary: https://rapidapi.com/community/api/urban-dictionary
-    - Covid 19: https://rapidapi.com/api-sports/api/covid-193
-    - Time zone by Location: https://rapidapi.com/BertoldVdb/api/timezone-by-location
-
-    All the Rapid APIs we use have free tier usage. You need to subscribe to these API providers to set up the executable test environment, but it will be free of charge!
-
-2. **ExchangeRate API**: https://www.exchangerate-api.com
-3. **OMDB API**: http://www.omdbapi.com/apikey.aspx
-4. **Geocode API**: https://geocode.maps.co/
