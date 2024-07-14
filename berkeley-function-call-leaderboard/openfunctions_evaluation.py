@@ -124,14 +124,6 @@ async def main():
                     else:
                         filtered_test_cases.append(None)
                 test_cases = filtered_test_cases
-            debug = []
-            for test_idx,test_case in enumerate(test_cases):
-                if test_case is not None:
-                    debug.append(test_idx)
-                else:
-                    debug.append(None)
-            print(f"Completed Indicies {indicies}")
-            print(f"Test Indicies {debug}")
 
             async with aiohttp.ClientSession() as session:
                 batch_size = args.batch_size    # Number of iterations to run at a time
