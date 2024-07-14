@@ -109,18 +109,29 @@ async def main():
             with open("./data/" + file_to_open) as f:
                 for line in f:
                     test_cases.append(json.loads(line))
+            
+            # sorts the results of the test cases if they already exist 
+            # and returns the indexs that have been saved so far in order
+            indicies = handler.sort_results(file_to_open) 
 
-            num_existing_result = 0
-            result_file_path = (
-                "./result/"
-                + args.model.replace("/", "_")
-                + "/"
-                + file_to_open.replace(".json", "_result.json")
-            )
-            if os.path.exists(result_file_path):
-                with open(result_file_path) as f:
-                    for line in f:
-                        num_existing_result += 1
+            # filter the test_cases that have already been completed
+            # add a None if test_case already completed
+            filtered_test_cases = []
+            if indicies is not None:
+                for test_idx,test_case in enumerate(test_cases):
+                    if test_idx not in indicies:
+                        filtered_test_cases.append(test_case)
+                    else:
+                        filtered_test_cases.append(None)
+                test_cases = filtered_test_cases
+            debug = []
+            for test_idx,test_case in enumerate(test_cases):
+                if test_case is not None:
+                    debug.append(test_idx)
+                else:
+                    debug.append(None)
+            print(f"Completed Indicies {indicies}")
+            print(f"Test Indicies {debug}")
 
             async with aiohttp.ClientSession() as session:
                 batch_size = args.batch_size    # Number of iterations to run at a time
@@ -131,10 +142,11 @@ async def main():
                 for start_index in range(0, len(test_cases), batch_size):
                     end_index = min(start_index + batch_size, len(test_cases))
                     for index in range(start_index, end_index):
-                        if index < num_existing_result:
+                        test_case = test_cases[index]
+                        # if test_case is None it means its already completed
+                        if test_case is None:
                             progress_bar.update(1)  # Update for skipped items
                             continue
-                        test_case = test_cases[index]
                         task = asyncio.create_task(fetch_and_process(session, index, test_case, handler, test_category, file_to_open))
                         task.add_done_callback(lambda _: progress_bar.update(1))  # Update progress when task is done
                         tasks.append(task)

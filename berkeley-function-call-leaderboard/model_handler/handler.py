@@ -53,8 +53,12 @@ class BaseHandler:
         return result_list
     
     # open the result file and sort it on idx
+    # return the indicies that are saved in file in ascending order
     def sort_results(self,file_to_open):
         path = "./result/"+ self.model_name+ "/" + file_to_open.replace(".json", "_result.json")
+        # if the file doesnt exist yet then return
+        if not os.path.exists(path):
+            return None
         with open(path,mode='r',) as f:
             lines = f.readlines()
         results = [json.loads(line) for line in lines]
@@ -62,3 +66,4 @@ class BaseHandler:
         with open(path, mode='w') as f:
             for result in sorted_results:
                 f.write(json.dumps(result) + "\n")
+        return [result["idx"] for result in sorted_results]
