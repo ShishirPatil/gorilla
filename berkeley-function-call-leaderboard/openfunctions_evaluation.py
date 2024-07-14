@@ -90,7 +90,8 @@ if __name__ == "__main__":
                 test_category = test_category,
                 num_gpus = args.num_gpus,
             )
-            for res in result[0]:
+            for index, res in enumerate(result[0]):
+                result_to_write = {"id": index, "result": res["text"]}
                 handler.write(res, file_to_open)
         else:
             for index, test_case in enumerate(tqdm(test_cases)):
