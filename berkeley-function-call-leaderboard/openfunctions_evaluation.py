@@ -92,7 +92,7 @@ if __name__ == "__main__":
             )
             for index, res in enumerate(result[0]):
                 result_to_write = {"id": index, "result": res["text"]}
-                handler.write(res, file_to_open)
+                handler.write(result_to_write, file_to_open)
         else:
             for index, test_case in enumerate(tqdm(test_cases)):
                 if index < num_existing_result:
