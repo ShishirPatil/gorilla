@@ -91,7 +91,7 @@ if __name__ == "__main__":
                 num_gpus = args.num_gpus,
             )
             for res in result[0]:
-                handler.write(res, "result.json")
+                handler.write(res, file_to_open)
         else:
             for index, test_case in enumerate(tqdm(test_cases)):
                 if index < num_existing_result:
