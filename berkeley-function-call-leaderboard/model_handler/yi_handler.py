@@ -18,7 +18,7 @@ import os, time, json
 
 
 class YiHandler(BaseHandler):
-    def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
+    def __init__(self, model_name, temperature=0.0, top_p=1, max_tokens=1000) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
         self.model_style = ModelStyle.OpenAI
         self.base_url = "https://api.lingyiwanwu.com/v1"
@@ -28,7 +28,7 @@ class YiHandler(BaseHandler):
         if "FC" not in self.model_name:
             prompt = augment_prompt_by_languge(prompt,test_category)
             functions = language_specific_pre_processing(functions,test_category,False)
-            if type(prompt) == list:
+            if type(prompt) is list:
                 assert not functions, "When using prompting mode with a list of messages, " +\
                     "functions must already exist in the list of messages"
                 message = prompt
@@ -96,7 +96,7 @@ class YiHandler(BaseHandler):
                     {func_call.function.name: func_call.function.arguments}
                     for func_call in response.choices[0].message.tool_calls
                 ]
-            except:
+            except Exception as e:
                 result = response.choices[0].message.content
         metadata = {}
         metadata["input_tokens"] = response.usage.prompt_tokens
