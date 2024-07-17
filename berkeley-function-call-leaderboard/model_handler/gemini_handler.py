@@ -109,9 +109,6 @@ class GeminiHandler(BaseHandler):
         for invoked_function in result:
             name = list(invoked_function.keys())[0]
             params = json.loads(invoked_function[name])
-            if language != "Python":
-                for key in params:
-                    params[key] = str(params[key])
             decoded_output.append({name: params})
         return decoded_output
 
