@@ -78,18 +78,14 @@ class GLMHandler(OSSHandler):
             final_ans_jsons.append(ans_json)
         return final_ans_jsons
 
-    def inference(self, question_file, test_category, num_gpus):
+    def inference(self, test_question, test_category, num_gpus):
         from transformers import AutoTokenizer
         self.tokenizer = AutoTokenizer.from_pretrained(
             self.model_name, trust_remote_code=True
         )
         
-        ques_jsons = []
-        with open(question_file, "r") as ques_file:
-            for line in ques_file:
-                ques_jsons.append(json.loads(line))
         chat_template_ques_jsons = []
-        for line in ques_jsons:
+        for line in test_question:
             prompt = augment_prompt_by_languge(line["question"], test_category)
             function = language_specific_pre_processing(
                 line["function"], test_category, False
@@ -98,7 +94,7 @@ class GLMHandler(OSSHandler):
                 self.apply_chat_template(prompt, function, test_category)
             )
 
-        chunk_size = len(ques_jsons) // num_gpus
+        chunk_size = len(test_question) // num_gpus
         from vllm import LLM
 
         llm = LLM(
@@ -109,7 +105,7 @@ class GLMHandler(OSSHandler):
             max_model_len=4096,
         )
         ans_jsons = []
-        for i in range(0, len(ques_jsons), chunk_size):
+        for i in range(0, len(test_question), chunk_size):
             output = self._batch_generate(
                 chat_template_ques_jsons[i : i + chunk_size],
                 test_category,

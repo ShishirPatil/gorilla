@@ -84,20 +84,16 @@ class OSSHandler(BaseHandler):
         return final_ans_jsons
 
     def inference(
-        self, question_file, test_category, num_gpus, format_prompt_func=_format_prompt
+        self, test_question, test_category, num_gpus, format_prompt_func=_format_prompt
     ):
 
-        ques_jsons = []
-        with open(question_file, "r") as ques_file:
-            for line in ques_file:
-                ques_jsons.append(json.loads(line))
 
-        chunk_size = len(ques_jsons) // num_gpus
+        chunk_size = len(test_question) // num_gpus
         ans_handles = []
-        for i in range(0, len(ques_jsons), chunk_size):
+        for i in range(0, len(test_question), chunk_size):
             ans_handles.append(
                 self._batch_generate.remote(
-                    ques_jsons[i : i + chunk_size],
+                    test_question[i : i + chunk_size],
                     test_category,
                     self.model_name,
                     self.temperature,

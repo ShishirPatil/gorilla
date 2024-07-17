@@ -35,10 +35,10 @@ You are a function calling AI model. You are provided with function signatures w
         )
 
     def inference(
-        self, question_file, test_category, num_gpus, format_prompt_func=_format_prompt
+        self, test_question, test_category, num_gpus, format_prompt_func=_format_prompt
     ):
         return super().inference(
-            question_file, test_category, num_gpus, format_prompt_func
+            test_question, test_category, num_gpus, format_prompt_func
         )
 
     def decode_ast(self, result, language="Python"):

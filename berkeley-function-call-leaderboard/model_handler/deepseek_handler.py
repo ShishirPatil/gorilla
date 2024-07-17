@@ -21,10 +21,10 @@ class DeepseekHandler(OSSHandler):
         return formatted_prompt.format(function=function, prompt=prompt)
 
     def inference(
-        self, question_file, test_category, num_gpus, fromat_prompt_func=_format_prompt
+        self, test_question, test_category, num_gpus, fromat_prompt_func=_format_prompt
     ):
         return super().inference(
-            question_file, test_category, num_gpus, fromat_prompt_func
+            test_question, test_category, num_gpus, fromat_prompt_func
         )
 
     def decode_ast(self, result, language="Python"):
