@@ -47,42 +47,6 @@ The `apply_function_credential_config.py` takes an input and optionally an outpu
 python apply_function_credential_config.py --input-file data/gorilla_openfunctions_v1_test_rest.json
 ```
 
-Then, use `eval_data_compilation.py` to compile all files by
-
-```bash
-python eval_data_compilation.py
-```
-
-## Available Test Category
-In the following two sections, the optional `--test-category` parameter can be used to specify the category of tests to run. You can specify multiple categories separated by spaces. Available options include:
-
-- `all`: Run all test categories.
-- `ast`: Abstract Syntax Tree tests.
-- `executable`: Executable code evaluation tests.
-- `python`: Tests specific to Python code.
-- `non-python`: Tests for code in languages other than Python, such as Java and JavaScript.
-- `python-ast`: Python Abstract Syntax Tree tests.
-- Individual test categories:
-    - `simple`: Simple function calls.
-    - `parallel_function`: Multiple function calls in parallel.
-    - `multiple_function`: Multiple function calls in sequence.
-    - `parallel_multiple_function`: Multiple function calls in parallel and in sequence.
-    - `executable_simple`: Executable function calls.
-    - `executable_parallel_function`: Executable multiple function calls in parallel.
-    - `executable_multiple_function`: Executable multiple function calls in sequence.
-    - `executable_parallel_multiple_function`: Executable multiple function calls in parallel and in sequence.
-    - `java`: Java function calls.
-    - `javascript`: JavaScript function calls.
-    - `rest`: REST API function calls.
-    - `relevance`: Function calls with irrelevant function documentation.
-- If no test category is provided, the script will run all available test categories. (same as `all`)
-
-> If you want to run the `all` or `executable` or `python` category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API!
-
-> If you do not wish to provide API keys for REST API testing, set `test-category` to `ast` or any non-executable category.
-
-> By setting the `--api-sanity-check` flag, or `-c` for short, if the test categories include `executable`, the evaluation process will perform the REST API sanity check first to ensure that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, we will flag those in the console and continue execution.
-
 
 ## Model Result Generation
 
@@ -154,6 +118,37 @@ python eval_runner.py --model gorilla-openfunctions-v2 claude-3-5-sonnet-2024062
 Some companies have proposed some optimization strategies in their models' handler, which we (BFCL) think is unfair to other models, as those optimizations are not generalizable to all models. Therefore, we have disabled those optimizations during the evaluation process by default. You can enable those optimizations by setting the `USE_{COMPANY}_OPTIMIZATION` flag to `True` in the `model_handler/constants.py` file.
 
 
+## Available Test Category
+In the following two sections, the optional `--test-category` parameter can be used to specify the category of tests to run. You can specify multiple categories separated by spaces. Available options include:
+
+- `all`: Run all test categories.
+- `ast`: Abstract Syntax Tree tests.
+- `executable`: Executable code evaluation tests.
+- `python`: Tests specific to Python code.
+- `non-python`: Tests for code in languages other than Python, such as Java and JavaScript.
+- `python-ast`: Python Abstract Syntax Tree tests.
+- Individual test categories:
+    - `simple`: Simple function calls.
+    - `parallel_function`: Multiple function calls in parallel.
+    - `multiple_function`: Multiple function calls in sequence.
+    - `parallel_multiple_function`: Multiple function calls in parallel and in sequence.
+    - `executable_simple`: Executable function calls.
+    - `executable_parallel_function`: Executable multiple function calls in parallel.
+    - `executable_multiple_function`: Executable multiple function calls in sequence.
+    - `executable_parallel_multiple_function`: Executable multiple function calls in parallel and in sequence.
+    - `java`: Java function calls.
+    - `javascript`: JavaScript function calls.
+    - `rest`: REST API function calls.
+    - `relevance`: Function calls with irrelevant function documentation.
+- If no test category is provided, the script will run all available test categories. (same as `all`)
+
+> If you want to run the `all` or `executable` or `python` category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API!
+
+> If you do not wish to provide API keys for REST API testing, set `test-category` to `ast` or any non-executable category.
+
+> By setting the `--api-sanity-check` flag, or `-c` for short, if the test categories include `executable`, the evaluation process will perform the REST API sanity check first to ensure that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, we will flag those in the console and continue execution.
+
+
 ## Models Available
 Below is *a table of models we support* to run our leaderboard evaluation against. If supported function calling (FC), we will follow its function calling format provided by official documentation. Otherwise, we will construct a system message to prompt the model to generate function calls in the right format.
 |Model | Type |
@@ -209,6 +204,8 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 ## Changelog
 
+* [July 8, 2024] [#516](https://github.com/ShishirPatil/gorilla/pull/516): Fix double-casting issue in `model_handler` for Java and JavaScript test categories.
+* [July 7, 2024] [#504](https://github.com/ShishirPatil/gorilla/pull/504), [#505](https://github.com/ShishirPatil/gorilla/pull/505), [#506](https://github.com/ShishirPatil/gorilla/pull/506), [#508](https://github.com/ShishirPatil/gorilla/pull/508), [#510](https://github.com/ShishirPatil/gorilla/pull/510), [#512](https://github.com/ShishirPatil/gorilla/pull/512), [#517](https://github.com/ShishirPatil/gorilla/pull/517): Make BFCL user-friendly and easy to extend.
 * [July 6, 2024] [#423](https://github.com/ShishirPatil/gorilla/pull/423) and [#503](https://github.com/ShishirPatil/gorilla/pull/503): Bug fix in possible answers for the AST evaluation dataset (parallel category: 14 affected; parallel_multiple category: 25 affected).
 * [July 5, 2024] [#496](https://github.com/ShishirPatil/gorilla/pull/496): Updates to API status checks. Checking the health of executable APIs is now off by default. Further, even when triggered, un-healthy APIs will not terminate the evaluation process. Users can enable this feature by setting the `--api-sanity-check` flag or `-c` for short. The previous `--skip-api-sanity-check` or `-s` flag is now deprecated.
 * [July 3, 2024] [#489](https://github.com/ShishirPatil/gorilla/pull/489): Add new model `nvidia/nemotron-4-340b-instruct` to the leaderboard.
