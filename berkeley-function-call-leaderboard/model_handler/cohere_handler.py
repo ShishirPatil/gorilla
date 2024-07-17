@@ -153,9 +153,7 @@ class CohereHandler(BaseHandler):
                             if isinstance(params[key], bool):
                                 value = value.lower()
                             params[key] = value
-                    else:
-                        for key in params:
-                            params[key] = str(params[key])
+
                 decoded_output.append({name: params})
         return decoded_output
 
