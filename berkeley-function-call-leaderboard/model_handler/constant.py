@@ -145,6 +145,7 @@ UNDERSCORE_TO_DOT = [
     "command-r-plus-FC-optimized",
     "THUDM/glm-4-9b-chat",
     "yi-large-FC",
+    "v10-099-FC",
 ]
 
 TEST_CATEGORIES = {

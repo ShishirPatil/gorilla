@@ -21,8 +21,8 @@ class YiHandler(BaseHandler):
     def __init__(self, model_name, temperature=0.0, top_p=1, max_tokens=1000) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
         self.model_style = ModelStyle.OpenAI
-        self.base_url = "https://api.lingyiwanwu.com/v1"
-        self.client = OpenAI(base_url=self.base_url, api_key=os.getenv("YI_API_KEY"))
+        self.base_url = "http://14.103.22.88:9091/v1"
+        self.client = OpenAI(base_url=self.base_url, api_key="123")
 
     def inference(self, prompt, functions, test_category):
         if "FC" not in self.model_name:
