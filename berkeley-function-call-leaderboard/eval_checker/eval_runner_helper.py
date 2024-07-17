@@ -378,7 +378,13 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/THUDM/glm-4-9b-chat",
         "THUDM",
         "glm-4"
-    ]
+    ],
+    "yi-large-FC": [
+        "yi-large (FC)",
+        "https://platform.01.ai/",
+        "01.AI",
+        "Proprietary",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -420,6 +426,7 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus": 3,
     "command-r-plus-FC-optimized": 3,
     "command-r-plus-optimized": 3,
+    "yi-large-FC": 3,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -461,6 +468,7 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus": 15,
     "command-r-plus-FC-optimized": 15,
     "command-r-plus-optimized": 15,
+    "yi-large-FC": 3,
 }
 
 # The latency of the open-source models are hardcoded here.

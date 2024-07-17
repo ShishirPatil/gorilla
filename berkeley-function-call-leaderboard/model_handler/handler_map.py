@@ -18,6 +18,8 @@ from model_handler.nexus_handler import NexusHandler
 from model_handler.oss_handler import OSSHandler
 from model_handler.nvidia_handler import NvidiaHandler
 from model_handler.glm_handler import GLMHandler
+from model_handler.yi_handler import YiHandler
+
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -77,5 +79,6 @@ handler_map = {
     "command-r-plus-optimized": CohereHandler,
     "snowflake/arctic": ArcticHandler,
     "nvidia/nemotron-4-340b-instruct": NvidiaHandler,
-    "THUDM/glm-4-9b-chat": GLMHandler
+    "THUDM/glm-4-9b-chat": GLMHandler,
+    "yi-large-FC": YiHandler,
 }
