@@ -41,10 +41,10 @@ To run the executable test categories, there are 4 API keys to include:
 3. OMDB API: http://www.omdbapi.com/apikey.aspx
 4. Geocode API: https://geocode.maps.co/
 
-The `apply_function_credential_config.py` takes an input and optionally an output file. If the output file is not given as an argument, it will overwrite your original file with the data reset.
+The `apply_function_credential_config.py` will automatically search for dataset files in the default `./data/` directory and replace the placeholder values with the actual API keys.
 
 ```bash
-python apply_function_credential_config.py --input-file data/gorilla_openfunctions_v1_test_rest.json
+python apply_function_credential_config.py
 ```
 
 
