@@ -235,6 +235,27 @@ def get_fibonacci_sequence(n):
     return sequence
 
 
+def get_fibonacci_number(n):
+    """
+    Calculates the nth Fibonacci number.
+    Args:
+        n (integer): The position of the Fibonacci number to calculate.
+    Returns:
+        integer: The nth Fibonacci number.
+    """
+    if n <= 0:
+        return "Input should be a positive integer."
+    elif n == 1:
+        return 0
+    elif n == 2:
+        return 1
+    
+    a, b = 0, 1
+    for i in range(2, n):
+        a, b = b, a + b
+    return b
+
+
 def estimate_derivative(function, x):
     """
     Estimate the derivative of a function at a given point.
