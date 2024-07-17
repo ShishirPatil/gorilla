@@ -205,6 +205,7 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 
 ## Changelog
 
+* [July 10, 2024] [#522](https://github.com/ShishirPatil/gorilla/pull/522): Bug fix in the evaluation dataset for Executable Parallel Multiple category. This includes updates to both prompts and function docs. 2 entries are affected.
 * [July 8, 2024] [#516](https://github.com/ShishirPatil/gorilla/pull/516): Fix double-casting issue in `model_handler` for Java and JavaScript test categories.
 * [July 7, 2024] [#504](https://github.com/ShishirPatil/gorilla/pull/504), [#505](https://github.com/ShishirPatil/gorilla/pull/505), [#506](https://github.com/ShishirPatil/gorilla/pull/506), [#508](https://github.com/ShishirPatil/gorilla/pull/508), [#510](https://github.com/ShishirPatil/gorilla/pull/510), [#512](https://github.com/ShishirPatil/gorilla/pull/512), [#517](https://github.com/ShishirPatil/gorilla/pull/517): Make BFCL user-friendly and easy to extend.
 * [July 6, 2024] [#423](https://github.com/ShishirPatil/gorilla/pull/423) and [#503](https://github.com/ShishirPatil/gorilla/pull/503): Bug fix in possible answers for the AST evaluation dataset (parallel category: 14 affected; parallel_multiple category: 25 affected).
