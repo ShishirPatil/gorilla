@@ -57,12 +57,12 @@ def process_file(input_file_path, output_file_path):
                 # Handle the case where a line is not a valid JSON object
                 print("Invalid JSON line skipped.")
                 continue
-            
+    
     # Write the modified data to the output file
     with open(output_file_path, "w") as f:
         for i, modified_line in enumerate(modified_data):
             f.write(modified_line)
-            if i < len(data) - 1:
+            if i < len(modified_data) - 1:  # Check against the length of modified_data
                 f.write("\n")        
             
     print(f"All placeholders have been replaced for {input_file_path} 🦍.")

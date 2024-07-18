@@ -14,8 +14,8 @@ from model_handler.utils import (
 )
 
 class OSSHandler(BaseHandler):
-    def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
-        super().__init__(model_name, temperature, top_p, max_tokens)
+    def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000, dtype="float16") -> None:
+        super().__init__(model_name, temperature, top_p, max_tokens, dtype)
         self.model_style = ModelStyle.OSSMODEL
         self._init_model()
 
@@ -43,8 +43,9 @@ class OSSHandler(BaseHandler):
         temperature,
         max_tokens,
         top_p,
+        dtype,
         format_prompt_func,
-        index,
+        index
     ):
         from vllm import LLM, SamplingParams
 
@@ -74,7 +75,7 @@ class OSSHandler(BaseHandler):
         sampling_params = SamplingParams(
             temperature=temperature, max_tokens=max_tokens, top_p=top_p
         )
-        llm = LLM(model=model_path, dtype="float16", trust_remote_code=True)
+        llm = LLM(model=model_path, dtype=dtype, trust_remote_code=True)
         outputs = llm.generate(prompts, sampling_params)
         final_ans_jsons = []
         for output, ans_json in zip(outputs, ans_jsons):
@@ -99,6 +100,7 @@ class OSSHandler(BaseHandler):
                     self.temperature,
                     self.max_tokens,
                     self.top_p,
+                    self.dtype,
                     format_prompt_func,
                     i,
                 )

@@ -6,11 +6,12 @@ class BaseHandler:
     model_name: str
     model_style: ModelStyle
 
-    def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
+    def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000, dtype="float16") -> None:
         self.model_name = model_name
         self.temperature = temperature
         self.top_p = top_p
         self.max_tokens = max_tokens
+        self.dtype = dtype
 
     def inference(self, prompt, functions, test_category):
         # This method is used to retrive model response for each model.

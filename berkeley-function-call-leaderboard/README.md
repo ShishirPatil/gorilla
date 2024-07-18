@@ -188,6 +188,8 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |Nexusflow-Raven-v2 | Function Calling|
 |NousResearch/Hermes-2-Pro-Mistral-7B 💻| Function Calling|
 |snowflake/arctic | Prompt|
+|Salesforce/xLAM-1b-fc-r 💻| Function Calling|
+|Salesforce/xLAM-7b-fc-r 💻| Function Calling|
 |nvidia/nemotron-4-340b-instruct| Prompt|
 |THUDM/glm-4-9b-chat 💻| Function Calling|
 |ibm-granite/granite-20b-functioncalling 💻| Function Calling|
