@@ -50,7 +50,7 @@ python apply_function_credential_config.py
 
 ## Model Result Generation
 
-Make sure the model API keys are included in your environment variables.
+Make sure the model API keys are included in your environment variables. Running proprietary models like GPTs, Claude, Mistral-X will require them.
 
 ```bash
 export OPENAI_API_KEY=sk-XXXXXX
@@ -61,95 +61,19 @@ export COHERE_API_KEY=XXXXXX
 export NVIDIA_API_KEY=nvapi-XXXXXX
 ```
 
-To generate leaderboard statistics, there are two steps:
+If decided to run OSS model, the generation script uses vllm and therefore requires GPU for hosting and inferencing. If you have questions or concerns about evaluating OSS models, please reach out to us in our [discord channel](https://discord.gg/grXXvj9Whz).
 
-1. LLM Inference of the evaluation data from specific models
+### Running the Generation Script
+
+Use the following command to do LLM inference of the evaluation data with specific models
 
 ```bash
 python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
 ```
 
-For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section.
+For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section below.
 
-Running proprietary models like GPTs, Claude, Mistral-X will require an API-Key which can be supplied in `openfunctions_evaluation.py`.
-
-If decided to run OSS model, openfunction evaluation uses vllm and therefore requires GPU for hosting and inferencing. If you have questions or concerns about evaluating OSS models, please reach out to us in our [discord channel](https://discord.gg/grXXvj9Whz).
-
-## Checking the Evaluation Results
-
-### Running the Checker
-
-Navigate to the `gorilla/berkeley-function-call-leaderboard/eval_checker` directory and run the `eval_runner.py` script with the desired parameters. The basic syntax is as follows:
-
-```bash
-python eval_runner.py --model MODEL_NAME --test-category {TEST_CATEGORY,all,ast,executable,python,non-python}
-```
-
-For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section.
-
-### Example Usage
-
-If you want to run all tests for the `gorilla-openfunctions-v2` model, you can use the following command:
-
-```bash
-python eval_runner.py --model gorilla-openfunctions-v2
-```
-
-If you want to evaluate all offline tests (do not require RapidAPI keys) for OpenAI GPT-3.5, you can use the following command:
-
-```bash
-python eval_runner.py --model gpt-3.5-turbo-0125 --test-category ast
-```
-
-If you want to run `rest` tests for a few Claude models, you can use the following command:
-
-```bash
-python eval_runner.py --model claude-3-5-sonnet-20240620 claude-3-opus-20240229 claude-3-sonnet-20240229 --test-category rest
-```
-
-If you want to run `rest` and `javascript` tests for a few models and `gorilla-openfunctions-v2`, you can use the following command:
-
-```bash
-python eval_runner.py --model gorilla-openfunctions-v2 claude-3-5-sonnet-20240620 gpt-4-0125-preview gemini-1.5-pro-preview-0514 --test-category rest javascript
-```
-
-### Model-Specific Optimization
-
-Some companies have proposed some optimization strategies in their models' handler, which we (BFCL) think is unfair to other models, as those optimizations are not generalizable to all models. Therefore, we have disabled those optimizations during the evaluation process by default. You can enable those optimizations by setting the `USE_{COMPANY}_OPTIMIZATION` flag to `True` in the `model_handler/constants.py` file.
-
-
-## Available Test Category
-In the following two sections, the optional `--test-category` parameter can be used to specify the category of tests to run. You can specify multiple categories separated by spaces. Available options include:
-
-- `all`: Run all test categories.
-- `ast`: Abstract Syntax Tree tests.
-- `executable`: Executable code evaluation tests.
-- `python`: Tests specific to Python code.
-- `non-python`: Tests for code in languages other than Python, such as Java and JavaScript.
-- `python-ast`: Python Abstract Syntax Tree tests.
-- Individual test categories:
-    - `simple`: Simple function calls.
-    - `parallel_function`: Multiple function calls in parallel.
-    - `multiple_function`: Multiple function calls in sequence.
-    - `parallel_multiple_function`: Multiple function calls in parallel and in sequence.
-    - `executable_simple`: Executable function calls.
-    - `executable_parallel_function`: Executable multiple function calls in parallel.
-    - `executable_multiple_function`: Executable multiple function calls in sequence.
-    - `executable_parallel_multiple_function`: Executable multiple function calls in parallel and in sequence.
-    - `java`: Java function calls.
-    - `javascript`: JavaScript function calls.
-    - `rest`: REST API function calls.
-    - `relevance`: Function calls with irrelevant function documentation.
-- If no test category is provided, the script will run all available test categories. (same as `all`)
-
-> If you want to run the `all` or `executable` or `python` category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API!
-
-> If you do not wish to provide API keys for REST API testing, set `test-category` to `ast` or any non-executable category.
-
-> By setting the `--api-sanity-check` flag, or `-c` for short, if the test categories include `executable`, the evaluation process will perform the REST API sanity check first to ensure that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, we will flag those in the console and continue execution.
-
-
-## Models Available
+### Models Available
 Below is *a table of models we support* to run our leaderboard evaluation against. If supported function calling (FC), we will follow its function calling format provided by official documentation. Otherwise, we will construct a system message to prompt the model to generate function calls in the right format.
 |Model | Type |
 |---|---|
@@ -201,6 +125,81 @@ For Mistral large and small models, we provide evaluation on both of their `Any`
 
 For inferencing `Gemini-1.0-pro`, you need to fill in `model_handler/gemini_handler.py` with your GCP project ID that has access to Vertex AI endpoint.
 For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure workspace and setup an endpoint for inference. 
+
+
+### Available Test Category
+In the following two sections, the optional `--test-category` parameter can be used to specify the category of tests to run. You can specify multiple categories separated by spaces. Available options include:
+
+- `all`: Run all test categories.
+    - This is the default option if no test category is provided.
+- `ast`: Abstract Syntax Tree tests.
+- `executable`: Executable code evaluation tests.
+- `python`: Tests specific to Python code.
+- `non-python`: Tests for code in languages other than Python, such as Java and JavaScript.
+- `python-ast`: Python Abstract Syntax Tree tests.
+- Individual test categories:
+    - `simple`: Simple function calls.
+    - `parallel_function`: Multiple function calls in parallel.
+    - `multiple_function`: Multiple function calls in sequence.
+    - `parallel_multiple_function`: Multiple function calls in parallel and in sequence.
+    - `executable_simple`: Executable function calls.
+    - `executable_parallel_function`: Executable multiple function calls in parallel.
+    - `executable_multiple_function`: Executable multiple function calls in sequence.
+    - `executable_parallel_multiple_function`: Executable multiple function calls in parallel and in sequence.
+    - `java`: Java function calls.
+    - `javascript`: JavaScript function calls.
+    - `rest`: REST API function calls.
+    - `relevance`: Function calls with irrelevant function documentation.
+- If no test category is provided, the script will run all available test categories. (same as `all`)
+
+> If you want to run the `all` or `executable` or `python` category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API!
+
+> If you do not wish to provide API keys for REST API testing, set `test-category` to `ast` or any non-executable category.
+
+> By setting the `--api-sanity-check` flag, or `-c` for short, if the test categories include `executable`, the evaluation process will perform the REST API sanity check first to ensure that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, we will flag those in the console and continue execution.
+
+
+## Checking the Evaluation Results
+
+### Running the Checker
+
+Navigate to the `gorilla/berkeley-function-call-leaderboard/eval_checker` directory and run the `eval_runner.py` script with the desired parameters. The basic syntax is as follows:
+
+```bash
+python eval_runner.py --model MODEL_NAME --test-category {TEST_CATEGORY,all,ast,executable,python,non-python}
+```
+
+For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section.
+
+### Example Usage
+
+If you want to run all tests for the `gorilla-openfunctions-v2` model, you can use the following command:
+
+```bash
+python eval_runner.py --model gorilla-openfunctions-v2
+```
+
+If you want to evaluate all offline tests (do not require RapidAPI keys) for OpenAI GPT-3.5, you can use the following command:
+
+```bash
+python eval_runner.py --model gpt-3.5-turbo-0125 --test-category ast
+```
+
+If you want to run `rest` tests for a few Claude models, you can use the following command:
+
+```bash
+python eval_runner.py --model claude-3-5-sonnet-20240620 claude-3-opus-20240229 claude-3-sonnet-20240229 --test-category rest
+```
+
+If you want to run `rest` and `javascript` tests for a few models and `gorilla-openfunctions-v2`, you can use the following command:
+
+```bash
+python eval_runner.py --model gorilla-openfunctions-v2 claude-3-5-sonnet-20240620 gpt-4-0125-preview gemini-1.5-pro-preview-0514 --test-category rest javascript
+```
+
+### Model-Specific Optimization
+
+Some companies have proposed some optimization strategies in their models' handler, which we (BFCL) think is unfair to other models, as those optimizations are not generalizable to all models. Therefore, we have disabled those optimizations during the evaluation process by default. You can enable those optimizations by setting the `USE_{COMPANY}_OPTIMIZATION` flag to `True` in the `model_handler/constants.py` file.
 
 
 ## Changelog
