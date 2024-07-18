@@ -371,14 +371,20 @@ MODEL_METADATA_MAPPING = {
         "Nemotron-4-340b-instruct (Prompt)",
         "https://huggingface.co/nvidia/nemotron-4-340b-instruct",
         "NVIDIA",
-        "nvidia-open-model-license"
+        "nvidia-open-model-license",
+    ],
+    "ibm-granite/granite-20b-functioncalling": [
+        "Granite-20b-FunctionCalling (FC)",
+        "https://huggingface.co/ibm-granite/granite-20b-functioncalling",
+        "IBM",
+        "Apache-2.0",
     ],
     "THUDM/glm-4-9b-chat": [
         "GLM-4-9b-Chat (FC)",
         "https://huggingface.co/THUDM/glm-4-9b-chat",
         "THUDM",
-        "glm-4"
-    ]
+        "glm-4",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -473,7 +479,7 @@ OSS_LATENCY = {
     "meta-llama/Meta-Llama-3-8B-Instruct": 73,
     "meta-llama/Meta-Llama-3-70B-Instruct": 307,
     "gorilla-openfunctions-v2": 83,
-    "THUDM/glm-4-9b-chat": 223
+    "THUDM/glm-4-9b-chat": 223,
 }
 
 
@@ -486,6 +492,7 @@ NO_COST_MODELS = [
     "meetkai/functionary-small-v2.4-FC",
     "snowflake/arctic",
     "nvidia/nemotron-4-340b-instruct",
+    "ibm-granite/granite-20b-functioncalling",
     "THUDM/glm-4-9b-chat",
 ]
 
@@ -681,7 +688,7 @@ def display_api_status_error(rest_error, executable_error, display_success=False
         for data, status in rest_error.errors:
             print(f"  - Test Case: {data['ground_truth']}")
             print(f"    Error Type: {status['error_type']}\n")
-            
+
     if executable_error:
         print(f"❗️ Warning: Unable to verify health of executable APIs used in executable test categories (Non-REST). Please contact API provider.\n")
         print(f"{executable_error.error_rate} APIs affected:\n")
@@ -690,8 +697,8 @@ def display_api_status_error(rest_error, executable_error, display_success=False
             print(f"    Error Type: {status['error_type']}\n")
 
     print(f"{RED_FONT}{'-' * 100}\n{RESET}")
-    
-    
+
+
 def get_executable_expected_output(prompt_file_path):
     # Before we run the evaluation, we need to add the "execution_result" field to the prompt file, using the ground truth data.
     prompt_content = load_file(prompt_file_path)
