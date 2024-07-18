@@ -163,9 +163,3 @@ TEST_CATEGORIES = {
     "rest": "gorilla_openfunctions_v1_test_rest.json",
     "sql": "gorilla_openfunctions_v1_test_sql.json",
 }
-
-FORMAT_REMINDER = """Should you decide to return the function call(s),Put it in the format of [func1(params_name=params_value, params_name2=params_value2...), func2(params)]\n
-    NO other text MUST be included.
-    Remember, you MUST do one of the following:
-    - If the question can be directly answered based on your knowledge, provide the response directly.
-    - If the question requires using any provided tools, return the tool call details with provided arguments."""

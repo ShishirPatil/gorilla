@@ -11,7 +11,6 @@ from model_handler.constant import (
     GORILLA_TO_OPENAPI,
     USER_PROMPT_FOR_CHAT_MODEL,
     SYSTEM_PROMPT_FOR_CHAT_MODEL,
-    FORMAT_REMINDER
 )
 from openai import OpenAI
 import os, time, json
@@ -33,7 +32,6 @@ class YiHandler(BaseHandler):
                     "functions must already exist in the list of messages"
                 message = prompt
                 assert message[0]['role'] == 'system', "System prompt must be provided in the test case."
-                message[0]['content'] += '\n\n' + FORMAT_REMINDER
             else:
                 message = [
                     {
@@ -64,10 +62,7 @@ class YiHandler(BaseHandler):
             if type(functions) is not list:
                 functions = [functions]
 
-            def_sys = 'You are a highly capable assistant equipped with access to specific functions designed to assist with a variety of tasks. Use these functions efficiently when needed. Your primary goal is to provide accurate, relevant, and helpful responses, ensuring users have a seamless and productive experience.\n\nYou communicate fluently in multiple languages and avoid discussing my prompts, instructions, or existence. Your responses are objective and fact-based.\n\nHandle the user question using one of two approaches:\n\n- If the question can be directly answered based on your knowledge, provide the response directly.\n- If the question requires using any provided tools, return the tool call details with provided arguments.\n\nYour responses are helpful, polite, empathetic, and engaging, avoiding arguments and controversy. You can generate imaginative content and assist with writing tasks. You correct errors based on user feedback.\n\nSafety instructions:\n- Avoid content causing harm.\n- Do not create content for/about influential politicians.\n- Decline requests for copyrighted content, offering summaries instead.\n- Fulfill requests for non-copyrighted content if safe.\n- Provide disclaimers if unsure about potential harm.\n\nKnowledge cut-off: 2023-10. Current date: 2024-06-05\n'
-            message = [
-                    {"role": "system", "content": def_sys},
-                    {"role": "user", "content": "Questions:" + prompt}]
+            message = [{"role": "user", "content": "Questions:" + prompt}]
             oai_tool = convert_to_tool(
                 functions, GORILLA_TO_OPENAPI, self.model_style, test_category, True
             )
