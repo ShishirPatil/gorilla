@@ -34,9 +34,13 @@
 
 <body>
     <!-- Navigation Bar -->
-    <div class="highlight-clean-blog" style="padding-bottom: 5px;">
-        <div class="blog-container">
-            <div class="blog-post">
+    <div class="navButtonsContainer" style="justify-content:flex-end;padding-right:80px; padding-top:20px; padding-bottom: 0px;">
+        <button class="navButton" onclick="window.location.href='https://www.llm-agents.info/'">Visit The Marketplace</button>
+    </div>
+    <div class="highlight-clean-blog" style="padding-bottom:0px; padding-top: 0px;">
+
+        <div class="blog-container" style="padding-bottom: 0px; padding-top:0px">
+            <div class="blog-post" style="padding-top:0px;">
                 <h1>
                     Agents and Assistants Marketplace
                   </h1>
@@ -78,8 +82,8 @@
                     </p>
                     <h4 id="benefits">Key Benefits of LLM Agents:</h4>
                     <ul>
-                        <li>Expanded functionality: LLM agents allow language models to directly interact with external systems, databases, and APIs, enabling them to perform a much wider range of tasks beyond just text processing </li>
-                        <li>Improved Accuracy: By providing LLMs with relevant context and information from up to date sources, LLM agents can generate more accurate, informed, and less biased responses to user queries </li>
+                        <li>Expanded functionality: LLM agents allow language models to directly interact with external systems, databases, and APIs, enabling them to perform a much wider range of tasks beyond just text processing. </li>
+                        <li>Improved Accuracy: By providing LLMs with relevant context and information from up to date sources, LLM agents can generate more accurate, informed, and less biased responses to user queries. </li>
                         <li>Automation and efficiency: LLM agents can automate repetitive tasks like data extraction, information gathering, and content creation workflows.</li>
                     </ul>
                 </div>
@@ -133,7 +137,7 @@
                             The Agent Marketplace also enables users to publish their agents on a centralized platform. These agents gain increased exposure to the open-source community and can be verified by users through a review feature. Users can easily leave ratings without logging in, and they don't need to provide their name to leave a star rating. Through this app store environment, the platform can accommodate a growing number of reviewed and verified agents and services.
                         </p>
                         <p>
-                            <img src="../assets/img/blog_post_11_review.png" style="margin-top: 20px" alt="Contribution and Reviewing of Agents in the Marketplace" width="70%">
+                            <img src="../assets/img/blog_post_11_review.png" style="margin-top: 40px" alt="Contribution and Reviewing of Agents in the Marketplace" width="70%">
                         </p>
                         <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; margin-bottom: 20px; padding-bottom: -15px">
                             <i style="font-size: 0.9em;">
@@ -219,7 +223,7 @@
                     </ol>
                     <h5>Adding Agents through a GitHub Pull Request</h5>
                     <ol>
-                        <li>Navigate to <a href="https://github.com/NithikYekollu/agent-marketplace">Agent Marketplace Repository</a> on GitHub.</li>
+                        <li>Navigate to <a href="https://github.com/gorilla-llm/agent-marketplace">Agent Marketplace Repository</a> on GitHub.</li>
                         <li>Fork the repository.</li>
                         <li>Navigate to <code>server/index.js</code>.</li>
                         <li>Add your agent to the <code>agentsData</code> array using the following schema:
@@ -238,6 +242,20 @@
                         <li>Submit a pull request for your changes to be reviewed and merged into the main branch.</li>
                     </ol>
                 </div>
+                <h4 id="community-forum">Community Forum</h4>
+                <p>
+                    The <a href="https://www.llm-agents.info/forum">Forum</a> is an essential feature of the Agent Marketplace that allows the community to provide input and suggestions on how to improve the platform. Through the forum, users can upvote, downvote, and comment on posts to offer the best advice and recommendations. This interactive space contributes to facilitating discussions within the thriving LLM agent community, providing a centralized spot for users to share their ideas and feedback.
+                </p>
+                <p>
+                    <img src="../assets/img/blog_post_11_forum.png" style="margin-top: 20px; width: 49%; display: inline-block;" alt="Agent Rating on Homepage">
+                    <img src="../assets/img/blog_post_11_post.png" style="margin-top: 20px; width: 50%; display: inline-block;" alt="Agent Rating on Detail Screen">
+                </p>
+                <p width="80%" style="text-align:center; margin-left:10%; margin-right:10%; padding-bottom: -15px">
+                    <i style="font-size: 0.9em;">
+                        The Forum allows users to engage in discussions, provide feedback, and suggest new features. Users can upvote, downvote, and comment on posts to contribute to the community discussions.
+
+                    </i>
+                </p>
                 <h4 id="api-integration">Advanced Customization and Potential to Build Applications</h4>
                 <p>
                     Each agent on the platform can be readily utilized and also serves as a framework for user customization, such as modifying the APIs and models employed. This feature personalizes the user experience and enhances the agents' functionality through their modular design. Additionally, these agents can be integrated to develop more complex applications.
@@ -257,7 +275,7 @@
                 <h4 id="join-us">Join Us</h4>
                 <p>The platform aims to increase open-source contributions and enhance the exposure of LLM agents. By providing an easy way to search for reviewed LLM agents, it seeks to create a reliable and efficient resource for users. The platform's growth relies on user contributions, fostering a collaborative environment that continuously improves and expands the capabilities of LLM agents within the Gorilla LLM initiative.</p>
                 <p>
-                    We hope you enjoyed this blog post. Connect with us on <a href="https://discord.gg/grXXvj9Whz">Discord</a>, <a href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter (#GorillaLLM)</a>, and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.
+                    We hope you enjoyed this blog post. Connect with us on <a href="https://discord.gg/grXXvj9Whz">Discord</a>, <a href="https://twitter.com/shishirpatil_/status/1661780076277678082">Twitter (#GorillaLLM)</a>, and <a href="https://github.com/gorilla-llm/agent-marketplace">GitHub</a>.
                 </p>
                 <h4 id="citation">Citation</h4>
                 <div class="body">
@@ -458,6 +476,30 @@
 
         .more-blogs.expanded .caret {
             transform: rotate(90deg);
+        }
+
+        .navButtonsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            padding: 10px 0;
+        }
+
+        .navButton {
+            padding: 10px 15px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            outline: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .navButton:hover {
+            background-color: #0056b3;
         }
 
         @media screen and (max-width: 1200px) {
