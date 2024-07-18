@@ -18,7 +18,7 @@ Read more about the technical details and interesting insights in our blog post!
 conda create -n BFCL python=3.10
 conda activate BFCL
 pip install -r requirements.txt # Inside gorilla/berkeley-function-call-leaderboard
-pip install vllm # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
+pip install vllm==0.5.0 # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
 ```
 
 
@@ -41,10 +41,10 @@ To run the executable test categories, there are 4 API keys to include:
 3. OMDB API: http://www.omdbapi.com/apikey.aspx
 4. Geocode API: https://geocode.maps.co/
 
-The `apply_function_credential_config.py` takes an input and optionally an output file. If the output file is not given as an argument, it will overwrite your original file with the data reset.
+The `apply_function_credential_config.py` will automatically search for dataset files in the default `./data/` directory and replace the placeholder values with the actual API keys.
 
 ```bash
-python apply_function_credential_config.py --input-file data/gorilla_openfunctions_v1_test_rest.json
+python apply_function_credential_config.py
 ```
 
 
@@ -189,6 +189,7 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |snowflake/arctic | Prompt|
 |nvidia/nemotron-4-340b-instruct| Prompt|
 |THUDM/glm-4-9b-chat 💻| Function Calling|
+|ibm-granite/granite-20b-functioncalling 💻| Function Calling|
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function-calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
 
