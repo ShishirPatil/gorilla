@@ -3,7 +3,7 @@ from tqdm import tqdm
 from model_handler.handler_map import handler_map
 from model_handler.model_style import ModelStyle
 from model_handler.constant import USE_COHERE_OPTIMIZATION
-
+from eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -23,7 +23,7 @@ def get_args():
     return args
 
 
-test_categories = {
+TEST_FILE_MAPPING = {
     "executable_simple": "gorilla_openfunctions_v1_test_executable_simple.json",
     "executable_parallel_function": "gorilla_openfunctions_v1_test_executable_parallel_function.json",
     "executable_multiple_function": "gorilla_openfunctions_v1_test_executable_multiple_function.json",
@@ -45,14 +45,19 @@ def build_handler(model_name, temperature, top_p, max_tokens):
     return handler
 
 
-def load_file(test_category):
-    if test_category == "all":
-        test_cate, files_to_open = list(test_categories.keys()), list(
-            test_categories.values()
-        )
+def load_file(test_categories):   
+    test_to_run = []
+    files_to_open = []
+    
+    if test_categories in TEST_COLLECTION_MAPPING:
+        test_to_run = TEST_COLLECTION_MAPPING[test_categories]
+        for test_name in test_to_run:
+            files_to_open.append(TEST_FILE_MAPPING[test_name])
     else:
-        test_cate, files_to_open = [test_category], [test_categories[test_category]]
-    return test_cate, files_to_open
+        test_to_run.append(test_categories)
+        files_to_open.append(TEST_FILE_MAPPING[test_categories])
+    
+    return test_to_run, files_to_open
 
 
 if __name__ == "__main__":
@@ -61,8 +66,8 @@ if __name__ == "__main__":
         args.model = args.model + "-optimized"
     handler = build_handler(args.model, args.temperature, args.top_p, args.max_tokens)
 
-    test_cate, files_to_open = load_file(args.test_category)
-    for test_category, file_to_open in zip(test_cate, files_to_open):
+    test_to_run, files_to_open = load_file(args.test_category)
+    for test_category, file_to_open in zip(test_to_run, files_to_open):
         print("Generating: " + file_to_open)
         test_cases = []
         with open("./data/" + file_to_open) as f:

@@ -621,7 +621,7 @@ def api_status_sanity_check_rest():
     ground_truth_dummy = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
 
     # Use the ground truth data to make sure the API is working correctly
-    command = f"cd .. ; python apply_function_credential_config.py --input-file ./eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
+    command = f"cd .. ; python apply_function_credential_config.py --input-path ./eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
     try:
         subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
     except subprocess.CalledProcessError as e:
