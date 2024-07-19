@@ -9,7 +9,7 @@
 ## Introduction
 We introduce the Berkeley Function Leaderboard (BFCL), the **first comprehensive and executable function call evaluation dedicated to assessing Large Language Models' (LLMs) ability to invoke functions**. Unlike previous function call evaluations, BFCL accounts for various forms of function calls, diverse function calling scenarios, and their executability. Additionally, we release Gorilla-Openfunctions-v2, the most advanced open-source model to date capable of handling multiple languages, parallel function calls, and multiple function calls simultaneously. A unique debugging feature of this model is its ability to output an "Error Message" when the provided function does not suit your task.
 
-Read more about the technical details and interesting insights in our blog post!
+Read more about the technical details and interesting insights in our [blog post](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html)!
 
 ![image](./architecture_diagram.png)
 ### Install Dependencies
@@ -48,7 +48,7 @@ python apply_function_credential_config.py
 ```
 
 
-## Model Result Generation
+## Evaluating different models on the BFCL
 
 Make sure the model API keys are included in your environment variables. Running proprietary models like GPTs, Claude, Mistral-X will require them.
 
@@ -63,9 +63,9 @@ export NVIDIA_API_KEY=nvapi-XXXXXX
 
 If decided to run OSS model, the generation script uses vllm and therefore requires GPU for hosting and inferencing. If you have questions or concerns about evaluating OSS models, please reach out to us in our [discord channel](https://discord.gg/grXXvj9Whz).
 
-### Running the Generation Script
+### Genrating LLM Responses
 
-Use the following command to do LLM inference of the evaluation data with specific models
+Use the following command for LLM inference of the evaluation dataset with specific models
 
 ```bash
 python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
@@ -76,7 +76,7 @@ For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the 
 If no `MODEL_NAME` is provided, the model `gorilla-openfunctions-v2` will be used by default. If no `TEST_CATEGORY` is provided, all test categories will be run by default.
 
 ### Models Available
-Below is *a table of models we support* to run our leaderboard evaluation against. If supported function calling (FC), we will follow its function calling format provided by official documentation. Otherwise, we will construct a system message to prompt the model to generate function calls in the right format.
+Below is *a table of models we support* to run our leaderboard evaluation against. If the models support function calling (FC), we will follow its function calling format provided by official documentation. Otherwise, we use a consistent system message to prompt the model to generate function calls in the right format.
 |Model | Type |
 |---|---|
 |gorilla-openfunctions-v2 | Function Calling|
@@ -125,8 +125,8 @@ For model names with {.}, it means that the model has multiple versions. For exa
 For Mistral large and small models, we provide evaluation on both of their `Any` and `Auto` settings. More information about this can be found [here](https://docs.mistral.ai/guides/function-calling/).
 
 
-For inferencing `Gemini-1.0-pro`, you need to fill in `model_handler/gemini_handler.py` with your GCP project ID that has access to Vertex AI endpoint.
-For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure workspace and setup an endpoint for inference. 
+For `Gemini-1.0-pro`, you need to fill in `model_handler/gemini_handler.py` with your GCP project ID that has access to Vertex AI endpoint.
+For `Databrick-DBRX-instruct`, you need to create a Databrick Azure workspace and setup an endpoint for inference. 
 
 
 ### Available Test Category
@@ -161,7 +161,7 @@ In the following two sections, the optional `--test-category` parameter can be u
 > By setting the `--api-sanity-check` flag, or `-c` for short, if the test categories include `executable`, the evaluation process will perform the REST API sanity check first to ensure that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, we will flag those in the console and continue execution.
 
 
-## Checking the Evaluation Results
+## Evaluating the LLM generations
 
 ### Running the Checker
 
@@ -256,7 +256,7 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Contributing
 
-To add a new model to the Function Calling Leaderboard, here are a few things you need to do:
+We welcome additions to the Function Calling Leaderboard! To add a new model, here are a few things you need to do:
 
 1. Take a look at the `model_handler/handler.py`. This is the base handler object which all handlers are inherited from. Also, free feel to take a look at the existing model handers; very likely you can re-use some of the existing code if the new model outputs in a similar format.
 2. Create your handler and define the following functions 
