@@ -64,7 +64,6 @@ def process_file(input_file_path, output_file_path):
             f.write(modified_line)
             if i < len(modified_data) - 1:  # Check against the length of modified_data
                 f.write("\n")        
-            
     print(f"All placeholders have been replaced for {input_file_path} 🦍.")
     
     
