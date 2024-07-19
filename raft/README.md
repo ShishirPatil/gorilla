@@ -21,11 +21,13 @@ pip install -r requirements.txt
 ```
 
 Arguments:
-- `--datapath` - the path at which the document is located
+- `--datapath` - if a file, the path at which the document is located. If a folder, the path at which to load all documents
 - `--output` - the path at which to save the dataset
-- `--output-format` - the format of the output dataset. Defaults to `hf` for HuggingFace. Can be one of `hf`, `completion`, `chat`.
+- `--output-format` - the format of the output dataset. Defaults to `hf` for HuggingFace. Can be one of `hf`, `completion`, `chat`, `eval`.
 - `--output-type` - the type of the output dataset file. Defaults to `jsonl`. Can be one of `jsonl`, `parquet`.
 - `--output-chat-system-prompt` - The system prompt to use when the output format is `chat`. Optional.
+- `--output-completion-prompt-column` - The column (json field name) for the `prompt` / `instruction` when using the `completion` output format. Defaults to `prompt`.
+- `--output-completion-completion-column` - The column (json field name) for the `completion` when using the `completion` output format. Defaults to `completion`.
 - `--distractors` - the number of distractor documents to include per data point / triplet
 - `--doctype` - the type of the document, must be one of the accepted doctypes
   - currently accepted doctypes: `pdf`, `txt`, `json`, `api`
@@ -37,8 +39,11 @@ Arguments:
 - `--openai_key` - your OpenAI key used to make queries to GPT-3.5 or GPT-4
 - `--embedding-model` - The embedding model to use to encode documents chunks. Defaults to `text-embedding-ada-002`.
 - `--completion-model` - The model to use to generate questions and answers. Defaults to `gpt-4`.
-- `--fast` - Fast mode flag. By default, this flag is not included and the script runs in safe mode, where it saves checkpoint datasets, allowing the script to recover and continue where it left off in the case of an interruption. Include this flag to run RAFT without recovery. 
+- `--system-prompt-key` - The system prompt key to use to generate the dataset. Defaults to `gpt`. Can by one of `gpt`, `llama`.
+- `--workers` - The number of worker threads to use to generate the dataset. Defaults to 2.
+- `--auto-clean-checkpoints` - Whether to auto clean the checkpoints after the dataset is generated. Defaults to `false`.
 
+*Note*: The `--fast` mode flag has been removed, checkpointing is now always active.
 
 ## Usage
 
