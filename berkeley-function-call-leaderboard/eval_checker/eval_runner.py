@@ -5,6 +5,7 @@ sys.path.append("../")
 from checker import ast_checker, exec_checker, executable_checker_rest
 from custom_exception import BadAPIStatusError
 from eval_runner_helper import *
+from eval_checker_constant import TEST_COLLECTION_MAPPING
 from tqdm import tqdm
 import argparse
 
@@ -430,56 +431,6 @@ def runner(model_names, test_categories, api_sanity_check):
     print(f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data.csv')} for evaluation results.")
 
 
-ARG_PARSE_MAPPING = {
-    "ast": [
-        "simple",
-        "multiple_function",
-        "parallel_function",
-        "parallel_multiple_function",
-        "java",
-        "javascript",
-        "relevance",
-    ],
-    "executable": [
-        "executable_simple",
-        "executable_multiple_function",
-        "executable_parallel_function",
-        "executable_parallel_multiple_function",
-        "rest",
-    ],
-    "all": [
-        "simple",
-        "multiple_function",
-        "parallel_function",
-        "parallel_multiple_function",
-        "java",
-        "javascript",
-        "relevance",
-        "executable_simple",
-        "executable_multiple_function",
-        "executable_parallel_function",
-        "executable_parallel_multiple_function",
-        "rest",
-    ],
-    "non-python": [
-        "java",
-        "javascript",
-    ],
-    "python": [
-        "simple",
-        "multiple_function",
-        "parallel_function",
-        "parallel_multiple_function",
-        "relevance",
-        "executable_simple",
-        "executable_multiple_function",
-        "executable_parallel_function",
-        "executable_parallel_multiple_function",
-        "rest",
-    ],
-}
-
-
 INPUT_PATH = "../result/"
 PROMPT_PATH = "../data/"
 POSSIBLE_ANSWER_PATH = "../data/possible_answer/"
@@ -518,8 +469,8 @@ if __name__ == "__main__":
     if args.test_category is not None:
         test_categories = []
         for test_category in args.test_category:
-            if test_category in ARG_PARSE_MAPPING:
-                test_categories.extend(ARG_PARSE_MAPPING[test_category])
+            if test_category in TEST_COLLECTION_MAPPING:
+                test_categories.extend(TEST_COLLECTION_MAPPING[test_category])
             else:
                 test_categories.append(test_category)
 
