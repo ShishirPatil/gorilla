@@ -217,6 +217,27 @@ python3 format.py --input output/data-00000-of-00001.arrow --output output.compl
 
 ```
 python3 format.py --help
+
+usage: format.py [-h] --input INPUT [--input-type {arrow,jsonl}] --output OUTPUT --output-format {hf,completion,chat,eval} [--output-type {parquet,jsonl}] [--output-chat-system-prompt OUTPUT_CHAT_SYSTEM_PROMPT] [--output-completion-prompt-column OUTPUT_COMPLETION_PROMPT_COLUMN] [--output-completion-completion-column OUTPUT_COMPLETION_COMPLETION_COLUMN] [--output-completion-stop OUTPUT_COMPLETION_STOP]
+
+options:
+  -h, --help            show this help message and exit
+  --input INPUT         Input HuggingFace dataset file (default: None)
+  --input-type {arrow,jsonl}
+                        Format of the input dataset. Defaults to arrow. (default: arrow)
+  --output OUTPUT       Output file (default: None)
+  --output-format {hf,completion,chat,eval}
+                        Format to convert the dataset to (default: None)
+  --output-type {parquet,jsonl}
+                        Type to export the dataset to. Defaults to jsonl. (default: jsonl)
+  --output-chat-system-prompt OUTPUT_CHAT_SYSTEM_PROMPT
+                        The system prompt to use when the output format is chat (default: None)
+  --output-completion-prompt-column OUTPUT_COMPLETION_PROMPT_COLUMN
+                        The prompt column name to use for the completion format (default: prompt)
+  --output-completion-completion-column OUTPUT_COMPLETION_COMPLETION_COLUMN
+                        The completion column name to use for the completion format (default: completion)
+  --output-completion-stop OUTPUT_COMPLETION_STOP
+                        The stop keyword to use for the completion format (default: <STOP>)
 ```
 
 **Note**: If fine tuning a chat model, then you need to use `--output-format chat` and optionally add the `--output-chat-system-prompt` parameter to configure the system prompt included in the dataset.

@@ -22,7 +22,7 @@ def get_args() -> argparse.Namespace:
     """
     Parses and returns the arguments specified by the user's command
     """
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument("--input", type=str, required=True, help="Input HuggingFace dataset file")
     parser.add_argument("--input-type", type=str, default="arrow", help="Format of the input dataset. Defaults to arrow.", choices=inputDatasetTypes)
