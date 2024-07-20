@@ -2,7 +2,6 @@ requests==2.32.3
 tqdm==4.66.4
 tree_sitter==0.21.3
 torch==2.3.0
-ray==2.32.0
 shortuuid==1.0.13
 mistralai==0.4.2
 anthropic==0.31.1
