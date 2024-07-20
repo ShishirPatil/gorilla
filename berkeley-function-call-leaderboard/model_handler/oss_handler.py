@@ -3,7 +3,6 @@ import os
 
 import ray
 import shortuuid
-import torch
 from eval_checker.eval_checker_constant import FILENAME_INDEX_MAPPING
 from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
@@ -35,7 +34,6 @@ class OSSHandler(BaseHandler):
         return f"SYSTEM: {SYSTEM_PROMPT}\n{functions}\nUSER: {prompt}\nASSISTANT: "
 
     @ray.remote(num_gpus=1)
-    @torch.inference_mode()
     def _batch_generate(
         question_jsons,
         test_category,
