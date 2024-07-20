@@ -76,9 +76,6 @@ class GraniteHandler(OSSHandler):
                     decoded_outputs.append("No function is called")
                     continue
 
-                if language != "Python":
-                    args = {k: str(v) for k, v in args.items()}
-
                 decoded_outputs.append({fnname: args})
 
         return decoded_outputs
