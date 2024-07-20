@@ -96,7 +96,7 @@ if __name__ == "__main__":
                 num_gpus = args.num_gpus,
             )
             for index, res in enumerate(result):
-                result_to_write = {"id": index, "result": res["result"]}
+                result_to_write = {"id": index, "result": res}
                 handler.write(result_to_write, file_to_open)
         else:
             for index, test_case in enumerate(tqdm(test_cases)):
