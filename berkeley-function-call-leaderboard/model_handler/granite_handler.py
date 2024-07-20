@@ -49,10 +49,10 @@ class GraniteHandler(OSSHandler):
         return prompt
 
     def inference(
-        self, question_file, test_category, num_gpus, format_prompt_func=_format_prompt
+        self, test_question, test_category, num_gpus, format_prompt_func=_format_prompt
     ):
         return super().inference(
-            question_file, test_category, num_gpus, format_prompt_func
+            test_question, test_category, num_gpus, format_prompt_func
         )
 
     def decode_ast(self, result, language="Python"):
@@ -75,9 +75,6 @@ class GraniteHandler(OSSHandler):
                 if fnname == "no_function":
                     decoded_outputs.append("No function is called")
                     continue
-
-                if language != "Python":
-                    args = {k: str(v) for k, v in args.items()}
 
                 decoded_outputs.append({fnname: args})
 
