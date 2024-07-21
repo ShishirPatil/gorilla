@@ -208,6 +208,7 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
+* [July 20, 2024] [#537](https://github.com/ShishirPatil/gorilla/pull/537): Update generation script for locally-hosted OSS model to use single-node multi-GPU inference method (tensor parallel). Ray is not used anymore.
 * [July 16, 2024] [#525](https://github.com/ShishirPatil/gorilla/pull/525), [#536](https://github.com/ShishirPatil/gorilla/pull/536): Add new model `ibm-granite/granite-20b-functioncalling` to the leaderboard.
 * [July 10, 2024] [#522](https://github.com/ShishirPatil/gorilla/pull/522): Bug fix in the evaluation dataset for Executable Parallel Multiple category. This includes updates to both prompts and function docs. 2 entries are affected.
 * [July 8, 2024] [#516](https://github.com/ShishirPatil/gorilla/pull/516): Fix double-casting issue in `model_handler` for Java and JavaScript test categories.
@@ -251,7 +252,7 @@ Some companies have proposed some optimization strategies in their models' handl
 * [April 3, 2024] [#309](https://github.com/ShishirPatil/gorilla/pull/309): Bug fix for evaluation dataset possible answers. Implement **string standardization** for the AST evaluation pipeline, i.e. removing white spaces and a subset of punctuations (`,./-_*^`) to make the AST evaluation more robust and accurate. Fixed AST evaluation issue for type `tuple`. Add 2 new models `meetkai/functionary-small-v2.4 (FC)`, `meetkai/functionary-medium-v2.4 (FC)` to the leaderboard.
 * [April 1, 2024] [#299](https://github.com/ShishirPatil/gorilla/pull/299): Leaderboard update with new models (`Claude-3-Haiku`, `Databrick-DBRX-Instruct`), more advanced AST evaluation procedure, and updated evaluation datasets. Cost and latency statistics during evaluation are also measured. We also released the manual that our evaluation procedure is based on, available [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#metrics).
 * [Mar 11, 2024] [#254](https://github.com/ShishirPatil/gorilla/pull/254): Leaderboard update with 3 new models: `Claude-3-Opus-20240229 (Prompt)`, `Claude-3-Sonnet-20240229 (Prompt)`, and `meetkai/functionary-medium-v2.2 (FC)`
-* [Mar 5, 2024] [#237](https://github.com/ShishirPatil/gorilla/pull/237) and [238](https://github.com/ShishirPatil/gorilla/pull/238): leaderboard update resulting from [#223](https://github.com/ShishirPatil/gorilla/pull/223); 3 new models: `mistral-large-2402`, `gemini-1.0-pro`, and `gemma`.
+* [Mar 5, 2024] [#237](https://github.com/ShishirPatil/gorilla/pull/237) and [238](https://github.com/ShishirPatil/gorilla/pull/238): leaderboard update resulting from [#223](https://github.com/ShishirPatil/gorilla/pull/223); 3 new models: `mistral-large-2402`, `gemini-1.0-pro`, and `google/gemma-7b-it`.
 * [Feb 29, 2024] [#223](https://github.com/ShishirPatil/gorilla/pull/223): modifications to REST evaluation. 
 
 
