@@ -335,13 +335,13 @@ def augment_prompt_by_languge(prompt, test_category):
     if test_category == "java":
         prompt = prompt + "\n Note that the provided function is in Java 8 SDK syntax."
     elif test_category == "javascript":
-        prompt = prompt + "\n Note that the provided function is in JavaScript."
+        prompt = prompt + "\n Note that the provided function is in JavaScript syntax."
     else:
-        prompt = prompt + "\n Note that the provided function is in Python."
+        prompt = prompt + "\n Note that the provided function is in Python 3 syntax."
     return prompt
 
 
-def language_specific_pre_processing(function, test_category, string_param):
+def language_specific_pre_processing(function, test_category):
     if type(function) is dict:
         function = [function]
     if len(function) == 0:
@@ -350,27 +350,28 @@ def language_specific_pre_processing(function, test_category, string_param):
         properties = item["parameters"]["properties"]
         if test_category == "java":
             for key, value in properties.items():
-                if value["type"] == "Any" or value["type"] == "any":
-                    properties[key][
-                        "description"
-                    ] += "This parameter can be of any type of Java object."
+                if value["type"] == "any":
                     properties[key]["description"] += (
-                        "This is Java" + value["type"] + " in string representation."
+                        " This parameter can be of any type of Java object in string representation."
                     )
+                else:
+                    value["description"] += (
+                        " This is Java " + value["type"] + " in string representation."
+                    )
+                value["type"] = "string"
+                
         elif test_category == "javascript":
             for key, value in properties.items():
-                if value["type"] == "Any" or value["type"] == "any":
-                    properties[key][
-                        "description"
-                    ] += "This parameter can be of any type of Javascript object."
-                else:
-                    if "description" not in properties[key]:
-                        properties[key]["description"] = ""
+                if value["type"] == "any":
                     properties[key]["description"] += (
-                        "This is Javascript "
-                        + value["type"]
-                        + " in string representation."
+                        " This parameter can be of any type of JavaScript object."
                     )
+                else:
+                    value["description"] += (
+                        " This is JavaScript " + value["type"] + " in string representation."
+                    )
+                value["type"] = "string"
+                
         return function
 
 
