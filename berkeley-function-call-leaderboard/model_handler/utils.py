@@ -356,7 +356,7 @@ def language_specific_pre_processing(function, test_category):
                     )
                 else:
                     value["description"] += (
-                        " This is Java " + value["type"] + " in string representation."
+                        f" This is Java {value['type']} in string representation."
                     )
                 value["type"] = "string"
                 
@@ -368,7 +368,7 @@ def language_specific_pre_processing(function, test_category):
                     )
                 else:
                     value["description"] += (
-                        " This is JavaScript " + value["type"] + " in string representation."
+                        f" This is JavaScript {value['type']} in string representation."
                     )
                 value["type"] = "string"
                 
