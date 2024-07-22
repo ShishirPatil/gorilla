@@ -1,50 +1,50 @@
-{"validateUserInput":{"inputField":["userInputField"],"isComplete":[true]}}
-{"getActiveDataEntries":{"listElement":["listElement"],"attribute":["data-active", ""],"value":[true,""]}}
-{"extractLastTransactionId":{"filepath":["/var/log/db.log"],"status":[["completed","failed"]],"encoding":["utf-8"],"processFunction":["processFunction"]}}
-{"submitAtCoordinate":{"action":["submit"],"formId":["loginForm"],"coordinates":[[0.6,0.3]]}}
-{"emailFormatValidator":{"email":["example@domain.com"],"domain":["domain.com"]}}
-{"manageReactState":{"store":[{"initialState":["initialStateObject"],"reducers":["reducersMap"],"middlewares":[["loggerMiddleware"]],"enhancers":[["applyMiddleware('myMiddleWare')"]]}],"context":["React.createContext()"],"hooks":[{"useStateSelector":"useStateSelectorHook","useDispatchAction":"useDispatchActionHook"}]}}
-{"mapTransitions":{"category":["transition"],"limit":[4.0]}}
-{"getNextKeyValues":{"ctx":["dataAnalysisContext"],"currentKey":["userId"]}}
-{"doesEmailInputExist":{"formElem":["emailForm"],"inputName":["emailAddress"]}}
-{"validateApiResponse":{"jsonPayload":["responseData"],"keyToCheck":["expectedKey"],"processingCallback":["processKeyFunction"]}}
-{"fetchSalesDepartmentRecords":{"databaseName":["employeeRecords"],"queryFunction":["getSales"]}}
-{"prioritizeAndSort":{"items":["myItemList"],"priorityStatus":["urgent"],"ascending":[true]}}
-{"performDataFetch":{"apiEndpoint":["https://api.example.com/data"],"requestConfig":[{"method":["GET"]}],"expectedResponse":[{"key":["value"]}],"handleErrors":[true]}}
-{"DynamicChartGenerator":{"userData":[["userDataArray"]],"scalingFactor":[3.0],"dashboard":["dashboardElement"],"options":["", {}]}}
-{"chartDataAccessorFactory":{"chart":[{"nm":["BarChart"],"mn":["chartModule"]}],"library":["visualizationLibrary"],"configObject":["config"]}}
-{"ChartSeriesGenerator":{"labels":["axisLabelsArray"],"data":["dataPointsArray"],"color":["defaultColor"],"chartLayout":["chartLayoutObject"]}}
-{"rotateVertices":{"vertices":[[10.0,15.0],[20.0,25.0]],"pivot":[[12.0,17.0]],"angle":[30.0]}}
-{"generateNotificationHandler":{"app":["app"],"priorityLevel":[3],"messagingService":["messagingSvc"],"notificationType":[2]}}
-{"calculateFinalVelocity":{"time":[5.0],"gravity":[9.81],"initialVelocity":[0.0]}}
-{"configureShaderMaterial":{"property":["materialProps"],"textures":["textureList"],"object3D":["meshObject"]}}
-{"buttonAddClickHandler":{"element":["myButton"],"callback":["handleButtonClick"],"options":[{"stopPropagation":[true]}]}}
-{"findProductById":{"products":[["Product A","Product B","Product C"]],"id":[123]}}
-{"resetStateProperty":{"stateProperty":["userSession"]}}
-{"createAuthToken":{"username":["johndoe"],"validity":[3600],"options":[{"issuer":["myapp.net"],"role":["admin"],"algorithm":["HS256"]}]}}
-{"getUniqueSorted":{"array":[[3,1,2,1,4,3]]}}
-{"trackSubmitWithValidation":{"obj":["formHandler"],"validationFlags":[["isRequired","isValidEmail"]]}}
-{"contentUpdater":{"elementID":["contentBox"],"newContent":["Hello World"],"action":["update"]}}
-{"validateReactProp":{"obj":["serviceProvider"],"componentName":["UserProfile"]}}
-{"filterBooksByAuthor":{"library":[["bookA","bookB","bookC"]],"author":["J.K. Rowling"]}}
-{"EventScheduler":{"events":[{"setupStage": ["setupStageFunction"],"cleanupStage": ["cleanupStageFunction"]}],"concurrencyLimit":[3.0]}}
-{"setText":{"newText":["Hello, World!"],"start":[5.0],"length":[7.0]}}
-{"transformAllDecoratorsOfDeclaration":{"node":["myNode"],"container":["myContainer"]}}
-{"pollQueue":{"queue":["fileWatchQueue"],"pollingInterval":[500.0],"pollIndex":[0.0],"chunkSize":[10.0]}}
-{"emitNewLineBeforeLeadingComments":{"lineMap":["tsLineMap"],"writer":["tsWriter"],"node":[42]}}
-{"forEachType":{"type":["unionTypeObj"],"f":["processType"]}}
-{"areDeclarationFlagsIdentical":{"left":["parameterObjects"],"right":["variableDeclarationObject"]}}
-{"updateBreak":{"node":["breakNode"],"label":["loopEnd"]}}
-{"addInitializedPropertyStatements":{"statements":["shapeStatements"],"property":[["width","height"],["height","width"]],"receiver":["shape"]}}
-{"getDirectoryToWatchFromFailedLookupLocationDirectory":{"dir":["/projects/myApp/node_modules/react"],"dirPath":["/projects/myApp/node_modules/react"]}}
-{"maybeAddJsSyntheticRestParameter":{"declaration":["funcDeclaration"],"parameters":["funcParameters"]}}
-{"assignOwnDefaults":{"objectValue":[12.0],"sourceValue":[10.0],"key":["maxItems"],"object":[{}]}}
-{"queue":{"worker":["myWorkerFunction"],"concurrency":[5.0],"payload":["", 0.0]}}
-{"B":{"t":[5.0]}}
-{"invokeCallback":{"callback":["processResult"],"error":["null"],"value":["Operation successful"]}}
-{"skipThrough":{"node":["currentNode"],"st":["nodeState"],"c":["processNode"]}}
-{"Sde":{"t":["https://github.com/yarnpkg/berry"],"e":[{"startingCwd":["/home/user/projects"]}]}}
-{"vOe":{"r":["packageInfo"],"e":["version"],"t":["1.2.3"]}}
-{"sTe":{"r":["2023-04-01"],"e":["2023-04-15"],"t":["days"]}}
-{"updateDOMListeners":{"oldVnode":["oldVirtualNode"],"vnode":["newVirtualNode"]}}
-{"convertEnumeratedValue":{"key":["contenteditable"],"value":["plaintext-only"]}}
+{"index": "javascript_0", "validateUserInput": {"inputField": ["userInputField"], "isComplete": [true]}}
+{"index": "javascript_1", "getActiveDataEntries": {"listElement": ["listElement"], "attribute": ["data-active", ""], "value": [true, ""]}}
+{"index": "javascript_2", "extractLastTransactionId": {"filepath": ["/var/log/db.log"], "status": [["completed", "failed"]], "encoding": ["utf-8"], "processFunction": ["processFunction"]}}
+{"index": "javascript_3", "submitAtCoordinate": {"action": ["submit"], "formId": ["loginForm"], "coordinates": [[0.6, 0.3]]}}
+{"index": "javascript_4", "emailFormatValidator": {"email": ["example@domain.com"], "domain": ["domain.com"]}}
+{"index": "javascript_5", "manageReactState": {"store": [{"initialState": ["initialStateObject"], "reducers": ["reducersMap"], "middlewares": [["loggerMiddleware"]], "enhancers": [["applyMiddleware('myMiddleWare')"]]}], "context": ["React.createContext()"], "hooks": [{"useStateSelector": "useStateSelectorHook", "useDispatchAction": "useDispatchActionHook"}]}}
+{"index": "javascript_6", "mapTransitions": {"category": ["transition"], "limit": [4.0]}}
+{"index": "javascript_7", "getNextKeyValues": {"ctx": ["dataAnalysisContext"], "currentKey": ["userId"]}}
+{"index": "javascript_8", "doesEmailInputExist": {"formElem": ["emailForm"], "inputName": ["emailAddress"]}}
+{"index": "javascript_9", "validateApiResponse": {"jsonPayload": ["responseData"], "keyToCheck": ["expectedKey"], "processingCallback": ["processKeyFunction"]}}
+{"index": "javascript_10", "fetchSalesDepartmentRecords": {"databaseName": ["employeeRecords"], "queryFunction": ["getSales"]}}
+{"index": "javascript_11", "prioritizeAndSort": {"items": ["myItemList"], "priorityStatus": ["urgent"], "ascending": [true]}}
+{"index": "javascript_12", "performDataFetch": {"apiEndpoint": ["https://api.example.com/data"], "requestConfig": [{"method": ["GET"]}], "expectedResponse": [{"key": ["value"]}], "handleErrors": [true]}}
+{"index": "javascript_13", "DynamicChartGenerator": {"userData": [["userDataArray"]], "scalingFactor": [3.0], "dashboard": ["dashboardElement"], "options": ["", {}]}}
+{"index": "javascript_14", "chartDataAccessorFactory": {"chart": [{"nm": ["BarChart"], "mn": ["chartModule"]}], "library": ["visualizationLibrary"], "configObject": ["config"]}}
+{"index": "javascript_15", "ChartSeriesGenerator": {"labels": ["axisLabelsArray"], "data": ["dataPointsArray"], "color": ["defaultColor"], "chartLayout": ["chartLayoutObject"]}}
+{"index": "javascript_16", "rotateVertices": {"vertices": [[10.0, 15.0], [20.0, 25.0]], "pivot": [[12.0, 17.0]], "angle": [30.0]}}
+{"index": "javascript_17", "generateNotificationHandler": {"app": ["app"], "priorityLevel": [3], "messagingService": ["messagingSvc"], "notificationType": [2]}}
+{"index": "javascript_18", "calculateFinalVelocity": {"time": [5.0], "gravity": [9.81], "initialVelocity": [0.0]}}
+{"index": "javascript_19", "configureShaderMaterial": {"property": ["materialProps"], "textures": ["textureList"], "object3D": ["meshObject"]}}
+{"index": "javascript_20", "buttonAddClickHandler": {"element": ["myButton"], "callback": ["handleButtonClick"], "options": [{"stopPropagation": [true]}]}}
+{"index": "javascript_21", "findProductById": {"products": [["Product A", "Product B", "Product C"]], "id": [123]}}
+{"index": "javascript_22", "resetStateProperty": {"stateProperty": ["userSession"]}}
+{"index": "javascript_23", "createAuthToken": {"username": ["johndoe"], "validity": [3600], "options": [{"issuer": ["myapp.net"], "role": ["admin"], "algorithm": ["HS256"]}]}}
+{"index": "javascript_24", "getUniqueSorted": {"array": [[3, 1, 2, 1, 4, 3]]}}
+{"index": "javascript_25", "trackSubmitWithValidation": {"obj": ["formHandler"], "validationFlags": [["isRequired", "isValidEmail"]]}}
+{"index": "javascript_26", "contentUpdater": {"elementID": ["contentBox"], "newContent": ["Hello World"], "action": ["update"]}}
+{"index": "javascript_27", "validateReactProp": {"obj": ["serviceProvider"], "componentName": ["UserProfile"]}}
+{"index": "javascript_28", "filterBooksByAuthor": {"library": [["bookA", "bookB", "bookC"]], "author": ["J.K. Rowling"]}}
+{"index": "javascript_29", "EventScheduler": {"events": [{"setupStage": ["setupStageFunction"], "cleanupStage": ["cleanupStageFunction"]}], "concurrencyLimit": [3.0]}}
+{"index": "javascript_30", "setText": {"newText": ["Hello, World!"], "start": [5.0], "length": [7.0]}}
+{"index": "javascript_31", "transformAllDecoratorsOfDeclaration": {"node": ["myNode"], "container": ["myContainer"]}}
+{"index": "javascript_32", "pollQueue": {"queue": ["fileWatchQueue"], "pollingInterval": [500.0], "pollIndex": [0.0], "chunkSize": [10.0]}}
+{"index": "javascript_33", "emitNewLineBeforeLeadingComments": {"lineMap": ["tsLineMap"], "writer": ["tsWriter"], "node": [42]}}
+{"index": "javascript_34", "forEachType": {"type": ["unionTypeObj"], "f": ["processType"]}}
+{"index": "javascript_35", "areDeclarationFlagsIdentical": {"left": ["parameterObjects"], "right": ["variableDeclarationObject"]}}
+{"index": "javascript_36", "updateBreak": {"node": ["breakNode"], "label": ["loopEnd"]}}
+{"index": "javascript_37", "addInitializedPropertyStatements": {"statements": ["shapeStatements"], "property": [["width", "height"], ["height", "width"]], "receiver": ["shape"]}}
+{"index": "javascript_38", "getDirectoryToWatchFromFailedLookupLocationDirectory": {"dir": ["/projects/myApp/node_modules/react"], "dirPath": ["/projects/myApp/node_modules/react"]}}
+{"index": "javascript_39", "maybeAddJsSyntheticRestParameter": {"declaration": ["funcDeclaration"], "parameters": ["funcParameters"]}}
+{"index": "javascript_40", "assignOwnDefaults": {"objectValue": [12.0], "sourceValue": [10.0], "key": ["maxItems"], "object": [{}]}}
+{"index": "javascript_41", "queue": {"worker": ["myWorkerFunction"], "concurrency": [5.0], "payload": ["", 0.0]}}
+{"index": "javascript_42", "B": {"t": [5.0]}}
+{"index": "javascript_43", "invokeCallback": {"callback": ["processResult"], "error": ["null"], "value": ["Operation successful"]}}
+{"index": "javascript_44", "skipThrough": {"node": ["currentNode"], "st": ["nodeState"], "c": ["processNode"]}}
+{"index": "javascript_45", "Sde": {"t": ["https://github.com/yarnpkg/berry"], "e": [{"startingCwd": ["/home/user/projects"]}]}}
+{"index": "javascript_46", "vOe": {"r": ["packageInfo"], "e": ["version"], "t": ["1.2.3"]}}
+{"index": "javascript_47", "sTe": {"r": ["2023-04-01"], "e": ["2023-04-15"], "t": ["days"]}}
+{"index": "javascript_48", "updateDOMListeners": {"oldVnode": ["oldVirtualNode"], "vnode": ["newVirtualNode"]}}
+{"index": "javascript_49", "convertEnumeratedValue": {"key": ["contenteditable"], "value": ["plaintext-only"]}}
