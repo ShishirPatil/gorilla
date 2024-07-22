@@ -69,7 +69,7 @@ class OSSHandler(BaseHandler):
     def process_input(test_question, format_prompt_func=_format_prompt):
         prompts = []
         for question in test_question:
-            test_category = question["index"].rsplit("_", 1)[0]
+            test_category = question["id"].rsplit("_", 1)[0]
             prompt = augment_prompt_by_languge(question["question"], test_category)
             functions = language_specific_pre_processing(
                 question["function"], test_category

@@ -107,7 +107,7 @@ if __name__ == "__main__":
             user_question, functions, test_category = (
                 test_case["question"],
                 test_case["function"],
-                test_case["index"].rsplit("_", 1)[0],
+                test_case["id"].rsplit("_", 1)[0],
             )
             if type(functions) is dict or type(functions) is str:
                 functions = [functions]

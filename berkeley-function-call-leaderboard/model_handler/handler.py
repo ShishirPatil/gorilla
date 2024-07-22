@@ -29,7 +29,7 @@ class BaseHandler:
         os.makedirs(f"./result/{model_name_dir}", exist_ok=True)
         
         for entry in result:
-            test_category = entry["index"].rsplit("_", 1)[0]
+            test_category = entry["id"].rsplit("_", 1)[0]
             file_to_write = f"./result/{model_name_dir}/gorilla_openfunctions_v1_test_{test_category}_result.json"
             
             with open(file_to_write, "a+") as f:
