@@ -90,7 +90,7 @@ if __name__ == "__main__":
                     num_existing_result += 1
         
         if handler.model_style == ModelStyle.OSSMODEL:
-            result = handler.inference(
+            result, metadata = handler.inference(
                 test_question = test_cases[num_existing_result:],
                 test_category = test_category,
                 num_gpus = args.num_gpus,
