@@ -1,8 +1,6 @@
 import json
 import os
 
-import shortuuid
-from eval_checker.eval_checker_constant import FILENAME_INDEX_MAPPING
 from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
 from model_handler.utils import (
@@ -60,19 +58,20 @@ class OSSHandler(BaseHandler):
         )
         outputs = llm.generate(test_question, sampling_params)
 
-        final_ans_jsons = []
-        for output in outputs:
+        for question, output in zip(test_question, outputs):
             text = output.outputs[0].text
-            final_ans_jsons.append(text)
-        return final_ans_jsons
+            question["result"] = text
+
+        return test_question
 
     @staticmethod
-    def process_input(test_question, test_category, format_prompt_func):
+    def process_input(test_question, format_prompt_func=_format_prompt):
         prompts = []
-        for ques_json in test_question:
-            prompt = augment_prompt_by_languge(ques_json["question"], test_category)
+        for question in test_question:
+            test_category = question["index"].rsplit("_", 1)[0]
+            prompt = augment_prompt_by_languge(question["question"], test_category)
             functions = language_specific_pre_processing(
-                ques_json["function"], test_category
+                question["function"], test_category
             )
             prompts.append(format_prompt_func(prompt, functions, test_category))
 
@@ -81,15 +80,12 @@ class OSSHandler(BaseHandler):
     def inference(
         self,
         test_question,
-        test_category,
         num_gpus,
         format_prompt_func=_format_prompt,
         stop_token_ids=None,
         max_model_len=None,
     ):
-        test_question = self.process_input(
-            test_question, test_category, format_prompt_func
-        )
+        test_question = self.process_input(test_question, format_prompt_func)
 
         ans_jsons = self._batch_generate(
             test_question=test_question,
@@ -117,27 +113,4 @@ class OSSHandler(BaseHandler):
 
     def decode_execute(self, result):
         return result
-
-    def write(self, result, file_to_open):
-        if not os.path.exists("./result"):
-            os.mkdir("./result")
-        if not os.path.exists("./result/" + self.model_name.replace("/", "_")):
-            os.mkdir("./result/" + self.model_name.replace("/", "_"))
-        with open(
-            "./result/" + self.model_name.replace("/", "_") + "/" + file_to_open, "a+"
-        ) as f:
-            f.write(json.dumps(result) + "\n")
-
-    def load_result(self, test_category):
-        eval_data = []
-        with open("./eval_data_total.json") as f:
-            for line in f:
-                eval_data.append(json.loads(line))
-        result_list = []
-        idx = 0
-        with open(f"./result/{self.model_name}/result.json") as f:
-            for line in f:
-                if eval_data[idx]["test_category"] == test_category:
-                    result_list.append(json.loads(line))
-                idx += 1
-        return result_list
+                

@@ -24,27 +24,13 @@ class BaseHandler:
         # This method takes raw model output and convert it to standard execute checker input.
         pass
 
-    def write(self, result, file_to_open):
-        # This method is used to write the result to the file.
-        if not os.path.exists("./result"):
-            os.mkdir("./result")
-        if not os.path.exists("./result/" + self.model_name):
-            os.mkdir("./result/" + self.model_name)
-        with open(
-            "./result/"
-            + self.model_name
-            + "/"
-            + file_to_open.replace(".json", "_result.json"),
-            "a+",
-        ) as f:
-            f.write(json.dumps(result) + "\n")
-
-    def load_result(self, test_category):
-        # This method is used to load the result from the file.
-        result_list = []
-        with open(
-            f"./result/{self.model_name}/gorilla_openfunctions_v1_test_{test_category}_result.json"
-        ) as f:
-            for line in f:
-                result_list.append(json.loads(line))
-        return result_list
+    def write(self, result):
+        model_name_dir = self.model_name.replace("/", "_")
+        os.makedirs(f"./result/{model_name_dir}", exist_ok=True)
+        
+        for entry in result:
+            test_category = entry["index"].rsplit("_", 1)[0]
+            file_to_write = f"./result/{model_name_dir}/gorilla_openfunctions_v1_test_{test_category}_result.json"
+            
+            with open(file_to_write, "a+") as f:
+                f.write(json.dumps(entry) + "\n")
