@@ -58,11 +58,12 @@ class OSSHandler(BaseHandler):
         )
         outputs = llm.generate(test_question, sampling_params)
 
+        final_ans_jsons = []
         for question, output in zip(test_question, outputs):
             text = output.outputs[0].text
-            question["result"] = text
+            final_ans_jsons.append({"id": question["id"], "result": text})
 
-        return test_question
+        return final_ans_jsons
 
     @staticmethod
     def process_input(test_question, format_prompt_func=_format_prompt):

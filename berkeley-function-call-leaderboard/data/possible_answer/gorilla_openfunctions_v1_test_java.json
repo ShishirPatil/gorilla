@@ -1,100 +1,100 @@
-{"index": "java_0", "GeometryPresentation.createPresentation": {"controller": ["mapController"], "parent": ["mapArea"]}}
-{"index": "java_1", "SQLCompletionAnalyzer.makeProposalsFromObject": {"object": ["Customers"], "useShortName": [true], "params": [{"limit": 50, "schemaFilter": "public"}]}}
-{"index": "java_2", "FireBirdUtils.getViewSourceWithHeader": {"monitor": ["dbMonitor"], "view": ["EmployeeView"], "source": ["SELECT * FROM Employee WHERE status = 'active'"]}}
-{"index": "java_3", "DB2Tablespace.resolveTablespaceReference": {"monitor": ["dbMonitor"], "dataSource": ["db2DataSource"], "reference": ["USERSPACE1"]}}
-{"index": "java_4", "DB2ViewBaseDepCache.prepareObjectsStatement": {"session": ["jdbcSession"], "db2ViewBase": ["EmployeeView"]}}
-{"index": "java_5", "PlainTextPresentation.createPresentation": {"controller": ["dataController"], "parent": ["compositeParent"]}}
-{"index": "java_6", "SpreadsheetPresentation.refreshData": {"refreshMetadata": [true], "append": [true], "keepState": [true]}}
-{"index": "java_7", "EFSNIOResource.copy": {"destination": ["new Path('/backup/data.txt')"], "force": [true], "monitor": ["progressTracker"]}}
-{"index": "java_8", "EFSNIOFile.setContents": {"source": ["fileStream"], "force": [true], "keepHistory": [false], "monitor": ["progressMonitor"]}}
-{"index": "java_9", "writeMultiPoint": {"multiPoint": ["new MultiPoint(new Point[]{new Point(1, 2), new Point(3, 4), new Point(5, 6), new Point(7, 8), new Point(9, 10)})"], "xyzmMode": ["XyzmMode.XYZ"], "buffer": ["ByteBuffer.allocate(1024)"]}}
-{"index": "java_10", "JNIBridge.setLauncherInfo": {"launcher": ["/usr/local/bin/dbeaver"], "name": ["DBeaverLauncher"]}}
-{"index": "java_11", "BasePolicyDataProvider.getRegistryPolicyValue": {"root": ["WinReg.HKEY_LOCAL_MACHINE"], "property": ["EnableExtensions"]}}
-{"index": "java_12", "ExasolExecutionContext.setCurrentSchema": {"monitor": ["progressMonitor"], "schemaName": ["AnalyticsDB"]}}
-{"index": "java_13", "AltibaseGrantee.prepareObjectsStatement": {"session": ["JDBC_session"], "owner": ["JohnDoe"]}}
-{"index": "java_14", "FunGameBase.onFinish": {"layout": ["gameLayout"], "success": [true]}}
-{"index": "java_15", "Res9patchStreamDecoder.decode": {"input": ["imageInputStream"], "out": ["imageOutputStream"]}}
-{"index": "java_16", "InsnDecoder.invokePolymorphic": {"insn": ["instructionData"], "isRange": [true]}}
-{"index": "java_17", "GenericTypesVisitor.attachGenericTypesInfo": {"mth": ["initMethod"], "insn": ["newConstructorInsn"]}}
-{"index": "java_18", "SysRoleController.queryPageRoleCount": {"pageNo": [3], "pageSize": [20]}}
-{"index": "java_19", "PersonController.personal": {"model": ["webModel"], "request": ["userRequest"]}}
-{"index": "java_20", "HbaseAdapter.updateConfig": {"fileName": ["user-mapping.yml"], "config": ["newMappingConfig"]}}
-{"index": "java_21", "SessionHandler.exceptionCaught": {"ctx": ["nettyChannelContext"], "e": ["ioExceptionEvent"]}}
-{"index": "java_22", "PmsProductServiceImpl.updateNewStatus": {"ids": [[101, 202, 303]], "newStatus": [2]}}
-{"index": "java_23", "SmsHomeNewProductServiceImpl.list": {"productName": ["LED TV"], "recommendStatus": [1], "pageSize": [20], "pageNum": [3]}}
-{"index": "java_24", "PmsProductCategoryController.updateShowStatus": {"ids": [[101, 102, 103]], "showStatus": [0]}}
-{"index": "java_25", "SmsHomeRecommendSubjectController.updateSort": {"id": [42], "sort": [5]}}
-{"index": "java_26", "ProxyConnection.prepareCall": {"sql": ["CALL totalSales(?)"], "resultSetType": ["ResultSet.TYPE_SCROLL_INSENSITIVE"], "concurrency": ["ResultSet.CONCUR_READ_ONLY"], "holdability": ["ResultSet.CLOSE_CURSORS_AT_COMMIT"]}}
-{"index": "java_27", "TwoSum.twoSum": {"nums": [[2, 7, 11, 15]], "target": [9]}}
-{"index": "java_28", "configStorage.dynamicCredentialsScheduledExecutorService": {"credentialsFile": ["es_credentials.properties"], "credentialsRefreshInterval": [30], "basicCredentials": ["basicAuthCredentials"]}}
-{"index": "java_29", "propertyTransferredToCollectorBuilder": {"property": ["zipkin.collector.activemq.concurrency"], "value": ["10"], "builderExtractor": ["ActiveMQCollector.Builder::getConcurrency"]}}
-{"index": "java_30", "RedissonAsyncCache.putIfAbsent": {"key": ["answer"], "value": ["42"]}}
-{"index": "java_31", "RedissonRx.getQueue": {"name": ["taskQueue"], "codec": ["jsonCodec"]}}
-{"index": "java_32", "RedissonPermitExpirableSemaphore.tryAcquireAsync": {"waitTime": [5], "leaseTime": [120], "unit": ["SECONDS"]}}
-{"index": "java_33", "RedissonMapCache.putOperationAsync": {"key": ["employee:1234"], "value": ["John Doe"]}}
-{"index": "java_34", "ServiceManager.newTimeout": {"task": ["cleanupTask"], "delay": [5], "unit": ["TimeUnit.MINUTES"]}}
-{"index": "java_35", "RedissonConnection.bitOp": {"op": ["BitOperation.AND"], "destination": ["user:online:both"], "keys": [["user:online:today", "user:online:yesterday"]]}}
-{"index": "java_36", "ObjectMapEntryReplayDecoder.decode": {"parts": [["userID", 42, "username", "johndoe", "isActive", true]], "state": ["processingState"]}}
-{"index": "java_37", "ConsoleAnnotator.annotate": {"context": ["jenkinsBuild"], "text": ["buildOutput"]}}
-{"index": "java_38", "NestedValueFetcher.createSourceMapStub": {"filteredSource": ["docFields"]}}
-{"index": "java_39", "NodeIdConverter.format": {"event": ["logEvent"], "toAppendTo": ["logBuilder"]}}
-{"index": "java_40", "RoutingNodesChangedObserver.shardInitialized": {"unassignedShard": ["shardA"], "initializedShard": ["shardB"]}}
-{"index": "java_41", "SearchHit.declareInnerHitsParseFields": {"parser": ["searchHitParser"]}}
-{"index": "java_42", "TermQueryBuilderTests.termQuery": {"mapper": ["usernameField"], "value": ["JohnDoe"], "caseInsensitive": [true]}}
-{"index": "java_43", "SecureMockMaker.createSpy": {"settings": ["mockSettings"], "handler": ["mockHandler"], "object": ["testObject"]}}
-{"index": "java_44", "DesAPITest.init": {"crypt": ["DESede"], "mode": ["CBC"], "padding": ["PKCS5Padding"]}}
-{"index": "java_45", "Basic.checkSizes": {"environ": ["envVariables"], "size": [5]}}
-{"index": "java_46", "MethodInvokeTest.checkInjectedInvoker": {"csm": ["csmInstance"], "expected": ["MyExpectedClass.class"]}}
-{"index": "java_47", "LargeHandshakeTest.format": {"name": ["CERTIFICATE"], "value": ["MIIFdTCCBF2gAwIBAgISESG"]}}
-{"index": "java_48", "CookieHeaderTest.create": {"sa": ["new InetSocketAddress(\"192.168.1.10\", 8080)"], "sslContext": ["testSSLContext"]}}
-{"index": "java_49", "Http2TestExchangeImpl.sendResponseHeaders": {"rCode": [404], "responseLength": [1500]}}
-{"index": "java_50", "TransformIndexerStateTests.doDeleteByQuery": {"deleteByQueryRequest": ["deleteQueryRequest"], "responseListener": ["testListener"]}}
-{"index": "java_51", "CCRUsageTransportAction.masterOperation": {"task": ["usageTask"], "request": ["usageRequest"], "state": ["clusterState"], "listener": ["actionListener"]}}
-{"index": "java_52", "SamlObjectSignerTests.getChildren": {"node": ["SAMLAssertionNode"], "node_type": ["Element.class"]}}
-{"index": "java_53", "VotingOnlyNodePlugin.fullMasterWithOlderState": {"localAcceptedTerm": [42], "localAcceptedVersion": [7]}}
-{"index": "java_54", "AbstractTransportSearchableSnapshotsAction.shardOperation": {"request": ["snapshotRequest"], "shardRouting": ["shardRouteInfo"], "task": ["snapshotTask"], "listener": ["operationListener"]}}
-{"index": "java_55", "SearchableSnapshotDirectory.create": {"repositories": ["repositoriesService"], "cache": ["cacheService"], "indexSettings": ["indexSettingsForLogs"], "shardPath": ["/data/nodes/0/indices/logs/5"], "currentTimeNanosSupplier": ["currentTimeNanos"], "threadPool": ["threadPool"], "blobStoreCacheService": ["blobStoreCacheService"], "sharedBlobCacheService": ["sharedBlobCacheService"]}}
-{"index": "java_56", "CCSDuelIT.parseEntity": {"entity": ["httpResponseEntity"], "entityParser": ["responseParser"], "parserConfig": ["defaultParserConfig"]}}
-{"index": "java_57", "Booleans.parseBooleanLenient": {"value": ["yes"], "defaultValue": [false]}}
-{"index": "java_58", "XContentBuilder.map": {"values": ["userProfile"], "ensureNoSelfReferences": [true], "writeStartAndEndHeaders": [true]}}
-{"index": "java_59", "TruncateTranslogAction.execute": {"terminal": ["terminalInterface"], "shardPath": ["new ShardPath(Paths.get('/var/data/elasticsearch/nodes/0/indices/1shard'))"], "indexDirectory": ["FSDirectory.open(Paths.get('/var/data/elasticsearch/nodes/0/indices/1shard/index'))"]}}
-{"index": "java_60", "NestedQueryBuilder.doBuild": {"parentSearchContext": ["mainSearchContext"], "innerHitsContext": ["hitsContext"]}}
-{"index": "java_61", "ScoreFunctionBuilders.exponentialDecayFunction": {"fieldName": ["timestamp"], "origin": ["now"], "scale": ["10d"], "offset": ["2d"], "decay": [0.5]}}
-{"index": "java_62", "dvRangeQuery": {"field": ["temperature"], "queryType": ["FLOAT"], "from": [20.5, "20.5"], "to": [30.0, "30.0"], "includeFrom": [true], "includeTo": [false]}}
-{"index": "java_63", "withinQuery": {"field": ["age"], "from": [30], "to": [40], "includeFrom": [true], "includeTo": [false]}}
-{"index": "java_64", "DateScriptFieldType.createFieldType": {"name": ["timestamp"], "factory": ["dateFactory"], "script": ["dateScript"], "meta": [{"format": "epoch_millis"}], "onScriptError": ["FAIL"]}}
-{"index": "java_65", "RootObjectMapper.doXContent": {"builder": ["xContentBuilderInstance"], "params": [["include_defaults", true, "TOXCONTENT_SKIP_RUNTIME", true]]}}
-{"index": "java_66", "CompositeRuntimeField.createChildRuntimeField": {"parserContext": ["mappingParserContext"], "parent": ["compositeField1"], "parentScriptFactory": ["compositeScriptFactory"], "onScriptError": ["onScriptError.IGNORE"]}}
-{"index": "java_67", "MacDmgBundler.prepareDMGSetupScript": {"appLocation": ["/Applications/PhotoEditor.app"], "params": [{"APP_NAME": "PhotoEditor"}, {"IMAGES_ROOT": "/path/to/images"}, {"BACKGROUND_IMAGE_FOLDER": "background"}, {"BACKGROUND_IMAGE": "custom-bg.png"}]}}
-{"index": "java_68", "MacBaseInstallerBundler.validateAppImageAndBundeler": {"params": [{"/Applications/MyApp.app": "MyApp"}]}}
-{"index": "java_69", "DurationImpl.alignSigns": {"buf": ["durations"], "start": [2], "end": [5]}}
-{"index": "java_70", "XMLNamespaceBinder.endElement": {"element": ["new QName('http://www.example.com', 'item', 'ex')"], "augs": ["augmentations"]}}
-{"index": "java_71", "CoroutineManager.co_exit_to": {"arg_object": ["resultData"], "thisCoroutine": [5], "toCoroutine": [10]}}
-{"index": "java_72", "ToTextStream.characters": {"ch": ["textBuffer"], "start": [5], "length": [10]}}
-{"index": "java_73", "Encodings.getEncodingInfo": {"encoding": ["UTF-8"], "allowJavaNames": [true]}}
-{"index": "java_74", "BaseMarkupSerializer.surrogates": {"high": [55357], "low": [56832], "inContent": [false]}}
-{"index": "java_75", "JdkXmlFeatures.getSystemProperty": {"feature": ["XML_SECURITY"], "sysPropertyName": ["enableXmlSecurityFeature"]}}
-{"index": "java_76", "Intro.step": {"w": [800], "h": [600]}}
-{"index": "java_77", "JndiLoginModule.verifyPassword": {"encryptedPassword": ["e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"], "password": ["P@ssw0rd!"]}}
-{"index": "java_78", "OptionSpecBuilder.requiredUnless": {"dependent": ["quiet"], "otherDependents": [["verbose"]]}}
-{"index": "java_79", "SAXFilterFactoryImpl.resolveEntity": {"publicid": ["1234"], "sysId": ["http://astro.com/stylesheets/toptemplate"]}}
-{"index": "java_80", "RegexConstraint.initIRPattern": {"category": ["failOn"], "ruleIdx": [42]}}
-{"index": "java_81", "TestObjectGraphAfterGC.doTesting": {"testcaseData": ["humongous-test-case.json"], "doGC": ["customGarbageCollector"], "checker": ["referenceChecker"], "gcLogName": ["gc-analysis.log"], "shouldContain": [["GC pause"]], "shouldNotContain": [["OutOfMemoryError"]]}}
-{"index": "java_82", "clear001a.runIt": {"args": ["testArgs"], "out": ["System.out"]}}
-{"index": "java_83", "thrcputime002.runIt": {"argv": [["-waitTime", "2", "-iterations", "500"]], "out": ["System.out"]}}
-{"index": "java_84", "checkInnerFields": {"redefCls": ["myRedefClass"], "expValue": [100]}}
-{"index": "java_85", "classfloadhk005.runIt": {"argv": [["/path/to/classes", "60"]], "out": ["logStream"]}}
-{"index": "java_86", "argumenttypes001.runThis": {"argv": [["-v", "--no-strict"]], "out": ["debugOutput"]}}
-{"index": "java_87", "suspendpolicy017.settingVMDeathRequest": {"suspendPolicy": ["EVENT_THREAD"], "property": ["deathEvent001"]}}
-{"index": "java_88", "filter_s002.setting22MethodEntryRequest": {"thread": ["mainThread"], "testedClass": ["com.example.MainClass"], "suspendPolicy": ["EventRequest.SUSPEND_ALL"], "property": ["testProperty"]}}
-{"index": "java_89", "runThis": {"argv": [["-waitTime", "2", "-debuggeeName", "TestDebuggee"]], "out": ["testLogStream"]}}
-{"index": "java_90", "sourcepaths002.runIt": {"args": [["-v", "-p"]], "out": ["System.out"]}}
-{"index": "java_91", "invokemethod007.runIt": {"args": [["suspend", "log"]], "out": ["debugLog"]}}
-{"index": "java_92", "ClassFileFinder.findClassFile": {"name": ["com.example.MyClass"], "classPath": ["/usr/local/classes:/home/user/java/libs"]}}
-{"index": "java_93", "AbstractJarAgent.runJarAgent": {"options": ["trace log"], "inst": ["appInstrumentation"]}}
-{"index": "java_94", "NFILibrary.isMemberReadable": {"symbol": ["getVersion"], "recursive": ["", null]}}
-{"index": "java_95", "ExportNodeTest.doGeneric": {"receiver": ["ExportInlinedObject1Instance"], "argument": ["HelloWorld"], "node": ["InlinableNodeInstance"], "library": ["NodeLibraryInstance"]}}
-{"index": "java_96", "InstrumentableProcessor.createCallConverter": {"converterMethod": ["convertValue"], "frameParameterName": ["frameVar"], "returnName": ["returnValueCode"]}}
-{"index": "java_97", "FlatNodeGenFactory.generateIntrospectionInfo": {"clazz": ["NodeClass"], "inlined": [false]}}
-{"index": "java_98", "LoopConditionProfile.calculateProbability": {"trueCountLocal": [150], "falseCountLocal": [50]}}
-{"index": "java_99", "LibraryExport.createDelegate": {"factory": ["myFactory"], "delegate": ["existingDelegate"]}}
+{"id": "java_0", "GeometryPresentation.createPresentation": {"controller": ["mapController"], "parent": ["mapArea"]}}
+{"id": "java_1", "SQLCompletionAnalyzer.makeProposalsFromObject": {"object": ["Customers"], "useShortName": [true], "params": [{"limit": 50, "schemaFilter": "public"}]}}
+{"id": "java_2", "FireBirdUtils.getViewSourceWithHeader": {"monitor": ["dbMonitor"], "view": ["EmployeeView"], "source": ["SELECT * FROM Employee WHERE status = 'active'"]}}
+{"id": "java_3", "DB2Tablespace.resolveTablespaceReference": {"monitor": ["dbMonitor"], "dataSource": ["db2DataSource"], "reference": ["USERSPACE1"]}}
+{"id": "java_4", "DB2ViewBaseDepCache.prepareObjectsStatement": {"session": ["jdbcSession"], "db2ViewBase": ["EmployeeView"]}}
+{"id": "java_5", "PlainTextPresentation.createPresentation": {"controller": ["dataController"], "parent": ["compositeParent"]}}
+{"id": "java_6", "SpreadsheetPresentation.refreshData": {"refreshMetadata": [true], "append": [true], "keepState": [true]}}
+{"id": "java_7", "EFSNIOResource.copy": {"destination": ["new Path('/backup/data.txt')"], "force": [true], "monitor": ["progressTracker"]}}
+{"id": "java_8", "EFSNIOFile.setContents": {"source": ["fileStream"], "force": [true], "keepHistory": [false], "monitor": ["progressMonitor"]}}
+{"id": "java_9", "writeMultiPoint": {"multiPoint": ["new MultiPoint(new Point[]{new Point(1, 2), new Point(3, 4), new Point(5, 6), new Point(7, 8), new Point(9, 10)})"], "xyzmMode": ["XyzmMode.XYZ"], "buffer": ["ByteBuffer.allocate(1024)"]}}
+{"id": "java_10", "JNIBridge.setLauncherInfo": {"launcher": ["/usr/local/bin/dbeaver"], "name": ["DBeaverLauncher"]}}
+{"id": "java_11", "BasePolicyDataProvider.getRegistryPolicyValue": {"root": ["WinReg.HKEY_LOCAL_MACHINE"], "property": ["EnableExtensions"]}}
+{"id": "java_12", "ExasolExecutionContext.setCurrentSchema": {"monitor": ["progressMonitor"], "schemaName": ["AnalyticsDB"]}}
+{"id": "java_13", "AltibaseGrantee.prepareObjectsStatement": {"session": ["JDBC_session"], "owner": ["JohnDoe"]}}
+{"id": "java_14", "FunGameBase.onFinish": {"layout": ["gameLayout"], "success": [true]}}
+{"id": "java_15", "Res9patchStreamDecoder.decode": {"input": ["imageInputStream"], "out": ["imageOutputStream"]}}
+{"id": "java_16", "InsnDecoder.invokePolymorphic": {"insn": ["instructionData"], "isRange": [true]}}
+{"id": "java_17", "GenericTypesVisitor.attachGenericTypesInfo": {"mth": ["initMethod"], "insn": ["newConstructorInsn"]}}
+{"id": "java_18", "SysRoleController.queryPageRoleCount": {"pageNo": [3], "pageSize": [20]}}
+{"id": "java_19", "PersonController.personal": {"model": ["webModel"], "request": ["userRequest"]}}
+{"id": "java_20", "HbaseAdapter.updateConfig": {"fileName": ["user-mapping.yml"], "config": ["newMappingConfig"]}}
+{"id": "java_21", "SessionHandler.exceptionCaught": {"ctx": ["nettyChannelContext"], "e": ["ioExceptionEvent"]}}
+{"id": "java_22", "PmsProductServiceImpl.updateNewStatus": {"ids": [[101, 202, 303]], "newStatus": [2]}}
+{"id": "java_23", "SmsHomeNewProductServiceImpl.list": {"productName": ["LED TV"], "recommendStatus": [1], "pageSize": [20], "pageNum": [3]}}
+{"id": "java_24", "PmsProductCategoryController.updateShowStatus": {"ids": [[101, 102, 103]], "showStatus": [0]}}
+{"id": "java_25", "SmsHomeRecommendSubjectController.updateSort": {"id": [42], "sort": [5]}}
+{"id": "java_26", "ProxyConnection.prepareCall": {"sql": ["CALL totalSales(?)"], "resultSetType": ["ResultSet.TYPE_SCROLL_INSENSITIVE"], "concurrency": ["ResultSet.CONCUR_READ_ONLY"], "holdability": ["ResultSet.CLOSE_CURSORS_AT_COMMIT"]}}
+{"id": "java_27", "TwoSum.twoSum": {"nums": [[2, 7, 11, 15]], "target": [9]}}
+{"id": "java_28", "configStorage.dynamicCredentialsScheduledExecutorService": {"credentialsFile": ["es_credentials.properties"], "credentialsRefreshInterval": [30], "basicCredentials": ["basicAuthCredentials"]}}
+{"id": "java_29", "propertyTransferredToCollectorBuilder": {"property": ["zipkin.collector.activemq.concurrency"], "value": ["10"], "builderExtractor": ["ActiveMQCollector.Builder::getConcurrency"]}}
+{"id": "java_30", "RedissonAsyncCache.putIfAbsent": {"key": ["answer"], "value": ["42"]}}
+{"id": "java_31", "RedissonRx.getQueue": {"name": ["taskQueue"], "codec": ["jsonCodec"]}}
+{"id": "java_32", "RedissonPermitExpirableSemaphore.tryAcquireAsync": {"waitTime": [5], "leaseTime": [120], "unit": ["SECONDS"]}}
+{"id": "java_33", "RedissonMapCache.putOperationAsync": {"key": ["employee:1234"], "value": ["John Doe"]}}
+{"id": "java_34", "ServiceManager.newTimeout": {"task": ["cleanupTask"], "delay": [5], "unit": ["TimeUnit.MINUTES"]}}
+{"id": "java_35", "RedissonConnection.bitOp": {"op": ["BitOperation.AND"], "destination": ["user:online:both"], "keys": [["user:online:today", "user:online:yesterday"]]}}
+{"id": "java_36", "ObjectMapEntryReplayDecoder.decode": {"parts": [["userID", 42, "username", "johndoe", "isActive", true]], "state": ["processingState"]}}
+{"id": "java_37", "ConsoleAnnotator.annotate": {"context": ["jenkinsBuild"], "text": ["buildOutput"]}}
+{"id": "java_38", "NestedValueFetcher.createSourceMapStub": {"filteredSource": ["docFields"]}}
+{"id": "java_39", "NodeIdConverter.format": {"event": ["logEvent"], "toAppendTo": ["logBuilder"]}}
+{"id": "java_40", "RoutingNodesChangedObserver.shardInitialized": {"unassignedShard": ["shardA"], "initializedShard": ["shardB"]}}
+{"id": "java_41", "SearchHit.declareInnerHitsParseFields": {"parser": ["searchHitParser"]}}
+{"id": "java_42", "TermQueryBuilderTests.termQuery": {"mapper": ["usernameField"], "value": ["JohnDoe"], "caseInsensitive": [true]}}
+{"id": "java_43", "SecureMockMaker.createSpy": {"settings": ["mockSettings"], "handler": ["mockHandler"], "object": ["testObject"]}}
+{"id": "java_44", "DesAPITest.init": {"crypt": ["DESede"], "mode": ["CBC"], "padding": ["PKCS5Padding"]}}
+{"id": "java_45", "Basic.checkSizes": {"environ": ["envVariables"], "size": [5]}}
+{"id": "java_46", "MethodInvokeTest.checkInjectedInvoker": {"csm": ["csmInstance"], "expected": ["MyExpectedClass.class"]}}
+{"id": "java_47", "LargeHandshakeTest.format": {"name": ["CERTIFICATE"], "value": ["MIIFdTCCBF2gAwIBAgISESG"]}}
+{"id": "java_48", "CookieHeaderTest.create": {"sa": ["new InetSocketAddress(\"192.168.1.10\", 8080)"], "sslContext": ["testSSLContext"]}}
+{"id": "java_49", "Http2TestExchangeImpl.sendResponseHeaders": {"rCode": [404], "responseLength": [1500]}}
+{"id": "java_50", "TransformIndexerStateTests.doDeleteByQuery": {"deleteByQueryRequest": ["deleteQueryRequest"], "responseListener": ["testListener"]}}
+{"id": "java_51", "CCRUsageTransportAction.masterOperation": {"task": ["usageTask"], "request": ["usageRequest"], "state": ["clusterState"], "listener": ["actionListener"]}}
+{"id": "java_52", "SamlObjectSignerTests.getChildren": {"node": ["SAMLAssertionNode"], "node_type": ["Element.class"]}}
+{"id": "java_53", "VotingOnlyNodePlugin.fullMasterWithOlderState": {"localAcceptedTerm": [42], "localAcceptedVersion": [7]}}
+{"id": "java_54", "AbstractTransportSearchableSnapshotsAction.shardOperation": {"request": ["snapshotRequest"], "shardRouting": ["shardRouteInfo"], "task": ["snapshotTask"], "listener": ["operationListener"]}}
+{"id": "java_55", "SearchableSnapshotDirectory.create": {"repositories": ["repositoriesService"], "cache": ["cacheService"], "indexSettings": ["indexSettingsForLogs"], "shardPath": ["/data/nodes/0/indices/logs/5"], "currentTimeNanosSupplier": ["currentTimeNanos"], "threadPool": ["threadPool"], "blobStoreCacheService": ["blobStoreCacheService"], "sharedBlobCacheService": ["sharedBlobCacheService"]}}
+{"id": "java_56", "CCSDuelIT.parseEntity": {"entity": ["httpResponseEntity"], "entityParser": ["responseParser"], "parserConfig": ["defaultParserConfig"]}}
+{"id": "java_57", "Booleans.parseBooleanLenient": {"value": ["yes"], "defaultValue": [false]}}
+{"id": "java_58", "XContentBuilder.map": {"values": ["userProfile"], "ensureNoSelfReferences": [true], "writeStartAndEndHeaders": [true]}}
+{"id": "java_59", "TruncateTranslogAction.execute": {"terminal": ["terminalInterface"], "shardPath": ["new ShardPath(Paths.get('/var/data/elasticsearch/nodes/0/indices/1shard'))"], "indexDirectory": ["FSDirectory.open(Paths.get('/var/data/elasticsearch/nodes/0/indices/1shard/index'))"]}}
+{"id": "java_60", "NestedQueryBuilder.doBuild": {"parentSearchContext": ["mainSearchContext"], "innerHitsContext": ["hitsContext"]}}
+{"id": "java_61", "ScoreFunctionBuilders.exponentialDecayFunction": {"fieldName": ["timestamp"], "origin": ["now"], "scale": ["10d"], "offset": ["2d"], "decay": [0.5]}}
+{"id": "java_62", "dvRangeQuery": {"field": ["temperature"], "queryType": ["FLOAT"], "from": [20.5, "20.5"], "to": [30.0, "30.0"], "includeFrom": [true], "includeTo": [false]}}
+{"id": "java_63", "withinQuery": {"field": ["age"], "from": [30], "to": [40], "includeFrom": [true], "includeTo": [false]}}
+{"id": "java_64", "DateScriptFieldType.createFieldType": {"name": ["timestamp"], "factory": ["dateFactory"], "script": ["dateScript"], "meta": [{"format": "epoch_millis"}], "onScriptError": ["FAIL"]}}
+{"id": "java_65", "RootObjectMapper.doXContent": {"builder": ["xContentBuilderInstance"], "params": [["include_defaults", true, "TOXCONTENT_SKIP_RUNTIME", true]]}}
+{"id": "java_66", "CompositeRuntimeField.createChildRuntimeField": {"parserContext": ["mappingParserContext"], "parent": ["compositeField1"], "parentScriptFactory": ["compositeScriptFactory"], "onScriptError": ["onScriptError.IGNORE"]}}
+{"id": "java_67", "MacDmgBundler.prepareDMGSetupScript": {"appLocation": ["/Applications/PhotoEditor.app"], "params": [{"APP_NAME": "PhotoEditor"}, {"IMAGES_ROOT": "/path/to/images"}, {"BACKGROUND_IMAGE_FOLDER": "background"}, {"BACKGROUND_IMAGE": "custom-bg.png"}]}}
+{"id": "java_68", "MacBaseInstallerBundler.validateAppImageAndBundeler": {"params": [{"/Applications/MyApp.app": "MyApp"}]}}
+{"id": "java_69", "DurationImpl.alignSigns": {"buf": ["durations"], "start": [2], "end": [5]}}
+{"id": "java_70", "XMLNamespaceBinder.endElement": {"element": ["new QName('http://www.example.com', 'item', 'ex')"], "augs": ["augmentations"]}}
+{"id": "java_71", "CoroutineManager.co_exit_to": {"arg_object": ["resultData"], "thisCoroutine": [5], "toCoroutine": [10]}}
+{"id": "java_72", "ToTextStream.characters": {"ch": ["textBuffer"], "start": [5], "length": [10]}}
+{"id": "java_73", "Encodings.getEncodingInfo": {"encoding": ["UTF-8"], "allowJavaNames": [true]}}
+{"id": "java_74", "BaseMarkupSerializer.surrogates": {"high": [55357], "low": [56832], "inContent": [false]}}
+{"id": "java_75", "JdkXmlFeatures.getSystemProperty": {"feature": ["XML_SECURITY"], "sysPropertyName": ["enableXmlSecurityFeature"]}}
+{"id": "java_76", "Intro.step": {"w": [800], "h": [600]}}
+{"id": "java_77", "JndiLoginModule.verifyPassword": {"encryptedPassword": ["e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"], "password": ["P@ssw0rd!"]}}
+{"id": "java_78", "OptionSpecBuilder.requiredUnless": {"dependent": ["quiet"], "otherDependents": [["verbose"]]}}
+{"id": "java_79", "SAXFilterFactoryImpl.resolveEntity": {"publicid": ["1234"], "sysId": ["http://astro.com/stylesheets/toptemplate"]}}
+{"id": "java_80", "RegexConstraint.initIRPattern": {"category": ["failOn"], "ruleIdx": [42]}}
+{"id": "java_81", "TestObjectGraphAfterGC.doTesting": {"testcaseData": ["humongous-test-case.json"], "doGC": ["customGarbageCollector"], "checker": ["referenceChecker"], "gcLogName": ["gc-analysis.log"], "shouldContain": [["GC pause"]], "shouldNotContain": [["OutOfMemoryError"]]}}
+{"id": "java_82", "clear001a.runIt": {"args": ["testArgs"], "out": ["System.out"]}}
+{"id": "java_83", "thrcputime002.runIt": {"argv": [["-waitTime", "2", "-iterations", "500"]], "out": ["System.out"]}}
+{"id": "java_84", "checkInnerFields": {"redefCls": ["myRedefClass"], "expValue": [100]}}
+{"id": "java_85", "classfloadhk005.runIt": {"argv": [["/path/to/classes", "60"]], "out": ["logStream"]}}
+{"id": "java_86", "argumenttypes001.runThis": {"argv": [["-v", "--no-strict"]], "out": ["debugOutput"]}}
+{"id": "java_87", "suspendpolicy017.settingVMDeathRequest": {"suspendPolicy": ["EVENT_THREAD"], "property": ["deathEvent001"]}}
+{"id": "java_88", "filter_s002.setting22MethodEntryRequest": {"thread": ["mainThread"], "testedClass": ["com.example.MainClass"], "suspendPolicy": ["EventRequest.SUSPEND_ALL"], "property": ["testProperty"]}}
+{"id": "java_89", "runThis": {"argv": [["-waitTime", "2", "-debuggeeName", "TestDebuggee"]], "out": ["testLogStream"]}}
+{"id": "java_90", "sourcepaths002.runIt": {"args": [["-v", "-p"]], "out": ["System.out"]}}
+{"id": "java_91", "invokemethod007.runIt": {"args": [["suspend", "log"]], "out": ["debugLog"]}}
+{"id": "java_92", "ClassFileFinder.findClassFile": {"name": ["com.example.MyClass"], "classPath": ["/usr/local/classes:/home/user/java/libs"]}}
+{"id": "java_93", "AbstractJarAgent.runJarAgent": {"options": ["trace log"], "inst": ["appInstrumentation"]}}
+{"id": "java_94", "NFILibrary.isMemberReadable": {"symbol": ["getVersion"], "recursive": ["", null]}}
+{"id": "java_95", "ExportNodeTest.doGeneric": {"receiver": ["ExportInlinedObject1Instance"], "argument": ["HelloWorld"], "node": ["InlinableNodeInstance"], "library": ["NodeLibraryInstance"]}}
+{"id": "java_96", "InstrumentableProcessor.createCallConverter": {"converterMethod": ["convertValue"], "frameParameterName": ["frameVar"], "returnName": ["returnValueCode"]}}
+{"id": "java_97", "FlatNodeGenFactory.generateIntrospectionInfo": {"clazz": ["NodeClass"], "inlined": [false]}}
+{"id": "java_98", "LoopConditionProfile.calculateProbability": {"trueCountLocal": [150], "falseCountLocal": [50]}}
+{"id": "java_99", "LibraryExport.createDelegate": {"factory": ["myFactory"], "delegate": ["existingDelegate"]}}

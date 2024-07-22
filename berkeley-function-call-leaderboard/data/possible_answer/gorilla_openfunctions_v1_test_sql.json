@@ -1,100 +1,100 @@
-{"index": "sql_0", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["students"], "columns": [["name"]], "conditions": [["id = 1234"]]}}
-{"index": "sql_1", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["calculations"], "columns": [["result"]], "conditions": [["id = 5678"]]}}
-{"index": "sql_2", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Students"], "columns": [["StudentID", "FirstName", "LastName", "Age", "Grade"]]}}
-{"index": "sql_3", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["MathScores"], "columns": [["StudentID", "AlgebraScore", "GeometryScore", "CalculusScore", "StatisticsScore"]]}}
-{"index": "sql_4", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["StudentGrades"], "columns": [["MathGrade"]], "update_values": [["95"]], "conditions": [["StudentID = 12345"]]}}
-{"index": "sql_5", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["ExamScores"], "columns": [["GeometryScore"]], "update_values": [["85"]], "conditions": [["ExamID = 67890"]]}}
-{"index": "sql_6", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["Students"], "columns": [["StudentID", "Name", "GPA"]], "conditions": [["GPA < 2.0"]]}}
-{"index": "sql_7", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["MathScores"], "columns": [["StudentID", "StudentName", "FinalScore"]], "conditions": [["FinalScore < 50"]]}}
-{"index": "sql_8", "sql.execute": {"sql_keyword": ["INSERT INTO"], "table_name": ["Students"], "columns": [["ID", "Name", "Age", "Grade"]], "insert_values": [["S101", "John Doe", "15", "10"]]}}
-{"index": "sql_9", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["MathScores"], "columns": [["StudentID", "Name", "TestScore", "TestDate"]], "insert_values": [["EW123", "Emily Watson", "95", "2022-03-01"], ["EW123", "Emily Watson", "95", "03/01/2022"], ["EW123", "Emily Watson", "95", "Mar 1, 2022"]]}}
-{"index": "sql_10", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["Physics_Class"], "columns": [["student_name"]], "conditions": [["final_score > 90"]]}}
-{"index": "sql_11", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["Physicists"], "columns": [["name", "research_topic"]], "conditions": ["research_topic = 'Quantum Mechanics'"]}}
-{"index": "sql_12", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["PhysicsExperiments"], "columns": [["ExperimentID", "ExperimentName", "Researcher", "DateConducted", "Result"]]}}
-{"index": "sql_13", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["ParticleData"], "columns": [["ParticleID", "ParticleName", "DiscoveredBy", "YearDiscovered", "Charge", "Spin", "Mass"]]}}
-{"index": "sql_14", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["ExperimentData"], "columns": [["DataValue"]], "update_values": [[10.0]], "conditions": [["ExperimentID = EX123"]]}}
-{"index": "sql_15", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["PhysicsResults"], "columns": [["Result"]], "update_values": [6.0], "conditions": [["ExperimentID = 'PHY789'"]]}, "sql.execute_2": {"sql_keyword": ["SELECT"], "table_name": [["PhysicsResults"]], "columns": ["ExperimentID", "ExperimentName", "Result", "MeasurementUnit", "ExperimentDate"], "conditions": ["ExperimentID = 'PHY789'"]}}
-{"index": "sql_16", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["ExperimentData"], "conditions": [["MeasurementID = 'M123'", "ExperimentID = 'E456'"]]}}
-{"index": "sql_17", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["StarObservations"], "conditions": [["ObservationID = 'O789'", "StarName = 'Betelgeuse'"]]}}
-{"index": "sql_18", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["FreeFallExperiment"], "insert_values": [[10, 1.43, 1], [20, 2.01, 2]]}}
-{"index": "sql_19", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["SoundSpeedExperiment"], "insert_values": [["Air", 343, 20, 1], ["Water", 1482, 20, 2]]}}
-{"index": "sql_20", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["PeriodicTable"], "columns": [["name", "atomic_numbers"]], "conditions": [["atomic_weight < 20"]]}}
-{"index": "sql_21", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["ChemicalElements"], "columns": [["name", "atomic_masses"]], "conditions": [["number_of_protons > 50"]]}}
-{"index": "sql_22", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["ChemicalElements"], "columns": [["ElementName", "AtomicNumber", "Symbol", "AtomicWeight"]]}}
-{"index": "sql_23", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["MolecularStructures"], "columns": [["MoleculeName", "MolecularFormula", "MolecularWeight", "StructureDiagram"]]}}
-{"index": "sql_24", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["Elements"], "columns": [["AtomicWeight"]], "update_values": [[1.008]], "conditions": [["ElementName = 'Hydrogen'"]]}}
-{"index": "sql_25", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["Compounds"], "columns": [["MolarMass"]], "update_values": [[18.01528]], "conditions": [["CompoundName = 'Water'"]]}}
-{"index": "sql_26", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["Elements"], "conditions": [["AtomicNumber = 118", "ElementName = 'Oganesson'", "Symbol = 'Og'"]]}}
-{"index": "sql_27", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["Compounds"], "conditions": [["CompoundName = Dihydrogen Monoxide", "MolecularFormula = 'H2O'"]]}}
-{"index": "sql_28", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["ChemicalElements"], "columns": [["ElementName", "AtomicNumber", "Symbol", "AtomicWeight"]], "insert_values": [["Helium", 2, "He", 4.002602]]}}
-{"index": "sql_29", "sql.execute": {"sql_keyword": ["INSERT INTO"], "table_name": ["PeriodicTable"], "columns": [["Element", "AtomicNumber", "Symbol", "AtomicMass"]], "insert_values": [["Neon", 10, "Ne", 20.1797]]}}
-{"index": "sql_30", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["species"], "columns": [["species_name"]], "conditions": [["lifespan > 50"]]}}
-{"index": "sql_31", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["gene"], "columns": [["gene_name"]], "conditions": [["disease = 'Cancer'"]]}}
-{"index": "sql_32", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["CellTypes"], "columns": [["CellID", "CellName", "Organ", "Function"]]}}
-{"index": "sql_33", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Genes"], "columns": [["GeneID", "GeneName", "Chromosome", "StartLocation", "EndLocation"]]}}
-{"index": "sql_34", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["AnimalClassification"], "columns": [["Lifespan"]], "update_values": [["70"]], "conditions": [["animal = 'Elephant'", "Lifespan < 70"]]}}
-{"index": "sql_35", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["PlantSpecies"], "columns": [["AverageHeight"]], "update_values": [[150]], "conditions": ["SpeciesName = 'Sunflower'", "AverageHeight < 150"]}}
-{"index": "sql_36", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["Genes"], "conditions": [["GeneID = 'BRCA1'"]]}}
-{"index": "sql_37", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["Proteins"], "conditions": [["ProteinName = 'Hemoglobin'"]]}}
-{"index": "sql_38", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["Species"], "columns": ["Species_Name", "Lifespan", "Size", "Weight"], "insert_values": [["Leptodactylus pentadactylus", 10, 7.5, 80]]}}
-{"index": "sql_39", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["Plant_Species"], "columns": [["Species_Name", "Height", "Lifespan", "Seed_Weight"]], "insert_values": [["Cactaceae saharae", 15, 20, 0.5]]}}
-{"index": "sql_40", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["employees"], "columns": [["*"]], "conditions": [["age > 30", "department = 'Sales'"]]}}
-{"index": "sql_41", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["students"], "columns": ["*"], "conditions": [["grade < 60", "course = 'Computer Science'"]]}}
-{"index": "sql_42", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Students"], "columns": [["ID", "Name", "Age", "Grade"]]}}
-{"index": "sql_43", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Employees"], "columns": [["EmployeeID", "FirstName", "LastName", "Position", "Salary"]]}}
-{"index": "sql_44", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["Students"], "columns": [["Grade"]], "update_values": [["A"]], "conditions": [["Name = 'John'"]]}}
-{"index": "sql_45", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["Employees"], "columns": [["Salary"]], "update_values": [[80000]], "conditions": [["EmployeeID = 'E123'"]]}}
-{"index": "sql_46", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["Employees"], "conditions": [["name='John Doe'"]]}}
-{"index": "sql_47", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["Students"], "conditions": [["name='Jane Smith'"]]}}
-{"index": "sql_48", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["Students"], "columns": [["ID", "Name", "Age", "Grade"]], "insert_values": [[["S101", "John Doe", 16, 10]]]}}
-{"index": "sql_49", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["Employees"], "columns": [["EmployeeID", "FirstName", "LastName", "Position", "Salary"]], "insert_values": [["E123", "Jane", "Doe", "Manager", 80000]]}}
-{"index": "sql_50", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["employees"], "columns": ["name"], "conditions": [["salary > 50000"]]}}
-{"index": "sql_51", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["customers"], "columns": [["name", "age"]], "conditions": [["purchases > 1000"]]}}
-{"index": "sql_52", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Employee"], "columns": [["ID", "Name", "Position", "Salary", "Department"]]}}
-{"index": "sql_53", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Customer"], "columns": [["CustomerID", "FirstName", "LastName", "Email", "Phone", "Address"]]}}
-{"index": "sql_54", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["employees"], "columns": [["salary"]], "update_values": [[5000]], "conditions": [["job_title = 'Manager'"]]}}
-{"index": "sql_55", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["products"], "columns": [["price"]], "update_values": [[20]], "conditions": [["category = 'Electronics'"]]}}
-{"index": "sql_56", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["orders"], "conditions": [["order_status = cancelled"]]}}
-{"index": "sql_57", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["customer_data"], "conditions": [["customer_age < 18"]]}}
-{"index": "sql_58", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["employees"], "columns": [["employee_id", "first_name", "last_name", "email", "phone_number"]], "insert_values": [["E1001", "John", "Doe", "johndoe@example.com", "123-456-7890"]]}}
-{"index": "sql_59", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["customer"], "columns": [["customer_id", "customer_name", "customer_email", "customer_address", "customer_phone"]], "insert_values": [["C1023", "Jane Smith", "janesmith@example.com", "123 Main St, Anytown", "987-654-3210"]]}}
-{"index": "sql_60", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["employees"], "columns": [["name"]], "conditions": [["salary > 5000"]]}}
-{"index": "sql_61", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["customers"], "columns": [["AVG"]], "conditions": [["purchase > 1000"]]}}
-{"index": "sql_62", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["StudentScores"], "columns": [["StudentID", "MathScore", "EnglishScore", "ScienceScore"]]}}
-{"index": "sql_63", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["SurveyResults"], "columns": [["RespondentID", "Age", "Gender", "Income", "SatisfactionScore"]]}}
-{"index": "sql_64", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["Students"], "columns": [["Grade"]], "update_values": [["A"]], "conditions": [["Age > 18"]]}}
-{"index": "sql_65", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["Survey_Responses"], "columns": [["Response"]], "update_values": ["Yes"], "conditions": [["Age > 50", "Gender = 'Male'"]]}}
-{"index": "sql_66", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["employees"], "conditions": [["job_title='Data Analyst'"]]}}
-{"index": "sql_67", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["student_scores"], "conditions": [["score < 50"]]}}
-{"index": "sql_68", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["Students"], "columns": [["StudentID", "FirstName", "LastName", "Age", "Grade"]], "insert_values": [["S101", "John", "Doe", 15, 10]]}}
-{"index": "sql_69", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["Census"], "columns": [["Year", "Population", "BirthRate", "DeathRate", "NetMigrationRate"]], "insert_values": [[2022, "331002651", 12.4, 8.9, 2.5]]}}
-{"index": "sql_70", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["sales"], "columns": [["product_name", "quantity_sold"]], "conditions": [["product_name = 'Product X'", "sale_date >= '2022-01-01'", "sale_date <= '2022-03-31'"]]}}
-{"index": "sql_71", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["income_data"], "columns": [["income"]], "conditions": [["city = 'New York"]]}}
-{"index": "sql_72", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["EconomicData"], "columns": [["Year", "GDP", "InflationRate", "UnemploymentRate", "InterestRate"]]}}
-{"index": "sql_73", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["FiscalPolicy"], "columns": [["Year", "GovernmentSpending", "TaxRevenue", "BudgetDeficit", "PublicDebt"]]}}
-{"index": "sql_74", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["country_gdp"], "columns": [["gdp"]], "update_values": [["21.44 trillion USD"]], "conditions": [["country_name = 'United States'"]]}}
-{"index": "sql_75", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["country_inflation"], "columns": [["inflation_rate"]], "update_values": [1.2], "conditions": [["country_name = 'Japan'"], ["country_name = Japan"]]}}
-{"index": "sql_76", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["EconomicData"], "conditions": [["Indicator = 'GDP'", "Year = '2010'", "Indicator = 'GDP'", "Year = 2010", "Indicator = GDP", "Year = '2010'", "Indicator = GDP", "Year = 2010"]]}}
-{"index": "sql_77", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["FinancialStats"], "conditions": [["EconomicIndicator = Unemployment Rate", "Year = 2005", "EconomicIndicator = 'Unemployment Rate'", "Year = '2005'"]]}}
-{"index": "sql_78", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["EconomicData"], "columns": [["Country", "GDP", "Unemployment_Rate", "Inflation_Rate"]], "insert_values": [["USA", "21.43 trillion", "3.5%", "1.8%"]]}}
-{"index": "sql_79", "sql.execute": {"sql_keyword": ["INSERT INTO"], "table_name": ["GlobalEconomy"], "columns": [["Region", "Trade_Deficit", "Interest_Rate", "Population"]], "insert_values": [["Europe", "2.1 trillion", "0.5%", "741.4 million"]]}}
-{"index": "sql_80", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["Employees"], "columns": [["name", "salaries"]], "conditions": [["salaries > 5000"]]}}
-{"index": "sql_81", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["Customers"], "columns": [["name", "account_balances"]], "conditions": [["account_balances > 10000"]]}}
-{"index": "sql_82", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Investments"], "columns": ["InvestorName", "InvestmentType", "InvestmentAmount", "InvestmentDate"]}}
-{"index": "sql_83", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["FinancialTransactions"], "columns": [["TransactionID", "TransactionType", "TransactionAmount", "TransactionDate"]]}}
-{"index": "sql_84", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["customers"], "columns": [["balance"]], "update_values": [["1500"]], "conditions": [["name = 'John Doe'"], ["name = \"John Doe\""]]}}
-{"index": "sql_85", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["stocks"], "columns": [["price"]], "update_values": [["140"]], "conditions": [["name = 'Apple Inc.'"]]}}
-{"index": "sql_86", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["transactions"], "conditions": [["account_type = 'savings'", "amount > 5000"]]}}
-{"index": "sql_87", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["customer_details"], "conditions": [["credit_score < 600", "account_balance < 1000"]]}}
-{"index": "sql_88", "sql.execute": {"sql_keyword": ["INSERT INTO"], "table_name": ["Transactions"], "columns": [["TransactionID", "Date", "Amount", "Type", "AccountID"]], "insert_values": [["TXN12345", "2022-03-01", "5000", "Deposit", "ACC789"]]}}
-{"index": "sql_89", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["Stocks"], "columns": [["StockID", "PurchaseDate", "PurchasePrice", "Quantity", "InvestorID"]], "insert_values": [["STK54321", "2022-03-15", "150", "100", "INV456"], ["STK54321", "15/03/2022", "150", "100", "INV456"], ["STK54321", "Mar.15,2022", "150", "100", "INV456"]]}}
-{"index": "sql_90", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["employees"], "columns": [["name", "age", "salary"]], "conditions": [["age > 30"]]}}
-{"index": "sql_91", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["products"], "columns": [["product_name", "product_id", "price"]], "conditions": [["price < 20"]]}}
-{"index": "sql_92", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Employee"], "columns": [["EmployeeID", "FirstName", "LastName", "Email", "Phone"]]}}
-{"index": "sql_93", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Inventory"], "columns": [["ProductID", "ProductName", "SupplierID", "CategoryID", "QuantityPerUnit", "UnitPrice"]]}}
-{"index": "sql_94", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["employees"], "columns": [["salary"]], "update_values": [["5000"]], "conditions": [["ID = E123"]]}}
-{"index": "sql_95", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["products"], "columns": [["price"]], "update_values": ["15.99"], "conditions": [["SKU = P789"]]}}
-{"index": "sql_96", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["employees"], "conditions": [["salary < 50000"]]}}
-{"index": "sql_97", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["orders"], "conditions": [["order_status = 'cancelled'"]]}}
-{"index": "sql_98", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["Employees"], "columns": [["EmployeeID", "FirstName", "LastName", "Position"]], "insert_values": [["E123", "John", "Doe", "Manager"]]}}
-{"index": "sql_99", "sql.execute": {"sql_keyword": ["INSERT "], "table_name": ["Products"], "columns": [["ProductID", "ProductName", "Category", "Price"]], "insert_values": [["P789", "Apple iPhone 13", "Electronics", "999"]]}}
+{"id": "sql_0", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["students"], "columns": [["name"]], "conditions": [["id = 1234"]]}}
+{"id": "sql_1", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["calculations"], "columns": [["result"]], "conditions": [["id = 5678"]]}}
+{"id": "sql_2", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Students"], "columns": [["StudentID", "FirstName", "LastName", "Age", "Grade"]]}}
+{"id": "sql_3", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["MathScores"], "columns": [["StudentID", "AlgebraScore", "GeometryScore", "CalculusScore", "StatisticsScore"]]}}
+{"id": "sql_4", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["StudentGrades"], "columns": [["MathGrade"]], "update_values": [["95"]], "conditions": [["StudentID = 12345"]]}}
+{"id": "sql_5", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["ExamScores"], "columns": [["GeometryScore"]], "update_values": [["85"]], "conditions": [["ExamID = 67890"]]}}
+{"id": "sql_6", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["Students"], "columns": [["StudentID", "Name", "GPA"]], "conditions": [["GPA < 2.0"]]}}
+{"id": "sql_7", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["MathScores"], "columns": [["StudentID", "StudentName", "FinalScore"]], "conditions": [["FinalScore < 50"]]}}
+{"id": "sql_8", "sql.execute": {"sql_keyword": ["INSERT INTO"], "table_name": ["Students"], "columns": [["ID", "Name", "Age", "Grade"]], "insert_values": [["S101", "John Doe", "15", "10"]]}}
+{"id": "sql_9", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["MathScores"], "columns": [["StudentID", "Name", "TestScore", "TestDate"]], "insert_values": [["EW123", "Emily Watson", "95", "2022-03-01"], ["EW123", "Emily Watson", "95", "03/01/2022"], ["EW123", "Emily Watson", "95", "Mar 1, 2022"]]}}
+{"id": "sql_10", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["Physics_Class"], "columns": [["student_name"]], "conditions": [["final_score > 90"]]}}
+{"id": "sql_11", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["Physicists"], "columns": [["name", "research_topic"]], "conditions": ["research_topic = 'Quantum Mechanics'"]}}
+{"id": "sql_12", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["PhysicsExperiments"], "columns": [["ExperimentID", "ExperimentName", "Researcher", "DateConducted", "Result"]]}}
+{"id": "sql_13", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["ParticleData"], "columns": [["ParticleID", "ParticleName", "DiscoveredBy", "YearDiscovered", "Charge", "Spin", "Mass"]]}}
+{"id": "sql_14", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["ExperimentData"], "columns": [["DataValue"]], "update_values": [[10.0]], "conditions": [["ExperimentID = EX123"]]}}
+{"id": "sql_15", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["PhysicsResults"], "columns": [["Result"]], "update_values": [6.0], "conditions": [["ExperimentID = 'PHY789'"]]}, "sql.execute_2": {"sql_keyword": ["SELECT"], "table_name": [["PhysicsResults"]], "columns": ["ExperimentID", "ExperimentName", "Result", "MeasurementUnit", "ExperimentDate"], "conditions": ["ExperimentID = 'PHY789'"]}}
+{"id": "sql_16", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["ExperimentData"], "conditions": [["MeasurementID = 'M123'", "ExperimentID = 'E456'"]]}}
+{"id": "sql_17", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["StarObservations"], "conditions": [["ObservationID = 'O789'", "StarName = 'Betelgeuse'"]]}}
+{"id": "sql_18", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["FreeFallExperiment"], "insert_values": [[10, 1.43, 1], [20, 2.01, 2]]}}
+{"id": "sql_19", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["SoundSpeedExperiment"], "insert_values": [["Air", 343, 20, 1], ["Water", 1482, 20, 2]]}}
+{"id": "sql_20", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["PeriodicTable"], "columns": [["name", "atomic_numbers"]], "conditions": [["atomic_weight < 20"]]}}
+{"id": "sql_21", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["ChemicalElements"], "columns": [["name", "atomic_masses"]], "conditions": [["number_of_protons > 50"]]}}
+{"id": "sql_22", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["ChemicalElements"], "columns": [["ElementName", "AtomicNumber", "Symbol", "AtomicWeight"]]}}
+{"id": "sql_23", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["MolecularStructures"], "columns": [["MoleculeName", "MolecularFormula", "MolecularWeight", "StructureDiagram"]]}}
+{"id": "sql_24", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["Elements"], "columns": [["AtomicWeight"]], "update_values": [[1.008]], "conditions": [["ElementName = 'Hydrogen'"]]}}
+{"id": "sql_25", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["Compounds"], "columns": [["MolarMass"]], "update_values": [[18.01528]], "conditions": [["CompoundName = 'Water'"]]}}
+{"id": "sql_26", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["Elements"], "conditions": [["AtomicNumber = 118", "ElementName = 'Oganesson'", "Symbol = 'Og'"]]}}
+{"id": "sql_27", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["Compounds"], "conditions": [["CompoundName = Dihydrogen Monoxide", "MolecularFormula = 'H2O'"]]}}
+{"id": "sql_28", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["ChemicalElements"], "columns": [["ElementName", "AtomicNumber", "Symbol", "AtomicWeight"]], "insert_values": [["Helium", 2, "He", 4.002602]]}}
+{"id": "sql_29", "sql.execute": {"sql_keyword": ["INSERT INTO"], "table_name": ["PeriodicTable"], "columns": [["Element", "AtomicNumber", "Symbol", "AtomicMass"]], "insert_values": [["Neon", 10, "Ne", 20.1797]]}}
+{"id": "sql_30", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["species"], "columns": [["species_name"]], "conditions": [["lifespan > 50"]]}}
+{"id": "sql_31", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["gene"], "columns": [["gene_name"]], "conditions": [["disease = 'Cancer'"]]}}
+{"id": "sql_32", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["CellTypes"], "columns": [["CellID", "CellName", "Organ", "Function"]]}}
+{"id": "sql_33", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Genes"], "columns": [["GeneID", "GeneName", "Chromosome", "StartLocation", "EndLocation"]]}}
+{"id": "sql_34", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["AnimalClassification"], "columns": [["Lifespan"]], "update_values": [["70"]], "conditions": [["animal = 'Elephant'", "Lifespan < 70"]]}}
+{"id": "sql_35", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["PlantSpecies"], "columns": [["AverageHeight"]], "update_values": [[150]], "conditions": ["SpeciesName = 'Sunflower'", "AverageHeight < 150"]}}
+{"id": "sql_36", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["Genes"], "conditions": [["GeneID = 'BRCA1'"]]}}
+{"id": "sql_37", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["Proteins"], "conditions": [["ProteinName = 'Hemoglobin'"]]}}
+{"id": "sql_38", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["Species"], "columns": ["Species_Name", "Lifespan", "Size", "Weight"], "insert_values": [["Leptodactylus pentadactylus", 10, 7.5, 80]]}}
+{"id": "sql_39", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["Plant_Species"], "columns": [["Species_Name", "Height", "Lifespan", "Seed_Weight"]], "insert_values": [["Cactaceae saharae", 15, 20, 0.5]]}}
+{"id": "sql_40", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["employees"], "columns": [["*"]], "conditions": [["age > 30", "department = 'Sales'"]]}}
+{"id": "sql_41", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["students"], "columns": ["*"], "conditions": [["grade < 60", "course = 'Computer Science'"]]}}
+{"id": "sql_42", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Students"], "columns": [["ID", "Name", "Age", "Grade"]]}}
+{"id": "sql_43", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Employees"], "columns": [["EmployeeID", "FirstName", "LastName", "Position", "Salary"]]}}
+{"id": "sql_44", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["Students"], "columns": [["Grade"]], "update_values": [["A"]], "conditions": [["Name = 'John'"]]}}
+{"id": "sql_45", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["Employees"], "columns": [["Salary"]], "update_values": [[80000]], "conditions": [["EmployeeID = 'E123'"]]}}
+{"id": "sql_46", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["Employees"], "conditions": [["name='John Doe'"]]}}
+{"id": "sql_47", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["Students"], "conditions": [["name='Jane Smith'"]]}}
+{"id": "sql_48", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["Students"], "columns": [["ID", "Name", "Age", "Grade"]], "insert_values": [[["S101", "John Doe", 16, 10]]]}}
+{"id": "sql_49", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["Employees"], "columns": [["EmployeeID", "FirstName", "LastName", "Position", "Salary"]], "insert_values": [["E123", "Jane", "Doe", "Manager", 80000]]}}
+{"id": "sql_50", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["employees"], "columns": ["name"], "conditions": [["salary > 50000"]]}}
+{"id": "sql_51", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["customers"], "columns": [["name", "age"]], "conditions": [["purchases > 1000"]]}}
+{"id": "sql_52", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Employee"], "columns": [["ID", "Name", "Position", "Salary", "Department"]]}}
+{"id": "sql_53", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Customer"], "columns": [["CustomerID", "FirstName", "LastName", "Email", "Phone", "Address"]]}}
+{"id": "sql_54", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["employees"], "columns": [["salary"]], "update_values": [[5000]], "conditions": [["job_title = 'Manager'"]]}}
+{"id": "sql_55", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["products"], "columns": [["price"]], "update_values": [[20]], "conditions": [["category = 'Electronics'"]]}}
+{"id": "sql_56", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["orders"], "conditions": [["order_status = cancelled"]]}}
+{"id": "sql_57", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["customer_data"], "conditions": [["customer_age < 18"]]}}
+{"id": "sql_58", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["employees"], "columns": [["employee_id", "first_name", "last_name", "email", "phone_number"]], "insert_values": [["E1001", "John", "Doe", "johndoe@example.com", "123-456-7890"]]}}
+{"id": "sql_59", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["customer"], "columns": [["customer_id", "customer_name", "customer_email", "customer_address", "customer_phone"]], "insert_values": [["C1023", "Jane Smith", "janesmith@example.com", "123 Main St, Anytown", "987-654-3210"]]}}
+{"id": "sql_60", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["employees"], "columns": [["name"]], "conditions": [["salary > 5000"]]}}
+{"id": "sql_61", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["customers"], "columns": [["AVG"]], "conditions": [["purchase > 1000"]]}}
+{"id": "sql_62", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["StudentScores"], "columns": [["StudentID", "MathScore", "EnglishScore", "ScienceScore"]]}}
+{"id": "sql_63", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["SurveyResults"], "columns": [["RespondentID", "Age", "Gender", "Income", "SatisfactionScore"]]}}
+{"id": "sql_64", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["Students"], "columns": [["Grade"]], "update_values": [["A"]], "conditions": [["Age > 18"]]}}
+{"id": "sql_65", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["Survey_Responses"], "columns": [["Response"]], "update_values": ["Yes"], "conditions": [["Age > 50", "Gender = 'Male'"]]}}
+{"id": "sql_66", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["employees"], "conditions": [["job_title='Data Analyst'"]]}}
+{"id": "sql_67", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["student_scores"], "conditions": [["score < 50"]]}}
+{"id": "sql_68", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["Students"], "columns": [["StudentID", "FirstName", "LastName", "Age", "Grade"]], "insert_values": [["S101", "John", "Doe", 15, 10]]}}
+{"id": "sql_69", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["Census"], "columns": [["Year", "Population", "BirthRate", "DeathRate", "NetMigrationRate"]], "insert_values": [[2022, "331002651", 12.4, 8.9, 2.5]]}}
+{"id": "sql_70", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["sales"], "columns": [["product_name", "quantity_sold"]], "conditions": [["product_name = 'Product X'", "sale_date >= '2022-01-01'", "sale_date <= '2022-03-31'"]]}}
+{"id": "sql_71", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["income_data"], "columns": [["income"]], "conditions": [["city = 'New York"]]}}
+{"id": "sql_72", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["EconomicData"], "columns": [["Year", "GDP", "InflationRate", "UnemploymentRate", "InterestRate"]]}}
+{"id": "sql_73", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["FiscalPolicy"], "columns": [["Year", "GovernmentSpending", "TaxRevenue", "BudgetDeficit", "PublicDebt"]]}}
+{"id": "sql_74", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["country_gdp"], "columns": [["gdp"]], "update_values": [["21.44 trillion USD"]], "conditions": [["country_name = 'United States'"]]}}
+{"id": "sql_75", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["country_inflation"], "columns": [["inflation_rate"]], "update_values": [1.2], "conditions": [["country_name = 'Japan'"], ["country_name = Japan"]]}}
+{"id": "sql_76", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["EconomicData"], "conditions": [["Indicator = 'GDP'", "Year = '2010'", "Indicator = 'GDP'", "Year = 2010", "Indicator = GDP", "Year = '2010'", "Indicator = GDP", "Year = 2010"]]}}
+{"id": "sql_77", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["FinancialStats"], "conditions": [["EconomicIndicator = Unemployment Rate", "Year = 2005", "EconomicIndicator = 'Unemployment Rate'", "Year = '2005'"]]}}
+{"id": "sql_78", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["EconomicData"], "columns": [["Country", "GDP", "Unemployment_Rate", "Inflation_Rate"]], "insert_values": [["USA", "21.43 trillion", "3.5%", "1.8%"]]}}
+{"id": "sql_79", "sql.execute": {"sql_keyword": ["INSERT INTO"], "table_name": ["GlobalEconomy"], "columns": [["Region", "Trade_Deficit", "Interest_Rate", "Population"]], "insert_values": [["Europe", "2.1 trillion", "0.5%", "741.4 million"]]}}
+{"id": "sql_80", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["Employees"], "columns": [["name", "salaries"]], "conditions": [["salaries > 5000"]]}}
+{"id": "sql_81", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["Customers"], "columns": [["name", "account_balances"]], "conditions": [["account_balances > 10000"]]}}
+{"id": "sql_82", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Investments"], "columns": ["InvestorName", "InvestmentType", "InvestmentAmount", "InvestmentDate"]}}
+{"id": "sql_83", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["FinancialTransactions"], "columns": [["TransactionID", "TransactionType", "TransactionAmount", "TransactionDate"]]}}
+{"id": "sql_84", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["customers"], "columns": [["balance"]], "update_values": [["1500"]], "conditions": [["name = 'John Doe'"], ["name = \"John Doe\""]]}}
+{"id": "sql_85", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["stocks"], "columns": [["price"]], "update_values": [["140"]], "conditions": [["name = 'Apple Inc.'"]]}}
+{"id": "sql_86", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["transactions"], "conditions": [["account_type = 'savings'", "amount > 5000"]]}}
+{"id": "sql_87", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["customer_details"], "conditions": [["credit_score < 600", "account_balance < 1000"]]}}
+{"id": "sql_88", "sql.execute": {"sql_keyword": ["INSERT INTO"], "table_name": ["Transactions"], "columns": [["TransactionID", "Date", "Amount", "Type", "AccountID"]], "insert_values": [["TXN12345", "2022-03-01", "5000", "Deposit", "ACC789"]]}}
+{"id": "sql_89", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["Stocks"], "columns": [["StockID", "PurchaseDate", "PurchasePrice", "Quantity", "InvestorID"]], "insert_values": [["STK54321", "2022-03-15", "150", "100", "INV456"], ["STK54321", "15/03/2022", "150", "100", "INV456"], ["STK54321", "Mar.15,2022", "150", "100", "INV456"]]}}
+{"id": "sql_90", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["employees"], "columns": [["name", "age", "salary"]], "conditions": [["age > 30"]]}}
+{"id": "sql_91", "sql.execute": {"sql_keyword": ["SELECT"], "table_name": ["products"], "columns": [["product_name", "product_id", "price"]], "conditions": [["price < 20"]]}}
+{"id": "sql_92", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Employee"], "columns": [["EmployeeID", "FirstName", "LastName", "Email", "Phone"]]}}
+{"id": "sql_93", "sql.execute": {"sql_keyword": ["CREATE"], "table_name": ["Inventory"], "columns": [["ProductID", "ProductName", "SupplierID", "CategoryID", "QuantityPerUnit", "UnitPrice"]]}}
+{"id": "sql_94", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["employees"], "columns": [["salary"]], "update_values": [["5000"]], "conditions": [["ID = E123"]]}}
+{"id": "sql_95", "sql.execute": {"sql_keyword": ["UPDATE"], "table_name": ["products"], "columns": [["price"]], "update_values": ["15.99"], "conditions": [["SKU = P789"]]}}
+{"id": "sql_96", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["employees"], "conditions": [["salary < 50000"]]}}
+{"id": "sql_97", "sql.execute": {"sql_keyword": ["DELETE"], "table_name": ["orders"], "conditions": [["order_status = 'cancelled'"]]}}
+{"id": "sql_98", "sql.execute": {"sql_keyword": ["INSERT"], "table_name": ["Employees"], "columns": [["EmployeeID", "FirstName", "LastName", "Position"]], "insert_values": [["E123", "John", "Doe", "Manager"]]}}
+{"id": "sql_99", "sql.execute": {"sql_keyword": ["INSERT "], "table_name": ["Products"], "columns": [["ProductID", "ProductName", "Category", "Price"]], "insert_values": [["P789", "Apple iPhone 13", "Electronics", "999"]]}}

@@ -90,14 +90,12 @@ if __name__ == "__main__":
                     num_existing_result += 1
         
         if handler.model_style == ModelStyle.OSSMODEL:
-            result = handler.inference(
+            result, metadata = handler.inference(
                 test_question = test_cases[num_existing_result:],
-                test_category = test_category,
                 num_gpus = args.num_gpus,
             )
-            for index, res in enumerate(result):
-                result_to_write = {"id": index, "result": res}
-                handler.write(result_to_write, file_to_open)
+            handler.write(handler)
+            
         else:
             for index, test_case in enumerate(tqdm(test_cases)):
                 if index < num_existing_result:
@@ -109,7 +107,7 @@ if __name__ == "__main__":
                     user_question, functions, test_category
                 )
                 result_to_write = {
-                    "idx": index,
+                    "id": index,
                     "result": result,
                     "input_token_count": metadata["input_tokens"],
                     "output_token_count": metadata["output_tokens"],
