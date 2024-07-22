@@ -145,7 +145,7 @@ UNDERSCORE_TO_DOT = [
     "command-r-plus-FC-optimized",
     "THUDM/glm-4-9b-chat",
     "ibm-granite/granite-20b-functioncalling",
-    "yi-large-FC",
+    "yi-large-fc",
 ]
 
 TEST_CATEGORIES = {
