@@ -32,7 +32,7 @@ class GraniteHandler(OSSHandler):
         if language_specific_prompt_augmented_str.strip():
             prompt = prompt.replace(language_specific_prompt_augmented_str, "")
 
-        functions = language_specific_pre_processing(function, test_category, False)
+        functions = language_specific_pre_processing(function, test_category)
         functions = convert_to_tool(
             functions,
             GORILLA_TO_OPENAPI,
