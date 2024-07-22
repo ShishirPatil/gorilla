@@ -179,7 +179,7 @@ def single_ast_file_runner(
     for i in range(len(model_result)):
         model_result_item = model_result[i]["result"]
         prompt_item = prompt[i]["function"]
-        possible_answer_item = possible_answer[i]
+        possible_answer_item = possible_answer[i]["ground_truth"]
 
         try:
             model_result_item_raw = model_result_item
