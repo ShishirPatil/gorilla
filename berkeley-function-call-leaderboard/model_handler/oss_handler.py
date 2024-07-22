@@ -72,7 +72,7 @@ class OSSHandler(BaseHandler):
         for ques_json in test_question:
             prompt = augment_prompt_by_languge(ques_json["question"], test_category)
             functions = language_specific_pre_processing(
-                ques_json["function"], test_category, False
+                ques_json["function"], test_category
             )
             prompts.append(format_prompt_func(prompt, functions, test_category))
 
