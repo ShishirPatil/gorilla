@@ -137,7 +137,7 @@ class NexusHandler(BaseHandler):
 
     def inference(self, prompt, functions, test_category):
         prompt = augment_prompt_by_languge(prompt, test_category)
-        functions = language_specific_pre_processing(functions, test_category, False)
+        functions = language_specific_pre_processing(functions, test_category)
         raven_prompt = self._format_raven_function(prompt, functions)
         result, metadata = self._query_raven(raven_prompt)
         return result, metadata

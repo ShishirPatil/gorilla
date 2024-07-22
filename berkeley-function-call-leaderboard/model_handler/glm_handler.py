@@ -88,7 +88,7 @@ class GLMHandler(OSSHandler):
         for line in test_question:
             prompt = augment_prompt_by_languge(line["question"], test_category)
             function = language_specific_pre_processing(
-                line["function"], test_category, False
+                line["function"], test_category
             )
             chat_template_ques_jsons.append(
                 self.apply_chat_template(prompt, function, test_category)

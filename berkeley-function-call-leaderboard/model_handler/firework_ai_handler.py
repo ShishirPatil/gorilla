@@ -34,7 +34,7 @@ class FireworkAIHandler(OpenAIHandler):
             f.write(json.dumps(result) + "\n")
 
     def inference(self, prompt, functions, test_category):
-        functions = language_specific_pre_processing(functions, test_category, True)
+        functions = language_specific_pre_processing(functions, test_category)
         if type(functions) is not list:
             functions = [functions]
         message = [{"role": "user", "content": prompt}]
