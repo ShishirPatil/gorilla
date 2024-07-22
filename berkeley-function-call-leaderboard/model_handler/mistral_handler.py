@@ -27,7 +27,7 @@ class MistralHandler(BaseHandler):
     def inference(self, prompt, functions, test_category):
         prompt = augment_prompt_by_languge(prompt, test_category)
         if "FC" in self.model_name:
-            functions = language_specific_pre_processing(functions, test_category, True)
+            functions = language_specific_pre_processing(functions, test_category)
             tool = convert_to_tool(
                 functions, GORILLA_TO_OPENAPI, self.model_style, test_category, True
             )
@@ -57,7 +57,7 @@ class MistralHandler(BaseHandler):
                 result = chat_response.choices[0].message.content
         else:
             functions = language_specific_pre_processing(
-                functions, test_category, False
+                functions, test_category
             )
             message = [
                 ChatMessage(role="system", content=SYSTEM_PROMPT_FOR_CHAT_MODEL),
