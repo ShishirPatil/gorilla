@@ -15,10 +15,10 @@ class LlamaHandler(OSSHandler):
         return conversations
 
     def inference(
-        self, test_question, test_category, num_gpus, format_prompt_func=_format_prompt
+        self, test_question, num_gpus, format_prompt_func=_format_prompt
     ):
         return super().inference(
-            test_question, test_category, num_gpus, format_prompt_func
+            test_question, num_gpus, format_prompt_func
         )
 
     def decode_ast(self, result, language="Python"):
