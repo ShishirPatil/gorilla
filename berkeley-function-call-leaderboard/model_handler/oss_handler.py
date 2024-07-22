@@ -59,9 +59,9 @@ class OSSHandler(BaseHandler):
         outputs = llm.generate(test_question, sampling_params)
 
         final_ans_jsons = []
-        for question, output in zip(test_question, outputs):
+        for output in outputs:
             text = output.outputs[0].text
-            final_ans_jsons.append({"id": question["id"], "result": text})
+            final_ans_jsons.append(text)
 
         return final_ans_jsons
 

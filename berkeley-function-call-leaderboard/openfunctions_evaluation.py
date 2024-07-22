@@ -70,7 +70,7 @@ if __name__ == "__main__":
     test_cases_total = []
     test_to_run, files_to_open = load_file(args.test_category)
     print(f"Generating results for {args.model} on test category: {test_to_run}.")
-    
+
     for test_category, file_to_open in zip(test_to_run, files_to_open):
         test_cases = []
         with open("./data/" + file_to_open) as f:
@@ -100,7 +100,9 @@ if __name__ == "__main__":
             test_question=test_cases_total,
             num_gpus=args.num_gpus,
         )
-        handler.write(handler)
+        for test_case, res in zip(test_cases_total, result):
+            result_to_write = {"id": test_case["id"], "result": res}
+            handler.write(result_to_write)
 
     else:
         for test_case in tqdm(test_cases_total):
