@@ -319,6 +319,12 @@ MODEL_METADATA_MAPPING = {
         "Databricks",
         "Databricks Open Model",
     ],
+    "NousResearch/Hermes-2-Pro-Llama-3-8B": [
+        "Hermes-2-Pro-Llama-3-8B (FC)",
+        "https://huggingface.co/NousResearch/Hermes-2-Pro-Llama-3-8B",
+        "NousResearch",
+        "apache-2.0",
+    ],
     "NousResearch/Hermes-2-Pro-Mistral-7B": [
         "Hermes-2-Pro-Mistral-7B (FC)",
         "https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B",
