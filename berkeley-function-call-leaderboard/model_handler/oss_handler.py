@@ -38,7 +38,7 @@ class OSSHandler(BaseHandler):
         top_p,
         stop_token_ids=None,
         max_model_len=None,
-        num_gpus=8,
+        num_gpus=1,
     ):
         from vllm import LLM, SamplingParams
 
