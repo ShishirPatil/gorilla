@@ -69,8 +69,9 @@ if __name__ == "__main__":
 
     test_cases_total = []
     test_to_run, files_to_open = load_file(args.test_category)
+    print(f"Generating results for {args.model} on test category: {test_to_run}.")
+    
     for test_category, file_to_open in zip(test_to_run, files_to_open):
-        print("Generating: " + file_to_open)
         test_cases = []
         with open("./data/" + file_to_open) as f:
             for line in f:
@@ -102,7 +103,7 @@ if __name__ == "__main__":
         handler.write(handler)
 
     else:
-        for test_case in tqdm(test_cases):
+        for test_case in tqdm(test_cases_total):
 
             user_question, functions, test_category = (
                 test_case["question"],
