@@ -18,6 +18,7 @@ def get_args():
     parser.add_argument("--top-p", type=float, default=1)
     parser.add_argument("--max-tokens", type=int, default=1200)
     parser.add_argument("--num-gpus", default=1, type=int)
+    parser.add_argument("--gpu-memory-utilization", default=0.9, type=float)
     parser.add_argument("--timeout", default=60, type=int)
 
     args = parser.parse_args()
@@ -95,10 +96,15 @@ if __name__ == "__main__":
 
         test_cases_total.extend(test_cases[num_existing_result:])
 
+    if len(test_cases_total) == 0:
+        print("All test cases have been previously generated. No new test cases to generate.")
+        exit()
+        
     if handler.model_style == ModelStyle.OSSMODEL:
         result, metadata = handler.inference(
             test_question=test_cases_total,
             num_gpus=args.num_gpus,
+            gpu_memory_utilization=args.gpu_memory_utilization,
         )
         for test_case, res in zip(test_cases_total, result):
             result_to_write = {"id": test_case["id"], "result": res}

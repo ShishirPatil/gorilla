@@ -15,12 +15,12 @@ class LlamaHandler(OSSHandler):
         return conversations
 
     def inference(
-        self, test_question, num_gpus, format_prompt_func=_format_prompt
+        self, test_question, num_gpus, gpu_memory_utilization, format_prompt_func=_format_prompt
     ):
         return super().inference(
-            test_question, num_gpus, format_prompt_func
+            test_question, num_gpus, gpu_memory_utilization, format_prompt_func=format_prompt_func
         )
-
+        
     def decode_ast(self, result, language="Python"):
         func = result
         func = func.replace("\n", "")  # remove new line characters

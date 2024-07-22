@@ -37,6 +37,7 @@ class OSSHandler(BaseHandler):
         stop_token_ids=None,
         max_model_len=None,
         num_gpus=8,
+        gpu_memory_utilization=0.9,
     ):
         from vllm import LLM, SamplingParams
 
@@ -55,6 +56,7 @@ class OSSHandler(BaseHandler):
             disable_custom_all_reduce=True,
             max_model_len=max_model_len,
             tensor_parallel_size=num_gpus,
+            gpu_memory_utilization=gpu_memory_utilization
         )
         outputs = llm.generate(test_question, sampling_params)
 
@@ -82,6 +84,7 @@ class OSSHandler(BaseHandler):
         self,
         test_question,
         num_gpus,
+        gpu_memory_utilization,
         format_prompt_func=_format_prompt,
         stop_token_ids=None,
         max_model_len=None,
@@ -97,6 +100,7 @@ class OSSHandler(BaseHandler):
             stop_token_ids=stop_token_ids,
             max_model_len=max_model_len,
             num_gpus=num_gpus,
+            gpu_memory_utilization=gpu_memory_utilization,
         )
 
         return ans_jsons, {"input_tokens": 0, "output_tokens": 0, "latency": 0}

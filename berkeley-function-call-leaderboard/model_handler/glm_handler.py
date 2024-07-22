@@ -30,7 +30,7 @@ class GLMHandler(OSSHandler):
             conversation, tokenize=False, add_generation_prompt=True
         )
 
-    def inference(self, test_question, num_gpus):
+    def inference(self, test_question, num_gpus, gpu_memory_utilization):
         from transformers import AutoTokenizer
 
         self.tokenizer = AutoTokenizer.from_pretrained(
@@ -40,6 +40,7 @@ class GLMHandler(OSSHandler):
         return super().inference(
             test_question,
             num_gpus,
+            gpu_memory_utilization,
             format_prompt_func=self.apply_chat_template,
             stop_token_ids=self.stop_token_ids,
             max_model_len=self.max_model_len,
