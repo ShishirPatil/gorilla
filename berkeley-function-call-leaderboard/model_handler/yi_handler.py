@@ -28,7 +28,6 @@ class YiHandler(BaseHandler):
         oai_tool = convert_to_tool(
             functions, GORILLA_TO_OPENAPI, self.model_style, test_category, True
         )
-        print('message = ', message)
         start_time = time.time()
         if len(oai_tool) > 0:
             response = self.client.chat.completions.create(
