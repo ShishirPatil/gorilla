@@ -5,6 +5,7 @@ from model_handler.model_style import ModelStyle
 from model_handler.constant import USE_COHERE_OPTIMIZATION
 from eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING
 
+
 def get_args():
     parser = argparse.ArgumentParser()
     # Refer to model_choice for supported models.
@@ -45,10 +46,10 @@ def build_handler(model_name, temperature, top_p, max_tokens):
     return handler
 
 
-def load_file(test_categories):   
+def load_file(test_categories):
     test_to_run = []
     files_to_open = []
-    
+
     if test_categories in TEST_COLLECTION_MAPPING:
         test_to_run = TEST_COLLECTION_MAPPING[test_categories]
         for test_name in test_to_run:
@@ -56,7 +57,7 @@ def load_file(test_categories):
     else:
         test_to_run.append(test_categories)
         files_to_open.append(TEST_FILE_MAPPING[test_categories])
-    
+
     return test_to_run, files_to_open
 
 
@@ -66,6 +67,7 @@ if __name__ == "__main__":
         args.model = args.model + "-optimized"
     handler = build_handler(args.model, args.temperature, args.top_p, args.max_tokens)
 
+    test_cases_total = []
     test_to_run, files_to_open = load_file(args.test_category)
     for test_category, file_to_open in zip(test_to_run, files_to_open):
         print("Generating: " + file_to_open)
@@ -73,6 +75,7 @@ if __name__ == "__main__":
         with open("./data/" + file_to_open) as f:
             for line in f:
                 test_cases.append(json.loads(line))
+
         num_existing_result = 0  # if the result file already exists, skip the test cases that have been tested.
         if os.path.exists(
             "./result/"
@@ -88,29 +91,35 @@ if __name__ == "__main__":
             ) as f:
                 for line in f:
                     num_existing_result += 1
-        
-        if handler.model_style == ModelStyle.OSSMODEL:
-            result, metadata = handler.inference(
-                test_question = test_cases[num_existing_result:],
-                num_gpus = args.num_gpus,
+
+        test_cases_total.extend(test_cases[num_existing_result:])
+
+    if handler.model_style == ModelStyle.OSSMODEL:
+        result, metadata = handler.inference(
+            test_question=test_cases_total,
+            num_gpus=args.num_gpus,
+        )
+        handler.write(handler)
+
+    else:
+        for test_case in tqdm(test_cases):
+
+            user_question, functions, test_category = (
+                test_case["question"],
+                test_case["function"],
+                test_case["index"].rsplit("_", 1)[0],
             )
-            handler.write(handler)
-            
-        else:
-            for index, test_case in enumerate(tqdm(test_cases)):
-                if index < num_existing_result:
-                    continue
-                user_question, functions = test_case["question"], test_case["function"]
-                if type(functions) is dict or type(functions) is str:
-                    functions = [functions]
-                result, metadata = handler.inference(
-                    user_question, functions, test_category
-                )
-                result_to_write = {
-                    "id": index,
-                    "result": result,
-                    "input_token_count": metadata["input_tokens"],
-                    "output_token_count": metadata["output_tokens"],
-                    "latency": metadata["latency"],
-                }
-                handler.write(result_to_write, file_to_open)
+            if type(functions) is dict or type(functions) is str:
+                functions = [functions]
+
+            result, metadata = handler.inference(
+                user_question, functions, test_category
+            )
+            result_to_write = {
+                "id": test_case["id"],
+                "result": result,
+                "input_token_count": metadata["input_tokens"],
+                "output_token_count": metadata["output_tokens"],
+                "latency": metadata["latency"],
+            }
+            handler.write(result_to_write)
