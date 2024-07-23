@@ -142,6 +142,7 @@ UNDERSCORE_TO_DOT = [
     "meetkai/functionary-medium-v2.4-FC",
     "NousResearch/Hermes-2-Pro-Llama-3-8B",
     "NousResearch/Hermes-2-Pro-Mistral-7B",
+    "NousResearch/Hermes-2-Theta-Llama-3-8B",
     "command-r-plus-FC",
     "command-r-plus-FC-optimized",
     "THUDM/glm-4-9b-chat",

@@ -331,6 +331,12 @@ MODEL_METADATA_MAPPING = {
         "NousResearch",
         "apache-2.0",
     ],
+    "NousResearch/Hermes-2-Theta-Llama-3-8B": [
+        "Hermes-2-Theta-Llama-3-8B (FC)",
+        "https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-8B",
+        "NousResearch",
+        "apache-2.0",
+    ],
     "meta-llama/Meta-Llama-3-8B-Instruct": [
         "Meta-Llama-3-8B-Instruct (Prompt)",
         "https://llama.meta.com/llama3",

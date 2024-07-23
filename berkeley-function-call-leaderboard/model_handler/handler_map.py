@@ -71,6 +71,7 @@ handler_map = {
     "databricks-dbrx-instruct": DatabricksHandler,
     "NousResearch/Hermes-2-Pro-Llama-3-8B": HermesHandler,
     "NousResearch/Hermes-2-Pro-Mistral-7B": HermesHandler,
+    "NousResearch/Hermes-2-Theta-Llama-3-8B": HermesHandler,
     "meta-llama/Meta-Llama-3-8B-Instruct": LlamaHandler,
     "meta-llama/Meta-Llama-3-70B-Instruct": LlamaHandler,
     "command-r-plus-FC": CohereHandler,
