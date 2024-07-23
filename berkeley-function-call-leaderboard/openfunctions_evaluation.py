@@ -9,18 +9,17 @@ from eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING
 def get_args():
     parser = argparse.ArgumentParser()
     # Refer to model_choice for supported models.
-    parser.add_argument("--model", type=str, default="gorilla-openfunctions-v2")
+    parser.add_argument("--model", type=str, default="gorilla-openfunctions-v2", nargs="+")
     # Refer to test_categories for supported categories.
-    parser.add_argument("--test-category", type=str, default="all")
+    parser.add_argument("--test-category", type=str, default="all", nargs="+")
 
     # Parameters for the model that you want to test.
     parser.add_argument("--temperature", type=float, default=0.7)
     parser.add_argument("--top-p", type=float, default=1)
     parser.add_argument("--max-tokens", type=int, default=1200)
     parser.add_argument("--num-gpus", default=1, type=int)
-    parser.add_argument("--gpu-memory-utilization", default=0.9, type=float)
     parser.add_argument("--timeout", default=60, type=int)
-
+    parser.add_argument("--gpu-memory-utilization", default=0.9, type=float)
     args = parser.parse_args()
     return args
 
@@ -47,32 +46,25 @@ def build_handler(model_name, temperature, top_p, max_tokens):
     return handler
 
 
-def load_file(test_categories):
-    test_to_run = []
-    files_to_open = []
+def parse_test_category_argument(test_category_args):
+    test_name_total = set()
+    test_filename_total = set()
+    
+    for test_category in test_category_args:
+        if test_category in TEST_COLLECTION_MAPPING:
+            for test_name in TEST_COLLECTION_MAPPING[test_category]:
+                test_name_total.add(test_name)
+                test_filename_total.add(TEST_FILE_MAPPING[test_name])
+        else:
+            test_name_total.add(test_category)
+            test_filename_total.add(TEST_FILE_MAPPING[test_category])
 
-    if test_categories in TEST_COLLECTION_MAPPING:
-        test_to_run = TEST_COLLECTION_MAPPING[test_categories]
-        for test_name in test_to_run:
-            files_to_open.append(TEST_FILE_MAPPING[test_name])
-    else:
-        test_to_run.append(test_categories)
-        files_to_open.append(TEST_FILE_MAPPING[test_categories])
-
-    return test_to_run, files_to_open
+    return list(test_name_total), list(test_filename_total)
 
 
-if __name__ == "__main__":
-    args = get_args()
-    if USE_COHERE_OPTIMIZATION and "command-r-plus" in args.model:
-        args.model = args.model + "-optimized"
-    handler = build_handler(args.model, args.temperature, args.top_p, args.max_tokens)
-
+def collect_test_cases(test_filename_total, model_name):
     test_cases_total = []
-    test_to_run, files_to_open = load_file(args.test_category)
-    print(f"Generating results for {args.model} on test category: {test_to_run}.")
-
-    for test_category, file_to_open in zip(test_to_run, files_to_open):
+    for file_to_open in test_filename_total:
         test_cases = []
         with open("./data/" + file_to_open) as f:
             for line in f:
@@ -81,13 +73,13 @@ if __name__ == "__main__":
         num_existing_result = 0  # if the result file already exists, skip the test cases that have been tested.
         if os.path.exists(
             "./result/"
-            + args.model.replace("/", "_")
+            + model_name.replace("/", "_")
             + "/"
             + file_to_open.replace(".json", "_result.json")
         ):
             with open(
                 "./result/"
-                + args.model.replace("/", "_")
+                + model_name.replace("/", "_")
                 + "/"
                 + file_to_open.replace(".json", "_result.json")
             ) as f:
@@ -95,11 +87,12 @@ if __name__ == "__main__":
                     num_existing_result += 1
 
         test_cases_total.extend(test_cases[num_existing_result:])
+    return test_cases_total
 
-    if len(test_cases_total) == 0:
-        print("All test cases have been previously generated. No new test cases to generate.")
-        exit()
-        
+
+def generate_results(args, model_name, test_cases_total):
+    handler = build_handler(model_name, args.temperature, args.top_p, args.max_tokens)
+
     if handler.model_style == ModelStyle.OSSMODEL:
         result, metadata = handler.inference(
             test_question=test_cases_total,
@@ -132,3 +125,27 @@ if __name__ == "__main__":
                 "latency": metadata["latency"],
             }
             handler.write(result_to_write)
+
+
+if __name__ == "__main__":
+    args = get_args()
+
+    if type(args.model) is not list:
+        args.model = [args.model]
+    if type(args.test_category) is not list:
+        args.test_category = [args.test_category]
+        
+    test_name_total, test_filename_total = parse_test_category_argument(args.test_category)
+    
+    print(f"Generating results for {args.model} on test category: {test_name_total}.")
+
+    for model_name in args.model:
+        if USE_COHERE_OPTIMIZATION and "command-r-plus" in model_name:
+            model_name = model_name + "-optimized"
+        
+        test_cases_total = collect_test_cases(test_filename_total, model_name)
+        
+        if len(test_cases_total) == 0:
+            print(f"All selected test cases have been previously generated for {model_name}. No new test cases to generate.")
+        else:
+            generate_results(args, model_name, test_cases_total)
