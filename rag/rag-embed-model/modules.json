@@ -1,0 +1,20 @@
+[
+  {
+    "idx": 0,
+    "name": "0",
+    "path": "",
+    "type": "sentence_transformers.models.Transformer"
+  },
+  {
+    "idx": 1,
+    "name": "1",
+    "path": "1_Pooling",
+    "type": "sentence_transformers.models.Pooling"
+  },
+  {
+    "idx": 2,
+    "name": "2",
+    "path": "2_Normalize",
+    "type": "sentence_transformers.models.Normalize"
+  }
+]
