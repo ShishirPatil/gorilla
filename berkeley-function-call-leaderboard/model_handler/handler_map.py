@@ -62,7 +62,6 @@ handler_map = {
     "gemini-1.5-pro-preview-0409": GeminiHandler,
     "gemini-1.5-pro-preview-0514": GeminiHandler,
     "gemini-1.5-flash-preview-0514": GeminiHandler,
-    "gemma": OSSHandler,
     "google/gemma-7b-it": GemmaHandler,
     "glaiveai/glaive-function-calling-v1": GlaiveHandler,
     "deepseek-ai/deepseek-coder-6.7b-instruct": DeepseekHandler,

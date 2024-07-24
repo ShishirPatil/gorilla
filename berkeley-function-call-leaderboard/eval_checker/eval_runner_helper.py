@@ -8,7 +8,6 @@ import numpy as np
 from custom_exception import BadAPIStatusError
 from model_handler.handler_map import handler_map
 from tqdm import tqdm
-from eval_checker_constant import FILENAME_INDEX_MAPPING
 
 REST_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_REST.json"
 EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_executable.json"
@@ -1001,23 +1000,6 @@ def update_leaderboard_table_with_score_file(leaderboard_table, score_path):
                     "accuracy": accuracy,
                     "total_count": total_count,
                 }
-
-
-def oss_file_formatter(input_file_path, output_dir):
-    data = load_file(input_file_path)
-    assert len(data) == 2000, "OSS result.json file should have 2000 entries."
-
-    for key, value in FILENAME_INDEX_MAPPING.items():
-        start, end = value
-        output_file = os.path.join(
-            output_dir, f"gorilla_openfunctions_v1_test_{key}_result.json"
-        )
-        with open(output_file, "w") as f:
-            original_idx = 0
-            for i in range(start, end + 1):
-                new_json = {"id": original_idx, "result": data[i]["text"]}
-                f.write(json.dumps(new_json) + "\n")
-                original_idx += 1
 
 
 def collapse_json_objects(file_path):
