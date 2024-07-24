@@ -487,6 +487,8 @@ OSS_LATENCY = {
     "deepseek-ai/deepseek-coder-6.7b-instruct": 909,
     "google/gemma-7b-it": 95,
     "NousResearch/Hermes-2-Pro-Mistral-7B": 135,
+    "NousResearch/Hermes-2-Pro-Llama-3-8B": 77,
+    "NousResearch/Hermes-2-Theta-Llama-3-8B": 73,
     "meta-llama/Meta-Llama-3-8B-Instruct": 73,
     "meta-llama/Meta-Llama-3-70B-Instruct": 307,
     "gorilla-openfunctions-v2": 83,
