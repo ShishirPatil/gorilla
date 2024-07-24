@@ -54,4 +54,18 @@ TEST_COLLECTION_MAPPING = {
         "parallel_multiple_function",
         "relevance",
     ],
+    "sequencing": [
+        "SeqATIS",
+        "SeqMultiWOZ",
+        "SeqSGD",
+        "SeqSNIPS",
+        "SeqTopV2",
+    ],
+    "sequencing_lite": [
+        "SeqATIS_lite",
+        "SeqMultiWOZ_lite",
+        "SeqSGD_lite",
+        "SeqSNIPS_lite",
+        "SeqTopV2_lite",
+    ],
 }

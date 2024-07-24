@@ -35,6 +35,8 @@ COLUMNS = [
     "Parallel Functions Exec",
     "Parallel Multiple Exec",
     "Relevance Detection",
+    "Sequencing Functions AST",
+    "Sequencing Functions LITE AST",
     "Cost ($ Per 1k Function Calls)",
     "Latency Mean (s)",
     "Latency Standard Deviation (s)",
@@ -506,6 +508,9 @@ def extract_after_test(input_string):
 
 
 def find_file_with_suffix(folder_path, suffix):
+    if 'Seq' in suffix:
+        dataset = suffix.split('_')[0]
+        folder_path+='/'+dataset+'/'
     json_files_pattern = os.path.join(folder_path, "*.json")
     for json_file in glob.glob(json_files_pattern):
         if extract_after_test(json_file) == suffix:
@@ -874,6 +879,25 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
         cost_data = value.get("cost", {"input_data": [], "output_data": []})
         latency_data = value.get("latency", {"data": []})
 
+        seqsgd = value.get("SeqSGD", {"accuracy": 0, "total_count": 0})
+        seqmultiwoz = value.get("SeqMultiWOZ", {"accuracy": 0, "total_count": 0})
+        seqsnips = value.get("SeqSNIPS", {"accuracy": 0, "total_count": 0})
+        seqatis = value.get("SeqATIS", {"accuracy": 0, "total_count": 0})
+        seqtopv2 = value.get("SeqTopV2", {"accuracy": 0, "total_count": 0})
+
+        seqsgd_lite = value.get("SeqSGD_lite", {"accuracy": 0, "total_count": 0})
+        seqmultiwoz_lite = value.get("SeqMultiWOZ_lite", {"accuracy": 0, "total_count": 0})
+        seqsnips_lite = value.get("SeqSNIPS_lite", {"accuracy": 0, "total_count": 0})
+        seqatis_lite = value.get("SeqATIS_lite", {"accuracy": 0, "total_count": 0})
+        seqtopv2_lite = value.get("SeqTopV2_lite", {"accuracy": 0, "total_count": 0})
+
+
+        sequencing_ast = calculate_weighted_accuracy(
+            [seqsgd,seqmultiwoz,seqsnips,seqatis,seqtopv2]
+        )
+        sequencing_lite_ast = calculate_weighted_accuracy(
+            [seqsgd_lite,seqmultiwoz_lite,seqsnips_lite,seqatis_lite,seqtopv2_lite]
+        )
         simple_ast = calculate_weighted_accuracy(
             [python_simple_ast, java_simple_ast, javascript_simple_ast]
         )
@@ -904,6 +928,8 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
                 parallel_exec,
                 parallel_multiple_exec,
                 relevance,
+                sequencing_ast,
+                sequencing_lite_ast
             ]
         )
 
@@ -941,6 +967,8 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
                 parallel_exec["accuracy"],
                 parallel_multiple_exec["accuracy"],
                 relevance["accuracy"],
+                sequencing_ast["accuracy"],
+                sequencing_lite_ast["accuracy"],
                 cost,
                 latency_mean,
                 latency_std,

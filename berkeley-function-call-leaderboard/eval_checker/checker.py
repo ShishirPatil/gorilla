@@ -320,8 +320,12 @@ def simple_function_checker(
     possible_answer = list(possible_answer.values())[0]
     # Extract function name and parameters details
     func_name = func_description["name"]
-    param_details = func_description["parameters"]["properties"]
-    required_params = func_description["parameters"]["required"]
+    if "parameters" in func_description:
+        param_details = func_description["parameters"]["properties"]
+        required_params = func_description["parameters"]["required"]
+    else:
+        param_details = []
+        required_params = []
 
     # Initialize a result dictionary
     result = {
@@ -926,12 +930,17 @@ def executable_checker_rest(func_call, idx):
 def ast_checker(
     func_description, model_output, possible_answer, language, test_category, model_name
 ):
+    
     if "multiple" in test_category or "parallel" in test_category:
         # Some formatting issues that needs to be handled
         if test_category == "parallel_function":
             func_description = [func_description]
 
         return parallel_function_checker_no_order(
+            func_description, model_output, possible_answer, language, model_name
+        )
+    elif "Seq" in test_category:
+        return parallel_function_checker_enforce_order(
             func_description, model_output, possible_answer, language, model_name
         )
 
