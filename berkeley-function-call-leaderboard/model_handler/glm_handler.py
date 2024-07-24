@@ -46,6 +46,7 @@ class GLMHandler(OSSHandler):
             max_model_len=self.max_model_len,
         )
 
+
     def decode_ast(self, result, language="Python"):
         args = result.split("\n")
         if len(args) == 1:
