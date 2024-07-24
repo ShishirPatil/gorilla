@@ -68,34 +68,12 @@ def convert_to_tool(
         ):
             # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
             item["name"] = re.sub(r"\.", "_", item["name"])
+            
         item["parameters"]["type"] = "object"
         item["parameters"]["properties"] = _cast_to_openai_type(
             item["parameters"]["properties"], mapping, test_category
         )
-        # When Java and Javascript, for OpenAPI compatible models, let it become string.
-        if (
-            model_style
-            in [
-                ModelStyle.OpenAI,
-                ModelStyle.Mistral,
-                ModelStyle.Google,
-                ModelStyle.Anthropic_Prompt,
-                ModelStyle.Anthropic_FC,
-                ModelStyle.FIREWORK_AI,
-                ModelStyle.OSSMODEL,
-                ModelStyle.COHERE,
-            ]
-            and stringify_parameters
-        ):
-            properties = item["parameters"]["properties"]
-            if test_category == "java":
-                for key, value in properties.items():
-                    if value["type"] in JAVA_TYPE_CONVERSION:
-                        properties[key]["type"] = "string"
-            elif test_category == "javascript":
-                for key, value in properties.items():
-                    if value["type"] in JS_TYPE_CONVERSION:
-                        properties[key]["type"] = "string"
+
         if model_style == ModelStyle.Anthropic_FC:
             item["input_schema"] = item["parameters"]
             del item["parameters"]
@@ -356,7 +334,7 @@ def language_specific_pre_processing(function, test_category):
                     )
                 else:
                     value["description"] += (
-                        f" This is Java {value['type']} in string representation."
+                        f" This is Java {value['type']} type parameter in string representation."
                     )
                 value["type"] = "string"
                 
@@ -364,11 +342,11 @@ def language_specific_pre_processing(function, test_category):
             for key, value in properties.items():
                 if value["type"] == "any":
                     properties[key]["description"] += (
-                        " This parameter can be of any type of JavaScript object."
+                        " This parameter can be of any type of JavaScript object in string representation."
                     )
                 else:
                     value["description"] += (
-                        f" This is JavaScript {value['type']} in string representation."
+                        f" This is JavaScript {value['type']} type parameter in string representation."
                     )
                 value["type"] = "string"
                 
