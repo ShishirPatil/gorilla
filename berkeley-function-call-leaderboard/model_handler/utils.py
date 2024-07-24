@@ -68,10 +68,11 @@ def convert_to_tool(
         ):
             # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
             item["name"] = re.sub(r"\.", "_", item["name"])
-        item["parameters"]["type"] = "object"
-        item["parameters"]["properties"] = _cast_to_openai_type(
-            item["parameters"]["properties"], mapping, test_category
-        )
+        if "parameters" in item:
+            item["parameters"]["type"] = "object"
+            item["parameters"]["properties"] = _cast_to_openai_type(
+                item["parameters"]["properties"], mapping, test_category
+            )
         # When Java and Javascript, for OpenAPI compatible models, let it become string.
         if (
             model_style
@@ -87,15 +88,16 @@ def convert_to_tool(
             ]
             and stringify_parameters
         ):
-            properties = item["parameters"]["properties"]
-            if test_category == "java":
-                for key, value in properties.items():
-                    if value["type"] in JAVA_TYPE_CONVERSION:
-                        properties[key]["type"] = "string"
-            elif test_category == "javascript":
-                for key, value in properties.items():
-                    if value["type"] in JS_TYPE_CONVERSION:
-                        properties[key]["type"] = "string"
+            if "parameters" in item:
+                properties = item["parameters"]["properties"]
+                if test_category == "java":
+                    for key, value in properties.items():
+                        if value["type"] in JAVA_TYPE_CONVERSION:
+                            properties[key]["type"] = "string"
+                elif test_category == "javascript":
+                    for key, value in properties.items():
+                        if value["type"] in JS_TYPE_CONVERSION:
+                            properties[key]["type"] = "string"
         if model_style == ModelStyle.Anthropic_FC:
             item["input_schema"] = item["parameters"]
             del item["parameters"]
@@ -347,31 +349,32 @@ def language_specific_pre_processing(function, test_category):
     if len(function) == 0:
        return function
     for item in function:
-        properties = item["parameters"]["properties"]
-        if test_category == "java":
-            for key, value in properties.items():
-                if value["type"] == "any":
-                    properties[key]["description"] += (
-                        " This parameter can be of any type of Java object in string representation."
-                    )
-                else:
-                    value["description"] += (
-                        f" This is Java {value['type']} in string representation."
-                    )
-                value["type"] = "string"
-                
-        elif test_category == "javascript":
-            for key, value in properties.items():
-                if value["type"] == "any":
-                    properties[key]["description"] += (
-                        " This parameter can be of any type of JavaScript object."
-                    )
-                else:
-                    value["description"] += (
-                        f" This is JavaScript {value['type']} in string representation."
-                    )
-                value["type"] = "string"
-                
+        if "parameters" in item:
+            properties = item["parameters"]["properties"]
+            if test_category == "java":
+                for key, value in properties.items():
+                    if value["type"] == "any":
+                        properties[key]["description"] += (
+                            " This parameter can be of any type of Java object in string representation."
+                        )
+                    else:
+                        value["description"] += (
+                            f" This is Java {value['type']} in string representation."
+                        )
+                    value["type"] = "string"
+                    
+            elif test_category == "javascript":
+                for key, value in properties.items():
+                    if value["type"] == "any":
+                        properties[key]["description"] += (
+                            " This parameter can be of any type of JavaScript object."
+                        )
+                    else:
+                        value["description"] += (
+                            f" This is JavaScript {value['type']} in string representation."
+                        )
+                    value["type"] = "string"
+                    
         return function
 
 

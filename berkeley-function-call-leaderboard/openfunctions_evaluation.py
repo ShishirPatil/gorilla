@@ -38,6 +38,16 @@ TEST_FILE_MAPPING = {
     "javascript": "gorilla_openfunctions_v1_test_javascript.json",
     "rest": "gorilla_openfunctions_v1_test_rest.json",
     "sql": "gorilla_openfunctions_v1_test_sql.json",
+    "SeqATIS": "gorilla_openfunctions_v1_test_SeqATIS.json",
+    "SeqSNIPS": "gorilla_openfunctions_v1_test_SeqSNIPS.json",
+    "SeqSGD": "gorilla_openfunctions_v1_test_SeqSGD.json",
+    "SeqTopV2": "gorilla_openfunctions_v1_test_SeqTopV2.json",
+    "SeqMultiWOZ": "gorilla_openfunctions_v1_test_SeqMultiWOZ.json",
+    "SeqATIS_lite": "gorilla_openfunctions_v1_test_SeqATIS_lite.json",
+    "SeqSNIPS_lite": "gorilla_openfunctions_v1_test_SeqSNIPS_lite.json",
+    "SeqSGD_lite": "gorilla_openfunctions_v1_test_SeqSGD_lite.json",
+    "SeqTopV2_lite": "gorilla_openfunctions_v1_test_SeqTopV2_lite.json",
+    "SeqMultiWOZ_lite": "gorilla_openfunctions_v1_test_SeqMultiWOZ_lite.json",
 }
 
 
@@ -66,7 +76,12 @@ def collect_test_cases(test_filename_total, model_name):
     test_cases_total = []
     for file_to_open in test_filename_total:
         test_cases = []
-        with open("./data/" + file_to_open) as f:
+        if "Seq" in file_to_open:
+            dataset = file_to_open.split("_test_")[-1].split("_")[0]
+            path = "./data/"+dataset+"/"
+        else:
+            path = "./data/"
+        with open(path + file_to_open) as f:
             for line in f:
                 test_cases.append(json.loads(line))
 
@@ -144,7 +159,7 @@ if __name__ == "__main__":
             model_name = model_name + "-optimized"
         
         test_cases_total = collect_test_cases(test_filename_total, model_name)
-        
+        print("number of test cases ",len(test_cases_total))
         if len(test_cases_total) == 0:
             print(f"All selected test cases have been previously generated for {model_name}. No new test cases to generate.")
         else:
