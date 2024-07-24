@@ -335,6 +335,11 @@ def language_specific_pre_processing(function, test_category):
                     value["description"] += (
                         f" This is Java {value['type']} type parameter in string representation."
                     )
+                if value["type"] == "ArrayList" or value["type"] == "Array":
+                    value["description"] += (
+                        f" The list elements are of type {value['items']['type']}; they are not in string representation."
+                    )
+                    del value["items"]
                 value["type"] = "string"
                 
         elif test_category == "javascript":
