@@ -179,7 +179,7 @@ def single_ast_file_runner(
     for i in range(len(model_result)):
         model_result_item = model_result[i]["result"]
         prompt_item = prompt[i]["function"]
-        possible_answer_item = possible_answer[i]
+        possible_answer_item = possible_answer[i]["ground_truth"]
 
         try:
             model_result_item_raw = model_result_item
@@ -290,20 +290,6 @@ def runner(model_names, test_categories, api_sanity_check):
             continue
 
         model_name_escaped = model_name.replace("_", "/")
-
-        files = [
-            f
-            for f in os.listdir(subdir)
-            if os.path.isfile(os.path.join(subdir, f)) and not f.startswith(".")
-        ]
-        # Check if there is only one file and that file is 'result.json'
-        # If so, this is an OSS model result file and we need to special process it first
-        if len(files) == 1 and files[0] == "result.json":
-            result_json_file_path = os.path.join(subdir, "result.json")
-            oss_file_formatter(result_json_file_path, subdir)
-            print(
-                f"Detected OSS model: {model_name}. result.json has been split into individual test category files."
-            )
 
         # Pattern to match JSON files in this subdirectory
         json_files_pattern = os.path.join(subdir, "*.json")

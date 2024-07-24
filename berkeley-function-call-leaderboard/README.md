@@ -208,6 +208,7 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
+* [July 22, 2024] [#540](https://github.com/ShishirPatil/gorilla/pull/540): Chore: Improve handling of vLLM's cleanup phase error by combining all selected test categories into one single task to submit to the vLLM server.
 * [July 21, 2024] [#538](https://github.com/ShishirPatil/gorilla/pull/538): Fix `language_specific_pre_processing` function to properly handle pre-processing for prompts and function docs in Java and JavaScript test categories. All entries in these categories are affected.
 * [July 20, 2024] [#537](https://github.com/ShishirPatil/gorilla/pull/537): Update generation script for locally-hosted OSS model to use single-node multi-GPU inference method (tensor parallel). Ray is not used anymore.
 * [July 16, 2024] [#525](https://github.com/ShishirPatil/gorilla/pull/525), [#536](https://github.com/ShishirPatil/gorilla/pull/536): Add new model `ibm-granite/granite-20b-functioncalling` to the leaderboard.
