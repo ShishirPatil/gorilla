@@ -31,8 +31,12 @@ class NexusHandler(BaseHandler):
         for func_dict in func_dicts:
             func_name = func_dict['name']
             description = func_dict['description']
-            parameters = func_dict['parameters']['properties']
-            required_params = func_dict['parameters'].get('required', [])
+            if "parameters" in func_dict:
+                parameters = func_dict['parameters']['properties']
+                required_params = func_dict['parameters'].get('required', [])
+            else:
+                parameters = {}
+                required_params = []
 
             func_args_list = []
             param_descriptions = []
