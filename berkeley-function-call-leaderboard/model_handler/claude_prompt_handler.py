@@ -27,7 +27,7 @@ class ClaudePromptingHandler(BaseHandler):
 
     def _get_claude_function_calling_response(self, prompt, functions, test_category):
         input_tool = convert_to_tool(
-            functions, GORILLA_TO_PYTHON, self.model_style, test_category, True
+            functions, GORILLA_TO_PYTHON, self.model_style, test_category
         )
         system_prompt = construct_tool_use_system_prompt(input_tool)
         start = time.time()

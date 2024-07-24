@@ -1,6 +1,5 @@
 import re, ast, builtins, ast, json
 from model_handler.model_style import ModelStyle
-from model_handler.constant import JAVA_TYPE_CONVERSION, JS_TYPE_CONVERSION
 from model_handler.java_parser import parse_java_function_call
 from model_handler.js_parser import parse_javascript_function_call
 from model_handler.constant import GORILLA_TO_OPENAPI, USE_COHERE_OPTIMIZATION
@@ -54,7 +53,7 @@ def _cast_to_openai_type(properties, mapping, test_category):
 
 
 def convert_to_tool(
-    functions, mapping, model_style, test_category, stringify_parameters=False
+    functions, mapping, model_style, test_category
 ):
     oai_tool = []
     for item in functions:
