@@ -372,7 +372,7 @@ def language_specific_pre_processing(function, test_category):
                     )
                 value["type"] = "string"
                 
-        return function
+    return function
 
 
 def construct_tool_use_system_prompt(tools):
