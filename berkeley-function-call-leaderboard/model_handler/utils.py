@@ -340,6 +340,7 @@ def language_specific_pre_processing(function, test_category):
                         f" The list elements are of type {value['items']['type']}; they are not in string representation."
                     )
                     del value["items"]
+                    
                 value["type"] = "string"
                 
         elif test_category == "javascript":
@@ -352,6 +353,19 @@ def language_specific_pre_processing(function, test_category):
                     value["description"] += (
                         f" This is JavaScript {value['type']} type parameter in string representation."
                     )
+                if value["type"] == "array":
+                    value["description"] += (
+                        f" The list elements are of type {value['items']['type']}; they are not in string representation."
+                    )
+                    del value["items"]
+                
+                if value["type"] == "dict":
+                    if "properties" in value:    # not every dict has properties
+                        value["description"] += (
+                            f" The dictionary entries have the following schema; they are not in string representation. {json.dumps(value['properties'])}"
+                        )
+                        del value["properties"]
+
                 value["type"] = "string"
                 
     return function
