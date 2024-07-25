@@ -23,7 +23,7 @@ class GLMHandler(OSSHandler):
 
     def apply_chat_template(self, prompt, function, test_category):
         oai_tool = convert_to_tool(
-            function, GORILLA_TO_OPENAPI, ModelStyle.OpenAI, test_category, True
+            function, GORILLA_TO_OPENAPI, ModelStyle.OpenAI, test_category
         )
         conversation = [{"role": "user", "content": prompt, "tools": oai_tool}]
         return self.tokenizer.apply_chat_template(

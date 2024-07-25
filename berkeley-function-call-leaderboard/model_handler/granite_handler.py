@@ -38,7 +38,6 @@ class GraniteHandler(OSSHandler):
             GORILLA_TO_OPENAPI,
             model_style=ModelStyle.OSSMODEL,
             test_category=test_category,
-            stringify_parameters=True,
         )
 
         functions_str = "\n".join([json.dumps(func) for func in function])

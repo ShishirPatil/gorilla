@@ -112,7 +112,7 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |mistral-small-2402 | Prompt|
 |mistral-tiny-2312 | Prompt|
 |Nexusflow-Raven-v2 | Function Calling|
-|NousResearch/Hermes-2-Pro-Mistral-7B 💻| Function Calling|
+|NousResearch/Hermes-2-{Pro-Llama-3-8B,Pro-Mistral-7B,Theta-Llama-3-8B} 💻| Function Calling|
 |snowflake/arctic | Prompt|
 |nvidia/nemotron-4-340b-instruct| Prompt|
 |THUDM/glm-4-9b-chat 💻| Function Calling|
@@ -211,7 +211,7 @@ Some companies have proposed some optimization strategies in their models' handl
 ## Changelog
 
 * [July 22, 2024] [#540](https://github.com/ShishirPatil/gorilla/pull/540): Chore: Improve handling of vLLM's cleanup phase error by combining all selected test categories into one single task to submit to the vLLM server.
-* [July 21, 2024] [#538](https://github.com/ShishirPatil/gorilla/pull/538): Fix `language_specific_pre_processing` function to properly handle pre-processing for prompts and function docs in Java and JavaScript test categories. All entries in these categories are affected.
+* [July 21, 2024] [#538](https://github.com/ShishirPatil/gorilla/pull/538), [#545](https://github.com/ShishirPatil/gorilla/pull/545): Fix `language_specific_pre_processing` and `convert_to_tool` function to properly handle pre-processing for prompts and function docs in Java and JavaScript test categories. All entries in these categories are affected.
 * [July 20, 2024] [#537](https://github.com/ShishirPatil/gorilla/pull/537): Update generation script for locally-hosted OSS model to use single-node multi-GPU inference method (tensor parallel). Ray is not used anymore.
 * [July 16, 2024] [#525](https://github.com/ShishirPatil/gorilla/pull/525), [#536](https://github.com/ShishirPatil/gorilla/pull/536): Add new model `ibm-granite/granite-20b-functioncalling` to the leaderboard.
 * [July 10, 2024] [#522](https://github.com/ShishirPatil/gorilla/pull/522): Bug fix in the evaluation dataset for Executable Parallel Multiple category. This includes updates to both prompts and function docs. 2 entries are affected.

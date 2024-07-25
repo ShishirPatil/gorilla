@@ -75,7 +75,7 @@ class CohereHandler(BaseHandler):
             message = prompt
             # Convert JSON schema into R+ compatible function calls.
             cohere_tool = convert_to_tool(
-                functions, GORILLA_TO_PYTHON, self.model_style, test_category, True
+                functions, GORILLA_TO_PYTHON, self.model_style, test_category
             )
             start_time = time.time()
             if len(cohere_tool) > 0:
