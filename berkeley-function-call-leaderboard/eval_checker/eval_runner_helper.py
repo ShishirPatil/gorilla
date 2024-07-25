@@ -400,13 +400,13 @@ MODEL_METADATA_MAPPING = {
         "xLAM-1b-fc-r (FC)",
         "https://huggingface.co/Salesforce/xLAM-1b-fc-r",
         "Salesforce",
-        "gcc-by-nc-4.0",
+        "cc-by-nc-4.0",
     ],
     "Salesforce/xLAM-7b-fc-r": [
         "xLAM-7b-fc-r (FC)",
         "https://huggingface.co/Salesforce/xLAM-7b-fc-r",
         "Salesforce",
-        "gcc-by-nc-4.0",
+        "cc-by-nc-4.0",
     ]
 }
 
