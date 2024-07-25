@@ -66,12 +66,6 @@ class YiHandler(BaseHandler):
         for invoked_function in result:
             name = list(invoked_function.keys())[0]
             params = json.loads(invoked_function[name])
-            if language == "Python":
-                pass
-            else:
-                # all values of the json are casted to string for java and javascript
-                for key in params:
-                    params[key] = str(params[key])
             decoded_output.append({name: params})
 
         return decoded_output
