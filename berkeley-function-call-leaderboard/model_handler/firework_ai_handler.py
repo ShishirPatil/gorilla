@@ -39,7 +39,7 @@ class FireworkAIHandler(OpenAIHandler):
             functions = [functions]
         message = [{"role": "user", "content": prompt}]
         oai_tool = convert_to_tool(
-            functions, GORILLA_TO_OPENAPI, self.model_style, test_category, True
+            functions, GORILLA_TO_OPENAPI, self.model_style, test_category
         )
         start_time = time.time()
         model_name = self.model_name.replace("-FC", "")

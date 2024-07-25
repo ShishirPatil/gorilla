@@ -12,7 +12,7 @@ class HermesHandler(OSSHandler):
     def _format_prompt(prompt, function, test_category):
         # Hermes use Langchain to OpenAI conversion. It does not use tool call but function call.
         function = convert_to_tool(
-            function, GORILLA_TO_OPENAPI, ModelStyle.OSSMODEL, test_category, True
+            function, GORILLA_TO_OPENAPI, ModelStyle.OSSMODEL, test_category
         )
         pydantic_format = """{"properties": {"arguments": {"title": "Arguments", "type": "object"}, "name": {"title": "Name", "type": "string"}}, "required": ["arguments", "name"], "title": "FunctionCall", "type": "object"}"""
         tool_call_format = """{"arguments": <args-dict>, "name": <function-name>}"""
