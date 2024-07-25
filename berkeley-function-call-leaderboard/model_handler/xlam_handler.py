@@ -37,7 +37,7 @@ class xLAMHandler(OSSHandler):
 
     def _format_prompt(query, functions, test_category):
         def convert_to_xlam_tool(tools):
-            '''Convert the OpenAI function call format to xlam format'''
+            '''Convert the Gorilla function call format to xlam format'''
             if isinstance(tools, dict):
                 xlam_tools = {
                     "name": tools["name"],
@@ -74,16 +74,6 @@ class xLAMHandler(OSSHandler):
 
     def decode_ast(self,result,language="Python"):
         result_list = self.convert_to_dict(result)
-        for invoked_function in result_list:
-            if language == "Python":
-                pass
-            else:
-                for param in invoked_function.values():
-                    for param_name, param_value in param.items():
-                        if isinstance(param_value, bool):
-                            param[param_name] = str(param_value).lower()
-                        else:
-                            param[param_name] = str(param_value)
         return result_list
     
     @staticmethod
