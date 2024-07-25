@@ -111,7 +111,9 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |mistral-small-2402 | Prompt|
 |mistral-tiny-2312 | Prompt|
 |Nexusflow-Raven-v2 | Function Calling|
-|NousResearch/Hermes-2-{Pro-Llama-3-8B,Pro-Mistral-7B,Theta-Llama-3-8B} 💻| Function Calling|
+|NousResearch/Hermes-2-Pro-Llama-3-{8B,70B} 💻| Function Calling|
+|NousResearch/Hermes-2-Pro-Mistral-7B 💻| Function Calling|
+|NousResearch/Hermes-2-Theta-Llama-3-{8B,70B} 💻| Function Calling|
 |snowflake/arctic | Prompt|
 |nvidia/nemotron-4-340b-instruct| Prompt|
 |THUDM/glm-4-9b-chat 💻| Function Calling|
