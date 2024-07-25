@@ -38,7 +38,6 @@ class GraniteHandler(OSSHandler):
             GORILLA_TO_OPENAPI,
             model_style=ModelStyle.OSSMODEL,
             test_category=test_category,
-            stringify_parameters=True,
         )
 
         functions_str = "\n".join([json.dumps(func) for func in function])
@@ -49,10 +48,10 @@ class GraniteHandler(OSSHandler):
         return prompt
 
     def inference(
-        self, test_question, test_category, num_gpus, format_prompt_func=_format_prompt
+        self, test_question, num_gpus, gpu_memory_utilization, format_prompt_func=_format_prompt
     ):
         return super().inference(
-            test_question, test_category, num_gpus, format_prompt_func
+            test_question, num_gpus, gpu_memory_utilization, format_prompt_func=format_prompt_func
         )
 
     def decode_ast(self, result, language="Python"):

@@ -1,6 +1,5 @@
 import re, ast, builtins, ast, json
 from model_handler.model_style import ModelStyle
-from model_handler.constant import JAVA_TYPE_CONVERSION, JS_TYPE_CONVERSION
 from model_handler.java_parser import parse_java_function_call
 from model_handler.js_parser import parse_javascript_function_call
 from model_handler.constant import GORILLA_TO_OPENAPI, USE_COHERE_OPTIMIZATION
@@ -54,7 +53,7 @@ def _cast_to_openai_type(properties, mapping, test_category):
 
 
 def convert_to_tool(
-    functions, mapping, model_style, test_category, stringify_parameters=False
+    functions, mapping, model_style, test_category
 ):
     oai_tool = []
     for item in functions:
@@ -68,34 +67,12 @@ def convert_to_tool(
         ):
             # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
             item["name"] = re.sub(r"\.", "_", item["name"])
+            
         item["parameters"]["type"] = "object"
         item["parameters"]["properties"] = _cast_to_openai_type(
             item["parameters"]["properties"], mapping, test_category
         )
-        # When Java and Javascript, for OpenAPI compatible models, let it become string.
-        if (
-            model_style
-            in [
-                ModelStyle.OpenAI,
-                ModelStyle.Mistral,
-                ModelStyle.Google,
-                ModelStyle.Anthropic_Prompt,
-                ModelStyle.Anthropic_FC,
-                ModelStyle.FIREWORK_AI,
-                ModelStyle.OSSMODEL,
-                ModelStyle.COHERE,
-            ]
-            and stringify_parameters
-        ):
-            properties = item["parameters"]["properties"]
-            if test_category == "java":
-                for key, value in properties.items():
-                    if value["type"] in JAVA_TYPE_CONVERSION:
-                        properties[key]["type"] = "string"
-            elif test_category == "javascript":
-                for key, value in properties.items():
-                    if value["type"] in JS_TYPE_CONVERSION:
-                        properties[key]["type"] = "string"
+
         if model_style == ModelStyle.Anthropic_FC:
             item["input_schema"] = item["parameters"]
             del item["parameters"]
@@ -356,23 +333,42 @@ def language_specific_pre_processing(function, test_category):
                     )
                 else:
                     value["description"] += (
-                        f" This is Java {value['type']} in string representation."
+                        f" This is Java {value['type']} type parameter in string representation."
                     )
+                if value["type"] == "ArrayList" or value["type"] == "Array":
+                    value["description"] += (
+                        f" The list elements are of type {value['items']['type']}; they are not in string representation."
+                    )
+                    del value["items"]
+                    
                 value["type"] = "string"
                 
         elif test_category == "javascript":
             for key, value in properties.items():
                 if value["type"] == "any":
                     properties[key]["description"] += (
-                        " This parameter can be of any type of JavaScript object."
+                        " This parameter can be of any type of JavaScript object in string representation."
                     )
                 else:
                     value["description"] += (
-                        f" This is JavaScript {value['type']} in string representation."
+                        f" This is JavaScript {value['type']} type parameter in string representation."
                     )
+                if value["type"] == "array":
+                    value["description"] += (
+                        f" The list elements are of type {value['items']['type']}; they are not in string representation."
+                    )
+                    del value["items"]
+                
+                if value["type"] == "dict":
+                    if "properties" in value:    # not every dict has properties
+                        value["description"] += (
+                            f" The dictionary entries have the following schema; they are not in string representation. {json.dumps(value['properties'])}"
+                        )
+                        del value["properties"]
+
                 value["type"] = "string"
                 
-        return function
+    return function
 
 
 def construct_tool_use_system_prompt(tools):
