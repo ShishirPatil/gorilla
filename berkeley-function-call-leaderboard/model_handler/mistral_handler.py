@@ -29,7 +29,7 @@ class MistralHandler(BaseHandler):
         if "FC" in self.model_name:
             functions = language_specific_pre_processing(functions, test_category)
             tool = convert_to_tool(
-                functions, GORILLA_TO_OPENAPI, self.model_style, test_category, True
+                functions, GORILLA_TO_OPENAPI, self.model_style, test_category
             )
             message = [
                 ChatMessage(role="user", content=prompt),
