@@ -324,6 +324,12 @@ MODEL_METADATA_MAPPING = {
         "NousResearch",
         "apache-2.0",
     ],
+    "NousResearch/Hermes-2-Pro-Llama-3-70B": [
+        "Hermes-2-Pro-Llama-3-70B (FC)",
+        "https://huggingface.co/NousResearch/Hermes-2-Pro-Llama-3-70B",
+        "NousResearch",
+        "apache-2.0",
+    ],
     "NousResearch/Hermes-2-Pro-Mistral-7B": [
         "Hermes-2-Pro-Mistral-7B (FC)",
         "https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B",
@@ -333,6 +339,12 @@ MODEL_METADATA_MAPPING = {
     "NousResearch/Hermes-2-Theta-Llama-3-8B": [
         "Hermes-2-Theta-Llama-3-8B (FC)",
         "https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-8B",
+        "NousResearch",
+        "apache-2.0",
+    ],
+    "NousResearch/Hermes-2-Theta-Llama-3-70B": [
+        "Hermes-2-Theta-Llama-3-70B (FC)",
+        "https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-70B",
         "NousResearch",
         "apache-2.0",
     ],
@@ -501,6 +513,8 @@ OSS_LATENCY = {
     "NousResearch/Hermes-2-Pro-Mistral-7B": 135,
     "NousResearch/Hermes-2-Pro-Llama-3-8B": 77,
     "NousResearch/Hermes-2-Theta-Llama-3-8B": 73,
+    "NousResearch/Hermes-2-Theta-Llama-3-70B": 716,
+    "NousResearch/Hermes-2-Pro-Llama-3-70B": 674,
     "meta-llama/Meta-Llama-3-8B-Instruct": 73,
     "meta-llama/Meta-Llama-3-70B-Instruct": 307,
     "gorilla-openfunctions-v2": 83,
