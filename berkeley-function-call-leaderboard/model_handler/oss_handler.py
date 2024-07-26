@@ -10,11 +10,11 @@ from model_handler.utils import (
 )
 
 
-
 class OSSHandler(BaseHandler):
-    def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
+    def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000, dtype="float16") -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
         self.model_style = ModelStyle.OSSMODEL
+        self.dtype = dtype
 
     def _format_prompt(prompt, function, test_category):
         SYSTEM_PROMPT = """
@@ -35,6 +35,7 @@ class OSSHandler(BaseHandler):
         temperature,
         max_tokens,
         top_p,
+        dtype,
         stop_token_ids=None,
         max_model_len=None,
         num_gpus=8,
@@ -52,7 +53,7 @@ class OSSHandler(BaseHandler):
         )
         llm = LLM(
             model=model_path,
-            dtype="float16",
+            dtype=dtype,
             trust_remote_code=True,
             disable_custom_all_reduce=True,
             max_model_len=max_model_len,
@@ -98,6 +99,7 @@ class OSSHandler(BaseHandler):
             temperature=self.temperature,
             max_tokens=self.max_tokens,
             top_p=self.top_p,
+            dtype=self.dtype,
             stop_token_ids=stop_token_ids,
             max_model_len=max_model_len,
             num_gpus=num_gpus,
@@ -119,5 +121,3 @@ class OSSHandler(BaseHandler):
 
     def decode_execute(self, result):
         return result
-
-                
