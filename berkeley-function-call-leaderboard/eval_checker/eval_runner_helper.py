@@ -324,6 +324,12 @@ MODEL_METADATA_MAPPING = {
         "NousResearch",
         "apache-2.0",
     ],
+    "NousResearch/Hermes-2-Pro-Llama-3-70B": [
+        "Hermes-2-Pro-Llama-3-70B (FC)",
+        "https://huggingface.co/NousResearch/Hermes-2-Pro-Llama-3-70B",
+        "NousResearch",
+        "apache-2.0",
+    ],
     "NousResearch/Hermes-2-Pro-Mistral-7B": [
         "Hermes-2-Pro-Mistral-7B (FC)",
         "https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B",
@@ -333,6 +339,12 @@ MODEL_METADATA_MAPPING = {
     "NousResearch/Hermes-2-Theta-Llama-3-8B": [
         "Hermes-2-Theta-Llama-3-8B (FC)",
         "https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-8B",
+        "NousResearch",
+        "apache-2.0",
+    ],
+    "NousResearch/Hermes-2-Theta-Llama-3-70B": [
+        "Hermes-2-Theta-Llama-3-70B (FC)",
+        "https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-70B",
         "NousResearch",
         "apache-2.0",
     ],
@@ -396,6 +408,24 @@ MODEL_METADATA_MAPPING = {
         "THUDM",
         "glm-4",
     ],
+    "yi-large-fc": [
+        "yi-large (FC)",
+        "https://platform.01.ai/",
+        "01.AI",
+        "Proprietary",
+    ],
+    "Salesforce/xLAM-1b-fc-r": [
+        "xLAM-1b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-1b-fc-r",
+        "Salesforce",
+        "cc-by-nc-4.0",
+    ],
+    "Salesforce/xLAM-7b-fc-r": [
+        "xLAM-7b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-7b-fc-r",
+        "Salesforce",
+        "cc-by-nc-4.0",
+    ]
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -437,6 +467,7 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus": 3,
     "command-r-plus-FC-optimized": 3,
     "command-r-plus-optimized": 3,
+    "yi-large-fc": 3,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -478,6 +509,7 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus": 15,
     "command-r-plus-FC-optimized": 15,
     "command-r-plus-optimized": 15,
+    "yi-large-fc": 3,
 }
 
 # The latency of the open-source models are hardcoded here.
@@ -489,6 +521,8 @@ OSS_LATENCY = {
     "NousResearch/Hermes-2-Pro-Mistral-7B": 135,
     "NousResearch/Hermes-2-Pro-Llama-3-8B": 77,
     "NousResearch/Hermes-2-Theta-Llama-3-8B": 73,
+    "NousResearch/Hermes-2-Theta-Llama-3-70B": 716,
+    "NousResearch/Hermes-2-Pro-Llama-3-70B": 674,
     "meta-llama/Meta-Llama-3-8B-Instruct": 73,
     "meta-llama/Meta-Llama-3-70B-Instruct": 307,
     "gorilla-openfunctions-v2": 83,
@@ -507,6 +541,8 @@ NO_COST_MODELS = [
     "nvidia/nemotron-4-340b-instruct",
     "ibm-granite/granite-20b-functioncalling",
     "THUDM/glm-4-9b-chat",
+    "Salesforce/xLAM-1b-fc-r",
+    "Salesforce/xLAM-7b-fc-r"
 ]
 
 # Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
