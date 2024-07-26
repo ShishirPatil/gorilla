@@ -20,7 +20,7 @@ from model_handler.granite_handler import GraniteHandler
 from model_handler.nvidia_handler import NvidiaHandler
 from model_handler.glm_handler import GLMHandler
 from model_handler.yi_handler import YiHandler
-
+from model_handler.xlam_handler import xLAMHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -84,4 +84,6 @@ handler_map = {
     "nvidia/nemotron-4-340b-instruct": NvidiaHandler,
     "THUDM/glm-4-9b-chat": GLMHandler,
     "yi-large-fc": YiHandler,
+    "Salesforce/xLAM-1b-fc-r": xLAMHandler,
+    "Salesforce/xLAM-7b-fc-r": xLAMHandler
 }
