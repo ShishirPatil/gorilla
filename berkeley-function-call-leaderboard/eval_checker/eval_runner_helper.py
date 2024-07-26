@@ -501,6 +501,8 @@ OSS_LATENCY = {
     "NousResearch/Hermes-2-Pro-Mistral-7B": 135,
     "NousResearch/Hermes-2-Pro-Llama-3-8B": 77,
     "NousResearch/Hermes-2-Theta-Llama-3-8B": 73,
+    "NousResearch/Hermes-2-Theta-Llama-3-70B": 716,
+    "NousResearch/Hermes-2-Pro-Llama-3-70B": 674,
     "meta-llama/Meta-Llama-3-8B-Instruct": 73,
     "meta-llama/Meta-Llama-3-70B-Instruct": 307,
     "gorilla-openfunctions-v2": 83,
