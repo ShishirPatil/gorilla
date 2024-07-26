@@ -59,6 +59,7 @@ export FIRE_WORKS_API_KEY=XXXXXX
 export ANTHROPIC_API_KEY=XXXXXX
 export COHERE_API_KEY=XXXXXX
 export NVIDIA_API_KEY=nvapi-XXXXXX
+export YI_API_KEY=XXXXXX
 ```
 
 If decided to run OSS model, the generation script uses vllm and therefore requires GPU for hosting and inferencing. If you have questions or concerns about evaluating OSS models, please reach out to us in our [discord channel](https://discord.gg/grXXvj9Whz).
@@ -120,6 +121,7 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |nvidia/nemotron-4-340b-instruct| Prompt|
 |THUDM/glm-4-9b-chat 💻| Function Calling|
 |ibm-granite/granite-20b-functioncalling 💻| Function Calling|
+|yi-large-fc | Function Calling|
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function-calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
 
