@@ -27,7 +27,7 @@
 {"id": "javascript_26", "ground_truth": {"contentUpdater": {"elementID": ["contentBox"], "newContent": ["Hello World"], "action": ["update"]}}}
 {"id": "javascript_27", "ground_truth": {"validateReactProp": {"obj": ["serviceProvider"], "componentName": ["UserProfile"]}}}
 {"id": "javascript_28", "ground_truth": {"filterBooksByAuthor": {"library": [["bookA", "bookB", "bookC"]], "author": ["J.K. Rowling"]}}}
-{"id": "javascript_29", "ground_truth": {"EventScheduler": {"events": [{"setupStage": ["setupStageFunction"], "cleanupStage": ["cleanupStageFunction"]}], "concurrencyLimit": [3.0]}}}
+{"id": "javascript_29", "ground_truth": {"EventScheduler": {"events": [{"setupStage": ["setupStageFunction"], "cleanupStage": ["cleanStageFunction"]}], "concurrencyLimit": [3.0]}}}
 {"id": "javascript_30", "ground_truth": {"setText": {"newText": ["Hello, World!"], "start": [5.0], "length": [7.0]}}}
 {"id": "javascript_31", "ground_truth": {"transformAllDecoratorsOfDeclaration": {"node": ["myNode"], "container": ["myContainer"]}}}
 {"id": "javascript_32", "ground_truth": {"pollQueue": {"queue": ["fileWatchQueue"], "pollingInterval": [500.0], "pollIndex": [0.0], "chunkSize": [10.0]}}}
