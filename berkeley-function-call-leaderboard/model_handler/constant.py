@@ -141,12 +141,15 @@ UNDERSCORE_TO_DOT = [
     "meetkai/functionary-small-v2.4-FC",
     "meetkai/functionary-medium-v2.4-FC",
     "NousResearch/Hermes-2-Pro-Llama-3-8B",
+    "NousResearch/Hermes-2-Pro-Llama-3-70B",
     "NousResearch/Hermes-2-Pro-Mistral-7B",
     "NousResearch/Hermes-2-Theta-Llama-3-8B",
+    "NousResearch/Hermes-2-Theta-Llama-3-70B",
     "command-r-plus-FC",
     "command-r-plus-FC-optimized",
     "THUDM/glm-4-9b-chat",
     "ibm-granite/granite-20b-functioncalling",
+    "yi-large-fc",
 ]
 
 TEST_CATEGORIES = {
