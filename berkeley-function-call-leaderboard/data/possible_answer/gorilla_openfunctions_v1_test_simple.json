@@ -198,7 +198,7 @@
 {"id": "simple_197", "ground_truth": {"get_air_quality_index": {"location": ["San Diego"], "time": ["12pm", "12:00"]}}}
 {"id": "simple_198", "ground_truth": {"calculate_daily_water_intake": {"weight": [70], "activity_level": ["", "moderate"], "climate": ["", "temperate"]}}}
 {"id": "simple_199", "ground_truth": {"environmental_data.air_quality_index": {"location": ["San Jose", "'San Jose'"], "days": [3]}}}
-{"id": "simple_200", "ground_truth": {"calculate_emissions": {"distance": [12000], "fuel_type": ["gas"], "fuel_efficiency": ["", 20.0], "efficiency_reduction": [0, ""]}}}
+{"id": "simple_200", "ground_truth": {"calculate_emissions": {"distance": [12000], "fuel_type": ["gas"], "fuel_efficiency": ["", 25.0], "efficiency_reduction": [0, ""]}}}
 {"id": "simple_201", "ground_truth": {"estimate_population": {"species": ["panda", "pandas"], "country": ["China", "CN"], "year": ["", 2024]}}}
 {"id": "simple_202", "ground_truth": {"calculate_emission_savings": {"energy_type": ["renewable"], "usage_duration": [3], "region": ["California", "CA"]}}}
 {"id": "simple_203", "ground_truth": {"get_air_quality": {"location": ["Chicago"], "detail": [true], "historical": ["", "today"]}}}
