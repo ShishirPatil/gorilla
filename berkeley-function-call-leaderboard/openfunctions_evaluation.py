@@ -1,4 +1,4 @@
-import argparse, json, os
+import argparse, json, os, time
 from tqdm import tqdm
 from model_handler.handler_map import handler_map
 from model_handler.model_style import ModelStyle
@@ -114,9 +114,19 @@ def generate_results(args, model_name, test_cases_total):
             if type(functions) is dict or type(functions) is str:
                 functions = [functions]
 
-            result, metadata = handler.inference(
-                user_question, functions, test_category
-            )
+            try:
+                result, metadata = handler.inference(
+                    user_question, functions, test_category
+                )
+            except Exception as e:
+                if "Rate limit reached" in str(e):
+                    print("Rate limit reached. Sleeping for 65 seconds.")
+                    time.sleep(65)
+                    result, metadata = handler.inference(
+                        user_question, functions, test_category
+                    )  # Retry
+                else:
+                   raise e
             result_to_write = {
                 "id": test_case["id"],
                 "result": result,
