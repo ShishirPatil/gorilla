@@ -91,6 +91,7 @@ def collect_test_cases(test_filename_total, model_name):
 
 
 def generate_results(args, model_name, test_cases_total):
+    retry_limit = 3
     handler = build_handler(model_name, args.temperature, args.top_p, args.max_tokens)
 
     if handler.model_style == ModelStyle.OSSMODEL:
@@ -114,19 +115,22 @@ def generate_results(args, model_name, test_cases_total):
             if type(functions) is dict or type(functions) is str:
                 functions = [functions]
 
-            try:
-                result, metadata = handler.inference(
-                    user_question, functions, test_category
-                )
-            except Exception as e:
-                if "Rate limit reached" in str(e):
-                    print("Rate limit reached. Sleeping for 65 seconds.")
-                    time.sleep(65)
+            retry_count = 0
+
+            while retry_count < retry_limit:
+                try:
                     result, metadata = handler.inference(
                         user_question, functions, test_category
-                    )  # Retry
-                else:
-                   raise e
+                    )
+                    break  # Success, exit the loop
+                except Exception as e:
+                    if "Rate limit reached" in str(e) and retry_count < retry_limit - 1:
+                        print(f"Rate limit reached. Sleeping for 65 seconds. Retry {retry_count + 1}/{retry_limit}")
+                        time.sleep(65)
+                        retry_count += 1
+                    else:
+                        print("Maximum retries reached or other error encountered.")
+                        raise e  # Rethrow the last caught exception
             result_to_write = {
                 "id": test_case["id"],
                 "result": result,
