@@ -64,7 +64,7 @@ export YI_API_KEY=XXXXXX
 
 If decided to run OSS model, the generation script uses vllm and therefore requires GPU for hosting and inferencing. If you have questions or concerns about evaluating OSS models, please reach out to us in our [discord channel](https://discord.gg/grXXvj9Whz).
 
-### Genrating LLM Responses
+### Generating LLM Responses
 
 Use the following command for LLM inference of the evaluation dataset with specific models
 
