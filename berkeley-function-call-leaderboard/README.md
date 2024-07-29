@@ -214,6 +214,15 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
+* [July 26, 2024] [#549](https://github.com/ShishirPatil/gorilla/pull/549): Fix js_type_converter.py to properly handle JavaScript array value inside dictionary. 
+* [July 25, 2024] [#532](https://github.com/ShishirPatil/gorilla/pull/532), [#543](https://github.com/ShishirPatil/gorilla/pull/543), [#556](https://github.com/ShishirPatil/gorilla/pull/556), [#542](https://github.com/ShishirPatil/gorilla/pull/542): Add the following new models to the leaderboard:
+    - `Salesforce/xLAM-7b-fc-r`
+    - `Salesforce/xLAM-1b-fc-r`
+    - `yi-large-fc`
+    - `NousResearch/Hermes-2-Pro-Llama-3-8B`
+    - `NousResearch/Hermes-2-Pro-Llama-3-70B`
+    - `NousResearch/Hermes-2-Theta-Llama-3-8B`
+    - `NousResearch/Hermes-2-Theta-Llama-3-70B`
 * [July 22, 2024] [#540](https://github.com/ShishirPatil/gorilla/pull/540): Chore: Improve handling of vLLM's cleanup phase error by combining all selected test categories into one single task to submit to the vLLM server.
 * [July 21, 2024] [#538](https://github.com/ShishirPatil/gorilla/pull/538), [#545](https://github.com/ShishirPatil/gorilla/pull/545): Fix `language_specific_pre_processing` and `convert_to_tool` function to properly handle pre-processing for prompts and function docs in Java and JavaScript test categories. All entries in these categories are affected.
 * [July 20, 2024] [#537](https://github.com/ShishirPatil/gorilla/pull/537): Update generation script for locally-hosted OSS model to use single-node multi-GPU inference method (tensor parallel). Ray is not used anymore.
