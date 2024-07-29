@@ -172,7 +172,7 @@ def single_ast_file_runner(
 ):
     assert (
         len(model_result) == len(prompt) == len(possible_answer)
-    ), "The length of the model result does not match the length of the prompt or possible answer. Please check the input files for completeness."
+    ), f"The length of the model result ({len(model_result)}) does not match the length of the prompt ({len(prompt)}) or possible answer ({len(possible_answer)}). Please check the input files for completeness."
 
     result = []
     correct_count = 0
