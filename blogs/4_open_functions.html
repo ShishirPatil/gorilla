@@ -118,7 +118,9 @@
                 <div class="body">
                     <p>Using Gorilla OpenFunctions is straightforward:
                         <ol>
-                        <li>Define Your Functions: Provide a JSON file containing descriptions of your custom functions. Each function should contain fields: <code>name</code> (the name of the API), <code>api_call</code> (how to invoke this API), <code>description</code> (which describes the functionality of the API), and lastly, <code>parameters</code> (a list of parameters pertaining to the API call). Below is an example of API documentation that can feed into OpenFunctions.</li>
+                        <li>Define Your Functions: Provide a JSON file containing descriptions of your custom functions. Each function should contain fields: <code>name</code> (the name of the API), <code>api_call</code> (how to invoke this API), <code>description</code> (which describes the functionality of the API), and lastly, <code>parameters</code> (a list of parameters pertaining to the API call). Below is an example of API documentation that can feed into OpenFunctions. 
+                        </li>
+                            <li>Install the openai client with <code>pip install openai==0.28</code></li>
                         <pre><code>
     function_documentation = {  
         "name" : "Order Food on Uber",
