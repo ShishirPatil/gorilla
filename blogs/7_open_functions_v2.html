@@ -155,7 +155,7 @@
 
 <span style="color: #d14;">def</span> <span style="color: #069;">get_gorilla_response</span>(prompt=<span style="color: #d14;">""</span>, model=<span style="color: #d14;">"gorilla-openfunctions-v2"</span>, functions=[]):
     openai.api_key = <span style="color: #d14;">"EMPTY"</span>  <span style="color: #60a0b0; font-style: italic;"># Hosted for free with</span> <span style="color:#ff0000;">❤️</span> <span style="color: #60a0b0; font-style: italic;">from UC Berkeley</span>
-    openai.api_base = <span style="color: #d14;">"http://luigi.millennium.berkeley.edu:8000/v1"</span>
+    openai.api_base = <span style="color: #d14;">"https://luigi.millennium.berkeley.edu/v1"</span>
     <span style="color: #d14;">try</span>:
         completion = openai.ChatCompletion.create(
             model=<span style="color: #d14;">"gorilla-openfunctions-v2"</span>,
