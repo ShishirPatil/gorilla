@@ -78,7 +78,7 @@ if __name__ == "__main__":
             max_tokens=1024,
             stop='<STOP>'
         )
-        return response.choices[0].text
+        return response.choices[0].message.content
 
     # Evaluate a completion model
     def get_openai_response_completion(prompt: str) -> str | None :
@@ -89,7 +89,7 @@ if __name__ == "__main__":
             max_tokens=1024,
             stop='<STOP>'
         )
-        return response.choices[0].text
+        return response.choices[0].message.content
 
     # Chat or completion mode function
     get_openai_response = get_openai_response_chat if mode == 'chat' else get_openai_response_completion
