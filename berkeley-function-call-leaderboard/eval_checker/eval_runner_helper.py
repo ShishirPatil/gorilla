@@ -541,6 +541,11 @@ NO_COST_MODELS = [
     "nvidia/nemotron-4-340b-instruct",
     "ibm-granite/granite-20b-functioncalling",
     "THUDM/glm-4-9b-chat",
+    "NousResearch/Hermes-2-Pro-Llama-3-8B",
+    "NousResearch/Hermes-2-Pro-Llama-3-70B",
+    "NousResearch/Hermes-2-Pro-Mistral-7B",
+    "NousResearch/Hermes-2-Theta-Llama-3-8B",
+    "NousResearch/Hermes-2-Theta-Llama-3-70B",
     "Salesforce/xLAM-1b-fc-r",
     "Salesforce/xLAM-7b-fc-r"
 ]
