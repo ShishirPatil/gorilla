@@ -30,6 +30,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--input-prompt-key", type=str, default="instruction", help="The column to use as input prompt")
     parser.add_argument("--output-answer-key", type=str, default="answer", help="The column to use as output answer")
     parser.add_argument("--workers", type=int, default=2, help="The number of worker threads to use to evaluate the dataset")
+    parser.add_argument("--env-prefix", type=str, default="EVAL", help="The OPENAI env var prefix. Defaults to EVAL for EVAL_OPENAI_BASE_URL and EVAL_OPENAI_API_KEY")
 
     args = parser.parse_args()
     return args
@@ -38,7 +39,6 @@ def get_args() -> argparse.Namespace:
 if __name__ == "__main__":
 
     log_setup()
-    client = build_openai_client(env_prefix = "EVAL")
 
     logger = logging.getLogger('eval')
 
@@ -47,6 +47,12 @@ if __name__ == "__main__":
     mode = args.mode
     prompt_key = args.input_prompt_key
     answer_key = args.output_answer_key
+    logger.info(f"Using model: {model}")
+    logger.info(f"Using mode: {mode}")
+    logger.info(f"Using prompt key: {prompt_key}")
+    logger.info(f"Using answer key: {answer_key}")
+
+    client = build_openai_client(env_prefix = args.env_prefix)
 
     if mode not in ['chat', 'completion']:
         raise ValueError("Invalid --mode. Mode must be either 'chat' or 'completion'")
@@ -89,7 +95,7 @@ if __name__ == "__main__":
             max_tokens=1024,
             stop='<STOP>'
         )
-        return response.choices[0].message.content
+        return response.choices[0].text
 
     # Chat or completion mode function
     get_openai_response = get_openai_response_chat if mode == 'chat' else get_openai_response_completion
@@ -116,16 +122,19 @@ if __name__ == "__main__":
 
     write_file_name = args.answer_file
     if os.path.isfile(write_file_name):
+        logger.info(f"Removing existing file: {write_file_name}")
         os.remove(write_file_name)
 
     num_workers = args.workers
     file_write_lock = mp.Lock()
     inputs = []
-    with open(args.question_file, 'r') as f:
+    question_file = args.question_file
+    logger.info(f"Reading questions from: {question_file}")
+    with open(question_file, 'r') as f:
         for line in f:
             inputs.append(json.loads(line))
 
-    logger.info(f'number of questions: {len(inputs)}')
+    logger.info(f'Number of questions: {len(inputs)}')
     start_time = time.time()
     usage_stats = UsageStats()
     tps = 0
@@ -149,5 +158,6 @@ if __name__ == "__main__":
                 write_result_to_file(result, write_file_name)
 
     end_time = time.time()
+    logger.info(f"Wrote evaluation results to {write_file_name}")
     logger.info(f"total time used: {end_time - start_time}")
     
