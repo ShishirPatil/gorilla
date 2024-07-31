@@ -551,7 +551,7 @@ V100_x8_PRICE_PER_HOUR = 22.032
 
 RED_FONT = "\033[91m"
 RESET = "\033[0m"
-    
+
 def extract_after_test(input_string):
     parts = input_string.split("_test_")[1].split("_result")[0].split(".json")[0]
     return parts
@@ -1011,11 +1011,18 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
             else:
                 f.write(",".join(row))
 
-    check_all_category_present(leaderboard_table)
-    print(f"📈 Leaderboard statistics generated successfully! See {os.path.abspath(output_path + 'data.csv')} for evaluation results.")
+    category_status = check_model_category_status(score_path=output_path)
+    check_all_category_present(category_status)
+    print(
+        f"📈 Leaderboard statistics generated successfully! See {os.path.abspath(output_path + 'data.csv')} for evaluation results."
+    )
 
 
-def check_all_category_present(leaderboard_table):
+def check_model_category_status(score_path):
+    result_path = score_path.replace("score", "result")
+    entries = os.scandir(score_path)
+    subdirs = [entry.path for entry in entries if entry.is_dir()]
+
     leaderboard_categories = [
         "simple",
         "multiple_function",
@@ -1030,26 +1037,92 @@ def check_all_category_present(leaderboard_table):
         "rest",
         "relevance",
     ]
-    found_issues = False  # Use this flag to determine if it is the first time we found issues. This controls printing the header line. 
-    for model_name, value in leaderboard_table.items():
-        count = 0
-        not_present = []
-        for key in leaderboard_categories:
-            if key not in value:
-                count += 1
-                not_present.append(key)
-                
-        if count > 0:
-            if not found_issues:
-                print(f"\n{RED_FONT}{'-' * 3} The following models have missing test categories that are not evaluated or previously scored {'-' * 3}{RESET}\n")
-                found_issues = True
-                
-            print(f"❗️Note: {model_name} is missing the evaluation score for {count} categories: {not_present}\n")
+
+    category_status = {}
+
+    for subdir in subdirs:
+        model_name = os.path.basename(subdir)
+        category_status[model_name] = {
+            category: {"generated": False, "evaluated": False}
+            for category in leaderboard_categories
+        }
+
+        # Check result folder
+        result_subdir = os.path.join(result_path, model_name)
+        if os.path.exists(result_subdir):
+            for result_file in os.listdir(result_subdir):
+                test_category = result_file.split("_test_")[1].split("_result")[0]
+                if test_category in category_status[model_name]:
+                    category_status[model_name][test_category]["generated"] = True
+
+        # Check score folder
+        for model_score_json in glob.glob(os.path.join(subdir, "*.json")):
+            test_category = os.path.splitext(os.path.basename(model_score_json))[
+                0
+            ].split("_score")[0]
+            if test_category in category_status[model_name]:
+                category_status[model_name][test_category]["evaluated"] = True
+    return category_status
+
+
+def check_all_category_present(category_status):
+    found_issues = False
+    commands = []
+    commands.append("cd ..")
+
+    print(f"\n{RED_FONT}{'=' * 30} Model Category Status {'=' * 30}{RESET}\n")
+
+    for model_name, categories in category_status.items():
+        not_generated = [
+            cat for cat, status in categories.items() if not status["generated"]
+        ]
+        not_evaluated = [
+            cat for cat, status in categories.items() if not status["evaluated"]
+        ]
+
+        print(f"{RED_FONT}Model: {model_name}{RESET}")
+        if not not_generated and not not_evaluated:
+            print("  All categories are present and evaluated.")
+        else:
+            found_issues = True
+            if not_generated:
+                print(f"  Missing results for {len(not_generated)} categories:")
+                for cat in not_generated:
+                    print(f"    - {cat}")
+                commands.extend(
+                    [
+                        f"python openfunctions_evaluation.py --model {model_name} --test-category {test}"
+                        for test in not_generated
+                    ]
+                )
+            if not_evaluated:
+                print(f"  Unevaluated results for {len(not_evaluated)} categories:")
+                for cat in not_evaluated:
+                    print(f"    - {cat}")
+
+            all_categories = not_generated + not_evaluated
+            if all_categories:
+                commands.append("cd eval_checker")
+                commands.extend(
+                    [
+                        f"python eval_runner.py --model {model_name} --test-category {test}"
+                        for test in all_categories
+                    ]
+                )
+        print()
 
     if found_issues:
-        print(f"{RED_FONT}{'-' * 100}\n{RESET}")
+        print(f"{RED_FONT}{'=' * 40} Recommended Actions {'=' * 40}{RESET}\n")
+        print(
+            "To address these issues, run the following commands from the project root directory:"
+        )
+        print("\n" + " && \\\n".join(commands))
+        print(f"\n{RED_FONT}{'=' * 100}{RESET}\n")
+    else:
+        print("\n🎉 All categories are present and evaluated for all models!")
 
-            
+    return found_issues
+
 def update_leaderboard_table_with_score_file(leaderboard_table, score_path):
 
     entries = os.scandir(score_path)
