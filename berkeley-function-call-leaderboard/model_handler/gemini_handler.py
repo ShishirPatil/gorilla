@@ -95,9 +95,9 @@ class GeminiHandler(BaseHandler):
 
     def inference(self, prompt, functions, test_category):
         prompt = augment_prompt_by_languge(prompt, test_category)
-        functions = language_specific_pre_processing(functions, test_category, True)
+        functions = language_specific_pre_processing(functions, test_category)
         gemini_tool = convert_to_tool(
-            functions, GORILLA_TO_OPENAPI, self.model_style, test_category, True
+            functions, GORILLA_TO_OPENAPI, self.model_style, test_category
         )
         result, metadata = self._query_gemini(prompt, gemini_tool)
         return result, metadata

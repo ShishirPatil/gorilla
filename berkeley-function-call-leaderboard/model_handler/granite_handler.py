@@ -32,13 +32,12 @@ class GraniteHandler(OSSHandler):
         if language_specific_prompt_augmented_str.strip():
             prompt = prompt.replace(language_specific_prompt_augmented_str, "")
 
-        functions = language_specific_pre_processing(function, test_category, False)
+        functions = language_specific_pre_processing(function, test_category)
         functions = convert_to_tool(
             functions,
             GORILLA_TO_OPENAPI,
             model_style=ModelStyle.OSSMODEL,
             test_category=test_category,
-            stringify_parameters=True,
         )
 
         functions_str = "\n".join([json.dumps(func) for func in function])
@@ -49,10 +48,10 @@ class GraniteHandler(OSSHandler):
         return prompt
 
     def inference(
-        self, question_file, test_category, num_gpus, format_prompt_func=_format_prompt
+        self, test_question, num_gpus, gpu_memory_utilization, format_prompt_func=_format_prompt
     ):
         return super().inference(
-            question_file, test_category, num_gpus, format_prompt_func
+            test_question, num_gpus, gpu_memory_utilization, format_prompt_func=format_prompt_func
         )
 
     def decode_ast(self, result, language="Python"):
@@ -75,9 +74,6 @@ class GraniteHandler(OSSHandler):
                 if fnname == "no_function":
                     decoded_outputs.append("No function is called")
                     continue
-
-                if language != "Python":
-                    args = {k: str(v) for k, v in args.items()}
 
                 decoded_outputs.append({fnname: args})
 

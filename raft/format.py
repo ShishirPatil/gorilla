@@ -104,7 +104,7 @@ class OpenAiCompletionDatasetFormatter(DatasetFormatter):
     https://platform.openai.com/docs/guides/fine-tuning/preparing-your-dataset
     """
     def format(self, ds: Dataset, params: Dict[str, str]) -> Dataset:
-        newds = ds.rename_columns({'question': 'prompt', 'cot_answer': 'completion'})
+        newds = ds.rename_columns({'instruction': 'prompt', 'cot_answer': 'completion'})
         return _remove_all_columns_but(newds, ['prompt', 'completion'])
 
 class OpenAiChatDatasetFormatter(OpenAiCompletionDatasetFormatter):

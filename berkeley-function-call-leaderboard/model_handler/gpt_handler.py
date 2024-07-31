@@ -26,7 +26,7 @@ class OpenAIHandler(BaseHandler):
     def inference(self, prompt,functions,test_category):
         if "FC" not in self.model_name:
             prompt = augment_prompt_by_languge(prompt,test_category)
-            functions = language_specific_pre_processing(functions,test_category,False)
+            functions = language_specific_pre_processing(functions,test_category)
             message = [
                 {
                     "role": "system",
@@ -51,12 +51,12 @@ class OpenAIHandler(BaseHandler):
             result = response.choices[0].message.content
         else:
             prompt = augment_prompt_by_languge(prompt, test_category)
-            functions = language_specific_pre_processing(functions, test_category, True)
+            functions = language_specific_pre_processing(functions, test_category)
             if type(functions) is not list:
                 functions = [functions]
             message = [{"role": "user", "content": prompt}]
             oai_tool = convert_to_tool(
-                functions, GORILLA_TO_OPENAPI, self.model_style, test_category, True
+                functions, GORILLA_TO_OPENAPI, self.model_style, test_category
             )
             start_time = time.time()
             if len(oai_tool) > 0:

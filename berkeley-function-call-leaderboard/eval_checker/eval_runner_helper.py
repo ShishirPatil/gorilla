@@ -8,7 +8,6 @@ import numpy as np
 from custom_exception import BadAPIStatusError
 from model_handler.handler_map import handler_map
 from tqdm import tqdm
-from eval_checker_constant import FILENAME_INDEX_MAPPING
 
 REST_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_REST.json"
 EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_executable.json"
@@ -319,9 +318,33 @@ MODEL_METADATA_MAPPING = {
         "Databricks",
         "Databricks Open Model",
     ],
+    "NousResearch/Hermes-2-Pro-Llama-3-8B": [
+        "Hermes-2-Pro-Llama-3-8B (FC)",
+        "https://huggingface.co/NousResearch/Hermes-2-Pro-Llama-3-8B",
+        "NousResearch",
+        "apache-2.0",
+    ],
+    "NousResearch/Hermes-2-Pro-Llama-3-70B": [
+        "Hermes-2-Pro-Llama-3-70B (FC)",
+        "https://huggingface.co/NousResearch/Hermes-2-Pro-Llama-3-70B",
+        "NousResearch",
+        "apache-2.0",
+    ],
     "NousResearch/Hermes-2-Pro-Mistral-7B": [
         "Hermes-2-Pro-Mistral-7B (FC)",
         "https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B",
+        "NousResearch",
+        "apache-2.0",
+    ],
+    "NousResearch/Hermes-2-Theta-Llama-3-8B": [
+        "Hermes-2-Theta-Llama-3-8B (FC)",
+        "https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-8B",
+        "NousResearch",
+        "apache-2.0",
+    ],
+    "NousResearch/Hermes-2-Theta-Llama-3-70B": [
+        "Hermes-2-Theta-Llama-3-70B (FC)",
+        "https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-70B",
         "NousResearch",
         "apache-2.0",
     ],
@@ -385,6 +408,24 @@ MODEL_METADATA_MAPPING = {
         "THUDM",
         "glm-4",
     ],
+    "yi-large-fc": [
+        "yi-large (FC)",
+        "https://platform.01.ai/",
+        "01.AI",
+        "Proprietary",
+    ],
+    "Salesforce/xLAM-1b-fc-r": [
+        "xLAM-1b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-1b-fc-r",
+        "Salesforce",
+        "cc-by-nc-4.0",
+    ],
+    "Salesforce/xLAM-7b-fc-r": [
+        "xLAM-7b-fc-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-7b-fc-r",
+        "Salesforce",
+        "cc-by-nc-4.0",
+    ]
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -426,6 +467,7 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus": 3,
     "command-r-plus-FC-optimized": 3,
     "command-r-plus-optimized": 3,
+    "yi-large-fc": 3,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -467,6 +509,7 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus": 15,
     "command-r-plus-FC-optimized": 15,
     "command-r-plus-optimized": 15,
+    "yi-large-fc": 3,
 }
 
 # The latency of the open-source models are hardcoded here.
@@ -476,6 +519,10 @@ OSS_LATENCY = {
     "deepseek-ai/deepseek-coder-6.7b-instruct": 909,
     "google/gemma-7b-it": 95,
     "NousResearch/Hermes-2-Pro-Mistral-7B": 135,
+    "NousResearch/Hermes-2-Pro-Llama-3-8B": 77,
+    "NousResearch/Hermes-2-Theta-Llama-3-8B": 73,
+    "NousResearch/Hermes-2-Theta-Llama-3-70B": 716,
+    "NousResearch/Hermes-2-Pro-Llama-3-70B": 674,
     "meta-llama/Meta-Llama-3-8B-Instruct": 73,
     "meta-llama/Meta-Llama-3-70B-Instruct": 307,
     "gorilla-openfunctions-v2": 83,
@@ -494,6 +541,8 @@ NO_COST_MODELS = [
     "nvidia/nemotron-4-340b-instruct",
     "ibm-granite/granite-20b-functioncalling",
     "THUDM/glm-4-9b-chat",
+    "Salesforce/xLAM-1b-fc-r",
+    "Salesforce/xLAM-7b-fc-r"
 ]
 
 # Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
@@ -623,7 +672,7 @@ def api_status_sanity_check_rest():
     ground_truth_dummy = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
 
     # Use the ground truth data to make sure the API is working correctly
-    command = f"cd .. ; python apply_function_credential_config.py --input-file ./eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
+    command = f"cd .. ; python apply_function_credential_config.py --input-path ./eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
     try:
         subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
     except subprocess.CalledProcessError as e:
@@ -1025,23 +1074,6 @@ def update_leaderboard_table_with_score_file(leaderboard_table, score_path):
                     "accuracy": accuracy,
                     "total_count": total_count,
                 }
-
-
-def oss_file_formatter(input_file_path, output_dir):
-    data = load_file(input_file_path)
-    assert len(data) == 2000, "OSS result.json file should have 2000 entries."
-
-    for key, value in FILENAME_INDEX_MAPPING.items():
-        start, end = value
-        output_file = os.path.join(
-            output_dir, f"gorilla_openfunctions_v1_test_{key}_result.json"
-        )
-        with open(output_file, "w") as f:
-            original_idx = 0
-            for i in range(start, end + 1):
-                new_json = {"id": original_idx, "result": data[i]["text"]}
-                f.write(json.dumps(new_json) + "\n")
-                original_idx += 1
 
 
 def collapse_json_objects(file_path):

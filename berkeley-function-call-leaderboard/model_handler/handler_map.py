@@ -19,6 +19,8 @@ from model_handler.oss_handler import OSSHandler
 from model_handler.granite_handler import GraniteHandler
 from model_handler.nvidia_handler import NvidiaHandler
 from model_handler.glm_handler import GLMHandler
+from model_handler.yi_handler import YiHandler
+from model_handler.xlam_handler import xLAMHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -60,7 +62,6 @@ handler_map = {
     "gemini-1.5-pro-preview-0409": GeminiHandler,
     "gemini-1.5-pro-preview-0514": GeminiHandler,
     "gemini-1.5-flash-preview-0514": GeminiHandler,
-    "gemma": OSSHandler,
     "google/gemma-7b-it": GemmaHandler,
     "glaiveai/glaive-function-calling-v1": GlaiveHandler,
     "deepseek-ai/deepseek-coder-6.7b-instruct": DeepseekHandler,
@@ -69,7 +70,11 @@ handler_map = {
     "meetkai/functionary-small-v2.4-FC": FunctionaryHandler,
     "meetkai/functionary-medium-v2.4-FC": FunctionaryHandler,
     "databricks-dbrx-instruct": DatabricksHandler,
+    "NousResearch/Hermes-2-Pro-Llama-3-8B": HermesHandler,
+    "NousResearch/Hermes-2-Pro-Llama-3-70B": HermesHandler,
     "NousResearch/Hermes-2-Pro-Mistral-7B": HermesHandler,
+    "NousResearch/Hermes-2-Theta-Llama-3-8B": HermesHandler,
+    "NousResearch/Hermes-2-Theta-Llama-3-70B": HermesHandler,
     "meta-llama/Meta-Llama-3-8B-Instruct": LlamaHandler,
     "meta-llama/Meta-Llama-3-70B-Instruct": LlamaHandler,
     "command-r-plus-FC": CohereHandler,
@@ -79,5 +84,8 @@ handler_map = {
     "snowflake/arctic": ArcticHandler,
     "ibm-granite/granite-20b-functioncalling": GraniteHandler,
     "nvidia/nemotron-4-340b-instruct": NvidiaHandler,
-    "THUDM/glm-4-9b-chat": GLMHandler
+    "THUDM/glm-4-9b-chat": GLMHandler,
+    "yi-large-fc": YiHandler,
+    "Salesforce/xLAM-1b-fc-r": xLAMHandler,
+    "Salesforce/xLAM-7b-fc-r": xLAMHandler
 }
