@@ -1068,7 +1068,6 @@ def check_model_category_status(score_path):
 def check_all_category_present(category_status):
     found_issues = False
     commands = []
-    commands.append("cd ..")
 
     print(f"\n{RED_FONT}{'=' * 30} Model Category Status {'=' * 30}{RESET}\n")
 
@@ -1089,6 +1088,7 @@ def check_all_category_present(category_status):
                 print(f"  Missing results for {len(not_generated)} categories:")
                 for cat in not_generated:
                     print(f"    - {cat}")
+                commands.append("cd ..")
                 commands.extend(
                     [
                         f"python openfunctions_evaluation.py --model {model_name} --test-category {test}"
