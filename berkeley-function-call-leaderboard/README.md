@@ -9,7 +9,7 @@
 ## Introduction
 We introduce the Berkeley Function Leaderboard (BFCL), the **first comprehensive and executable function call evaluation dedicated to assessing Large Language Models' (LLMs) ability to invoke functions**. Unlike previous function call evaluations, BFCL accounts for various forms of function calls, diverse function calling scenarios, and their executability. Additionally, we release Gorilla-Openfunctions-v2, the most advanced open-source model to date capable of handling multiple languages, parallel function calls, and multiple function calls simultaneously. A unique debugging feature of this model is its ability to output an "Error Message" when the provided function does not suit your task.
 
-Read more about the technical details and interesting insights in our blog post!
+Read more about the technical details and interesting insights in our [blog post](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html)!
 
 ![image](./architecture_diagram.png)
 ### Install Dependencies
@@ -48,10 +48,9 @@ python apply_function_credential_config.py
 ```
 
 
-## Berkeley Function-Calling Leaderboard Statistics
+## Evaluating different models on the BFCL
 
-
-Make sure models API keys are included in your environment variables.
+Make sure the model API keys are included in your environment variables. Running proprietary models like GPTs, Claude, Mistral-X will require them.
 
 ```bash
 export OPENAI_API_KEY=sk-XXXXXX
@@ -60,98 +59,25 @@ export FIRE_WORKS_API_KEY=XXXXXX
 export ANTHROPIC_API_KEY=XXXXXX
 export COHERE_API_KEY=XXXXXX
 export NVIDIA_API_KEY=nvapi-XXXXXX
+export YI_API_KEY=XXXXXX
 ```
 
-To generate leaderboard statistics, there are two steps:
+If decided to run OSS model, the generation script uses vllm and therefore requires GPU for hosting and inferencing. If you have questions or concerns about evaluating OSS models, please reach out to us in our [discord channel](https://discord.gg/grXXvj9Whz).
 
-1. LLM Inference of the evaluation data from specific models
+### Generating LLM Responses
+
+Use the following command for LLM inference of the evaluation dataset with specific models
 
 ```bash
 python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
 ```
-For TEST_CATEGORY, we have `executable_simple`, `executable_parallel_function`, `executable_multiple_function`, `executable_parallel_multiple_function`, `simple`, `relevance`, `parallel_function`, `multiple_function`, `parallel_multiple_function`, `java`, `javascript`, `rest`, `sql`, `chatable`.
 
-If you want to run all evaluations at the same time, you can use `all` as the test category.
+For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section below.
 
-Running proprietary models like GPTs, Claude, Mistral-X will require an API-Key which can be supplied in `openfunctions_evaluation.py`.
+If no `MODEL_NAME` is provided, the model `gorilla-openfunctions-v2` will be used by default. If no `TEST_CATEGORY` is provided, all test categories will be run by default.
 
-If decided to run OSS model, openfunction evaluation uses vllm and therefore requires GPU for hosting and inferencing. If you have questions or concerns about evaluating OSS models, please reach out to us in our [discord channel](https://discord.gg/grXXvj9Whz).
-
-
-
-
-## Checking the Evaluation Results
-
-### Running the Checker
-
-Navigate to the `gorilla/berkeley-function-call-leaderboard/eval_checker` directory and run the `eval_runner.py` script with the desired parameters. The basic syntax is as follows:
-
-```bash
-python eval_runner.py --model MODEL_NAME --test-category {TEST_CATEGORY,all,ast,executable,python,non-python}
-```
-
-- `MODEL_NAME`: Optional. The name of the model you wish to evaluate. This parameter can accept multiple model names separated by spaces. Eg, `--model gorilla-openfunctions-v2 gpt-4-0125-preview`.
-    - If no model name is provided, the script will run the checker on all models exist in the `result` folder. This path can be changed by modifying the `INPUT_PATH` variable in the `eval_runner.py` script.
-- `TEST_CATEGORY`: Optional. The category of tests to run. You can specify multiple categories separated by spaces. Available options include:
-    - `all`: Run all test categories.
-    - `ast`: Abstract Syntax Tree tests.
-    - `executable`: Executable code evaluation tests.
-    - `python`: Tests specific to Python code.
-    - `non-python`: Tests for code in languages other than Python, such as Java and JavaScript.
-    - Individual test categories:
-        - `simple`: Simple function calls.
-        - `parallel_function`: Multiple function calls in parallel.
-        - `multiple_function`: Multiple function calls in sequence.
-        - `parallel_multiple_function`: Multiple function calls in parallel and in sequence.
-        - `executable_simple`: Executable function calls.
-        - `executable_parallel_function`: Executable multiple function calls in parallel.
-        - `executable_multiple_function`: Executable multiple function calls in sequence.
-        - `executable_parallel_multiple_function`: Executable multiple function calls in parallel and in sequence.
-        - `java`: Java function calls.
-        - `javascript`: JavaScript function calls.
-        - `rest`: REST API function calls.
-        - `relevance`: Function calls with irrelevant function documentation.
-    - If no test category is provided, the script will run all available test categories.
-> If you want to run the `all` or `executable` or `python` category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API! 
-
-> If you do not wish to provide API keys for REST API testing, set `test-category` to `ast` or any non-executable category.
-
-> By setting the `--api-sanity-check` flag, or `-c` for short, if the test categories include `executable`, the evaluation process will perform the REST API sanity check first to ensure that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, we will flag those in the console and continue execution.
-
-### Example Usage
-
-If you want to run all tests for the `gorilla-openfunctions-v2` model, you can use the following command:
-
-```bash
-python eval_runner.py --model gorilla-openfunctions-v2
-
-```
-
-If you want to evaluate all offline tests (do not require RapidAPI keys) for OpenAI GPT-3.5, you can use the following command:
-
-```bash
-python eval_runner.py --model gpt-3.5-turbo-0125 --test-category ast
-```
-
-If you want to run `rest` tests for all GPT models, you can use the following command:
-
-```bash
-python eval_runner.py --model gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest
-```
-
-If you want to run `rest` and `javascript` tests for all GPT models and `gorilla-openfunctions-v2`, you can use the following command:
-
-```bash
-python eval_runner.py --model gorilla-openfunctions-v2 gpt-3.5-turbo-0125 gpt-4-0613 gpt-4-1106-preview gpt-4-0125-preview --test-category rest javascript
-```
-
-### Model-Specific Optimization
-
-Some companies have proposed some optimization strategies in their models' handler, which we (BFCL) think is unfair to other models, as those optimizations are not generalizable to all models. Therefore, we have disabled those optimizations during the evaluation process by default. You can enable those optimizations by setting the `USE_{COMPANY}_OPTIMIZATION` flag to `True` in the `model_handler/constants.py` file.
-
-
-## Models Available
-Below is *a table of models we support* to run our leaderboard evaluation against. If supported function calling (FC), we will follow its function calling format provided by official documentation. Otherwise, we will construct a system message to prompt the model to generate function calls in the right format.
+### Models Available
+Below is *a table of models we support* to run our leaderboard evaluation against. If the models support function calling (FC), we will follow its function calling format provided by official documentation. Otherwise, we use a consistent system message to prompt the model to generate function calls in the right format.
 |Model | Type |
 |---|---|
 |gorilla-openfunctions-v2 | Function Calling|
@@ -186,11 +112,16 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |mistral-small-2402 | Prompt|
 |mistral-tiny-2312 | Prompt|
 |Nexusflow-Raven-v2 | Function Calling|
+|NousResearch/Hermes-2-Pro-Llama-3-{8B,70B} 💻| Function Calling|
 |NousResearch/Hermes-2-Pro-Mistral-7B 💻| Function Calling|
+|NousResearch/Hermes-2-Theta-Llama-3-{8B,70B} 💻| Function Calling|
 |snowflake/arctic | Prompt|
+|Salesforce/xLAM-1b-fc-r 💻| Function Calling|
+|Salesforce/xLAM-7b-fc-r 💻| Function Calling|
 |nvidia/nemotron-4-340b-instruct| Prompt|
 |THUDM/glm-4-9b-chat 💻| Function Calling|
 |ibm-granite/granite-20b-functioncalling 💻| Function Calling|
+|yi-large-fc | Function Calling|
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function-calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
 
@@ -200,12 +131,102 @@ For model names with {.}, it means that the model has multiple versions. For exa
 For Mistral large and small models, we provide evaluation on both of their `Any` and `Auto` settings. More information about this can be found [here](https://docs.mistral.ai/guides/function-calling/).
 
 
-For inferencing `Gemini-1.0-pro`, you need to fill in `model_handler/gemini_handler.py` with your GCP project ID that has access to Vertex AI endpoint.
-For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure workspace and setup an endpoint for inference. 
+For `Gemini-1.0-pro`, you need to fill in `model_handler/gemini_handler.py` with your GCP project ID that has access to Vertex AI endpoint.
+For `Databrick-DBRX-instruct`, you need to create a Databrick Azure workspace and setup an endpoint for inference. 
+
+
+### Available Test Category
+In the following two sections, the optional `--test-category` parameter can be used to specify the category of tests to run. You can specify multiple categories separated by spaces. Available options include:
+
+- `all`: Run all test categories.
+    - This is the default option if no test category is provided.
+- `ast`: Abstract Syntax Tree tests.
+- `executable`: Executable code evaluation tests.
+- `python`: Tests specific to Python code.
+- `non-python`: Tests for code in languages other than Python, such as Java and JavaScript.
+- `python-ast`: Python Abstract Syntax Tree tests.
+- Individual test categories:
+    - `simple`: Simple function calls.
+    - `parallel_function`: Multiple function calls in parallel.
+    - `multiple_function`: Multiple function calls in sequence.
+    - `parallel_multiple_function`: Multiple function calls in parallel and in sequence.
+    - `executable_simple`: Executable function calls.
+    - `executable_parallel_function`: Executable multiple function calls in parallel.
+    - `executable_multiple_function`: Executable multiple function calls in sequence.
+    - `executable_parallel_multiple_function`: Executable multiple function calls in parallel and in sequence.
+    - `java`: Java function calls.
+    - `javascript`: JavaScript function calls.
+    - `rest`: REST API function calls.
+    - `relevance`: Function calls with irrelevant function documentation.
+- If no test category is provided, the script will run all available test categories. (same as `all`)
+
+> If you want to run the `all` or `executable` or `python` category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API!
+
+> If you do not wish to provide API keys for REST API testing, set `test-category` to `ast` or any non-executable category.
+
+> By setting the `--api-sanity-check` flag, or `-c` for short, if the test categories include `executable`, the evaluation process will perform the REST API sanity check first to ensure that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, we will flag those in the console and continue execution.
+
+
+## Evaluating the LLM generations
+
+### Running the Checker
+
+Navigate to the `gorilla/berkeley-function-call-leaderboard/eval_checker` directory and run the `eval_runner.py` script with the desired parameters. The basic syntax is as follows:
+
+```bash
+python eval_runner.py --model MODEL_NAME --test-category {TEST_CATEGORY,all,ast,executable,python,non-python}
+```
+
+For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section.
+
+If no `MODEL_NAME` is provided, all available model results will be evaluated by default. If no `TEST_CATEGORY` is provided, all test categories will be run by default.
+
+### Example Usage
+
+If you want to run all tests for the `gorilla-openfunctions-v2` model, you can use the following command:
+
+```bash
+python eval_runner.py --model gorilla-openfunctions-v2
+```
+
+If you want to evaluate all offline tests (do not require RapidAPI keys) for OpenAI GPT-3.5, you can use the following command:
+
+```bash
+python eval_runner.py --model gpt-3.5-turbo-0125 --test-category ast
+```
+
+If you want to run `rest` tests for a few Claude models, you can use the following command:
+
+```bash
+python eval_runner.py --model claude-3-5-sonnet-20240620 claude-3-opus-20240229 claude-3-sonnet-20240229 --test-category rest
+```
+
+If you want to run `rest` and `javascript` tests for a few models and `gorilla-openfunctions-v2`, you can use the following command:
+
+```bash
+python eval_runner.py --model gorilla-openfunctions-v2 claude-3-5-sonnet-20240620 gpt-4-0125-preview gemini-1.5-pro-preview-0514 --test-category rest javascript
+```
+
+### Model-Specific Optimization
+
+Some companies have proposed some optimization strategies in their models' handler, which we (BFCL) think is unfair to other models, as those optimizations are not generalizable to all models. Therefore, we have disabled those optimizations during the evaluation process by default. You can enable those optimizations by setting the `USE_{COMPANY}_OPTIMIZATION` flag to `True` in the `model_handler/constants.py` file.
 
 
 ## Changelog
 
+* [July 26, 2024] [#549](https://github.com/ShishirPatil/gorilla/pull/549): Fix js_type_converter.py to properly handle JavaScript array value inside dictionary. 
+* [July 25, 2024] [#532](https://github.com/ShishirPatil/gorilla/pull/532), [#543](https://github.com/ShishirPatil/gorilla/pull/543), [#556](https://github.com/ShishirPatil/gorilla/pull/556), [#542](https://github.com/ShishirPatil/gorilla/pull/542): Add the following new models to the leaderboard:
+    - `Salesforce/xLAM-7b-fc-r`
+    - `Salesforce/xLAM-1b-fc-r`
+    - `yi-large-fc`
+    - `NousResearch/Hermes-2-Pro-Llama-3-8B`
+    - `NousResearch/Hermes-2-Pro-Llama-3-70B`
+    - `NousResearch/Hermes-2-Theta-Llama-3-8B`
+    - `NousResearch/Hermes-2-Theta-Llama-3-70B`
+* [July 22, 2024] [#540](https://github.com/ShishirPatil/gorilla/pull/540): Chore: Improve handling of vLLM's cleanup phase error by combining all selected test categories into one single task to submit to the vLLM server.
+* [July 21, 2024] [#538](https://github.com/ShishirPatil/gorilla/pull/538), [#545](https://github.com/ShishirPatil/gorilla/pull/545): Fix `language_specific_pre_processing` and `convert_to_tool` function to properly handle pre-processing for prompts and function docs in Java and JavaScript test categories. All entries in these categories are affected.
+* [July 20, 2024] [#537](https://github.com/ShishirPatil/gorilla/pull/537): Update generation script for locally-hosted OSS model to use single-node multi-GPU inference method (tensor parallel). Ray is not used anymore.
+* [July 16, 2024] [#525](https://github.com/ShishirPatil/gorilla/pull/525), [#536](https://github.com/ShishirPatil/gorilla/pull/536): Add new model `ibm-granite/granite-20b-functioncalling` to the leaderboard.
 * [July 10, 2024] [#522](https://github.com/ShishirPatil/gorilla/pull/522): Bug fix in the evaluation dataset for Executable Parallel Multiple category. This includes updates to both prompts and function docs. 2 entries are affected.
 * [July 8, 2024] [#516](https://github.com/ShishirPatil/gorilla/pull/516): Fix double-casting issue in `model_handler` for Java and JavaScript test categories.
 * [July 7, 2024] [#504](https://github.com/ShishirPatil/gorilla/pull/504), [#505](https://github.com/ShishirPatil/gorilla/pull/505), [#506](https://github.com/ShishirPatil/gorilla/pull/506), [#508](https://github.com/ShishirPatil/gorilla/pull/508), [#510](https://github.com/ShishirPatil/gorilla/pull/510), [#512](https://github.com/ShishirPatil/gorilla/pull/512), [#517](https://github.com/ShishirPatil/gorilla/pull/517): Make BFCL user-friendly and easy to extend.
@@ -248,13 +269,13 @@ For inferencing `Databrick-DBRX-instruct`, you need to create a Databrick Azure 
 * [April 3, 2024] [#309](https://github.com/ShishirPatil/gorilla/pull/309): Bug fix for evaluation dataset possible answers. Implement **string standardization** for the AST evaluation pipeline, i.e. removing white spaces and a subset of punctuations (`,./-_*^`) to make the AST evaluation more robust and accurate. Fixed AST evaluation issue for type `tuple`. Add 2 new models `meetkai/functionary-small-v2.4 (FC)`, `meetkai/functionary-medium-v2.4 (FC)` to the leaderboard.
 * [April 1, 2024] [#299](https://github.com/ShishirPatil/gorilla/pull/299): Leaderboard update with new models (`Claude-3-Haiku`, `Databrick-DBRX-Instruct`), more advanced AST evaluation procedure, and updated evaluation datasets. Cost and latency statistics during evaluation are also measured. We also released the manual that our evaluation procedure is based on, available [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#metrics).
 * [Mar 11, 2024] [#254](https://github.com/ShishirPatil/gorilla/pull/254): Leaderboard update with 3 new models: `Claude-3-Opus-20240229 (Prompt)`, `Claude-3-Sonnet-20240229 (Prompt)`, and `meetkai/functionary-medium-v2.2 (FC)`
-* [Mar 5, 2024] [#237](https://github.com/ShishirPatil/gorilla/pull/237) and [238](https://github.com/ShishirPatil/gorilla/pull/238): leaderboard update resulting from [#223](https://github.com/ShishirPatil/gorilla/pull/223); 3 new models: `mistral-large-2402`, `gemini-1.0-pro`, and `gemma`.
+* [Mar 5, 2024] [#237](https://github.com/ShishirPatil/gorilla/pull/237) and [238](https://github.com/ShishirPatil/gorilla/pull/238): leaderboard update resulting from [#223](https://github.com/ShishirPatil/gorilla/pull/223); 3 new models: `mistral-large-2402`, `gemini-1.0-pro`, and `google/gemma-7b-it`.
 * [Feb 29, 2024] [#223](https://github.com/ShishirPatil/gorilla/pull/223): modifications to REST evaluation. 
 
 
 ## Contributing
 
-To add a new model to the Function Calling Leaderboard, here are a few things you need to do:
+We welcome additions to the Function Calling Leaderboard! To add a new model, here are a few things you need to do:
 
 1. Take a look at the `model_handler/handler.py`. This is the base handler object which all handlers are inherited from. Also, free feel to take a look at the existing model handers; very likely you can re-use some of the existing code if the new model outputs in a similar format.
 2. Create your handler and define the following functions 

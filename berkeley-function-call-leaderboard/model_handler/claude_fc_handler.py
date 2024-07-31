@@ -30,11 +30,11 @@ class ClaudeFCHandler(BaseHandler):
             return handler.inference(prompt, functions, test_category)
         else:
             prompt = augment_prompt_by_languge(prompt, test_category)
-            functions = language_specific_pre_processing(functions, test_category, True)
+            functions = language_specific_pre_processing(functions, test_category)
             if type(functions) is not list:
                 functions = [functions]
             claude_tool = convert_to_tool(
-                functions, GORILLA_TO_OPENAPI, self.model_style, test_category, True
+                functions, GORILLA_TO_OPENAPI, self.model_style, test_category
             )
             message = [{"role": "user", "content": prompt}]
             start_time = time.time()

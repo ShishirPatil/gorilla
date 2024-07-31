@@ -52,7 +52,7 @@ class CohereHandler(BaseHandler):
         if "FC" not in self.model_name:
             prompt = augment_prompt_by_languge(prompt, test_category)
             functions = language_specific_pre_processing(
-                functions, test_category, False
+                functions, test_category
             )
             message = USER_PROMPT_FOR_CHAT_MODEL.format(
                 user_prompt=prompt, functions=str(functions)
@@ -69,13 +69,13 @@ class CohereHandler(BaseHandler):
             result = response.text
         else:
             prompt = augment_prompt_by_languge(prompt, test_category)
-            functions = language_specific_pre_processing(functions, test_category, True)
+            functions = language_specific_pre_processing(functions, test_category)
             if type(functions) is not list:
                 functions = [functions]
             message = prompt
             # Convert JSON schema into R+ compatible function calls.
             cohere_tool = convert_to_tool(
-                functions, GORILLA_TO_PYTHON, self.model_style, test_category, True
+                functions, GORILLA_TO_PYTHON, self.model_style, test_category
             )
             start_time = time.time()
             if len(cohere_tool) > 0:

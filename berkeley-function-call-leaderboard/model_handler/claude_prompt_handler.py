@@ -27,7 +27,7 @@ class ClaudePromptingHandler(BaseHandler):
 
     def _get_claude_function_calling_response(self, prompt, functions, test_category):
         input_tool = convert_to_tool(
-            functions, GORILLA_TO_PYTHON, self.model_style, test_category, True
+            functions, GORILLA_TO_PYTHON, self.model_style, test_category
         )
         system_prompt = construct_tool_use_system_prompt(input_tool)
         start = time.time()
@@ -82,7 +82,7 @@ class ClaudePromptingHandler(BaseHandler):
     def inference(self, prompt, functions, test_category):
         prompt = augment_prompt_by_languge(prompt, test_category)
         if "FC" in self.model_name:
-            functions = language_specific_pre_processing(functions, test_category, True)
+            functions = language_specific_pre_processing(functions, test_category)
             result, metadata = self._get_claude_function_calling_response(
                 prompt, functions, test_category
             )
@@ -90,7 +90,7 @@ class ClaudePromptingHandler(BaseHandler):
         else:
             start = time.time()
             functions = language_specific_pre_processing(
-                functions, test_category, False
+                functions, test_category
             )
             response = self.client.messages.create(
                 model=self.model_name,

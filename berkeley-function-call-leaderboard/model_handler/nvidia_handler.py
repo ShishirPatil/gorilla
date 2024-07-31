@@ -25,7 +25,7 @@ class NvidiaHandler(BaseHandler):
         )
     def inference(self, prompt, functions, test_category):
         prompt = augment_prompt_by_languge(prompt,test_category)
-        functions = language_specific_pre_processing(functions,test_category,False)
+        functions = language_specific_pre_processing(functions,test_category)
         message = [
             {
                 "role": "system",
@@ -53,16 +53,6 @@ class NvidiaHandler(BaseHandler):
         output_token = response.usage.completion_tokens
         metadata = {"input_tokens": input_token, "output_tokens": output_token, "latency": latency}
         return result, metadata
-    
-    def write(self, result, file_to_open):
-        if not os.path.exists("./result"):
-            os.mkdir("./result")
-        if not os.path.exists("./result/" + self.model_name.replace("/", "_")):
-            os.mkdir("./result/" + self.model_name.replace("/", "_"))
-        with open(
-            "./result/" + self.model_name.replace("/", "_") + "/" + file_to_open.replace(".json", "_result.json"), "a+"
-        ) as f:
-            f.write(json.dumps(result) + "\n")
 
     def decode_ast(self, result, language="Python"):
         result = result.replace("\n", "")

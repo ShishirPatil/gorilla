@@ -102,7 +102,6 @@ def parse_js_collection(code, type_str, nested_type=None):
             return code
 
     elif type_str == "dict":
-
         if code == "{}":
             return {}  # Return an empty dictionary for an empty object
         dict_pattern = r"\{(.*?)\}"
@@ -110,15 +109,23 @@ def parse_js_collection(code, type_str, nested_type=None):
         dict_match = re.match(dict_pattern, code)
         if dict_match:
             try:
-                pairs = dict_match.group(1).split(",")
+                content = dict_match.group(1)
+                pairs = re.findall(r"([^:]+):\s*(.*?)(?:,\s*(?=[^,]+:)|$)", content)
                 dictionary = {}
-                for pair in pairs:
-                    key, value = pair.split(":")
-                    key = parse_js_value(key.strip().strip("'"))
-                    value = parse_js_value(value.strip().strip("'"))
-                    dictionary[key] = value
+                for key, value in pairs:
+                    key = key.strip().strip("'\"")
+                    value = value.strip()
+                    if value.startswith("[") and value.endswith("]"):
+                        # Handle array values
+                        dictionary[key] = parse_js_collection(value, "array")
+                    elif value.startswith("{") and value.endswith("}"):
+                        # Handle nested dictionary values
+                        dictionary[key] = parse_js_collection(value, "dict")
+                    else:
+                        dictionary[key] = parse_js_value(value.strip("'\""))
                 return dictionary
-            except:
+            except Exception as e:
+                print(f"Error parsing dictionary: {e}")
                 return code
         else:
             return code  # default to string
@@ -147,8 +154,6 @@ def parse_js_value(value_str: str):
 
 
 # Write tests for the `js_type_converter` function
-
-
 def test_js_type_converter():
     assert js_type_converter("true", "Boolean") == True
     assert js_type_converter("false", "Boolean") == False
@@ -288,6 +293,19 @@ def test_js_type_converter_nested_array():
     print("All nested array tests passed successfully!")
 
 
+def test_js_type_converter_dictionary_with_arrays():
+    complex_dict = js_type_converter(
+        '{"initialState": initialStateObject, "reducers": reducersMap, "middlewares": ["loggerMiddleware"], "enhancers": ["applyMiddleware", "myMiddleWare"]}',
+        "dict",
+    )
+    assert isinstance(complex_dict, dict)
+    assert complex_dict["initialState"] == "initialStateObject"
+    assert complex_dict["reducers"] == "reducersMap"
+    assert complex_dict["middlewares"] == ["loggerMiddleware"]
+    assert complex_dict["enhancers"] == ["applyMiddleware", "myMiddleWare"]
+    print("Complex dictionary test passed successfully!")
+
 if __name__ == "__main__":
     test_js_type_converter()
     test_js_type_converter_nested_array()
+    test_js_type_converter_dictionary_with_arrays()

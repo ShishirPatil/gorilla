@@ -5,6 +5,7 @@ sys.path.append("../")
 from checker import ast_checker, exec_checker, executable_checker_rest
 from custom_exception import BadAPIStatusError
 from eval_runner_helper import *
+from eval_checker_constant import TEST_COLLECTION_MAPPING
 from tqdm import tqdm
 import argparse
 
@@ -171,14 +172,14 @@ def single_ast_file_runner(
 ):
     assert (
         len(model_result) == len(prompt) == len(possible_answer)
-    ), "The length of the model result does not match the length of the prompt or possible answer. Please check the input files for completeness."
+    ), f"The length of the model result ({len(model_result)}) does not match the length of the prompt ({len(prompt)}) or possible answer ({len(possible_answer)}). Please check the input files for completeness."
 
     result = []
     correct_count = 0
     for i in range(len(model_result)):
         model_result_item = model_result[i]["result"]
         prompt_item = prompt[i]["function"]
-        possible_answer_item = possible_answer[i]
+        possible_answer_item = possible_answer[i]["ground_truth"]
 
         try:
             model_result_item_raw = model_result_item
@@ -289,20 +290,6 @@ def runner(model_names, test_categories, api_sanity_check):
             continue
 
         model_name_escaped = model_name.replace("_", "/")
-
-        files = [
-            f
-            for f in os.listdir(subdir)
-            if os.path.isfile(os.path.join(subdir, f)) and not f.startswith(".")
-        ]
-        # Check if there is only one file and that file is 'result.json'
-        # If so, this is an OSS model result file and we need to special process it first
-        if len(files) == 1 and files[0] == "result.json":
-            result_json_file_path = os.path.join(subdir, "result.json")
-            oss_file_formatter(result_json_file_path, subdir)
-            print(
-                f"Detected OSS model: {model_name}. result.json has been split into individual test category files."
-            )
 
         # Pattern to match JSON files in this subdirectory
         json_files_pattern = os.path.join(subdir, "*.json")
@@ -430,56 +417,6 @@ def runner(model_names, test_categories, api_sanity_check):
     print(f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data.csv')} for evaluation results.")
 
 
-ARG_PARSE_MAPPING = {
-    "ast": [
-        "simple",
-        "multiple_function",
-        "parallel_function",
-        "parallel_multiple_function",
-        "java",
-        "javascript",
-        "relevance",
-    ],
-    "executable": [
-        "executable_simple",
-        "executable_multiple_function",
-        "executable_parallel_function",
-        "executable_parallel_multiple_function",
-        "rest",
-    ],
-    "all": [
-        "simple",
-        "multiple_function",
-        "parallel_function",
-        "parallel_multiple_function",
-        "java",
-        "javascript",
-        "relevance",
-        "executable_simple",
-        "executable_multiple_function",
-        "executable_parallel_function",
-        "executable_parallel_multiple_function",
-        "rest",
-    ],
-    "non-python": [
-        "java",
-        "javascript",
-    ],
-    "python": [
-        "simple",
-        "multiple_function",
-        "parallel_function",
-        "parallel_multiple_function",
-        "relevance",
-        "executable_simple",
-        "executable_multiple_function",
-        "executable_parallel_function",
-        "executable_parallel_multiple_function",
-        "rest",
-    ],
-}
-
-
 INPUT_PATH = "../result/"
 PROMPT_PATH = "../data/"
 POSSIBLE_ANSWER_PATH = "../data/possible_answer/"
@@ -518,8 +455,8 @@ if __name__ == "__main__":
     if args.test_category is not None:
         test_categories = []
         for test_category in args.test_category:
-            if test_category in ARG_PARSE_MAPPING:
-                test_categories.extend(ARG_PARSE_MAPPING[test_category])
+            if test_category in TEST_COLLECTION_MAPPING:
+                test_categories.extend(TEST_COLLECTION_MAPPING[test_category])
             else:
                 test_categories.append(test_category)
 
