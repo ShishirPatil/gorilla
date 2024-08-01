@@ -283,7 +283,7 @@
 {"id": "simple_282", "ground_truth": {"find_flute": {"brand": ["Yamaha"], "specs": [["open hole", "C foot", "silver headjoint"]]}}}
 {"id": "simple_283", "ground_truth": {"guitar_price.find": {"model": ["Gibson Les Paul"], "condition": ["Excellent"], "location": ["Chicago", "Chicago, IL", "Chicago, Illinois"]}}}
 {"id": "simple_284", "ground_truth": {"concert_info.get": {"location": ["New York City, NY", "New York"], "date": ["next month", "2023-06-01", "06/01/2023", "Jun.1,2023", "June 2023"], "genre": ["Pop"]}}}
-{"id": "simple_285", "ground_truth": {"find_concert": {"location": ["Chicago", "Chicago, IL"], "price": [100], "genre": ["Rock"]}}}
+{"id": "simple_285", "ground_truth": {"find_concert": {"location": ["Chicago, Illinois", "Chicago, IL"], "price": [100], "genre": ["Rock"]}}}
 {"id": "simple_286", "ground_truth": {"concert.get_details": {"artist": ["Beyonce"], "location": ["San Diego", "San Diego, California", "CA"], "date": ["04-2022", "April 2022"]}}}
 {"id": "simple_287", "ground_truth": {"concert.search": {"genre": ["classical"], "location": ["Los Angeles", "LA"], "date": ["this weekend"], "price_range": ["cheap"]}}}
 {"id": "simple_288", "ground_truth": {"concert_booking.book_ticket": {"artist": ["Eminem"], "city": ["New York City", "New York City, NY", "NYC"], "num_tickets": [2]}}}
