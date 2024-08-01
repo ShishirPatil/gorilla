@@ -373,7 +373,7 @@
 {"id": "simple_372", "ground_truth": {"whole_foods.find_top_brands": {"product": ["bananas"], "number": [5, ""], "organic": [true]}}}
 {"id": "simple_373", "ground_truth": {"walmart.purchase": {"loc": ["San Jose", "San Jose, CA"], "product_list": [["apples", "rice", "bottled water"], ["apples", "rice", "water"]], "pack_size": [[1, 1, 12]]}}}
 {"id": "simple_374", "ground_truth": {"grocery_info.nutritional_info": {"store": ["Walmart"], "food": ["avocado", "Avocado"], "information": [["Protein", "Calories", "Carbohydrates"]]}}}
-{"id": "simple_375", "ground_truth": {"walmart.check_price": {"items": [["pumpkins", "eggs"], ["pumpkin", "egg"]], "quantities": [[3, 24], [3, 2]], "store_location": ["Los Angeles", "LA"]}}}
+{"id": "simple_375", "ground_truth": {"walmart.check_price": {"items": [["pumpkins", "eggs"], ["pumpkin", "dozen eggs"]], "quantities": [[3, 24], [3, 2]], "store_location": ["Los Angeles", "LA"]}}}
 {"id": "simple_376", "ground_truth": {"time_zone_converter": {"city": ["London"], "country": ["UK", "United Kingdom"], "display_format": ["24h", "24 hour"]}}}
 {"id": "simple_377", "ground_truth": {"get_current_time": {"city": ["Sydney"], "country": ["Australia"], "format": ["", "HH:MM:SS"]}}}
 {"id": "simple_378", "ground_truth": {"timezone.convert": {"time": ["3pm"], "from_timezone": ["America/New_York", "New York", "NYC", "New York City"], "to_timezone": ["Europe/London", "London"]}}}
