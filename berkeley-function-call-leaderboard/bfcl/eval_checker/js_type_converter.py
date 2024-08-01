@@ -1,5 +1,5 @@
 import re
-from model_handler.constant import JS_TYPE_CONVERSION
+from bfcl.model_handler.constant import JS_TYPE_CONVERSION
 
 
 def js_type_converter(value, expected_type, nested_type=None):

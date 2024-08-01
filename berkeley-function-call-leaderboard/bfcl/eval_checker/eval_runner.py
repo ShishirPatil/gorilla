@@ -1,7 +1,3 @@
-import sys
-
-sys.path.append("../")
-
 from checker import ast_checker, exec_checker, executable_checker_rest
 from custom_exception import BadAPIStatusError
 from eval_runner_helper import *
@@ -417,10 +413,10 @@ def runner(model_names, test_categories, api_sanity_check):
     print(f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data.csv')} for evaluation results.")
 
 
-INPUT_PATH = "../result/"
-PROMPT_PATH = "../data/"
-POSSIBLE_ANSWER_PATH = "../data/possible_answer/"
-OUTPUT_PATH = "../score/"
+INPUT_PATH = "../../result/"
+PROMPT_PATH = "../../data/"
+POSSIBLE_ANSWER_PATH = "../../data/possible_answer/"
+OUTPUT_PATH = "../../score/"
 
 # A dictionary to store the results
 # Key is model name, value is a dictionary with keys as test category and values as a dictionary with accuracy and total count

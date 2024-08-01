@@ -5,7 +5,7 @@ from custom_exception import NoAPIKeyError
 import time
 
 api_key = {}
-with open("../function_credential_config.json") as f:
+with open("../../function_credential_config.json") as f:
     data = json.loads(f.read())
     for item in data:
         for k, v in item.items():

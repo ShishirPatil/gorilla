@@ -6,7 +6,7 @@ import subprocess
 
 import numpy as np
 from custom_exception import BadAPIStatusError
-from model_handler.handler_map import handler_map
+from bfcl.model_handler.handler_map import handler_map
 from tqdm import tqdm
 
 REST_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_REST.json"
@@ -670,7 +670,7 @@ def api_status_sanity_check_rest():
     ground_truth_dummy = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
 
     # Use the ground truth data to make sure the API is working correctly
-    command = f"cd .. ; python apply_function_credential_config.py --input-path ./eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
+    command = f"cd ../.. ; python apply_function_credential_config.py --input-path ./bfcl/eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
     try:
         subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
     except subprocess.CalledProcessError as e:
