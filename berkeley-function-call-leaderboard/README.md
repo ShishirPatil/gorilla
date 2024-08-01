@@ -12,15 +12,42 @@ We introduce the Berkeley Function Leaderboard (BFCL), the **first comprehensive
 Read more about the technical details and interesting insights in our [blog post](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html)!
 
 ![image](./architecture_diagram.png)
+
+
 ### Install Dependencies
 
 ```bash
+# Create a new Conda environment with Python 3.10
 conda create -n BFCL python=3.10
+
+# Activate the new environment
 conda activate BFCL
-pip install -r requirements.txt # Inside gorilla/berkeley-function-call-leaderboard
-pip install vllm==0.5.0 # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
+
+# Clone the Gorilla repository
+git clone https://github.com/ShishirPatil/gorilla.git
+
+# Change directory to the berkeley-function-call-leaderboard
+cd gorilla/berkeley-function-call-leaderboard
+
+# Install the package in editable mode
+pip install -e .
 ```
 
+### Installing Extra Dependencies
+
+To install extra dependencies, use the following command:
+
+```bash
+pip install -e ".[NAME]"
+```
+
+Available options for `NAME` are:
+
+| Name             | Description     |
+|------------------|-----------------|
+| `oss_eval`       | For LLM generation on self-hosted open source models. Requires GPU supported by vLLM. Only works on Linux and Windows. |
+| `proprietary_eval` | For LLM generation on proprietary models (most common, **recommended**). |
+| `all`            | Installs all dependencies, combining the above two options. Only works on Linux and Windows. |
 
 ## Execution Evaluation Data Post-processing (Can be Skipped: Necesary for Executable Test Categories)
 Add your keys into `function_credential_config.json`, so that the original placeholder values in questions, params, and answers will be reset.
@@ -171,7 +198,7 @@ In the following two sections, the optional `--test-category` parameter can be u
 
 ### Running the Checker
 
-Navigate to the `gorilla/berkeley-function-call-leaderboard/eval_checker` directory and run the `eval_runner.py` script with the desired parameters. The basic syntax is as follows:
+Navigate to the `gorilla/berkeley-function-call-leaderboard/bfcl/eval_checker` directory and run the `eval_runner.py` script with the desired parameters. The basic syntax is as follows:
 
 ```bash
 python eval_runner.py --model MODEL_NAME --test-category {TEST_CATEGORY,all,ast,executable,python,non-python}
