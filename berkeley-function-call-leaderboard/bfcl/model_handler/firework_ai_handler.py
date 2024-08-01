@@ -20,19 +20,6 @@ class FireworkAIHandler(OpenAIHandler):
             api_key=os.getenv("FIRE_WORKS_API_KEY"),
         )
 
-    def write(self, result, file_to_open):
-        # This method is used to write the result to the file.
-        if not os.path.exists("./result"):
-            os.mkdir("./result")
-        if not os.path.exists(f"./result/{self.model_name}"):
-            os.mkdir(f"./result/{self.model_name}")
-        with open(
-            f"./result/{self.model_name}/"
-            + file_to_open.replace(".json", "_result.json"),
-            "a+",
-        ) as f:
-            f.write(json.dumps(result) + "\n")
-
     def inference(self, prompt, functions, test_category):
         functions = language_specific_pre_processing(functions, test_category)
         if type(functions) is not list:
