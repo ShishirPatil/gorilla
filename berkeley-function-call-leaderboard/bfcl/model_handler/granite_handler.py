@@ -1,9 +1,9 @@
 import json
 
-from model_handler.model_style import ModelStyle
-from model_handler.oss_handler import OSSHandler
-from model_handler.constant import GORILLA_TO_OPENAPI
-from model_handler.utils import (
+from bfcl.model_handler.model_style import ModelStyle
+from bfcl.model_handler.oss_handler import OSSHandler
+from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
+from bfcl.model_handler.utils import (
     language_specific_pre_processing,
     convert_to_tool,
     augment_prompt_by_languge,

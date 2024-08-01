@@ -4,11 +4,11 @@ import time
 
 from anthropic import Anthropic
 from anthropic.types import TextBlock, ToolUseBlock
-from model_handler.claude_prompt_handler import ClaudePromptingHandler
-from model_handler.constant import GORILLA_TO_OPENAPI
-from model_handler.handler import BaseHandler
-from model_handler.model_style import ModelStyle
-from model_handler.utils import (
+from bfcl.model_handler.claude_prompt_handler import ClaudePromptingHandler
+from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
+from bfcl.model_handler.handler import BaseHandler
+from bfcl.model_handler.model_style import ModelStyle
+from bfcl.model_handler.utils import (
     ast_parse,
     augment_prompt_by_languge,
     convert_to_function_call,

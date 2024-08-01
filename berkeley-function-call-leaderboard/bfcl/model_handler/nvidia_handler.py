@@ -1,13 +1,13 @@
 import time,os,json
 from openai import OpenAI
-from model_handler.handler import BaseHandler
-from model_handler.model_style import ModelStyle
-from model_handler.utils import ast_parse
-from model_handler.utils import (
+from bfcl.model_handler.handler import BaseHandler
+from bfcl.model_handler.model_style import ModelStyle
+from bfcl.model_handler.utils import ast_parse
+from bfcl.model_handler.utils import (
     augment_prompt_by_languge,
     language_specific_pre_processing,
 )
-from model_handler.constant import (
+from bfcl.model_handler.constant import (
     USER_PROMPT_FOR_CHAT_MODEL,
     SYSTEM_PROMPT_FOR_CHAT_MODEL,
 )

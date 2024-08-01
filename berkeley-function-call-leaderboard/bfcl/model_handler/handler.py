@@ -1,4 +1,4 @@
-from model_handler.model_style import ModelStyle
+from bfcl.model_handler.model_style import ModelStyle
 import json, os
 
 

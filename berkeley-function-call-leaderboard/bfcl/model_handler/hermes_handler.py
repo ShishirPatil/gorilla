@@ -1,7 +1,7 @@
-from model_handler.oss_handler import OSSHandler
-from model_handler.utils import convert_to_tool
-from model_handler.constant import GORILLA_TO_OPENAPI
-from model_handler.model_style import ModelStyle
+from bfcl.model_handler.oss_handler import OSSHandler
+from bfcl.model_handler.utils import convert_to_tool
+from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
+from bfcl.model_handler.model_style import ModelStyle
 import json
 
 

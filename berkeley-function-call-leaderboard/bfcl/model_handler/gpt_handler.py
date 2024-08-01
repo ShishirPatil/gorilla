@@ -1,13 +1,13 @@
-from model_handler.handler import BaseHandler
-from model_handler.model_style import ModelStyle
-from model_handler.utils import (
+from bfcl.model_handler.handler import BaseHandler
+from bfcl.model_handler.model_style import ModelStyle
+from bfcl.model_handler.utils import (
     convert_to_tool,
     convert_to_function_call,
     augment_prompt_by_languge,
     language_specific_pre_processing,
     ast_parse,
 )
-from model_handler.constant import (
+from bfcl.model_handler.constant import (
     GORILLA_TO_OPENAPI,
     GORILLA_TO_PYTHON,
     USER_PROMPT_FOR_CHAT_MODEL,

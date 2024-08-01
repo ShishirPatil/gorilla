@@ -1,17 +1,17 @@
-from model_handler.oss_handler import OSSHandler
-from model_handler.utils import ast_parse
-from model_handler.constant import (
+from bfcl.model_handler.oss_handler import OSSHandler
+from bfcl.model_handler.utils import ast_parse
+from bfcl.model_handler.constant import (
     SYSTEM_PROMPT_FOR_CHAT_MODEL,
     USER_PROMPT_FOR_CHAT_MODEL,
 )
-from model_handler.model_style import ModelStyle
-from model_handler.utils import (
+from bfcl.model_handler.model_style import ModelStyle
+from bfcl.model_handler.utils import (
     convert_to_tool,
     augment_prompt_by_languge,
     language_specific_pre_processing,
     convert_to_function_call,
 )
-from model_handler.constant import GORILLA_TO_OPENAPI
+from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
 import json
 
 

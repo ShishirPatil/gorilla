@@ -1,15 +1,15 @@
 import os
 
-from model_handler.handler import BaseHandler
-from model_handler.model_style import ModelStyle
-from model_handler.utils import (
+from bfcl.model_handler.handler import BaseHandler
+from bfcl.model_handler.model_style import ModelStyle
+from bfcl.model_handler.utils import (
     augment_prompt_by_languge,
     language_specific_pre_processing,
     convert_to_tool,
     ast_parse,
     convert_to_function_call,
 )
-from model_handler.constant import (
+from bfcl.model_handler.constant import (
     SYSTEM_PROMPT_FOR_CHAT_MODEL,
     USER_PROMPT_FOR_CHAT_MODEL,
     GORILLA_TO_PYTHON,
@@ -17,7 +17,7 @@ from model_handler.constant import (
 import time
 import cohere
 
-from model_handler.constant import USE_COHERE_OPTIMIZATION
+from bfcl.model_handler.constant import USE_COHERE_OPTIMIZATION
 
 
 class CohereHandler(BaseHandler):

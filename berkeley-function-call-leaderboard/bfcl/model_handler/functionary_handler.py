@@ -1,5 +1,5 @@
-from model_handler.gpt_handler import OpenAIHandler
-from model_handler.model_style import ModelStyle
+from bfcl.model_handler.gpt_handler import OpenAIHandler
+from bfcl.model_handler.model_style import ModelStyle
 import os, json
 from openai import OpenAI
 

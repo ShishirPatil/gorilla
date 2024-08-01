@@ -2,10 +2,10 @@ import json
 import os
 import time
 
-from model_handler.constant import GORILLA_TO_OPENAPI
-from model_handler.gpt_handler import OpenAIHandler
-from model_handler.model_style import ModelStyle
-from model_handler.utils import convert_to_tool, language_specific_pre_processing
+from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
+from bfcl.model_handler.gpt_handler import OpenAIHandler
+from bfcl.model_handler.model_style import ModelStyle
+from bfcl.model_handler.utils import convert_to_tool, language_specific_pre_processing
 from openai import OpenAI
 
 

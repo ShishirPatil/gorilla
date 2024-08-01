@@ -1,5 +1,5 @@
-from model_handler.oss_handler import OSSHandler
-from model_handler.utils import convert_to_function_call
+from bfcl.model_handler.oss_handler import OSSHandler
+from bfcl.model_handler.utils import convert_to_function_call
 import json
 
 
