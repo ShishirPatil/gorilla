@@ -91,7 +91,9 @@ def collect_test_cases(test_filename_total, model_name):
 
 
 def generate_results(args, model_name, test_cases_total):
-    retry_limit = 3
+    RETRY_LIMIT = 3
+    RETRY_DELAY = 65  # Delay in seconds
+    
     handler = build_handler(model_name, args.temperature, args.top_p, args.max_tokens)
 
     if handler.model_style == ModelStyle.OSSMODEL:
@@ -117,16 +119,25 @@ def generate_results(args, model_name, test_cases_total):
 
             retry_count = 0
 
-            while retry_count < retry_limit:
+            while retry_count < RETRY_LIMIT:
                 try:
                     result, metadata = handler.inference(
                         user_question, functions, test_category
                     )
                     break  # Success, exit the loop
                 except Exception as e:
-                    if "Rate limit reached" in str(e) and retry_count < retry_limit - 1:
-                        print(f"Rate limit reached. Sleeping for 65 seconds. Retry {retry_count + 1}/{retry_limit}")
-                        time.sleep(65)
+                    # TODO: It might be better to handle the exception in the handler itself rather than a universal catch block here, as each handler use different ways to call the endpoint.
+                    # OpenAI has openai.RateLimitError while Anthropic has anthropic.RateLimitError. It would be more robust in the long run. 
+                    if "rate limit reached" in str(e).lower() or (
+                        hasattr(e, "status_code")
+                        and (
+                            e.status_code == 429
+                            or e.status_code == 503
+                            or e.status_code == 403
+                        )
+                    ):
+                        print(f"Rate limit reached. Sleeping for 65 seconds. Retry {retry_count + 1}/{RETRY_LIMIT}")
+                        time.sleep(RETRY_DELAY)
                         retry_count += 1
                     else:
                         print("Maximum retries reached or other error encountered.")
