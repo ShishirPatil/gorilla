@@ -8,7 +8,7 @@ setup(
     author_email="sky@cs.berkeley.edu",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    python_requires=">=3.9",
+    python_requires=">=3.10",
     license="Apache 2.0",
     packages=find_packages(include=["bfcl*"]),
     install_requires=[
