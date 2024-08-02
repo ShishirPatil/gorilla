@@ -37,7 +37,7 @@ pip install -e .
 
 To do LLM generation on self-hosted open source models, you need to run the following command to install the extra dependencies.
 ```bash
-pip install -e ". oss_eval"
+pip install -e .[oss_eval]
 ```
 Note that this requires GPU supported by vLLM and it can only be installed on Linux and Windows (not Mac).
 
