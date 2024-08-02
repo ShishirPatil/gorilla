@@ -59,7 +59,7 @@ def parse_test_category_argument(test_category_args):
             test_name_total.add(test_category)
             test_filename_total.add(TEST_FILE_MAPPING[test_category])
 
-    return list(test_name_total), list(test_filename_total)
+    return sorted(list(test_name_total)), sorted(list(test_filename_total))
 
 
 def collect_test_cases(test_filename_total, model_name):
