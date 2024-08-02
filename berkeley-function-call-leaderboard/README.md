@@ -33,21 +33,13 @@ cd gorilla/berkeley-function-call-leaderboard
 pip install -e .
 ```
 
-### Installing Extra Dependencies
+### Installing Extra Dependencies for Self-Hosted Open Source Models
 
-To install extra dependencies, use the following command:
-
+To do LLM generation on self-hosted open source models, you need to run the following command to install the extra dependencies.
 ```bash
-pip install -e ".[NAME]"
+pip install -e ". oss_eval"
 ```
-
-Available options for `NAME` are:
-
-| Name             | Description     |
-|------------------|-----------------|
-| `oss_eval`       | For LLM generation on self-hosted open source models. Requires GPU supported by vLLM. Only works on Linux and Windows. |
-| `proprietary_eval` | For LLM generation on proprietary models (most common, **recommended**). |
-| `all`            | Installs all dependencies, combining the above two options. Only works on Linux and Windows. |
+Note that this requires GPU supported by vLLM and it can only be installed on Linux and Windows (not Mac).
 
 ## Execution Evaluation Data Post-processing (Can be Skipped: Necesary for Executable Test Categories)
 Add your keys into `function_credential_config.json`, so that the original placeholder values in questions, params, and answers will be reset.
