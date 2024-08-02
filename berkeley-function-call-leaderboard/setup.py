@@ -1,4 +1,8 @@
 from setuptools import setup, find_packages
+import codecs
+
+with codecs.open('README.md', 'r', 'utf-8') as f:
+    long_description = f.read()
 
 setup(
     name="bfcl",
@@ -6,7 +10,7 @@ setup(
     description="Berkeley Function Calling Leaderboard (BFCL)",
     author="Sky Computing Lab",
     author_email="sky@cs.berkeley.edu",
-    long_description=open("README.md").read(),
+    long_description=long_description,
     long_description_content_type="text/markdown",
     python_requires=">=3.10",
     license="Apache 2.0",
