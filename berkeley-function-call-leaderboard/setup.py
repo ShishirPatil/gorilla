@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import codecs
 
-with codecs.open('README.md', 'r', 'utf-8') as f:
+with codecs.open("README.md", "r", "utf-8") as f:
     long_description = f.read()
 
 setup(
@@ -27,15 +27,12 @@ setup(
         "tree-sitter-java==0.21.0",
         "tree-sitter-javascript==0.21.4",
         "openai==1.35.13",
+        "mistralai==0.4.2",
+        "anthropic==0.31.1",
+        "cohere==5.5.8",
     ],
     extras_require={
         "oss_eval": ["vllm==0.5.0"],
-        "proprietary_eval": [
-            "mistralai==0.4.2",
-            "anthropic==0.31.1",
-            "cohere==5.5.8",
-        ],
-        "all": ["bfcl[oss_eval]", "bfcl[proprietary_eval]"],
     },
     project_urls={
         "Repository": "https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard",
