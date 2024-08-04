@@ -1,4 +1,4 @@
-import argparse, json, os
+import argparse, json, os, time
 from tqdm import tqdm
 from model_handler.handler_map import handler_map
 from model_handler.model_style import ModelStyle
@@ -91,6 +91,10 @@ def collect_test_cases(test_filename_total, model_name):
 
 
 def generate_results(args, model_name, test_cases_total):
+    RETRY_LIMIT = 3
+    # 60s for the timer to complete. But often we find that even with 60 there is a conflict. So 65 is a safe no.
+    RETRY_DELAY = 65  # Delay in seconds
+    
     handler = build_handler(model_name, args.temperature, args.top_p, args.max_tokens)
 
     if handler.model_style == ModelStyle.OSSMODEL:
@@ -114,9 +118,31 @@ def generate_results(args, model_name, test_cases_total):
             if type(functions) is dict or type(functions) is str:
                 functions = [functions]
 
-            result, metadata = handler.inference(
-                user_question, functions, test_category
-            )
+            retry_count = 0
+
+            while retry_count < RETRY_LIMIT:
+                try:
+                    result, metadata = handler.inference(
+                        user_question, functions, test_category
+                    )
+                    break  # Success, exit the loop
+                except Exception as e:
+                    # TODO: It might be better to handle the exception in the handler itself rather than a universal catch block here, as each handler use different ways to call the endpoint.
+                    # OpenAI has openai.RateLimitError while Anthropic has anthropic.RateLimitError. It would be more robust in the long run. 
+                    if "rate limit reached" in str(e).lower() or (
+                        hasattr(e, "status_code")
+                        and (
+                            e.status_code == 429
+                            or e.status_code == 503
+                            or e.status_code == 500
+                        )
+                    ):
+                        print(f"Rate limit reached. Sleeping for 65 seconds. Retry {retry_count + 1}/{RETRY_LIMIT}")
+                        time.sleep(RETRY_DELAY)
+                        retry_count += 1
+                    else:
+                        print("Maximum retries reached or other error encountered.")
+                        raise e  # Rethrow the last caught exception
             result_to_write = {
                 "id": test_case["id"],
                 "result": result,
