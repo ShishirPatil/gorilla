@@ -92,6 +92,7 @@ def collect_test_cases(test_filename_total, model_name):
 
 def generate_results(args, model_name, test_cases_total):
     RETRY_LIMIT = 3
+    # 60s for the timer to complete. But often we find that even with 60 there is a conflict. So 65 is a safe no.
     RETRY_DELAY = 65  # Delay in seconds
     
     handler = build_handler(model_name, args.temperature, args.top_p, args.max_tokens)
