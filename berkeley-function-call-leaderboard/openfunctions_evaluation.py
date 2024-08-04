@@ -133,7 +133,6 @@ def generate_results(args, model_name, test_cases_total):
                         and (
                             e.status_code == 429
                             or e.status_code == 503
-                            or e.status_code == 403
                             or e.status_code == 500
                         )
                     ):
