@@ -11,10 +11,10 @@
 {"id": "simple_10", "ground_truth": {"calculate_area": {"base": [6], "height": [10], "unit": ["cm", ""]}}}
 {"id": "simple_11", "ground_truth": {"calculate_triangle_area": {"base": [10], "height": [5]}}}
 {"id": "simple_12", "ground_truth": {"geometry.circumference": {"radius": [3], "units": ["cm", ""]}}}
-{"id": "simple_13", "ground_truth": {"calculate_area_under_curve": {"function": ["x^2", "lambda x: x^2"], "interval": [[1.0, 3.0]], "method": ["", "trapezoidal"]}}}
-{"id": "simple_14", "ground_truth": {"calculate_derivative": {"function": ["3x^2 + 2x - 1", "lambda x: 3x^2 + 2x - 1"], "x_value": ["", 0.0]}}}
-{"id": "simple_15", "ground_truth": {"integrate": {"function": ["x^3", "lambda x: x^3"], "start_x": [-2], "end_x": [3], "method": ["simpson"]}}}
-{"id": "simple_16", "ground_truth": {"calculus.derivative": {"function": ["2x^2", "lambda x: 2x^2"], "value": [1], "function_variable": ["x", ""]}}}
+{"id": "simple_13", "ground_truth": {"calculate_area_under_curve": {"function": ["x**2", "lambda x: x**2"], "interval": [[1.0, 3.0]], "method": ["", "trapezoidal"]}}}
+{"id": "simple_14", "ground_truth": {"calculate_derivative": {"function": ["3x**2 + 2x - 1", "lambda x: 3x**2 + 2x - 1"], "x_value": ["", 0.0]}}}
+{"id": "simple_15", "ground_truth": {"integrate": {"function": ["x**3", "lambda x: x**3"], "start_x": [-2], "end_x": [3], "method": ["simpson"]}}}
+{"id": "simple_16", "ground_truth": {"calculus.derivative": {"function": ["2x**2", "lambda x: 2x**2"], "value": [1], "function_variable": ["x", ""]}}}
 {"id": "simple_17", "ground_truth": {"get_prime_factors": {"number": [450], "formatted": [true, ""]}}}
 {"id": "simple_18", "ground_truth": {"number_analysis.prime_factors": {"number": [123456]}}}
 {"id": "simple_19", "ground_truth": {"math.gcd": {"num1": [40], "num2": [50]}}}
