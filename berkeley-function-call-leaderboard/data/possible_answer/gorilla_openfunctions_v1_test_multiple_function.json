@@ -27,11 +27,11 @@
 {"id": "multiple_function_26", "ground_truth": {"game_rewards.get": {"game": ["Fortnite"], "platform": ["Playstation", "PS"], "mission": [""], "trophy": [""]}}}
 {"id": "multiple_function_27", "ground_truth": {"maps.shortest_path": {"start_location": ["Paris, France", "Paris"], "end_location": ["Rome, Italy", "Rome"], "mode": ["transit"]}}}
 {"id": "multiple_function_28", "ground_truth": {"solve.quadratic_equation": {"a": [2], "b": [3], "c": [-4]}}}
-{"id": "multiple_function_29", "ground_truth": {"functions.intersect": {"function1": ["3x+2"], "function2": ["2x+3"]}}}
+{"id": "multiple_function_29", "ground_truth": {"functions.intersect": {"function1": ["3x + 2", "lambda x: 3x + 2"], "function2": ["2x + 3", "lambda x: 2x + 3"]}}}
 {"id": "multiple_function_30", "ground_truth": {"rectangle.area": {"length": [12], "width": [5]}}}
 {"id": "multiple_function_31", "ground_truth": {"geometry_rectangle.calculate": {"width": [7], "length": [10]}}}
 {"id": "multiple_function_32", "ground_truth": {"geometry.calculate_cone_volume": {"radius": [4], "height": [7], "round_off": ["", 0]}}}
-{"id": "multiple_function_33", "ground_truth": {"calculate_integral": {"func": ["3x^2", "3x**2", "3*x^2", "3*x**2"], "a": [1], "b": [2]}}}
+{"id": "multiple_function_33", "ground_truth": {"calculate_integral": {"func": ["3x**2", "lambda x: 3x**2"], "a": [1], "b": [2]}}}
 {"id": "multiple_function_34", "ground_truth": {"math.lcm": {"num1": [18], "num2": [12]}}}
 {"id": "multiple_function_35", "ground_truth": {"calculate_gcd": {"num1": [128], "num2": [256], "algorithm": ["euclidean", ""]}}}
 {"id": "multiple_function_36", "ground_truth": {"kinematics.calculate_speed_from_rest": {"distance": [20], "time": [4], "initial_speed": [0, ""]}}}
@@ -97,7 +97,7 @@
 {"id": "multiple_function_96", "ground_truth": {"solve_quadratic_equation": {"a": [2], "b": [6], "c": [5]}}}
 {"id": "multiple_function_97", "ground_truth": {"geometry.area_circle": {"radius": [10], "units": ["", "meters"]}}}
 {"id": "multiple_function_98", "ground_truth": {"geometry.circumference": {"radius": [3], "units": ["cm", ""]}}}
-{"id": "multiple_function_99", "ground_truth": {"calculus.derivative": {"function": ["2*x^2", "2x**2", "2x^2"], "value": [1], "function_variable": ["x", ""]}}}
+{"id": "multiple_function_99", "ground_truth": {"calculus.derivative": {"function": ["2x**2", "lambda x: 2x**2"], "value": [1], "function_variable": ["x", ""]}}}
 {"id": "multiple_function_100", "ground_truth": {"math.hcf": {"number1": [36], "number2": [24]}}}
 {"id": "multiple_function_101", "ground_truth": {"math.gcd": {"num1": [12], "num2": [18]}}}
 {"id": "multiple_function_102", "ground_truth": {"calculate_displacement": {"initial_velocity": [10], "time": [5], "acceleration": [9.8]}}}

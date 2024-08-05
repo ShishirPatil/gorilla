@@ -11,10 +11,10 @@
 {"id": "simple_10", "ground_truth": {"calculate_area": {"base": [6], "height": [10], "unit": ["cm", ""]}}}
 {"id": "simple_11", "ground_truth": {"calculate_triangle_area": {"base": [10], "height": [5]}}}
 {"id": "simple_12", "ground_truth": {"geometry.circumference": {"radius": [3], "units": ["cm", ""]}}}
-{"id": "simple_13", "ground_truth": {"calculate_area_under_curve": {"function": ["x^2", "x**2"], "interval": [[1.0, 3.0]], "method": ["", "trapezoidal"]}}}
-{"id": "simple_14", "ground_truth": {"calculate_derivative": {"function": ["3x^2 + 2x - 1", "3*x**2+2*x-1"], "x_value": ["", 0.0]}}}
-{"id": "simple_15", "ground_truth": {"integrate": {"function": ["x^3", "x**3"], "start_x": [-2], "end_x": [3], "method": ["simpson"]}}}
-{"id": "simple_16", "ground_truth": {"calculus.derivative": {"function": ["2*x^2", "2x^2", "2**x^2"], "value": [1], "function_variable": ["x", ""]}}}
+{"id": "simple_13", "ground_truth": {"calculate_area_under_curve": {"function": ["x**2", "lambda x: x**2"], "interval": [[1.0, 3.0]], "method": ["", "trapezoidal"]}}}
+{"id": "simple_14", "ground_truth": {"calculate_derivative": {"function": ["3x**2 + 2x - 1", "lambda x: 3x**2 + 2x - 1"], "x_value": ["", 0.0]}}}
+{"id": "simple_15", "ground_truth": {"integrate": {"function": ["x**3", "lambda x: x**3"], "start_x": [-2], "end_x": [3], "method": ["simpson"]}}}
+{"id": "simple_16", "ground_truth": {"calculus.derivative": {"function": ["2x**2", "lambda x: 2x**2"], "value": [1], "function_variable": ["x", ""]}}}
 {"id": "simple_17", "ground_truth": {"get_prime_factors": {"number": [450], "formatted": [true, ""]}}}
 {"id": "simple_18", "ground_truth": {"number_analysis.prime_factors": {"number": [123456]}}}
 {"id": "simple_19", "ground_truth": {"math.gcd": {"num1": [40], "num2": [50]}}}
@@ -198,7 +198,7 @@
 {"id": "simple_197", "ground_truth": {"get_air_quality_index": {"location": ["San Diego"], "time": ["12pm", "12:00"]}}}
 {"id": "simple_198", "ground_truth": {"calculate_daily_water_intake": {"weight": [70], "activity_level": ["", "moderate"], "climate": ["", "temperate"]}}}
 {"id": "simple_199", "ground_truth": {"environmental_data.air_quality_index": {"location": ["San Jose", "'San Jose'"], "days": [3]}}}
-{"id": "simple_200", "ground_truth": {"calculate_emissions": {"distance": [12000], "fuel_type": ["gas"], "fuel_efficiency": ["", 20.0], "efficiency_reduction": [0, ""]}}}
+{"id": "simple_200", "ground_truth": {"calculate_emissions": {"distance": [12000], "fuel_type": ["gas"], "fuel_efficiency": ["", 25.0], "efficiency_reduction": [0, ""]}}}
 {"id": "simple_201", "ground_truth": {"estimate_population": {"species": ["panda", "pandas"], "country": ["China", "CN"], "year": ["", 2024]}}}
 {"id": "simple_202", "ground_truth": {"calculate_emission_savings": {"energy_type": ["renewable"], "usage_duration": [3], "region": ["California", "CA"]}}}
 {"id": "simple_203", "ground_truth": {"get_air_quality": {"location": ["Chicago"], "detail": [true], "historical": ["", "today"]}}}
@@ -283,7 +283,7 @@
 {"id": "simple_282", "ground_truth": {"find_flute": {"brand": ["Yamaha"], "specs": [["open hole", "C foot", "silver headjoint"]]}}}
 {"id": "simple_283", "ground_truth": {"guitar_price.find": {"model": ["Gibson Les Paul"], "condition": ["Excellent"], "location": ["Chicago", "Chicago, IL", "Chicago, Illinois"]}}}
 {"id": "simple_284", "ground_truth": {"concert_info.get": {"location": ["New York City, NY", "New York"], "date": ["next month", "2023-06-01", "06/01/2023", "Jun.1,2023", "June 2023"], "genre": ["Pop"]}}}
-{"id": "simple_285", "ground_truth": {"find_concert": {"location": ["Chicago", "Chicago, IL"], "price": [100], "genre": ["Rock"]}}}
+{"id": "simple_285", "ground_truth": {"find_concert": {"location": ["Chicago, Illinois", "Chicago, IL"], "price": [100], "genre": ["Rock"]}}}
 {"id": "simple_286", "ground_truth": {"concert.get_details": {"artist": ["Beyonce"], "location": ["San Diego", "San Diego, California", "CA"], "date": ["04-2022", "April 2022"]}}}
 {"id": "simple_287", "ground_truth": {"concert.search": {"genre": ["classical"], "location": ["Los Angeles", "LA"], "date": ["this weekend"], "price_range": ["cheap"]}}}
 {"id": "simple_288", "ground_truth": {"concert_booking.book_ticket": {"artist": ["Eminem"], "city": ["New York City", "New York City, NY", "NYC"], "num_tickets": [2]}}}
@@ -373,7 +373,7 @@
 {"id": "simple_372", "ground_truth": {"whole_foods.find_top_brands": {"product": ["bananas"], "number": [5, ""], "organic": [true]}}}
 {"id": "simple_373", "ground_truth": {"walmart.purchase": {"loc": ["San Jose", "San Jose, CA"], "product_list": [["apples", "rice", "bottled water"], ["apples", "rice", "water"]], "pack_size": [[1, 1, 12]]}}}
 {"id": "simple_374", "ground_truth": {"grocery_info.nutritional_info": {"store": ["Walmart"], "food": ["avocado", "Avocado"], "information": [["Protein", "Calories", "Carbohydrates"]]}}}
-{"id": "simple_375", "ground_truth": {"walmart.check_price": {"items": [["pumpkins", "eggs"], ["pumpkin", "egg"]], "quantities": [[3, 24], [3, 2]], "store_location": ["Los Angeles", "LA"]}}}
+{"id": "simple_375", "ground_truth": {"walmart.check_price": {"items": [["pumpkins", "eggs"], ["pumpkin", "dozen eggs"]], "quantities": [[3, 24], [3, 2]], "store_location": ["Los Angeles", "LA"]}}}
 {"id": "simple_376", "ground_truth": {"time_zone_converter": {"city": ["London"], "country": ["UK", "United Kingdom"], "display_format": ["24h", "24 hour"]}}}
 {"id": "simple_377", "ground_truth": {"get_current_time": {"city": ["Sydney"], "country": ["Australia"], "format": ["", "HH:MM:SS"]}}}
 {"id": "simple_378", "ground_truth": {"timezone.convert": {"time": ["3pm"], "from_timezone": ["America/New_York", "New York", "NYC", "New York City"], "to_timezone": ["Europe/London", "London"]}}}
