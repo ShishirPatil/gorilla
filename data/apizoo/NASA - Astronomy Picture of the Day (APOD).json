@@ -1,0 +1,13 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "NASA - Astronomy Picture of the Day (APOD): Today",
+        "api_call": "https://api.nasa.gov/planetary/apod?api_key={{api_key}}&date=2019-09-13&hd=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This pulls a photo of the day from NASA, showing a single photo from their collection of space related photos."
+    }
+]

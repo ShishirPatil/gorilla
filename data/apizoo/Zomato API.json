@@ -1,0 +1,206 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Zomato API: Get list of Categories",
+        "api_call": "https://developers.zomato.com/api/v2.1/categories",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Get a list of categories. List of all restaurants categorized under a particular restaurant type can be obtained using /Search API with Category ID as inputs.",
+                    "key": "user-key",
+                    "value": "ipsum sunt labore ex"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Zomato API: Find the Zomato ID and other details for a city.",
+        "api_call": "https://developers.zomato.com/api/v2.1/cities?q=ipsum sunt labore ex&lat=-77596659.4184915&lon=-77596659.4184915&city_ids=ipsum sunt labore ex&count=56625527",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) your API key",
+                    "key": "user-key",
+                    "value": "ipsum sunt labore ex"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Zomato API: Returns Zomato Restaurant Collections in a City.",
+        "api_call": "https://developers.zomato.com/api/v2.1/collections?lat=-77596659.4184915&lon=-77596659.4184915&city_id=ipsum sunt labore ex&count=56625527",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) your API key",
+                    "key": "user-key",
+                    "value": "ipsum sunt labore ex"
+                }
+            ]
+        },
+        "functionality": "List of all restaurants listed in any particular Zomato Collection can be obtained using the '/search' API with Collection ID"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Zomato API: Get a list of all cuisines of restaurants listed in a city.",
+        "api_call": "https://developers.zomato.com/api/v2.1/cuisines?lat=-77596659.4184915&lon=-77596659.4184915&city_id=ipsum sunt labore ex",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) your API key",
+                    "key": "user-key",
+                    "value": "ipsum sunt labore ex"
+                }
+            ]
+        },
+        "functionality": "List of all restaurants serving a particular cuisine can be obtained using '/search' API with cuisine ID and location details."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Zomato API: Get a list of restaurant types in a city.",
+        "api_call": "https://developers.zomato.com/api/v2.1/establishments?lat=-77596659.4184915&lon=-77596659.4184915&city_id=ipsum sunt labore ex",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) your API key",
+                    "key": "user-key",
+                    "value": "ipsum sunt labore ex"
+                }
+            ]
+        },
+        "functionality": "List of all restaurants categorized under a particular restaurant type can obtained using /Search API with Establishment ID and location"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Zomato API: Get location details based on coordinates",
+        "api_call": "https://developers.zomato.com/api/v2.1/geocode?lat=-77596659.4184915&lon=-77596659.4184915",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) your API key",
+                    "key": "user-key",
+                    "value": "ipsum sunt labore ex"
+                }
+            ]
+        },
+        "functionality": "Get Foodie and Nightlife Index, list of popular cuisines and nearby restaurants around the given coordinates."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Zomato API: Search for locations.",
+        "api_call": "https://developers.zomato.com/api/v2.1/locations?query=56625527&lat=-77596659.4184915&lon=-77596659.4184915&cunt=56625527",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) your API key",
+                    "key": "user-key",
+                    "value": "ipsum sunt labore ex"
+                }
+            ]
+        },
+        "functionality": "Search for Zomato locations by keyword. Provide coordinates to get better search results."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Zomato API: Get Zomato location details.",
+        "api_call": "https://developers.zomato.com/api/v2.1/location_details?entity_id=56625527&entity_type=ipsum sunt labore ex",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) your API key",
+                    "key": "user-key",
+                    "value": "ipsum sunt labore ex"
+                }
+            ]
+        },
+        "functionality": "Get Foodie Index, Nightlife Index, Top Cuisines and Best rated restaurants in a given location"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Zomato API: Get restaurant details.",
+        "api_call": "https://developers.zomato.com/api/v2.1/restaurant?res_id=56625527",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) your API key",
+                    "key": "user-key",
+                    "value": "ipsum sunt labore ex"
+                }
+            ]
+        },
+        "functionality": "Get detailed restaurant information using Zomato restaurant ID. Partner Access is required to access photos and reviews."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Zomato API: Get daily menu of a restaurant",
+        "api_call": "https://developers.zomato.com/api/v2.1/dailymenu?res_id=56625527",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) your API key",
+                    "key": "user-key",
+                    "value": "ipsum sunt labore ex"
+                }
+            ]
+        },
+        "functionality": "Get daily menu using Zomato restaurant ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Zomato API: Get restaurant reviews.",
+        "api_call": "https://developers.zomato.com/api/v2.1/reviews?res_id=56625527&start=56625527&count=56625527",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) your API key",
+                    "key": "user-key",
+                    "value": "ipsum sunt labore ex"
+                }
+            ]
+        },
+        "functionality": "Get restaurant reviews using the Zomato restaurant ID. Only 5 latest reviews are available under the Basic API plan."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Zomato API: Search for restaurant",
+        "api_call": "https://developers.zomato.com/api/v2.1/search?entity_id=56625527&entity_type=available&entity_type=available&q=ipsum sunt labore ex&lat=-77596659.4184915&lon=-77596659.4184915&start=56625527&count=56625527&cuisine=ipsum sunt labore ex&radius=-77596659.4184915&establishment_type=ipsum sunt labore ex&collection_id=ipsum sunt labore ex&category=ipsum sunt labore ex&sort=available&sort=available&order=available&order=available",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) your API key",
+                    "key": "user-key",
+                    "value": "ipsum sunt labore ex"
+                }
+            ]
+        },
+        "functionality": "The location input can be specified using Zomato location ID or coordinates. Cuisine / Establishment / Collection IDs can be"
+    }
+]
