@@ -8,6 +8,8 @@
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
+    position: relative;
+    /* Add relative positioning for the sticky effect */
 }
 
 #leaderboard tbody tr:nth-child(1) {
@@ -23,6 +25,19 @@
 #leaderboard tbody tr:nth-child(3) {
     background-color: #fff9c4;
     /* Darker yellow for rank 3 */
+}
+
+/* Fix the first three columns */
+#leaderboard th:nth-child(1),
+#leaderboard th:nth-child(2),
+#leaderboard th:nth-child(3),
+#leaderboard td:nth-child(1),
+#leaderboard td:nth-child(2),
+#leaderboard td:nth-child(3) {
+    position: sticky;
+    /* Use the same background color to cover content from other floating columns */
+    background: #e5effc;
+    z-index: 3;
 }
 
 #leaderboard td:nth-child(2) {
@@ -59,14 +74,12 @@
     background-color: #8f8fff;
 }
 
-
 #leaderboard td:nth-child(13),
 #leaderboard td:nth-child(14),
 #leaderboard td:nth-child(15),
 #leaderboard td:nth-child(16) {
     background-color: #75f1ff;
 }
-
 
 #leaderboard td:nth-child(17),
 #leaderboard td:nth-child(18),
@@ -79,84 +92,67 @@
     background-color: #ffdf75;
 }
 
-
 /* Ensure the table uses the full width of its container */
 table {
     table-layout: auto;
-    border-collapse: collapse; 
-    width: auto; /* Allows the table to expand naturally based on content */
     border-collapse: collapse;
-    table-layout: auto; /* Default layout for the table */
+    width: auto;
     align-items: center;
     justify-content: center;
 }
 
-
-
-#leaderboard td, #leaderboard th {
-    word-wrap: break-word; /* Allows words to break and wrap to the next line */
-    overflow-wrap: break-word; /* Ensures wrapping at break points */
-    padding: 8px; /* Adjust padding as needed */
-    text-align: center; /* Keeps text centered, adjust as needed */
-    border: 1px solid #ddd; 
+#leaderboard td,
+#leaderboard th {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #ddd;
 }
 
-
-th:not(.detail-header)  {
+th:not(.detail-header) {
     cursor: pointer;
 }
 
-
-
 .table-container {
-    overflow-x: auto; /* Enable horizontal scrolling */
-    overflow-y: auto; /* Enable vertical scrolling */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS devices */
-    width: 100%; /* Full width of the parent */
-    max-width: 100%; /* Ensure the container does not exceed the width of the parent */
-    max-height: 600px; /* Set the maximum height of the table to 8 rows */
+    overflow-x: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 100%;
+    max-height: 600px;
+    /* Set the maximum height of the table to 8 rows */
     display: block;
-    border: 1px solid #ddd; /* Optional: Adds a border for better visibility */
+    border: 1px solid #ddd;
+    /* Optional: Adds a border for better visibility */
     align-items: center;
     justify-content: center;
 }
 
-
-
-
-
-.group1 col {
-    width: 5px; 
-}
-
-
-.group2 col, .group3 col, .group4 col, .group5 col, .group6 col, .group7 col, .group8 col {
-    width: auto; 
-}
-
-
-
 #myChart {
     display: block;
-    margin: auto; 
-    width: 100%; 
-    height: auto; /* This will maintain the aspect ratio */
+    margin: auto;
+    width: 100%;
+    height: auto;
+    /* This will maintain the aspect ratio */
     max-height: 100vh;
     align-items: center;
     justify-content: center;
 }
 
-
 .detail-row {
-    display: none; /* Hide detail rows initially */
+    display: none;
+    /* Hide detail rows initially */
 }
 
 .detail-small-header {
-    display: none; /* Hide detail headers initially */
+    display: none;
+    /* Hide detail headers initially */
 }
 
 .detail-header {
-    display: none; /* Hide detail headers initially */
+    display: none;
+    /* Hide detail headers initially */
 }
 
 .summary-small-header {
@@ -167,21 +163,13 @@ th:not(.detail-header)  {
     display: "";
 }
 
-
 #expand-btn {
     font-size: 14px;
-    /* Adjust the font size as needed */
     color: white;
-    /* Text color */
     background-color: #6c757d;
-    /* Background color */
     border: none;
     border-radius: 5px;
-    /* Rounded corners */
     padding: 5px 5px;
     cursor: pointer;
-    /* Changes the cursor to a pointer on hover */
     transition: background-color 0.3s ease;
-    /* Smooth transition for hover effect */
 }
-
