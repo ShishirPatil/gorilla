@@ -6,7 +6,7 @@ from logconf import log_setup
 import logging
 from typing import Literal, Any, get_args
 import argparse
-from openai import OpenAI
+from openai import OpenAI, BadRequestError
 import datasets
 from datasets import Dataset, concatenate_datasets
 import pyarrow as pa
@@ -203,11 +203,17 @@ def generate_instructions_gen(chat_completer: ChatCompleter, chunk: Any, x: int 
     Generates `x` questions / use cases for `chunk`. Used when the input document is of general types 
     `pdf`, `json`, or `txt`.
     """
-    response = chat_completer(
-        model=model,
-        messages=build_qa_messages[prompt_key](chunk, x),
-        max_tokens=min(25 * x, 512), # 25 tokens per question
-    )
+    try:
+        response = chat_completer(
+            model=model,
+            messages=build_qa_messages[prompt_key](chunk, x),
+            max_tokens=min(25 * x, 512), # 25 tokens per question
+        )
+    except BadRequestError as e:
+        if e.code == "content_filter":
+            logger.warning(f"Got content filter error, skipping chunk: {e.message}")
+            return []
+        raise e
 
     content = response.choices[0].message.content
     queries = content.split('\n')
@@ -497,7 +503,7 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
             cot_answer = generate_question_cot_answer(chunk=chunk, chunk_id=chunk_id, chunks=chunks, question=question, *args, **kwargs)
             return cot_answer
 
-        results = [process_example(chunk, question) for chunk, question in zip(questions_ds['chunk'], questions_ds['question'])]
+        results = [process_example(chunk, question) for chunk, question in zip(questions_ds['chunk'], questions_ds['question'])] if len(questions_ds) > 0 else []
         table = pa.Table.from_pylist(results)
         ds = Dataset(table)
         return ds
@@ -534,7 +540,7 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
                 if stats:
                     tps = stats.total_tokens / stats.duration
                     usage_stats += stats
-                pbar.set_postfix({'qa': gen_questions_count, 'last tok/s': tps, 'avg tok/s': usage_stats.total_tokens / usage_stats.duration})
+                pbar.set_postfix({'qa': gen_questions_count, 'last tok/s': tps, 'avg tok/s': usage_stats.total_tokens / usage_stats.duration if usage_stats.duration > 0 else 0})
                 pbar.update(1)
 
     ds = answers_checkpointing.collect_checkpoints()

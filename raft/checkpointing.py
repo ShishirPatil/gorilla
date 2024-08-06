@@ -65,7 +65,8 @@ def checkpointed(checkpointing: Checkpointing):
             if ds:
                 return ds
             ds = func(chunk_id=chunk_id, *args, **kwargs)
-            checkpointing.save_checkpoint(ds, chunk_id)
+            if ds.num_rows > 0:
+                checkpointing.save_checkpoint(ds, chunk_id)
             return ds
         return wrapper
     return wrapped
