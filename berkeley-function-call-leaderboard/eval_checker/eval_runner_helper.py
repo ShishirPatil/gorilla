@@ -54,6 +54,18 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
+    "gpt-4o-mini-2024-07-18": [
+        "GPT-4o-mini-2024-07-18 (Prompt)",
+        "https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
+        "OpenAI",
+        "Proprietary",
+    ],
+    "gpt-4o-mini-2024-07-18-FC": [
+        "GPT-4o-mini-2024-07-18 (FC)",
+        "https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
+        "OpenAI",
+        "Proprietary",
+    ],
     "gpt-4-1106-preview-FC": [
         "GPT-4-1106-Preview (FC)",
         "https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo",
