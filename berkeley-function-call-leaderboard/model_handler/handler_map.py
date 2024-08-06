@@ -27,6 +27,8 @@ handler_map = {
     "gorilla-openfunctions-v2": GorillaHandler,
     "gpt-4o-2024-05-13": OpenAIHandler,
     "gpt-4o-2024-05-13-FC": OpenAIHandler,
+    "gpt-4o-mini-2024-07-18": OpenAIHandler,
+    "gpt-4o-mini-2024-07-18-FC": OpenAIHandler,
     "gpt-4-turbo-2024-04-09-FC": OpenAIHandler,
     "gpt-4-turbo-2024-04-09": OpenAIHandler,
     "gpt-4-1106-preview-FC": OpenAIHandler,
