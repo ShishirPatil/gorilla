@@ -14,9 +14,7 @@ RETRY_DELAY = 65  # Delay in seconds
 def get_args():
     parser = argparse.ArgumentParser()
     # Refer to model_choice for supported models.
-    parser.add_argument(
-        "--model", type=str, default="gorilla-openfunctions-v2", nargs="+"
-    )
+    parser.add_argument("--model", type=str, default="gorilla-openfunctions-v2", nargs="+")
     # Refer to test_categories for supported categories.
     parser.add_argument("--test-category", type=str, default="all", nargs="+")
 
@@ -170,12 +168,17 @@ def generate_results(args, model_name, test_cases_total):
 
         futures = []
         with ThreadPoolExecutor(max_workers=args.parallel_limit) as executor:
-            for test_case in tqdm(test_cases_total):
-                futures.append(
-                    executor.submit(multi_threaded_inference, handler, test_case)
-                )
+            with tqdm(total=len(test_cases_total), desc=f"Generating results for {model_name}") as pbar:
+                def update_progress(future):
+                    pbar.update()
 
-        result = [future.result() for future in as_completed(futures)]
+                for test_case in test_cases_total:
+                    future = executor.submit(multi_threaded_inference, handler, test_case)
+                    future.add_done_callback(update_progress)
+                    futures.append(future)
+
+                result = [future.result() for future in as_completed(futures)]
+                
         result = sorted(result, key=sort_key)
         handler.write(result_to_write)
 
