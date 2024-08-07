@@ -1109,7 +1109,7 @@ def check_all_category_present(category_status, eval_models=None, eval_categorie
                 for cat in not_evaluated:
                     print(f"    - {cat}")
 
-            all_categories = not_generated + not_evaluated
+            all_categories = set(not_generated + not_evaluated)
             if all_categories:
                 commands.append("cd eval_checker")
                 commands.append(
