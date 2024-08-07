@@ -42,6 +42,18 @@ COLUMNS = [
 ]
 
 MODEL_METADATA_MAPPING = {
+    "gpt-4o-2024-08-06": [
+        "GPT-4o-2024-08-06 (Prompt)",
+        "https://openai.com/index/hello-gpt-4o/",
+        "OpenAI",
+        "Proprietary",
+    ],
+    "gpt-4o-2024-08-06-FC": [
+        "GPT-4o-2024-08-06 (FC)",
+        "https://openai.com/index/hello-gpt-4o/",
+        "OpenAI",
+        "Proprietary",
+    ],
     "gpt-4o-2024-05-13-FC": [
         "GPT-4o-2024-05-13 (FC)",
         "https://openai.com/index/hello-gpt-4o/",
@@ -51,6 +63,18 @@ MODEL_METADATA_MAPPING = {
     "gpt-4o-2024-05-13": [
         "GPT-4o-2024-05-13 (Prompt)",
         "https://openai.com/index/hello-gpt-4o/",
+        "OpenAI",
+        "Proprietary",
+    ],
+    "gpt-4o-mini-2024-07-18": [
+        "GPT-4o-mini-2024-07-18 (Prompt)",
+        "https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
+        "OpenAI",
+        "Proprietary",
+    ],
+    "gpt-4o-mini-2024-07-18-FC": [
+        "GPT-4o-mini-2024-07-18 (FC)",
+        "https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
         "OpenAI",
         "Proprietary",
     ],
