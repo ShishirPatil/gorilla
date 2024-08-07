@@ -240,27 +240,15 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
-    "meetkai/functionary-small-v2.2-FC": [
-        "Functionary-Small-v2.2 (FC)",
-        "https://huggingface.co/meetkai/functionary-small-v2.2",
+    "meetkai/functionary-small-v3.2-FC": [
+        "Functionary-Small-v3.2 (FC)",
+        "https://huggingface.co/meetkai/functionary-small-v3.2",
         "MeetKai",
         "MIT",
     ],
-    "meetkai/functionary-medium-v2.2-FC": [
-        "Functionary-Medium-v2.2 (FC)",
-        "https://huggingface.co/meetkai/functionary-medium-v2.2",
-        "MeetKai",
-        "MIT",
-    ],
-    "meetkai/functionary-small-v2.4-FC": [
-        "Functionary-Small-v2.4 (FC)",
-        "https://huggingface.co/meetkai/functionary-small-v2.4",
-        "MeetKai",
-        "MIT",
-    ],
-    "meetkai/functionary-medium-v2.4-FC": [
-        "Functionary-Medium-v2.4 (FC)",
-        "https://huggingface.co/meetkai/functionary-medium-v2.4",
+    "meetkai/functionary-medium-v3.0-FC": [
+        "Functionary-Medium-v3.0 (FC)",
+        "https://huggingface.co/meetkai/functionary-medium-v3.0",
         "MeetKai",
         "MIT",
     ],
