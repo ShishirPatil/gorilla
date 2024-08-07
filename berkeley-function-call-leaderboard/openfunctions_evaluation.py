@@ -1,4 +1,4 @@
-import argparse, json, os, time, random, glob
+import argparse, json, os, time
 from tqdm import tqdm
 from model_handler.handler_map import handler_map
 from model_handler.model_style import ModelStyle
@@ -23,7 +23,7 @@ def get_args():
     parser.add_argument("--max-tokens", type=int, default=1200)
     parser.add_argument("--num-gpus", default=1, type=int)
     parser.add_argument("--timeout", default=60, type=int)
-    parser.add_argument("--parallel-limit", default=1, type=int)
+    parser.add_argument("--num-threads", default=1, type=int)
     parser.add_argument("--gpu-memory-utilization", default=0.9, type=float)
     args = parser.parse_args()
     return args
@@ -49,6 +49,12 @@ TEST_FILE_MAPPING = {
 def build_handler(model_name, temperature, top_p, max_tokens):
     handler = handler_map[model_name](model_name, temperature, top_p, max_tokens)
     return handler
+
+
+def sort_key(entry):
+    parts = entry["id"].rsplit("_", 1)
+    test_category, index = parts[0], parts[1]
+    return (test_category, int(index))
 
 
 def parse_test_category_argument(test_category_args):
@@ -101,7 +107,7 @@ def collect_test_cases(test_filename_total, model_name):
             ]
         )
 
-    return test_cases_total
+    return sorted(test_cases_total, key=sort_key)
 
 
 def multi_threaded_inference(handler, test_case):
@@ -166,7 +172,7 @@ def generate_results(args, model_name, test_cases_total):
 
     else:
         futures = []
-        with ThreadPoolExecutor(max_workers=args.parallel_limit) as executor:
+        with ThreadPoolExecutor(max_workers=args.num_threads) as executor:
             with tqdm(total=len(test_cases_total), desc=f"Generating results for {model_name}") as pbar:
                 
                 for test_case in test_cases_total:

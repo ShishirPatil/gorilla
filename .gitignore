@@ -33,7 +33,6 @@ berkeley-function-call-leaderboard/eval_data_total.json
 
 # Ignore inference results
 berkeley-function-call-leaderboard/result/
-berkeley-function-call-leaderboard/.cache/*
 
 # Ignore leaderboard score
 berkeley-function-call-leaderboard/score/
