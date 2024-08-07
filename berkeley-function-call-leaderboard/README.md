@@ -220,6 +220,7 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
+* [August 8, 2024] [#574](https://github.com/ShishirPatil/gorilla/pull/574): Set temperature to 0.001 for all models for consistency and reproducibility.
 * [August 5, 2024] [#568](https://github.com/ShishirPatil/gorilla/pull/568): Rephrase the question prompt for the `executable_parallel_function` category to remove potentially misleading information implying multi-turn function calls.
 * [August 4, 2024] [#557](https://github.com/ShishirPatil/gorilla/pull/557): Bug fix in the possible answers.
   * simple: 7 affected
