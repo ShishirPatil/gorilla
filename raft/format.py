@@ -18,6 +18,8 @@ inputDatasetTypes = list(get_args(InputDatasetType))
 DatasetFormat = Literal["hf", "completion", "chat", "eval"]
 datasetFormats = list(get_args(DatasetFormat))
 
+default_chat_system_prompt = "The following is a conversation with an AI assistant. The assistant is helpful, clever, friendly and gives concise and accurate answers."
+
 def get_args() -> argparse.Namespace:
     """
     Parses and returns the arguments specified by the user's command
@@ -29,7 +31,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--output", type=str, required=True, help="Output file")
     parser.add_argument("--output-format", type=str, required=True, help="Format to convert the dataset to", choices=datasetFormats)
     parser.add_argument("--output-type", type=str, default="jsonl", help="Type to export the dataset to. Defaults to jsonl.", choices=outputDatasetTypes)
-    parser.add_argument("--output-chat-system-prompt", type=str, help="The system prompt to use when the output format is chat")
+    parser.add_argument("--output-chat-system-prompt", type=str, default=default_chat_system_prompt, help="The system prompt to use when the output format is chat")
     parser.add_argument("--output-completion-prompt-column", type=str, default="prompt", help="The prompt column name to use for the completion format")
     parser.add_argument("--output-completion-completion-column", type=str, default="completion", help="The completion column name to use for the completion format")
     parser.add_argument("--output-completion-stop", type=str, default="<STOP>", help="The stop keyword to use for the completion format")
@@ -125,7 +127,7 @@ class OpenAiChatDatasetFormatter(OpenAiCompletionDatasetFormatter):
     https://platform.openai.com/docs/guides/fine-tuning/preparing-your-dataset
     """
     def format(self, ds: Dataset, system_prompt: str, **params) -> Dataset:
-        newds = super().format(ds, params)
+        newds = super().format(ds, stop = "")
 
         def format_messages(row):
             messages = []
