@@ -1,15 +1,16 @@
-import argparse, json, os, time, random
+import argparse, json, os, time, random, glob
 from tqdm import tqdm
 from model_handler.handler_map import handler_map
 from model_handler.model_style import ModelStyle
 from model_handler.constant import USE_COHERE_OPTIMIZATION
 from eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import threading
 
 RETRY_LIMIT = 3
 # 60s for the timer to complete. But often we find that even with 60 there is a conflict. So 65 is a safe no.
 RETRY_DELAY = 65  # Delay in seconds
-
+CACHE_DIR = "./.cache/"
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -53,6 +54,25 @@ def sort_key(entry):
     return (test_category, int(index))
 
 
+def write_list_of_dicts_to_file(filename, data, subdir=None, appendMode=False):
+    if subdir:
+        # Ensure the subdirectory exists
+        os.makedirs(subdir, exist_ok=True)
+
+        # Construct the full path to the file
+        filename = os.path.join(subdir, filename)
+
+    if type(data) is dict:
+        data = [data]
+        
+    # Write the list of dictionaries to the file in JSON format
+    with open(filename, "a" if appendMode else "w") as f:
+        for i, entry in enumerate(data):
+            json_str = json.dumps(entry)
+            f.write(json_str)
+            f.write("\n")
+                
+                
 def build_handler(model_name, temperature, top_p, max_tokens):
     handler = handler_map[model_name](model_name, temperature, top_p, max_tokens)
     return handler
@@ -75,34 +95,50 @@ def parse_test_category_argument(test_category_args):
 
 
 def collect_test_cases(test_filename_total, model_name):
+    model_name_dir = model_name.replace("/", "_")
     test_cases_total = []
+    generated_entries_total = []
     for file_to_open in test_filename_total:
         test_cases = []
         with open("./data/" + file_to_open) as f:
             for line in f:
                 test_cases.append(json.loads(line))
 
-        num_existing_result = 0  # if the result file already exists, skip the test cases that have been tested.
+        existing_result = []
         if os.path.exists(
             "./result/"
-            + model_name.replace("/", "_")
+            + model_name_dir
             + "/"
             + file_to_open.replace(".json", "_result.json")
         ):
             with open(
                 "./result/"
-                + model_name.replace("/", "_")
+                + model_name_dir
                 + "/"
                 + file_to_open.replace(".json", "_result.json")
             ) as f:
                 for line in f:
-                    num_existing_result += 1
+                    existing_result.append(json.loads(line))
+        
+        existing_cache = []
+        for cache_file_path in glob.glob(f"{CACHE_DIR}{model_name.replace('/', '_')}/*.json"):
+            with open(cache_file_path) as f:
+                for line in f:
+                    existing_cache.append(json.loads(line))
+                    
+        generated_entries = existing_result + existing_cache
+        generated_entries_total.extend(generated_entries)
+        generated_ids = [entry["id"] for entry in generated_entries]
+        test_cases_total.extend(
+            [test_case for test_case in test_cases if test_case["id"] not in generated_ids]
+        )
 
-        test_cases_total.extend(test_cases[num_existing_result:])
-    return test_cases_total
+    return test_cases_total, generated_entries_total
 
 
 def multi_threaded_inference(handler, test_case):
+    worker_id = threading.current_thread().name.split("_")[-1]
+
     user_question, functions, test_category = (
         test_case["question"],
         test_case["function"],
@@ -143,11 +179,14 @@ def multi_threaded_inference(handler, test_case):
         "output_token_count": metadata["output_tokens"],
         "latency": metadata["latency"],
     }
+    # Write to cache first, then to the result file after all threads are done.
+    model_name_dir = handler.model_name.replace("/", "_")
+    write_list_of_dicts_to_file(f"worker_{worker_id}.json", result_to_write, CACHE_DIR + model_name_dir, appendMode=True)
 
     return result_to_write
 
 
-def generate_results(args, model_name, test_cases_total):
+def generate_results(args, model_name, test_cases_total, generated_entries):
 
     handler = build_handler(model_name, args.temperature, args.top_p, args.max_tokens)
 
@@ -179,8 +218,15 @@ def generate_results(args, model_name, test_cases_total):
 
                 result = [future.result() for future in as_completed(futures)]
                 
+        result = generated_entries + result
         result = sorted(result, key=sort_key)
         handler.write(result_to_write)
+        
+        # clean up; remove the cache files
+        for file_path in glob.glob(f"{CACHE_DIR}{model_name.replace('/', '_')}/*"):
+            if os.path.isfile(file_path) or os.path.islink(file_path):
+                os.unlink(file_path)
+
 
 
 if __name__ == "__main__":
@@ -199,9 +245,9 @@ if __name__ == "__main__":
         if USE_COHERE_OPTIMIZATION and "command-r-plus" in model_name:
             model_name = model_name + "-optimized"
         
-        test_cases_total = collect_test_cases(test_filename_total, model_name)
+        test_cases_total, generated_entries = collect_test_cases(test_filename_total, model_name)
         
         if len(test_cases_total) == 0:
             print(f"All selected test cases have been previously generated for {model_name}. No new test cases to generate.")
         else:
-            generate_results(args, model_name, test_cases_total)
+            generate_results(args, model_name, test_cases_total, generated_entries)
