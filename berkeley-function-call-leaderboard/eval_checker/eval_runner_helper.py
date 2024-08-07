@@ -108,6 +108,48 @@ MODEL_METADATA_MAPPING = {
         "Anthropic",
         "Proprietary",
     ],
+    "open-mistral-nemo-2407": [
+        "Open-Mistral-Nemo-2407 (Prompt)",
+        "https://mistral.ai/news/mistral-nemo/",
+        "Mistral AI",
+        "Proprietary",
+    ],
+    "open-mistral-nemo-2407-FC-Any": [
+        "Open-Mistral-Nemo-2407 (FC Any)",
+        "https://mistral.ai/news/mistral-nemo/",
+        "Mistral AI",
+        "Proprietary",
+    ],
+    "open-mistral-nemo-2407-FC-Auto": [
+        "Open-Mistral-Nemo-2407 (FC Auto)",
+        "https://mistral.ai/news/mistral-nemo/",
+        "Mistral AI",
+        "Proprietary",
+    ],
+    "open-mixtral-8x22b": [
+        "Open-Mixtral-8x22b (Prompt)",
+        "https://mistral.ai/news/mixtral-8x22b/",
+        "Mistral AI",
+        "Proprietary",
+    ],
+    "open-mixtral-8x22b-FC-Any": [
+        "Open-Mixtral-8x22b (FC Any)",
+        "https://mistral.ai/news/mixtral-8x22b/",
+        "Mistral AI",
+        "Proprietary",
+    ],
+    "open-mixtral-8x22b-FC-Auto": [
+        "Open-Mixtral-8x22b (FC Auto)",
+        "https://mistral.ai/news/mixtral-8x22b/",
+        "Mistral AI",
+        "Proprietary",
+    ],
+    "open-mixtral-8x7b": [
+        "Open-Mixtral-8x7b (Prompt)",
+        "https://mistral.ai/news/mixtral-of-experts/",
+        "Mistral AI",
+        "Proprietary",
+    ],
     "mistral-medium-2312": [
         "Mistral-Medium-2312 (Prompt)",
         "https://docs.mistral.ai/guides/model-selection/",
