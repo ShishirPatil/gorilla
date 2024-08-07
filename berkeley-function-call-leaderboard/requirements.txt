@@ -1,0 +1,14 @@
+requests
+tqdm
+numpy==1.26.4
+pandas
+huggingface_hub
+pydantic>=2.8.2
+python-dotenv>=1.0.1
+tree_sitter==0.21.3
+tree-sitter-java==0.21.0
+tree-sitter-javascript==0.21.4
+openai==1.35.13
+mistralai==0.4.2
+anthropic==0.31.1
+cohere==5.5.8
