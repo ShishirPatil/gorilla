@@ -218,6 +218,14 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
+* [August 5, 2024] [#568](https://github.com/ShishirPatil/gorilla/pull/568): Rephrase the question prompt for the `executable_parallel_function` category to remove potentially misleading information implying multi-turn function calls.
+* [August 4, 2024] [#557](https://github.com/ShishirPatil/gorilla/pull/557): Bug fix in the possible answers.
+  * simple: 7 affected
+  * multiple function: 3 affected
+  * parallel function: 5 affected
+  * parallel multiple function: 6 affected
+  * executable parallel function: 1 affected
+  * javascript: 3 affected
 * [July 26, 2024] [#549](https://github.com/ShishirPatil/gorilla/pull/549): Fix js_type_converter.py to properly handle JavaScript array value inside dictionary. 
 * [July 25, 2024] [#532](https://github.com/ShishirPatil/gorilla/pull/532), [#543](https://github.com/ShishirPatil/gorilla/pull/543), [#556](https://github.com/ShishirPatil/gorilla/pull/556), [#542](https://github.com/ShishirPatil/gorilla/pull/542): Add the following new models to the leaderboard:
     - `Salesforce/xLAM-7b-fc-r`
