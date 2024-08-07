@@ -886,7 +886,9 @@ def get_metric(model_name, cost_data, latency_data):
     return cost, mean_latency, std_latency, percentile_95_latency
 
 
-def generate_leaderboard_csv(leaderboard_table, output_path):
+def generate_leaderboard_csv(
+    leaderboard_table, output_path, eval_models=None, eval_categories=None
+):
     print("📈 Aggregating data to generate leaderboard score table...")
     data = []
     for model_name, value in leaderboard_table.items():
@@ -1012,7 +1014,9 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
                 f.write(",".join(row))
 
     category_status = check_model_category_status(score_path=output_path)
-    check_all_category_present(category_status)
+    check_all_category_present(
+        category_status, eval_models=eval_models, eval_categories=eval_categories
+    )
     print(
         f"📈 Leaderboard statistics generated successfully! See {os.path.abspath(output_path + 'data.csv')} for evaluation results."
     )
@@ -1064,24 +1068,32 @@ def check_model_category_status(score_path):
                 category_status[model_name][test_category]["evaluated"] = True
     return category_status
 
-
-def check_all_category_present(category_status):
+def check_all_category_present(category_status, eval_models=None, eval_categories=None):
     found_issues = False
     commands = []
-
+    print(f"We are checking {eval_models} and {eval_categories}")
     print(f"\n{RED_FONT}{'=' * 30} Model Category Status {'=' * 30}{RESET}\n")
 
     for model_name, categories in category_status.items():
+        if eval_models and model_name not in eval_models:
+            continue
+
         not_generated = [
-            cat for cat, status in categories.items() if not status["generated"]
+            cat
+            for cat, status in categories.items()
+            if not status["generated"]
+            and (not eval_categories or cat in eval_categories)
         ]
         not_evaluated = [
-            cat for cat, status in categories.items() if not status["evaluated"]
+            cat
+            for cat, status in categories.items()
+            if not status["evaluated"]
+            and (not eval_categories or cat in eval_categories)
         ]
 
         print(f"{RED_FONT}Model: {model_name}{RESET}")
         if not not_generated and not not_evaluated:
-            print("  All categories are present and evaluated.")
+            print(f"  All categories {eval_models} in {eval_categories} are present and evaluated.")
         else:
             found_issues = True
             if not_generated:
@@ -1089,11 +1101,8 @@ def check_all_category_present(category_status):
                 for cat in not_generated:
                     print(f"    - {cat}")
                 commands.append("cd ..")
-                commands.extend(
-                    [
-                        f"python openfunctions_evaluation.py --model {model_name} --test-category {test}"
-                        for test in not_generated
-                    ]
+                commands.append(
+                    f"python openfunctions_evaluation.py --model {model_name} --test-category {' '.join(not_generated)}"
                 )
             if not_evaluated:
                 print(f"  Unevaluated results for {len(not_evaluated)} categories:")
@@ -1103,12 +1112,10 @@ def check_all_category_present(category_status):
             all_categories = not_generated + not_evaluated
             if all_categories:
                 commands.append("cd eval_checker")
-                commands.extend(
-                    [
-                        f"python eval_runner.py --model {model_name} --test-category {test}"
-                        for test in all_categories
-                    ]
+                commands.append(
+                    f"python eval_runner.py --model {model_name} --test-category {' '.join(all_categories)}"
                 )
+
         print()
 
     if found_issues:
@@ -1122,6 +1129,7 @@ def check_all_category_present(category_status):
         print("\n🎉 All categories are present and evaluated for all models!")
 
     return found_issues
+
 
 def update_leaderboard_table_with_score_file(leaderboard_table, score_path):
 
