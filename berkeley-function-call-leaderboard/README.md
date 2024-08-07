@@ -99,14 +99,20 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |gpt-3.5-turbo-0125| Prompt|
 |gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}-FC| Function Calling|
 |gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}| Prompt|
+|gpt-4o-2024-08-06-FC | Function Calling|
+|gpt-4o-2024-08-06 | Prompt|
 |gpt-4o-2024-05-13-FC | Function Calling|
 |gpt-4o-2024-05-13| Prompt|
 |google/gemma-7b-it 💻| Prompt|
 |meetkai/functionary-{small,medium}-v2.4-FC| Function Calling|
 |meetkai/functionary-small-v2.2-FC| Function Calling|
 |meta-llama/Meta-Llama-3-{8B,70B}-Instruct | Prompt|
-|mistral-large-2402-FC-{Any,Auto} | Function Calling|
-|mistral-large-2402 | Prompt|
+|open-mixtral-{8x7b,8x22b} | Prompt|
+|open-mixtral-8x22b-FC-{Any,Auto} | Function Calling|
+|open-mistral-nemo-2407 | Prompt|
+|open-mistral-nemo-2407-FC-{Any,Auto} | Function Calling|
+|mistral-large-2407-FC-{Any,Auto} | Function Calling|
+|mistral-large-2407 | Prompt|
 |mistral-medium-2312 | Prompt|
 |mistral-small-2402-FC-{Any,Auto} | Function Calling|
 |mistral-small-2402 | Prompt|
