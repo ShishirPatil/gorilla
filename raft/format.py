@@ -213,11 +213,8 @@ def main():
     logger.info(f"Dataset has {ds.num_rows} rows")
     formatter = DatasetConverter()
 
-    if args.output_chat_system_prompt and args.output_format != "chat":
-        raise Exception("Parameter --output-chat-system-prompt can only be used with --output-format chat")
-
     format_params = {}
-    if args.output_chat_system_prompt:
+    if args.output_chat_system_prompt and args.output_format == "chat":
         format_params['system_prompt'] = args.output_chat_system_prompt
 
     if args.output_format == "completion":
