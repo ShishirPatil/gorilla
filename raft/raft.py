@@ -216,11 +216,11 @@ def generate_instructions_gen(chat_completer: ChatCompleter, chunk: Any, x: int 
         raise e
 
     content = response.choices[0].message.content
-    queries = content.split('\n')
+    queries = content.split('\n') if content else []
     #queries = [strip_str(q) for q in queries]
     queries = [q for q in queries if any(c.isalpha() for c in q)]
 
-    return queries 
+    return queries
 
 def strip_str(s: str) -> str:
     """
@@ -500,10 +500,18 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
     @checkpointed(answers_checkpointing)
     def generate_question_cot_answers(questions_ds, chunk_id: int, chunk: str, *args, **kwargs):
         def process_example(chunk, question):
-            cot_answer = generate_question_cot_answer(chunk=chunk, chunk_id=chunk_id, chunks=chunks, question=question, *args, **kwargs)
+            try:
+                cot_answer = generate_question_cot_answer(chunk=chunk, chunk_id=chunk_id, chunks=chunks, question=question, *args, **kwargs)
+            except BadRequestError as e:
+                if e.code == "content_filter":
+                    logger.warning(f"Got content filter error, skipping question '{question}': {e.message}")
+                    return None
+                raise e
+
             return cot_answer
 
         results = [process_example(chunk, question) for chunk, question in zip(questions_ds['chunk'], questions_ds['question'])] if len(questions_ds) > 0 else []
+        results = [r for r in results if r is not None]
         table = pa.Table.from_pylist(results)
         ds = Dataset(table)
         return ds
