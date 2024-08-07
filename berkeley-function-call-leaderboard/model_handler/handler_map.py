@@ -25,6 +25,8 @@ from model_handler.xlam_handler import xLAMHandler
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
     "gorilla-openfunctions-v2": GorillaHandler,
+    "gpt-4o-2024-08-06": OpenAIHandler,
+    "gpt-4o-2024-08-06-FC": OpenAIHandler,
     "gpt-4o-2024-05-13": OpenAIHandler,
     "gpt-4o-2024-05-13-FC": OpenAIHandler,
     "gpt-4o-mini-2024-07-18": OpenAIHandler,

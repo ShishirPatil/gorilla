@@ -99,6 +99,8 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |gpt-3.5-turbo-0125| Prompt|
 |gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}-FC| Function Calling|
 |gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}| Prompt|
+|gpt-4o-2024-08-06-FC | Function Calling|
+|gpt-4o-2024-08-06 | Prompt|
 |gpt-4o-2024-05-13-FC | Function Calling|
 |gpt-4o-2024-05-13| Prompt|
 |google/gemma-7b-it 💻| Prompt|
