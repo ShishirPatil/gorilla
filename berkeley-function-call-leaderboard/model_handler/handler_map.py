@@ -78,7 +78,7 @@ handler_map = {
     "deepseek-ai/deepseek-coder-6.7b-instruct": DeepseekHandler,
     "meetkai/functionary-small-v3.1-FC": FunctionaryHandler,
     "meetkai/functionary-small-v3.2-FC": FunctionaryHandler,
-    "meetkai/functionary-medium-v3.0-FC": FunctionaryHandler,
+    "meetkai/functionary-medium-v3.1-FC": FunctionaryHandler,
     "databricks-dbrx-instruct": DatabricksHandler,
     "NousResearch/Hermes-2-Pro-Llama-3-8B": HermesHandler,
     "NousResearch/Hermes-2-Pro-Llama-3-70B": HermesHandler,

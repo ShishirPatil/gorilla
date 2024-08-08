@@ -144,7 +144,7 @@ UNDERSCORE_TO_DOT = [
     "gemini-1.5-flash-preview-0514",
     "meetkai/functionary-small-v3.1-FC",
     "meetkai/functionary-small-v3.2-FC",
-    "meetkai/functionary-medium-v3.0-FC",
+    "meetkai/functionary-medium-v3.1-FC",
     "NousResearch/Hermes-2-Pro-Llama-3-8B",
     "NousResearch/Hermes-2-Pro-Llama-3-70B",
     "NousResearch/Hermes-2-Pro-Mistral-7B",

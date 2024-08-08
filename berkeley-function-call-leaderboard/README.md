@@ -104,7 +104,7 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |gpt-4o-2024-05-13-FC | Function Calling|
 |gpt-4o-2024-05-13| Prompt|
 |google/gemma-7b-it 💻| Prompt|
-|meetkai/functionary-medium-v3.0-FC| Function Calling|
+|meetkai/functionary-medium-v3.1-FC| Function Calling|
 |meetkai/functionary-small-{v3.1,v3.2}-FC| Function Calling|
 |meta-llama/Meta-Llama-3-{8B,70B}-Instruct | Prompt|
 |open-mixtral-{8x7b,8x22b} | Prompt|
