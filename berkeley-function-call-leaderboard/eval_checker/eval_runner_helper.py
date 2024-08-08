@@ -1013,13 +1013,11 @@ def generate_leaderboard_csv(
             else:
                 f.write(",".join(row))
 
-    category_status = check_model_category_status(score_path=output_path)
-    check_all_category_present(
-        category_status, eval_models=eval_models, eval_categories=eval_categories
-    )
-    print(
-        f"📈 Leaderboard statistics generated successfully! See {os.path.abspath(output_path + 'data.csv')} for evaluation results."
-    )
+    if eval_models:
+        category_status = check_model_category_status(score_path=output_path)
+        check_all_category_present(
+            category_status, eval_models=eval_models, eval_categories=eval_categories
+        )
 
 
 def check_model_category_status(score_path):
@@ -1070,9 +1068,8 @@ def check_model_category_status(score_path):
 
 def check_all_category_present(category_status, eval_models=None, eval_categories=None):
     found_issues = False
+    first_time = True
     commands = []
-    print(f"We are checking models: {eval_models} and categories: {eval_categories}")
-    print(f"\n{RED_FONT}{'=' * 30} Model Category Status {'=' * 30}{RESET}")
 
     for model_name, categories in category_status.items():
         if eval_models and model_name not in eval_models:
@@ -1093,9 +1090,14 @@ def check_all_category_present(category_status, eval_models=None, eval_categorie
 
         if not_generated or not_evaluated:
             found_issues = True
+            if first_time:
+                print(f"We are checking models: {eval_models} and categories: {eval_categories}")
+                print(f"\n{RED_FONT}{'=' * 30} Model Category Status {'=' * 30}{RESET}")
+                first_time = False       
+ 
             print(f"{RED_FONT}Model: {model_name}{RESET}")
             if not_generated:
-                print(f"  Missing results for {len(not_generated)} categories:")
+                print(f"\n  Missing results for {len(not_generated)} categories:")
                 for cat in not_generated:
                     print(f"    - {cat}")
                 commands.append("cd ..")
@@ -1104,7 +1106,7 @@ def check_all_category_present(category_status, eval_models=None, eval_categorie
                 )
 
             if not_evaluated:
-                print(f"  Unevaluated results for {len(not_evaluated)} categories:")
+                print(f"\n  Unevaluated results for {len(not_evaluated)} categories:")
                 for cat in not_evaluated:
                     print(f"    - {cat}")
 
@@ -1115,10 +1117,8 @@ def check_all_category_present(category_status, eval_models=None, eval_categorie
                     f"python eval_runner.py --model {model_name} --test-category {' '.join(all_categories)}"
                 )
 
-            print()
-
     if found_issues:
-        print(f"{RED_FONT}{'=' * 40} Recommended Actions {'=' * 40}{RESET}\n")
+        print(f"\n{RED_FONT}{'=' * 40} Recommended Actions {'=' * 40}{RESET}\n")
         print(
             "To address these issues, run the following commands from the current directory:"
         )
