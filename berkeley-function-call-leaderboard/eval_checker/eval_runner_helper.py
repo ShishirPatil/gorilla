@@ -1024,8 +1024,6 @@ def generate_leaderboard_csv(
 
 def check_model_category_status(score_path):
     result_path = score_path.replace("score", "result")
-    entries = os.scandir(score_path)
-    subdirs = [entry.path for entry in entries if entry.is_dir()]
 
     leaderboard_categories = [
         "simple",
@@ -1044,8 +1042,8 @@ def check_model_category_status(score_path):
 
     category_status = {}
 
-    for subdir in subdirs:
-        model_name = os.path.basename(subdir)
+    # Check for all models in MODEL_METADATA_MAPPING
+    for model_name in MODEL_METADATA_MAPPING.keys():
         category_status[model_name] = {
             category: {"generated": False, "evaluated": False}
             for category in leaderboard_categories
@@ -1060,19 +1058,21 @@ def check_model_category_status(score_path):
                     category_status[model_name][test_category]["generated"] = True
 
         # Check score folder
-        for model_score_json in glob.glob(os.path.join(subdir, "*.json")):
-            test_category = os.path.splitext(os.path.basename(model_score_json))[
-                0
-            ].split("_score")[0]
-            if test_category in category_status[model_name]:
-                category_status[model_name][test_category]["evaluated"] = True
+        score_subdir = os.path.join(score_path, model_name)
+        if os.path.exists(score_subdir):
+            for score_file in os.listdir(score_subdir):
+                test_category = score_file.split("_score.json")[0]
+                if test_category in category_status[model_name]:
+                    category_status[model_name][test_category]["evaluated"] = True
+
     return category_status
+
 
 def check_all_category_present(category_status, eval_models=None, eval_categories=None):
     found_issues = False
     commands = []
-    print(f"We are checking {eval_models} and {eval_categories}")
-    print(f"\n{RED_FONT}{'=' * 30} Model Category Status {'=' * 30}{RESET}\n")
+    print(f"We are checking models: {eval_models} and categories: {eval_categories}")
+    print(f"\n{RED_FONT}{'=' * 30} Model Category Status {'=' * 30}{RESET}")
 
     for model_name, categories in category_status.items():
         if eval_models and model_name not in eval_models:
@@ -1091,11 +1091,9 @@ def check_all_category_present(category_status, eval_models=None, eval_categorie
             and (not eval_categories or cat in eval_categories)
         ]
 
-        print(f"{RED_FONT}Model: {model_name}{RESET}")
-        if not not_generated and not not_evaluated:
-            print(f"  All categories {eval_models} in {eval_categories} are present and evaluated.")
-        else:
+        if not_generated or not_evaluated:
             found_issues = True
+            print(f"{RED_FONT}Model: {model_name}{RESET}")
             if not_generated:
                 print(f"  Missing results for {len(not_generated)} categories:")
                 for cat in not_generated:
@@ -1104,6 +1102,7 @@ def check_all_category_present(category_status, eval_models=None, eval_categorie
                 commands.append(
                     f"python openfunctions_evaluation.py --model {model_name} --test-category {' '.join(not_generated)}"
                 )
+
             if not_evaluated:
                 print(f"  Unevaluated results for {len(not_evaluated)} categories:")
                 for cat in not_evaluated:
@@ -1116,17 +1115,17 @@ def check_all_category_present(category_status, eval_models=None, eval_categorie
                     f"python eval_runner.py --model {model_name} --test-category {' '.join(all_categories)}"
                 )
 
-        print()
+            print()
 
     if found_issues:
         print(f"{RED_FONT}{'=' * 40} Recommended Actions {'=' * 40}{RESET}\n")
         print(
-            "To address these issues, run the following commands from the project root directory:"
+            "To address these issues, run the following commands from the current directory:"
         )
         print("\n" + " && \\\n".join(commands))
         print(f"\n{RED_FONT}{'=' * 100}{RESET}\n")
     else:
-        print("\n🎉 All categories are present and evaluated for all models!")
+        print("🎉 All categories are present and evaluated for all models!\n")
 
     return found_issues
 
