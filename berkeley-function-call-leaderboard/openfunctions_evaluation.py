@@ -121,7 +121,7 @@ def multi_threaded_inference(handler, test_case):
 
     retry_count = 0
 
-    while retry_count < RETRY_LIMIT:
+    while True:
         try:
             result, metadata = handler.inference(
                 user_question, functions, test_category
@@ -130,11 +130,9 @@ def multi_threaded_inference(handler, test_case):
         except Exception as e:
             # TODO: It might be better to handle the exception in the handler itself rather than a universal catch block here, as each handler use different ways to call the endpoint.
             # OpenAI has openai.RateLimitError while Anthropic has anthropic.RateLimitError. It would be more robust in the long run.
-            if "rate limit reached" in str(e).lower() or (
-                hasattr(e, "status_code")
-                and (
-                    e.status_code == 429 or e.status_code == 503 or e.status_code == 500
-                )
+            if retry_count < RETRY_LIMIT and (
+                "rate limit reached" in str(e).lower()
+                or (hasattr(e, "status_code") and (e.status_code in {429, 503, 500}))
             ):
                 print(
                     f"Rate limit reached. Sleeping for 65 seconds. Retry {retry_count + 1}/{RETRY_LIMIT}"
@@ -143,6 +141,7 @@ def multi_threaded_inference(handler, test_case):
                 retry_count += 1
             else:
                 print("Maximum retries reached or other error encountered.")
+                print(e)
                 raise e  # Rethrow the last caught exception
             
     result_to_write = {
