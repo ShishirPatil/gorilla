@@ -11,7 +11,7 @@ from model_handler.utils import (
 
 
 class OSSHandler(BaseHandler):
-    def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000, dtype="float16") -> None:
+    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000, dtype="float16") -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
         self.model_style = ModelStyle.OSSMODEL
         self.dtype = dtype
