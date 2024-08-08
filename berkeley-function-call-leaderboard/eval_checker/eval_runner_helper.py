@@ -42,6 +42,18 @@ COLUMNS = [
 ]
 
 MODEL_METADATA_MAPPING = {
+    "gpt-4o-2024-08-06": [
+        "GPT-4o-2024-08-06 (Prompt)",
+        "https://openai.com/index/hello-gpt-4o/",
+        "OpenAI",
+        "Proprietary",
+    ],
+    "gpt-4o-2024-08-06-FC": [
+        "GPT-4o-2024-08-06 (FC)",
+        "https://openai.com/index/hello-gpt-4o/",
+        "OpenAI",
+        "Proprietary",
+    ],
     "gpt-4o-2024-05-13-FC": [
         "GPT-4o-2024-05-13 (FC)",
         "https://openai.com/index/hello-gpt-4o/",
@@ -51,6 +63,18 @@ MODEL_METADATA_MAPPING = {
     "gpt-4o-2024-05-13": [
         "GPT-4o-2024-05-13 (Prompt)",
         "https://openai.com/index/hello-gpt-4o/",
+        "OpenAI",
+        "Proprietary",
+    ],
+    "gpt-4o-mini-2024-07-18": [
+        "GPT-4o-mini-2024-07-18 (Prompt)",
+        "https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
+        "OpenAI",
+        "Proprietary",
+    ],
+    "gpt-4o-mini-2024-07-18-FC": [
+        "GPT-4o-mini-2024-07-18 (FC)",
+        "https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
         "OpenAI",
         "Proprietary",
     ],
@@ -108,6 +132,48 @@ MODEL_METADATA_MAPPING = {
         "Anthropic",
         "Proprietary",
     ],
+    "open-mistral-nemo-2407": [
+        "Open-Mistral-Nemo-2407 (Prompt)",
+        "https://mistral.ai/news/mistral-nemo/",
+        "Mistral AI",
+        "Proprietary",
+    ],
+    "open-mistral-nemo-2407-FC-Any": [
+        "Open-Mistral-Nemo-2407 (FC Any)",
+        "https://mistral.ai/news/mistral-nemo/",
+        "Mistral AI",
+        "Proprietary",
+    ],
+    "open-mistral-nemo-2407-FC-Auto": [
+        "Open-Mistral-Nemo-2407 (FC Auto)",
+        "https://mistral.ai/news/mistral-nemo/",
+        "Mistral AI",
+        "Proprietary",
+    ],
+    "open-mixtral-8x22b": [
+        "Open-Mixtral-8x22b (Prompt)",
+        "https://mistral.ai/news/mixtral-8x22b/",
+        "Mistral AI",
+        "Proprietary",
+    ],
+    "open-mixtral-8x22b-FC-Any": [
+        "Open-Mixtral-8x22b (FC Any)",
+        "https://mistral.ai/news/mixtral-8x22b/",
+        "Mistral AI",
+        "Proprietary",
+    ],
+    "open-mixtral-8x22b-FC-Auto": [
+        "Open-Mixtral-8x22b (FC Auto)",
+        "https://mistral.ai/news/mixtral-8x22b/",
+        "Mistral AI",
+        "Proprietary",
+    ],
+    "open-mixtral-8x7b": [
+        "Open-Mixtral-8x7b (Prompt)",
+        "https://mistral.ai/news/mixtral-of-experts/",
+        "Mistral AI",
+        "Proprietary",
+    ],
     "mistral-medium-2312": [
         "Mistral-Medium-2312 (Prompt)",
         "https://docs.mistral.ai/guides/model-selection/",
@@ -120,9 +186,9 @@ MODEL_METADATA_MAPPING = {
         "Mistral AI",
         "Proprietary",
     ],
-    "mistral-large-2402": [
-        "Mistral-Large-2402 (Prompt)",
-        "https://docs.mistral.ai/guides/model-selection/",
+    "mistral-large-2407": [
+        "mistral-large-2407 (Prompt)",
+        "https://mistral.ai/news/mistral-large-2407/",
         "Mistral AI",
         "Proprietary",
     ],
@@ -222,9 +288,9 @@ MODEL_METADATA_MAPPING = {
         "Mistral AI",
         "Proprietary",
     ],
-    "mistral-large-2402-FC-Any": [
-        "Mistral-large-2402 (FC Any)",
-        "https://docs.mistral.ai/guides/model-selection/",
+    "mistral-large-2407-FC-Any": [
+        "mistral-large-2407 (FC Any)",
+        "https://mistral.ai/news/mistral-large-2407/",
         "Mistral AI",
         "Proprietary",
     ],
@@ -234,9 +300,9 @@ MODEL_METADATA_MAPPING = {
         "Mistral AI",
         "Proprietary",
     ],
-    "mistral-large-2402-FC-Auto": [
-        "Mistral-large-2402 (FC Auto)",
-        "https://docs.mistral.ai/guides/model-selection/",
+    "mistral-large-2407-FC-Auto": [
+        "mistral-large-2407 (FC Auto)",
+        "https://mistral.ai/news/mistral-large-2407/",
         "Mistral AI",
         "Proprietary",
     ],
@@ -439,8 +505,8 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-3-5-sonnet-20240620": 3,
     "claude-2.1": 8,
     "claude-instant-1.2": 0.8,
-    "mistral-large-2402-FC-Any": 4,
-    "mistral-large-2402-FC-Auto": 4,
+    "mistral-large-2407-FC-Any": 4,
+    "mistral-large-2407-FC-Auto": 4,
     "mistral-medium-2312": 2.7,
     "mistral-small-2402-FC-Any": 1,
     "mistral-small-2402-FC-Auto": 1,
@@ -481,8 +547,8 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-3-haiku-20240307": 1.25,
     "claude-2.1": 24,
     "claude-instant-1.2": 2.4,
-    "mistral-large-2402-FC-Any": 12,
-    "mistral-large-2402-FC-Auto": 12,
+    "mistral-large-2407-FC-Any": 12,
+    "mistral-large-2407-FC-Auto": 12,
     "mistral-small-2402": 3,
     "mistral-medium-2312": 8.1,
     "mistral-small-2402-FC-Any": 3,

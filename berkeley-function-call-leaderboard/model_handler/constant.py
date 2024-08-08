@@ -116,7 +116,9 @@ JS_TYPE_CONVERSION = {
 
 # If there is any underscore in folder name, you should change it to `/` in the following strings
 UNDERSCORE_TO_DOT = [
+    "gpt-4o-2024-08-06-FC",
     "gpt-4o-2024-05-13-FC",
+    "gpt-4o-mini-2024-07-18-FC",
     "gpt-4-turbo-2024-04-09-FC",
     "gpt-4-1106-preview-FC",
     "gpt-4-0125-preview-FC",
@@ -126,9 +128,13 @@ UNDERSCORE_TO_DOT = [
     "claude-3-sonnet-20240229-FC",
     "claude-3-haiku-20240307-FC",
     "claude-3-5-sonnet-20240620-FC",
-    "mistral-large-2402-FC",
-    "mistral-large-2402-FC-Any",
-    "mistral-large-2402-FC-Auto",
+    "open-mistral-nemo-2407-FC-Any",
+    "open-mistral-nemo-2407-FC-Auto",
+    "open-mixtral-8x22b-FC-Any",
+    "open-mixtral-8x22b-FC-Auto",
+    "mistral-large-2407-FC",
+    "mistral-large-2407-FC-Any",
+    "mistral-large-2407-FC-Auto",
     "mistral-small-2402-FC-Any",
     "mistral-small-2402-FC-Auto",
     "mistral-small-2402-FC",
