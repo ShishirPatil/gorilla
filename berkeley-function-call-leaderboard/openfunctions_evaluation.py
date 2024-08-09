@@ -10,6 +10,7 @@ RETRY_LIMIT = 3
 # 60s for the timer to complete. But often we find that even with 60 there is a conflict. So 65 is a safe no.
 RETRY_DELAY = 65  # Delay in seconds
 
+
 def get_args():
     parser = argparse.ArgumentParser()
     # Refer to model_choice for supported models.
@@ -45,7 +46,7 @@ TEST_FILE_MAPPING = {
     "sql": "gorilla_openfunctions_v1_test_sql.json",
 }
 
-                
+
 def build_handler(model_name, temperature, top_p, max_tokens):
     handler = handler_map[model_name](model_name, temperature, top_p, max_tokens)
     return handler
@@ -130,20 +131,34 @@ def multi_threaded_inference(handler, test_case):
         except Exception as e:
             # TODO: It might be better to handle the exception in the handler itself rather than a universal catch block here, as each handler use different ways to call the endpoint.
             # OpenAI has openai.RateLimitError while Anthropic has anthropic.RateLimitError. It would be more robust in the long run.
-            if retry_count < RETRY_LIMIT and (
-                "rate limit reached" in str(e).lower()
-                or (hasattr(e, "status_code") and (e.status_code in {429, 503, 500}))
+            if "rate limit reached" in str(e).lower() or (
+                hasattr(e, "status_code") and (e.status_code in {429, 503, 500})
             ):
-                print(
-                    f"Rate limit reached. Sleeping for 65 seconds. Retry {retry_count + 1}/{RETRY_LIMIT}"
-                )
-                time.sleep(RETRY_DELAY)
-                retry_count += 1
+                if retry_count < RETRY_LIMIT:
+                    print(
+                        f"Rate limit reached. Sleeping for 65 seconds. Retry {retry_count + 1}/{RETRY_LIMIT}"
+                    )
+                    time.sleep(RETRY_DELAY)
+                    retry_count += 1
+                else:
+                    # Rate limit would impact all subsequent test cases. So we exit the process.
+                    print("Maximum reties reached for rate limit. Exiting.")
+                    raise e  # Rethrow the exception
             else:
-                print("Maximum retries reached or other error encountered.")
+                # This is usually the case when the model getting stuck on one particular test case.
+                # For example, timeout error or FC model returning invalid JSON response.
+                # Since temperature is already set to 0.001, retrying the same test case will not help.
+                # So we continue the generation process and record the error message as the model response
+                print(
+                    "❗️Error occurred during inference. Continuing to next test case."
+                )
                 print(e)
-                raise e  # Rethrow the last caught exception
-            
+
+                return {
+                    "id": test_case["id"],
+                    "result": f"Error during inference: {str(e)}",
+                }
+
     result_to_write = {
         "id": test_case["id"],
         "result": result,
@@ -172,10 +187,14 @@ def generate_results(args, model_name, test_cases_total):
     else:
         futures = []
         with ThreadPoolExecutor(max_workers=args.num_threads) as executor:
-            with tqdm(total=len(test_cases_total), desc=f"Generating results for {model_name}") as pbar:
-                
+            with tqdm(
+                total=len(test_cases_total), desc=f"Generating results for {model_name}"
+            ) as pbar:
+
                 for test_case in test_cases_total:
-                    future = executor.submit(multi_threaded_inference, handler, test_case)
+                    future = executor.submit(
+                        multi_threaded_inference, handler, test_case
+                    )
                     futures.append(future)
 
                 for future in futures:
@@ -192,18 +211,20 @@ if __name__ == "__main__":
         args.model = [args.model]
     if type(args.test_category) is not list:
         args.test_category = [args.test_category]
-        
+
     test_name_total, test_filename_total = parse_test_category_argument(args.test_category)
-    
+
     print(f"Generating results for {args.model} on test category: {test_name_total}.")
 
     for model_name in args.model:
         if USE_COHERE_OPTIMIZATION and "command-r-plus" in model_name:
             model_name = model_name + "-optimized"
-        
+
         test_cases_total = collect_test_cases(test_filename_total, model_name)
-        
+
         if len(test_cases_total) == 0:
-            print(f"All selected test cases have been previously generated for {model_name}. No new test cases to generate.")
+            print(
+                f"All selected test cases have been previously generated for {model_name}. No new test cases to generate."
+            )
         else:
             generate_results(args, model_name, test_cases_total)
