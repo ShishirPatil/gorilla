@@ -149,10 +149,12 @@ def multi_threaded_inference(handler, test_case):
                 # For example, timeout error or FC model returning invalid JSON response.
                 # Since temperature is already set to 0.001, retrying the same test case will not help.
                 # So we continue the generation process and record the error message as the model response
+                print("-" * 100)
                 print(
-                    "❗️Error occurred during inference. Continuing to next test case."
+                    "❗️❗️ Error occurred during inference. Continuing to next test case."
                 )
-                print(e)
+                print(f"❗️❗️ Test case ID: {test_case['id']}, Error: {str(e)}")
+                print("-" * 100)
 
                 return {
                     "id": test_case["id"],
