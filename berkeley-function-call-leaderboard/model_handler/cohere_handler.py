@@ -79,32 +79,25 @@ class CohereHandler(BaseHandler):
             )
             start_time = time.time()
             if len(cohere_tool) > 0:
-                try:
-                    if USE_COHERE_OPTIMIZATION:
-                        response = self.client.chat(
-                            message=message,
-                            model=self.model_name.replace("-FC", ""),
-                            preamble=self.preamble,
-                            tools=cohere_tool,
-                            # The API default is used for the following parameters in FC:
-                            temperature=None,
-                            max_tokens=None,
-                        )   
-                    else:
-                        response = self.client.chat(
+                if USE_COHERE_OPTIMIZATION:
+                    response = self.client.chat(
                         message=message,
                         model=self.model_name.replace("-FC", ""),
-                        temperature=self.temperature,
-                        max_tokens=self.max_tokens,
-                        tools=cohere_tool,
                         preamble=self.preamble,
-                    )
-                except Exception as e:
-                    return "Error", {
-                        "input_tokens": 0,
-                        "output_tokens": 0,
-                        "latency": 0,
-                    }
+                        tools=cohere_tool,
+                        # The API default is used for the following parameters in FC:
+                        temperature=None,
+                        max_tokens=None,
+                    )   
+                else:
+                    response = self.client.chat(
+                    message=message,
+                    model=self.model_name.replace("-FC", ""),
+                    temperature=self.temperature,
+                    max_tokens=self.max_tokens,
+                    tools=cohere_tool,
+                    preamble=self.preamble,
+                )
             else:
                 response = self.client.chat(
                     message=message,
