@@ -155,6 +155,11 @@ UNDERSCORE_TO_DOT = [
     "THUDM/glm-4-9b-chat",
     "ibm-granite/granite-20b-functioncalling",
     "yi-large-fc",
+    "meta/llama-3.1-70b-instruct-FC",
+    "meta/llama-3.1-405b-instruct-FC",
+    "nv-mistralai/mistral-nemo-12b-instruct-FC",
+    "mistralai/mistral-large-2-instruct-FC",
+    "mistralai/mistral-7b-instruct-v0.3-FC"
 ]
 
 TEST_FILE_MAPPING = {

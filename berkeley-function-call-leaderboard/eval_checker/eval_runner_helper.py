@@ -107,6 +107,36 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
+    "meta/llama-3.1-70b-instruct-FC": [
+        "meta/llama-3.1-70b-instruct (FC)",
+        "https://integrate.api.nvidia.com/v1",
+        "NVIDIA",
+        "MIT",
+    ],
+    "nv-mistralai/mistral-nemo-12b-instruct-FC": [
+        "nv-mistralai/mistral-nemo-12b-instruct (FC)",
+        "https://integrate.api.nvidia.com/v1",
+        "NVIDIA",
+        "MIT",
+    ],
+    "meta/llama-3.1-405b-instruct-FC": [
+        "meta/llama-3.1-405b-instruct (FC)",
+        "https://integrate.api.nvidia.com/v1",
+        "NVIDIA",
+        "MIT",
+    ],
+    "mistralai/mistral-large-2-instruct-FC": [
+        "mistralai/mistral-large-2-instruct (FC)",
+        "https://integrate.api.nvidia.com/v1",
+        "NVIDIA",
+        "MIT",
+    ],
+    "mistralai/mistral-7b-instruct-v0.3-FC": [
+        "mistralai/mistral-7b-instruct-v0.3 (FC)",
+        "https://integrate.api.nvidia.com/v1",
+        "NVIDIA",
+        "MIT",
+    ],
     "gpt-4o-2024-05-13": [
         "GPT-4o-2024-05-13 (Prompt)",
         "https://openai.com/index/hello-gpt-4o/",
@@ -532,7 +562,7 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/Salesforce/xLAM-7b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
-    ]
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -673,7 +703,7 @@ NO_COST_MODELS = [
     "ibm-granite/granite-20b-functioncalling",
     "THUDM/glm-4-9b-chat",
     "Salesforce/xLAM-1b-fc-r",
-    "Salesforce/xLAM-7b-fc-r"
+    "Salesforce/xLAM-7b-fc-r",
 ]
 
 # Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
@@ -833,7 +863,10 @@ def api_status_sanity_check_rest():
             errors.append((data, status))
 
     if correct_count != len(ground_truth_replaced):
-        raise BadAPIStatusError(errors, f"{len(ground_truth_replaced) - correct_count} / {len(ground_truth_replaced)}")
+        raise BadAPIStatusError(
+            errors,
+            f"{len(ground_truth_replaced) - correct_count} / {len(ground_truth_replaced)}",
+        )
 
 
 def api_status_sanity_check_executable():
@@ -857,7 +890,9 @@ def api_status_sanity_check_executable():
             errors.append((data, status))
 
     if correct_count != len(ground_truth):
-        raise BadAPIStatusError(errors, f"{len(ground_truth) - correct_count} / {len(ground_truth)}")
+        raise BadAPIStatusError(
+            errors, f"{len(ground_truth) - correct_count} / {len(ground_truth)}"
+        )
 
 
 def display_api_status_error(rest_error, executable_error, display_success=False):
@@ -865,18 +900,27 @@ def display_api_status_error(rest_error, executable_error, display_success=False
         if display_success:
             print("🟢 All API Status Test Passed!")
         return None
-    
-    print(f"\n{RED_FONT}{'-' * 18} Executable Categories' Error Bounds Based on API Health Status {'-' * 18}{RESET}\n")
+
+    RED_FONT = "\033[91m"
+    RESET = "\033[0m"
+
+    print(
+        f"\n{RED_FONT}{'-' * 18} Executable Categories' Error Bounds Based on API Health Status {'-' * 18}{RESET}\n"
+    )
 
     if rest_error:
-        print(f"❗️ Warning: Unable to verify health of executable APIs used in executable test category (REST). Please contact API provider.\n")
+        print(
+            f"❗️ Warning: Unable to verify health of executable APIs used in executable test category (REST). Please contact API provider.\n"
+        )
         print(f"{rest_error.error_rate} APIs affected:\n")
         for data, status in rest_error.errors:
             print(f"  - Test Case: {data['ground_truth']}")
             print(f"    Error Type: {status['error_type']}\n")
 
     if executable_error:
-        print(f"❗️ Warning: Unable to verify health of executable APIs used in executable test categories (Non-REST). Please contact API provider.\n")
+        print(
+            f"❗️ Warning: Unable to verify health of executable APIs used in executable test categories (Non-REST). Please contact API provider.\n"
+        )
         print(f"{executable_error.error_rate} APIs affected:\n")
         for data, status in executable_error.errors:
             print(f"  - Test Case: {data['ground_truth'][0]}")

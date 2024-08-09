@@ -1,4 +1,5 @@
-import argparse, json, os, time
+import argparse, json, os
+import logging
 from tqdm import tqdm
 from model_handler.handler_map import handler_map
 from model_handler.model_style import ModelStyle
@@ -6,14 +7,19 @@ from model_handler.constant import USE_COHERE_OPTIMIZATION
 from eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING
 from concurrent.futures import ThreadPoolExecutor
 
-RETRY_LIMIT = 3
-# 60s for the timer to complete. But often we find that even with 60 there is a conflict. So 65 is a safe no.
-RETRY_DELAY = 65  # Delay in seconds
+logging.basicConfig(
+    filename="failure.log",
+    level=logging.DEBUG,
+    format="%(asctime)s - %(levelname)s - %(message)s",
+)
+
 
 def get_args():
     parser = argparse.ArgumentParser()
     # Refer to model_choice for supported models.
-    parser.add_argument("--model", type=str, default="gorilla-openfunctions-v2", nargs="+")
+    parser.add_argument(
+        "--model", type=str, default="gorilla-openfunctions-v2", nargs="+"
+    )
     # Refer to test_categories for supported categories.
     parser.add_argument("--test-category", type=str, default="all", nargs="+")
 
@@ -187,28 +193,48 @@ def generate_results(args, model_name, test_cases_total):
                 total=len(test_cases_total), desc=f"Generating results for {model_name}"
             ) as pbar:
 
-                for test_case in test_cases_total:
-                    future = executor.submit(
-                        multi_threaded_inference, handler, test_case
-                    )
-                    futures.append(future)
+            user_question, functions, test_category = (
+                test_case["question"],
+                test_case["function"],
+                test_case["id"].rsplit("_", 1)[0],
+            )
+            if type(functions) is dict or type(functions) is str:
+                functions = [functions]
+            
+            result, metadata = list(), dict()
 
-                for future in futures:
-                    # This will wait for the task to complete, so that we are always writing in order
-                    result = future.result()
-                    handler.write(result)
-                    pbar.update()
+            try:
+                result, metadata = handler.inference(
+                    user_question, functions, test_category
+                )
+            except Exception as e:
+                logging.error("Failed to infer %s", str(e))
+            
+            if not len(result):
+                metadata["input_tokens"] = 0
+                metadata["output_tokens"] = 0
+                metadata["latency"] = 0
+
+            result_to_write = {
+                "id": test_case["id"],
+                "result": result,
+                "input_token_count": metadata["input_tokens"],
+                "output_token_count": metadata["output_tokens"],
+                "latency": metadata["latency"],
+            }
+            handler.write(result_to_write)
 
 
 if __name__ == "__main__":
     args = get_args()
-
     if type(args.model) is not list:
         args.model = [args.model]
     if type(args.test_category) is not list:
         args.test_category = [args.test_category]
 
-    test_name_total, test_filename_total = parse_test_category_argument(args.test_category)
+    test_name_total, test_filename_total = parse_test_category_argument(
+        args.test_category
+    )
 
     print(f"Generating results for {args.model} on test category: {test_name_total}.")
 
