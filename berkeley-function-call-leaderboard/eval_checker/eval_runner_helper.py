@@ -633,6 +633,8 @@ NO_COST_MODELS = [
 # Reference: https://azure.microsoft.com/en-us/pricing/details/machine-learning/
 V100_x8_PRICE_PER_HOUR = 22.032
 
+RED_FONT = "\033[91m"
+RESET = "\033[0m"
 
 def extract_after_test(input_string):
     parts = input_string.split("_test_")[1].split("_result")[0].split(".json")[0]
@@ -810,10 +812,7 @@ def display_api_status_error(rest_error, executable_error, display_success=False
         if display_success:
             print("🟢 All API Status Test Passed!")
         return None
-
-    RED_FONT = "\033[91m"
-    RESET = "\033[0m"
-
+    
     print(f"\n{RED_FONT}{'-' * 18} Executable Categories' Error Bounds Based on API Health Status {'-' * 18}{RESET}\n")
 
     if rest_error:
@@ -971,7 +970,10 @@ def get_metric(model_name, cost_data, latency_data):
     return cost, mean_latency, std_latency, percentile_95_latency
 
 
-def generate_leaderboard_csv(leaderboard_table, output_path):
+def generate_leaderboard_csv(
+    leaderboard_table, output_path, eval_models=None, eval_categories=None
+):
+    print("📈 Aggregating data to generate leaderboard score table...")
     data = []
     for model_name, value in leaderboard_table.items():
         model_name_escaped = model_name.replace("_", "/")
@@ -1045,12 +1047,6 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
             model_name_escaped, cost_data, latency_data
         )
 
-        if overall_accuracy["total_count"] != 1700:
-            print("-" * 100)
-            print(
-                f"❗️Warning: Total count for {model_name} is {overall_accuracy['total_count']}"
-            )
-
         data.append(
             [
                 "N/A",
@@ -1100,6 +1096,122 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
                 f.write(",".join(row) + "\n")
             else:
                 f.write(",".join(row))
+
+    if eval_models:
+        category_status = check_model_category_status(score_path=output_path)
+        check_all_category_present(
+            category_status, eval_models=eval_models, eval_categories=eval_categories
+        )
+
+
+def check_model_category_status(score_path):
+    result_path = score_path.replace("score", "result")
+
+    leaderboard_categories = [
+        "simple",
+        "multiple_function",
+        "parallel_function",
+        "parallel_multiple_function",
+        "executable_simple",
+        "executable_multiple_function",
+        "executable_parallel_function",
+        "executable_parallel_multiple_function",
+        "java",
+        "javascript",
+        "rest",
+        "relevance",
+    ]
+
+    category_status = {}
+
+    # Check for all models in MODEL_METADATA_MAPPING
+    for model_name in MODEL_METADATA_MAPPING.keys():
+        category_status[model_name] = {
+            category: {"generated": False, "evaluated": False}
+            for category in leaderboard_categories
+        }
+
+        # Check result folder
+        result_subdir = os.path.join(result_path, model_name)
+        if os.path.exists(result_subdir):
+            for result_file in os.listdir(result_subdir):
+                test_category = result_file.split("_test_")[1].split("_result")[0]
+                if test_category in category_status[model_name]:
+                    category_status[model_name][test_category]["generated"] = True
+
+        # Check score folder
+        score_subdir = os.path.join(score_path, model_name)
+        if os.path.exists(score_subdir):
+            for score_file in os.listdir(score_subdir):
+                test_category = score_file.split("_score.json")[0]
+                if test_category in category_status[model_name]:
+                    category_status[model_name][test_category]["evaluated"] = True
+
+    return category_status
+
+
+def check_all_category_present(category_status, eval_models=None, eval_categories=None):
+    found_issues = False
+    first_time = True
+    commands = []
+
+    for model_name, categories in category_status.items():
+        if eval_models and model_name not in eval_models:
+            continue
+
+        not_generated = [
+            cat
+            for cat, status in categories.items()
+            if not status["generated"]
+            and (not eval_categories or cat in eval_categories)
+        ]
+        not_evaluated = [
+            cat
+            for cat, status in categories.items()
+            if not status["evaluated"]
+            and (not eval_categories or cat in eval_categories)
+        ]
+
+        if not_generated or not_evaluated:
+            found_issues = True
+            if first_time:
+                print(f"We are checking models: {eval_models} and categories: {eval_categories}")
+                print(f"\n{RED_FONT}{'=' * 30} Model Category Status {'=' * 30}{RESET}")
+                first_time = False       
+ 
+            print(f"{RED_FONT}Model: {model_name}{RESET}")
+            if not_generated:
+                print(f"\n  Missing results for {len(not_generated)} categories:")
+                for cat in not_generated:
+                    print(f"    - {cat}")
+                commands.append("cd ..")
+                commands.append(
+                    f"python openfunctions_evaluation.py --model {model_name} --test-category {' '.join(not_generated)}"
+                )
+
+            if not_evaluated:
+                print(f"\n  Unevaluated results for {len(not_evaluated)} categories:")
+                for cat in not_evaluated:
+                    print(f"    - {cat}")
+
+            all_categories = set(not_generated + not_evaluated)
+            if all_categories:
+                commands.append("cd eval_checker")
+                commands.append(
+                    f"python eval_runner.py --model {model_name} --test-category {' '.join(all_categories)}"
+                )
+
+    if found_issues:
+        print(f"\n{RED_FONT}{'=' * 40} Recommended Actions {'=' * 40}{RESET}\n")
+        print(
+            "To address these issues, run the following commands from the current directory:"
+        )
+        print("\n" + " && \\\n".join(commands))
+        print(f"\n{RED_FONT}{'=' * 100}{RESET}\n")
+    else:
+        print("🎉 All categories are present and evaluated for all models!\n")
+
+    return found_issues
 
 
 def update_leaderboard_table_with_score_file(leaderboard_table, score_path):

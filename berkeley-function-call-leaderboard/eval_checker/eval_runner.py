@@ -404,7 +404,7 @@ def runner(model_names, test_categories, api_sanity_check):
     # This is helpful when you only want to run the evaluation for a subset of models and test categories.
     update_leaderboard_table_with_score_file(LEADERBOARD_TABLE, OUTPUT_PATH)
     # Write the leaderboard table to a file
-    generate_leaderboard_csv(LEADERBOARD_TABLE, OUTPUT_PATH)
+    generate_leaderboard_csv(LEADERBOARD_TABLE, OUTPUT_PATH, model_names, test_categories)
 
     # Clean up the executable expected output files
     # They should be re-generated the next time the evaluation is run
