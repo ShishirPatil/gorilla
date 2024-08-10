@@ -10,7 +10,6 @@ import requests, time
 
 class NexusHandler(BaseHandler):
     def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
-        temperature = 0.001
         super().__init__(model_name, temperature, top_p, max_tokens)
         self.model_style = ModelStyle.NEXUS
 
