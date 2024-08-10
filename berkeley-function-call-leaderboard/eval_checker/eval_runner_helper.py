@@ -240,27 +240,21 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
-    "meetkai/functionary-small-v2.2-FC": [
-        "Functionary-Small-v2.2 (FC)",
-        "https://huggingface.co/meetkai/functionary-small-v2.2",
+    "meetkai/functionary-small-v3.1-FC": [
+        "Functionary-Small-v3.1 (FC)",
+        "https://huggingface.co/meetkai/functionary-small-v3.1",
         "MeetKai",
         "MIT",
     ],
-    "meetkai/functionary-medium-v2.2-FC": [
-        "Functionary-Medium-v2.2 (FC)",
-        "https://huggingface.co/meetkai/functionary-medium-v2.2",
+    "meetkai/functionary-small-v3.2-FC": [
+        "Functionary-Small-v3.2 (FC)",
+        "https://huggingface.co/meetkai/functionary-small-v3.2",
         "MeetKai",
         "MIT",
     ],
-    "meetkai/functionary-small-v2.4-FC": [
-        "Functionary-Small-v2.4 (FC)",
-        "https://huggingface.co/meetkai/functionary-small-v2.4",
-        "MeetKai",
-        "MIT",
-    ],
-    "meetkai/functionary-medium-v2.4-FC": [
-        "Functionary-Medium-v2.4 (FC)",
-        "https://huggingface.co/meetkai/functionary-medium-v2.4",
+    "meetkai/functionary-medium-v3.1-FC": [
+        "Functionary-Medium-v3.0 (FC)",
+        "https://huggingface.co/meetkai/functionary-medium-v3.1",
         "MeetKai",
         "MIT",
     ],
@@ -505,8 +499,16 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-3-5-sonnet-20240620": 3,
     "claude-2.1": 8,
     "claude-instant-1.2": 0.8,
-    "mistral-large-2407-FC-Any": 4,
-    "mistral-large-2407-FC-Auto": 4,
+    "open-mistral-nemo-2407": 0.3,
+    "open-mistral-nemo-2407-FC-Any": 0.3,
+    "open-mistral-nemo-2407-FC-Auto": 0.3,
+    "open-mixtral-8x22b": 2,
+    "open-mixtral-8x22b-FC-Any": 2,
+    "open-mixtral-8x22b-FC-Auto": 2,
+    "open-mixtral-8x7b": 0.7,
+    "mistral-large-2407": 3,
+    "mistral-large-2407-FC-Any": 3,
+    "mistral-large-2407-FC-Auto": 3,
     "mistral-medium-2312": 2.7,
     "mistral-small-2402-FC-Any": 1,
     "mistral-small-2402-FC-Auto": 1,
@@ -514,6 +516,10 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-tiny-2312": 0.25,
     "gpt-4o-2024-05-13-FC": 5,
     "gpt-4o-2024-05-13": 5,
+    "gpt-4o-2024-08-06-FC": 2.5,
+    "gpt-4o-2024-08-06": 2.5,
+    "gpt-4o-mini-2024-07-18": 0.15,
+    "gpt-4o-mini-2024-07-18-FC": 0.15,
     "gpt-4-1106-preview-FC": 10,
     "gpt-4-1106-preview": 10,
     "gpt-4-0125-preview": 10,
@@ -547,8 +553,16 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-3-haiku-20240307": 1.25,
     "claude-2.1": 24,
     "claude-instant-1.2": 2.4,
-    "mistral-large-2407-FC-Any": 12,
-    "mistral-large-2407-FC-Auto": 12,
+    "open-mistral-nemo-2407": 0.3,
+    "open-mistral-nemo-2407-FC-Any": 0.3,
+    "open-mistral-nemo-2407-FC-Auto": 0.3,
+    "open-mixtral-8x22b": 6,
+    "open-mixtral-8x22b-FC-Any": 6,
+    "open-mixtral-8x22b-FC-Auto": 6,
+    "open-mixtral-8x7b": 0.7,
+    "mistral-large-2407": 9,
+    "mistral-large-2407-FC-Any": 9,
+    "mistral-large-2407-FC-Auto": 9,
     "mistral-small-2402": 3,
     "mistral-medium-2312": 8.1,
     "mistral-small-2402-FC-Any": 3,
@@ -556,6 +570,10 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-tiny-2312": 0.25,
     "gpt-4o-2024-05-13-FC": 15,
     "gpt-4o-2024-05-13": 15,
+    "gpt-4o-2024-08-06-FC": 10,
+    "gpt-4o-2024-08-06": 10,
+    "gpt-4o-mini-2024-07-18": 0.6,
+    "gpt-4o-mini-2024-07-18-FC": 0.6,
     "gpt-4-turbo-2024-04-09-FC": 30,
     "gpt-4-turbo-2024-04-09": 30,
     "gpt-4-1106-preview": 30,
@@ -615,6 +633,8 @@ NO_COST_MODELS = [
 # Reference: https://azure.microsoft.com/en-us/pricing/details/machine-learning/
 V100_x8_PRICE_PER_HOUR = 22.032
 
+RED_FONT = "\033[91m"
+RESET = "\033[0m"
 
 def extract_after_test(input_string):
     parts = input_string.split("_test_")[1].split("_result")[0].split(".json")[0]
@@ -792,10 +812,7 @@ def display_api_status_error(rest_error, executable_error, display_success=False
         if display_success:
             print("🟢 All API Status Test Passed!")
         return None
-
-    RED_FONT = "\033[91m"
-    RESET = "\033[0m"
-
+    
     print(f"\n{RED_FONT}{'-' * 18} Executable Categories' Error Bounds Based on API Health Status {'-' * 18}{RESET}\n")
 
     if rest_error:
@@ -953,7 +970,10 @@ def get_metric(model_name, cost_data, latency_data):
     return cost, mean_latency, std_latency, percentile_95_latency
 
 
-def generate_leaderboard_csv(leaderboard_table, output_path):
+def generate_leaderboard_csv(
+    leaderboard_table, output_path, eval_models=None, eval_categories=None
+):
+    print("📈 Aggregating data to generate leaderboard score table...")
     data = []
     for model_name, value in leaderboard_table.items():
         model_name_escaped = model_name.replace("_", "/")
@@ -1027,12 +1047,6 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
             model_name_escaped, cost_data, latency_data
         )
 
-        if overall_accuracy["total_count"] != 1700:
-            print("-" * 100)
-            print(
-                f"❗️Warning: Total count for {model_name} is {overall_accuracy['total_count']}"
-            )
-
         data.append(
             [
                 "N/A",
@@ -1082,6 +1096,122 @@ def generate_leaderboard_csv(leaderboard_table, output_path):
                 f.write(",".join(row) + "\n")
             else:
                 f.write(",".join(row))
+
+    if eval_models:
+        category_status = check_model_category_status(score_path=output_path)
+        check_all_category_present(
+            category_status, eval_models=eval_models, eval_categories=eval_categories
+        )
+
+
+def check_model_category_status(score_path):
+    result_path = score_path.replace("score", "result")
+
+    leaderboard_categories = [
+        "simple",
+        "multiple_function",
+        "parallel_function",
+        "parallel_multiple_function",
+        "executable_simple",
+        "executable_multiple_function",
+        "executable_parallel_function",
+        "executable_parallel_multiple_function",
+        "java",
+        "javascript",
+        "rest",
+        "relevance",
+    ]
+
+    category_status = {}
+
+    # Check for all models in MODEL_METADATA_MAPPING
+    for model_name in MODEL_METADATA_MAPPING.keys():
+        category_status[model_name] = {
+            category: {"generated": False, "evaluated": False}
+            for category in leaderboard_categories
+        }
+
+        # Check result folder
+        result_subdir = os.path.join(result_path, model_name)
+        if os.path.exists(result_subdir):
+            for result_file in os.listdir(result_subdir):
+                test_category = result_file.split("_test_")[1].split("_result")[0]
+                if test_category in category_status[model_name]:
+                    category_status[model_name][test_category]["generated"] = True
+
+        # Check score folder
+        score_subdir = os.path.join(score_path, model_name)
+        if os.path.exists(score_subdir):
+            for score_file in os.listdir(score_subdir):
+                test_category = score_file.split("_score.json")[0]
+                if test_category in category_status[model_name]:
+                    category_status[model_name][test_category]["evaluated"] = True
+
+    return category_status
+
+
+def check_all_category_present(category_status, eval_models=None, eval_categories=None):
+    found_issues = False
+    first_time = True
+    commands = []
+
+    for model_name, categories in category_status.items():
+        if eval_models and model_name not in eval_models:
+            continue
+
+        not_generated = [
+            cat
+            for cat, status in categories.items()
+            if not status["generated"]
+            and (not eval_categories or cat in eval_categories)
+        ]
+        not_evaluated = [
+            cat
+            for cat, status in categories.items()
+            if not status["evaluated"]
+            and (not eval_categories or cat in eval_categories)
+        ]
+
+        if not_generated or not_evaluated:
+            found_issues = True
+            if first_time:
+                print(f"We are checking models: {eval_models} and categories: {eval_categories}")
+                print(f"\n{RED_FONT}{'=' * 30} Model Category Status {'=' * 30}{RESET}")
+                first_time = False       
+ 
+            print(f"{RED_FONT}Model: {model_name}{RESET}")
+            if not_generated:
+                print(f"\n  Missing results for {len(not_generated)} categories:")
+                for cat in not_generated:
+                    print(f"    - {cat}")
+                commands.append("cd ..")
+                commands.append(
+                    f"python openfunctions_evaluation.py --model {model_name} --test-category {' '.join(not_generated)}"
+                )
+
+            if not_evaluated:
+                print(f"\n  Unevaluated results for {len(not_evaluated)} categories:")
+                for cat in not_evaluated:
+                    print(f"    - {cat}")
+
+            all_categories = set(not_generated + not_evaluated)
+            if all_categories:
+                commands.append("cd eval_checker")
+                commands.append(
+                    f"python eval_runner.py --model {model_name} --test-category {' '.join(all_categories)}"
+                )
+
+    if found_issues:
+        print(f"\n{RED_FONT}{'=' * 40} Recommended Actions {'=' * 40}{RESET}\n")
+        print(
+            "To address these issues, run the following commands from the current directory:"
+        )
+        print("\n" + " && \\\n".join(commands))
+        print(f"\n{RED_FONT}{'=' * 100}{RESET}\n")
+    else:
+        print("🎉 All categories are present and evaluated for all models!\n")
+
+    return found_issues
 
 
 def update_leaderboard_table_with_score_file(leaderboard_table, score_path):
