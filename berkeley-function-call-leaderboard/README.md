@@ -104,8 +104,8 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |gpt-4o-2024-05-13-FC | Function Calling|
 |gpt-4o-2024-05-13| Prompt|
 |google/gemma-7b-it 💻| Prompt|
-|meetkai/functionary-{small,medium}-v2.4-FC| Function Calling|
-|meetkai/functionary-small-v2.2-FC| Function Calling|
+|meetkai/functionary-medium-v3.1-FC| Function Calling|
+|meetkai/functionary-small-{v3.1,v3.2}-FC| Function Calling|
 |meta-llama/Meta-Llama-3-{8B,70B}-Instruct | Prompt|
 |open-mixtral-{8x7b,8x22b} | Prompt|
 |open-mixtral-8x22b-FC-{Any,Auto} | Function Calling|
@@ -220,6 +220,7 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
+* [August 8, 2024] [#574](https://github.com/ShishirPatil/gorilla/pull/574): Set temperature to 0.001 for all models for consistency and reproducibility.
 * [August 7, 2024] [#571](https://github.com/ShishirPatil/gorilla/pull/571): Support parallel inference for hosted models. User can specify the number of threads to use for parallel inference by setting the `--num-threads` flag. The default is 1, which means no parallel inference.
 * [August 6, 2024] [#569](https://github.com/ShishirPatil/gorilla/pull/569), [#570](https://github.com/ShishirPatil/gorilla/pull/570): Add the following new models to the leaderboard:
   * `open-mistral-nemo-2407`

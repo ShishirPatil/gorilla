@@ -12,12 +12,9 @@ import re
 
 
 class DatabricksHandler(BaseHandler):
-    def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
-        self.model_name = model_name
+    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
+        super().__init__(model_name, temperature, top_p, max_tokens)
         self.model_style = ModelStyle.OpenAI
-        self.temperature = temperature
-        self.top_p = top_p
-        self.max_tokens = max_tokens
 
         # NOTE: To run the Databricks model, you need to provide your own Databricks API key and your own Azure endpoint URL.
         self.client = OpenAI(
