@@ -66,11 +66,12 @@ If decided to run OSS model, the generation script uses vllm and therefore requi
 
 ### Generating LLM Responses
 
-Use the following command for LLM inference of the evaluation dataset with specific models
+Use the following command for LLM inference of the evaluation dataset with specific models. 
 
 ```bash
-python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
+python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1
 ```
+You can optionally specify the number of threads to use for *parallel inference* by setting the `--num-threads` flag to speed up inference for **hosted models**, not applicable for OSS models.
 
 For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section below.
 
