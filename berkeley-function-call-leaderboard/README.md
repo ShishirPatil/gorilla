@@ -221,6 +221,19 @@ Some companies have proposed some optimization strategies in their models' handl
 ## Changelog
 
 * [August 8, 2024] [#574](https://github.com/ShishirPatil/gorilla/pull/574): Set temperature to 0.001 for all models for consistency and reproducibility.
+* [August 7, 2024] [#571](https://github.com/ShishirPatil/gorilla/pull/571): Support parallel inference for hosted models. User can specify the number of threads to use for parallel inference by setting the `--num-threads` flag. The default is 1, which means no parallel inference.
+* [August 6, 2024] [#569](https://github.com/ShishirPatil/gorilla/pull/569), [#570](https://github.com/ShishirPatil/gorilla/pull/570): Add the following new models to the leaderboard:
+  * `open-mistral-nemo-2407`
+  * `open-mistral-nemo-2407-FC-Any`
+  * `open-mistral-nemo-2407-FC-Auto`
+  * `open-mixtral-8x22b`
+  * `open-mixtral-8x22b-FC-Any`
+  * `open-mixtral-8x22b-FC-Auto`
+  * `open-mixtral-8x7b`
+  * `gpt-4o-mini-2024-07-18`
+  * `gpt-4o-mini-2024-07-18-FC`
+  * `gpt-4o-2024-08-06`
+  * `gpt-4o-2024-08-06-FC`
 * [August 5, 2024] [#568](https://github.com/ShishirPatil/gorilla/pull/568): Rephrase the question prompt for the `executable_parallel_function` category to remove potentially misleading information implying multi-turn function calls.
 * [August 4, 2024] [#557](https://github.com/ShishirPatil/gorilla/pull/557): Bug fix in the possible answers.
   * simple: 7 affected
@@ -229,7 +242,7 @@ Some companies have proposed some optimization strategies in their models' handl
   * parallel multiple function: 6 affected
   * executable parallel function: 1 affected
   * javascript: 3 affected
-* [July 26, 2024] [#549](https://github.com/ShishirPatil/gorilla/pull/549): Fix js_type_converter.py to properly handle JavaScript array value inside dictionary. 
+* [July 26, 2024] [#549](https://github.com/ShishirPatil/gorilla/pull/549): Fix js_type_converter.py to properly handle JavaScript array value inside dictionary.
 * [July 25, 2024] [#532](https://github.com/ShishirPatil/gorilla/pull/532), [#543](https://github.com/ShishirPatil/gorilla/pull/543), [#556](https://github.com/ShishirPatil/gorilla/pull/556), [#542](https://github.com/ShishirPatil/gorilla/pull/542): Add the following new models to the leaderboard:
     - `Salesforce/xLAM-7b-fc-r`
     - `Salesforce/xLAM-1b-fc-r`
