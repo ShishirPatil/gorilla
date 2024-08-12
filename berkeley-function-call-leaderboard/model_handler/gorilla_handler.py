@@ -46,13 +46,9 @@ class GorillaHandler(BaseHandler):
         functions = language_specific_pre_processing(functions, test_category)
         if type(functions) is not list:
             functions = [functions]
-        try:
-            result, metadata = self._get_gorilla_response(prompt, functions)
-        except KeyboardInterrupt:
-            raise KeyboardInterrupt
-        except:
-            result = "Error"
-            metadata = {"input_tokens": 0, "output_tokens": 0, "latency": 0}
+
+        result, metadata = self._get_gorilla_response(prompt, functions)
+
         return result, metadata
 
     def decode_ast(self, result, language="Python"):
