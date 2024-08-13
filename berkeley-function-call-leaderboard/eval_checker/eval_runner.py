@@ -109,7 +109,7 @@ def single_executable_file_runner(
             "total_count": len(model_result),
         },
     )
-    output_file_name = test_category + "_score.json"
+    output_file_name = get_test_category_file_name(test_category, suffix="score")
     output_file_dir = os.path.join(OUTPUT_PATH, model_name)
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
@@ -122,17 +122,25 @@ def single_relevance_file_runner(handler, model_result, model_name, test_categor
     correct_count = 0
     for i in range(len(model_result)):
         model_result_item = model_result[i]["result"]
-        success = False
+        contain_func_call = False
         decoded_result = None
+        decode_error = None
 
         try:
             decoded_result = handler.decode_ast(model_result_item, language="Python")
-            success = False
+            contain_func_call = True
             if is_empty_output(decoded_result):
-                success = True
+                contain_func_call = False
 
         except Exception as e:
-            success = True
+            contain_func_call = False
+            decode_error = str(e)
+
+        # relevance test is the opposite of the irrelevant test
+        if "irrelevance" in test_category:
+            success = not contain_func_call
+        else:
+            success = contain_func_call
 
         if success:
             correct_count += 1
@@ -142,10 +150,17 @@ def single_relevance_file_runner(handler, model_result, model_name, test_categor
             temp["model_name"] = model_name
             temp["test_category"] = test_category
             temp["valid"] = success
-            temp["error"] = [
-                f"Valid syntax. Successfully decode AST when it should not."
-            ]
-            temp["error_type"] = "relevance_error:decoder_success"
+            if "irrelevance" in test_category:
+                temp["error"] = [
+                    f"Valid syntax. Successfully decode AST when it should not."
+                ]
+                temp["error_type"] = "irrelevance_error:decoder_success"
+            else: 
+                temp["error"] = [
+                    f"Invalid syntax. Failed to decode AST when it should have. {decode_error}"
+                ]
+                temp["error_type"] = "relevance_error:decoder_failed"
+                
             temp["model_result"] = model_result_item
             temp["decoded_result"] = decoded_result
 
@@ -160,7 +175,7 @@ def single_relevance_file_runner(handler, model_result, model_name, test_categor
             "total_count": len(model_result),
         },
     )
-    output_file_name = test_category + "_score.json"
+    output_file_name = get_test_category_file_name(test_category, suffix="score")
     output_file_dir = os.path.join(OUTPUT_PATH, model_name)
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
@@ -254,7 +269,7 @@ def single_ast_file_runner(
             "total_count": len(model_result),
         },
     )
-    output_file_name = test_category + "_score.json"
+    output_file_name = get_test_category_file_name(test_category, suffix="score")
     output_file_dir = os.path.join(OUTPUT_PATH, model_name)
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
@@ -302,7 +317,7 @@ def runner(model_names, test_categories, api_sanity_check):
             if os.path.basename(model_result_json) == "result.json":
                 continue
 
-            test_category = extract_after_test(model_result_json)
+            test_category = extract_test_category(model_result_json)
             if test_categories is not None and test_category not in test_categories:
                 continue
 
@@ -323,7 +338,7 @@ def runner(model_names, test_categories, api_sanity_check):
             model_result = load_file(model_result_json)
             record_cost_latency(LEADERBOARD_TABLE, model_name, model_result)
 
-            if is_relevance(test_category):
+            if is_relevance_or_irrelevance(test_category):
                 accuracy, total_count = single_relevance_file_runner(
                     handler, model_result, model_name, test_category
                 )
@@ -404,7 +419,8 @@ def runner(model_names, test_categories, api_sanity_check):
     # This is helpful when you only want to run the evaluation for a subset of models and test categories.
     update_leaderboard_table_with_score_file(LEADERBOARD_TABLE, OUTPUT_PATH)
     # Write the leaderboard table to a file
-    generate_leaderboard_csv(LEADERBOARD_TABLE, OUTPUT_PATH, model_names, test_categories)
+    generate_leaderboard_v1_csv(LEADERBOARD_TABLE, OUTPUT_PATH, model_names, test_categories)
+    generate_leaderboard_v2_live_csv(LEADERBOARD_TABLE, OUTPUT_PATH, model_names, test_categories)
 
     # Clean up the executable expected output files
     # They should be re-generated the next time the evaluation is run
@@ -414,7 +430,7 @@ def runner(model_names, test_categories, api_sanity_check):
     
     display_api_status_error(API_STATUS_ERROR_REST, API_STATUS_ERROR_EXECUTABLE, display_success=False)
     
-    print(f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data.csv')} for evaluation results.")
+    print(f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data_v1.csv')} and {os.path.abspath(OUTPUT_PATH + 'data_v2_live.csv')} for evaluation results.")
 
 
 INPUT_PATH = "../result/"
