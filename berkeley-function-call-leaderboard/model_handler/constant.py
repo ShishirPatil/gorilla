@@ -1,6 +1,6 @@
 USE_COHERE_OPTIMIZATION = False
 
-SYSTEM_PROMPT_FOR_CHAT_MODEL = """
+DEFAULT_SYSTEM_PROMPT = """
     You are an expert in composing functions. You are given a question and a set of possible functions. 
     Based on the question, you will need to make one or more function/tool calls to achieve the purpose. 
     If none of the function can be used, point it out. If the given question lacks the parameters required by the function,
@@ -8,10 +8,11 @@ SYSTEM_PROMPT_FOR_CHAT_MODEL = """
     """
 
 USER_PROMPT_FOR_CHAT_MODEL = """
-    Questions:{user_prompt}\nHere is a list of functions in JSON format that you can invoke:\n{functions}. 
-    Should you decide to return the function call(s),Put it in the format of [func1(params_name=params_value, params_name2=params_value2...), func2(params)]\n
-    NO other text MUST be included. 
-"""
+    Here is a list of functions in JSON format that you can invoke. {language_specific_hint}\n\n{functions}\n\n
+    If you decide to invoke any of the function(s), put it in the format of [func_name1(params_name1=params_value1, params_name2=params_value2...), func_name2(params)]\n
+    You SHOULD NOT include any other information in the response.
+    """
+
 GORILLA_TO_OPENAPI = {
     "integer": "integer",
     "number": "number",
@@ -114,7 +115,6 @@ JS_TYPE_CONVERSION = {
     "any": str,
 }
 
-# If there is any underscore in folder name, you should change it to `/` in the following strings
 UNDERSCORE_TO_DOT = [
     "gpt-4o-2024-08-06-FC",
     "gpt-4o-2024-05-13-FC",
@@ -157,18 +157,26 @@ UNDERSCORE_TO_DOT = [
     "yi-large-fc",
 ]
 
-TEST_CATEGORIES = {
-    "executable_simple": "gorilla_openfunctions_v1_test_executable_simple.json",
-    "executable_parallel_function": "gorilla_openfunctions_v1_test_executable_parallel_function.json",
-    "executable_multiple_function": "gorilla_openfunctions_v1_test_executable_multiple_function.json",
-    "executable_parallel_multiple_function": "gorilla_openfunctions_v1_test_executable_parallel_multiple_function.json",
-    "simple": "gorilla_openfunctions_v1_test_simple.json",
-    "relevance": "gorilla_openfunctions_v1_test_relevance.json",
-    "parallel_function": "gorilla_openfunctions_v1_test_parallel_function.json",
-    "multiple_function": "gorilla_openfunctions_v1_test_multiple_function.json",
-    "parallel_multiple_function": "gorilla_openfunctions_v1_test_parallel_multiple_function.json",
-    "java": "gorilla_openfunctions_v1_test_java.json",
-    "javascript": "gorilla_openfunctions_v1_test_javascript.json",
-    "rest": "gorilla_openfunctions_v1_test_rest.json",
-    "sql": "gorilla_openfunctions_v1_test_sql.json",
+TEST_FILE_MAPPING = {
+    # V1
+    "executable_simple": "BFCL_v1_executable_simple.json",
+    "executable_parallel_function": "BFCL_v1_executable_parallel_function.json",
+    "executable_multiple_function": "BFCL_v1_executable_multiple_function.json",
+    "executable_parallel_multiple_function": "BFCL_v1_executable_parallel_multiple_function.json",
+    "simple": "BFCL_v1_simple.json",
+    "relevance": "BFCL_v1_irrelevance.json",
+    "parallel_function": "BFCL_v1_parallel_function.json",
+    "multiple_function": "BFCL_v1_multiple_function.json",
+    "parallel_multiple_function": "BFCL_v1_parallel_multiple_function.json",
+    "java": "BFCL_v1_java.json",
+    "javascript": "BFCL_v1_javascript.json",
+    "rest": "BFCL_v1_rest.json",
+    "sql": "BFCL_v1_sql.json",
+    # V2
+    "live_simple": "BFCL_v2_live_simple.json",
+    "live_irrelevance": "BFCL_v2_live_irrelevance.json",
+    "live_relevance": "BFCL_v2_live_relevance.json",
+    "live_multiple": "BFCL_v2_live_multiple.json",
+    "live_parallel": "BFCL_v2_live_parallel.json",
+    "live_parallel_multiple": "BFCL_v2_live_parallel_multiple.json",
 }
