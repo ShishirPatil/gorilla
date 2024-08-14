@@ -116,19 +116,15 @@ def multi_threaded_inference(handler, test_case):
         except Exception as e:
             # TODO: It might be better to handle the exception in the handler itself rather than a universal catch block here, as each handler use different ways to call the endpoint.
             # OpenAI has openai.RateLimitError while Anthropic has anthropic.RateLimitError. It would be more robust in the long run.
-            if "rate limit reached" in str(e).lower() or (
-                hasattr(e, "status_code") and (e.status_code in {429, 503, 500})
+            if retry_count < RETRY_LIMIT and (
+                "rate limit reached" in str(e).lower()
+                or (hasattr(e, "status_code") and (e.status_code in {429, 503, 500}))
             ):
-                if retry_count < RETRY_LIMIT:
-                    print(
-                        f"Rate limit reached. Sleeping for 65 seconds. Retry {retry_count + 1}/{RETRY_LIMIT}"
-                    )
-                    time.sleep(RETRY_DELAY)
-                    retry_count += 1
-                else:
-                    # Rate limit would impact all subsequent test cases. So we exit the process.
-                    print("Maximum reties reached for rate limit. Exiting.")
-                    raise e  # Rethrow the exception
+                print(
+                    f"Rate limit reached. Sleeping for 65 seconds. Retry {retry_count + 1}/{RETRY_LIMIT}"
+                )
+                time.sleep(RETRY_DELAY)
+                retry_count += 1
             else:
                 # This is usually the case when the model getting stuck on one particular test case.
                 # For example, timeout error or FC model returning invalid JSON response.
@@ -136,7 +132,7 @@ def multi_threaded_inference(handler, test_case):
                 # So we continue the generation process and record the error message as the model response
                 print("-" * 100)
                 print(
-                    "❗️❗️ Error occurred during inference. Continuing to next test case."
+                    "❗️❗️ Error occurred during inference. Maximum reties reached for rate limit or other error. Continuing to next test case."
                 )
                 print(f"❗️❗️ Test case ID: {test_case['id']}, Error: {str(e)}")
                 print("-" * 100)

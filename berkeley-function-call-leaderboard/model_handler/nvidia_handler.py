@@ -7,6 +7,7 @@ from model_handler.utils import (
     func_doc_language_specific_pre_processing,
     system_prompt_pre_processing,
     user_prompt_pre_processing_chat_model,
+    combine_consecutive_user_prompr,
 )
 from model_handler.constant import (
     USER_PROMPT_FOR_CHAT_MODEL,
@@ -29,6 +30,8 @@ class NvidiaHandler(BaseHandler):
         prompt = user_prompt_pre_processing_chat_model(
             prompt, USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
         )
+        
+        prompt = combine_consecutive_user_prompr(prompt)
         message = prompt
 
         start_time = time.time()

@@ -24,22 +24,22 @@ class GraniteHandler(OSSHandler):
         # Remove the last prompt as well, that's the user prompt that specify return format
         prompts.pop(-1)
         
-        functions = convert_to_tool(
-            functions,
+        function = convert_to_tool(
+            function,
             GORILLA_TO_OPENAPI,
             model_style=ModelStyle.OSSMODEL,
             test_category=test_category,
         )
 
         functions_str = "\n".join([json.dumps(func) for func in function])
-        prompt_str = prompt_str.format(functions_str=functions_str)
+        prompt_str = prompt_str.replace("{functions_str}", functions_str)
 
         for prompt in prompts:
-            prompt_str += f"## {prompt['role'].upper()}:\n{prompt['content']}\n\n"
+            prompt_str += f"{prompt['role'].upper()}:\n{prompt['content']}\n\n"
 
         prompt_str += "ASSISTANT: "
         
-        return prompt
+        return prompt_str
 
     def inference(
         self, test_question, num_gpus, gpu_memory_utilization, format_prompt_func=_format_prompt

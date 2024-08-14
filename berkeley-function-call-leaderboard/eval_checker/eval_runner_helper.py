@@ -54,6 +54,10 @@ COLUMNS_V2_LIVE = [
     "Python Parallel Multiple AST",
     "Irrelevance Detection",
     "Relevance Detection",
+    "Cost ($ Per 1k Function Calls)",
+    "Latency Mean (s)",
+    "Latency Standard Deviation (s)",
+    "Latency 95th Percentile (s)",
 ]
 
 
@@ -1168,6 +1172,18 @@ def generate_leaderboard_v2_live_csv(leaderboard_table, output_path, eval_models
                 relevance,
             ]
         )
+        
+        cost_data = value.get("cost", {"input_data": [], "output_data": []})
+        latency_data = value.get("latency", {"data": []})
+        cost, latency_mean, latency_std, percentile_95_latency = get_cost_letency_info(
+            model_name_escaped, cost_data, latency_data
+        )
+        
+        if overall_accuracy["total_count"] != 2251:
+            print("-" * 100)
+            print(
+                f"❗️Warning: Total count for {model_name} is {overall_accuracy['total_count']}"
+            )
 
         data_live.append(
             [
@@ -1181,6 +1197,10 @@ def generate_leaderboard_v2_live_csv(leaderboard_table, output_path, eval_models
                 python_parallel_multiple_ast["accuracy"],
                 irrelevance["accuracy"],
                 relevance["accuracy"],
+                cost,
+                latency_mean,
+                latency_std,
+                percentile_95_latency,
             ]
         )
 
@@ -1188,8 +1208,10 @@ def generate_leaderboard_v2_live_csv(leaderboard_table, output_path, eval_models
     for i in range(len(data_live)):
         data_live[i][0] = str(i + 1)
         data_live[i][1] = "{:.2f}%".format(data_live[i][1] * 100)
-        for j in range(3, len(data_live[i])):
+        for j in range(3, len(data_live[i]) - 4):
             data_live[i][j] = "{:.2f}%".format(data_live[i][j] * 100)
+        for j in range(len(data_live[i]) - 4, len(data_live[i])):
+            data_live[i][j] = str(data_live[i][j])
 
     data_live.insert(0, COLUMNS_V2_LIVE)
 
@@ -1200,7 +1222,6 @@ def generate_leaderboard_v2_live_csv(leaderboard_table, output_path, eval_models
                 f.write(",".join(row) + "\n")
             else:
                 f.write(",".join(row))
-    # TODO: Add category status check for live categories
 
 
 def check_model_category_status(score_path):

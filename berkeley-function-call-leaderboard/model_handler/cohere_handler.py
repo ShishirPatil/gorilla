@@ -72,7 +72,7 @@ class CohereHandler(BaseHandler):
                 last_user_message = chat_history[i]["message"]
                 del chat_history[i]
                 return last_user_message
-        raise ValueError("No user message found")
+        return "User did not specify a query."
 
     def inference(self, prompt, functions, test_category):
         # Chatting model
