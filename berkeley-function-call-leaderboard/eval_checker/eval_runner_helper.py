@@ -3,16 +3,17 @@ import json
 import os
 import statistics
 import subprocess
-
+import re
 import numpy as np
 from custom_exception import BadAPIStatusError
 from model_handler.handler_map import handler_map
+from eval_checker_constant import TEST_FILE_MAPPING
 from tqdm import tqdm
 
 REST_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_REST.json"
 EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_executable.json"
 
-COLUMNS = [
+COLUMNS_V1 = [
     "Rank",
     "Overall Acc",
     "Model",
@@ -34,12 +35,27 @@ COLUMNS = [
     "Multiple Functions Exec",
     "Parallel Functions Exec",
     "Parallel Multiple Exec",
-    "Relevance Detection",
+    "Irrelevance Detection",
     "Cost ($ Per 1k Function Calls)",
     "Latency Mean (s)",
     "Latency Standard Deviation (s)",
     "Latency 95th Percentile (s)",
 ]
+
+
+COLUMNS_V2_LIVE = [
+    "Rank",
+    "Overall Acc",
+    "Model",
+    "AST Summary",
+    "Python Simple Function AST",
+    "Python Multiple Functions AST",
+    "Python Parallel Functions AST",
+    "Python Parallel Multiple AST",
+    "Irrelevance Detection",
+    "Relevance Detection",
+]
+
 
 MODEL_METADATA_MAPPING = {
     "gpt-4o-2024-08-06": [
@@ -636,15 +652,25 @@ V100_x8_PRICE_PER_HOUR = 22.032
 RED_FONT = "\033[91m"
 RESET = "\033[0m"
 
-def extract_after_test(input_string):
-    parts = input_string.split("_test_")[1].split("_result")[0].split(".json")[0]
-    return parts
+def extract_test_category(input_string):
+    pattern = r".*BFCL_(?:v1|v2)_(\w+?)(?:_score|_result)?\.json"
+    match = re.search(pattern, input_string)
+
+    # Check if there's a match and extract the captured group
+    if match:
+        return match.group(1)  # the first captured group (\w+)
+    else:
+        raise ValueError(f"Could not extract the test category from the input string: {input_string}")
+
+
+def get_test_category_file_name(test_category, suffix):
+    return TEST_FILE_MAPPING[test_category].replace(".json", f"_{suffix}.json")
 
 
 def find_file_with_suffix(folder_path, suffix):
     json_files_pattern = os.path.join(folder_path, "*.json")
     for json_file in glob.glob(json_files_pattern):
-        if extract_after_test(json_file) == suffix:
+        if extract_test_category(json_file) == suffix:
             return json_file
 
 
@@ -656,8 +682,8 @@ def is_rest(test_category):
     return "rest" in test_category
 
 
-def is_relevance(test_category):
-    return "relevance" in test_category
+def is_relevance_or_irrelevance(test_category):
+    return "relevance" in test_category or "irrelevance" in test_category
 
 
 def is_chatable(test_category):
@@ -924,7 +950,7 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
     leaderboard_table[model_name]["latency"]["data"].extend(latency)
 
 
-def get_metric(model_name, cost_data, latency_data):
+def get_cost_letency_info(model_name, cost_data, latency_data):
 
     cost, mean_latency, std_latency, percentile_95_latency = "N/A", "N/A", "N/A", "N/A"
 
@@ -970,7 +996,7 @@ def get_metric(model_name, cost_data, latency_data):
     return cost, mean_latency, std_latency, percentile_95_latency
 
 
-def generate_leaderboard_csv(
+def generate_leaderboard_v1_csv(
     leaderboard_table, output_path, eval_models=None, eval_categories=None
 ):
     print("📈 Aggregating data to generate leaderboard score table...")
@@ -1005,7 +1031,7 @@ def generate_leaderboard_csv(
             "javascript", {"accuracy": 0, "total_count": 0}
         )
         rest_simple_exec = value.get("rest", {"accuracy": 0, "total_count": 0})
-        relevance = value.get("relevance", {"accuracy": 0, "total_count": 0})
+        irrelevance = value.get("irrelevance", {"accuracy": 0, "total_count": 0})
 
         cost_data = value.get("cost", {"input_data": [], "output_data": []})
         latency_data = value.get("latency", {"data": []})
@@ -1039,11 +1065,11 @@ def generate_leaderboard_csv(
                 multiple_exec,
                 parallel_exec,
                 parallel_multiple_exec,
-                relevance,
+                irrelevance,
             ]
         )
 
-        cost, latency_mean, latency_std, percentile_95_latency = get_metric(
+        cost, latency_mean, latency_std, percentile_95_latency = get_cost_letency_info(
             model_name_escaped, cost_data, latency_data
         )
 
@@ -1070,7 +1096,7 @@ def generate_leaderboard_csv(
                 multiple_exec["accuracy"],
                 parallel_exec["accuracy"],
                 parallel_multiple_exec["accuracy"],
-                relevance["accuracy"],
+                irrelevance["accuracy"],
                 cost,
                 latency_mean,
                 latency_std,
@@ -1087,9 +1113,9 @@ def generate_leaderboard_csv(
         for j in range(len(data[i]) - 4, len(data[i])):
             data[i][j] = str(data[i][j])
 
-    data.insert(0, COLUMNS)
+    data.insert(0, COLUMNS_V1)
 
-    filepath = os.path.join(output_path, "data.csv")
+    filepath = os.path.join(output_path, "data_v1.csv")
     with open(filepath, "w") as f:
         for i, row in enumerate(data):
             if i < len(data) - 1:
@@ -1102,6 +1128,79 @@ def generate_leaderboard_csv(
         check_all_category_present(
             category_status, eval_models=eval_models, eval_categories=eval_categories
         )
+
+def generate_leaderboard_v2_live_csv(leaderboard_table, output_path, eval_models=None, eval_categories=None):
+    data_live = []
+    for model_name, value in leaderboard_table.items():
+        model_name_escaped = model_name.replace("_", "/")
+        python_simple_ast = value.get(
+            "live_simple", {"accuracy": 0, "total_count": 0}
+        )
+        python_multiple_ast = value.get(
+            "live_multiple", {"accuracy": 0, "total_count": 0}
+        )
+        python_parallel_ast = value.get(
+            "live_parallel", {"accuracy": 0, "total_count": 0}
+        )
+        python_parallel_multiple_ast = value.get(
+            "live_parallel_multiple", {"accuracy": 0, "total_count": 0}
+        )
+        irrelevance = value.get(
+            "live_irrelevance", {"accuracy": 0, "total_count": 0}
+        )
+        relevance = value.get("live_relevance", {"accuracy": 0, "total_count": 0})
+        summary_ast = calculate_unweighted_accuracy(
+            [
+                python_simple_ast,
+                python_multiple_ast,
+                python_parallel_ast,
+                python_parallel_multiple_ast,
+            ]
+        )
+
+        overall_accuracy = calculate_weighted_accuracy(
+            [
+                python_simple_ast,
+                python_multiple_ast,
+                python_parallel_ast,
+                python_parallel_multiple_ast,
+                irrelevance,
+                relevance,
+            ]
+        )
+
+        data_live.append(
+            [
+                "N/A",
+                overall_accuracy["accuracy"],
+                MODEL_METADATA_MAPPING[model_name_escaped][0],
+                summary_ast["accuracy"],
+                python_simple_ast["accuracy"],
+                python_multiple_ast["accuracy"],
+                python_parallel_ast["accuracy"],
+                python_parallel_multiple_ast["accuracy"],
+                irrelevance["accuracy"],
+                relevance["accuracy"],
+            ]
+        )
+
+    data_live.sort(key=lambda x: x[1], reverse=True)
+    for i in range(len(data_live)):
+        data_live[i][0] = str(i + 1)
+        data_live[i][1] = "{:.2f}%".format(data_live[i][1] * 100)
+        for j in range(3, len(data_live[i])):
+            data_live[i][j] = "{:.2f}%".format(data_live[i][j] * 100)
+
+    data_live.insert(0, COLUMNS_V2_LIVE)
+
+    filepath = os.path.join(output_path, "data_v2_live.csv")
+    with open(filepath, "w") as f:
+        for i, row in enumerate(data_live):
+            if i < len(data_live) - 1:
+                f.write(",".join(row) + "\n")
+            else:
+                f.write(",".join(row))
+    # TODO: Add category status check for live categories
 
 
 def check_model_category_status(score_path):
@@ -1135,7 +1234,7 @@ def check_model_category_status(score_path):
         result_subdir = os.path.join(result_path, model_name)
         if os.path.exists(result_subdir):
             for result_file in os.listdir(result_subdir):
-                test_category = result_file.split("_test_")[1].split("_result")[0]
+                test_category = extract_test_category(result_file)
                 if test_category in category_status[model_name]:
                     category_status[model_name][test_category]["generated"] = True
 
@@ -1143,7 +1242,7 @@ def check_model_category_status(score_path):
         score_subdir = os.path.join(score_path, model_name)
         if os.path.exists(score_subdir):
             for score_file in os.listdir(score_subdir):
-                test_category = score_file.split("_score.json")[0]
+                test_category = extract_test_category(score_file)
                 if test_category in category_status[model_name]:
                     category_status[model_name][test_category]["evaluated"] = True
 
@@ -1230,7 +1329,7 @@ def update_leaderboard_table_with_score_file(leaderboard_table, score_path):
         for model_score_json in glob.glob(json_files_pattern):
             metadata = load_file(model_score_json)[0]
             accuracy, total_count = metadata["accuracy"], metadata["total_count"]
-            test_category = model_score_json.split("_score.json")[0].split("/")[-1]
+            test_category = extract_test_category(model_score_json)
             if model_name not in leaderboard_table:
                 leaderboard_table[model_name] = {}
             if test_category not in leaderboard_table[model_name]:
