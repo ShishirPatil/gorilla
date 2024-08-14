@@ -1,5 +1,29 @@
 REAL_TIME_MATCH_ALLOWED_DIFFERENCE = 0.2
 
+TEST_FILE_MAPPING = {
+    # V1
+    "executable_simple": "BFCL_v1_executable_simple.json",
+    "executable_parallel_function": "BFCL_v1_executable_parallel_function.json",
+    "executable_multiple_function": "BFCL_v1_executable_multiple_function.json",
+    "executable_parallel_multiple_function": "BFCL_v1_executable_parallel_multiple_function.json",
+    "simple": "BFCL_v1_simple.json",
+    "irrelevance": "BFCL_v1_irrelevance.json",
+    "parallel_function": "BFCL_v1_parallel_function.json",
+    "multiple_function": "BFCL_v1_multiple_function.json",
+    "parallel_multiple_function": "BFCL_v1_parallel_multiple_function.json",
+    "java": "BFCL_v1_java.json",
+    "javascript": "BFCL_v1_javascript.json",
+    "rest": "BFCL_v1_rest.json",
+    "sql": "BFCL_v1_sql.json",
+    # V2
+    "live_simple": "BFCL_v2_live_simple.json",
+    "live_irrelevance": "BFCL_v2_live_irrelevance.json",
+    "live_relevance": "BFCL_v2_live_relevance.json",
+    "live_multiple": "BFCL_v2_live_multiple.json",
+    "live_parallel": "BFCL_v2_live_parallel.json",
+    "live_parallel_multiple": "BFCL_v2_live_parallel_multiple.json",
+}
+
 TEST_COLLECTION_MAPPING = {
     "ast": [
         "simple",
@@ -8,7 +32,7 @@ TEST_COLLECTION_MAPPING = {
         "parallel_multiple_function",
         "java",
         "javascript",
-        "relevance",
+        "irrelevance",
     ],
     "executable": [
         "executable_simple",
@@ -24,7 +48,7 @@ TEST_COLLECTION_MAPPING = {
         "parallel_multiple_function",
         "java",
         "javascript",
-        "relevance",
+        "irrelevance",
         "executable_simple",
         "executable_multiple_function",
         "executable_parallel_function",
@@ -40,7 +64,7 @@ TEST_COLLECTION_MAPPING = {
         "multiple_function",
         "parallel_function",
         "parallel_multiple_function",
-        "relevance",
+        "irrelevance",
         "executable_simple",
         "executable_multiple_function",
         "executable_parallel_function",
@@ -52,6 +76,14 @@ TEST_COLLECTION_MAPPING = {
         "multiple_function",
         "parallel_function",
         "parallel_multiple_function",
-        "relevance",
+        "irrelevance",
+    ],
+    "live": [
+        "live_simple",
+        "live_irrelevance",
+        "live_relevance",
+        "live_multiple",
+        "live_parallel",
+        "live_parallel_multiple",
     ],
 }

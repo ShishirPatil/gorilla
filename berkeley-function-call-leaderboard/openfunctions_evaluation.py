@@ -3,13 +3,12 @@ from tqdm import tqdm
 from model_handler.handler_map import handler_map
 from model_handler.model_style import ModelStyle
 from model_handler.constant import USE_COHERE_OPTIMIZATION
-from eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING
+from eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING
 from concurrent.futures import ThreadPoolExecutor
 
 RETRY_LIMIT = 3
 # 60s for the timer to complete. But often we find that even with 60 there is a conflict. So 65 is a safe no.
 RETRY_DELAY = 65  # Delay in seconds
-
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -30,23 +29,6 @@ def get_args():
     return args
 
 
-TEST_FILE_MAPPING = {
-    "executable_simple": "gorilla_openfunctions_v1_test_executable_simple.json",
-    "executable_parallel_function": "gorilla_openfunctions_v1_test_executable_parallel_function.json",
-    "executable_multiple_function": "gorilla_openfunctions_v1_test_executable_multiple_function.json",
-    "executable_parallel_multiple_function": "gorilla_openfunctions_v1_test_executable_parallel_multiple_function.json",
-    "simple": "gorilla_openfunctions_v1_test_simple.json",
-    "relevance": "gorilla_openfunctions_v1_test_relevance.json",
-    "parallel_function": "gorilla_openfunctions_v1_test_parallel_function.json",
-    "multiple_function": "gorilla_openfunctions_v1_test_multiple_function.json",
-    "parallel_multiple_function": "gorilla_openfunctions_v1_test_parallel_multiple_function.json",
-    "java": "gorilla_openfunctions_v1_test_java.json",
-    "javascript": "gorilla_openfunctions_v1_test_javascript.json",
-    "rest": "gorilla_openfunctions_v1_test_rest.json",
-    "sql": "gorilla_openfunctions_v1_test_sql.json",
-}
-
-
 def build_handler(model_name, temperature, top_p, max_tokens):
     handler = handler_map[model_name](model_name, temperature, top_p, max_tokens)
     return handler
@@ -55,6 +37,9 @@ def build_handler(model_name, temperature, top_p, max_tokens):
 def sort_key(entry):
     parts = entry["id"].rsplit("_", 1)
     test_category, index = parts[0], parts[1]
+    # index might be nested like 10-4-2. We only want the first part as that's the universal index.
+    if "-" in index:
+        index = index.split("-")[0]
     return (test_category, int(index))
 
 

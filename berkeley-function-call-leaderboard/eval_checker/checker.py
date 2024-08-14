@@ -552,8 +552,6 @@ def parallel_function_checker_no_order(
     for i in range(len(possible_answers)):
         # possible_answers[i] is a dictionary with only one key
         func_name_expected = list(possible_answers[i].keys())[0]
-        print(func_descriptions)
-        print(func_name_expected)
         func_description = find_description(func_descriptions, func_name_expected)
 
 
