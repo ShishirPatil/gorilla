@@ -1,38 +1,54 @@
 from model_handler.oss_handler import OSSHandler
 from model_handler.utils import convert_to_tool
-from model_handler.constant import GORILLA_TO_OPENAPI
+from model_handler.constant import GORILLA_TO_OPENAPI, DEFAULT_SYSTEM_PROMPT
 from model_handler.model_style import ModelStyle
 import json
+import inspect
 
 
 class HermesHandler(OSSHandler):
     def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
 
-    def _format_prompt(prompt, function, test_category):
+    def _format_prompt(prompts, function, test_category):
         # Hermes use Langchain to OpenAI conversion. It does not use tool call but function call.
         function = convert_to_tool(
             function, GORILLA_TO_OPENAPI, ModelStyle.OSSMODEL, test_category
         )
         pydantic_format = """{"properties": {"arguments": {"title": "Arguments", "type": "object"}, "name": {"title": "Name", "type": "string"}}, "required": ["arguments", "name"], "title": "FunctionCall", "type": "object"}"""
         tool_call_format = """{"arguments": <args-dict>, "name": <function-name>}"""
-        formatted_prompt = """<|im_start|>system
-You are a function calling AI model. You are provided with function signatures within <tools></tools> XML tags. You may call one or more functions to assist with the user query. Don't make assumptions about what values to plug into functions. Here are the available tools: <tools>{function}</tools> Use the following pydantic model json schema for each tool call you will make: {pydantic_format} For each function call return a json object with function name and arguments within <tool_call></tool_call> XML tags as follows:
-<tool_call>
-{tool_call_format}
-</tool_call>
-<|im_end|>
-<|im_start|>user
-{prompt}
-<|im_end|>
-<|im_start|>assistant
-"""
-        return formatted_prompt.format(
+        formatted_prompt = inspect.cleandoc(
+            """<|im_start|>system
+            You are a function calling AI model. You are provided with function signatures within <tools></tools> XML tags. You may call one or more functions to assist with the user query. Don't make assumptions about what values to plug into functions. Here are the available tools:
+            <tools>
+            {function}
+            </tools>
+            Use the following pydantic model json schema for each tool call you will make:
+            {pydantic_format}
+            For each function call return a json object with function name and arguments within <tool_call></tool_call> XML tags as follows:
+            <tool_call>
+            {tool_call_format}
+            </tool_call>
+            <|im_end|>
+            """
+        )
+        # Remove the system prompt. as hermes use its own system prompt
+        prompts[0]["content"] = prompts[0]["content"].replace(DEFAULT_SYSTEM_PROMPT, "")
+        # Remove the last prompt as well, that's the user prompt that specify return format
+        prompts.pop(-1)
+        
+        formatted_prompt = formatted_prompt.format(
             function=function,
             pydantic_format=pydantic_format,
             tool_call_format=tool_call_format,
-            prompt=prompt,
         )
+        
+        for prompt in prompts:
+            formatted_prompt += f"<|im_start|>{prompt['role']}\n{prompt['content']}\n<|im_end|>\n"
+
+        formatted_prompt += "<|im_start|>assistant"
+        
+        return formatted_prompt
 
     def inference(
         self, test_question, num_gpus, gpu_memory_utilization, format_prompt_func=_format_prompt
@@ -54,14 +70,6 @@ You are a function calling AI model. You are provided with function signatures w
                 if flag:
                     line = line.replace("'", '"')
                     tool_result = json.loads(line)
-                    if language == "Python":
-                        pass
-                    else:
-                        # all values of the json are casted to string for java and javascript
-                        for key in tool_result["arguments"]:
-                            tool_result["arguments"][key] = str(
-                                tool_result["arguments"][key]
-                            )
                     func_call.append({tool_result["name"]: tool_result["arguments"]})
                 flag = False
         return func_call

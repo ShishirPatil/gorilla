@@ -2,36 +2,28 @@ import json
 
 from model_handler.model_style import ModelStyle
 from model_handler.oss_handler import OSSHandler
-from model_handler.constant import GORILLA_TO_OPENAPI
-from model_handler.utils import (
-    language_specific_pre_processing,
-    convert_to_tool,
-    augment_prompt_by_languge,
-)
+from model_handler.constant import GORILLA_TO_OPENAPI, DEFAULT_SYSTEM_PROMPT
+from model_handler.utils import convert_to_tool
 
 
 class GraniteHandler(OSSHandler):
     def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
 
-    def _format_prompt(prompt, function, test_category):
+    def _format_prompt(prompts, function, test_category):
         prompt_str = (
             "SYSTEM: You are a helpful assistant with access to the following function calls. "
             "Your task is to produce a sequence of function calls necessary to generate response to the user utterance. "
             "Use the following function calls as required."
             "\n<|function_call_library|>\n{functions_str}\n"
             'If none of the functions are relevant or the given question lacks the parameters required by the function, please output "<function_call> {"name": "no_function", "arguments": {}}".\n\n'
-            "USER: {query}\nASSISTANT: "
         )
 
-        # Remove the language specific prompt augmentation string, such as "Note that the provided function is in Python"
-        language_specific_prompt_augmented_str = augment_prompt_by_languge(
-            "", test_category
-        )
-        if language_specific_prompt_augmented_str.strip():
-            prompt = prompt.replace(language_specific_prompt_augmented_str, "")
-
-        functions = language_specific_pre_processing(function, test_category)
+        # Remove the system prompt. as granite use its own system prompt
+        prompts[0]["content"] = prompts[0]["content"].replace(DEFAULT_SYSTEM_PROMPT, "")
+        # Remove the last prompt as well, that's the user prompt that specify return format
+        prompts.pop(-1)
+        
         functions = convert_to_tool(
             functions,
             GORILLA_TO_OPENAPI,
@@ -40,10 +32,13 @@ class GraniteHandler(OSSHandler):
         )
 
         functions_str = "\n".join([json.dumps(func) for func in function])
+        prompt_str = prompt_str.format(functions_str=functions_str)
 
-        prompt = prompt_str.replace("{functions_str}", functions_str).replace(
-            "{query}", prompt
-        )
+        for prompt in prompts:
+            prompt_str += f"## {prompt['role'].upper()}:\n{prompt['content']}\n\n"
+
+        prompt_str += "ASSISTANT: "
+        
         return prompt
 
     def inference(

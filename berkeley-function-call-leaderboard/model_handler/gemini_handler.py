@@ -3,8 +3,7 @@ from model_handler.model_style import ModelStyle
 from model_handler.utils import (
     convert_to_tool,
     convert_to_function_call,
-    augment_prompt_by_languge,
-    language_specific_pre_processing,
+    func_doc_language_specific_pre_processing,
 )
 from model_handler.constant import GORILLA_TO_OPENAPI
 import subprocess, requests, json, time
@@ -15,10 +14,16 @@ class GeminiHandler(BaseHandler):
         super().__init__(model_name, temperature, top_p, max_tokens)
         self.model_style = ModelStyle.Google
 
-    def _query_gemini(self, user_query, functions):
+    def _query_gemini(self, prompt, functions):
         """
         Query Gemini Pro model.
         """
+        YOUR_GCP_PROJECT_ID_HERE = subprocess.run(
+            "gcloud config get-value project",
+            shell=True,
+            capture_output=True,
+            text=True,
+        ).stdout.strip()
 
         token = subprocess.run(
             "gcloud auth print-access-token",
@@ -28,22 +33,33 @@ class GeminiHandler(BaseHandler):
             text=True,
         ).stdout.strip()
 
-        json_data = {
-            "contents": {
-                "role": "user",
-                "parts": {
-                    "text": user_query,
+        system_prompt = self._extract_system_prompt(prompt)
+        if system_prompt:
+            json_data = {
+                "contents": prompt,
+                "system_instruction": {"parts": [{"text": system_prompt}]},
+                "generation_config": {
+                    "max_output_tokens": self.max_tokens,
+                    "temperature": self.temperature,
                 },
-            },
-            "generation_config": {
-                "max_output_tokens": self.max_tokens,
-                "temperature": self.temperature,
-            },
-            "tools": {"function_declarations": functions},
-        }
+                "tools": {"function_declarations": functions},
+            }
+        else:
+            json_data = {
+                "contents": prompt,
+                "generation_config": {
+                    "max_output_tokens": self.max_tokens,
+                    "temperature": self.temperature,
+                },
+                "tools": {"function_declarations": functions},
+            }
 
         # NOTE: To run the gemini model, you need to provide your own GCP project ID, which can be found in the GCP console.
-        API_URL = "https://us-central1-aiplatform.googleapis.com/v1beta1/projects/{YOUR_GCP_PROJECT_ID_HERE}/locations/us-central1/publishers/google/models/" + self.model_name + ":generateContent"
+        API_URL = (
+            f"https://us-central1-aiplatform.googleapis.com/v1beta1/projects/{YOUR_GCP_PROJECT_ID_HERE}/locations/us-central1/publishers/google/models/"
+            + self.model_name
+            + ":generateContent"
+        )
         headers = {
             "Authorization": "Bearer " + token,
             "Content-Type": "application/json",
@@ -70,9 +86,17 @@ class GeminiHandler(BaseHandler):
                         "name" in part["functionCall"]
                         and "args" in part["functionCall"]
                     ):
-                        parts.append({part["functionCall"]["name"]: json.dumps(part["functionCall"]["args"])})
+                        parts.append(
+                            {
+                                part["functionCall"]["name"]: json.dumps(
+                                    part["functionCall"]["args"]
+                                )
+                            }
+                        )
                     else:
-                        parts.append("Parsing error: " + json.dumps(part["functionCall"]))
+                        parts.append(
+                            "Parsing error: " + json.dumps(part["functionCall"])
+                        )
                 else:
                     parts.append(part["text"])
             result = parts
@@ -93,9 +117,35 @@ class GeminiHandler(BaseHandler):
             }
         return result, metatdata
 
+    def _substitute_prompt_role(self, prompts):
+        # Allowed roles: user, model, function
+        modified_prompts = []
+        for prompt in prompts:
+            if prompt["role"] == "user":
+                modified_prompts.append(
+                    {"role": "user", "parts": [{"text": prompt["content"]}]}
+                )
+            elif prompt["role"] == "assistant":
+                modified_prompts.append(
+                    {"role": "model", "parts": [{"text": prompt["content"]}]}
+                )
+            elif prompt["role"] == "tool":
+                modified_prompts.append(
+                    {"role": "function", "parts": [{"text": prompt["content"]}]}
+                )
+        return modified_prompts
+
+    def _extract_system_prompt(self, prompts):
+        for prompt in prompts:
+            if prompt["role"] == "system":
+                system_prompt = prompt["content"]
+                del prompt
+                return system_prompt
+        return None
+
     def inference(self, prompt, functions, test_category):
-        prompt = augment_prompt_by_languge(prompt, test_category)
-        functions = language_specific_pre_processing(functions, test_category)
+        prompt = self._substitute_prompt_role(prompt)
+        functions = func_doc_language_specific_pre_processing(functions, test_category)
         gemini_tool = convert_to_tool(
             functions, GORILLA_TO_OPENAPI, self.model_style, test_category
         )

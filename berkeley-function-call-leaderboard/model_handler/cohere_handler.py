@@ -3,14 +3,13 @@ import os
 from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
 from model_handler.utils import (
-    augment_prompt_by_languge,
-    language_specific_pre_processing,
+    user_prompt_pre_processing_chat_model,
+    func_doc_language_specific_pre_processing,
     convert_to_tool,
     ast_parse,
-    convert_to_function_call,
 )
 from model_handler.constant import (
-    SYSTEM_PROMPT_FOR_CHAT_MODEL,
+    DEFAULT_SYSTEM_PROMPT,
     USER_PROMPT_FOR_CHAT_MODEL,
     GORILLA_TO_PYTHON,
 )
@@ -48,64 +47,79 @@ class CohereHandler(BaseHandler):
         Unless the user asks for a different style of answer, you should answer in full sentences, using proper grammar and spelling.
         """
 
+    def _substitute_prompt_role(self, prompts):
+        # Cohere use CHATBOT, USER, SYSTEM, TOOL as roles
+        for prompt in prompts:
+            if prompt["role"] == "user":
+                prompt["role"] = "USER"
+            elif prompt["role"] == "assistant":
+                prompt["role"] = "CHATBOT"
+            elif prompt["role"] == "system":
+                prompt["role"] = "SYSTEM"
+            elif prompt["role"] == "tool":
+                prompt["role"] = "TOOL"
+        return prompts
+
+    def _extract_last_user_message(self, chat_history):
+        for message in reversed(chat_history):
+            if message["role"] == "USER":
+                last_user_message = message["content"]
+                del message
+                return last_user_message
+        raise ValueError("No user message found")
+
     def inference(self, prompt, functions, test_category):
+        # Chatting model
         if "FC" not in self.model_name:
-            prompt = augment_prompt_by_languge(prompt, test_category)
-            functions = language_specific_pre_processing(
+            functions = func_doc_language_specific_pre_processing(
                 functions, test_category
             )
-            message = USER_PROMPT_FOR_CHAT_MODEL.format(
-                user_prompt=prompt, functions=str(functions)
+            prompt = user_prompt_pre_processing_chat_model(
+                prompt, USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
             )
+            
+            chat_history = self._substitute_prompt_role(prompt)
+            message = self._extract_last_user_message(chat_history)
+            
             start_time = time.time()
             response = self.client.chat(
                 message=message,
                 model=self.model_name,
                 temperature=self.temperature,
                 max_tokens=self.max_tokens,
-                preamble=SYSTEM_PROMPT_FOR_CHAT_MODEL,
+                preamble=DEFAULT_SYSTEM_PROMPT,
+                chat_history=chat_history,
             )
             latency = time.time() - start_time
             result = response.text
+            
+        # Function call model
         else:
-            prompt = augment_prompt_by_languge(prompt, test_category)
-            functions = language_specific_pre_processing(functions, test_category)
-            if type(functions) is not list:
-                functions = [functions]
-            message = prompt
+            # preamble for system prompt
+            # chat_hitory for all past chat messages
+            # message is a string
+            functions = func_doc_language_specific_pre_processing(
+                functions, test_category
+            )
+            chat_history = self._substitute_prompt_role(prompt)
+            message = self._extract_last_user_message(chat_history)
+
             # Convert JSON schema into R+ compatible function calls.
             cohere_tool = convert_to_tool(
                 functions, GORILLA_TO_PYTHON, self.model_style, test_category
             )
             start_time = time.time()
-            if len(cohere_tool) > 0:
-                if USE_COHERE_OPTIMIZATION:
-                    response = self.client.chat(
-                        message=message,
-                        model=self.model_name.replace("-FC", ""),
-                        preamble=self.preamble,
-                        tools=cohere_tool,
-                        # The API default is used for the following parameters in FC:
-                        temperature=None,
-                        max_tokens=None,
-                    )   
-                else:
-                    response = self.client.chat(
-                    message=message,
-                    model=self.model_name.replace("-FC", ""),
-                    temperature=self.temperature,
-                    max_tokens=self.max_tokens,
-                    tools=cohere_tool,
-                    preamble=self.preamble,
-                )
-            else:
-                response = self.client.chat(
-                    message=message,
-                    model=self.model_name.replace("-FC", ""),
-                    temperature=self.temperature,
-                    max_tokens=self.max_tokens,
-                    preamble=self.preamble,
-                )
+
+            response = self.client.chat(
+                message=message,
+                model=self.model_name.replace("-FC", ""),
+                temperature=self.temperature,
+                max_tokens=self.max_tokens,
+                tools=cohere_tool if len(cohere_tool) > 0 else None,
+                preamble=self.preamble,
+                chat_history=chat_history if len(chat_history) > 0 else None,
+            )
+
             latency = time.time() - start_time
             try:
                 result = [

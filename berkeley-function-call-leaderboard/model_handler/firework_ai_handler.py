@@ -5,7 +5,10 @@ import time
 from model_handler.constant import GORILLA_TO_OPENAPI
 from model_handler.gpt_handler import OpenAIHandler
 from model_handler.model_style import ModelStyle
-from model_handler.utils import convert_to_tool, language_specific_pre_processing
+from model_handler.utils import (
+    convert_to_tool,
+    func_doc_language_specific_pre_processing,
+)
 from openai import OpenAI
 
 
@@ -19,15 +22,14 @@ class FireworkAIHandler(OpenAIHandler):
             api_key=os.getenv("FIRE_WORKS_API_KEY"),
         )
 
-
     def inference(self, prompt, functions, test_category):
-        functions = language_specific_pre_processing(functions, test_category)
-        if type(functions) is not list:
-            functions = [functions]
-        message = [{"role": "user", "content": prompt}]
+        functions = func_doc_language_specific_pre_processing(functions, test_category)
+
+        message = prompt
         oai_tool = convert_to_tool(
             functions, GORILLA_TO_OPENAPI, self.model_style, test_category
         )
+
         start_time = time.time()
         model_name = self.model_name.replace("-FC", "")
         model_name = f"accounts/fireworks/models/{model_name}"
