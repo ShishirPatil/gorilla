@@ -136,10 +136,10 @@ class GeminiHandler(BaseHandler):
         return modified_prompts
 
     def _extract_system_prompt(self, prompts):
-        for prompt in prompts:
+        for i, prompt in enumerate(prompts):
             if prompt["role"] == "system":
                 system_prompt = prompt["content"]
-                del prompt
+                del prompts[i]
                 return system_prompt
         return None
 

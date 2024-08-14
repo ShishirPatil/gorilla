@@ -18,7 +18,7 @@ class YiHandler(BaseHandler):
         self.client = OpenAI(base_url=self.base_url, api_key=os.getenv("YI_API_KEY"))
 
     def inference(self, prompt, functions, test_category):
-        prompt = func_doc_language_specific_pre_processing(prompt, test_category)
+        functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         message = prompt
         oai_tool = convert_to_tool(

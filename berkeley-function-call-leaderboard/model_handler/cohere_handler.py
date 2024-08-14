@@ -59,12 +59,18 @@ class CohereHandler(BaseHandler):
             elif prompt["role"] == "tool":
                 prompt["role"] = "TOOL"
         return prompts
+    
+    def _substitute_content_name(self, prompts):
+        for prompt in prompts:
+            prompt["message"] = prompt["content"]
+            del prompt["content"]
+        return prompts
 
     def _extract_last_user_message(self, chat_history):
-        for message in reversed(chat_history):
-            if message["role"] == "USER":
-                last_user_message = message["content"]
-                del message
+        for i in range(len(chat_history) - 1, -1, -1):
+            if chat_history[i]["role"] == "USER":
+                last_user_message = chat_history[i]["message"]
+                del chat_history[i]
                 return last_user_message
         raise ValueError("No user message found")
 
@@ -79,6 +85,7 @@ class CohereHandler(BaseHandler):
             )
             
             chat_history = self._substitute_prompt_role(prompt)
+            chat_history = self._substitute_content_name(chat_history)
             message = self._extract_last_user_message(chat_history)
             
             start_time = time.time()
@@ -102,8 +109,9 @@ class CohereHandler(BaseHandler):
                 functions, test_category
             )
             chat_history = self._substitute_prompt_role(prompt)
+            chat_history = self._substitute_content_name(chat_history)
             message = self._extract_last_user_message(chat_history)
-
+ 
             # Convert JSON schema into R+ compatible function calls.
             cohere_tool = convert_to_tool(
                 functions, GORILLA_TO_PYTHON, self.model_style, test_category
