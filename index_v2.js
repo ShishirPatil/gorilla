@@ -359,7 +359,7 @@ PROMPTS = [
     "I'm planning a series of long weekend getaways for the upcoming year and I need to know when they'll occur in my country. Could you fetch me the list of long weekends for Canada in the year 2023? I'd like to integrate this information into my holiday planning app.",
 ];
 
-const csvFilePath = "./data_v1.csv";
+const csvFilePath = "./combined_data.csv";
 
 fetch(csvFilePath)
     .then((response) => response.text())
@@ -380,19 +380,80 @@ function parseCSV_leaderboard(text) {
             }
             return value;
         });
-        result[i].splice(9, 3);
-        result[i].splice(13, 2);
-        result[i].splice(result[i].length, 0, result[i][4]);
-        result[i].splice(result[i].length, 0, result[i][5]);
-        result[i].splice(4, 2);
-        result[i].splice(4, 0, result[i][result[i].length - 6]);
-        result[i].splice(5, 0, result[i][result[i].length - 5]);
-        result[i].splice(8, 0, result[i][result[i].length - 7]);
-        result[i].splice(9, 0, result[i][result[i].length - 6]);
-        result[i].splice(10, 0, result[i][result[i].length - 5]);
-        result[i].splice(11, 0, result[i][result[i].length - 4]);
-        result[i].splice(12, 0, result[i][result[i].length - 3]);
-        result[i].splice(result[i].length - 6, 4);
+        // 1. Move index 26 to 0
+        result[i].splice(0, 0, result[i].splice(26, 1)[0]);
+
+        // 2. Move index 27 to 1
+        result[i].splice(1, 0, result[i].splice(27, 1)[0]);
+
+        // 3. Move index 28 to 2
+        result[i].splice(2, 0, result[i].splice(28, 1)[0]);
+
+        // 4. Move index 36 to 4
+        result[i].splice(4, 0, result[i].splice(36, 1)[0]);
+
+        // 5. Move index 37 to 5
+        result[i].splice(5, 0, result[i].splice(37, 1)[0]);
+
+        // 6. Move index 29 to 6
+        result[i].splice(6, 0, result[i].splice(29, 1)[0]);
+
+        // 7. Move index 7 to 7
+        // Since this is already in the correct position, no move is needed
+
+        // 8. Move index 34 to 8
+        result[i].splice(8, 0, result[i].splice(34, 1)[0]);
+
+        // 9. Move index 35 to 9
+        result[i].splice(9, 0, result[i].splice(35, 1)[0]);
+
+        // 10. Move index 36 to 10
+        result[i].splice(10, 0, result[i].splice(36, 1)[0]);
+
+        // 11. Move index 37 to 11
+        result[i].splice(11, 0, result[i].splice(37, 1)[0]);
+
+        // 12. Move index 38 to 12
+        result[i].splice(12, 0, result[i].splice(38, 1)[0]);
+
+        // 13. Move index 39 to 13
+        result[i].splice(13, 0, result[i].splice(39, 1)[0]);
+
+        // 14. Move index 30 to 14
+        result[i].splice(14, 0, result[i].splice(30, 1)[0]);
+
+        // 15. Move index 31 to 15
+        result[i].splice(15, 0, result[i].splice(31, 1)[0]);
+
+        // 16. Move index 32 to 16
+        result[i].splice(16, 0, result[i].splice(32, 1)[0]);
+
+        // 17. Move index 33 to 17
+        result[i].splice(17, 0, result[i].splice(33, 1)[0]);
+
+        // 18. Move index 15 to 18
+        result[i].splice(18, 0, result[i].splice(15, 1)[0]);
+
+        // 19. Move index 18 to 19
+        result[i].splice(19, 0, result[i].splice(18, 1)[0]);
+
+        // 20. Move index 19 to 20
+        result[i].splice(20, 0, result[i].splice(19, 1)[0]);
+
+        // 21. Move index 20 to 21
+        result[i].splice(21, 0, result[i].splice(20, 1)[0]);
+
+        // 22. Move index 34 to 22
+        result[i].splice(22, 0, result[i].splice(34, 1)[0]);
+
+        // 23. Move index 35 to 23
+        result[i].splice(23, 0, result[i].splice(35, 1)[0]);
+
+        // 24. Move index 4 to 24
+        result[i].splice(24, 0, result[i].splice(4, 1)[0]);
+
+        // 25. Move index 5 to 25
+        result[i].splice(25, 0, result[i].splice(5, 1)[0]);
     }
     return result;
 }
