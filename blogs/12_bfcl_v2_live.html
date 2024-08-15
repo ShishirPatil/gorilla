@@ -88,7 +88,7 @@
 
 
         <div class="box-index">
-            <h3>BFCL-Live</h3>
+            <h3><i>BFCL V2 • Live</i></h3>
             <ul>
                 <ul>
                     <li><a href="12_bfcl_v2_live.html#intro">Introduction</a></li>
@@ -122,7 +122,7 @@
 
         <div class="blog-container">
             <div class="blog-post">
-                <h2 class="blog-title">BFCL V2 - Live Dataset</h2>
+                <h2 class="blog-title"><i>BFCL V2 • Live</i></h2>
                 <div class="col-md-12">
                     <h4 class="text-center" style="margin: 0px;">
                         <p></p>
@@ -140,22 +140,18 @@
                             Log]</a></i></b>
 
                 <div>
+                    <br>
                     <h3 id="intro">Introduction</h3>
                     <p>
-                        In the rapidly evolving field of Large Language Models (LLMs), the <a
+                        The growing use of LLMs for function-calling is transforming various AI applications. LLMs now serve as intelligent agents, interfacing with external tools, APIs, and databases to perform complex tasks. This capability enables LLMs to navigate web browsers, query databases, control robotic systems, and integrate with a wide array of software tools. <a
                             href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function-Calling
                             Leaderboard (BFCL)</a> emerges as a pioneering platform that evaluates the function-calling
                         (tool-use)
                         capabilities of LLMs such as Claude, OpenAI, Gemini, Llama, and Mistral. This initiative
                         addresses
-                        the
-                        growing use of LLM for function-calling across various LLM agentic applications, highlighting
-                        the need for a
-                        <b>comprehensive and fair</b> assessment of their ability to execute functions (or tools)
-                        accurately in
-                        diverse contexts, including making parallel function calls out of a pool of available functions
-                        in various programming
-                        languages.
+                        the pressing need for 
+                        <b>comprehensive and fair</b> methods to assess LLMs' function-calling ability in
+                        diverse contexts, including making parallel function calls out of a pool of available functions, execute real world APIs.
                     </p>
                     <p>
                         There are several limitations and shortcomings of traditional dataset-based evaluations which we
@@ -173,10 +169,10 @@
                     </ol>
                     </p>
                     <p>
-                        For those reasons. we decided to create BFCL-Live. BFCL-Live employs <b>live, user-provided</b>
+                        For those reasons, we decided to create <b><i>BFCL V2 • Live</i></b>. <i>BFCL V2 • Live</i> employs <b>live, user-provided</b>
                         function documentation and queries, avoiding the drawbacks
                         of
-                        dataset contamination and biased benchmarks. By utilizing user-provided data, BFCL-Live aims
+                        dataset contamination and biased benchmarks. By utilizing user-provided data, <i>BFCL V2 • Live</i> aims
                         to
                         more faithfully measure the LLM's function-calling performance in real-world scenarios,
                         emphasizing
@@ -203,7 +199,7 @@
                 <div>
                     <h3 id="composition">Dataset Composition</h3>
                     <p>
-                        BFCL-Live features a diverse set of 2,251 question-function-answer
+                        <i>BFCL V2 • Live</i> features a diverse set of 2,251 question-function-answer
                         pairs(<code>question + [{ 'name ': 'func1 ', ' description ': 'order takeout'}] -> answer</code>),
                         including rare
                         function
@@ -217,7 +213,7 @@
                         thorough and accurate analysis.
                     </p>
                     <p>
-                        In more detail, BFCL-Live comprises 258 simple, 1038 multiple, 16 parallel, 24 parallel
+                        In more detail, <i>BFCL V2 • Live</i> comprises 258 simple, 1038 multiple, 16 parallel, 24 parallel
                         multiple, 874 irrelevance detection, and 41 relevance detection entries. Each test category is
                         detailed in the
                         <a
@@ -249,7 +245,7 @@
                         simple,
                         multipl, parallel, and parallel multiple category. This reflects what our team has thought the
                         composition of real life function calling scenario should be.
-                        On the other hand, in BFCL-Live, there are <b>significantly more scenarios on multiple</b>
+                        On the other hand, in <i>BFCL V2 • Live</i>, there are <b>significantly more scenarios on multiple</b>
                         (where models need to decide
                         which functions to use) and less parallel function calling scenarios. This observation reflects
                         how
@@ -263,12 +259,12 @@
                         <img src="../assets/img/blog_post_12_composition.png" alt="Dataset Composition" width="65%">
                         <i style="font-size: 0.9em;">
                             Berkeley Function-Calling
-                            Leaderboard V2 Live (BFCL-Live) Data Composition
+                            Leaderboard V2 Live (<i>BFCL V2 • Live</i>) Data Composition
                         </i>
                     </p>
                     <br>
                     <p>
-                        On average, each entry in BFCL-Live contains 3 function choices, with the maximum one having 37
+                        On average, each entry in <i>BFCL V2 • Live</i> contains 3 function choices, with the maximum one having 37
                         function choices.
                         Each function has an average of 4 parameters, with the maximum one having 28 parameters.
                     </p>
@@ -276,32 +272,32 @@
                     <div style="display: flex; justify-content: center; align-items: center;">
                         <div style="text-align: center;">
                             <img src="../assets/img/blog_post_12_function_number.png" alt="Function Count Distribution">
-                            <i style="font-size: 0.9em;">Function Count Distribution in BFCL-Live</i>
+                            <i style="font-size: 0.9em;">Function Count Distribution in <i>BFCL V2 • Live</i></i>
                         </div>
                         <div style="text-align: center;">
                             <img src="../assets/img/blog_post_12_function_params_number.png"
                                 alt="Function Params Count Distribution">
-                            <i style="font-size: 0.9em;">Function Parameter Count Distribution in BFCL-Live</i>
+                            <i style="font-size: 0.9em;">Function Parameter Count Distribution in <i>BFCL V2 • Live</i></i>
                         </div>
                     </div>
                 </div>
                 <br>
                 <div>
                     <h3>Methodology</h3>
-                    Here is a high-level overview of the methodology used to generate the BFCL-Live dataset. We will be
+                    Here is a high-level overview of the methodology used to generate the <i>BFCL V2 • Live</i> dataset. The process begins with Data Pre-Processing, where raw data from real-world user queries is deduplicated and cleaned to ensure a unique and relevant dataset. This is followed by Data Filtering, which involves identifying and handling low-quality inputs, separating out irrelevant queries for specific testing purposes. The final stage is Data Quality Improvement, where the remaining data is standardized and enhanced to fit the requirements of the BFCL evaluation pipeline while maintaining the integrity of the original user inputs. We will be
                     going into details in the following sections.
                     <p style="text-align: center; margin-bottom: 0">
-                        <img src="../assets/img/blog_post_12_flowchart.png" alt="BFCL-Live Methodology" width="65%">
+                        <img src="../assets/img/blog_post_12_flowchart.png" alt="<i>BFCL V2 • Live</i> Methodology" width="65%">
                         <i style="font-size: 0.9em;">
-                            BFCL-Live Methodology Flowchart
+                            <i>BFCL V2 • Live</i> Methodology Flowchart: There are three main stages for cleaning raw user queries: Data Pre-Processing (using ROGUE scores and text embedding for deduplication), Data Filtering (assessing function document and prompt quality), and Data Quality Standardization & Improvements (formatting and enhancing high-quality inputs). 
                         </i>
                     </p>
                 </div>
                 <br>
                 <div>
-                    <h3 id="source">Data Source</h3>
+                    <h3 id="source">🧑‍💻 Data Source</h3>
                     <p>
-                        BFCL-Live get its original data from real-world user-input to our hosted model <a
+                        <i>BFCL V2 • Live</i> get its original data from real-world user-input to our hosted model <a
                             href="https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html">Gorilla OpenFunctions
                             v2</a>. We took all the 64,517 queries that hit our hosted endpoint from 2024-02-26 to
                         2024-04-01 and fed them into the following pipeline.
@@ -309,7 +305,7 @@
                 </div>
                 <br>
                 <div>
-                    <h3 id="preprocess">Data Pre-Processing</h3>
+                    <h3 id="preprocess">🔨 Data Pre-Processing</h3>
                     <p>
                         Data preprocessing is essential for generating structured and fresh user data, excluding
                         existing public function calling test sets. This process includes:
@@ -325,7 +321,7 @@
                                     <a
                                         href="https://huggingface.co/datasets/fireworks-ai/function-calling-eval-dataset-v0">Firefunctions</a>,
                                     <a
-                                        href="https://gist.githubusercontent.com/kouroshHakha/6cfbe2bf4aaafc5db733d408044f9902/raw/984c40903df758a47aab67ba1a416d13d83b3a70/test_data.jsonl">Anyscale</a>,
+                                        href="https://gist.githubLivetent.com/kouroshHakha/6cfbe2bf4aaafc5db733d408044f9902/raw/984c40903df758a47aab67ba1a416d13d83b3a70/test_data.jsonl">Anyscale</a>,
                                     and <a
                                         href="https://huggingface.co/datasets/NousResearch/func-calling-eval-glaive">NousResearch-Glaive-Function-Calling</a>.
                                 </li>
@@ -350,36 +346,37 @@
                         After all the preprocessing steps, we are only left with less than 3% of the original data! See
                         the table below for more statistics.
                     </p>
-                    <table border="1" cellpadding="10" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Stage</th>
-                                <th>Number of Function Docs Left</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Initial Function Doc-User Query Pairs</td>
-                                <td>64,517</td>
-                            </tr>
-                            <tr>
-                                <td>After Merging Exact Same Function Docs</td>
-                                <td>6,478</td>
-                            </tr>
-                            <tr>
-                                <td>After Removing Overlap with Public Datasets</td>
-                                <td>3,698</td>
-                            </tr>
-                            <tr>
-                                <td>After Further Merging Similar Function Docs (ROGUE-L &gt; 0.8)</td>
-                                <td>1,692</td>
-                            </tr>
-                        </tbody>
-                    </table>
-
+                    <div style="display: flex; justify-content: center; margin: 20px 0;">
+                        <table border="1" cellpadding="10" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Stage</th>
+                                    <th>Number of Function Docs Left</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Initial Function Doc-User Query Pairs</td>
+                                    <td>64,517</td>
+                                </tr>
+                                <tr>
+                                    <td>After Merging Exact Same Function Docs</td>
+                                    <td>6,478</td>
+                                </tr>
+                                <tr>
+                                    <td>After Removing Overlap with Public Datasets</td>
+                                    <td>3,698</td>
+                                </tr>
+                                <tr>
+                                    <td>After Further Merging Similar Function Docs (ROGUE-L &gt; 0.8)</td>
+                                    <td>1,692</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     </p>
                     <br>
-                    <h3 id="filter">Data Filtering</h3>
+                    <h3 id="filter">🗑️ Data Filtering</h3>
                     <p>
                         Real-world user data is messy. There are low-quality data that can't fit directly into a
                         high-quality function-calling evaluation dataset, since low-quality function docs and prompts
@@ -691,7 +688,7 @@
                 </div>
                 <br>
                 <div>
-                    <h3 id="quality-improve">Data Quality Improvement</h3>
+                    <h3 id="quality-improve">💯 Data Quality Improvement</h3>
                     <p>
                         After filtering out low-quality documents and user prompts, it is important to ensure data
                         standardization so that the remaining function docs and user prompts are of
@@ -766,8 +763,8 @@
                 <div>
                     <h3 id="dataset-examples">Live Dataset Examples</h3>
                     <p>
-                        Here are some interesting examples from the BFCL-Live dataset. We hope to show how diverse the
-                        BFCL-Live dataset is and how it is different from the previous BFCL dataset.
+                        Here are some interesting examples from the <i>BFCL V2 • Live</i> dataset. We hope to show how diverse the
+                        <i>BFCL V2 • Live</i> dataset is and how it is different from the previous BFCL dataset.
                     </p>
 
                     <div class="code-toggle" onclick="toggleCode('codeSection6')">+ Multi-lingual User Prompt
@@ -2282,7 +2279,7 @@
                 <div>
                     <h3 id="result">Evaluation Result</h3>
                     <p>
-                        Below are some comparison between the original BFCL dataset and the BFCL-Live dataset.
+                        Below are some comparison between the original BFCL dataset and the <i>BFCL V2 • Live</i> dataset.
 
                     </p>
                     <div style="display: flex; justify-content: center; align-items: center;">
