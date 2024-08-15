@@ -117,7 +117,10 @@ def single_executable_file_runner(
 
 
 def single_relevance_file_runner(handler, model_result, model_name, test_category):
-
+    # This function serves for both relevance and irrelevance tests, which share the exact opposite logic.
+    # If `test_category` is "irrelevance", the model is expected to output no function call. 
+    # No function call means either the AST decoding fails (a error message is generated) or the decoded AST does not contain any function call (such as a empty list, `[]`).
+    # If `test_category` is "relevance", the model is expected to output to a function call, and empty list doesn't count as a function call.
     result = []
     correct_count = 0
     for i in range(len(model_result)):
@@ -128,15 +131,18 @@ def single_relevance_file_runner(handler, model_result, model_name, test_categor
 
         try:
             decoded_result = handler.decode_ast(model_result_item, language="Python")
+            # Decode successfully, which means the model output is in valid function call format
             contain_func_call = True
             if is_empty_output(decoded_result):
+                # Empty output is not considered as a valid function call
                 contain_func_call = False
 
         except Exception as e:
+            # Decode failed, which means the model output is not in valid function call format
             contain_func_call = False
             decode_error = str(e)
 
-        # relevance test is the opposite of the irrelevant test
+        # irrelevance test means no function call outputted
         if "irrelevance" in test_category:
             success = not contain_func_call
         else:

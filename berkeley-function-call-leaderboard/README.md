@@ -209,7 +209,7 @@ python eval_runner.py --model gorilla-openfunctions-v2
 If you want to evaluate all offline tests (do not require RapidAPI keys) for OpenAI GPT-3.5, you can use the following command:
 
 ```bash
-python eval_runner.py --model gpt-3.5-turbo-0125 --test-category V2_all
+python eval_runner.py --model gpt-3.5-turbo-0125 --test-category v1_ast v2_live
 ```
 
 If you want to run `v1_rest` tests for a few Claude models, you can use the following command:
