@@ -158,25 +158,26 @@ UNDERSCORE_TO_DOT = [
 ]
 
 TEST_FILE_MAPPING = {
-    # V1
-    "executable_simple": "BFCL_v1_executable_simple.json",
-    "executable_parallel_function": "BFCL_v1_executable_parallel_function.json",
-    "executable_multiple_function": "BFCL_v1_executable_multiple_function.json",
-    "executable_parallel_multiple_function": "BFCL_v1_executable_parallel_multiple_function.json",
-    "simple": "BFCL_v1_simple.json",
-    "relevance": "BFCL_v1_irrelevance.json",
-    "parallel_function": "BFCL_v1_parallel_function.json",
-    "multiple_function": "BFCL_v1_multiple_function.json",
-    "parallel_multiple_function": "BFCL_v1_parallel_multiple_function.json",
-    "java": "BFCL_v1_java.json",
-    "javascript": "BFCL_v1_javascript.json",
-    "rest": "BFCL_v1_rest.json",
-    "sql": "BFCL_v1_sql.json",
-    # V2
-    "live_simple": "BFCL_v2_live_simple.json",
-    "live_irrelevance": "BFCL_v2_live_irrelevance.json",
-    "live_relevance": "BFCL_v2_live_relevance.json",
-    "live_multiple": "BFCL_v2_live_multiple.json",
-    "live_parallel": "BFCL_v2_live_parallel.json",
-    "live_parallel_multiple": "BFCL_v2_live_parallel_multiple.json",
+    # V1 Datasets
+    "v1_exec_simple": "BFCL_v1_exec_simple.json",
+    "v1_exec_parallel": "BFCL_v1_exec_parallel.json",
+    "v1_exec_multiple": "BFCL_v1_exec_multiple.json",
+    "v1_exec_parallel_multiple": "BFCL_v1_exec_parallel_multiple.json",
+    "v1_simple": "BFCL_v1_simple.json",
+    "v1_irrelevance": "BFCL_v1_irrelevance.json",
+    "v1_parallel": "BFCL_v1_parallel.json",
+    "v1_multiple": "BFCL_v1_multiple.json",
+    "v1_parallel_multiple": "BFCL_v1_parallel_multiple.json",
+    "v1_java": "BFCL_v1_java.json",
+    "v1_javascript": "BFCL_v1_javascript.json",
+    "v1_rest": "BFCL_v1_rest.json",
+    "v1_sql": "BFCL_v1_sql.json",
+    "v1_chatable": "BFCL_v1_chatable.json",
+    # V2 Datasets
+    "v2_live_simple": "BFCL_v2_live_simple.json",
+    "v2_live_multiple": "BFCL_v2_live_multiple.json",
+    "v2_live_parallel": "BFCL_v2_live_parallel.json",
+    "v2_live_parallel_multiple": "BFCL_v2_live_parallel_multiple.json",
+    "v2_live_irrelevance": "BFCL_v2_live_irrelevance.json",
+    "v2_live_relevance": "BFCL_v2_live_relevance.json",
 }

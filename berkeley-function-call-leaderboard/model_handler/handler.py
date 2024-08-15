@@ -1,6 +1,5 @@
 from model_handler.model_style import ModelStyle
 import json, os
-from model_handler.constant import TEST_FILE_MAPPING
 
 class BaseHandler:
     model_name: str
@@ -33,7 +32,7 @@ class BaseHandler:
             
         for entry in result:
             test_category = entry["id"].rsplit("_", 1)[0]
-            file_to_write = TEST_FILE_MAPPING[test_category].replace(".json", "_result.json")
+            file_to_write = f"BFCL_{test_category}_result.json"
             file_to_write = f"./result/{model_name_dir}/{file_to_write}"
             
             with open(file_to_write, "a+") as f:

@@ -47,6 +47,9 @@ COLUMNS_V2_LIVE = [
     "Rank",
     "Overall Acc",
     "Model",
+    "Model Link",
+    "Organization",
+    "License",
     "AST Summary",
     "Python Simple AST",
     "Python Multiple AST",
@@ -60,6 +63,31 @@ COLUMNS_V2_LIVE = [
     "Latency 95th Percentile (s)",
 ]
 
+
+COLUMNS_TOTAL = [
+    "Rank",
+    "Overall Acc",
+    "Model",
+    "Model Link",
+    "Organization",
+    "License",
+    "AST Summary",
+    "Exec Summary",
+    "Simple AST",
+    "Multiple AST",
+    "Parallel AST",
+    "Parallel Multiple AST",
+    "Simple Exec",
+    "Multiple Exec",
+    "Parallel Exec",
+    "Parallel Multiple Exec",
+    "Irrelevance Detection",
+    "Relevance Detection",
+    "Cost ($ Per 1k Function Calls)",
+    "Latency Mean (s)",
+    "Latency Standard Deviation (s)",
+    "Latency 95th Percentile (s)",
+]
 
 MODEL_METADATA_MAPPING = {
     "gpt-4o-2024-08-06": [
@@ -657,7 +685,7 @@ RED_FONT = "\033[91m"
 RESET = "\033[0m"
 
 def extract_test_category(input_string):
-    pattern = r".*BFCL_(?:v1|v2)_(\w+?)(?:_score|_result)?\.json"
+    pattern = r".*BFCL_(\w+?)(?:_score|_result)?\.json"
     match = re.search(pattern, input_string)
 
     # Check if there's a match and extract the captured group
@@ -665,10 +693,6 @@ def extract_test_category(input_string):
         return match.group(1)  # the first captured group (\w+)
     else:
         raise ValueError(f"Could not extract the test category from the input string: {input_string}")
-
-
-def get_test_category_file_name(test_category, suffix):
-    return TEST_FILE_MAPPING[test_category].replace(".json", f"_{suffix}.json")
 
 
 def find_file_with_suffix(folder_path, suffix):
@@ -1000,246 +1024,339 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
     return cost, mean_latency, std_latency, percentile_95_latency
 
 
-def generate_leaderboard_v1_csv(
+def generate_leaderboard_csv(
     leaderboard_table, output_path, eval_models=None, eval_categories=None
 ):
     print("📈 Aggregating data to generate leaderboard score table...")
-    data = []
+    data_v1 = []
+    data_v2 = []
+    data_total = []
     for model_name, value in leaderboard_table.items():
         model_name_escaped = model_name.replace("_", "/")
-
-        python_simple_ast = value.get("simple", {"accuracy": 0, "total_count": 0})
-        python_multiple_ast = value.get(
-            "multiple_function", {"accuracy": 0, "total_count": 0}
-        )
-        python_parallel_ast = value.get(
-            "parallel_function", {"accuracy": 0, "total_count": 0}
-        )
-        python_parallel_multiple_ast = value.get(
-            "parallel_multiple_function", {"accuracy": 0, "total_count": 0}
-        )
-        python_simple_exec = value.get(
-            "executable_simple", {"accuracy": 0, "total_count": 0}
-        )
-        python_multiple_exec = value.get(
-            "executable_multiple_function", {"accuracy": 0, "total_count": 0}
-        )
-        python_parallel_exec = value.get(
-            "executable_parallel_function", {"accuracy": 0, "total_count": 0}
-        )
-        python_parallel_multiple_exec = value.get(
-            "executable_parallel_multiple_function", {"accuracy": 0, "total_count": 0}
-        )
-        java_simple_ast = value.get("java", {"accuracy": 0, "total_count": 0})
-        javascript_simple_ast = value.get(
-            "javascript", {"accuracy": 0, "total_count": 0}
-        )
-        rest_simple_exec = value.get("rest", {"accuracy": 0, "total_count": 0})
-        irrelevance = value.get("irrelevance", {"accuracy": 0, "total_count": 0})
-
+        
         cost_data = value.get("cost", {"input_data": [], "output_data": []})
         latency_data = value.get("latency", {"data": []})
-
-        simple_ast = calculate_weighted_accuracy(
-            [python_simple_ast, java_simple_ast, javascript_simple_ast]
-        )
-        multiple_ast = python_multiple_ast
-        parallel_ast = python_parallel_ast
-        parallel_multiple_ast = python_parallel_multiple_ast
-        simple_exec = calculate_weighted_accuracy(
-            [python_simple_exec, rest_simple_exec]
-        )
-        multiple_exec = python_multiple_exec
-        parallel_exec = python_parallel_exec
-        parallel_multiple_exec = python_parallel_multiple_exec
-
-        summary_ast = calculate_unweighted_accuracy(
-            [simple_ast, multiple_ast, parallel_ast, parallel_multiple_ast]
-        )
-        summary_exec = calculate_unweighted_accuracy(
-            [simple_exec, multiple_exec, parallel_exec, parallel_multiple_exec]
-        )
-        overall_accuracy = calculate_weighted_accuracy(
-            [
-                simple_ast,
-                multiple_ast,
-                parallel_ast,
-                parallel_multiple_ast,
-                simple_exec,
-                multiple_exec,
-                parallel_exec,
-                parallel_multiple_exec,
-                irrelevance,
-            ]
-        )
-
         cost, latency_mean, latency_std, percentile_95_latency = get_cost_letency_info(
             model_name_escaped, cost_data, latency_data
         )
+        
+        # V1 Score
+        v1_python_simple_ast = value.get("v1_simple", {"accuracy": 0, "total_count": 0})
+        v1_python_multiple_ast = value.get(
+            "v1_multiple", {"accuracy": 0, "total_count": 0}
+        )
+        v1_python_parallel_ast = value.get(
+            "v1_parallel", {"accuracy": 0, "total_count": 0}
+        )
+        v1_python_parallel_multiple_ast = value.get(
+            "v1_parallel_multiple", {"accuracy": 0, "total_count": 0}
+        )
+        v1_python_simple_exec = value.get(
+            "v1_exec_simple", {"accuracy": 0, "total_count": 0}
+        )
+        v1_python_multiple_exec = value.get(
+            "v1_exec_multiple", {"accuracy": 0, "total_count": 0}
+        )
+        v1_python_parallel_exec = value.get(
+            "v1_exec_parallel", {"accuracy": 0, "total_count": 0}
+        )
+        v1_python_parallel_multiple_exec = value.get(
+            "v1_exec_parallel_multiple", {"accuracy": 0, "total_count": 0}
+        )
+        v1_java_simple_ast = value.get("v1_java", {"accuracy": 0, "total_count": 0})
+        v1_javascript_simple_ast = value.get(
+            "v1_javascript", {"accuracy": 0, "total_count": 0}
+        )
+        v1_rest_simple_exec = value.get("v1_rest", {"accuracy": 0, "total_count": 0})
+        v1_irrelevance = value.get("v1_irrelevance", {"accuracy": 0, "total_count": 0})
 
-        data.append(
+        v1_simple_ast = calculate_weighted_accuracy(
+            [v1_python_simple_ast, v1_java_simple_ast, v1_javascript_simple_ast]
+        )
+        v1_multiple_ast = v1_python_multiple_ast
+        v1_parallel_ast = v1_python_parallel_ast
+        v1_parallel_multiple_ast = v1_python_parallel_multiple_ast
+        v1_simple_exec = calculate_weighted_accuracy(
+            [v1_python_simple_exec, v1_rest_simple_exec]
+        )
+        v1_multiple_exec = v1_python_multiple_exec
+        v1_parallel_exec = v1_python_parallel_exec
+        v1_parallel_multiple_exec = v1_python_parallel_multiple_exec
+
+        v1_summary_ast = calculate_unweighted_accuracy(
+            [v1_simple_ast, v1_multiple_ast, v1_parallel_ast, v1_parallel_multiple_ast]
+        )
+        v1_summary_exec = calculate_unweighted_accuracy(
+            [v1_simple_exec, v1_multiple_exec, v1_parallel_exec, v1_parallel_multiple_exec]
+        )
+        v1_overall_accuracy = calculate_weighted_accuracy(
+            [
+                v1_simple_ast,
+                v1_multiple_ast,
+                v1_parallel_ast,
+                v1_parallel_multiple_ast,
+                v1_simple_exec,
+                v1_multiple_exec,
+                v1_parallel_exec,
+                v1_parallel_multiple_exec,
+                v1_irrelevance,
+            ]
+        )
+
+        data_v1.append(
             [
                 "N/A",
-                overall_accuracy["accuracy"],
+                v1_overall_accuracy["accuracy"],
                 MODEL_METADATA_MAPPING[model_name_escaped][0],
                 MODEL_METADATA_MAPPING[model_name_escaped][1],
                 MODEL_METADATA_MAPPING[model_name_escaped][2],
                 MODEL_METADATA_MAPPING[model_name_escaped][3],
-                summary_ast["accuracy"],
-                summary_exec["accuracy"],
-                simple_ast["accuracy"],
-                python_simple_ast["accuracy"],
-                java_simple_ast["accuracy"],
-                javascript_simple_ast["accuracy"],
-                multiple_ast["accuracy"],
-                parallel_ast["accuracy"],
-                parallel_multiple_ast["accuracy"],
-                simple_exec["accuracy"],
-                python_simple_exec["accuracy"],
-                rest_simple_exec["accuracy"],
-                multiple_exec["accuracy"],
-                parallel_exec["accuracy"],
-                parallel_multiple_exec["accuracy"],
-                irrelevance["accuracy"],
+                v1_summary_ast["accuracy"],
+                v1_summary_exec["accuracy"],
+                v1_simple_ast["accuracy"],
+                v1_python_simple_ast["accuracy"],
+                v1_java_simple_ast["accuracy"],
+                v1_javascript_simple_ast["accuracy"],
+                v1_multiple_ast["accuracy"],
+                v1_parallel_ast["accuracy"],
+                v1_parallel_multiple_ast["accuracy"],
+                v1_simple_exec["accuracy"],
+                v1_python_simple_exec["accuracy"],
+                v1_rest_simple_exec["accuracy"],
+                v1_multiple_exec["accuracy"],
+                v1_parallel_exec["accuracy"],
+                v1_parallel_multiple_exec["accuracy"],
+                v1_irrelevance["accuracy"],
                 cost,
                 latency_mean,
                 latency_std,
                 percentile_95_latency,
             ]
         )
+        
+        # V2 Score
+        v2_python_simple_ast = value.get(
+            "v2_live_simple", {"accuracy": 0, "total_count": 0}
+        )
+        v2_python_multiple_ast = value.get(
+            "v2_live_multiple", {"accuracy": 0, "total_count": 0}
+        )
+        v2_python_parallel_ast = value.get(
+            "v2_live_parallel", {"accuracy": 0, "total_count": 0}
+        )
+        v2_python_parallel_multiple_ast = value.get(
+            "v2_live_parallel_multiple", {"accuracy": 0, "total_count": 0}
+        )
+        v2_irrelevance = value.get(
+            "v2_live_irrelevance", {"accuracy": 0, "total_count": 0}
+        )
+        v2_relevance = value.get("v2_live_relevance", {"accuracy": 0, "total_count": 0})
+        v2_summary_ast = calculate_unweighted_accuracy(
+            [
+                v2_python_simple_ast,
+                v2_python_multiple_ast,
+                v2_python_parallel_ast,
+                v2_python_parallel_multiple_ast,
+            ]
+        )
 
-    data.sort(key=lambda x: x[1], reverse=True)
-    for i in range(len(data)):
-        data[i][0] = str(i + 1)
-        data[i][1] = "{:.2f}%".format(data[i][1] * 100)
-        for j in range(6, len(data[i]) - 4):
-            data[i][j] = "{:.2f}%".format(data[i][j] * 100)
-        for j in range(len(data[i]) - 4, len(data[i])):
-            data[i][j] = str(data[i][j])
+        v2_overall_accuracy = calculate_weighted_accuracy(
+            [
+                v2_python_simple_ast,
+                v2_python_multiple_ast,
+                v2_python_parallel_ast,
+                v2_python_parallel_multiple_ast,
+                v2_irrelevance,
+                v2_relevance,
+            ]
+        )
+        
+        if v2_overall_accuracy["total_count"] != 2251:
+            print("-" * 100)
+            print(
+                f"❗️Warning: Total count for {model_name} is {v2_overall_accuracy['total_count']}"
+            )
 
-    data.insert(0, COLUMNS_V1)
+        data_v2.append(
+            [
+                "N/A",
+                v2_overall_accuracy["accuracy"],
+                MODEL_METADATA_MAPPING[model_name_escaped][0],
+                MODEL_METADATA_MAPPING[model_name_escaped][1],
+                MODEL_METADATA_MAPPING[model_name_escaped][2],
+                MODEL_METADATA_MAPPING[model_name_escaped][3],
+                v2_summary_ast["accuracy"],
+                v2_python_simple_ast["accuracy"],
+                v2_python_multiple_ast["accuracy"],
+                v2_python_parallel_ast["accuracy"],
+                v2_python_parallel_multiple_ast["accuracy"],
+                v2_irrelevance["accuracy"],
+                v2_relevance["accuracy"],
+                cost,
+                latency_mean,
+                latency_std,
+                percentile_95_latency,
+            ]
+        )
+        
+        # Total Score
+        total_simple_ast = calculate_weighted_accuracy(
+            [v1_simple_ast, v2_python_simple_ast]
+        )
+        total_multiple_ast = calculate_weighted_accuracy(
+            [v1_multiple_ast, v2_python_multiple_ast]
+        )
+        total_parallel_ast = calculate_weighted_accuracy(
+            [v1_parallel_ast, v2_python_parallel_ast]
+        )
+        total_parallel_multiple_ast = calculate_weighted_accuracy(
+            [v1_parallel_multiple_ast, v2_python_parallel_multiple_ast]
+        )
+        total_simple_exec = v1_simple_exec
+        total_multiple_exec = v1_multiple_exec
+        total_parallel_exec = v1_parallel_exec
+        total_parallel_multiple_exec = v1_parallel_multiple_exec
+        total_irrelevance = calculate_weighted_accuracy([v1_irrelevance, v2_irrelevance])
+        total_relevance = v2_relevance
+        
+        total_summary_ast = calculate_unweighted_accuracy(
+            [total_simple_ast, total_multiple_ast, total_parallel_ast, total_parallel_multiple_ast]
+        )
+        total_summary_exec = calculate_unweighted_accuracy(
+            [total_simple_exec, total_multiple_exec, total_parallel_exec, total_parallel_multiple_exec]
+        )
+        total_overall_accuracy = calculate_weighted_accuracy(
+            [
+                total_simple_ast,
+                total_multiple_ast,
+                total_parallel_ast,
+                total_parallel_multiple_ast,
+                total_simple_exec,
+                total_multiple_exec,
+                total_parallel_exec,
+                total_parallel_multiple_exec,
+                total_irrelevance,
+                total_relevance,
+            ]
+        )
+
+        data_total.append(
+            [
+                "N/A",
+                total_overall_accuracy["accuracy"],
+                MODEL_METADATA_MAPPING[model_name_escaped][0],
+                MODEL_METADATA_MAPPING[model_name_escaped][1],
+                MODEL_METADATA_MAPPING[model_name_escaped][2],
+                MODEL_METADATA_MAPPING[model_name_escaped][3],
+                total_summary_ast["accuracy"],
+                total_summary_exec["accuracy"],
+                total_simple_ast["accuracy"],
+                total_multiple_ast["accuracy"],
+                total_parallel_ast["accuracy"],
+                total_parallel_multiple_ast["accuracy"],
+                total_simple_exec["accuracy"],
+                total_multiple_exec["accuracy"],
+                total_parallel_exec["accuracy"],
+                total_parallel_multiple_exec["accuracy"],
+                total_irrelevance["accuracy"],
+                total_relevance["accuracy"],
+                cost,
+                latency_mean,
+                latency_std,
+                percentile_95_latency,
+            ]
+        )
+        
+    # Write V1 Score File
+    data_v1.sort(key=lambda x: x[1], reverse=True)
+    for i in range(len(data_v1)):
+        data_v1[i][0] = str(i + 1)
+        data_v1[i][1] = "{:.2f}%".format(data_v1[i][1] * 100)
+        for j in range(6, len(data_v1[i]) - 4):
+            data_v1[i][j] = "{:.2f}%".format(data_v1[i][j] * 100)
+        for j in range(len(data_v1[i]) - 4, len(data_v1[i])):
+            data_v1[i][j] = str(data_v1[i][j])
+
+    data_v1.insert(0, COLUMNS_V1)
 
     filepath = os.path.join(output_path, "data_v1.csv")
     with open(filepath, "w") as f:
-        for i, row in enumerate(data):
-            if i < len(data) - 1:
+        for i, row in enumerate(data_v1):
+            if i < len(data_v1) - 1:
+                f.write(",".join(row) + "\n")
+            else:
+                f.write(",".join(row))
+    
+    # Write V2 Score File
+    data_v2.sort(key=lambda x: x[1], reverse=True)
+    for i in range(len(data_v2)):
+        data_v2[i][0] = str(i + 1)
+        data_v2[i][1] = "{:.2f}%".format(data_v2[i][1] * 100)
+        for j in range(6, len(data_v2[i]) - 4):
+            data_v2[i][j] = "{:.2f}%".format(data_v2[i][j] * 100)
+        for j in range(len(data_v2[i]) - 4, len(data_v2[i])):
+            data_v2[i][j] = str(data_v2[i][j])
+
+    data_v2.insert(0, COLUMNS_V2_LIVE)
+
+    filepath = os.path.join(output_path, "data_v2_live.csv")
+    with open(filepath, "w") as f:
+        for i, row in enumerate(data_v2):
+            if i < len(data_v2) - 1:
                 f.write(",".join(row) + "\n")
             else:
                 f.write(",".join(row))
 
+    # Write Total Score File
+    data_total.sort(key=lambda x: x[1], reverse=True)
+    for i in range(len(data_total)):
+        data_total[i][0] = str(i + 1)
+        data_total[i][1] = "{:.2f}%".format(data_total[i][1] * 100)
+        for j in range(6, len(data_total[i]) - 4):
+            data_total[i][j] = "{:.2f}%".format(data_total[i][j] * 100)
+        for j in range(len(data_total[i]) - 4, len(data_total[i])):
+            data_total[i][j] = str(data_total[i][j])
+
+    data_total.insert(0, COLUMNS_TOTAL)
+
+    filepath = os.path.join(output_path, "data_total.csv")
+    with open(filepath, "w") as f:
+        for i, row in enumerate(data_total):
+            if i < len(data_total) - 1:
+                f.write(",".join(row) + "\n")
+            else:
+                f.write(",".join(row))
+                
+    # Check if all categories are present and evaluated for all models
     if eval_models:
         category_status = check_model_category_status(score_path=output_path)
         check_all_category_present(
             category_status, eval_models=eval_models, eval_categories=eval_categories
         )
 
-def generate_leaderboard_v2_live_csv(leaderboard_table, output_path, eval_models=None, eval_categories=None):
-    data_live = []
-    for model_name, value in leaderboard_table.items():
-        model_name_escaped = model_name.replace("_", "/")
-        python_simple_ast = value.get(
-            "live_simple", {"accuracy": 0, "total_count": 0}
-        )
-        python_multiple_ast = value.get(
-            "live_multiple", {"accuracy": 0, "total_count": 0}
-        )
-        python_parallel_ast = value.get(
-            "live_parallel", {"accuracy": 0, "total_count": 0}
-        )
-        python_parallel_multiple_ast = value.get(
-            "live_parallel_multiple", {"accuracy": 0, "total_count": 0}
-        )
-        irrelevance = value.get(
-            "live_irrelevance", {"accuracy": 0, "total_count": 0}
-        )
-        relevance = value.get("live_relevance", {"accuracy": 0, "total_count": 0})
-        summary_ast = calculate_unweighted_accuracy(
-            [
-                python_simple_ast,
-                python_multiple_ast,
-                python_parallel_ast,
-                python_parallel_multiple_ast,
-            ]
-        )
-
-        overall_accuracy = calculate_weighted_accuracy(
-            [
-                python_simple_ast,
-                python_multiple_ast,
-                python_parallel_ast,
-                python_parallel_multiple_ast,
-                irrelevance,
-                relevance,
-            ]
-        )
-        
-        cost_data = value.get("cost", {"input_data": [], "output_data": []})
-        latency_data = value.get("latency", {"data": []})
-        cost, latency_mean, latency_std, percentile_95_latency = get_cost_letency_info(
-            model_name_escaped, cost_data, latency_data
-        )
-        
-        if overall_accuracy["total_count"] != 2251:
-            print("-" * 100)
-            print(
-                f"❗️Warning: Total count for {model_name} is {overall_accuracy['total_count']}"
-            )
-
-        data_live.append(
-            [
-                "N/A",
-                overall_accuracy["accuracy"],
-                MODEL_METADATA_MAPPING[model_name_escaped][0],
-                summary_ast["accuracy"],
-                python_simple_ast["accuracy"],
-                python_multiple_ast["accuracy"],
-                python_parallel_ast["accuracy"],
-                python_parallel_multiple_ast["accuracy"],
-                irrelevance["accuracy"],
-                relevance["accuracy"],
-                cost,
-                latency_mean,
-                latency_std,
-                percentile_95_latency,
-            ]
-        )
-
-    data_live.sort(key=lambda x: x[1], reverse=True)
-    for i in range(len(data_live)):
-        data_live[i][0] = str(i + 1)
-        data_live[i][1] = "{:.2f}%".format(data_live[i][1] * 100)
-        for j in range(3, len(data_live[i]) - 4):
-            data_live[i][j] = "{:.2f}%".format(data_live[i][j] * 100)
-        for j in range(len(data_live[i]) - 4, len(data_live[i])):
-            data_live[i][j] = str(data_live[i][j])
-
-    data_live.insert(0, COLUMNS_V2_LIVE)
-
-    filepath = os.path.join(output_path, "data_v2_live.csv")
-    with open(filepath, "w") as f:
-        for i, row in enumerate(data_live):
-            if i < len(data_live) - 1:
-                f.write(",".join(row) + "\n")
-            else:
-                f.write(",".join(row))
-
 
 def check_model_category_status(score_path):
     result_path = score_path.replace("score", "result")
 
     leaderboard_categories = [
-        "simple",
-        "multiple_function",
-        "parallel_function",
-        "parallel_multiple_function",
-        "executable_simple",
-        "executable_multiple_function",
-        "executable_parallel_function",
-        "executable_parallel_multiple_function",
-        "java",
-        "javascript",
-        "rest",
-        "relevance",
+        "v1_exec_simple",
+        "v1_exec_parallel",
+        "v1_exec_multiple",
+        "v1_exec_parallel_multiple",
+        "v1_simple",
+        "v1_irrelevance",
+        "v1_parallel",
+        "v1_multiple",
+        "v1_parallel_multiple",
+        "v1_java",
+        "v1_javascript",
+        "v1_rest",
+        "v2_live_simple",
+        "v2_live_multiple",
+        "v2_live_parallel",
+        "v2_live_parallel_multiple",
+        "v2_live_irrelevance",
+        "v2_live_relevance",
     ]
 
     category_status = {}
