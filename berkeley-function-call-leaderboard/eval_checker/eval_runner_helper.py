@@ -22,18 +22,18 @@ COLUMNS_V1 = [
     "License",
     "AST Summary",
     "Exec Summary",
-    "Simple Function AST",
-    "Python Simple Function AST",
-    "Java Simple Function AST",
-    "JavaScript Simple Function AST",
-    "Multiple Functions AST",
-    "Parallel Functions AST",
+    "Simple AST",
+    "Python Simple AST",
+    "Java Simple AST",
+    "JavaScript Simple AST",
+    "Multiple AST",
+    "Parallel AST",
     "Parallel Multiple AST",
-    "Simple Function Exec",
-    "Python Simple Function Exec",
-    "REST Simple Function Exec",
-    "Multiple Functions Exec",
-    "Parallel Functions Exec",
+    "Simple Exec",
+    "Python Simple Exec",
+    "REST Simple Exec",
+    "Multiple Exec",
+    "Parallel Exec",
     "Parallel Multiple Exec",
     "Irrelevance Detection",
     "Cost ($ Per 1k Function Calls)",
@@ -48,9 +48,9 @@ COLUMNS_V2_LIVE = [
     "Overall Acc",
     "Model",
     "AST Summary",
-    "Python Simple Function AST",
-    "Python Multiple Functions AST",
-    "Python Parallel Functions AST",
+    "Python Simple AST",
+    "Python Multiple AST",
+    "Python Parallel AST",
     "Python Parallel Multiple AST",
     "Irrelevance Detection",
     "Relevance Detection",
@@ -679,7 +679,7 @@ def find_file_with_suffix(folder_path, suffix):
 
 
 def is_executable(test_category):
-    return "executable" in test_category or "rest" in test_category
+    return "exec" in test_category or "rest" in test_category
 
 
 def is_rest(test_category):
