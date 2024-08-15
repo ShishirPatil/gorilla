@@ -110,9 +110,39 @@ th:not(.detail-header)  {
     border-radius: 5px;
     /* Rounded corners */
     padding: 5px 5px;
+    margin: 5px 5px;
     cursor: pointer;
     /* Changes the cursor to a pointer on hover */
-    transition: background-color 0.3s ease;
-    /* Smooth transition for hover effect */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effect */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for a 3D effect */
 }
 
+/* Hover state */
+#expand-btn:hover {
+    background-color: #000000; /* Darker shade of blue on hover */
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+#v1-btn, #v2-btn, #main-btn {
+    font-size: 14px;
+    /* Adjust the font size as needed */
+    color: white;
+    /* Text color */
+    background-color: #6c757d;
+    /* Background color */
+    border: none;
+    border-radius: 5px;
+    /* Rounded corners */
+    padding: 5px 5px;
+    margin: 5px 5px;
+    cursor: pointer;
+    /* Changes the cursor to a pointer on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effect */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for a 3D effect */
+}
+
+/* Hover state */
+#v1-btn:hover, #v2-btn:hover, #main-btn:hover {
+    background-color: #000000; /* Darker shade of blue on hover */
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
