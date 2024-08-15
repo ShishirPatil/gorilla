@@ -1,0 +1,2 @@
+Rank,Overall Acc,Model,Model Link,Organization,License,AST Summary,Exec Summary,Simple AST,Multiple AST,Parallel AST,Parallel Multiple AST,Simple Exec,Multiple Exec,Parallel Exec,Parallel Multiple Exec,Irrelevance Detection,Relevance Detection,Cost ($ Per 1k Function Calls),Latency Mean (s),Latency Standard Deviation (s),Latency 95th Percentile (s)
+1,68.39%,GPT-3.5-Turbo-0125 (Prompting),https://platform.openai.com/docs/models/gpt-3-5-turbo,OpenAI,Proprietary,69.01%,61.33%,77.85%,67.93%,72.22%,58.04%,58.82%,78.00%,86.00%,22.50%,65.17%,70.73%,0.45,0.84,0.5,1.73

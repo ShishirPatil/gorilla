@@ -1,0 +1,63 @@
+#leaderboard tbody tr:nth-child(1) {
+    background-color: #fff176;
+    /* Lightest yellow for rank 1 */
+}
+
+#leaderboard tbody tr:nth-child(2) {
+    background-color: #fff59d;
+    /* Medium yellow for rank 2 */
+}
+
+#leaderboard tbody tr:nth-child(3) {
+    background-color: #fff9c4;
+    /* Darker yellow for rank 3 */
+}
+
+#leaderboard td:nth-child(2) {
+    background-color: #7efd7e;
+}
+
+#leaderboard td:nth-child(4) {
+    background-color: #d8787b;
+}
+
+#leaderboard td:nth-child(5) {
+    background-color: #8f8fff;
+}
+
+#leaderboard td:nth-child(6) {
+    background-color: #75f1ff;
+}
+
+#leaderboard td:nth-child(7) {
+    background-color: #c0ff73;
+}
+
+#leaderboard td:nth-child(8) {
+    background-color: #ffdf75;
+}
+
+#leaderboard td:nth-child(9) {
+    background-color: #d8787b;
+}
+
+#leaderboard td:nth-child(10),
+#leaderboard td:nth-child(11),
+#leaderboard td:nth-child(12) {
+    background-color: #8f8fff;
+}
+
+#leaderboard td:nth-child(13),
+#leaderboard td:nth-child(14),
+#leaderboard td:nth-child(15),
+#leaderboard td:nth-child(16) {
+    background-color: #75f1ff;
+}
+
+#leaderboard td:nth-child(17) {
+    background-color: #c0ff73;
+}
+
+#leaderboard td:nth-child(18) {
+    background-color: #ffdf75;
+}
