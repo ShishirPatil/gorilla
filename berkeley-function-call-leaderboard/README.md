@@ -66,11 +66,12 @@ If decided to run OSS model, the generation script uses vllm and therefore requi
 
 ### Generating LLM Responses
 
-Use the following command for LLM inference of the evaluation dataset with specific models
+Use the following command for LLM inference of the evaluation dataset with specific models. 
 
 ```bash
-python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
+python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1
 ```
+You can optionally specify the number of threads to use for *parallel inference* by setting the `--num-threads` flag to speed up inference for **hosted models**, not applicable for OSS models.
 
 For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section below.
 
@@ -233,7 +234,7 @@ Some companies have proposed some optimization strategies in their models' handl
 * [August 14, 2024] [#580](https://github.com/ShishirPatil/gorilla/pull/580): Introduce BFCL V2 dataset, featuring user-contributed prompts and function docs. To read more about the composition and construction of this dataset, please refer to our [blog](https://gorilla.cs.berkeley.edu/blogs/12_bfcl_v2_live.html). All CLI commands have been updated to support the new dataset.
 * [August 8, 2024] [#574](https://github.com/ShishirPatil/gorilla/pull/574): Set temperature to 0.001 for all models for consistency and reproducibility.
 * [August 7, 2024] [#571](https://github.com/ShishirPatil/gorilla/pull/571): Support parallel inference for hosted models. User can specify the number of threads to use for parallel inference by setting the `--num-threads` flag. The default is 1, which means no parallel inference.
-* [August 6, 2024] [#569](https://github.com/ShishirPatil/gorilla/pull/569), [#570](https://github.com/ShishirPatil/gorilla/pull/570): Add the following new models to the leaderboard:
+* [August 6, 2024] [#569](https://github.com/ShishirPatil/gorilla/pull/569), [#570](https://github.com/ShishirPatil/gorilla/pull/570), [#573](https://github.com/ShishirPatil/gorilla/pull/573): Add the following new models to the leaderboard:
   * `open-mistral-nemo-2407`
   * `open-mistral-nemo-2407-FC-Any`
   * `open-mistral-nemo-2407-FC-Auto`
@@ -245,6 +246,9 @@ Some companies have proposed some optimization strategies in their models' handl
   * `gpt-4o-mini-2024-07-18-FC`
   * `gpt-4o-2024-08-06`
   * `gpt-4o-2024-08-06-FC`
+  * `meetkai/functionary-medium-v3.1-FC`
+  * `meetkai/functionary-small-v3.1-FC`
+  * `meetkai/functionary-small-v3.2-FC`
 * [August 5, 2024] [#568](https://github.com/ShishirPatil/gorilla/pull/568): Rephrase the question prompt for the `executable_parallel_function` category to remove potentially misleading information implying multi-turn function calls.
 * [August 4, 2024] [#557](https://github.com/ShishirPatil/gorilla/pull/557): Bug fix in the possible answers.
   * simple: 7 affected

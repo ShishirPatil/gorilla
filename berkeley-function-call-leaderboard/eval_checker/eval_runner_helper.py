@@ -301,7 +301,7 @@ MODEL_METADATA_MAPPING = {
         "MIT",
     ],
     "meetkai/functionary-medium-v3.1-FC": [
-        "Functionary-Medium-v3.0 (FC)",
+        "Functionary-Medium-v3.1 (FC)",
         "https://huggingface.co/meetkai/functionary-medium-v3.1",
         "MeetKai",
         "MIT",
