@@ -666,9 +666,9 @@ NO_COST_MODELS = [
     "Nexusflow-Raven-v2",
     "firefunction-v1-FC",
     "firefunction-v2-FC",
-    "meetkai/functionary-medium-v2.4-FC",
-    "meetkai/functionary-small-v2.2-FC",
-    "meetkai/functionary-small-v2.4-FC",
+    "meetkai/functionary-small-v3.1-FC",
+    "meetkai/functionary-small-v3.2-FC",
+    "meetkai/functionary-medium-v3.1-FC",
     "snowflake/arctic",
     "nvidia/nemotron-4-340b-instruct",
     "ibm-granite/granite-20b-functioncalling",
@@ -1083,10 +1083,10 @@ def generate_leaderboard_csv(
         v1_parallel_exec = v1_python_parallel_exec
         v1_parallel_multiple_exec = v1_python_parallel_multiple_exec
 
-        v1_summary_ast = calculate_unweighted_accuracy(
+        v1_summary_ast = calculate_weighted_accuracy(
             [v1_simple_ast, v1_multiple_ast, v1_parallel_ast, v1_parallel_multiple_ast]
         )
-        v1_summary_exec = calculate_unweighted_accuracy(
+        v1_summary_exec = calculate_weighted_accuracy(
             [v1_simple_exec, v1_multiple_exec, v1_parallel_exec, v1_parallel_multiple_exec]
         )
         v1_overall_accuracy = calculate_weighted_accuracy(
@@ -1151,7 +1151,7 @@ def generate_leaderboard_csv(
             "v2_live_irrelevance", {"accuracy": 0, "total_count": 0}
         )
         v2_relevance = value.get("v2_live_relevance", {"accuracy": 0, "total_count": 0})
-        v2_summary_ast = calculate_unweighted_accuracy(
+        v2_summary_ast = calculate_weighted_accuracy(
             [
                 v2_python_simple_ast,
                 v2_python_multiple_ast,
@@ -1219,10 +1219,10 @@ def generate_leaderboard_csv(
         total_irrelevance = calculate_weighted_accuracy([v1_irrelevance, v2_irrelevance])
         total_relevance = v2_relevance
         
-        total_summary_ast = calculate_unweighted_accuracy(
+        total_summary_ast = calculate_weighted_accuracy(
             [total_simple_ast, total_multiple_ast, total_parallel_ast, total_parallel_multiple_ast]
         )
-        total_summary_exec = calculate_unweighted_accuracy(
+        total_summary_exec = calculate_weighted_accuracy(
             [total_simple_exec, total_multiple_exec, total_parallel_exec, total_parallel_multiple_exec]
         )
         total_overall_accuracy = calculate_weighted_accuracy(
@@ -1372,9 +1372,10 @@ def check_model_category_status(score_path):
         result_subdir = os.path.join(result_path, model_name)
         if os.path.exists(result_subdir):
             for result_file in os.listdir(result_subdir):
-                test_category = extract_test_category(result_file)
-                if test_category in category_status[model_name]:
-                    category_status[model_name][test_category]["generated"] = True
+                if result_file.endswith('.json'):
+                    test_category = extract_test_category(result_file)
+                    if test_category in category_status[model_name]:
+                        category_status[model_name][test_category]["generated"] = True
 
         # Check score folder
         score_subdir = os.path.join(score_path, model_name)
