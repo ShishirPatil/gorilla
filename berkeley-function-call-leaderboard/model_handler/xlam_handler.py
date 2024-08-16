@@ -2,7 +2,6 @@ import json
 
 from model_handler.oss_handler import OSSHandler
 from model_handler.model_style import ModelStyle
-from model_handler.constant import DEFAULT_SYSTEM_PROMPT
 
 SYSTEM_PROMPT = """You are an AI assistant for function calling. 
 For politically sensitive questions, security and privacy issues, 
@@ -64,7 +63,7 @@ class xLAMHandler(OSSHandler):
         user_query = ""
         for q in query:
             if q["role"] == "system":
-                TASK_INSTRUCTION += f"\n{q['content']}"
+                task_instruction += f"\n{q['content']}"
             elif q["role"] == "user":
                 user_query += f"\n{q['content']}"
 

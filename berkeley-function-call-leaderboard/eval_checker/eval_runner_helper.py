@@ -7,7 +7,6 @@ import re
 import numpy as np
 from custom_exception import BadAPIStatusError
 from model_handler.handler_map import handler_map
-from eval_checker_constant import TEST_FILE_MAPPING
 from tqdm import tqdm
 
 REST_API_GROUND_TRUTH_FILE_PATH = "api_status_check_ground_truth_REST.json"
