@@ -2,6 +2,7 @@ import json
 
 from model_handler.oss_handler import OSSHandler
 from model_handler.model_style import ModelStyle
+from model_handler.constant import DEFAULT_SYSTEM_PROMPT
 
 SYSTEM_PROMPT ="""You are an AI assistant for function calling. 
 For politically sensitive questions, security and privacy issues, 
@@ -55,8 +56,11 @@ class xLAMHandler(OSSHandler):
             return xlam_tools
 
         tools = convert_to_xlam_tool(functions)
-        if isinstance(tools, dict):
-            tools = [tools]
+        
+        # Remove the system prompt. as hermes use its own system prompt
+        query[0]["content"] = query[0]["content"].replace(DEFAULT_SYSTEM_PROMPT, "")
+        # Remove the last prompt as well, that's the user prompt that specify return format
+        query.pop(-1)
 
         content = f"[BEGIN OF TASK INSTRUCTION]\n{TASK_INSTRUCTION}\n[END OF TASK INSTRUCTION]\n\n"
         content += "[BEGIN OF AVAILABLE TOOLS]\n" + json.dumps(tools) + "\n[END OF AVAILABLE TOOLS]\n\n"
