@@ -1,0 +1,21 @@
+.editor-output {
+    max-height: 300px;
+    overflow-y: auto;
+    white-space: pre-wrap; /* Ensures that long lines are wrapped */
+    word-wrap: break-word; /* Ensures that long words are wrapped */
+    width: 100%; /* Ensures the output box stays within the parent width */
+    border: 1px solid #ccc; /* Maintain the border */
+    padding: 10px; /* Maintain padding for the box */
+    background-color: #1e1e1e; /* Match the dark theme */
+    color: #f5f5f5; /* Text color for visibility */
+    border-radius: 4px; /* Optional: adds rounded corners */
+  }
+  /* AgentArena.css */
+.search-bar {
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.search-button {
+  border-radius: 0 25px 25px 0;
+}
