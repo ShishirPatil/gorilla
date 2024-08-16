@@ -19,11 +19,6 @@ class GraniteHandler(OSSHandler):
             'If none of the functions are relevant or the given question lacks the parameters required by the function, please output "<function_call> {"name": "no_function", "arguments": {}}".\n\n'
         )
 
-        # Remove the system prompt. as granite use its own system prompt
-        prompts[0]["content"] = prompts[0]["content"].replace(DEFAULT_SYSTEM_PROMPT, "")
-        # Remove the last prompt as well, that's the user prompt that specify return format
-        prompts.pop(-1)
-        
         function = convert_to_tool(
             function,
             GORILLA_TO_OPENAPI,
@@ -38,14 +33,23 @@ class GraniteHandler(OSSHandler):
             prompt_str += f"{prompt['role'].upper()}:\n{prompt['content']}\n\n"
 
         prompt_str += "ASSISTANT: "
-        
+
         return prompt_str
 
     def inference(
-        self, test_question, num_gpus, gpu_memory_utilization, format_prompt_func=_format_prompt
+        self,
+        test_question,
+        num_gpus,
+        gpu_memory_utilization,
+        format_prompt_func=_format_prompt,
     ):
         return super().inference(
-            test_question, num_gpus, gpu_memory_utilization, format_prompt_func=format_prompt_func
+            test_question,
+            num_gpus,
+            gpu_memory_utilization,
+            format_prompt_func=format_prompt_func,
+            use_default_system_prompt=False,
+            include_default_formatting_prompt=False,
         )
 
     def decode_ast(self, result, language="Python"):

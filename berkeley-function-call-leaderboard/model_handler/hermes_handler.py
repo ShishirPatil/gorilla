@@ -32,29 +32,36 @@ class HermesHandler(OSSHandler):
             <|im_end|>
             """
         )
-        # Remove the system prompt. as hermes use its own system prompt
-        prompts[0]["content"] = prompts[0]["content"].replace(DEFAULT_SYSTEM_PROMPT, "")
-        # Remove the last prompt as well, that's the user prompt that specify return format
-        prompts.pop(-1)
-        
+
         formatted_prompt = formatted_prompt.format(
             function=function,
             pydantic_format=pydantic_format,
             tool_call_format=tool_call_format,
         )
-        
+
         for prompt in prompts:
-            formatted_prompt += f"<|im_start|>{prompt['role']}\n{prompt['content']}\n<|im_end|>\n"
+            formatted_prompt += (
+                f"<|im_start|>{prompt['role']}\n{prompt['content']}\n<|im_end|>\n"
+            )
 
         formatted_prompt += "<|im_start|>assistant"
-        
+
         return formatted_prompt
 
     def inference(
-        self, test_question, num_gpus, gpu_memory_utilization, format_prompt_func=_format_prompt
+        self,
+        test_question,
+        num_gpus,
+        gpu_memory_utilization,
+        format_prompt_func=_format_prompt,
     ):
         return super().inference(
-            test_question, num_gpus, gpu_memory_utilization, format_prompt_func=format_prompt_func
+            test_question,
+            num_gpus,
+            gpu_memory_utilization,
+            format_prompt_func=format_prompt_func,
+            use_default_system_prompt=False,
+            include_default_formatting_prompt=False,
         )
 
     def decode_ast(self, result, language="Python"):

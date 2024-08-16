@@ -21,9 +21,8 @@ class GLMHandler(OSSHandler):
         oai_tool = convert_to_tool(
             function, GORILLA_TO_OPENAPI, ModelStyle.OpenAI, test_category
         )
-        # remove the last prompt, which has the function information
-        prompts.pop(-1)
-        # reconstruct the prompt, but with function field empty
+
+        # construct the formatting prompt, but with function field empty
         prompts = user_prompt_pre_processing_chat_model(
             prompts, "", test_category, function
         )
@@ -46,8 +45,8 @@ class GLMHandler(OSSHandler):
             format_prompt_func=self.apply_chat_template,
             stop_token_ids=self.stop_token_ids,
             max_model_len=self.max_model_len,
+            include_default_formatting_prompt=False,  # they have special formatting
         )
-
 
     def decode_ast(self, result, language="Python"):
         args = result.split("\n")

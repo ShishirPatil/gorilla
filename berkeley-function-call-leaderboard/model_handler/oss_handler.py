@@ -65,7 +65,12 @@ class OSSHandler(BaseHandler):
         return final_ans_jsons
 
     @staticmethod
-    def process_input(test_question, format_prompt_func=_format_prompt):
+    def process_input(
+        test_question,
+        format_prompt_func,
+        use_default_system_prompt,
+        include_default_formatting_prompt,
+    ):
         prompts = []
         for question in test_question:
             test_category = question["id"].rsplit("_", 1)[0]
@@ -73,11 +78,15 @@ class OSSHandler(BaseHandler):
                 question["function"], test_category
             )
             # prompt here is a list of dictionaries, one representing a role and content
-            prompt = system_prompt_pre_processing(question["question"], DEFAULT_SYSTEM_PROMPT)
-            prompt = user_prompt_pre_processing_chat_model(
-                prompt, USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
-            )
-            
+            if use_default_system_prompt:
+                prompt = system_prompt_pre_processing(
+                    question["question"], DEFAULT_SYSTEM_PROMPT
+                )
+            if include_default_formatting_prompt:
+                prompt = user_prompt_pre_processing_chat_model(
+                    prompt, USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
+                )
+
             prompts.append(format_prompt_func(prompt, functions, test_category))
 
         return prompts
@@ -90,8 +99,15 @@ class OSSHandler(BaseHandler):
         format_prompt_func=_format_prompt,
         stop_token_ids=None,
         max_model_len=None,
+        use_default_system_prompt=True,
+        include_default_formatting_prompt=True,
     ):
-        test_question = self.process_input(test_question, format_prompt_func)
+        test_question = self.process_input(
+            test_question,
+            format_prompt_func,
+            use_default_system_prompt,
+            include_default_formatting_prompt,
+        )
 
         ans_jsons = self._batch_generate(
             test_question=test_question,
