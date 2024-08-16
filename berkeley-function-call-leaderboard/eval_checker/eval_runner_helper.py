@@ -1152,7 +1152,7 @@ def generate_leaderboard_csv(
             "live_irrelevance", {"accuracy": 0, "total_count": 0}
         )
         relevance_live = value.get("live_relevance", {"accuracy": 0, "total_count": 0})
-        summary_ast = calculate_unweighted_accuracy(
+        summary_ast_live = calculate_weighted_accuracy(
             [
                 python_simple_ast_live,
                 python_multiple_ast_live,
@@ -1161,7 +1161,7 @@ def generate_leaderboard_csv(
             ]
         )
 
-        overall_accuracy_live = calculate_unweighted_accuracy(
+        overall_accuracy_live = calculate_weighted_accuracy(
             [
                 python_simple_ast_live,
                 python_multiple_ast_live,
@@ -1181,7 +1181,7 @@ def generate_leaderboard_csv(
                 MODEL_METADATA_MAPPING[model_name_escaped][1],
                 MODEL_METADATA_MAPPING[model_name_escaped][2],
                 MODEL_METADATA_MAPPING[model_name_escaped][3],
-                summary_ast["accuracy"],
+                summary_ast_live["accuracy"],
                 python_simple_ast_live["accuracy"],
                 python_multiple_ast_live["accuracy"],
                 python_parallel_ast_live["accuracy"],

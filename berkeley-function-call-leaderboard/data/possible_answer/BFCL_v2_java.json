@@ -1,5 +1,5 @@
 {"id": "java_0", "ground_truth": [{"GeometryPresentation.createPresentation": {"controller": ["mapController"], "parent": ["mapArea"]}}]}
-{"id": "java_1", "ground_truth": [{"SQLCompletionAnalyzer.makeProposalsFromObject": {"object": ["Customers"], "useShortName": [true], "params": [{"limit": 50, "schemaFilter": "public"}]}}]}
+{"id": "java_1", "ground_truth": [{"SQLCompletionAnalyzer.makeProposalsFromObject": {"object": ["Customers"], "useShortName": [true], "params": [{"limit": [50], "schemaFilter": ["public"]}]}}]}
 {"id": "java_2", "ground_truth": [{"FireBirdUtils.getViewSourceWithHeader": {"monitor": ["dbMonitor"], "view": ["EmployeeView"], "source": ["SELECT * FROM Employee WHERE status = 'active'"]}}]}
 {"id": "java_3", "ground_truth": [{"DB2Tablespace.resolveTablespaceReference": {"monitor": ["dbMonitor"], "dataSource": ["db2DataSource"], "reference": ["USERSPACE1"]}}]}
 {"id": "java_4", "ground_truth": [{"DB2ViewBaseDepCache.prepareObjectsStatement": {"session": ["jdbcSession"], "db2ViewBase": ["EmployeeView"]}}]}

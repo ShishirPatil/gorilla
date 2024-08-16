@@ -84,7 +84,14 @@ class OpenAIHandler(BaseHandler):
     
     def decode_ast(self,result,language="Python"):
         if "FC" not in self.model_name:
-            decoded_output = ast_parse(result,language)
+            func = result
+            if " " == func[0]:
+                func = func[1:]
+            if not func.startswith("["):
+                func = "[" + func
+            if not func.endswith("]"):
+                func = func + "]"
+            decoded_output = ast_parse(func,language)
         else:
             decoded_output = []
             for invoked_function in result:
@@ -95,7 +102,14 @@ class OpenAIHandler(BaseHandler):
     
     def decode_execute(self,result):
         if "FC" not in self.model_name:
-            decoded_output = ast_parse(result)
+            func = result
+            if " " == func[0]:
+                func = func[1:]
+            if not func.startswith("["):
+                func = "[" + func
+            if not func.endswith("]"):
+                func = func + "]"
+            decoded_output = ast_parse(func)
             execution_list = []
             for function_call in decoded_output:
                 for key, value in function_call.items():
