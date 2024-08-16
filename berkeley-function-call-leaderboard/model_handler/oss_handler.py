@@ -79,15 +79,15 @@ class OSSHandler(BaseHandler):
             )
             # prompt here is a list of dictionaries, one representing a role and content
             if use_default_system_prompt:
-                prompt = system_prompt_pre_processing(
+                question["question"] = system_prompt_pre_processing(
                     question["question"], DEFAULT_SYSTEM_PROMPT
                 )
             if include_default_formatting_prompt:
-                prompt = user_prompt_pre_processing_chat_model(
-                    prompt, USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
+                question["question"] = user_prompt_pre_processing_chat_model(
+                    question["question"], USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
                 )
 
-            prompts.append(format_prompt_func(prompt, functions, test_category))
+            prompts.append(format_prompt_func(question["question"], functions, test_category))
 
         return prompts
 
