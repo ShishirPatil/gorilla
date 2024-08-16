@@ -32,7 +32,7 @@ class BaseHandler:
             
         for entry in result:
             test_category = entry["id"].rsplit("_", 1)[0]
-            file_to_write = f"BFCL_{test_category}_result.json"
+            file_to_write = f"BFCL_v2_{test_category}_result.json"
             file_to_write = f"./result/{model_name_dir}/{file_to_write}"
             
             with open(file_to_write, "a+") as f:

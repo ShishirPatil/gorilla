@@ -109,7 +109,7 @@ def single_executable_file_runner(
             "total_count": len(model_result),
         },
     )
-    output_file_name = f"BFCL_{test_category}_score.json"
+    output_file_name = f"BFCL_v2_{test_category}_score.json"
     output_file_dir = os.path.join(OUTPUT_PATH, model_name)
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
@@ -181,7 +181,7 @@ def single_relevance_file_runner(handler, model_result, model_name, test_categor
             "total_count": len(model_result),
         },
     )
-    output_file_name = f"BFCL_{test_category}_score.json"
+    output_file_name = f"BFCL_v2_{test_category}_score.json"
     output_file_dir = os.path.join(OUTPUT_PATH, model_name)
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
@@ -275,7 +275,7 @@ def single_ast_file_runner(
             "total_count": len(model_result),
         },
     )
-    output_file_name = f"BFCL_{test_category}_score.json"
+    output_file_name = f"BFCL_v2_{test_category}_score.json"
     output_file_dir = os.path.join(OUTPUT_PATH, model_name)
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
@@ -433,10 +433,10 @@ def runner(model_names, test_categories, api_sanity_check):
     display_api_status_error(API_STATUS_ERROR_REST, API_STATUS_ERROR_EXECUTABLE, display_success=False)
     
     print(
-        f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data_v1.csv')} and {os.path.abspath(OUTPUT_PATH + 'data_v2_live.csv')} for evaluation results on BFCL V1 and V2 respectively."
+        f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data_combined.csv')} for evaluation results on BFCL V2."
     )
     print(
-        f"The overall combined evaluation result is saved at {os.path.abspath(OUTPUT_PATH + 'data_total.csv')}."
+        f"See {os.path.abspath(OUTPUT_PATH + 'data_live.csv')} and {os.path.abspath(OUTPUT_PATH + 'data_non_live.csv')} for evaluation results on BFCL V2 Live and Non-Live categories respectively."
     )
 
 
