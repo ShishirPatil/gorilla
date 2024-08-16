@@ -359,7 +359,7 @@ PROMPTS = [
     "I'm planning a series of long weekend getaways for the upcoming year and I need to know when they'll occur in my country. Could you fetch me the list of long weekends for Canada in the year 2023? I'd like to integrate this information into my holiday planning app.",
 ];
 
-const csvFilePath = "./data_total.csv";
+const csvFilePath = "./data_combined.csv";
 
 fetch(csvFilePath)
     .then((response) => response.text())

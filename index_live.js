@@ -359,7 +359,7 @@ PROMPTS = [
     "I'm planning a series of long weekend getaways for the upcoming year and I need to know when they'll occur in my country. Could you fetch me the list of long weekends for Canada in the year 2023? I'd like to integrate this information into my holiday planning app.",
 ];
 
-const csvFilePath = "./data_v1.csv";
+const csvFilePath = "./data_live.csv";
 
 fetch(csvFilePath)
     .then((response) => response.text())
@@ -380,13 +380,12 @@ function parseCSV_leaderboard(text) {
             }
             return value;
         });
-        result[i].splice(9, 3);
-        result[i].splice(13, 2);
         result[i].splice(result[i].length, 0, result[i][4]);
         result[i].splice(result[i].length, 0, result[i][5]);
         result[i].splice(4, 2);
         result[i].splice(4, 0, result[i][result[i].length - 6]);
         result[i].splice(5, 0, result[i][result[i].length - 5]);
+        result[i].splice(7, 0, result[i][result[i].length - 8]);
         result[i].splice(8, 0, result[i][result[i].length - 7]);
         result[i].splice(9, 0, result[i][result[i].length - 6]);
         result[i].splice(10, 0, result[i][result[i].length - 5]);
@@ -445,7 +444,7 @@ function addToTable(dataArray) {
                 if (cellIndex >= 4 && cellIndex <= 8) {
                     // summary-row class for specific columns
                     td.className = "summary-row";
-                } else if (cellIndex >= 9 && cellIndex <= 21) {
+                } else if (cellIndex >= 9 && cellIndex <= 18) {
                     // detail-row class for specific columns
                     td.className = "detail-row";
                 }
@@ -685,15 +684,12 @@ function generateChart(csvData) {
         var dataPoint = {
             label: model_name,
             data: [
-                csvData[i][21],
+                csvData[i][7],
                 csvData[i][8],
+                csvData[i][9],
+                csvData[i][10],
+                csvData[i][11],
                 csvData[i][12],
-                csvData[i][13],
-                csvData[i][14],
-                csvData[i][15],
-                csvData[i][18],
-                csvData[i][19],
-                csvData[i][20],
             ],
             fill: true,
             backgroundColor: convertRGBtoRGBA(color[i - 1]),
@@ -712,15 +708,12 @@ function generateChart(csvData) {
 
     const data = {
         labels: [
-            "Relevance Detection",
             "Simple (AST)",
             "Multiple (AST)",
             "Parallel (AST)",
             "Parallel Multiple (AST)",
-            "Simple (Exec)",
-            "Multiple (Exec)",
-            "Parallel (Exec)",
-            "Parallel Multiple (Exec)",
+            "Irrelevance Detection",
+            "Relevance Detection",
         ],
         datasets: dataset,
     };

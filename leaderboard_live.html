@@ -31,12 +31,12 @@
     <link rel="stylesheet" href="assets/css/common-styles.css" />
     <link rel="stylesheet" href="assets/css/Highlight-Clean-leaderboard.css" />
     <link rel="stylesheet" href="assets/css/leaderboard.css" />
-    <link rel="stylesheet" href="assets/css/leaderboard_v1.css" />
+    <link rel="stylesheet" href="assets/css/leaderboard_live.css" />
     <link rel="stylesheet" href="assets/css/treemap.css" />
     <link rel="stylesheet" href="assets/css/contact.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <title>
-        Berkeley Function Calling Leaderboard (aka Berkeley Tool Calling Leaderboard)
+        Berkeley Function Calling Leaderboard V2 Live(aka Berkeley Tool Calling Leaderboard V2 Live)
     </title>
 
 </head>
@@ -83,10 +83,10 @@
     <!-- Leaderboard Section -->
     <div class="container" id="leaderboard" style="background: #e5effc">
         <div class="col-md-12">
-            <h2>BFCL V1 Leaderboard</h2>
+            <h2>BFCL Live Leaderboard</h2>
 
             <p class="text-center">
-                The Berkeley Function Calling Leaderboard (also called Berkeley Tool Calling Leaderboard) evaluates the
+                The Berkeley Function Calling Leaderboard V2 (also called Berkeley Tool Calling Leaderboard V2) evaluates the
                 LLM's ability to call functions (aka tools) accurately. This
                 leaderboard consists of real-world data and will be updated periodically. For more information on the
                 evaluation dataset and methodology, please refer to our <a
@@ -95,14 +95,13 @@
             </p>
             <div>
                 <span style="margin-left: 10px; margin-bottom: 15px;"><b><i style="font-size: 1.0em;">Last Updated:
-                            2024-08-11 <a
+                            2024-08-16 <a
                                 href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard#changelog">[Change
                                 Log]</a></i></b></span>
             </div>
             <div style="margin-bottom: 15px;">
                 <button id="expand-btn" onclick="toggleExpand()">Expand/Collapse Table</button>
-                <button id="v1-btn" onclick="window.location.href='leaderboard.html'">Show All BFCL Category</button>
-                <button id="v2-btn" onclick="window.location.href='leaderboard_v2.html'">Show Only BFCL V2 Category</button>            
+                <button id="v1-btn" onclick="window.location.href='leaderboard.html'">See All Category</button>        
             </div>
             <div class="table-container">
                 <table id="leaderboard-table">
@@ -114,10 +113,7 @@
                             <th class="detail-header" colspan="4">
                                 Abstract Syntax Tree (AST) Evaluation
                             </th>
-                            <th class="detail-header" colspan="4">
-                                Evaluation by Executing APIs
-                            </th>
-                            <th class="detail-header" colspan="1"></th>
+                            <th class="detail-header" colspan="2">Irrelevance Detection</th>
                             <th class="detail-header" colspan="2"></th>
                         </tr>
                         <tr>
@@ -127,8 +123,8 @@
                             <th class="summary-small-header">Cost ($)</th>
                             <th class="summary-small-header">Average Latency (s)</th>
                             <th class="summary-small-header">AST Summary</th>
-                            <th class="summary-small-header">Exec Summary</th>
                             <th class="summary-small-header">Irrelevance</th>
+                            <th class="summary-small-header">Relevance</th>
                             <th class="detail-small-header">Cost ($)</th>
                             <th class="detail-small-header">Mean</th>
                             <th class="detail-small-header">SD</th>
@@ -136,12 +132,9 @@
                             <th class="detail-small-header">Simple</th>
                             <th class="detail-small-header">Multiple</th>
                             <th class="detail-small-header">Parallel</th>
-                            <th class="detail-small-header">Parallel</th>
-                            <th class="detail-small-header">Simple</th>
-                            <th class="detail-small-header">Multiple</th>
-                            <th class="detail-small-header">Parallel</th>
-                            <th class="detail-small-header">Parallel</th>
-                            <th class="detail-small-header">Irrelevance Detection</th>
+                            <th class="detail-small-header">Parallel Multiple</th>
+                            <th class="detail-small-header">Irrelevance</th>
+                            <th class="detail-small-header">Relevance</th>
                             <th>Organization</th>
                             <th>License</th>
                         </tr>
@@ -205,7 +198,7 @@
             (coming soon).
         </p>
 
-        <div id="14aa7212-682f-47ec-882f-776d328af88e" class="plotly-graph-div" style="height:100%; width:100%;"></div>
+        <div id="a5bbb836-d2ea-4728-a6eb-6d1f64ee741f" class="plotly-graph-div" style="height:100%; width:100%;"></div>
     </div>
 
     <!-- API Explorer Section -->
@@ -318,7 +311,7 @@
     </div>
 </body>
 
-<script src="index_v1.js"></script>
-<script type="text/javascript" src="treemap_v1.js"></script>
+<script src="index_live.js"></script>
+<script type="text/javascript" src="treemap_live.js"></script>
 
 </html>
