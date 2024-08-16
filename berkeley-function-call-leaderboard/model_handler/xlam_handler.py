@@ -60,14 +60,22 @@ class xLAMHandler(OSSHandler):
 
         tools = convert_to_xlam_tool(functions)
 
-        content = f"[BEGIN OF TASK INSTRUCTION]\n{TASK_INSTRUCTION}\n[END OF TASK INSTRUCTION]\n\n"
+        task_instruction = TASK_INSTRUCTION
+        user_query = ""
+        for q in query:
+            if q["role"] == "system":
+                TASK_INSTRUCTION += f"\n{q['content']}"
+            elif q["role"] == "user":
+                user_query += f"\n{q['content']}"
+
+        content = f"[BEGIN OF TASK INSTRUCTION]\n{task_instruction}\n[END OF TASK INSTRUCTION]\n\n"
         content += (
             "[BEGIN OF AVAILABLE TOOLS]\n"
             + json.dumps(tools)
             + "\n[END OF AVAILABLE TOOLS]\n\n"
         )
         content += f"[BEGIN OF FORMAT INSTRUCTION]\n{FORMAT_INSTRUCTION}\n[END OF FORMAT INSTRUCTION]\n\n"
-        content += f"[BEGIN OF QUERY]\n{query}\n[END OF QUERY]\n\n"
+        content += f"[BEGIN OF QUERY]\n{user_query}\n[END OF QUERY]\n\n"
         return SYSTEM_PROMPT + f"### Instruction:\n{content}\n### Response:"
 
     def inference(
