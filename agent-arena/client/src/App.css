@@ -1,0 +1,59 @@
+/* src/App.css */
+body {
+  background-color: #2b2b2b;
+  color: #dcdcdc;
+}
+
+.App {
+  text-align: center;
+  margin: 20px;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+button {
+  margin-right: 10px;
+}
+
+.card {
+  margin-top: 20px;
+  background-color: #343a40;
+  color: #dcdcdc;
+}
+
+.mt-2 {
+  margin-top: 20px;
+}
+
+.mt-4 {
+  margin-top: 40px;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-info {
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.pre {
+  background-color: #1e1e1e;
+  border: 1px solid #444;
+  padding: 10px;
+  color: #dcdcdc;
+}

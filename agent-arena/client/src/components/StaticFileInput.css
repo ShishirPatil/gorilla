@@ -1,0 +1,12 @@
+.static-file-label {
+    color: black;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    padding: 0.375rem 0.75rem;
+    display: inline-block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    border-radius: 0.25rem;
+    cursor: not-allowed;
+  }
+  
