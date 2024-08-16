@@ -929,14 +929,16 @@ def calculate_weighted_accuracy(accuracy_dict_list):
 
 
 def calculate_unweighted_accuracy(accuracy_dict_list):
+    total_count = 0
     total_accuracy = 0
     for accuracy_dict in accuracy_dict_list:
+        total_count += accuracy_dict["total_count"]
         total_accuracy += accuracy_dict["accuracy"]
 
     if len(accuracy_dict_list) == 0:
         return {"accuracy": 0, "total_count": 0}
 
-    return {"accuracy": total_accuracy / len(accuracy_dict_list), "total_count": 0}
+    return {"accuracy": total_accuracy / len(accuracy_dict_list), "total_count": total_count}
 
 
 def record_result(leaderboard_table, model_name, test_category, accuracy, total_count):
@@ -1070,26 +1072,26 @@ def generate_leaderboard_csv(
         v1_rest_simple_exec = value.get("v1_rest", {"accuracy": 0, "total_count": 0})
         v1_irrelevance = value.get("v1_irrelevance", {"accuracy": 0, "total_count": 0})
 
-        v1_simple_ast = calculate_weighted_accuracy(
+        v1_simple_ast = calculate_unweighted_accuracy(
             [v1_python_simple_ast, v1_java_simple_ast, v1_javascript_simple_ast]
         )
         v1_multiple_ast = v1_python_multiple_ast
         v1_parallel_ast = v1_python_parallel_ast
         v1_parallel_multiple_ast = v1_python_parallel_multiple_ast
-        v1_simple_exec = calculate_weighted_accuracy(
+        v1_simple_exec = calculate_unweighted_accuracy(
             [v1_python_simple_exec, v1_rest_simple_exec]
         )
         v1_multiple_exec = v1_python_multiple_exec
         v1_parallel_exec = v1_python_parallel_exec
         v1_parallel_multiple_exec = v1_python_parallel_multiple_exec
 
-        v1_summary_ast = calculate_weighted_accuracy(
+        v1_summary_ast = calculate_unweighted_accuracy(
             [v1_simple_ast, v1_multiple_ast, v1_parallel_ast, v1_parallel_multiple_ast]
         )
-        v1_summary_exec = calculate_weighted_accuracy(
+        v1_summary_exec = calculate_unweighted_accuracy(
             [v1_simple_exec, v1_multiple_exec, v1_parallel_exec, v1_parallel_multiple_exec]
         )
-        v1_overall_accuracy = calculate_weighted_accuracy(
+        v1_overall_accuracy = calculate_unweighted_accuracy(
             [
                 v1_simple_ast,
                 v1_multiple_ast,
@@ -1151,7 +1153,7 @@ def generate_leaderboard_csv(
             "v2_live_irrelevance", {"accuracy": 0, "total_count": 0}
         )
         v2_relevance = value.get("v2_live_relevance", {"accuracy": 0, "total_count": 0})
-        v2_summary_ast = calculate_weighted_accuracy(
+        v2_summary_ast = calculate_unweighted_accuracy(
             [
                 v2_python_simple_ast,
                 v2_python_multiple_ast,
@@ -1160,7 +1162,7 @@ def generate_leaderboard_csv(
             ]
         )
 
-        v2_overall_accuracy = calculate_weighted_accuracy(
+        v2_overall_accuracy = calculate_unweighted_accuracy(
             [
                 v2_python_simple_ast,
                 v2_python_multiple_ast,
@@ -1171,11 +1173,6 @@ def generate_leaderboard_csv(
             ]
         )
         
-        if v2_overall_accuracy["total_count"] != 2251:
-            print("-" * 100)
-            print(
-                f"❗️Warning: Total count for {model_name} is {v2_overall_accuracy['total_count']}"
-            )
 
         data_v2.append(
             [
@@ -1200,32 +1197,32 @@ def generate_leaderboard_csv(
         )
         
         # Total Score
-        total_simple_ast = calculate_weighted_accuracy(
+        total_simple_ast = calculate_unweighted_accuracy(
             [v1_simple_ast, v2_python_simple_ast]
         )
-        total_multiple_ast = calculate_weighted_accuracy(
+        total_multiple_ast = calculate_unweighted_accuracy(
             [v1_multiple_ast, v2_python_multiple_ast]
         )
-        total_parallel_ast = calculate_weighted_accuracy(
+        total_parallel_ast = calculate_unweighted_accuracy(
             [v1_parallel_ast, v2_python_parallel_ast]
         )
-        total_parallel_multiple_ast = calculate_weighted_accuracy(
+        total_parallel_multiple_ast = calculate_unweighted_accuracy(
             [v1_parallel_multiple_ast, v2_python_parallel_multiple_ast]
         )
         total_simple_exec = v1_simple_exec
         total_multiple_exec = v1_multiple_exec
         total_parallel_exec = v1_parallel_exec
         total_parallel_multiple_exec = v1_parallel_multiple_exec
-        total_irrelevance = calculate_weighted_accuracy([v1_irrelevance, v2_irrelevance])
+        total_irrelevance = calculate_unweighted_accuracy([v1_irrelevance, v2_irrelevance])
         total_relevance = v2_relevance
         
-        total_summary_ast = calculate_weighted_accuracy(
+        total_summary_ast = calculate_unweighted_accuracy(
             [total_simple_ast, total_multiple_ast, total_parallel_ast, total_parallel_multiple_ast]
         )
-        total_summary_exec = calculate_weighted_accuracy(
+        total_summary_exec = calculate_unweighted_accuracy(
             [total_simple_exec, total_multiple_exec, total_parallel_exec, total_parallel_multiple_exec]
         )
-        total_overall_accuracy = calculate_weighted_accuracy(
+        total_overall_accuracy = calculate_unweighted_accuracy(
             [
                 total_simple_ast,
                 total_multiple_ast,
