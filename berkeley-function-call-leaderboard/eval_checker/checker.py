@@ -601,6 +601,32 @@ def parallel_function_checker_no_order(
     return {"valid": True, "error": []}
 
 
+def multiple_function_checker(
+    func_descriptions: list,
+    model_output: list,
+    possible_answers: list,
+    language: str,
+    model_name: str,
+):
+    if len(model_output) != len(possible_answers):
+        return {
+            "valid": False,
+            "error": ["Wrong number of functions."],
+            "error_type": "multiple_function_checker:wrong_count",
+        }
+
+    # possible_answers is a list of only one dictionary with only one key
+    func_name_expected = list(possible_answers[0].keys())[0]
+    func_description = find_description(func_descriptions, func_name_expected)
+    return simple_function_checker(
+        func_description,
+        model_output[0],
+        possible_answers[0],
+        language,
+        model_name,
+    )
+
+
 def patten_matcher(exec_output, expected_result, function_call, is_sanity_check):
     result = {"valid": True, "error": [], "error_type": "executable_checker:unclear"}
 
@@ -903,11 +929,16 @@ def executable_checker_rest(func_call, idx):
 def ast_checker(
     func_description, model_output, possible_answer, language, test_category, model_name
 ):
-    if "multiple" in test_category or "parallel" in test_category:
+    if "parallel" in test_category:
         return parallel_function_checker_no_order(
             func_description, model_output, possible_answer, language, model_name
         )
-
+        
+    elif "multiple" in test_category:
+        return multiple_function_checker(
+            func_description, model_output, possible_answer, language, model_name
+        )
+        
     else:
         if len(model_output) != 1:
             return {

@@ -116,7 +116,7 @@ def single_executable_file_runner(
     return accuracy, len(model_result)
 
 
-def single_relevance_file_runner(handler, model_result, model_name, test_category):
+def single_relevance_file_runner(handler, model_result, prompt, model_name, test_category):
     # This function serves for both relevance and irrelevance tests, which share the exact opposite logic.
     # If `test_category` is "irrelevance", the model is expected to output no function call. 
     # No function call means either the AST decoding fails (a error message is generated) or the decoded AST does not contain any function call (such as a empty list, `[]`).
@@ -166,7 +166,7 @@ def single_relevance_file_runner(handler, model_result, model_name, test_categor
                     f"Invalid syntax. Failed to decode AST when it should have. {decode_error}"
                 ]
                 temp["error_type"] = "relevance_error:decoder_failed"
-                
+            temp["prompt"] = prompt[i]
             temp["model_result"] = model_result_item
             temp["decoded_result"] = decoded_result
 
@@ -341,19 +341,19 @@ def runner(model_names, test_categories, api_sanity_check):
             model_result = load_file(model_result_json)
             record_cost_latency(LEADERBOARD_TABLE, model_name, model_result)
 
+            # Find the corresponding test file
+            prompt_file = find_file_with_suffix(PROMPT_PATH, test_category)
+            prompt = load_file(prompt_file)
+
             if is_relevance_or_irrelevance(test_category):
                 accuracy, total_count = single_relevance_file_runner(
-                    handler, model_result, model_name, test_category
+                    handler, model_result, prompt, model_name, test_category
                 )
                 record_result(
                     LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
                 )
                 print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
                 continue
-
-            # Find the corresponding test file
-            prompt_file = find_file_with_suffix(PROMPT_PATH, test_category)
-            prompt = load_file(prompt_file)
 
             if is_executable(test_category):
                 # We only test the API with ground truth once
