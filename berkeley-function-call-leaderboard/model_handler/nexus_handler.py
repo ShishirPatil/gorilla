@@ -2,8 +2,7 @@ from model_handler.model_style import ModelStyle
 from model_handler.handler import BaseHandler
 from model_handler.utils import (
     ast_parse,
-    augment_prompt_by_languge,
-    language_specific_pre_processing,
+    func_doc_language_specific_pre_processing,
 )
 import requests, time
 
@@ -90,16 +89,19 @@ class NexusHandler(BaseHandler):
         return functions
 
 
-    def _format_raven_function(self, user_prompt, functions):
+    def _format_raven_function(self, user_prompts, functions):
         """
         Nexus-Raven requires a specific format for the function description.
         This function formats the function description in the required format.
         """
         raven_prompt = "\n".join(self.generate_functions_from_dict(functions)) + "\n\n"
         raven_prompt += "Setting: Allowed to issue multiple calls with semicolon\n"
-        raven_prompt += "User Query:" + user_prompt.replace("\n", "") + "<human_end>"
+        for user_prompt in user_prompts:
+            raven_prompt += f"{user_prompt['role']}: {user_prompt['content']}\n"
+        
+        raven_prompt += f"<human_end>"
+            
         return raven_prompt
-
 
 
     def _query_raven(self, prompt):
@@ -135,8 +137,7 @@ class NexusHandler(BaseHandler):
         return call, {"input_tokens": 0, "output_tokens": 0, "latency": latency}
 
     def inference(self, prompt, functions, test_category):
-        prompt = augment_prompt_by_languge(prompt, test_category)
-        functions = language_specific_pre_processing(functions, test_category)
+        functions = func_doc_language_specific_pre_processing(functions, test_category)
         raven_prompt = self._format_raven_function(prompt, functions)
         result, metadata = self._query_raven(raven_prompt)
         return result, metadata

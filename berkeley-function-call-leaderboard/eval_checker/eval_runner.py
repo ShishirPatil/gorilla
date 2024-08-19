@@ -109,30 +109,44 @@ def single_executable_file_runner(
             "total_count": len(model_result),
         },
     )
-    output_file_name = test_category + "_score.json"
+    output_file_name = f"BFCL_v2_{test_category}_score.json"
     output_file_dir = os.path.join(OUTPUT_PATH, model_name)
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
 
 
-def single_relevance_file_runner(handler, model_result, model_name, test_category):
-
+def single_relevance_file_runner(handler, model_result, prompt, model_name, test_category):
+    # This function serves for both relevance and irrelevance tests, which share the exact opposite logic.
+    # If `test_category` is "irrelevance", the model is expected to output no function call. 
+    # No function call means either the AST decoding fails (a error message is generated) or the decoded AST does not contain any function call (such as a empty list, `[]`).
+    # If `test_category` is "relevance", the model is expected to output to a function call, and empty list doesn't count as a function call.
     result = []
     correct_count = 0
     for i in range(len(model_result)):
         model_result_item = model_result[i]["result"]
-        success = False
+        contain_func_call = False
         decoded_result = None
+        decode_error = None
 
         try:
             decoded_result = handler.decode_ast(model_result_item, language="Python")
-            success = False
+            # Decode successfully, which means the model output is in valid function call format
+            contain_func_call = True
             if is_empty_output(decoded_result):
-                success = True
+                # Empty output is not considered as a valid function call
+                contain_func_call = False
 
         except Exception as e:
-            success = True
+            # Decode failed, which means the model output is not in valid function call format
+            contain_func_call = False
+            decode_error = str(e)
+
+        # irrelevance test means no function call outputted
+        if "irrelevance" in test_category:
+            success = not contain_func_call
+        else:
+            success = contain_func_call
 
         if success:
             correct_count += 1
@@ -142,10 +156,17 @@ def single_relevance_file_runner(handler, model_result, model_name, test_categor
             temp["model_name"] = model_name
             temp["test_category"] = test_category
             temp["valid"] = success
-            temp["error"] = [
-                f"Valid syntax. Successfully decode AST when it should not."
-            ]
-            temp["error_type"] = "relevance_error:decoder_success"
+            if "irrelevance" in test_category:
+                temp["error"] = [
+                    f"Valid syntax. Successfully decode AST when it should not."
+                ]
+                temp["error_type"] = "irrelevance_error:decoder_success"
+            else: 
+                temp["error"] = [
+                    f"Invalid syntax. Failed to decode AST when it should have. {decode_error}"
+                ]
+                temp["error_type"] = "relevance_error:decoder_failed"
+            temp["prompt"] = prompt[i]
             temp["model_result"] = model_result_item
             temp["decoded_result"] = decoded_result
 
@@ -160,7 +181,7 @@ def single_relevance_file_runner(handler, model_result, model_name, test_categor
             "total_count": len(model_result),
         },
     )
-    output_file_name = test_category + "_score.json"
+    output_file_name = f"BFCL_v2_{test_category}_score.json"
     output_file_dir = os.path.join(OUTPUT_PATH, model_name)
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
@@ -254,7 +275,7 @@ def single_ast_file_runner(
             "total_count": len(model_result),
         },
     )
-    output_file_name = test_category + "_score.json"
+    output_file_name = f"BFCL_v2_{test_category}_score.json"
     output_file_dir = os.path.join(OUTPUT_PATH, model_name)
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
@@ -299,10 +320,7 @@ def runner(model_names, test_categories, api_sanity_check):
         # Find and process all JSON files in the subdirectory
         for model_result_json in glob.glob(json_files_pattern):
 
-            if os.path.basename(model_result_json) == "result.json":
-                continue
-
-            test_category = extract_after_test(model_result_json)
+            test_category = extract_test_category(model_result_json)
             if test_categories is not None and test_category not in test_categories:
                 continue
 
@@ -323,19 +341,19 @@ def runner(model_names, test_categories, api_sanity_check):
             model_result = load_file(model_result_json)
             record_cost_latency(LEADERBOARD_TABLE, model_name, model_result)
 
-            if is_relevance(test_category):
+            # Find the corresponding test file
+            prompt_file = find_file_with_suffix(PROMPT_PATH, test_category)
+            prompt = load_file(prompt_file)
+
+            if is_relevance_or_irrelevance(test_category):
                 accuracy, total_count = single_relevance_file_runner(
-                    handler, model_result, model_name, test_category
+                    handler, model_result, prompt, model_name, test_category
                 )
                 record_result(
                     LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
                 )
                 print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
                 continue
-
-            # Find the corresponding test file
-            prompt_file = find_file_with_suffix(PROMPT_PATH, test_category)
-            prompt = load_file(prompt_file)
 
             if is_executable(test_category):
                 # We only test the API with ground truth once
@@ -414,7 +432,12 @@ def runner(model_names, test_categories, api_sanity_check):
     
     display_api_status_error(API_STATUS_ERROR_REST, API_STATUS_ERROR_EXECUTABLE, display_success=False)
     
-    print(f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data.csv')} for evaluation results.")
+    print(
+        f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data_combined.csv')} for evaluation results on BFCL V2."
+    )
+    print(
+        f"See {os.path.abspath(OUTPUT_PATH + 'data_live.csv')} and {os.path.abspath(OUTPUT_PATH + 'data_non_live.csv')} for evaluation results on BFCL V2 Live and Non-Live categories respectively."
+    )
 
 
 INPUT_PATH = "../result/"

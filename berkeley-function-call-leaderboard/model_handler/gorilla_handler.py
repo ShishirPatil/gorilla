@@ -2,9 +2,10 @@ from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
 from model_handler.utils import (
     ast_parse,
-    augment_prompt_by_languge,
-    language_specific_pre_processing,
+    system_prompt_pre_processing,
+    func_doc_language_specific_pre_processing,
 )
+from model_handler.constant import DEFAULT_SYSTEM_PROMPT
 import requests, json, re, time
 
 
@@ -16,7 +17,7 @@ class GorillaHandler(BaseHandler):
     def _get_gorilla_response(self, prompt, functions):
         requestData = {
             "model": self.model_name,
-            "messages": [{"role": "user", "content": prompt}],
+            "messages": prompt,
             "functions": functions,
             "temperature": self.temperature,
             "top_p": self.top_p,
@@ -42,10 +43,8 @@ class GorillaHandler(BaseHandler):
         return directCode, metadata
 
     def inference(self, prompt, functions, test_category):
-        prompt = augment_prompt_by_languge(prompt, test_category)
-        functions = language_specific_pre_processing(functions, test_category)
-        if type(functions) is not list:
-            functions = [functions]
+        prompt = system_prompt_pre_processing(prompt, DEFAULT_SYSTEM_PROMPT)
+        functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         result, metadata = self._get_gorilla_response(prompt, functions)
 
