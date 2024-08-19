@@ -9,6 +9,9 @@ import inspect
 class HermesHandler(OSSHandler):
     def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
+        # Only this specific Hermes model uses float16
+        if model_name == "NousResearch/Hermes-2-Pro-Llama-3-8B":
+            self.dtype = "float16"
 
     def _format_prompt(prompts, function, test_category):
         # Hermes use Langchain to OpenAI conversion. It does not use tool call but function call.

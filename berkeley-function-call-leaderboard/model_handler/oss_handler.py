@@ -11,7 +11,7 @@ from model_handler.constant import DEFAULT_SYSTEM_PROMPT, USER_PROMPT_FOR_CHAT_M
 
 class OSSHandler(BaseHandler):
     def __init__(
-        self, model_name, temperature=0.001, top_p=1, max_tokens=1000, dtype="float16"
+        self, model_name, temperature=0.001, top_p=1, max_tokens=1000, dtype="bfloat16"
     ) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
         self.model_style = ModelStyle.OSSMODEL
