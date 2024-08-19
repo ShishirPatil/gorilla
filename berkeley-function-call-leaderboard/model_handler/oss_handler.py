@@ -18,12 +18,10 @@ class OSSHandler(BaseHandler):
         top_p=1,
         max_tokens=1000,
         dtype="float16",
-        backend="sglang",
     ) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
         self.model_style = ModelStyle.OSSMODEL
         self.dtype = dtype
-        self.backend = backend
 
     def _format_prompt(prompt, function, test_category):
         SYSTEM_PROMPT = """
@@ -161,13 +159,14 @@ class OSSHandler(BaseHandler):
         test_question,
         num_gpus,
         gpu_memory_utilization,
+        backend,
         format_prompt_func=_format_prompt,
         stop_token_ids=None,
         max_model_len=None,
     ):
         test_question = self.process_input(test_question, format_prompt_func)
 
-        if self.backend == "sglang":
+        if backend == "sglang":
             ans_jsons = self._batch_generate_sglang(
                 test_question=test_question,
                 model_path=self.model_name,

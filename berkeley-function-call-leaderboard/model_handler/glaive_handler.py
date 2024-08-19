@@ -16,10 +16,10 @@ class GlaiveHandler(OSSHandler):
         return formatted_prompt.format(function=function, prompt=prompt)
 
     def inference(
-        self, test_question, num_gpus, gpu_memory_utilization, format_prompt_func=_format_prompt
+        self, test_question, num_gpus, gpu_memory_utilization, backend, format_prompt_func=_format_prompt
     ):
         return super().inference(
-            test_question, num_gpus, gpu_memory_utilization, format_prompt_func=format_prompt_func
+            test_question, num_gpus, gpu_memory_utilization, backend, format_prompt_func=format_prompt_func
         )
 
     def decode_ast(self, result, language="Python"):

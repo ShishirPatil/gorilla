@@ -18,8 +18,21 @@ Read more about the technical details and interesting insights in our [blog post
 conda create -n BFCL python=3.10
 conda activate BFCL
 pip install -r requirements.txt # Inside gorilla/berkeley-function-call-leaderboard
-pip install vllm==0.5.0 # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
 ```
+
+**Note**: If you have GPU(s) and want to run our evaluation data against self-hosted OSS models, you can choose to use `vllm` or `sglang` for inference. This only works on Linux or Windows, but not on MacOS.
+
+To use `vllm`, you need to install the `vllm` package. 
+```bash
+pip install vllm==0.5.0
+```
+
+To use `sglang`, you need to install the `sglang` package, and the `flashinfer` package
+```bash
+pip install sglang==0.2.13
+```
+Depends on the CUDA version, you can find the specific `flashinfer` installation command [here](https://docs.flashinfer.ai/installation.html).
+
 
 
 ## Execution Evaluation Data Post-processing (Can be Skipped: Necesary for Executable Test Categories)
@@ -69,9 +82,11 @@ If decided to run OSS model, the generation script uses vllm and therefore requi
 Use the following command for LLM inference of the evaluation dataset with specific models. 
 
 ```bash
-python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1
+python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1 --backend {vllm,sglang}
 ```
-You can optionally specify the number of threads to use for *parallel inference* by setting the `--num-threads` flag to speed up inference for **hosted models**, not applicable for OSS models.
+You can optionally specify the number of threads to use for *parallel inference* by setting the `--num-threads` flag to speed up inference for **hosted models**, not applicable for OSS models. The default is 1, which means no parallel inference.
+
+If you want to self-host the OSS models, you can choose between `vllm` and `sglang` as the backend and set the `--backend` flag. The default is `sglang`.
 
 For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section below.
 

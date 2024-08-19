@@ -26,6 +26,7 @@ def get_args():
     parser.add_argument("--timeout", default=60, type=int)
     parser.add_argument("--num-threads", default=1, type=int)
     parser.add_argument("--gpu-memory-utilization", default=0.9, type=float)
+    parser.add_argument("--backend", default="sglang", type=str, choices=["vllm", "sglang"])
     args = parser.parse_args()
     return args
 
@@ -181,6 +182,7 @@ def generate_results(args, model_name, test_cases_total):
             test_question=test_cases_total,
             num_gpus=args.num_gpus,
             gpu_memory_utilization=args.gpu_memory_utilization,
+            backend=args.backend,
         )
         for test_case, res in zip(test_cases_total, result):
             result_to_write = {"id": test_case["id"], "result": res}
