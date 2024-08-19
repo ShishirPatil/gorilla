@@ -5,9 +5,14 @@
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-NRZJLJCSH6"></script>
+    <script src="../assets/blog12_chart_function.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
         gtag('js', new Date());
 
         gtag('config', 'G-NRZJLJCSH6');
@@ -16,7 +21,7 @@
     <meta content="text/html; charset=UTF-8" http-equiv="content-type">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.6">
-    <title>BFCL V2 - Live Dataset</title>
+    <title>BFCL V2 • Live Dataset</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
     <link rel="stylesheet" href="../assets/css/blog.css">
@@ -26,9 +31,41 @@
     <link rel="stylesheet" href="../assets/css/Highlight-Clean-leaderboard.css" />
     <link rel="stylesheet" href="../assets/css/model_info_dashboard.css" />
     <link rel="stylesheet" href="../assets/css/contact.css">
-    <!-- <link rel="stylesheet" href="assets/css/blog_11.css" /> -->
 
     <style>
+        .category-container {
+            margin-bottom: 60px;
+        }
+
+        .category-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .plots-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .plot {
+            width: 49%;
+            height: 450px;
+            aspect-ratio: 1 / 1;
+        }
+
+        @media (max-width: 1000px) {
+            .plots-container {
+                flex-direction: column;
+            }
+
+            .plot {
+                width: 100%;
+                margin-bottom: 40px;
+            }
+        }
+
         /* Bars to separate titles in nav bar */
         .navbar a:not(:last-child)::after {
             content: "|";
@@ -43,7 +80,7 @@
             margin: 20px 0;
         }
 
-        pre {
+        pre:not(#citation_block) {
             display: none;
             /* Initially hide the code */
             font-family: 'Courier New', Courier, monospace;
@@ -68,7 +105,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js" integrity="sha384-..."
         crossorigin="anonymous"></script>
 
-
 </head>
 
 <body>
@@ -80,15 +116,12 @@
         <a href="/apizoo/">API Zoo Index</a>
     </div>
 
-
     <div class="highlight-clean-blog" style="padding-bottom: 10px;">
         <h1 class="text-center" style="padding-bottom: 10px;"> 🦍 Gorilla: Large Language Model Connected with Massive
             APIs</h1>
 
-
-
         <div class="box-index">
-            <h3><i>BFCL V2 • Live</i></h3>
+            <h3>BFCL V2 • Live</h3>
             <ul>
                 <ul>
                     <li><a href="12_bfcl_v2_live.html#intro">Introduction</a></li>
@@ -97,8 +130,8 @@
                     <li><a href="12_bfcl_v2_live.html#preprocess">Data Pre-Processing</a></li>
                     <li><a href="12_bfcl_v2_live.html#filter">Data Filtering</a></li>
                     <li><a href="12_bfcl_v2_live.html#quality-improve">Data Quality Improvement</a></li>
-                    <li><a href="12_bfcl_v2_live.html#result">Evaluation Results</a></li>
                     <li><a href="12_bfcl_v2_live.html#dataset-examples">Live Dataset Examples</a></li>
+                    <li><a href="12_bfcl_v2_live.html#result">Going Deep</a></li>
                     <li class="more-blogs">
                         <a href="javascript:void(0);" onclick="toggleMoreBlogs()">More Blogs <span
                                 class="caret">&#9654;</span></a>
@@ -122,20 +155,20 @@
 
         <div class="blog-container">
             <div class="blog-post">
-                <h2 class="blog-title"><i>BFCL V2 • Live</i></h2>
+                <h2 class="blog-title">BFCL V2 • Live Dataset</h2>
                 <div class="col-md-12">
                     <h4 class="text-center" style="margin: 0px;">
                         <p></p>
                         <a class="author" href="https://huanzhimao.com/">Huanzhi Mao<sup>*</sup></a>
                         <a class="author" href="https://charliejcj.github.io/">Charlie Cheng-Jie Ji<sup>*</sup></a>
                         <a class="author" href="https://fanjia-yan.github.io/">Fanjia Yan<sup>*</sup></a>
-                        <a class="author" href="https://people.eecs.berkeley.edu/~shishirpatil/">Shishir G. Patil</a>
                         <a class="author" href="https://tianjunz.github.io">Tianjun Zhang</a>
+                        <a class="author" href="https://shishirpatil.github.io/">Shishir G. Patil</a>
                         <p></p>
                     </h4>
                 </div>
 
-                <b><i style="font-size: 1.0em;">Last updated: 2024-08-14 <a
+                <b><i style="font-size: 1.0em;">Last updated: 2024-08-19 <a
                             href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard#changelog">[Change
                             Log]</a></i></b>
 
@@ -143,56 +176,69 @@
                     <br>
                     <h3 id="intro">Introduction</h3>
                     <p>
-                        The growing use of LLMs for function-calling is transforming various AI applications. LLMs now serve as intelligent agents, interfacing with external tools, APIs, and databases to perform complex tasks. This capability enables LLMs to navigate web browsers, query databases, control robotic systems, and integrate with a wide array of software tools. <a
+                        The growing use of LLMs for <i>function-calling</i> is transforming various AI applications.
+                        LLMs now serve as intelligent agents, interfacing with external tools, APIs, and databases to
+                        perform complex tasks. This capability enables LLMs to navigate web browsers, query databases,
+                        control robotic systems, and integrate with a wide array of software tools. The <a
                             href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley Function-Calling
-                            Leaderboard (BFCL)</a> emerges as a pioneering platform that evaluates the function-calling
-                        (tool-use)
-                        capabilities of LLMs such as Claude, OpenAI, Gemini, Llama, and Mistral. This initiative
-                        addresses
-                        the pressing need for 
-                        <b>comprehensive and fair</b> methods to assess LLMs' function-calling ability in
-                        diverse contexts, including making parallel function calls out of a pool of available functions, execute real world APIs.
+                            Leaderboard (BFCL)</a> has emerged as the standard for evaluating the function-calling
+                        (tool-use) capabilities of LLMs such as Claude, OpenAI, Gemini, Llama, and Mistral. With BFCL V1
+                        we introduced the taxonomy of
+                        parallel and multiple function calling scenarios - calling many instantiations of the same
+                        function, and choosing between different functions,
+                        in addition to evaluating the LLMs in not just python, but also java, javascript, REST
+                        languages. BFCL introduced and continues to be the only leaderbord
+                        that evaluates the LLMs ability to invoke functions in the real-world by actually triggering the
+                        API call and comparing responses.
                     </p>
+
                     <p>
-                        There are several limitations and shortcomings of traditional dataset-based evaluations which we
-                        want to address in an effort to push a live dataset:
-                    <ol>
-                        <li><b>Data contamination: </b> Data contamination occurs when examples from the evaluation
-                            set are also found in the training data. This can lead to artificially inflated performance
-                            metrics, as models may memorize rather than learn to generalize.</li>
-                        <li><b>Bias and fairness: </b>The nature of original BFCL is a synthetic approach to generate
-                            functions and question-answer pair to simulate real world function callings. The dataset is
-                            biased toward its prompting.</li>
-                        <li><b>Lack of generationlization to real life applications: </b> Synthetic generated dataset
-                            means lack of similarity to the real world use cases and therefore less capable of
-                            generalizing into broader agentic application domains. </li>
-                    </ol>
-                    </p>
-                    <p>
-                        For those reasons, we decided to create <b><i>BFCL V2 • Live</i></b>. <i>BFCL V2 • Live</i> employs <b>live, user-provided</b>
+                        To tackle the issues of data contamination, bias and fairness, and need to generalize functions
+                        (tools) to real-world scnearios, we are excited to release <b><i><i>BFCL V2 • Live</i></i></b>.
+                        <i>BFCL V2 • Live</i>
+                        employs <b>live, user-contributed</b>
                         function documentation and queries, avoiding the drawbacks
                         of
-                        dataset contamination and biased benchmarks. By utilizing user-provided data, <i>BFCL V2 • Live</i> aims
+                        dataset contamination and biased benchmarks. By utilizing user-provided data, <i>BFCL V2 •
+                            Live</i> aims
                         to
-                        more faithfully measure the LLM's function-calling performance in real-world scenarios,
+                        more faithfully measure the LLM's function-calling performance <b>in real-world scenarios</b>,
                         emphasizing
                         the importance of models performing effectively in diverse and dynamic environments.
+                        In this blog, we describe the menthodology, data composition, and provide ample examples of how
+                        our users including
+                        large banks, tech-corporations, agent developers, amongst hobbyists and enterprises to
+                        understand LLM function calling deployments. For example, we observe a very high demand for the
+                        feature of having to intelligently choose between functions (multiple functions) and lower
+                        demand for making parallel function calls in a single turn (parallel functions). Further, this
+                        dataset helps us pin-point contamination in different models!
                     </p>
                     <p>
                         Quick Links:
-                    <ul>
-                        <li>Live Leaderboard: <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Website</a>
-                        </li>
-                        <li>BFCL Evaluation Dataset: <a
-                                href="https://huggingface.co/datasets/gorilla-llm/Berkeley-Function-Calling-Leaderboard">
-                                HuggingFace Dataset 🤗</a></li>
-                        <li>Gradio Demo: <a
-                                href="https://huggingface.co/spaces/gorilla-llm/berkeley-function-calling-leaderboard">
-                                HuggingFace Space 🤗 </a></li>
-                        <li>Reproducibility: <a
-                                href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard">Github
-                                Code</a></li>
-                    </ul>
+                        <ul>
+                            <li>BFCL Leaderboard: <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Website</a>
+                            <li>BFCL Leaderboard with only the Live test categories: <a
+                                    href="https://gorilla.cs.berkeley.edu/leaderboard_live.html">Website</a>
+                            </li>
+                            <li>BFCL Evaluation Dataset: <a
+                                    href="https://huggingface.co/datasets/gorilla-llm/Berkeley-Function-Calling-Leaderboard">
+                                    HuggingFace Dataset 🤗</a></li>
+                            <li>Gradio Demo: <a
+                                    href="https://huggingface.co/spaces/gorilla-llm/berkeley-function-calling-leaderboard">
+                                    HuggingFace Space 🤗 </a></li>
+                            <li>Reproducibility: <a
+                                    href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard">Github
+                                    Code</a></li>
+                        </ul>
+                    </p>
+                    <p>
+                        With BFCL, we have been constantly listening to the community and improving the evaluation
+                        data-set and metrics.
+                        <i>BFCL V2 • Live</i> is a big step in this direction, and we will continue to curate and
+                        release community
+                        contributed Live data-sets periodically.
+                        Thank you for your enthusiastic participation and we look forward to making BFCL the one-stop
+                        destination for evaluating function-calling (tool-calling) of LLMs.
                     </p>
                 </div>
                 <br>
@@ -200,71 +246,102 @@
                     <h3 id="composition">Dataset Composition</h3>
                     <p>
                         <i>BFCL V2 • Live</i> features a diverse set of 2,251 question-function-answer
-                        pairs(<code>question + [{ 'name ': 'func1 ', ' description ': 'order takeout'}] -> answer</code>),
+                        pairs
+                        (<code>question + [{ 'name ': 'func1 ', ' description ': 'order takeout'}] -> answer</code>),
                         including rare
                         function
                         documentations that contain 10+ function options or a complex function with 10+ nested
-                        parameters. The dataset also includes fresh user queries that vary in tone,
+                        parameters. The dataset also includes new user queries that vary in tone,
                         are
-                        part of multi-turn interactions, cover specialized use cases, and span multiple languages. This
-                        dataset will be assessed using the <a
+                        part of multi-turn interactions, cover specialized use cases, and span multiple languages. We
+                        will assess this
+                        dataset using the <a
                             href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#metrics">BFCL
                             Abstract Syntax Tree (AST) evaluation</a> to ensure
                         thorough and accurate analysis.
                     </p>
+
                     <p>
-                        In more detail, <i>BFCL V2 • Live</i> comprises 258 simple, 1038 multiple, 16 parallel, 24 parallel
-                        multiple, 874 irrelevance detection, and 41 relevance detection entries. Each test category is
+                        To avoid confusion, BFCL V1 refers to the initial release (<a
+                            href="https://github.com/ShishirPatil/gorilla/releases/tag/v1.0">release v1.0</a>, read more
+                        at the <a
+                            href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html">BFCL
+                            V1
+                            blog</a>), <i>BFCL V2 • Live</i> is the user contributed dataset that we will discuss in
+                        this blog.
+                        Together, they form the BFCL-v2 dataset that is used to evaluate the function calling
+                        capabilities of LLMs on our <a href="https://gorilla.cs.berkeley.edu/leaderboard.html">Berkeley
+                            Function Calling Leaderboard (BFCL)</a>.
+                    </p>
+
+                    <p>
+                        <i>BFCL V2 • Live</i> comprises of 258 simple, 1038 multiple, 16 parallel, 24 parallel
+                        multiple, 875 irrelevance detection, and 40 relevance detection entries. Each test category is
                         detailed in the
                         <a
                             href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#categories">Evaluation
                             Categories section</a>, designed to assess different function-calling scenarios
-                        comprehensively. Beyond existing category, we divides our previous
-                        <code>Relevance category</code> into <code>Relevance detection</code> and
-                        <code>Irrelevance detection</code>
-                    <ul>
-                        <li><b>Irrelevance detection</b>: The scenario where non of the function choices provided are
-                            relevant to the user query and none should be invoked. We expect the model to <b>not output
-                                a function call</b>; the model can either output a error message explaining why the
-                            function provided are not relevant or simply output a non-function call response (eg, a
-                            empty list).
-                        </li>
-                        <li><b>Relevance detection</b>: The opposite of irrelevance detection. The scenario where at
-                            least one of the function choices provided are relevant to the user query and should be
-                            invoked, but the way the user prompt or the function doc is stated makes there could be
-                            infinitely many correct function calls and impossible to use a pre-defined possible answer
-                            set to evaluate.
-                            We expect the model to <b>output some function call</b> (one or multiple) that is relevant
-                            to the user
-                            query; we don't check for the correctness of the function call in this category (eg, correct
-                            parameter value).
-                        </li>
-                    </ul>
-                    <p>
-                        It is worth noting that in the original BFCL, we have 400, 200, 200, 200 entries respectively in
-                        simple,
-                        multipl, parallel, and parallel multiple category. This reflects what our team has thought the
-                        composition of real life function calling scenario should be.
-                        On the other hand, in <i>BFCL V2 • Live</i>, there are <b>significantly more scenarios on multiple</b>
-                        (where models need to decide
-                        which functions to use) and less parallel function calling scenarios. This observation reflects
-                        how
-                        most users interact with function calling, with the feature having a high demand to
-                        intelligently
-                        choose a function
-                        while less demand to make parallel function calling in a single turn.
-                    </p>
+                        comprehensively. We further divide the
+                        <code>Relevance category</code> (which detects the LLMs ability to recognize that no function
+                        (tool) fits the users request, so it should ask for more information)
+                        into <code>Relevance detection</code> and
+                        <code>Irrelevance detection</code> to provide more nuanced insights.
+                        <ul>
+                            <li><b>Irrelevance detection</b>: The scenario where none of the function choices provided
+                                are
+                                relevant to the user query and none should be invoked. We expect the model to <b>not
+                                    output
+                                    a function call</b>; the model can either output a message explaining why the
+                                function provided are not relevant or simply output a non-function call response (e.g.,
+                                an
+                                empty list).
+                            </li>
+                            <li><b>Relevance detection</b>: The opposite of irrelevance detection. The scenario where at
+                                least one of the function choices provided are relevant to the user query and should be
+                                invoked, but the way the user prompt or the function doc is stated means that there
+                                could be
+                                infinitely many correct function calls and impossible to use a pre-defined possible
+                                answer
+                                set to evaluate.
+                                We expect the model to <b>output some function call</b> (one or multiple) that is
+                                relevant
+                                to the user
+                                query; we don't check for the correctness of the function call in this category (eg,
+                                correct
+                                parameter value).
+                            </li>
+                        </ul>
+                        <p>
+                            It is worth noting that in BFCL V1, we have 400, 200, 200, 200 entries respectively in
+                            simple,
+                            multipl, parallel, and parallel multiple category. This reflects what our team had thought
+                            the
+                            composition of real life function calling scenario should be based on our experiences
+                            building
+                            Gorilla LLM.
+                            On the other hand, in <i>BFCL V2 • Live</i>, there are <b>significantly more scenarios on
+                                multiple</b>
+                            (where models need to decide
+                            which functions to use) and less parallel function calling scenarios. This observation
+                            reflects
+                            how
+                            most users interact with function calling: high demand for the feature of having to
+                            intelligently
+                            choose between functions and lower demand
+                            for making parallel function calls in a single turn.
+                        </p>
                     </p>
                     <p style="text-align: center; margin-bottom: 0">
                         <img src="../assets/img/blog_post_12_composition.png" alt="Dataset Composition" width="65%">
                         <i style="font-size: 0.9em;">
                             Berkeley Function-Calling
-                            Leaderboard V2 Live (<i>BFCL V2 • Live</i>) Data Composition
+                            Leaderboard Live (<i>BFCL V2 • Live</i>) Data Composition
                         </i>
                     </p>
                     <br>
                     <p>
-                        On average, each entry in <i>BFCL V2 • Live</i> contains 3 function choices, with the maximum one having 37
+                        On average, each entry in <i>BFCL V2 • Live</i> contains 3 function choices, with the maximum
+                        one having 37
                         function choices.
                         Each function has an average of 4 parameters, with the maximum one having 28 parameters.
                     </p>
@@ -277,19 +354,30 @@
                         <div style="text-align: center;">
                             <img src="../assets/img/blog_post_12_function_params_number.png"
                                 alt="Function Params Count Distribution">
-                            <i style="font-size: 0.9em;">Function Parameter Count Distribution in <i>BFCL V2 • Live</i></i>
+                            <i style="font-size: 0.9em;">Function Parameter Count Distribution in <i>BFCL V2 •
+                                    Live</i></i>
                         </div>
                     </div>
                 </div>
                 <br>
                 <div>
                     <h3>Methodology</h3>
-                    Here is a high-level overview of the methodology used to generate the <i>BFCL V2 • Live</i> dataset. The process begins with Data Pre-Processing, where raw data from real-world user queries is deduplicated and cleaned to ensure a unique and relevant dataset. This is followed by Data Filtering, which involves identifying and handling low-quality inputs, separating out irrelevant queries for specific testing purposes. The final stage is Data Quality Improvement, where the remaining data is standardized and enhanced to fit the requirements of the BFCL evaluation pipeline while maintaining the integrity of the original user inputs. We will be
+                    Here is a high-level overview of the methodology used to generate the <i>BFCL V2 • Live</i> dataset.
+                    The process begins with Data Pre-Processing, where raw data from real-world user queries is
+                    deduplicated and cleaned to ensure a unique and relevant dataset. This is followed by Data
+                    Filtering, which involves identifying and handling low-quality inputs, separating out irrelevant
+                    queries for specific testing purposes. The final stage is Data Quality Improvement, where the
+                    remaining data is standardized and enhanced to fit the requirements of the BFCL evaluation pipeline
+                    while maintaining the integrity of the original user inputs. We will be
                     going into details in the following sections.
                     <p style="text-align: center; margin-bottom: 0">
-                        <img src="../assets/img/blog_post_12_flowchart.png" alt="<i>BFCL V2 • Live</i> Methodology" width="65%">
+                        <img src="../assets/img/blog_post_12_flowchart.png" alt="<i>BFCL V2 • Live</i> Methodology"
+                            width="65%">
                         <i style="font-size: 0.9em;">
-                            <i>BFCL V2 • Live</i> Methodology Flowchart: There are three main stages for cleaning raw user queries: Data Pre-Processing (using ROGUE scores and text embedding for deduplication), Data Filtering (assessing function document and prompt quality), and Data Quality Standardization & Improvements (formatting and enhancing high-quality inputs). 
+                            <i>BFCL V2 • Live</i> Methodology Flowchart: There are three main stages for cleaning raw
+                            user queries: Data Pre-Processing (using ROGUE scores and text embedding for deduplication),
+                            Data Filtering (assessing function document and prompt quality), and Data Quality
+                            Standardization & Improvements (formatting and enhancing high-quality inputs).
                         </i>
                     </p>
                 </div>
@@ -297,10 +385,14 @@
                 <div>
                     <h3 id="source">🧑‍💻 Data Source</h3>
                     <p>
-                        <i>BFCL V2 • Live</i> get its original data from real-world user-input to our hosted model <a
-                            href="https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html">Gorilla OpenFunctions
-                            v2</a>. We took all the 64,517 queries that hit our hosted endpoint from 2024-02-26 to
-                        2024-04-01 and fed them into the following pipeline.
+                        <i>BFCL V2 • Live</i> is composed of real-world user-provided data to our hosted model end-point
+                        through
+                        partnerships, and
+                        public access on our website <a
+                            href="https://gorilla.cs.berkeley.edu/leaderboard.html">gorilla.cs.berkeley.edu/leaderboard</a>.
+                        We start-off with 64,517 queries (post basic filtering for spam), that hit our hosted endpoint
+                        between 2024-02-26 to
+                        2024-04-01.
                     </p>
                 </div>
                 <br>
@@ -309,71 +401,76 @@
                     <p>
                         Data preprocessing is essential for generating structured and fresh user data, excluding
                         existing public function calling test sets. This process includes:
-                    <ol>
-                        <li><b>Deduplication Using <a href="https://aclanthology.org/W04-1013.pdf">ROUGE</a> Score.</b>
-                            To ensure uniqueness, we employ the <a
-                                href="https://aclanthology.org/P04-1077.pdf">ROUGE-L</a> score in two distinct ways:
-                            <ul>
-                                <li>
-                                    Remove Function Documentation From Public Test Sets: Remove user queries against
-                                    existing datasets identified from <a
-                                        href="https://huggingface.co/spaces/Nexusflow/Nexus_Function_Calling_Leaderboard">NexusRaven</a>,
-                                    <a
-                                        href="https://huggingface.co/datasets/fireworks-ai/function-calling-eval-dataset-v0">Firefunctions</a>,
-                                    <a
-                                        href="https://gist.githubLivetent.com/kouroshHakha/6cfbe2bf4aaafc5db733d408044f9902/raw/984c40903df758a47aab67ba1a416d13d83b3a70/test_data.jsonl">Anyscale</a>,
-                                    and <a
-                                        href="https://huggingface.co/datasets/NousResearch/func-calling-eval-glaive">NousResearch-Glaive-Function-Calling</a>.
-                                </li>
-                                <li>
-                                    Function Documentation Deduplication: Repeated user-provided function documentation
-                                    is deduplicated. This is crucial as some users may submit the same or slightly
-                                    modified documents multiple times for testing.
-                                </li>
+                        <ol>
+                            <li><b>Deduplication Using <a href="https://aclanthology.org/W04-1013.pdf">ROUGE</a>
+                                    Score.</b>
+                                To ensure uniqueness, we employ the <a
+                                    href="https://aclanthology.org/P04-1077.pdf">ROUGE-L</a> score in two distinct ways:
+                                <ul>
+                                    <li>
+                                        Remove Function Documentation From Public Test Sets: Remove user queries against
+                                        existing datasets identified from <a
+                                            href="https://huggingface.co/spaces/Nexusflow/Nexus_Function_Calling_Leaderboard">NexusRaven</a>,
+                                        <a
+                                            href="https://huggingface.co/datasets/fireworks-ai/function-calling-eval-dataset-v0">Firefunctions</a>,
+                                        <a
+                                            href="https://gist.githubusercontent.com/kouroshHakha/6cfbe2bf4aaafc5db733d408044f9902/raw/984c40903df758a47aab67ba1a416d13d83b3a70/test_data.jsonl">Anyscale</a>,
+                                        and <a
+                                            href="https://huggingface.co/datasets/NousResearch/func-calling-eval-glaive">NousResearch-Glaive-Function-Calling</a>.
+                                    </li>
+                                    <li>
+                                        Function Documentation Deduplication: Repeated user-provided function
+                                        documentation
+                                        is deduplicated. This is crucial as some users may submit the same or slightly
+                                        modified documents multiple times for testing.
+                                    </li>
 
-                            </ul>
-                        </li>
-                        <li>
-                            <b>Query Deduplication through Text Embedding Model.</b> We use the text-embedding-3-small model to
-                            further deduplicate user queries, enhancing the uniqueness of our data.
-                        </li>
-                        <li>
-                            We parse the user-provided function documents string to a valid list of JSON format that can
-                            be used in the BFCL evaluation pipeline.
-                        </li>
-                    </ol>
-                    <p>
-                        After all the preprocessing steps, we are only left with less than 3% of the original data! See
-                        the table below for more statistics.
-                    </p>
-                    <div style="display: flex; justify-content: center; margin: 20px 0;">
-                        <table border="1" cellpadding="10" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>Stage</th>
-                                    <th>Number of Function Docs Left</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Initial Function Doc-User Query Pairs</td>
-                                    <td>64,517</td>
-                                </tr>
-                                <tr>
-                                    <td>After Merging Exact Same Function Docs</td>
-                                    <td>6,478</td>
-                                </tr>
-                                <tr>
-                                    <td>After Removing Overlap with Public Datasets</td>
-                                    <td>3,698</td>
-                                </tr>
-                                <tr>
-                                    <td>After Further Merging Similar Function Docs (ROGUE-L &gt; 0.8)</td>
-                                    <td>1,692</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                </ul>
+                            </li>
+                            <li>
+                                <b>Query Deduplication through Text Embedding Model.</b> We use OpenAI's
+                                text-embedding-3-small model to
+                                further deduplicate user queries, enhancing the uniqueness of our data.
+                            </li>
+                            <li>
+                                We parse the user-provided function documents string to a valid list of JSON format that
+                                can
+                                be used in the BFCL evaluation pipeline.
+                            </li>
+                        </ol>
+                        <p>
+                            After all the preprocessing steps, we are only left with less than 3% of the original data!
+                            See
+                            the table below for more statistics.
+                        </p>
+                        <div style="display: flex; justify-content: center; margin: 20px 0;">
+                            <table border="1" cellpadding="10" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Stage</th>
+                                        <th>Number of Function Docs Left</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Initial Function Doc-User Query Pairs</td>
+                                        <td>64,517</td>
+                                    </tr>
+                                    <tr>
+                                        <td>After Merging Exact Same Function Docs</td>
+                                        <td>6,478</td>
+                                    </tr>
+                                    <tr>
+                                        <td>After Removing Overlap with Public Datasets</td>
+                                        <td>3,698</td>
+                                    </tr>
+                                    <tr>
+                                        <td>After Further Merging Similar Function Docs (ROGUE-L &gt; 0.8)</td>
+                                        <td>1,692</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </p>
                     <br>
                     <h3 id="filter">🗑️ Data Filtering</h3>
@@ -692,8 +789,9 @@
                     <p>
                         After filtering out low-quality documents and user prompts, it is important to ensure data
                         standardization so that the remaining function docs and user prompts are of
-                        <b>high quality</b> and <b>compatible with the current BFCL evaluation pipeline</b>. This process involves
-                        <b>minimal yet necessary modifications</b> to maintain the integrity of the original real-world
+                        <b>high quality</b> and <b>compatible with the current BFCL evaluation pipeline</b>. This
+                        process involves
+                        <b>minimal yet necessary modifications</b> to maintain the integrity of the v1 real-world
                         documents while adapting them to fit seamlessly into the pipeline.
                     </p>
                     <ul>
@@ -701,50 +799,59 @@
                             <p>
                                 For function docs, we carefully revise each function doc to conform to the BFCL format,
                                 which imposes specific structural and content requirements:
-                            <ul>
-                                <li>
-                                    The function doc must include the fields 'name', 'description', and 'parameters'.
-                                </li>
-                                <li>
-                                    The function parameters must be precisely defined.
-                                    <ol>
-                                        <li>
-                                            Correctly categorized (e.g., one of
-                                            <code>boolean</code>, <code>array</code>, <code>string</code>,
-                                            <code>integer</code>,
-                                            <code>float</code>, <code>tuple</code>, <code>any</code>,
-                                            <code>dict</code>).
-                                        </li>
-                                        <li>
-                                            All required parameters must be clearly indicated in the "required" field.
-                                        </li>
-                                        <li>
-                                            Comply with detailed formatting guidelines. Dictionary-type parameter should
-                                            include the “property“ field that details each key-value pair, while
-                                            array-type
-                                            parameter should have the “items” field that specifies the type of elements
-                                            in
-                                            the array.
-                                        </li>
-                                        <li>
-                                            Any optional parameters should clearly specify their default values either
-                                            as an additional "default" field or as part of their parameter description.
-                                        </li>
-                                    </ol>
-                                </li>
-                            </ul>
-                            <br>
-                            We strictly follow the <b>"minimum edits"</b> principle, where default values are only added if
-                            they are missing, types are corrected (or inferred when absent) to align with the BFCL
-                            format, and any necessary fields are filled out to comply with type restrictions. This
-                            ensures that we enhance the usability of the documents in our evaluation pipeline
-                            without compromising their original intent or functionality.
+                                <ul>
+                                    <li>
+                                        The function doc must include the fields 'name', 'description', and
+                                        'parameters'.
+                                    </li>
+                                    <li>
+                                        The function parameters must be precisely defined.
+                                        <ol>
+                                            <li>
+                                                Correctly categorized (e.g., one of
+                                                <code>boolean</code>, <code>array</code>, <code>string</code>,
+                                                <code>integer</code>,
+                                                <code>float</code>, <code>tuple</code>, <code>any</code>,
+                                                <code>dict</code>).
+                                            </li>
+                                            <li>
+                                                All required parameters must be clearly indicated in the "required"
+                                                field.
+                                            </li>
+                                            <li>
+                                                Comply with detailed formatting guidelines. Dictionary-type parameter
+                                                should
+                                                include the “property“ field that details each key-value pair, while
+                                                array-type
+                                                parameter should have the “items” field that specifies the type of
+                                                elements
+                                                in
+                                                the array.
+                                            </li>
+                                            <li>
+                                                Any optional parameters should clearly specify their default values
+                                                either
+                                                as an additional "default" field or as part of their parameter
+                                                description.
+                                            </li>
+                                        </ol>
+                                    </li>
+                                </ul>
+                                <br>
+                                We strictly follow the <b>"minimum edits"</b> principle, where default values are only
+                                added
+                                if
+                                they are missing, types are corrected (or inferred when absent) to align with the BFCL
+                                format, and any necessary fields are filled out to comply with type restrictions. This
+                                ensures that we enhance the usability of the documents in our evaluation pipeline
+                                without compromising their original intent or functionality.
                             </p>
                         </li>
                         <li>
                             <p>
-                                For prompts, we focus on enhancing their quality while <b>strictly preserving the original
-                                format and semantic content</b>. We ensure that the user prompts are relevant to the
+                                For prompts, we focus on enhancing their quality while <b>strictly preserving the
+                                    original
+                                    format and semantic content</b>. We ensure that the user prompts are relevant to the
                                 associated function doc and practically applicable in real-world scenarios. Special
                                 attention is given to <b>clarity</b>, emphasizing the presentation of specific, concrete
                                 parameter values that are necessary for function calls. We eliminate ambiguity to
@@ -763,7 +870,8 @@
                 <div>
                     <h3 id="dataset-examples">Live Dataset Examples</h3>
                     <p>
-                        Here are some interesting examples from the <i>BFCL V2 • Live</i> dataset. We hope to show how diverse the
+                        Here are some interesting examples from the <i>BFCL V2 • Live</i> dataset. We hope to show how
+                        diverse the
                         <i>BFCL V2 • Live</i> dataset is and how it is different from the previous BFCL dataset.
                     </p>
 
@@ -2276,88 +2384,65 @@
                     </pre>
                 </div>
                 <br>
-                <div>
-                    <h3 id="result">Evaluation Result</h3>
-                    <p>
-                        Below are some comparison between the original BFCL dataset and the <i>BFCL V2 • Live</i> dataset.
 
-                    </p>
-                    <div style="display: flex; justify-content: center; align-items: center;">
-                        <div style="text-align: center;">
-                            <img src="../assets/img/blog_post_12_overall_acc.png">
-                            <i>Overall Accuracy Comparison </i>
-                        </div>
-                        <div style="text-align: center;">
-                            <img src="../assets/img/blog_post_12_overall_acc_scatter.png">
-                            <i>Overall Accuracy Scatter Plot</i>
-                        </div>
+                <div>
+                    <h3 id="result">Going Deep</h3>
+                    <div>
+                        <p>
+                            To better understand the performance differences between BFCL V1 and <i>BFCL V2 • Live</i>,
+                            we provide two types of visualizations: histograms and scatterplots. These graphs offer
+                            insights into the distribution of scores, the relative difficulty of tasks in each version
+                            of the benchmark, and exposing model data contamination issues.
+                        </p>
+
+                        <h5>Interpreting Histograms</h5>
+                        <div id="simple-container-hist"></div>
+                        <p>
+                            The histograms show the distribution of scores for each category and overall, allowing us to
+                            compare the difficulty of user queries and function documents between the two versions.
+                            Generally, we observe that <i>BFCL V2 • Live</i> presents more challenging scenarios in
+                            categories such as simple, multiple, parallel, and parallel multiple function calling, while
+                            remaining comparable in irrelevance detection. This increased difficulty reflects the
+                            real-world complexity captured by user-contributed data.
+                        </p>
+
+                        <h5>Interpreting Scatterplots</h5>
+                        <div id="simple-container-scatter"></div>
+                        <p>
+                            The scatterplots directly compare how models perform on BFCL V1 versus <i>BFCL V2 •
+                                Live</i>. Each point represents a model, with its x-coordinate showing the BFCL V1 score
+                            and its y-coordinate showing the <i>BFCL V2 • Live</i> score. These plots help us identify
+                            performance discrepancies and assess model robustness across different datasets.
+                        </p>
+                        <p>
+                            In the scatterplots:
+                        </p>
+                        <ul>
+                            <li>Points on the y=x line (dashed red) indicate equal performance in both versions.</li>
+                            <li>Points above this line suggest better performance in <i>BFCL V2 • Live</i>.</li>
+                            <li>Points below the line indicate poorer performance in <i>BFCL V2 • Live</i> compared to
+                                V1.</li>
+                        </ul>
+
+                        <p>
+                            Notably, points significantly below the y=x line (i.e., much lower scores in <i>BFCL V2 •
+                                Live</i>) may indicate potential data contamination in BFCL V1 for that model. This
+                            suggests the model struggles with the new, unseen data in V2 Live despite performing well on
+                            V1. Such discrepancies help us identify models that may have been overfitted to the V1
+                            dataset.
+                        </p>
+
+                        <p>
+                            Below are comparisons between the BFCL V1 dataset and the <i>BFCL V2 • Live</i> dataset in
+                            summary statistics (Overall Accuracy, AST summary) and individual categories (Simple
+                            Function, Multiple Function, Parallel Function, Parallel Multiple Function, Irrelevance
+                            Detection).
+                        </p>
                     </div>
-                    <br>
-                    <div style="display: flex; justify-content: center; align-items: center;">
-                        <div style="text-align: center;">
-                            <img src="../assets/img/blog_post_12_ast.png">
-                            <i>AST Summary Comparison </i>
-                        </div>
-                        <div style="text-align: center;">
-                            <img src="../assets/img/blog_post_12_ast_scatter.png">
-                            <i>AST Summary Scatter Plot</i>
-                        </div>
-                    </div>
-                    <br>
-                    <div style="display: flex; justify-content: center; align-items: center;">
-                        <div style="text-align: center;">
-                            <img src="../assets/img/blog_post_12_simple.png">
-                            <i>Simple Function Comparison (Python)</i>
-                        </div>
-                        <div style="text-align: center;">
-                            <img src="../assets/img/blog_post_12_simple_scatter.png">
-                            <i>Simple Function Scatter Plot (Python)</i>
-                        </div>
-                    </div>
-                    <br>
-                    <div style="display: flex; justify-content: center; align-items: center;">
-                        <div style="text-align: center;">
-                            <img src="../assets/img/blog_post_12_simple.png">
-                            <i>Multiple Function Comparison </i>
-                        </div>
-                        <div style="text-align: center;">
-                            <img src="../assets/img/blog_post_12_simple_scatter.png">
-                            <i>Multiple Function Scatter Plot</i>
-                        </div>
-                    </div>
-                    <br>
-                    <div style="display: flex; justify-content: center; align-items: center;">
-                        <div style="text-align: center;">
-                            <img src="../assets/img/blog_post_12_simple.png">
-                            <i>Parallel Function Comparison </i>
-                        </div>
-                        <div style="text-align: center;">
-                            <img src="../assets/img/blog_post_12_simple_scatter.png">
-                            <i>Parallel Function Scatter Plot</i>
-                        </div>
-                    </div>
-                    <br>
-                    <div style="display: flex; justify-content: center; align-items: center;">
-                        <div style="text-align: center;">
-                            <img src="../assets/img/blog_post_12_simple.png">
-                            <i>Parallel Multiple Function Comparison </i>
-                        </div>
-                        <div style="text-align: center;">
-                            <img src="../assets/img/blog_post_12_simple_scatter.png">
-                            <i>Parallel Multiple Function Scatter Plot</i>
-                        </div>
-                    </div>
-                    <br>
-                    <div style="display: flex; justify-content: center; align-items: center;">
-                        <div style="text-align: center;">
-                            <img src="../assets/img/blog_post_12_irrelevance.png">
-                            <i>Irrelevance Detection Comparison </i>
-                        </div>
-                        <div style="text-align: center;">
-                            <img src="../assets/img/blog_post_12_irrelevance_scatter.png">
-                            <i>Irrelevance Detection Scatter Plot</i>
-                        </div>
-                    </div>
+
+                    <div id="charts-container"></div>
+
+
                 </div>
                 <br>
                 <div>
@@ -2368,7 +2453,23 @@
                             (#GorillaLLM)</a>, and <a href="https://github.com/ShishirPatil/gorilla/">GitHub</a>.<br>
                     </p>
                 </div>
-
+                
+                <div>
+                    <h4 id="citation">Citation</h4>
+                    <p>
+                        If you would like to cite BFCL:
+                    </p>
+                    <pre id="citation_block" style="white-space:pre-wrap; width:100%; overflow-x: auto; background-color: #f4f4f4; color: #333;">
+                        <code>
+    @inproceedings{berkeley-function-calling-leaderboard,<br>
+        title={Berkeley Function Calling Leaderboard},<br>
+        author={Fanjia Yan and Huanzhi Mao and Charlie Cheng-Jie Ji and Tianjun Zhang and Shishir G. Patil and Ion Stoica and Joseph E. Gonzalez},<br>
+        year={2024},<br>
+        howpublished={\url{https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html}},<br>
+    }
+                        </code>
+                    </pre>
+                </div>
             </div>
         </div>
     </div>
@@ -2381,7 +2482,8 @@
             background: white;
             justify-content: center;
             align-items: center;
-            width: auto
+            width: auto;
+            padding: 20px;
         }
 
         .centered-text {
@@ -2416,7 +2518,6 @@
             margin: 20px;
             padding: 20px;
             width: auto;
-            /* max-width: 1000px;  */
             max-width: 1000px;
             justify-content: center;
         }
@@ -2528,7 +2629,7 @@
             transform: rotate(90deg);
         }
 
-        @media screen and (max-width: 1200px) {
+        @media screen and (max-width: 1000px) {
             .blog-post {
                 padding: 10px;
                 /* Adjust spacing for smaller screens */
@@ -2556,6 +2657,7 @@
         subMenu.classList.toggle('expanded');
         parentItem.classList.toggle('expanded');
     }
+
     function toggleCode(elementId) {
         var x = document.getElementById(elementId);
         var toggleText = document.querySelector('[onclick="toggleCode(\'' + elementId + '\')"]');
@@ -2567,6 +2669,76 @@
             toggleText.textContent = toggleText.textContent.replace('- Hide', '+ Show');
         }
     }
-
-
 </script>
+
+<script>
+    fetch('../assets/blog12_chart_data.json')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('charts-container');
+            const simpleCategory = "Python Simple Function AST";
+            const categories = Object.keys(data);
+
+            // Function to create and append chart elements
+            function createCategorySection(category, data) {
+                const categoryContainer = document.createElement('div');
+                categoryContainer.className = 'category-container';
+
+                // Create and append header for the category
+                const header = document.createElement('h4');
+                header.textContent = category;
+                categoryContainer.appendChild(header);
+
+                // Create and append plot containers
+                categoryContainer.innerHTML += `
+                    <div class="plots-container">
+                        <div id="${category}-hist" class="plot"></div>
+                        <div id="${category}-scatter" class="plot"></div>
+                    </div>
+                `;
+                container.appendChild(categoryContainer);
+
+                // Create charts
+                createHistogram(`${category}-hist`, data.data, category);
+                createScatterPlot(`${category}-scatter`, data.data, category);
+            }
+
+            // Create charts for filtered categories
+            categories.forEach(category => {
+                if (category !== simpleCategory) {
+                    createCategorySection(category, data[category]);
+                }
+            });
+
+            // Create charts for the simple category
+            if (data[simpleCategory]) {
+                const simpleHistContainer = document.getElementById('simple-container-hist');
+                const simpleScatterContainer = document.getElementById('simple-container-scatter');
+
+                // Create and append header for the simple category histogram
+                simpleHistContainer.innerHTML = `
+                    <br>
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <div id="${simpleCategory}-hist" class="plot"></div>
+                    </div>
+                `;
+                createHistogram(`${simpleCategory}-hist`, data[simpleCategory].data, simpleCategory);
+
+                // Create and append header for the simple category scatterplot
+                simpleScatterContainer.innerHTML = `
+                    <br>
+                    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                        <div id="${simpleCategory}-scatter" class="plot"></div>
+                    </div>
+                `;
+                createScatterPlot(`${simpleCategory}-scatter`, data[simpleCategory].data, simpleCategory);
+            }
+        })
+        .catch(error => {
+            console.error('Error loading or parsing the chart data:', error);
+            document.getElementById('charts-container').textContent =
+                'Error loading charts. Please check the console for details.';
+        });
+</script>
+
+
