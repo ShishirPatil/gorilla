@@ -10,7 +10,7 @@ function createHistogram(containerId, data, category) {
         height: 450,
         width: 550,
         barmode: 'overlay',
-        xaxis: { title: category, range: [0, 100] },
+        xaxis: { title: category, range: [0, 100]},
         yaxis: { title: 'Frequency' },
         margin: { l: 100, r: 100, b: 50, t: 80, pad: 4 },
         legend: { // Adjust legend position
@@ -25,7 +25,12 @@ function createHistogram(containerId, data, category) {
     const plotData = data.slice(0, 2).map(trace => ({
         ...trace,
         x: trace.x.map(x => parseFloat(x)),
-        opacity: 0.7
+        opacity: 0.7,
+        xbins: {
+            start: 0,
+            end: 100,
+            size: 10
+        },
     }));
 
     Plotly.newPlot(containerId, plotData, layout, { responsive: true });
