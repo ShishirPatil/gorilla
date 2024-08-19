@@ -10,75 +10,6 @@
     text-align: center;
 }
 
-#leaderboard tbody tr:nth-child(1) {
-    background-color: #fff176;
-    /* Lightest yellow for rank 1 */
-}
-
-#leaderboard tbody tr:nth-child(2) {
-    background-color: #fff59d;
-    /* Medium yellow for rank 2 */
-}
-
-#leaderboard tbody tr:nth-child(3) {
-    background-color: #fff9c4;
-    /* Darker yellow for rank 3 */
-}
-
-#leaderboard td:nth-child(2) {
-    background-color: #7efd7e;
-}
-
-#leaderboard td:nth-child(4) {
-    background-color: #d8787b;
-}
-
-#leaderboard td:nth-child(5) {
-    background-color: #8f8fff;
-}
-
-#leaderboard td:nth-child(6) {
-    background-color: #75f1ff;
-}
-
-#leaderboard td:nth-child(7) {
-    background-color: #88ffc4;
-}
-
-#leaderboard td:nth-child(8) {
-    background-color: #ffdf75;
-}
-
-#leaderboard td:nth-child(9) {
-    background-color: #d8787b;
-}
-
-#leaderboard td:nth-child(10),
-#leaderboard td:nth-child(11),
-#leaderboard td:nth-child(12) {
-    background-color: #8f8fff;
-}
-
-
-#leaderboard td:nth-child(13),
-#leaderboard td:nth-child(14),
-#leaderboard td:nth-child(15),
-#leaderboard td:nth-child(16) {
-    background-color: #75f1ff;
-}
-
-
-#leaderboard td:nth-child(17),
-#leaderboard td:nth-child(18),
-#leaderboard td:nth-child(19),
-#leaderboard td:nth-child(20) {
-    background-color: #88ffc4;
-}
-
-#leaderboard td:nth-child(21) {
-    background-color: #ffdf75;
-}
-
 
 /* Ensure the table uses the full width of its container */
 table {
@@ -179,9 +110,39 @@ th:not(.detail-header)  {
     border-radius: 5px;
     /* Rounded corners */
     padding: 5px 5px;
+    margin: 5px 5px;
     cursor: pointer;
     /* Changes the cursor to a pointer on hover */
-    transition: background-color 0.3s ease;
-    /* Smooth transition for hover effect */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effect */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for a 3D effect */
 }
 
+/* Hover state */
+#expand-btn:hover {
+    background-color: #000000; /* Darker shade of blue on hover */
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+#v1-btn, #v2-btn, #main-btn {
+    font-size: 14px;
+    /* Adjust the font size as needed */
+    color: white;
+    /* Text color */
+    background-color: #6c757d;
+    /* Background color */
+    border: none;
+    border-radius: 5px;
+    /* Rounded corners */
+    padding: 5px 5px;
+    margin: 5px 5px;
+    cursor: pointer;
+    /* Changes the cursor to a pointer on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition for hover effect */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for a 3D effect */
+}
+
+/* Hover state */
+#v1-btn:hover, #v2-btn:hover, #main-btn:hover {
+    background-color: #000000; /* Darker shade of blue on hover */
+    transform: scale(1.05); /* Slightly increase size on hover */
+}
