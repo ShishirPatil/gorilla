@@ -1,10 +1,15 @@
 from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
-from model_handler.utils import language_specific_pre_processing, ast_parse
+from model_handler.utils import (
+    func_doc_language_specific_pre_processing,
+    system_prompt_pre_processing,
+    user_prompt_pre_processing_chat_model,
+    combine_consecutive_user_prompr,
+    ast_parse,
+)
 from model_handler.constant import (
-    SYSTEM_PROMPT_FOR_CHAT_MODEL,
+    DEFAULT_SYSTEM_PROMPT,
     USER_PROMPT_FOR_CHAT_MODEL,
-    GORILLA_TO_OPENAPI,
 )
 import time
 from openai import OpenAI
@@ -23,19 +28,15 @@ class DatabricksHandler(BaseHandler):
         )
 
     def inference(self, prompt, functions, test_category):
-        functions = language_specific_pre_processing(functions, test_category)
-        if type(functions) is not list:
-            functions = [functions]
-        message = [
-            {"role": "system", "content": SYSTEM_PROMPT_FOR_CHAT_MODEL},
-            {
-                "role": "user",
-                "content": "Questions:"
-                + USER_PROMPT_FOR_CHAT_MODEL.format(
-                    user_prompt=prompt, functions=str(functions)
-                ),
-            },
-        ]
+        functions = func_doc_language_specific_pre_processing(functions, test_category)
+
+        prompt = system_prompt_pre_processing(prompt, DEFAULT_SYSTEM_PROMPT)
+        prompt = user_prompt_pre_processing_chat_model(
+            prompt, USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
+        )
+        prompt = combine_consecutive_user_prompr(prompt)
+        message = prompt
+
         start_time = time.time()
         response = self.client.chat.completions.create(
             messages=message,
@@ -44,6 +45,7 @@ class DatabricksHandler(BaseHandler):
             max_tokens=self.max_tokens,
             top_p=self.top_p,
         )
+
         latency = time.time() - start_time
         result = response.choices[0].message.content
         metadata = {}

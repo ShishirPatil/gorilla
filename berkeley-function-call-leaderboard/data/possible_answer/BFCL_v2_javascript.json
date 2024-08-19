@@ -1,0 +1,50 @@
+{"id": "javascript_0", "ground_truth": [{"validateUserInput": {"inputField": ["userInputField"], "isComplete": [true]}}]}
+{"id": "javascript_1", "ground_truth": [{"getActiveDataEntries": {"listElement": ["listElement"], "attribute": ["data-active", ""], "value": [true, ""]}}]}
+{"id": "javascript_2", "ground_truth": [{"extractLastTransactionId": {"filepath": ["/var/log/db.log"], "status": [["completed", "failed"]], "encoding": ["utf-8"], "processFunction": ["processFunction"]}}]}
+{"id": "javascript_3", "ground_truth": [{"submitAtCoordinate": {"action": ["submit"], "formId": ["loginForm"], "coordinates": [[0.6, 0.3]]}}]}
+{"id": "javascript_4", "ground_truth": [{"emailFormatValidator": {"email": ["example@domain.com"], "domain": ["domain.com"]}}]}
+{"id": "javascript_5", "ground_truth": [{"manageReactState": {"store": [{"initialState": ["initialStateObject"], "reducers": ["reducersMap"], "middlewares": [["loggerMiddleware"]], "enhancers": [["applyMiddleware('myMiddleWare')"]]}], "context": ["React.createContext()"], "hooks": [{"useStateSelector": "useStateSelectorHook", "useDispatchAction": "useDispatchActionHook"}]}}]}
+{"id": "javascript_6", "ground_truth": [{"mapTransitions": {"category": ["transition"], "limit": [4.0]}}]}
+{"id": "javascript_7", "ground_truth": [{"getNextKeyValues": {"ctx": ["dataAnalysisContext"], "currentKey": ["userId"]}}]}
+{"id": "javascript_8", "ground_truth": [{"doesEmailInputExist": {"formElem": ["emailForm"], "inputName": ["emailAddress"]}}]}
+{"id": "javascript_9", "ground_truth": [{"validateApiResponse": {"jsonPayload": ["responseData"], "keyToCheck": ["expectedKey"], "processingCallback": ["processKeyFunction"]}}]}
+{"id": "javascript_10", "ground_truth": [{"fetchSalesDepartmentRecords": {"databaseName": ["employeeRecords"], "queryFunction": ["getSales"]}}]}
+{"id": "javascript_11", "ground_truth": [{"prioritizeAndSort": {"items": ["myItemList"], "priorityStatus": ["urgent"], "ascending": [true]}}]}
+{"id": "javascript_12", "ground_truth": [{"performDataFetch": {"apiEndpoint": ["https://api.example.com/data"], "requestConfig": [{"method": ["GET"]}], "expectedResponse": [{"key": ["value"]}], "handleErrors": [true]}}]}
+{"id": "javascript_13", "ground_truth": [{"DynamicChartGenerator": {"userData": [["userDataArray"]], "scalingFactor": [3.0], "dashboard": ["dashboardElement"], "options": ["", {}]}}]}
+{"id": "javascript_14", "ground_truth": [{"chartDataAccessorFactory": {"chart": [{"nm": ["BarChart"], "mn": ["chartModule"]}], "library": ["visualizationLibrary"], "configObject": ["config"]}}]}
+{"id": "javascript_15", "ground_truth": [{"ChartSeriesGenerator": {"labels": ["axisLabelsArray"], "data": ["dataPointsArray"], "color": ["defaultColor"], "chartLayout": ["chartLayoutObject"]}}]}
+{"id": "javascript_16", "ground_truth": [{"rotateVertices": {"vertices": [[10.0, 15.0], [20.0, 25.0]], "pivot": [[12.0, 17.0]], "angle": [30.0]}}]}
+{"id": "javascript_17", "ground_truth": [{"generateNotificationHandler": {"app": ["app"], "priorityLevel": [3], "messagingService": ["messagingSvc"], "notificationType": [2]}}]}
+{"id": "javascript_18", "ground_truth": [{"calculateFinalVelocity": {"time": [5.0], "gravity": [9.81], "initialVelocity": [0.0]}}]}
+{"id": "javascript_19", "ground_truth": [{"configureShaderMaterial": {"property": ["materialProps"], "textures": ["textureList"], "object3D": ["meshObject"]}}]}
+{"id": "javascript_20", "ground_truth": [{"buttonAddClickHandler": {"element": ["myButton"], "callback": ["handleButtonClick"], "options": [{"stopPropagation": [true]}]}}]}
+{"id": "javascript_21", "ground_truth": [{"findProductById": {"products": [["Product A", "Product B", "Product C"]], "id": [123]}}]}
+{"id": "javascript_22", "ground_truth": [{"resetStateProperty": {"stateProperty": ["userSession"]}}]}
+{"id": "javascript_23", "ground_truth": [{"createAuthToken": {"username": ["johndoe"], "validity": [3600], "options": [{"issuer": ["myapp.net"], "role": ["admin"], "algorithm": ["HS256"]}]}}]}
+{"id": "javascript_24", "ground_truth": [{"getUniqueSorted": {"array": [[3, 1, 2, 1, 4, 3]]}}]}
+{"id": "javascript_25", "ground_truth": [{"trackSubmitWithValidation": {"obj": ["formHandler"], "validationFlags": [["isRequired", "isValidEmail"]]}}]}
+{"id": "javascript_26", "ground_truth": [{"contentUpdater": {"elementID": ["contentBox"], "newContent": ["Hello World"], "action": ["update"]}}]}
+{"id": "javascript_27", "ground_truth": [{"validateReactProp": {"obj": ["serviceProvider"], "componentName": ["UserProfile"]}}]}
+{"id": "javascript_28", "ground_truth": [{"filterBooksByAuthor": {"library": [["bookA", "bookB", "bookC"]], "author": ["J.K. Rowling"]}}]}
+{"id": "javascript_29", "ground_truth": [{"EventScheduler": {"events": [{"setupStage": ["setupStageFunction"], "cleanupStage": ["cleanStageFunction"]}], "concurrencyLimit": [3.0]}}]}
+{"id": "javascript_30", "ground_truth": [{"setText": {"newText": ["Hello, World!"], "start": [5.0], "length": [7.0]}}]}
+{"id": "javascript_31", "ground_truth": [{"transformAllDecoratorsOfDeclaration": {"node": ["myNode"], "container": ["myContainer"]}}]}
+{"id": "javascript_32", "ground_truth": [{"pollQueue": {"queue": ["fileWatchQueue"], "pollingInterval": [500.0], "pollIndex": [0.0], "chunkSize": [10.0]}}]}
+{"id": "javascript_33", "ground_truth": [{"emitNewLineBeforeLeadingComments": {"lineMap": ["tsLineMap"], "writer": ["tsWriter"], "node": [42]}}]}
+{"id": "javascript_34", "ground_truth": [{"forEachType": {"type": ["unionTypeObj"], "f": ["processType"]}}]}
+{"id": "javascript_35", "ground_truth": [{"areDeclarationFlagsIdentical": {"left": ["parameterObject"], "right": ["variableDeclarationObject"]}}]}
+{"id": "javascript_36", "ground_truth": [{"updateBreak": {"node": ["breakNode"], "label": ["loopEnd"]}}]}
+{"id": "javascript_37", "ground_truth": [{"addInitializedPropertyStatements": {"statements": ["shapeStatements"], "property": [["width", "height"], ["height", "width"]], "receiver": ["shape"]}}]}
+{"id": "javascript_38", "ground_truth": [{"getDirectoryToWatchFromFailedLookupLocationDirectory": {"dir": ["/projects/myApp/node_modules/react"], "dirPath": ["/projects/myApp/node_modules/react"]}}]}
+{"id": "javascript_39", "ground_truth": [{"maybeAddJsSyntheticRestParameter": {"declaration": ["funcDeclaration"], "parameters": ["funcParameters"]}}]}
+{"id": "javascript_40", "ground_truth": [{"assignOwnDefaults": {"objectValue": [12.0], "sourceValue": [10.0], "key": ["maxItems"], "object": [{}]}}]}
+{"id": "javascript_41", "ground_truth": [{"queue": {"worker": ["myWorkerFunction"], "concurrency": [5.0], "payload": ["", 0.0]}}]}
+{"id": "javascript_42", "ground_truth": [{"B": {"t": [5.0]}}]}
+{"id": "javascript_43", "ground_truth": [{"invokeCallback": {"callback": ["processResult"], "error": ["null"], "value": ["Operation successful"]}}]}
+{"id": "javascript_44", "ground_truth": [{"skipThrough": {"node": ["currentNode"], "st": ["nodeState"], "c": ["processNode"]}}]}
+{"id": "javascript_45", "ground_truth": [{"Sde": {"t": ["https://github.com/yarnpkg/berry"], "e": [{"startingCwd": ["/home/user/projects"]}]}}]}
+{"id": "javascript_46", "ground_truth": [{"vOe": {"r": ["packageInfo"], "e": ["version"], "t": ["1.2.3"]}}]}
+{"id": "javascript_47", "ground_truth": [{"sTe": {"r": ["2023-04-01"], "e": ["2023-04-15"], "t": ["days"]}}]}
+{"id": "javascript_48", "ground_truth": [{"updateDOMListeners": {"oldVnode": ["oldVirtualNode"], "vnode": ["newVirtualNode"]}}]}
+{"id": "javascript_49", "ground_truth": [{"convertEnumeratedValue": {"key": ["contenteditable"], "value": ["plaintext-only"]}}]}

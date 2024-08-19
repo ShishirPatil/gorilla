@@ -1,32 +1,27 @@
-import json
-import os
-
 from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
 from model_handler.utils import (
     ast_parse,
-    augment_prompt_by_languge,
-    language_specific_pre_processing,
+    system_prompt_pre_processing,
+    user_prompt_pre_processing_chat_model,
+    func_doc_language_specific_pre_processing,
 )
+from model_handler.constant import DEFAULT_SYSTEM_PROMPT, USER_PROMPT_FOR_CHAT_MODEL
 
 
 class OSSHandler(BaseHandler):
-    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000, dtype="float16") -> None:
+    def __init__(
+        self, model_name, temperature=0.001, top_p=1, max_tokens=1000, dtype="bfloat16"
+    ) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
         self.model_style = ModelStyle.OSSMODEL
         self.dtype = dtype
 
-    def _format_prompt(prompt, function, test_category):
-        SYSTEM_PROMPT = """
-            You are an helpful assistant who has access to the following functions to help the user, you can use the functions if needed-
-        """
-        functions = ""
-        if isinstance(function, list):
-            for idx, func in enumerate(function):
-                functions += "\n" + str(func)
-        else:
-            functions += "\n" + str(function)
-        return f"SYSTEM: {SYSTEM_PROMPT}\n{functions}\nUSER: {prompt}\nASSISTANT: "
+    def _format_prompt(prompts, function, test_category):
+        prompt_string = ""
+        for prompt in prompts:
+            prompt_string += f"## {prompt['role']}:\n{prompt['content']}\n\n"
+        return prompt_string
 
     @staticmethod
     def _batch_generate(
@@ -58,7 +53,7 @@ class OSSHandler(BaseHandler):
             disable_custom_all_reduce=True,
             max_model_len=max_model_len,
             tensor_parallel_size=num_gpus,
-            gpu_memory_utilization=gpu_memory_utilization
+            gpu_memory_utilization=gpu_memory_utilization,
         )
         outputs = llm.generate(test_question, sampling_params)
 
@@ -70,15 +65,29 @@ class OSSHandler(BaseHandler):
         return final_ans_jsons
 
     @staticmethod
-    def process_input(test_question, format_prompt_func=_format_prompt):
+    def process_input(
+        test_question,
+        format_prompt_func,
+        use_default_system_prompt,
+        include_default_formatting_prompt,
+    ):
         prompts = []
         for question in test_question:
             test_category = question["id"].rsplit("_", 1)[0]
-            prompt = augment_prompt_by_languge(question["question"], test_category)
-            functions = language_specific_pre_processing(
+            functions = func_doc_language_specific_pre_processing(
                 question["function"], test_category
             )
-            prompts.append(format_prompt_func(prompt, functions, test_category))
+            # prompt here is a list of dictionaries, one representing a role and content
+            if use_default_system_prompt:
+                question["question"] = system_prompt_pre_processing(
+                    question["question"], DEFAULT_SYSTEM_PROMPT
+                )
+            if include_default_formatting_prompt:
+                question["question"] = user_prompt_pre_processing_chat_model(
+                    question["question"], USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
+                )
+
+            prompts.append(format_prompt_func(question["question"], functions, test_category))
 
         return prompts
 
@@ -90,8 +99,15 @@ class OSSHandler(BaseHandler):
         format_prompt_func=_format_prompt,
         stop_token_ids=None,
         max_model_len=None,
+        use_default_system_prompt=True,
+        include_default_formatting_prompt=True,
     ):
-        test_question = self.process_input(test_question, format_prompt_func)
+        test_question = self.process_input(
+            test_question,
+            format_prompt_func,
+            use_default_system_prompt,
+            include_default_formatting_prompt,
+        )
 
         ans_jsons = self._batch_generate(
             test_question=test_question,
@@ -120,4 +136,11 @@ class OSSHandler(BaseHandler):
         return decode_output
 
     def decode_execute(self, result):
-        return result
+        decoded_output = ast_parse(result)
+        execution_list = []
+        for function_call in decoded_output:
+            for key, value in function_call.items():
+                execution_list.append(
+                    f"{key}({','.join([f'{k}={repr(v)}' for k, v in value.items()])})"
+                )
+        return execution_list

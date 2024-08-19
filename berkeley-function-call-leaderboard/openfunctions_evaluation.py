@@ -3,13 +3,12 @@ from tqdm import tqdm
 from model_handler.handler_map import handler_map
 from model_handler.model_style import ModelStyle
 from model_handler.constant import USE_COHERE_OPTIMIZATION
-from eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING
+from eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING
 from concurrent.futures import ThreadPoolExecutor
 
 RETRY_LIMIT = 3
 # 60s for the timer to complete. But often we find that even with 60 there is a conflict. So 65 is a safe no.
 RETRY_DELAY = 65  # Delay in seconds
-
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -30,31 +29,30 @@ def get_args():
     return args
 
 
-TEST_FILE_MAPPING = {
-    "executable_simple": "gorilla_openfunctions_v1_test_executable_simple.json",
-    "executable_parallel_function": "gorilla_openfunctions_v1_test_executable_parallel_function.json",
-    "executable_multiple_function": "gorilla_openfunctions_v1_test_executable_multiple_function.json",
-    "executable_parallel_multiple_function": "gorilla_openfunctions_v1_test_executable_parallel_multiple_function.json",
-    "simple": "gorilla_openfunctions_v1_test_simple.json",
-    "relevance": "gorilla_openfunctions_v1_test_relevance.json",
-    "parallel_function": "gorilla_openfunctions_v1_test_parallel_function.json",
-    "multiple_function": "gorilla_openfunctions_v1_test_multiple_function.json",
-    "parallel_multiple_function": "gorilla_openfunctions_v1_test_parallel_multiple_function.json",
-    "java": "gorilla_openfunctions_v1_test_java.json",
-    "javascript": "gorilla_openfunctions_v1_test_javascript.json",
-    "rest": "gorilla_openfunctions_v1_test_rest.json",
-    "sql": "gorilla_openfunctions_v1_test_sql.json",
-}
-
-
 def build_handler(model_name, temperature, top_p, max_tokens):
     handler = handler_map[model_name](model_name, temperature, top_p, max_tokens)
     return handler
 
 
 def sort_key(entry):
+    """
+    Index comes in two forms: TestCategory_Index or TestCategory_Index-FuncDocSubIndex-PromptSubIndex; both 0-indexed.
+    
+    TestCategory_Index: For example, `simple_20` means the 21st entry in the `simple` test category.
+    
+    TestCategory_Index-FuncDocSubIndex-PromptSubIndex is used when there are multiple prompts for a single function doc; this only happens in the live dataset.
+    FuncDocSubIndex increments for each unique function doc.
+    PromptSubIndex is per function doc. It resets to 0 for each function doc.
+        For example, `live_simple_19-3-15` means the 20th entry in the `live_simple` test category. 
+        This entry has the 4th unique function doc and the 16th prompt for that function doc (there are at least 15 other prompts for this same function doc in this category).
+    
+    In either case, the universal index is enough to sort the entries.
+    """
     parts = entry["id"].rsplit("_", 1)
     test_category, index = parts[0], parts[1]
+    # This handles the case where the index is in the form TestCategory_Index-FuncDocSubIndex-PromptSubIndex
+    if "-" in index:
+        index = index.split("-")[0]
     return (test_category, int(index))
 
 
@@ -131,19 +129,15 @@ def multi_threaded_inference(handler, test_case):
         except Exception as e:
             # TODO: It might be better to handle the exception in the handler itself rather than a universal catch block here, as each handler use different ways to call the endpoint.
             # OpenAI has openai.RateLimitError while Anthropic has anthropic.RateLimitError. It would be more robust in the long run.
-            if "rate limit reached" in str(e).lower() or (
-                hasattr(e, "status_code") and (e.status_code in {429, 503, 500})
+            if retry_count < RETRY_LIMIT and (
+                "rate limit reached" in str(e).lower()
+                or (hasattr(e, "status_code") and (e.status_code in {429, 503, 500}))
             ):
-                if retry_count < RETRY_LIMIT:
-                    print(
-                        f"Rate limit reached. Sleeping for 65 seconds. Retry {retry_count + 1}/{RETRY_LIMIT}"
-                    )
-                    time.sleep(RETRY_DELAY)
-                    retry_count += 1
-                else:
-                    # Rate limit would impact all subsequent test cases. So we exit the process.
-                    print("Maximum reties reached for rate limit. Exiting.")
-                    raise e  # Rethrow the exception
+                print(
+                    f"Rate limit reached. Sleeping for 65 seconds. Retry {retry_count + 1}/{RETRY_LIMIT}"
+                )
+                time.sleep(RETRY_DELAY)
+                retry_count += 1
             else:
                 # This is usually the case when the model getting stuck on one particular test case.
                 # For example, timeout error or FC model returning invalid JSON response.
@@ -151,7 +145,7 @@ def multi_threaded_inference(handler, test_case):
                 # So we continue the generation process and record the error message as the model response
                 print("-" * 100)
                 print(
-                    "❗️❗️ Error occurred during inference. Continuing to next test case."
+                    "❗️❗️ Error occurred during inference. Maximum reties reached for rate limit or other error. Continuing to next test case."
                 )
                 print(f"❗️❗️ Test case ID: {test_case['id']}, Error: {str(e)}")
                 print("-" * 100)

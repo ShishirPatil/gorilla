@@ -1,6 +1,5 @@
 from model_handler.arctic_handler import ArcticHandler
-from model_handler.claude_fc_handler import ClaudeFCHandler
-from model_handler.claude_prompt_handler import ClaudePromptingHandler
+from model_handler.claude_handler import ClaudeHandler
 from model_handler.cohere_handler import CohereHandler
 from model_handler.databricks_handler import DatabricksHandler
 from model_handler.deepseek_handler import DeepseekHandler
@@ -15,7 +14,6 @@ from model_handler.hermes_handler import HermesHandler
 from model_handler.llama_handler import LlamaHandler
 from model_handler.mistral_handler import MistralHandler
 from model_handler.nexus_handler import NexusHandler
-from model_handler.oss_handler import OSSHandler
 from model_handler.granite_handler import GraniteHandler
 from model_handler.nvidia_handler import NvidiaHandler
 from model_handler.glm_handler import GLMHandler
@@ -41,16 +39,16 @@ handler_map = {
     "gpt-4-0613": OpenAIHandler,
     "gpt-3.5-turbo-0125-FC": OpenAIHandler,
     "gpt-3.5-turbo-0125": OpenAIHandler,
-    "claude-2.1": ClaudePromptingHandler,
-    "claude-instant-1.2": ClaudePromptingHandler,
-    "claude-3-opus-20240229": ClaudePromptingHandler,
-    "claude-3-opus-20240229-FC": ClaudeFCHandler,
-    "claude-3-sonnet-20240229": ClaudePromptingHandler,
-    "claude-3-sonnet-20240229-FC": ClaudeFCHandler,
-    "claude-3-haiku-20240307": ClaudePromptingHandler,
-    "claude-3-haiku-20240307-FC": ClaudeFCHandler,
-    "claude-3-5-sonnet-20240620": ClaudePromptingHandler,
-    "claude-3-5-sonnet-20240620-FC": ClaudeFCHandler,
+    "claude-2.1": ClaudeHandler,
+    "claude-instant-1.2": ClaudeHandler,
+    "claude-3-opus-20240229": ClaudeHandler,
+    "claude-3-opus-20240229-FC": ClaudeHandler,
+    "claude-3-sonnet-20240229": ClaudeHandler,
+    "claude-3-sonnet-20240229-FC": ClaudeHandler,
+    "claude-3-haiku-20240307": ClaudeHandler,
+    "claude-3-haiku-20240307-FC": ClaudeHandler,
+    "claude-3-5-sonnet-20240620": ClaudeHandler,
+    "claude-3-5-sonnet-20240620-FC": ClaudeHandler,
     "open-mistral-nemo-2407": MistralHandler,
     "open-mistral-nemo-2407-FC-Any": MistralHandler,
     "open-mistral-nemo-2407-FC-Auto": MistralHandler,
