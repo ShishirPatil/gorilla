@@ -1,22 +1,22 @@
 #leaderboard {
     width: 100%;
-    border-collapse: collapse;
+    /* border-collapse: separate; */
 }
 
-#leaderboard th,
+/* #leaderboard th,
 #leaderboard td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
-}
+} */
 
 
 /* Ensure the table uses the full width of its container */
 table {
     table-layout: auto;
-    border-collapse: collapse; 
+    border-collapse: separate; 
+    border-spacing: 0px;
     width: auto; /* Allows the table to expand naturally based on content */
-    border-collapse: collapse;
     table-layout: auto; /* Default layout for the table */
     align-items: center;
     justify-content: center;
@@ -29,7 +29,8 @@ table {
     overflow-wrap: break-word; /* Ensures wrapping at break points */
     padding: 8px; /* Adjust padding as needed */
     text-align: center; /* Keeps text centered, adjust as needed */
-    border: 1px solid #ddd; 
+    border-right: 1.25px solid #ddd;
+    border-bottom: 1.25px solid #ddd; 
 }
 
 
@@ -47,7 +48,7 @@ th:not(.detail-header)  {
     max-width: 100%; /* Ensure the container does not exceed the width of the parent */
     max-height: 600px; /* Set the maximum height of the table to 8 rows */
     display: block;
-    border: 1px solid #ddd; /* Optional: Adds a border for better visibility */
+    border: 1.5px solid #ddd; /* Optional: Adds a border for better visibility */
     align-items: center;
     justify-content: center;
 }
@@ -145,4 +146,56 @@ th:not(.detail-header)  {
 #v1-btn:hover, #v2-btn:hover, #main-btn:hover {
     background-color: #000000; /* Darker shade of blue on hover */
     transform: scale(1.05); /* Slightly increase size on hover */
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  background-color: #f1f8ff; /* Background for better visibility */
+  background-clip: border-box;
+  z-index: 100; /* Ensure the header stays above other content */
+  margin: 0;
+}
+
+#leaderboard thead th{
+    z-index: 100; /* Ensure the header stays above other content */
+    /* border-bottom: 1px solid black;  */
+    background-color: #f1f8ff; /* Background for better visibility */
+}
+
+/* Sticky left columns */
+  #leaderboard tbody td:first-child,
+  #leaderboard  thead .sticky-top-column,
+  #leaderboard thead .sticky-second-column:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 30;
+    background-color: #f1f8ff;
+  }
+
+  #leaderboard tbody td:nth-child(2),
+  #leaderboard thead .sticky-second-column:nth-child(2) {
+    position: sticky;
+    left: 51px;
+    z-index: 29;
+  }
+
+  tbody td:nth-child(3),
+  #leaderboard thead .sticky-second-column:nth-child(3) {
+    position: sticky;
+    left: 115px;
+    z-index: 28;
+    background-color: #f1f8ff;
+  }
+
+tbody tr:nth-child(1) td:nth-child(3) {
+  background-color: #fff176;
+}
+
+tbody tr:nth-child(2) td:nth-child(3) {
+  background-color: #fff59d;
+}
+
+tbody tr:nth-child(3) td:nth-child(3) {
+  background-color: #fff9c4;
 }
