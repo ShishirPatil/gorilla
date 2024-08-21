@@ -24,7 +24,7 @@ pip install -r requirements.txt # Inside gorilla/berkeley-function-call-leaderbo
 
 To use `vllm`, you need to install the `vllm` package. 
 ```bash
-pip install vllm==0.5.0
+pip install vllm==0.5.4
 ```
 
 To use `sglang`, you need to install the `sglang` package, and the `flashinfer` package
