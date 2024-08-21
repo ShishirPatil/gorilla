@@ -5,12 +5,11 @@ DEFAULT_SYSTEM_PROMPT = """
     Based on the question, you will need to make one or more function/tool calls to achieve the purpose. 
     If none of the function can be used, point it out. If the given question lacks the parameters required by the function,
     also point it out. You should only return the function call in tools call sections.
-    """
-
-USER_PROMPT_FOR_CHAT_MODEL = """
-    Here is a list of functions in JSON format that you can invoke. {language_specific_hint}\n\n{functions}\n\n
-    If you decide to invoke any of the function(s), put it in the format of [func_name1(params_name1=params_value1, params_name2=params_value2...), func_name2(params)]\n
-    You SHOULD NOT include any other information in the response.
+    
+    If you decide to invoke any of the function(s), you MUST put it in the format of [func_name1(params_name1=params_value1, params_name2=params_value2...), func_name2(params)]\n
+    You SHOULD NOT include any other text in the response.
+    
+    Here is a list of functions in JSON format that you can invoke.\n\n{functions}\n
     """
 
 GORILLA_TO_OPENAPI = {

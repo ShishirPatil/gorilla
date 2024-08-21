@@ -311,10 +311,10 @@ def resolve_ast_by_type(value):
     return output
 
 
-def system_prompt_pre_processing(prompts, system_prompt_template):
+def system_prompt_pre_processing_chat_model(prompts, system_prompt_template, function_docs):
     assert type(prompts) == list
 
-    system_prompt = system_prompt_template
+    system_prompt = system_prompt_template.format(functions=function_docs)
 
     # System prompt must be in the first position
     # If the question comes with a system prompt, append its content at the end of the chat template.
@@ -326,23 +326,6 @@ def system_prompt_pre_processing(prompts, system_prompt_template):
             0,
             {"role": "system", "content": system_prompt},
         )
-    return prompts
-
-
-def user_prompt_pre_processing_chat_model(
-    prompts, user_prompt_template, test_category, func_doc
-):
-    assert type(prompts) == list
-
-    prompts.append(
-        {
-            "role": "user",
-            "content": user_prompt_template.format(
-                functions=json.dumps(func_doc, indent=4),
-                language_specific_hint=_get_language_specific_hint(test_category),
-            ),
-        }
-    )
     return prompts
 
 
