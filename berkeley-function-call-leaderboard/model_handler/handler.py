@@ -1,7 +1,6 @@
 from model_handler.model_style import ModelStyle
 import json, os
 
-
 class BaseHandler:
     model_name: str
     model_style: ModelStyle
@@ -33,7 +32,8 @@ class BaseHandler:
             
         for entry in result:
             test_category = entry["id"].rsplit("_", 1)[0]
-            file_to_write = f"./result/{model_name_dir}/gorilla_openfunctions_v1_test_{test_category}_result.json"
+            file_to_write = f"BFCL_v2_{test_category}_result.json"
+            file_to_write = f"./result/{model_name_dir}/{file_to_write}"
             
             with open(file_to_write, "a+") as f:
                 f.write(json.dumps(entry) + "\n")

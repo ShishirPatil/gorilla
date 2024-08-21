@@ -1,7 +1,7 @@
 from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
 from model_handler.constant import (
-    SYSTEM_PROMPT_FOR_CHAT_MODEL,
+    DEFAULT_SYSTEM_PROMPT,
     USER_PROMPT_FOR_CHAT_MODEL,
     GORILLA_TO_OPENAPI,
 )
@@ -9,11 +9,11 @@ from model_handler.utils import (
     convert_to_tool,
     ast_parse,
     convert_to_function_call,
-    augment_prompt_by_languge,
-    language_specific_pre_processing,
+    func_doc_language_specific_pre_processing,
+    system_prompt_pre_processing,
+    user_prompt_pre_processing_chat_model,
 )
 from mistralai.client import MistralClient
-from mistralai.models.chat_completion import ChatMessage
 import os, time, json
 
 
@@ -25,15 +25,15 @@ class MistralHandler(BaseHandler):
         self.client = MistralClient(api_key=os.getenv("MISTRAL_API_KEY"))
 
     def inference(self, prompt, functions, test_category):
-        prompt = augment_prompt_by_languge(prompt, test_category)
         if "FC" in self.model_name:
-            functions = language_specific_pre_processing(functions, test_category)
+            functions = func_doc_language_specific_pre_processing(
+                functions, test_category
+            )
             tool = convert_to_tool(
                 functions, GORILLA_TO_OPENAPI, self.model_style, test_category
             )
-            message = [
-                ChatMessage(role="user", content=prompt),
-            ]
+            message = prompt
+
             start = time.time()
             if "Any" in self.model_name:
                 tool_choice = "any"
@@ -56,18 +56,15 @@ class MistralHandler(BaseHandler):
             except:
                 result = chat_response.choices[0].message.content
         else:
-            functions = language_specific_pre_processing(
+            functions = func_doc_language_specific_pre_processing(
                 functions, test_category
             )
-            message = [
-                ChatMessage(role="system", content=SYSTEM_PROMPT_FOR_CHAT_MODEL),
-                ChatMessage(
-                    role="user",
-                    content=USER_PROMPT_FOR_CHAT_MODEL.format(
-                        user_prompt=prompt, functions=str(functions)
-                    ),
-                ),
-            ]
+            prompt = system_prompt_pre_processing(prompt, DEFAULT_SYSTEM_PROMPT)
+            prompt = user_prompt_pre_processing_chat_model(
+                prompt, USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
+            )
+            message = prompt
+
             start = time.time()
             chat_response = self.client.chat(
                 model=self.model_name,

@@ -7,21 +7,6 @@ class GlaiveHandler(OSSHandler):
     def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
 
-    def _format_prompt(prompt, function, test_category):
-        formatted_prompt = """
-            SYSTEM: You are an helpful assistant who has access to the following functions to help the user, you can use the functions if needed-
-            {function}\n
-            USER: {prompt}\n
-        """
-        return formatted_prompt.format(function=function, prompt=prompt)
-
-    def inference(
-        self, test_question, num_gpus, gpu_memory_utilization, backend, format_prompt_func=_format_prompt
-    ):
-        return super().inference(
-            test_question, num_gpus, gpu_memory_utilization, backend, format_prompt_func=format_prompt_func
-        )
-
     def decode_ast(self, result, language="Python"):
         function_call = result.split("<functioncall>")[-1]
         function_call = function_call.replace("'", "")

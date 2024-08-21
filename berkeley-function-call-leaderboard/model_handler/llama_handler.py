@@ -1,26 +1,40 @@
 from model_handler.oss_handler import OSSHandler
 from model_handler.utils import ast_parse
-from model_handler.constant import (
-    SYSTEM_PROMPT_FOR_CHAT_MODEL,
-    USER_PROMPT_FOR_CHAT_MODEL,
-)
 
 
 class LlamaHandler(OSSHandler):
     def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
 
-    def _format_prompt(prompt, function, test_category):
-        conversations = f"""<|begin_of_text|><|start_header_id|>system<|end_header_id|>{SYSTEM_PROMPT_FOR_CHAT_MODEL}<|eot_id|><|start_header_id|>user<|end_header_id|>{USER_PROMPT_FOR_CHAT_MODEL.format(user_prompt=prompt, functions=str(function))}<|eot_id|><|start_header_id|>assistant<|end_header_id|>"""
-        return conversations
+    def _format_prompt(prompts, function, test_category):
+
+        formatted_prompt = "<|begin_of_text|>"
+
+        for prompt in prompts:
+            formatted_prompt += f"<|start_header_id|>{prompt['role']}<|end_header_id|>{prompt['content']}<|eot_id|>"
+
+        formatted_prompt += f"<|start_header_id|>assistant<|end_header_id|>"
+
+        return formatted_prompt
 
     def inference(
-        self, test_question, num_gpus, gpu_memory_utilization, backend, format_prompt_func=_format_prompt
+        self,
+        test_question,
+        num_gpus,
+        gpu_memory_utilization,
+        backend,
+        format_prompt_func=_format_prompt,
     ):
         return super().inference(
-            test_question, num_gpus, gpu_memory_utilization, backend, format_prompt_func=format_prompt_func
+            test_question,
+            num_gpus,
+            gpu_memory_utilization,
+            backend,
+            format_prompt_func=format_prompt_func,
+            use_default_system_prompt=True,
+            include_default_formatting_prompt=True,
         )
-        
+
     def decode_ast(self, result, language="Python"):
         func = result
         func = func.replace("\n", "")  # remove new line characters
