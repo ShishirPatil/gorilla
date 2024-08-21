@@ -2,11 +2,10 @@ from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
 from model_handler.utils import (
     ast_parse,
-    system_prompt_pre_processing,
-    user_prompt_pre_processing_chat_model,
+    system_prompt_pre_processing_chat_model,
     func_doc_language_specific_pre_processing,
 )
-from model_handler.constant import DEFAULT_SYSTEM_PROMPT, USER_PROMPT_FOR_CHAT_MODEL
+from model_handler.constant import DEFAULT_SYSTEM_PROMPT
 
 
 class OSSHandler(BaseHandler):
@@ -68,8 +67,7 @@ class OSSHandler(BaseHandler):
     def process_input(
         test_question,
         format_prompt_func,
-        use_default_system_prompt,
-        include_default_formatting_prompt,
+        include_system_prompt=True,
     ):
         prompts = []
         for question in test_question:
@@ -77,14 +75,10 @@ class OSSHandler(BaseHandler):
             functions = func_doc_language_specific_pre_processing(
                 question["function"], test_category
             )
-            # prompt here is a list of dictionaries, one representing a role and content
-            if use_default_system_prompt:
-                question["question"] = system_prompt_pre_processing(
-                    question["question"], DEFAULT_SYSTEM_PROMPT
-                )
-            if include_default_formatting_prompt:
-                question["question"] = user_prompt_pre_processing_chat_model(
-                    question["question"], USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
+            # Only the chat model needs the system prompt; also some require special formatting
+            if include_system_prompt:
+                question["question"] = system_prompt_pre_processing_chat_model(
+                    question["question"], DEFAULT_SYSTEM_PROMPT, functions
                 )
 
             prompts.append(format_prompt_func(question["question"], functions, test_category))
@@ -99,14 +93,12 @@ class OSSHandler(BaseHandler):
         format_prompt_func=_format_prompt,
         stop_token_ids=None,
         max_model_len=None,
-        use_default_system_prompt=True,
-        include_default_formatting_prompt=True,
+        include_system_prompt=True,
     ):
         test_question = self.process_input(
             test_question,
             format_prompt_func,
-            use_default_system_prompt,
-            include_default_formatting_prompt,
+            include_system_prompt=include_system_prompt,
         )
 
         ans_jsons = self._batch_generate(
