@@ -6,8 +6,7 @@ from anthropic import Anthropic
 from anthropic.types import TextBlock, ToolUseBlock
 from model_handler.constant import (
     GORILLA_TO_OPENAPI,
-    USER_PROMPT_FOR_CHAT_MODEL,
-    DEFAULT_SYSTEM_PROMPT,
+    DEFAULT_SYSTEM_PROMPT_WITHOUT_FUNC_DOC,
 )
 from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
@@ -16,7 +15,6 @@ from model_handler.utils import (
     convert_to_function_call,
     convert_to_tool,
     func_doc_language_specific_pre_processing,
-    user_prompt_pre_processing_chat_model,
     convert_system_prompt_into_user_prompt,
     combine_consecutive_user_prompr,
 )
@@ -38,9 +36,6 @@ class ClaudeHandler(BaseHandler):
             )
 
             # Claude takes in system prompt in a specific field, not in the message field, so we don't need to add it to the message
-            prompt = user_prompt_pre_processing_chat_model(
-                prompt, USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
-            )
             # This deals with any system prompts that come with the question
             prompt = convert_system_prompt_into_user_prompt(prompt)
 
@@ -53,7 +48,7 @@ class ClaudeHandler(BaseHandler):
                 max_tokens=self.max_tokens,
                 temperature=self.temperature,
                 top_p=self.top_p,
-                system=DEFAULT_SYSTEM_PROMPT,
+                system=DEFAULT_SYSTEM_PROMPT_WITHOUT_FUNC_DOC,
                 messages=message,
             )
             latency = time.time() - start

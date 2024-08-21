@@ -3,14 +3,12 @@ from model_handler.model_style import ModelStyle
 from model_handler.utils import (
     convert_to_tool,
     convert_to_function_call,
-    system_prompt_pre_processing,
-    user_prompt_pre_processing_chat_model,
+    system_prompt_pre_processing_chat_model,
     func_doc_language_specific_pre_processing,
     ast_parse,
 )
 from model_handler.constant import (
     GORILLA_TO_OPENAPI,
-    USER_PROMPT_FOR_CHAT_MODEL,
     DEFAULT_SYSTEM_PROMPT,
 )
 from openai import OpenAI
@@ -28,8 +26,7 @@ class OpenAIHandler(BaseHandler):
         if "FC" not in self.model_name:
             functions = func_doc_language_specific_pre_processing(functions, test_category)
 
-            prompt = system_prompt_pre_processing(prompt, DEFAULT_SYSTEM_PROMPT)
-            prompt = user_prompt_pre_processing_chat_model(prompt, USER_PROMPT_FOR_CHAT_MODEL, test_category, functions)
+            prompt = system_prompt_pre_processing_chat_model(prompt, DEFAULT_SYSTEM_PROMPT, functions)
             message = prompt
             
             start_time = time.time()

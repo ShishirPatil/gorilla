@@ -2,7 +2,6 @@ from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
 from model_handler.constant import (
     DEFAULT_SYSTEM_PROMPT,
-    USER_PROMPT_FOR_CHAT_MODEL,
     GORILLA_TO_OPENAPI,
 )
 from model_handler.utils import (
@@ -10,8 +9,7 @@ from model_handler.utils import (
     ast_parse,
     convert_to_function_call,
     func_doc_language_specific_pre_processing,
-    system_prompt_pre_processing,
-    user_prompt_pre_processing_chat_model,
+    system_prompt_pre_processing_chat_model,
 )
 from mistralai.client import MistralClient
 import os, time, json
@@ -59,10 +57,7 @@ class MistralHandler(BaseHandler):
             functions = func_doc_language_specific_pre_processing(
                 functions, test_category
             )
-            prompt = system_prompt_pre_processing(prompt, DEFAULT_SYSTEM_PROMPT)
-            prompt = user_prompt_pre_processing_chat_model(
-                prompt, USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
-            )
+            prompt = system_prompt_pre_processing_chat_model(prompt, DEFAULT_SYSTEM_PROMPT, functions)
             message = prompt
 
             start = time.time()

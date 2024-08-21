@@ -3,14 +3,12 @@ import os
 from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
 from model_handler.utils import (
-    user_prompt_pre_processing_chat_model,
     func_doc_language_specific_pre_processing,
     convert_to_tool,
     ast_parse,
 )
 from model_handler.constant import (
-    DEFAULT_SYSTEM_PROMPT,
-    USER_PROMPT_FOR_CHAT_MODEL,
+    DEFAULT_SYSTEM_PROMPT_WITHOUT_FUNC_DOC,
     GORILLA_TO_PYTHON,
 )
 import time
@@ -80,9 +78,6 @@ class CohereHandler(BaseHandler):
             functions = func_doc_language_specific_pre_processing(
                 functions, test_category
             )
-            prompt = user_prompt_pre_processing_chat_model(
-                prompt, USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
-            )
             
             chat_history = self._substitute_prompt_role(prompt)
             chat_history = self._substitute_content_name(chat_history)
@@ -94,7 +89,7 @@ class CohereHandler(BaseHandler):
                 model=self.model_name,
                 temperature=self.temperature,
                 max_tokens=self.max_tokens,
-                preamble=DEFAULT_SYSTEM_PROMPT,
+                preamble=DEFAULT_SYSTEM_PROMPT_WITHOUT_FUNC_DOC,
                 chat_history=chat_history,
             )
             latency = time.time() - start_time
