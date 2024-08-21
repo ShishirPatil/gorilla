@@ -3,8 +3,7 @@ from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     convert_to_tool,
     convert_to_function_call,
-    augment_prompt_by_languge,
-    language_specific_pre_processing,
+    func_doc_language_specific_pre_processing,
 )
 from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
 from openai import OpenAI
@@ -12,19 +11,16 @@ import os, time, json
 
 
 class YiHandler(BaseHandler):
-    def __init__(self, model_name, temperature=0.0, top_p=1, max_tokens=1000) -> None:
+    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
         self.model_style = ModelStyle.OpenAI
         self.base_url = "https://api.01.ai/v1"
         self.client = OpenAI(base_url=self.base_url, api_key=os.getenv("YI_API_KEY"))
 
     def inference(self, prompt, functions, test_category):
-        prompt = augment_prompt_by_languge(prompt, test_category)
-        functions = language_specific_pre_processing(functions, test_category)
-        if type(functions) is not list:
-            functions = [functions]
+        functions = func_doc_language_specific_pre_processing(functions, test_category)
 
-        message = [{"role": "user", "content": "Questions:" + prompt}]
+        message = prompt
         oai_tool = convert_to_tool(
             functions, GORILLA_TO_OPENAPI, self.model_style, test_category
         )
@@ -61,7 +57,7 @@ class YiHandler(BaseHandler):
         metadata["latency"] = latency
         return result, metadata
 
-    def decode_ast(self,result,language="Python"):
+    def decode_ast(self, result, language="Python"):
         decoded_output = []
         for invoked_function in result:
             name = list(invoked_function.keys())[0]
@@ -70,6 +66,6 @@ class YiHandler(BaseHandler):
 
         return decoded_output
 
-    def decode_execute(self,result):
+    def decode_execute(self, result):
         function_call = convert_to_function_call(result)
         return function_call

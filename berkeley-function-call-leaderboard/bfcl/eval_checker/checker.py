@@ -42,14 +42,13 @@ with open(EVAL_GROUND_TRUTH_PATH, "r") as f:
 
 #### Helper functions for AST ####
 def find_description(func_descriptions, name):
-    # If func_descriptions is a list, this is the multiple or multiple_parallel case
     if type(func_descriptions) == list:
         for func_description in func_descriptions:
-            if func_description["name"] in name:
+            if func_description["name"] == name:
                 return func_description
         return None
     else:
-        # This is the parallel case, there is no need to loop through the list, as there is only one function
+        # it is a dict, there is only one function
         return func_descriptions
 
 
@@ -214,7 +213,8 @@ def list_checker(param: str, model_output: list, possible_answer: list):
 
 
 def dict_checker(param: str, model_output: dict, possible_answers: list):
-    # This function works for simple dictionaries, as well as dictionaries with nested dictionaries
+    # This function works for simple dictionaries, but not dictionaries with nested dictionaries.
+    # The current dataset only contains simple dictionaries, so this is sufficient.
 
     result = {"valid": False, "error": [], "error_type": "dict_checker:unclear"}
     for i in range(len(possible_answers)):
@@ -228,50 +228,47 @@ def dict_checker(param: str, model_output: dict, possible_answers: list):
 
         possible_answer = possible_answers[i]
         # possible_anwer is a single dictionary
-        if len(model_output.keys()) != len(possible_answer.keys()):
-            result["valid"] = False
-            result["error"].append("Wrong number of parameters for dictionary.")
-            result["error_type"] = "value_error:dict_items"
-            flag = False
-            continue
-
+        
         for key, value in model_output.items():
             if key not in possible_answer:
                 result["valid"] = False
-                result["error"].append(f"Unexpected parameter: '{key}'.")
+                result["error"].append(f"Unexpected dict key parameter: '{key}'.")
                 result["error_type"] = "value_error:dict_key"
                 flag = False
                 break
 
-            expected_values = possible_answer[key]
-            if isinstance(expected_values, dict):
-                result = dict_checker(param, value, [expected_values])
-                if not result["valid"]:
-                    flag = False
-                    break
-            else:
-                standardize_value = value
-                # If the value is a string, we need to standardize it
-                if type(value) == str:
-                    standardize_value = standardize_string(value)
-                # We also need to standardize the possible answers
-                standardize_possible_answer = []
-                for i in range(len(possible_answer[key])):
-                    if type(possible_answer[key][i]) == str:
-                        standardize_possible_answer.append(
-                            standardize_string(possible_answer[key][i])
-                        )
-                    else:
-                        standardize_possible_answer.append(possible_answer[key][i])
-
-                if standardize_value not in standardize_possible_answer:
-                    result["valid"] = False
-                    result["error"].append(
-                        f"Invalid value for parameter {repr(key)}: {repr(value)}. Expected one of {standardize_possible_answer}."
+            standardize_value = value
+            # If the value is a string, we need to standardize it
+            if type(value) == str:
+                standardize_value = standardize_string(value)
+                
+            # We also need to standardize the possible answers if they are string
+            standardize_possible_answer = []
+            for i in range(len(possible_answer[key])):
+                if type(possible_answer[key][i]) == str:
+                    standardize_possible_answer.append(
+                        standardize_string(possible_answer[key][i])
                     )
-                    result["error_type"] = "value_error:dict_value"
-                    flag = False
-                    break
+                else:
+                    standardize_possible_answer.append(possible_answer[key][i])
+
+            if standardize_value not in standardize_possible_answer:
+                result["valid"] = False
+                result["error"].append(
+                    f"Invalid value for parameter {repr(key)}: {repr(value)}. Expected one of {standardize_possible_answer}."
+                )
+                result["error_type"] = "value_error:dict_value"
+                flag = False
+                break
+        
+        for key, value in possible_answer.items():
+            if key not in model_output and "" not in value:
+                result["valid"] = False
+                result["error"].append(f"Missing dict key parameter: '{key}'.")
+                result["error_type"] = "value_error:dict_key"
+                flag = False
+                break
+            
         if flag:
             return {"valid": True, "error": []}
 
@@ -520,14 +517,7 @@ def parallel_function_checker_enforce_order(
 
     for i in range(len(possible_answers_list)):
         func_description = find_description(func_descriptions, func_name_list[i])
-        if func_description is None:
-            return {
-                "valid": False,
-                "error": [
-                    f"Function doc description not found for function name: {repr(func_name_list[i])}."
-                ],
-                "error_type": "parallel_function_checker_enforce_order:cannot_find_description",
-            }
+        
         result = simple_function_checker(
             func_description,
             model_output[i],
@@ -544,7 +534,7 @@ def parallel_function_checker_enforce_order(
 def parallel_function_checker_no_order(
     func_descriptions: list,
     model_output: list,
-    possible_answers: dict,
+    possible_answers: list,
     language: str,
     model_name: str,
 ):
@@ -555,28 +545,15 @@ def parallel_function_checker_no_order(
             "error_type": "parallel_function_checker_no_order:wrong_count",
         }
 
-    func_name_list = list(possible_answers.keys())
-    possible_answers_list = []
-
-    for key, value in possible_answers.items():
-        possible_answers_list.append({key: value})
-
     matched_indices = []
 
     # We go throught the possible answers one by one, and eliminate the model output that matches the possible answer
     # It must be this way because we need ground truth to fetch the correct function description
-    for i in range(len(possible_answers_list)):
-        func_description = find_description(func_descriptions, func_name_list[i])
+    for i in range(len(possible_answers)):
+        # possible_answers[i] is a dictionary with only one key
+        func_name_expected = list(possible_answers[i].keys())[0]
+        func_description = find_description(func_descriptions, func_name_expected)
 
-        # This should not happen. As possible_answers is the ground truth, and it should have the correct function name.
-        if func_description is None:
-            return {
-                "valid": False,
-                "error": [
-                    f"Function doc description not found for function name: {repr(func_name_list[i])}."
-                ],
-                "error_type": "parallel_function_checker_no_order:cannot_find_description",
-            }
 
         all_errors = []
 
@@ -587,7 +564,7 @@ def parallel_function_checker_no_order(
             result = simple_function_checker(
                 func_description,
                 model_output[index],
-                possible_answers_list[i],
+                possible_answers[i],
                 language,
                 model_name,
             )
@@ -602,7 +579,7 @@ def parallel_function_checker_no_order(
                             "sub_error": result["error"],
                             "sub_error_type": result["error_type"],
                             "model_output_item": model_output[index],
-                            "possible_answer_item": possible_answers_list[i],
+                            "possible_answer_item": possible_answers[i],
                         }
                     }
                 )
@@ -622,6 +599,32 @@ def parallel_function_checker_no_order(
             }
 
     return {"valid": True, "error": []}
+
+
+def multiple_function_checker(
+    func_descriptions: list,
+    model_output: list,
+    possible_answers: list,
+    language: str,
+    model_name: str,
+):
+    if len(model_output) != len(possible_answers):
+        return {
+            "valid": False,
+            "error": ["Wrong number of functions."],
+            "error_type": "multiple_function_checker:wrong_count",
+        }
+
+    # possible_answers is a list of only one dictionary with only one key
+    func_name_expected = list(possible_answers[0].keys())[0]
+    func_description = find_description(func_descriptions, func_name_expected)
+    return simple_function_checker(
+        func_description,
+        model_output[0],
+        possible_answers[0],
+        language,
+        model_name,
+    )
 
 
 def patten_matcher(exec_output, expected_result, function_call, is_sanity_check):
@@ -926,15 +929,16 @@ def executable_checker_rest(func_call, idx):
 def ast_checker(
     func_description, model_output, possible_answer, language, test_category, model_name
 ):
-    if "multiple" in test_category or "parallel" in test_category:
-        # Some formatting issues that needs to be handled
-        if test_category == "parallel_function":
-            func_description = [func_description]
-
+    if "parallel" in test_category:
         return parallel_function_checker_no_order(
             func_description, model_output, possible_answer, language, model_name
         )
-
+        
+    elif "multiple" in test_category:
+        return multiple_function_checker(
+            func_description, model_output, possible_answer, language, model_name
+        )
+        
     else:
         if len(model_output) != 1:
             return {
@@ -942,9 +946,9 @@ def ast_checker(
                 "error": ["Wrong number of functions."],
                 "error_type": "simple_function_checker:wrong_count",
             }
-        model_output = model_output[0]
+
         return simple_function_checker(
-            func_description, model_output, possible_answer, language, model_name
+            func_description[0], model_output[0], possible_answer[0], language, model_name
         )
 
 

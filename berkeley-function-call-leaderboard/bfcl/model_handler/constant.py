@@ -1,6 +1,6 @@
 USE_COHERE_OPTIMIZATION = False
 
-SYSTEM_PROMPT_FOR_CHAT_MODEL = """
+DEFAULT_SYSTEM_PROMPT = """
     You are an expert in composing functions. You are given a question and a set of possible functions. 
     Based on the question, you will need to make one or more function/tool calls to achieve the purpose. 
     If none of the function can be used, point it out. If the given question lacks the parameters required by the function,
@@ -8,10 +8,11 @@ SYSTEM_PROMPT_FOR_CHAT_MODEL = """
     """
 
 USER_PROMPT_FOR_CHAT_MODEL = """
-    Questions:{user_prompt}\nHere is a list of functions in JSON format that you can invoke:\n{functions}. 
-    Should you decide to return the function call(s),Put it in the format of [func1(params_name=params_value, params_name2=params_value2...), func2(params)]\n
-    NO other text MUST be included. 
-"""
+    Here is a list of functions in JSON format that you can invoke. {language_specific_hint}\n\n{functions}\n\n
+    If you decide to invoke any of the function(s), put it in the format of [func_name1(params_name1=params_value1, params_name2=params_value2...), func_name2(params)]\n
+    You SHOULD NOT include any other information in the response.
+    """
+
 GORILLA_TO_OPENAPI = {
     "integer": "integer",
     "number": "number",
@@ -114,9 +115,10 @@ JS_TYPE_CONVERSION = {
     "any": str,
 }
 
-# If there is any underscore in folder name, you should change it to `/` in the following strings
 UNDERSCORE_TO_DOT = [
+    "gpt-4o-2024-08-06-FC",
     "gpt-4o-2024-05-13-FC",
+    "gpt-4o-mini-2024-07-18-FC",
     "gpt-4-turbo-2024-04-09-FC",
     "gpt-4-1106-preview-FC",
     "gpt-4-0125-preview-FC",
@@ -126,9 +128,13 @@ UNDERSCORE_TO_DOT = [
     "claude-3-sonnet-20240229-FC",
     "claude-3-haiku-20240307-FC",
     "claude-3-5-sonnet-20240620-FC",
-    "mistral-large-2402-FC",
-    "mistral-large-2402-FC-Any",
-    "mistral-large-2402-FC-Auto",
+    "open-mistral-nemo-2407-FC-Any",
+    "open-mistral-nemo-2407-FC-Auto",
+    "open-mixtral-8x22b-FC-Any",
+    "open-mixtral-8x22b-FC-Auto",
+    "mistral-large-2407-FC",
+    "mistral-large-2407-FC-Any",
+    "mistral-large-2407-FC-Auto",
     "mistral-small-2402-FC-Any",
     "mistral-small-2402-FC-Auto",
     "mistral-small-2402-FC",
@@ -136,10 +142,9 @@ UNDERSCORE_TO_DOT = [
     "gemini-1.5-pro-preview-0409",
     "gemini-1.5-pro-preview-0514",
     "gemini-1.5-flash-preview-0514",
-    "meetkai/functionary-small-v2.2-FC",
-    "meetkai/functionary-medium-v2.2-FC",
-    "meetkai/functionary-small-v2.4-FC",
-    "meetkai/functionary-medium-v2.4-FC",
+    "meetkai/functionary-small-v3.1-FC",
+    "meetkai/functionary-small-v3.2-FC",
+    "meetkai/functionary-medium-v3.1-FC",
     "NousResearch/Hermes-2-Pro-Llama-3-8B",
     "NousResearch/Hermes-2-Pro-Llama-3-70B",
     "NousResearch/Hermes-2-Pro-Mistral-7B",
@@ -152,18 +157,26 @@ UNDERSCORE_TO_DOT = [
     "yi-large-fc",
 ]
 
-TEST_CATEGORIES = {
-    "executable_simple": "gorilla_openfunctions_v1_test_executable_simple.json",
-    "executable_parallel_function": "gorilla_openfunctions_v1_test_executable_parallel_function.json",
-    "executable_multiple_function": "gorilla_openfunctions_v1_test_executable_multiple_function.json",
-    "executable_parallel_multiple_function": "gorilla_openfunctions_v1_test_executable_parallel_multiple_function.json",
-    "simple": "gorilla_openfunctions_v1_test_simple.json",
-    "relevance": "gorilla_openfunctions_v1_test_relevance.json",
-    "parallel_function": "gorilla_openfunctions_v1_test_parallel_function.json",
-    "multiple_function": "gorilla_openfunctions_v1_test_multiple_function.json",
-    "parallel_multiple_function": "gorilla_openfunctions_v1_test_parallel_multiple_function.json",
-    "java": "gorilla_openfunctions_v1_test_java.json",
-    "javascript": "gorilla_openfunctions_v1_test_javascript.json",
-    "rest": "gorilla_openfunctions_v1_test_rest.json",
-    "sql": "gorilla_openfunctions_v1_test_sql.json",
+TEST_FILE_MAPPING = {
+    "exec_simple": "BFCL_v2_exec_simple.json",
+    "exec_parallel": "BFCL_v2_exec_parallel.json",
+    "exec_multiple": "BFCL_v2_exec_multiple.json",
+    "exec_parallel_multiple": "BFCL_v2_exec_parallel_multiple.json",
+    "simple": "BFCL_v2_simple.json",
+    "irrelevance": "BFCL_v2_irrelevance.json",
+    "parallel": "BFCL_v2_parallel.json",
+    "multiple": "BFCL_v2_multiple.json",
+    "parallel_multiple": "BFCL_v2_parallel_multiple.json",
+    "java": "BFCL_v2_java.json",
+    "javascript": "BFCL_v2_javascript.json",
+    "rest": "BFCL_v2_rest.json",
+    "sql": "BFCL_v2_sql.json",
+    "chatable": "BFCL_v2_chatable.json",
+    # Live Datasets
+    "live_simple": "BFCL_v2_live_simple.json",
+    "live_multiple": "BFCL_v2_live_multiple.json",
+    "live_parallel": "BFCL_v2_live_parallel.json",
+    "live_parallel_multiple": "BFCL_v2_live_parallel_multiple.json",
+    "live_irrelevance": "BFCL_v2_live_irrelevance.json",
+    "live_relevance": "BFCL_v2_live_relevance.json",
 }

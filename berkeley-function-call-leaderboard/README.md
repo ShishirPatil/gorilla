@@ -85,11 +85,12 @@ If decided to run OSS model, the generation script uses vllm and therefore requi
 
 ### Generating LLM Responses
 
-Use the following command for LLM inference of the evaluation dataset with specific models
+Use the following command for LLM inference of the evaluation dataset with specific models. 
 
 ```bash
-python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
+python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1
 ```
+You can optionally specify the number of threads to use for *parallel inference* by setting the `--num-threads` flag to speed up inference for **hosted models**, not applicable for OSS models.
 
 For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section below.
 
@@ -118,14 +119,22 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |gpt-3.5-turbo-0125| Prompt|
 |gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}-FC| Function Calling|
 |gpt-4-{0613,1106-preview,0125-preview,turbo-2024-04-09}| Prompt|
+|gpt-4o-2024-08-06-FC | Function Calling|
+|gpt-4o-2024-08-06 | Prompt|
 |gpt-4o-2024-05-13-FC | Function Calling|
 |gpt-4o-2024-05-13| Prompt|
+|gpt-4o-mini-2024-07-18-FC | Function Calling|
+|gpt-4o-mini-2024-07-18 | Prompt|
 |google/gemma-7b-it 💻| Prompt|
-|meetkai/functionary-{small,medium}-v2.4-FC| Function Calling|
-|meetkai/functionary-small-v2.2-FC| Function Calling|
+|meetkai/functionary-medium-v3.1-FC| Function Calling|
+|meetkai/functionary-small-{v3.1,v3.2}-FC| Function Calling|
 |meta-llama/Meta-Llama-3-{8B,70B}-Instruct | Prompt|
-|mistral-large-2402-FC-{Any,Auto} | Function Calling|
-|mistral-large-2402 | Prompt|
+|open-mixtral-{8x7b,8x22b} | Prompt|
+|open-mixtral-8x22b-FC-{Any,Auto} | Function Calling|
+|open-mistral-nemo-2407 | Prompt|
+|open-mistral-nemo-2407-FC-{Any,Auto} | Function Calling|
+|mistral-large-2407-FC-{Any,Auto} | Function Calling|
+|mistral-large-2407 | Prompt|
 |mistral-medium-2312 | Prompt|
 |mistral-small-2402-FC-{Any,Auto} | Function Calling|
 |mistral-small-2402 | Prompt|
@@ -157,33 +166,42 @@ For `Databrick-DBRX-instruct`, you need to create a Databrick Azure workspace an
 ### Available Test Category
 In the following two sections, the optional `--test-category` parameter can be used to specify the category of tests to run. You can specify multiple categories separated by spaces. Available options include:
 
-- `all`: Run all test categories.
-    - This is the default option if no test category is provided.
-- `ast`: Abstract Syntax Tree tests.
-- `executable`: Executable code evaluation tests.
-- `python`: Tests specific to Python code.
-- `non-python`: Tests for code in languages other than Python, such as Java and JavaScript.
-- `python-ast`: Python Abstract Syntax Tree tests.
-- Individual test categories:
-    - `simple`: Simple function calls.
-    - `parallel_function`: Multiple function calls in parallel.
-    - `multiple_function`: Multiple function calls in sequence.
-    - `parallel_multiple_function`: Multiple function calls in parallel and in sequence.
-    - `executable_simple`: Executable function calls.
-    - `executable_parallel_function`: Executable multiple function calls in parallel.
-    - `executable_multiple_function`: Executable multiple function calls in sequence.
-    - `executable_parallel_multiple_function`: Executable multiple function calls in parallel and in sequence.
-    - `java`: Java function calls.
-    - `javascript`: JavaScript function calls.
-    - `rest`: REST API function calls.
-    - `relevance`: Function calls with irrelevant function documentation.
-- If no test category is provided, the script will run all available test categories. (same as `all`)
+* Available test groups:
+  * `all`: All test categories.
+    * This is the default option if no test category is provided.
+  * `live`: All user-contributed live test categories.
+  * `non_live`: All not-user-contributed test categories (the opposite of `live`).
+  * `ast`: Abstract Syntax Tree tests.
+  * `executable`: Executable code evaluation tests.
+  * `python`: Tests specific to Python code.
+  * `non_python`: Tests for code in languages other than Python, such as Java and JavaScript.
+  * `python_ast`: Python Abstract Syntax Tree tests.
+* Available individual test categories:
+  * `simple`: Simple function calls.
+  * `parallel`: Multiple function calls in parallel.
+  * `multiple`: Multiple function calls in sequence.
+  * `parallel_multiple`: Multiple function calls in parallel and in sequence.
+  * `java`: Java function calls.
+  * `javascript`: JavaScript function calls.
+  * `exec_simple`: Executable function calls.
+  * `exec_parallel`: Executable multiple function calls in parallel.
+  * `exec_multiple`: Executable multiple function calls in parallel.
+  * `exec_parallel_multiple`: Executable multiple function calls in parallel and in sequence.
+  * `rest`: REST API function calls.
+  * `irrelevance`: Function calls with irrelevant function documentation.
+  * `live_simple`: User-contributed simple function calls.
+  * `live_multiple`: User-contributed multiple function calls in sequence.
+  * `live_parallel`: User-contributed multiple function calls in parallel.
+  * `live_parallel_multiple`: User-contributed multiple function calls in parallel and in sequence.
+  * `live_irrelevance`: User-contributed function calls with irrelevant function documentation.
+  * `live_relevance`: User-contributed function calls with relevant function documentation.
+* If no test category is provided, the script will run all available test categories. (same as `all`)
 
-> If you want to run the `all` or `executable` or `python` category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API!
+> If you want to run the `all`, `non_live`, `executable` or `python` category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API!
 
-> If you do not wish to provide API keys for REST API testing, set `test-category` to `ast` or any non-executable category.
+> If you do not wish to provide API keys for REST API testing, set `test-category` to any non-executable category.
 
-> By setting the `--api-sanity-check` flag, or `-c` for short, if the test categories include `executable`, the evaluation process will perform the REST API sanity check first to ensure that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, we will flag those in the console and continue execution.
+> By setting the `--api-sanity-check` flag, or `-c` for short, if the test categories include any executable categories (eg, the test name contains `exec`), the evaluation process will perform the REST API sanity check first to ensure that all the API endpoints involved during the execution evaluation process are working properly. If any of them are not behaving as expected, we will flag those in the console and continue execution.
 
 
 ## Evaluating the LLM generations
@@ -193,7 +211,7 @@ In the following two sections, the optional `--test-category` parameter can be u
 Navigate to the `gorilla/berkeley-function-call-leaderboard/bfcl/eval_checker` directory and run the `eval_runner.py` script with the desired parameters. The basic syntax is as follows:
 
 ```bash
-python eval_runner.py --model MODEL_NAME --test-category {TEST_CATEGORY,all,ast,executable,python,non-python}
+python eval_runner.py --model MODEL_NAME --test-category TEST_CATEGORY
 ```
 
 For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section.
@@ -214,16 +232,16 @@ If you want to evaluate all offline tests (do not require RapidAPI keys) for Ope
 python eval_runner.py --model gpt-3.5-turbo-0125 --test-category ast
 ```
 
-If you want to run `rest` tests for a few Claude models, you can use the following command:
+If you want to run the `rest` tests for a few Claude models, you can use the following command:
 
 ```bash
 python eval_runner.py --model claude-3-5-sonnet-20240620 claude-3-opus-20240229 claude-3-sonnet-20240229 --test-category rest
 ```
 
-If you want to run `rest` and `javascript` tests for a few models and `gorilla-openfunctions-v2`, you can use the following command:
+If you want to run `live_simple` and `javascript` tests for a few models and `gorilla-openfunctions-v2`, you can use the following command:
 
 ```bash
-python eval_runner.py --model gorilla-openfunctions-v2 claude-3-5-sonnet-20240620 gpt-4-0125-preview gemini-1.5-pro-preview-0514 --test-category rest javascript
+python eval_runner.py --model gorilla-openfunctions-v2 claude-3-5-sonnet-20240620 gpt-4-0125-preview gemini-1.5-pro-preview-0514 --test-category live_simple javascript
 ```
 
 ### Model-Specific Optimization
@@ -233,6 +251,24 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
+* [August 19, 2024] [#580](https://github.com/ShishirPatil/gorilla/pull/580): Introduce BFCL V2 Live dataset, featuring user-contributed live prompts and function docs. To read more about the composition and construction of this dataset, please refer to our [blog](https://gorilla.cs.berkeley.edu/blogs/12_bfcl_v2_live.html). All CLI commands have been updated to support the new dataset.
+* [August 8, 2024] [#574](https://github.com/ShishirPatil/gorilla/pull/574): Set temperature to 0.001 for all models for consistency and reproducibility.
+* [August 7, 2024] [#571](https://github.com/ShishirPatil/gorilla/pull/571): Support parallel inference for hosted models. User can specify the number of threads to use for parallel inference by setting the `--num-threads` flag. The default is 1, which means no parallel inference.
+* [August 6, 2024] [#569](https://github.com/ShishirPatil/gorilla/pull/569), [#570](https://github.com/ShishirPatil/gorilla/pull/570), [#573](https://github.com/ShishirPatil/gorilla/pull/573): Add the following new models to the leaderboard:
+  * `open-mistral-nemo-2407`
+  * `open-mistral-nemo-2407-FC-Any`
+  * `open-mistral-nemo-2407-FC-Auto`
+  * `open-mixtral-8x22b`
+  * `open-mixtral-8x22b-FC-Any`
+  * `open-mixtral-8x22b-FC-Auto`
+  * `open-mixtral-8x7b`
+  * `gpt-4o-mini-2024-07-18`
+  * `gpt-4o-mini-2024-07-18-FC`
+  * `gpt-4o-2024-08-06`
+  * `gpt-4o-2024-08-06-FC`
+  * `meetkai/functionary-medium-v3.1-FC`
+  * `meetkai/functionary-small-v3.1-FC`
+  * `meetkai/functionary-small-v3.2-FC`
 * [August 5, 2024] [#568](https://github.com/ShishirPatil/gorilla/pull/568): Rephrase the question prompt for the `executable_parallel_function` category to remove potentially misleading information implying multi-turn function calls.
 * [August 4, 2024] [#557](https://github.com/ShishirPatil/gorilla/pull/557): Bug fix in the possible answers.
   * simple: 7 affected
@@ -241,7 +277,7 @@ Some companies have proposed some optimization strategies in their models' handl
   * parallel multiple function: 6 affected
   * executable parallel function: 1 affected
   * javascript: 3 affected
-* [July 26, 2024] [#549](https://github.com/ShishirPatil/gorilla/pull/549): Fix js_type_converter.py to properly handle JavaScript array value inside dictionary. 
+* [July 26, 2024] [#549](https://github.com/ShishirPatil/gorilla/pull/549): Fix js_type_converter.py to properly handle JavaScript array value inside dictionary.
 * [July 25, 2024] [#532](https://github.com/ShishirPatil/gorilla/pull/532), [#543](https://github.com/ShishirPatil/gorilla/pull/543), [#556](https://github.com/ShishirPatil/gorilla/pull/556), [#542](https://github.com/ShishirPatil/gorilla/pull/542): Add the following new models to the leaderboard:
     - `Salesforce/xLAM-7b-fc-r`
     - `Salesforce/xLAM-1b-fc-r`

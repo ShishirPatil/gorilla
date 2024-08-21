@@ -1,12 +1,11 @@
 from bfcl.model_handler.model_style import ModelStyle
 import json, os
 
-
 class BaseHandler:
     model_name: str
     model_style: ModelStyle
 
-    def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
+    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
         self.model_name = model_name
         self.temperature = temperature
         self.top_p = top_p
@@ -33,7 +32,8 @@ class BaseHandler:
             
         for entry in result:
             test_category = entry["id"].rsplit("_", 1)[0]
-            file_to_write = f"./result/{model_name_dir}/gorilla_openfunctions_v1_test_{test_category}_result.json"
+            file_to_write = f"BFCL_v2_{test_category}_result.json"
+            file_to_write = f"./result/{model_name_dir}/{file_to_write}"
             
             with open(file_to_write, "a+") as f:
                 f.write(json.dumps(entry) + "\n")

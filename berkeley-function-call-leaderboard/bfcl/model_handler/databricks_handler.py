@@ -1,10 +1,15 @@
 from bfcl.model_handler.handler import BaseHandler
 from bfcl.model_handler.model_style import ModelStyle
-from bfcl.model_handler.utils import language_specific_pre_processing, ast_parse
+from bfcl.model_handler.utils import (
+    func_doc_language_specific_pre_processing,
+    system_prompt_pre_processing,
+    user_prompt_pre_processing_chat_model,
+    combine_consecutive_user_prompr,
+    ast_parse,
+)
 from bfcl.model_handler.constant import (
-    SYSTEM_PROMPT_FOR_CHAT_MODEL,
+    DEFAULT_SYSTEM_PROMPT,
     USER_PROMPT_FOR_CHAT_MODEL,
-    GORILLA_TO_OPENAPI,
 )
 import time
 from openai import OpenAI
@@ -12,12 +17,9 @@ import re
 
 
 class DatabricksHandler(BaseHandler):
-    def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
-        self.model_name = model_name
+    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
+        super().__init__(model_name, temperature, top_p, max_tokens)
         self.model_style = ModelStyle.OpenAI
-        self.temperature = temperature
-        self.top_p = top_p
-        self.max_tokens = max_tokens
 
         # NOTE: To run the Databricks model, you need to provide your own Databricks API key and your own Azure endpoint URL.
         self.client = OpenAI(
@@ -26,19 +28,15 @@ class DatabricksHandler(BaseHandler):
         )
 
     def inference(self, prompt, functions, test_category):
-        functions = language_specific_pre_processing(functions, test_category)
-        if type(functions) is not list:
-            functions = [functions]
-        message = [
-            {"role": "system", "content": SYSTEM_PROMPT_FOR_CHAT_MODEL},
-            {
-                "role": "user",
-                "content": "Questions:"
-                + USER_PROMPT_FOR_CHAT_MODEL.format(
-                    user_prompt=prompt, functions=str(functions)
-                ),
-            },
-        ]
+        functions = func_doc_language_specific_pre_processing(functions, test_category)
+
+        prompt = system_prompt_pre_processing(prompt, DEFAULT_SYSTEM_PROMPT)
+        prompt = user_prompt_pre_processing_chat_model(
+            prompt, USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
+        )
+        prompt = combine_consecutive_user_prompr(prompt)
+        message = prompt
+
         start_time = time.time()
         response = self.client.chat.completions.create(
             messages=message,
@@ -47,6 +45,7 @@ class DatabricksHandler(BaseHandler):
             max_tokens=self.max_tokens,
             top_p=self.top_p,
         )
+
         latency = time.time() - start_time
         result = response.choices[0].message.content
         metadata = {}
