@@ -84,18 +84,25 @@ class OSSHandler(BaseHandler):
     ):
         import sglang as sgl
 
-        assert (
-            sgl.__version__ >= "0.2.13"
-        ), "Please upgrade sglang to version 0.2.13 or higher"
+        import torch
 
-        try:
-            import flashinfer
-        except ImportError:
-            print(
-                "Please install flashinfer to use sglang: "
-                "https://docs.flashinfer.ai/installation.html"
-            )
-            raise
+        num_sms = torch.cuda.get_device_properties(0).multi_processor_count
+        if num_sms >= 80:
+            disable_flashinfer = False
+            assert (
+                sgl.__version__ >= "0.2.13"
+            ), "Please upgrade sglang to version 0.2.13 or higher"
+
+            try:
+                import flashinfer
+            except ImportError:
+                print(
+                    "Please install flashinfer to use sglang: "
+                    "https://docs.flashinfer.ai/installation.html"
+                )
+                raise
+        else:
+            disable_flashinfer = True
 
         runtime = sgl.Runtime(
             model_path=model_path,
@@ -105,6 +112,7 @@ class OSSHandler(BaseHandler):
             tp_size=num_gpus,
             mem_fraction_static=gpu_memory_utilization,
             enable_p2p_check=True,
+            disable_flashinfer=disable_flashinfer,
         )
 
         sgl.set_default_backend(runtime)
