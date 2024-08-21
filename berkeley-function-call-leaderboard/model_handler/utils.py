@@ -383,6 +383,10 @@ def func_doc_language_specific_pre_processing(function, test_category):
 
     assert type(function) == list
     for item in function:
+        # Add language specific hints to the function description
+        func_description = item["description"]
+        item["description"] = item["description"] + _get_language_specific_hint(test_category)
+        # Process the parameters
         properties = item["parameters"]["properties"]
         if test_category == "java":
             for key, value in properties.items():
