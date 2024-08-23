@@ -57,6 +57,7 @@ class OSSHandler(BaseHandler):
         outputs = llm.generate(test_question, sampling_params)
 
         final_ans_jsons = []
+
         for output in outputs:
             text = output.outputs[0].text
             final_ans_jsons.append(text)
@@ -81,7 +82,9 @@ class OSSHandler(BaseHandler):
                     question["question"], DEFAULT_SYSTEM_PROMPT, functions
                 )
 
-            prompts.append(format_prompt_func(question["question"], functions, test_category))
+            prompts.append(
+                format_prompt_func(question["question"], functions, test_category)
+            )
 
         return prompts
 
@@ -114,7 +117,7 @@ class OSSHandler(BaseHandler):
             gpu_memory_utilization=gpu_memory_utilization,
         )
 
-        return ans_jsons, {"input_tokens": 0, "output_tokens": 0, "latency": 0}
+        return ans_jsons, test_question
 
     def decode_ast(self, result, language="Python"):
         func = result
