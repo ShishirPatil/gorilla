@@ -158,12 +158,9 @@ def multi_threaded_inference(handler, test_case):
     result_to_write = {
         "id": test_case["id"],
         "result": result,
-        "input_token_count": metadata["input_tokens"],
-        "output_token_count": metadata["output_tokens"],
-        "latency": metadata["latency"],
-        "processed_message": metadata["processed_message"],
-        "processed_func_doc": metadata["processed_func_doc"],
     }
+    
+    result_to_write.update(metadata)
 
     return result_to_write
 
@@ -178,8 +175,8 @@ def generate_results(args, model_name, test_cases_total):
             num_gpus=args.num_gpus,
             gpu_memory_utilization=args.gpu_memory_utilization,
         )
-        for test_case, result in zip(test_cases_total, results, processed_messages):
-            result_to_write = {"id": test_case["id"], "result": result, "processed_message": processed_messages}
+        for test_case, result, processed_message in zip(test_cases_total, results, processed_messages):
+            result_to_write = {"id": test_case["id"], "result": result, "processed_message": processed_message}
             handler.write(result_to_write)
 
     else:

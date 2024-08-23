@@ -42,18 +42,19 @@ class NvidiaHandler(BaseHandler):
         input_token = response.usage.prompt_tokens
         output_token = response.usage.completion_tokens
         metadata = {
-            "input_tokens": input_token,
-            "output_tokens": output_token,
+            "input_token_count": input_token,
+            "output_token_count": output_token,
             "latency": latency,
+            "processed_message": message,
         }
         return result, metadata
 
     def decode_ast(self, result, language="Python"):
         result = result.replace("\n", "")
         if not result.startswith("["):
-            result = "[ " + result
+            result = "[" + result
         if not result.endswith("]"):
-            result = result + " ]"
+            result = result + "]"
         if result.startswith("['"):
             result = result.replace("['", "[")
             result = result.replace("', '", ", ")

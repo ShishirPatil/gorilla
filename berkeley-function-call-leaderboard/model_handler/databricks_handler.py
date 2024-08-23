@@ -21,8 +21,8 @@ class DatabricksHandler(BaseHandler):
 
         # NOTE: To run the Databricks model, you need to provide your own Databricks API key and your own Azure endpoint URL.
         self.client = OpenAI(
-            api_key="{YOUR_DATABRICKS_API_KEY}",
-            base_url="{YOUR_DATABRICKS_AZURE_ENDPOINT_URL}",
+            api_key=f"{YOUR_DATABRICKS_API_KEY}",
+            base_url=f"{YOUR_DATABRICKS_AZURE_ENDPOINT_URL}",
         )
 
     def inference(self, prompt, functions, test_category):
@@ -44,9 +44,10 @@ class DatabricksHandler(BaseHandler):
         latency = time.time() - start_time
         result = response.choices[0].message.content
         metadata = {}
-        metadata["input_tokens"] = response.usage.prompt_tokens
-        metadata["output_tokens"] = response.usage.completion_tokens
+        metadata["input_token_count"] = response.usage.prompt_tokens
+        metadata["output_token_count"] = response.usage.completion_tokens
         metadata["latency"] = latency
+        metadata["processed_message"] = message
         return result, metadata
 
     def decode_ast(self, result, language="Python"):

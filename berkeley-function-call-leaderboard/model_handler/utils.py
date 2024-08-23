@@ -326,6 +326,7 @@ def system_prompt_pre_processing_chat_model(prompts, system_prompt_template, fun
             0,
             {"role": "system", "content": system_prompt},
         )
+
     return prompts
 
 
@@ -353,11 +354,11 @@ def combine_consecutive_user_prompr(prompts):
 
 def _get_language_specific_hint(test_category):
     if test_category == "java":
-        return "Note that the provided function is in Java 8 SDK syntax."
+        return " Note that the provided function is in Java 8 SDK syntax."
     elif test_category == "javascript":
-        return "Note that the provided function is in JavaScript syntax."
+        return " Note that the provided function is in JavaScript syntax."
     else:
-        return "Note that the provided function is in Python 3 syntax."
+        return " Note that the provided function is in Python 3 syntax."
 
 
 def func_doc_language_specific_pre_processing(function, test_category):

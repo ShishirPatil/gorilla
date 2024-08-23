@@ -36,9 +36,11 @@ class GorillaHandler(BaseHandler):
         latency = time.time() - start
         jsonResponse = response.json()
         metadata = {}
-        metadata["input_tokens"] = jsonResponse["usage"]["prompt_tokens"]
-        metadata["output_tokens"] = jsonResponse["usage"]["completion_tokens"]
+        metadata["input_token_count"] = jsonResponse["usage"]["prompt_tokens"]
+        metadata["output_token_count"] = jsonResponse["usage"]["completion_tokens"]
         metadata["latency"] = latency
+        metadata["processed_message"] = prompt
+        metadata["processed_tool"] = functions
         directCode = jsonResponse["choices"][0]["message"]["content"]
         return directCode, metadata
 

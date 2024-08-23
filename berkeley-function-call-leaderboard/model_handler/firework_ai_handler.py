@@ -60,7 +60,9 @@ class FireworkAIHandler(OpenAIHandler):
         except:
             result = response.choices[0].message.content
         metadata = {}
-        metadata["input_tokens"] = response.usage.prompt_tokens
-        metadata["output_tokens"] = response.usage.completion_tokens
+        metadata["input_token_count"] = response.usage.prompt_tokens
+        metadata["output_token_count"] = response.usage.completion_tokens
         metadata["latency"] = latency
+        metadata["processed_message"] = message
+        metadata["processed_tool"] = oai_tool
         return result, metadata

@@ -53,6 +53,13 @@ class MistralHandler(BaseHandler):
                 ]
             except:
                 result = chat_response.choices[0].message.content
+            metadata = {
+                "input_token_count": chat_response.usage.prompt_tokens,
+                "output_token_count": chat_response.usage.completion_tokens,
+                "latency": latency,
+                "processed_message": message,
+                "processed_tool": tool,
+            }
         else:
             functions = func_doc_language_specific_pre_processing(
                 functions, test_category
@@ -69,11 +76,13 @@ class MistralHandler(BaseHandler):
             )
             latency = time.time() - start
             result = chat_response.choices[0].message.content
-        metadata = {
-            "input_tokens": chat_response.usage.prompt_tokens,
-            "output_tokens": chat_response.usage.completion_tokens,
-            "latency": latency,
-        }
+            metadata = {
+                "input_token_count": chat_response.usage.prompt_tokens,
+                "output_token_count": chat_response.usage.completion_tokens,
+                "latency": latency,
+                "processed_message": message,
+            }
+
         return result, metadata
 
     def decode_ast(self, result, language="Python"):
