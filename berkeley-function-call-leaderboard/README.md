@@ -18,7 +18,7 @@ Read more about the technical details and interesting insights in our [blog post
 conda create -n BFCL python=3.10
 conda activate BFCL
 pip install -r requirements.txt # Inside gorilla/berkeley-function-call-leaderboard
-pip install vllm==0.5.0 # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
+pip install vllm==0.5.3.post1 # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
 ```
 
 

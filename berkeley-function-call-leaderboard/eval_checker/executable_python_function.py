@@ -249,7 +249,7 @@ def get_fibonacci_number(n):
         return 0
     elif n == 2:
         return 1
-    
+
     a, b = 0, 1
     for i in range(2, n):
         a, b = b, a + b
@@ -865,7 +865,11 @@ def get_movie_rating(movie_name):
     url = "http://www.omdbapi.com/"
     params = {"t": movie_name, "apikey": api_key["OMDB-API-KEY"]}
     response = requests.get(url, params=params)
-    return response.json()["Rated"]
+
+    try:
+        return response.json()["Rated"]
+    except:
+        return response.json()
 
 
 def get_movie_director(movie_name):
@@ -877,7 +881,11 @@ def get_movie_director(movie_name):
     url = "http://www.omdbapi.com/"
     params = {"t": movie_name, "apikey": api_key["OMDB-API-KEY"]}
     response = requests.get(url, params=params)
-    return response.json()["Director"]
+
+    try:
+        return response.json()["Director"]
+    except:
+        return response.json()
 
 
 def polygon_area(vertices):
