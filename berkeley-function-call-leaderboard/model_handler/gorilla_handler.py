@@ -46,7 +46,6 @@ class GorillaHandler(BaseHandler):
 
     def inference(self, prompt, functions, test_category):
         functions = func_doc_language_specific_pre_processing(functions, test_category)
-        prompt = system_prompt_pre_processing_chat_model(prompt, DEFAULT_SYSTEM_PROMPT, functions)
 
         result, metadata = self._get_gorilla_response(prompt, functions)
 
