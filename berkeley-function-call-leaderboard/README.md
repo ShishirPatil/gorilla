@@ -232,6 +232,11 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
+* [August 23, 2024] [#600](https://github.com/ShishirPatil/gorilla/pull/600): Bug fix in the dataset and possible answers.
+  * simple: 12 affected
+  * multiple: 3 affected
+  * parallel: 3 affected
+  * parallel multiple: 6 affected
 * [August 19, 2024] [#580](https://github.com/ShishirPatil/gorilla/pull/580): Introduce BFCL V2 Live dataset, featuring user-contributed live prompts and function docs. To read more about the composition and construction of this dataset, please refer to our [blog](https://gorilla.cs.berkeley.edu/blogs/12_bfcl_v2_live.html). All CLI commands have been updated to support the new dataset.
 * [August 8, 2024] [#574](https://github.com/ShishirPatil/gorilla/pull/574): Set temperature to 0.001 for all models for consistency and reproducibility.
 * [August 7, 2024] [#571](https://github.com/ShishirPatil/gorilla/pull/571): Support parallel inference for hosted models. User can specify the number of threads to use for parallel inference by setting the `--num-threads` flag. The default is 1, which means no parallel inference.
