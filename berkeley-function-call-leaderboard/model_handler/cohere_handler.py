@@ -3,14 +3,12 @@ import os
 from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
 from model_handler.utils import (
-    user_prompt_pre_processing_chat_model,
     func_doc_language_specific_pre_processing,
     convert_to_tool,
     ast_parse,
 )
 from model_handler.constant import (
     DEFAULT_SYSTEM_PROMPT,
-    USER_PROMPT_FOR_CHAT_MODEL,
     GORILLA_TO_PYTHON,
 )
 import time
@@ -75,15 +73,14 @@ class CohereHandler(BaseHandler):
         return "User did not specify a query."
 
     def inference(self, prompt, functions, test_category):
+        metadata = {}
         # Chatting model
         if "FC" not in self.model_name:
             functions = func_doc_language_specific_pre_processing(
                 functions, test_category
             )
-            prompt = user_prompt_pre_processing_chat_model(
-                prompt, USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
-            )
             
+            system_prompt = DEFAULT_SYSTEM_PROMPT.format(functions=functions)
             chat_history = self._substitute_prompt_role(prompt)
             chat_history = self._substitute_content_name(chat_history)
             message = self._extract_last_user_message(chat_history)
@@ -94,11 +91,12 @@ class CohereHandler(BaseHandler):
                 model=self.model_name,
                 temperature=self.temperature,
                 max_tokens=self.max_tokens,
-                preamble=DEFAULT_SYSTEM_PROMPT,
+                preamble=system_prompt,
                 chat_history=chat_history,
             )
             latency = time.time() - start_time
             result = response.text
+            metadata["processed_message"] = {"system": system_prompt, "message": message}
             
         # Function call model
         else:
@@ -136,12 +134,15 @@ class CohereHandler(BaseHandler):
                 ]
             except:
                 result = response.text
+            metadata["processed_message"] = {"system": self.preamble, "message": message}
+            metadata["processed_tool"] = cohere_tool
+
         api_metadata = response.meta
-        metadata = {}
         if api_metadata is not None:
-            metadata["input_tokens"] = api_metadata.billed_units.input_tokens
-            metadata["output_tokens"] = api_metadata.billed_units.output_tokens
+            metadata["input_token_count"] = api_metadata.billed_units.input_tokens
+            metadata["output_token_count"] = api_metadata.billed_units.output_tokens
         metadata["latency"] = latency
+
         return result, metadata
 
     def decode_ast(self, result, language="Python"):

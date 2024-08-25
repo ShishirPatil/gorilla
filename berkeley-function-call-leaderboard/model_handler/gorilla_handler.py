@@ -2,7 +2,7 @@ from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
 from model_handler.utils import (
     ast_parse,
-    system_prompt_pre_processing,
+    system_prompt_pre_processing_chat_model,
     func_doc_language_specific_pre_processing,
 )
 from model_handler.constant import DEFAULT_SYSTEM_PROMPT
@@ -36,14 +36,15 @@ class GorillaHandler(BaseHandler):
         latency = time.time() - start
         jsonResponse = response.json()
         metadata = {}
-        metadata["input_tokens"] = jsonResponse["usage"]["prompt_tokens"]
-        metadata["output_tokens"] = jsonResponse["usage"]["completion_tokens"]
+        metadata["input_token_count"] = jsonResponse["usage"]["prompt_tokens"]
+        metadata["output_token_count"] = jsonResponse["usage"]["completion_tokens"]
         metadata["latency"] = latency
+        metadata["processed_message"] = prompt
+        metadata["processed_tool"] = functions
         directCode = jsonResponse["choices"][0]["message"]["content"]
         return directCode, metadata
 
     def inference(self, prompt, functions, test_category):
-        prompt = system_prompt_pre_processing(prompt, DEFAULT_SYSTEM_PROMPT)
         functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         result, metadata = self._get_gorilla_response(prompt, functions)

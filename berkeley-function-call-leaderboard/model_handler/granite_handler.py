@@ -2,7 +2,7 @@ import json
 
 from model_handler.model_style import ModelStyle
 from model_handler.oss_handler import OSSHandler
-from model_handler.constant import GORILLA_TO_OPENAPI, DEFAULT_SYSTEM_PROMPT
+from model_handler.constant import GORILLA_TO_OPENAPI
 from model_handler.utils import convert_to_tool
 
 
@@ -48,8 +48,7 @@ class GraniteHandler(OSSHandler):
             num_gpus,
             gpu_memory_utilization,
             format_prompt_func=format_prompt_func,
-            use_default_system_prompt=False,
-            include_default_formatting_prompt=False,
+            include_system_prompt=False,
         )
 
     def decode_ast(self, result, language="Python"):

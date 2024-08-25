@@ -2,7 +2,6 @@ from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
 from model_handler.constant import (
     DEFAULT_SYSTEM_PROMPT,
-    USER_PROMPT_FOR_CHAT_MODEL,
     GORILLA_TO_OPENAPI,
 )
 from model_handler.utils import (
@@ -10,8 +9,7 @@ from model_handler.utils import (
     ast_parse,
     convert_to_function_call,
     func_doc_language_specific_pre_processing,
-    system_prompt_pre_processing,
-    user_prompt_pre_processing_chat_model,
+    system_prompt_pre_processing_chat_model,
 )
 from mistralai.client import MistralClient
 import os, time, json
@@ -55,14 +53,18 @@ class MistralHandler(BaseHandler):
                 ]
             except:
                 result = chat_response.choices[0].message.content
+            metadata = {
+                "input_token_count": chat_response.usage.prompt_tokens,
+                "output_token_count": chat_response.usage.completion_tokens,
+                "latency": latency,
+                "processed_message": message,
+                "processed_tool": tool,
+            }
         else:
             functions = func_doc_language_specific_pre_processing(
                 functions, test_category
             )
-            prompt = system_prompt_pre_processing(prompt, DEFAULT_SYSTEM_PROMPT)
-            prompt = user_prompt_pre_processing_chat_model(
-                prompt, USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
-            )
+            prompt = system_prompt_pre_processing_chat_model(prompt, DEFAULT_SYSTEM_PROMPT, functions)
             message = prompt
 
             start = time.time()
@@ -74,11 +76,13 @@ class MistralHandler(BaseHandler):
             )
             latency = time.time() - start
             result = chat_response.choices[0].message.content
-        metadata = {
-            "input_tokens": chat_response.usage.prompt_tokens,
-            "output_tokens": chat_response.usage.completion_tokens,
-            "latency": latency,
-        }
+            metadata = {
+                "input_token_count": chat_response.usage.prompt_tokens,
+                "output_token_count": chat_response.usage.completion_tokens,
+                "latency": latency,
+                "processed_message": message,
+            }
+
         return result, metadata
 
     def decode_ast(self, result, language="Python"):

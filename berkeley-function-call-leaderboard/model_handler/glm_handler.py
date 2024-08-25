@@ -1,12 +1,5 @@
 from model_handler.oss_handler import OSSHandler
-
-from model_handler.model_style import ModelStyle
-from model_handler.utils import (
-    convert_to_tool,
-    convert_to_function_call,
-    user_prompt_pre_processing_chat_model,
-)
-from model_handler.constant import GORILLA_TO_OPENAPI
+from model_handler.utils import convert_to_function_call
 import json
 
 
@@ -17,16 +10,6 @@ class GLMHandler(OSSHandler):
         self.stop_token_ids = [151329, 151336, 151338]
 
     def apply_chat_template(self, prompts, function, test_category):
-        # GLM takes in a list of tools in the `tool` field, so we remvoe the tool info from the user prompts
-        oai_tool = convert_to_tool(
-            function, GORILLA_TO_OPENAPI, ModelStyle.OpenAI, test_category
-        )
-
-        # construct the formatting prompt, but with function field empty
-        prompts = user_prompt_pre_processing_chat_model(
-            prompts, "", test_category, function
-        )
-        prompts[-1]["tools"] = oai_tool
         return self.tokenizer.apply_chat_template(
             prompts, tokenize=False, add_generation_prompt=True
         )
@@ -45,7 +28,7 @@ class GLMHandler(OSSHandler):
             format_prompt_func=self.apply_chat_template,
             stop_token_ids=self.stop_token_ids,
             max_model_len=self.max_model_len,
-            include_default_formatting_prompt=False,  # they have special formatting
+            include_system_prompt=False,  # they have special formatting
         )
 
     def decode_ast(self, result, language="Python"):

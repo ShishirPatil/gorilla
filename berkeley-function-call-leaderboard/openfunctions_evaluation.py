@@ -158,10 +158,9 @@ def multi_threaded_inference(handler, test_case):
     result_to_write = {
         "id": test_case["id"],
         "result": result,
-        "input_token_count": metadata["input_tokens"],
-        "output_token_count": metadata["output_tokens"],
-        "latency": metadata["latency"],
     }
+    
+    result_to_write.update(metadata)
 
     return result_to_write
 
@@ -171,13 +170,13 @@ def generate_results(args, model_name, test_cases_total):
     handler = build_handler(model_name, args.temperature, args.top_p, args.max_tokens)
 
     if handler.model_style == ModelStyle.OSSMODEL:
-        result, metadata = handler.inference(
+        results, processed_messages = handler.inference(
             test_question=test_cases_total,
             num_gpus=args.num_gpus,
             gpu_memory_utilization=args.gpu_memory_utilization,
         )
-        for test_case, res in zip(test_cases_total, result):
-            result_to_write = {"id": test_case["id"], "result": res}
+        for test_case, result, processed_message in zip(test_cases_total, results, processed_messages):
+            result_to_write = {"id": test_case["id"], "result": result, "processed_message": processed_message}
             handler.write(result_to_write)
 
     else:
