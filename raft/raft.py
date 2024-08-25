@@ -573,6 +573,7 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
                 pbar.update(1)
 
     ds = answers_checkpointing.collect_checkpoints()
+    ds = ds.select(range(qa_threshold)) if qa_threshold else ds
     logger.info(f"Consumed {usage_stats.prompt_tokens} prompt tokens, {usage_stats.completion_tokens} completion tokens, {usage_stats.total_tokens} total tokens")
 
     return ds
