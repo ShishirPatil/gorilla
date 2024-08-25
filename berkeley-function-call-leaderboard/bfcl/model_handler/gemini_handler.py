@@ -74,9 +74,9 @@ class GeminiHandler(BaseHandler):
         result = json.loads(response.content)
         if "error" in result:
             return result["error"]["message"], {
-                "input_tokens": 0,
-                "output_tokens": 0,
                 "latency": latency,
+                "processed_message": {"system": system_prompt, "message": prompt},
+                "processed_tool": functions,
             }
         try:
             parts = []
@@ -101,19 +101,21 @@ class GeminiHandler(BaseHandler):
                     parts.append(part["text"])
             result = parts
             metatdata = {}
-            metatdata["input_tokens"] = json.loads(response.content)["usageMetadata"][
+            metatdata["input_token_count"] = json.loads(response.content)["usageMetadata"][
                 "promptTokenCount"
             ]
-            metatdata["output_tokens"] = json.loads(response.content)["usageMetadata"][
+            metatdata["output_token_count"] = json.loads(response.content)["usageMetadata"][
                 "candidatesTokenCount"
             ]
             metatdata["latency"] = latency
+            metatdata["processed_message"] = {"system": system_prompt, "message": prompt}
+            metatdata["processed_tool"] = functions
         except Exception as e:
             result = "Parsing error: " + json.dumps(result)
             metatdata = {
-                "input_tokens": 0,
-                "output_tokens": 0,
                 "latency": latency,
+                "processed_message": {"system": system_prompt, "message": prompt},
+                "processed_tool": functions,
             }
         return result, metatdata
 

@@ -311,10 +311,10 @@ def resolve_ast_by_type(value):
     return output
 
 
-def system_prompt_pre_processing(prompts, system_prompt_template):
+def system_prompt_pre_processing_chat_model(prompts, system_prompt_template, function_docs):
     assert type(prompts) == list
 
-    system_prompt = system_prompt_template
+    system_prompt = system_prompt_template.format(functions=function_docs)
 
     # System prompt must be in the first position
     # If the question comes with a system prompt, append its content at the end of the chat template.
@@ -326,23 +326,7 @@ def system_prompt_pre_processing(prompts, system_prompt_template):
             0,
             {"role": "system", "content": system_prompt},
         )
-    return prompts
 
-
-def user_prompt_pre_processing_chat_model(
-    prompts, user_prompt_template, test_category, func_doc
-):
-    assert type(prompts) == list
-
-    prompts.append(
-        {
-            "role": "user",
-            "content": user_prompt_template.format(
-                functions=json.dumps(func_doc, indent=4),
-                language_specific_hint=_get_language_specific_hint(test_category),
-            ),
-        }
-    )
     return prompts
 
 
@@ -370,11 +354,11 @@ def combine_consecutive_user_prompr(prompts):
 
 def _get_language_specific_hint(test_category):
     if test_category == "java":
-        return "Note that the provided function is in Java 8 SDK syntax."
+        return " Note that the provided function is in Java 8 SDK syntax."
     elif test_category == "javascript":
-        return "Note that the provided function is in JavaScript syntax."
+        return " Note that the provided function is in JavaScript syntax."
     else:
-        return "Note that the provided function is in Python 3 syntax."
+        return " Note that the provided function is in Python 3 syntax."
 
 
 def func_doc_language_specific_pre_processing(function, test_category):
@@ -383,6 +367,10 @@ def func_doc_language_specific_pre_processing(function, test_category):
 
     assert type(function) == list
     for item in function:
+        # Add language specific hints to the function description
+        func_description = item["description"]
+        item["description"] = item["description"] + _get_language_specific_hint(test_category)
+        # Process the parameters
         properties = item["parameters"]["properties"]
         if test_category == "java":
             for key, value in properties.items():

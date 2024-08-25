@@ -134,7 +134,7 @@ class NexusHandler(BaseHandler):
         )
         latency = time.time() - start
         call = output[0]["generated_text"].replace("Call:", "").strip()
-        return call, {"input_tokens": 0, "output_tokens": 0, "latency": latency}
+        return call, {"latency": latency, "processed_message": prompt}
 
     def inference(self, prompt, functions, test_category):
         functions = func_doc_language_specific_pre_processing(functions, test_category)

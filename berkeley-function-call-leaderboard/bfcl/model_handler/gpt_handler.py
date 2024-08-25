@@ -3,14 +3,12 @@ from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     convert_to_tool,
     convert_to_function_call,
-    system_prompt_pre_processing,
-    user_prompt_pre_processing_chat_model,
+    system_prompt_pre_processing_chat_model,
     func_doc_language_specific_pre_processing,
     ast_parse,
 )
 from bfcl.model_handler.constant import (
     GORILLA_TO_OPENAPI,
-    USER_PROMPT_FOR_CHAT_MODEL,
     DEFAULT_SYSTEM_PROMPT,
 )
 from openai import OpenAI
@@ -26,12 +24,15 @@ class OpenAIHandler(BaseHandler):
     def inference(self, prompt, functions, test_category):
         # Chatting model
         if "FC" not in self.model_name:
-            functions = func_doc_language_specific_pre_processing(functions, test_category)
+            functions = func_doc_language_specific_pre_processing(
+                functions, test_category
+            )
 
-            prompt = system_prompt_pre_processing(prompt, DEFAULT_SYSTEM_PROMPT)
-            prompt = user_prompt_pre_processing_chat_model(prompt, USER_PROMPT_FOR_CHAT_MODEL, test_category, functions)
+            prompt = system_prompt_pre_processing_chat_model(
+                prompt, DEFAULT_SYSTEM_PROMPT, functions
+            )
             message = prompt
-            
+
             start_time = time.time()
             response = self.client.chat.completions.create(
                 messages=message,
@@ -42,9 +43,16 @@ class OpenAIHandler(BaseHandler):
             )
             latency = time.time() - start_time
             result = response.choices[0].message.content
+            metadata = {}
+            metadata["input_token_count"] = response.usage.prompt_tokens
+            metadata["output_token_count"] = response.usage.completion_tokens
+            metadata["latency"] = latency
+            metadata["processed_message"] = message
         # Function call model
         else:
-            functions = func_doc_language_specific_pre_processing(functions, test_category)
+            functions = func_doc_language_specific_pre_processing(
+                functions, test_category
+            )
 
             message = prompt
             oai_tool = convert_to_tool(
@@ -76,13 +84,16 @@ class OpenAIHandler(BaseHandler):
                 ]
             except:
                 result = response.choices[0].message.content
-        metadata = {}
-        metadata["input_tokens"] = response.usage.prompt_tokens
-        metadata["output_tokens"] = response.usage.completion_tokens
-        metadata["latency"] = latency
-        return result,metadata
-    
-    def decode_ast(self,result,language="Python"):
+            metadata = {}
+            metadata["input_token_count"] = response.usage.prompt_tokens
+            metadata["output_token_count"] = response.usage.completion_tokens
+            metadata["latency"] = latency
+            metadata["processed_message"] = message
+            metadata["processed_tool"] = oai_tool
+
+        return result, metadata
+
+    def decode_ast(self, result, language="Python"):
         if "FC" not in self.model_name:
             func = result
             if " " == func[0]:
@@ -91,7 +102,7 @@ class OpenAIHandler(BaseHandler):
                 func = "[" + func
             if not func.endswith("]"):
                 func = func + "]"
-            decoded_output = ast_parse(func,language)
+            decoded_output = ast_parse(func, language)
         else:
             decoded_output = []
             for invoked_function in result:
@@ -99,8 +110,8 @@ class OpenAIHandler(BaseHandler):
                 params = json.loads(invoked_function[name])
                 decoded_output.append({name: params})
         return decoded_output
-    
-    def decode_execute(self,result):
+
+    def decode_execute(self, result):
         if "FC" not in self.model_name:
             func = result
             if " " == func[0]:
