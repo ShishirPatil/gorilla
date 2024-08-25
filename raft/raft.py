@@ -24,6 +24,7 @@ from dotenv import load_dotenv
 from checkpointing import Checkpointing, checkpointed
 import uuid
 import shutil
+from threading import Thread, Event
 
 log_setup()
 
@@ -61,6 +62,7 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--system-prompt-key", default="gpt", help="The system prompt to use to generate the dataset", choices=systemPromptKeys)
     parser.add_argument("--workers", type=int, default=2, help="The number of worker threads to use to generate the dataset")
     parser.add_argument("--auto-clean-checkpoints", type=bool, default=False, help="Whether to auto clean the checkpoints after the dataset is generated")
+    parser.add_argument("--qa-threshold", type=int, default=None, help="The number of Q/A samples to generate after which to stop the generation process. Defaults to None, which means generating Q/A samples for all documents")
 
     args = parser.parse_args()
     return args
@@ -450,7 +452,7 @@ def main():
 
     logger.info(f"Using {max_workers} worker threads")
 
-    cot_answers_ds = stage_generate(chat_completer, checkpoints_dir, chunks, num_questions, max_workers, doctype, completion_model, system_prompt_key, num_distract=NUM_DISTRACT_DOCS, p=args.p)
+    cot_answers_ds = stage_generate(chat_completer, checkpoints_dir, chunks, num_questions, max_workers, doctype, completion_model, system_prompt_key, num_distract=NUM_DISTRACT_DOCS, p=args.p, qa_threshold=args.qa_threshold)
 
     # Save as .arrow format
     datasets.enable_progress_bars()
@@ -478,7 +480,13 @@ def main():
     logger.info(f"Dataset saved to {output_path}")
     logger.info(f"Done in {time.time() - main_start:.2f}s")
 
-def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_questions, max_workers, doctype, completion_model, system_prompt_key, num_distract, p):
+class StoppingException(Exception):
+    """
+    Raised by worker threads when the process is stopping early
+    """
+    pass
+
+def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_questions, max_workers, doctype, completion_model, system_prompt_key, num_distract, p, qa_threshold):
     """
     Given a chunk, create {Q, A, D} triplets and add them to the dataset.
     """
@@ -486,6 +494,10 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
     questions_checkpointing = Checkpointing(checkpoints_dir / "questions")
     answers_checkpointing = Checkpointing(checkpoints_dir / "answers")
     num_chunks = len(chunks)
+
+    # Tracking when the process is stopping, so we can stop the generation process early
+    # Initial value is False
+    is_stopping = Event()
 
     @checkpointed(questions_checkpointing)
     def generate_chunk_instructions_ds(chunk: str, chunk_id: int, doctype: str, *args, **kwargs):
@@ -517,13 +529,14 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
         return ds
 
     def process_chunk(i):
+        if is_stopping.is_set():
+            raise StoppingException()
         chunk = chunks[i]
         questions_ds = generate_chunk_instructions_ds(chunk=chunk, chunk_id=i, chat_completer=chat_completer, x=num_questions, model=completion_model, doctype=doctype, prompt_key=system_prompt_key)
         answers_ds = generate_question_cot_answers(questions_ds=questions_ds, chunk=chunk, chunk_id=i, chat_completer=chat_completer, model=completion_model, doctype=doctype, prompt_key=system_prompt_key, num_distract=num_distract, p=p)
         return answers_ds
 
     futures = []
-    gen_questions_count = 0
     answers_ds_list = []
     usage_stats = UsageStats()
 
@@ -533,14 +546,22 @@ def stage_generate(chat_completer: ChatCompleter, checkpoints_dir, chunks, num_q
     # if the questions for a given chunk have already been checkpointed, they will just be loaded from the checkpoint
     # we set the tqdm's initial position to avoid having cached data skew the stats
     missing_chunks = answers_checkpointing.missing_checkpoints(num_chunks)
-    
+
+    ds = answers_checkpointing.collect_checkpoints()
+    gen_questions_count = len(ds)
     done_chunks = num_chunks - len(missing_chunks)
+    logger.info(f"Resuming generation from chunk {done_chunks}/{num_chunks} and {gen_questions_count} questions")
+
     tps = 0
     with tqdm(total=num_chunks, desc="Generating", unit="chunk", initial=done_chunks) as pbar:
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             for i in missing_chunks:
                 futures.append(executor.submit(process_chunk, i))
             for future in as_completed(futures):
+                if qa_threshold and gen_questions_count >= qa_threshold:
+                    logger.info(f"Met threshold {gen_questions_count} >= {qa_threshold} questions, stopping generation")
+                    is_stopping.set()
+                    break
                 answers_ds = future.result()
                 answers_ds_list.append(answers_ds)
                 gen_questions_count += len(answers_ds)

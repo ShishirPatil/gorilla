@@ -50,7 +50,7 @@ class Checkpointing:
                 checkpoints.append(Checkpoint(dir_path, num))
         return checkpoints
 
-    def collect_checkpoints(self) -> List[Dataset]:
+    def collect_checkpoints(self) -> Dataset:
         ds_list = list([checkpoint.load() for checkpoint in self.get_checkpoints()])
         ds = concatenate_datasets(ds_list)
         return ds
