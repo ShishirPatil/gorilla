@@ -44,11 +44,16 @@ class Checkpointing:
 
     def get_checkpoints(self) -> List[Checkpoint]:
         checkpoints = []
+        if not self.checkpoints_dir.exists():
+            return checkpoints
         for dir_path in self.checkpoints_dir.iterdir():
             if dir_path.is_dir() and dir_path.name.startswith("checkpoint-"):
                 num = int(dir_path.name.split("-")[1])
                 checkpoints.append(Checkpoint(dir_path, num))
         return checkpoints
+
+    def has_checkpoints(self) -> bool:
+        return len(self.get_checkpoints()) > 0
 
     def collect_checkpoints(self) -> Dataset:
         ds_list = list([checkpoint.load() for checkpoint in self.get_checkpoints()])
