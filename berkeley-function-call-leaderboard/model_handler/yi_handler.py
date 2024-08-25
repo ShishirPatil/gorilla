@@ -52,9 +52,11 @@ class YiHandler(BaseHandler):
             result = response.choices[0].message.content
 
         metadata = {}
-        metadata["input_tokens"] = response.usage.prompt_tokens
-        metadata["output_tokens"] = response.usage.completion_tokens
+        metadata["input_token_token"] = response.usage.prompt_tokens
+        metadata["output_token_token"] = response.usage.completion_tokens
         metadata["latency"] = latency
+        metadata["processed_message"] = message
+        metadata["processed_tool"] = oai_tool
         return result, metadata
 
     def decode_ast(self, result, language="Python"):

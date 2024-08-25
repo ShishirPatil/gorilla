@@ -89,8 +89,7 @@ class xLAMHandler(OSSHandler):
             num_gpus,
             gpu_memory_utilization,
             format_prompt_func,
-            use_default_system_prompt=False,
-            include_default_formatting_prompt=False,
+            include_system_prompt=False,
         )
 
     def decode_ast(self, result, language="Python"):

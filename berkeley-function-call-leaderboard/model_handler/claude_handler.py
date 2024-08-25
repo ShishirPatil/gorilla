@@ -4,11 +4,7 @@ import time
 
 from anthropic import Anthropic
 from anthropic.types import TextBlock, ToolUseBlock
-from model_handler.constant import (
-    GORILLA_TO_OPENAPI,
-    USER_PROMPT_FOR_CHAT_MODEL,
-    DEFAULT_SYSTEM_PROMPT,
-)
+from model_handler.constant import GORILLA_TO_OPENAPI, DEFAULT_SYSTEM_PROMPT
 from model_handler.handler import BaseHandler
 from model_handler.model_style import ModelStyle
 from model_handler.utils import (
@@ -16,7 +12,6 @@ from model_handler.utils import (
     convert_to_function_call,
     convert_to_tool,
     func_doc_language_specific_pre_processing,
-    user_prompt_pre_processing_chat_model,
     convert_system_prompt_into_user_prompt,
     combine_consecutive_user_prompr,
 )
@@ -38,14 +33,12 @@ class ClaudeHandler(BaseHandler):
             )
 
             # Claude takes in system prompt in a specific field, not in the message field, so we don't need to add it to the message
-            prompt = user_prompt_pre_processing_chat_model(
-                prompt, USER_PROMPT_FOR_CHAT_MODEL, test_category, functions
-            )
+            system_prompt = DEFAULT_SYSTEM_PROMPT.format(functions=functions)
             # This deals with any system prompts that come with the question
             prompt = convert_system_prompt_into_user_prompt(prompt)
 
             prompt = combine_consecutive_user_prompr(prompt)
-            
+
             message = prompt
 
             response = self.client.messages.create(
@@ -53,14 +46,18 @@ class ClaudeHandler(BaseHandler):
                 max_tokens=self.max_tokens,
                 temperature=self.temperature,
                 top_p=self.top_p,
-                system=DEFAULT_SYSTEM_PROMPT,
+                system=system_prompt,
                 messages=message,
             )
             latency = time.time() - start
             metadata = {}
-            metadata["input_tokens"] = response.usage.input_tokens
-            metadata["output_tokens"] = response.usage.output_tokens
+            metadata["input_token_count"] = response.usage.input_tokens
+            metadata["output_token_count"] = response.usage.output_tokens
             metadata["latency"] = latency
+            metadata["processed_message"] = {
+                "system": system_prompt,
+                "message": message,
+            }
             result = response.content[0].text
             return result, metadata
         # Function call model
@@ -74,7 +71,7 @@ class ClaudeHandler(BaseHandler):
             )
             prompt = convert_system_prompt_into_user_prompt(prompt)
             message = combine_consecutive_user_prompr(prompt)
-            
+
             start_time = time.time()
             response = self.client.messages.create(
                 model=self.model_name.strip("-FC"),
@@ -92,9 +89,11 @@ class ClaudeHandler(BaseHandler):
                     tool_call_outputs.append({content.name: json.dumps(content.input)})
             result = tool_call_outputs if tool_call_outputs else text_outputs[0]
             return result, {
-                "input_tokens": response.usage.input_tokens,
-                "output_tokens": response.usage.output_tokens,
+                "input_token_count": response.usage.input_tokens,
+                "output_token_count": response.usage.output_tokens,
                 "latency": latency,
+                "processed_message": message,
+                "processed_tool": claude_tool,
             }
 
     def decode_ast(self, result, language="Python"):
