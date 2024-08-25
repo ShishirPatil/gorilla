@@ -44,8 +44,8 @@ def get_args() -> argparse.Namespace:
     parser.add_argument("--chunk_size", type=int, default=512, help="The size of each chunk in number of tokens")
     parser.add_argument("--doctype", type=str, default="pdf", help="The type of the document, must be one of the accepted doctypes", choices=["pdf", "txt", "json", "api"])
     parser.add_argument("--openai_key", type=str, default=None, help="Your OpenAI key used to make queries to GPT-3.5 or GPT-4")
-    parser.add_argument("--embedding_model", type=str, default="text-embedding-ada-002", help="The embedding model to use to encode documents chunks (text-embedding-ada-002, ...)")
-    parser.add_argument("--completion_model", type=str, default="gpt-4", help="The model to use to generate questions and answers (gpt-3.5, gpt-4, ...)")
+    parser.add_argument("--embedding-model", type=str, default="text-embedding-ada-002", help="The embedding model to use to encode documents chunks (text-embedding-ada-002, ...)")
+    parser.add_argument("--completion-model", type=str, default="gpt-4", help="The model to use to generate questions and answers (gpt-3.5, gpt-4, ...)")
     parser.add_argument("--fast", action="store_true", help="Run the script in fast mode (no recovery implemented)")
 
     args = parser.parse_args()
