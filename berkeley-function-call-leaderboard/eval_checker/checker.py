@@ -328,6 +328,7 @@ def simple_function_checker(
     }
 
     func_name = convert_func_name(func_name, model_name)
+
     # Check if function name matches
     if func_name not in model_output:
         result["valid"] = False
