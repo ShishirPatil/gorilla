@@ -17,6 +17,7 @@ from model_handler.nexus_handler import NexusHandler
 from model_handler.granite_handler import GraniteHandler
 from model_handler.nvidia_handler import NvidiaHandler
 from model_handler.glm_handler import GLMHandler
+from model_handler.storm_handler import StormHandler
 from model_handler.yi_handler import YiHandler
 from model_handler.xlam_handler import xLAMHandler
 
@@ -95,5 +96,6 @@ handler_map = {
     "THUDM/glm-4-9b-chat": GLMHandler,
     "yi-large-fc": YiHandler,
     "Salesforce/xLAM-1b-fc-r": xLAMHandler,
-    "Salesforce/xLAM-7b-fc-r": xLAMHandler
+    "Salesforce/xLAM-7b-fc-r": xLAMHandler,
+    "akjindal53244/Llama-3.1-Storm-8B": StormHandler,
 }

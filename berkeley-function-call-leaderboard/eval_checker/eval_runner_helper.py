@@ -532,6 +532,12 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/Salesforce/xLAM-7b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
+    ],
+    "akjindal53244/Llama-3.1-Storm-8B": [
+        "Llama-3.1-Storm-8B (FC)",
+        "https://huggingface.co/akjindal53244/Llama-3.1-Storm-8B",
+        "Team Upaya",
+        "Llama 3.1 Community License Agreement"
     ]
 }
 
