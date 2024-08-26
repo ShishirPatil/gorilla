@@ -865,11 +865,7 @@ def get_movie_rating(movie_name):
     url = "http://www.omdbapi.com/"
     params = {"t": movie_name, "apikey": api_key["OMDB-API-KEY"]}
     response = requests.get(url, params=params)
-
-    try:
-        return response.json()["Rated"]
-    except:
-        return response.json()
+    return response.json()["Rated"]
 
 
 def get_movie_director(movie_name):
@@ -881,11 +877,7 @@ def get_movie_director(movie_name):
     url = "http://www.omdbapi.com/"
     params = {"t": movie_name, "apikey": api_key["OMDB-API-KEY"]}
     response = requests.get(url, params=params)
-
-    try:
-        return response.json()["Director"]
-    except:
-        return response.json()
+    return response.json()["Director"]
 
 
 def polygon_area(vertices):
