@@ -19,6 +19,7 @@ from model_handler.nvidia_handler import NvidiaHandler
 from model_handler.glm_handler import GLMHandler
 from model_handler.yi_handler import YiHandler
 from model_handler.xlam_handler import xLAMHandler
+from model_handler.actionGemma_handler import actionGemmaHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -95,5 +96,6 @@ handler_map = {
     "THUDM/glm-4-9b-chat": GLMHandler,
     "yi-large-fc": YiHandler,
     "Salesforce/xLAM-1b-fc-r": xLAMHandler,
-    "Salesforce/xLAM-7b-fc-r": xLAMHandler
+    "Salesforce/xLAM-7b-fc-r": xLAMHandler,
+    "KishoreK/ActionGemma-9B":actionGemmaHandler,
 }

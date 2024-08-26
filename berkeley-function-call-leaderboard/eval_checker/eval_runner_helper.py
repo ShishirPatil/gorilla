@@ -532,7 +532,13 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/Salesforce/xLAM-7b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
-    ]
+    ],
+    "KishoreK/ActionGemma-9B": [
+        "ActionGemma-9B (FC)",
+        "https://huggingface.co/KishoreK/ActionGemma-9B",
+        "KishoreK",
+        "MIT",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -673,7 +679,8 @@ NO_COST_MODELS = [
     "ibm-granite/granite-20b-functioncalling",
     "THUDM/glm-4-9b-chat",
     "Salesforce/xLAM-1b-fc-r",
-    "Salesforce/xLAM-7b-fc-r"
+    "Salesforce/xLAM-7b-fc-r",
+    "KishoreK/ActionGemma-9B",
 ]
 
 # Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
