@@ -793,7 +793,9 @@ function generateChart(csvData) {
 // });
 
 var expand = false;
+
 function toggleExpand() {
+    
     // Select all detail-row and detail-header elements
     var elements = document.querySelectorAll(
         ".summary-row, .summary-small-header"
