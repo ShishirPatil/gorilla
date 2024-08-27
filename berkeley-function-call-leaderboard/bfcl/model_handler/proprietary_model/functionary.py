@@ -1,6 +1,5 @@
-from bfcl.model_handler.gpt_handler import OpenAIHandler
+from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from bfcl.model_handler.model_style import ModelStyle
-import os, json
 from openai import OpenAI
 
 # For setup instructions, please refer to https://github.com/MeetKai/functionary for setup details. 

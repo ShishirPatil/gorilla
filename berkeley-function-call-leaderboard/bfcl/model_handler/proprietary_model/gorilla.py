@@ -1,12 +1,10 @@
-from bfcl.model_handler.handler import BaseHandler
+from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     ast_parse,
-    system_prompt_pre_processing_chat_model,
     func_doc_language_specific_pre_processing,
 )
-from model_handler.constant import DEFAULT_SYSTEM_PROMPT
-import requests, json, re, time
+import requests, json, time
 
 
 class GorillaHandler(BaseHandler):

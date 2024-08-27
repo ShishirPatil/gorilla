@@ -1,4 +1,4 @@
-from bfcl.model_handler.nvidia_handler import NvidiaHandler
+from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.utils import ast_parse
 
 class ArcticHandler(NvidiaHandler):
