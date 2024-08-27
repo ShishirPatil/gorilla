@@ -136,6 +136,13 @@ This details the command and process used to generate the example dataset found 
 ```bash 
 python3 raft.py --datapath sample_data/United_States_PDF.pdf --output ./sample_ds4 --distractors 4 --doctype pdf --chunk_size 512 --questions 5 --openai_key OPENAI_KEY
 ```
+### Usage with Completely locally using hugging-face models
+
+This details the command and process used to generate the example dataset found in `./sample_ds4`. The document is a pdf of the Wikipedia page on the United States of America. 
+To run the script completely locally use 
+```
+python3 raft_local.py --datapath sample_data/UC_Berkeley_short.pdf --output ./sample_ds4 --chunk_size 512 --questions 5 --doctype pdf --fast
+```
 
 #### 1. Chunk generation
 RAFT takes pdf and divides text into chunks of size 512 tokens. A sample chunk:  
