@@ -2,7 +2,7 @@ import glob
 import json
 import argparse
 import os
-from eval_checker import custom_exception
+from bfcl.eval_checker import custom_exception
 
 parser = argparse.ArgumentParser(description="Replace placeholders in the function credential config file.")
 parser.add_argument("--input-path", help="Path to the function credential config file. Can be a file or a directory.")
