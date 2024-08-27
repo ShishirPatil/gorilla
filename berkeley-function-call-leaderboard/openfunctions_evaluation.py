@@ -1,9 +1,9 @@
 import argparse, json, os, time
 from tqdm import tqdm
-from model_handler.handler_map import handler_map
-from model_handler.model_style import ModelStyle
-from model_handler.constant import USE_COHERE_OPTIMIZATION
-from eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING
+from bfcl.model_handler.handler_map import handler_map
+from bfcl.model_handler.model_style import ModelStyle
+from bfcl.model_handler.constant import USE_COHERE_OPTIMIZATION
+from bfcl.eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING
 from concurrent.futures import ThreadPoolExecutor
 
 RETRY_LIMIT = 3
@@ -69,7 +69,7 @@ def parse_test_category_argument(test_category_args):
             test_name_total.add(test_category)
             test_filename_total.add(TEST_FILE_MAPPING[test_category])
 
-    return list(test_name_total), list(test_filename_total)
+    return sorted(list(test_name_total)), sorted(list(test_filename_total))
 
 
 def collect_test_cases(test_filename_total, model_name):
