@@ -210,3 +210,46 @@ thead {
     }
 
 }
+
+/* Ensure the chart scales responsively */
+#chart-container {
+    width: 100%;  /* Take up full width */
+    max-width: 1000px;  /* Optional: Set a max-width for large screens */
+    margin: 0 auto;  /* Center the chart */
+}
+
+canvas {
+    width: 100% !important;  /* Allow the canvas to resize with the container */
+    height: auto !important;
+}
+
+.chart-inner-container {
+    width: 100%;
+    padding: 3rem;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    #chart-container {
+        max-width: 100%; /* Allow full width on smaller screens */
+    }
+
+    .chart-inner-container {
+        width: 100%;
+        padding: 0rem;
+    }
+
+    /* Reduce font sizes for labels and point labels on smaller screens */
+    canvas {
+        width: 100% !important;  /* Allow the canvas to resize with the container */
+        height: auto !important;
+    }
+
+    .ui.form .field label {
+        font-size: 1rem;
+    }
+}

@@ -396,6 +396,7 @@ function parseCSV_leaderboard(text) {
     return result;
 }
 
+
 fetch(csvFilePath)
     .then((response) => response.text())
     .then((csvText) => {
@@ -675,6 +676,23 @@ function convertRGBtoRGBA(rgbString) {
     return `rgba(${rgbValues.join(", ")}, 0.1)`;
 }
 
+let availableDatasets = [];
+let myChart = null;
+const datasetDropdown = $('#dataset-dropdown');
+let shown_model_datasets = [];
+
+// Function to determine font size based on screen width
+function getFontSize() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 480) {
+        return 8.5;  // Small font size for small screens
+    } else if (screenWidth < 768) {
+        return 10;  // Medium font size for medium screens
+    } else {
+        return 13;  // Default font size for larger screens
+    }
+}
+
 function generateChart(csvData) {
     var dataset = [];
     for (let i = 1; i < csvData.length; i += 1) {
@@ -702,10 +720,9 @@ function generateChart(csvData) {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: color[i - 1],
-            hidden: true,
         };
         if (shown_model_list.includes(model_name)) {
-            dataPoint.hidden = false;
+            shown_model_datasets.push(dataPoint);
         }
         dataset.push(dataPoint);
     }
@@ -726,12 +743,19 @@ function generateChart(csvData) {
         datasets: dataset,
     };
 
+    availableDatasets = [...data.datasets];
+
     const ctx = document.getElementById('myChart').getContext('2d');
 
-    new Chart(ctx, {
-        type: "radar",
-        data: data,
+    myChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: data.labels,
+            datasets: []
+        },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,  // Allow the chart to adjust its aspect ratio
             elements: {
                 line: {
                     borderWidth: 3,
@@ -740,15 +764,15 @@ function generateChart(csvData) {
             scales: {
                 r: {
                     beginAtZero: true,
-                    min: 0,
                     pointLabels: {
                         font: {
-                            size: 13 // column font
+                            size: getFontSize()  // Adjust font size dynamically
                         }
                     },
                     ticks: {
+                        display: true,
                         font: {
-                            size: 10 // scale font
+                            size: getFontSize()  // Adjust ticks font size dynamically
                         }
                     }
                 }
@@ -758,14 +782,82 @@ function generateChart(csvData) {
                     labels: {
                         boxWidth: 15,
                         font: {
-                            size: 13 // legend labels font
+                            size: getFontSize() + 3.5 // Adjust legend font size dynamically
                         }
                     }
                 }
-            },
-        },
+            }
+        }
+    });
+
+    // Initialize Semantic UI dropdown
+    datasetDropdown.dropdown({
+        onChange: function (value, text, $selectedItem) {
+            handleDatasetSelection(value);
+            console.log(value)
+        }
+    });
+
+    // Populate the dropdown menu with datasets initially
+    populateDropdown();
+
+    // Resize chart font size on window resize
+    window.addEventListener('resize', function () {
+        // Update font sizes dynamically on screen resize
+        myChart.options.scales.r.pointLabels.font.size = getFontSize();
+        myChart.options.scales.r.ticks.font.size = getFontSize();
+        myChart.options.plugins.legend.labels.font.size = getFontSize();
+        myChart.update();  // Update the chart to reflect changes
     });
 }
+
+// Populate the dropdown with dataset options
+function populateDropdown() {
+    availableDatasets.forEach((dataset, index) => {
+        const item = `<div class="item" data-value="${index}">${dataset.label}</div>`;
+        datasetDropdown.find('.menu').append(item);
+    });
+
+    // Initialize the dropdown and trigger change event
+    datasetDropdown.dropdown({
+        onChange: function (value) {
+            handleDatasetSelection(value);
+        }
+    });
+
+    // Pre-select datasets by label (finding the correct indices)
+    const defaultSelectedIndices = availableDatasets
+        .map((dataset, index) => shown_model_list.includes(dataset.label) ? index.toString() : null)
+        .filter(index => index !== null);
+
+    // Set the selected datasets in the dropdown
+    datasetDropdown.dropdown('set exactly', defaultSelectedIndices);
+}
+
+// Handle dataset selection and removal
+function handleDatasetSelection(value) {
+    // Get the currently selected datasets
+    const selectedIndices = datasetDropdown.dropdown('get value').split(',');
+
+    // Clear the current datasets in the chart.
+    myChart.data.datasets = [];
+
+    // Add the selected datasets to the chart
+    selectedIndices.forEach((index, count) => {
+        if (index) {
+            const dataset = availableDatasets[parseInt(index)];
+            dataset.backgroundColor = convertRGBtoRGBA(color[count]);
+            dataset.borderColor = color[count];
+            dataset.pointBackgroundColor = color[count];
+            dataset.pointHoverBorderColor = color[count];
+            myChart.data.datasets.push(dataset);
+        }
+    });
+
+    // Update the chart with the new datasets
+    myChart.update();
+}
+
 
 // Note: If we have too many models, we can use the following code to add a plugin to automatically color the radar chart, but the color quality is not as good as the current one.
 

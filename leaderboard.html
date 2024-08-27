@@ -24,6 +24,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description"
         content="Explore The Berkeley Function Calling Leaderboard (also called The Berkeley Tool Calling Leaderboard) to see the LLM's ability to call functions (aka tools) accurately." />
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart.js with Semantic UI Search Dropdown</title>
+    <!-- Include Semantic UI CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css">
+
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" />
@@ -35,6 +42,7 @@
     <link rel="stylesheet" href="assets/css/treemap.css" />
     <link rel="stylesheet" href="assets/css/contact.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
+    
     <title>
         Berkeley Function Calling Leaderboard V2 (aka Berkeley Tool Calling Leaderboard V2)
     </title>
@@ -178,7 +186,7 @@
     </div>
 
     <div class="container chart-container" style="background: white">
-        <div class="col-md-12">
+        <div class="chart-inner-container">
             <h2>Wagon Wheel</h2>
             <p class="text-center">
                 The following chart shows the comparison of the models based on a few
@@ -186,7 +194,22 @@
                 information on each metric can be found in the
                 <a href="blogs/8_berkeley_function_calling_leaderboard.html#benchmarking">blog</a>.
             </p>
-            <div>
+            <div class="ui container">
+                <div class="ui form">
+                    <div class="field">
+                        <label>Select models to compare</label>
+                        <div id="dataset-dropdown" class="ui fluid multiple search selection dropdown">
+                            <input type="hidden" name="datasets">
+                            <i class="dropdown icon"></i>
+                            <div class="default text">Search models...</div>
+                            <div class="menu"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chart container to make the chart responsive -->
+            <div id="myChart-container">
                 <canvas id="myChart"></canvas>
             </div>
         </div>
@@ -319,6 +342,13 @@
         </div>
     </div>
 </body>
+
+<!-- Include jQuery first -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Include Semantic UI JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.js"></script>
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script src="index_main.js"></script>
 <script type="text/javascript" src="treemap_main.js"></script>
