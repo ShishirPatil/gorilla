@@ -1,11 +1,29 @@
 import contextlib
 import os
+import logging
+
+logger = logging.getLogger("env_config")
 
 # List of environment variables prefixes that are allowed to be used for configuration.
 env_prefix_whitelist = [
     'OPENAI', 
     'AZURE_OPENAI'
 ]
+
+def _obfuscate(secret):
+    l = len(secret)
+    return '.' * (l - 4) + secret[-4:]
+
+def _log_env(use_prefix: str, env: dict):
+    """
+    Logs each name value pair of the given environment. If the name indicates that it might store a secret such as an API key, then obfuscate the value.
+    """
+    log_prefix = f"'{use_prefix}'" if use_prefix else "no"
+    logger.info(f"Resolved OpenAI env vars with {log_prefix} prefix:")
+    for key, value in env.items():
+        if any(prefix in key for prefix in ['KEY', 'SECRET', 'TOKEN']):
+            value = _obfuscate(value)
+        logger.info(f" - {key}={value}")
 
 def read_env_config(use_prefix: str, env: dict = os.environ) -> str:
     """
@@ -15,6 +33,7 @@ def read_env_config(use_prefix: str, env: dict = os.environ) -> str:
     config = {}
     for prefix in [None, use_prefix]:
         read_env_config_prefixed(prefix, config, env)
+    _log_env(use_prefix, config)
     return config
 
 def read_env_config_prefixed(use_prefix: str, config: dict, env: dict = os.environ) -> str:
