@@ -1,0 +1,12 @@
+datasets==2.16.1
+openai==1.10.0
+PyPDF2==3.0.1
+transformers==4.37.2
+langchain_experimental
+langchain_openai
+python-dotenv==1.0.1
+pyyaml==6.0.1
+coloredlogs==15.0.1
+mdc==1.2.1
+pytest==8.1.2
+pip install torch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu118
