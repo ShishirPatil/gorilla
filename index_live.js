@@ -724,8 +724,8 @@ function generateChart(csvData) {
             "Multiple (AST)",
             "Parallel (AST)",
             "Parallel Multiple (AST)",
-            "Irrelevance Detection",
-            "Relevance Detection",
+            "Irrelevance",
+            "Relevance",
         ],
         datasets: dataset,
     };
