@@ -65,7 +65,6 @@ th:not(.detail-header)  {
     margin: auto; 
     width: 100%; 
     height: auto; /* This will maintain the aspect ratio */
-    max-height: 100vh;
     align-items: center;
     justify-content: center;
 }

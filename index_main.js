@@ -679,7 +679,6 @@ function convertRGBtoRGBA(rgbString) {
 let availableDatasets = [];
 let myChart = null;
 const datasetDropdown = $('#dataset-dropdown');
-let shown_model_datasets = [];
 
 // Function to determine font size based on screen width
 function getFontSize() {
@@ -689,7 +688,7 @@ function getFontSize() {
     } else if (screenWidth < 768) {
         return 10;  // Medium font size for medium screens
     } else {
-        return 13;  // Default font size for larger screens
+        return 15;  // Default font size for larger screens
     }
 }
 
@@ -721,9 +720,6 @@ function generateChart(csvData) {
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: color[i - 1],
         };
-        if (shown_model_list.includes(model_name)) {
-            shown_model_datasets.push(dataPoint);
-        }
         dataset.push(dataPoint);
     }
 
