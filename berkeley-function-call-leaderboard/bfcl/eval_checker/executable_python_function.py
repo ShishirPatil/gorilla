@@ -1,17 +1,17 @@
-import json
+import os
 import math
 import requests
 from custom_exception import NoAPIKeyError
 import time
 
+# Make sure the env variables are populated
+ENV_VARS = ("GEOCODE_API_KEY", "RAPID_API_KEY", "OMDB_API_KEY", "EXCHANGERATE_API_KEY")
 api_key = {}
-with open("../../function_credential_config.json") as f:
-    data = json.loads(f.read())
-    for item in data:
-        for k, v in item.items():
-            if v == "":
-                raise NoAPIKeyError()
-            api_key[k] = v
+for var in ENV_VARS:
+    if os.getenv(var) == "":
+        raise NoAPIKeyError(var)
+
+    api_key[var.replace("_", "-")] = os.getenv(var)
 
 
 def calculate_triangle_area(base, height):

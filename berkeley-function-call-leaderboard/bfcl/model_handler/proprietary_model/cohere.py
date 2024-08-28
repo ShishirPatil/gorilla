@@ -13,9 +13,7 @@ from bfcl.model_handler.constant import (
 )
 import time
 import cohere
-
-from bfcl.model_handler.constant import USE_COHERE_OPTIMIZATION
-
+USE_COHERE_OPTIMIZATION = os.getenv("USE_COHERE_OPTIMIZATION") == "True"
 
 class CohereHandler(BaseHandler):
     client: cohere.Client

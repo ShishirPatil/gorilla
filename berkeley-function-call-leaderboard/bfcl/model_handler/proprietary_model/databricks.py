@@ -9,7 +9,7 @@ from bfcl.model_handler.utils import (
 from bfcl.model_handler.constant import (
     DEFAULT_SYSTEM_PROMPT,
 )
-import time
+import time, os
 from openai import OpenAI
 import re
 
@@ -21,8 +21,8 @@ class DatabricksHandler(BaseHandler):
 
         # NOTE: To run the Databricks model, you need to provide your own Databricks API key and your own Azure endpoint URL.
         self.client = OpenAI(
-            api_key="{YOUR_DATABRICKS_API_KEY}",
-            base_url="{YOUR_DATABRICKS_AZURE_ENDPOINT_URL}",
+            api_key=os.getenv("DATABRICKS_API_KEY"),
+            base_url=os.getenv("DATABRICKS_AZURE_ENDPOINT_URL"),
         )
 
     def inference(self, prompt, functions, test_category):
