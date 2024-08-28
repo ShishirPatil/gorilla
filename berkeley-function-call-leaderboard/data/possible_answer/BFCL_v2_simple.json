@@ -3,7 +3,7 @@
 {"id": "simple_2", "ground_truth": [{"math.hypot": {"x": [4], "y": [5], "z": ["", 0]}}]}
 {"id": "simple_3", "ground_truth": [{"algebra.quadratic_roots": {"a": [1], "b": [-3], "c": [2]}}]}
 {"id": "simple_4", "ground_truth": [{"solve_quadratic_equation": {"a": [2], "b": [6], "c": [5]}}]}
-{"id": "simple_5", "ground_truth": [{"solve_quadratic": {"a": [3], "b": [-11], "c": [-4], "root_type": ["", "real", "all"]}}]}
+{"id": "simple_5", "ground_truth": [{"solve_quadratic": {"a": [3], "b": [-11], "c": [-4], "root_type": ["all"]}}]}
 {"id": "simple_6", "ground_truth": [{"solve_quadratic": {"a": [2], "b": [5], "c": [3]}}]}
 {"id": "simple_7", "ground_truth": [{"calculate_circumference": {"radius": [4], "unit": ["inches", "in"]}}]}
 {"id": "simple_8", "ground_truth": [{"geometry.area_circle": {"radius": [10], "units": ["meters", ""]}}]}
