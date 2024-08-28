@@ -193,14 +193,15 @@
             </p>
             <div class="ui container">
                 <div class="ui form">
-                    <div class="field">
-                        <label>Select models to compare</label>
-                        <div id="dataset-dropdown" class="ui fluid multiple search selection dropdown">
-                            <input type="hidden" name="datasets">
-                            <i class="dropdown icon"></i>
-                            <div class="default text">Search models...</div>
-                            <div class="menu"></div>
-                        </div>
+                    <div class="dropdown-container">
+                        <label class="dropdown-label">Select Models to Compare</label>
+                        <button id="clear-all-btn" class="btn btn-primary" type="button" >Clear All</button> <!-- Clear All Button -->
+                    </div>
+                    <div id="dataset-dropdown" class="ui fluid multiple search selection dropdown">
+                        <input type="hidden" name="datasets">
+                        <i class="dropdown icon"></i>
+                        <div class="default text">Search models...</div>
+                        <div class="menu"></div>
                     </div>
                 </div>
             </div>

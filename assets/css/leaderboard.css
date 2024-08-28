@@ -222,15 +222,45 @@ canvas {
     height: auto !important;
 }
 
+/* Flexbox to align the label and button */
+.dropdown-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items:baseline;
+    margin-bottom: 10px;
+}
+
 .chart-inner-container {
     width: 100%;
     padding: 3rem;
 }
 
+.dropdown-label {
+    font-size: large;
+    margin: 0;
+}
+
+
 /* Responsive styling */
 @media (max-width: 768px) {
+
     h2 {
         font-size: 1.5rem;
+    }
+
+    #clear-all-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    .dropdown-container {
+        margin-bottom: 8px;
+    }
+
+    .dropdown-label {
+        font-size: medium;
+        margin: 0;
     }
 
     #chart-container {

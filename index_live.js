@@ -798,6 +798,16 @@ function generateChart(csvData) {
     });
 }
 
+// Handle Clear All button click
+$('#clear-all-btn').on('click', function () {
+    // Clear the chart datasets
+    myChart.data.datasets = [];
+    myChart.update();
+
+    // Clear the dropdown selection
+    datasetDropdown.dropdown('clear');
+});
+
 // Populate the dropdown with dataset options
 function populateDropdown() {
     availableDatasets.forEach((dataset, index) => {
