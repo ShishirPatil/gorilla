@@ -1,9 +1,9 @@
 import argparse, json, os, time
 from tqdm import tqdm
-from model_handler.handler_map import handler_map
-from model_handler.model_style import ModelStyle
-from model_handler.constant import USE_COHERE_OPTIMIZATION
-from eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING
+from bfcl.model_handler.handler_map import handler_map
+from bfcl.model_handler.model_style import ModelStyle
+from bfcl.model_handler.constant import USE_COHERE_OPTIMIZATION
+from bfcl.eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING
 from concurrent.futures import ThreadPoolExecutor
 
 RETRY_LIMIT = 3
@@ -69,7 +69,7 @@ def parse_test_category_argument(test_category_args):
             test_name_total.add(test_category)
             test_filename_total.add(TEST_FILE_MAPPING[test_category])
 
-    return list(test_name_total), list(test_filename_total)
+    return sorted(list(test_name_total)), sorted(list(test_filename_total))
 
 
 def collect_test_cases(test_filename_total, model_name):
@@ -158,10 +158,9 @@ def multi_threaded_inference(handler, test_case):
     result_to_write = {
         "id": test_case["id"],
         "result": result,
-        "input_token_count": metadata["input_tokens"],
-        "output_token_count": metadata["output_tokens"],
-        "latency": metadata["latency"],
     }
+    
+    result_to_write.update(metadata)
 
     return result_to_write
 
@@ -171,13 +170,13 @@ def generate_results(args, model_name, test_cases_total):
     handler = build_handler(model_name, args.temperature, args.top_p, args.max_tokens)
 
     if handler.model_style == ModelStyle.OSSMODEL:
-        result, metadata = handler.inference(
+        results, processed_messages = handler.inference(
             test_question=test_cases_total,
             num_gpus=args.num_gpus,
             gpu_memory_utilization=args.gpu_memory_utilization,
         )
-        for test_case, res in zip(test_cases_total, result):
-            result_to_write = {"id": test_case["id"], "result": res}
+        for test_case, result, processed_message in zip(test_cases_total, results, processed_messages):
+            result_to_write = {"id": test_case["id"], "result": result, "processed_message": processed_message}
             handler.write(result_to_write)
 
     else:

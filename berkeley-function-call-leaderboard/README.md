@@ -12,15 +12,34 @@ We introduce the Berkeley Function Leaderboard (BFCL), the **first comprehensive
 Read more about the technical details and interesting insights in our [blog post](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html)!
 
 ![image](./architecture_diagram.png)
+
+
 ### Install Dependencies
 
 ```bash
+# Create a new Conda environment with Python 3.10
 conda create -n BFCL python=3.10
+
+# Activate the new environment
 conda activate BFCL
-pip install -r requirements.txt # Inside gorilla/berkeley-function-call-leaderboard
-pip install vllm==0.5.0 # If you have vLLM supported GPU(s) and want to run our evaluation data against self-hosted OSS models.
+
+# Clone the Gorilla repository
+git clone https://github.com/ShishirPatil/gorilla.git
+
+# Change directory to the berkeley-function-call-leaderboard
+cd gorilla/berkeley-function-call-leaderboard
+
+# Install the package in editable mode
+pip install -e .
 ```
 
+### Installing Extra Dependencies for Self-Hosted Open Source Models
+
+To do LLM generation on self-hosted open source models, you need to run the following command to install the extra dependencies.
+```bash
+pip install -e .[oss_eval]
+```
+Note that this requires GPU supported by vLLM and it can only be installed on Linux and Windows (not Mac).
 
 ## Execution Evaluation Data Post-processing (Can be Skipped: Necesary for Executable Test Categories)
 Add your keys into `function_credential_config.json`, so that the original placeholder values in questions, params, and answers will be reset.
@@ -189,7 +208,7 @@ In the following two sections, the optional `--test-category` parameter can be u
 
 ### Running the Checker
 
-Navigate to the `gorilla/berkeley-function-call-leaderboard/eval_checker` directory and run the `eval_runner.py` script with the desired parameters. The basic syntax is as follows:
+Navigate to the `gorilla/berkeley-function-call-leaderboard/bfcl/eval_checker` directory and run the `eval_runner.py` script with the desired parameters. The basic syntax is as follows:
 
 ```bash
 python eval_runner.py --model MODEL_NAME --test-category TEST_CATEGORY
@@ -235,6 +254,13 @@ Some companies have proposed some optimization strategies in their models' handl
 * [August 27, 2024] [#608](https://github.com/ShishirPatil/gorilla/pull/608): Bug fix in the dataset and possible answers.
   * simple: 16 affected
   * multiple: 5 affected
+* [August 22, 2024] [#593](https://github.com/ShishirPatil/gorilla/pull/593): 
+  * Move formatting instructions and function documentation to system prompt instead of user prompt in the message section. All prompting models are affected.
+  * Bug fix in the dataset and possible answers.
+    * irrelevance: 1 affected
+    * live_irrelevance: 1 affected
+    * live_simple: 1 affected
+    * live_parallel: 3 affected
 * [August 19, 2024] [#580](https://github.com/ShishirPatil/gorilla/pull/580): Introduce BFCL V2 Live dataset, featuring user-contributed live prompts and function docs. To read more about the composition and construction of this dataset, please refer to our [blog](https://gorilla.cs.berkeley.edu/blogs/12_bfcl_v2_live.html). All CLI commands have been updated to support the new dataset.
 * [August 8, 2024] [#574](https://github.com/ShishirPatil/gorilla/pull/574): Set temperature to 0.001 for all models for consistency and reproducibility.
 * [August 7, 2024] [#571](https://github.com/ShishirPatil/gorilla/pull/571): Support parallel inference for hosted models. User can specify the number of threads to use for parallel inference by setting the `--num-threads` flag. The default is 1, which means no parallel inference.
