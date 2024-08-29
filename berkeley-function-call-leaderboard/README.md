@@ -254,6 +254,10 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
+* [August 29, 2024] [#616](https://github.com/ShishirPatil/gorilla/pull/6160): Add the following new models to the leaderboard:
+  * `Salesforce/xLAM-7b-r`
+  * `Salesforce/xLAM-8x7b-r`
+  * `Salesforce/xLAM-8x22b-r`
 * [August 22, 2024] [#593](https://github.com/ShishirPatil/gorilla/pull/593): 
   * Move formatting instructions and function documentation to system prompt instead of user prompt in the message section. All prompting models are affected.
   * Bug fix in the dataset and possible answers.
