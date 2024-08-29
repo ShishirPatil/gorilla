@@ -4,7 +4,7 @@ from bfcl.model_handler.utils import (
     ast_parse,
     func_doc_language_specific_pre_processing,
 )
-import requests, json, time
+import requests, json, re, time
 
 
 class GorillaHandler(BaseHandler):
