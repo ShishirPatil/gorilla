@@ -532,6 +532,23 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/Salesforce/xLAM-7b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
+    ],
+    "Salesforce/xLAM-7b-r": [
+        "xLAM-7b-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-7b-r",
+        "Salesforce",
+        "cc-by-nc-4.0",
+    ],
+    "Salesforce/xLAM-8x7b-r": [
+        "xLAM-8x7b-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-8x7b-r",
+        "Salesforce",
+        "cc-by-nc-4.0",
+    ],"Salesforce/xLAM-8x22b-r": [
+        "xLAM-8x22b-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-8x22b-r",
+        "Salesforce",
+        "cc-by-nc-4.0",
     ]
 }
 

@@ -127,6 +127,9 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |snowflake/arctic | Prompt|
 |Salesforce/xLAM-1b-fc-r 💻| Function Calling|
 |Salesforce/xLAM-7b-fc-r 💻| Function Calling|
+|Salesforce/xLAM-7b-r 💻| Function Calling|
+|Salesforce/xLAM-8x7b-r 💻| Function Calling|
+|Salesforce/xLAM-8x22b-r 💻| Function Calling|
 |nvidia/nemotron-4-340b-instruct| Prompt|
 |THUDM/glm-4-9b-chat 💻| Function Calling|
 |ibm-granite/granite-20b-functioncalling 💻| Function Calling|
