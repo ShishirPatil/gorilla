@@ -9,7 +9,10 @@ def log_setup():
     """
 
     # Load the config file
-    with open(os.getenv('LOGGING_CONFIG', 'logging.yaml'), 'rt') as f:
+    conf_path = os.getenv('LOGGING_CONFIG', None)
+    if not conf_path:
+        conf_path = os.path.dirname(__file__) + '/logging.yaml'
+    with open(conf_path, 'rt') as f:
         config = yaml.safe_load(f.read())
 
     # Configure the logging module with the config file
