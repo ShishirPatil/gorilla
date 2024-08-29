@@ -5,7 +5,7 @@ from bfcl.model_handler.utils import (
     system_prompt_pre_processing_chat_model,
     func_doc_language_specific_pre_processing,
 )
-from model_handler.constant import DEFAULT_SYSTEM_PROMPT
+from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT
 
 
 class OSSHandler(BaseHandler):
