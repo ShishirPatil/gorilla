@@ -19,9 +19,10 @@ class OpenAIHandler(BaseHandler):
     def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
         self.model_style = ModelStyle.OpenAI
-        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     def inference(self, prompt, functions, test_category):
+        # Move it here so eval checker can run w/o instantiating API key since we don't use it at that point
+        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
         # Chatting model
         if "FC" not in self.model_name:
             functions = func_doc_language_specific_pre_processing(

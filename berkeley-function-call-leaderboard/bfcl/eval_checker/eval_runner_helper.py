@@ -532,7 +532,19 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/Salesforce/xLAM-7b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
-    ]
+    ],
+    "google/gemma-2-2b-it": [
+        "Gemma-2-2.6B-it (Prompt)",
+        "https://huggingface.co/google/gemma-2b-it",
+        "Google",
+        "gemma-terms-of-use",
+    ],
+    "microsoft/Phi-3.5-mini-instruct": [
+        "Phi-3.5-mini-instruct (Prompt)",
+        "https://huggingface.co/microsoft/Phi-3.5-mini-instruct",
+        "Microsoft",
+        "MIT",
+    ]    
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {

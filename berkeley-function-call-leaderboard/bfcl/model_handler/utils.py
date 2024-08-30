@@ -259,6 +259,14 @@ def resolve_ast_call(elem):
         func_parts.append(func_part.id)
     func_name = ".".join(reversed(func_parts))
     args_dict = {}
+    # Parse when args are simply passed as an unnamed dictionary arg
+    for arg in elem.args:
+        if isinstance(arg, ast.Dict):
+            for key, value in zip(arg.keys, arg.values):
+                if isinstance(key, ast.Constant):
+                    arg_name = key.value
+                output = resolve_ast_by_type(value)
+                args_dict[arg_name] = output
     for arg in elem.keywords:
         output = resolve_ast_by_type(arg.value)
         args_dict[arg.arg] = output
