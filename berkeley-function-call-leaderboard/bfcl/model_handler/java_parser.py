@@ -1,14 +1,15 @@
 import json
 from tree_sitter import Language, Parser
-import tree_sitter_java
 
-JAVA_LANGUAGE = Language(tree_sitter_java.language(), "java")
-
-parser = Parser()
-parser.set_language(JAVA_LANGUAGE)
 
 
 def parse_java_function_call(source_code):
+    # Move in here to avoid dependency errors if we aren't running categories that use this function
+    import tree_sitter_java
+    JAVA_LANGUAGE = Language(tree_sitter_java.language(), "java")
+
+    parser = Parser()
+    parser.set_language(JAVA_LANGUAGE)    
     tree = parser.parse(bytes(source_code, "utf8"))
     root_node = tree.root_node
     sexp_result = root_node.sexp()

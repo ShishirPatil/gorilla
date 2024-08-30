@@ -20,6 +20,8 @@ from bfcl.model_handler.nvidia_handler import NvidiaHandler
 from bfcl.model_handler.glm_handler import GLMHandler
 from bfcl.model_handler.yi_handler import YiHandler
 from bfcl.model_handler.xlam_handler import xLAMHandler
+from bfcl.model_handler.huggingface_handler import HuggingFaceHandler
+from bfcl.model_handler.phi_handler import PhiHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -72,6 +74,7 @@ handler_map = {
     "gemini-1.5-pro-preview-0409": GeminiHandler,
     "gemini-1.5-pro-preview-0514": GeminiHandler,
     "gemini-1.5-flash-preview-0514": GeminiHandler,
+    "google/gemma-2-2b-it": HuggingFaceHandler,
     "google/gemma-7b-it": GemmaHandler,
     "glaiveai/glaive-function-calling-v1": GlaiveHandler,
     "deepseek-ai/deepseek-coder-6.7b-instruct": DeepseekHandler,
@@ -96,5 +99,6 @@ handler_map = {
     "THUDM/glm-4-9b-chat": GLMHandler,
     "yi-large-fc": YiHandler,
     "Salesforce/xLAM-1b-fc-r": xLAMHandler,
-    "Salesforce/xLAM-7b-fc-r": xLAMHandler
+    "Salesforce/xLAM-7b-fc-r": xLAMHandler,
+    "microsoft/Phi-3.5-mini-instruct": PhiHandler,
 }
