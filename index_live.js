@@ -766,12 +766,17 @@ function generateChart(csvData) {
             },
             plugins: {
                 legend: {
+                    display: true,
+                    position: 'top', // Ensure legend is at the top
                     labels: {
                         boxWidth: 15,
                         font: {
-                            size: getFontSize() + 3.5 // Adjust legend font size dynamically
-                        }
-                    }
+                            size: Math.min(getFontSize() + 3.5, 15) // Allow labels to adjust in size if needed
+                        },
+                        padding: 20, // Provide padding around labels to avoid crowding
+                        usePointStyle: true, // Use point style to differentiate items
+                    },
+                    fullSize: true // Allow legend to take full width if needed
                 }
             }
         }
@@ -817,8 +822,14 @@ function populateDropdown() {
 
     // Initialize the dropdown and trigger change event
     datasetDropdown.dropdown({
+        fullTextSearch: 'exact',  // Enables full substring matching
         onChange: function (value) {
             handleDatasetSelection(value);
+        },
+        // Custom search function for substring matching
+        filterRemoteData: true,
+        matcher: function (searchTerm, item) {
+            return item.text.toLowerCase().includes(searchTerm.toLowerCase());
         }
     });
 

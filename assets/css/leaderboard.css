@@ -45,8 +45,11 @@ th:not(.detail-header)  {
     justify-content: center;
 }
 
-
-
+#myChart-container{
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
 
 
 .group1 col {
@@ -59,14 +62,9 @@ th:not(.detail-header)  {
 }
 
 
-
 #myChart {
-    display: block;
-    margin: auto; 
-    width: 100%; 
-    height: auto; /* This will maintain the aspect ratio */
-    align-items: center;
-    justify-content: center;
+    width: 100% !important;  /* Canvas should expand to full width of the container */
+    height: auto !important;  /* Allow height to adjust automatically */
 }
 
 
@@ -169,6 +167,16 @@ thead {
     background-color: #f1f8ff;
 }
 
+@media only screen and (min-width: 1025px) {
+
+    #myChart-container{
+        width: 65%;
+        height: auto;
+        margin: auto;
+    }
+
+}
+
 @media only screen and (min-width: 769px) {
 
 /* Sticky left columns */
@@ -241,7 +249,6 @@ canvas {
     margin: 0;
 }
 
-
 /* Responsive styling */
 @media (max-width: 768px) {
 
@@ -280,5 +287,10 @@ canvas {
 
     .ui.form .field label {
         font-size: 1rem;
+    }
+
+    #myChart-container{
+        width: 100%;
+        margin: auto;
     }
 }
