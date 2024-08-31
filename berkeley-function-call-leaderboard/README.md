@@ -260,7 +260,10 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
-* [August 27, 2024] [#565](https://github.com/ShishirPatil/gorilla/pull/565): Packagerize the BFCL pipeline for easier deployment and maintenance.
+* [August 28, 2024] [#565](https://github.com/ShishirPatil/gorilla/pull/565): Packagerize the BFCL pipeline for easier deployment and maintenance.
+* [August 27, 2024] [#608](https://github.com/ShishirPatil/gorilla/pull/608): Bug fix in the dataset and possible answers.
+  * simple: 16 affected
+  * multiple: 5 affected
 * [August 22, 2024] [#593](https://github.com/ShishirPatil/gorilla/pull/593): 
   * Move formatting instructions and function documentation to system prompt instead of user prompt in the message section. All prompting models are affected.
   * Bug fix in the dataset and possible answers.
