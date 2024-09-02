@@ -532,6 +532,12 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/Salesforce/xLAM-7b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
+    ],
+    "Team-ACE/ToolACE-8B": [
+        "ToolACE-8B (FC)",
+        "https://huggingface.co/Team-ACE/ToolACE-8B",
+        "Huawei Noah & USTC",
+        "Apache-2.0"
     ]
 }
 
@@ -673,7 +679,8 @@ NO_COST_MODELS = [
     "ibm-granite/granite-20b-functioncalling",
     "THUDM/glm-4-9b-chat",
     "Salesforce/xLAM-1b-fc-r",
-    "Salesforce/xLAM-7b-fc-r"
+    "Salesforce/xLAM-7b-fc-r",
+    "Team-ACE/ToolACE-8B"
 ]
 
 # Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
