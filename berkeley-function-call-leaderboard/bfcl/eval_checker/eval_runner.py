@@ -1,7 +1,13 @@
-from checker import ast_checker, exec_checker, executable_checker_rest
-from custom_exception import BadAPIStatusError
-from eval_runner_helper import *
-from eval_checker_constant import TEST_COLLECTION_MAPPING
+try:
+    from .checker import ast_checker, exec_checker, executable_checker_rest
+    from .custom_exception import BadAPIStatusError
+    from .eval_runner_helper import *
+    from .eval_checker_constant import TEST_COLLECTION_MAPPING
+except ImportError:
+    from checker import ast_checker, exec_checker, executable_checker_rest
+    from custom_exception import BadAPIStatusError
+    from eval_runner_helper import *
+    from eval_checker_constant import TEST_COLLECTION_MAPPING
 from tqdm import tqdm
 import argparse
 

@@ -5,7 +5,10 @@ import statistics
 import subprocess
 import re
 import numpy as np
-from custom_exception import BadAPIStatusError
+try:
+    from .custom_exception import BadAPIStatusError
+except ImportError:
+    from custom_exception import BadAPIStatusError
 from bfcl.model_handler.handler_map import handler_map
 from tqdm import tqdm
 

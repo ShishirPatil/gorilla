@@ -3,8 +3,12 @@ from bfcl.model_handler.constant import (
     JAVA_TYPE_CONVERSION,
     JS_TYPE_CONVERSION,
 )
-from eval_checker_constant import REAL_TIME_MATCH_ALLOWED_DIFFERENCE
-from custom_exception import NoAPIKeyError
+try:
+    from .eval_checker_constant import REAL_TIME_MATCH_ALLOWED_DIFFERENCE
+    from .custom_exception import NoAPIKeyError
+except ImportError:
+    from eval_checker_constant import REAL_TIME_MATCH_ALLOWED_DIFFERENCE
+    from custom_exception import NoAPIKeyError
 import re
 import requests  # Do not remove this import even though it seems to be unused. It's used in the executable_checker_rest function.
 import time
