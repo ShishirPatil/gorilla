@@ -9,6 +9,7 @@ import re
 import requests  # Do not remove this import even though it seems to be unused. It's used in the executable_checker_rest function.
 import time
 import json
+from functools import lru_cache
 
 # We switch to conditional import for the following two imports to avoid unnecessary installations.
 # User doesn't need to setup the tree-sitter packages if they are not running the test for that language.
@@ -36,8 +37,12 @@ NESTED_CONVERSION_TYPE_LIST = ["Array", "ArrayList", "array"]
 EVAL_GROUND_TRUTH_PATH = (
     "./rest-eval-response_v5.jsonl"  # Ground truth file for v5 for rest execution
 )
-with open(EVAL_GROUND_TRUTH_PATH, "r") as f:
-    EVAL_GROUND_TRUTH = f.readlines()
+
+
+@lru_cache(maxsize=1)  # cache the result, effectively loading data once
+def load_eval_ground_truth():
+    with open(EVAL_GROUND_TRUTH_PATH, "r") as f:
+        return f.readlines()
 
 
 #### Helper functions for AST ####
@@ -831,6 +836,8 @@ def executable_checker_parallel_no_order(
 
 #### Main function ####
 def executable_checker_rest(func_call, idx):
+    EVAL_GROUND_TRUTH = load_eval_ground_truth()
+
     if "https://geocode.maps.co" in func_call:
         time.sleep(2)
     if "requests_get" in func_call:
