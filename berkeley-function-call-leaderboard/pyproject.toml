@@ -27,7 +27,11 @@ dependencies = [
     "mistralai==0.4.2",
     "anthropic==0.31.1",
     "cohere==5.5.8",
+    "typer>=0.12.5",
 ]
+
+[project.scripts]
+bfcl = "bfcl.__main__:cli"
 
 [tool.setuptools.packages.find]
 include = ["bfcl*"]
