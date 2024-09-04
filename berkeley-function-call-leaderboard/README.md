@@ -251,7 +251,7 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
-* [Sept 4, 2024] [](): Fix decoding issue in the `NvidiaHandler`; remove duplicate `ArcticHandler` class.
+* [Sept 4, 2024] [#623](https://github.com/ShishirPatil/gorilla/pull/623): Fix decoding issue in the `NvidiaHandler`; remove duplicate `ArcticHandler` class.
 * [August 27, 2024] [#608](https://github.com/ShishirPatil/gorilla/pull/608): Bug fix in the dataset and possible answers.
   * simple: 16 affected
   * multiple: 5 affected
