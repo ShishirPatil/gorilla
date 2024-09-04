@@ -5,9 +5,19 @@ from bfcl._openfunctions_evaluation import main as openfunctions_main
 from bfcl.eval_checker import eval_runner
 import os
 
+
+class ExecutionOrderGroup(typer.core.TyperGroup):
+    def list_commands(self, ctx):
+        return [
+            "run",
+            "evaluate",
+        ]
+
+
 cli = typer.Typer(
     context_settings=dict(help_option_names=["-h", "--help"]),
     no_args_is_help=True,
+    cls=ExecutionOrderGroup,
 )
 
 
