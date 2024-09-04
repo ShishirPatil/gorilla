@@ -86,7 +86,7 @@
 {"id": "multiple_85", "ground_truth": [{"soccer_scores.get_scores": {"team": ["Real Madrid"], "league": ["La Liga"], "rounds": [5]}}]}
 {"id": "multiple_86", "ground_truth": [{"BoardGameGeek.recommend": {"numPlayers": [2], "category": ["strategy"], "difficulty": ["", "beginner"]}}]}
 {"id": "multiple_87", "ground_truth": [{"games.update.find": {"game": ["Cyberpunk 2077"], "platform": ["Xbox"], "region": ["", "global"]}}]}
-{"id": "multiple_88", "ground_truth": [{"video_games.get_player_count": {"game_title": ["World of Warcraft"], "year": [2020], "platform": [""]}}]}
+{"id": "multiple_88", "ground_truth": [{"video_games.get_player_count": {"game_title": ["World of Warcraft"], "year": [2020], "platform": ["", "PC"]}}]}
 {"id": "multiple_89", "ground_truth": [{"recipe_search": {"ingredients": [["chicken", "mushrooms"], ["mushrooms", "chicken"]], "calories": [500], "meal": ["lunch", ""]}}]}
 {"id": "multiple_90", "ground_truth": [{"restaurant.find_group": {"location": ["Seattle", "Seattle, WA"], "cuisine": [["Seafood"]], "group_size": [5]}}]}
 {"id": "multiple_91", "ground_truth": [{"recipe.find": {"mainIngredient": ["apple pie", "apple"], "ingredientLimit": [4]}}]}
@@ -151,7 +151,7 @@
 {"id": "multiple_150", "ground_truth": [{"calculate_neuronal_activity": {"input_synaptic_rate": [200], "weight": [0.5], "decay_rate": [0.1]}}]}
 {"id": "multiple_151", "ground_truth": [{"social_media_analytics.most_followed": {"topic": ["psychology", "Psychology"], "sub_topics": [["behaviour", "group dynamics"], ["group dynamics", "behaviour"]], "region": ["", "global"]}}]}
 {"id": "multiple_152", "ground_truth": [{"history.get_key_events": {"country": ["Germany"], "start_year": [1871], "end_year": [1945], "event_type": [["War"]]}}]}
-{"id": "multiple_153", "ground_truth": [{"get_event_date": {"event": ["Treaty of Lisbon", "Signing of the Treaty of Lisbon"], "location": ["", "global"]}}]}
+{"id": "multiple_153", "ground_truth": [{"get_event_date": {"event": ["Treaty of Lisbon", "Signing of the Treaty of Lisbon"], "location": ["", "global", "Lisbon", "Lisbon, Portugal"]}}]}
 {"id": "multiple_154", "ground_truth": [{"US_president.in_year": {"year": [1861], "full_name": [true, ""]}}]}
 {"id": "multiple_155", "ground_truth": [{"get_discoverer": {"discovery": ["neutron"], "detail": [true]}}]}
 {"id": "multiple_156", "ground_truth": [{"historical_contrib.get_contrib": {"scientist": ["Albert Einstein"], "date": ["1915-03-17", "03/17/1915", "Mar.17,1915"], "category": ["", "all"]}}]}
@@ -181,7 +181,7 @@
 {"id": "multiple_180", "ground_truth": [{"game_stats.fetch_player_statistics": {"game": ["Zelda"], "username": ["Sam"], "platform": ["Switch", "Nintendo Switch"]}}]}
 {"id": "multiple_181", "ground_truth": [{"soccer.get_last_match": {"team_name": ["Liverpool F.C.", "Liverpool"], "include_stats": [true]}}]}
 {"id": "multiple_182", "ground_truth": [{"multiplayer_game_finder": {"platform": ["Windows 10"], "rating": [4.5], "genre": [""]}}]}
-{"id": "multiple_183", "ground_truth": [{"recipe_info.get_calories": {"website": ["Foodnetwork.com"], "recipe": ["Beef Lasagna"], "optional_meal_time": [""]}}]}
+{"id": "multiple_183", "ground_truth": [{"recipe_info.get_calories": {"website": ["Foodnetwork.com"], "recipe": ["Beef Lasagna", "Beef Lasagna Recipe"], "optional_meal_time": [""]}}]}
 {"id": "multiple_184", "ground_truth": [{"recipe_search": {"dietary_restriction": ["Vegetarian"], "ingredients": [["pasta", "cheese"], ["cheese", "pasta"]], "servings": [2]}}]}
 {"id": "multiple_185", "ground_truth": [{"restaurant_search.find_closest": {"location": ["Boston", "Boston, MA"], "cuisine": ["Sushi"], "amenities": [["Patio"]]}}]}
 {"id": "multiple_186", "ground_truth": [{"find_recipe": {"dietary_restrictions": ["vegan"], "recipe_type": ["dessert"], "time": [30]}}]}
