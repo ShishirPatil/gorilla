@@ -1,7 +1,7 @@
 import json
 
-from model_handler.oss_handler import OSSHandler
-from model_handler.model_style import ModelStyle
+from bfcl.model_handler.oss_handler import OSSHandler
+from bfcl.model_handler.model_style import ModelStyle
 
 SYSTEM_PROMPT ="""<bos>
 <start_of_turn>system
