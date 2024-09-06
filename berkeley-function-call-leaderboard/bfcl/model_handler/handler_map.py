@@ -20,7 +20,7 @@ from bfcl.model_handler.nvidia_handler import NvidiaHandler
 from bfcl.model_handler.glm_handler import GLMHandler
 from bfcl.model_handler.yi_handler import YiHandler
 from bfcl.model_handler.xlam_handler import xLAMHandler
-from bfcl.model_handler.actionGemma_handler import actionGemmaHangler
+from bfcl.model_handler.actionGemma_handler import ActionGemmaHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -98,5 +98,5 @@ handler_map = {
     "yi-large-fc": YiHandler,
     "Salesforce/xLAM-1b-fc-r": xLAMHandler,
     "Salesforce/xLAM-7b-fc-r": xLAMHandler,
-    "KishoreK/ActionGemma-9B":actionGemmaHandler,
+    "KishoreK/ActionGemma-9B": ActionGemmaHandler,
 }

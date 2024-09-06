@@ -146,6 +146,7 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |snowflake/arctic | Prompt|
 |Salesforce/xLAM-1b-fc-r 💻| Function Calling|
 |Salesforce/xLAM-7b-fc-r 💻| Function Calling|
+|KishoreK/ActionGemma-9B| Function Calling|
 |nvidia/nemotron-4-340b-instruct| Prompt|
 |THUDM/glm-4-9b-chat 💻| Function Calling|
 |ibm-granite/granite-20b-functioncalling 💻| Function Calling|
@@ -251,6 +252,7 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
+* [Sept 6, 2024] [#610](https://github.com/ShishirPatil/gorilla/pull/610): Add new model `KishoreK/ActionGemma-9B` to the leaderboard.
 * [August 22, 2024] [#593](https://github.com/ShishirPatil/gorilla/pull/593): 
   * Move formatting instructions and function documentation to system prompt instead of user prompt in the message section. All prompting models are affected.
   * Bug fix in the dataset and possible answers.
