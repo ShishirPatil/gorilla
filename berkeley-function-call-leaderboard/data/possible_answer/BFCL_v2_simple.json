@@ -3,7 +3,7 @@
 {"id": "simple_2", "ground_truth": [{"math.hypot": {"x": [4], "y": [5], "z": ["", 0]}}]}
 {"id": "simple_3", "ground_truth": [{"algebra.quadratic_roots": {"a": [1], "b": [-3], "c": [2]}}]}
 {"id": "simple_4", "ground_truth": [{"solve_quadratic_equation": {"a": [2], "b": [6], "c": [5]}}]}
-{"id": "simple_5", "ground_truth": [{"solve_quadratic": {"a": [3], "b": [-11], "c": [-4], "root_type": ["", "real"]}}]}
+{"id": "simple_5", "ground_truth": [{"solve_quadratic": {"a": [3], "b": [-11], "c": [-4], "root_type": ["all"]}}]}
 {"id": "simple_6", "ground_truth": [{"solve_quadratic": {"a": [2], "b": [5], "c": [3]}}]}
 {"id": "simple_7", "ground_truth": [{"calculate_circumference": {"radius": [4], "unit": ["inches", "in"]}}]}
 {"id": "simple_8", "ground_truth": [{"geometry.area_circle": {"radius": [10], "units": ["meters", ""]}}]}
@@ -11,7 +11,7 @@
 {"id": "simple_10", "ground_truth": [{"calculate_area": {"base": [6], "height": [10], "unit": ["cm", ""]}}]}
 {"id": "simple_11", "ground_truth": [{"calculate_triangle_area": {"base": [10], "height": [5]}}]}
 {"id": "simple_12", "ground_truth": [{"geometry.circumference": {"radius": [3], "units": ["cm", ""]}}]}
-{"id": "simple_13", "ground_truth": [{"calculate_area_under_curve": {"function": ["x**2", "lambda x: x**2"], "interval": [[1.0, 3.0]], "method": ["", "trapezoidal"]}}]}
+{"id": "simple_13", "ground_truth": [{"calculate_area_under_curve": {"function": ["x**2", "lambda x: x**2", "y=x**2"], "interval": [[1.0, 3.0]], "method": ["", "trapezoidal"]}}]}
 {"id": "simple_14", "ground_truth": [{"calculate_derivative": {"function": ["3x**2 + 2x - 1", "lambda x: 3x**2 + 2x - 1"], "x_value": ["", 0.0]}}]}
 {"id": "simple_15", "ground_truth": [{"integrate": {"function": ["x**3", "lambda x: x**3"], "start_x": [-2], "end_x": [3], "method": ["simpson"]}}]}
 {"id": "simple_16", "ground_truth": [{"calculus.derivative": {"function": ["2x**2", "lambda x: 2x**2"], "value": [1], "function_variable": ["x", ""]}}]}
@@ -154,7 +154,7 @@
 {"id": "simple_153", "ground_truth": [{"calculate_compounded_interest": {"principal": [5000], "rate": [0.03], "time": [5], "n": [4]}}]}
 {"id": "simple_154", "ground_truth": [{"calculate_future_value": {"present_value": [5000], "annual_interest_rate": [0.05], "years": [10], "compounds_per_year": ["", 1]}}]}
 {"id": "simple_155", "ground_truth": [{"calculate_future_value": {"initial_investment": [1000], "interest_rate": [0.05], "duration": [2], "compounded": ["", 1]}}]}
-{"id": "simple_156", "ground_truth": [{"crime_record.get_record": {"case_number": ["CA123456"], "county": ["San Diego"], "details": [true]}}]}
+{"id": "simple_156", "ground_truth": [{"crime_record.get_record": {"case_number": ["CA123456"], "county": ["San Diego", "San Diego County"], "details": [true]}}]}
 {"id": "simple_157", "ground_truth": [{"criminal_history.check_felonies": {"full_name": ["John Doe"], "birth_date": ["01-01-1980"], "state": ["California", "CA"]}}]}
 {"id": "simple_158", "ground_truth": [{"get_criminal_records": {"name": ["Mr. X"], "location": ["New York, NY"], "from_year": [2012], "to_year": [2015]}}]}
 {"id": "simple_159", "ground_truth": [{"get_act_details": {"act_name": ["Criminal Law Amendment Act", "Criminal Law Amendment"], "amendment_year": [2013]}}]}
@@ -181,7 +181,7 @@
 {"id": "simple_180", "ground_truth": [{"lawsuits_search": {"company_name": ["Google"], "location": ["California", "CA"], "year": [2020], "case_type": ["", "all"]}}]}
 {"id": "simple_181", "ground_truth": [{"get_lawsuit_details": {"case_number": ["123456-ABC"], "court_location": ["Los Angeles"], "with_verdict": [true]}}]}
 {"id": "simple_182", "ground_truth": [{"lawsuit_info": {"case_number": ["XYZ123"], "year": ["", 2023], "location": ["", "all"]}}]}
-{"id": "simple_183", "ground_truth": [{"lawsuit_search": {"entity": ["Apple"], "county": ["Santa Clara County"], "state": ["California", ""]}}]}
+{"id": "simple_183", "ground_truth": [{"lawsuit_search": {"entity": ["Apple"], "county": ["Santa Clara County", "Santa Clara"], "state": ["California", ""]}}]}
 {"id": "simple_184", "ground_truth": [{"lawsuit.check_case": {"case_id": [1234], "closed_status": [true]}}]}
 {"id": "simple_185", "ground_truth": [{"detailed_weather_forecast": {"location": ["New York", "New York, USA"], "duration": [72], "include_precipitation": [true]}}]}
 {"id": "simple_186", "ground_truth": [{"current_weather_condition": {"city": ["Tokyo"], "country": ["Japan"], "measurement": ["c", ""]}}]}
@@ -233,10 +233,10 @@
 {"id": "simple_232", "ground_truth": [{"monarch.getMonarchOfYear": {"location": ["England", "ENG"], "year": [1800], "fullName": [true]}}]}
 {"id": "simple_233", "ground_truth": [{"european_history.get_event_date": {"event_name": ["Treaty of Tordesillas"], "format": ["YYYY"]}}]}
 {"id": "simple_234", "ground_truth": [{"history_eu.fetch_events": {"century": [19], "region": ["Northern", "Southern", "Eastern", "Western"], "category": ["Wars"]}}]}
-{"id": "simple_235", "ground_truth": [{"get_event_date": {"event": ["Treaty of Lisbon", "Signing of the Treaty of Lisbon", "The signing of the Treaty of Lisbon"], "location": [""]}}]}
+{"id": "simple_235", "ground_truth": [{"get_event_date": {"event": ["Treaty of Lisbon", "Signing of the Treaty of Lisbon", "The signing of the Treaty of Lisbon"], "location": ["", "Lisbon", "Lisbon, Portugal"]}}]}
 {"id": "simple_236", "ground_truth": [{"us_history.get_event_info": {"event_name": ["American Civil War", "Civil War"], "specific_info": ["Start Date"]}}]}
 {"id": "simple_237", "ground_truth": [{"get_historical_GDP": {"country": ["United States", "US"], "start_year": [1960], "end_year": [2000]}}]}
-{"id": "simple_238", "ground_truth": [{"us_history.get_president": {"event": ["American Civil War"], "year": [1861]}}]}
+{"id": "simple_238", "ground_truth": [{"us_history.get_president": {"event": ["American Civil War"], "year": [1861, 1862, 1863, 1864, 1865]}}]}
 {"id": "simple_239", "ground_truth": [{"US_president.in_year": {"year": [1861], "full_name": [true, ""]}}]}
 {"id": "simple_240", "ground_truth": [{"history_api.get_president_by_year": {"year": [1940], "full_term_only": ["", true, false]}}]}
 {"id": "simple_241", "ground_truth": [{"US_President_During_Event": {"event": ["Civil War"], "country": ["USA", ""]}}]}
@@ -307,14 +307,14 @@
 {"id": "simple_306", "ground_truth": [{"average_batting_score": {"player_name": ["Virat Kohli"], "matches": [10], "match_format": ["T20", ""]}}]}
 {"id": "simple_307", "ground_truth": [{"game_result.get_winner": {"teams": [["Lakers", "Clippers"], ["Clippers", "Lakers"]], "date": ["2021-01-28", "01/28/2021", "Jan.28,2021"], "venue": ["", true]}}]}
 {"id": "simple_308", "ground_truth": [{"sports.match_schedule": {"team_name": ["Manchester United", "Man United", "Man U", "MUFC"], "num_matches": [5], "league": ["English Premier League", ""]}}]}
-{"id": "simple_309", "ground_truth": [{"nfl_data.player_record": {"player_name": ["Tom Brady"], "season_year": [2020], "team": [""]}}]}
+{"id": "simple_309", "ground_truth": [{"nfl_data.player_record": {"player_name": ["Tom Brady"], "season_year": [2020], "team": ["", "Tampa Bay Buccaneers"]}}]}
 {"id": "simple_310", "ground_truth": [{"get_career_stats": {"player_name": ["LeBron James"], "team": [""]}}]}
 {"id": "simple_311", "ground_truth": [{"sports_db.find_athlete": {"name": ["Lebron James"], "sport": ["Basketball"], "team": [""]}}]}
 {"id": "simple_312", "ground_truth": [{"player_statistic": {"player_name": ["Ronaldo", "Cristiano Ronaldo"], "year": [2021], "team_name": [""]}}]}
 {"id": "simple_313", "ground_truth": [{"celebrity_net_worth.get": {"name": ["Lionel Messi", "Messi"], "currency": ["EUR", "euro"]}}]}
 {"id": "simple_314", "ground_truth": [{"sports_celebrity.get_major_achievements": {"celebrity_name": ["Lionel Messi", "Messi"], "sports": ["Football", "Soccer", ""], "team": ["", "all"]}}]}
 {"id": "simple_315", "ground_truth": [{"get_defense_ranking": {"season": [2021], "top": [1, ""]}}]}
-{"id": "simple_316", "ground_truth": [{"get_sport_ranking": {"sport": ["Tennis"], "player_name": ["Serena Williams"], "gender": ["", "all"]}}]}
+{"id": "simple_316", "ground_truth": [{"get_sport_ranking": {"sport": ["Tennis"], "player_name": ["Serena Williams"], "gender": ["", "all", "female"]}}]}
 {"id": "simple_317", "ground_truth": [{"get_team_rank": {"team_name": ["LA Lakers"], "league": ["NBA"], "season": ["2021"], "type": ["regular"]}}]}
 {"id": "simple_318", "ground_truth": [{"get_team_ranking": {"team_name": ["Germany"], "year": [2021], "gender": ["men", ""]}}]}
 {"id": "simple_319", "ground_truth": [{"sports_ranking": {"team": ["Manchester United", "Man United", "Man U", "MUFC"], "league": ["Premier League"], "season": ["", 2023]}}]}
@@ -373,11 +373,11 @@
 {"id": "simple_372", "ground_truth": [{"whole_foods.find_top_brands": {"product": ["bananas"], "number": [5, ""], "organic": [true]}}]}
 {"id": "simple_373", "ground_truth": [{"walmart.purchase": {"loc": ["San Jose", "San Jose, CA"], "product_list": [["apples", "rice", "bottled water"], ["apples", "rice", "water"]], "pack_size": [[1, 1, 12]]}}]}
 {"id": "simple_374", "ground_truth": [{"grocery_info.nutritional_info": {"store": ["Walmart"], "food": ["avocado", "Avocado"], "information": [["Protein", "Calories", "Carbohydrates"]]}}]}
-{"id": "simple_375", "ground_truth": [{"walmart.check_price": {"items": [["pumpkins", "eggs"], ["pumpkin", "dozen eggs"]], "quantities": [[3, 24], [3, 2]], "store_location": ["Los Angeles", "LA"]}}]}
+{"id": "simple_375", "ground_truth": [{"walmart.check_price": {"items": [["pumpkins", "eggs"], ["pumpkin", "dozen eggs"]], "quantities": [[3, 24], [3, 2]], "store_location": [""]}}]}
 {"id": "simple_376", "ground_truth": [{"time_zone_converter": {"city": ["London"], "country": ["UK", "United Kingdom"], "display_format": ["24h", "24 hour"]}}]}
 {"id": "simple_377", "ground_truth": [{"get_current_time": {"city": ["Sydney"], "country": ["Australia"], "format": ["", "HH:MM:SS"]}}]}
 {"id": "simple_378", "ground_truth": [{"timezone.convert": {"time": ["3pm"], "from_timezone": ["America/New_York", "New York", "NYC", "New York City"], "to_timezone": ["Europe/London", "London"]}}]}
-{"id": "simple_379", "ground_truth": [{"get_current_time": {"location": ["Sydney"], "country": ["Australia"], "timezone": [""]}}]}
+{"id": "simple_379", "ground_truth": [{"get_current_time": {"location": ["Sydney"], "country": ["Australia", "Australia/Sydney"], "timezone": [""]}}]}
 {"id": "simple_380", "ground_truth": [{"hotel_booking": {"location": ["Manhattan, New York", "Manhattan, NY", "NYC", "New York City"], "room_type": ["single"], "duration": [3], "start_date": ["2023-03-10", "03/10/2023", "Mar.10,2023", "March 10th, 2023", "March 10th,2023", "March10th, 2023", "March10th,2023"], "preferences": [["pet_friendly"]]}}]}
 {"id": "simple_381", "ground_truth": [{"hilton_hotel.check_availability": {"location": ["Paris"], "check_in_date": ["2023-04-04"], "check_out_date": ["2023-04-08"], "no_of_adults": [2], "hotel_chain": ["Hilton", ""]}}]}
 {"id": "simple_382", "ground_truth": [{"book_hotel": {"hotel_name": ["Hilton Hotel", "Hilton"], "location": ["Chicago"], "room_type": ["single"], "start_date": ["2022-12-10", "10/12/2022", "Dec 10, 2022", "December 10, 2022"], "nights": [2]}}]}
