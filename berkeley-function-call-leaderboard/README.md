@@ -251,6 +251,7 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
+* [Sept 7, 2024] [](): Fix prompt format for Llama models.
 * [August 27, 2024] [#608](https://github.com/ShishirPatil/gorilla/pull/608): Bug fix in the dataset and possible answers.
   * simple: 16 affected
   * multiple: 5 affected
