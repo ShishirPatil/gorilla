@@ -1,72 +1,69 @@
 Rank,Overall Acc,Model,Model Link,Organization,License,AST Summary,Python Simple AST,Python Multiple AST,Python Parallel AST,Python Parallel Multiple AST,Irrelevance Detection,Relevance Detection,Cost ($ Per 1k Function Calls),Latency Mean (s),Latency Standard Deviation (s),Latency 95th Percentile (s)
-1,73.61%,Claude-3.5-Sonnet-20240620 (Prompt),https://www.anthropic.com/news/claude-3-5-sonnet,Anthropic,Proprietary,73.86%,73.64%,74.64%,62.50%,50.00%,73.37%,70.73%,3.53,2.8,1.78,6.2
-2,73.52%,GPT-4-0613 (FC),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,71.99%,65.89%,76.28%,0.00%,0.00%,75.89%,73.17%,14.86,2.65,2.49,7.33
-3,73.12%,GPT-4-turbo-2024-04-09 (FC),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,72.58%,67.83%,73.96%,75.00%,62.50%,73.94%,73.17%,6.04,3.08,3.52,10.08
-4,72.95%,Claude-3.5-Sonnet-20240620 (FC),https://www.anthropic.com/news/claude-3-5-sonnet,Anthropic,Proprietary,72.81%,72.87%,73.10%,62.50%,66.67%,73.49%,65.85%,5.26,5.06,2.06,9.07
-5,72.15%,Mistral-Medium-2312 (Prompt),https://docs.mistral.ai/guides/model-selection/,Mistral AI,Proprietary,64.94%,62.40%,66.25%,62.50%,37.50%,83.89%,56.10%,3.06,2.25,1.68,5.51
-6,71.88%,GPT-4o-2024-08-06 (FC),https://openai.com/index/hello-gpt-4o/,OpenAI,Proprietary,69.14%,68.99%,69.24%,75.00%,62.50%,76.34%,65.85%,1.6,1.84,19.17,3.3
-7,71.21%,GPT-4-0125-Preview (FC),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,74.23%,69.77%,75.60%,68.75%,66.67%,65.94%,85.37%,6.38,3.94,5.2,13.81
-8,71.08%,Functionary-Medium-v3.1 (FC),https://huggingface.co/meetkai/functionary-medium-v3.1,MeetKai,MIT,76.42%,72.48%,77.75%,68.75%,66.67%,62.81%,73.17%,N/A,7.73,7.96,18.05
-9,71.04%,Claude-3-Opus-20240229 (FC tools-2024-04-04),https://www.anthropic.com/news/claude-3-family,Anthropic,Proprietary,70.34%,65.89%,72.71%,43.75%,33.33%,72.46%,63.41%,37.81,13.05,4.15,20.81
-10,70.81%,Claude-3-Opus-20240229 (Prompt),https://www.anthropic.com/news/claude-3-family,Anthropic,Proprietary,70.34%,66.67%,71.65%,62.50%,58.33%,71.89%,63.41%,17.42,3.39,1.38,5.98
-11,70.68%,GPT-4-1106-Preview (Prompt),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,82.32%,77.52%,83.80%,75.00%,75.00%,51.66%,97.56%,8.73,2.09,7.66,3.67
-12,70.64%,Gemini-1.5-Pro-Preview-0514 (FC),https://deepmind.google/technologies/gemini/pro/,Google,Proprietary,65.24%,59.69%,67.12%,56.25%,50.00%,79.20%,63.41%,1.42,1.73,1.0,3.09
-13,70.55%,Gemini-1.5-Pro-Preview-0409 (FC),https://deepmind.google/technologies/gemini/#introduction,Google,Proprietary,65.17%,60.47%,66.63%,62.50%,54.17%,79.09%,63.41%,1.41,1.72,0.92,3.16
-14,70.50%,Gemini-1.5-Flash-Preview-0514 (FC),https://deepmind.google/technologies/gemini/flash/,Google,Proprietary,69.14%,62.40%,71.55%,43.75%,54.17%,73.03%,60.98%,0.13,0.78,0.38,1.2
-15,70.37%,GPT-4o-mini-2024-07-18 (Prompt),https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/,OpenAI,Proprietary,76.48%,77.13%,75.99%,87.50%,83.33%,60.34%,85.37%,0.13,0.92,1.16,1.83
-16,70.28%,GPT-4-1106-Preview (FC),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,74.61%,68.60%,76.66%,68.75%,54.17%,62.97%,85.37%,6.55,3.65,5.0,11.03
-17,70.28%,GPT-4o-2024-05-13 (FC),https://openai.com/index/hello-gpt-4o/,OpenAI,Proprietary,72.58%,68.99%,73.77%,75.00%,58.33%,66.74%,70.73%,2.96,1.57,2.25,4.31
-18,69.30%,xLAM-7b-fc-r (FC),https://huggingface.co/Salesforce/xLAM-7b-fc-r,Salesforce,cc-by-nc-4.0,63.90%,60.85%,65.09%,56.25%,50.00%,77.14%,78.05%,N/A,N/A,N/A,N/A
-19,69.17%,GPT-4-turbo-2024-04-09 (Prompt),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,83.52%,79.84%,84.76%,75.00%,75.00%,45.94%,97.56%,8.58,1.72,3.96,3.48
-20,68.86%,Functionary-Small-v3.2 (FC),https://huggingface.co/meetkai/functionary-small-v3.2,MeetKai,MIT,68.11%,65.50%,69.08%,62.50%,58.33%,69.45%,80.49%,N/A,2.59,3.26,7.22
-21,68.73%,Mistral-small-2402 (FC Auto),https://docs.mistral.ai/guides/model-selection/,Mistral AI,Proprietary,66.44%,61.24%,69.62%,6.25%,25.00%,71.54%,82.93%,0.81,1.98,1.82,5.42
-22,68.55%,GPT-4-0613 (Prompt),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,72.43%,74.81%,71.65%,87.50%,70.83%,61.49%,92.68%,25.23,2.72,26.71,3.83
-23,68.24%,Functionary-Small-v3.1 (FC),https://huggingface.co/meetkai/functionary-small-v3.1,MeetKai,MIT,71.78%,68.22%,72.93%,75.00%,58.33%,62.01%,85.37%,N/A,2.81,3.24,7.04
-24,67.75%,GPT-4o-2024-05-13 (Prompt),https://openai.com/index/hello-gpt-4o/,OpenAI,Proprietary,78.80%,76.36%,79.56%,87.50%,66.67%,49.94%,87.80%,4.31,0.94,0.82,1.99
-25,67.39%,GPT-4-0125-Preview (Prompt),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,82.32%,78.29%,83.61%,81.25%,70.83%,43.20%,97.56%,8.56,1.71,1.42,3.65
-26,67.35%,yi-large (FC),https://platform.01.ai/,01.AI,Proprietary,70.19%,65.50%,71.36%,75.00%,66.67%,63.20%,63.41%,0.75,4.74,5.1,17.1
-27,67.13%,GPT-4o-mini-2024-07-18 (FC),https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/,OpenAI,Proprietary,68.91%,65.89%,69.62%,75.00%,66.67%,63.66%,82.93%,0.1,1.55,2.01,4.19
-28,66.55%,mistral-large-2407 (FC Auto),https://mistral.ai/news/mistral-large-2407/,Mistral AI,Proprietary,79.03%,79.07%,79.17%,75.00%,75.00%,46.74%,82.93%,2.45,2.46,3.12,6.45
-29,66.37%,Gorilla-OpenFunctions-v2 (FC),https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html,Gorilla LLM,Apache 2.0,64.87%,67.44%,64.61%,68.75%,45.83%,67.66%,87.80%,0.31,0.05,N/A,N/A
-30,65.08%,FireFunction-v1 (FC),https://huggingface.co/fireworks-ai/firefunction-v1,Fireworks,Apache 2.0,65.62%,63.57%,68.66%,0.00%,0.00%,62.97%,92.68%,N/A,1.63,1.44,3.0
-31,64.55%,GPT-3.5-Turbo-0125 (Prompting),https://platform.openai.com/docs/models/gpt-3-5-turbo,OpenAI,Proprietary,65.69%,65.50%,66.44%,62.50%,37.50%,61.71%,87.80%,0.43,0.8,1.68,1.45
-32,64.50%,Open-Mixtral-8x22b (FC Auto),https://mistral.ai/news/mixtral-8x22b/,Mistral AI,Proprietary,69.81%,68.60%,71.46%,18.75%,45.83%,55.31%,87.80%,1.76,2.08,1.98,5.61
-33,64.24%,Claude-3-Sonnet-20240229 (FC tools-2024-04-04),https://www.anthropic.com/news/claude-3-family,Anthropic,Proprietary,69.66%,65.12%,73.19%,12.50%,4.17%,54.51%,95.12%,4.16,2.84,1.43,5.79
-34,64.06%,Gemini-1.0-Pro-001 (FC),https://deepmind.google/technologies/gemini/#introduction,Google,Proprietary,64.57%,63.57%,65.96%,31.25%,37.50%,62.86%,73.17%,0.22,1.13,0.84,2.04
-35,63.97%,Open-Mixtral-8x7b (Prompt),https://mistral.ai/news/mixtral-of-experts/,Mistral AI,Proprietary,55.06%,51.55%,56.61%,50.00%,29.17%,77.60%,63.41%,0.72,1.93,2.41,5.25
-36,63.35%,Open-Mixtral-8x22b (Prompt),https://mistral.ai/news/mixtral-8x22b/,Mistral AI,Proprietary,49.21%,60.47%,46.00%,68.75%,54.17%,85.37%,53.66%,2.35,1.96,1.73,5.36
-37,62.68%,Claude-3-Sonnet-20240229 (Prompt),https://www.anthropic.com/news/claude-3-family,Anthropic,Proprietary,72.06%,72.09%,72.03%,68.75%,75.00%,47.09%,90.24%,3.41,1.61,0.55,2.53
-38,61.44%,GLM-4-9b-Chat (FC),https://huggingface.co/THUDM/glm-4-9b-chat,THUDM,glm-4,58.68%,61.63%,60.21%,0.00%,0.00%,64.65%,82.93%,N/A,0.13,N/A,N/A
-39,61.26%,FireFunction-v2 (FC),https://huggingface.co/fireworks-ai/firefunction-v2,Fireworks,Apache 2.0,70.79%,69.38%,71.84%,50.00%,54.17%,45.49%,87.80%,N/A,1.65,1.16,3.35
-40,60.95%,Open-Mistral-Nemo-2407 (FC Auto),https://mistral.ai/news/mistral-nemo/,Mistral AI,Proprietary,65.84%,66.67%,65.86%,50.00%,66.67%,53.14%,68.29%,0.19,1.72,2.08,5.09
-41,60.55%,Hermes-2-Theta-Llama-3-8B (FC),https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-8B,NousResearch,apache-2.0,55.73%,56.98%,55.54%,56.25%,50.00%,68.23%,53.66%,0.24,0.04,N/A,N/A
-42,60.28%,Command-R-Plus (Prompt) (Original),https://txt.cohere.com/command-r-plus-microsoft-azure,Cohere For AI,cc-by-nc-4.0,70.41%,68.22%,70.88%,81.25%,66.67%,43.77%,82.93%,2.86,1.09,1.01,2.59
-43,58.06%,GPT-3.5-Turbo-0125 (FC),https://platform.openai.com/docs/models/gpt-3-5-turbo,OpenAI,Proprietary,71.84%,64.73%,74.16%,62.50%,54.17%,35.20%,97.56%,0.27,1.1,3.55,1.87
-44,57.84%,xLAM-1b-fc-r (FC),https://huggingface.co/Salesforce/xLAM-1b-fc-r,Salesforce,cc-by-nc-4.0,56.78%,56.98%,56.99%,43.75%,54.17%,57.60%,97.56%,N/A,N/A,N/A,N/A
-45,57.62%,Open-Mistral-Nemo-2407 (Prompt),https://mistral.ai/news/mistral-nemo/,Mistral AI,Proprietary,63.90%,47.29%,68.56%,62.50%,41.67%,46.51%,90.24%,0.25,1.79,3.31,5.04
-46,57.62%,Hermes-2-Pro-Llama-3-70B (FC),https://huggingface.co/NousResearch/Hermes-2-Pro-Llama-3-70B,NousResearch,apache-2.0,61.95%,64.34%,61.33%,56.25%,66.67%,49.83%,82.93%,2.45,0.4,N/A,N/A
-47,57.53%,Hermes-2-Pro-Llama-3-8B (FC),https://huggingface.co/NousResearch/Hermes-2-Pro-Llama-3-8B,NousResearch,apache-2.0,59.55%,59.69%,60.08%,50.00%,41.67%,54.51%,56.10%,0.31,0.05,N/A,N/A
-48,57.13%,Meta-Llama-3-70B-Instruct (Prompt),https://llama.meta.com/llama3,Meta,Meta Llama 3 Community,67.07%,67.44%,67.53%,56.25%,50.00%,40.85%,80.49%,1.1,0.18,N/A,N/A
-49,57.00%,Claude-3-Haiku-20240307 (FC tools-2024-04-04),https://www.anthropic.com/news/claude-3-family,Anthropic,Proprietary,71.84%,71.32%,74.73%,0.00%,0.00%,32.46%,97.56%,0.36,1.22,0.39,1.86
-50,55.04%,Claude-3-Haiku-20240307 (Prompt),https://www.anthropic.com/news/claude-3-family,Anthropic,Proprietary,68.99%,68.22%,70.20%,56.25%,33.33%,32.11%,90.24%,0.29,0.85,0.28,1.33
-51,54.91%,Granite-20b-FunctionCalling (FC),https://huggingface.co/ibm-granite/granite-20b-functioncalling,IBM,Apache-2.0,52.88%,55.81%,52.46%,37.50%,50.00%,56.11%,95.12%,N/A,N/A,N/A,N/A
-52,54.86%,Claude-instant-1.2 (Prompt),https://www.anthropic.com/news/releasing-claude-instant-1-2,Anthropic,Proprietary,61.27%,62.79%,61.04%,68.75%,50.00%,43.54%,87.80%,0.73,0.84,0.38,1.32
-53,54.51%,Command-R-Plus (FC) (Original),https://txt.cohere.com/command-r-plus-microsoft-azure,Cohere For AI,cc-by-nc-4.0,57.23%,59.30%,57.18%,50.00%,41.67%,48.80%,87.80%,2.08,2.7,1.64,5.4
-54,53.93%,DBRX-Instruct (Prompt),https://www.databricks.com/blog/introducing-dbrx-new-state-art-open-llm,Databricks,Databricks Open Model,56.63%,46.90%,59.59%,43.75%,41.67%,48.91%,73.17%,2.01,4.27,6.51,17.22
-55,53.44%,Mistral-Small-2402 (Prompt),https://docs.mistral.ai/guides/model-selection/,Mistral AI,Proprietary,49.44%,43.41%,51.88%,25.00%,25.00%,58.51%,75.61%,1.09,2.54,22.4,5.38
-56,53.40%,Claude-2.1 (Prompt),https://www.anthropic.com/news/claude-2-1,Anthropic,Proprietary,30.56%,55.04%,24.98%,18.75%,16.67%,89.26%,31.71%,8.34,3.81,2.54,8.95
-57,53.13%,Hermes-2-Pro-Mistral-7B (FC),https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B,NousResearch,apache-2.0,56.03%,61.63%,55.35%,43.75%,33.33%,47.54%,78.05%,0.49,0.08,N/A,N/A
-58,51.04%,Nexusflow-Raven-v2 (FC),https://huggingface.co/Nexusflow/NexusRaven-V2-13B,Nexusflow,Apache 2.0,36.78%,35.27%,36.74%,56.25%,41.67%,72.23%,63.41%,N/A,1.57,2.09,3.15
-59,49.31%,mistral-large-2407 (FC Any),https://mistral.ai/news/mistral-large-2407/,Mistral AI,Proprietary,79.70%,79.84%,79.85%,75.00%,75.00%,0.57%,100.00%,2.3,2.08,1.62,5.46
-60,47.49%,GPT-4o-2024-08-06 (Prompt),https://openai.com/index/hello-gpt-4o/,OpenAI,Proprietary,19.33%,29.07%,15.53%,75.00%,41.67%,91.66%,21.95%,2.29,0.92,1.52,1.84
-61,46.42%,Mistral-tiny-2312 (Prompt),https://docs.mistral.ai/guides/model-selection/,Mistral AI,Proprietary,18.35%,34.50%,14.27%,31.25%,12.50%,90.74%,14.63%,0.26,1.87,2.01,5.38
-62,45.22%,Open-Mixtral-8x22b (FC Any),https://mistral.ai/news/mixtral-8x22b/,Mistral AI,Proprietary,72.73%,69.38%,75.02%,18.75%,45.83%,0.69%,100.00%,1.51,1.8,1.9,5.25
-63,44.16%,Meta-Llama-3-8B-Instruct (Prompt),https://llama.meta.com/llama3,Meta,Meta Llama 3 Community,39.03%,55.43%,35.39%,37.50%,20.83%,50.86%,68.29%,0.24,0.04,N/A,N/A
-64,44.02%,Open-Mistral-Nemo-2407 (FC Any),https://mistral.ai/news/mistral-nemo/,Mistral AI,Proprietary,70.34%,69.77%,70.78%,50.00%,70.83%,1.26%,100.00%,0.18,1.67,2.21,5.08
-65,43.40%,Mistral-small-2402 (FC Any),https://docs.mistral.ai/guides/model-selection/,Mistral AI,Proprietary,69.66%,63.18%,73.29%,6.25%,25.00%,0.69%,100.00%,0.75,1.85,1.9,5.37
-66,43.23%,mistral-large-2407 (Prompt),https://mistral.ai/news/mistral-large-2407/,Mistral AI,Proprietary,14.98%,2.71%,18.03%,12.50%,16.67%,86.86%,31.71%,3.29,2.09,2.37,5.52
-67,39.49%,Nemotron-4-340b-instruct (Prompt),https://huggingface.co/nvidia/nemotron-4-340b-instruct,NVIDIA,nvidia-open-model-license,2.10%,0.39%,0.39%,68.75%,50.00%,98.29%,2.44%,N/A,7.54,25.66,18.77
-68,39.14%,Gemma-7b-it (Prompt),https://blog.google/technology/developers/gemma-open-models/,Google,gemma-terms-of-use,1.57%,1.16%,1.73%,0.00%,0.00%,98.17%,4.88%,0.37,0.06,N/A,N/A
-69,38.83%,Hermes-2-Theta-Llama-3-70B (FC),https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-70B,NousResearch,apache-2.0,0.00%,0.00%,0.00%,0.00%,0.00%,100.00%,0.00%,2.57,0.42,N/A,N/A
-70,38.78%,Deepseek-v1.5 (Prompt),https://huggingface.co/deepseek-ai/deepseek-coder-7b-instruct-v1.5,Deepseek,Deepseek License,0.15%,0.00%,0.19%,0.00%,0.00%,99.54%,0.00%,3.24,0.53,N/A,N/A
-71,33.04%,Snowflake/snowflake-arctic-instruct (Prompt),https://huggingface.co/Snowflake/snowflake-arctic-instruct,Snowflake,apache-2.0,0.60%,1.16%,0.39%,6.25%,0.00%,83.90%,2.44%,N/A,1.9,1.91,5.64
+1,74.54%,GPT-4-0613 (FC),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,73.26%,66.67%,77.72%,0.00%,0.00%,76.57%,73.17%,15.36,2.46,2.84,6.4
+2,73.92%,GPT-4o-2024-05-13 (Prompt),https://openai.com/index/hello-gpt-4o/,OpenAI,Proprietary,80.00%,77.52%,80.52%,93.75%,75.00%,64.46%,78.05%,3.92,0.71,1.3,1.25
+3,73.88%,GPT-4o-2024-08-06 (Prompt),https://openai.com/index/hello-gpt-4o/,OpenAI,Proprietary,66.97%,67.44%,67.21%,56.25%,58.33%,85.37%,53.66%,2.04,0.71,0.71,1.32
+4,73.39%,GPT-4-turbo-2024-04-09 (FC),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,72.96%,67.83%,74.45%,75.00%,62.50%,74.17%,70.73%,6.24,2.85,3.33,8.76
+5,72.77%,GPT-4o-mini-2024-07-18 (Prompt),https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/,OpenAI,Proprietary,73.48%,72.09%,73.77%,81.25%,70.83%,71.31%,80.49%,0.12,0.62,0.46,1.22
+6,71.83%,Mistral-Medium-2312 (Prompt),https://docs.mistral.ai/guides/model-selection/,Mistral AI,Proprietary,67.57%,61.63%,69.43%,68.75%,50.00%,79.09%,56.10%,2.6,2.39,1.55,5.28
+7,71.79%,GPT-4o-2024-08-06 (FC),https://openai.com/index/hello-gpt-4o/,OpenAI,Proprietary,69.14%,67.83%,69.43%,75.00%,66.67%,76.23%,63.41%,1.62,1.02,0.94,2.69
+8,71.70%,Gemini-1.5-Pro-Preview-0409 (FC),https://deepmind.google/technologies/gemini/#introduction,Google,Proprietary,67.42%,62.40%,68.85%,81.25%,50.00%,78.63%,63.41%,1.49,1.91,1.07,3.62
+9,71.70%,GPT-4-0613 (Prompt),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,75.28%,76.36%,74.93%,87.50%,70.83%,65.71%,82.93%,22.73,1.67,1.09,3.73
+10,71.39%,Claude-3.5-Sonnet-20240620 (FC),https://www.anthropic.com/news/claude-3-5-sonnet,Anthropic,Proprietary,71.09%,72.48%,70.68%,68.75%,75.00%,72.23%,63.41%,5.31,3.11,1.16,5.3
+11,71.26%,Functionary-Medium-v3.1 (FC),https://huggingface.co/meetkai/functionary-medium-v3.1,MeetKai,MIT,77.15%,72.09%,78.69%,68.75%,70.83%,62.29%,70.73%,N/A,5.06,5.45,13.35
+12,71.12%,Gemini-1.5-Pro-Preview-0514 (FC),https://deepmind.google/technologies/gemini/pro/,Google,Proprietary,66.82%,61.63%,68.27%,81.25%,50.00%,78.29%,58.54%,1.49,2.03,1.14,3.96
+13,71.04%,Nemotron-4-340b-instruct (Prompt),https://huggingface.co/nvidia/nemotron-4-340b-instruct,NVIDIA,nvidia-open-model-license,67.49%,62.02%,68.76%,68.75%,70.83%,76.11%,78.05%,N/A,5.0,8.96,12.13
+14,70.99%,GPT-4-0125-Preview (FC),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,74.38%,69.77%,75.89%,68.75%,62.50%,65.14%,85.37%,6.49,3.37,4.0,12.05
+15,70.81%,Gemini-1.5-Flash-Preview-0514 (FC),https://deepmind.google/technologies/gemini/flash/,Google,Proprietary,70.34%,64.34%,72.52%,56.25%,50.00%,71.89%,63.41%,0.13,0.77,0.34,1.19
+16,70.50%,Claude-3-Opus-20240229 (FC tools-2024-04-04),https://www.anthropic.com/news/claude-3-family,Anthropic,Proprietary,68.09%,64.73%,70.40%,43.75%,20.83%,74.06%,73.17%,37.72,12.05,4.07,19.3
+17,70.46%,GPT-4o-2024-05-13 (FC),https://openai.com/index/hello-gpt-4o/,OpenAI,Proprietary,73.26%,69.38%,74.16%,87.50%,66.67%,66.17%,70.73%,3.04,1.06,1.03,2.73
+18,70.37%,Claude-3.5-Sonnet-20240620 (Prompt),https://www.anthropic.com/news/claude-3-5-sonnet,Anthropic,Proprietary,65.84%,75.97%,63.55%,68.75%,54.17%,78.17%,51.22%,3.32,1.57,0.8,3.22
+19,69.92%,GPT-4-1106-Preview (Prompt),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,81.57%,76.74%,82.74%,93.75%,75.00%,51.20%,90.24%,7.88,1.58,2.32,3.52
+20,69.84%,GPT-4-1106-Preview (FC),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,74.53%,68.22%,76.37%,81.25%,58.33%,62.06%,82.93%,6.72,3.46,4.01,10.13
+21,69.12%,Mistral-small-2402 (FC Auto),https://docs.mistral.ai/guides/model-selection/,Mistral AI,Proprietary,66.89%,62.79%,70.01%,6.25%,16.67%,72.00%,80.49%,0.81,2.07,1.43,5.41
+22,69.12%,Claude-2.1 (Prompt),https://www.anthropic.com/news/claude-2-1,Anthropic,Proprietary,65.92%,65.50%,66.15%,68.75%,58.33%,73.71%,75.61%,7.28,2.72,1.79,6.7
+23,68.81%,xLAM-7b-fc-r (FC),https://huggingface.co/Salesforce/xLAM-7b-fc-r,Salesforce,cc-by-nc-4.0,63.07%,63.57%,63.36%,56.25%,50.00%,77.03%,80.49%,N/A,N/A,N/A,N/A
+24,68.59%,Gorilla-OpenFunctions-v2 (FC),https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html,Gorilla LLM,Apache 2.0,63.60%,63.95%,63.93%,62.50%,45.83%,75.43%,85.37%,0.31,0.05,N/A,N/A
+25,68.46%,Functionary-Small-v3.2 (FC),https://huggingface.co/meetkai/functionary-small-v3.2,MeetKai,MIT,67.04%,65.50%,67.50%,68.75%,62.50%,70.06%,80.49%,N/A,2.72,3.49,7.08
+26,68.24%,Claude-3-Opus-20240229 (Prompt),https://www.anthropic.com/news/claude-3-family,Anthropic,Proprietary,78.43%,74.81%,79.94%,68.75%,58.33%,51.89%,85.37%,15.53,2.99,1.65,5.41
+27,68.10%,Functionary-Small-v3.1 (FC),https://huggingface.co/meetkai/functionary-small-v3.1,MeetKai,MIT,71.76%,68.99%,72.61%,81.25%,58.33%,61.71%,85.37%,N/A,3.11,3.58,7.24
+28,67.97%,GPT-4-0125-Preview (Prompt),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,80.90%,77.13%,81.87%,87.50%,75.00%,46.86%,97.56%,7.76,1.46,0.98,3.38
+29,67.97%,GPT-4-turbo-2024-04-09 (Prompt),https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo,OpenAI,Proprietary,82.10%,78.68%,83.12%,81.25%,75.00%,45.71%,82.93%,7.81,1.4,0.92,3.13
+30,67.88%,Command-R-Plus (Prompt) (Original),https://txt.cohere.com/command-r-plus-microsoft-azure,Cohere For AI,cc-by-nc-4.0,69.89%,65.12%,71.26%,75.00%,58.33%,64.46%,75.61%,2.68,1.1,1.05,2.65
+31,67.53%,GPT-4o-mini-2024-07-18 (FC),https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/,OpenAI,Proprietary,69.59%,67.83%,69.82%,81.25%,70.83%,63.66%,82.93%,0.1,1.01,1.05,2.73
+32,67.17%,mistral-large-2407 (FC Auto),https://mistral.ai/news/mistral-large-2407/,Mistral AI,Proprietary,78.95%,79.07%,78.88%,87.50%,75.00%,48.69%,78.05%,2.53,2.93,3.92,7.32
+33,65.79%,Open-Mixtral-8x22b (Prompt),https://mistral.ai/news/mixtral-8x22b/,Mistral AI,Proprietary,61.57%,68.60%,59.79%,68.75%,58.33%,72.00%,70.73%,1.93,2.05,2.15,5.47
+34,65.44%,FireFunction-v1 (FC),https://huggingface.co/fireworks-ai/firefunction-v1,Fireworks,Apache 2.0,66.44%,65.50%,69.24%,0.00%,0.00%,62.51%,95.12%,N/A,1.63,1.12,2.86
+35,65.30%,Open-Mixtral-8x22b (FC Auto),https://mistral.ai/news/mixtral-8x22b/,Mistral AI,Proprietary,69.21%,68.99%,70.49%,12.50%,54.17%,58.40%,85.37%,1.74,2.16,1.76,5.65
+36,64.77%,Gemini-1.0-Pro-001 (FC),https://deepmind.google/technologies/gemini/#introduction,Google,Proprietary,65.39%,62.79%,67.31%,43.75%,25.00%,63.43%,73.17%,0.22,1.05,1.01,1.86
+37,63.93%,Claude-3-Sonnet-20240229 (FC tools-2024-04-04),https://www.anthropic.com/news/claude-3-family,Anthropic,Proprietary,68.61%,65.50%,71.75%,12.50%,4.17%,55.20%,97.56%,4.22,2.69,1.25,5.24
+38,62.42%,Meta-Llama-3-70B-Instruct (Prompt),https://llama.meta.com/llama3,Meta,Meta Llama 3 Community,76.10%,70.16%,77.82%,75.00%,66.67%,40.11%,92.68%,1.1,0.18,N/A,N/A
+39,62.37%,GPT-3.5-Turbo-0125 (Prompting),https://platform.openai.com/docs/models/gpt-3-5-turbo,OpenAI,Proprietary,56.63%,54.26%,57.47%,62.50%,41.67%,69.94%,87.80%,0.4,0.83,0.49,1.69
+40,61.71%,FireFunction-v2 (FC),https://huggingface.co/fireworks-ai/firefunction-v2,Fireworks,Apache 2.0,70.19%,69.38%,70.97%,56.25%,54.17%,47.54%,87.80%,N/A,2.1,1.34,4.34
+41,61.44%,Open-Mistral-Nemo-2407 (FC Auto),https://mistral.ai/news/mistral-nemo/,Mistral AI,Proprietary,68.01%,68.22%,67.98%,75.00%,62.50%,51.20%,65.85%,0.19,1.86,1.98,5.3
+42,60.46%,Claude-3-Sonnet-20240229 (Prompt),https://www.anthropic.com/news/claude-3-family,Anthropic,Proprietary,76.03%,69.77%,78.01%,75.00%,58.33%,35.43%,87.80%,3.1,1.56,0.55,2.5
+43,60.28%,DBRX-Instruct (Prompt),https://www.databricks.com/blog/introducing-dbrx-new-state-art-open-llm,Databricks,Databricks Open Model,69.51%,68.60%,70.20%,68.75%,50.00%,45.14%,82.93%,1.86,1.2,1.48,3.52
+44,59.57%,Hermes-2-Theta-Llama-3-8B (FC),https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-8B,NousResearch,apache-2.0,53.33%,55.81%,53.13%,43.75%,41.67%,69.49%,51.22%,0.24,0.04,N/A,N/A
+45,59.17%,Open-Mixtral-8x7b (Prompt),https://mistral.ai/news/mixtral-of-experts/,Mistral AI,Proprietary,58.20%,55.81%,59.40%,43.75%,41.67%,60.34%,65.85%,0.58,1.96,1.76,5.48
+46,59.00%,GPT-3.5-Turbo-0125 (FC),https://platform.openai.com/docs/models/gpt-3-5-turbo,OpenAI,Proprietary,71.91%,65.50%,74.16%,56.25%,54.17%,37.49%,97.56%,0.28,0.97,0.75,1.96
+47,58.60%,Hermes-2-Pro-Llama-3-70B (FC),https://huggingface.co/NousResearch/Hermes-2-Pro-Llama-3-70B,NousResearch,apache-2.0,63.22%,66.67%,62.49%,50.00%,66.67%,50.51%,80.49%,2.45,0.4,N/A,N/A
+48,58.06%,Claude-3-Haiku-20240307 (Prompt),https://www.anthropic.com/news/claude-3-family,Anthropic,Proprietary,74.61%,71.71%,75.99%,56.25%,58.33%,31.54%,85.37%,0.26,0.78,0.27,1.19
+49,57.80%,Hermes-2-Pro-Llama-3-8B (FC),https://huggingface.co/NousResearch/Hermes-2-Pro-Llama-3-8B,NousResearch,apache-2.0,58.73%,60.47%,58.92%,43.75%,41.67%,56.57%,53.66%,0.31,0.05,N/A,N/A
+50,57.44%,xLAM-1b-fc-r (FC),https://huggingface.co/Salesforce/xLAM-1b-fc-r,Salesforce,cc-by-nc-4.0,56.03%,55.81%,56.12%,50.00%,58.33%,57.83%,95.12%,N/A,N/A,N/A,N/A
+51,56.24%,Claude-instant-1.2 (Prompt),https://www.anthropic.com/news/releasing-claude-instant-1-2,Anthropic,Proprietary,44.79%,44.57%,45.61%,12.50%,33.33%,74.17%,46.34%,0.69,0.91,0.44,1.64
+52,55.89%,Granite-20b-FunctionCalling (FC),https://huggingface.co/ibm-granite/granite-20b-functioncalling,IBM,Apache-2.0,54.53%,57.36%,54.10%,37.50%,54.17%,56.11%,95.12%,N/A,N/A,N/A,N/A
+53,54.24%,Command-R-Plus (FC) (Original),https://txt.cohere.com/command-r-plus-microsoft-azure,Cohere For AI,cc-by-nc-4.0,57.15%,58.91%,56.89%,50.00%,54.17%,48.00%,92.68%,2.14,2.91,1.79,5.85
+54,54.11%,Hermes-2-Pro-Mistral-7B (FC),https://huggingface.co/NousResearch/Hermes-2-Pro-Mistral-7B,NousResearch,apache-2.0,57.23%,59.30%,57.47%,43.75%,33.33%,48.34%,75.61%,0.49,0.08,N/A,N/A
+55,52.42%,Mistral-Small-2402 (Prompt),https://docs.mistral.ai/guides/model-selection/,Mistral AI,Proprietary,37.38%,11.24%,44.94%,12.50%,8.33%,75.20%,56.10%,0.91,1.98,1.56,5.47
+56,51.98%,Claude-3-Haiku-20240307 (FC tools-2024-04-04),https://www.anthropic.com/news/claude-3-family,Anthropic,Proprietary,64.27%,71.32%,64.90%,0.00%,4.17%,31.09%,97.56%,0.36,1.1,0.31,1.63
+57,49.44%,mistral-large-2407 (FC Any),https://mistral.ai/news/mistral-large-2407/,Mistral AI,Proprietary,79.85%,79.84%,79.85%,87.50%,75.00%,0.69%,100.00%,2.37,2.51,1.63,5.42
+58,48.02%,Open-Mistral-Nemo-2407 (Prompt),https://mistral.ai/news/mistral-nemo/,Mistral AI,Proprietary,71.01%,68.60%,71.75%,75.00%,62.50%,11.09%,87.80%,0.22,1.87,2.21,5.18
+59,47.85%,Snowflake/snowflake-arctic-instruct (Prompt),https://huggingface.co/Snowflake/snowflake-arctic-instruct,Snowflake,apache-2.0,36.48%,28.68%,38.57%,37.50%,29.17%,65.03%,51.22%,N/A,1.62,1.3,3.58
+60,47.58%,Meta-Llama-3-8B-Instruct (Prompt),https://llama.meta.com/llama3,Meta,Meta Llama 3 Community,55.21%,54.65%,56.03%,37.50%,37.50%,34.51%,78.05%,0.24,0.04,N/A,N/A
+61,47.09%,Mistral-tiny-2312 (Prompt),https://docs.mistral.ai/guides/model-selection/,Mistral AI,Proprietary,18.80%,14.73%,20.35%,12.50%,0.00%,91.54%,19.51%,0.21,1.96,1.71,5.49
+62,45.31%,Open-Mixtral-8x22b (FC Any),https://mistral.ai/news/mixtral-8x22b/,Mistral AI,Proprietary,72.88%,70.54%,74.83%,12.50%,54.17%,0.69%,100.00%,1.55,1.88,1.61,5.42
+63,45.00%,Open-Mistral-Nemo-2407 (FC Any),https://mistral.ai/news/mistral-nemo/,Mistral AI,Proprietary,72.13%,71.71%,72.42%,68.75%,66.67%,1.03%,100.00%,0.19,1.74,1.86,5.27
+64,44.96%,mistral-large-2407 (Prompt),https://mistral.ai/news/mistral-large-2407/,Mistral AI,Proprietary,44.42%,20.16%,50.72%,43.75%,33.33%,45.14%,58.54%,2.7,2.11,1.87,5.44
+65,43.94%,Mistral-small-2402 (FC Any),https://docs.mistral.ai/guides/model-selection/,Mistral AI,Proprietary,70.56%,65.12%,74.06%,6.25%,20.83%,0.69%,100.00%,0.77,1.91,1.42,5.44
+66,38.87%,Hermes-2-Theta-Llama-3-70B (FC),https://huggingface.co/NousResearch/Hermes-2-Theta-Llama-3-70B,NousResearch,apache-2.0,0.00%,0.00%,0.00%,0.00%,0.00%,100.00%,0.00%,2.57,0.42,N/A,N/A
+67,38.87%,Deepseek-v1.5 (Prompt),https://huggingface.co/deepseek-ai/deepseek-coder-7b-instruct-v1.5,Deepseek,Deepseek License,0.15%,0.39%,0.00%,0.00%,4.17%,99.77%,0.00%,3.24,0.53,N/A,N/A
+68,38.78%,Gemma-7b-it (Prompt),https://blog.google/technology/developers/gemma-open-models/,Google,gemma-terms-of-use,1.12%,3.88%,0.48%,0.00%,0.00%,98.06%,0.00%,0.37,0.06,N/A,N/A
