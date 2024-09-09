@@ -594,42 +594,43 @@ const shown_model_list = [
     "Claude-3.5-Sonnet-20240620 (FC)",
     "Gorilla-OpenFunctions-v2 (FC)",
 ];
+
 const color = [
     "rgb(255, 99, 132)",
     "rgb(54, 162, 235)",
+    "rgb(255, 215, 0)",
+    "rgb(153, 102, 255)",
+    "rgb(85, 207, 47)",
+    "rgb(0, 0, 255)",
+    "rgb(64, 224, 208)",
+    "rgb(192, 0, 0)",
+    "rgb(47, 79, 79)",   
+    "rgb(255, 140, 0)",  
     "rgb(75, 192, 192)",
     "rgb(255, 206, 86)",
     "rgb(54, 162, 235)",
     "rgb(255, 165, 0)",
     "rgb(65, 105, 225)",
-    "rgb(153, 102, 255)",
     "rgb(75, 192, 192)",
     "rgb(255, 206, 86)",
     "rgb(128, 0, 0)",
-    "rgb(85, 207, 47)",
     "rgb(185, 157, 47)",
     "rgb(163, 73, 164)",
     "rgb(255, 105, 180)",
-    "rgb(0, 0, 255)",
     "rgb(60, 179, 113)",
-    "rgb(255, 215, 0)",
     "rgb(218, 112, 214)",
     "rgb(85, 157, 147)",
     "rgb(255, 99, 132)",
     "rgb(0, 255, 255)",
-    "rgb(64, 224, 208)",
     "rgb(85, 107, 47)",
-    "rgb(192, 0, 0)",
     "rgb(0, 128, 128)",
     "rgb(255, 0, 255)",
     "rgb(0, 100, 0)",    
     "rgb(139, 0, 139)",  
     "rgb(255, 69, 0)",   
     "rgb(0, 191, 255)",  
-    "rgb(255, 20, 147)", 
-    "rgb(47, 79, 79)",   
+    "rgb(255, 20, 147)",  
     "rgb(210, 105, 30)", 
-    "rgb(255, 140, 0)",  
     "rgb(144, 238, 144)",
     "rgb(70, 130, 180)", 
     "rgb(244, 164, 96)", 
@@ -667,12 +668,27 @@ const color = [
     "rgb(127, 255, 212)",
     "rgb(219, 112, 147)",
     "rgb(188, 143, 143)",
-
 ];
 
 function convertRGBtoRGBA(rgbString) {
     const rgbValues = rgbString.match(/\d+/g);
     return `rgba(${rgbValues.join(", ")}, 0.1)`;
+}
+
+let availableDatasets = [];
+let myChart = null;
+const datasetDropdown = $('#dataset-dropdown');
+
+// Function to determine font size based on screen width
+function getFontSize() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 480) {
+        return 8.5;  // Small font size for small screens
+    } else if (screenWidth < 768) {
+        return 10;  // Medium font size for medium screens
+    } else {
+        return 15;  // Default font size for larger screens
+    }
 }
 
 function generateChart(csvData) {
@@ -698,11 +714,7 @@ function generateChart(csvData) {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: color[i - 1],
-            hidden: true,
         };
-        if (shown_model_list.includes(model_name)) {
-            dataPoint.hidden = false;
-        }
         dataset.push(dataPoint);
     }
 
@@ -712,18 +724,25 @@ function generateChart(csvData) {
             "Multiple (AST)",
             "Parallel (AST)",
             "Parallel Multiple (AST)",
-            "Irrelevance Detection",
-            "Relevance Detection",
+            "Irrelevance",
+            "Relevance",
         ],
         datasets: dataset,
     };
 
+    availableDatasets = [...data.datasets];
+
     const ctx = document.getElementById('myChart').getContext('2d');
 
-    new Chart(ctx, {
-        type: "radar",
-        data: data,
+    myChart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: data.labels,
+            datasets: []
+        },
         options: {
+            responsive: true,
+            maintainAspectRatio: false,  // Allow the chart to adjust its aspect ratio
             elements: {
                 line: {
                     borderWidth: 3,
@@ -732,31 +751,119 @@ function generateChart(csvData) {
             scales: {
                 r: {
                     beginAtZero: true,
-                    min: 0,
                     pointLabels: {
                         font: {
-                            size: 13 // column font
+                            size: getFontSize()  // Adjust font size dynamically
                         }
                     },
                     ticks: {
+                        display: true,
                         font: {
-                            size: 10 // scale font
+                            size: getFontSize()  // Adjust ticks font size dynamically
                         }
                     }
                 }
             },
             plugins: {
                 legend: {
+                    display: true,
+                    position: 'top', // Ensure legend is at the top
                     labels: {
                         boxWidth: 15,
                         font: {
-                            size: 13 // legend labels font
-                        }
-                    }
+                            size: Math.min(getFontSize() + 3.5, 15) // Allow labels to adjust in size if needed
+                        },
+                        padding: 20, // Provide padding around labels to avoid crowding
+                        usePointStyle: true, // Use point style to differentiate items
+                    },
+                    fullSize: true // Allow legend to take full width if needed
                 }
-            },
-        },
+            }
+        }
     });
+
+    // Initialize Semantic UI dropdown
+    datasetDropdown.dropdown({
+        onChange: function (value, text, $selectedItem) {
+            handleDatasetSelection(value);
+            console.log(value)
+        }
+    });
+
+    // Populate the dropdown menu with datasets initially
+    populateDropdown();
+
+    // Resize chart font size on window resize
+    window.addEventListener('resize', function () {
+        // Update font sizes dynamically on screen resize
+        myChart.options.scales.r.pointLabels.font.size = getFontSize();
+        myChart.options.scales.r.ticks.font.size = getFontSize();
+        myChart.options.plugins.legend.labels.font.size = getFontSize();
+        myChart.update();  // Update the chart to reflect changes
+    });
+}
+
+// Handle Clear All button click
+$('#clear-all-btn').on('click', function () {
+    // Clear the chart datasets
+    myChart.data.datasets = [];
+    myChart.update();
+
+    // Clear the dropdown selection
+    datasetDropdown.dropdown('clear');
+});
+
+// Populate the dropdown with dataset options
+function populateDropdown() {
+    availableDatasets.forEach((dataset, index) => {
+        const item = `<div class="item" data-value="${index}">${dataset.label}</div>`;
+        datasetDropdown.find('.menu').append(item);
+    });
+
+    // Initialize the dropdown and trigger change event
+    datasetDropdown.dropdown({
+        fullTextSearch: 'exact',  // Enables full substring matching
+        onChange: function (value) {
+            handleDatasetSelection(value);
+        },
+        // Custom search function for substring matching
+        filterRemoteData: true,
+        matcher: function (searchTerm, item) {
+            return item.text.toLowerCase().includes(searchTerm.toLowerCase());
+        }
+    });
+
+    // Pre-select datasets by label (finding the correct indices)
+    const defaultSelectedIndices = availableDatasets
+        .map((dataset, index) => shown_model_list.includes(dataset.label) ? index.toString() : null)
+        .filter(index => index !== null);
+
+    // Set the selected datasets in the dropdown
+    datasetDropdown.dropdown('set exactly', defaultSelectedIndices);
+}
+
+// Handle dataset selection and removal
+function handleDatasetSelection(value) {
+    // Get the currently selected datasets
+    const selectedIndices = datasetDropdown.dropdown('get value').split(',');
+
+    // Clear the current datasets in the chart.
+    myChart.data.datasets = [];
+
+    // Add the selected datasets to the chart
+    selectedIndices.forEach((index, count) => {
+        if (index) {
+            const dataset = availableDatasets[parseInt(index)];
+            dataset.backgroundColor = convertRGBtoRGBA(color[count]);
+            dataset.borderColor = color[count];
+            dataset.pointBackgroundColor = color[count];
+            dataset.pointHoverBorderColor = color[count];
+            myChart.data.datasets.push(dataset);
+        }
+    });
+
+    // Update the chart with the new datasets
+    myChart.update();
 }
 
 // Note: If we have too many models, we can use the following code to add a plugin to automatically color the radar chart, but the color quality is not as good as the current one.

@@ -45,8 +45,11 @@ th:not(.detail-header)  {
     justify-content: center;
 }
 
-
-
+#myChart-container{
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
 
 
 .group1 col {
@@ -59,15 +62,9 @@ th:not(.detail-header)  {
 }
 
 
-
 #myChart {
-    display: block;
-    margin: auto; 
-    width: 100%; 
-    height: auto; /* This will maintain the aspect ratio */
-    max-height: 100vh;
-    align-items: center;
-    justify-content: center;
+    width: 100% !important;  /* Canvas should expand to full width of the container */
+    height: auto !important;  /* Allow height to adjust automatically */
 }
 
 
@@ -170,6 +167,16 @@ thead {
     background-color: #f1f8ff;
 }
 
+@media only screen and (min-width: 1025px) {
+
+    #myChart-container{
+        width: 65%;
+        height: auto;
+        margin: auto;
+    }
+
+}
+
 @media only screen and (min-width: 769px) {
 
 /* Sticky left columns */
@@ -209,4 +216,81 @@ thead {
     background-color: #fff9c4;
     }
 
+}
+
+/* Ensure the chart scales responsively */
+#chart-container {
+    width: 100%;  /* Take up full width */
+    max-width: 1000px;  /* Optional: Set a max-width for large screens */
+    margin: 0 auto;  /* Center the chart */
+}
+
+canvas {
+    width: 100% !important;  /* Allow the canvas to resize with the container */
+    height: auto !important;
+}
+
+/* Flexbox to align the label and button */
+.dropdown-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items:baseline;
+    margin-bottom: 10px;
+}
+
+.chart-inner-container {
+    width: 100%;
+    padding: 3rem;
+}
+
+.dropdown-label {
+    font-size: large;
+    margin: 0;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    #clear-all-btn {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+    .dropdown-container {
+        margin-bottom: 8px;
+    }
+
+    .dropdown-label {
+        font-size: medium;
+        margin: 0;
+    }
+
+    #chart-container {
+        max-width: 100%; /* Allow full width on smaller screens */
+    }
+
+    .chart-inner-container {
+        width: 100%;
+        padding: 0rem;
+    }
+
+    /* Reduce font sizes for labels and point labels on smaller screens */
+    canvas {
+        width: 100% !important;  /* Allow the canvas to resize with the container */
+        height: auto !important;
+    }
+
+    .ui.form .field label {
+        font-size: 1rem;
+    }
+
+    #myChart-container{
+        width: 100%;
+        margin: auto;
+    }
 }
