@@ -532,6 +532,30 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/Salesforce/xLAM-7b-fc-r",
         "Salesforce",
         "cc-by-nc-4.0",
+    ],
+    "Salesforce/xLAM-7b-r": [
+        "xLAM-7b-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-7b-r",
+        "Salesforce",
+        "cc-by-nc-4.0",
+    ],
+    "Salesforce/xLAM-8x7b-r": [
+        "xLAM-8x7b-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-8x7b-r",
+        "Salesforce",
+        "cc-by-nc-4.0",
+    ],
+    "Salesforce/xLAM-8x22b-r": [
+        "xLAM-8x22b-r (FC)",
+        "https://huggingface.co/Salesforce/xLAM-8x22b-r",
+        "Salesforce",
+        "cc-by-nc-4.0",
+    ],
+    "MadeAgents/Hammer-7b": [
+        "Hammer-7b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer-7b",
+        "MadeAgents",
+        "cc-by-nc-4.0",
     ]
 }
 
@@ -673,7 +697,10 @@ NO_COST_MODELS = [
     "ibm-granite/granite-20b-functioncalling",
     "THUDM/glm-4-9b-chat",
     "Salesforce/xLAM-1b-fc-r",
-    "Salesforce/xLAM-7b-fc-r"
+    "Salesforce/xLAM-7b-fc-r",
+    "Salesforce/xLAM-7b-r",
+    "Salesforce/xLAM-8x7b-r",
+    "Salesforce/xLAM-8x22b-r",
 ]
 
 # Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price

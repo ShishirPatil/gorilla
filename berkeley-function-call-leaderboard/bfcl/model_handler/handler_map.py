@@ -1,4 +1,3 @@
-from bfcl.model_handler.proprietary_model.snowflake import ArcticHandler
 from bfcl.model_handler.proprietary_model.claude import ClaudeHandler
 from bfcl.model_handler.proprietary_model.cohere import CohereHandler
 from bfcl.model_handler.proprietary_model.databricks import DatabricksHandler
@@ -20,6 +19,7 @@ from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.oss_model.glm import GLMHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
 from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
+from bfcl.model_handler.hammer_handler import HammerHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -90,11 +90,15 @@ handler_map = {
     "command-r-plus": CohereHandler,
     "command-r-plus-FC-optimized": CohereHandler,
     "command-r-plus-optimized": CohereHandler,
-    "snowflake/arctic": ArcticHandler,
+    "snowflake/arctic": NvidiaHandler,
     "ibm-granite/granite-20b-functioncalling": GraniteHandler,
     "nvidia/nemotron-4-340b-instruct": NvidiaHandler,
     "THUDM/glm-4-9b-chat": GLMHandler,
     "yi-large-fc": YiHandler,
     "Salesforce/xLAM-1b-fc-r": SalesforceHandler,
     "Salesforce/xLAM-7b-fc-r": SalesforceHandler,
+    "Salesforce/xLAM-7b-r": SalesforceHandler,
+    "Salesforce/xLAM-8x7b-r": SalesforceHandler,
+    "Salesforce/xLAM-8x22b-r": SalesforceHandler,
+    "MadeAgents/Hammer-7b": HammerHandler
 }
