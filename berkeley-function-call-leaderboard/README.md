@@ -162,6 +162,7 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |THUDM/glm-4-9b-chat 💻| Function Calling|
 |ibm-granite/granite-20b-functioncalling 💻| Function Calling|
 |yi-large-fc | Function Calling|
+|MadeAgents/Hammer-7b 💻| Function Calling|
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function-calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
 
@@ -263,6 +264,7 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
+* [Sept 8, 2024] [#627](https://github.com/ShishirPatil/gorilla/pull/627) Add new model `MadeAgents/Hammer-7b` to the leaderboard.
 * [Sept 7, 2024] [#626](https://github.com/ShishirPatil/gorilla/pull/626): Fix prompt format for Llama models.
 * [Sept 4, 2024] [#623](https://github.com/ShishirPatil/gorilla/pull/623): Fix decoding issue in the `NvidiaHandler`; remove duplicate `ArcticHandler` class.
 * [August 29, 2024] [#616](https://github.com/ShishirPatil/gorilla/pull/6160): Add the following new models to the leaderboard:
