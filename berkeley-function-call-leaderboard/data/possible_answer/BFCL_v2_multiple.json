@@ -62,7 +62,7 @@
 {"id": "multiple_61", "ground_truth": [{"landscape_architect.find_specialty": {"location": ["Portland", "Portland, OR"], "specialization": ["small space garden design"], "years_experience": [5]}}]}
 {"id": "multiple_62", "ground_truth": [{"nature_park.find_nearby": {"location": ["Boston, MA", "Boston"], "features": [["Camping", "Scenic View"], ["Scenic View", "Camping"]]}}]}
 {"id": "multiple_63", "ground_truth": [{"air_quality_forecast": {"location": ["New York", "New York, NY", "New York City", "NYC"], "days": [7]}}]}
-{"id": "multiple_64", "ground_truth": [{"uv_index.get_future": {"location": ["Tokyo"], "date": ["Tomorrow", ""]}}]}
+{"id": "multiple_64", "ground_truth": [{"uv_index.get_future": {"location": ["Tokyo"], "date": ["06-01-2023"]}}]}
 {"id": "multiple_65", "ground_truth": [{"geodistance.find": {"origin": ["New York City", "NYC"], "destination": ["Los Angeles", "LA"], "unit": ["miles", ""]}}]}
 {"id": "multiple_66", "ground_truth": [{"traffic_estimate": {"start_location": ["Las Vegas"], "end_location": ["Los Angeles"], "time_period": ["weekend"]}}]}
 {"id": "multiple_67", "ground_truth": [{"translate": {"text": ["Hello, how are you?"], "source_language": ["English"], "target_language": ["French"]}}]}
@@ -158,7 +158,7 @@
 {"id": "multiple_157", "ground_truth": [{"get_earliest_reference": {"name": ["Jesus Christ"], "source": ["historical records"]}}]}
 {"id": "multiple_158", "ground_truth": [{"religious_history.get_papal_biography": {"papal_name": ["Innocent III", "Pope Innocent III"], "include_contributions": [true]}}]}
 {"id": "multiple_159", "ground_truth": [{"calculate_paint_needed": {"coverage_rate": [400], "length": [30], "height": [12]}}]}
-{"id": "multiple_160", "ground_truth": [{"get_sculpture_info": {"artist_name": ["James Plensa"], "detail": [true], "year": [2000, ""]}}]}
+{"id": "multiple_160", "ground_truth": [{"get_sculpture_info": {"artist_name": ["James Plensa"], "detail": [true]}}]}
 {"id": "multiple_161", "ground_truth": [{"find_exhibition": {"location": ["New York", "New York, NY", "New York City", "NYC", "NY"], "art_form": ["sculpture", "modern sculpture"], "month": ["upcoming", "next month", "upcoming month", "next", ""], "user_ratings": ["high", ""]}}]}
 {"id": "multiple_162", "ground_truth": [{"analyze_structure": {"building_id": ["B1004"], "floors": [[2, 3, 4]], "mode": ["dynamic"]}}]}
 {"id": "multiple_163", "ground_truth": [{"metropolitan_museum.get_top_artworks": {"number": [5], "sort_by": ["popularity"]}}]}

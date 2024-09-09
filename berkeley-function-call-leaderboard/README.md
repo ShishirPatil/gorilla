@@ -254,6 +254,11 @@ Some companies have proposed some optimization strategies in their models' handl
 * [August 27, 2024] [#608](https://github.com/ShishirPatil/gorilla/pull/608): Bug fix in the dataset and possible answers.
   * simple: 16 affected
   * multiple: 5 affected
+* [August 23, 2024] [#600](https://github.com/ShishirPatil/gorilla/pull/600): Bug fix in the dataset and possible answers.
+  * simple: 12 affected
+  * multiple: 3 affected
+  * parallel: 3 affected
+  * parallel multiple: 6 affected
 * [August 22, 2024] [#593](https://github.com/ShishirPatil/gorilla/pull/593): 
   * Move formatting instructions and function documentation to system prompt instead of user prompt in the message section. All prompting models are affected.
   * Bug fix in the dataset and possible answers.
