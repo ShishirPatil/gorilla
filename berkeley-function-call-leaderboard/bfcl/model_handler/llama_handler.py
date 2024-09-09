@@ -11,9 +11,9 @@ class LlamaHandler(OSSHandler):
         formatted_prompt = "<|begin_of_text|>"
 
         for prompt in prompts:
-            formatted_prompt += f"<|start_header_id|>{prompt['role']}<|end_header_id|>{prompt['content']}<|eot_id|>"
+            formatted_prompt += f"<|start_header_id|>{prompt['role']}<|end_header_id|>\n\n{prompt['content']}<|eot_id|>"
 
-        formatted_prompt += f"<|start_header_id|>assistant<|end_header_id|>"
+        formatted_prompt += f"<|start_header_id|>assistant<|end_header_id|>\n\n"
 
         return formatted_prompt
 

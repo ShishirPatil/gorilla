@@ -254,6 +254,7 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
+* [Sept 7, 2024] [#626](https://github.com/ShishirPatil/gorilla/pull/626): Fix prompt format for Llama models.
 * [Sept 4, 2024] [#623](https://github.com/ShishirPatil/gorilla/pull/623): Fix decoding issue in the `NvidiaHandler`; remove duplicate `ArcticHandler` class.
 * [August 29, 2024] [#616](https://github.com/ShishirPatil/gorilla/pull/6160): Add the following new models to the leaderboard:
   * `Salesforce/xLAM-7b-r`
