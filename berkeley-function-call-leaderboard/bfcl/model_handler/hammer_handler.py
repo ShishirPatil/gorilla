@@ -86,7 +86,6 @@ class HammerHandler(xLAMHandler):
             num_gpus,
             gpu_memory_utilization,
             format_prompt_func,
-            include_system_prompt=False,
         )
 
     def decode_ast(self, result, language="Python"):
