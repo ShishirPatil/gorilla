@@ -19,6 +19,7 @@ from bfcl.model_handler.nvidia_handler import NvidiaHandler
 from bfcl.model_handler.glm_handler import GLMHandler
 from bfcl.model_handler.yi_handler import YiHandler
 from bfcl.model_handler.xlam_handler import xLAMHandler
+from bfcl.model_handler.hammer_handler import HammerHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -98,5 +99,6 @@ handler_map = {
     "Salesforce/xLAM-7b-fc-r": xLAMHandler,
     "Salesforce/xLAM-7b-r": xLAMHandler,
     "Salesforce/xLAM-8x7b-r": xLAMHandler,
-    "Salesforce/xLAM-8x22b-r": xLAMHandler
+    "Salesforce/xLAM-8x22b-r": xLAMHandler,
+    "MadeAgents/Hammer-7b": HammerHandler
 }
