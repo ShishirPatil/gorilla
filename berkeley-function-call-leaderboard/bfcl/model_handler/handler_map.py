@@ -1,4 +1,3 @@
-from bfcl.model_handler.arctic_handler import ArcticHandler
 from bfcl.model_handler.claude_handler import ClaudeHandler
 from bfcl.model_handler.cohere_handler import CohereHandler
 from bfcl.model_handler.databricks_handler import DatabricksHandler
@@ -90,7 +89,7 @@ handler_map = {
     "command-r-plus": CohereHandler,
     "command-r-plus-FC-optimized": CohereHandler,
     "command-r-plus-optimized": CohereHandler,
-    "snowflake/arctic": ArcticHandler,
+    "snowflake/arctic": NvidiaHandler,
     "ibm-granite/granite-20b-functioncalling": GraniteHandler,
     "nvidia/nemotron-4-340b-instruct": NvidiaHandler,
     "THUDM/glm-4-9b-chat": GLMHandler,

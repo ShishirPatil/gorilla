@@ -67,9 +67,9 @@ class NvidiaHandler(BaseHandler):
     def decode_execute(self, result, language="Python"):
         result = result.replace("\n", "")
         if not result.startswith("["):
-            result = "[ " + result
+            result = "[" + result
         if not result.endswith("]"):
-            result = result + " ]"
+            result = result + "]"
         if result.startswith("['"):
             result = result.replace("['", "[")
             result = result.replace("', '", ", ")
