@@ -79,14 +79,15 @@ class GeminiHandler(BaseHandler):
                 "processed_tool": functions,
             }
         try:
-            parts = []
+            fc_parts = []
+            text_parts = []
             for part in result["candidates"][0]["content"]["parts"]:
                 if "functionCall" in part:
                     if (
                         "name" in part["functionCall"]
                         and "args" in part["functionCall"]
                     ):
-                        parts.append(
+                        fc_parts.append(
                             {
                                 part["functionCall"]["name"]: json.dumps(
                                     part["functionCall"]["args"]
@@ -94,12 +95,15 @@ class GeminiHandler(BaseHandler):
                             }
                         )
                     else:
-                        parts.append(
+                        text_parts.append(
                             "Parsing error: " + json.dumps(part["functionCall"])
                         )
                 else:
-                    parts.append(part["text"])
-            result = parts
+                    text_parts.append(part["text"])
+            if fc_parts:
+                result = fc_parts
+            else:
+                result = text_parts
             metatdata = {}
             metatdata["input_token_count"] = json.loads(response.content)["usageMetadata"][
                 "promptTokenCount"
