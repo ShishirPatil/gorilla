@@ -96,5 +96,8 @@ handler_map = {
     "THUDM/glm-4-9b-chat": GLMHandler,
     "yi-large-fc": YiHandler,
     "Salesforce/xLAM-1b-fc-r": xLAMHandler,
-    "Salesforce/xLAM-7b-fc-r": xLAMHandler
+    "Salesforce/xLAM-7b-fc-r": xLAMHandler,
+    "Salesforce/xLAM-7b-r": xLAMHandler,
+    "Salesforce/xLAM-8x7b-r": xLAMHandler,
+    "Salesforce/xLAM-8x22b-r": xLAMHandler
 }
