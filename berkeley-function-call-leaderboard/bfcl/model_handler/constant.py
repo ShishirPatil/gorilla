@@ -145,4 +145,6 @@ UNDERSCORE_TO_DOT = [
     "THUDM/glm-4-9b-chat",
     "ibm-granite/granite-20b-functioncalling",
     "yi-large-fc",
+    "empower-dev/llama3-empower-functions-small-v1.1",
+    "empower-dev/llama3-empower-functions-large-v1.1",
 ]

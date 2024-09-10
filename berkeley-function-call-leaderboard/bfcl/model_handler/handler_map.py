@@ -1,4 +1,5 @@
 from bfcl.model_handler.oss_model.deepseek import DeepseekHandler
+from bfcl.model_handler.oss_model.empower import EmpowerHandler
 from bfcl.model_handler.oss_model.gemma import GemmaHandler
 from bfcl.model_handler.oss_model.glaive import GlaiveHandler
 from bfcl.model_handler.oss_model.glm import GLMHandler
@@ -92,7 +93,9 @@ handler_map = {
     "ibm-granite/granite-20b-functioncalling": GraniteHandler,
     # "MadeAgents/Hammer-7b": HammerHandler,  # TODO: Update handler once they have a multi-turn format
     "THUDM/glm-4-9b-chat": GLMHandler,
-    
+    "empower-dev/llama3-empower-functions-small-v1.1": EmpowerHandler,
+    "empower-dev/llama3-empower-functions-large-v1.1": EmpowerHandler,
+
     # Deprecated/outdated models, no longer on the leaderboard
     # "gorilla-openfunctions-v0": GorillaHandler,
     # "gpt-4o-2024-05-13": OpenAIHandler,
