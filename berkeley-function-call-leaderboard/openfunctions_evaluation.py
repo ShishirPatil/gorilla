@@ -202,7 +202,8 @@ def generate_results(args, model_name, test_cases_total):
 
 if __name__ == "__main__":
     load_dotenv(dotenv_path="./.env", verbose=True, override=True)  # Load the .env file
-
+    assert os.getenv("USE_COHERE_OPTIMIZATION") in ["True", "False"], "USE_COHERE_OPTIMIZATION in .env must be set to True or False"
+    
     args = get_args()
 
     if type(args.model) is not list:

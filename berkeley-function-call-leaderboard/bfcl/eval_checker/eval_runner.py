@@ -490,4 +490,6 @@ if __name__ == "__main__":
             model_names.append(model_name.replace("/", "_"))
 
     load_dotenv(dotenv_path="../../.env", verbose=True, override=True)  # Load the .env file
+    assert os.getenv("USE_COHERE_OPTIMIZATION") in ["True", "False"], "USE_COHERE_OPTIMIZATION in .env must be set to True or False"
+
     runner(model_names, test_categories, api_sanity_check)
