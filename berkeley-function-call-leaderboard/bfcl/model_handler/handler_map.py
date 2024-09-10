@@ -19,7 +19,7 @@ from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.oss_model.glm import GLMHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
 from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
-from bfcl.model_handler.hammer_handler import HammerHandler
+from bfcl.model_handler.oss_model.hammer import HammerHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
