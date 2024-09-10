@@ -78,16 +78,20 @@ python apply_function_credential_config.py
 
 ## Evaluating different models on the BFCL
 
-Make sure the model API keys are included in your environment variables. Running proprietary models like GPTs, Claude, Mistral-X will require them.
+Make sure the model API keys are included in your .env file. Running proprietary models like GPTs, Claude, Mistral-X will require them.
 
 ```bash
-export OPENAI_API_KEY=sk-XXXXXX
-export MISTRAL_API_KEY=XXXXXX
-export FIRE_WORKS_API_KEY=XXXXXX
-export ANTHROPIC_API_KEY=XXXXXX
-export COHERE_API_KEY=XXXXXX
-export NVIDIA_API_KEY=nvapi-XXXXXX
-export YI_API_KEY=XXXXXX
+OPENAI_API_KEY=sk-XXXXXX
+MISTRAL_API_KEY=
+FIREWORKS_API_KEY=
+ANTHROPIC_API_KEY=
+NVIDIA_API_KEY=nvapi-XXXXXX
+YI_API_KEY=
+
+COHERE_API_KEY=
+
+DATABRICKS_API_KEY=
+DATABRICKS_AZURE_ENDPOINT_URL=
 ```
 
 If decided to run OSS model, the generation script uses vllm and therefore requires GPU for hosting and inferencing. If you have questions or concerns about evaluating OSS models, please reach out to us in our [discord channel](https://discord.gg/grXXvj9Whz).
