@@ -78,7 +78,7 @@ python apply_function_credential_config.py
 
 ## Evaluating different models on the BFCL
 
-Make sure the model API keys are included in your .env file. Running proprietary models like GPTs, Claude, Mistral-X will require them.
+Make sure the model API keys are included in your `.env` file. Running proprietary models like GPTs, Claude, Mistral-X will require them.
 
 ```bash
 OPENAI_API_KEY=sk-XXXXXX
