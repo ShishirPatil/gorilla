@@ -1,4 +1,3 @@
-import json
 from tree_sitter import Language, Parser
 import tree_sitter_java
 

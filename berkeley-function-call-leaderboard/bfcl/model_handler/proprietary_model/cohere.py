@@ -1,6 +1,6 @@
 import os
 
-from bfcl.model_handler.handler import BaseHandler
+from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     func_doc_language_specific_pre_processing,
@@ -13,9 +13,7 @@ from bfcl.model_handler.constant import (
 )
 import time
 import cohere
-
-from bfcl.model_handler.constant import USE_COHERE_OPTIMIZATION
-
+USE_COHERE_OPTIMIZATION = os.getenv("USE_COHERE_OPTIMIZATION") == "True"
 
 class CohereHandler(BaseHandler):
     client: cohere.Client

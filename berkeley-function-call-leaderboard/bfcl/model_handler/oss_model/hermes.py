@@ -1,4 +1,4 @@
-from bfcl.model_handler.oss_handler import OSSHandler
+from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
 from bfcl.model_handler.utils import convert_to_tool
 from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
