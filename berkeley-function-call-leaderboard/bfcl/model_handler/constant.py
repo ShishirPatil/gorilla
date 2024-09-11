@@ -1,5 +1,3 @@
-USE_COHERE_OPTIMIZATION = False
-
 DEFAULT_SYSTEM_PROMPT_WITHOUT_FUNC_DOC = """
 You are an expert in composing functions. You are given a question and a set of possible functions. 
 Based on the question, you will need to make one or more function/tool calls to achieve the purpose. 

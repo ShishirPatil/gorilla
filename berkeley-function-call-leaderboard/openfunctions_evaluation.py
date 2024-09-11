@@ -2,9 +2,10 @@ import argparse, json, os, time
 from tqdm import tqdm
 from bfcl.model_handler.handler_map import handler_map
 from bfcl.model_handler.model_style import ModelStyle
-from bfcl.model_handler.constant import USE_COHERE_OPTIMIZATION
 from bfcl.eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING
 from concurrent.futures import ThreadPoolExecutor
+from dotenv import load_dotenv
+
 
 RETRY_LIMIT = 3
 # 60s for the timer to complete. But often we find that even with 60 there is a conflict. So 65 is a safe no.
@@ -200,6 +201,9 @@ def generate_results(args, model_name, test_cases_total):
 
 
 if __name__ == "__main__":
+    load_dotenv(dotenv_path="./.env", verbose=True, override=True)  # Load the .env file
+    assert os.getenv("USE_COHERE_OPTIMIZATION") in ["True", "False"], "USE_COHERE_OPTIMIZATION in .env must be set to True or False"
+    
     args = get_args()
 
     if type(args.model) is not list:
@@ -212,7 +216,7 @@ if __name__ == "__main__":
     print(f"Generating results for {args.model} on test category: {test_name_total}.")
 
     for model_name in args.model:
-        if USE_COHERE_OPTIMIZATION and "command-r-plus" in model_name:
+        if os.getenv("USE_COHERE_OPTIMIZATION") == "True" and "command-r-plus" in model_name:
             model_name = model_name + "-optimized"
 
         test_cases_total = collect_test_cases(test_filename_total, model_name)

@@ -1,7 +1,7 @@
 import json
 
 from bfcl.model_handler.model_style import ModelStyle
-from bfcl.model_handler.xlam_handler import xLAMHandler
+from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
 
 
 TASK_INSTRUCTION = """You are a tool calling assistant. In order to complete the user's request, you need to select one or more appropriate tools from the following tools and fill in the correct values for the tool parameters. Your specific tasks are:
@@ -22,7 +22,7 @@ The example format is as follows. Please make sure the parameter type is correct
 """
 
 
-class HammerHandler(xLAMHandler):
+class HammerHandler(SalesforceHandler):
     def __init__(
         self, model_name, temperature=0.001, top_p=1, max_tokens=512, dtype="bfloat16"
     ) -> None:

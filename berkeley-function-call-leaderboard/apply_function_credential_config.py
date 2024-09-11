@@ -2,23 +2,23 @@ import glob
 import json
 import argparse
 import os
-from bfcl.eval_checker import custom_exception
+from bfcl.eval_checker.custom_exception import NoAPIKeyError
+from dotenv import load_dotenv
 
 parser = argparse.ArgumentParser(description="Replace placeholders in the function credential config file.")
 parser.add_argument("--input-path", help="Path to the function credential config file. Can be a file or a directory.")
 parser.add_argument("--output-path", help="Path to the output file.")
 args = parser.parse_args()
 
-# Load the configuration with actual API keys
-with open("function_credential_config.json") as f:
-    function_credential_config = json.load(f)
+# Load the actual API keys
+load_dotenv()
+ENV_VARS = ("GEOCODE_API_KEY", "RAPID_API_KEY", "OMDB_API_KEY", "EXCHANGERATE_API_KEY")
+PLACEHOLDERS = {}
+for var in ENV_VARS:
+    if os.getenv(var) == "":
+        raise NoAPIKeyError(var)
 
-PLACEHOLDERS = {
-    "YOUR-GEOCODE-API-KEY": function_credential_config[3]["GEOCODE-API-KEY"],
-    "YOUR-RAPID-API-KEY": function_credential_config[0]["RAPID-API-KEY"],
-    "YOUR-OMDB-API-KEY": function_credential_config[2]["OMDB-API-KEY"],
-    "YOUR-EXCHANGERATE-API-KEY": function_credential_config[1]["EXCHANGERATE-API-KEY"]
-}
+    PLACEHOLDERS[f"YOUR-{var.replace('_', '-')}"] = os.getenv(var)
 
 
 def replace_placeholders(data):
@@ -86,7 +86,7 @@ if __name__ == "__main__":
     # Verify all values are provided
     for key, value in PLACEHOLDERS.items():
         if value == "":
-            raise custom_exception.NoAPIKeyError()
+            raise NoAPIKeyError()
     print("All API keys are present.")
     
     input_path = args.input_path
