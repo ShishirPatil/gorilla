@@ -34,22 +34,22 @@ class OpenAIHandler(BaseHandler):
                 prompt, DEFAULT_SYSTEM_PROMPT, functions
             )
             # Special handling for o1-preview and o1-mini as they don't support system prompts yet
-            if self.model_name in ["o1-preview", "o1-mini"]:
+            if "o1-preview" in self.model_name or "o1-mini" in self.model_name:
                 prompt = convert_system_prompt_into_user_prompt(prompt)
                 prompt = combine_consecutive_user_prompr(prompt)
             message = prompt
 
             start_time = time.time()
-            # These two models have temperature and top_p fixed to 1
+            # These two models have temperature and top_p fixed to 1, and max_tokens is not supported
             # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
-            if self.model_name in ["o1-preview", "o1-mini"]:
+            if "o1-preview" in self.model_name or "o1-mini" in self.model_name:
                 # Rate limit workaround, 20 requests per minute even for top tier users
                 time.sleep(4)
                 response = self.client.chat.completions.create(
                     messages=message,
                     model=self.model_name,
                     temperature=1,
-                    max_tokens=self.max_tokens,
+                    # max_tokens=self.max_tokens,
                     top_p=1,
                 )
             else:
