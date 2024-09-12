@@ -100,5 +100,6 @@ handler_map = {
     "Salesforce/xLAM-7b-r": SalesforceHandler,
     "Salesforce/xLAM-8x7b-r": SalesforceHandler,
     "Salesforce/xLAM-8x22b-r": SalesforceHandler,
-    "MadeAgents/Hammer-7b": HammerHandler
+    "MadeAgents/Hammer-7b": HammerHandler,
+    "openbmb/MiniCPM3-4B-FC": OpenAIHandler
 }
