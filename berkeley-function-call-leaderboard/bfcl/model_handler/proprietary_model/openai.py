@@ -43,8 +43,6 @@ class OpenAIHandler(BaseHandler):
             # These two models have temperature and top_p fixed to 1, and max_tokens is not supported
             # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
             if "o1-preview" in self.model_name or "o1-mini" in self.model_name:
-                # Rate limit workaround, 20 requests per minute even for top tier users
-                time.sleep(4)
                 response = self.client.chat.completions.create(
                     messages=message,
                     model=self.model_name,
