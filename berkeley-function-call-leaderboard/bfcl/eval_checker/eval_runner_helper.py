@@ -556,7 +556,18 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/MadeAgents/Hammer-7b",
         "MadeAgents",
         "cc-by-nc-4.0",
-    ]
+    ],
+    "unigpt4.0":[
+        "UniGPT4.0 (FC)",
+        "https://shanhai.unisound.com/",
+        "Unisound",
+        "Proprietary"
+    ],
+    "unigpt2.0":[
+        "UniGPT2.0 (FC)",
+        "https://shanhai.unisound.com/",
+        "Unisound",
+        "Proprietary"]
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {

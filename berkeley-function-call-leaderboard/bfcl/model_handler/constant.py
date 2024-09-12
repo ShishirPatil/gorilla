@@ -154,6 +154,8 @@ UNDERSCORE_TO_DOT = [
     "THUDM/glm-4-9b-chat",
     "ibm-granite/granite-20b-functioncalling",
     "yi-large-fc",
+    "unigpt2.0",
+    "unigpt4.0"
 ]
 
 TEST_FILE_MAPPING = {
