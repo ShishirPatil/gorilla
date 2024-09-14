@@ -20,7 +20,6 @@ from bfcl.model_handler.nvidia_handler import NvidiaHandler
 from bfcl.model_handler.glm_handler import GLMHandler
 from bfcl.model_handler.yi_handler import YiHandler
 from bfcl.model_handler.xlam_handler import xLAMHandler
-from bfcl.model_handler.toolace_handler import ToolACEHandler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -98,5 +97,5 @@ handler_map = {
     "yi-large-fc": YiHandler,
     "Salesforce/xLAM-1b-fc-r": xLAMHandler,
     "Salesforce/xLAM-7b-fc-r": xLAMHandler,
-    "Team-ACE/ToolACE-8B": ToolACEHandler
+    "Team-ACE/ToolACE-8B": LlamaHandler,
 }
