@@ -20,6 +20,7 @@ from bfcl.model_handler.oss_model.glm import GLMHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
 from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
 from bfcl.model_handler.oss_model.hammer import HammerHandler
+from bfcl.model_handler.oss_model.phi3 import Phi3Handler
 
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
@@ -100,5 +101,12 @@ handler_map = {
     "Salesforce/xLAM-7b-r": SalesforceHandler,
     "Salesforce/xLAM-8x7b-r": SalesforceHandler,
     "Salesforce/xLAM-8x22b-r": SalesforceHandler,
-    "MadeAgents/Hammer-7b": HammerHandler
+    "MadeAgents/Hammer-7b": HammerHandler,
+    "microsoft/Phi-3-mini-4k-instruct": Phi3Handler,
+    "microsoft/Phi-3-mini-128k-instruct": Phi3Handler,
+    "microsoft/Phi-3-small-8k-instruct": Phi3Handler,
+    "microsoft/Phi-3-small-128k-instruct": Phi3Handler,
+    "microsoft/Phi-3-medium-4k-instruct": Phi3Handler,
+    "microsoft/Phi-3-medium-128k-instruct": Phi3Handler,
+    "microsoft/Phi-3.5-mini-instruct": Phi3Handler,
 }
