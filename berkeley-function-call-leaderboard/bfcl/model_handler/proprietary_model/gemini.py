@@ -1,4 +1,4 @@
-from bfcl.model_handler.handler import BaseHandler
+from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     convert_to_tool,
@@ -79,14 +79,15 @@ class GeminiHandler(BaseHandler):
                 "processed_tool": functions,
             }
         try:
-            parts = []
+            fc_parts = []
+            text_parts = []
             for part in result["candidates"][0]["content"]["parts"]:
                 if "functionCall" in part:
                     if (
                         "name" in part["functionCall"]
                         and "args" in part["functionCall"]
                     ):
-                        parts.append(
+                        fc_parts.append(
                             {
                                 part["functionCall"]["name"]: json.dumps(
                                     part["functionCall"]["args"]
@@ -94,12 +95,15 @@ class GeminiHandler(BaseHandler):
                             }
                         )
                     else:
-                        parts.append(
+                        text_parts.append(
                             "Parsing error: " + json.dumps(part["functionCall"])
                         )
                 else:
-                    parts.append(part["text"])
-            result = parts
+                    text_parts.append(part["text"])
+            if fc_parts:
+                result = fc_parts
+            else:
+                result = text_parts
             metatdata = {}
             metatdata["input_token_count"] = json.loads(response.content)["usageMetadata"][
                 "promptTokenCount"
