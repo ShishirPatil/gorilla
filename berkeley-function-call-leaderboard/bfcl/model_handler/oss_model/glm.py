@@ -15,11 +15,10 @@ class GLMHandler(OSSHandler):
         formatted_prompt = ""
         oai_tool = convert_to_tool(functions, GORILLA_TO_OPENAPI, ModelStyle.OpenAI, test_category)
         if oai_tool:
-            formatted_prompt = "[gMASK]<sop><|system|>\n你是一个名为 ChatGLM 的人工智能助手。你是基于智谱AI训练的语言模型 GLM-4 模型开发的，你的任务是针对用户的问题和要求提供适当的答复和支持\n\n# 可用工具"
+            formatted_prompt = "[gMASK]<sop><|system|>\n你是一个名为 ChatGLM 的人工智能助手。你是基于智谱AI训练的语言模型 GLM-4 模型开发的，你的任务是针对用户的问题和要求提供适当的答复和支持。\n\n# 可用工具"
             for tool in oai_tool:
-                if tool["type"] == "function":
-                    formatted_prompt += f"\n\n## {tool['function']['name']}\n\n{json.dumps(tool['function'], indent=4)}"
-                    formatted_prompt += "\n在调用上述函数时，请使用 Json 格式表示调用的参数。"
+                formatted_prompt += f"\n\n## {tool['function']['name']}\n\n{json.dumps(tool['function'], indent=4)}"
+                formatted_prompt += "\n在调用上述函数时，请使用 Json 格式表示调用的参数。"
 
         for prompt in prompts:
             formatted_prompt += f"<|{prompt['role']}|>\n{prompt['content']}"
@@ -27,11 +26,6 @@ class GLMHandler(OSSHandler):
         return formatted_prompt
 
     def inference(self, test_question, num_gpus, gpu_memory_utilization):
-        from transformers import AutoTokenizer
-
-        self.tokenizer = AutoTokenizer.from_pretrained(
-            self.model_name, trust_remote_code=True
-        )
 
         return super().inference(
             test_question,
