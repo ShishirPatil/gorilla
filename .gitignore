@@ -19,9 +19,6 @@ goex/docker/misc/images.json
 
 ################## Berkley Function Call Leaderboard ##########################
 
-# Ignore API keys
-berkeley-function-call-leaderboard/function_credential_config.json
-
 # Ignore tree-sitter
 berkeley-function-call-leaderboard/eval_checker/tree-sitter-java
 berkeley-function-call-leaderboard/eval_checker/tree-sitter-javascript

@@ -24,6 +24,8 @@ from bfcl.model_handler.oss_model.hammer import HammerHandler
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
     "gorilla-openfunctions-v2": GorillaHandler,
+    "o1-preview-2024-09-12": OpenAIHandler,
+    "o1-mini-2024-09-12": OpenAIHandler,
     "gpt-4o-2024-08-06": OpenAIHandler,
     "gpt-4o-2024-08-06-FC": OpenAIHandler,
     "gpt-4o-2024-05-13": OpenAIHandler,
