@@ -20,7 +20,7 @@ from bfcl.model_handler.oss_model.glm import GLMHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
 from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
 from bfcl.model_handler.oss_model.hammer import HammerHandler
-
+from bfcl.model_handler.oss_model.qwen import QwenHandler
 handler_map = {
     "gorilla-openfunctions-v0": GorillaHandler,
     "gorilla-openfunctions-v2": GorillaHandler,
@@ -102,5 +102,7 @@ handler_map = {
     "Salesforce/xLAM-7b-r": SalesforceHandler,
     "Salesforce/xLAM-8x7b-r": SalesforceHandler,
     "Salesforce/xLAM-8x22b-r": SalesforceHandler,
-    "MadeAgents/Hammer-7b": HammerHandler
+    "MadeAgents/Hammer-7b": HammerHandler,
+    "Qwen/Qwen2-1.5B-Instruct": QwenHandler,
+    "Qwen/Qwen2-7B-Instruct": QwenHandler,
 }

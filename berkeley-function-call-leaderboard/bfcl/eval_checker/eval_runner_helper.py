@@ -568,7 +568,19 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/MadeAgents/Hammer-7b",
         "MadeAgents",
         "cc-by-nc-4.0",
-    ]
+    ],
+    "Qwen/Qwen2-1.5B-Instruct": [
+        "Qwen2-1.5B-Instruct",
+        "https://huggingface.co/Qwen/Qwen2-1.5B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
+    "Qwen/Qwen2-7B-Instruct": [
+        "Qwen2-7B-Instruct",
+        "https://huggingface.co/Qwen/Qwen2-7B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -698,6 +710,7 @@ OSS_LATENCY = {
     "meta-llama/Meta-Llama-3-70B-Instruct": 307,
     "gorilla-openfunctions-v2": 83,
     "THUDM/glm-4-9b-chat": 223,
+    "Qwen/Qwen2-1.5B-Instruct": 40,
 }
 
 
