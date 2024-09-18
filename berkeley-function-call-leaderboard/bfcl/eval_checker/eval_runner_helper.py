@@ -1022,7 +1022,7 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
     leaderboard_table[model_name]["latency"]["data"].extend(latency)
 
 
-def get_cost_letency_info(model_name, cost_data, latency_data):
+def get_cost_letency_info(model_name, cost_data, latency_data, total_count):
 
     cost, mean_latency, std_latency, percentile_95_latency = "N/A", "N/A", "N/A", "N/A"
 
@@ -1042,7 +1042,7 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
 
     if model_name in OSS_LATENCY:
         mean_latency, std_latency, percentile_95_latency = (
-            OSS_LATENCY[model_name] / 1700,
+            OSS_LATENCY[model_name] / total_count,
             "N/A",
             "N/A",
         )
@@ -1077,11 +1077,13 @@ def generate_leaderboard_csv(
     data_combined = []
     for model_name, value in leaderboard_table.items():
         model_name_escaped = model_name.replace("_", "/")
-        
+        total_count = 0
+        for _, v in value.items():
+            total_count += v.get("total_count", 0)
         cost_data = value.get("cost", {"input_data": [], "output_data": []})
         latency_data = value.get("latency", {"data": []})
         cost, latency_mean, latency_std, percentile_95_latency = get_cost_letency_info(
-            model_name_escaped, cost_data, latency_data
+            model_name_escaped, cost_data, latency_data, total_count
         )
         
         # Non-Live Score
