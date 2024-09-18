@@ -710,7 +710,8 @@ OSS_LATENCY = {
     "meta-llama/Meta-Llama-3-70B-Instruct": 307,
     "gorilla-openfunctions-v2": 83,
     "THUDM/glm-4-9b-chat": 223,
-    "Qwen/Qwen2-1.5B-Instruct": 40,
+    "Qwen/Qwen2-1.5B-Instruct": 100,
+    "Qwen/Qwen2-7B-Instruct": 100,
 }
 
 

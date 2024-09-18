@@ -1,7 +1,7 @@
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
 
 class QwenHandler(OSSHandler):
-    def __init__(self, model_name, temperature=0.7, top_p=1, max_tokens=1000) -> None:
+    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
         super().__init__(model_name, temperature, top_p, max_tokens)
 
     def apply_chat_template(self, prompts, function, test_category):
