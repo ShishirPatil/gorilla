@@ -1,0 +1,71 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "CloudFlare - Bulk remove DNS records: Zone List",
+        "api_call": "https://api.cloudflare.com/client/v4/zones?name=sinao.fr",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-Auth-Email",
+                    "value": "{{api_email}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Auth-Key",
+                    "value": "{{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "CloudFlare - Bulk remove DNS records: DNS List records",
+        "api_call": "https://api.cloudflare.com/client/v4/zones/:zone_identifier/dns_records",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-Auth-Email",
+                    "value": "{{api_email}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Auth-Key",
+                    "value": "{{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "CloudFlare - Bulk remove DNS records: DNS Delete record",
+        "api_call": "https://api.cloudflare.com/client/v4/zones/:zone_identifier/dns_records/:identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "X-Auth-Email",
+                    "value": "{{api_email}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Auth-Key",
+                    "value": "{{api_key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

@@ -1,0 +1,1725 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Retrieve contract NFTs",
+        "api_call": "https://api.nftport.xyz/v0/nfts/:contract_address?chain=<string>&page_number=1&page_size=50&include=default&refresh_metadata=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns all NFTs for a given contract address. Can be set to ```include``` the NFT ```metadata``` or ```all``` which returns"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Retrieve NFT details",
+        "api_call": "https://api.nftport.xyz/v0/nfts/:contract_address/:token_id?chain=<string>&refresh_metadata=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns details for a given NFT. These include ```metadata_url```, ```metadata``` such as name, description, attributes, etc., ```image_url```, ```cached_image_url``` and ```mint_date```."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Retrieve all NFTs",
+        "api_call": "https://api.nftport.xyz/v0/nfts?chain=rinkeby&page_size=50&continuation=velit eu quis&include=default",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns all ERC721 and ERC1155 NFTs that have been minted on a given chain. Can be set to ```include``` the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Retrieve NFTs owned by an account",
+        "api_call": "https://api.nftport.xyz/v0/accounts/:account_address?chain=polygon&page_size=50&continuation=velit eu quis&include=default&contract_address=reprehenderit commodo eu",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns NFTs owned by a given account (i.e. wallet) address. Can also return each NFT metadata with  ```include``` "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Retrieve NFTs created by an account",
+        "api_call": "https://api.nftport.xyz/v0/accounts/creators/:account_address?chain=ethereum&page_size=50&continuation=velit eu quis&include=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns NFTs created (i.e. minted) by a given account (i.e. wallet) address. Can also return each NFT metadata with `include`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Retrieve transactions by contract",
+        "api_call": "https://api.nftport.xyz/v0/transactions/nfts/:contract_address?chain=ethereum&page_size=50&type=burn&type=list&continuation=velit eu quis",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns all on-chain transactions as well as OpenSea and Rarible order book data for the specified contract. Can be set"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Retrieve transactions by NFT",
+        "api_call": "https://api.nftport.xyz/v0/transactions/nfts/:contract_address/:token_id?chain=ethereum&page_size=50&type=burn&type=list&continuation=velit eu quis",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns all on-chain transactions as well as OpenSea and Rarible order book data for the specified NFT token. Can be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Retrieve transactions by an account",
+        "api_call": "https://api.nftport.xyz/v0/transactions/accounts/:account_address?chain=ethereum&page_size=50&type=burn&type=make_bid&continuation=velit eu quis",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns all on-chain transactions as well as OpenSea and Rarible order book data for the specified account (i.e. wallet) address."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Retrieve contract sales statistics",
+        "api_call": "https://api.nftport.xyz/v0/transactions/stats/:contract_address?chain=ethereum",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve in-depth sales statistics about a contract from OpenSea. Includes statistics such as floor price, total volume, sales, etc. Updated"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Update a deployed collection contract",
+        "api_call": "https://api.nftport.xyz/v0/contracts/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"chain\": \"polygon\",\n  \"contract_address\": \"0xC8D297D7b496f86673551c933815B47973FC4a0e\",\n  \"public_mint_start_date\": \"2022-02-08T11:30:48+00:00\",\n  \"freeze_metadata\": false,\n  \"base_uri\": \"ipfs://\",\n  \"presale_mint_start_date\": \"2022-02-08T11:30:48+00:00\",\n  \"presale_whitelisted_addresses\": [\n    \"0x5FDd0881Ef284D6fBB2Ed97b01cb13d707f91e42\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates a collection contract which has been previously deployed with [Deploy an NFT collection contract](https://docs.nftport.xyz/docs/nftport/b3A6Mzk2MjA1MzQ-deploy-an-nft-collection-contract). You can change the reveal"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Deploy an NFT collection contract",
+        "api_call": "https://api.nftport.xyz/v0/contracts/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"chain\": \"polygon\",\n  \"name\": \"CRYPTOPUNKS\",\n  \"symbol\": \"C\",\n  \"max_supply\": 100,\n  \"mint_price\": 0.1,\n  \"tokens_per_mint\": 10,\n  \"owner_address\": \"\",\n  \"treasury_address\": \"\",\n  \"public_mint_start_date\": \"2022-02-08T11:30:48+00:00\",\n  \"metadata_updatable\": true,\n  \"base_uri\": \"ipfs://\",\n  \"prereveal_token_uri\": \"ipfs://QmTz7dGHvXghNuh3V64QBwHPXva4chpMR7frpfxCaxvhd4\",\n  \"presale_mint_start_date\": \"2022-02-08T11:30:48+00:00\",\n  \"presale_whitelisted_addresses\": [\n    \"0x5FDd0881Ef284D6fBB2Ed97b01cb13d707f91e42\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Deploys a [fixed-supply ERC-721 smart contract](), commonly used for launching NFT collections.\n\nAs blockchains take time to sync, then after contract"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Update a deployed contract for NFT products",
+        "api_call": "https://api.nftport.xyz/v0/contracts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"chain\": \"polygon\",\n  \"contract_address\": \"0xC8D297D7b496f86673551c933815B47973FC4a0e\",\n  \"freeze_metadata\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates a contract which has been previously deployed with [Deploy a contract for NFT products](https://docs.nftport.xyz/docs/nftport/b3A6MjE0MDYzNzU-deploy-an-nft-contract). You can freeze the metadata"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Deploy a contract for NFT products",
+        "api_call": "https://api.nftport.xyz/v0/contracts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"chain\": \"polygon\",\n  \"name\": \"CRYPTOPUNKS\",\n  \"symbol\": \"C\",\n  \"owner_address\": \"\",\n  \"metadata_updatable\": false,\n  \"type\": \"erc721\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Deploys an [```ERC-721```](https://github.com/nftport/solidity-contracts/blob/master/contracts/ERC721NftCustom.sol)\nor [```ERC-1155```](https://github.com/nftport/solidity-contracts/blob/master/contracts/ERC1155NftCustom.sol) smart contract\n where your can mint your NFTs on-demand. The supply of NFTs is not fixed;"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Retrieve a deployed contract",
+        "api_call": "https://api.nftport.xyz/v0/contracts/:transaction_hash?chain=polygon",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns the details of a contract that has previously been deployed with [Deploy a contract for NFT products](https://docs.nftport.xyz/docs/nftport/b3A6MjE0MDYzNzU-deploy-an-nft-contract) or [Deploy"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Upload metadata to IPFS",
+        "api_call": "https://api.nftport.xyz/v0/metadata",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"My Art\",\n  \"description\": \"This is my custom art piece\",\n  \"file_url\": \"https://ipfs.io/ipfs/QmRModSr9gQTSZrbfbLis6mw21HycZyqMA3j8YMRD11nAQ\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Uploads NFT metadata to [IPFS](https://docs.ipfs.io/concepts/what-is-ipfs/) as a JSON file which is the standard format for  [NFT metadata](https://nftschool.dev/reference/metadata-schemas/#intro-to-json-schemas). You can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Upload metadata directory to IPFS",
+        "api_call": "https://api.nftport.xyz/v0/metadata/directory",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "metadata_files",
+                        "value": "[\"voluptate\",\"eu non\"]",
+                        "type": "text",
+                        "description": "undefined"
+                    }
+                ]
+            }
+        },
+        "functionality": "Uploads an array of JSON files containing NFT metadata to [IPFS](https://docs.ipfs.io/concepts/what-is-ipfs/).\nThe output is an IPFS URI of a directory containing"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Batch customizable minting (ERC1155)",
+        "api_call": "https://api.nftport.xyz/v0/mints/customizable/batch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"chain\": \"rinkeby\",\n  \"contract_address\": \"enim ea officia consequat\",\n  \"tokens\": [\n    {\n      \"mint_to_address\": \"in ullamco Ut\",\n      \"token_id\": \"non minim occaecat aliqua\",\n      \"metadata_uri\": \"ut consequat cupidatat Dui\",\n      \"quantity\": 14598388\n    },\n    {\n      \"mint_to_address\": \"eiusmod sunt in Excepteur\",\n      \"token_id\": \"eu nisi ut dolore nulla\",\n      \"metadata_uri\": \"deserunt sunt velit\",\n      \"quantity\": 16804543\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Batch mints NFTs to your previously deployed ERC1155 NFT product contract. This minting consists of multiple steps and enables you"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Batch burn minted NFTs (ERC1155 only)",
+        "api_call": "https://api.nftport.xyz/v0/mints/customizable/batch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"chain\": \"polygon\",\n  \"contract_address\": \"reprehenderit do occaecat\",\n  \"tokens\": [\n    {\n      \"token_id\": \"fugiat culpa labore quis\",\n      \"quantity\": -13864206\n    },\n    {\n      \"token_id\": \"sunt laborum labore\",\n      \"quantity\": -72423529\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Burns a batch of NFTs which have been previously minted with [Batch customizable minting](https://docs.nftport.xyz/docs/nftport/b3A6MzIxMzAwOTk-batch-customizable-minting-erc-1155).\nBurning an NFT means destroying it by"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Update a minted NFT",
+        "api_call": "https://api.nftport.xyz/v0/mints/customizable",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"chain\": \"polygon\",\n  \"contract_address\": \"0xC8D297D7b496f86673551c933815B47973FC4a0e\",\n  \"token_id\": \"1\",\n  \"metadata_uri\": \"ipfs://QmTz7dGHvXghNuh3V64QBwHPXva4chpMR7frpfxCaxvhd4\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Updates an NFT which has been previously minted with [Customizable minting](https://docs.nftport.xyz/docs/nftport/b3A6MjE2NjM5MDI-customizable-minting)\nor [Batch customizable minting](https://docs.nftport.xyz/docs/nftport/b3A6MzIxMzAwOTk-batch-customizable-minting-erc-1155). You can update the metadata URI"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Customizable minting",
+        "api_call": "https://api.nftport.xyz/v0/mints/customizable",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"chain\": \"polygon\",\n  \"contract_address\": \"0xC8D297D7b496f86673551c933815B47973FC4a0e\",\n  \"metadata_uri\": \"ipfs://QmTz7dGHvXghNuh3V64QBwHPXva4chpMR7frpfxCaxvhd4\",\n  \"mint_to_address\": \"0x5FDd0881Ef284D6fBB2Ed97b01cb13d707f91e42\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Mints an NFT to your previously contract for NFT products. This minting consists of multiple steps and enables you to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Burn a minted NFT",
+        "api_call": "https://api.nftport.xyz/v0/mints/customizable",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"chain\": \"polygon\",\n  \"contract_address\": \"0xC8D297D7b496f86673551c933815B47973FC4a0e\",\n  \"token_id\": \"1\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Burns an NFT which has been previously minted with [Customizable minting](https://docs.nftport.xyz/docs/nftport/b3A6MjE2NjM5MDI-customizable-minting).\nBurning an NFT means destroying it by sending it to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Transfer a minted NFT",
+        "api_call": "https://api.nftport.xyz/v0/mints/transfers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"chain\": \"polygon\",\n  \"contract_address\": \"0xC8D297D7b496f86673551c933815B47973FC4a0e\",\n  \"token_id\": \"1\",\n  \"transfer_to_address\": \"0x5FDd0881Ef284D6fBB2Ed97b01cb13d707f91e42\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Transfers an NFT which has been previously minted with [Customizable minting](https://docs.nftport.xyz/docs/nftport/b3A6MjE2NjM5MDI-customizable-minting) to another wallet address.\n\n**Note**: Transferring is possible only if"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Batch transfer minted NFTs (ERC1155 only)",
+        "api_call": "https://api.nftport.xyz/v0/mints/transfers/batch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"chain\": \"rinkeby\",\n  \"contract_address\": \"ve\",\n  \"tokens\": [\n    {\n      \"transfer_to_address\": \"dolor labor\",\n      \"token_id\": \"nulla\",\n      \"quantity\": -18898618\n    },\n    {\n      \"transfer_to_address\": \"nulla consectetur sint\",\n      \"token_id\": \"Ut dolore occaecat \",\n      \"quantity\": -27586432\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Transfers a batch of NFTs which have been previously minted with [Batch customizable minting](https://docs.nftport.xyz/docs/nftport/b3A6MzIxMzAwOTk-batch-customizable-minting-erc-1155) to other wallet addresses.\n\n**Note**: Transferring is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Easy minting w/URL",
+        "api_call": "https://api.nftport.xyz/v0/mints/easy/urls",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"chain\": \"polygon\",\n  \"name\": \"Type your NFT name here\",\n  \"description\": \"Type your NFT description here\",\n  \"file_url\": \"Add your file URL here\",\n  \"mint_to_address\": \"Add your wallet address here\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "With Easy mint, you can turn anything into an NFT in less than 5 minutes using one simple API call."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Easy minting w/file upload",
+        "api_call": "https://api.nftport.xyz/v0/mints/easy/files?chain=polygon&name=mollit reprehenderit&description=quis qui minim&mint_to_address=enim in",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "value": "laboris proident consequat sit mollit",
+                        "type": "text",
+                        "description": "undefined"
+                    }
+                ]
+            }
+        },
+        "functionality": "With Easy mint, you can turn anything into an NFT in less than 5 minutes using one simple API call."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Retrieve a minted NFT",
+        "api_call": "https://api.nftport.xyz/v0/mints/:transaction_hash?chain=polygon",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns the details of a minted NFT. You need to provide  ```transaction_hash```  which is returned from [Easy minting"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Retrieve batch minted NFTs",
+        "api_call": "https://api.nftport.xyz/v0/mints/batch/:transaction_hash?chain=polygon",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns the details of a batch minted NFTs for ERC1155 contracts.\nYou need to provide  ```transaction_hash```  which is returned"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: List all your deployed contracts",
+        "api_call": "https://api.nftport.xyz/v0/me/contracts",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of all the contracts you\u2019ve previously deployed with [Deploy a contract for NFT products](https://docs.nftport.xyz/docs/nftport/b3A6MjE0MDYzNzU-deploy-an-nft-contract).\n\n#### Useful for:\n* Retrieving"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: List all your deployed collection contracts",
+        "api_call": "https://api.nftport.xyz/v0/me/contracts/collections?chain=ethereum&include=default",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of all the collection contracts you\u2019ve previously deployed.\nIt can also return merkle proofs of all the whitelisted"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: List all your minted NFTs",
+        "api_call": "https://api.nftport.xyz/v0/me/mints?chain=polygon&page_number=1&page_size=50",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of all the NFTs you\u2019ve previously minted with [Easy minting w/URL](https://docs.nftport.xyz/docs/nftport/b3A6MjE2NjM5MDM-easy-minting-w-url), [Easy minting w/file upload](https://docs.nftport.xyz/docs/nftport/b3A6MjE2NjM5MDQ-easy-minting-w-file-upload) or [Customizable"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: List all your IPFS uploads",
+        "api_call": "https://api.nftport.xyz/v0/me/storage?type=file&type=all&page_number=1&page_size=50&start_date=anim commodo&end_date=dolor labo",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a list of all data uploaded to IPFS by you. This includes files, metadata and directories uploaded to IPFS.\n\n**Note:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: User settings",
+        "api_call": "https://api.nftport.xyz/v0/me/settings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve your NFTPort settings to check your usage and limits.\n#### Useful for:\n* Checking your minting and contract deployment usage and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Find counterfeit NFTs w/file upload",
+        "api_call": "https://api.nftport.xyz/v0/duplicates/files?page_number=1&page_size=50&threshold=0.9&filter_out_contract_address=occaecat esse Ut culpa",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "value": "ipsum commodo pariatur eiusmod",
+                        "type": "text",
+                        "description": "undefined"
+                    }
+                ]
+            }
+        },
+        "functionality": "Analyzes the input image passed with ```file``` and returns duplicates (i.e. counterfeits) against it. Uses state of the art computer"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Find counterfeit NFTs w/url",
+        "api_call": "https://api.nftport.xyz/v0/duplicates/urls",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"url\": \"https://www.larvalabs.com/cryptopunks/cryptopunk7597.png\",\n  \"page_number\": 1,\n  \"page_size\": 50,\n  \"threshold\": 0.9\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Analyzes the input image passed with ```url``` and returns duplicates (i.e. counterfeits) against it. Uses state of the art computer"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Find counterfeit NFTs w/token ID",
+        "api_call": "https://api.nftport.xyz/v0/duplicates/tokens",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"chain\": \"ethereum\",\n  \"contract_address\": \"0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb\",\n  \"token_id\": \"9999\",\n  \"page_number\": 1,\n  \"page_size\": 50,\n  \"threshold\": 0.9\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Analyzes the input nft image passed with ```chain```,  ```contract_address``` and  ```token_id```,  and returns duplicates (i.e. counterfeits) against"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Find similar NFTs w/URL",
+        "api_call": "https://api.nftport.xyz/v0/recommendations/similar_nfts/urls",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"url\": \"https://supermariorun.com/assets/img/stage/obj_mode1.png\",\n  \"page_number\": 1,\n  \"page_size\": 50\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Returns visually and contextually similar images to the input image passed with ```url```. Uses state of the art computer vision"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Find similar NFTs w/file upload",
+        "api_call": "https://api.nftport.xyz/v0/recommendations/similar_nfts/files?page_number=1&page_size=50",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "value": "et occaecat est",
+                        "type": "text",
+                        "description": "undefined"
+                    }
+                ]
+            }
+        },
+        "functionality": "Returns visually and contextually similar images to the uploaded image with  ```file```. Uses state of the art computer vision"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Retrieve reports on NFTs data",
+        "api_call": "https://api.nftport.xyz/v0/reports/:report_type",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Get reports such as:\n* High-level statistics about URIs linked by NFTs metadata. Currently supported URIs are:\n  metadata, image and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Upload a file to IPFS",
+        "api_call": "https://api.nftport.xyz/v0/files",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "file",
+                        "value": "sed reprehenderit laboris elit",
+                        "type": "text",
+                        "description": "undefined"
+                    }
+                ]
+            }
+        },
+        "functionality": "Uploads a file to [IPFS](https://docs.ipfs.io/concepts/what-is-ipfs/) which makes your NFT storage easy. You can use the returned  ```ipfs_url```  with"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "NFTPort API: Multi-chain NFT search",
+        "api_call": "https://api.nftport.xyz/v0/search?text=consequat voluptate ipsum tempor reprehenderit&chain=all&page_number=1&page_size=50&order_by=mint_date&sort_order=desc&filter_by_contract_address=aliqua sit",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "apikey",
+                "apikey": [
+                    {
+                        "key": "key",
+                        "value": "Authorization",
+                        "type": "string"
+                    },
+                    {
+                        "key": "value",
+                        "value": "<API Key>",
+                        "type": "string"
+                    },
+                    {
+                        "key": "in",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Searches NFTs across multiple chains using a text query, specifically the ```name``` and ```description``` fields from the metadata. You can"
+    }
+]

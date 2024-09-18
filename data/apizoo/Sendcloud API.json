@@ -1,0 +1,1488 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Create Parcels Report",
+        "api_call": "{{baseUrl}}/reporting/parcels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Content-Type"
+                },
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filters\": {\n    \"direction\": \"<string>\",\n    \"integration_id\": \"<integer>\",\n    \"updated_after\": \"<dateTime>\",\n    \"updated_before\": \"<dateTime>\",\n    \"announced_after\": \"<dateTime>\",\n    \"announced_before\": \"<dateTime>\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint allows you to generate a CSV report containing information about outgoing or incoming parcels. The parcels included in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve Parcels Report",
+        "api_call": "{{baseUrl}}/reporting/parcels/:report_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "# Get parcels report\n\nOnce you've created a parcel report, use this endpoint to generate a **URL** which will allow you"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve all invoices that have been issued to your account",
+        "api_call": "{{baseUrl}}/user/invoices",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{basicAuthUsername}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{basicAuthPassword}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "With this endpoint, you can retrieve all of the invoices and the associated invoice `id` which have been issued to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a specific invoice",
+        "api_call": "{{baseUrl}}/user/invoices/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{basicAuthUsername}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{basicAuthPassword}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a single invoice issued to your Sendcloud account. You need to provide the invoice `id` to fetch details of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a brand",
+        "api_call": "{{baseUrl}}/brands/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "Retrieves a user's configured brand and its properties, identified by its unique ID"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a list of brands",
+        "api_call": "{{baseUrl}}/brands",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "Retrieves a list of all brands and their associated properties."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve the current user data",
+        "api_call": "{{baseUrl}}/user",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{basicAuthUsername}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{basicAuthPassword}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "You can use this endpoint to request the data that is connected with your own user account. The response will"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Cancel a parcel",
+        "api_call": "{{baseUrl}}/parcels/:id/cancel",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "You can use this endpoint to:\n\n1. **Cancel** an announced parcel; or,\n2. **Delete** an unnanounced parcel\n\n### Cancelling a parcel\nWhen you **cancel**"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a return portal URL",
+        "api_call": "{{baseUrl}}/parcels/:id/return_portal_url",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint lets you see which of your branded Return portals is associated with a specific parcel based on the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a parcel",
+        "api_call": "{{baseUrl}}/parcels/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint allows you to retrieve a specific parcel created under your Sendcloud credentials, based on the parcel `id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve parcels",
+        "api_call": "{{baseUrl}}/parcels?parcel_status=<integer>&tracking_number=<string>&order_number=<string>&updated_after=<string>&announced_after=<string>&ids=<string>&cursor=<string>&errors=verbose-carrier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint allows you to retrieve a list of all the parcels which you have created or imported into your"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Create a parcel",
+        "api_call": "{{baseUrl}}/parcels?errors=verbose",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Sendcloud-Partner-Id",
+                    "description": "If you are <a href=\"https://www.sendcloud.com/ecosystem/\" target=\"_blank\"> an official Sendcloud Tech Partner</a>, you can provide this additional request header for the system to recognize you. Sendcloud Partner UUID is provided to Sendcloud partners. The token is not required but if the header is set, the system will try to validate it. An unknown UUID will cause the 404 return, whilst an invalid one will return 400.",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"parcel\": {\n    \"name\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"company_name\": \"<string>\",\n    \"contract\": \"<integer>\",\n    \"address_2\": \"<string>\",\n    \"house_number\": \"<string>\",\n    \"telephone\": \"<string>\",\n    \"request_label\": \"<boolean>\",\n    \"email\": \"<string>\",\n    \"data\": {},\n    \"shipment\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    \"weight\": \"<string>\",\n    \"order_number\": \"<string>\",\n    \"insured_value\": \"<integer>\",\n    \"total_order_value_currency\": \"<string>\",\n    \"total_order_value\": \"<string>\",\n    \"quantity\": \"<integer>\",\n    \"shipping_method_checkout_name\": \"<string>\",\n    \"to_post_number\": \"<string>\",\n    \"country_state\": \"<string>\",\n    \"sender_address\": \"<integer>\",\n    \"customs_invoice_nr\": \"<string>\",\n    \"customs_shipment_type\": 2,\n    \"external_reference\": \"<string>\",\n    \"to_service_point\": \"<integer>\",\n    \"total_insured_value\": \"<integer>\",\n    \"shipment_uuid\": \"<string>\",\n    \"parcel_items\": [\n      {\n        \"hs_code\": \"<string>\",\n        \"weight\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"value\": \"<number>\",\n        \"origin_country\": \"<string>\",\n        \"sku\": \"<string>\",\n        \"product_id\": \"<string>\",\n        \"properties\": {},\n        \"item_id\": \"<string>\",\n        \"return_reason\": \"<integer>\",\n        \"return_message\": \"<string>\",\n        \"mid_code\": \"<string>\",\n        \"material_content\": \"<string>\",\n        \"intended_use\": \"<string>\"\n      },\n      {\n        \"hs_code\": \"<string>\",\n        \"weight\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"value\": \"<number>\",\n        \"origin_country\": \"<string>\",\n        \"sku\": \"<string>\",\n        \"product_id\": \"<string>\",\n        \"properties\": {},\n        \"item_id\": \"<string>\",\n        \"return_reason\": \"<integer>\",\n        \"return_message\": \"<string>\",\n        \"mid_code\": \"<string>\",\n        \"material_content\": \"<string>\",\n        \"intended_use\": \"<string>\"\n      }\n    ],\n    \"is_return\": \"<boolean>\",\n    \"length\": \"<string>\",\n    \"width\": \"<string>\",\n    \"height\": \"<string>\",\n    \"request_label_async\": \"<boolean>\",\n    \"apply_shipping_rules\": \"<boolean>\",\n    \"from_name\": \"<string>\",\n    \"from_company_name\": \"<string>\",\n    \"from_address_1\": \"<string>\",\n    \"from_address_2\": \"<string>\",\n    \"from_house_number\": \"<string>\",\n    \"from_city\": \"<string>\",\n    \"from_postal_code\": \"<string>\",\n    \"from_country\": \"<string>\",\n    \"from_telephone\": \"<string>\",\n    \"from_email\": \"<string>\",\n    \"from_vat_number\": \"<string>\",\n    \"from_eori_number\": \"<string>\",\n    \"from_inbound_vat_number\": \"<string>\",\n    \"from_inbound_eori_number\": \"<string>\",\n    \"from_ioss_number\": \"<string>\",\n    \"customs_information\": {\n      \"customs_invoice_nr\": \"<string>\",\n      \"customs_shipment_type\": 4,\n      \"export_type\": \"commercial_b2c\",\n      \"invoice_date\": \"<date>\",\n      \"discount_granted\": \"<string>\",\n      \"freight_costs\": \"<string>\",\n      \"insurance_costs\": \"<string>\",\n      \"other_costs\": \"<string>\",\n      \"general_notes\": \"<string>\",\n      \"additional_declaration_statements\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"importer_of_record\": {\n        \"name\": \"<string>\",\n        \"address_1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country_code\": \"<string>\",\n        \"company_name\": \"<string>\",\n        \"address_2\": \"<string>\",\n        \"house_number\": \"<string>\",\n        \"country_state\": \"<string>\",\n        \"telephone\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"tax_numbers\": {\n        \"sender\": [\n          {\n            \"name\": \"FED\",\n            \"country_code\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"RGP\",\n            \"country_code\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"receiver\": [\n          {\n            \"name\": \"FED\",\n            \"country_code\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"OKP\",\n            \"country_code\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"importer_of_record\": [\n          {\n            \"name\": \"DTF\",\n            \"country_code\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"STA\",\n            \"country_code\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      \"return_data\": {\n        \"return_postal_code\": \"<string>\",\n        \"outbound_tracking_number\": \"<string>\",\n        \"outbound_shipment_date\": \"<date>\",\n        \"outbound_carrier_name\": \"<string>\"\n      }\n    }\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json",
+                        "headerFamily": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint **creates a parcel** under your API credentials. \n\n- You can choose to **announce the parcel** and create the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Update a parcel",
+        "api_call": "{{baseUrl}}/parcels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"parcel\": {\n    \"name\": \"<string>\",\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"postal_code\": \"<string>\",\n    \"country\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"company_name\": \"<string>\",\n    \"contract\": \"<integer>\",\n    \"address_2\": \"<string>\",\n    \"house_number\": \"<string>\",\n    \"telephone\": \"<string>\",\n    \"request_label\": \"<boolean>\",\n    \"email\": \"<string>\",\n    \"data\": {},\n    \"shipment\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    \"weight\": \"<string>\",\n    \"order_number\": \"<string>\",\n    \"insured_value\": \"<integer>\",\n    \"total_order_value_currency\": \"<string>\",\n    \"total_order_value\": \"<string>\",\n    \"quantity\": \"<integer>\",\n    \"shipping_method_checkout_name\": \"<string>\",\n    \"to_post_number\": \"<string>\",\n    \"country_state\": \"<string>\",\n    \"sender_address\": \"<integer>\",\n    \"customs_invoice_nr\": \"<string>\",\n    \"customs_shipment_type\": 4,\n    \"external_reference\": \"<string>\",\n    \"to_service_point\": \"<integer>\",\n    \"total_insured_value\": \"<integer>\",\n    \"shipment_uuid\": \"<string>\",\n    \"parcel_items\": [\n      {\n        \"hs_code\": \"<string>\",\n        \"weight\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"value\": \"<number>\",\n        \"origin_country\": \"<string>\",\n        \"sku\": \"<string>\",\n        \"product_id\": \"<string>\",\n        \"properties\": {},\n        \"item_id\": \"<string>\",\n        \"return_reason\": \"<integer>\",\n        \"return_message\": \"<string>\",\n        \"mid_code\": \"<string>\",\n        \"material_content\": \"<string>\",\n        \"intended_use\": \"<string>\"\n      },\n      {\n        \"hs_code\": \"<string>\",\n        \"weight\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"description\": \"<string>\",\n        \"value\": \"<number>\",\n        \"origin_country\": \"<string>\",\n        \"sku\": \"<string>\",\n        \"product_id\": \"<string>\",\n        \"properties\": {},\n        \"item_id\": \"<string>\",\n        \"return_reason\": \"<integer>\",\n        \"return_message\": \"<string>\",\n        \"mid_code\": \"<string>\",\n        \"material_content\": \"<string>\",\n        \"intended_use\": \"<string>\"\n      }\n    ],\n    \"is_return\": \"<boolean>\",\n    \"length\": \"<string>\",\n    \"width\": \"<string>\",\n    \"height\": \"<string>\",\n    \"request_label_async\": \"<boolean>\",\n    \"apply_shipping_rules\": \"<boolean>\",\n    \"from_name\": \"<string>\",\n    \"from_company_name\": \"<string>\",\n    \"from_address_1\": \"<string>\",\n    \"from_address_2\": \"<string>\",\n    \"from_house_number\": \"<string>\",\n    \"from_city\": \"<string>\",\n    \"from_postal_code\": \"<string>\",\n    \"from_country\": \"<string>\",\n    \"from_telephone\": \"<string>\",\n    \"from_email\": \"<string>\",\n    \"from_vat_number\": \"<string>\",\n    \"from_eori_number\": \"<string>\",\n    \"from_inbound_vat_number\": \"<string>\",\n    \"from_inbound_eori_number\": \"<string>\",\n    \"from_ioss_number\": \"<string>\",\n    \"customs_information\": {\n      \"customs_invoice_nr\": \"<string>\",\n      \"customs_shipment_type\": 0,\n      \"export_type\": \"commercial_b2c\",\n      \"invoice_date\": \"<date>\",\n      \"discount_granted\": \"<string>\",\n      \"freight_costs\": \"<string>\",\n      \"insurance_costs\": \"<string>\",\n      \"other_costs\": \"<string>\",\n      \"general_notes\": \"<string>\",\n      \"additional_declaration_statements\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"importer_of_record\": {\n        \"name\": \"<string>\",\n        \"address_1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country_code\": \"<string>\",\n        \"company_name\": \"<string>\",\n        \"address_2\": \"<string>\",\n        \"house_number\": \"<string>\",\n        \"country_state\": \"<string>\",\n        \"telephone\": \"<string>\",\n        \"email\": \"<string>\"\n      },\n      \"tax_numbers\": {\n        \"sender\": [\n          {\n            \"name\": \"DAN\",\n            \"country_code\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"TAN\",\n            \"country_code\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"receiver\": [\n          {\n            \"name\": \"IOSS\",\n            \"country_code\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"PAS\",\n            \"country_code\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"importer_of_record\": [\n          {\n            \"name\": \"STA\",\n            \"country_code\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"GST\",\n            \"country_code\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      \"return_data\": {\n        \"return_postal_code\": \"<string>\",\n        \"outbound_tracking_number\": \"<string>\",\n        \"outbound_shipment_date\": \"<date>\",\n        \"outbound_carrier_name\": \"<string>\"\n      }\n    }\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json",
+                        "headerFamily": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint allows you to update a parcel which has **not yet been announced**, either to make changes to the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a shipping price",
+        "api_call": "{{baseUrl}}/shipping-price?shipping_method_id=<integer>&from_country=<string>&to_country=<string>&weight=<integer>&weight_unit=<string>&contract=<integer>&from_postal_code=<string>&to_postal_code=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint retrieves shipping rate information for a specific `shipping_method_id` and `from_country`. \n\nFor users that have uploaded their own prices,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a list of shipping products",
+        "api_call": "{{baseUrl}}/shipping-products?from_country=<string>&to_country=GB&carrier=<string>&contract=<integer>&weight=<integer>&weight_unit=gram&length=<integer>&length_unit=meter&width=<integer>&width_unit=meter&height=<integer>&height_unit=meter&lead_time_hours=<integer>&contract_pricing=<boolean>&from_postal_code=<string>&to_postal_code=<string>&returns=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "This endpoint allows you to retrieve a list of shipping methods that are associated with your default sender address, filtered"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a list of shipping functionalities",
+        "api_call": "{{baseUrl}}/shipping-functionalities",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "This endpoint lists all of the available **shipping functionalities** across the Sendcloud system. A shipping functionality is an additional characteristic"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a list of parcel statuses",
+        "api_call": "{{baseUrl}}/parcels/statuses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "Retrieve a list of all possible parcel statuses. "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a Label",
+        "api_call": "{{baseUrl}}/labels/:parcel_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "Retrieve a shipping label for a specific parcel in PDF format. \nYou can lookup the `id` of a parcel via"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a PDF label",
+        "api_call": "{{baseUrl}}/labels/normal_printer/:parcel_id?start_from=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/pdf",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "Retrieve a shipping label for a specific parcel in PDF format for a normal printer."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve multiple PDF labels",
+        "api_call": "{{baseUrl}}/labels/normal_printer?ids=<integer>,<integer>&start_from=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/pdf",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "Retrieve PDF label documents suitable for normal printers for multiple different parcels at the same time."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a PDF label for a specific label printer",
+        "api_call": "{{baseUrl}}/labels/label_printer/:parcel_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/pdf",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "Retrieve a shipping label for a specific parcel in PDF format for a label printer."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a PDF label for a label printer",
+        "api_call": "{{baseUrl}}/labels/label_printer?ids=<integer>,<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/pdf",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "Retrieve PDF label documents suitable for label printers for multiple different parcels at the same time."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Bulk PDF label printing",
+        "api_call": "{{baseUrl}}/labels",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Content-Type"
+                },
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"label\": {\n    \"parcels\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json",
+                        "headerFamily": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Request multiple shipping labels for an array of parcels at the same time."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a customs declaration PDF",
+        "api_call": "{{baseUrl}}/customs_declaration/normal_printer/:parcel_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/pdf",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "Retrieve the customs documents associated with a label in PDF format for a normal printer."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve multiple customs declaration PDF",
+        "api_call": "{{baseUrl}}/customs_declaration/normal_printer?ids=<integer>,<integer>&start_from=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/pdf",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "<!-- theme: warning -->\n> This endpoint is deprecated as of Mon, 08 Jan 2024 00:00:00 GMT. We will sunset this"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve Parcel Documents",
+        "api_call": "{{baseUrl}}/parcels/:id/documents/:type?dpi=72&raw=<boolean>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                }
+            ]
+        },
+        "functionality": "For international shipments, a commercial invoice, CN23 or CN22 (+CP71) form must be attached (either physically or [**digitally**](https://support.sendcloud.com/hc/en-us/articles/4417349714452-Send-your-customs-documents-digitally-via-Paperless-Trade-) for some"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Finalizing a box",
+        "api_call": "{{baseUrl}}/box/finalize",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"copy_count\": 1\n}",
+                "options": {
+                    "raw": {
+                        "language": "json",
+                        "headerFamily": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint allows you to create an Air Waybill for a box containing multiple Deutsche Post International parcels. When you"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a shipping method",
+        "api_call": "{{baseUrl}}/shipping_methods/:id?sender_address=<string>&service_point_id=<integer>&is_return=<boolean>&from_postal_code=<string>&to_postal_code=<string>&to_country=NU",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "This endpoint will return information about a shipping method based on the provided shipping method `id` and your **default sender"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a list of shipping methods",
+        "api_call": "{{baseUrl}}/shipping_methods?sender_address=<string>&service_point_id=<integer>&is_return=<boolean>&from_postal_code=<string>&to_postal_code=<string>&to_country=NU",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "This endpoint will return a detailed list of all the shipping methods which are available to you under your Sendcloud"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a pickup",
+        "api_call": "{{baseUrl}}/pickups/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "This endpoint allows you to retrieve information about a specific pickup based on the pickup `id`. "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Create a pickup",
+        "api_call": "{{baseUrl}}/pickups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Content-Type"
+                },
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"discriminator\": {\n      \"propertyName\": \"carrier\",\n      \"mapping\": {\n        \"dhl_express\": \"#/components/schemas/DHLExpressPickupCreate\",\n        \"fedex\": \"#/components/schemas/FedExPickupCreate\",\n        \"correos_express\": \"#/components/schemas/CorreosExpressPickupCreate\",\n        \"dhl\": \"#/components/schemas/DHLPickupCreate\",\n        \"dpd\": \"#/components/schemas/DPDPickupCreate\",\n        \"poste_it_delivery\": \"#/components/schemas/PosteITDeliveryPickupCreate\",\n        \"correos\": \"#/components/schemas/CorreosPickupCreate\",\n        \"ups\": \"#/components/schemas/UPSPickupCreate\",\n        \"dhl_parcel_iberia\": \"#/components/schemas/DHLParcelIberiaPickupCreate\"\n      }\n    }\n  },\n  {\n    \"discriminator\": {\n      \"propertyName\": \"carrier\",\n      \"mapping\": {\n        \"dhl_express\": \"#/components/schemas/DHLExpressPickupCreate\",\n        \"fedex\": \"#/components/schemas/FedExPickupCreate\",\n        \"correos_express\": \"#/components/schemas/CorreosExpressPickupCreate\",\n        \"dhl\": \"#/components/schemas/DHLPickupCreate\",\n        \"dpd\": \"#/components/schemas/DPDPickupCreate\",\n        \"poste_it_delivery\": \"#/components/schemas/PosteITDeliveryPickupCreate\",\n        \"correos\": \"#/components/schemas/CorreosPickupCreate\",\n        \"ups\": \"#/components/schemas/UPSPickupCreate\",\n        \"dhl_parcel_iberia\": \"#/components/schemas/DHLParcelIberiaPickupCreate\"\n      }\n    }\n  }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json",
+                        "headerFamily": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint allows you to schedule a pickup with a [**supporting carrier**](https://api.sendcloud.dev/docs/sendcloud-public-api/pickups#which-carriers-support-pickups-via-the-api). You can schedule the pickup to take place"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a list of pickups",
+        "api_call": "{{baseUrl}}/pickups?limit=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "This endpoint retrieves information about all the pickups which have been created from your account. This is limited to the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve Carriers transit times",
+        "api_call": "{{baseUrl}}/insights/carriers/transit-times?carrier_code=<string>&carrier_code=<string>&from_country=<string>&to_country=<string>&start_date=<date>&end_date=<date>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{basicAuthUsername}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{basicAuthPassword}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "This endpoint retrieves the average transit time of a parcel per selected carrier code.\nYou can filter the results by origin"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve Shipping method transit times",
+        "api_call": "{{baseUrl}}/insights/shipping-methods/transit-times?shipping_method_code=<string>&shipping_method_code=<string>&from_country=<string>&to_country=<string>&start_date=<date>&end_date=<date>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{basicAuthUsername}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{basicAuthPassword}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "This endpoint retrieves the average transit time of a parcel per selected shipping method and carrier code.\nYou can filter the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve an outgoing parcel",
+        "api_call": "{{baseUrl}}/brand/:brand_domain/return-portal/outgoing?postal_code=<string>&identifier=<string>&omit_service_points=false",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint returns all the necessary data from the outgoing parcel. It takes two mandatory query parameters: either the tracking"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Create a return",
+        "api_call": "{{baseUrl}}/brand/:brand_domain/return-portal/incoming",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{bearerToken}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"reason\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"outgoing_parcel\": \"<integer>\",\n  \"refund\": {\n    \"refund_type\": {\n      \"code\": \"exchange\"\n    },\n    \"message\": \"<string>\"\n  },\n  \"delivery_option\": \"pickup\",\n  \"products\": [\n    {\n      \"description\": \"<string>\",\n      \"product_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"value\": \"<number>\",\n      \"hs_code\": \"<string>\",\n      \"origin_country\": \"<string>\",\n      \"properties\": {},\n      \"sku\": \"<string>\",\n      \"weight\": \"<string>\",\n      \"return_reason\": \"<integer>\",\n      \"return_message\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"product_id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"value\": \"<number>\",\n      \"hs_code\": \"<string>\",\n      \"origin_country\": \"<string>\",\n      \"properties\": {},\n      \"sku\": \"<string>\",\n      \"weight\": \"<string>\",\n      \"return_reason\": \"<integer>\",\n      \"return_message\": \"<string>\"\n    }\n  ],\n  \"incoming_parcel\": {\n    \"from_address_1\": \"<string>\",\n    \"from_city\": \"<string>\",\n    \"from_company_name\": \"<string>\",\n    \"from_country\": \"<string>\",\n    \"from_email\": \"<string>\",\n    \"from_house_number\": \"<string>\",\n    \"from_name\": \"<string>\",\n    \"from_postal_code\": \"<string>\",\n    \"from_telephone\": \"<string>\",\n    \"collo_count\": 1,\n    \"from_address_2\": \"<string>\",\n    \"from_country_state\": \"<string>\"\n  },\n  \"service_point\": {\n    \"id\": \"<long>\"\n  },\n  \"selected_functionalities\": {\n    \"first_mile\": \"pickup_dropoff\"\n  },\n  \"selected_carrier_code\": \"<string>\",\n  \"pickup_date\": \"<string>\",\n  \"images\": [\n    {\n      \"filename\": \"<uri>\",\n      \"product_id\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"filename\": \"<uri>\",\n      \"product_id\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json",
+                        "headerFamily": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint creates a new return parcel based on an outgoing parcel. The outgoing parcel and related data needed to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Apply return rules",
+        "api_call": "{{baseUrl}}/brand/:brand_domain/return-portal/rule-modifications",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{bearerToken}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Content-Type"
+                },
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"from_country\": \"<string>\",\n  \"parcel_weight\": \"<string>\",\n  \"delivery_option\": \"drop_off_labelless\",\n  \"reason_id\": \"<integer>\",\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"reason_id\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"reason_id\": \"<integer>\"\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json",
+                        "headerFamily": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint evaluates return rules against the data provided in the request.\nReturns the new values to set on the fields"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve the status of a return",
+        "api_call": "{{baseUrl}}/brand/:brand_domain/return-portal/label/polling?token=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{bearerToken}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Once a return parcel is successfully created, a polling URL is included in the response. Creating a label depends on"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a return label",
+        "api_call": "{{baseUrl}}/brand/:brand_domain/return-portal/label/download?token=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{bearerToken}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/pdf",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "Once a return parcel is successfully created and announced to the carrier, the label will be ready to download.\nThis endpoint"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Create a file upload for the return portal",
+        "api_call": "{{baseUrl}}/brand/:brand_domain/return-portal/uploads",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{bearerToken}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "value": "multipart/form-data",
+                    "key": "Content-Type"
+                },
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "type": "text",
+                        "value": "<string>",
+                        "key": "sunt_01"
+                    }
+                ]
+            }
+        },
+        "functionality": "Currently only used for images, this endpoint allows users to upload media that may be used during the return creation"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve return portal settings",
+        "api_call": "{{baseUrl}}/brand/:brand_domain/return-portal?language=es-ES",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint will retrieve information about the settings you have [**configured**](https://support.sendcloud.com/hc/en-us/articles/360025142691-How-do-I-set-up-my-return-portal-) for your Sendcloud-hosted Returns Portal. This includes branding details,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a list of returns",
+        "api_call": "{{baseUrl}}/returns?cursor=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a paginated list of all the returns belonging to the authenticated user, sorted by the creation date."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a return",
+        "api_call": "{{baseUrl}}/returns/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{basicAuthUsername}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{basicAuthPassword}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve the details of a specific return by its unique identifier"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a return",
+        "api_call": "{{baseUrl}}/returns/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{basicAuthUsername}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{basicAuthPassword}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve the details of a specific return by its unique identifier"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a list of returns",
+        "api_call": "{{baseUrl}}/returns?cursor=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a paginated list of all the returns belonging to the authenticated user, sorted by the creation date."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a list of contracts",
+        "api_call": "{{baseUrl}}/contracts?carrier=<string>&is_active=<boolean>&client_id=<string>&name=<string>&country=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint will retrieve information about all of the available contracts you have in your Sendcloud\naccount. It will also return"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a contract",
+        "api_call": "{{baseUrl}}/contracts/:id?carrier=<string>&is_active=<boolean>&client_id=<string>&name=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Include the `contract_ID` for a specific direct contract as a query parameter to retrieve information for this\nsingle contract."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a list of sender addresses",
+        "api_call": "{{baseUrl}}/user/addresses/sender",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "This endpoint returns a list of all the sender addresses which have been saved to your account. The response will"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a sender address",
+        "api_call": "{{baseUrl}}/user/addresses/sender/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "You can retrieve information about a specific sender address saved to your account via this endpoint. Sender address `id` can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a list of delivery options",
+        "api_call": "{{baseUrl}}/checkout/configurations/:configuration_id/delivery-options?weight=<integer>&value=<string>&from_country=CF&to_country=CF&checkout_identifier_type=method_id&to_postal_code=<string>&parcel_length=<number>&parcel_width=<number>&parcel_height=<number>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "<!-- theme: success -->\n>To use this API, you first need to create your own Dynamic Checkout <a href=\"https://support.sendcloud.com/hc/en-us/articles/360057944932-How-to-configure-Dynamic-Checkout\">**configuration**</a> in the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a list of shipments",
+        "api_call": "{{baseUrl}}/integrations/:id/shipments?cursor=<string>&start_date=<date>&end_date=<date>&external_order_ids=<string>&external_order_ids=<string>&external_shipment_ids=<string>&external_shipment_ids=<string>&shipping_rules=<boolean>&order_number=<string>&sender_address=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "# Retrieving shipments from an integration\n\nVia this endpoint, you can retrieve a list of orders that were imported from a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Create or update a list of shipments",
+        "api_call": "{{baseUrl}}/integrations/:id/shipments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Content-Type"
+                },
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"address\": \"<string>\",\n    \"address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"company_name\": \"<string>\",\n    \"country\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"currency\": \"<string,null>\",\n    \"customs_invoice_nr\": \"<string>\",\n    \"customs_shipment_type\": \"<integer,null>\",\n    \"email\": \"<email>\",\n    \"external_order_id\": \"<string>\",\n    \"external_shipment_id\": \"<string,null>\",\n    \"house_number\": \"<string>\",\n    \"name\": \"<string>\",\n    \"order_number\": \"<string>\",\n    \"order_status\": {\n      \"id\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    \"parcel_items\": [\n      {\n        \"description\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"value\": \"<decimal>\",\n        \"hs_code\": \"<string>\",\n        \"origin_country\": \"<string,null>\",\n        \"product_id\": \"<string>\",\n        \"properties\": {\n          \"labore_a\": \"<string,null>\",\n          \"minim_5\": \"<string,null>\"\n        },\n        \"sku\": \"<string>\",\n        \"weight\": \"<string,null-decimal>\"\n      },\n      {\n        \"description\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"value\": \"<decimal>\",\n        \"hs_code\": \"<string>\",\n        \"origin_country\": \"<string,null>\",\n        \"product_id\": \"<string>\",\n        \"properties\": {\n          \"non__\": \"<string,null>\",\n          \"Lorem_8\": \"<string,null>\",\n          \"ullamco140\": \"<string,null>\"\n        },\n        \"sku\": \"<string>\",\n        \"weight\": \"<string,null-decimal>\"\n      }\n    ],\n    \"payment_status\": {\n      \"id\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    \"postal_code\": \"<string>\",\n    \"shipping_method_checkout_name\": \"<string>\",\n    \"telephone\": \"<string>\",\n    \"to_post_number\": \"<string>\",\n    \"to_service_point\": \"<integer,null>\",\n    \"to_state\": \"<string,null>\",\n    \"updated_at\": \"<dateTime>\",\n    \"shipping_method\": \"<integer,null>\",\n    \"total_order_value\": \"<string,null-decimal>\",\n    \"weight\": \"<string,null-decimal>\",\n    \"checkout_payload\": {\n      \"sender_address_id\": \"<integer>\",\n      \"shipping_product\": \"<object>\",\n      \"delivery_method_type\": \"<string>\",\n      \"delivery_method_data\": {\n        \"delivery_date\": \"<dateTime>\",\n        \"formatted_delivery_date\": \"<string>\",\n        \"parcel_handover_date\": \"<dateTime>\"\n      }\n    },\n    \"width\": \"<string,null-decimal>\",\n    \"height\": \"<string,null-decimal>\",\n    \"length\": \"<string,null-decimal>\"\n  },\n  {\n    \"address\": \"<string>\",\n    \"address_2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"company_name\": \"<string>\",\n    \"country\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"currency\": \"<string,null>\",\n    \"customs_invoice_nr\": \"<string>\",\n    \"customs_shipment_type\": \"<integer,null>\",\n    \"email\": \"<email>\",\n    \"external_order_id\": \"<string>\",\n    \"external_shipment_id\": \"<string,null>\",\n    \"house_number\": \"<string>\",\n    \"name\": \"<string>\",\n    \"order_number\": \"<string>\",\n    \"order_status\": {\n      \"id\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    \"parcel_items\": [\n      {\n        \"description\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"value\": \"<decimal>\",\n        \"hs_code\": \"<string>\",\n        \"origin_country\": \"<string,null>\",\n        \"product_id\": \"<string>\",\n        \"properties\": {\n          \"adipisicing1_\": \"<string,null>\",\n          \"proident_1\": \"<string,null>\"\n        },\n        \"sku\": \"<string>\",\n        \"weight\": \"<string,null-decimal>\"\n      },\n      {\n        \"description\": \"<string>\",\n        \"quantity\": \"<integer>\",\n        \"value\": \"<decimal>\",\n        \"hs_code\": \"<string>\",\n        \"origin_country\": \"<string,null>\",\n        \"product_id\": \"<string>\",\n        \"properties\": {\n          \"enim_4\": \"<string,null>\",\n          \"id_63\": \"<string,null>\",\n          \"anim_dd7\": \"<string,null>\",\n          \"auteae\": \"<string,null>\",\n          \"velit56f\": \"<string,null>\"\n        },\n        \"sku\": \"<string>\",\n        \"weight\": \"<string,null-decimal>\"\n      }\n    ],\n    \"payment_status\": {\n      \"id\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    \"postal_code\": \"<string>\",\n    \"shipping_method_checkout_name\": \"<string>\",\n    \"telephone\": \"<string>\",\n    \"to_post_number\": \"<string>\",\n    \"to_service_point\": \"<integer,null>\",\n    \"to_state\": \"<string,null>\",\n    \"updated_at\": \"<dateTime>\",\n    \"shipping_method\": \"<integer,null>\",\n    \"total_order_value\": \"<string,null-decimal>\",\n    \"weight\": \"<string,null-decimal>\",\n    \"checkout_payload\": {\n      \"sender_address_id\": \"<integer>\",\n      \"shipping_product\": \"<object>\",\n      \"delivery_method_type\": \"<string>\",\n      \"delivery_method_data\": {\n        \"delivery_date\": \"<dateTime>\",\n        \"formatted_delivery_date\": \"<string>\",\n        \"parcel_handover_date\": \"<dateTime>\"\n      }\n    },\n    \"width\": \"<string,null-decimal>\",\n    \"height\": \"<string,null-decimal>\",\n    \"length\": \"<string,null-decimal>\"\n  }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Inserting shipments into an integration\n\n<!-- theme: info -->\n> This end-point is only available for official Sendcloud partners. \n\nThis endpoint"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Delete a shipment",
+        "api_call": "{{baseUrl}}/integrations/:id/shipments/delete",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Content-Type"
+                },
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"shipment_uuid\": \"<uuid>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Deleting orders from an integration\n\nIf an order is cancelled or deleted in your shop system, you must delete it"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve integration exceptions logs",
+        "api_call": "{{baseUrl}}/integrations/:id/logs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "# Retrieving integration exception logs\n\nAllows you to retrieve integration exception logs that are created automatically if integrations have problems with"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Create integration exceptions logs",
+        "api_call": "{{baseUrl}}/integrations/:id/logs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Content-Type"
+                },
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"base_url\": \"<string>\",\n  \"integration_id\": \"<integer,null>\",\n  \"user_id\": \"<integer>\",\n  \"full_url\": \"<string,null>\",\n  \"method\": \"<string>\",\n  \"response_code\": \"<integer,null>\",\n  \"response\": {\n    \"headers\": \"<object>\",\n    \"body\": \"<object>\"\n  },\n  \"request\": {\n    \"headers\": \"<object>\",\n    \"payload\": \"<object>\"\n  },\n  \"created_at\": \"<dateTime>\",\n  \"exception_type\": \"<string,null>\",\n  \"exception\": \"<string,null>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Creating integration log records \n\nYou can create exeption logs with this endpoint and logs will appear in connection issue"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve an integration",
+        "api_call": "{{baseUrl}}/integrations/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "# Retrieving your integration\n\nAllows you to to retrieve information about a specific integration by specifying the integration `id`. The information"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Update an integration",
+        "api_call": "{{baseUrl}}/integrations/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Content-Type"
+                },
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"shop_url\": \"<uri>\",\n  \"service_point_enabled\": \"<boolean>\",\n  \"service_point_carriers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"webhook_active\": \"<boolean>\",\n  \"webhook_url\": \"<uri>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Updating an integration's settings \n\nYou can update the settings for an integration by making a PUT request to our"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Update an integration",
+        "api_call": "{{baseUrl}}/integrations/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Content-Type"
+                },
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"shop_url\": \"<uri>\",\n  \"service_point_enabled\": \"<boolean>\",\n  \"service_point_carriers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"webhook_active\": \"<boolean>\",\n  \"webhook_url\": \"<uri>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Updating an integration's settings \n\nYou can update the settings for an integration by making a PATCH request to our"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Delete an integration",
+        "api_call": "{{baseUrl}}/integrations/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "# Deleting your integration\n\nDelete a webshop integration from the Sendcloud system. "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a list of integrations",
+        "api_call": "{{baseUrl}}/integrations?ordering=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "# Retrieving your list of integrations\n\nRetrieve information about all shop integrations that are currently connected to your Sendcloud account. The"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve all integration exceptions logs",
+        "api_call": "{{baseUrl}}/integrations/logs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "# Retrieving all integration exception logs\n\nAllows you to retrieve integration exception logs that are created automatically if integrations have problems"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve availability of a service point",
+        "api_call": "{{servicePointsBaseUrl}}/service-points/:service_point_id/check-availability?access_token=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{basicAuthUsername}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{basicAuthPassword}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a `true` or `false` value which reflects the current availability of a given service point `id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a service point",
+        "api_call": "{{servicePointsBaseUrl}}/service-points/:service_point_id?access_token=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{basicAuthUsername}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{basicAuthPassword}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve information about a specific service point location, including opening hours and applicable carriers, based on the service point `id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a list of service points",
+        "api_call": "{{servicePointsBaseUrl}}/service-points?access_token=<string>&country=<string>&carrier=<string>&latitude=<string>&longitude=<string>&ne_latitude=<string>&ne_longitude=<string>&sw_latitude=<string>&sw_longitude=<string>&address=<string>&city=<string>&postal_code=<string>&house_number=<string>&radius=<integer>&weight=<double>&pudo_id=<string>&shop_type=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{basicAuthUsername}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{basicAuthPassword}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Identifies the request as one made using JavaScript",
+                    "value": "<string>",
+                    "key": "X-Requested-With"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a list of available service points and the associated service point `id`. Only service points which are applicable to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve a list of service point carriers",
+        "api_call": "{{servicePointsBaseUrl}}/carriers?access_token=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{basicAuthUsername}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{basicAuthPassword}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a list of carriers which are enabled for service point delivery and can be accessed by the authenticating integration."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Sendcloud API: Retrieve tracking information of a parcel",
+        "api_call": "{{baseUrl}}/tracking/:tracking_number",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "basic",
+                "basic": [
+                    {
+                        "key": "username",
+                        "value": "{{basicAuthUsername}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{basicAuthPassword}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "value": "application/json",
+                    "key": "Accept"
+                }
+            ]
+        },
+        "functionality": "Fetches the detailed tracking information, including the status history of the parcel"
+    }
+]
