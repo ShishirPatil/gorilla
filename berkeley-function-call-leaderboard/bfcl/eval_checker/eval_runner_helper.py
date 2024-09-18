@@ -89,6 +89,18 @@ COLUMNS_COMBINED = [
 ]
 
 MODEL_METADATA_MAPPING = {
+    "o1-preview-2024-09-12": [
+        "o1-preview-2024-09-12 (Prompt)",
+        "https://openai.com/index/introducing-openai-o1-preview/",
+        "OpenAI",
+        "Proprietary",
+    ],
+    "o1-mini-2024-09-12": [
+        "o1-mini-2024-09-12 (Prompt)",
+        "https://openai.com/index/openai-o1-mini-advancing-cost-efficient-reasoning/",
+        "OpenAI",
+        "Proprietary",
+    ],
     "gpt-4o-2024-08-06": [
         "GPT-4o-2024-08-06 (Prompt)",
         "https://openai.com/index/hello-gpt-4o/",
@@ -596,6 +608,8 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-small-2402-FC-Auto": 1,
     "mistral-small-2402": 1,
     "mistral-tiny-2312": 0.25,
+    "o1-preview-2024-09-12": 15,
+    "o1-mini-2024-09-12": 3,
     "gpt-4o-2024-05-13-FC": 5,
     "gpt-4o-2024-05-13": 5,
     "gpt-4o-2024-08-06-FC": 2.5,
@@ -650,6 +664,8 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-small-2402-FC-Any": 3,
     "mistral-small-2402-FC-Auto": 3,
     "mistral-tiny-2312": 0.25,
+    "o1-preview-2024-09-12": 60,
+    "o1-mini-2024-09-12": 12,
     "gpt-4o-2024-05-13-FC": 15,
     "gpt-4o-2024-05-13": 15,
     "gpt-4o-2024-08-06-FC": 10,

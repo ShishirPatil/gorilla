@@ -9,7 +9,7 @@ ENV_VARS = ("GEOCODE_API_KEY", "RAPID_API_KEY", "OMDB_API_KEY", "EXCHANGERATE_AP
 api_key = {}
 for var in ENV_VARS:
     if os.getenv(var) == "":
-        raise NoAPIKeyError(var)
+        raise NoAPIKeyError()
 
     api_key[var.replace("_", "-")] = os.getenv(var)
 

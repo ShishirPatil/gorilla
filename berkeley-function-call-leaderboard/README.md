@@ -138,6 +138,8 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |gpt-4o-2024-05-13| Prompt|
 |gpt-4o-mini-2024-07-18-FC | Function Calling|
 |gpt-4o-mini-2024-07-18 | Prompt|
+|o1-mini-2024-09-12 | Prompt|
+|o1-preview-2024-09-12 | Prompt|
 |google/gemma-7b-it 💻| Prompt|
 |meetkai/functionary-medium-v3.1-FC| Function Calling|
 |meetkai/functionary-small-{v3.1,v3.2}-FC| Function Calling|
@@ -268,6 +270,8 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
+* [Sept 13, 2024] [#638](https://github.com/ShishirPatil/gorilla/pull/638): Fix prompt formatting issue for `THUDM/glm-4-9b-chat`.
+* [Sept 12, 2024] [#635](https://github.com/ShishirPatil/gorilla/pull/635): Add new models `o1-preview-2024-09-12` and `o1-mini-2024-09-12` to the leaderboard.
 * [Sept 8, 2024] [#627](https://github.com/ShishirPatil/gorilla/pull/627) Add new model `MadeAgents/Hammer-7b` to the leaderboard.
 * [Sept 7, 2024] [#626](https://github.com/ShishirPatil/gorilla/pull/626): Fix prompt format for Llama models.
 * [Sept 4, 2024] [#623](https://github.com/ShishirPatil/gorilla/pull/623): Fix decoding issue in the `NvidiaHandler`; remove duplicate `ArcticHandler` class.

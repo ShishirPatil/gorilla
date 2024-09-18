@@ -6,6 +6,8 @@ from bfcl.model_handler.utils import (
     system_prompt_pre_processing_chat_model,
     func_doc_language_specific_pre_processing,
     ast_parse,
+    convert_system_prompt_into_user_prompt,
+    combine_consecutive_user_prompr,
 )
 from bfcl.model_handler.constant import (
     GORILLA_TO_OPENAPI,
@@ -31,16 +33,31 @@ class OpenAIHandler(BaseHandler):
             prompt = system_prompt_pre_processing_chat_model(
                 prompt, DEFAULT_SYSTEM_PROMPT, functions
             )
+            # Special handling for o1-preview and o1-mini as they don't support system prompts yet
+            if "o1-preview" in self.model_name or "o1-mini" in self.model_name:
+                prompt = convert_system_prompt_into_user_prompt(prompt)
+                prompt = combine_consecutive_user_prompr(prompt)
             message = prompt
 
             start_time = time.time()
-            response = self.client.chat.completions.create(
-                messages=message,
-                model=self.model_name,
-                temperature=self.temperature,
-                max_tokens=self.max_tokens,
-                top_p=self.top_p,
-            )
+            # These two models have temperature and top_p fixed to 1, and max_tokens is not supported
+            # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
+            if "o1-preview" in self.model_name or "o1-mini" in self.model_name:
+                response = self.client.chat.completions.create(
+                    messages=message,
+                    model=self.model_name,
+                    temperature=1,
+                    # max_tokens=self.max_tokens,
+                    top_p=1,
+                )
+            else:
+                response = self.client.chat.completions.create(
+                    messages=message,
+                    model=self.model_name,
+                    temperature=self.temperature,
+                    max_tokens=self.max_tokens,
+                    top_p=self.top_p,
+                )
             latency = time.time() - start_time
             result = response.choices[0].message.content
             metadata = {}
