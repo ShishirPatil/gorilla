@@ -1,7 +1,7 @@
 import os
 import math
 import requests
-from custom_exception import NoAPIKeyError
+from bfcl.eval_checker.executable_eval.custom_exception import NoAPIKeyError
 import time
 
 # Make sure the env variables are populated
