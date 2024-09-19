@@ -106,4 +106,6 @@ handler_map = {
     "MadeAgents/Hammer-7b": HammerHandler,
     "Qwen/Qwen2-1.5B-Instruct": QwenHandler,
     "Qwen/Qwen2-7B-Instruct": QwenHandler,
+    "Qwen/Qwen2.5-1.5B-Instruct": QwenHandler,
+    "Qwen/Qwen2.5-7B-Instruct": QwenHandler,
 }

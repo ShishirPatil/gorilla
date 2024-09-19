@@ -581,6 +581,18 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/Qwen2.5-1.5B-Instruct": [
+        "Qwen2.5-1.5B-Instruct",
+        "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-7B-Instruct": [
+        "Qwen2.5-7B-Instruct",
+        "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -712,6 +724,8 @@ OSS_LATENCY = {
     "THUDM/glm-4-9b-chat": 223,
     "Qwen/Qwen2-1.5B-Instruct": 100,
     "Qwen/Qwen2-7B-Instruct": 100,
+    "Qwen/Qwen2.5-1.5B-Instruct": 100,
+    "Qwen/Qwen2.5-7B-Instruct": 100,
 }
 
 
