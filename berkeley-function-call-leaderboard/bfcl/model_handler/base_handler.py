@@ -33,6 +33,7 @@ class BaseHandler:
         # This method is used to retrive model response for each model.
 
         # FC model
+        # TODO: Let all models have the is_fc_model attribute and remove the "FC" check
         if "FC" in self.model_name or self.is_fc_model:
             if "multi_turn" in test_entry["id"]:
                 return self.inference_multi_turn_FC(test_entry, include_debugging_log)
