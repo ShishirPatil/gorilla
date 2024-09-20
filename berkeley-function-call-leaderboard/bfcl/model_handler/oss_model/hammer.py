@@ -23,13 +23,15 @@ The example format is as follows. Please make sure the parameter type is correct
 
 
 class HammerHandler(SalesforceHandler):
-    def __init__(
-        self, model_name, temperature=0.001, top_p=1, max_tokens=512, dtype="bfloat16"
-    ) -> None:
-        super().__init__(model_name, temperature, top_p, max_tokens, dtype)
-        self.model_style = ModelStyle.OSSMODEL
+    def __init__(self, model_name, temperature) -> None:
+        super().__init__(model_name, temperature)
 
-    def _format_prompt(query, functions, test_category):
+    @staticmethod
+    def _format_prompt(messages, function):
+        """
+        "chat_template": "{% set system_message = 'You are a helpful assistant.' %}{% if messages[0]['role'] == 'system' %}{% set system_message = messages[0]['content'] %}{% endif %}{% if system_message is defined %}{{ '<|im_start|>system\n' + system_message + '<|im_end|>\n' }}{% endif %}{% for message in messages %}{% set content = message['content'] %}{% if message['role'] == 'user' %}{{ '<|im_start|>user\n' + content + '<|im_end|>\n<|im_start|>assistant\n' }}{% elif message['role'] == 'assistant' %}{{ content + '<|im_end|>' + '\n' }}{% endif %}{% endfor %}",
+        """
+
         def convert_to_format_tool(tools):
 
             if isinstance(tools, dict):
@@ -53,15 +55,15 @@ class HammerHandler(SalesforceHandler):
             else:
                 return tools
 
-        tools = convert_to_format_tool(functions)
+        tools = convert_to_format_tool(function)
 
         task_instruction = TASK_INSTRUCTION
         user_query = ""
-        for q in query:
-            if q["role"] == "system":
-                task_instruction += f"\n{q['content']}"
-            elif q["role"] == "user":
-                user_query += f"\n{q['content']}"
+        for message in messages:
+            if message["role"] == "system":
+                task_instruction += f"\n{message['content']}"
+            elif message["role"] == "user":
+                user_query += f"\n{message['content']}"
 
         content = f"[BEGIN OF TASK INSTRUCTION]\n{task_instruction}\n[END OF TASK INSTRUCTION]\n\n"
         content += (
@@ -73,20 +75,6 @@ class HammerHandler(SalesforceHandler):
         content += f"[BEGIN OF QUERY]\n{user_query}\n[END OF QUERY]\n\n"
 
         return f"<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n<|im_start|>user\n{content}<|im_end|>\n<|im_start|>assistant\n"
-
-    def inference(
-        self,
-        test_question,
-        num_gpus,
-        gpu_memory_utilization,
-        format_prompt_func=_format_prompt,
-    ):
-        return super().inference(
-            test_question,
-            num_gpus,
-            gpu_memory_utilization,
-            format_prompt_func,
-        )
 
     def decode_ast(self, result, language="Python"):
         result = result.replace("```", "")
