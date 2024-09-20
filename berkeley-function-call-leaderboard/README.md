@@ -280,6 +280,9 @@ Some companies have proposed some optimization strategies in their models' handl
 
 * [Sept 19, 2024] [#644](https://github.com/ShishirPatil/gorilla/pull/644): BFCL V3 release:
   * Add multi-turn dataset
+  * Switch to use vllm serve for OSS model inference
+  * Separate ast_checker and executable_checker for readability
+  * Several outdated or deprecated models will be excluded from the leaderboard and replaced with their updated successors to improve the leaderboard's overall maintainability.
 * [Sept 13, 2024] [#638](https://github.com/ShishirPatil/gorilla/pull/638): Fix prompt formatting issue for `THUDM/glm-4-9b-chat`.
 * [Sept 12, 2024] [#635](https://github.com/ShishirPatil/gorilla/pull/635): Add new models `o1-preview-2024-09-12` and `o1-mini-2024-09-12` to the leaderboard.
 * [Sept 8, 2024] [#627](https://github.com/ShishirPatil/gorilla/pull/627) Add new model `MadeAgents/Hammer-7b` to the leaderboard.

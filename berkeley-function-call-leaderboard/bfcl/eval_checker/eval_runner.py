@@ -30,7 +30,7 @@ def multi_turn_runner(
     correct_count = 0
     for i in range(len(model_result)):
         index: str = model_result[i]["id"]
-        # Model result is stored as a list of list of model results. Each inner list represents a turn.
+        # Model result is stored as a list of list of model responses. Each inner list represents a turn.
         multi_turn_model_result_list: list[list] = model_result[i]["result"]
         multi_turn_ground_truth_list: list[list[str]] = possible_answer[i]["ground_truth"]
         test_entry: dict = prompt[i]
@@ -79,7 +79,7 @@ def multi_turn_runner(
                 single_turn_model_result_list_decoded
             )
 
-        # Check if the model outputted the correct function calls
+        # Check if the model output the correct function calls
         accuracy_checker_result = multi_turn_checker(
             multi_turn_model_result_list_decoded,
             multi_turn_ground_truth_list,
