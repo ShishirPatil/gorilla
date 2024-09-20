@@ -1,5 +1,5 @@
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
-from bfcl.model_handler.utils import convert_to_tool
+from bfcl.model_handler.utils import convert_to_tool, func_doc_language_specific_pre_processing
 from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
 import json
@@ -7,17 +7,16 @@ import inspect
 
 
 class HermesHandler(OSSHandler):
-    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
-        super().__init__(model_name, temperature, top_p, max_tokens)
+    def __init__(self, model_name, temperature) -> None:
+        super().__init__(model_name, temperature)
         # Only this specific Hermes model uses float16
         if model_name == "NousResearch/Hermes-2-Pro-Llama-3-8B":
             self.dtype = "float16"
 
-    def _format_prompt(prompts, function, test_category):
+    @staticmethod
+    def _format_prompt(messages, function):
         # Hermes use Langchain to OpenAI conversion. It does not use tool call but function call.
-        function = convert_to_tool(
-            function, GORILLA_TO_OPENAPI, ModelStyle.OSSMODEL, test_category
-        )
+        function = convert_to_tool(function, GORILLA_TO_OPENAPI, ModelStyle.OSSMODEL)
         pydantic_format = """{"properties": {"arguments": {"title": "Arguments", "type": "object"}, "name": {"title": "Name", "type": "string"}}, "required": ["arguments", "name"], "title": "FunctionCall", "type": "object"}"""
         tool_call_format = """{"arguments": <args-dict>, "name": <function-name>}"""
         formatted_prompt = inspect.cleandoc(
@@ -42,29 +41,14 @@ class HermesHandler(OSSHandler):
             tool_call_format=tool_call_format,
         )
 
-        for prompt in prompts:
+        for message in messages:
             formatted_prompt += (
-                f"<|im_start|>{prompt['role']}\n{prompt['content']}\n<|im_end|>\n"
+                f"<|im_start|>{message['role']}\n{message['content']}<|im_end|>\n"
             )
 
-        formatted_prompt += "<|im_start|>assistant"
+        formatted_prompt += "<|im_start|>assistant\n"
 
         return formatted_prompt
-
-    def inference(
-        self,
-        test_question,
-        num_gpus,
-        gpu_memory_utilization,
-        format_prompt_func=_format_prompt,
-    ):
-        return super().inference(
-            test_question,
-            num_gpus,
-            gpu_memory_utilization,
-            format_prompt_func=format_prompt_func,
-            include_system_prompt=False,
-        )
 
     def decode_ast(self, result, language="Python"):
         lines = result.split("\n")
@@ -107,3 +91,32 @@ class HermesHandler(OSSHandler):
                     f"{key}({','.join([f'{k}={repr(v)}' for k,v in value.items()])})"
                 )
         return execution_list
+
+    def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        functions: list = test_entry["function"]
+        test_category: str = test_entry["id"].rsplit("_", 1)[0]
+
+        functions = func_doc_language_specific_pre_processing(functions, test_category)
+
+        # Hermes use its own system prompt
+
+        return {"message": [], "function": functions}
+
+    def _add_execution_results_prompting(
+        self, inference_data: dict, execution_results: list[str], model_response_data: dict
+    ) -> dict:
+        for execution_result, decoded_model_response in zip(
+            execution_results, model_response_data["model_responses_decoded"]
+        ):
+            hermes_response_object = {
+                "name": decoded_model_response,
+                "content": execution_result,
+            }
+            inference_data["message"].append(
+                {
+                    "role": "tool",
+                    "content": f"<tool_response>\n{hermes_response_object}\n</tool_response>\n",
+                }
+            )
+
+        return inference_data

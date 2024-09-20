@@ -4,8 +4,8 @@ import json
 
 
 class GlaiveHandler(OSSHandler):
-    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
-        super().__init__(model_name, temperature, top_p, max_tokens)
+    def __init__(self, model_name, temperature) -> None:
+        super().__init__(model_name, temperature)
 
     def decode_ast(self, result, language="Python"):
         function_call = result.split("<functioncall>")[-1]

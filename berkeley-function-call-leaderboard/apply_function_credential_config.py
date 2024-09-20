@@ -2,7 +2,7 @@ import glob
 import json
 import argparse
 import os
-from bfcl.eval_checker.custom_exception import NoAPIKeyError
+from bfcl.eval_checker.executable_eval.custom_exception import NoAPIKeyError
 from dotenv import load_dotenv
 
 parser = argparse.ArgumentParser(description="Replace placeholders in the function credential config file.")

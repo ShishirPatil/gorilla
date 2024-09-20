@@ -1,34 +1,59 @@
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
-from bfcl.model_handler.utils import ast_parse
-import re
+from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT
+from bfcl.model_handler.utils import (
+    func_doc_language_specific_pre_processing,
+    system_prompt_pre_processing_chat_model,
+    convert_system_prompt_into_user_prompt,
+    combine_consecutive_user_prompts,
+)
 
 
 class GemmaHandler(OSSHandler):
-    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
-        super().__init__(model_name, temperature, top_p, max_tokens)
+    def __init__(self, model_name, temperature) -> None:
+        super().__init__(model_name, temperature)
 
-    def decode_ast(self, result, language="Python"):
-        pattern = r"\[(.*)\]"
+    @staticmethod
+    def _format_prompt(messages, function):
+        """
+        "bos_token": "<bos>",
+        "chat_template": "{{ bos_token }}{% if messages[0]['role'] == 'system' %}{{ raise_exception('System role not supported') }}{% endif %}{% for message in messages %}{% if (message['role'] == 'user') != (loop.index0 % 2 == 0) %}{{ raise_exception('Conversation roles must alternate user/assistant/user/assistant/...') }}{% endif %}{% if (message['role'] == 'assistant') %}{% set role = 'model' %}{% else %}{% set role = message['role'] %}{% endif %}{{ '<start_of_turn>' + role + '\n' + message['content'] | trim + '<end_of_turn>\n' }}{% endfor %}{% if add_generation_prompt %}{{'<start_of_turn>model\n'}}{% endif %}",
+        """
+        formatted_prompt = "<bos>"
 
-        # Searching for the pattern in the input text
-        match = re.search(pattern, result, re.DOTALL)
-        raw_input = match.group(1)
-        func = "[" + raw_input + "]"
-        decoded_output = ast_parse(func, language=language)
-        return decoded_output
+        for message in messages:
+            formatted_prompt += f"'<start_of_turn>'{message['role']}\n{message['content'].strip()}<end_of_turn>\n"
 
-    def decode_execute(self, result):
-        pattern = r"\[(.*)\]"
+        formatted_prompt += f"<start_of_turn>model\n"
 
-        # Searching for the pattern in the input text
-        match = re.search(pattern, result, re.DOTALL)
-        raw_input = match.group(1)
-        func = "[" + raw_input + "]"
-        decoded_output = ast_parse(func)
-        execution_list = []
-        for function_call in decoded_output:
-            for key, value in function_call.items():
-                execution_list.append(
-                    f"{key}({','.join([f'{k}={repr(v)}' for k, v in value.items()])})"
-                )
-        return execution_list
+        return formatted_prompt
+
+    def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        functions: list = test_entry["function"]
+        test_category: str = test_entry["id"].rsplit("_", 1)[0]
+
+        functions = func_doc_language_specific_pre_processing(functions, test_category)
+
+        test_entry["question"][0] = system_prompt_pre_processing_chat_model(
+            test_entry["question"][0], DEFAULT_SYSTEM_PROMPT, functions
+        )
+
+        for round_idx in range(len(test_entry["question"])):
+            test_entry["question"][round_idx] = convert_system_prompt_into_user_prompt(
+                test_entry["question"][round_idx]
+            )
+            test_entry["question"][round_idx] = combine_consecutive_user_prompts(
+                test_entry["question"][round_idx]
+            )
+            test_entry["question"][round_idx] = self._substitute_prompt_role(
+                test_entry["question"][round_idx]
+            )
+
+        return {"message": [], "function": functions}
+
+    @staticmethod
+    def _substitute_prompt_role(prompts: list[dict]) -> list[dict]:
+        for prompt in prompts:
+            if prompt["role"] == "assistant":
+                prompt["role"] = "model"
+
+        return prompts

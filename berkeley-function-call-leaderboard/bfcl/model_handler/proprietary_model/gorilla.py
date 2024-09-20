@@ -1,53 +1,16 @@
+import json
+
+import requests
 from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.model_style import ModelStyle
-from bfcl.model_handler.utils import (
-    ast_parse,
-    func_doc_language_specific_pre_processing,
-)
-import requests, json, re, time
+from bfcl.model_handler.utils import ast_parse
 
 
 class GorillaHandler(BaseHandler):
-    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
-        super().__init__(model_name, temperature, top_p, max_tokens)
+    def __init__(self, model_name, temperature) -> None:
+        super().__init__(model_name, temperature)
         self.model_style = ModelStyle.Gorilla
-
-    def _get_gorilla_response(self, prompt, functions):
-        requestData = {
-            "model": self.model_name,
-            "messages": prompt,
-            "functions": functions,
-            "temperature": self.temperature,
-            "top_p": self.top_p,
-            "max_tokens": self.max_tokens,
-        }
-        url = "https://luigi.millennium.berkeley.edu:443/v1/chat/completions"
-        start = time.time()
-        response = requests.post(
-            url,
-            headers={
-                "Content-Type": "application/json",
-                "Authorization": "EMPTY",  # Hosted for free with ❤️ from UC Berkeley
-            },
-            data=json.dumps(requestData),
-        )
-        latency = time.time() - start
-        jsonResponse = response.json()
-        metadata = {}
-        metadata["input_token_count"] = jsonResponse["usage"]["prompt_tokens"]
-        metadata["output_token_count"] = jsonResponse["usage"]["completion_tokens"]
-        metadata["latency"] = latency
-        metadata["processed_message"] = prompt
-        metadata["processed_tool"] = functions
-        directCode = jsonResponse["choices"][0]["message"]["content"]
-        return directCode, metadata
-
-    def inference(self, prompt, functions, test_category):
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
-
-        result, metadata = self._get_gorilla_response(prompt, functions)
-
-        return result, metadata
+        self.is_fc_model = True
 
     def decode_ast(self, result, language="Python"):
         func = "[" + result + "]"
@@ -64,3 +27,81 @@ class GorillaHandler(BaseHandler):
                     f"{key}({','.join([f'{k}={repr(v)}' for k, v in value.items()])})"
                 )
         return execution_list
+
+    #### FC methods ####
+
+    def _query_FC(self, inference_data: dict):
+        inference_data["inference_input_log"] = {
+            "message": inference_data["message"],
+            "tools": inference_data["tools"],
+        }
+        requestData = {
+            "model": self.model_name,
+            "messages": inference_data["message"],
+            "functions": inference_data["tools"],
+            "temperature": self.temperature,
+        }
+        url = "https://luigi.millennium.berkeley.edu:443/v1/chat/completions"
+        api_response = requests.post(
+            url,
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": "EMPTY",  # Hosted for free with ❤️ from UC Berkeley
+            },
+            data=json.dumps(requestData),
+        )
+
+        return api_response.json()
+
+    def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
+        inference_data["message"] = []
+        return inference_data
+
+    def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
+        # Gorilla OpenFunctions does not require any pre-processing
+        inference_data["tools"] = test_entry["function"]
+
+        return inference_data
+
+    def _parse_query_response_FC(self, api_response: any) -> dict:
+
+        return {
+            "model_responses": api_response["choices"][0]["message"]["content"],
+            "input_token": api_response["usage"]["prompt_tokens"],
+            "output_token": api_response["usage"]["completion_tokens"],
+        }
+
+    def add_first_turn_message_FC(
+        self, inference_data: dict, first_turn_message: list[dict]
+    ) -> dict:
+        inference_data["message"].extend(first_turn_message)
+        return inference_data
+
+    def _add_next_turn_user_message_FC(
+        self, inference_data: dict, user_message: list[dict]
+    ) -> dict:
+        inference_data["message"].extend(user_message)
+        return inference_data
+
+    def _add_assistant_message_FC(
+        self, inference_data: dict, model_response_data: dict
+    ) -> dict:
+        inference_data["message"].append(
+            {
+                "role": "assistant",
+                "content": model_response_data["model_responses"],
+            }
+        )
+        return inference_data
+
+    def _add_execution_results_FC(
+        self, inference_data: dict, execution_results: list[str], model_response_data: dict
+    ) -> dict:
+        for execution_result in execution_results:
+            tool_message = {
+                "role": "tool",
+                "content": execution_result,
+            }
+            inference_data["message"].append(tool_message)
+
+        return inference_data

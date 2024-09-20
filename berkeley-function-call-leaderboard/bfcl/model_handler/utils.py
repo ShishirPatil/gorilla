@@ -1,10 +1,17 @@
-import re, ast, builtins, ast, json, os
+import ast
+import builtins
+import copy
+import json
+import os
+import re
+
+from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.parser.java_parser import parse_java_function_call
 from bfcl.model_handler.parser.js_parser import parse_javascript_function_call
-from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
 
-def _cast_to_openai_type(properties, mapping, test_category):
+
+def _cast_to_openai_type(properties, mapping):
     for key, value in properties.items():
         if "type" not in value:
             properties[key]["type"] = "string"
@@ -28,12 +35,10 @@ def _cast_to_openai_type(properties, mapping, test_category):
         if properties[key]["type"] == "array" or properties[key]["type"] == "object":
             if "properties" in properties[key]:
                 properties[key]["properties"] = _cast_to_openai_type(
-                    properties[key]["properties"], mapping, test_category
+                    properties[key]["properties"], mapping
                 )
             elif "items" in properties[key]:
-                properties[key]["items"]["type"] = mapping[
-                    properties[key]["items"]["type"]
-                ]
+                properties[key]["items"]["type"] = mapping[properties[key]["items"]["type"]]
                 if (
                     properties[key]["items"]["type"] == "array"
                     and "items" in properties[key]["items"]
@@ -46,14 +51,13 @@ def _cast_to_openai_type(properties, mapping, test_category):
                     and "properties" in properties[key]["items"]
                 ):
                     properties[key]["items"]["properties"] = _cast_to_openai_type(
-                        properties[key]["items"]["properties"], mapping, test_category
+                        properties[key]["items"]["properties"], mapping
                     )
     return properties
 
 
-def convert_to_tool(
-    functions, mapping, model_style, test_category
-):
+def convert_to_tool(functions, mapping, model_style):
+    functions = copy.deepcopy(functions)
     oai_tool = []
     for item in functions:
         if "." in item["name"] and (
@@ -66,28 +70,38 @@ def convert_to_tool(
         ):
             # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
             item["name"] = re.sub(r"\.", "_", item["name"])
-            
+
         item["parameters"]["type"] = "object"
         item["parameters"]["properties"] = _cast_to_openai_type(
-            item["parameters"]["properties"], mapping, test_category
+            item["parameters"]["properties"], mapping
         )
 
         if model_style == ModelStyle.Anthropic:
             item["input_schema"] = item["parameters"]
             del item["parameters"]
+
         if model_style == ModelStyle.Google:
-            # Remove fields that are not supported by Gemini today.
+            # Remove fields that are not supported by Gemini.
             for params in item["parameters"]["properties"].values():
+                # No `default` field in Google's schema.
                 if "default" in params:
-                    params["description"] += "The Default is:" + str(params["default"])
+                    params["description"] += f" Default is: {str(params['default'])}."
                     del params["default"]
+                # No `optional` field.
                 if "optional" in params:
+                    params["description"] += f" Optional: {str(params['optional'])}."
                     del params["optional"]
+                # No `maximum` field.
                 if "maximum" in params:
+                    params["description"] += f" Maximum value: {str(params['maximum'])}."
                     del params["maximum"]
+                # No `additionalProperties` field.
                 if "additionalProperties" in params:
-                    params["description"] += "The additional properties:" +str(params["additionalProperties"])
+                    params[
+                        "description"
+                    ] += f" Additional properties: {str(params['additionalProperties'])}."
                     del params["additionalProperties"]
+
         if model_style == ModelStyle.COHERE:
             if os.getenv("USE_COHERE_OPTIMIZATION") == "True":
                 if "required" not in item["parameters"]:
@@ -97,16 +111,23 @@ def convert_to_tool(
                         params["description"] = ""
 
                     if "default" in params:
-                        params["description"] += " The default value is: " + str(params["default"])
+                        params["description"] += " The default value is: " + str(
+                            params["default"]
+                        )
                         if param_name not in item["parameters"]["required"]:
                             item["parameters"]["required"].append(param_name)
                         del params["default"]
                     if "additionalProperties" in params:
-                        params["description"] += " Additional properties: " + str(params["additionalProperties"])
+                        params["description"] += " Additional properties: " + str(
+                            params["additionalProperties"]
+                        )
                         del params["additionalProperties"]
                     if "items" in params:
                         inner_type = ""
-                        if "items" in params["items"] and "type" in params["items"]["items"]:
+                        if (
+                            "items" in params["items"]
+                            and "type" in params["items"]["items"]
+                        ):
                             # 2D list
                             inner_type = params["items"]["items"]["type"]
                             params["type"] = f"list[list[{inner_type}]]"
@@ -114,7 +135,11 @@ def convert_to_tool(
                             # 1D list
                             inner_type = params["items"]["type"]
                             params["type"] = f"list[{inner_type}]"
-                        if "items" in params and "enum" in params["items"] and params["items"]["enum"]:
+                        if (
+                            "items" in params
+                            and "enum" in params["items"]
+                            and params["items"]["enum"]
+                        ):
                             params["description"] += " Possible enum values: "
                             params["description"] += ", ".join(params["items"]["enum"])
                             params["description"] += "."
@@ -125,10 +150,14 @@ def convert_to_tool(
                         for name, property_ in params["properties"].items():
                             property_type = property_.get("type", mapping["string"])
                             property_description = property_.get("description", "")
-                            params["description"] += f" {name} ({property_type}): {property_description}"
+                            params[
+                                "description"
+                            ] += f" {name} ({property_type}): {property_description}"
                         del params["properties"]
                     if "enum" in params:
-                        params["description"] += " Possible enum values: " + str(params["enum"])
+                        params["description"] += " Possible enum values: " + str(
+                            params["enum"]
+                        )
                         del params["enum"]
                     # add ranges to description
                     if "percentage" not in params["description"]:
@@ -146,17 +175,36 @@ def convert_to_tool(
                     if "description" not in params:
                         params["description"] = ""
                     if "default" in params:
-                        params["description"] += " The default value is: " + str(params["default"])
+                        params["description"] += " The default value is: " + str(
+                            params["default"]
+                        )
                         del params["default"]
                     if "additionalProperties" in params:
-                        params["description"] += " Additional properties: " + str(params["additionalProperties"])
+                        params["description"] += " Additional properties: " + str(
+                            params["additionalProperties"]
+                        )
                         del params["additionalProperties"]
                     if "items" in params:
                         params["description"] += " List Items type: " + str(params["items"])
                         del params["items"]
                     if "properties" in params:
-                        params["description"] += " Dictionary properties: " + str(params["properties"])
+                        params["description"] += " Dictionary properties: " + str(
+                            params["properties"]
+                        )
                         del params["properties"]
+
+        # Process the return field
+        if "response" in item:
+            if model_style in [
+                ModelStyle.Anthropic,
+                ModelStyle.Google,
+                ModelStyle.FIREWORK_AI,
+            ]:
+                item[
+                    "description"
+                ] += f" The response field has the following schema: {json.dumps(item['response'])}"
+                del item["response"]
+
         if model_style in [
             ModelStyle.Anthropic,
             ModelStyle.Google,
@@ -198,6 +246,7 @@ def convert_to_function_call(function_call_list):
             execution_list.append(
                 f"{key}({','.join([f'{k}={repr(v)}' for k,v in json.loads(value).items()])})"
             )
+
     return execution_list
 
 
@@ -291,7 +340,7 @@ def resolve_ast_by_type(value):
     elif isinstance(value, ast.Name):
         output = value.id
     elif isinstance(value, ast.Call):
-        if len(value.keywords)==0:
+        if len(value.keywords) == 0:
             output = ast.unparse(value)
         else:
             output = resolve_ast_call(value)
@@ -330,25 +379,32 @@ def system_prompt_pre_processing_chat_model(prompts, system_prompt_template, fun
     return prompts
 
 
-def convert_system_prompt_into_user_prompt(prompts):
-    # Some FC models doesn't support system prompt in the message field, so we turn it into user prompt
+def convert_system_prompt_into_user_prompt(prompts: list[dict]) -> list[dict]:
+    """
+    Some FC models doesn't support system prompt in the message field, so we turn it into user prompt
+    """
     for prompt in prompts:
         if prompt["role"] == "system":
             prompt["role"] = "user"
     return prompts
 
 
-def combine_consecutive_user_prompr(prompts):
-    # Some models require the prompt to be alternating between user and assistant.
-    # We combine consecutive user prompts into a single user prompt.
-    
+def combine_consecutive_user_prompts(prompts: list[dict]) -> list[dict]:
+    """
+    Some models require the prompt to be alternating between user and assistant.
+    We combine consecutive user prompts into a single user prompt.
+    """
     combined_prompts = []
     for prompt in prompts:
-        if prompt["role"] == "user" and combined_prompts and combined_prompts[-1]["role"] == "user":
+        if (
+            prompt["role"] == "user"
+            and combined_prompts
+            and combined_prompts[-1]["role"] == "user"
+        ):
             combined_prompts[-1]["content"] += "\n\n" + prompt["content"]
         else:
             combined_prompts.append(prompt)
-            
+
     return combined_prompts
 
 
@@ -363,58 +419,60 @@ def _get_language_specific_hint(test_category):
 
 def func_doc_language_specific_pre_processing(function, test_category):
     if len(function) == 0:
-       return function
+        return function
 
     assert type(function) == list
     for item in function:
         # Add language specific hints to the function description
         func_description = item["description"]
-        item["description"] = item["description"] + _get_language_specific_hint(test_category)
+        item["description"] = item["description"] + _get_language_specific_hint(
+            test_category
+        )
         # Process the parameters
         properties = item["parameters"]["properties"]
         if test_category == "java":
             for key, value in properties.items():
                 if value["type"] == "any":
-                    properties[key]["description"] += (
-                        " This parameter can be of any type of Java object in string representation."
-                    )
+                    properties[key][
+                        "description"
+                    ] += " This parameter can be of any type of Java object in string representation."
                 else:
-                    value["description"] += (
-                        f" This is Java {value['type']} type parameter in string representation."
-                    )
+                    value[
+                        "description"
+                    ] += f" This is Java {value['type']} type parameter in string representation."
                 if value["type"] == "ArrayList" or value["type"] == "Array":
-                    value["description"] += (
-                        f" The list elements are of type {value['items']['type']}; they are not in string representation."
-                    )
+                    value[
+                        "description"
+                    ] += f" The list elements are of type {value['items']['type']}; they are not in string representation."
                     del value["items"]
-                    
+
                 value["type"] = "string"
-                
+
         elif test_category == "javascript":
             for key, value in properties.items():
                 if value["type"] == "any":
-                    properties[key]["description"] += (
-                        " This parameter can be of any type of JavaScript object in string representation."
-                    )
+                    properties[key][
+                        "description"
+                    ] += " This parameter can be of any type of JavaScript object in string representation."
                 else:
-                    value["description"] += (
-                        f" This is JavaScript {value['type']} type parameter in string representation."
-                    )
+                    value[
+                        "description"
+                    ] += f" This is JavaScript {value['type']} type parameter in string representation."
                 if value["type"] == "array":
-                    value["description"] += (
-                        f" The list elements are of type {value['items']['type']}; they are not in string representation."
-                    )
+                    value[
+                        "description"
+                    ] += f" The list elements are of type {value['items']['type']}; they are not in string representation."
                     del value["items"]
-                
+
                 if value["type"] == "dict":
-                    if "properties" in value:    # not every dict has properties
-                        value["description"] += (
-                            f" The dictionary entries have the following schema; they are not in string representation. {json.dumps(value['properties'])}"
-                        )
+                    if "properties" in value:  # not every dict has properties
+                        value[
+                            "description"
+                        ] += f" The dictionary entries have the following schema; they are not in string representation. {json.dumps(value['properties'])}"
                         del value["properties"]
 
                 value["type"] = "string"
-                
+
     return function
 
 
@@ -503,9 +561,7 @@ def _function_calls_valid_format_and_invoke_extraction(last_completion):
         return {"status": True, "invokes": []}
 
     # Extract content between <function_calls> tags. If there are multiple we will only parse the first and ignore the rest, regardless of their correctness.
-    match = re.search(
-        r"<function_calls>(.*)</function_calls>", last_completion, re.DOTALL
-    )
+    match = re.search(r"<function_calls>(.*)</function_calls>", last_completion, re.DOTALL)
     if not match:
         return {
             "status": False,
@@ -542,9 +598,7 @@ def _function_calls_valid_format_and_invoke_extraction(last_completion):
                 "reason": "More than one tool_name specified inside single set of <invoke></invoke> tags.",
             }
 
-        parameters = re.findall(
-            r"<parameters>.*?</parameters>", invoke_string, re.DOTALL
-        )
+        parameters = re.findall(r"<parameters>.*?</parameters>", invoke_string, re.DOTALL)
         if not parameters:
             return {
                 "status": False,
@@ -630,3 +684,101 @@ def _convert_value(value, type_str):
         return type_class(value)
     except ValueError:
         return value
+
+# TODO: Re-organize this file to make it more readable and maintainable
+def extract_system_prompt(prompts: list[dict]) -> str:
+    for i, prompt in enumerate(prompts):
+        if prompt["role"] == "system":
+            system_prompt = prompt["content"]
+            del prompts[i]
+            return system_prompt
+    return None
+
+
+def extract_last_user_message(prompts: list[dict], user_role_name: str = "user") -> dict:
+    for i in range(len(prompts) - 1, -1, -1):
+        if prompts[i]["role"] == user_role_name:
+            last_user_message = prompts[i]
+            del prompts[i]
+            return last_user_message
+    return "User did not specify a query."
+
+
+#### utils for multi-turn ####
+
+
+def format_execution_results_prompting(
+    inference_data: dict, execution_results: list[str], model_response_data: dict
+) -> str:
+    # Add the execution results to one single user message
+    tool_results = []
+    for execution_result, decoded_model_response in zip(
+        execution_results, model_response_data["model_responses_decoded"]
+    ):
+        tool_results.append(
+            {"role": "tool", "name": decoded_model_response, "content": execution_result}
+        )
+
+    return repr(tool_results)
+
+
+def default_decode_ast_prompting(result, language="Python"):
+    func = result
+    if " " == func[0]:
+        func = func[1:]
+    if not func.startswith("["):
+        func = "[" + func
+    if not func.endswith("]"):
+        func = func + "]"
+    decoded_output = ast_parse(func, language)
+    return decoded_output
+
+
+def default_decode_execute_prompting(result):
+    func = result
+    if " " == func[0]:
+        func = func[1:]
+    if not func.startswith("["):
+        func = "[" + func
+    if not func.endswith("]"):
+        func = func + "]"
+    decoded_output = ast_parse(func)
+    return decoded_output_to_execution_list(decoded_output)
+
+
+def parse_nested_value(value):
+    """
+    Parse a potentially nested value from the AST output.
+
+    Args:
+        value: The value to parse, which could be a nested dictionary or a simple value.
+
+    Returns:
+        str: A string representation of the value, handling nested function calls.
+    """
+    if isinstance(value, dict):
+        func_name = list(value.keys())[0]
+        args = value[func_name]
+        args_str = ", ".join(f"{k}={parse_nested_value(v)}" for k, v in args.items())
+        return f"{func_name}({args_str})"
+    return repr(value)
+
+
+def decoded_output_to_execution_list(decoded_output):
+    """
+    Convert decoded output to a list of executable function calls.
+
+    Args:
+        decoded_output (list): A list of dictionaries representing function calls.
+
+    Returns:
+        list: A list of strings, each representing an executable function call.
+    """
+    execution_list = []
+    for function_call in decoded_output:
+        for key, value in function_call.items():
+            args_str = ", ".join(
+                f"{k}={parse_nested_value(v)}" for k, v in value.items()
+            )
+            execution_list.append(f"{key}({args_str})")
+    return execution_list

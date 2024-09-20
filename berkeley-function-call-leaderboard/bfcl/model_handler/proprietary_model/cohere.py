@@ -1,27 +1,30 @@
 import os
+import time
 
+import cohere
 from bfcl.model_handler.base_handler import BaseHandler
+from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT, GORILLA_TO_PYTHON
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
-    func_doc_language_specific_pre_processing,
-    convert_to_tool,
     ast_parse,
+    convert_system_prompt_into_user_prompt,
+    convert_to_tool,
+    extract_last_user_message,
+    extract_system_prompt,
+    func_doc_language_specific_pre_processing,
+    system_prompt_pre_processing_chat_model,
+    format_execution_results_prompting,
 )
-from bfcl.model_handler.constant import (
-    DEFAULT_SYSTEM_PROMPT,
-    GORILLA_TO_PYTHON,
-)
-import time
-import cohere
+
 USE_COHERE_OPTIMIZATION = os.getenv("USE_COHERE_OPTIMIZATION") == "True"
+
 
 class CohereHandler(BaseHandler):
     client: cohere.Client
 
-    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
-        super().__init__(model_name, temperature, top_p, max_tokens)
+    def __init__(self, model_name, temperature) -> None:
+        super().__init__(model_name, temperature)
         self.model_style = ModelStyle.COHERE
-
         self.client = cohere.Client(api_key=os.getenv("COHERE_API_KEY"))
 
         # System prompt for function calling.
@@ -43,7 +46,8 @@ class CohereHandler(BaseHandler):
         Unless the user asks for a different style of answer, you should answer in full sentences, using proper grammar and spelling.
         """
 
-    def _substitute_prompt_role(self, prompts):
+    @staticmethod
+    def _substitute_prompt_role(prompts: list[dict]) -> list[dict]:
         # Cohere use CHATBOT, USER, SYSTEM, TOOL as roles
         for prompt in prompts:
             if prompt["role"] == "user":
@@ -55,93 +59,13 @@ class CohereHandler(BaseHandler):
             elif prompt["role"] == "tool":
                 prompt["role"] = "TOOL"
         return prompts
-    
-    def _substitute_content_name(self, prompts):
+
+    @staticmethod
+    def _substitute_content_name(prompts: list[dict]) -> list[dict]:
         for prompt in prompts:
             prompt["message"] = prompt["content"]
             del prompt["content"]
         return prompts
-
-    def _extract_last_user_message(self, chat_history):
-        for i in range(len(chat_history) - 1, -1, -1):
-            if chat_history[i]["role"] == "USER":
-                last_user_message = chat_history[i]["message"]
-                del chat_history[i]
-                return last_user_message
-        return "User did not specify a query."
-
-    def inference(self, prompt, functions, test_category):
-        metadata = {}
-        # Chatting model
-        if "FC" not in self.model_name:
-            functions = func_doc_language_specific_pre_processing(
-                functions, test_category
-            )
-            
-            system_prompt = DEFAULT_SYSTEM_PROMPT.format(functions=functions)
-            chat_history = self._substitute_prompt_role(prompt)
-            chat_history = self._substitute_content_name(chat_history)
-            message = self._extract_last_user_message(chat_history)
-            
-            start_time = time.time()
-            response = self.client.chat(
-                message=message,
-                model=self.model_name,
-                temperature=self.temperature,
-                max_tokens=self.max_tokens,
-                preamble=system_prompt,
-                chat_history=chat_history,
-            )
-            latency = time.time() - start_time
-            result = response.text
-            metadata["processed_message"] = {"system": system_prompt, "message": message}
-            
-        # Function call model
-        else:
-            # preamble for system prompt
-            # chat_hitory for all past chat messages
-            # message is a string
-            functions = func_doc_language_specific_pre_processing(
-                functions, test_category
-            )
-            chat_history = self._substitute_prompt_role(prompt)
-            chat_history = self._substitute_content_name(chat_history)
-            message = self._extract_last_user_message(chat_history)
- 
-            # Convert JSON schema into R+ compatible function calls.
-            cohere_tool = convert_to_tool(
-                functions, GORILLA_TO_PYTHON, self.model_style, test_category
-            )
-            start_time = time.time()
-
-            response = self.client.chat(
-                message=message,
-                model=self.model_name.replace("-FC", ""),
-                temperature=self.temperature,
-                max_tokens=self.max_tokens,
-                tools=cohere_tool if len(cohere_tool) > 0 else None,
-                preamble=self.preamble,
-                chat_history=chat_history if len(chat_history) > 0 else None,
-            )
-
-            latency = time.time() - start_time
-            try:
-                result = [
-                    {func_call.name: func_call.parameters}
-                    for func_call in response.tool_calls
-                ]
-            except:
-                result = response.text
-            metadata["processed_message"] = {"system": self.preamble, "message": message}
-            metadata["processed_tool"] = cohere_tool
-
-        api_metadata = response.meta
-        if api_metadata is not None:
-            metadata["input_token_count"] = api_metadata.billed_units.input_tokens
-            metadata["output_token_count"] = api_metadata.billed_units.output_tokens
-        metadata["latency"] = latency
-
-        return result, metadata
 
     def decode_ast(self, result, language="Python"):
         if "FC" not in self.model_name:
@@ -196,3 +120,194 @@ class CohereHandler(BaseHandler):
                         f"{key}({','.join([f'{k}={repr(v)}' for k,v in value.items()])})"
                     )
             return execution_list
+
+    #### FC methods ####
+
+    def _query_FC(self, inference_data: dict):
+        inference_data["inference_input_log"] = {
+            "message": inference_data["message"],
+            "tools": inference_data.get("tools", None),
+            "tool_results": inference_data.get("tool_results", None),
+            "chat_history": inference_data.get("chat_history", None),
+            "preamble": self.preamble,
+        }
+        api_response = self.client.chat(
+            message=inference_data["message"],
+            model=self.model_name.replace("-FC", ""),
+            temperature=self.temperature,
+            tools=inference_data.get("tools", None),
+            tool_results=inference_data.get("tool_results", None),
+            preamble=self.preamble,
+            chat_history=inference_data.get("chat_history", None),
+        )
+
+        return api_response
+
+    def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
+        for round_idx in range(len(test_entry["question"])):
+            test_entry["question"][round_idx] = convert_system_prompt_into_user_prompt(
+                test_entry["question"][round_idx]
+            )
+            test_entry["question"][round_idx] = self._substitute_content_name(
+                test_entry["question"][round_idx]
+            )
+            test_entry["question"][round_idx] = self._substitute_prompt_role(
+                test_entry["question"][round_idx]
+            )
+
+        # Cohere message is a string, not a list of dictionaries
+        inference_data["message"] = ""
+        inference_data["chat_history"] = []
+        return inference_data
+
+    def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
+        functions: list = test_entry["function"]
+        test_category: str = test_entry["id"].rsplit("_", 1)[0]
+
+        functions = func_doc_language_specific_pre_processing(functions, test_category)
+        # Convert to Cohere compatible function schema
+        tools = convert_to_tool(functions, GORILLA_TO_PYTHON, self.model_style)
+
+        inference_data["tools"] = tools
+
+        return inference_data
+
+    def _parse_query_response_FC(self, api_response: any) -> dict:
+        try:
+            model_responses = [
+                {func_call.name: func_call.parameters}
+                for func_call in api_response.tool_calls
+            ]
+        except:
+            model_responses = api_response.text
+
+        return {
+            "model_responses": model_responses,
+            "tool_calls": api_response.tool_calls,
+            "chat_history": api_response.chat_history,
+            "input_token": api_response.meta.billed_units.input_tokens,
+            "output_token": api_response.meta.billed_units.output_tokens,
+        }
+
+    def add_first_turn_message_FC(
+        self, inference_data: dict, first_turn_message: list[dict]
+    ) -> dict:
+        message = extract_last_user_message(first_turn_message, "USER")["message"]
+        inference_data["message"] = message
+        if len(first_turn_message) > 0:
+            inference_data["chat_history"] = first_turn_message
+        return inference_data
+
+    def _add_next_turn_user_message_FC(
+        self, inference_data: dict, user_message: list[dict]
+    ) -> dict:
+        inference_data["message"] = user_message[0]["message"]
+        # Cohere does not allow both message and tool_results to appear at the same time
+        if "tool_results" in inference_data:
+            del inference_data["tool_results"]
+        return inference_data
+
+    def _add_assistant_message_FC(
+        self, inference_data: dict, model_response_data: dict
+    ) -> dict:
+        # Cohere has all the messages in the chat history already, so no need to add anything here
+        return inference_data
+
+    def _add_execution_results_FC(
+        self, inference_data: dict, execution_results: list[str], model_response_data: dict
+    ) -> dict:
+        tool_results = []
+        # Add the execution results to the current round result, one at a time
+        for execution_result, tool_call in zip(
+            execution_results, model_response_data["tool_calls"]
+        ):
+            # Cohere expects the `outputs` section to be a list of dictionaries, so we have to convert the string to that format
+            tool_message = {
+                "call": tool_call,
+                "outputs": [{"function execution result": execution_result}],
+            }
+            tool_results.append(tool_message)
+
+        inference_data["tool_results"] = tool_results
+        # Cohere does not allow both message and tool_results to appear at the same time
+        inference_data["message"] = ""
+        return inference_data
+
+    #### Prompting methods ####
+
+    def _query_prompting(self, inference_data: dict):
+        inference_data["inference_input_log"] = {
+            "message": inference_data["message"],
+            "preamble": inference_data["system_prompt"],
+            "chat_history": inference_data.get("chat_history", None),
+        }
+
+        api_response = self.client.chat(
+            message=inference_data["message"],
+            model=self.model_name,
+            temperature=self.temperature,
+            preamble=inference_data["system_prompt"],
+            chat_history=inference_data.get("chat_history", None),
+        )
+
+        return api_response
+
+    def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        functions: list = test_entry["function"]
+        test_entry_id: str = test_entry["id"]
+        test_category: str = test_entry_id.rsplit("_", 1)[0]
+
+        functions = func_doc_language_specific_pre_processing(functions, test_category)
+
+        test_entry["question"][0] = system_prompt_pre_processing_chat_model(
+            test_entry["question"][0], DEFAULT_SYSTEM_PROMPT, functions
+        )
+        # Cohere takes in system prompt in a specific field
+        system_prompt = extract_system_prompt(test_entry["question"][0])
+
+        for round_idx in range(len(test_entry["question"])):
+            test_entry["question"][round_idx] = self._substitute_content_name(
+                test_entry["question"][round_idx]
+            )
+            test_entry["question"][round_idx] = self._substitute_prompt_role(
+                test_entry["question"][round_idx]
+            )
+
+        # Cohere message is a string, not a list of dictionaries
+        return {"message": "", "system_prompt": system_prompt}
+
+    def _parse_query_response_prompting(self, api_response: any) -> dict:
+
+        return {
+            "model_responses": api_response.text,
+            "chat_history": api_response.chat_history,
+            "input_token": api_response.meta.billed_units.input_tokens,
+            "output_token": api_response.meta.billed_units.output_tokens,
+        }
+
+    def add_first_turn_message_prompting(
+        self, inference_data: dict, first_turn_message: list[dict]
+    ) -> dict:
+        return self.add_first_turn_message_FC(inference_data, first_turn_message)
+
+    def _add_next_turn_user_message_prompting(
+        self, inference_data: dict, user_message: list[dict]
+    ) -> dict:
+        return self._add_next_turn_user_message_FC(inference_data, user_message)
+
+    def _add_assistant_message_prompting(
+        self, inference_data: dict, model_response_data: dict
+    ) -> dict:
+        # Cohere has all the messages in the chat history already, so no need to add anything here
+        return inference_data
+
+    def _add_execution_results_prompting(
+        self, inference_data: dict, execution_results: list[str], model_response_data: dict
+    ) -> dict:
+        formatted_results_message = format_execution_results_prompting(
+            inference_data, execution_results, model_response_data
+        )
+        # Cohere's message is a string, not a list of dictionaries
+        inference_data["message"] = formatted_results_message
+
+        return inference_data

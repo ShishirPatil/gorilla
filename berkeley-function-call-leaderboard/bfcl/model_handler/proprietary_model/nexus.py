@@ -1,18 +1,22 @@
-from bfcl.model_handler.model_style import ModelStyle
+import time
+
+import requests
 from bfcl.model_handler.base_handler import BaseHandler
+from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     ast_parse,
     func_doc_language_specific_pre_processing,
 )
-import requests, time
 
 
 class NexusHandler(BaseHandler):
-    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
-        super().__init__(model_name, temperature, top_p, max_tokens)
+    def __init__(self, model_name, temperature) -> None:
+        super().__init__(model_name, temperature)
         self.model_style = ModelStyle.NEXUS
+        self.is_fc_model = True
 
-    def generate_functions_from_dict(self, func_dicts):
+    @staticmethod
+    def _generate_functions_from_dict(func_dicts):
         func_template = """
     Function:
     def {func_name}({func_args}) -> None:
@@ -27,20 +31,29 @@ class NexusHandler(BaseHandler):
 
         functions = []
         for func_dict in func_dicts:
-            func_name = func_dict['name']
-            description = func_dict['description']
-            parameters = func_dict['parameters']['properties']
-            required_params = func_dict['parameters'].get('required', [])
+            func_name = func_dict["name"]
+            description = func_dict["description"]
+            parameters = func_dict["parameters"]["properties"]
+            required_params = func_dict["parameters"].get("required", [])
 
             func_args_list = []
             param_descriptions = []
 
             for param, details in parameters.items():
-                param_type = details['type']
-                if 'enum' in details:
-                    param_type = f"""String[{', '.join(f"'{e}'" for e in details['enum'])}]"""
+                param_type = details["type"]
+                if "enum" in details:
+                    param_type = (
+                        f"""String[{', '.join(f"'{e}'" for e in details['enum'])}]"""
+                    )
 
-                param_type = param_type.replace("string", "str").replace("number", "float").replace("integer", "int").replace("object", "dict").replace("array", "list").replace("boolean", "bool")
+                param_type = (
+                    param_type.replace("string", "str")
+                    .replace("number", "float")
+                    .replace("integer", "int")
+                    .replace("object", "dict")
+                    .replace("array", "list")
+                    .replace("boolean", "bool")
+                )
 
                 type_hint = param_type
 
@@ -51,27 +64,27 @@ class NexusHandler(BaseHandler):
 
                 param_description = f"{param} ({param_type}): {details.get('description', 'No description available. Please make a good guess.')}"
 
-                if 'enum' in details:
+                if "enum" in details:
                     param_description += f""". Choose one of {', '.join(f"'{e}'" for e in details['enum'])}."""
 
                 if param not in required_params:
                     param_description += " (Optional)"
                 param_descriptions.append(param_description)
 
-            func_args = ', '.join(func_args_list)
-            param_descriptions_str = '\n    '.join(param_descriptions)
+            func_args = ", ".join(func_args_list)
+            param_descriptions_str = "\n    ".join(param_descriptions)
 
             function_str = func_template.format(
                 func_name=func_name,
                 func_args=func_args,
                 description=description,
-                param_descriptions=param_descriptions_str
+                param_descriptions=param_descriptions_str,
             )
 
             functions.append(function_str)
 
         functions.append(
-    '''
+            '''
     Function:
     def out_of_domain(user_query: str) -> str:
         """
@@ -84,25 +97,24 @@ class NexusHandler(BaseHandler):
         Returns nothing.
         """
 
-    ''')
+            '''
+        )
 
         return functions
-
 
     def _format_raven_function(self, user_prompts, functions):
         """
         Nexus-Raven requires a specific format for the function description.
         This function formats the function description in the required format.
         """
-        raven_prompt = "\n".join(self.generate_functions_from_dict(functions)) + "\n\n"
+        raven_prompt = "\n".join(functions) + "\n\n"
         raven_prompt += "Setting: Allowed to issue multiple calls with semicolon\n"
         for user_prompt in user_prompts:
             raven_prompt += f"{user_prompt['role']}: {user_prompt['content']}\n"
-        
-        raven_prompt += f"<human_end>"
-            
-        return raven_prompt
 
+        raven_prompt += f"<human_end>"
+
+        return raven_prompt
 
     def _query_raven(self, prompt):
         """
@@ -136,12 +148,6 @@ class NexusHandler(BaseHandler):
         call = output[0]["generated_text"].replace("Call:", "").strip()
         return call, {"latency": latency, "processed_message": prompt}
 
-    def inference(self, prompt, functions, test_category):
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
-        raven_prompt = self._format_raven_function(prompt, functions)
-        result, metadata = self._query_raven(raven_prompt)
-        return result, metadata
-
     def decode_ast(self, result, language="Python"):
         if result.endswith(";"):
             result = result[:-1]
@@ -166,3 +172,83 @@ class NexusHandler(BaseHandler):
                     f"{key}({','.join([f'{k}={repr(v)}' for k, v in value.items()])})"
                 )
         return execution_list
+
+    #### FC methods ####
+
+    def _query_FC(self, inference_data: dict):
+        API_URL = "http://nexusraven.nexusflow.ai"
+        headers = {"Content-Type": "application/json"}
+        prompt = self._format_raven_function(
+            inference_data["message"], inference_data["tools"]
+        )
+        payload = {
+            "inputs": prompt,
+            "parameters": {
+                "temperature": self.temperature,
+                "stop": ["<bot_end>"],
+                "do_sample": False,
+                "return_full_text": False,
+            },
+        }
+        api_response = requests.post(
+            "http://nexusraven.nexusflow.ai", headers=headers, json=payload
+        )
+        return api_response.json()
+
+    def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
+        inference_data["message"] = []
+        return inference_data
+
+    def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
+        functions: list = test_entry["function"]
+        test_category: str = test_entry["id"].rsplit("_", 1)[0]
+
+        functions = func_doc_language_specific_pre_processing(functions, test_category)
+        # Nexus requires functions to be in a specific format
+        inference_data["tools"] = self._generate_functions_from_dict(functions)
+
+        return inference_data
+
+    def _parse_query_response_FC(self, api_response: any) -> dict:
+        return {
+            "model_responses": api_response[0]["generated_text"]
+            .replace("Call:", "")
+            .strip(),
+            "input_token": "N/A",
+            "output_token": "N/A",
+        }
+
+    def add_first_turn_message_FC(
+        self, inference_data: dict, first_turn_message: list[dict]
+    ) -> dict:
+        inference_data["message"].extend(first_turn_message)
+        return inference_data
+
+    def _add_next_turn_user_message_FC(
+        self, inference_data: dict, user_message: list[dict]
+    ) -> dict:
+        inference_data["message"].extend(user_message)
+        return inference_data
+
+    def _add_assistant_message_FC(
+        self, inference_data: dict, model_response_data: dict
+    ) -> dict:
+        inference_data["message"].append(
+            {
+                "role": "assistant",
+                "content": model_response_data["model_responses"],
+            }
+        )
+        return inference_data
+
+    def _add_execution_results_FC(
+        self, inference_data: dict, execution_results: list[str], model_response_data: dict
+    ) -> dict:
+        for execution_result in execution_results:
+            tool_message = {
+                "role": "tool",
+                "content": execution_result,
+            }
+            inference_data["message"].append(tool_message)
+
+        return inference_data

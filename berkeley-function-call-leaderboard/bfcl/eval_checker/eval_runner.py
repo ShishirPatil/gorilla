@@ -1,18 +1,136 @@
-from checker import ast_checker, exec_checker, executable_checker_rest
-from custom_exception import BadAPIStatusError
-from eval_runner_helper import *
-from eval_checker_constant import TEST_COLLECTION_MAPPING
-from tqdm import tqdm
 import argparse
-from dotenv import load_dotenv
 
+from bfcl.constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING, VERSION_PREFIX
+from bfcl.eval_checker.ast_eval.ast_checker import ast_checker
+from bfcl.eval_checker.eval_runner_helper import *
+from bfcl.eval_checker.executable_eval.custom_exception import BadAPIStatusError
+from bfcl.eval_checker.executable_eval.executable_checker import (
+    executable_checker_non_rest,
+    executable_checker_rest,
+)
+from bfcl.eval_checker.multi_turn_eval.multi_turn_checker import (
+    multi_turn_checker,
+    multi_turn_irrelevance_checker,
+)
+from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import is_empty_execute_response
+from dotenv import load_dotenv
+from tqdm import tqdm
 
 # NOTE: This file should be run in the `eval_checker` directory
 
 
-def single_executable_file_runner(
-    handler, model_result, prompt, model_name, test_category
+def multi_turn_runner(
+    handler, model_result, prompt, possible_answer, model_name, test_category
 ):
+    assert (
+        len(model_result) == len(prompt) == len(possible_answer)
+    ), f"The length of the model result ({len(model_result)}) does not match the length of the prompt ({len(prompt)}) or possible answer ({len(possible_answer)}). Please check the input files for completeness."
+
+    result = []
+    correct_count = 0
+    for i in range(len(model_result)):
+        index: str = model_result[i]["id"]
+        # Model result is stored as a list of list of model responses. Each inner list represents a turn.
+        multi_turn_model_result_list: list[list] = model_result[i]["result"]
+        multi_turn_ground_truth_list: list[list[str]] = possible_answer[i]["ground_truth"]
+        test_entry: dict = prompt[i]
+
+        # Check if force-terminated during inference phase.
+        # This happens when the model has retried too many times and still haven't figured out the answer.
+        # When force-terminated, no further evaluation is needed. This whole entry will be failed.
+        if len(multi_turn_model_result_list) != len(multi_turn_ground_truth_list):
+            result.append(
+                {
+                    "id": index,
+                    "model_name": model_name,
+                    "test_category": test_category,
+                    "valid": False,
+                    "error": [
+                        f"Model was force-terminated during inference phase. The length of the model result turns ({len(multi_turn_model_result_list)}) does not match the length of the ground truth turns ({len(multi_turn_ground_truth_list)})."
+                    ],
+                    "error_type": "multi_turn:force_terminated",
+                    "prompt": test_entry,
+                    "model_result": multi_turn_model_result_list,
+                    "possible_answer": multi_turn_ground_truth_list,
+                }
+            )
+            continue
+
+        multi_turn_model_result_list_decoded: list[list[list[str]]] = (
+            []
+        )  # decode_execute returns a list of strings
+        # Try decoding the model results into executable function calls
+        for single_turn_model_result_list in multi_turn_model_result_list:
+            single_turn_model_result_list_decoded = []
+            for model_result_item in single_turn_model_result_list:
+                try:
+                    decoded_result = handler.decode_execute(model_result_item)
+                    if is_empty_execute_response(decoded_result):
+                        # Empty output is not considered as a valid function call
+                        continue
+
+                    single_turn_model_result_list_decoded.append(decoded_result)
+
+                except Exception as e:
+                    # Ignore any failed decoding and continue to the next message
+                    # We only care about the decoded function call, not the error message or if the model is chatting
+                    continue
+            multi_turn_model_result_list_decoded.append(
+                single_turn_model_result_list_decoded
+            )
+
+        # Check if the model output the correct function calls
+        accuracy_checker_result = multi_turn_checker(
+            multi_turn_model_result_list_decoded,
+            multi_turn_ground_truth_list,
+            test_entry,
+            test_category,
+            model_name,
+        )
+        
+        # Perform additional check for multi-turn irrelevance
+        # This happens when the model is expected to not output any function calls in a certain turn due to miss parameters or miss functions
+        if contain_multi_turn_irrelevance(test_category):
+            irrelevance_checker_result = multi_turn_irrelevance_checker(
+                multi_turn_model_result_list_decoded,
+                multi_turn_ground_truth_list,
+            )
+        else:
+            irrelevance_checker_result = {"valid": True}
+        
+        if not irrelevance_checker_result["valid"] or not accuracy_checker_result["valid"]:
+            temp = {}
+            temp["id"] = index
+            temp["model_name"] = model_name
+            temp["test_category"] = test_category
+            # We display the irrelevance checker result first, then the accuracy checker result if irrelevance is passed
+            temp.update(irrelevance_checker_result if not irrelevance_checker_result["valid"] else accuracy_checker_result)
+            temp["prompt"] = test_entry
+            temp["model_result"] = multi_turn_model_result_list
+            temp["possible_answer"] = multi_turn_ground_truth_list
+            temp.update(irrelevance_checker_result)
+            temp.update(accuracy_checker_result)
+            result.append(temp)
+        else:
+            correct_count += 1
+
+    accuracy = correct_count / len(model_result)
+    result.insert(
+        0,
+        {
+            "accuracy": accuracy,
+            "correct_count": correct_count,
+            "total_count": len(model_result),
+        },
+    )
+    output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
+    output_file_dir = os.path.join(OUTPUT_PATH, model_name)
+    write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
+
+    return accuracy, len(model_result)
+
+
+def executable_file_runner(handler, model_result, prompt, model_name, test_category):
     assert len(model_result) == len(prompt)
 
     result = []
@@ -78,7 +196,9 @@ def single_executable_file_runner(
                 continue
 
             prompt_item = prompt[i]
-            checker_result = exec_checker(decoded_result, prompt_item, test_category)
+            checker_result = executable_checker_non_rest(
+                decoded_result, prompt_item, test_category
+            )
 
         if checker_result["valid"]:
             correct_count += 1
@@ -106,16 +226,16 @@ def single_executable_file_runner(
             "total_count": len(model_result),
         },
     )
-    output_file_name = f"BFCL_v2_{test_category}_score.json"
+    output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
     output_file_dir = os.path.join(OUTPUT_PATH, model_name)
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
 
 
-def single_relevance_file_runner(handler, model_result, prompt, model_name, test_category):
+def relevance_file_runner(handler, model_result, prompt, model_name, test_category):
     # This function serves for both relevance and irrelevance tests, which share the exact opposite logic.
-    # If `test_category` is "irrelevance", the model is expected to output no function call. 
+    # If `test_category` is "irrelevance", the model is expected to output no function call.
     # No function call means either the AST decoding fails (a error message is generated) or the decoded AST does not contain any function call (such as a empty list, `[]`).
     # If `test_category` is "relevance", the model is expected to output to a function call, and empty list doesn't count as a function call.
     result = []
@@ -158,7 +278,7 @@ def single_relevance_file_runner(handler, model_result, prompt, model_name, test
                     f"Valid syntax. Successfully decode AST when it should not."
                 ]
                 temp["error_type"] = "irrelevance_error:decoder_success"
-            else: 
+            else:
                 temp["error"] = [
                     f"Invalid syntax. Failed to decode AST when it should have. {decode_error}"
                 ]
@@ -178,14 +298,14 @@ def single_relevance_file_runner(handler, model_result, prompt, model_name, test
             "total_count": len(model_result),
         },
     )
-    output_file_name = f"BFCL_v2_{test_category}_score.json"
+    output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
     output_file_dir = os.path.join(OUTPUT_PATH, model_name)
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
 
 
-def single_ast_file_runner(
+def ast_file_runner(
     handler, model_result, prompt, possible_answer, language, test_category, model_name
 ):
     assert (
@@ -272,7 +392,7 @@ def single_ast_file_runner(
             "total_count": len(model_result),
         },
     )
-    output_file_name = f"BFCL_v2_{test_category}_score.json"
+    output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
     output_file_dir = os.path.join(OUTPUT_PATH, model_name)
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
@@ -343,7 +463,7 @@ def runner(model_names, test_categories, api_sanity_check):
             prompt = load_file(prompt_file)
 
             if is_relevance_or_irrelevance(test_category):
-                accuracy, total_count = single_relevance_file_runner(
+                accuracy, total_count = relevance_file_runner(
                     handler, model_result, prompt, model_name, test_category
                 )
                 record_result(
@@ -364,11 +484,15 @@ def runner(model_names, test_categories, api_sanity_check):
                     try:
                         api_status_sanity_check_executable()
                     except BadAPIStatusError as e:
-                        API_STATUS_ERROR_EXECUTABLE = e    
+                        API_STATUS_ERROR_EXECUTABLE = e
 
-                    display_api_status_error(API_STATUS_ERROR_REST, API_STATUS_ERROR_EXECUTABLE, display_success=True)
+                    display_api_status_error(
+                        API_STATUS_ERROR_REST,
+                        API_STATUS_ERROR_EXECUTABLE,
+                        display_success=True,
+                    )
                     print("Continuing evaluation...")
-                    
+
                     API_TESTED = True
 
                 if (
@@ -386,7 +510,7 @@ def runner(model_names, test_categories, api_sanity_check):
                     # Need to re-load the prompt file after getting the expected output, as the prompt file has been updated
                     prompt = load_file(prompt_file)
 
-                accuracy, total_count = single_executable_file_runner(
+                accuracy, total_count = executable_file_runner(
                     handler, model_result, prompt, model_name, test_category
                 )
                 record_result(
@@ -401,19 +525,35 @@ def runner(model_names, test_categories, api_sanity_check):
                 POSSIBLE_ANSWER_PATH, test_category
             )
             possible_answer = load_file(possible_answer_file)
-            accuracy, total_count = single_ast_file_runner(
-                handler,
-                model_result,
-                prompt,
-                possible_answer,
-                language,
-                test_category,
-                model_name,
-            )
-            record_result(
-                LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
-            )
-            print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
+
+            if is_multi_turn(test_category):
+                accuracy, total_count = multi_turn_runner(
+                    handler,
+                    model_result,
+                    prompt,
+                    possible_answer,
+                    model_name,
+                    test_category,
+                )
+                record_result(
+                    LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
+                )
+                print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
+            # Single turn test
+            else:
+                accuracy, total_count = ast_file_runner(
+                    handler,
+                    model_result,
+                    prompt,
+                    possible_answer,
+                    language,
+                    test_category,
+                    model_name,
+                )
+                record_result(
+                    LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
+                )
+                print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
 
     # This function reads all the score files from local folder and updates the leaderboard table.
     # This is helpful when you only want to run the evaluation for a subset of models and test categories.
@@ -423,14 +563,14 @@ def runner(model_names, test_categories, api_sanity_check):
 
     # Clean up the executable expected output files
     # They should be re-generated the next time the evaluation is run
-    clean_up_executable_expected_output(
-        PROMPT_PATH, EXECUTABLE_TEST_CATEGORIES_HAVE_RUN
+    clean_up_executable_expected_output(PROMPT_PATH, EXECUTABLE_TEST_CATEGORIES_HAVE_RUN)
+
+    display_api_status_error(
+        API_STATUS_ERROR_REST, API_STATUS_ERROR_EXECUTABLE, display_success=False
     )
-    
-    display_api_status_error(API_STATUS_ERROR_REST, API_STATUS_ERROR_EXECUTABLE, display_success=False)
-    
+
     print(
-        f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data_combined.csv')} for evaluation results on BFCL V2."
+        f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data_overall.csv')} for evaluation results on BFCL V2."
     )
     print(
         f"See {os.path.abspath(OUTPUT_PATH + 'data_live.csv')} and {os.path.abspath(OUTPUT_PATH + 'data_non_live.csv')} for evaluation results on BFCL V2 Live and Non-Live categories respectively."
@@ -490,6 +630,4 @@ if __name__ == "__main__":
             model_names.append(model_name.replace("/", "_"))
 
     load_dotenv(dotenv_path="../../.env", verbose=True, override=True)  # Load the .env file
-    assert os.getenv("USE_COHERE_OPTIMIZATION") in ["True", "False"], "USE_COHERE_OPTIMIZATION in .env must be set to True or False"
-
     runner(model_names, test_categories, api_sanity_check)

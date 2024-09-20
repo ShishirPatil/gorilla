@@ -88,6 +88,9 @@ ANTHROPIC_API_KEY=
 NVIDIA_API_KEY=nvapi-XXXXXX
 YI_API_KEY=
 
+VERTEX_AI_PROJECT_ID=
+VERTEX_AI_LOCATION=
+
 COHERE_API_KEY=
 
 DATABRICKS_API_KEY=
@@ -124,9 +127,9 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |databrick-dbrx-instruct | Prompt|
 |deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
 |firefunction-{v1,v2}-FC | Function Calling|
-|gemini-1.0-pro | Function Calling|
-|gemini-1.5-pro-preview-{0409,0514} | Function Calling|
-|gemini-1.5-flash-preview-0514 | Function Calling|
+|gemini-1.0-pro-FC | Function Calling|
+|gemini-1.5-pro-preview-{0409,0514}-FC | Function Calling|
+|gemini-1.5-flash-preview-0514-FC | Function Calling|
 |glaiveai/glaive-function-calling-v1 💻| Function Calling|
 |gpt-3.5-turbo-0125-FC| Function Calling|
 |gpt-3.5-turbo-0125| Prompt|
@@ -138,20 +141,18 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |gpt-4o-2024-05-13| Prompt|
 |gpt-4o-mini-2024-07-18-FC | Function Calling|
 |gpt-4o-mini-2024-07-18 | Prompt|
-|o1-mini-2024-09-12 | Prompt|
-|o1-preview-2024-09-12 | Prompt|
 |google/gemma-7b-it 💻| Prompt|
 |meetkai/functionary-medium-v3.1-FC| Function Calling|
 |meetkai/functionary-small-{v3.1,v3.2}-FC| Function Calling|
 |meta-llama/Meta-Llama-3-{8B,70B}-Instruct | Prompt|
 |open-mixtral-{8x7b,8x22b} | Prompt|
-|open-mixtral-8x22b-FC-{Any,Auto} | Function Calling|
+|open-mixtral-8x22b-FC | Function Calling|
 |open-mistral-nemo-2407 | Prompt|
-|open-mistral-nemo-2407-FC-{Any,Auto} | Function Calling|
-|mistral-large-2407-FC-{Any,Auto} | Function Calling|
+|open-mistral-nemo-2407-FC | Function Calling|
+|mistral-large-2407-FC | Function Calling|
 |mistral-large-2407 | Prompt|
 |mistral-medium-2312 | Prompt|
-|mistral-small-2402-FC-{Any,Auto} | Function Calling|
+|mistral-small-2402-FC | Function Calling|
 |mistral-small-2402 | Prompt|
 |mistral-tiny-2312 | Prompt|
 |Nexusflow-Raven-v2 | Function Calling|
@@ -188,6 +189,8 @@ In the following two sections, the optional `--test-category` parameter can be u
 * Available test groups:
   * `all`: All test categories.
     * This is the default option if no test category is provided.
+  * `multi_turn`: All multi-turn test categories.
+  * `single_turn`: All single-turn test categories.
   * `live`: All user-contributed live test categories.
   * `non_live`: All not-user-contributed test categories (the opposite of `live`).
   * `ast`: Abstract Syntax Tree tests.
@@ -214,6 +217,11 @@ In the following two sections, the optional `--test-category` parameter can be u
   * `live_parallel_multiple`: User-contributed multiple function calls in parallel and in sequence.
   * `live_irrelevance`: User-contributed function calls with irrelevant function documentation.
   * `live_relevance`: User-contributed function calls with relevant function documentation.
+  * `multi_turn_base`: Base entries for multi-turn function calls.
+  * `multi_turn_miss_func`: Multi-turn function calls with missing function.
+  * `multi_turn_miss_param`: Multi-turn function calls with missing parameter.
+  * `multi_turn_long_context`: Multi-turn function calls with long context.
+  * `multi_turn_composite`: Multi-turn function calls with missing function, missing parameter, and long context.
 * If no test category is provided, the script will run all available test categories. (same as `all`)
 
 > If you want to run the `all`, `non_live`, `executable` or `python` category, make sure to register your REST API keys in the `.env` file. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API!
@@ -270,6 +278,11 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Changelog
 
+* [Sept 19, 2024] [#644](https://github.com/ShishirPatil/gorilla/pull/644): BFCL V3 release:
+  * Introduce new multi-turn dataset and state-based evaluation metric
+  * Switch to use vllm serve for OSS model inference
+  * Separate ast_checker and executable_checker for readability
+  * Several outdated or deprecated models will be excluded from the leaderboard and replaced with their updated successors to improve the leaderboard's overall maintainability.
 * [Sept 13, 2024] [#638](https://github.com/ShishirPatil/gorilla/pull/638): Fix prompt formatting issue for `THUDM/glm-4-9b-chat`.
 * [Sept 12, 2024] [#635](https://github.com/ShishirPatil/gorilla/pull/635): Add new models `o1-preview-2024-09-12` and `o1-mini-2024-09-12` to the leaderboard.
 * [Sept 8, 2024] [#627](https://github.com/ShishirPatil/gorilla/pull/627) Add new model `MadeAgents/Hammer-7b` to the leaderboard.
@@ -300,11 +313,9 @@ Some companies have proposed some optimization strategies in their models' handl
 * [August 7, 2024] [#571](https://github.com/ShishirPatil/gorilla/pull/571): Support parallel inference for hosted models. User can specify the number of threads to use for parallel inference by setting the `--num-threads` flag. The default is 1, which means no parallel inference.
 * [August 6, 2024] [#569](https://github.com/ShishirPatil/gorilla/pull/569), [#570](https://github.com/ShishirPatil/gorilla/pull/570), [#573](https://github.com/ShishirPatil/gorilla/pull/573): Add the following new models to the leaderboard:
   * `open-mistral-nemo-2407`
-  * `open-mistral-nemo-2407-FC-Any`
-  * `open-mistral-nemo-2407-FC-Auto`
+  * `open-mistral-nemo-2407-FC`
   * `open-mixtral-8x22b`
-  * `open-mixtral-8x22b-FC-Any`
-  * `open-mixtral-8x22b-FC-Auto`
+  * `open-mixtral-8x22b-FC`
   * `open-mixtral-8x7b`
   * `gpt-4o-mini-2024-07-18`
   * `gpt-4o-mini-2024-07-18-FC`

@@ -1,52 +1,59 @@
-import argparse, json, os, time
-from tqdm import tqdm
+import argparse
+import copy
+import json
+import os
+import time
+from concurrent.futures import ThreadPoolExecutor
+
+from bfcl.constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING
 from bfcl.model_handler.handler_map import handler_map
 from bfcl.model_handler.model_style import ModelStyle
-from bfcl.eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING
-from concurrent.futures import ThreadPoolExecutor
 from dotenv import load_dotenv
-
+from tqdm import tqdm
 
 RETRY_LIMIT = 3
 # 60s for the timer to complete. But often we find that even with 60 there is a conflict. So 65 is a safe no.
 RETRY_DELAY = 65  # Delay in seconds
 
+
 def get_args():
     parser = argparse.ArgumentParser()
     # Refer to model_choice for supported models.
-    parser.add_argument("--model", type=str, default="gorilla-openfunctions-v2", nargs="+")
+    parser.add_argument(
+        "--model", type=str, default="gorilla-openfunctions-v2", nargs="+"
+    )
     # Refer to test_categories for supported categories.
-    parser.add_argument("--test-category", type=str, default="all", nargs="+")
+    parser.add_argument(
+        "--test-category", type=str, default="all", nargs="+"
+    )
 
     # Parameters for the model that you want to test.
     parser.add_argument("--temperature", type=float, default=0.001)
-    parser.add_argument("--top-p", type=float, default=1)
-    parser.add_argument("--max-tokens", type=int, default=1200)
-    parser.add_argument("--num-gpus", default=1, type=int)
-    parser.add_argument("--timeout", default=60, type=int)
+    parser.add_argument("--include-debugging-log", action="store_true", default=False)
     parser.add_argument("--num-threads", default=1, type=int)
+    parser.add_argument("--num-gpus", default=1, type=int)
     parser.add_argument("--gpu-memory-utilization", default=0.9, type=float)
     args = parser.parse_args()
     return args
 
 
-def build_handler(model_name, temperature, top_p, max_tokens):
-    handler = handler_map[model_name](model_name, temperature, top_p, max_tokens)
+def build_handler(model_name, temperature):
+    handler = handler_map[model_name](model_name, temperature)
     return handler
 
 
 def sort_key(entry):
     """
     Index comes in two forms: TestCategory_Index or TestCategory_Index-FuncDocSubIndex-PromptSubIndex; both 0-indexed.
-    
+
     TestCategory_Index: For example, `simple_20` means the 21st entry in the `simple` test category.
-    
+
     TestCategory_Index-FuncDocSubIndex-PromptSubIndex is used when there are multiple prompts for a single function doc; this only happens in the live dataset.
     FuncDocSubIndex increments for each unique function doc.
     PromptSubIndex is per function doc. It resets to 0 for each function doc.
-        For example, `live_simple_19-3-15` means the 20th entry in the `live_simple` test category. 
+        For example, `live_simple_19-3-15` means the 20th entry in the `live_simple` test category.
         This entry has the 4th unique function doc and the 16th prompt for that function doc (there are at least 15 other prompts for this same function doc in this category).
-    
+
     In either case, the universal index is enough to sort the entries.
     """
     parts = entry["id"].rsplit("_", 1)
@@ -100,32 +107,21 @@ def collect_test_cases(test_filename_total, model_name):
 
         existing_ids = [entry["id"] for entry in existing_result]
         test_cases_total.extend(
-            [
-                test_case
-                for test_case in test_cases
-                if test_case["id"] not in existing_ids
-            ]
+            [test_case for test_case in test_cases if test_case["id"] not in existing_ids]
         )
 
     return sorted(test_cases_total, key=sort_key)
 
 
-def multi_threaded_inference(handler, test_case):
-    user_question, functions, test_category = (
-        test_case["question"],
-        test_case["function"],
-        test_case["id"].rsplit("_", 1)[0],
-    )
-    if type(functions) is dict or type(functions) is str:
-        functions = [functions]
+def multi_threaded_inference(handler, test_case, include_debugging_log):
+
+    assert type(test_case["function"]) is list
 
     retry_count = 0
 
     while True:
         try:
-            result, metadata = handler.inference(
-                user_question, functions, test_category
-            )
+            result, metadata = handler.inference(copy.deepcopy(test_case), include_debugging_log)
             break  # Success, exit the loop
         except Exception as e:
             # TODO: It might be better to handle the exception in the handler itself rather than a universal catch block here, as each handler use different ways to call the endpoint.
@@ -160,7 +156,7 @@ def multi_threaded_inference(handler, test_case):
         "id": test_case["id"],
         "result": result,
     }
-    
+
     result_to_write.update(metadata)
 
     return result_to_write
@@ -168,17 +164,16 @@ def multi_threaded_inference(handler, test_case):
 
 def generate_results(args, model_name, test_cases_total):
 
-    handler = build_handler(model_name, args.temperature, args.top_p, args.max_tokens)
+    handler = build_handler(model_name, args.temperature)
 
     if handler.model_style == ModelStyle.OSSMODEL:
-        results, processed_messages = handler.inference(
-            test_question=test_cases_total,
+        # batch_inference will handle the writing of results
+        handler.batch_inference(
+            test_entries=test_cases_total,
             num_gpus=args.num_gpus,
             gpu_memory_utilization=args.gpu_memory_utilization,
+            include_debugging_log=args.include_debugging_log,
         )
-        for test_case, result, processed_message in zip(test_cases_total, results, processed_messages):
-            result_to_write = {"id": test_case["id"], "result": result, "processed_message": processed_message}
-            handler.write(result_to_write)
 
     else:
         futures = []
@@ -188,9 +183,7 @@ def generate_results(args, model_name, test_cases_total):
             ) as pbar:
 
                 for test_case in test_cases_total:
-                    future = executor.submit(
-                        multi_threaded_inference, handler, test_case
-                    )
+                    future = executor.submit(multi_threaded_inference, handler, test_case, args.include_debugging_log)
                     futures.append(future)
 
                 for future in futures:
@@ -202,8 +195,7 @@ def generate_results(args, model_name, test_cases_total):
 
 if __name__ == "__main__":
     load_dotenv(dotenv_path="./.env", verbose=True, override=True)  # Load the .env file
-    assert os.getenv("USE_COHERE_OPTIMIZATION") in ["True", "False"], "USE_COHERE_OPTIMIZATION in .env must be set to True or False"
-    
+
     args = get_args()
 
     if type(args.model) is not list:
@@ -216,7 +208,10 @@ if __name__ == "__main__":
     print(f"Generating results for {args.model} on test category: {test_name_total}.")
 
     for model_name in args.model:
-        if os.getenv("USE_COHERE_OPTIMIZATION") == "True" and "command-r-plus" in model_name:
+        if (
+            os.getenv("USE_COHERE_OPTIMIZATION") == "True"
+            and "command-r-plus" in model_name
+        ):
             model_name = model_name + "-optimized"
 
         test_cases_total = collect_test_cases(test_filename_total, model_name)

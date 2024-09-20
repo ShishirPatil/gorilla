@@ -1,53 +1,25 @@
-import time, os
-from openai import OpenAI
-from bfcl.model_handler.base_handler import BaseHandler
+import os
+
+from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT
 from bfcl.model_handler.model_style import ModelStyle
-from bfcl.model_handler.utils import ast_parse
+from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from bfcl.model_handler.utils import (
+    ast_parse,
+    combine_consecutive_user_prompts,
     func_doc_language_specific_pre_processing,
     system_prompt_pre_processing_chat_model,
-    combine_consecutive_user_prompr,
 )
-from bfcl.model_handler.constant import (
-    DEFAULT_SYSTEM_PROMPT,
-)
+from openai import OpenAI
 
 
-class NvidiaHandler(BaseHandler):
-    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
-        super().__init__(model_name, temperature, top_p, max_tokens)
+class NvidiaHandler(OpenAIHandler):
+    def __init__(self, model_name, temperature) -> None:
+        super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OpenAI
         self.client = OpenAI(
             base_url="https://integrate.api.nvidia.com/v1",
             api_key=os.getenv("NVIDIA_API_KEY"),
         )
-
-    def inference(self, prompt, functions, test_category):
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
-        prompt = system_prompt_pre_processing_chat_model(prompt, DEFAULT_SYSTEM_PROMPT, functions)
-        
-        prompt = combine_consecutive_user_prompr(prompt)
-        message = prompt
-
-        start_time = time.time()
-        response = self.client.chat.completions.create(
-            messages=message,
-            model=self.model_name,
-            temperature=self.temperature,
-            max_tokens=self.max_tokens,
-            top_p=self.top_p,
-        )
-        latency = time.time() - start_time
-        result = response.choices[0].message.content
-        input_token = response.usage.prompt_tokens
-        output_token = response.usage.completion_tokens
-        metadata = {
-            "input_token_count": input_token,
-            "output_token_count": output_token,
-            "latency": latency,
-            "processed_message": message,
-        }
-        return result, metadata
 
     def decode_ast(self, result, language="Python"):
         result = result.replace("\n", "")
@@ -84,3 +56,22 @@ class NvidiaHandler(BaseHandler):
                     f"{key}({','.join([f'{k}={repr(v)}' for k, v in value.items()])})"
                 )
         return execution_list
+
+    #### Prompting methods ####
+
+    def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        functions: list = test_entry["function"]
+        test_category: str = test_entry["id"].rsplit("_", 1)[0]
+
+        functions = func_doc_language_specific_pre_processing(functions, test_category)
+
+        test_entry["question"][0] = system_prompt_pre_processing_chat_model(
+            test_entry["question"][0], DEFAULT_SYSTEM_PROMPT, functions
+        )
+
+        for round_idx in range(len(test_entry["question"])):
+            test_entry["question"][round_idx] = combine_consecutive_user_prompts(
+                test_entry["question"][round_idx]
+            )
+
+        return {"message": []}

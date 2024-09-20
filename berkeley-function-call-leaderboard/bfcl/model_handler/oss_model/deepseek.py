@@ -1,26 +1,45 @@
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
-from bfcl.model_handler.utils import ast_parse
-import re
+
 
 
 class DeepseekHandler(OSSHandler):
-    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
-        super().__init__(model_name, temperature, top_p, max_tokens)
+    def __init__(self, model_name, temperature) -> None:
+        super().__init__(model_name, temperature)
 
-    def decode_ast(self, result, language="Python"):
-        function_call = result.split("```")[1]
-        matches = re.findall(r"\[[^\]]*\]", function_call)
-        decoded_output = ast_parse(matches[0], language)
-        return decoded_output
+    @staticmethod
+    def _format_prompt(messages, function):
+        """
+        "bos_token": {
+            "__type": "AddedToken",
+            "content": "<｜begin▁of▁sentence｜>",
+            "lstrip": false,
+            "normalized": true,
+            "rstrip": false,
+            "single_word": false
+        }
+        "chat_template": "{% if not add_generation_prompt is defined %}\n{% set add_generation_prompt = false %}\n{% endif %}\n{%- set ns = namespace(found=false) -%}\n{%- for message in messages -%}\n    {%- if message['role'] == 'system' -%}\n        {%- set ns.found = true -%}\n    {%- endif -%}\n{%- endfor -%}\n{{bos_token}}{%- if not ns.found -%}\n{{'You are an AI programming assistant, utilizing the Deepseek Coder model, developed by Deepseek Company, and you only answer questions related to computer science. For politically sensitive questions, security and privacy issues, and other non-computer science questions, you will refuse to answer\\n'}}\n{%- endif %}\n{%- for message in messages %}\n    {%- if message['role'] == 'system' %}\n{{ message['content'] }}\n    {%- else %}\n        {%- if message['role'] == 'user' %}\n{{'### Instruction:\\n' + message['content'] + '\\n'}}\n        {%- else %}\n{{'### Response:\\n' + message['content'] + '\\n<|EOT|>\\n'}}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{% if add_generation_prompt %}\n{{'### Response:'}}\n{% endif %}"
+        """
 
-    def decode_execute(self, result):
-        function_call = result.split("```")[1]
-        matches = re.findall(r"\[[^\]]*\]", function_call)
-        decoded_output = ast_parse(matches[0])
-        execution_list = []
-        for function_call in decoded_output:
-            for key, value in function_call.items():
-                execution_list.append(
-                    f"{key}({','.join([f'{k}={repr(v)}' for k, v in value.items()])})"
-                )
-        return execution_list
+        formatted_prompt = "<｜begin▁of▁sentence｜>"
+
+        for message in messages:
+            formatted_prompt += "\n    "
+            if message["role"] == "system":
+                formatted_prompt += f"\n{message['content']}\n    "
+            else:
+                formatted_prompt += "\n        "
+                if message["role"] == "user":
+                    formatted_prompt += (
+                        f"\n### Instruction:\\n{message['content']}\\n\n        "
+                    )
+                else:
+                    formatted_prompt += (
+                        f"\n### Response:\\n{message['content']}\\n<|EOT|>\\n\n        "
+                    )
+                formatted_prompt += "\n    "
+            formatted_prompt += "\n"
+
+        formatted_prompt += "\n### Response:\n"
+
+        return formatted_prompt
+
