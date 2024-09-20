@@ -188,7 +188,7 @@ class ClaudeHandler(BaseHandler):
             "system_prompt": inference_data["system_prompt"],
         }
 
-        return self.client.messages.create(
+        api_response =  self.client.messages.create(
             model=self.model_name,
             max_tokens=(
                 8192 if "claude-3-5-sonnet-20240620" in self.model_name else 4096
@@ -197,6 +197,8 @@ class ClaudeHandler(BaseHandler):
             system=inference_data["system_prompt"],
             messages=inference_data["message"],
         )
+        
+        return api_response
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
@@ -222,7 +224,7 @@ class ClaudeHandler(BaseHandler):
     def _parse_query_response_prompting(self, api_response: any) -> dict:
         return {
             "model_responses": api_response.content[0].text,
-            "input_token": api_response.usage.prompt_tokens,
+            "input_token": api_response.usage.input_tokens,
             "output_token": api_response.usage.output_tokens,
         }
 
@@ -247,6 +249,7 @@ class ClaudeHandler(BaseHandler):
                 "content": model_response_data["model_responses"],
             }
         )
+        return inference_data
 
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
