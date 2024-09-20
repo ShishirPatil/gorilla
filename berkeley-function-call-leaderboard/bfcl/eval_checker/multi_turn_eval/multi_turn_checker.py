@@ -36,6 +36,11 @@ def multi_turn_checker(
                 "error_type": "multi_turn:empty_turn_model_response",
             }
 
+        # If the ground truth list is empty, this is the turn where the model should not output anything, so we skip the turn
+        # The actual check for irrelevance is done in the multi_turn_irrelevance_checker function
+        if not single_turn_ground_truth_list:
+            continue
+
         # Execute the ground truth function calls
         single_turn_ground_truth_execution_results, ground_truth_instances = (
             execute_multi_turn_func_call(
