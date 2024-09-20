@@ -1,15 +1,16 @@
 REAL_TIME_MATCH_ALLOWED_DIFFERENCE = 0.2
 
-REST_API_GROUND_TRUTH_FILE_PATH = "./executable_eval/data/api_status_check_ground_truth_REST.json"
-EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = "./executable_eval/data/api_status_check_ground_truth_executable.json"
+REST_API_GROUND_TRUTH_FILE_PATH = (
+    "./executable_eval/data/api_status_check_ground_truth_REST.json"
+)
+EXECTUABLE_API_GROUND_TRUTH_FILE_PATH = (
+    "./executable_eval/data/api_status_check_ground_truth_executable.json"
+)
 
 COLUMNS_NON_LIVE = [
     "Rank",
-    "Overall Acc",
     "Model",
-    "Model Link",
-    "Organization",
-    "License",
+    "Non_Live Overall Acc",
     "AST Summary",
     "Exec Summary",
     "Simple AST",
@@ -26,20 +27,13 @@ COLUMNS_NON_LIVE = [
     "Parallel Exec",
     "Parallel Multiple Exec",
     "Irrelevance Detection",
-    "Cost ($ Per 1k Function Calls)",
-    "Latency Mean (s)",
-    "Latency Standard Deviation (s)",
-    "Latency 95th Percentile (s)",
 ]
 
 
 COLUMNS_LIVE = [
     "Rank",
-    "Overall Acc",
     "Model",
-    "Model Link",
-    "Organization",
-    "License",
+    "Live Overall Acc",
     "AST Summary",
     "Python Simple AST",
     "Python Multiple AST",
@@ -47,37 +41,59 @@ COLUMNS_LIVE = [
     "Python Parallel Multiple AST",
     "Irrelevance Detection",
     "Relevance Detection",
-    "Cost ($ Per 1k Function Calls)",
-    "Latency Mean (s)",
-    "Latency Standard Deviation (s)",
-    "Latency 95th Percentile (s)",
 ]
 
 
-COLUMNS_COMBINED = [
+COLUMNS_MULTI_TURN = [
+    "Rank",
+    "Model",
+    "Multi Turn Overall Acc",
+    "Base",
+    "Miss Func",
+    "Miss Param",
+    "Long Context",
+    "Composite",
+]
+
+
+COLUMNS_OVERALL = [
     "Rank",
     "Overall Acc",
     "Model",
     "Model Link",
-    "Organization",
-    "License",
-    "AST Summary",
-    "Exec Summary",
-    "Simple AST",
-    "Multiple AST",
-    "Parallel AST",
-    "Parallel Multiple AST",
-    "Simple Exec",
-    "Multiple Exec",
-    "Parallel Exec",
-    "Parallel Multiple Exec",
+    "Single Turn Acc",
+    "Multi Turn Acc",
+    "Non-Live Acc",
+    "Live Acc",
+    "Non-Live AST Summary",
+    "Non-Live Exec Summary",
+    "Non-Live Simple AST",
+    "Non-Live Multiple AST",
+    "Non-Live Parallel AST",
+    "Non-Live Parallel Multiple AST",
+    "Non-Live Simple Exec",
+    "Non-Live Multiple Exec",
+    "Non-Live Parallel Exec",
+    "Non-Live Parallel Multiple Exec",
+    "Live Simple AST",
+    "Live Multiple AST",
+    "Live Parallel AST",
+    "Live Parallel Multiple AST",
+    "Multi Turn Base",
+    "Multi Turn Miss Func",
+    "Multi Turn Miss Param",
+    "Multi Turn Long Context",
+    "Multi Turn Composite",
     "Irrelevance Detection",
     "Relevance Detection",
     "Cost ($ Per 1k Function Calls)",
     "Latency Mean (s)",
     "Latency Standard Deviation (s)",
     "Latency 95th Percentile (s)",
+    "Organization",
+    "License",
 ]
+
 
 # Price got from AZure, 22.032 per hour for 8 V100, Pay As You Go Total Price
 # Reference: https://azure.microsoft.com/en-us/pricing/details/machine-learning/

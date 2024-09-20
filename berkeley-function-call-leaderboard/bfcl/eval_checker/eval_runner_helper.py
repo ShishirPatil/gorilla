@@ -291,6 +291,16 @@ def record_result(leaderboard_table, model_name, test_category, accuracy, total_
 
 
 def record_cost_latency(leaderboard_table, model_name, model_output_data):
+    def process_data(key, data, output_list):
+        # All entries are either a list of list (in multi-turn), or a single value (in single-turn)
+        if key in data:
+            if isinstance(data[key], list) and all(isinstance(inner_item, list) for inner_item in data[key]):
+                flattened_list = sum(data[key], [])
+                output_list.extend([item for item in flattened_list if item != 0])
+            else:
+                if data[key] != 0:
+                    output_list.append(data[key])
+                
     if model_name not in leaderboard_table:
         leaderboard_table[model_name] = {}
         leaderboard_table[model_name]["cost"] = {"input_data": [], "output_data": []}
@@ -300,20 +310,10 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
     output_token = []
     latency = []
     for data in model_output_data:
-        if "latency" in data:
-            latency.append(data["latency"])
-            if data["latency"] > 60:
-                print("*" * 100)
-                print(
-                    f"❗️Warning: Latency for one of {model_name} response is {data['latency']}."
-                )
-                print("*" * 100)
-        if "input_token_count" in data:
-            if data["input_token_count"] != 0:
-                input_token.append(data["input_token_count"])
-        if "output_token_count" in data:
-            if data["output_token_count"] != 0:
-                output_token.append(data["output_token_count"])
+        for data in model_output_data:
+            process_data("latency", data, latency)
+            process_data("input_token_count", data, input_token)
+            process_data("output_token_count", data, output_token)
 
     leaderboard_table[model_name]["cost"]["input_data"].extend(input_token)
     leaderboard_table[model_name]["cost"]["output_data"].extend(output_token)
@@ -321,7 +321,7 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
 
 
 def get_cost_letency_info(model_name, cost_data, latency_data):
-
+    # TODO: Update the cost and latency calculation since some models cannot be evaluated using v100 and also there are more entries.
     cost, mean_latency, std_latency, percentile_95_latency = "N/A", "N/A", "N/A", "N/A"
 
     if (
@@ -365,13 +365,14 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
 
     return cost, mean_latency, std_latency, percentile_95_latency
 
-
+# TODO: Refactor this function to reduce code duplication
 def generate_leaderboard_csv(
     leaderboard_table, output_path, eval_models=None, eval_categories=None
 ):
     print("📈 Aggregating data to generate leaderboard score table...")
     data_non_live = []
     data_live = []
+    data_multi_turn = []
     data_combined = []
     for model_name, value in leaderboard_table.items():
         model_name_escaped = model_name.replace("_", "/")
@@ -448,11 +449,8 @@ def generate_leaderboard_csv(
         data_non_live.append(
             [
                 "N/A",
-                overall_accuracy_non_live["accuracy"],
                 MODEL_METADATA_MAPPING[model_name_escaped][0],
-                MODEL_METADATA_MAPPING[model_name_escaped][1],
-                MODEL_METADATA_MAPPING[model_name_escaped][2],
-                MODEL_METADATA_MAPPING[model_name_escaped][3],
+                overall_accuracy_non_live["accuracy"],
                 summary_ast_non_live["accuracy"],
                 summary_exec_non_live["accuracy"],
                 simple_ast_non_live["accuracy"],
@@ -469,10 +467,6 @@ def generate_leaderboard_csv(
                 parallel_exec_non_live["accuracy"],
                 parallel_multiple_exec_non_live["accuracy"],
                 irrelevance_non_live["accuracy"],
-                cost,
-                latency_mean,
-                latency_std,
-                percentile_95_latency,
             ]
         )
         
@@ -513,15 +507,11 @@ def generate_leaderboard_csv(
             ]
         )
         
-
         data_live.append(
             [
                 "N/A",
-                overall_accuracy_live["accuracy"],
                 MODEL_METADATA_MAPPING[model_name_escaped][0],
-                MODEL_METADATA_MAPPING[model_name_escaped][1],
-                MODEL_METADATA_MAPPING[model_name_escaped][2],
-                MODEL_METADATA_MAPPING[model_name_escaped][3],
+                overall_accuracy_live["accuracy"],
                 summary_ast_live["accuracy"],
                 python_simple_ast_live["accuracy"],
                 python_multiple_ast_live["accuracy"],
@@ -529,51 +519,56 @@ def generate_leaderboard_csv(
                 python_parallel_multiple_ast_live["accuracy"],
                 irrelevance_live["accuracy"],
                 relevance_live["accuracy"],
-                cost,
-                latency_mean,
-                latency_std,
-                percentile_95_latency,
+            ]
+        )
+        
+        # Multi-Turn Score
+        multi_turn_base = value.get("multi_turn_base", {"accuracy": 0, "total_count": 0})
+        multi_turn_miss_func = value.get(
+            "multi_turn_miss_func", {"accuracy": 0, "total_count": 0}
+        )
+        multi_turn_miss_param = value.get(
+            "multi_turn_miss_param", {"accuracy": 0, "total_count": 0}
+        )
+        multi_turn_long_context = value.get(
+            "multi_turn_long_context", {"accuracy": 0, "total_count": 0}
+        )
+        multi_turn_composite = value.get(
+            "multi_turn_composite", {"accuracy": 0, "total_count": 0}
+        )
+        overall_accuracy_multi_turn = calculate_unweighted_accuracy(
+            [
+                multi_turn_base,
+                multi_turn_miss_func,
+                multi_turn_miss_param,
+                multi_turn_long_context,
+                # multi_turn_composite,  # Composite is currently not included in the leaderboard, because it takes too long to evaluate
+            ]
+        )
+
+        data_multi_turn.append(
+            [
+                "N/A",
+                MODEL_METADATA_MAPPING[model_name_escaped][0],
+                overall_accuracy_multi_turn["accuracy"],
+                multi_turn_base["accuracy"],
+                multi_turn_miss_func["accuracy"],
+                multi_turn_miss_param["accuracy"],
+                multi_turn_long_context["accuracy"],
+                # multi_turn_composite["accuracy"],
             ]
         )
         
         # Total Score
-        total_simple_ast = calculate_unweighted_accuracy(
-            [simple_ast_non_live, python_simple_ast_live]
-        )
-        total_multiple_ast = calculate_unweighted_accuracy(
-            [multiple_ast_non_live, python_multiple_ast_live]
-        )
-        total_parallel_ast = calculate_unweighted_accuracy(
-            [parallel_ast_non_live, python_parallel_ast_live]
-        )
-        total_parallel_multiple_ast = calculate_unweighted_accuracy(
-            [parallel_multiple_ast_non_live, python_parallel_multiple_ast_live]
-        )
-        total_simple_exec = simple_exec_non_live
-        total_multiple_exec = multiple_exec_non_live
-        total_parallel_exec = parallel_exec_non_live
-        total_parallel_multiple_exec = parallel_multiple_exec_non_live
+        single_turn_ast = calculate_unweighted_accuracy([overall_accuracy_live, overall_accuracy_non_live])
         total_irrelevance = calculate_unweighted_accuracy([irrelevance_non_live, irrelevance_live])
         total_relevance = relevance_live
         
-        total_summary_ast = calculate_unweighted_accuracy(
-            [total_simple_ast, total_multiple_ast, total_parallel_ast, total_parallel_multiple_ast]
-        )
-        total_summary_exec = calculate_unweighted_accuracy(
-            [total_simple_exec, total_multiple_exec, total_parallel_exec, total_parallel_multiple_exec]
-        )
         total_overall_accuracy = calculate_unweighted_accuracy(
             [
-                total_simple_ast,
-                total_multiple_ast,
-                total_parallel_ast,
-                total_parallel_multiple_ast,
-                total_simple_exec,
-                total_multiple_exec,
-                total_parallel_exec,
-                total_parallel_multiple_exec,
-                total_irrelevance,
-                total_relevance,
+                overall_accuracy_live,
+                overall_accuracy_non_live,
+                overall_accuracy_multi_turn,
             ]
         )
 
@@ -583,36 +578,47 @@ def generate_leaderboard_csv(
                 total_overall_accuracy["accuracy"],
                 MODEL_METADATA_MAPPING[model_name_escaped][0],
                 MODEL_METADATA_MAPPING[model_name_escaped][1],
-                MODEL_METADATA_MAPPING[model_name_escaped][2],
-                MODEL_METADATA_MAPPING[model_name_escaped][3],
-                total_summary_ast["accuracy"],
-                total_summary_exec["accuracy"],
-                total_simple_ast["accuracy"],
-                total_multiple_ast["accuracy"],
-                total_parallel_ast["accuracy"],
-                total_parallel_multiple_ast["accuracy"],
-                total_simple_exec["accuracy"],
-                total_multiple_exec["accuracy"],
-                total_parallel_exec["accuracy"],
-                total_parallel_multiple_exec["accuracy"],
+                single_turn_ast["accuracy"],
+                overall_accuracy_multi_turn["accuracy"],
+                overall_accuracy_non_live["accuracy"],
+                overall_accuracy_live["accuracy"],
+                summary_ast_non_live["accuracy"],
+                summary_exec_non_live["accuracy"],
+                simple_ast_non_live["accuracy"],
+                multiple_ast_non_live["accuracy"],
+                parallel_ast_non_live["accuracy"],
+                parallel_multiple_ast_non_live["accuracy"],
+                simple_exec_non_live["accuracy"],
+                multiple_exec_non_live["accuracy"],
+                parallel_exec_non_live["accuracy"],
+                parallel_multiple_exec_non_live["accuracy"],
+                python_simple_ast_live["accuracy"],
+                python_multiple_ast_live["accuracy"],
+                python_parallel_ast_live["accuracy"],
+                python_parallel_multiple_ast_live["accuracy"],
+                multi_turn_base["accuracy"],
+                multi_turn_miss_func["accuracy"],
+                multi_turn_miss_param["accuracy"],
+                multi_turn_long_context["accuracy"],
+                'N/A',  # No composite score for now
+                # multi_turn_composite["accuracy"],
                 total_irrelevance["accuracy"],
                 total_relevance["accuracy"],
                 cost,
                 latency_mean,
                 latency_std,
                 percentile_95_latency,
+                MODEL_METADATA_MAPPING[model_name_escaped][2],
+                MODEL_METADATA_MAPPING[model_name_escaped][3],
             ]
         )
         
-    # Write V1 Score File
+    # Write Non-Live Score File
     data_non_live.sort(key=lambda x: x[1], reverse=True)
     for i in range(len(data_non_live)):
         data_non_live[i][0] = str(i + 1)
-        data_non_live[i][1] = "{:.2f}%".format(data_non_live[i][1] * 100)
-        for j in range(6, len(data_non_live[i]) - 4):
+        for j in range(2, len(data_non_live[i])):
             data_non_live[i][j] = "{:.2f}%".format(data_non_live[i][j] * 100)
-        for j in range(len(data_non_live[i]) - 4, len(data_non_live[i])):
-            data_non_live[i][j] = str(data_non_live[i][j])
 
     data_non_live.insert(0, COLUMNS_NON_LIVE)
 
@@ -624,15 +630,12 @@ def generate_leaderboard_csv(
             else:
                 f.write(",".join(row))
     
-    # Write V2 Score File
+    # Write Live Score File
     data_live.sort(key=lambda x: x[1], reverse=True)
     for i in range(len(data_live)):
         data_live[i][0] = str(i + 1)
-        data_live[i][1] = "{:.2f}%".format(data_live[i][1] * 100)
-        for j in range(6, len(data_live[i]) - 4):
+        for j in range(2, len(data_live[i])):
             data_live[i][j] = "{:.2f}%".format(data_live[i][j] * 100)
-        for j in range(len(data_live[i]) - 4, len(data_live[i])):
-            data_live[i][j] = str(data_live[i][j])
 
     data_live.insert(0, COLUMNS_LIVE)
 
@@ -649,27 +652,29 @@ def generate_leaderboard_csv(
     for i in range(len(data_combined)):
         data_combined[i][0] = str(i + 1)
         data_combined[i][1] = "{:.2f}%".format(data_combined[i][1] * 100)
-        for j in range(6, len(data_combined[i]) - 4):
-            data_combined[i][j] = "{:.2f}%".format(data_combined[i][j] * 100)
-        for j in range(len(data_combined[i]) - 4, len(data_combined[i])):
+        for j in range(4, len(data_combined[i]) - 2):
+            # TODO: Remove this after composite is added
+            data_combined[i][j] = "{:.2f}%".format(data_combined[i][j] * 100) if data_combined[i][j] != 'N/A' else 'N/A'
+        for j in range(len(data_combined[i]) - 2, len(data_combined[i])):
             data_combined[i][j] = str(data_combined[i][j])
 
-    data_combined.insert(0, COLUMNS_COMBINED)
+    data_combined.insert(0, COLUMNS_OVERALL)
 
-    filepath = os.path.join(output_path, "data_combined.csv")
+    filepath = os.path.join(output_path, "data_overall.csv")
     with open(filepath, "w") as f:
         for i, row in enumerate(data_combined):
             if i < len(data_combined) - 1:
                 f.write(",".join(row) + "\n")
             else:
                 f.write(",".join(row))
-                
+
+    # TODO: Update and optimize the logic
     # Check if all categories are present and evaluated for all models
-    if eval_models:
-        category_status = check_model_category_status(score_path=output_path)
-        check_all_category_present(
-            category_status, eval_models=eval_models, eval_categories=eval_categories
-        )
+    # if eval_models:
+    #     category_status = check_model_category_status(score_path=output_path)
+    #     check_all_category_present(
+    #         category_status, eval_models=eval_models, eval_categories=eval_categories
+    #     )
 
 
 def check_model_category_status(score_path):

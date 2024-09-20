@@ -571,7 +571,7 @@ def runner(model_names, test_categories, api_sanity_check):
     )
 
     print(
-        f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data_combined.csv')} for evaluation results on BFCL V2."
+        f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data_overall.csv')} for evaluation results on BFCL V2."
     )
     print(
         f"See {os.path.abspath(OUTPUT_PATH + 'data_live.csv')} and {os.path.abspath(OUTPUT_PATH + 'data_non_live.csv')} for evaluation results on BFCL V2 Live and Non-Live categories respectively."

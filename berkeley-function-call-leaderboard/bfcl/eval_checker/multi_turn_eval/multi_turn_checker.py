@@ -29,7 +29,7 @@ def multi_turn_checker(
         multi_turn_ground_truth_list
     ):
         single_turn_model_response_list = multi_turn_model_result_list_decoded[turn_index]
-        if not single_turn_model_response_list:
+        if single_turn_ground_truth_list and not single_turn_model_response_list:
             return {
                 "valid": False,
                 "error": f"Model response list is empty for turn {turn_index}",

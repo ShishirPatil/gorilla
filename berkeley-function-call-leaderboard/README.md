@@ -279,7 +279,7 @@ Some companies have proposed some optimization strategies in their models' handl
 ## Changelog
 
 * [Sept 19, 2024] [#644](https://github.com/ShishirPatil/gorilla/pull/644): BFCL V3 release:
-  * Add multi-turn dataset
+  * Introduce new multi-turn dataset and state-based evaluation metric
   * Switch to use vllm serve for OSS model inference
   * Separate ast_checker and executable_checker for readability
   * Several outdated or deprecated models will be excluded from the leaderboard and replaced with their updated successors to improve the leaderboard's overall maintainability.
