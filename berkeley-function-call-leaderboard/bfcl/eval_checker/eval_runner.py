@@ -456,8 +456,7 @@ def runner(model_names, test_categories, api_sanity_check):
             print(f"🔍 Running test: {test_category}")
 
             model_result = load_file(model_result_json)
-            # FIXME: Support new format
-            # record_cost_latency(LEADERBOARD_TABLE, model_name, model_result)
+            record_cost_latency(LEADERBOARD_TABLE, model_name, model_result)
 
             # Find the corresponding test file
             prompt_file = find_file_with_suffix(PROMPT_PATH, test_category)

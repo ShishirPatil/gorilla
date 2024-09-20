@@ -300,7 +300,7 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
             else:
                 if data[key] != 0:
                     output_list.append(data[key])
-                
+
     if model_name not in leaderboard_table:
         leaderboard_table[model_name] = {}
         leaderboard_table[model_name]["cost"] = {"input_data": [], "output_data": []}
@@ -578,36 +578,34 @@ def generate_leaderboard_csv(
                 total_overall_accuracy["accuracy"],
                 MODEL_METADATA_MAPPING[model_name_escaped][0],
                 MODEL_METADATA_MAPPING[model_name_escaped][1],
-                single_turn_ast["accuracy"],
-                overall_accuracy_multi_turn["accuracy"],
-                overall_accuracy_non_live["accuracy"],
-                overall_accuracy_live["accuracy"],
+                cost,
+                latency_mean,
+                latency_std,
+                percentile_95_latency,
                 summary_ast_non_live["accuracy"],
-                summary_exec_non_live["accuracy"],
                 simple_ast_non_live["accuracy"],
                 multiple_ast_non_live["accuracy"],
                 parallel_ast_non_live["accuracy"],
                 parallel_multiple_ast_non_live["accuracy"],
+                summary_exec_non_live["accuracy"],
                 simple_exec_non_live["accuracy"],
                 multiple_exec_non_live["accuracy"],
                 parallel_exec_non_live["accuracy"],
                 parallel_multiple_exec_non_live["accuracy"],
+                overall_accuracy_live["accuracy"],
                 python_simple_ast_live["accuracy"],
                 python_multiple_ast_live["accuracy"],
                 python_parallel_ast_live["accuracy"],
                 python_parallel_multiple_ast_live["accuracy"],
+                overall_accuracy_multi_turn["accuracy"],
                 multi_turn_base["accuracy"],
                 multi_turn_miss_func["accuracy"],
                 multi_turn_miss_param["accuracy"],
                 multi_turn_long_context["accuracy"],
                 'N/A',  # No composite score for now
                 # multi_turn_composite["accuracy"],
-                total_irrelevance["accuracy"],
                 total_relevance["accuracy"],
-                cost,
-                latency_mean,
-                latency_std,
-                percentile_95_latency,
+                total_irrelevance["accuracy"],
                 MODEL_METADATA_MAPPING[model_name_escaped][2],
                 MODEL_METADATA_MAPPING[model_name_escaped][3],
             ]
@@ -652,7 +650,9 @@ def generate_leaderboard_csv(
     for i in range(len(data_combined)):
         data_combined[i][0] = str(i + 1)
         data_combined[i][1] = "{:.2f}%".format(data_combined[i][1] * 100)
-        for j in range(4, len(data_combined[i]) - 2):
+        for j in range(4, 8):
+            data_combined[i][j] = str(data_combined[i][j])
+        for j in range(8, len(data_combined[i]) - 2):
             # TODO: Remove this after composite is added
             data_combined[i][j] = "{:.2f}%".format(data_combined[i][j] * 100) if data_combined[i][j] != 'N/A' else 'N/A'
         for j in range(len(data_combined[i]) - 2, len(data_combined[i])):
