@@ -190,9 +190,10 @@ class ClaudeHandler(BaseHandler):
 
         return self.client.messages.create(
             model=self.model_name,
-            max_tokens=self.max_tokens,
+            max_tokens=(
+                8192 if "claude-3-5-sonnet-20240620" in self.model_name else 4096
+            ),  # 3.5 Sonnet has a higher max token limit
             temperature=self.temperature,
-            top_p=self.top_p,
             system=inference_data["system_prompt"],
             messages=inference_data["message"],
         )
