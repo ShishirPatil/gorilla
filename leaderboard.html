@@ -39,6 +39,10 @@
     <link rel="stylesheet" href="assets/css/treemap.css" />
     <link rel="stylesheet" href="assets/css/contact.css" />
     <link rel="stylesheet" href="assets/css/styles.css" />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     
     <title>
         Berkeley Function Calling Leaderboard V2 (aka Berkeley Tool Calling Leaderboard V2)
@@ -105,52 +109,10 @@
                                 Log]</a></i></b></span>
             </div>
             <div style="margin-bottom: 15px;">
-                <button id="expand-btn" onclick="toggleExpand()">Expand/Collapse Table</button>
-                <button id="v2-btn" onclick="window.location.href='leaderboard_live.html'">See Only Live Category</button>            
             </div>
             <div class="table-container">
                 <table id="leaderboard-table">
-                    <thead>
-                        <tr>
-                            <th class="detail-header sticky-top-column" colspan="3"></th>
-                            <th class="detail-header" colspan="1"></th>
-                            <th class="detail-header" colspan="3">Latency (s)</th>
-                            <th class="detail-header" colspan="4">
-                                Abstract Syntax Tree (AST) Evaluation
-                            </th>
-                            <th class="detail-header" colspan="4">
-                                Evaluation by Executing APIs
-                            </th>
-                            <th class="detail-header" colspan="2">Irrelevance Detection</th>
-                            <th class="detail-header" colspan="2"></th>
-                        </tr>
-                        <tr>
-                            <th id="rank-col" class="sticky-second-column">Rank</th>
-                            <th class="sticky-second-column">Overall Acc</th>
-                            <th class="sticky-second-column">Model</th>
-                            <th class="summary-small-header">Cost ($)</th>
-                            <th class="summary-small-header">Average Latency (s)</th>
-                            <th class="summary-small-header">AST Summary</th>
-                            <th class="summary-small-header">Exec Summary</th>
-                            <th class="summary-small-header">Irrelevance</th>
-                            <th class="summary-small-header">Relevance</th>
-                            <th class="detail-small-header">Cost ($)</th>
-                            <th class="detail-small-header">Mean</th>
-                            <th class="detail-small-header">SD</th>
-                            <th class="detail-small-header">P95</th>
-                            <th class="detail-small-header">Simple</th>
-                            <th class="detail-small-header">Multiple</th>
-                            <th class="detail-small-header">Parallel</th>
-                            <th class="detail-small-header">Parallel</th>
-                            <th class="detail-small-header">Simple</th>
-                            <th class="detail-small-header">Multiple</th>
-                            <th class="detail-small-header">Parallel</th>
-                            <th class="detail-small-header">Parallel</th>
-                            <th class="detail-small-header">Irrelevance</th>
-                            <th class="detail-small-header">Relevance</th>
-                            <th>Organization</th>
-                            <th>License</th>
-                        </tr>
+                    <thead id="leaderboard-head">
                     </thead>
                     <tbody></tbody>
                 </table>
@@ -198,7 +160,7 @@
                         <button id="clear-all-btn" class="btn btn-primary" type="button" >Clear All</button> <!-- Clear All Button -->
                     </div>
                     <div id="dataset-dropdown" class="ui fluid multiple search selection dropdown">
-                        <input type="hidden" name="datasets">
+                        <input id="search-dropdown" type="hidden" name="datasets">
                         <i class="dropdown icon"></i>
                         <div class="default text">Search models...</div>
                         <div class="menu"></div>
