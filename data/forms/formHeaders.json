@@ -60,7 +60,7 @@
                     { "content": "Miss Func", "class": "column-header multiturn-sub-header" },
                     { "content": "Miss Param", "class": "column-header multiturn-sub-header" },
                     { "content": "Long Context", "class": "column-header multiturn-sub-header" },
-                    { "content": "Combined", "class": "column-header multiturn-sub-header" },
+                    { "content": "Composite", "class": "column-header multiturn-sub-header" },
         
                     { "content": "Relevance", "class": "column-header" },
                     { "content": "Irrelevance", "class": "column-header" },
