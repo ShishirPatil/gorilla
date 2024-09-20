@@ -359,17 +359,313 @@ PROMPTS = [
     "I'm planning a series of long weekend getaways for the upcoming year and I need to know when they'll occur in my country. Could you fetch me the list of long weekends for Canada in the year 2023? I'd like to integrate this information into my holiday planning app.",
 ];
 
-const csvFilePath = "./data_combined.csv";
+// Fetch the header JSON data from the external file
+async function fetchHeaderData() {
+    try {
+        const response = await fetch('./data/forms/formHeaders.json'); // Replace with the path to your JSON file
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('There was a problem fetching the header data:', error);
+    }
+}
 
-fetch(csvFilePath)
-    .then((response) => response.text())
-    .then((csvText) => {
-        const leaderboard_data = parseCSV_leaderboard(csvText);
-        addToTable(leaderboard_data);
-    })
-    .catch((error) => console.error(error));
+// Function to build the table header dynamically
+function buildHeader(formKey, headerData) {
+    const tableHead = document.getElementById('leaderboard-head');
+    const form = headerData.forms[formKey];
+    form.rows.forEach(row => {
+        const tr = document.createElement('tr');
+        row.columns.forEach(col => {
+            const th = document.createElement('th');
+            if (col.class) th.className = col.class;
+            if (col.colspan) th.colSpan = col.colspan;
+            if (col.id) th.id = col.id;
+            th.textContent = col.content;
 
-function parseCSV_leaderboard(text) {
+            if (col.canExpand) {
+                const button = document.createElement('button');
+                button.className = 'toggle-button';
+                button.setAttribute('data-target', col.id);
+                button.setAttribute('data-expanded', 'true');
+                // Add Font Awesome left arrow for collapse by default
+                button.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                th.appendChild(button);
+            }
+
+            tr.appendChild(th);
+        });
+        tableHead.appendChild(tr);
+    });
+}
+
+// Load the table header once the JSON data is fetched
+async function init(datasetName) {
+
+    const csvFilePath = `./data_${datasetName}.csv`;
+
+    const headerData = await fetchHeaderData();
+    if (headerData) {
+        buildHeader(datasetName, headerData); // Build the header for form1
+    }
+    fetch(csvFilePath)
+        .then((response) => response.text())
+        .then((csvText) => {
+            const leaderboard_data = parseCSV_leaderboard(csvText, datasetName);
+            addToTable(leaderboard_data);
+            document.querySelectorAll('.toggle-button').forEach(button =>
+                {
+                    button.click()
+                }
+            )
+            document.getElementById("rank-col").click(); // Sort by rank by default
+        })
+        .catch((error) => console.error(error));
+    fetch(csvFilePath)
+        .then((response) => response.text())
+        .then((csvText) => {
+            const chart_data = parseCSV_chart(csvText, datasetName);
+            generateChart(chart_data);
+        })
+        .catch((error) => console.error(error));
+    
+    document.getElementById("example-btn-1").addEventListener("click", function () {
+        populateInput(0);
+    });
+    document.getElementById("example-btn-2").addEventListener("click", function () {
+        populateInput(1);
+    });
+    document.getElementById("example-btn-3").addEventListener("click", function () {
+        populateInput(2);
+    });
+
+    document
+        .getElementById("submit-btn")
+        .addEventListener("click", async function () {
+            var inputText = document.getElementById("input-text").value;
+            var inputFunction = document.getElementById("input-function").value; // Assuming you have an input field with this id for the function
+            var temperatureValue = document.getElementById("temperatureSlider").value;
+            var model = document.getElementById("model-dropdown").value;
+
+            if (inputText === "" || inputFunction === "") {
+                alert("Please provide input and function definition.");
+                return;
+            }
+
+            document.getElementById("code-output").innerText =
+                "Loading Model Response...";
+            document.getElementById("json-output").innerText =
+                "Loading Model Response...";
+
+            const requestData = {
+                model: model,
+                messages: [{ role: "user", content: inputText }],
+                functions: [inputFunction],
+                temperature: parseFloat(temperatureValue),
+            };
+
+            const response = await fetch(
+                "https://luigi.millennium.berkeley.edu:443/v1/chat/completions",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: "EMPTY",
+                    },
+                    body: JSON.stringify(requestData),
+                }
+            );
+
+            if (!response.ok) {
+                document.getElementById("code-output").innerText =
+                    "Error: " + response.status;
+                return;
+            }
+
+            const jsonResponse = await response.json();
+
+            if (model === "gorilla-openfunctions-v2") {
+                directCode = jsonResponse.choices[0].message.content;
+                jsonCode = jsonResponse.choices[0].message.function_call;
+                document.getElementById("code-output").innerText = directCode;
+                if (jsonCode) {
+                    jsonCode = JSON.stringify(jsonCode, null, 2); // Pretty print the JSON
+                    document.getElementById("json-output").innerText = jsonCode;
+                } else {
+                    document.getElementById("json-output").innerText =
+                        "Error parsing JSON output.";
+                }
+            } else {
+                jsonCode = jsonResponse.choices[0].message.function_call;
+                jsonCode = JSON.stringify(jsonResponse, null, 2); // Pretty print the JSON
+                document.getElementById("json-output").innerText = jsonCode;
+                document.getElementById("code-output").innerText =
+                    "Model does not support direct code output.";
+            }
+
+            // const executeButton = document.getElementById('exec-btn');
+            // executeButton.style.display = 'block'; // Ensure the button is visible after receiving a response
+            // executeButton.addEventListener('click', function () {
+            //     window.open("https://star-history.com/#ShishirPatil/gorilla&gorilla-llm/gorilla-cli")
+            // });
+            document.getElementById("thumbs-up-btn").style.display = "block";
+            document.getElementById("thumbs-down-btn").style.display = "block";
+            document.getElementById("report-issue-btn").style.display = "block";
+        });
+
+    document
+        .getElementById("report-issue-btn")
+        .addEventListener("click", function () {
+            var inputText = document.getElementById("input-text").value;
+            var funcDef = document.getElementById("input-function").value;
+            var temperatureValue = document.getElementById("temperatureSlider").value;
+            var model = document.getElementById("model-dropdown").value;
+            var codeOutputText = document.getElementById("code-output").innerText;
+            var jsonOutputText = document.getElementById("json-output").innerText;
+            if (inputText === "" || funcDef === "") {
+                alert("Please provide input and function definition to send feedback.");
+                return;
+            }
+            var issueTitle = "[bug] OpenFunctions-v2: ";
+            var issueBody = `**Issue Description**%0A%0APrompt: ${inputText}%0A%0AModel: ${model}%0A%0ATemperature: ${temperatureValue}%0A%0AOutput (or Error if request failed): %0A%0A ${codeOutputText} %0A%0A ${jsonOutputText}%0A%0A**Additional Information**\n`;
+            window.open(
+                `https://github.com/ShishirPatil/gorilla/issues/new?assignees=&labels=hosted-openfunctions-v2&projects=&template=hosted-openfunctions-v2.md&title=${issueTitle}&body=${issueBody}`,
+                "_blank"
+            );
+        });
+
+    document.querySelectorAll("th.column-header").forEach(function (header, index) {
+
+        var sortIndicator = document.createElement("span");
+        header.appendChild(sortIndicator);
+
+        header.addEventListener("click", function () {
+            var table = header.closest("table");
+            var tbody = table.querySelector("tbody");
+            var columnIndex = Array.from(header.parentNode.children).indexOf(header);
+            var isAscending = (header.asc = !header.asc);
+
+            sortIndicator.textContent = isAscending ? " 🔼" : " 🔽";
+
+            document.querySelectorAll("th span").forEach(function (otherIndicator) {
+                if (otherIndicator !== sortIndicator) {
+                    otherIndicator.textContent = ""; // Clear other indicators
+                }
+            });
+
+            var rowsArray = Array.from(tbody.querySelectorAll("tr"));
+            rowsArray
+                .sort(createComparer(columnIndex, isAscending))
+                .forEach(function (row) {
+                    tbody.appendChild(row);
+                });
+            
+            updateStickyColumnsLeft()
+        });
+    });
+
+    // Add Expand/Collapse Event Click Listener to All Expandable Buttons
+    document.querySelectorAll('.toggle-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const target = button.getAttribute('data-target');
+            const isExpanded = button.getAttribute('data-expanded') === 'true';
+            
+            // Get the target subheaders and the main header
+            const subHeaderRows = document.getElementsByClassName(`${target}-sub-header`);
+            const mainHeaders = document.getElementsByClassName(`${target}-header`);
+            
+            // Ensure there are elements found
+            if (mainHeaders.length === 0 || subHeaderRows.length === 0) {
+                console.error('No elements found for target:', target);
+                return;
+            }
+
+            // Access the first element from the collections
+            const mainHeader = mainHeaders[0];
+            
+            if (isExpanded) {
+                // Collapse: Reduce colspan and hide subheaders
+                mainHeader.setAttribute('colspan', 1);
+
+                // Select all sub headers
+                const allSubheaders = document.querySelectorAll(`.${target}-sub-header`);
+                
+                // Select all sub cells
+                const allSubCells = document.querySelectorAll(`.${target}-sub-cell`);
+                
+                // Combine the NodeLists into a single array
+                const allElements = [...allSubheaders, ...allSubCells];
+                
+                // Set display to 'none' for each element
+                allElements.forEach(element => {
+                    if (!element.className.includes("stay")) {
+                        element.style.display = 'none';
+                    }
+                });
+
+                const topHeader = document.querySelectorAll(`.${target}-top-header`)[0];
+
+                // Get the current colspan value (returns a string, so we need to convert it to a number)
+                let currentColspan = parseInt(topHeader.getAttribute('colspan'));
+                
+                // Modify the colspan by adding or subtracting the change value
+                const newColspan = currentColspan - (allSubheaders.length - 1);
+                
+                // Ensure the colspan is not less than 1 (colspan cannot be zero or negative)
+                topHeader.setAttribute('colspan', Math.max(1, newColspan));
+
+                // Collapse: change icon to right arrow
+                button.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            } else {
+                // Expand: Set colspan and show subheaders
+                const originalColspan = subHeaderRows.length;
+                mainHeader.setAttribute('colspan', originalColspan);
+                
+
+                // Select all sub headers
+                const allSubheaders = document.querySelectorAll(`.${target}-sub-header`);
+                
+                // Select all sub cells
+                const allSubCells = document.querySelectorAll(`.${target}-sub-cell`);
+                
+                // Combine the NodeLists into a single array
+                const allElements = [...allSubheaders, ...allSubCells];
+                
+                // Set display to 'true' for each element
+                allElements.forEach(element => {
+                    element.style.display = '';
+                });
+
+
+                const topHeader = document.querySelectorAll(`.${target}-top-header`)[0];
+
+                // Get the current colspan value (returns a string, so we need to convert it to a number)
+                let currentColspan = parseInt(topHeader.getAttribute('colspan'));
+                
+                // Modify the colspan by adding or subtracting the change value
+                const newColspan = currentColspan + (allSubheaders.length - 1);
+                
+                // Ensure the colspan is not less than 1 (colspan cannot be zero or negative)
+                topHeader.setAttribute('colspan', Math.max(1, newColspan));
+
+                // Expand: change icon to left arrow
+                button.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            }
+
+            // Toggle the state
+            button.setAttribute('data-expanded', !isExpanded);
+        });
+    });
+}
+
+// Initialize the table header creation when the page loads
+document.addEventListener('DOMContentLoaded', init("combined_Sep_20_2024"));
+
+
+function parseCSV_leaderboard(text, datasetName) {
     result = text.split("\n");
     // Skip the first row of the CSV (headers)
     for (let i = 1; i < result.length; i += 1) {
@@ -380,30 +676,37 @@ function parseCSV_leaderboard(text) {
             }
             return value;
         });
-        result[i].splice(result[i].length, 0, result[i][4]);
-        result[i].splice(result[i].length, 0, result[i][5]);
-        result[i].splice(4, 2);
-        result[i].splice(4, 0, result[i][result[i].length - 6]);
-        result[i].splice(5, 0, result[i][result[i].length - 5]);
-        result[i].splice(8, 0, result[i][result[i].length - 8]);
-        result[i].splice(9, 0, result[i][result[i].length - 7]);
-        result[i].splice(10, 0, result[i][result[i].length - 6]);
-        result[i].splice(11, 0, result[i][result[i].length - 5]);
-        result[i].splice(12, 0, result[i][result[i].length - 4]);
-        result[i].splice(13, 0, result[i][result[i].length - 3]);
-        result[i].splice(result[i].length - 6, 4);
+        // if (datasetName == "combined") {
+        //     result[i].splice(result[i].length, 0, result[i][4]);
+        //     result[i].splice(result[i].length, 0, result[i][5]);
+        //     result[i].splice(4, 2);
+        //     result[i].splice(4, 0, result[i][result[i].length - 6]);
+        //     result[i].splice(5, 0, result[i][result[i].length - 5]);
+        //     result[i].splice(8, 0, result[i][result[i].length - 8]);
+        //     result[i].splice(9, 0, result[i][result[i].length - 7]);
+        //     result[i].splice(10, 0, result[i][result[i].length - 6]);
+        //     result[i].splice(11, 0, result[i][result[i].length - 5]);
+        //     result[i].splice(12, 0, result[i][result[i].length - 4]);
+        //     result[i].splice(13, 0, result[i][result[i].length - 3]);
+        //     result[i].splice(result[i].length - 6, 4);
+        // } else if (datasetName == "live") {
+        //     result[i].splice(result[i].length, 0, result[i][4]);
+        //     result[i].splice(result[i].length, 0, result[i][5]);
+        //     result[i].splice(4, 2);
+        //     result[i].splice(4, 0, result[i][result[i].length - 6]);
+        //     result[i].splice(5, 0, result[i][result[i].length - 5]);
+        //     result[i].splice(7, 0, result[i][result[i].length - 8]);
+        //     result[i].splice(8, 0, result[i][result[i].length - 7]);
+        //     result[i].splice(9, 0, result[i][result[i].length - 6]);
+        //     result[i].splice(10, 0, result[i][result[i].length - 5]);
+        //     result[i].splice(11, 0, result[i][result[i].length - 4]);
+        //     result[i].splice(12, 0, result[i][result[i].length - 3]);
+        //     result[i].splice(result[i].length - 6, 4);
+        // }
     }
+    console.log(result)
     return result;
 }
-
-
-fetch(csvFilePath)
-    .then((response) => response.text())
-    .then((csvText) => {
-        const chart_data = parseCSV_chart(csvText);
-        generateChart(chart_data);
-    })
-    .catch((error) => console.error(error));
 
 function parseCSV_chart(text) {
     result = text.split("\n");
@@ -442,12 +745,21 @@ function addToTable(dataArray) {
                     td.textContent = cell;
                 }
 
-                if (cellIndex >= 4 && cellIndex <= 9) {
-                    // summary-row class for specific columns
-                    td.className = "summary-row";
-                } else if (cellIndex >= 10 && cellIndex <= 23) {
-                    // detail-row class for specific columns
-                    td.className = "detail-row";
+                if (cellIndex >= 6 && cellIndex <= 7) {
+                    // class for specific columns
+                    td.className = "latency-sub-cell";
+                } else if (cellIndex >= 9 && cellIndex <= 12) {
+                    // class for specific columns
+                    td.className = "nonliveast-sub-cell";
+                } else if (cellIndex >= 14 && cellIndex <= 17) {
+                    // class for specific columns
+                    td.className = "nonliveexec-sub-cell";
+                } else if (cellIndex >= 19 && cellIndex <= 22) {
+                    // class for specific columns
+                    td.className = "liveast-sub-cell";
+                } else if (cellIndex >= 24 && cellIndex <= 28) {
+                    // class for specific columns
+                    td.className = "multiturn-sub-cell";
                 }
 
                 tr.appendChild(td);
@@ -466,111 +778,6 @@ function populateInput(index) {
         2
     );
 }
-
-document.getElementById("example-btn-1").addEventListener("click", function () {
-    populateInput(0);
-});
-document.getElementById("example-btn-2").addEventListener("click", function () {
-    populateInput(1);
-});
-document.getElementById("example-btn-3").addEventListener("click", function () {
-    populateInput(2);
-});
-
-document
-    .getElementById("submit-btn")
-    .addEventListener("click", async function () {
-        var inputText = document.getElementById("input-text").value;
-        var inputFunction = document.getElementById("input-function").value; // Assuming you have an input field with this id for the function
-        var temperatureValue = document.getElementById("temperatureSlider").value;
-        var model = document.getElementById("model-dropdown").value;
-
-        if (inputText === "" || inputFunction === "") {
-            alert("Please provide input and function definition.");
-            return;
-        }
-
-        document.getElementById("code-output").innerText =
-            "Loading Model Response...";
-        document.getElementById("json-output").innerText =
-            "Loading Model Response...";
-
-        const requestData = {
-            model: model,
-            messages: [{ role: "user", content: inputText }],
-            functions: [inputFunction],
-            temperature: parseFloat(temperatureValue),
-        };
-
-        const response = await fetch(
-            "https://luigi.millennium.berkeley.edu:443/v1/chat/completions",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: "EMPTY",
-                },
-                body: JSON.stringify(requestData),
-            }
-        );
-
-        if (!response.ok) {
-            document.getElementById("code-output").innerText =
-                "Error: " + response.status;
-            return;
-        }
-
-        const jsonResponse = await response.json();
-
-        if (model === "gorilla-openfunctions-v2") {
-            directCode = jsonResponse.choices[0].message.content;
-            jsonCode = jsonResponse.choices[0].message.function_call;
-            document.getElementById("code-output").innerText = directCode;
-            if (jsonCode) {
-                jsonCode = JSON.stringify(jsonCode, null, 2); // Pretty print the JSON
-                document.getElementById("json-output").innerText = jsonCode;
-            } else {
-                document.getElementById("json-output").innerText =
-                    "Error parsing JSON output.";
-            }
-        } else {
-            jsonCode = jsonResponse.choices[0].message.function_call;
-            jsonCode = JSON.stringify(jsonResponse, null, 2); // Pretty print the JSON
-            document.getElementById("json-output").innerText = jsonCode;
-            document.getElementById("code-output").innerText =
-                "Model does not support direct code output.";
-        }
-
-        // const executeButton = document.getElementById('exec-btn');
-        // executeButton.style.display = 'block'; // Ensure the button is visible after receiving a response
-        // executeButton.addEventListener('click', function () {
-        //     window.open("https://star-history.com/#ShishirPatil/gorilla&gorilla-llm/gorilla-cli")
-        // });
-        document.getElementById("thumbs-up-btn").style.display = "block";
-        document.getElementById("thumbs-down-btn").style.display = "block";
-        document.getElementById("report-issue-btn").style.display = "block";
-    });
-
-document
-    .getElementById("report-issue-btn")
-    .addEventListener("click", function () {
-        var inputText = document.getElementById("input-text").value;
-        var funcDef = document.getElementById("input-function").value;
-        var temperatureValue = document.getElementById("temperatureSlider").value;
-        var model = document.getElementById("model-dropdown").value;
-        var codeOutputText = document.getElementById("code-output").innerText;
-        var jsonOutputText = document.getElementById("json-output").innerText;
-        if (inputText === "" || funcDef === "") {
-            alert("Please provide input and function definition to send feedback.");
-            return;
-        }
-        var issueTitle = "[bug] OpenFunctions-v2: ";
-        var issueBody = `**Issue Description**%0A%0APrompt: ${inputText}%0A%0AModel: ${model}%0A%0ATemperature: ${temperatureValue}%0A%0AOutput (or Error if request failed): %0A%0A ${codeOutputText} %0A%0A ${jsonOutputText}%0A%0A**Additional Information**\n`;
-        window.open(
-            `https://github.com/ShishirPatil/gorilla/issues/new?assignees=&labels=hosted-openfunctions-v2&projects=&template=hosted-openfunctions-v2.md&title=${issueTitle}&body=${issueBody}`,
-            "_blank"
-        );
-    });
 
 const scriptURL =
     "https://script.google.com/macros/s/AKfycbxdAKyEA36HA_p0k3KwMzMigxgFCZ1XegRBPfjgxlNaOK2CsOnP9hrEV_6V1ARCAJw3vw/exec";
@@ -737,16 +944,12 @@ function generateChart(csvData) {
         var dataPoint = {
             label: model_name,
             data: [
+                csvData[i][1],
                 csvData[i][8],
-                csvData[i][9],
-                csvData[i][10],
-                csvData[i][11],
-                csvData[i][12],
                 csvData[i][13],
-                csvData[i][14],
-                csvData[i][15],
-                csvData[i][16],
-                csvData[i][17],
+                csvData[i][18],
+                csvData[i][23],
+                csvData[i][30],
             ],
             fill: true,
             backgroundColor: convertRGBtoRGBA(color[i - 1]),
@@ -761,16 +964,12 @@ function generateChart(csvData) {
 
     const data = {
         labels: [
-            "Simple (AST)",
-            "Multiple (AST)",
-            "Parallel (AST)",
-            "Parallel Multiple (AST)",
-            "Simple (Exec)",
-            "Multiple (Exec)",
-            "Parallel (Exec)",
-            "Parallel Multiple (Exec)",
-            "Irrelevance Detection",
-            "Relevance Detection",
+            "Overall Accuracy",
+            "Non-live AST Summary",
+            "Non-live Exec Summary",
+            "Live Summary",
+            "Multi Turn Summary",
+            "Hallucination Measurement",
         ],
         datasets: dataset,
     };
@@ -831,7 +1030,6 @@ function generateChart(csvData) {
     datasetDropdown.dropdown({
         onChange: function (value, text, $selectedItem) {
             handleDatasetSelection(value);
-            console.log(value)
         }
     });
 
@@ -1068,6 +1266,7 @@ function getCellValue(row, columnIndex) {
 }
 
 function createComparer(columnIndex, isAscending) {
+
     return function (rowA, rowB) {
         var valueA = getCellValue(isAscending ? rowA : rowB, columnIndex);
         var valueB = getCellValue(isAscending ? rowB : rowA, columnIndex);
@@ -1080,31 +1279,49 @@ function createComparer(columnIndex, isAscending) {
     };
 }
 
-document.querySelectorAll("th:not(.detail-header)").forEach(function (header) {
-    var sortIndicator = document.createElement("span");
-    header.appendChild(sortIndicator);
-
-    header.addEventListener("click", function () {
-        var table = header.closest("table");
-        var tbody = table.querySelector("tbody");
-        var columnIndex = Array.from(header.parentNode.children).indexOf(header);
-        var isAscending = (header.asc = !header.asc);
-
-        sortIndicator.textContent = isAscending ? " 🔼" : " 🔽";
-
-        document.querySelectorAll("th span").forEach(function (otherIndicator) {
-            if (otherIndicator !== sortIndicator) {
-                otherIndicator.textContent = ""; // Clear other indicators
-            }
-        });
-
-        var rowsArray = Array.from(tbody.querySelectorAll("tr"));
-        rowsArray
-            .sort(createComparer(columnIndex, isAscending))
-            .forEach(function (row) {
-                tbody.appendChild(row);
+$(document).ready(function() {
+    // Initialize the dropdown with a focus on proper search input handling
+    $('#dataset-dropdown').dropdown({
+        fullTextSearch: true, // Enables substring search
+        onShow: function() {
+            // Attach event listener to the input field to dynamically adjust width
+            const searchInput = $('.ui.dropdown .menu .search input');
+            searchInput.off('input'); // Remove existing listeners to avoid duplication
+            searchInput.on('input', function() {
+                console.log('Input event triggered'); // Debug to ensure event fires
+                $(this).css('width', 'auto'); // Reset width to calculate based on content
+                const inputWidth = this.scrollWidth; // Calculate necessary width
+                $(this).css('width', inputWidth + 'px'); // Adjust to new width
             });
+        },
+        onChange: function(value, text, $selectedItem) {
+            console.log('Dropdown value changed: ', value); // Debug to ensure changes are detected
+        }
     });
 });
 
-document.getElementById("rank-col").click(); // Sort by rank by default
+function updateStickyColumnsLeft() {
+    
+    const firstColumn = document.querySelector('#leaderboard tbody td:nth-child(1)');
+    const secondColumn = document.querySelector('#leaderboard tbody td:nth-child(2)');
+    
+    if (firstColumn && secondColumn) {
+        console.log("called")
+        const firstColumnWidth = firstColumn.getBoundingClientRect().width;
+        const secondColumnWidth = secondColumn.getBoundingClientRect().width;
+
+        const secondColumnCells = document.querySelectorAll('#leaderboard tbody td:nth-child(2), #leaderboard thead .sticky-second-column:nth-child(2)');
+        const thirdColumnCells = document.querySelectorAll('#leaderboard tbody td:nth-child(3), #leaderboard thead .sticky-second-column:nth-child(3)');
+        
+        // Update the left position of the second column
+        secondColumnCells.forEach(cell => {
+            cell.style.left = `${firstColumnWidth}px`;
+        });
+
+        // Update the left position of the third column
+        thirdColumnCells.forEach(cell => {
+            cell.style.left = `${firstColumnWidth + secondColumnWidth}px`;
+        });
+    }
+}
+

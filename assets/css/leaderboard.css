@@ -14,9 +14,7 @@ table {
     justify-content: center;
 }
 
-
-
-#leaderboard td, #leaderboard th {
+#leaderboard td {
     word-wrap: break-word; /* Allows words to break and wrap to the next line */
     overflow-wrap: break-word; /* Ensures wrapping at break points */
     padding: 8px; /* Adjust padding as needed */
@@ -25,11 +23,19 @@ table {
     border-bottom: 1.25px solid #ddd; 
 }
 
+#leaderboard th {
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow-wrap: normal;
+    padding: 4px 20px;
+    text-align: center; /* Keeps text centered, adjust as needed */
+    border-right: 1.25px solid #ddd;
+    border-bottom: 1.25px solid #ddd; 
+}
 
 th:not(.detail-header)  {
     cursor: pointer;
 }
-
 
 
 .table-container {
@@ -192,15 +198,15 @@ thead {
   #leaderboard tbody td:nth-child(2),
   #leaderboard thead .sticky-second-column:nth-child(2) {
     position: sticky;
-    left: 51px;
+    left: 94px;
     z-index: 29;
   }
 
   tbody td:nth-child(3),
   #leaderboard thead .sticky-second-column:nth-child(3) {
     position: sticky;
-    left: 115px;
-    z-index: 28;
+    left: 208.5px;
+    z-index: 29;
     background-color: #f1f8ff;
   }
 
@@ -221,6 +227,7 @@ thead {
 /* Ensure the chart scales responsively */
 #chart-container {
     width: 100%;  /* Take up full width */
+    height: fit-content;
     max-width: 1000px;  /* Optional: Set a max-width for large screens */
     margin: 0 auto;  /* Center the chart */
 }
@@ -241,6 +248,7 @@ canvas {
 
 .chart-inner-container {
     width: 100%;
+    height: auto;
     padding: 3rem;
 }
 
@@ -291,6 +299,38 @@ canvas {
 
     #myChart-container{
         width: 100%;
+        height: auto;
         margin: auto;
     }
+}
+
+.toggle-button {
+    background-color: transparent;   /* No background */
+    border: none;                    /* No border */
+    cursor: pointer;                 /* Pointer cursor */
+    padding: 0;                      /* Remove extra padding */
+    font-size: 0;                    /* Hide text content */
+    width: 24px;                     /* Small, fixed width for the button */
+    height: 24px;                    /* Small, fixed height */
+    margin: auto;
+    margin-left: 3px;
+}
+
+.toggle-button::before {
+    content: '\25B6';                /* Default arrow (right for expand) */
+    font-size: 16px;                 /* Set arrow size */
+    color: #333;                     /* Default arrow color */
+    transition: transform 0.3s ease, color 0.2s ease;  /* Smooth transitions */
+}
+
+.toggle-button[data-expanded="true"]::before {
+    content: '\25C0';                /* Left arrow for collapse */
+}
+
+.toggle-button:hover::before {
+    color: #007BFF;                  /* Change arrow color on hover */
+}
+
+.toggle-button:focus {
+    outline: none;                   /* Remove focus outline */
 }
