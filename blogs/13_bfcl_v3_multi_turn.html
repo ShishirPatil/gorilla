@@ -643,7 +643,7 @@
             multi-turn function-calling scenarios. Here's how we validate each component within the Core Multi-Turn
             dataset:</p>
 
-          <h4>1. Question Validation ( 🧑‍💻)</h4>
+          <h4>1. Question Validation (🧑‍💻)</h4>
           <p>Each question is reviewed to ensure it will invoke only one possible correct answer. The key checks
             include:</p>
           <ul>
@@ -662,7 +662,7 @@
               scenarios, which assume complete information is given in each turn).</p>
           </ul>
 
-          <h4>2. Human-Labeled Ground Truth Validation ( 🧑‍💻+ 💻 )</h4>
+          <h4>2. Human-Labeled Ground Truth Validation (🧑‍💻+ 💻 )</h4>
           <p>The human-labeled ground truth is essential for ensuring dataset reliability. Each ground truth is
             checked for:</p>
           <ul>
@@ -709,7 +709,7 @@
               <code>post_tweet</code> function to ensure the model can complete the action.</p>
           </ul>
 
-          <h4>5. API Code Validation ( 🧑‍💻+ 💻 )</h4>
+          <h4>5. API Code Validation (🧑‍💻+ 💻 )</h4>
           <p>To maintain the reliability of the API codebase, we leverage a combination of unit tests and automated
             checkers to validate each function:</p>
           <ul>
@@ -866,23 +866,23 @@
           <li>
             <strong>Scenario 1 (Failure to perform implicit actions):</strong>
             <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
-              <p><strong>Context:</strong> Fuel tank has 5 gallons of gas initially. The max capacity is 50 gallons.</p>
-              <p><strong>User Prompt:</strong> Fill the fuel tank until we are able to reach Rivermist. Oil costs
+              <p><strong>ℹ️ Context:</strong> Fuel tank has 5 gallons of gas initially. The max capacity is 50 gallons.</p>
+              <p><strong>🧑‍💻 User Prompt:</strong> Fill the fuel tank until we are able to reach Rivermist. Oil costs
                 money so I just need to reach there, I don't need a full tank.</p>
 
               <div style="display: flex; justify-content: space-between; gap: 40px;">
                 <div style="width: 45%;">
-                  <strong>Model FC Response:</strong>
+                  <strong>🤖 Model FC Response:</strong>
                   <p style="color: red;"><code style="color: red;">fillFuelTank(fuel_amount=50)</code></p>
                 </div>
                 <div style="width: 45%;">
-                  <strong>Human-Labeled Ground Truth:</strong>
+                  <strong>🕵️ Human-Labeled Ground Truth:</strong>
                   <p style="color: green;"><code style="color: green;">displayCarStatus("fuel")</code>, <code
                       style="color: green;">fillFuelTank(fuelAmount=44)</code></p>
                 </div>
               </div>
 
-              <p><strong>Model Text Response:</strong> It seems that the fuel tank is already full or nearly full, and I
+              <p><strong>🤖Model Text Response:</strong> It seems that the fuel tank is already full or nearly full, and I
                 can't add more fuel beyond its capacity. Would you like me to display the current fuel status?</p>
             </div>
 
@@ -897,23 +897,23 @@
           <li>
             <strong>Scenario 2 (Failure to understand the current state before performing action):</strong>
             <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
-              <p><strong>Context:</strong> The initial current working directory is <code>alex</code>.</p>
-              <p><strong>User Prompt:</strong> I am Alex. Go into the directory named after me and list all the
+              <p><strong>ℹ️ Context:</strong> The initial current working directory is <code>alex</code>.</p>
+              <p><strong>🧑‍💻 User Prompt:</strong> I am Alex. Go into the directory named after me and list all the
                 visible and hidden contents in the current directory now, please.</p>
 
               <div style="display: flex; justify-content: space-between; gap: 40px;">
                 <div style="width: 45%;">
-                  <strong>Model FC Response:</strong>
+                  <strong>🤖 Model FC Response:</strong>
                   <p style="color: red;"><code style="color: red;">cd(folder='alex'), ls(),
                       mkdir(dir_name='alex')</code></p>
                 </div>
                 <div style="width: 45%;">
-                  <strong>Human-Labeled Ground Truth:</strong>
+                  <strong>🕵️ Human-Labeled Ground Truth:</strong>
                   <p style="color: green;"><code style="color: green;">pwd(), ls(a=True)</code></p>
                 </div>
               </div>
 
-              <p><strong>Model Text Response:</strong> I have created a directory named "alex" and navigated into it.
+              <p><strong>🤖 Model Text Response:</strong> I have created a directory named "alex" and navigated into it.
                 Currently, the directory is empty, with no visible or hidden contents.</p>
             </div>
 
@@ -927,26 +927,26 @@
           <li>
             <strong>Scenario 3 (LLMs incur unnecessary planning and thinking):</strong>
             <div style="background-color: #f4f4f4; padding: 10px; border-radius: 5px;">
-              <p><strong>Context:</strong> Twitter API has initially been authenticated.</p>
-              <p><strong>User Prompt:</strong> I would appreciate it if you could share the sorted result on social
+              <p><strong>ℹ️ Context:</strong> Twitter API has initially been authenticated.</p>
+              <p><strong>🧑‍💻 User Prompt:</strong> I would appreciate it if you could share the sorted result on social
                 media, ensuring to tag 'current tech trend' and mention Julia, our insightful team.</p>
 
 
               <div style="display: flex; justify-content: space-between; gap: 40px;">
                 <div style="width: 45%;">
-                  <strong>Model FC Response:</strong>
+                  <strong>🤖 Model FC Response:</strong>
                   <p style="color: red;"><code style="color: red;">authenticate_twitter(username='your_username',
                       password='your_password')</code></p>
                 </div>
                 <div style="width: 45%;">
-                  <strong>Human-Labeled Ground Truth:</strong>
+                  <strong>🕵️ Human-Labeled Ground Truth:</strong>
                   <p style="color: green;"><code style="color: green;">post_tweet(content='Initial report content More
                       unsorted data Unsorted data', mention=['Julia'], tags=['current tech trend'])</code></p>
                 </div>
               </div>
 
 
-              <p><strong>Model Text Response:</strong> It seems that I'm unable to authenticate with Twitter at the moment.
+              <p><strong>🤖 Model Text Response:</strong> It seems that I'm unable to authenticate with Twitter at the moment.
                 Please ensure your credentials are correct or try again later.</p>
             </div>
 
