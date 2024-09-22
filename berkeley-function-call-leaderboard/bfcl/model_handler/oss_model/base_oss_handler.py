@@ -30,15 +30,7 @@ class OSSHandler(BaseHandler):
         It is more efficient to spin up the server once for the whole batch, instead of for each individual entry.
         So we implement batch_inference method instead.
         """
-        raise NotImplementedError(
-            "OSS Models should call the batch_inference method instead."
-        )
-
-    @staticmethod
-    def _format_prompt(messages, function):
-        raise NotImplementedError(
-            "OSS Models should implement their own prompt formatting."
-        )
+        raise RuntimeError("OSS Models should call the batch_inference method instead.")
 
     def decode_ast(self, result, language="Python"):
         return default_decode_ast_prompting(result, language)
@@ -47,12 +39,16 @@ class OSSHandler(BaseHandler):
         return default_decode_execute_prompting(result)
 
     def batch_inference(
-        self, test_entries: list[dict], num_gpus: int, gpu_memory_utilization: float, include_debugging_log: bool
+        self,
+        test_entries: list[dict],
+        num_gpus: int,
+        gpu_memory_utilization: float,
+        include_debugging_log: bool,
     ):
         """
         Batch inference for OSS models.
         """
-        
+
         process = subprocess.Popen(
             [
                 "vllm",
@@ -105,14 +101,20 @@ class OSSHandler(BaseHandler):
             for test_entry in tqdm(test_entries, desc="Generating results"):
                 try:
                     if "multi_turn" in test_entry["id"]:
-                        model_responses, metadata = self.inference_multi_turn_prompting(test_entry, include_debugging_log)
+                        model_responses, metadata = self.inference_multi_turn_prompting(
+                            test_entry, include_debugging_log
+                        )
                     else:
-                        model_responses, metadata = self.inference_single_turn_prompting(test_entry, include_debugging_log)
+                        model_responses, metadata = self.inference_single_turn_prompting(
+                            test_entry, include_debugging_log
+                        )
                 except Exception as e:
-                    print(f"Error during inference for test entry {test_entry['id']}: {str(e)}")
+                    print(
+                        f"Error during inference for test entry {test_entry['id']}: {str(e)}"
+                    )
                     model_responses = f"Error during inference: {str(e)}"
                     metadata = {}
-                    
+
                 result_to_write = {
                     "id": test_entry["id"],
                     "result": model_responses,
@@ -137,6 +139,12 @@ class OSSHandler(BaseHandler):
                 print("Process killed.")
 
     #### Prompting methods ####
+
+    @staticmethod
+    def _format_prompt(messages, function):
+        raise NotImplementedError(
+            "OSS Models should implement their own prompt formatting."
+        )
 
     def _query_prompting(self, inference_data: dict):
         # We use the OpenAI Completions API with vLLM

@@ -1,18 +1,16 @@
 # Berkeley Function Calling Leaderboard (BFCL)
 
-💡 Read more in our Gorilla OpenFunctions Leaderboard Blogs:
-
-- [BFCL v1 Blog Post](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html)
-- [BFCL v2 (live dataset) Blog Post](https://gorilla.cs.berkeley.edu/blogs/12_bfcl_v2_live.html)
-- [BFCL v3 (multi-turn) Blog Post](https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html)
-
-🦍 Berkeley Function Calling Leaderboard live [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html#leaderboard)
-
 ## Introduction
 
 We introduce the Berkeley Function Leaderboard (BFCL), the **first comprehensive and executable function call evaluation dedicated to assessing Large Language Models' (LLMs) ability to invoke functions**. Unlike previous function call evaluations, BFCL accounts for various forms of function calls, diverse function calling scenarios, and their executability.
 
-Read more about the technical details and interesting insights in our [BFCL v1 blog post](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html), [BFCL v2 blog post](https://gorilla.cs.berkeley.edu/blogs/12_bfcl_v2_live.html), and [BFCL v3 blog post](https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html).
+💡 Read more in our Gorilla OpenFunctions Leaderboard Blogs:
+
+- [BFCL v1 (original) Blog Post](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html)
+- [BFCL v2 (live dataset) Blog Post](https://gorilla.cs.berkeley.edu/blogs/12_bfcl_v2_live.html)
+- [BFCL v3 (multi-turn) Blog Post](https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html)
+
+🦍 See the Berkeley Function Calling Leaderboard live at [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html#leaderboard)
 
 ![image](./architecture_diagram.png)
 
@@ -101,7 +99,7 @@ DATABRICKS_API_KEY=
 DATABRICKS_AZURE_ENDPOINT_URL=
 ```
 
-If decided to run OSS model, the generation script uses vllm and therefore requires GPU for hosting and inferencing. If you have questions or concerns about evaluating OSS models, please reach out to us in our [discord channel](https://discord.gg/grXXvj9Whz).
+If decided to run locally-hosted model, the generation script uses vLLM and therefore requires GPU for hosting and inferencing. If you have questions or concerns about evaluating OSS models, please reach out to us in our [discord channel](https://discord.gg/grXXvj9Whz).
 
 ### Generating LLM Responses
 
@@ -120,6 +118,7 @@ If no `MODEL_NAME` is provided, the model `gorilla-openfunctions-v2` will be use
 ### Models Available
 
 Below is _a table of models we support_ to run our leaderboard evaluation against. If the models support function calling (FC), we will follow its function calling format provided by official documentation. Otherwise, we use a consistent system message to prompt the model to generate function calls in the right format.
+
 |Model | Type |
 |---|---|
 |gorilla-openfunctions-v2 | Function Calling|
@@ -179,10 +178,10 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function-calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
 
-For model names with {.}, it means that the model has multiple versions. For example, we provide evaluation on three versions of GPT-4: `gpt-4-0125-preview`, `gpt-4-1106-preview`, and `gpt-4-0613`.
+For model names with `{.}`, it means that the model has multiple versions. For example, we provide evaluation on three versions of GPT-4: `gpt-4-0125-preview`, `gpt-4-1106-preview`, and `gpt-4-0613`.
 
-For `Gemini-1.0-pro`, you need to fill in `model_handler/gemini_handler.py` with your GCP project ID that has access to Vertex AI endpoint.
-For `Databrick-DBRX-instruct`, you need to create a Databrick Azure workspace and setup an endpoint for inference.
+For `Gemini` models, you need to provide your `VERTEX_AI_PROJECT_ID` and ``VERTEX_AI_LOCATION`` in the `.env` file.
+For `Databrick-DBRX-instruct`, you need to create a Databrick Azure workspace and setup an endpoint for inference (provide the `DATABRICKS_AZURE_ENDPOINT_URL` in the `.env` file).
 
 ### Available Test Category
 
@@ -278,21 +277,43 @@ Some companies have proposed some optimization strategies in their models' handl
 
 ## Contributing
 
-We welcome additions to the Function Calling Leaderboard! To add a new model, here are a few things you need to do:
+We welcome additions to the Function Calling Leaderboard! To add a new model, please follow these steps:
 
-1. Take a look at the `bfcl/model_handler/base_handler.py`. This is the base handler object which all handlers are inherited from. Also, free feel to take a look at the existing model handers; very likely you can re-use some of the existing code if the new model outputs in a similar format.
-2. Create your handler and define the following functions
-   1. `__init__`: on initialization, you need to create a `self.client` object if you have an existing endpoint(e.g. `self.client = OpenAI()`) or follow `model_handler/oss_handler.py` for starting a vLLM serving.
-   2. `inference`: inference function takes in prompt, functions, as well as optional programming language parameters. It will make call to the endpoint, compile result in the desired format, as well as logging the token number and latency
-   3. `decode_ast`: decode_ast will convert the response from raw output in the format of `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}]` This format will be used to check for exact matching the parameters.
-   4. `decode_execute`: deocde_execute will convert the response from raw output in the format of `"[func1(param1=val1),func2(param2=val2)]"`
-3. Modify `bfcl/model_handler/handler_map.py`. This mapping contains the key as the exact model name and value as the handler object of the specific model.
-4. Modify `bfcl/val_checker/model_metadata.py`:
-   - Update the `MODEL_METADATA_MAPPING` with the model display name, URL, license and company information. The key should be the same as the one in `model_handler/handler_map.py`.
-   - If your model is price-based, you should update the `INPUT_PRICE_PER_MILLION_TOKEN` and `OUTPUT_PRICE_PER_MILLION_TOKEN`. - If your model doesn't have a cost, you should add it to the `NO_COST_MODELS` list.
-   - If your model is open-source and is hosted locally, the `OSS_LATENCY` list needs to be updated with the latency for the whole batch of data generation. This information will affect the cost calculation.
-5. Raise a [Pull Request](https://github.com/ShishirPatil/gorilla/pulls) with your new Model Handler. We will run the model handler if an endpoint is established. If self-hosting is required and the model size is large, we might not be able to accommodate model hosting therefore an OpenAI compatible endpoint for evaluation is desired.
-6. Feel Free to join [Gorilla Discord](https://discord.gg/grXXvj9Whz) `#leaderboard` and reach out to us for any questions or concerns about adding new models. We are happy to help you!
+1. **Review the Base Handler:**
+
+   - Look at `bfcl/model_handler/base_handler.py`. This is the base handler object from which all handlers inherit.
+   - Feel free to examine the existing model handlers; you can likely reuse some of the existing code if your new model outputs in a similar format.
+     - If your model is OpenAI-compatible, the `OpenAI` handler might be helpful.
+     - If your model is hosted locally, `bfcl/model_handler/oss_model/base_oss_handler.py` is a good starting point.
+
+2. **Create Your Handler and Define the Following Functions:**
+
+   1. `__init__`: Initialize the model object with the necessary parameters.
+   2. **Define Necessary Methods:**
+      - **For API Endpoint Models:**
+        - Implement all the non-implemented methods under the `FC Methods` or `Prompting Methods` sections in the `base_handler.py` file, depending on whether your model is a Function Calling model or a Prompt model.
+      - **For Locally Hosted Models:**
+        - You only need to define the `_format_prompt` method.
+        - All other methods under the `Prompting Methods` section in the `base_oss_handler.py` file have been implemented for you, but you can override them if necessary.
+   3. `decode_ast`: Convert the raw model response to the format `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}]`; i.e., a list of dictionaries, each representing a function call with the function name as the key and the parameters as the value. This is the format that the evaluation pipeline expects.
+   4. `decode_execute`: Convert the raw model response to the format `["func1(param1=val1)", "func2(param2=val2)"]`; i.e., a list of strings, each representing an executable function call.
+
+3. **Update the Handler Map and Model Metadata:**
+
+   - Modify `bfcl/model_handler/handler_map.py`. This is a mapping of the model name to their handler class.
+   - Modify `bfcl/val_checker/model_metadata.py`:
+     - Update the `MODEL_METADATA_MAPPING` with the model's display name, URL, license, and company information. The key should match the one in `bfcl/model_handler/handler_map.py`.
+     - If your model is price-based, update the `INPUT_PRICE_PER_MILLION_TOKEN` and `OUTPUT_PRICE_PER_MILLION_TOKEN`.
+     - If your model doesn't have a cost, add it to the `NO_COST_MODELS` list.
+     - If your model is open-source and hosted locally, update the `OSS_LATENCY` list with the latency for the entire batch of data generation. This information will affect the cost calculation.
+
+4. **Submit a Pull Request:**
+
+   - Raise a [Pull Request](https://github.com/ShishirPatil/gorilla/pulls) with your new Model Handler.
+   - Note that any model on the leaderboard must be publicly accessible—either open-source or with an API endpoint available for inference. While you can require registration, login, or tokens, the general public should ultimately be able to access the endpoint.
+
+5. **Join Our Community:**
+   - Feel free to join the [Gorilla Discord](https://discord.gg/grXXvj9Whz) `#leaderboard` channel and reach out to us with any questions or concerns about adding new models. We are happy to help you!
 
 All the leaderboard statistics, and data used to train the models are released under Apache 2.0.
 Gorilla is an open source effort from UC Berkeley and we welcome contributors.
