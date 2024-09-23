@@ -454,6 +454,12 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/MadeAgents/Hammer-7b",
         "MadeAgents",
         "cc-by-nc-4.0",
+    ],
+    "Team-ACE/ToolACE-8B": [
+        "ToolACE-8B (FC)",
+        "https://huggingface.co/Team-ACE/ToolACE-8B",
+        "Huawei Noah & USTC",
+        "Apache-2.0",
     ]
 }
 
@@ -595,4 +601,5 @@ NO_COST_MODELS = [
     "Salesforce/xLAM-7b-r",
     "Salesforce/xLAM-8x7b-r",
     "Salesforce/xLAM-8x22b-r",
+    "Team-ACE/ToolACE-8B",
 ]

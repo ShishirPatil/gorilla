@@ -7,6 +7,7 @@ from bfcl.model_handler.oss_model.hammer import HammerHandler
 from bfcl.model_handler.oss_model.hermes import HermesHandler
 from bfcl.model_handler.oss_model.llama import LlamaHandler
 from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
+from bfcl.model_handler.oss_model.toolace import ToolACEHandler
 from bfcl.model_handler.proprietary_model.claude import ClaudeHandler
 from bfcl.model_handler.proprietary_model.cohere import CohereHandler
 from bfcl.model_handler.proprietary_model.databricks import DatabricksHandler
@@ -84,6 +85,7 @@ handler_map = {
     "ibm-granite/granite-20b-functioncalling": GraniteHandler,
     # "MadeAgents/Hammer-7b": HammerHandler,  # TODO: Update handler once they have a multi-turn format
     "THUDM/glm-4-9b-chat": GLMHandler,
+    "Team-ACE/ToolACE-8B": ToolACEHandler,
     
     # Deprecated/outdated models, no longer on the leaderboard
     # "gorilla-openfunctions-v0": GorillaHandler,
