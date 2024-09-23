@@ -14,7 +14,7 @@ Read more about the technical details and interesting insights in our [blog post
 ![image](./architecture_diagram.png)
 
 
-### Install Dependencies
+## Install Dependencies
 
 ```bash
 # Create a new Conda environment with Python 3.10
@@ -41,8 +41,16 @@ pip install -e .[oss_eval]
 ```
 Note that this requires GPU supported by vLLM and it can only be installed on Linux and Windows (not Mac).
 
-## Execution Evaluation Data Post-processing (Can be Skipped: Necesary for Executable Test Categories)
-Add your keys into `function_credential_config.json`, so that the original placeholder values in questions, params, and answers will be reset.
+### Setting up Environment Variables
+
+We use `.env` file to store the environment variables. We have provided a sample `.env.example` file in the `gorilla/berkeley-function-call-leaderboard` directory. You should make a copy of this file, rename it to `.env` and fill in the necessary values.
+
+```bash
+cp .env.example .env
+```
+
+### API Keys for Execution Evaluation Data Post-processing (Can be Skipped: Necessary for Executable Test Categories)
+Add your keys into the `.env` file, so that the original placeholder values in questions, params, and answers will be reset.
 
 To run the executable test categories, there are 4 API keys to include:
 
@@ -54,13 +62,14 @@ To run the executable test categories, there are 4 API keys to include:
     * Covid 19: https://rapidapi.com/api-sports/api/covid-193
     * Time zone by Location: https://rapidapi.com/BertoldVdb/api/timezone-by-location
 
-    All the Rapid APIs we use have free tier usage. As a result, you need to subscribe to those API providers in order to have the executable test environment setup but it will be free of charge!
+    All the Rapid APIs we use have free tier usage. You need to **subscribe** to those API providers in order to have the executable test environment setup but it will be *free of charge*!
 
 2. Exchange Rate API:https://www.exchangerate-api.com
 3. OMDB API: http://www.omdbapi.com/apikey.aspx
 4. Geocode API: https://geocode.maps.co/
 
 The `apply_function_credential_config.py` will automatically search for dataset files in the default `./data/` directory and replace the placeholder values with the actual API keys.
+After you have filled in the necessary values in the `.env` file, you can run the following command to apply the real API keys to the dataset files.
 
 ```bash
 python apply_function_credential_config.py
@@ -69,16 +78,23 @@ python apply_function_credential_config.py
 
 ## Evaluating different models on the BFCL
 
-Make sure the model API keys are included in your environment variables. Running proprietary models like GPTs, Claude, Mistral-X will require them.
+Make sure the model API keys are included in your `.env` file. Running proprietary models like GPTs, Claude, Mistral-X will require them.
 
 ```bash
-export OPENAI_API_KEY=sk-XXXXXX
-export MISTRAL_API_KEY=XXXXXX
-export FIRE_WORKS_API_KEY=XXXXXX
-export ANTHROPIC_API_KEY=XXXXXX
-export COHERE_API_KEY=XXXXXX
-export NVIDIA_API_KEY=nvapi-XXXXXX
-export YI_API_KEY=XXXXXX
+OPENAI_API_KEY=sk-XXXXXX
+MISTRAL_API_KEY=
+FIREWORKS_API_KEY=
+ANTHROPIC_API_KEY=
+NVIDIA_API_KEY=nvapi-XXXXXX
+YI_API_KEY=
+
+VERTEX_AI_PROJECT_ID=
+VERTEX_AI_LOCATION=
+
+COHERE_API_KEY=
+
+DATABRICKS_API_KEY=
+DATABRICKS_AZURE_ENDPOINT_URL=
 ```
 
 If decided to run OSS model, the generation script uses vllm and therefore requires GPU for hosting and inferencing. If you have questions or concerns about evaluating OSS models, please reach out to us in our [discord channel](https://discord.gg/grXXvj9Whz).
@@ -111,9 +127,9 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |databrick-dbrx-instruct | Prompt|
 |deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
 |firefunction-{v1,v2}-FC | Function Calling|
-|gemini-1.0-pro | Function Calling|
-|gemini-1.5-pro-preview-{0409,0514} | Function Calling|
-|gemini-1.5-flash-preview-0514 | Function Calling|
+|gemini-1.0-pro-FC | Function Calling|
+|gemini-1.5-pro-preview-{0409,0514}-FC | Function Calling|
+|gemini-1.5-flash-preview-0514-FC | Function Calling|
 |glaiveai/glaive-function-calling-v1 💻| Function Calling|
 |gpt-3.5-turbo-0125-FC| Function Calling|
 |gpt-3.5-turbo-0125| Prompt|
@@ -130,13 +146,13 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |meetkai/functionary-small-{v3.1,v3.2}-FC| Function Calling|
 |meta-llama/Meta-Llama-3-{8B,70B}-Instruct | Prompt|
 |open-mixtral-{8x7b,8x22b} | Prompt|
-|open-mixtral-8x22b-FC-{Any,Auto} | Function Calling|
+|open-mixtral-8x22b-FC | Function Calling|
 |open-mistral-nemo-2407 | Prompt|
-|open-mistral-nemo-2407-FC-{Any,Auto} | Function Calling|
-|mistral-large-2407-FC-{Any,Auto} | Function Calling|
+|open-mistral-nemo-2407-FC | Function Calling|
+|mistral-large-2407-FC | Function Calling|
 |mistral-large-2407 | Prompt|
 |mistral-medium-2312 | Prompt|
-|mistral-small-2402-FC-{Any,Auto} | Function Calling|
+|mistral-small-2402-FC | Function Calling|
 |mistral-small-2402 | Prompt|
 |mistral-tiny-2312 | Prompt|
 |Nexusflow-Raven-v2 | Function Calling|
@@ -146,10 +162,14 @@ Below is *a table of models we support* to run our leaderboard evaluation agains
 |snowflake/arctic | Prompt|
 |Salesforce/xLAM-1b-fc-r 💻| Function Calling|
 |Salesforce/xLAM-7b-fc-r 💻| Function Calling|
+|Salesforce/xLAM-7b-r 💻| Function Calling|
+|Salesforce/xLAM-8x7b-r 💻| Function Calling|
+|Salesforce/xLAM-8x22b-r 💻| Function Calling|
 |nvidia/nemotron-4-340b-instruct| Prompt|
 |THUDM/glm-4-9b-chat 💻| Function Calling|
 |ibm-granite/granite-20b-functioncalling 💻| Function Calling|
 |yi-large-fc | Function Calling|
+|MadeAgents/Hammer-7b 💻| Function Calling|
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function-calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
 
@@ -169,6 +189,8 @@ In the following two sections, the optional `--test-category` parameter can be u
 * Available test groups:
   * `all`: All test categories.
     * This is the default option if no test category is provided.
+  * `multi_turn`: All multi-turn test categories.
+  * `single_turn`: All single-turn test categories.
   * `live`: All user-contributed live test categories.
   * `non_live`: All not-user-contributed test categories (the opposite of `live`).
   * `ast`: Abstract Syntax Tree tests.
@@ -195,9 +217,14 @@ In the following two sections, the optional `--test-category` parameter can be u
   * `live_parallel_multiple`: User-contributed multiple function calls in parallel and in sequence.
   * `live_irrelevance`: User-contributed function calls with irrelevant function documentation.
   * `live_relevance`: User-contributed function calls with relevant function documentation.
+  * `multi_turn_base`: Base entries for multi-turn function calls.
+  * `multi_turn_miss_func`: Multi-turn function calls with missing function.
+  * `multi_turn_miss_param`: Multi-turn function calls with missing parameter.
+  * `multi_turn_long_context`: Multi-turn function calls with long context.
+  * `multi_turn_composite`: Multi-turn function calls with missing function, missing parameter, and long context.
 * If no test category is provided, the script will run all available test categories. (same as `all`)
 
-> If you want to run the `all`, `non_live`, `executable` or `python` category, make sure to register your REST API keys in `function_credential_config.json`. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API!
+> If you want to run the `all`, `non_live`, `executable` or `python` category, make sure to register your REST API keys in the `.env` file. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API!
 
 > If you do not wish to provide API keys for REST API testing, set `test-category` to any non-executable category.
 
@@ -246,14 +273,34 @@ python eval_runner.py --model gorilla-openfunctions-v2 claude-3-5-sonnet-2024062
 
 ### Model-Specific Optimization
 
-Some companies have proposed some optimization strategies in their models' handler, which we (BFCL) think is unfair to other models, as those optimizations are not generalizable to all models. Therefore, we have disabled those optimizations during the evaluation process by default. You can enable those optimizations by setting the `USE_{COMPANY}_OPTIMIZATION` flag to `True` in the `model_handler/constants.py` file.
+Some companies have proposed some optimization strategies in their models' handler, which we (BFCL) think is unfair to other models, as those optimizations are not generalizable to all models. Therefore, we have disabled those optimizations during the evaluation process by default. You can enable those optimizations by setting the `USE_{COMPANY}_OPTIMIZATION` flag to `True` in the `.env` file.
 
 
 ## Changelog
 
+* [Sept 19, 2024] [#644](https://github.com/ShishirPatil/gorilla/pull/644): BFCL V3 release:
+  * Introduce new multi-turn dataset and state-based evaluation metric
+  * Switch to use vllm serve for OSS model inference
+  * Separate ast_checker and executable_checker for readability
+  * Several outdated or deprecated models will be excluded from the leaderboard and replaced with their updated successors to improve the leaderboard's overall maintainability.
+* [Sept 13, 2024] [#638](https://github.com/ShishirPatil/gorilla/pull/638): Fix prompt formatting issue for `THUDM/glm-4-9b-chat`.
+* [Sept 12, 2024] [#635](https://github.com/ShishirPatil/gorilla/pull/635): Add new models `o1-preview-2024-09-12` and `o1-mini-2024-09-12` to the leaderboard.
+* [Sept 8, 2024] [#627](https://github.com/ShishirPatil/gorilla/pull/627) Add new model `MadeAgents/Hammer-7b` to the leaderboard.
+* [Sept 7, 2024] [#626](https://github.com/ShishirPatil/gorilla/pull/626): Fix prompt format for Llama models.
+* [Sept 4, 2024] [#623](https://github.com/ShishirPatil/gorilla/pull/623): Fix decoding issue in the `NvidiaHandler`; remove duplicate `ArcticHandler` class.
+* [August 29, 2024] [#616](https://github.com/ShishirPatil/gorilla/pull/6160): Add the following new models to the leaderboard:
+  * `Salesforce/xLAM-7b-r`
+  * `Salesforce/xLAM-8x7b-r`
+  * `Salesforce/xLAM-8x22b-r`
+* [August 28, 2024] [#565](https://github.com/ShishirPatil/gorilla/pull/565), [#612](https://github.com/ShishirPatil/gorilla/pull/612): Packagerize the BFCL pipeline for easier deployment and maintenance.
 * [August 27, 2024] [#608](https://github.com/ShishirPatil/gorilla/pull/608): Bug fix in the dataset and possible answers.
   * simple: 16 affected
   * multiple: 5 affected
+* [August 23, 2024] [#600](https://github.com/ShishirPatil/gorilla/pull/600): Bug fix in the dataset and possible answers.
+  * simple: 12 affected
+  * multiple: 3 affected
+  * parallel: 3 affected
+  * parallel multiple: 6 affected
 * [August 22, 2024] [#593](https://github.com/ShishirPatil/gorilla/pull/593): 
   * Move formatting instructions and function documentation to system prompt instead of user prompt in the message section. All prompting models are affected.
   * Bug fix in the dataset and possible answers.
@@ -266,11 +313,9 @@ Some companies have proposed some optimization strategies in their models' handl
 * [August 7, 2024] [#571](https://github.com/ShishirPatil/gorilla/pull/571): Support parallel inference for hosted models. User can specify the number of threads to use for parallel inference by setting the `--num-threads` flag. The default is 1, which means no parallel inference.
 * [August 6, 2024] [#569](https://github.com/ShishirPatil/gorilla/pull/569), [#570](https://github.com/ShishirPatil/gorilla/pull/570), [#573](https://github.com/ShishirPatil/gorilla/pull/573): Add the following new models to the leaderboard:
   * `open-mistral-nemo-2407`
-  * `open-mistral-nemo-2407-FC-Any`
-  * `open-mistral-nemo-2407-FC-Auto`
+  * `open-mistral-nemo-2407-FC`
   * `open-mixtral-8x22b`
-  * `open-mixtral-8x22b-FC-Any`
-  * `open-mixtral-8x22b-FC-Auto`
+  * `open-mixtral-8x22b-FC`
   * `open-mixtral-8x7b`
   * `gpt-4o-mini-2024-07-18`
   * `gpt-4o-mini-2024-07-18-FC`
@@ -302,7 +347,7 @@ Some companies have proposed some optimization strategies in their models' handl
 * [July 16, 2024] [#525](https://github.com/ShishirPatil/gorilla/pull/525), [#536](https://github.com/ShishirPatil/gorilla/pull/536): Add new model `ibm-granite/granite-20b-functioncalling` to the leaderboard.
 * [July 10, 2024] [#522](https://github.com/ShishirPatil/gorilla/pull/522): Bug fix in the evaluation dataset for Executable Parallel Multiple category. This includes updates to both prompts and function docs. 2 entries are affected.
 * [July 8, 2024] [#516](https://github.com/ShishirPatil/gorilla/pull/516): Fix double-casting issue in `model_handler` for Java and JavaScript test categories.
-* [July 7, 2024] [#504](https://github.com/ShishirPatil/gorilla/pull/504), [#505](https://github.com/ShishirPatil/gorilla/pull/505), [#506](https://github.com/ShishirPatil/gorilla/pull/506), [#508](https://github.com/ShishirPatil/gorilla/pull/508), [#510](https://github.com/ShishirPatil/gorilla/pull/510), [#512](https://github.com/ShishirPatil/gorilla/pull/512), [#517](https://github.com/ShishirPatil/gorilla/pull/517): Make BFCL user-friendly and easy to extend.
+* [July 7, 2024] [#504](https://github.com/ShishirPatil/gorilla/pull/504), [#505](https://github.com/ShishirPatil/gorilla/pull/505), [#506](https://github.com/ShishirPatil/gorilla/pull/506), [#508](https://github.com/ShishirPatil/gorilla/pull/508), [#512](https://github.com/ShishirPatil/gorilla/pull/512), [#517](https://github.com/ShishirPatil/gorilla/pull/517): Make BFCL user-friendly and easy to extend.
 * [July 6, 2024] [#423](https://github.com/ShishirPatil/gorilla/pull/423) and [#503](https://github.com/ShishirPatil/gorilla/pull/503): Bug fix in possible answers for the AST evaluation dataset (parallel category: 14 affected; parallel_multiple category: 25 affected).
 * [July 5, 2024] [#496](https://github.com/ShishirPatil/gorilla/pull/496): Updates to API status checks. Checking the health of executable APIs is now off by default. Further, even when triggered, un-healthy APIs will not terminate the evaluation process. Users can enable this feature by setting the `--api-sanity-check` flag or `-c` for short. The previous `--skip-api-sanity-check` or `-s` flag is now deprecated.
 * [July 3, 2024] [#489](https://github.com/ShishirPatil/gorilla/pull/489): Add new model `nvidia/nemotron-4-340b-instruct` to the leaderboard.
