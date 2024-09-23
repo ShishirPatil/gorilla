@@ -4,7 +4,7 @@ import typer
 from bfcl._openfunctions_evaluation import main as openfunctions_main
 from bfcl.eval_checker import eval_runner
 from bfcl.eval_checker.eval_runner_helper import MODEL_METADATA_MAPPING
-from bfcl.eval_checker.eval_checker_constant import TEST_COLLECTION_MAPPING
+from bfcl.constant import TEST_COLLECTION_MAPPING
 import os
 from pathlib import Path
 from datetime import datetime
@@ -189,9 +189,6 @@ def evaluate(
     eval_runner.POSSIBLE_ANSWER_PATH = "./data/possible_answer/"
     eval_runner.OUTPUT_PATH = "./score/"
 
-    # todo: change the eval_runner to not depend on OPENAI_API_KEY
-    os.environ["OPENAI_API_KEY"] = "BOGUS"
-
     eval_runner.main(model, test_category, api_sanity_check)
 
 
@@ -204,7 +201,7 @@ def scores():
         return (text[:length] + '...') if len(text) > length else text
 
     # files = ["./score/data_non_live.csv", "./score/data_live.csv", "./score/data_combined.csv"]
-    files = ["./score/data_combined.csv"]  # todo: make ./score configurable
+    files = ["./score/data_overall.csv"]  # todo: make ./score configurable
     for file in files:
         if os.path.exists(file):
             with open(file, newline='') as csvfile:
