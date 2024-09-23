@@ -19,7 +19,7 @@ class BaseHandler:
     model_name: str
     model_style: ModelStyle
 
-    def __init__(self, model_name, temperature, is_fc_model: bool = False) -> None:
+    def __init__(self, model_name, temperature) -> None:
         self.model_name = model_name
         # Replace the slash with underscore to avoid creating subdirectories
         # Replace the dash and dot with underscore for valid variable name
@@ -27,7 +27,7 @@ class BaseHandler:
             model_name.replace("/", "_").replace("-", "_").replace(".", "_")
         )
         self.temperature = temperature
-        self.is_fc_model = is_fc_model  # Whether the model is a function calling model
+        self.is_fc_model = False  # Whether the model is a function calling model
 
     def inference(self, test_entry: dict, include_debugging_log: bool):
         # This method is used to retrive model response for each model.
