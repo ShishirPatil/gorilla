@@ -242,12 +242,13 @@
               <li>BFCL Evaluation Dataset: <a
                   href="https://huggingface.co/datasets/gorilla-llm/Berkeley-Function-Calling-Leaderboard">
                   HuggingFace Dataset 🤗</a></li>
-              <li>Gradio Demo: <a
-                  href="https://huggingface.co/spaces/gorilla-llm/berkeley-function-calling-leaderboard">
-                  HuggingFace Space 🤗 </a></li>
               <li>Reproducibility: <a
                   href="https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard">Github
                   Code</a></li>
+              <li>BFCL v1: <a
+                  href="8_berkeley_function_calling_leaderboard.html">Release Blog</a></li>
+              <li>BFCL v2: <a
+                  href="12_bfcl_v2_live.html">Enterprise and OSS-contributed Live Data</a></li>
             </ul>
           </p>
           <p>
@@ -256,7 +257,7 @@
             are important in the real world. We will then present the key features of our benchmarking and findings when
             evaluating against SOTA models.
             Lastly, we will showcase the evaluation dataset construction process and highlight the importance of
-            synthetic dataset working hand in hand with human data labeling.
+            a human annotated dataset.
 
           </p>
         </div>
@@ -343,7 +344,7 @@
               <tbody>
                 <tr>
                   <td>BFCL-v2</td>
-                  <td>Synthetic</td>
+                  <td>Human</td>
                   <td>Human</td>
                   <td style="color: red;">&#10007;</td>
                   <td style="color: red;">&#10007;</td>
@@ -398,7 +399,7 @@
                 </tr>
                 <tr>
                   <td>BFCL-v3</td>
-                  <td>Synthetic</td>
+                  <td>Human</td>
                   <td>Human</td>
                   <td style="color: green;">&#10003;</td>
                   <td style="color: green;">&#10003;</td>
@@ -453,14 +454,14 @@
                 Function dataset
                 essentially contains the same sequence of actions except for the latter we hold-out a subset of
                 functions on execution path to
-                further challenge the model’s inference ability.
+                further challenge the model's inference ability.
               </ul>
               <ul>
-                <strong>Long-Context Multi-Turn (200)</strong>: This dataset challenges the model’s resilience in long
+                <strong>Long-Context Multi-Turn (200)</strong>: This dataset challenges the model's resilience in long
                 context scenarios on function
                 calling. We inject random objects (e.g. hundreds of files in one directory or thousands of booking
                 records) to mimic real world API output,
-                which tend to be overtly informative. Here, we aim to test the model’s ability to grasp the core
+                which tend to be overtly informative. Here, we aim to test the model's ability to grasp the core
                 information from an overwhelmingly large context.
               </ul>
               <ul>
@@ -507,21 +508,19 @@
           <div></div>
           <h3 id="curation">Data Curation Methodology</h3>
           <p>In this section, we detail our data curation methodology for the BFCL V3 dataset. The dataset curation
-            process consists of synthetic data generation for four components of BFCL V3: API codebase creation, graph
+            process consists of hand-curated data generation for four components of BFCL V3: API codebase creation, graph
             edge construction, task generation, and human-labeled ground truth multi-turn trajectories, as well as a
             comprehensive data validation process.</p>
-          <h4>Synthetic Dataset with human-in-the-loop pre-processing and post-processing</h4>
+          <h4>Dataset with human-in-the-loop pre-processing and post-processing</h4>
           <p>
             Our dataset curation process consists of 3 parts. Manual curation of APIs and mapping out
             upstream/downstream relations in the representation of a Graph.
-            Synthetic generation through randomly sampling execution paths. Humans label ground truth and verify
+            Data scaling through randomly sampling execution paths. Humans label ground truth and verify
             execution results based on initial configurations.
           </p>
           <p>
-            Our team believes that synthetic dataset should work hand in hand with human labeling as the motivation is
-            that we want to replicate
-            the training data scaling process. We take care of the APIs created by humans as we believe human can
-            generate more connected and densely important functions useful for evaluation purposes.
+            Our team believes that synthetic dataset by itself alone is not enough and human labeling is essential.  We take care of the APIs created by humans as we believe human can
+            generate more connected and densely important functions useful for evaluation purposes. Even with this, we went through 11 rounds of data-filtering, highlighting the importance and challenges of function calling.
           </p>
 
           <img src="../assets/img/blog_post_13_data_collection.png" alt="Responsive Image"
