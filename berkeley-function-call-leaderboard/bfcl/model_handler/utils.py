@@ -765,7 +765,7 @@ def parse_nested_value(value):
             return f"{func_name}({args_str})"
         else:
             # If it's a simple dictionary, treat it as key-value pairs
-            return "{" + ", ".join(f"{k}={parse_nested_value(v)}" for k, v in value.items()) + "}"
+            return "{" + ", ".join(f"'{k}': {parse_nested_value(v)}" for k, v in value.items()) + "}"
     return repr(value)
 
 
@@ -788,3 +788,4 @@ def decoded_output_to_execution_list(decoded_output):
             )
             execution_list.append(f"{key}({args_str})")
     return execution_list
+    
