@@ -342,8 +342,13 @@ class GeminiHandler(BaseHandler):
         """TypeError: argument of type 'Part' is not iterable"""
         # So again, we need to directly access the `api_response.candidates[0].content.parts[0]._raw_part.text` attribute to get the text content of the part
         # This is a workaround for this bug, until the bug is fixed
+
+        if len(api_response.candidates[0].content.parts) > 0:
+            model_responses = api_response.candidates[0].content.parts[0]._raw_part.text
+        else:
+            model_responses = ""
         return {
-            "model_responses": api_response.candidates[0].content.parts[0]._raw_part.text,
+            "model_responses": model_responses,
             "input_token": api_response.usage_metadata.prompt_token_count,
             "output_token": api_response.usage_metadata.candidates_token_count,
         }
