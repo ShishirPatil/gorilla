@@ -175,12 +175,21 @@ class LlamaFCHandler(OSSHandler):
 
     def decode_ast(self, result, language="Python"):
         result = result.replace("<|python_tag|>", "")
-        # Split the result by `;` as that's how llama separates the function calls
-        function_calls = result.split(";")
+        # Llama sometimes separates the function calls with `;` and sometimes with `,`
+        if ";" in result:
+            """
+            "<|python_tag|>{\"name\": \"calc_binomial_probability\", \"parameters\": {\"n\": \"10\", \"k\": \"3\", \"p\": \"0\"}}; {\"name\": \"calc_binomial_probability\", \"parameters\": {\"n\": \"15\", \"k\": \"5\", \"p\": \"0\"}}; {\"name\": \"calc_binomial_probability\", \"parameters\": {\"n\": \"20\", \"k\": \"7\", \"p\": \"0\"}}"
+            """
+            function_calls = result.split(";")
+            function_calls = [json.loads(func_call) for func_call in function_calls]
+        else:
+            """
+            "[\n    {\"name\": \"calculate_permutations\", \"parameters\": {\"n\": \"20\", \"k\": \"5\"}},\n    {\"name\": \"calculate_permutations\", \"parameters\": {\"n\": \"12\", \"k\": \"5\"}},\n    {\"name\": \"calculate_permutations\", \"parameters\": {\"n\": \"10\", \"k\": \"3\"}}\n]"
+            """
+            function_calls = eval(result)
 
         decoded_output = []
         for func_call in function_calls:
-            func_call = json.loads(func_call)
             name = func_call["name"]
             params = func_call["parameters"]
             decoded_output.append({name: params})
@@ -189,12 +198,15 @@ class LlamaFCHandler(OSSHandler):
 
     def decode_execute(self, result):
         result = result.replace("<|python_tag|>", "")
-        # Split the result by `;` as that's how llama separates the function calls
-        function_calls = result.split(";")
+        # Llama sometimes separates the function calls with `;` and sometimes with `,`
+        if ";" in result:
+            function_calls = result.split(";")
+            function_calls = [json.loads(func_call) for func_call in function_calls]
+        else:
+            function_calls = eval(result)
 
         execution_list = []
         for func_call in function_calls:
-            func_call = json.loads(func_call)
             name = func_call["name"]
             params = func_call["parameters"]
             execution_list.append(
