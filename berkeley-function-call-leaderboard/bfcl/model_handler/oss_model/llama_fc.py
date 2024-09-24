@@ -174,22 +174,29 @@ class LlamaFCHandler(OSSHandler):
         return formatted_prompt
 
     def decode_ast(self, result, language="Python"):
-        if type(result) is dict:
-            result = [result]
+        result = result.replace("<|python_tag|>", "")
+        # Split the result by `;` as that's how llama separates the function calls
+        function_calls = result.split(";")
+
         decoded_output = []
-        for invoked_function in result:
-            name = invoked_function["name"]
-            params = invoked_function["parameters"]
+        for func_call in function_calls:
+            func_call = json.loads(func_call)
+            name = func_call["name"]
+            params = func_call["parameters"]
             decoded_output.append({name: params})
+
         return decoded_output
 
     def decode_execute(self, result):
-        if type(result) is dict:
-            result = [result]
+        result = result.replace("<|python_tag|>", "")
+        # Split the result by `;` as that's how llama separates the function calls
+        function_calls = result.split(";")
+
         execution_list = []
-        for function_call in result:
-            name = function_call["name"]
-            params = function_call["parameters"]
+        for func_call in function_calls:
+            func_call = json.loads(func_call)
+            name = func_call["name"]
+            params = func_call["parameters"]
             execution_list.append(
                 f"{name}({','.join([f'{k}={repr(v)}' for k,v in params.items()])})"
             )
