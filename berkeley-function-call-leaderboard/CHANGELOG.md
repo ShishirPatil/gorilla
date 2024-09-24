@@ -2,6 +2,9 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Sept 24, 2024] [#654](https://github.com/ShishirPatil/gorilla/pull/654): Add the following new models to the leaderboard:
+  - `meta-llama/Meta-Llama-3.1-8B-Instruct`
+  - `meta-llama/Meta-Llama-3.1-70B-Instruct`
 - [Sept 19, 2024] [#644](https://github.com/ShishirPatil/gorilla/pull/644): BFCL V3 release:
   - Introduce new multi-turn dataset and state-based evaluation metric
   - Separate ast_checker and executable_checker for readability
