@@ -7,12 +7,12 @@ from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT, GORILLA_TO_OPENAP
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     convert_to_tool,
+    default_decode_ast_prompting,
+    default_decode_execute_prompting,
     extract_system_prompt,
     format_execution_results_prompting,
     func_doc_language_specific_pre_processing,
     system_prompt_pre_processing_chat_model,
-    default_decode_ast_prompting,
-    default_decode_execute_prompting,
 )
 from google.protobuf.struct_pb2 import (
     ListValue,  # This import should eventually be removed. See comment in the `decode_execute` method below
@@ -401,8 +401,11 @@ class GeminiHandler(BaseHandler):
         formatted_results_message = format_execution_results_prompting(
             inference_data, execution_results, model_response_data
         )
-        inference_data["message"].append(
-            {"role": "user", "content": formatted_results_message}
+        tool_message = Content(
+            role="user",
+            parts=[
+                Part.from_text(formatted_results_message),
+            ],
         )
-
+        inference_data["message"].append(tool_message)
         return inference_data
