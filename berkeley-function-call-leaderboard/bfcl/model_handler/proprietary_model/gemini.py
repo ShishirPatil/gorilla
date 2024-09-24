@@ -11,6 +11,8 @@ from bfcl.model_handler.utils import (
     format_execution_results_prompting,
     func_doc_language_specific_pre_processing,
     system_prompt_pre_processing_chat_model,
+    default_decode_ast_prompting,
+    default_decode_execute_prompting,
 )
 from google.protobuf.struct_pb2 import (
     ListValue,  # This import should eventually be removed. See comment in the `decode_execute` method below
@@ -50,68 +52,76 @@ class GeminiHandler(BaseHandler):
         return prompts
 
     def decode_ast(self, result, language="Python"):
-        if type(result) is not list:
-            result = [result]
-        decoded_output = []
-        for invoked_function in result:
-            name = list(invoked_function.keys())[0]
-            params = json.loads(invoked_function[name])
-            decoded_output.append({name: params})
-        return decoded_output
+        if "FC" not in self.model_name:
+            result = result.replace("```tool_code\n", "").replace("\n```", "")
+            return default_decode_ast_prompting(result, language)
+        else:
+            if type(result) is not list:
+                result = [result]
+            decoded_output = []
+            for invoked_function in result:
+                name = list(invoked_function.keys())[0]
+                params = json.loads(invoked_function[name])
+                decoded_output.append({name: params})
+            return decoded_output
 
     def decode_execute(self, result):
-        func_call_list = []
-        for function_call in result:
-            for func_name, func_args in function_call.items():
-                # Note: Below is a workaround for a bug in the Vertex AI library
-                # Accoding to the Vertex AI documentation https://ai.google.dev/gemini-api/docs/function-calling/tutorial?lang=python, cited below:
-                """
-                # Set the model up with tools.
-                house_fns = [power_disco_ball, start_music, dim_lights]
+        if "FC" not in self.model_name:
+            result = result.replace("```tool_code\n", "").replace("\n```", "")
+            return default_decode_execute_prompting(result)
+        else:
+            func_call_list = []
+            for function_call in result:
+                for func_name, func_args in function_call.items():
+                    # Note: Below is a workaround for a bug in the Vertex AI library
+                    # Accoding to the Vertex AI documentation https://ai.google.dev/gemini-api/docs/function-calling/tutorial?lang=python, cited below:
+                    """
+                    # Set the model up with tools.
+                    house_fns = [power_disco_ball, start_music, dim_lights]
 
-                model = genai.GenerativeModel(model_name="gemini-1.5-flash", tools=house_fns)
+                    model = genai.GenerativeModel(model_name="gemini-1.5-flash", tools=house_fns)
 
-                # Call the API.
-                chat = model.start_chat()
-                response = chat.send_message("Turn this place into a party!")
+                    # Call the API.
+                    chat = model.start_chat()
+                    response = chat.send_message("Turn this place into a party!")
 
-                # Print out each of the function calls requested from this single call.
-                for part in response.parts:
-                    if fn := part.function_call:
-                        args = ", ".join(f"{key}={val}" for key, val in fn.args.items())
-                        print(f"{fn.name}({args})")
-                """
-                # ", ".join(f"{key}={val}" for key, val in fn.args.items()) should get the function call arguments in a ready-to-execute format
-                # However, the above code snippet will not work as expected when `val` is a ListValue object, and it would further cause the json serialization error when writing the result to a file
-                """
-                # This is a typical ListValue object that is causing the issue. It is a list of 4 string values
-                values {
-                    string_value: "driver"
-                }
-                values {
-                    string_value: "passenger"
-                }
-                values {
-                    string_value: "rear_left"
-                }
-                values {
-                    string_value: "rear_right"
-                }
-                """
-                # To fix this, we need to unpack the ListValue object to a list of string values before joining them
-                # So the above example gets converted to:
-                """
-                ["driver", "passenger", "rear_left", "rear_right"]
-                """
-                # This will be the temporary fix until the bug in the Vertex AI library is fixed
-                for k, v in func_args.items():
-                    if type(v) == ListValue:
-                        func_args[k] = [item.string_value for item in v.values]
+                    # Print out each of the function calls requested from this single call.
+                    for part in response.parts:
+                        if fn := part.function_call:
+                            args = ", ".join(f"{key}={val}" for key, val in fn.args.items())
+                            print(f"{fn.name}({args})")
+                    """
+                    # ", ".join(f"{key}={val}" for key, val in fn.args.items()) should get the function call arguments in a ready-to-execute format
+                    # However, the above code snippet will not work as expected when `val` is a ListValue object, and it would further cause the json serialization error when writing the result to a file
+                    """
+                    # This is a typical ListValue object that is causing the issue. It is a list of 4 string values
+                    values {
+                        string_value: "driver"
+                    }
+                    values {
+                        string_value: "passenger"
+                    }
+                    values {
+                        string_value: "rear_left"
+                    }
+                    values {
+                        string_value: "rear_right"
+                    }
+                    """
+                    # To fix this, we need to unpack the ListValue object to a list of string values before joining them
+                    # So the above example gets converted to:
+                    """
+                    ["driver", "passenger", "rear_left", "rear_right"]
+                    """
+                    # This will be the temporary fix until the bug in the Vertex AI library is fixed
+                    for k, v in func_args.items():
+                        if type(v) == ListValue:
+                            func_args[k] = [item.string_value for item in v.values]
 
-                func_call_list.append(
-                    f"{func_name}({','.join([f'{k}={repr(v)}' for k, v in func_args.items()])})"
-                )
-        return func_call_list
+                    func_call_list.append(
+                        f"{func_name}({','.join([f'{k}={repr(v)}' for k, v in func_args.items()])})"
+                    )
+            return func_call_list
 
     #### FC methods ####
 
