@@ -356,7 +356,7 @@ class GeminiHandler(BaseHandler):
         if len(api_response.candidates[0].content.parts) > 0:
             model_responses = api_response.candidates[0].content.parts[0]._raw_part.text
         else:
-            model_responses = ""
+            model_responses = "The model did not return any response."
         return {
             "model_responses": model_responses,
             "input_token": api_response.usage_metadata.prompt_token_count,
