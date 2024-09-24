@@ -2,6 +2,10 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Sept 24, 2024] [#648](https://github.com/ShishirPatil/gorilla/pull/648): Add the following new models to the leaderboard:
+  - `gemini-1.5-pro-preview-0514`
+  - `gemini-1.5-flash-preview-0514`
+  - `gemini-1.0-pro`
 - [Sept 19, 2024] [#644](https://github.com/ShishirPatil/gorilla/pull/644): BFCL V3 release:
   - Introduce new multi-turn dataset and state-based evaluation metric
   - Separate ast_checker and executable_checker for readability

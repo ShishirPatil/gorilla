@@ -269,8 +269,20 @@ MODEL_METADATA_MAPPING = {
         "Google",
         "Proprietary",
     ],
+    "gemini-1.5-pro-preview-0514": [
+        "Gemini-1.5-Pro-Preview-0514 (Prompt)",
+        "https://deepmind.google/technologies/gemini/pro/",
+        "Google",
+        "Proprietary",
+    ],
     "gemini-1.5-flash-preview-0514-FC": [
         "Gemini-1.5-Flash-Preview-0514 (FC)",
+        "https://deepmind.google/technologies/gemini/flash/",
+        "Google",
+        "Proprietary",
+    ],
+    "gemini-1.5-flash-preview-0514": [
+        "Gemini-1.5-Flash-Preview-0514 (Prompt)",
         "https://deepmind.google/technologies/gemini/flash/",
         "Google",
         "Proprietary",
@@ -283,6 +295,12 @@ MODEL_METADATA_MAPPING = {
     ],
     "gemini-1.0-pro-FC": [
         "Gemini-1.0-Pro-001 (FC)",
+        "https://deepmind.google/technologies/gemini/#introduction",
+        "Google",
+        "Proprietary",
+    ],
+    "gemini-1.0-pro": [
+        "Gemini-1.0-Pro-001 (Prompt)",
         "https://deepmind.google/technologies/gemini/#introduction",
         "Google",
         "Proprietary",
