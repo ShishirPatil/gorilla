@@ -187,6 +187,8 @@ class LlamaFCHandler(OSSHandler):
             "[\n    {\"name\": \"calculate_permutations\", \"parameters\": {\"n\": \"20\", \"k\": \"5\"}},\n    {\"name\": \"calculate_permutations\", \"parameters\": {\"n\": \"12\", \"k\": \"5\"}},\n    {\"name\": \"calculate_permutations\", \"parameters\": {\"n\": \"10\", \"k\": \"3\"}}\n]"
             """
             function_calls = eval(result)
+            if type(function_calls) == dict:
+                function_calls = [function_calls]
 
         decoded_output = []
         for func_call in function_calls:
@@ -204,6 +206,8 @@ class LlamaFCHandler(OSSHandler):
             function_calls = [json.loads(func_call) for func_call in function_calls]
         else:
             function_calls = eval(result)
+            if type(function_calls) == dict:
+                function_calls = [function_calls]
 
         execution_list = []
         for func_call in function_calls:
