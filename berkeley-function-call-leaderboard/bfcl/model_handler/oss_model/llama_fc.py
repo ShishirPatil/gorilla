@@ -178,21 +178,21 @@ class LlamaFCHandler(OSSHandler):
             result = [result]
         decoded_output = []
         for invoked_function in result:
-            name = list(invoked_function.keys())[0]
-            params = invoked_function[name]
+            name = invoked_function["name"]
+            params = invoked_function["parameters"]
             decoded_output.append({name: params})
         return decoded_output
 
-    # TODO: This is convert_to_function_call in util.py but without the json.loads(value). Can be merged.
     def decode_execute(self, result):
-        if type(function_call_list) is dict:
-            function_call_list = [function_call_list]
+        if type(result) is dict:
+            result = [result]
         execution_list = []
-        for function_call in function_call_list:
-            for key, value in function_call.items():
-                execution_list.append(
-                    f"{key}({','.join([f'{k}={repr(v)}' for k,v in value.items()])})"
-                )
+        for function_call in result:
+            name = function_call["name"]
+            params = function_call["parameters"]
+            execution_list.append(
+                f"{name}({','.join([f'{k}={repr(v)}' for k,v in params.items()])})"
+            )
 
         return execution_list
 
