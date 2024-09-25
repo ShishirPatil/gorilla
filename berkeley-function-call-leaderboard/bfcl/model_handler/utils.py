@@ -751,17 +751,23 @@ def parse_nested_value(value):
     Parse a potentially nested value from the AST output.
 
     Args:
-        value: The value to parse, which could be a nested dictionary or a simple value.
+        value: The value to parse, which could be a nested dictionary, which includes another function call, or a simple value.
 
     Returns:
-        str: A string representation of the value, handling nested function calls.
+        str: A string representation of the value, handling nested function calls and nested dictionary function arguments.
     """
     if isinstance(value, dict):
-        func_name = list(value.keys())[0]
-        args = value[func_name]
-        args_str = ", ".join(f"{k}={parse_nested_value(v)}" for k, v in args.items())
-        return f"{func_name}({args_str})"
+        # Check if the dictionary represents a function call (i.e., the value is another dictionary or complex structure)
+        if all(isinstance(v, dict) for v in value.values()):
+            func_name = list(value.keys())[0]
+            args = value[func_name]
+            args_str = ", ".join(f"{k}={parse_nested_value(v)}" for k, v in args.items())
+            return f"{func_name}({args_str})"
+        else:
+            # If it's a simple dictionary, treat it as key-value pairs
+            return "{" + ", ".join(f"'{k}': {parse_nested_value(v)}" for k, v in value.items()) + "}"
     return repr(value)
+
 
 
 def decoded_output_to_execution_list(decoded_output):
@@ -782,3 +788,4 @@ def decoded_output_to_execution_list(decoded_output):
             )
             execution_list.append(f"{key}({args_str})")
     return execution_list
+    
