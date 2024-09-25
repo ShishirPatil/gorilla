@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Sept 25, 2024] [#660](https://github.com/ShishirPatil/gorilla/pull/660): Bug fix in `parse_nested_value` function to handle nested dictionary values properly. 
 - [Sept 24, 2024] [#657](https://github.com/ShishirPatil/gorilla/pull/657): Add the following new models to the leaderboard:
   - `meta-llama/Meta-Llama-3.1-8B-Instruct`
   - `meta-llama/Meta-Llama-3.1-70B-Instruct`
