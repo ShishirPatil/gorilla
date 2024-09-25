@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Sept 25, 2024] [#660](https://github.com/ShishirPatil/gorilla/pull/660): Bug fix in `parse_nested_value` function to handle nested dictionary values properly. 
 - [Sept 24, 2024] [#648](https://github.com/ShishirPatil/gorilla/pull/648): Add the following new models to the leaderboard:
   - `gemini-1.5-pro-preview-0514`
   - `gemini-1.5-flash-preview-0514`
