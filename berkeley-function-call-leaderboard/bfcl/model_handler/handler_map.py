@@ -21,7 +21,7 @@ from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
 
-# TODO: Add Deepseek V2 and Gemma V2, meta-llama/Meta-Llama-3.1-405B-Instruct
+# TODO: Add Deepseek V2 and Gemma V2, meta-llama/Llama-3.1-405B-Instruct
 handler_map = {
     # Inference through API calls
     "gorilla-openfunctions-v2": GorillaHandler,
@@ -72,10 +72,10 @@ handler_map = {
     # Inference through local hosting
     "meta-llama/Meta-Llama-3-8B-Instruct": LlamaHandler,
     "meta-llama/Meta-Llama-3-70B-Instruct": LlamaHandler,
-    "meta-llama/Meta-Llama-3.1-8B-Instruct": LlamaFCHandler,
-    "meta-llama/Meta-Llama-3.1-70B-Instruct": LlamaFCHandler,
-    "meta-llama/Meta-Llama-3.2-1B-Instruct": LlamaFCHandler,
-    "meta-llama/Meta-Llama-3.2-3B-Instruct": LlamaFCHandler,
+    "meta-llama/Llama-3.1-8B-Instruct": LlamaFCHandler,
+    "meta-llama/Llama-3.1-70B-Instruct": LlamaFCHandler,
+    "meta-llama/Llama-3.2-1B-Instruct": LlamaFCHandler,
+    "meta-llama/Llama-3.2-3B-Instruct": LlamaFCHandler,
     "Salesforce/xLAM-1b-fc-r": SalesforceHandler,
     "Salesforce/xLAM-7b-fc-r": SalesforceHandler,
     "Salesforce/xLAM-7b-r": SalesforceHandler,

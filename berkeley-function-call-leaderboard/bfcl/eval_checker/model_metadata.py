@@ -365,26 +365,26 @@ MODEL_METADATA_MAPPING = {
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Meta-Llama-3.1-8B-Instruct": [
-        "Meta-Llama-3.1-8B-Instruct (FC)",
+    "meta-llama/Llama-3.1-8B-Instruct": [
+        "Llama-3.1-8B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Meta-Llama-3.1-70B-Instruct": [
-        "Meta-Llama-3.1-70B-Instruct (FC)",
+    "meta-llama/Llama-3.1-70B-Instruct": [
+        "Llama-3.1-70B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Meta-Llama-3.2-1B-Instruct": [
-        "Meta-Llama-3.2-1B-Instruct (FC)",
+    "meta-llama/Llama-3.2-1B-Instruct": [
+        "Llama-3.2-1B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
     ],
-    "meta-llama/Meta-Llama-3.2-3B-Instruct": [
-        "Meta-Llama-3.2-3B-Instruct (FC)",
+    "meta-llama/Llama-3.2-3B-Instruct": [
+        "Llama-3.2-3B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
