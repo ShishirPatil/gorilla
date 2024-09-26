@@ -38,7 +38,6 @@ class BaseHandler:
             if "multi_turn" in test_entry["id"]:
                 return self.inference_multi_turn_FC(test_entry, include_debugging_log)
             else:
-                test_entry["question"] = [test_entry["question"]]
                 return self.inference_single_turn_FC(test_entry, include_debugging_log)
         # Prompting model
         else:
@@ -47,7 +46,6 @@ class BaseHandler:
                     test_entry, include_debugging_log
                 )
             else:
-                test_entry["question"] = [test_entry["question"]]
                 return self.inference_single_turn_prompting(
                     test_entry, include_debugging_log
                 )
@@ -413,7 +411,9 @@ class BaseHandler:
     def inference_single_turn_FC(
         self, test_entry: dict, include_debugging_log: bool
     ) -> tuple[any, dict]:
-        inference_data: dict = self._pre_query_processing_FC(test_entry)
+        inference_data: dict = {}
+        inference_data = self._pre_query_processing_FC(inference_data, test_entry)
+        inference_data = self._compile_tools(inference_data, test_entry)
         inference_data = self.add_first_turn_message_FC(
             inference_data, test_entry["question"][0]
         )
