@@ -57,6 +57,8 @@ handler_map = {
     "Nexusflow-Raven-v2": NexusHandler,
     "gemini-1.0-pro": GeminiHandler,
     "gemini-1.0-pro-FC": GeminiHandler,
+    "gemini-1.5-pro-002": GeminiHandler,
+    "gemini-1.5-pro-002-FC": GeminiHandler,
     "gemini-1.5-pro-preview-0514": GeminiHandler,
     "gemini-1.5-pro-preview-0514-FC": GeminiHandler,
     "gemini-1.5-flash-preview-0514": GeminiHandler,

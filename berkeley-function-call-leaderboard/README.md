@@ -134,6 +134,8 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |firefunction-{v1,v2}-FC | Function Calling|
 |gemini-1.0-pro-FC | Function Calling|
 |gemini-1.0-pro | Prompt|
+|gemini-1.5-pro-002-FC | Function Calling|
+|gemini-1.5-pro-002 | Prompt|
 |gemini-1.5-pro-preview-{0409,0514}-FC | Function Calling|
 |gemini-1.5-pro-preview-{0409,0514} | Prompt|
 |gemini-1.5-flash-preview-0514-FC | Function Calling|

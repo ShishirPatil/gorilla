@@ -263,6 +263,18 @@ MODEL_METADATA_MAPPING = {
         "Fireworks",
         "Apache 2.0",
     ],
+    "gemini-1.5-pro-002": [
+        "Gemini-1.5-Pro-002 (Prompt)",
+        "https://deepmind.google/technologies/gemini/pro/",
+        "Google",
+        "Proprietary",
+    ],
+    "gemini-1.5-pro-002-FC": [
+        "Gemini-1.5-Pro-002 (FC)",
+        "https://deepmind.google/technologies/gemini/pro/",
+        "Google",
+        "Proprietary",
+    ],
     "gemini-1.5-pro-preview-0514-FC": [
         "Gemini-1.5-Pro-Preview-0514 (FC)",
         "https://deepmind.google/technologies/gemini/pro/",
