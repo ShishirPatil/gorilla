@@ -74,6 +74,8 @@ handler_map = {
     "meta-llama/Meta-Llama-3-70B-Instruct": LlamaHandler,
     "meta-llama/Meta-Llama-3.1-8B-Instruct": LlamaFCHandler,
     "meta-llama/Meta-Llama-3.1-70B-Instruct": LlamaFCHandler,
+    "meta-llama/Meta-Llama-3.2-1B-Instruct": LlamaFCHandler,
+    "meta-llama/Meta-Llama-3.2-3B-Instruct": LlamaFCHandler,
     "Salesforce/xLAM-1b-fc-r": SalesforceHandler,
     "Salesforce/xLAM-7b-fc-r": SalesforceHandler,
     "Salesforce/xLAM-7b-r": SalesforceHandler,
