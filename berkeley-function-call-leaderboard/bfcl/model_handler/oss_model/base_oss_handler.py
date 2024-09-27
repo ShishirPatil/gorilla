@@ -149,7 +149,7 @@ class OSSHandler(BaseHandler):
 
         if hasattr(self, "stop_token_ids"):
             api_response = self.client.completions.create(
-                model=self.model_name,
+                model=self.model_name_huggingface,
                 temperature=self.temperature,
                 prompt=formatted_prompt,
                 stop_token_ids=self.stop_token_ids,
@@ -157,7 +157,7 @@ class OSSHandler(BaseHandler):
             )
         else:
             api_response = self.client.completions.create(
-                model=self.model_name,
+                model=self.model_name_huggingface,
                 temperature=self.temperature,
                 prompt=formatted_prompt,
                 max_tokens=4096,
