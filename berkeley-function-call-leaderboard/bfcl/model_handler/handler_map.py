@@ -6,6 +6,7 @@ from bfcl.model_handler.oss_model.granite import GraniteHandler
 from bfcl.model_handler.oss_model.hammer import HammerHandler
 from bfcl.model_handler.oss_model.hermes import HermesHandler
 from bfcl.model_handler.oss_model.llama import LlamaHandler
+from bfcl.model_handler.oss_model.phi import PhiHandler
 from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
 from bfcl.model_handler.proprietary_model.claude import ClaudeHandler
 from bfcl.model_handler.proprietary_model.cohere import CohereHandler
@@ -19,9 +20,6 @@ from bfcl.model_handler.proprietary_model.nexus import NexusHandler
 from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
-from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
-from bfcl.model_handler.oss_model.hammer import HammerHandler
-from bfcl.model_handler.oss_model.phi import PhiHandler
 
 # TODO: Add Deepseek V2 and Gemma V2
 handler_map = {
