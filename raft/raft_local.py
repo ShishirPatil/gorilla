@@ -84,37 +84,6 @@ def get_chunks(file_path: str, doctype: DocType = "pdf", chunk_size: int = 512) 
             
     return chunks
 
-# def generate_instructions_hf(chunk: str, x: int = 5, model_name: str = "t5-small") -> list[str]:
-#     """
-#     Uses a Hugging Face model to generate `x` questions based on the given text chunk.
-#     """
-#     # Load the Hugging Face model and tokenizer for question generation
-#     tokenizer = AutoTokenizer.from_pretrained(model_name)
-#     model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
-    
-#     input_text = f"Generate a question based on the following text: {chunk}"
-#     inputs = tokenizer(input_text, return_tensors="pt", truncation=True, padding="longest")
-
-#     questions = []
-#     for _ in range(x):
-#         output = model.generate(inputs.input_ids, max_length=64)
-#         question = tokenizer.decode(output[0], skip_special_tokens=True)
-#         questions.append(question)
-    
-#     return questions
-
-
-# def generate_label_hf(question: str, context: str, model_name: str = "deepset/roberta-base-squad2") -> str:
-#     """
-#     Uses a Hugging Face model to generate an answer to the given question based on the context.
-#     """
-#     # Load the Hugging Face model and tokenizer for question-answering
-#     question_answering_pipeline = pipeline("question-answering", model=model_name)
-    
-#     result = question_answering_pipeline(question=question, context=context)
-    
-#     return result['answer']
-
 def generate_instructions_hf(chunk: str, x: int = 5, model_name: str = "t5-small") -> list[str]:
     """
     Uses a Hugging Face model to generate `x` questions based on the given text chunk, utilizing the GPU if available.

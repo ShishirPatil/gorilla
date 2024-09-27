@@ -1,19 +1,13 @@
 import os
-import time
 
-from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
-from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from bfcl.model_handler.model_style import ModelStyle
-from bfcl.model_handler.utils import (
-    convert_to_tool,
-    func_doc_language_specific_pre_processing,
-)
+from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from openai import OpenAI
 
 
 class FireworksHandler(OpenAIHandler):
-    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=1000) -> None:
-        super().__init__(model_name, temperature, top_p, max_tokens)
+    def __init__(self, model_name, temperature) -> None:
+        super().__init__(model_name, temperature)
         self.model_style = ModelStyle.FIREWORK_AI
 
         self.client = OpenAI(
@@ -21,47 +15,89 @@ class FireworksHandler(OpenAIHandler):
             api_key=os.getenv("FIRE_WORKS_API_KEY"),
         )
 
-    def inference(self, prompt, functions, test_category):
-        functions = func_doc_language_specific_pre_processing(functions, test_category)
+    #### FC methods ####
 
-        message = prompt
-        oai_tool = convert_to_tool(
-            functions, GORILLA_TO_OPENAPI, self.model_style, test_category
-        )
+    def _query_FC(self, inference_data: dict):
+        message: list[dict] = inference_data["message"]
+        tools = inference_data["tools"]
+        inference_data["inference_input_log"] = {"message": message, "tools": tools}
 
-        start_time = time.time()
-        model_name = self.model_name.replace("-FC", "")
-        model_name = f"accounts/fireworks/models/{model_name}"
-        if len(oai_tool) > 0:
-            response = self.client.chat.completions.create(
+        if len(tools) > 0:
+            api_response = self.client.chat.completions.create(
                 messages=message,
-                model=model_name,
+                model=f"accounts/fireworks/models/{self.model_name.replace('-FC', '')}",
                 temperature=self.temperature,
-                max_tokens=self.max_tokens,
-                top_p=self.top_p,
-                tools=oai_tool,
-                frequency_penalty=0.4,
+                tools=tools,
             )
         else:
-            response = self.client.chat.completions.create(
+            api_response = self.client.chat.completions.create(
                 messages=message,
-                model=model_name,
+                model=f"accounts/fireworks/models/{self.model_name.replace('-FC', '')}",
                 temperature=self.temperature,
-                max_tokens=self.max_tokens,
-                top_p=self.top_p,
             )
-        latency = time.time() - start_time
+
+        return api_response
+
+    def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
+        return super()._pre_query_processing_FC(inference_data, test_entry)
+    
+    def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
+        return super()._compile_tools(inference_data, test_entry)
+
+    def _parse_query_response_FC(self, api_response: any) -> dict:
         try:
-            result = [
+            model_responses = [
                 {func_call.function.name: func_call.function.arguments}
-                for func_call in response.choices[0].message.tool_calls
+                for func_call in api_response.choices[0].message.tool_calls
+            ]
+            tool_calls = [
+                tool_call.model_dump()
+                for tool_call in api_response.choices[0].message.tool_calls
             ]
         except:
-            result = response.choices[0].message.content
-        metadata = {}
-        metadata["input_token_count"] = response.usage.prompt_tokens
-        metadata["output_token_count"] = response.usage.completion_tokens
-        metadata["latency"] = latency
-        metadata["processed_message"] = message
-        metadata["processed_tool"] = oai_tool
-        return result, metadata
+            model_responses = api_response.choices[0].message.content
+            tool_calls = []
+
+        return {
+            "model_responses": model_responses,
+            "model_responses_message_for_chat_history": tool_calls,
+            "input_token": api_response.usage.prompt_tokens,
+            "output_token": api_response.usage.completion_tokens,
+        }
+
+    def add_first_turn_message_FC(
+        self, inference_data: dict, first_turn_message: list[dict]
+    ) -> dict:
+        return super().add_first_turn_message_FC(inference_data, first_turn_message)
+
+    def _add_next_turn_user_message_FC(
+        self, inference_data: dict, user_message: list[dict]
+    ) -> dict:
+        return super()._add_next_turn_user_message_FC(inference_data, user_message)
+
+    def _add_assistant_message_FC(
+        self, inference_data: dict, model_response_data: dict
+    ) -> dict:
+        inference_data["message"].append(
+            {
+                "role": "assistant",
+                "content": "",
+                "tool_calls": model_response_data[
+                    "model_responses_message_for_chat_history"
+                ],
+            }
+        )
+        return inference_data
+
+    def _add_execution_results_FC(
+        self, inference_data: dict, execution_results: list[str], model_response_data: dict
+    ) -> dict:
+        # Fireworks don’t support parallel and nested function calling, but we still support the code logic here for future use
+        for execution_result in execution_results:
+            tool_message = {
+                "role": "tool",
+                "content": execution_result,
+            }
+            inference_data["message"].append(tool_message)
+
+        return inference_data
