@@ -1,4 +1,5 @@
 import subprocess
+import threading
 import time
 
 import requests
@@ -34,12 +35,6 @@ class OSSHandler(BaseHandler):
             "OSS Models should call the batch_inference method instead."
         )
 
-    @staticmethod
-    def _format_prompt(messages, function):
-        raise NotImplementedError(
-            "OSS Models should implement their own prompt formatting."
-        )
-
     def decode_ast(self, result, language="Python"):
         return default_decode_ast_prompting(result, language)
 
@@ -47,12 +42,16 @@ class OSSHandler(BaseHandler):
         return default_decode_execute_prompting(result)
 
     def batch_inference(
-        self, test_entries: list[dict], num_gpus: int, gpu_memory_utilization: float, include_debugging_log: bool
+        self,
+        test_entries: list[dict],
+        num_gpus: int,
+        gpu_memory_utilization: float,
+        include_debugging_log: bool,
     ):
         """
         Batch inference for OSS models.
         """
-        
+
         process = subprocess.Popen(
             [
                 "vllm",
@@ -71,6 +70,30 @@ class OSSHandler(BaseHandler):
             stderr=subprocess.PIPE,  # Capture stderr
             text=True,  # To get the output as text instead of bytes
         )
+
+        stop_event = (
+            threading.Event()
+        )  # Event to signal threads to stop; no need to see vllm logs after server is ready
+
+        def log_subprocess_output(pipe, stop_event):
+            # Read lines until stop event is set
+            for line in iter(pipe.readline, ""):
+                if stop_event.is_set():
+                    break
+                else:
+                    print(line, end="")
+            pipe.close()
+            print("vllm server log tracking thread stopped successfully.")
+
+        # Start threads to read and print stdout and stderr
+        stdout_thread = threading.Thread(
+            target=log_subprocess_output, args=(process.stdout, stop_event)
+        )
+        stderr_thread = threading.Thread(
+            target=log_subprocess_output, args=(process.stderr, stop_event)
+        )
+        stdout_thread.start()
+        stderr_thread.start()
 
         try:
             # Wait for the server to be ready
@@ -95,24 +118,27 @@ class OSSHandler(BaseHandler):
                     # If the connection is not ready, wait and try again
                     time.sleep(1)
 
-            # After the server is ready, stop capturing the output, otherwise the terminal looks messy
-            process.stdout.close()
-            process.stderr.close()
-            process.stdout = subprocess.DEVNULL
-            process.stderr = subprocess.DEVNULL
+            # Signal threads to stop reading output
+            stop_event.set()
 
             # Once the server is ready, make the completion requests
             for test_entry in tqdm(test_entries, desc="Generating results"):
                 try:
                     if "multi_turn" in test_entry["id"]:
-                        model_responses, metadata = self.inference_multi_turn_prompting(test_entry, include_debugging_log)
+                        model_responses, metadata = self.inference_multi_turn_prompting(
+                            test_entry, include_debugging_log
+                        )
                     else:
-                        model_responses, metadata = self.inference_single_turn_prompting(test_entry, include_debugging_log)
+                        model_responses, metadata = self.inference_single_turn_prompting(
+                            test_entry, include_debugging_log
+                        )
                 except Exception as e:
-                    print(f"Error during inference for test entry {test_entry['id']}: {str(e)}")
+                    print(
+                        f"Error during inference for test entry {test_entry['id']}: {str(e)}"
+                    )
                     model_responses = f"Error during inference: {str(e)}"
                     metadata = {}
-                    
+
                 result_to_write = {
                     "id": test_entry["id"],
                     "result": model_responses,
@@ -136,7 +162,18 @@ class OSSHandler(BaseHandler):
                 process.wait()  # Wait again to ensure it's fully terminated
                 print("Process killed.")
 
+            # Wait for the output threads to finish
+            stop_event.set()
+            stdout_thread.join()
+            stderr_thread.join()
+
     #### Prompting methods ####
+
+    @staticmethod
+    def _format_prompt(messages, function):
+        raise NotImplementedError(
+            "OSS Models should implement their own prompt formatting."
+        )
 
     def _query_prompting(self, inference_data: dict):
         # We use the OpenAI Completions API with vLLM
