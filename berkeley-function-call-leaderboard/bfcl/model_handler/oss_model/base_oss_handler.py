@@ -65,6 +65,7 @@ class OSSHandler(BaseHandler):
                 str(num_gpus),
                 "--gpu-memory-utilization",
                 str(gpu_memory_utilization),
+                "--trust-remote-code",
             ],
             stdout=subprocess.PIPE,  # Capture stdout
             stderr=subprocess.PIPE,  # Capture stderr
