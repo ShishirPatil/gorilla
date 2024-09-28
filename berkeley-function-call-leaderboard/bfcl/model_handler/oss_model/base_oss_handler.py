@@ -34,8 +34,7 @@ class OSSHandler(BaseHandler):
             "OSS Models should call the batch_inference method instead."
         )
 
-    @staticmethod
-    def _format_prompt(messages, function):
+    def _format_prompt(self, messages, function):
         raise NotImplementedError(
             "OSS Models should implement their own prompt formatting."
         )
