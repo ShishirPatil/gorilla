@@ -35,8 +35,7 @@ class OSSHandler(BaseHandler):
             "OSS Models should call the batch_inference method instead."
         )
 
-    @staticmethod
-    def _format_prompt(messages, function):
+    def _format_prompt(self, messages, function):
         raise NotImplementedError(
             "OSS Models should implement their own prompt formatting."
         )
@@ -67,6 +66,7 @@ class OSSHandler(BaseHandler):
                 str(num_gpus),
                 "--gpu-memory-utilization",
                 str(gpu_memory_utilization),
+                "--trust-remote-code",
             ],
             stdout=subprocess.PIPE,  # Capture stdout
             stderr=subprocess.PIPE,  # Capture stderr
