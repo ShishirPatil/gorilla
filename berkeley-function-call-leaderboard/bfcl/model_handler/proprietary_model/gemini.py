@@ -180,12 +180,7 @@ class GeminiHandler(BaseHandler):
         else:
             if type(result) is not list:
                 result = [result]
-            decoded_output = []
-            for invoked_function in result:
-                name = list(invoked_function.keys())[0]
-                params = json.loads(invoked_function[name])
-                decoded_output.append({name: params})
-            return decoded_output
+            return result
 
     def decode_execute(self, result):
         if "FC" not in self.model_name:
