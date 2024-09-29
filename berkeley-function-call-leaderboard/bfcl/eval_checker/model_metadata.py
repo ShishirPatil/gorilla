@@ -455,12 +455,54 @@ MODEL_METADATA_MAPPING = {
         "MadeAgents",
         "cc-by-nc-4.0",
     ],
+    "microsoft/Phi-3-mini-4k-instruct": [
+        "Phi-3-mini-4k-instruct (Prompt)",
+        "https://huggingface.co/microsoft/Phi-3-mini-4k-instruct",
+        "Microsoft",
+        "MIT",
+    ],
+    "microsoft/Phi-3-mini-128k-instruct": [
+        "Phi-3-mini-128k-instruct (Prompt)",
+        "https://huggingface.co/microsoft/Phi-3-mini-128k-instruct",
+        "Microsoft",
+        "MIT",
+    ],
+    "microsoft/Phi-3-small-8k-instruct": [
+        "Phi-3-small-8k-instruct (Prompt)",
+        "https://huggingface.co/microsoft/Phi-3-small-8k-instruct",
+        "Microsoft",
+        "MIT",
+    ],
+    "microsoft/Phi-3-small-128k-instruct": [
+        "Phi-3-small-128k-instruct (Prompt)",
+        "https://huggingface.co/microsoft/Phi-3-small-128k-instruct",
+        "Microsoft",
+        "MIT",
+    ],
+    "microsoft/Phi-3-medium-4k-instruct": [
+        "Phi-3-medium-4k-instruct (Prompt)",
+        "https://huggingface.co/microsoft/Phi-3-medium-4k-instruct",
+        "Microsoft",
+        "MIT",
+    ],
+    "microsoft/Phi-3-medium-128k-instruct": [
+        "Phi-3-medium-128k-instruct (Prompt)",
+        "https://huggingface.co/microsoft/Phi-3-medium-128k-instruct",
+        "Microsoft",
+        "MIT",
+    ],
+    "microsoft/Phi-3.5-mini-instruct": [
+        "Phi-3.5-mini-instruct (Prompt)",
+        "https://huggingface.co/microsoft/Phi-3.5-mini-instruct",
+        "Microsoft",
+        "MIT",
+    ],
     "Team-ACE/ToolACE-8B": [
         "ToolACE-8B (FC)",
         "https://huggingface.co/Team-ACE/ToolACE-8B",
         "Huawei Noah & USTC",
         "Apache-2.0",
-    ]
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {

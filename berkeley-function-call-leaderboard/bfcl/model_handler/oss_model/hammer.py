@@ -26,8 +26,7 @@ class HammerHandler(SalesforceHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
 
-    @staticmethod
-    def _format_prompt(messages, function):
+    def _format_prompt(self, messages, function):
         """
         "chat_template": "{% set system_message = 'You are a helpful assistant.' %}{% if messages[0]['role'] == 'system' %}{% set system_message = messages[0]['content'] %}{% endif %}{% if system_message is defined %}{{ '<|im_start|>system\n' + system_message + '<|im_end|>\n' }}{% endif %}{% for message in messages %}{% set content = message['content'] %}{% if message['role'] == 'user' %}{{ '<|im_start|>user\n' + content + '<|im_end|>\n<|im_start|>assistant\n' }}{% elif message['role'] == 'assistant' %}{{ content + '<|im_end|>' + '\n' }}{% endif %}{% endfor %}",
         """
