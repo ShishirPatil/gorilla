@@ -103,76 +103,75 @@ class GeminiHandler(BaseHandler):
         return input
 
     def _handle_list_values(self, input):
-        if type(input) == ListValue:
-            parsed_list_result = []
-            for item in input.values:
-                """
-                @typing.final
-                class Value(google.protobuf.message.Message):
-                    "`Value` represents a dynamically typed value which can be either
-                    null, a number, a string, a boolean, a recursive struct value, or a
-                    list of values. A producer of value is expected to set one of these
-                    variants. Absence of any variant indicates an error.
+        """
+        @typing.final
+        class Value(google.protobuf.message.Message):
+            "`Value` represents a dynamically typed value which can be either
+            null, a number, a string, a boolean, a recursive struct value, or a
+            list of values. A producer of value is expected to set one of these
+            variants. Absence of any variant indicates an error.
 
-                    The JSON representation for `Value` is JSON value.
-                    "
+            The JSON representation for `Value` is JSON value.
+            "
 
-                    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+            DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
-                    NULL_VALUE_FIELD_NUMBER: builtins.int
-                    NUMBER_VALUE_FIELD_NUMBER: builtins.int
-                    STRING_VALUE_FIELD_NUMBER: builtins.int
-                    BOOL_VALUE_FIELD_NUMBER: builtins.int
-                    STRUCT_VALUE_FIELD_NUMBER: builtins.int
-                    LIST_VALUE_FIELD_NUMBER: builtins.int
-                    null_value: global___NullValue.ValueType
-                    "Represents a null value."
-                    number_value: builtins.float
-                    "Represents a double value."
-                    string_value: builtins.str
-                    "Represents a string value."
-                    bool_value: builtins.bool
-                    "Represents a boolean value."
-                    @property
-                    def struct_value(self) -> global___Struct:
-                        "Represents a structured value."
+            NULL_VALUE_FIELD_NUMBER: builtins.int
+            NUMBER_VALUE_FIELD_NUMBER: builtins.int
+            STRING_VALUE_FIELD_NUMBER: builtins.int
+            BOOL_VALUE_FIELD_NUMBER: builtins.int
+            STRUCT_VALUE_FIELD_NUMBER: builtins.int
+            LIST_VALUE_FIELD_NUMBER: builtins.int
+            null_value: global___NullValue.ValueType
+            "Represents a null value."
+            number_value: builtins.float
+            "Represents a double value."
+            string_value: builtins.str
+            "Represents a string value."
+            bool_value: builtins.bool
+            "Represents a boolean value."
+            @property
+            def struct_value(self) -> global___Struct:
+                "Represents a structured value."
 
-                    @property
-                    def list_value(self) -> global___ListValue:
-                        "Represents a repeated `Value`."
+            @property
+            def list_value(self) -> global___ListValue:
+                "Represents a repeated `Value`."
 
-                    def __init__(
-                        self,
-                        *,
-                        null_value: global___NullValue.ValueType | None = ...,
-                        number_value: builtins.float | None = ...,
-                        string_value: builtins.str | None = ...,
-                        bool_value: builtins.bool | None = ...,
-                        struct_value: global___Struct | None = ...,
-                        list_value: global___ListValue | None = ...,
-                    ) -> None: ...
-                    def HasField(self, field_name: typing.Literal["bool_value", b"bool_value", "kind", b"kind", "list_value", b"list_value", "null_value", b"null_value", "number_value", b"number_value", "string_value", b"string_value", "struct_value", b"struct_value"]) -> builtins.bool: ...
-                    def ClearField(self, field_name: typing.Literal["bool_value", b"bool_value", "kind", b"kind", "list_value", b"list_value", "null_value", b"null_value", "number_value", b"number_value", "string_value", b"string_value", "struct_value", b"struct_value"]) -> None: ...
-                    def WhichOneof(self, oneof_group: typing.Literal["kind", b"kind"]) -> typing.Literal["null_value", "number_value", "string_value", "bool_value", "struct_value", "list_value"] | None: ...
-                """
-                field_name = item.WhichOneof("kind")
-                if field_name == "null_value":
-                    value = item.null_value
-                elif field_name == "number_value":
-                    value = item.number_value
-                elif field_name == "string_value":
-                    value = item.string_value
-                elif field_name == "bool_value":
-                    value = item.bool_value
-                elif field_name == "struct_value":
-                    value = self._handle_struct_values(item.struct_value)
-                elif field_name == "list_value":
-                    value = self._handle_list_values(item.list_value)
-                else:
-                    value = None
-                parsed_list_result.append(value)
+            def __init__(
+                self,
+                *,
+                null_value: global___NullValue.ValueType | None = ...,
+                number_value: builtins.float | None = ...,
+                string_value: builtins.str | None = ...,
+                bool_value: builtins.bool | None = ...,
+                struct_value: global___Struct | None = ...,
+                list_value: global___ListValue | None = ...,
+            ) -> None: ...
+            def HasField(self, field_name: typing.Literal["bool_value", b"bool_value", "kind", b"kind", "list_value", b"list_value", "null_value", b"null_value", "number_value", b"number_value", "string_value", b"string_value", "struct_value", b"struct_value"]) -> builtins.bool: ...
+            def ClearField(self, field_name: typing.Literal["bool_value", b"bool_value", "kind", b"kind", "list_value", b"list_value", "null_value", b"null_value", "number_value", b"number_value", "string_value", b"string_value", "struct_value", b"struct_value"]) -> None: ...
+            def WhichOneof(self, oneof_group: typing.Literal["kind", b"kind"]) -> typing.Literal["null_value", "number_value", "string_value", "bool_value", "struct_value", "list_value"] | None: ...
+        """
+        parsed_list_result = []
+        for item in input.values:
+            field_name = item.WhichOneof("kind")
+            if field_name == "null_value":
+                value = item.null_value
+            elif field_name == "number_value":
+                value = item.number_value
+            elif field_name == "string_value":
+                value = item.string_value
+            elif field_name == "bool_value":
+                value = item.bool_value
+            elif field_name == "struct_value":
+                value = self._handle_struct_values(item.struct_value)
+            elif field_name == "list_value":
+                value = self._handle_list_values(item.list_value)
+            else:
+                value = None
+            parsed_list_result.append(value)
 
-            return parsed_list_result
+        return parsed_list_result
 
     def decode_ast(self, result, language="Python"):
         if "FC" not in self.model_name:
