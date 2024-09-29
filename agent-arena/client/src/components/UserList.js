@@ -1,26 +1,50 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { Card, Button, Container, Row, Col, Form } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
-import { ThemeContext } from '../App'; // Import ThemeContext from App
+import { toast} from 'react-toastify';
+import { ThemeContext } from '../App';
+import { Analytics } from "@vercel/analytics/react"
+
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortOption, setSortOption] = useState('');
+  const [sortOption, setSortOption] = useState('savedPrompts'); // Default sort by saved prompts
   const navigate = useNavigate();
-  const { theme } = useContext(ThemeContext); // Get the current theme
+  const { theme } = useContext(ThemeContext);
 
+  
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get('https://agent-arena.vercel.app/api/users', {
-          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+          headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
-        setUsers(response.data);
-        setFilteredUsers(response.data);
+
+        console.log(response.data);
+
+        // Sort users by saved prompts by default
+        let sortedUsers = response.data.sort((a, b) => {
+          const aLength = a.savedPrompts ? a.savedPrompts.length : 0;
+          const bLength = b.savedPrompts ? b.savedPrompts.length : 0;
+          return bLength - aLength;
+        });
+        
+
+        // Ensure Nithik is placed in the third position only if the current third user has 0 saved prompts
+        const nithikIndex = sortedUsers.findIndex(user => user.name === 'Nithik');
+        const thirdUser = sortedUsers[2];
+
+        if (nithikIndex !== -1 && thirdUser && thirdUser.savedPrompts.length === 0) {
+          const [nithikUser] = sortedUsers.splice(nithikIndex, 1);
+          sortedUsers.splice(2, 0, nithikUser); // Insert Nithik at the third position if third user has 0 saved prompts
+        }
+
+        setUsers(sortedUsers);
+        setFilteredUsers(sortedUsers);
       } catch (error) {
         console.error('Error fetching users:', error);
       }
@@ -34,24 +58,30 @@ const UserList = () => {
   };
 
   const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
     const query = e.target.value.toLowerCase();
-    setFilteredUsers(users.filter(user => 
-      user.name.toLowerCase().includes(query) || 
-      user.bio.toLowerCase().includes(query) || 
-      user.role.toLowerCase().includes(query)
-    ));
+    setSearchQuery(query);
+    setFilteredUsers(
+      users.filter(
+        (user) =>
+          user.name.toLowerCase().includes(query) ||
+          user.bio.toLowerCase().includes(query) ||
+          user.role.toLowerCase().includes(query)
+      )
+    );
   };
 
   const handleSortChange = (selectedOption) => {
     setSortOption(selectedOption.value);
-    let sortedUsers;
-    if (selectedOption.value === 'likes') {
-      sortedUsers = [...filteredUsers].sort((a, b) => b.totalLikes - a.totalLikes);
-    } else if (selectedOption.value === 'savedPrompts') {
-      sortedUsers = [...filteredUsers].sort((a, b) => b.savedPrompts.length - a.savedPrompts.length);
-    }
+    const sortedUsers = [...filteredUsers].sort((a, b) => {
+      if (selectedOption.value === 'likes') return b.totalLikes - a.totalLikes;
+      if (selectedOption.value === 'savedPrompts') return b.savedPrompts.length - a.savedPrompts.length;
+      return 0;
+    });
     setFilteredUsers(sortedUsers);
+  };
+
+  const notifyLikesDislikes = () => {
+    toast.info('You must like a specific prompt by the user. Click "View Prompts" to do so.');
   };
 
   const sortOptions = [
@@ -59,30 +89,9 @@ const UserList = () => {
     { value: 'savedPrompts', label: 'Saved Prompts' },
   ];
 
-  const customStyles = {
-    control: (base) => ({
-      ...base,
-      minHeight: 40,
-      fontSize: 14,
-      width: '100%',
-    }),
-    menu: (base) => ({
-      ...base,
-      fontSize: 14,
-    }),
-    singleValue: (base) => ({
-      ...base,
-      color: '#4b0082',
-    }),
-    option: (base, { isFocused }) => ({
-      ...base,
-      color: '#4b0082',
-      backgroundColor: isFocused ? '#d3d3d3' : 'white',
-    }),
-  };
-
   return (
     <Container className="mt-4">
+      <Analytics />
       <h1 className="text-center mb-4">Users</h1>
       <p className="text-center mb-4">
         Explore the users of the LLM Agent Arena platform. Click on "View Prompts" to see the prompts they've saved, 
@@ -95,7 +104,6 @@ const UserList = () => {
             placeholder="Search users..."
             value={searchQuery}
             onChange={handleSearch}
-            className="mb-4"
           />
         </Col>
         <Col md={6}>
@@ -103,28 +111,45 @@ const UserList = () => {
             options={sortOptions}
             onChange={handleSortChange}
             placeholder="Sort by..."
-            styles={customStyles}
+            defaultValue={sortOptions[1]} // Default sort by saved prompts
           />
         </Col>
       </Row>
       <Row>
-        {filteredUsers.map(user => (
+        {filteredUsers.map((user) => (
           <Col key={user._id} md={4} className="mb-4">
-            <Card className="h-100" style={{
-              backgroundColor: theme === 'dark' ? '#1c1c1e' : '#ffffff',
-              borderColor: theme === 'dark' ? '#4a4a4c' : '#e0e0e0'
-            }}>
+            <Card
+              className="h-100"
+              style={{
+                backgroundColor: theme === 'dark' ? '#1c1c1e' : '#ffffff',
+                borderColor: theme === 'dark' ? '#4a4a4c' : '#e0e0e0',
+              }}
+            >
               <Card.Body className="d-flex flex-column">
-                <Card.Title className={theme === 'dark' ? 'text-white' : 'text-dark'}>{user.name}</Card.Title>
-                <Card.Text className={theme === 'dark' ? 'text-white' : 'text-dark'}>{user.bio}</Card.Text>
-                <Card.Text className={theme === 'dark' ? 'text-white' : 'text-dark'}>Role: {user.role}</Card.Text>
-                <Card.Text className={theme === 'dark' ? 'text-white' : 'text-dark'}>Saved Prompts: {user.savedPrompts.length}</Card.Text>
+                <Card.Title className={theme === 'dark' ? 'text-white' : 'text-dark'}>
+                  {user.name}
+                </Card.Title>
+                <Card.Text className={theme === 'dark' ? 'text-white' : 'text-dark'}>
+                  {user.bio}
+                </Card.Text>
+                <Card.Text className={theme === 'dark' ? 'text-white' : 'text-dark'}>
+                  Role: {user.role}
+                </Card.Text>
+                <Card.Text className={theme === 'dark' ? 'text-white' : 'text-dark'}>
+                  Saved Prompts: {user.savedPrompts.length}
+                </Card.Text>
                 <div className="mt-auto">
                   <div className="d-flex justify-content-center mb-3">
-                    <Button variant="outline-success" className="mr-2">Total Likes: ({user.totalLikes})</Button>
-                    <Button variant="outline-danger">Total Dislikes: ({user.totalDislikes})</Button>
+                    <Button variant="outline-success" onClick={notifyLikesDislikes}>
+                      Total Likes: ({user.totalLikes})
+                    </Button>
+                    <Button variant="outline-danger" onClick={notifyLikesDislikes}>
+                      Total Dislikes: ({user.totalDislikes})
+                    </Button>
                   </div>
-                  <Button variant="primary" onClick={() => viewUserPrompts(user._id)} className="w-100">View Prompts</Button>
+                  <Button variant="primary" onClick={() => viewUserPrompts(user._id)} className="w-100">
+                    View Prompts
+                  </Button>
                 </div>
               </Card.Body>
             </Card>
