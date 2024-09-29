@@ -82,15 +82,14 @@ def convert_to_tool(functions, mapping, model_style):
 
         if model_style == ModelStyle.Google:
             # Remove fields that are not supported by Gemini.
+            # No `optional` field.
+            if "optional" in item["parameters"]:
+                del item["parameters"]["optional"]
             for params in item["parameters"]["properties"].values():
                 # No `default` field in Google's schema.
                 if "default" in params:
                     params["description"] += f" Default is: {str(params['default'])}."
                     del params["default"]
-                # No `optional` field.
-                if "optional" in params:
-                    params["description"] += f" Optional: {str(params['optional'])}."
-                    del params["optional"]
                 # No `maximum` field.
                 if "maximum" in params:
                     params["description"] += f" Maximum value: {str(params['maximum'])}."
@@ -101,6 +100,10 @@ def convert_to_tool(functions, mapping, model_style):
                         "description"
                     ] += f" Additional properties: {str(params['additionalProperties'])}."
                     del params["additionalProperties"]
+                # Only `enum` field when the type is `string`.
+                if "enum" in params and params["type"] != "string":
+                    params["description"] += f" Enum values: {str(params['enum'])}."
+                    del params["enum"]
 
         if model_style == ModelStyle.COHERE:
             if os.getenv("USE_COHERE_OPTIMIZATION") == "True":
