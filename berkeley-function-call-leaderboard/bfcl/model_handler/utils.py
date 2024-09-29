@@ -82,7 +82,7 @@ def convert_to_tool(functions, mapping, model_style):
 
         if model_style == ModelStyle.Google:
             # Remove fields that are not supported by Gemini.
-            # No `optional` field.
+            # No `optional` field in function schema.
             if "optional" in item["parameters"]:
                 del item["parameters"]["optional"]
             for params in item["parameters"]["properties"].values():
@@ -90,6 +90,10 @@ def convert_to_tool(functions, mapping, model_style):
                 if "default" in params:
                     params["description"] += f" Default is: {str(params['default'])}."
                     del params["default"]
+                # No `optional` field in parameter schema as well.
+                if "optional" in params:
+                    params["description"] += f" Optional: {str(params['optional'])}."
+                    del params["optional"]
                 # No `maximum` field.
                 if "maximum" in params:
                     params["description"] += f" Maximum value: {str(params['maximum'])}."
