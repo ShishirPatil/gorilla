@@ -738,26 +738,26 @@ def format_execution_results_prompting(
 
 
 def default_decode_ast_prompting(result, language="Python"):
-    func = result
-    if " " == func[0]:
-        func = func[1:]
-    if not func.startswith("["):
-        func = "[" + func
-    if not func.endswith("]"):
-        func = func + "]"
-    decoded_output = ast_parse(func, language)
+    result = result.strip()
+    if result.endswith("\n"):
+        result = result.rstrip("\n")
+    if not result.startswith("["):
+        result = "[" + result
+    if not result.endswith("]"):
+        result = result + "]"
+    decoded_output = ast_parse(result, language)
     return decoded_output
 
 
 def default_decode_execute_prompting(result):
-    func = result
-    if " " == func[0]:
-        func = func[1:]
-    if not func.startswith("["):
-        func = "[" + func
-    if not func.endswith("]"):
-        func = func + "]"
-    decoded_output = ast_parse(func)
+    result = result.strip()
+    if result.endswith("\n"):
+        result = result.rstrip("\n")
+    if not result.startswith("["):
+        result = "[" + result
+    if not result.endswith("]"):
+        result = result + "]"
+    decoded_output = ast_parse(result)
     return decoded_output_to_execution_list(decoded_output)
 
 
