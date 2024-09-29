@@ -13,8 +13,7 @@ class HermesHandler(OSSHandler):
         if model_name == "NousResearch/Hermes-2-Pro-Llama-3-8B":
             self.dtype = "float16"
 
-    @staticmethod
-    def _format_prompt(messages, function):
+    def _format_prompt(self, messages, function):
         # Hermes use Langchain to OpenAI conversion. It does not use tool call but function call.
         function = convert_to_tool(function, GORILLA_TO_OPENAPI, ModelStyle.OSSMODEL)
         pydantic_format = """{"properties": {"arguments": {"title": "Arguments", "type": "object"}, "name": {"title": "Name", "type": "string"}}, "required": ["arguments", "name"], "title": "FunctionCall", "type": "object"}"""

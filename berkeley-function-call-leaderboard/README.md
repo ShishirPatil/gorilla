@@ -170,6 +170,10 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |Salesforce/xLAM-7b-r 💻| Function Calling|
 |Salesforce/xLAM-8x7b-r 💻| Function Calling|
 |Salesforce/xLAM-8x22b-r 💻| Function Calling|
+|microsoft/Phi-3.5-mini-instruct 💻| Prompt|
+|microsoft/Phi-3-medium-{4k,128k}-instruct 💻| Prompt|
+|microsoft/Phi-3-small-{8k,128k}-instruct 💻| Prompt|
+|microsoft/Phi-3-mini-{4k,128k}-instruct 💻| Prompt|
 |nvidia/nemotron-4-340b-instruct| Prompt|
 |THUDM/glm-4-9b-chat 💻| Function Calling|
 |ibm-granite/granite-20b-functioncalling 💻| Function Calling|

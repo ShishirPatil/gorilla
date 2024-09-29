@@ -13,8 +13,7 @@ class GraniteHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
 
-    @staticmethod
-    def _format_prompt(messages, function):
+    def _format_prompt(self, messages, function):
         """
         "chat_template": "{% set function_str = messages.get('functions_str', {}) %}\n{% set query = messages['query'] %}\n{% set sys_prompt = 'You are a helpful assistant with access to the following function calls. Your task is to produce a sequence of function calls necessary to generate response to the user utterance. Use the following function calls as required. ' %}\n{% set funcstr = function_str|join('\n') %}\n{{ 'SYSTEM: ' + sys_prompt + '\n<|function_call_library|>\n' + funcstr + '\n\nIf none of the functions are relevant or the given question lacks the parameters required by the function, please output \"<function_call> {\"name\": \"no_function\", \"arguments\": {}}\".\n\nUSER: ' + query}}\n{% if add_generation_prompt %}\n{{ 'ASSISTANT:' }}{% endif %}",
         """

@@ -2,6 +2,14 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Sept 27, 2024] [#640](https://github.com/ShishirPatil/gorilla/pull/640): Add the following new models to the leaderboard:
+  - `microsoft/Phi-3.5-mini-instruct`
+  - `microsoft/Phi-3-medium-128k-instruct`
+  - `microsoft/Phi-3-medium-4k-instruct`
+  - `microsoft/Phi-3-small-128k-instruct`
+  - `microsoft/Phi-3-small-8k-instruct`
+  - `microsoft/Phi-3-mini-128k-instruct`
+  - `microsoft/Phi-3-mini-4k-instruct`
 - [Sept 25, 2024] [#660](https://github.com/ShishirPatil/gorilla/pull/660): Bug fix in `parse_nested_value` function to handle nested dictionary values properly. 
 - [Sept 19, 2024] [#644](https://github.com/ShishirPatil/gorilla/pull/644): BFCL V3 release:
   - Introduce new multi-turn dataset and state-based evaluation metric

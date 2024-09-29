@@ -6,6 +6,7 @@ from bfcl.model_handler.oss_model.granite import GraniteHandler
 from bfcl.model_handler.oss_model.hammer import HammerHandler
 from bfcl.model_handler.oss_model.hermes import HermesHandler
 from bfcl.model_handler.oss_model.llama import LlamaHandler
+from bfcl.model_handler.oss_model.phi import PhiHandler
 from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
 from bfcl.model_handler.proprietary_model.claude import ClaudeHandler
 from bfcl.model_handler.proprietary_model.cohere import CohereHandler
@@ -76,6 +77,13 @@ handler_map = {
     "Salesforce/xLAM-7b-r": SalesforceHandler,
     "Salesforce/xLAM-8x22b-r": SalesforceHandler,
     "Salesforce/xLAM-8x7b-r": SalesforceHandler,
+    "microsoft/Phi-3-mini-4k-instruct": PhiHandler,
+    "microsoft/Phi-3-mini-128k-instruct": PhiHandler,
+    "microsoft/Phi-3-small-8k-instruct": PhiHandler,
+    "microsoft/Phi-3-small-128k-instruct": PhiHandler,
+    "microsoft/Phi-3-medium-4k-instruct": PhiHandler,
+    "microsoft/Phi-3-medium-128k-instruct": PhiHandler,
+    "microsoft/Phi-3.5-mini-instruct": PhiHandler,
     "NousResearch/Hermes-2-Pro-Mistral-7B": HermesHandler,
     "NousResearch/Hermes-2-Pro-Llama-3-8B": HermesHandler,
     "NousResearch/Hermes-2-Theta-Llama-3-8B": HermesHandler,
