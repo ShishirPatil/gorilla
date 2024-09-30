@@ -90,7 +90,10 @@ handler_map = {
     "NousResearch/Hermes-2-Pro-Llama-3-70B": HermesHandler,
     "NousResearch/Hermes-2-Theta-Llama-3-70B": HermesHandler,
     "ibm-granite/granite-20b-functioncalling": GraniteHandler,
-    # "MadeAgents/Hammer-7b": HammerHandler,  # TODO: Update handler once they have a multi-turn format
+    "MadeAgents/Hammer2.0-7b": HammerHandler,
+    "MadeAgents/Hammer2.0-3b": HammerHandler,
+    "MadeAgents/Hammer2.0-1.5b": HammerHandler,
+    "MadeAgents/Hammer2.0-0.5b": HammerHandler,
     "THUDM/glm-4-9b-chat": GLMHandler,
     
     # Deprecated/outdated models, no longer on the leaderboard
