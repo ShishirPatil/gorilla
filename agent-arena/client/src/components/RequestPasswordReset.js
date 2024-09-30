@@ -10,7 +10,7 @@ const RequestPasswordReset = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://agent-arena.vercel.app/api/auth/request-password-reset', { email });
+      await axios.post('http://localhost:3001/api/auth/request-password-reset', { email });
       toast.success('Password reset link has been sent to your email');
     } catch (error) {
       console.error('Error requesting password reset', error);

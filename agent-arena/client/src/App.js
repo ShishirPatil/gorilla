@@ -152,7 +152,7 @@ const NavbarComponent = ({ theme, isAuthenticated, handleLogout }) => {
           style={{ display: 'flex', flexDirection: 'column', color: theme === 'dark' ? '#ffffff' : '#007bff', textAlign: 'center' }}
         >
           <span>Agent Arena</span>
-          <span style={{ fontSize: '12px', color: theme === 'dark' ? '#b3b3b3' : '#6c757d' , textAlign:'center'}}>LMSYS Chatbot Arena  X  Gorilla 🦍</span>
+          <span style={{ fontSize: '12px', color: theme === 'dark' ? '#b3b3b3' : '#6c757d' , textAlign:'center'}}>🦍 Gorilla&nbsp;X&nbsp;LMSYS Chatbot Arena</span>
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

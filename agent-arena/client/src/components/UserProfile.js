@@ -61,7 +61,7 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get('https://agent-arena.vercel.app/api/profile', {
+        const response = await axios.get('http://localhost:3001/api/profile', {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         setProfile(response.data);
@@ -79,7 +79,7 @@ const UserProfile = () => {
 
     const fetchAgents = async () => {
       try {
-        const response = await axios.get('https://agent-arena.vercel.app/api/agents');
+        const response = await axios.get('http://localhost:3001/api/agents');
         setAgents(response.data);
       } catch (error) {
         console.error('Error fetching agents:', error);
@@ -88,7 +88,7 @@ const UserProfile = () => {
 
     const fetchUserPrompts = async () => {
       try {
-        const response = await axios.get('https://agent-arena.vercel.app/api/prompts/user', {
+        const response = await axios.get('http://localhost:3001/api/prompts/user', {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
         });
         setPrompts(response.data);
@@ -118,7 +118,7 @@ const UserProfile = () => {
 
   const handleSavePrompt = async () => {
     try {
-      const response = await axios.post('https://agent-arena.vercel.app/api/prompts/save', { agent: selectedAgent._id, text: newPrompt, executedCode: initialCode }, {
+      const response = await axios.post('http://localhost:3001/api/prompts/save', { agent: selectedAgent._id, text: newPrompt, executedCode: initialCode }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       const newPromptData = response.data;
@@ -126,7 +126,7 @@ const UserProfile = () => {
       setNewPrompt(''); // Clear the input field after saving
 
       // Re-fetch user prompts to ensure the latest data is displayed
-      const updatedPromptsResponse = await axios.get('https://agent-arena.vercel.app/api/prompts/user', {
+      const updatedPromptsResponse = await axios.get('http://localhost:3001/api/prompts/user', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       const updatedPrompts = updatedPromptsResponse.data;
@@ -167,7 +167,7 @@ const UserProfile = () => {
 
   const handleProfileSave = async () => {
     try {
-      await axios.put('https://agent-arena.vercel.app/api/profile', editProfile, {
+      await axios.put('http://localhost:3001/api/profile', editProfile, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       toast.success('Profile updated successfully');
@@ -179,7 +179,7 @@ const UserProfile = () => {
   const handleAPIKeysSave = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.put(`https://agent-arena.vercel.app/api/users/${profile._id}/api-keys`, {
+      const response = await axios.put(`http://localhost:3001/api/users/${profile._id}/api-keys`, {
         apiKeys: editProfile.apiKeys
       }, {
         headers: { Authorization: `Bearer ${token}` }
@@ -193,7 +193,7 @@ const UserProfile = () => {
 
   const handleLikePrompt = async (promptId) => {
     try {
-      await axios.post('https://agent-arena.vercel.app/api/prompts/like', { promptId }, {
+      await axios.post('http://localhost:3001/api/prompts/like', { promptId }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       const updatedPrompts = prompts.map(prompt => 
@@ -207,7 +207,7 @@ const UserProfile = () => {
 
   const handleDislikePrompt = async (promptId) => {
     try {
-      await axios.post('https://agent-arena.vercel.app/api/prompts/dislike', { promptId }, {
+      await axios.post('http://localhost:3001/api/prompts/dislike', { promptId }, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       const updatedPrompts = prompts.map(prompt => 
@@ -257,9 +257,14 @@ const UserProfile = () => {
             <hr />
             <h2>API Keys</h2>
             <p>
-              API keys are required for specific agents to function properly. You can add your own keys for better performance 
-              and to avoid rate limits. Please ensure you enter the correct key for each API.
-            </p>
+            API keys are required for specific agents to function properly. You can add your own keys for better performance 
+            and to avoid rate limits. Please ensure you enter the correct key for each API. 
+            {profile === null && (
+              <>
+                You must be logged in to add your own API keys. <Link to="/login" className="ml-1">Log in here</Link>.
+              </>
+            )}
+          </p>
             <Button
               variant="secondary"
               onClick={() => setApiKeysExpanded(!apiKeysExpanded)}

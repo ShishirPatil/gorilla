@@ -26,7 +26,7 @@ const UserPrompts = () => {
     try {
       const token = localStorage.getItem('token');
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
-      const response = await axios.get(`https://agent-arena.vercel.app/api/prompts/user/${userId}?page=${page}&limit=10`, { headers });
+      const response = await axios.get(`http://localhost:3001/api/prompts/user/${userId}?page=${page}&limit=10`, { headers });
       
       setPrompts(response.data.prompts);
       setFilteredPrompts(response.data.prompts);
@@ -40,7 +40,7 @@ const UserPrompts = () => {
     try {
       const token = localStorage.getItem('token');
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
-      const response = await axios.get(`https://agent-arena.vercel.app/api/users/${userId}`, { headers });
+      const response = await axios.get(`http://localhost:3001/api/users/${userId}`, { headers });
       setUser(response.data); // Fetch and set user data
     } catch (error) {
       console.error('Error fetching user data:', error);
@@ -51,7 +51,7 @@ const UserPrompts = () => {
     try {
       const token = localStorage.getItem('token');
       const headers = token ? { Authorization: `Bearer ${token}` } : {};
-      const response = await axios.get(`https://agent-arena.vercel.app/api/agents`, { headers });
+      const response = await axios.get(`http://localhost:3001/api/agents`, { headers });
       setAgents(response.data); // Fetch and set agents data
     } catch (error) {
       console.error('Error fetching agents:', error);
@@ -88,7 +88,7 @@ const UserPrompts = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post('https://agent-arena.vercel.app/api/prompts/like', { promptId }, {
+      await axios.post('http://localhost:3001/api/prompts/like', { promptId }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchPrompts(currentPage);
@@ -105,7 +105,7 @@ const UserPrompts = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post('https://agent-arena.vercel.app/api/prompts/dislike', { promptId }, {
+      await axios.post('http://localhost:3001/api/prompts/dislike', { promptId }, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchPrompts(currentPage);

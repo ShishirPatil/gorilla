@@ -24,7 +24,7 @@ const PromptDetail = () => {
       try {
         const token = localStorage.getItem('token');
         if (token) {
-          const response = await axios.get(`https://agent-arena.vercel.app/api/profile`, {
+          const response = await axios.get(`http://localhost:3001/api/profile`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           setCurrentUserId(response.data._id);
@@ -36,7 +36,7 @@ const PromptDetail = () => {
 
     const fetchAgents = async () => {
       try {
-        const response = await axios.get('https://agent-arena.vercel.app/api/agents');
+        const response = await axios.get('http://localhost:3001/api/agents');
         setAgents(response.data);
       } catch (error) {
         console.error('Error fetching agents:', error);
@@ -45,19 +45,19 @@ const PromptDetail = () => {
 
     const fetchPrompt = async () => {
       try {
-        const response = await axios.get(`https://agent-arena.vercel.app/api/prompts/${promptId}`);
+        const response = await axios.get(`http://localhost:3001/api/prompts/${promptId}`);
         setPrompt(response.data);
 
         if (response.data.leftAgent) {
-          const leftAgentResponse = await axios.get(`https://agent-arena.vercel.app/api/agents/${response.data.leftAgent._id}`);
+          const leftAgentResponse = await axios.get(`http://localhost:3001/api/agents/${response.data.leftAgent._id}`);
           setLeftAgent(leftAgentResponse.data);
         }
         if (response.data.rightAgent) {
-          const rightAgentResponse = await axios.get(`https://agent-arena.vercel.app/api/agents/${response.data.rightAgent._id}`);
+          const rightAgentResponse = await axios.get(`http://localhost:3001/api/agents/${response.data.rightAgent._id}`);
           setRightAgent(rightAgentResponse.data);
         }
         if (response.data.agent) {
-          const agentResponse = await axios.get(`https://agent-arena.vercel.app/api/agents/${response.data.agent._id}`);
+          const agentResponse = await axios.get(`http://localhost:3001/api/agents/${response.data.agent._id}`);
           setAgent(agentResponse.data);
         }
       } catch (error) {
@@ -78,10 +78,10 @@ const PromptDetail = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post('https://agent-arena.vercel.app/api/prompts/like', { promptId }, {
+      await axios.post('http://localhost:3001/api/prompts/like', { promptId }, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      const response = await axios.get(`https://agent-arena.vercel.app/api/prompts/${promptId}`, {
+      const response = await axios.get(`http://localhost:3001/api/prompts/${promptId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPrompt(response.data);
@@ -98,10 +98,10 @@ const PromptDetail = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post('https://agent-arena.vercel.app/api/prompts/dislike', { promptId }, {
+      await axios.post('http://localhost:3001/api/prompts/dislike', { promptId }, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      const response = await axios.get(`https://agent-arena.vercel.app/api/prompts/${promptId}`, {
+      const response = await axios.get(`http://localhost:3001/api/prompts/${promptId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setPrompt(response.data);

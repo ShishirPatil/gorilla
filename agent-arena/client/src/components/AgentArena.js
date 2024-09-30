@@ -20,6 +20,7 @@ import { ThemeContext } from "../App";
 import { Analytics } from "@vercel/analytics/react";
 import { AnsiUp } from "ansi_up";
 import CodeMirror from "@uiw/react-codemirror";
+import AgentOutput from "./AgentOutput"
 
 const AgentArena = () => {
   const [leftAgent, setLeftAgent] = useState(null);
@@ -58,6 +59,8 @@ const AgentArena = () => {
 
   const [leftEventSource, setLeftEventSource] = useState(null);
   const [rightEventSource, setRightEventSource] = useState(null);
+
+  const [showVotedAgentNames, setShowVotedAgentNames] = useState(false);
 
   const [showAgentNames, setShowAgentNames] = useState(false); 
 
@@ -103,9 +106,9 @@ const AgentArena = () => {
 
   useEffect(() => {
     axios
-    .get("https://agent-arena.vercel.app/api/agents")
+    .get("http://localhost:3001/api/agents")
     .then((response) => {
-      const fetchedAgents = response.data;
+      const fetchedAgents = response.data.filter(agent => !agent.modificationNeeded); // Filter agents where modificationNeeded is false
       if (!fetchedAgents || fetchedAgents.length === 0) {
         // Show toast notification that no agents are available and reloading
         toast.info("Loading agents, please wait...");
@@ -133,7 +136,7 @@ const AgentArena = () => {
     const token = localStorage.getItem("token");
     if (token) {
       axios
-        .get("https://agent-arena.vercel.app/api/profile", {
+        .get("http://localhost:3001/api/profile", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
@@ -169,6 +172,8 @@ const AgentArena = () => {
       setLeftFile(null);
     }
     setFileUploadAllowed(agent.allowsFileUpload);
+    setShowVotedAgentNames(false);
+
   };
 
   useEffect(() => {
@@ -244,6 +249,8 @@ const AgentArena = () => {
     setRightCodeCollapsed(false); // Ensure code editor is expanded when selecting a new agent
     setLeftCodeCollapsed(false); // Ensure code editor is expanded when selecting a new agent
     setFileUploadAllowed(agent.allowsFileUpload);
+    setShowVotedAgentNames(false);
+
   };
 
   const resetVotingState = () => {
@@ -278,13 +285,15 @@ const AgentArena = () => {
     setVotedResult(rating);
 
     setRatingEnabled(false);
+    setShowVotedAgentNames(true);
+
 
     const leftOutputString = leftOutput.join(""); // Convert array to string
     const rightOutputString = rightOutput.join(""); // Convert array to string
 
  
     axios
-      .post("https://agent-arena.vercel.app/api/ratings", {
+      .post("http://localhost:3001/api/ratings", {
         leftAgent: leftAgent._id,
         rightAgent: rightAgent._id,
         rating,
@@ -311,7 +320,7 @@ const AgentArena = () => {
 
     try {
       const response = await axios.post(
-        "https://agent-arena.vercel.app/api/prompts/save",
+        "http://localhost:3001/api/prompts/save",
         {
           text: goal,
           leftAgent: leftAgent._id,
@@ -347,7 +356,7 @@ const AgentArena = () => {
     try {
       const agentNames = agents.map((agent) => agent.name);
       const response = await axios.post(
-        "https://agent-arena.vercel.app/api/goals/interpret-goal",
+        "http://localhost:3001/api/goals/interpret-goal",
         { goal: searchGoal, agentNames, fileUploaded: file  }
       );
       const { agent1, agent2 } = response.data;
@@ -379,7 +388,7 @@ const AgentArena = () => {
 
       // Automatically select fallback agents if no agents are found
       const fallbackAgent1 = agents.find(
-        (agent) => agent.name === "openai general assistant (gpt-4o-2024-08-06)"
+        (agent) => agent.name === "langchain brave-search agent (gemini-1.5-flash-001)"
       );
       const fallbackAgent2 = agents.find(
         (agent) =>
@@ -400,7 +409,6 @@ const AgentArena = () => {
             : fallbackAgent2.code
         );
         resetVotingState();
-        // toast.info('Fallback agents selected: openai general assistant and llamaindex brave-search agent.');
       } else {
         toast.error(
           "There was an issue selecting fallback agents. Please try again."
@@ -544,7 +552,7 @@ const AgentArena = () => {
     } else {
       try {
         const response = await axios.post(
-          "https://agent-arena.vercel.app/api/prompts/saveWithoutUser",
+          "http://localhost:3001/api/prompts/saveWithoutUser",
           {
             text: goal,
             leftAgent: leftAgent._id,
@@ -638,6 +646,8 @@ const AgentArena = () => {
   };
 
   const setExample = async (exampleNumber) => {
+    setShowVotedAgentNames(false);
+
     setIsRunningBoth(false);
     resetVotingState();
     setIsRunningBoth(false);
@@ -831,7 +841,7 @@ const AgentArena = () => {
           "llamaindex ArXiv Article Fetcher (gpt-4o-2024-08-06)";
         break;
       case "Automate the process of identifying key patterns in large datasets for predictive analysis.":
-        leftAgentName = "langchain Shell (claude-3-5-sonnet-20240620)";
+        leftAgentName = "llamaindex code interpreter (claude-3-haiku-20240307)";
         rightAgentName = "langchain Python REPL (gpt-4-turbo-2024-04-09)";
         break;
       default:
@@ -880,7 +890,7 @@ const AgentArena = () => {
             letterSpacing: "0.5px", // Slight letter spacing for consistency
             marginBottom: "15px", // Adequate space below the text
           }}
-        >LMSYS Chatbot Arena&nbsp;X&nbsp;Gorilla 🦍</h2>
+        >🦍 Gorilla&nbsp;X&nbsp;LMSYS Chatbot Arena</h2>
       </div>
 
       <p className="text-center mb-4">
@@ -1274,7 +1284,7 @@ const AgentArena = () => {
       <Row className="justify-content-center w-100">
       <Col md={5}>
         
-  <AgentHeader title="Agent 1" />
+  <AgentHeader title={showVotedAgentNames && leftAgent ? leftAgent.name : "Agent 1"} />
   {showAgentNames ? (
     <AgentDropdown
       agents={agents}
@@ -1340,70 +1350,7 @@ const AgentArena = () => {
       </div>
       {leftCompleted && leftOutput.length > 0 ? (
   <>
-    <h3
-      className="text-center mt-4"
-      style={{ fontSize: "1.5rem", color: "#4CAF50" }}
-    >
-      {leftOutput.some((block) => block.includes("Final Answer"))
-        ? "Final Answer from Agent 1:"
-        : "Full Output from Agent 1:"}
-    </h3>
-
-    {/* Scrollable container for left agent output */}
-    <div
-      style={{
-        maxHeight: "300px", // Set maximum height for scrollability
-        overflowY: "auto", // Enable vertical scrolling
-        backgroundColor: "#f1f1f1",
-        color: "#000000", /* Black text for high contrast */
-        padding: "15px",
-        borderRadius: "10px",
-        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-        marginBottom: "20px",
-        textAlign: "left",
-        fontFamily: "'Roboto', sans-serif",
-        fontSize: "1.1rem",
-        wordBreak: "break-word",
-        maxWidth: "600px",
-        margin: "auto",
-      }}
-    >
-      {leftOutput.some((block) => block.includes("Final Answer"))
-        ? (
-          <>
-            {/* Display Final Answer */}
-            {leftOutput
-              .filter((block) => block.includes("Final Answer"))
-              .map((block, index) => (
-                <div key={index}>
-                  <div dangerouslySetInnerHTML={{ __html: block }} />
-                </div>
-              ))}
-            
-            {/* Combine all blocks after "Final Answer" into one scrollable block */}
-            <div
-              dangerouslySetInnerHTML={{
-                __html: leftOutput
-                  .slice(
-                    leftOutput.findIndex((block) =>
-                      block.includes("Final Answer")
-                    ) + 1
-                  )
-                  .filter((block) => block.trim() !== "")
-                  .join(""),
-              }}
-            />
-          </>
-        )
-        : (
-          /* Combine all blocks into one scrollable block if there is no "Final Answer" */
-          <div
-            dangerouslySetInnerHTML={{
-              __html: leftOutput.join(""),
-            }}
-          />
-        )}
-    </div>
+  <AgentOutput output={leftOutput} agentNumber={1} />
   </>
 ) : null}
 
@@ -1413,7 +1360,7 @@ const AgentArena = () => {
 </Col>
 
 <Col md={5}>
-  <AgentHeader title="Agent 2" />
+ <AgentHeader title={showVotedAgentNames && rightAgent ? rightAgent.name : "Agent 2"} />
   {showAgentNames ? (
     <AgentDropdown
       agents={agents}
@@ -1479,70 +1426,7 @@ const AgentArena = () => {
       </div>
       {rightCompleted && rightOutput.length > 0 ? (
   <>
-    <h3
-      className="text-center mt-4"
-      style={{ fontSize: "1.5rem", color: "#4CAF50" }}
-    >
-      {rightOutput.some((block) => block.includes("Final Answer"))
-        ? "Final Answer from Agent 2:"
-        : "Full Output from Agent 2:"}
-    </h3>
-
-    {/* Scrollable container for right agent output */}
-    <div
-      style={{
-        maxHeight: "300px", // Set maximum height for scrollability
-        overflowY: "auto", // Enable vertical scrolling
-        backgroundColor: "#f1f1f1",
-        color: "#000000", /* Black text for high contrast */
-        padding: "15px",
-        borderRadius: "10px",
-        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-        marginBottom: "20px",
-        textAlign: "left",
-        fontFamily: "'Roboto', sans-serif",
-        fontSize: "1.1rem",
-        wordBreak: "break-word",
-        maxWidth: "600px",
-        margin: "auto",
-      }}
-    >
-      {rightOutput.some((block) => block.includes("Final Answer"))
-        ? (
-          <>
-            {/* Display Final Answer */}
-            {rightOutput
-              .filter((block) => block.includes("Final Answer"))
-              .map((block, index) => (
-                <div key={index}>
-                  <div dangerouslySetInnerHTML={{ __html: block }} />
-                </div>
-              ))}
-
-            {/* Combine all blocks after "Final Answer" into one scrollable block */}
-            <div
-              dangerouslySetInnerHTML={{
-                __html: rightOutput
-                  .slice(
-                    rightOutput.findIndex((block) =>
-                      block.includes("Final Answer")
-                    ) + 1
-                  )
-                  .filter((block) => block.trim() !== "")
-                  .join(""),
-              }}
-            />
-          </>
-        )
-        : (
-          /* Combine all blocks into one scrollable block if there is no "Final Answer" */
-          <div
-            dangerouslySetInnerHTML={{
-              __html: rightOutput.join(""),
-            }}
-          />
-        )}
-    </div>
+                <AgentOutput output={rightOutput} agentNumber={2} />
   </>
 ) : null}
 
@@ -1589,65 +1473,45 @@ const AgentArena = () => {
           </Button>
         </Col>
       </Row>
-      {!isLoggedIn && (
-        <Row className="mt-4 justify-content-center w-100">
-          <Col className="text-center">
-            <OverlayTrigger
-              placement="top"
-              overlay={
-                <Tooltip>You can share the result after voting!</Tooltip>
-              }
-            >
-              <span className="d-inline-block">
-                <Button
-                  variant="primary"
-                  onClick={handleShareSession}
-                  className="mt-2"
-                  disabled={!hasVoted}
-                  style={{ pointerEvents: !hasVoted ? "none" : "auto" }}
-                >
-                  Share Result
-                </Button>
-              </span>
-            </OverlayTrigger>
-          </Col>
-        </Row>
-      )}
-      {isLoggedIn && (
-        <Row className="mt-4 justify-content-center w-100">
-          <Col className="text-center">
-            <Button
-              variant="primary"
-              onClick={handleSavePrompt}
-              className="mt-2"
-              disabled={!hasVoted}
-            >
-              Save Prompt
-            </Button>
-            <OverlayTrigger
-              placement="top"
-              overlay={
-                <Tooltip>You can share the result after voting!</Tooltip>
-              }
-            >
-              <span className="d-inline-block">
-                <Button
-                  variant="secondary"
-                  onClick={() => {
-                    navigator.clipboard.writeText(shareURL);
-                    toast.success("Result link copied to clipboard");
-                  }}
-                  className="mt-2"
-                  disabled={!shareURL}
-                  style={{ pointerEvents: !shareURL ? "none" : "auto" }}
-                >
-                  Share Result
-                </Button>
-              </span>
-            </OverlayTrigger>
-          </Col>
-        </Row>
-      )}
+<Row className="mt-4 justify-content-center w-100">
+  <Col className="text-center">
+    {/* If user is logged in, show the Save Prompt button */}
+    {isLoggedIn && (
+      <Button
+        variant="primary"
+        onClick={handleSavePrompt}
+        className="mt-2"
+        disabled={!hasVoted}
+        style={{
+          backgroundColor: "#6f42c1", // Purple color
+          borderColor: "#6f42c1", // Purple border color
+        }}
+      >
+        Save Prompt
+      </Button>
+    )}
+
+    {/* Share Result button available for both logged-in and non-logged-in users */}
+    <OverlayTrigger
+      placement="top"
+      overlay={
+        <Tooltip>You can share the result after voting!</Tooltip>
+      }
+    >
+      <span className="d-inline-block">
+        <Button
+          variant="primary"
+          onClick={handleShareSession}
+          className="mt-2"
+          disabled={!hasVoted}
+          style={{ pointerEvents: !hasVoted ? "none" : "auto" }}
+        >
+          Share Result
+        </Button>
+      </span>
+    </OverlayTrigger>
+  </Col>
+</Row>
     </Container>
   );
 };

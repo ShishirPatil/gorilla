@@ -17,7 +17,7 @@ const ContactUs = () => {
     e.preventDefault();
     
     try {
-      const response = await axios.post('https://agent-arena.vercel.app/api/contact/submit', formData);
+      const response = await axios.post('http://localhost:3001/api/contact/submit', formData);
       
       if (response.status === 200) {
         toast.success('Your inquiry has been sent. We will get back to you soon!');

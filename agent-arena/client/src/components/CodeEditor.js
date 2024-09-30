@@ -319,6 +319,7 @@ const CodeEditor = ({
               editorProps={{ $blockScrolling: true }}
               width="100%"
               height="300px"
+              readOnly={!modificationNeeded} // Make the editor non-editable unless modification is needed
             />
           </div>
         </Collapse>
