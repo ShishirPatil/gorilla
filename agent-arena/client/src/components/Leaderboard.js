@@ -258,15 +258,29 @@ const LeaderboardTable = ({ title, data, sortBy, selectedCategory }) => {
 };
 // Main Leaderboard Component
 const Leaderboard = () => {
+  const sortData = (data, sortField) => {
+    return [...data].sort((a, b) => {
+      if (sortField === 'name') {
+        return a.name.localeCompare(b.name);
+      } else if (sortField === 'votes') {
+        return b.voteCount - a.voteCount;
+      } else {
+        return b[sortField] - a[sortField];
+      }
+    });
+  };
+
   const [agents, setAgents] = useState([]);
   const [models, setModels] = useState([]);
   const [tools, setTools] = useState([]);
   const [frameworks, setFrameworks] = useState([]);
-  const [category, setCategory] = useState('Search Engine'); // Default agent category
+  const [category, setCategory] = useState('Search Engines'); // Default agent category
   const [toolCategory, setToolCategory] = useState('Code Interpreter'); // Default tool category
   const [provider, setProvider] = useState(''); // Provider filter
   const [sortBy, setSortBy] = useState('skill'); // Sort by field
   const { theme } = useContext(ThemeContext);
+  const [rawAgentData, setRawAgentData] = useState([]);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -280,7 +294,7 @@ const Leaderboard = () => {
         const agentsResponse = await axios.get(`https://agent-arena.vercel.app/api/leaderboard?category=${encodedCategory}&sortBy=${sortBy}`);
         const toolsResponse = await axios.get(`https://agent-arena.vercel.app/api/leaderboard/tools?category=${encodedToolCategory}&sortBy=${sortBy}`);
         const modelsResponse = await axios.get(`https://agent-arena.vercel.app/api/leaderboard/models?sortBy=${sortBy}&provider=${provider}`);
-        const frameworksResponse = await axios.get(`https://agent-arena.vercel.app/api/leaderboard/frameworks?sortBy=${sortBy}`);
+        const frameworksResponse = await axios.get(`https://agent-arena.vercel.app/api/leaderboard/frameworks`);
         
         const filteredAgents = agentsResponse.data
         .filter(agent => allAgentNames.has(agent.name))
@@ -288,7 +302,8 @@ const Leaderboard = () => {
           ...agent,
           skillParameter: parsedData[category][agent.name] || agent.skillParameter
         }))
-        .sort((a, b) => b.skillParameter - a.skillParameter);        setAgents(filteredAgents);      
+        setRawAgentData(filteredAgents);
+        setAgents(sortData(filteredAgents, sortBy));
         setTools(toolsResponse.data.filter(tool => validToolNames.includes(tool.name)));
         setModels(modelsResponse.data);
         setFrameworks(frameworksResponse.data);
@@ -299,6 +314,10 @@ const Leaderboard = () => {
 
     fetchData();
   }, [category, toolCategory, provider, sortBy]);
+
+  useEffect(() => {
+    setAgents(sortData(rawAgentData, sortBy));
+  }, [sortBy, rawAgentData]);
 
   const handleCategoryChange = (selectedOption) => {
     setCategory(selectedOption ? selectedOption.value : '');
