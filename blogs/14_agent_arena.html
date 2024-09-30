@@ -13,6 +13,9 @@
 
         gtag("config", "G-NRZJLJCSH6");
     </script>
+    <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  </script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
 
@@ -651,15 +654,15 @@
                         </ul>
                     <p>Check out the latest rankings for each category on our leaderboard: <a href="https://www.agent-arena.com/leaderboard">Agent Arena Leaderboard</a>.</p>
                         <div id="ranking-methodology">
-                            <h3>⚖️ Explaining the Elo: Bradley-Terry Model and Subcomponent Modifications</h3>
+                            <h3>⚖️ Explaining the Elo: Bradley-Terry Model and Subcomponent Modifications: Evaluating Agents with the Extended Bradley-Terry Model</h3>
                             <div class="body">
                               <p>
                                 The Bradley-Terry (BT) model is a well-established probabilistic method used to rank entities based on pairwise comparisons. In the context of <strong>Agent Arena</strong>, this model serves as the backbone for evaluating and ranking Large Language Model (LLM) agents. In our system, we assess not just the overall agent performance but also break it down into its core subcomponents—like models, tools, and frameworks. 🛠️
                               </p>
                           
-                              <h3>🔢 Traditional Elo System</h3>
+                              <h3>Traditional Elo System</h3>
                               <p>
-                                The traditional Elo system is widely known for ranking entities, especially in competitive settings like chess. It computes ratings dynamically as agents compete. The formula is simple but powerful:
+                                🔢 The traditional Elo system is widely known for ranking entities, especially in competitive settings like chess. It computes ratings dynamically as agents compete. The formula is simple but powerful:
                               </p>
                               <div class="equation-block">
                                 <pre>ELO_New = ELO_Old + K × (Result - Expected_Score)</pre>
@@ -670,90 +673,50 @@
                                 <li><strong>Result</strong> is 1 if the agent wins, 0 if it loses, or 0.5 for a tie.</li>
                                 <li><strong>Expected_Score</strong> is the calculated likelihood of an agent winning based on its current rating.</li>
                               </ul>
-                          
+
+                              <p>
+                                However, this traditional Elo system fails to capture the nuances of agent performance; it treats each agent as a monolithic entity. To address this limitation, we introduce an <strong>Extended Bradley-Terry Model</strong> that evaluates agents based on their subcomponents.
+                              </p>
+                              <h3>The Extended Bradley-Terry Model</h3>
+                              <p>
+                                Agent Arena uses the <a href="https://blog.lmarena.ai/blog/2024/redteam-arena/">Bradley-Terry extension</a>, which allows us to compare different agents based on their subcomponents, including tools, models, and frameworks. Instead of just evaluating the full agents, we also assess the performance of each individual subcomponent. This allows us to more accurately pinpoint where an agent's strength lies. For example, our first agent could be a combination of LangChain, Brave-Search, and GPT-4o-2024-08-06, while the second agent could be LlamaIndex, Wikipedia, and Claude-3-5-Sonnet-20240620.
+
+                              Therefore, we propose the following observation model for the Extended Bradley-Terry Model. Given <code>P_1</code>, 
+
+                              <p>
+                                For each battle \(i \in [n]\), let we have a a prompt and two agents, encoded as the following:
+                                </p>
+                                <ul>
+                                    <li><code>Agent A</code>: The first agent being compared with an elo of <code>E_A</code> and with the subcomponents <code>(A_T, A_M, A_F)</code></li>
+                                    <li><code>Agent B</code>: The second agent being comparede, having an elo of <code>E_B</code> and with the subcomponents <code>(B_T, B_M, B_F)</code></li>
+                                    <li><code>Y_i</code>: Outcome of the battle (1 for win, 0 for loss)</li>
+                                </ul>
+                              </p>
+
+
                               <h4>🧑‍💻 Example: LangChain Brave-Search Agent vs. LlamaIndex Wikipedia Agent</h4>
-                              <p>
-                                Consider the <strong>LangChain Brave-Search Agent</strong> (initial Elo: 1600) facing off against the <strong>LlamaIndex Wikipedia Agent</strong> (initial Elo: 1500). The expected score for Brave-Search, calculated based on their Elo difference, would be:
-                              </p>
-                              <div class="equation-block">
-                                <pre>Expected_Score_Brave = 1 / (1 + 10^((1500 - 1600) / 400)) ≈ 0.64</pre>
-                              </div>
-                              <p>This implies Brave-Search is expected to win 64% of the time. If Brave-Search wins, its new rating will be:</p>
-                              <div class="equation-block">
-                                <pre>ELO_Brave_New = 1600 + 4 × (1 - 0.64) = 1601.44</pre>
-                              </div>
-                              <p>If Brave-Search loses, the rating drops accordingly, and the Wikipedia agent's rating adjusts upward.</p>
-                          
-                              <h3>🔄 Subcomponent Battles: Tools, Models, and Frameworks</h3>
-                              <p>
-                                In Agent Arena, each agent is a composite of various components, including tools, models, and frameworks. Instead of just evaluating the full agents, we also assess the performance of each individual subcomponent. This allows us to more accurately pinpoint where an agent's strength lies. Here's an example:
-                              </p>
+                              Let's walk through an example to illustrate how the Extended Bradley-Terry Model works in practice. Take the following agents and their subcomponents:
                               <ul>
-                                <li><strong>LangChain Brave-Search Agent</strong>: LangChain (Framework), Brave-Search (Tool), GPT-4o-2024-08-06 (Model)</li>
-                                <li><strong>LlamaIndex Wikipedia Agent</strong>: LlamaIndex (Framework), Wikipedia (Tool), Claude-3-5-Sonnet-20240620 (Model)</li>
+                                <li><code>Agent_A</code> is the Langchain Brave-Search Agent, using the following subcomponents: <code>{ Brave-Search (A_T), LangChain (A_F), and GPT-4o-2024-08-06 (A_M) }</code> and an Elo of 1600.</li>
+                                <li><code>Agent B</code> is the LlamaIndex Wikipedia Agent, with the subcomponents: <code>{Wikipedia (B_T), LlamaIndex (B_F), and Claude-3-5-Sonnet-20240620 (B_M)}</code> and an Elo of 1500.</li>
                               </ul>
+                              <p>
+                                In a traditional Elo system, we would have calculated the probability of the Brave-Search agent winning 64% of the time. Then given the actual outcome of the battle, <code>Y_1</code>, assuming that the Brave-Search agent wins, the new rating of the agents would be 1601.44 and 1498.56, respectively.
+                              </p>
+                              <p>In the Bradley-Terry model, however, we calculate the ratings by minimizing the following loss function given the real-world battle outcome: <code>Y_i</code>:
+                              </p>
+                                <p>
+                                    \[L = -\sum_{i=1}^{n} Y_i \cdot log(\frac{1}{1 + e^{E_A - E_B}}) + (1 - Y_i) \cdot log(\frac{1}{1 + e^{E_B - E_A}})\]
+                                </p>
+                                <p>
+                                Finally, to get a holistic evaluation of an agent, we combine all its subcomponents into a single analysis. Instead of treating each subcomponent as an isolated entity, we consider their interaction within the broader agent architecture. For each battle, we build a design matrix <code>X</code> that represents all the subcomponents involved. Here, let's assume that A, the Brave-Search agent, wins the battle; in that case the design matrix would look like this:
+                            </p>
+                                <p>
+                                    \[X = [ +log(A_T), +log(A_M), +log(A_F), -log(B_T), -log(B_M), -log(B_F) ]\]
+                                </p>
+
+                            This allows us to evaluate the collective contribution of the subcomponents (tools, models, frameworks) in a single calculation. We then apply <strong>logistic regression with regularization</strong> to control for overfitting and confounding effects caused by frequent pairings. For the extended Bradley Terry formulation, we use <strong>L2 regularization</strong>, which helps select the most important subcomponents while avoiding overfitting.
                           
-                              <h4>📊 Traditional BT Model with Subcomponent Comparisons</h4>
-                              <p>
-                                Using a traditional Bradley-Terry setup, we could treat each subcomponent battle independently. For example, when comparing <strong>Brave-Search</strong> against <strong>Wikipedia</strong>, the probability that Brave-Search wins would be:
-                              </p>
-                              <div class="equation-block">
-                                <pre>P(Brave wins) = exp(score_Brave) / (exp(score_Brave) + exp(score_Wikipedia))</pre>
-                              </div>
-                          
-                              <h4>🔄 Combined Subcomponent Rankings: Models + Tools + Frameworks</h4>
-                              <p>
-                                However, to get a holistic evaluation of an agent, we combine all its subcomponents into a single analysis. Instead of treating each subcomponent as an isolated entity, we consider their interaction within the broader agent architecture. For each battle, we build a design matrix <code>X</code> that represents all the subcomponents involved:
-                              </p>
-                              <div class="equation-block">
-                                <pre>X = [ +log(BASE), +log(BASE), +log(BASE), -log(BASE), -log(BASE), -log(BASE) ]</pre>
-                              </div>
-                              <p>
-                                Here, <code>+log(BASE)</code> represents the subcomponents (tool, model, framework) used by the winning agent, while <code>-log(BASE)</code> represents those used by the losing agent.
-                              </p>
-                          
-                              <h5>🛠️ Example: LangChain Brave-Search Agent vs. LlamaIndex Wikipedia Agent</h5>
-                              <p>
-                                If Brave-Search wins the battle, the design matrix would look like this:
-                              </p>
-                              <div class="equation-block">
-                                <pre>Components: [LangChain, Brave-Search, GPT-4o] vs. [LlamaIndex, Wikipedia, Claude]
-                          X = [ +log(BASE), +log(BASE), +log(BASE), -log(BASE), -log(BASE), -log(BASE) ]</pre>
-                              </div>
-                              <p>
-                                This allows us to evaluate the collective contribution of the subcomponents (tools, models, frameworks) in a single calculation. We then apply <strong>logistic regression with regularization</strong> to control for overfitting and confounding effects caused by frequent pairings.
-                              </p>
-                          
-                              <h3>📉 Regularization: Handling Data Imbalance</h3>
-                              <p>
-                                Given the diversity of agent configurations, certain agents may not battle frequently with others that have different components. This can lead to data sparsity. To counteract this, we use <strong>L1 regularization (Lasso)</strong>, which helps select the most important subcomponents while avoiding overfitting. The regularization formula is:
-                              </p>
-                              <div class="equation-block">
-                                <pre>Minimize: - [∑ Y_i log(P_i) + (1 - Y_i) log(1 - P_i)] + λ ∑|β_j|</pre>
-                              </div>
-                              <p>Where:</p>
-                              <ul>
-                                <li><strong>Y_i</strong> is the battle outcome (1 for win, 0 for loss).</li>
-                                <li><strong>P_i</strong> is the predicted probability of winning.</li>
-                                <li><strong>λ</strong> is the regularization parameter that controls sparsity.</li>
-                              </ul>
-                          
-                              <h4>🔎 Traditional Loss vs. Subcomponent Combined Loss</h4>
-                              <p>
-                                In a traditional BT model, the loss function calculates the difference between the predicted and actual outcomes for each battle, represented as:
-                              </p>
-                              <div class="equation-block">
-                                <pre>BCELoss(Sigmoid(X × β), Y)</pre>
-                              </div>
-                              <p>
-                                However, for the new approach, the loss function takes into account the combined influence of models, tools, and frameworks in a battle:
-                              </p>
-                              <div class="equation-block">
-                                <pre>BCELoss(Sigmoid(X^LLM B_LLM + X^Tool B_Tool + X^Framework B_Framework, Y))</pre>
-                              </div>
-                              <p>
-                                This approach reflects how each subcomponent contributes to the overall result, providing more accurate rankings.
-                              </p>
                           
                               <h3>✅ Conclusion: Fairer Rankings Across All Components</h3>
                               <p>
