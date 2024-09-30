@@ -497,6 +497,18 @@ MODEL_METADATA_MAPPING = {
         "Microsoft",
         "MIT",
     ],
+     "empower-dev/llama3-empower-functions-small-v1.1": [
+        "Empower-Fucntions-Small-v1.1 (FC)",
+        "https://huggingface.co/empower-dev/llama3-empower-functions-small-v1.1",
+        "Empower.dev",
+        "apache-2.0"
+    ],
+    "empower-dev/llama3-empower-functions-large-v1.1": [
+        "Empower-Fucntions-Large-v1.1 (FC)",
+        "https://huggingface.co/empower-dev/llama3-empower-functions-large-v1.1",
+        "Empower.dev",
+        "apache-2.0"
+    ]
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
