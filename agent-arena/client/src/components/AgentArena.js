@@ -881,16 +881,7 @@ const AgentArena = () => {
         >
           Agent Arena
         </h1>
-        <h2
-          className="text-center mt-1"
-          style={{
-            color: "rgba(255, 255, 255, 0.7)", // White but with reduced opacity for a less bright effect
-            fontSize: "1.25rem", // Smaller font size than the main title
-            fontWeight: "300", // Lighter weight for a softer appearance
-            letterSpacing: "0.5px", // Slight letter spacing for consistency
-            marginBottom: "15px", // Adequate space below the text
-          }}
-        >🦍 Gorilla&nbsp;X&nbsp;LMSYS Chatbot Arena</h2>
+
       </div>
 
       <p className="text-center mb-4">
