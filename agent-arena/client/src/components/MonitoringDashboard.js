@@ -12,7 +12,7 @@ const MonitoringDashboard = () => {
   const [passcode, setPasscode] = useState('');
   const [authenticated, setAuthenticated] = useState(false);
 
-  const apiUrl = 'http://localhost:3001/api/monitoring';
+  const apiUrl = 'https://agent-arena.vercel.app/api/monitoring';
 
   // Function to check the passcode locally (not sent to backend)
   const handlePasscodeSubmit = (e) => {

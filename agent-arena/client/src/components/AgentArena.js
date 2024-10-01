@@ -106,7 +106,7 @@ const AgentArena = () => {
 
   useEffect(() => {
     axios
-    .get("http://localhost:3001/api/agents")
+    .get("https://agent-arena.vercel.app/api/agents")
     .then((response) => {
       const fetchedAgents = response.data.filter(agent => !agent.modificationNeeded); // Filter agents where modificationNeeded is false
       if (!fetchedAgents || fetchedAgents.length === 0) {
@@ -136,7 +136,7 @@ const AgentArena = () => {
     const token = localStorage.getItem("token");
     if (token) {
       axios
-        .get("http://localhost:3001/api/profile", {
+        .get("https://agent-arena.vercel.app/api/profile", {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
@@ -293,7 +293,7 @@ const AgentArena = () => {
 
  
     axios
-      .post("http://localhost:3001/api/ratings", {
+      .post("https://agent-arena.vercel.app/api/ratings", {
         leftAgent: leftAgent._id,
         rightAgent: rightAgent._id,
         rating,
@@ -320,7 +320,7 @@ const AgentArena = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/prompts/save",
+        "https://agent-arena.vercel.app/api/prompts/save",
         {
           text: goal,
           leftAgent: leftAgent._id,
@@ -356,7 +356,7 @@ const AgentArena = () => {
     try {
       const agentNames = agents.map((agent) => agent.name);
       const response = await axios.post(
-        "http://localhost:3001/api/goals/interpret-goal",
+        "https://agent-arena.vercel.app/api/goals/interpret-goal",
         { goal: searchGoal, agentNames, fileUploaded: file  }
       );
       const { agent1, agent2 } = response.data;
@@ -552,7 +552,7 @@ const AgentArena = () => {
     } else {
       try {
         const response = await axios.post(
-          "http://localhost:3001/api/prompts/saveWithoutUser",
+          "https://agent-arena.vercel.app/api/prompts/saveWithoutUser",
           {
             text: goal,
             leftAgent: leftAgent._id,

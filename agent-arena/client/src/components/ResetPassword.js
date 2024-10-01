@@ -13,7 +13,7 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`http://localhost:3001/api/auth/reset-password/${token}`, { password });
+      await axios.post(`https://agent-arena.vercel.app/api/auth/reset-password/${token}`, { password });
       toast.success('Password has been reset successfully');
       navigate('/');  // Redirects to the base URL after successful reset
     } catch (error) {

@@ -16,7 +16,7 @@ const Login = ({ onLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3001/api/auth/login', formData);
+      const response = await axios.post('https://agent-arena.vercel.app/api/auth/login', formData);
       localStorage.setItem('token', response.data.token);
       onLogin();
       navigate('/');

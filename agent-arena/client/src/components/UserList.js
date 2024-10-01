@@ -3,45 +3,33 @@ import axios from 'axios';
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
-import { toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 import { ThemeContext } from '../App';
 import { Analytics } from "@vercel/analytics/react"
-
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortOption, setSortOption] = useState('savedPrompts'); // Default sort by saved prompts
+  const [sortOption, setSortOption] = useState('likes'); // Default sort by likes
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
 
-  
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/api/users', {
+        const response = await axios.get('https://agent-arena.vercel.app/api/users', {
           headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
 
         console.log(response.data);
 
-        // Sort users by saved prompts by default
+        // Sort users by likes by default, with saved prompts as secondary criterion
         let sortedUsers = response.data.sort((a, b) => {
-          const aLength = a.savedPrompts ? a.savedPrompts.length : 0;
-          const bLength = b.savedPrompts ? b.savedPrompts.length : 0;
-          return bLength - aLength;
+          const likeDiff = (b.totalLikes || 0) - (a.totalLikes || 0);
+          if (likeDiff !== 0) return likeDiff;
+          return (b.savedPrompts?.length || 0) - (a.savedPrompts?.length || 0);
         });
-        
-
-        // Ensure Nithik is placed in the third position only if the current third user has 0 saved prompts
-        const nithikIndex = sortedUsers.findIndex(user => user.name === 'Nithik');
-        const thirdUser = sortedUsers[2];
-
-        if (nithikIndex !== -1 && thirdUser && thirdUser.savedPrompts.length === 0) {
-          const [nithikUser] = sortedUsers.splice(nithikIndex, 1);
-          sortedUsers.splice(2, 0, nithikUser); // Insert Nithik at the third position if third user has 0 saved prompts
-        }
 
         setUsers(sortedUsers);
         setFilteredUsers(sortedUsers);
@@ -61,20 +49,28 @@ const UserList = () => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
     setFilteredUsers(
-      users.filter(
-        (user) =>
-          user.name.toLowerCase().includes(query) ||
-          user.bio.toLowerCase().includes(query) ||
-          user.role.toLowerCase().includes(query)
-      )
+      users.filter((user) => {
+        const nameMatch = user.name?.toLowerCase().includes(query) || false;
+        const bioMatch = user.bio?.toLowerCase().includes(query) || false;
+        const roleMatch = user.role?.toLowerCase().includes(query) || false;
+        return nameMatch || bioMatch || roleMatch;
+      })
     );
   };
 
   const handleSortChange = (selectedOption) => {
     setSortOption(selectedOption.value);
     const sortedUsers = [...filteredUsers].sort((a, b) => {
-      if (selectedOption.value === 'likes') return b.totalLikes - a.totalLikes;
-      if (selectedOption.value === 'savedPrompts') return b.savedPrompts.length - a.savedPrompts.length;
+      if (selectedOption.value === 'likes') {
+        const likeDiff = (b.totalLikes || 0) - (a.totalLikes || 0);
+        if (likeDiff !== 0) return likeDiff;
+        return (b.savedPrompts?.length || 0) - (a.savedPrompts?.length || 0);
+      }
+      if (selectedOption.value === 'savedPrompts') {
+        const promptDiff = (b.savedPrompts?.length || 0) - (a.savedPrompts?.length || 0);
+        if (promptDiff !== 0) return promptDiff;
+        return (b.totalLikes || 0) - (a.totalLikes || 0);
+      }
       return 0;
     });
     setFilteredUsers(sortedUsers);
@@ -111,7 +107,7 @@ const UserList = () => {
             options={sortOptions}
             onChange={handleSortChange}
             placeholder="Sort by..."
-            defaultValue={sortOptions[1]} // Default sort by saved prompts
+            defaultValue={sortOptions[0]} // Default sort by likes
           />
         </Col>
       </Row>
@@ -127,24 +123,24 @@ const UserList = () => {
             >
               <Card.Body className="d-flex flex-column">
                 <Card.Title className={theme === 'dark' ? 'text-white' : 'text-dark'}>
-                  {user.name}
+                  {user.name || ''}
                 </Card.Title>
                 <Card.Text className={theme === 'dark' ? 'text-white' : 'text-dark'}>
-                  {user.bio}
+                  {user.bio || ''}
                 </Card.Text>
                 <Card.Text className={theme === 'dark' ? 'text-white' : 'text-dark'}>
-                  Role: {user.role}
+                  Role: {user.role || ''}
                 </Card.Text>
                 <Card.Text className={theme === 'dark' ? 'text-white' : 'text-dark'}>
-                  Saved Prompts: {user.savedPrompts.length}
+                  Saved Prompts: {user.savedPrompts?.length || 0}
                 </Card.Text>
                 <div className="mt-auto">
                   <div className="d-flex justify-content-center mb-3">
                     <Button variant="outline-success" onClick={notifyLikesDislikes}>
-                      Total Likes: ({user.totalLikes})
+                      Total Likes: ({user.totalLikes || 0})
                     </Button>
                     <Button variant="outline-danger" onClick={notifyLikesDislikes}>
-                      Total Dislikes: ({user.totalDislikes})
+                      Total Dislikes: ({user.totalDislikes || 0})
                     </Button>
                   </div>
                   <Button variant="primary" onClick={() => viewUserPrompts(user._id)} className="w-100">
