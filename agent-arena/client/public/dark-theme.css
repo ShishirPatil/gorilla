@@ -77,3 +77,28 @@ select.form-control:focus {
   color: #ffffff;
   border: none;
 }
+
+.accordion-item {
+  background-color: #2e2e31;
+  border: none;
+}
+
+.accordion-button {
+  background-color: #28293d;
+  color: #b3b3b3;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #4a90e2; /* Muted blue for active item */
+  color: #ffffff;
+}
+
+.accordion-body {
+  background-color: #34396d;
+  color: #b3b3b3;
+  border: none;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
