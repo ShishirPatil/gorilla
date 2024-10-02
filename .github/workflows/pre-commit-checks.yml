@@ -1,0 +1,36 @@
+name: Pre-commit Checks
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8  # Replace with your desired Python version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest black
+
+      - name: Run Flake8 (Linting)
+        run: |
+          flake8
+          
+      - name: Run pytest (Tests)
+        run: |
+          pytest
+
+      - name: Run Black (Code Formatting)
+        run: |
+          black --check .  # This checks for code formatting issues without modifying files
