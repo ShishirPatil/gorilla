@@ -1,0 +1,53 @@
+langchain brave-search agent
+langchain google-serper search agent
+langchain alpha-vantage stock agent
+sql agent plotter langchain
+sql agent plotter llamaindex
+openai assistant customer support chatbot
+langchain Google Jobs
+langchain ArXiv Article Fetcher
+openai assistant code interpreter
+openai assistant function calling
+openai general assistant
+anthropic pdf upload summarization
+anthropic web page reader
+anthropic sql query
+langchain You.com Search
+anthropic calculator tool
+anthropic customer service agent
+langchain Pandas DataFrame
+langchain Wolfram Alpha
+langchain NASA Toolkit
+langchain Yahoo Finance News
+langchain OpenWeatherMap
+langchain GraphQL API Integration
+crewai AI Crew for Game Building
+crewai AI Crew for Trip Planning
+crewai Meeting Preparation Agent Crew
+langchain Gmail Toolkit
+langchain Python REPL
+langchain JSON Toolkit
+langchain Google Lens
+langchain Shell
+langchain Wikipedia
+langchain PubMed Biomedical Literature Tool
+langchain YouTube Search
+langchain Golden Query Integration
+langchain AskNews
+langchain Tavily Search
+langchain Eden AI Integration
+langchain Exa Search Integration
+langchain Dall-E Image Generator
+langchain Riza Code Interpreter
+llamaindex ArXiv Article Fetcher
+llamaindex OpenWeatherMap
+llamaindex Exa Search Integration
+llamaindex Yahoo Finance News
+llamaindex brave-search agent
+llamaindex GraphQL API Integration
+llamaindex Wolfram Alpha
+llamaindex Tavily Research Tool
+llamaindex code interpreter
+llamaindex wikipedia
+llamaindex OpenAPI Tool
+llamaindex Yelp Tool

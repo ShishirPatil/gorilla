@@ -19,63 +19,53 @@ const UserPrompts = () => {
   const [initialCode, setInitialCode] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortOption, setSortOption] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const fetchPrompts = async (page) => {
+    try {
+      const token = localStorage.getItem('token');
+      const headers = token ? { Authorization: `Bearer ${token}` } : {};
+      const response = await axios.get(`https://agent-arena.vercel.app/api/prompts/user/${userId}?page=${page}&limit=10`, { headers });
+      
+      setPrompts(response.data.prompts);
+      setFilteredPrompts(response.data.prompts);
+      setTotalPages(response.data.totalPages);
+    } catch (error) {
+      console.error('Error fetching prompts:', error);
+    }
+  };
+
+  const fetchUserData = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const headers = token ? { Authorization: `Bearer ${token}` } : {};
+      const response = await axios.get(`https://agent-arena.vercel.app/api/users/${userId}`, { headers });
+      setUser(response.data); // Fetch and set user data
+    } catch (error) {
+      console.error('Error fetching user data:', error);
+    }
+  };
+
+  const fetchAgents = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const headers = token ? { Authorization: `Bearer ${token}` } : {};
+      const response = await axios.get(`https://agent-arena.vercel.app/api/agents`, { headers });
+      setAgents(response.data); // Fetch and set agents data
+    } catch (error) {
+      console.error('Error fetching agents:', error);
+    }
+  };
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        if (token) {
-          const response = await axios.get(`https://agent-arena.vercel.app/api/profile`, {
-            headers: { Authorization: `Bearer ${token}` }
-          });
-          setCurrentUserId(response.data._id);
-        }
-      } catch (error) {
-        console.error('Error fetching user:', error);
-      }
-    };
-
-    const fetchPrompts = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const headers = token ? { Authorization: `Bearer ${token}` } : {};
-        const response = await axios.get(`https://agent-arena.vercel.app/api/prompts/user/${userId}`, { headers });
-        setPrompts(response.data);
-        setFilteredPrompts(response.data);
-      } catch (error) {
-        console.error('Error fetching prompts:', error);
-      }
-    };
-
-    const fetchUserData = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const headers = token ? { Authorization: `Bearer ${token}` } : {};
-        const response = await axios.get(`https://agent-arena.vercel.app/api/users/${userId}`, { headers });
-        setUser(response.data);
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
-
-    const fetchAgents = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const headers = token ? { Authorization: `Bearer ${token}` } : {};
-        const response = await axios.get(`https://agent-arena.vercel.app/api/agents`, { headers });
-        setAgents(response.data);
-      } catch (error) {
-        console.error('Error fetching agents:', error);
-      }
-    };
-
-    fetchUser();
-    fetchPrompts();
+    fetchPrompts(currentPage);
     fetchUserData();
-    fetchAgents();
-  }, [userId]);
+    fetchAgents(); // Fetch agents data on load
+  }, [userId, currentPage]);
 
   useEffect(() => {
+    // If an agent is selected, filter the prompts based on the selected agent
     if (selectedAgent) {
       const agentPrompts = prompts.filter(prompt => 
         (prompt.leftAgent && prompt.leftAgent._id === selectedAgent._id) ||
@@ -85,12 +75,13 @@ const UserPrompts = () => {
       setSelectedAgentPrompts(agentPrompts);
       setInitialCode(selectedAgent.code || '');
     } else {
+      // If no agent is selected, show all prompts
       setSelectedAgentPrompts(filteredPrompts);
     }
   }, [selectedAgent, filteredPrompts]);
 
   const handleLike = async (promptId) => {
-    if (!currentUserId) {
+    if (currentUserId) {
       toast.error('You need to be logged in to like prompts');
       return;
     }
@@ -100,11 +91,7 @@ const UserPrompts = () => {
       await axios.post('https://agent-arena.vercel.app/api/prompts/like', { promptId }, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      const response = await axios.get(`https://agent-arena.vercel.app/api/prompts/user/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setPrompts(response.data);
-      setFilteredPrompts(response.data);
+      fetchPrompts(currentPage);
     } catch (error) {
       console.error('Error liking prompt:', error);
     }
@@ -112,7 +99,7 @@ const UserPrompts = () => {
 
   const handleDislike = async (promptId) => {
     if (!currentUserId) {
-      alert("You need to be logged in to dislike prompts.");
+      toast.error("You need to be logged in to dislike prompts.");
       return;
     }
 
@@ -121,11 +108,7 @@ const UserPrompts = () => {
       await axios.post('https://agent-arena.vercel.app/api/prompts/dislike', { promptId }, {
         headers: { Authorization: `Bearer ${token}` }
       });
-      const response = await axios.get(`https://agent-arena.vercel.app/api/prompts/user/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setPrompts(response.data);
-      setFilteredPrompts(response.data);
+      fetchPrompts(currentPage);
     } catch (error) {
       console.error('Error disliking prompt:', error);
     }
@@ -179,9 +162,9 @@ const UserPrompts = () => {
 
   return (
     <Container className="mt-4">
-      <h1>{user.name}'s Prompts</h1>
-      <p>{user.bio}</p>
-      <p>Role: {user.role}</p>
+      <h1>{user?.name || "User's"} Prompts</h1>
+      <p>{user?.bio || "No bio available"}</p>
+      <p>Role: {user?.role || "No role available"}</p>
       <Row className="mb-4">
         <Col md={6}>
           <Form.Control
@@ -202,24 +185,50 @@ const UserPrompts = () => {
         </Col>
       </Row>
       <AgentDropdown agents={agents} selectedAgent={selectedAgent} onSelect={setSelectedAgent} />
-      {selectedAgentPrompts.map(prompt => (
-        <Link to={`/prompts/${prompt._id}`} key={prompt._id} style={{ textDecoration: 'none' }}>
-          <Card className="mb-4" style={{ backgroundColor: '#1c1c1e', borderColor: '#17a2b8' }}>
-            <Card.Body>
-              <p>{prompt.text}</p>
-              <Button variant="outline-success" onClick={(e) => { e.preventDefault(); handleLike(prompt._id); }} className="mr-2">
-                Like ({prompt.likes})
-              </Button>
-              <Button variant="outline-danger" onClick={(e) => { e.preventDefault(); handleDislike(prompt._id); }}>
-                Dislike ({prompt.dislikes})
-              </Button>
-            </Card.Body>
-          </Card>
-        </Link>
-      ))}
+      {selectedAgent
+        ? selectedAgentPrompts.map(prompt => (
+            <Link to={`/prompts/${prompt._id}`} key={prompt._id} style={{ textDecoration: 'none' }}>
+              <Card className="mb-4" style={{ backgroundColor: '#1c1c1e', borderColor: '#17a2b8' }}>
+                <Card.Body>
+                  <p>{prompt.text}</p>
+                  <Button variant="outline-success" onClick={(e) => { e.preventDefault(); handleLike(prompt._id); }} className="mr-2">
+                    Like ({prompt.likes})
+                  </Button>
+                  <Button variant="outline-danger" onClick={(e) => { e.preventDefault(); handleDislike(prompt._id); }}>
+                    Dislike ({prompt.dislikes})
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Link>
+          ))
+        : filteredPrompts.map(prompt => (
+            <Link to={`/prompts/${prompt._id}`} key={prompt._id} style={{ textDecoration: 'none' }}>
+              <Card className="mb-4" style={{ backgroundColor: '#1c1c1e', borderColor: '#17a2b8' }}>
+                <Card.Body>
+                  <p>{prompt.text}</p>
+                  <Button variant="outline-success" onClick={(e) => { e.preventDefault(); handleLike(prompt._id); }} className="mr-2">
+                    Like ({prompt.likes})
+                  </Button>
+                  <Button variant="outline-danger" onClick={(e) => { e.preventDefault(); handleDislike(prompt._id); }}>
+                    Dislike ({prompt.dislikes})
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Link>
+          ))}
       {selectedAgent && (
         <CodeEditor agentId={selectedAgent._id} initialCode={initialCode} onExecute={() => {}} />
       )}
+<div className="pagination" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', marginTop: '20px' }}>
+  <Button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)} style={{ marginRight: '10px' }}>
+    Previous
+  </Button>
+  <span>Page {currentPage} of {totalPages}</span>
+  <Button disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)} style={{ marginLeft: '10px' }}>
+    Next
+  </Button>
+</div>
+
     </Container>
   );
 };

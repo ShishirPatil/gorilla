@@ -1,0 +1,347 @@
+ELO Ratings for Search Engines category:
+langchain google-serper search agent (llama-3.1-405B-instruct): 1436.143134070856
+langchain google-serper search agent (gemini-1.5-pro-001): 1362.5015775421562
+langchain brave-search agent (llama-3.1-70B-instruct): 1333.180459259152
+langchain brave-search agent (claude-3-opus-20240229): 1259.4553279880176
+langchain You.com Search (gemini-1.5-pro-001): 1212.6057839374
+langchain google-serper search agent (open-mixtral-8x7b): 1190.1795058181956
+langchain You.com Search (gpt-4-turbo-2024-04-09): 1188.4559417829662
+langchain google-serper search agent (open-mixtral-8x22b): 1184.3658948712218
+langchain brave-search agent (gemini-1.5-pro-001): 1176.2005424349118
+langchain brave-search agent (open-mixtral-8x7b): 1172.0961577644587
+langchain brave-search agent (gpt-4o-2024-08-06): 1169.4277490325057
+langchain brave-search agent (gpt-4-turbo-2024-04-09): 1169.1464362637705
+llamaindex brave-search agent (gpt-4o-2024-08-06): 1140.08263548552
+langchain google-serper search agent (llama-3.1-8B-instruct): 1126.9680981042345
+langchain google-serper search agent (gpt-4-turbo-2024-04-09): 1124.2758655671146
+langchain google-serper search agent (claude-3-5-sonnet-20240620): 1112.9758753489355
+langchain You.com Search (gpt-4o-2024-08-06): 1090.212748899352
+langchain brave-search agent (llama-3.1-8B-instruct): 1086.4963891873722
+langchain brave-search agent (gemini-1.5-flash-001): 1084.0260328336688
+langchain brave-search agent (claude-3-5-sonnet-20240620): 1083.040216750662
+langchain google-serper search agent (gemini-1.5-flash-001): 1077.9099050280054
+langchain google-serper search agent (gpt-4o-mini-2024-07-18): 1070.8373348023338
+langchain google-serper search agent (gpt-4o-2024-08-06): 1065.4835504781763
+langchain brave-search agent (open-mixtral-8x22b): 1061.8452793277675
+langchain brave-search agent (mistral-large-2407): 1052.8237761045807
+langchain google-serper search agent (gpt-4o-2024-05-13): 1051.4134880237577
+langchain brave-search agent (gpt-4o-2024-05-13): 1049.062512900066
+langchain google-serper search agent (mistral-large-2407): 1046.209883911124
+langchain google-serper search agent (gpt-4-0613): 1038.9391875856913
+langchain Tavily Search (gpt-4o-2024-08-06): 1029.6493712225763
+langchain google-serper search agent (claude-3-opus-20240229): 1015.879404459579
+langchain brave-search agent (llama-3.1-405B-instruct): 956.6061677685906
+langchain You.com Search (gpt-4-0613): 945.5970616986501
+langchain You.com Search (mistral-large-2407): 944.6026574268915
+langchain brave-search agent (claude-3-haiku-20240307): 943.0282130730535
+langchain You.com Search (gpt-4o-mini-2024-07-18): 937.7906160696974
+langchain brave-search agent (gpt-4o-mini-2024-07-18): 933.6952256364849
+langchain google-serper search agent (llama-3.1-70B-instruct): 916.7946655168033
+langchain google-serper search agent (claude-3-haiku-20240307): 915.6648626685613
+langchain You.com Search (claude-3-haiku-20240307): 863.6208553547145
+langchain Exa Search Integration (open-mixtral-8x22b): 862.7315163898044
+langchain You.com Search (gemini-1.5-flash-001): 801.7308453297942
+llamaindex brave-search agent (gemini-1.5-pro-001): 767.5384819522188
+langchain Exa Search Integration (claude-3-5-sonnet-20240620): 742.3486317271343
+langchain You.com Search (claude-3-5-sonnet-20240620): 711.1350767938986
+llamaindex brave-search agent (claude-3-opus-20240229): 707.9367643178621
+llamaindex brave-search agent (open-mixtral-8x22b): 691.9032466057603
+langchain You.com Search (open-mixtral-8x7b): 668.6900701355452
+langchain You.com Search (gpt-4o-2024-05-13): 614.6446779549144
+langchain Tavily Search (gemini-1.5-flash-001): 614.6377612710118
+langchain You.com Search (open-mixtral-8x22b): 614.6377612710116
+langchain You.com Search (claude-3-opus-20240229): 582.7747742514665
+
+ELO Ratings for Simple Math category:
+langchain google-serper search agent (llama-3.1-70B-instruct): 1462.6172784381736
+langchain google-serper search agent (gpt-4o-mini-2024-07-18): 1451.965960926686
+langchain google-serper search agent (llama-3.1-405B-instruct): 1431.571709745296
+langchain google-serper search agent (gpt-4-turbo-2024-04-09): 1391.5143483839975
+langchain google-serper search agent (gemini-1.5-pro-001): 1333.6981845083114
+langchain google-serper search agent (open-mixtral-8x22b): 1305.0641251391266
+langchain google-serper search agent (gpt-4-0613): 1274.74253686252
+langchain Wolfram Alpha (open-mixtral-8x7b): 1253.4280099143396
+langchain Wolfram Alpha (mistral-large-2407): 1225.7589649546387
+langchain google-serper search agent (claude-3-haiku-20240307): 1185.5080290450633
+langchain Wolfram Alpha (llama-3.1-405B-instruct): 1149.0814944797878
+langchain Wolfram Alpha (open-mixtral-8x22b): 1130.659313777653
+langchain You.com Search (gemini-1.5-pro-001): 1123.584143030404
+langchain Wolfram Alpha (claude-3-5-sonnet-20240620): 1119.9022918060205
+langchain You.com Search (gpt-4-turbo-2024-04-09): 1118.5351579812218
+langchain Wolfram Alpha (gpt-4o-mini-2024-07-18): 1112.1025185987376
+langchain Wolfram Alpha (llama-3.1-8B-instruct): 1067.6999815803265
+langchain Wolfram Alpha (gpt-4-turbo-2024-04-09): 1062.0441749752854
+anthropic calculator tool (claude-3-haiku-20240307): 1055.7618634731627
+langchain Wolfram Alpha (llama-3.1-70B-instruct): 1045.2973132497148
+anthropic calculator tool (claude-3-5-sonnet-20240620): 1043.2856240853614
+langchain google-serper search agent (gpt-4o-2024-08-06): 1008.7662473544289
+langchain google-serper search agent (gpt-4o-2024-05-13): 989.1707181499166
+langchain google-serper search agent (mistral-large-2407): 978.7099618681526
+anthropic calculator tool (claude-3-opus-20240229): 966.5669805384235
+langchain google-serper search agent (llama-3.1-8B-instruct): 957.5109902480028
+langchain google-serper search agent (claude-3-opus-20240229): 953.3397420050113
+langchain Wolfram Alpha (gpt-4o-2024-08-06): 932.5983193142094
+langchain You.com Search (mistral-large-2407): 930.4797741703161
+langchain Wolfram Alpha (claude-3-opus-20240229): 918.1769839906085
+langchain You.com Search (gpt-4o-2024-05-13): 901.7122059343577
+langchain You.com Search (claude-3-5-sonnet-20240620): 897.9596688546385
+langchain Wolfram Alpha (claude-3-haiku-20240307): 875.532486973498
+langchain You.com Search (gpt-4o-2024-08-06): 871.5422581803948
+langchain You.com Search (gpt-4-0613): 864.7226380066281
+langchain Wolfram Alpha (gpt-4o-2024-05-13): 862.0133254784845
+langchain google-serper search agent (claude-3-5-sonnet-20240620): 847.0129069837626
+langchain google-serper search agent (open-mixtral-8x7b): 835.0422055032616
+langchain You.com Search (gpt-4o-mini-2024-07-18): 822.662060703098
+langchain You.com Search (claude-3-haiku-20240307): 807.9390694816548
+langchain You.com Search (open-mixtral-8x7b): 765.9656828168876
+langchain google-serper search agent (gemini-1.5-flash-001): 747.6442552280598
+langchain Wolfram Alpha (gemini-1.5-pro-001): 740.3845151199184
+langchain You.com Search (gemini-1.5-flash-001): 719.910825740059
+llamaindex Wolfram Alpha (open-mixtral-8x22b): 705.8959935039562
+langchain You.com Search (open-mixtral-8x22b): 646.8013918866466
+langchain Wolfram Alpha (gemini-1.5-flash-001): 614.2022265406852
+langchain You.com Search (claude-3-opus-20240229): 493.9135404691119
+
+ELO Ratings for Knowledge Bases category:
+langchain OpenWeatherMap (gpt-4o-2024-08-06): 1279.129796436242
+langchain OpenWeatherMap (claude-3-opus-20240229): 1277.2103833245917
+langchain OpenWeatherMap (gpt-4o-mini-2024-07-18): 1277.2103833245917
+langchain OpenWeatherMap (gemini-1.5-flash-001): 1277.2103833245917
+langchain brave-search agent (llama-3.1-70B-instruct): 1229.1982973645665
+langchain brave-search agent (claude-3-opus-20240229): 1216.893177831902
+langchain brave-search agent (open-mixtral-8x7b): 1211.3767408454332
+langchain OpenWeatherMap (claude-3-5-sonnet-20240620): 1210.3462974243496
+langchain OpenWeatherMap (gpt-4o-2024-05-13): 1210.3462974243496
+langchain Wikipedia (open-mixtral-8x7b): 1201.3668839412778
+langchain PubMed Biomedical Literature Tool (gpt-4o-mini-2024-07-18): 1197.3829329978623
+langchain PubMed Biomedical Literature Tool (open-mixtral-8x22b): 1196.2291737238113
+langchain Wikipedia (open-mixtral-8x22b): 1194.087698105717
+langchain brave-search agent (gemini-1.5-pro-001): 1187.9664530428995
+langchain Wikipedia (llama-3.1-70B-instruct): 1187.3741351382241
+langchain google-serper search agent (llama-3.1-70B-instruct): 1179.634758849323
+langchain google-serper search agent (open-mixtral-8x7b): 1170.4457370394775
+langchain brave-search agent (gpt-4-turbo-2024-04-09): 1159.5887895957917
+langchain Wikipedia (claude-3-5-sonnet-20240620): 1158.8804310455712
+llamaindex wikipedia (gpt-4o-mini-2024-07-18): 1158.714937174035
+langchain PubMed Biomedical Literature Tool (gpt-4o-2024-08-06): 1158.144063140515
+langchain brave-search agent (gpt-4o-2024-08-06): 1154.0796781685528
+langchain google-serper search agent (llama-3.1-405B-instruct): 1149.8856993790669
+langchain google-serper search agent (claude-3-opus-20240229): 1140.8585880677658
+langchain PubMed Biomedical Literature Tool (mistral-large-2407): 1139.9521685820555
+llamaindex wikipedia (claude-3-5-sonnet-20240620): 1136.6755494581435
+langchain google-serper search agent (claude-3-5-sonnet-20240620): 1134.248173516902
+langchain AskNews (open-mixtral-8x7b): 1134.2160895068037
+langchain Wikipedia (gpt-4-turbo-2024-04-09): 1131.2089650051064
+llamaindex brave-search agent (gpt-4o-2024-08-06): 1128.4301864268664
+langchain You.com Search (gpt-4-turbo-2024-04-09): 1127.8776248421239
+langchain brave-search agent (claude-3-5-sonnet-20240620): 1125.8412312043113
+langchain You.com Search (gpt-4o-2024-08-06): 1125.2685625084139
+langchain brave-search agent (gemini-1.5-flash-001): 1113.3922705655107
+langchain Tavily Search (gpt-4o-2024-08-06): 1108.0206858025606
+langchain google-serper search agent (gpt-4o-2024-05-13): 1104.327826221307
+langchain google-serper search agent (mistral-large-2407): 1097.542750500541
+langchain google-serper search agent (claude-3-haiku-20240307): 1096.7746640122766
+langchain Wikipedia (claude-3-haiku-20240307): 1096.0426585684236
+langchain Wikipedia (llama-3.1-405B-instruct): 1085.358438975834
+langchain google-serper search agent (open-mixtral-8x22b): 1084.9231699184393
+langchain Wikipedia (claude-3-opus-20240229): 1084.3426085108272
+llamaindex wikipedia (open-mixtral-8x22b): 1084.1817092380777
+langchain google-serper search agent (gemini-1.5-pro-001): 1082.7529269750107
+langchain AskNews (gpt-4o-2024-08-06): 1081.674890910703
+langchain brave-search agent (mistral-large-2407): 1073.8443729707064
+langchain google-serper search agent (gpt-4o-mini-2024-07-18): 1073.4788055221763
+langchain Wikipedia (gpt-4-0613): 1071.0267044002114
+langchain brave-search agent (open-mixtral-8x22b): 1063.886240408969
+llamaindex wikipedia (gpt-4o-2024-08-06): 1063.0888656574534
+langchain Wikipedia (gpt-4o-mini-2024-07-18): 1057.8280046314524
+langchain google-serper search agent (gpt-4-turbo-2024-04-09): 1055.039127289962
+langchain google-serper search agent (gpt-4o-2024-08-06): 1054.169342029295
+langchain Wikipedia (gpt-4o-2024-05-13): 1045.586710315529
+langchain PubMed Biomedical Literature Tool (claude-3-opus-20240229): 1039.3645668861172
+langchain Wikipedia (gpt-4o-2024-08-06): 1038.364525740592
+langchain You.com Search (gemini-1.5-pro-001): 1037.3310316566392
+llamaindex wikipedia (claude-3-opus-20240229): 1035.2015259928173
+langchain google-serper search agent (gpt-4-0613): 1025.143622279419
+langchain brave-search agent (claude-3-haiku-20240307): 1011.0188272168531
+langchain PubMed Biomedical Literature Tool (claude-3-5-sonnet-20240620): 1009.616221319048
+langchain PubMed Biomedical Literature Tool (llama-3.1-8B-instruct): 1007.4286484599941
+langchain Wikipedia (mistral-large-2407): 1003.7362702129129
+langchain google-serper search agent (gemini-1.5-flash-001): 1003.4183981789661
+langchain google-serper search agent (llama-3.1-8B-instruct): 1002.057758601482
+langchain brave-search agent (llama-3.1-8B-instruct): 1000.1733868323873
+llamaindex OpenWeatherMap (claude-3-opus-20240229): 1000.0
+langchain OpenWeatherMap (llama-3.1-405B-instruct): 1000.0
+langchain PubMed Biomedical Literature Tool (claude-3-haiku-20240307): 997.4015724214267
+langchain brave-search agent (gpt-4o-2024-05-13): 992.1932676602124
+langchain brave-search agent (gpt-4o-mini-2024-07-18): 989.0396592916803
+langchain Wikipedia (gemini-1.5-pro-001): 987.2746077628107
+langchain AskNews (claude-3-5-sonnet-20240620): 984.3534820348074
+langchain brave-search agent (llama-3.1-405B-instruct): 982.8349953573278
+langchain Wikipedia (llama-3.1-8B-instruct): 962.2346201758864
+langchain PubMed Biomedical Literature Tool (gpt-4-0613): 960.7612898813572
+llamaindex wikipedia (gemini-1.5-flash-001): 959.9584021624227
+langchain Wikipedia (gemini-1.5-flash-001): 950.1822143002914
+llamaindex wikipedia (claude-3-haiku-20240307): 949.4715786425993
+langchain PubMed Biomedical Literature Tool (gpt-4o-2024-05-13): 944.5301278161645
+langchain AskNews (llama-3.1-405B-instruct): 938.6454142887379
+langchain You.com Search (claude-3-haiku-20240307): 938.4999428159302
+langchain You.com Search (gpt-4-0613): 915.2659112347231
+llamaindex OpenWeatherMap (mistral-large-2407): 909.385300690087
+llamaindex wikipedia (gemini-1.5-pro-001): 885.7176182589807
+llamaindex wikipedia (gpt-4-turbo-2024-04-09): 861.7972472245602
+langchain You.com Search (mistral-large-2407): 860.8263056776547
+langchain You.com Search (gpt-4o-mini-2024-07-18): 843.0810055740192
+llamaindex wikipedia (gpt-4o-2024-05-13): 829.3545711884325
+llamaindex OpenWeatherMap (claude-3-5-sonnet-20240620): 824.0918218797734
+langchain You.com Search (gemini-1.5-flash-001): 807.1786998940094
+llamaindex OpenWeatherMap (gemini-1.5-flash-002): 789.6537025756504
+llamaindex OpenWeatherMap (gemini-1.5-pro-001): 789.6537025756504
+langchain AskNews (gpt-4o-2024-05-13): 773.255978049536
+langchain You.com Search (gpt-4o-2024-05-13): 773.2559780495359
+langchain AskNews (claude-3-opus-20240229): 768.2516511439471
+llamaindex brave-search agent (gemini-1.5-pro-001): 762.249380497966
+langchain Exa Search Integration (open-mixtral-8x22b): 718.2653456420292
+langchain You.com Search (claude-3-5-sonnet-20240620): 712.764380627297
+llamaindex wikipedia (gpt-4-0613): 707.6649186869574
+langchain Exa Search Integration (claude-3-5-sonnet-20240620): 701.7170402555055
+llamaindex brave-search agent (claude-3-opus-20240229): 701.1872027947666
+llamaindex brave-search agent (open-mixtral-8x22b): 683.4973842093236
+langchain PubMed Biomedical Literature Tool (gemini-1.5-pro-001): 622.0084127842333
+langchain PubMed Biomedical Literature Tool (llama-3.1-405B-instruct): 611.9464243172895
+langchain Tavily Search (gemini-1.5-flash-001): 606.0571948817571
+langchain You.com Search (open-mixtral-8x22b): 606.0571948817571
+langchain You.com Search (open-mixtral-8x7b): 591.2455986821577
+langchain You.com Search (claude-3-opus-20240229): 536.1286981443616
+llamaindex wikipedia (mistral-large-2407): 413.6423304026507
+
+ELO Ratings for Math/CS Academic Search category:
+langchain ArXiv Article Fetcher (open-mixtral-8x7b): 1379.8481849854209
+langchain ArXiv Article Fetcher (gpt-4o-2024-05-13): 1311.7952838385997
+langchain brave-search agent (llama-3.1-70B-instruct): 1241.0368346920925
+llamaindex ArXiv Article Fetcher (gpt-4o-2024-05-13): 1232.9736772022704
+langchain brave-search agent (claude-3-opus-20240229): 1226.3532376807934
+langchain brave-search agent (open-mixtral-8x7b): 1224.4606321171016
+langchain Wikipedia (open-mixtral-8x7b): 1210.636708135118
+langchain brave-search agent (gemini-1.5-pro-001): 1197.922720905478
+langchain Wikipedia (llama-3.1-70B-instruct): 1190.43271282333
+langchain Wikipedia (open-mixtral-8x22b): 1187.8169814448095
+langchain google-serper search agent (llama-3.1-70B-instruct): 1180.4925133801853
+langchain brave-search agent (gpt-4-turbo-2024-04-09): 1173.6734934380377
+langchain brave-search agent (gpt-4o-2024-08-06): 1173.137995165639
+langchain google-serper search agent (llama-3.1-405B-instruct): 1172.115203761228
+langchain ArXiv Article Fetcher (gpt-4o-mini-2024-07-18): 1167.361501554833
+langchain ArXiv Article Fetcher (gemini-1.5-flash-001): 1165.0699246612471
+llamaindex wikipedia (gpt-4o-mini-2024-07-18): 1162.7099316126153
+langchain google-serper search agent (open-mixtral-8x7b): 1162.0804522087574
+langchain Wikipedia (claude-3-5-sonnet-20240620): 1156.4217686550435
+langchain google-serper search agent (claude-3-opus-20240229): 1156.4125675502082
+langchain ArXiv Article Fetcher (llama-3.1-70B-instruct): 1154.4418555978673
+langchain ArXiv Article Fetcher (gpt-4-turbo-2024-04-09): 1151.103216788586
+langchain google-serper search agent (claude-3-5-sonnet-20240620): 1143.7177314356868
+langchain Wikipedia (gpt-4-turbo-2024-04-09): 1143.1818824570094
+langchain You.com Search (gpt-4o-2024-08-06): 1142.5341888547343
+langchain You.com Search (gpt-4-turbo-2024-04-09): 1139.171837543648
+llamaindex wikipedia (claude-3-5-sonnet-20240620): 1138.6486420833332
+langchain ArXiv Article Fetcher (open-mixtral-8x22b): 1136.3225509306537
+langchain brave-search agent (claude-3-5-sonnet-20240620): 1135.3394490543092
+llamaindex brave-search agent (gpt-4o-2024-08-06): 1134.3649270128067
+langchain ArXiv Article Fetcher (gpt-4o-2024-08-06): 1131.3575251092645
+langchain google-serper search agent (gpt-4o-2024-05-13): 1125.722203928491
+langchain brave-search agent (gemini-1.5-flash-001): 1124.8024623603615
+langchain Tavily Search (gpt-4o-2024-08-06): 1124.2768395134292
+langchain Wikipedia (claude-3-haiku-20240307): 1122.8749836469951
+langchain ArXiv Article Fetcher (claude-3-opus-20240229): 1121.3664557123857
+langchain google-serper search agent (mistral-large-2407): 1114.1315907618532
+langchain google-serper search agent (open-mixtral-8x22b): 1103.7608179416172
+langchain Wikipedia (gpt-4-0613): 1101.5552875956896
+llamaindex wikipedia (open-mixtral-8x22b): 1101.2182733696259
+langchain google-serper search agent (claude-3-haiku-20240307): 1099.1235132096078
+langchain Wikipedia (llama-3.1-405B-instruct): 1098.6134896191827
+langchain google-serper search agent (gemini-1.5-pro-001): 1087.402033652577
+langchain Wikipedia (gpt-4o-2024-05-13): 1077.7333386739588
+langchain google-serper search agent (gpt-4o-mini-2024-07-18): 1077.2642941165514
+langchain brave-search agent (open-mixtral-8x22b): 1077.240186610442
+langchain Wikipedia (gpt-4o-mini-2024-07-18): 1076.5601698527255
+langchain Wikipedia (claude-3-opus-20240229): 1075.2994580438872
+langchain google-serper search agent (gpt-4-turbo-2024-04-09): 1074.4886893412108
+langchain google-serper search agent (gpt-4o-2024-08-06): 1067.382348000175
+langchain brave-search agent (mistral-large-2407): 1066.3548113816155
+llamaindex wikipedia (gpt-4o-2024-08-06): 1047.2469528803313
+llamaindex wikipedia (claude-3-opus-20240229): 1044.642260883798
+langchain You.com Search (gemini-1.5-pro-001): 1043.9160373551651
+langchain Wikipedia (gpt-4o-2024-08-06): 1043.6963236590466
+langchain Wikipedia (mistral-large-2407): 1036.8160556916962
+langchain google-serper search agent (gpt-4-0613): 1036.3225368585545
+langchain ArXiv Article Fetcher (llama-3.1-405B-instruct): 1030.6719877395549
+langchain ArXiv Article Fetcher (gpt-4-0613): 1020.6890156306144
+langchain brave-search agent (claude-3-haiku-20240307): 1017.6742500357248
+langchain google-serper search agent (gemini-1.5-flash-001): 1016.676223534902
+langchain ArXiv Article Fetcher (claude-3-haiku-20240307): 1014.5247269777706
+langchain google-serper search agent (llama-3.1-8B-instruct): 1012.3824304335882
+langchain brave-search agent (gpt-4o-2024-05-13): 1005.7367813887342
+langchain Wikipedia (gemini-1.5-pro-001): 1005.5611643598314
+langchain brave-search agent (gpt-4o-mini-2024-07-18): 997.0688493003615
+langchain brave-search agent (llama-3.1-405B-instruct): 994.3745756620518
+langchain ArXiv Article Fetcher (gemini-1.5-pro-001): 982.6932436731605
+llamaindex wikipedia (claude-3-haiku-20240307): 976.6781957033165
+llamaindex wikipedia (gemini-1.5-flash-001): 976.2126830096216
+langchain Wikipedia (gemini-1.5-flash-001): 972.0765281314231
+langchain brave-search agent (llama-3.1-8B-instruct): 968.9216949155978
+langchain You.com Search (claude-3-haiku-20240307): 952.2913282717336
+langchain Wikipedia (llama-3.1-8B-instruct): 951.0513828116146
+langchain You.com Search (gpt-4-0613): 926.6409313637771
+langchain ArXiv Article Fetcher (claude-3-5-sonnet-20240620): 924.5469369457862
+llamaindex ArXiv Article Fetcher (claude-3-5-sonnet-20240620): 924.2951176915662
+llamaindex wikipedia (gemini-1.5-pro-001): 910.8551243022127
+llamaindex wikipedia (gpt-4-turbo-2024-04-09): 878.3100391628258
+langchain You.com Search (mistral-large-2407): 873.4002415501994
+langchain You.com Search (gpt-4o-mini-2024-07-18): 849.1263910380924
+llamaindex ArXiv Article Fetcher (mistral-large-2407): 842.7464178469914
+llamaindex wikipedia (gpt-4o-2024-05-13): 838.1129118592492
+llamaindex ArXiv Article Fetcher (gpt-4o-2024-08-06): 834.881319767074
+langchain You.com Search (gemini-1.5-flash-001): 819.4337251560814
+langchain You.com Search (gpt-4o-2024-05-13): 773.9463296956125
+llamaindex brave-search agent (gemini-1.5-pro-001): 770.3103256838307
+llamaindex ArXiv Article Fetcher (gemini-1.5-flash-001): 749.3860245381363
+llamaindex wikipedia (gpt-4-0613): 723.9950713302519
+langchain Exa Search Integration (open-mixtral-8x22b): 720.925969426007
+langchain You.com Search (claude-3-5-sonnet-20240620): 714.9268958816584
+langchain Exa Search Integration (claude-3-5-sonnet-20240620): 713.2653605281757
+llamaindex brave-search agent (claude-3-opus-20240229): 709.0265948412069
+llamaindex brave-search agent (open-mixtral-8x22b): 690.2312560560166
+llamaindex ArXiv Article Fetcher (gemini-1.5-flash-002): 676.8437677757915
+langchain Tavily Search (gemini-1.5-flash-001): 614.3445018974072
+langchain You.com Search (open-mixtral-8x22b): 614.3445018974072
+llamaindex ArXiv Article Fetcher (gpt-4-0613): 614.27549088351
+langchain You.com Search (open-mixtral-8x7b): 605.0422027732714
+langchain ArXiv Article Fetcher (llama-3.1-8B-instruct): 549.4757069342825
+langchain You.com Search (claude-3-opus-20240229): 545.0026857029623
+langchain ArXiv Article Fetcher (mistral-large-2407): 483.58490565617933
+llamaindex wikipedia (mistral-large-2407): 420.6906428931576
+
+ELO Ratings for Code Interpreter category:
+crewai AI Crew for Game Building (llama-3.1-8B-instruct): 1357.6676247222636
+langchain Python REPL (gpt-4o-2024-05-13): 1277.6130333405918
+langchain Python REPL (gemini-1.5-flash-001): 1256.313002295977
+sql agent plotter langchain (gpt-4o-2024-05-13): 1215.9130586329602
+sql agent plotter langchain (gemini-1.5-pro-001): 1210.3183008520502
+langchain Shell (gpt-4o-mini-2024-07-18): 1210.3183008520502
+sql agent plotter llamaindex (gpt-4o-2024-05-13): 1200.4978535532316
+langchain Python REPL (mistral-large-2407): 1176.229696990408
+langchain Shell (claude-3-5-sonnet-20240620): 1161.0730617427212
+langchain Python REPL (llama-3.1-70B-instruct): 1151.3115536775306
+langchain Python REPL (claude-3-5-sonnet-20240620): 1139.5909120577953
+langchain Python REPL (gpt-4-turbo-2024-04-09): 1056.69617408427
+openai assistant code interpreter (gpt-4o-2024-08-06): 1040.4289345741456
+sql agent plotter llamaindex (gpt-4o-2024-08-06): 1014.6328342021427
+openai assistant code interpreter (gpt-4-turbo-2024-04-09): 924.3143364483456
+llamaindex code interpreter (gpt-4-turbo-2024-04-09): 823.7703030095919
+sql agent plotter llamaindex (mistral-large-2407): 789.6816991479498
+openai general assistant (gpt-4o-2024-08-06): 789.6816991479498
+sql agent plotter langchain (gpt-4-turbo-2024-04-09): 784.4781268058326
+sql agent plotter llamaindex (gpt-4-turbo-2024-04-09): 784.4781268058326
+llamaindex code interpreter (gpt-4o-mini-2024-07-18): 743.686997704023
+llamaindex code interpreter (gpt-4o-2024-05-13): 722.3869666594082
+llamaindex code interpreter (gemini-1.5-pro-001): 642.6398521152134
+langchain Python REPL (gpt-4o-2024-08-06): 526.2775505777146
+

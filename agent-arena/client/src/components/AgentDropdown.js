@@ -59,6 +59,10 @@ const AgentDropdown = ({ agents, selectedAgent, onSelect }) => {
     indicatorSeparator: () => ({
       display: 'none', // Remove the separator for a cleaner look
     }),
+    input: (provided) => ({
+      ...provided,
+      color: theme === 'dark' ? '#ccc' : '#000', // Lighter text color for dark mode
+    }),
   };
 
   return (

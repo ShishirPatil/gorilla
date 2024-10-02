@@ -1,0 +1,429 @@
+<<List of LLM Agents>>:
+
+langchain brave-search agent
+langchain google-serper search agent
+langchain alpha-vantage stock agent
+sql agent plotter langchain
+sql agent plotter llamaindex
+openai assistant customer support chatbot
+langchain Google Jobs
+langchain ArXiv Article Fetcher
+openai assistant code interpreter
+openai assistant function calling
+openai general assistant
+anthropic pdf upload summarization
+anthropic web page reader
+anthropic sql query
+langchain You.com Search
+anthropic calculator tool
+anthropic customer service agent
+langchain Pandas DataFrame
+langchain Wolfram Alpha
+langchain NASA Toolkit
+langchain Yahoo Finance News
+langchain OpenWeatherMap
+langchain GraphQL API Integration
+crewai AI Crew for Game Building
+crewai AI Crew for Trip Planning
+crewai Meeting Preparation Agent Crew
+langchain Gmail Toolkit
+langchain Python REPL
+langchain JSON Toolkit
+langchain Google Lens
+langchain Shell
+langchain Wikipedia
+langchain PubMed Biomedical Literature Tool
+langchain YouTube Search
+langchain Golden Query Integration
+langchain AskNews
+langchain Tavily Search
+langchain Eden AI Integration
+langchain Exa Search Integration
+langchain Dall-E Image Generator
+langchain Riza Code Interpreter
+llamaindex ArXiv Article Fetcher
+llamaindex OpenWeatherMap
+llamaindex Exa Search Integration
+llamaindex Yahoo Finance News
+llamaindex brave-search agent
+llamaindex GraphQL API Integration
+llamaindex Wolfram Alpha
+llamaindex Tavily Research Tool
+llamaindex code interpreter
+llamaindex wikipedia
+llamaindex OpenAPI Tool
+llamaindex Yelp Tool
+
+<<Additional Agent Information>>:
+
+Name: langchain brave-search agent  
+Description: The langchain brave-search agent is a powerful AI-driven tool designed to harness the capabilities of Brave Search to provide accurate and efficient answers to various queries. It specializes in searching for information across diverse topics, offering insights, summaries, and factual details from a privacy-centric search engine. This agent is particularly effective for users seeking reliable information without compromising their data privacy.  
+Prompt 1: "What are the benefits of using Brave Search compared to traditional search engines?"  
+Prompt 2: "Can you find the latest news articles about climate change?"
+
+-----
+
+Name: langchain google-serper search agent  
+Description: The langchain google-serper search agent is a powerful AI tool designed to retrieve and synthesize information from the web using Google search capabilities. This agent excels in answering a wide range of queries by leveraging the vast repository of knowledge available online, effectively providing real-time information, insights, and actionable data tailored to user needs. Whether you require answers to complex questions or quick facts, this agent acts as a bridge between users and the web's resources to deliver accurate and relevant results.  
+Prompt 1: What are the latest developments in AI technology as of this month?  
+Prompt 2: Can you find a summary of the most popular articles about climate change published this week?  
+
+-----
+
+Name: langchain alpha-vantage stock agent  
+Description: The langchain alpha-vantage stock agent is designed to provide real-time and historical stock market data through integration with the Alpha Vantage API. This agent can retrieve essential information about stock prices, volume, market capitalization, and other financial metrics, making it a valuable tool for investors and analysts alike. Whether you're looking to analyze market trends or track specific stock performances, this agent offers concise and accurate insights into the stock market.  
+Prompt 1: What was the closing price of MSFT stock last Friday?  
+Prompt 2: Can you provide the historical data for AAPL stock for the last month?  
+
+-----
+
+Name: sql agent plotter langchain  
+Description: The SQL Agent Plotter Langchain is an advanced AI agent designed to assist users in visualizing and interpreting data stored in relational databases. By leveraging SQL queries, this agent enables users to generate insightful plots and charts instantly, making data analysis more accessible and efficient. Whether you are looking to identify trends, display relationships, or summarize datasets, the SQL Agent Plotter Langchain provides tailored visualizations based on your specific queries and requirements.  
+Prompt 1: "Can you create a bar chart showing the sales revenue by product category for the last quarter?"  
+Prompt 2: "What does the trend of monthly active users look like over the past year? Please plot it."  
+
+-----
+
+Name: sql agent plotter llamaindex  
+Description: The SQL Agent Plotter LlamaIndex is an advanced AI-driven tool designed to help users visualize and analyze data stored in SQL databases. By leveraging the capabilities of LlamaIndex, it enables easy plotting and representation of complex data sets, allowing for insightful analysis and decision-making processes. Whether you're looking to generate trend graphs, pie charts, or bar plots, this agent integrates seamlessly with SQL queries to provide immediate, actionable visualizations that enhance data comprehension.  
+Prompt 1: Can you create a line graph showing the sales trends over the last 12 months from the sales_data table?  
+Prompt 2: Please generate a bar chart comparing the number of customers by region from the customer_info table.  
+
+-----
+
+Name: openai assistant customer support chatbot  
+Description: The OpenAI Assistant Customer Support Chatbot is designed to provide efficient and reliable assistance to customers by answering queries, troubleshooting issues, and guiding users through product features. With its advanced natural language processing capabilities, the chatbot understands customer concerns and delivers prompt responses to improve their experience, ensuring they receive the information they need without the hassle of waiting.  
+Prompt 1: Can you help me reset my password for my OpenAI account?  
+Prompt 2: What are the hours of customer support service for OpenAI products?
+
+-----
+
+Name: langchain Google Jobs  
+Description: langchain Google Jobs is an advanced language model agent designed to help users find job opportunities, analyze employment trends, and navigate the job application process using data from Google Jobs. It leverages a vast database of listings and user-friendly search features to offer tailored job recommendations, career advice, and insights into specific industries, helping users to make informed decisions in their job search.  
+Prompt 1: What are the top five marketing jobs available in New York City right now?  
+Prompt 2: Can you explain the typical qualifications and skills required for a data scientist position?  
+
+-----
+
+Name: langchain ArXiv Article Fetcher  
+Description: The langchain ArXiv Article Fetcher is an intelligent agent designed to help users quickly find and retrieve academic articles from the ArXiv repository. Leveraging natural language processing, it can search for relevant papers based on specific keywords, authors, or topics, providing users with summaries and links to the full articles. This tool is perfect for researchers, students, and anyone interested in staying up-to-date with the latest in various fields of science and technology.  
+Prompt 1: Can you find recent articles on quantum computing from the ArXiv?  
+Prompt 2: What are the latest papers authored by John Doe in the field of machine learning?  
+
+-----
+
+Name: OpenAI Assistant Code Interpreter  
+Description: The OpenAI Assistant Code Interpreter is a powerful language model designed to understand and execute code-related queries. It can assist users in executing small code snippets, debugging errors, and providing explanations for complex programming concepts across various languages such as Python, JavaScript, and more. This interactive coding assistant empowers both novice and experienced programmers to enhance their coding skills and troubleshoot issues promptly.  
+Prompt 1: Can you help me write a Python function that calculates the factorial of a number?  
+Prompt 2: I'm getting a TypeError in my JavaScript code; can you help me identify the problem?  
+
+-----
+
+Name: openai assistant function calling  
+Description: The OpenAI Assistant Function Calling agent is designed to enhance user interactions by seamlessly executing pre-defined functions based on contextual requests. It intelligently interprets user inputs to determine the appropriate function and can perform tasks like fetching data, performing calculations, or managing scheduling. This agent is particularly useful for applications that require dynamic responses to varying user needs while maintaining a user-friendly conversational flow.  
+Prompt 1: Can you book a meeting for me tomorrow at 3 PM with John?  
+Prompt 2: What is the weather like tomorrow in New York City?  
+
+-----
+
+Name: openai general assistant  
+Description: The OpenAI General Assistant is a versatile language model designed to assist users with a wide range of inquiries, from simple facts and definitions to more complex problem-solving tasks. Whether you need help with writing, learning a new concept, or seeking advice on various topics, this AI is equipped to provide detailed and informative responses tailored to your needs. It's like having a knowledgeable companion at your fingertips, ready to support you in everyday tasks or deep dives into particular subjects.  
+Prompt 1: Can you explain the concept of blockchain technology in simple terms?  
+Prompt 2: What are some effective strategies for improving time management skills?  
+
+-----
+
+Name: anthropic pdf upload summarization  
+Description: The anthropic pdf upload summarization agent is designed to process and analyze PDF documents efficiently, delivering concise summaries that capture the essential information within the text. This agent employs advanced natural language processing techniques to extract key points, themes, and insights, making it an invaluable tool for students, researchers, and professionals who need to digest large volumes of information quickly. Users can easily upload PDFs and receive clear, structured summaries tailored to their needs.  
+Prompt 1: Can you summarize the main findings of the research paper uploaded?  
+Prompt 2: What are the key arguments presented in the PDF document about climate change?  
+
+-----
+
+Name: anthropic web page reader  
+Description: The Anthropic Web Page Reader is an advanced language model designed to comprehend and summarize content from web pages. Utilizing natural language processing, it can interpret articles, blogs, and other web-based texts, allowing users to quickly grasp essential information without the need to read lengthy material. Whether users need insights for research, are looking for specific data points, or want an overview of a topic, this AI agent serves as an efficient tool for extracting valuable knowledge from the Internet.  
+Prompt 1: Can you summarize the main points of the article about climate change on this webpage?  
+Prompt 2: What are the ten most recent news articles on artificial intelligence I can find on this website?  
+
+-----
+
+Name: anthropic sql query  
+Description: The anthropic sql query agent is designed to assist users in crafting, understanding, and executing SQL queries with clarity and precision. It is equipped to tackle a range of SQL-related tasks, from basic data retrieval to complex query building involving multiple joins, aggregations, and subqueries. This agent can help both beginners seeking guidance and experienced users looking for optimization tips for their SQL queries.  
+Prompt 1: How can I retrieve the top 10 highest-paid employees from the `employees` table?  
+Prompt 2: What SQL query would I use to count the number of orders for each product category in the `orders` table?
+
+-----
+
+Name: langchain You.com Search  
+Description: langchain You.com Search is a powerful AI agent designed to leverage the You.com search engine to deliver accurate and tailored information from the web. Whether you're seeking the latest news, in-depth articles, or quick facts, this agent effectively synthesizes search results to provide concise and relevant answers, enhancing your online research experience. With its advanced natural language processing capabilities, it can understand and respond to a wide range of queries seamlessly.  
+Prompt 1: What are the latest trends in artificial intelligence as of this month?  
+Prompt 2: Can you find articles comparing electric vehicles and traditional cars?
+
+-----
+
+Name: anthropic calculator tool  
+Description: The Anthropic Calculator Tool is a sophisticated AI agent designed to assist users in performing complex mathematical calculations, solving equations, and providing step-by-step explanations for various mathematical concepts. Whether you are a student seeking help with homework, a professional needing quick calculations, or simply curious about mathematical principles, this tool is equipped to deliver accurate results and enhance your understanding of mathematics.  
+Prompt 1: Can you solve the equation 2x + 5 = 15 and explain the steps?  
+Prompt 2: What is the derivative of the function f(x) = 3x^2 + 2x - 5?
+
+-----
+
+Name: anthropic customer service agent  
+Description: The anthropic customer service agent is designed to provide assistance and resolve inquiries for customers in a friendly and efficient manner. It utilizes advanced language processing capabilities to understand and respond to a wide range of customer needs, from troubleshooting technical issues to providing information about products and services. This AI agent aims to enhance the customer experience by offering quick, accurate, and personalized responses.  
+Prompt 1: "How can I reset my password for my account?"  
+Prompt 2: "What are your return and exchange policies?"  
+
+-----
+
+Name: langchain Pandas DataFrame  
+Description: The langchain Pandas DataFrame agent is designed to assist users in performing data manipulation and analysis tasks using the powerful Pandas library in Python. It can help users create, read, and transform data within DataFrames, allowing for easy data processing, statistical analysis, and visualization. Whether you need to filter data, group and summarize information, or perform pivot operations, this agent is here to streamline your data handling processes.  
+Prompt 1: How can I group a DataFrame by a specific column and calculate the average of another column?  
+Prompt 2: What is the command to remove duplicate rows from a DataFrame in Pandas?
+
+-----
+
+Name: langchain Wolfram Alpha  
+Description: langchain Wolfram Alpha is an AI agent that leverages the computational intelligence of Wolfram Alpha to provide accurate answers and calculations across a wide range of topics including mathematics, science, engineering, and general knowledge. With its capability to process complex queries and data-driven questions, this agent serves as an excellent resource for users seeking precise information or advanced computations.  
+Prompt 1: What is the derivative of sin(x) with respect to x?  
+Prompt 2: Can you calculate the distance between Earth and Mars today?  
+
+-----
+
+Name: langchain NASA Toolkit  
+Description: The langchain NASA Toolkit is a specialized LLM agent designed to provide accurate information and insights related to NASA's missions, research, and astronomy. This tool can answer inquiries about historical space missions, current projects, and general space science topics. With its expansive knowledge base, it caters to educators, students, and space enthusiasts by offering detailed explanations, mission updates, and educational resources.  
+Prompt 1: What are the primary objectives of the Artemis program?  
+Prompt 2: Can you provide details about the Mars Rover mission and its findings?
+
+-----
+
+Name: langchain Yahoo Finance News  
+Description: The langchain Yahoo Finance News agent specializes in providing real-time stock market information, financial news, and insights into investment trends. Equipped with a vast database of financial data and advanced natural language processing capabilities, this agent can assist users in navigating the complex world of finance by delivering accurate and timely answers to their queries related to stocks, market performance, and economic events.  
+Prompt 1: What was the price of AAPL stock yesterday?  
+Prompt 2: Can you provide the latest news on Tesla's market earnings report?
+
+-----
+
+Name: langchain OpenWeatherMap  
+Description: langchain OpenWeatherMap is an advanced LLM agent designed to provide users with real-time weather updates, forecasts, and climate data. Utilizing the OpenWeatherMap API, this agent can answer queries related to current weather conditions in different locations, historical weather patterns, and upcoming forecasts, making it an invaluable resource for planning trips or staying informed about weather-related events.  
+Prompt 1: What is the current temperature in New York City?  
+Prompt 2: Can you provide a five-day weather forecast for London?  
+
+-----
+
+Name: langchain GraphQL API Integration  
+Description: langchain GraphQL API Integration is a powerful AI agent designed to facilitate interaction with GraphQL APIs, enabling users to efficiently query and manipulate data. This agent understands the nuances of GraphQL syntax and semantics, allowing it to formulate precise queries and mutations based on user input. Whether you're looking to fetch specific datasets or modify records within a GraphQL-compliant backend, this agent streamlines the process and delivers accurate results tailored to your needs.  
+Prompt 1: "Can you retrieve the details of all users with an age greater than 25 from the GraphQL API?"  
+Prompt 2: "How can I add a new product with a name, price, and description using a GraphQL mutation?"
+
+-----
+
+Name: crewai AI Crew for Game Building  
+Description: crewai is an innovative AI agent designed to assist game developers in creating engaging and immersive gaming experiences. By providing insights into game design principles, asset recommendations, and testing strategies, crewai streamlines the development process and enhances creativity. Whether you are a seasoned developer or just starting, crewai offers tailored support to help bring your game ideas to fruition.  
+Prompt 1: What are some tips for creating a compelling narrative in a multiplayer game?  
+Prompt 2: Can you suggest some tools or platforms for designing game assets and animations?  
+
+-----
+
+Name: crewai AI Crew for Trip Planning  
+Description: crewai AI is an innovative AI agent designed to assist users in planning their trips efficiently and effortlessly. By leveraging vast travel-related data, it offers personalized recommendations for destinations, accommodations, activities, and itineraries, ensuring that every travel experience is tailored to individual preferences. Whether you're seeking adventure, relaxation, or cultural experiences, crewai AI is your ultimate travel companion, making trip planning a breeze.  
+Prompt 1: Can you suggest a 5-day itinerary for a family trip to Italy?  
+Prompt 2: What are the best local restaurants to try in Paris for traditional French cuisine?  
+
+-----
+
+Name: crewai Meeting Preparation Agent Crew  
+Description: The crewai Meeting Preparation Agent Crew is designed to assist users in efficiently organizing and preparing for meetings. This AI agent can summarize agendas, provide relevant background information, suggest discussion points, and ensure all necessary materials are ready for smooth collaboration. Ideal for professionals looking to enhance productivity and ensure that all meeting participants are well-informed, this agent acts as a comprehensive digital assistant for any meeting-related needs.  
+Prompt 1: Can you summarize the agenda for our upcoming team meeting?  
+Prompt 2: What background information should I provide to the participants for the project discussion?  
+
+-----
+
+Name: langchain Gmail Toolkit  
+Description: The langchain Gmail Toolkit is an AI-powered agent designed to enhance email management by facilitating intuitive interactions with your Gmail account. This agent can help users efficiently organize their inboxes, draft responses, and schedule messages, all while providing insights and suggestions based on email context. Whether you need assistance finding important correspondences or automating your email outreach, the langchain Gmail Toolkit streamlines your email workflow to boost productivity.  
+Prompt 1: Can you help me find all emails from last week that contain the word "meeting"?  
+Prompt 2: Draft a response to the email from John Doe regarding the project update, thanking him for his insights and asking for a follow-up meeting.
+
+-----
+
+Name: langchain Python REPL  
+Description: The langchain Python REPL is an interactive AI agent that allows users to execute Python code snippets and obtain immediate feedback. It’s designed to help both beginners and experienced programmers by providing a platform for testing Python code, debugging issues, and exploring programming concepts through real-time execution and interactive learning. Whether you're experimenting with simple calculations or delving into complex algorithms, this agent offers a seamless coding experience.  
+Prompt 1: Can you show me how to calculate the factorial of a number using a Python function?  
+Prompt 2: What will be the output of the following code: `print([x**2 for x in range(5)])`?  
+
+-----
+
+Name: langchain JSON Toolkit  
+Description: The langchain JSON Toolkit is an advanced LLM agent designed to manipulate, parse, and analyze JSON data structures with ease. It can provide insights into the contents of JSON files, generate new JSON objects based on user specifications, and seamlessly convert JSON data to other formats. This agent is particularly useful for developers, data analysts, and people working with APIs, making it easier to handle JSON in a variety of applications.  
+Prompt 1: Can you extract the value of 'name' from this JSON: {"user": {"name": "Alice", "age": 30}}?  
+Prompt 2: How can I convert this JSON object to XML format: {"product": {"id": 1, "name": "Laptop", "price": 999.99}}?  
+
+-----
+
+Name: langchain Google Lens  
+Description: langchain Google Lens is an advanced AI agent designed to interpret and extract meaningful information from images. Leveraging powerful image recognition and machine learning techniques, this agent can analyze visual data and provide context, descriptions, and relevant information about the objects, texts, and scenes it identifies. Whether you're curious about a landmark in a photo or need help translating text captured through your camera, langchain Google Lens can offer insightful responses to enhance your understanding of the visual world around you.  
+Prompt 1: What can you tell me about the building in this photo?  
+Prompt 2: Please translate the text in this image from Spanish to English.  
+
+-----
+
+Name: langchain Shell  
+Description: langchain Shell is a powerful language model agent designed to interact with shell commands and scripting environments. It enables users to execute a variety of shell tasks, from file management to system monitoring, all through natural language inputs. With its ability to understand and interpret shell commands, it streamlines command-line operations for both novice and experienced users, enhancing efficiency and user experience in terminal environments.  
+Prompt 1: How do I list all files in the current directory?  
+Prompt 2: Can you show me the command to check the disk usage of my system?  
+
+-----
+
+Name: langchain Wikipedia  
+Description: langchain Wikipedia is a powerful AI agent designed to access and summarize information from Wikipedia, providing users with concise and relevant details on a wide range of topics. This agent excels at quickly retrieving factual data, definitions, historical context, and overviews from the vast repository of user-generated knowledge found on the Wikipedia platform, making it an invaluable tool for research, fact-checking, and general inquiry.  
+Prompt 1: Can you give me a summary of the history of the Roman Empire?  
+Prompt 2: What are the main contributions of Isaac Newton to science?
+
+-----
+
+Name: langchain PubMed Biomedical Literature Tool  
+Description: The langchain PubMed Biomedical Literature Tool is an advanced AI agent designed to assist researchers, healthcare professionals, and students in navigating and extracting valuable information from the vast repository of biomedical literature available in PubMed. This tool utilizes natural language processing to provide precise answers to inquiries about research articles, drug interactions, clinical guidelines, and trending biomedical topics. It can help streamline the literature review process, making it easier to access relevant studies and extract essential insights from the continuously evolving field of biomedicine.  
+Prompt 1: Can you summarize the findings of the latest research on CRISPR technology?  
+Prompt 2: What are the common side effects of the new COVID-19 vaccine according to recent studies?
+
+-----
+
+Name: langchain YouTube Search  
+Description: langchain YouTube Search is a powerful AI agent designed to streamline the process of finding and retrieving content from the vast library of YouTube videos. With advanced natural language processing capabilities, it can understand user queries and deliver accurate results, whether you’re looking for tutorials, music videos, vlogs, or any specific topic of interest. This agent makes it easier for users to discover engaging video content that meets their needs.  
+Prompt 1: Can you find the latest tutorial on Python programming?  
+Prompt 2: Show me the most popular music videos from 2023.
+
+-----
+
+Name: langchain Golden Query Integration  
+Description: The langchain Golden Query Integration is an advanced LLM agent designed to streamline access to critical business information and insights by synthesizing vast datasets and providing actionable recommendations. Whether you are looking for market trends, consumer behavior insights, or financial forecasts, this agent harnesses the power of AI to deliver precise and contextually relevant responses to your inquiries, enhancing decision-making processes for businesses and individuals alike.  
+Prompt 1: What are the latest market trends in the e-commerce sector?  
+Prompt 2: Can you provide a financial forecast for the renewable energy industry for the next quarter?  
+
+-----
+
+Name: langchain AskNews  
+Description: langchain AskNews is a powerful AI agent specifically designed to provide up-to-date news summaries and insights from various media outlets. Utilizing advanced natural language processing capabilities, it can sift through large volumes of information to deliver concise and relevant news articles, trends, and analyses tailored to user interests. Whether you're looking for breaking news, detailed reports, or coverage on specific topics, AskNews makes it easy to stay informed.  
+Prompt 1: Can you summarize the top news headlines for today?  
+Prompt 2: What are the latest developments in climate change policy?  
+
+-----
+
+Name: langchain Tavily Search  
+Description: langchain Tavily Search is a cutting-edge artificial intelligence agent designed to facilitate intuitive and efficient web searches. Utilizing advanced natural language processing, it allows users to find information quickly across various platforms, offering not just links but also concise summaries of content that are relevant to the user's query. Tavily Search excels in providing relevant search results with context, ensuring users can sift through information easily and effectively.  
+Prompt 1: Can you find articles about the latest advancements in renewable energy technology?  
+Prompt 2: What are the top-rated restaurants in Paris according to recent reviews?  
+
+-----
+
+Name: langchain Eden AI Integration  
+Description: The langchain Eden AI Integration is a sophisticated language model designed to facilitate seamless interactions with the Eden AI ecosystem. This agent is equipped to provide insightful answers, automate tasks, and enhance decision-making processes across various domains, including natural language processing, machine learning, and data analysis. With its advanced capabilities, it helps users leverage the power of AI to obtain relevant information and optimize workflows, making complex tasks more manageable and efficient.  
+Prompt 1: How can I create a machine learning model using the Eden AI platform?  
+Prompt 2: What are the key features of Eden AI's data analysis tools?
+
+-----
+
+Name: langchain Exa Search Integration  
+Description: langchain Exa Search Integration is a powerful AI agent designed to significantly enhance the efficiency and accuracy of information retrieval from vast databases and knowledge sources. Leveraging advanced natural language processing capabilities, it can understand and interpret user queries to deliver precise and relevant results, whether within academic research, corporate data repositories, or general knowledge searches. This integration streamlines the search process, making it easier for users to find exactly what they need.  
+Prompt 1: Can you summarize the key findings from the latest research paper on renewable energy?  
+Prompt 2: What are the best practices for data management in cloud computing environments?  
+
+-----
+
+Name: langchain Dall-E Image Generator  
+Description: The langchain Dall-E Image Generator is an advanced AI-powered tool designed to create vivid and imaginative images based on textual descriptions. Leveraging the capabilities of OpenAI's DALL-E model, this agent excels at interpreting complex prompts and generating high-quality visual content that aligns with user specifications. From creating fantastical landscapes to unique character designs, it brings creativity to life, making it a valuable resource for artists, marketers, and anyone in need of custom imagery.  
+Prompt 1: Generate an image of a futuristic cityscape at sunset with flying cars and neon lights.  
+Prompt 2: Create an illustration of a dragon sitting atop a mountain, surrounded by clouds and a rainbow.
+
+-----
+
+Name: langchain Riza Code Interpreter  
+Description: langchain Riza Code Interpreter is an advanced AI agent designed to assist developers and programmers in understanding and writing code across various programming languages. With its powerful code analysis capabilities, Riza can provide explanations, debug issues, generate code snippets, and even convert code from one language to another. Whether working on a small script or a complex software project, Riza can significantly enhance productivity and learning for both novice and experienced programmers.  
+Prompt 1: Can you explain how a for loop works in Python and provide a simple example?  
+Prompt 2: I have this piece of JavaScript code that's returning an error; can you help me debug it?
+
+-----
+
+Name: llamaindex ArXiv Article Fetcher  
+Description: The llamaindex ArXiv Article Fetcher is a powerful AI tool designed to help researchers, students, and enthusiasts easily access and summarize academic articles from the ArXiv repository. Utilizing advanced natural language processing, this agent can retrieve relevant articles based on specified criteria, provide concise summaries, and assist users in navigating through a vast array of research topics efficiently. Whether you need recent publications, specific areas of study, or general insights into complex subjects, this agent streamlines the process of finding and digesting academic literature.  
+Prompt 1: Can you find and summarize the latest articles on quantum computing from ArXiv?  
+Prompt 2: What are the key findings in the recent ArXiv paper titled "Deep Learning for Natural Language Processing"?  
+
+-----
+
+Name: llamaindex OpenWeatherMap  
+Description: The llamaindex OpenWeatherMap agent is designed to provide real-time weather information and forecasts. It leverages data from OpenWeatherMap to deliver accurate and up-to-date weather conditions for any location worldwide. From temperature readings to precipitation predictions, this agent can assist users in planning their activities based on the latest meteorological data.  
+Prompt 1: What is the current temperature in New York City?  
+Prompt 2: Will it rain tomorrow in London?  
+
+-----
+
+Name: llamaindex Exa Search Integration  
+Description: The llamaindex Exa Search Integration is a powerful AI agent designed to provide quick and comprehensive search capabilities across a vast array of indexed data. Leveraging advanced natural language processing, it allows users to query large datasets efficiently, offering relevant insights and answers in real-time. This integration supports various file types and databases, making it an invaluable tool for researchers, analysts, and anyone needing immediate access to structured information.  
+Prompt 1: "What are the key statistics from the last quarterly report of Company XYZ?"  
+Prompt 2: "Can you summarize the findings from the latest research paper on renewable energy technologies?"  
+
+-----
+
+Name: llamaindex Yahoo Finance News  
+Description: The llamaindex Yahoo Finance News agent is designed to provide users with the latest financial news, stock market updates, and insightful analysis sourced from Yahoo Finance. It excels in delivering real-time information, market trends, and highlights from corporate earnings reports. Whether you’re a seasoned investor or a casual market observer, this agent helps you stay informed about the financial landscape and aids in making well-informed investment decisions.  
+Prompt 1: What are the latest headlines from the stock market today?  
+Prompt 2: Can you provide an analysis of the recent earnings report for Tesla?  
+
+-----
+
+Name: llamaindex brave-search agent  
+Description: The llamaindex brave-search agent is an advanced AI tool designed to efficiently sift through vast amounts of information on the Brave browser. It excels in retrieving relevant data, summarizing articles, and providing insights across various topics. With its unique ability to leverage Brave's privacy-centric search capabilities, this agent ensures that users receive accurate and dependable information while maintaining their privacy. It is especially effective in delivering quick answers to complex queries and aiding users in their online research.  
+Prompt 1: Can you summarize the latest news on climate change from Brave search results?  
+Prompt 2: What are the top trending web technologies currently being discussed online?  
+
+-----
+
+Name: llamaindex GraphQL API Integration  
+Description: The llamaindex GraphQL API Integration is a powerful LLM agent designed to streamline the process of querying and managing data through GraphQL APIs. It facilitates seamless interactions with various data sources, enabling users to construct efficient queries, retrieve relevant information, and manipulate data directly through intuitive language prompts. This agent is particularly useful for developers, data analysts, and anyone working with GraphQL services who need dynamic and contextual responses based on user-defined queries.  
+Prompt 1: "Can you retrieve the names and ages of all users from the GraphQL API?"  
+Prompt 2: "What is the most recent post title and its publication date for the blog section in our GraphQL database?"  
+
+-----
+
+Name: llamaindex Wolfram Alpha  
+Description: The llamaindex Wolfram Alpha agent is designed to tap into the computational knowledge engine provided by Wolfram Alpha, allowing users to access a vast range of factual information, calculations, and data analysis. Whether you need to solve mathematical problems, fetch scientific data, or explore historical facts, this agent delivers accurate and insightful responses by interpreting complex queries and providing detailed results from its rich dataset.  
+Prompt 1: What is the derivative of sin(x)?  
+Prompt 2: Can you calculate the population growth rate of the United States from 2010 to 2020?  
+
+-----
+
+Name: llamaindex Tavily Research Tool  
+Description: The llamaindex Tavily Research Tool is an advanced AI agent designed to facilitate in-depth research and analysis across various domains. It leverages the capabilities of large language models to provide concise explanations, summarize complex topics, and generate insights for users looking to enhance their understanding of specific subjects. Whether you're delving into academic research, industry trends, or emerging technologies, this agent offers a user-friendly interface to access detailed information quickly and efficiently.  
+Prompt 1: Can you summarize the key findings from the latest climate change report?  
+Prompt 2: What are the current trends in the artificial intelligence industry?  
+
+-----
+
+Name: llamaindex code interpreter  
+Description: The llamaindex code interpreter is an advanced AI agent designed to assist users in understanding and executing programming code. It can analyze code snippets, provide explanations for various programming concepts, and help with debugging or optimizing algorithms. Whether you're a beginner looking to learn programming basics or an experienced developer seeking assistance with complex code, this agent can provide insightful answers and guidance in real-time.  
+Prompt 1: Can you explain how recursion works in Python with an example?  
+Prompt 2: I'm getting an error in my JavaScript code. Can you help me debug this line: "console.log('Hello World')"?
+
+-----
+
+Name: llamaindex wikipedia  
+Description: Llamaindex Wikipedia is a powerful AI agent designed to retrieve and summarize information from the vast database of Wikipedia. It excels at providing concise explanations, answering questions related to various topics, and even helping users navigate complex subjects by linking relevant articles. Whether you're looking for information about historical events, scientific concepts, or cultural phenomena, Llamaindex Wikipedia is your go-to companion for swift and reliable knowledge gathering.  
+Prompt 1: Can you explain the theory of relativity in simple terms?  
+Prompt 2: What are the main causes and effects of climate change?
+
+-----
+
+Name: llamaindex OpenAPI Tool  
+Description: The llamaindex OpenAPI Tool is a sophisticated language model agent designed to seamlessly interact with various OpenAPI endpoints. It specializes in fetching, processing, and interpreting API responses, allowing users to efficiently access and utilize data from a wide array of web services. This agent excels at providing concise summaries, detailed data analysis, and answering queries by harnessing the capabilities of multiple APIs within one integrated interface.  
+Prompt 1: Can you retrieve the current weather for New York City using the OpenAPI?  
+Prompt 2: What are the top trending movies this week according to the movie database API?
+
+-----
+
+Name: llamaindex Yelp Tool  
+Description: The llamaindex Yelp Tool is an AI agent designed to provide detailed insights about local businesses, restaurants, and user experiences based on Yelp data. Whether you're searching for the best places to eat, looking for reviews of a specific venue, or wanting to compare businesses in your area, this agent gathers and synthesizes relevant information to help users make informed decisions.  
+Prompt 1: "Can you recommend the top-rated Italian restaurants in San Francisco?"  
+Prompt 2: "What are the most recent reviews for the 'Joe's Coffee Shop' in New York City?"  
+
+-----
+
