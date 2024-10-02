@@ -13,7 +13,9 @@
 
 **🟢 Gorilla is Apache 2.0** With Gorilla being fine-tuned on MPT, and Falcon, you can use Gorilla commercially with no obligations! :golf:  
 
-**:rocket: Try Gorilla in 60s** [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing) 
+**:rocket: Try Gorilla in 60s** 
+- [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing)
+- [🚅 LiteLLM Playground](https://litellm.ai/playground)
 
 :computer: Use [Gorilla in your CLI](https://github.com/gorilla-llm/gorilla-cli) with `pip install gorilla-cli`
 
