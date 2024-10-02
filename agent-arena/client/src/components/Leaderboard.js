@@ -292,7 +292,7 @@ const Leaderboard = () => {
 
         const agentsResponse = await axios.get(`https://agent-arena.vercel.app/api/leaderboard?category=${encodedCategory}&sortBy=${agentSortBy}`);
         const toolsResponse = await axios.get(`https://agent-arena.vercel.app/api/leaderboard/tools?category=${encodedToolCategory}&sortBy=${toolSortBy}`);
-        const modelsResponse = await axios.get(`https://agent-arena.vercel.app/api/leaderboard/models?sortBy=${agentSortBy}&provider=${provider}`);
+        const modelsResponse = await axios.get(`https://agent-arena.vercel.app/api/leaderboard/models?sortBy=${toolSortBy}&provider=${provider}`);
         const frameworksResponse = await axios.get(`https://agent-arena.vercel.app/api/leaderboard/frameworks`);
 
         const filteredAgents = agentsResponse.data
