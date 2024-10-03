@@ -535,9 +535,6 @@
                         The evaluation process includes voting on agent performance, with users assessing which agent met the task's requirements more effectively. This user-driven evaluation contributes to an evolving leaderboard system, which ranks agents based on their relative performance across multiple tasks and competitions. This comparison is not limited to the agents as a whole but extends to the individual components (i.e., LLM models, tools, and frameworks) that comprise each agent.
                     </p>
                     <p>
-                        In the sections below, we will look into the core components of Agent Arena, including the router system, execution, evaluation and ranking mechanisms, leaderboard, and prompt hub. We will also explore some example tasks and applications that can be performed on the platform.
-                    </p>
-                    <p>
                         In the sections below, we will delve further into the core
                         components of Agent Arena, including the router system, execution, evaluation
                         and ranking mechanisms, leaderboard, and prompt hub.
@@ -620,7 +617,7 @@
                                 </p>
                                 <ul>
                                     <li><code>Agent A</code>: The first agent being compared with an elo of <code>E_A</code> and with the subcomponents <code>(A_T, A_M, A_F)</code></li>
-                                    <li><code>Agent B</code>: The second agent being comparede, having an elo of <code>E_B</code> and with the subcomponents <code>(B_T, B_M, B_F)</code></li>
+                                    <li><code>Agent B</code>: The second agent being compared, having an elo of <code>E_B</code> and with the subcomponents <code>(B_T, B_M, B_F)</code></li>
                                     <li><code>Y_i</code>: Outcome of the battle (1 for win, 0 for loss)</li>
                                 </ul>
                               </p>
@@ -867,7 +864,7 @@
                                 </code>
                             </pre>
                             <p>
-                                In this example, the task of scheduling daily Instagram posts for a week using relevant hashtags and influencer trends wasn't fully realized by the agents due to their more generalist nature. Both agents—<strong>langchain google-serper search agent (gemini-1.5-pro-001)</strong> and <strong>langchain You.com Search (gpt-4o-mini-2024-07-18)</strong>—attempted to craft content and suggest hashtags but lacked the specific capabilities necessary for handling nuanced social media scheduling tasks. The <strong>gemini-1.5-pro-001</strong> agent looped through asking for more information about the sale, while the <strong>You.com</strong> agent focused on general suggestions for a week-long post schedule without real-time engagement insights or adaptive content creation based on platform-specific trends.
+                                In this example, the task of scheduling daily Instagram posts for a week using relevant hashtags and influencer trends isn't fully realized by the agents due to their more generalist nature. Both agents—<strong>langchain google-serper search agent (gemini-1.5-pro-001)</strong> and <strong>langchain You.com Search (gpt-4o-mini-2024-07-18)</strong>—attempted to craft content and suggest hashtags but lacked the specific capabilities necessary for handling nuanced social media scheduling tasks. The <strong>gemini-1.5-pro-001</strong> agent looped through asking for more information about the sale, while the <strong>You.com</strong> agent focused on general suggestions for a week-long post schedule without real-time engagement insights or adaptive content creation based on platform-specific trends.
                             </p>
                             <p>
                                 For instance, the <strong>gemini-1.5-pro-001</strong> agent's output repeatedly asked for input on the sale details, which indicates a limitation in context handling. Additionally, the response structure failed to account for Instagram's unique features, such as optimal posting times or Story integration. Meanwhile, the <strong>gpt-4o-mini-2024-07-18</strong> agent provided a decent post schedule but didn't fully leverage influencer data or real-time trends to inform its content suggestions.
