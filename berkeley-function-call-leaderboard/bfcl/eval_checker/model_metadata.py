@@ -275,45 +275,39 @@ MODEL_METADATA_MAPPING = {
         "Google",
         "Proprietary",
     ],
-    "gemini-1.5-pro-preview-0514-FC": [
-        "Gemini-1.5-Pro-Preview-0514 (FC)",
+    "gemini-1.5-pro-001": [
+        "Gemini-1.5-Pro-001 (Prompt)",
         "https://deepmind.google/technologies/gemini/pro/",
         "Google",
         "Proprietary",
     ],
-    "gemini-1.5-pro-preview-0514": [
-        "Gemini-1.5-Pro-Preview-0514 (Prompt)",
+    "gemini-1.5-pro-001-FC": [
+        "Gemini-1.5-Pro-001 (FC)",
         "https://deepmind.google/technologies/gemini/pro/",
         "Google",
         "Proprietary",
     ],
-    "gemini-1.5-flash-preview-0514-FC": [
-        "Gemini-1.5-Flash-Preview-0514 (FC)",
+    "gemini-1.5-flash-002": [
+        "Gemini-1.5-Flash-002 (Prompt)",
         "https://deepmind.google/technologies/gemini/flash/",
         "Google",
         "Proprietary",
     ],
-    "gemini-1.5-flash-preview-0514": [
-        "Gemini-1.5-Flash-Preview-0514 (Prompt)",
+    "gemini-1.5-flash-002-FC": [
+        "Gemini-1.5-Flash-002 (FC)",
         "https://deepmind.google/technologies/gemini/flash/",
         "Google",
         "Proprietary",
     ],
-    "gemini-1.5-pro-preview-0409-FC": [
-        "Gemini-1.5-Pro-Preview-0409 (FC)",
-        "https://deepmind.google/technologies/gemini/#introduction",
+    "gemini-1.0-pro-002": [
+        "Gemini-1.0-Pro-002 (Prompt)",
+        "https://deepmind.google/technologies/gemini/pro/",
         "Google",
         "Proprietary",
     ],
-    "gemini-1.0-pro-FC": [
-        "Gemini-1.0-Pro-001 (FC)",
-        "https://deepmind.google/technologies/gemini/#introduction",
-        "Google",
-        "Proprietary",
-    ],
-    "gemini-1.0-pro": [
-        "Gemini-1.0-Pro-001 (Prompt)",
-        "https://deepmind.google/technologies/gemini/#introduction",
+    "gemini-1.0-pro-002-FC": [
+        "Gemini-1.0-Pro-002 (FC)",
+        "https://deepmind.google/technologies/gemini/pro/",
         "Google",
         "Proprietary",
     ],

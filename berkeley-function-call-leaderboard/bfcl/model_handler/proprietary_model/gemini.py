@@ -15,7 +15,7 @@ from bfcl.model_handler.utils import (
     system_prompt_pre_processing_chat_model,
 )
 
-# This import should eventually be removed. See comment in the `_handle_struct_values` and `_handle_list_values` method below
+# This import from struct_pb2 should eventually be removed. See comment in the `_handle_struct_values` and `_handle_list_values` method below
 from google.protobuf.struct_pb2 import ListValue, Struct
 from vertexai.generative_models import (
     Content,
