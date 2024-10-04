@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { Form, Button, Container } from 'react-bootstrap';
+import {toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = ({ onLogin }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -20,6 +22,11 @@ const Login = ({ onLogin }) => {
       navigate('/');
     } catch (error) {
       console.error('Error logging in', error);
+      if (error.response && error.response.status === 400) {
+        toast.error('Invalid email or password');
+      } else {
+        toast.error('An error occurred during login');
+      }
     }
   };
 
@@ -40,6 +47,9 @@ const Login = ({ onLogin }) => {
       </Form>
       <p className="mt-3 text-center">
         Don't have an account? <Link to="/signup" className="btn btn-link p-0 m-0 align-baseline">Sign up here</Link>
+      </p>
+      <p className="text-center">
+        <Link to="/request-password-reset" className="btn btn-link p-0 m-0 align-baseline">Forgot Password?</Link>
       </p>
     </Container>
   );

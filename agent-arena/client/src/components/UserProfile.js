@@ -1,9 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Form, Button, Container, Row, Col, Card } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, Card, Collapse } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import CodeEditor from './CodeEditor';
 import AgentDropdown from './AgentDropdown';
+import { toast } from 'react-toastify';
+
+const apiKeysList = [
+  "SERPER_API_KEY",
+  "OPENAI_API_KEY",
+  "COMPOSIO_API_KEY",
+  "ALPHAVANTAGE_API_KEY",
+  "BRAVESEARCH_API_KEY",
+  "EXA_API_KEY",
+  "ANTHROPIC_API_KEY",
+  "OPENWEATHERMAP_API_KEY",
+  "SERPAPI_API_KEY",
+  "ASKNEWS_CLIENT_ID",
+  "ASKNEWS_CLIENT_SECRET",
+  "TAVILY_API_KEY",
+  "EDENAI_API_KEY",
+  "E2B_API_KEY",
+  "RIZA_API_KEY",
+  "GOLDEN_API_KEY",
+  "WOLFRAM_APP_ID",
+  "WOLFRAM_ALPHA_APPID",
+  "YELP_CLIENT_ID",
+  "YELP_API_KEY",
+  "LANGCHAIN_API_KEY",
+  "GOOGLE_CLOUD_PROJECT_ID",
+  "GOOGLE_CLOUD_PRIVATE_KEY_ID",
+  "GOOGLE_CLOUD_PRIVATE_KEY",
+  "GOOGLE_CLOUD_CLIENT_EMAIL",
+  "GOOGLE_CLOUD_CLIENT_ID",
+  "GOOGLE_CLOUD_AUTH_URI",
+  "GOOGLE_CLOUD_TOKEN_URI",
+  "GOOGLE_CLOUD_AUTH_PROVIDER_CERT_URL",
+  "GOOGLE_CLOUD_CLIENT_CERT_URL",
+  "TOGETHER_API_KEY",
+  "MISTRAL_API_KEY",
+];
 
 const UserProfile = () => {
   const [profile, setProfile] = useState(null);
@@ -17,8 +53,10 @@ const UserProfile = () => {
     name: '',
     email: '',
     bio: '',
-    role: ''
+    role: '',
+    apiKeys: {},
   });
+  const [apiKeysExpanded, setApiKeysExpanded] = useState(false); // New state for API keys collapse
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -31,7 +69,8 @@ const UserProfile = () => {
           name: response.data.name,
           email: response.data.email,
           bio: response.data.bio,
-          role: response.data.role
+          role: response.data.role,
+          apiKeys: response.data.apiKeys || {}, // Ensure this exists
         });
       } catch (error) {
         console.error('Error fetching profile:', error);
@@ -108,7 +147,22 @@ const UserProfile = () => {
   };
 
   const handleProfileChange = (e) => {
-    setEditProfile({ ...editProfile, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setEditProfile(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleApiKeyChange = (e) => {
+    const { name, value } = e.target;
+    setEditProfile(prevState => ({
+      ...prevState,
+      apiKeys: {
+        ...prevState.apiKeys,
+        [name]: value,
+      },
+    }));
   };
 
   const handleProfileSave = async () => {
@@ -116,9 +170,24 @@ const UserProfile = () => {
       await axios.put('https://agent-arena.vercel.app/api/profile', editProfile, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
-      alert('Profile updated successfully');
+      toast.success('Profile updated successfully');
     } catch (error) {
       console.error('Error updating profile:', error);
+    }
+  };
+
+  const handleAPIKeysSave = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.put(`https://agent-arena.vercel.app/api/users/${profile._id}/api-keys`, {
+        apiKeys: editProfile.apiKeys
+      }, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      toast.success('API Keys updated successfully');
+      setProfile(response.data); // Update local profile state with the latest data
+    } catch (error) {
+      console.error('Error updating API keys:', error);
     }
   };
 
@@ -185,6 +254,41 @@ const UserProfile = () => {
               </Col>
             </Row>
             <Button variant="primary" onClick={handleProfileSave} className="mb-3">Save Profile</Button>
+            <hr />
+            <h2>API Keys</h2>
+            <p>
+              API keys are required for specific agents to function properly. You can add your own keys for better performance 
+              and to avoid rate limits. Please ensure you enter the correct key for each API.
+            </p>
+            <Button
+              variant="secondary"
+              onClick={() => setApiKeysExpanded(!apiKeysExpanded)}
+              aria-controls="api-keys-collapse"
+              aria-expanded={apiKeysExpanded}
+            >
+              {apiKeysExpanded ? 'Hide API Keys' : 'Manage API Keys'}
+            </Button>
+            <Collapse in={apiKeysExpanded}>
+              <div id="api-keys-collapse">
+                {apiKeysList.map(key => (
+                  <Row className="mb-3" key={key}>
+                    <Col>
+                      <Form.Group controlId={`form${key}`}>
+                        <Form.Label>{key.replace(/_/g, ' ')}</Form.Label>
+                        <Form.Control 
+                          type="text" 
+                          name={key} 
+                          value={editProfile.apiKeys[key] || ''} 
+                          onChange={handleApiKeyChange} 
+                          placeholder={`Enter your ${key.replace(/_/g, ' ')} here`} 
+                        />
+                      </Form.Group>
+                    </Col>
+                  </Row>
+                ))}
+                <Button variant="primary" onClick={handleAPIKeysSave} className="mb-3">Save API Keys</Button>
+              </div>
+            </Collapse>
           </Form>
           <hr />
           <h2>Saved Prompts</h2>
