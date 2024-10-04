@@ -18,6 +18,8 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
   - `gemini-1.5-pro-001-FC`
   - `gemini-1.5-flash-002`
   - `gemini-1.5-flash-002-FC`
+  - `gemini-1.5-flash-001`
+  - `gemini-1.5-flash-001-FC`
   - `gemini-1.0-pro-002`
   - `gemini-1.0-pro-002-FC`
 - [Sept 19, 2024] [#644](https://github.com/ShishirPatil/gorilla/pull/644): BFCL V3 release:

@@ -131,6 +131,7 @@ UNDERSCORE_TO_DOT = [
     "gemini-1.5-pro-002-FC",
     "gemini-1.5-pro-001-FC",
     "gemini-1.5-flash-002-FC",
+    "gemini-1.5-flash-001-FC",
     "gemini-1.0-pro-002-FC",
     "meetkai/functionary-small-v3.1-FC",
     "meetkai/functionary-small-v3.2-FC",
