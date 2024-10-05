@@ -2,6 +2,11 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Oct 5, 2024] [#642](https://github.com/ShishirPatil/gorilla/pull/642): Add the following new models to the leaderboard:
+  - `Qwen/Qwen2.5-7B-Instruct`
+  - `Qwen/Qwen2.5-1.5B-Instruct`
+  - `Qwen/Qwen2-7B-Instruct`
+  - `Qwen/Qwen2-1.5B-Instruct`
 - [Sept 27, 2024] [#640](https://github.com/ShishirPatil/gorilla/pull/640): Add the following new models to the leaderboard:
   - `microsoft/Phi-3.5-mini-instruct`
   - `microsoft/Phi-3-medium-128k-instruct`
