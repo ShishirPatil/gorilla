@@ -1,6 +1,7 @@
 import subprocess
 import threading
 import time
+from concurrent.futures import ThreadPoolExecutor
 
 import requests
 from bfcl.model_handler.base_handler import BaseHandler
@@ -123,30 +124,22 @@ class OSSHandler(BaseHandler):
             stop_event.set()
 
             # Once the server is ready, make the completion requests
-            for test_entry in tqdm(test_entries, desc="Generating results"):
-                try:
-                    if "multi_turn" in test_entry["id"]:
-                        model_responses, metadata = self.inference_multi_turn_prompting(
-                            test_entry, include_debugging_log
-                        )
-                    else:
-                        model_responses, metadata = self.inference_single_turn_prompting(
-                            test_entry, include_debugging_log
-                        )
-                except Exception as e:
-                    print(
-                        f"Error during inference for test entry {test_entry['id']}: {str(e)}"
-                    )
-                    model_responses = f"Error during inference: {str(e)}"
-                    metadata = {}
+            futures = []
+            with ThreadPoolExecutor(max_workers=100) as executor:
+                with tqdm(
+                    total=len(test_entries), desc=f"Generating results for {self.model_name}"
+                ) as pbar:
 
-                result_to_write = {
-                    "id": test_entry["id"],
-                    "result": model_responses,
-                }
-                result_to_write.update(metadata)
+                    for test_case in test_entries:
+                        future = executor.submit(self._multi_threaded_inference, test_case, include_debugging_log)
+                        futures.append(future)
 
-                self.write(result_to_write)
+                    for future in futures:
+                        # This will wait for the task to complete, so that we are always writing in order
+                        result = future.result()
+                        self.write(result)
+                        pbar.update()
+
 
         except Exception as e:
             raise e
@@ -167,6 +160,29 @@ class OSSHandler(BaseHandler):
             stop_event.set()
             stdout_thread.join()
             stderr_thread.join()
+            
+    def _multi_threaded_inference(self, test_case, include_debugging_log):
+        assert type(test_case["function"]) is list
+
+        try:
+            if "multi_turn" in test_case["id"]:
+                model_responses, metadata = self.inference_multi_turn_prompting(test_case, include_debugging_log)
+            else:
+                model_responses, metadata = self.inference_single_turn_prompting(test_case, include_debugging_log)
+        except Exception as e:
+            print("-" * 100)
+            print(
+                "❗️❗️ Error occurred during inference. Maximum reties reached for rate limit or other error. Continuing to next test case."
+            )
+            print(f"❗️❗️ Test case ID: {test_case['id']}, Error: {str(e)}")
+            print("-" * 100)
+
+            model_responses = f"Error during inference: {str(e)}"
+
+        return {
+            "id": test_case["id"],
+            "result": model_responses,
+        }
 
     #### Prompting methods ####
 
