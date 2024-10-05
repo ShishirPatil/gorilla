@@ -1,4 +1,5 @@
 import subprocess
+import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
 
@@ -33,11 +34,6 @@ class OSSHandler(BaseHandler):
         """
         raise NotImplementedError(
             "OSS Models should call the batch_inference method instead."
-        )
-
-    def _format_prompt(self, messages, function):
-        raise NotImplementedError(
-            "OSS Models should implement their own prompt formatting."
         )
 
     def decode_ast(self, result, language="Python"):
@@ -77,6 +73,30 @@ class OSSHandler(BaseHandler):
             text=True,  # To get the output as text instead of bytes
         )
 
+        stop_event = (
+            threading.Event()
+        )  # Event to signal threads to stop; no need to see vllm logs after server is ready
+
+        def log_subprocess_output(pipe, stop_event):
+            # Read lines until stop event is set
+            for line in iter(pipe.readline, ""):
+                if stop_event.is_set():
+                    break
+                else:
+                    print(line, end="")
+            pipe.close()
+            print("vllm server log tracking thread stopped successfully.")
+
+        # Start threads to read and print stdout and stderr
+        stdout_thread = threading.Thread(
+            target=log_subprocess_output, args=(process.stdout, stop_event)
+        )
+        stderr_thread = threading.Thread(
+            target=log_subprocess_output, args=(process.stderr, stop_event)
+        )
+        stdout_thread.start()
+        stderr_thread.start()
+
         try:
             # Wait for the server to be ready
             server_ready = False
@@ -100,11 +120,8 @@ class OSSHandler(BaseHandler):
                     # If the connection is not ready, wait and try again
                     time.sleep(1)
 
-            # After the server is ready, stop capturing the output, otherwise the terminal looks messy
-            process.stdout.close()
-            process.stderr.close()
-            process.stdout = subprocess.DEVNULL
-            process.stderr = subprocess.DEVNULL
+            # Signal threads to stop reading output
+            stop_event.set()
 
             # Once the server is ready, make the completion requests
             futures = []
@@ -124,6 +141,7 @@ class OSSHandler(BaseHandler):
                         self.write(result)
                         pbar.update()
 
+
         except Exception as e:
             raise e
 
@@ -139,6 +157,11 @@ class OSSHandler(BaseHandler):
                 process.wait()  # Wait again to ensure it's fully terminated
                 print("Process killed.")
 
+            # Wait for the output threads to finish
+            stop_event.set()
+            stdout_thread.join()
+            stderr_thread.join()
+            
     def _multi_threaded_inference(self, test_case, include_debugging_log):
         """
         This is a wrapper function to make sure that, if an error occurs during inference, the process does not stop.
@@ -166,6 +189,11 @@ class OSSHandler(BaseHandler):
         }
 
     #### Prompting methods ####
+
+    def _format_prompt(self, messages, function):
+        raise NotImplementedError(
+            "OSS Models should implement their own prompt formatting."
+        )
 
     def _query_prompting(self, inference_data: dict):
         # We use the OpenAI Completions API with vLLM
