@@ -581,6 +581,30 @@ MODEL_METADATA_MAPPING = {
         "Microsoft",
         "MIT",
     ],
+    "Qwen/Qwen2-1.5B-Instruct": [
+        "Qwen2-1.5B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2-1.5B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
+    "Qwen/Qwen2-7B-Instruct": [
+        "Qwen2-7B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2-7B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-1.5B-Instruct": [
+        "Qwen2.5-1.5B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-7B-Instruct": [
+        "Qwen2.5-7B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-7B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Team-ACE/ToolACE-8B": [
         "ToolACE-8B (FC)",
         "https://huggingface.co/Team-ACE/ToolACE-8B",
