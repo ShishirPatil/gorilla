@@ -186,6 +186,8 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |ibm-granite/granite-20b-functioncalling 💻| Function Calling|
 |yi-large-fc | Function Calling|
 |MadeAgents/Hammer-7b 💻| Function Calling|
+|Qwen/Qwen2.5-{1.5B,7B}-Instruct 💻| Prompt|
+|Qwen/Qwen2-{1.5B,7B}-Instruct 💻| Prompt|
 |Team-ACE/ToolACE-8B 💻| Function Calling|
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function-calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).

@@ -9,6 +9,7 @@ from bfcl.model_handler.oss_model.llama import LlamaHandler
 from bfcl.model_handler.oss_model.llama_fc import LlamaFCHandler
 from bfcl.model_handler.oss_model.phi import PhiHandler
 from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
+from bfcl.model_handler.oss_model.qwen import QwenHandler
 from bfcl.model_handler.proprietary_model.claude import ClaudeHandler
 from bfcl.model_handler.proprietary_model.cohere import CohereHandler
 from bfcl.model_handler.proprietary_model.databricks import DatabricksHandler
@@ -108,6 +109,10 @@ handler_map = {
     "ibm-granite/granite-20b-functioncalling": GraniteHandler,
     # "MadeAgents/Hammer-7b": HammerHandler,  # TODO: Update handler once they have a multi-turn format
     "THUDM/glm-4-9b-chat": GLMHandler,
+    "Qwen/Qwen2-1.5B-Instruct": QwenHandler,
+    "Qwen/Qwen2-7B-Instruct": QwenHandler,
+    "Qwen/Qwen2.5-1.5B-Instruct": QwenHandler,
+    "Qwen/Qwen2.5-7B-Instruct": QwenHandler,
     "Team-ACE/ToolACE-8B": LlamaHandler,
     
     # Deprecated/outdated models, no longer on the leaderboard
