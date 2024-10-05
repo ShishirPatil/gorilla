@@ -12,6 +12,17 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
   - `microsoft/Phi-3-mini-128k-instruct`
   - `microsoft/Phi-3-mini-4k-instruct`
 - [Sept 25, 2024] [#660](https://github.com/ShishirPatil/gorilla/pull/660): Bug fix in `parse_nested_value` function to handle nested dictionary values properly. 
+- [Sept 24, 2024] [#648](https://github.com/ShishirPatil/gorilla/pull/648): Add the following new models to the leaderboard:
+  - `gemini-1.5-pro-002`
+  - `gemini-1.5-pro-002-FC`
+  - `gemini-1.5-pro-001`
+  - `gemini-1.5-pro-001-FC`
+  - `gemini-1.5-flash-002`
+  - `gemini-1.5-flash-002-FC`
+  - `gemini-1.5-flash-001`
+  - `gemini-1.5-flash-001-FC`
+  - `gemini-1.0-pro-002`
+  - `gemini-1.0-pro-002-FC`
 - [Sept 19, 2024] [#644](https://github.com/ShishirPatil/gorilla/pull/644): BFCL V3 release:
   - Introduce new multi-turn dataset and state-based evaluation metric
   - Separate ast_checker and executable_checker for readability
