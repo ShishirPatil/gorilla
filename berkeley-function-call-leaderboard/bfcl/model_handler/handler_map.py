@@ -6,6 +6,7 @@ from bfcl.model_handler.oss_model.granite import GraniteHandler
 from bfcl.model_handler.oss_model.hammer import HammerHandler
 from bfcl.model_handler.oss_model.hermes import HermesHandler
 from bfcl.model_handler.oss_model.llama import LlamaHandler
+from bfcl.model_handler.oss_model.llama_fc import LlamaFCHandler
 from bfcl.model_handler.oss_model.phi import PhiHandler
 from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
 from bfcl.model_handler.proprietary_model.claude import ClaudeHandler
@@ -21,7 +22,7 @@ from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
 
-# TODO: Add Deepseek V2 and Gemma V2
+# TODO: Add Deepseek V2 and Gemma V2, meta-llama/Llama-3.1-405B-Instruct
 handler_map = {
     # Inference through API calls
     "gorilla-openfunctions-v2": GorillaHandler,
@@ -56,9 +57,16 @@ handler_map = {
     "firefunction-v1-FC": FireworksHandler,
     "firefunction-v2-FC": FireworksHandler,
     "Nexusflow-Raven-v2": NexusHandler,
-    "gemini-1.0-pro-FC": GeminiHandler,
-    "gemini-1.5-pro-preview-0514-FC": GeminiHandler,
-    "gemini-1.5-flash-preview-0514-FC": GeminiHandler,
+    "gemini-1.5-pro-002": GeminiHandler,
+    "gemini-1.5-pro-002-FC": GeminiHandler,
+    "gemini-1.5-pro-001": GeminiHandler,
+    "gemini-1.5-pro-001-FC": GeminiHandler,
+    "gemini-1.5-flash-002": GeminiHandler,
+    "gemini-1.5-flash-002-FC": GeminiHandler,
+    "gemini-1.5-flash-001": GeminiHandler,
+    "gemini-1.5-flash-001-FC": GeminiHandler,
+    "gemini-1.0-pro-002": GeminiHandler,
+    "gemini-1.0-pro-002-FC": GeminiHandler,
     "meetkai/functionary-small-v3.2-FC": FunctionaryHandler,
     "meetkai/functionary-medium-v3.1-FC": FunctionaryHandler,
     "databricks-dbrx-instruct": DatabricksHandler,
@@ -72,6 +80,14 @@ handler_map = {
     # Inference through local hosting
     "meta-llama/Meta-Llama-3-8B-Instruct": LlamaHandler,
     "meta-llama/Meta-Llama-3-70B-Instruct": LlamaHandler,
+    "meta-llama/Llama-3.1-8B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Llama-3.1-70B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Llama-3.2-1B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Llama-3.2-3B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Llama-3.1-8B-Instruct": LlamaHandler,
+    "meta-llama/Llama-3.1-70B-Instruct": LlamaHandler,
+    "meta-llama/Llama-3.2-1B-Instruct": LlamaHandler,
+    "meta-llama/Llama-3.2-3B-Instruct": LlamaHandler,
     "Salesforce/xLAM-1b-fc-r": SalesforceHandler,
     "Salesforce/xLAM-7b-fc-r": SalesforceHandler,
     "Salesforce/xLAM-7b-r": SalesforceHandler,
@@ -106,7 +122,8 @@ handler_map = {
     # "gpt-4-0613": OpenAIHandler,
     # "claude-2.1": ClaudeHandler,
     # "claude-instant-1.2": ClaudeHandler,
-    # "gemini-1.5-pro-preview-0409-FC": GeminiHandler,
+    # "gemini-1.0-pro-001": GeminiHandler,
+    # "gemini-1.0-pro-001-FC": GeminiHandler,
     # "meetkai/functionary-small-v3.1-FC": FunctionaryHandler,
     # "mistral-tiny-2312": MistralHandler,
     # "glaiveai/glaive-function-calling-v1": GlaiveHandler,
