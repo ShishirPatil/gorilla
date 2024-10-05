@@ -23,7 +23,6 @@ class SalesforceHandler(OSSHandler):
         return decoded_output
 
     def decode_execute(self, result):
-        result = result
         if isinstance(result, list):
             tool_calls = result
         elif isinstance(result, dict):
