@@ -6,6 +6,7 @@ from bfcl.model_handler.oss_model.granite import GraniteHandler
 from bfcl.model_handler.oss_model.hammer import HammerHandler
 from bfcl.model_handler.oss_model.hermes import HermesHandler
 from bfcl.model_handler.oss_model.llama import LlamaHandler
+from bfcl.model_handler.oss_model.llama_fc import LlamaFCHandler
 from bfcl.model_handler.oss_model.phi import PhiHandler
 from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
 from bfcl.model_handler.proprietary_model.claude import ClaudeHandler
@@ -21,7 +22,7 @@ from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
 
-# TODO: Add Deepseek V2 and Gemma V2
+# TODO: Add Deepseek V2 and Gemma V2, meta-llama/Llama-3.1-405B-Instruct
 handler_map = {
     # Inference through API calls
     "gorilla-openfunctions-v2": GorillaHandler,
@@ -79,6 +80,14 @@ handler_map = {
     # Inference through local hosting
     "meta-llama/Meta-Llama-3-8B-Instruct": LlamaHandler,
     "meta-llama/Meta-Llama-3-70B-Instruct": LlamaHandler,
+    "meta-llama/Llama-3.1-8B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Llama-3.1-70B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Llama-3.2-1B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Llama-3.2-3B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Llama-3.1-8B-Instruct": LlamaHandler,
+    "meta-llama/Llama-3.1-70B-Instruct": LlamaHandler,
+    "meta-llama/Llama-3.2-1B-Instruct": LlamaHandler,
+    "meta-llama/Llama-3.2-3B-Instruct": LlamaHandler,
     "Salesforce/xLAM-1b-fc-r": SalesforceHandler,
     "Salesforce/xLAM-7b-fc-r": SalesforceHandler,
     "Salesforce/xLAM-7b-r": SalesforceHandler,
