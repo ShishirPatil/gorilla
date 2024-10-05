@@ -127,7 +127,8 @@ class OSSHandler(BaseHandler):
             futures = []
             with ThreadPoolExecutor(max_workers=100) as executor:
                 with tqdm(
-                    total=len(test_entries), desc=f"Generating results for {self.model_name}"
+                    total=len(test_entries),
+                    desc=f"Generating results for {self.model_name}",
                 ) as pbar:
 
                     for test_case in test_entries:
@@ -162,6 +163,9 @@ class OSSHandler(BaseHandler):
             stderr_thread.join()
             
     def _multi_threaded_inference(self, test_case, include_debugging_log):
+        """
+        This is a wrapper function to make sure that, if an error occurs during inference, the process does not stop.
+        """
         assert type(test_case["function"]) is list
 
         try:
