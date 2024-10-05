@@ -21,6 +21,7 @@ from tqdm import tqdm
 class OSSHandler(BaseHandler):
     def __init__(self, model_name, temperature, dtype="bfloat16") -> None:
         super().__init__(model_name, temperature)
+        self.model_name_huggingface = model_name
         self.model_style = ModelStyle.OSSMODEL
         self.dtype = dtype
         self.client = OpenAI(base_url=f"http://localhost:{VLLM_PORT}/v1", api_key="EMPTY")
@@ -57,7 +58,7 @@ class OSSHandler(BaseHandler):
             [
                 "vllm",
                 "serve",
-                str(self.model_name),
+                str(self.model_name_huggingface),
                 "--port",
                 str(VLLM_PORT),
                 "--dtype",
@@ -205,7 +206,7 @@ class OSSHandler(BaseHandler):
 
         if hasattr(self, "stop_token_ids"):
             api_response = self.client.completions.create(
-                model=self.model_name,
+                model=self.model_name_huggingface,
                 temperature=self.temperature,
                 prompt=formatted_prompt,
                 stop_token_ids=self.stop_token_ids,
@@ -213,7 +214,7 @@ class OSSHandler(BaseHandler):
             )
         else:
             api_response = self.client.completions.create(
-                model=self.model_name,
+                model=self.model_name_huggingface,
                 temperature=self.temperature,
                 prompt=formatted_prompt,
                 max_tokens=4096,

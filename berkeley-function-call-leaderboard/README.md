@@ -152,7 +152,11 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |google/gemma-7b-it 💻| Prompt|
 |meetkai/functionary-medium-v3.1-FC| Function Calling|
 |meetkai/functionary-small-{v3.1,v3.2}-FC| Function Calling|
-|meta-llama/Meta-Llama-3-{8B,70B}-Instruct | Prompt|
+|meta-llama/Meta-Llama-3-{8B,70B}-Instruct 💻| Prompt|
+|meta-llama/Llama-3.1-{8B,70B}-Instruct-FC 💻| Function Calling|
+|meta-llama/Llama-3.1-{8B,70B}-Instruct 💻| Prompt|
+|meta-llama/Llama-3.2-{1B,3B}-Instruct-FC 💻| Function Calling|
+|meta-llama/Llama-3.2-{1B,3B}-Instruct 💻| Prompt|
 |open-mixtral-{8x7b,8x22b} | Prompt|
 |open-mixtral-8x22b-FC | Function Calling|
 |open-mistral-nemo-2407 | Prompt|

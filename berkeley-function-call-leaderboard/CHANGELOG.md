@@ -12,6 +12,15 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
   - `microsoft/Phi-3-mini-128k-instruct`
   - `microsoft/Phi-3-mini-4k-instruct`
 - [Sept 25, 2024] [#660](https://github.com/ShishirPatil/gorilla/pull/660): Bug fix in `parse_nested_value` function to handle nested dictionary values properly. 
+- [Sept 24, 2024] [#657](https://github.com/ShishirPatil/gorilla/pull/657): Add the following new models to the leaderboard:
+  - `meta-llama/Llama-3.2-1B-Instruct`
+  - `meta-llama/Llama-3.2-1B-Instruct-FC`
+  - `meta-llama/Llama-3.2-3B-Instruct`
+  - `meta-llama/Llama-3.2-3B-Instruct-FC`
+  - `meta-llama/Llama-3.1-8B-Instruct`
+  - `meta-llama/Llama-3.1-8B-Instruct-FC`
+  - `meta-llama/Llama-3.1-70B-Instruct`
+  - `meta-llama/Llama-3.1-70B-Instruct-FC`
 - [Sept 24, 2024] [#648](https://github.com/ShishirPatil/gorilla/pull/648): Add the following new models to the leaderboard:
   - `gemini-1.5-pro-002`
   - `gemini-1.5-pro-002-FC`
