@@ -338,15 +338,15 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
         ) / 1000
         cost = round(cost, 2)
 
-    if model_name in OSS_LATENCY:
-        mean_latency, std_latency, percentile_95_latency = (
-            OSS_LATENCY[model_name] / 1700,
-            "N/A",
-            "N/A",
-        )
-        mean_latency = round(mean_latency, 2)
-        cost = mean_latency * 1000 * V100_x8_PRICE_PER_HOUR / 3600
-        cost = round(cost, 2)
+    # if model_name in OSS_LATENCY:
+    #     mean_latency, std_latency, percentile_95_latency = (
+    #         OSS_LATENCY[model_name] / 1700,
+    #         "N/A",
+    #         "N/A",
+    #     )
+    #     mean_latency = round(mean_latency, 2)
+    #     cost = mean_latency * 1000 * V100_x8_PRICE_PER_HOUR / 3600
+    #     cost = round(cost, 2)
 
     elif len(latency_data["data"]) != 0:
         mean_latency = statistics.mean(latency_data["data"])

@@ -24,8 +24,9 @@ from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
 
 # TODO: Add Deepseek V2 and Gemma V2, meta-llama/Llama-3.1-405B-Instruct
-handler_map = {
-    # Inference through API calls
+
+# Inference through API calls
+api_inference_handler_map = {
     "gorilla-openfunctions-v2": GorillaHandler,
     "o1-preview-2024-09-12": OpenAIHandler,
     "o1-mini-2024-09-12": OpenAIHandler,
@@ -68,7 +69,7 @@ handler_map = {
     "gemini-1.5-flash-001-FC": GeminiHandler,
     "gemini-1.0-pro-002": GeminiHandler,
     "gemini-1.0-pro-002-FC": GeminiHandler,
-    "meetkai/functionary-small-v3.2-FC": FunctionaryHandler,
+    "meetkai/functionary-small-v3.1-FC": FunctionaryHandler,
     "meetkai/functionary-medium-v3.1-FC": FunctionaryHandler,
     "databricks-dbrx-instruct": DatabricksHandler,
     "command-r-plus-FC": CohereHandler,
@@ -77,8 +78,11 @@ handler_map = {
     "command-r-plus-optimized": CohereHandler,
     "snowflake/arctic": NvidiaHandler,
     "nvidia/nemotron-4-340b-instruct": NvidiaHandler,
-    "yi-large-fc": YiHandler,
-    # Inference through local hosting
+    # "yi-large-fc": YiHandler,  #  Their API is under maintenance, and will not be back online in the near future
+}
+
+# Inference through local hosting
+local_inference_handler_map = {
     "meta-llama/Meta-Llama-3-8B-Instruct": LlamaHandler,
     "meta-llama/Meta-Llama-3-70B-Instruct": LlamaHandler,
     "meta-llama/Llama-3.1-8B-Instruct-FC": LlamaFCHandler,
@@ -114,8 +118,10 @@ handler_map = {
     "Qwen/Qwen2.5-1.5B-Instruct": QwenHandler,
     "Qwen/Qwen2.5-7B-Instruct": QwenHandler,
     "Team-ACE/ToolACE-8B": LlamaHandler,
-    
-    # Deprecated/outdated models, no longer on the leaderboard
+}
+
+# Deprecated/outdated models, no longer on the leaderboard
+outdated_model_handler_map = {
     # "gorilla-openfunctions-v0": GorillaHandler,
     # "gpt-4o-2024-05-13": OpenAIHandler,
     # "gpt-4o-2024-05-13-FC": OpenAIHandler,
@@ -135,3 +141,5 @@ handler_map = {
     # "google/gemma-7b-it": GemmaHandler,
     # "deepseek-ai/deepseek-coder-6.7b-instruct": DeepseekHandler,
 }
+
+handler_map = {**api_inference_handler_map, **local_inference_handler_map}
