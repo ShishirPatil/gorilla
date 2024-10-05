@@ -612,7 +612,7 @@ def generate_leaderboard_csv(
         )
         
     # Write Non-Live Score File
-    data_non_live.sort(key=lambda x: x[1], reverse=True)
+    data_non_live.sort(key=lambda x: x[2], reverse=True)
     for i in range(len(data_non_live)):
         data_non_live[i][0] = str(i + 1)
         for j in range(2, len(data_non_live[i])):
@@ -629,7 +629,7 @@ def generate_leaderboard_csv(
                 f.write(",".join(row))
     
     # Write Live Score File
-    data_live.sort(key=lambda x: x[1], reverse=True)
+    data_live.sort(key=lambda x: x[2], reverse=True)
     for i in range(len(data_live)):
         data_live[i][0] = str(i + 1)
         for j in range(2, len(data_live[i])):
