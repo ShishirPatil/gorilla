@@ -21,6 +21,17 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
   - `meta-llama/Llama-3.1-8B-Instruct-FC`
   - `meta-llama/Llama-3.1-70B-Instruct`
   - `meta-llama/Llama-3.1-70B-Instruct-FC`
+- [Sept 24, 2024] [#648](https://github.com/ShishirPatil/gorilla/pull/648): Add the following new models to the leaderboard:
+  - `gemini-1.5-pro-002`
+  - `gemini-1.5-pro-002-FC`
+  - `gemini-1.5-pro-001`
+  - `gemini-1.5-pro-001-FC`
+  - `gemini-1.5-flash-002`
+  - `gemini-1.5-flash-002-FC`
+  - `gemini-1.5-flash-001`
+  - `gemini-1.5-flash-001-FC`
+  - `gemini-1.0-pro-002`
+  - `gemini-1.0-pro-002-FC`
 - [Sept 19, 2024] [#644](https://github.com/ShishirPatil/gorilla/pull/644): BFCL V3 release:
   - Introduce new multi-turn dataset and state-based evaluation metric
   - Separate ast_checker and executable_checker for readability
