@@ -108,6 +108,7 @@ handler_map = {
     "ibm-granite/granite-20b-functioncalling": GraniteHandler,
     # "MadeAgents/Hammer-7b": HammerHandler,  # TODO: Update handler once they have a multi-turn format
     "THUDM/glm-4-9b-chat": GLMHandler,
+    "Team-ACE/ToolACE-8B": LlamaHandler,
     
     # Deprecated/outdated models, no longer on the leaderboard
     # "gorilla-openfunctions-v0": GorillaHandler,
