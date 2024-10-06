@@ -7,14 +7,16 @@ from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT, GORILLA_TO_OPENAP
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     convert_to_tool,
+    default_decode_ast_prompting,
+    default_decode_execute_prompting,
     extract_system_prompt,
     format_execution_results_prompting,
     func_doc_language_specific_pre_processing,
     system_prompt_pre_processing_chat_model,
 )
-from google.protobuf.struct_pb2 import (
-    ListValue,  # This import should eventually be removed. See comment in the `decode_execute` method below
-)
+
+# This import from struct_pb2 should eventually be removed. See comment in the `_handle_struct_values` and `_handle_list_values` method below
+from google.protobuf.struct_pb2 import ListValue, Struct
 from vertexai.generative_models import (
     Content,
     FunctionDeclaration,
@@ -49,69 +51,149 @@ class GeminiHandler(BaseHandler):
 
         return prompts
 
+    def _handle_struct_values(self, input):
+        # Note: Below is a workaround for a bug in the Vertex AI library
+        # Accoding to the Vertex AI documentation https://ai.google.dev/gemini-api/docs/function-calling/tutorial?lang=python, cited below:
+        """
+        # Set the model up with tools.
+        house_fns = [power_disco_ball, start_music, dim_lights]
+
+        model = genai.GenerativeModel(model_name="gemini-1.5-flash", tools=house_fns)
+
+        # Call the API.
+        chat = model.start_chat()
+        response = chat.send_message("Turn this place into a party!")
+
+        # Print out each of the function calls requested from this single call.
+        for part in response.parts:
+            if fn := part.function_call:
+                args = ", ".join(f"{key}={val}" for key, val in fn.args.items())
+                print(f"{fn.name}({args})")
+        """
+        # ", ".join(f"{key}={val}" for key, val in fn.args.items()) should get the function call arguments in a ready-to-execute format
+        # However, the above code snippet will not work as expected when `val` is a ListValue object, and it would further cause the json serialization error when writing the result to a file
+        """
+        # This is a typical ListValue object that is causing the issue. It is a list of 4 string values
+        values {
+            string_value: "driver"
+        }
+        values {
+            string_value: "passenger"
+        }
+        values {
+            string_value: "rear_left"
+        }
+        values {
+            string_value: "rear_right"
+        }
+        """
+        # To fix this, we need to unpack the ListValue object to a list of string values before joining them
+        # So the above example gets converted to:
+        """
+        ["driver", "passenger", "rear_left", "rear_right"]
+        """
+        # This will be the temporary fix until the bug in the Vertex AI library is fixed
+        # Convert it to dictionary for easier manipulation
+        input = {k: v for k, v in input.items()}
+        for k, v in input.items():
+            if type(v) == ListValue:
+                input[k] = self._handle_list_values(v)
+            elif type(v) == Struct:
+                input[k] = self._handle_struct_values(v)
+        return input
+
+    def _handle_list_values(self, input):
+        """
+        @typing.final
+        class Value(google.protobuf.message.Message):
+            "`Value` represents a dynamically typed value which can be either
+            null, a number, a string, a boolean, a recursive struct value, or a
+            list of values. A producer of value is expected to set one of these
+            variants. Absence of any variant indicates an error.
+
+            The JSON representation for `Value` is JSON value.
+            "
+
+            DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+            NULL_VALUE_FIELD_NUMBER: builtins.int
+            NUMBER_VALUE_FIELD_NUMBER: builtins.int
+            STRING_VALUE_FIELD_NUMBER: builtins.int
+            BOOL_VALUE_FIELD_NUMBER: builtins.int
+            STRUCT_VALUE_FIELD_NUMBER: builtins.int
+            LIST_VALUE_FIELD_NUMBER: builtins.int
+            null_value: global___NullValue.ValueType
+            "Represents a null value."
+            number_value: builtins.float
+            "Represents a double value."
+            string_value: builtins.str
+            "Represents a string value."
+            bool_value: builtins.bool
+            "Represents a boolean value."
+            @property
+            def struct_value(self) -> global___Struct:
+                "Represents a structured value."
+
+            @property
+            def list_value(self) -> global___ListValue:
+                "Represents a repeated `Value`."
+
+            def __init__(
+                self,
+                *,
+                null_value: global___NullValue.ValueType | None = ...,
+                number_value: builtins.float | None = ...,
+                string_value: builtins.str | None = ...,
+                bool_value: builtins.bool | None = ...,
+                struct_value: global___Struct | None = ...,
+                list_value: global___ListValue | None = ...,
+            ) -> None: ...
+            def HasField(self, field_name: typing.Literal["bool_value", b"bool_value", "kind", b"kind", "list_value", b"list_value", "null_value", b"null_value", "number_value", b"number_value", "string_value", b"string_value", "struct_value", b"struct_value"]) -> builtins.bool: ...
+            def ClearField(self, field_name: typing.Literal["bool_value", b"bool_value", "kind", b"kind", "list_value", b"list_value", "null_value", b"null_value", "number_value", b"number_value", "string_value", b"string_value", "struct_value", b"struct_value"]) -> None: ...
+            def WhichOneof(self, oneof_group: typing.Literal["kind", b"kind"]) -> typing.Literal["null_value", "number_value", "string_value", "bool_value", "struct_value", "list_value"] | None: ...
+        """
+        parsed_list_result = []
+        for item in input.values:
+            field_name = item.WhichOneof("kind")
+            if field_name == "null_value":
+                value = item.null_value
+            elif field_name == "number_value":
+                value = item.number_value
+            elif field_name == "string_value":
+                value = item.string_value
+            elif field_name == "bool_value":
+                value = item.bool_value
+            elif field_name == "struct_value":
+                value = self._handle_struct_values(item.struct_value)
+            elif field_name == "list_value":
+                value = self._handle_list_values(item.list_value)
+            else:
+                value = None
+            parsed_list_result.append(value)
+
+        return parsed_list_result
+
     def decode_ast(self, result, language="Python"):
-        if type(result) is not list:
-            result = [result]
-        decoded_output = []
-        for invoked_function in result:
-            name = list(invoked_function.keys())[0]
-            params = json.loads(invoked_function[name])
-            decoded_output.append({name: params})
-        return decoded_output
+        if "FC" not in self.model_name:
+            result = result.replace("```tool_code\n", "").replace("\n```", "")
+            return default_decode_ast_prompting(result, language)
+        else:
+            if type(result) is not list:
+                result = [result]
+            return result
 
     def decode_execute(self, result):
-        func_call_list = []
-        for function_call in result:
-            for func_name, func_args in function_call.items():
-                # Note: Below is a workaround for a bug in the Vertex AI library
-                # Accoding to the Vertex AI documentation https://ai.google.dev/gemini-api/docs/function-calling/tutorial?lang=python, cited below:
-                """
-                # Set the model up with tools.
-                house_fns = [power_disco_ball, start_music, dim_lights]
-
-                model = genai.GenerativeModel(model_name="gemini-1.5-flash", tools=house_fns)
-
-                # Call the API.
-                chat = model.start_chat()
-                response = chat.send_message("Turn this place into a party!")
-
-                # Print out each of the function calls requested from this single call.
-                for part in response.parts:
-                    if fn := part.function_call:
-                        args = ", ".join(f"{key}={val}" for key, val in fn.args.items())
-                        print(f"{fn.name}({args})")
-                """
-                # ", ".join(f"{key}={val}" for key, val in fn.args.items()) should get the function call arguments in a ready-to-execute format
-                # However, the above code snippet will not work as expected when `val` is a ListValue object, and it would further cause the json serialization error when writing the result to a file
-                """
-                # This is a typical ListValue object that is causing the issue. It is a list of 4 string values
-                values {
-                    string_value: "driver"
-                }
-                values {
-                    string_value: "passenger"
-                }
-                values {
-                    string_value: "rear_left"
-                }
-                values {
-                    string_value: "rear_right"
-                }
-                """
-                # To fix this, we need to unpack the ListValue object to a list of string values before joining them
-                # So the above example gets converted to:
-                """
-                ["driver", "passenger", "rear_left", "rear_right"]
-                """
-                # This will be the temporary fix until the bug in the Vertex AI library is fixed
-                for k, v in func_args.items():
-                    if type(v) == ListValue:
-                        func_args[k] = [item.string_value for item in v.values]
-
-                func_call_list.append(
-                    f"{func_name}({','.join([f'{k}={repr(v)}' for k, v in func_args.items()])})"
-                )
-        return func_call_list
+        if "FC" not in self.model_name:
+            result = result.replace("```tool_code\n", "").replace("\n```", "")
+            return default_decode_execute_prompting(result)
+        else:
+            func_call_list = []
+            for function_call in result:
+                for func_name, func_args in function_call.items():
+                    func_call_list.append(
+                        f"{func_name}({','.join([f'{k}={repr(v)}' for k, v in func_args.items()])})"
+                    )
+            return func_call_list
 
     #### FC methods ####
 
@@ -197,7 +279,9 @@ class GeminiHandler(BaseHandler):
             if part.function_call and part.function_call.name:
                 part_func_name = part.function_call.name
                 part_func_args = part.function_call.args
-                part_func_args_dict = {k: v for k, v in part_func_args.items()}
+                # Bug patch for the Vertex AI library
+                part_func_args_dict = self._handle_struct_values(part_func_args)
+
                 fc_parts.append({part_func_name: part_func_args_dict})
                 tool_call_func_names.append(part_func_name)
             else:
@@ -230,7 +314,6 @@ class GeminiHandler(BaseHandler):
             "output_token": api_response.usage_metadata.candidates_token_count,
         }
 
-    # TODO: Is it better to do it in query method?
     def add_first_turn_message_FC(
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
@@ -342,8 +425,13 @@ class GeminiHandler(BaseHandler):
         """TypeError: argument of type 'Part' is not iterable"""
         # So again, we need to directly access the `api_response.candidates[0].content.parts[0]._raw_part.text` attribute to get the text content of the part
         # This is a workaround for this bug, until the bug is fixed
+
+        if len(api_response.candidates[0].content.parts) > 0:
+            model_responses = api_response.candidates[0].content.parts[0]._raw_part.text
+        else:
+            model_responses = "The model did not return any response."
         return {
-            "model_responses": api_response.candidates[0].content.parts[0]._raw_part.text,
+            "model_responses": model_responses,
             "input_token": api_response.usage_metadata.prompt_token_count,
             "output_token": api_response.usage_metadata.candidates_token_count,
         }
@@ -386,8 +474,11 @@ class GeminiHandler(BaseHandler):
         formatted_results_message = format_execution_results_prompting(
             inference_data, execution_results, model_response_data
         )
-        inference_data["message"].append(
-            {"role": "user", "content": formatted_results_message}
+        tool_message = Content(
+            role="user",
+            parts=[
+                Part.from_text(formatted_results_message),
+            ],
         )
-
+        inference_data["message"].append(tool_message)
         return inference_data

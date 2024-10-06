@@ -82,12 +82,15 @@ def convert_to_tool(functions, mapping, model_style):
 
         if model_style == ModelStyle.Google:
             # Remove fields that are not supported by Gemini.
+            # No `optional` field in function schema.
+            if "optional" in item["parameters"]:
+                del item["parameters"]["optional"]
             for params in item["parameters"]["properties"].values():
                 # No `default` field in Google's schema.
                 if "default" in params:
                     params["description"] += f" Default is: {str(params['default'])}."
                     del params["default"]
-                # No `optional` field.
+                # No `optional` field in parameter schema as well.
                 if "optional" in params:
                     params["description"] += f" Optional: {str(params['optional'])}."
                     del params["optional"]
@@ -95,12 +98,24 @@ def convert_to_tool(functions, mapping, model_style):
                 if "maximum" in params:
                     params["description"] += f" Maximum value: {str(params['maximum'])}."
                     del params["maximum"]
+                # No `minItems` field.
+                if "minItems" in params:
+                    params["description"] += f" Minimum number of items: {str(params['minItems'])}."
+                    del params["minItems"]
+                # No `maxItems` field.
+                if "maxItemsmax" in params:
+                    params["description"] += f" Maximum number of items: {str(params['maxItems'])}."
+                    del params["maxItems"]
                 # No `additionalProperties` field.
                 if "additionalProperties" in params:
                     params[
                         "description"
                     ] += f" Additional properties: {str(params['additionalProperties'])}."
                     del params["additionalProperties"]
+                # Only `enum` field when the type is `string`.
+                if "enum" in params and params["type"] != "string":
+                    params["description"] += f" Enum values: {str(params['enum'])}."
+                    del params["enum"]
 
         if model_style == ModelStyle.COHERE:
             if os.getenv("USE_COHERE_OPTIMIZATION") == "True":
@@ -723,26 +738,26 @@ def format_execution_results_prompting(
 
 
 def default_decode_ast_prompting(result, language="Python"):
-    func = result
-    if " " == func[0]:
-        func = func[1:]
-    if not func.startswith("["):
-        func = "[" + func
-    if not func.endswith("]"):
-        func = func + "]"
-    decoded_output = ast_parse(func, language)
+    result = result.strip()
+    result = result.rstrip("\n")
+    result = result.lstrip('\n')
+    if not result.startswith("["):
+        result = "[" + result
+    if not result.endswith("]"):
+        result = result + "]"
+    decoded_output = ast_parse(result, language)
     return decoded_output
 
 
 def default_decode_execute_prompting(result):
-    func = result
-    if " " == func[0]:
-        func = func[1:]
-    if not func.startswith("["):
-        func = "[" + func
-    if not func.endswith("]"):
-        func = func + "]"
-    decoded_output = ast_parse(func)
+    result = result.strip()
+    result = result.rstrip("\n")
+    result = result.lstrip('\n')
+    if not result.startswith("["):
+        result = "[" + result
+    if not result.endswith("]"):
+        result = result + "]"
+    decoded_output = ast_parse(result)
     return decoded_output_to_execution_list(decoded_output)
 
 
@@ -751,17 +766,23 @@ def parse_nested_value(value):
     Parse a potentially nested value from the AST output.
 
     Args:
-        value: The value to parse, which could be a nested dictionary or a simple value.
+        value: The value to parse, which could be a nested dictionary, which includes another function call, or a simple value.
 
     Returns:
-        str: A string representation of the value, handling nested function calls.
+        str: A string representation of the value, handling nested function calls and nested dictionary function arguments.
     """
     if isinstance(value, dict):
-        func_name = list(value.keys())[0]
-        args = value[func_name]
-        args_str = ", ".join(f"{k}={parse_nested_value(v)}" for k, v in args.items())
-        return f"{func_name}({args_str})"
+        # Check if the dictionary represents a function call (i.e., the value is another dictionary or complex structure)
+        if all(isinstance(v, dict) for v in value.values()):
+            func_name = list(value.keys())[0]
+            args = value[func_name]
+            args_str = ", ".join(f"{k}={parse_nested_value(v)}" for k, v in args.items())
+            return f"{func_name}({args_str})"
+        else:
+            # If it's a simple dictionary, treat it as key-value pairs
+            return "{" + ", ".join(f"'{k}': {parse_nested_value(v)}" for k, v in value.items()) + "}"
     return repr(value)
+
 
 
 def decoded_output_to_execution_list(decoded_output):
@@ -782,3 +803,4 @@ def decoded_output_to_execution_list(decoded_output):
             )
             execution_list.append(f"{key}({args_str})")
     return execution_list
+    
