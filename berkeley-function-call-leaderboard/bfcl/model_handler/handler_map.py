@@ -6,7 +6,10 @@ from bfcl.model_handler.oss_model.granite import GraniteHandler
 from bfcl.model_handler.oss_model.hammer import HammerHandler
 from bfcl.model_handler.oss_model.hermes import HermesHandler
 from bfcl.model_handler.oss_model.llama import LlamaHandler
+from bfcl.model_handler.oss_model.llama_fc import LlamaFCHandler
+from bfcl.model_handler.oss_model.phi import PhiHandler
 from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
+from bfcl.model_handler.oss_model.qwen import QwenHandler
 from bfcl.model_handler.proprietary_model.claude import ClaudeHandler
 from bfcl.model_handler.proprietary_model.cohere import CohereHandler
 from bfcl.model_handler.proprietary_model.databricks import DatabricksHandler
@@ -20,7 +23,7 @@ from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
 
-# TODO: Add Deepseek V2 and Gemma V2
+# TODO: Add Deepseek V2 and Gemma V2, meta-llama/Llama-3.1-405B-Instruct
 handler_map = {
     # Inference through API calls
     "gorilla-openfunctions-v2": GorillaHandler,
@@ -55,9 +58,16 @@ handler_map = {
     "firefunction-v1-FC": FireworksHandler,
     "firefunction-v2-FC": FireworksHandler,
     "Nexusflow-Raven-v2": NexusHandler,
-    "gemini-1.0-pro-FC": GeminiHandler,
-    "gemini-1.5-pro-preview-0514-FC": GeminiHandler,
-    "gemini-1.5-flash-preview-0514-FC": GeminiHandler,
+    "gemini-1.5-pro-002": GeminiHandler,
+    "gemini-1.5-pro-002-FC": GeminiHandler,
+    "gemini-1.5-pro-001": GeminiHandler,
+    "gemini-1.5-pro-001-FC": GeminiHandler,
+    "gemini-1.5-flash-002": GeminiHandler,
+    "gemini-1.5-flash-002-FC": GeminiHandler,
+    "gemini-1.5-flash-001": GeminiHandler,
+    "gemini-1.5-flash-001-FC": GeminiHandler,
+    "gemini-1.0-pro-002": GeminiHandler,
+    "gemini-1.0-pro-002-FC": GeminiHandler,
     "meetkai/functionary-small-v3.2-FC": FunctionaryHandler,
     "meetkai/functionary-medium-v3.1-FC": FunctionaryHandler,
     "databricks-dbrx-instruct": DatabricksHandler,
@@ -71,11 +81,26 @@ handler_map = {
     # Inference through local hosting
     "meta-llama/Meta-Llama-3-8B-Instruct": LlamaHandler,
     "meta-llama/Meta-Llama-3-70B-Instruct": LlamaHandler,
+    "meta-llama/Llama-3.1-8B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Llama-3.1-70B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Llama-3.2-1B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Llama-3.2-3B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Llama-3.1-8B-Instruct": LlamaHandler,
+    "meta-llama/Llama-3.1-70B-Instruct": LlamaHandler,
+    "meta-llama/Llama-3.2-1B-Instruct": LlamaHandler,
+    "meta-llama/Llama-3.2-3B-Instruct": LlamaHandler,
     "Salesforce/xLAM-1b-fc-r": SalesforceHandler,
     "Salesforce/xLAM-7b-fc-r": SalesforceHandler,
     "Salesforce/xLAM-7b-r": SalesforceHandler,
     "Salesforce/xLAM-8x22b-r": SalesforceHandler,
     "Salesforce/xLAM-8x7b-r": SalesforceHandler,
+    "microsoft/Phi-3-mini-4k-instruct": PhiHandler,
+    "microsoft/Phi-3-mini-128k-instruct": PhiHandler,
+    "microsoft/Phi-3-small-8k-instruct": PhiHandler,
+    "microsoft/Phi-3-small-128k-instruct": PhiHandler,
+    "microsoft/Phi-3-medium-4k-instruct": PhiHandler,
+    "microsoft/Phi-3-medium-128k-instruct": PhiHandler,
+    "microsoft/Phi-3.5-mini-instruct": PhiHandler,
     "NousResearch/Hermes-2-Pro-Mistral-7B": HermesHandler,
     "NousResearch/Hermes-2-Pro-Llama-3-8B": HermesHandler,
     "NousResearch/Hermes-2-Theta-Llama-3-8B": HermesHandler,
@@ -84,6 +109,11 @@ handler_map = {
     "ibm-granite/granite-20b-functioncalling": GraniteHandler,
     # "MadeAgents/Hammer-7b": HammerHandler,  # TODO: Update handler once they have a multi-turn format
     "THUDM/glm-4-9b-chat": GLMHandler,
+    "Qwen/Qwen2-1.5B-Instruct": QwenHandler,
+    "Qwen/Qwen2-7B-Instruct": QwenHandler,
+    "Qwen/Qwen2.5-1.5B-Instruct": QwenHandler,
+    "Qwen/Qwen2.5-7B-Instruct": QwenHandler,
+    "Team-ACE/ToolACE-8B": LlamaHandler,
     
     # Deprecated/outdated models, no longer on the leaderboard
     # "gorilla-openfunctions-v0": GorillaHandler,
@@ -97,7 +127,8 @@ handler_map = {
     # "gpt-4-0613": OpenAIHandler,
     # "claude-2.1": ClaudeHandler,
     # "claude-instant-1.2": ClaudeHandler,
-    # "gemini-1.5-pro-preview-0409-FC": GeminiHandler,
+    # "gemini-1.0-pro-001": GeminiHandler,
+    # "gemini-1.0-pro-001-FC": GeminiHandler,
     # "meetkai/functionary-small-v3.1-FC": FunctionaryHandler,
     # "mistral-tiny-2312": MistralHandler,
     # "glaiveai/glaive-function-calling-v1": GlaiveHandler,
