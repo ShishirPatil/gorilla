@@ -3,13 +3,13 @@ import json
 import os
 import re
 import statistics
-import subprocess
 
 import numpy as np
+from bfcl._apply_function_credential_config import apply_function_credential_config
+from bfcl.constant import VERSION_PREFIX
 from bfcl.eval_checker.constant import *
 from bfcl.eval_checker.executable_eval.custom_exception import BadAPIStatusError
 from bfcl.eval_checker.model_metadata import *
-from bfcl.constant import VERSION_PREFIX
 from bfcl.model_handler.handler_map import handler_map
 from tqdm import tqdm
 
@@ -148,12 +148,7 @@ def api_status_sanity_check_rest():
     ground_truth_dummy = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
 
     # Use the ground truth data to make sure the API is working correctly
-    command = f"cd ../.. ; python apply_function_credential_config.py --input-path ./bfcl/eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
-    try:
-        subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
-    except subprocess.CalledProcessError as e:
-        write_list_of_dicts_to_file(REST_API_GROUND_TRUTH_FILE_PATH, ground_truth_dummy)
-        raise RuntimeError(e.stderr) from e
+    apply_function_credential_config(input_path=REST_API_GROUND_TRUTH_FILE_PATH)
 
     ground_truth_replaced = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
     write_list_of_dicts_to_file(REST_API_GROUND_TRUTH_FILE_PATH, ground_truth_dummy)
@@ -620,7 +615,7 @@ def generate_leaderboard_csv(
 
     data_non_live.insert(0, COLUMNS_NON_LIVE)
 
-    filepath = os.path.join(output_path, "data_non_live.csv")
+    filepath = output_path / "data_non_live.csv"
     with open(filepath, "w") as f:
         for i, row in enumerate(data_non_live):
             if i < len(data_non_live) - 1:
@@ -637,7 +632,7 @@ def generate_leaderboard_csv(
 
     data_live.insert(0, COLUMNS_LIVE)
 
-    filepath = os.path.join(output_path, "data_live.csv")
+    filepath = output_path / "data_live.csv"
     with open(filepath, "w") as f:
         for i, row in enumerate(data_live):
             if i < len(data_live) - 1:
@@ -660,7 +655,7 @@ def generate_leaderboard_csv(
 
     data_combined.insert(0, COLUMNS_OVERALL)
 
-    filepath = os.path.join(output_path, "data_overall.csv")
+    filepath = output_path / "data_overall.csv"
     with open(filepath, "w") as f:
         for i, row in enumerate(data_combined):
             if i < len(data_combined) - 1:

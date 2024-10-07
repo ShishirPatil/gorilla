@@ -1,6 +1,16 @@
 import argparse
 
-from bfcl.constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING, VERSION_PREFIX
+from bfcl._apply_function_credential_config import apply_function_credential_config
+from bfcl.constant import (
+    DOTENV_PATH,
+    POSSIBLE_ANSWER_PATH,
+    PROMPT_PATH,
+    RESULT_PATH,
+    SCORE_PATH,
+    TEST_COLLECTION_MAPPING,
+    TEST_FILE_MAPPING,
+    VERSION_PREFIX,
+)
 from bfcl.eval_checker.ast_eval.ast_checker import ast_checker
 from bfcl.eval_checker.eval_runner_helper import *
 from bfcl.eval_checker.executable_eval.custom_exception import BadAPIStatusError
@@ -16,7 +26,9 @@ from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import is_empty_execute_
 from dotenv import load_dotenv
 from tqdm import tqdm
 
-# NOTE: This file should be run in the `eval_checker` directory
+# A dictionary to store the evaluation scores.
+# Key is model name, value is a dictionary with keys as test category and values as a dictionary with accuracy and total count
+LEADERBOARD_TABLE = {}
 
 
 def multi_turn_runner(
@@ -124,7 +136,7 @@ def multi_turn_runner(
         },
     )
     output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = os.path.join(OUTPUT_PATH, model_name)
+    output_file_dir = SCORE_PATH / model_name
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
@@ -227,7 +239,7 @@ def executable_file_runner(handler, model_result, prompt, model_name, test_categ
         },
     )
     output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = os.path.join(OUTPUT_PATH, model_name)
+    output_file_dir = SCORE_PATH / model_name
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
@@ -299,7 +311,7 @@ def relevance_file_runner(handler, model_result, prompt, model_name, test_catego
         },
     )
     output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = os.path.join(OUTPUT_PATH, model_name)
+    output_file_dir = SCORE_PATH / model_name
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
@@ -393,10 +405,16 @@ def ast_file_runner(
         },
     )
     output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = os.path.join(OUTPUT_PATH, model_name)
+    output_file_dir = SCORE_PATH / model_name
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
+
+
+if not RESULT_PATH.exists():
+    RESULT_PATH.mkdir(parents=True, exist_ok=True)
+if not SCORE_PATH.exists():
+    SCORE_PATH.mkdir(parents=True, exist_ok=True)
 
 
 #### Main runner function ####
@@ -408,6 +426,7 @@ def runner(model_names, test_categories, api_sanity_check):
     API_TESTED = False
     API_STATUS_ERROR_REST = None
     API_STATUS_ERROR_EXECUTABLE = None
+    HAS_REPLACED_API_CREDENTIALS = False
 
     # Before running the executable evaluation, we need to get the expected output from the ground truth.
     # So we need a list of all the test categories that we have ran the ground truth evaluation on.
@@ -415,7 +434,7 @@ def runner(model_names, test_categories, api_sanity_check):
     EXECUTABLE_TEST_CATEGORIES_HAVE_RUN = []
 
     # Get a list of all entries in the folder
-    entries = os.scandir(INPUT_PATH)
+    entries = os.scandir(RESULT_PATH)
 
     # Filter out the subdirectories
     subdirs = [entry.path for entry in entries if entry.is_dir()]
@@ -423,7 +442,7 @@ def runner(model_names, test_categories, api_sanity_check):
     # Traverse each subdirectory
     for subdir in subdirs:
 
-        model_name = subdir.split(INPUT_PATH)[1]
+        model_name = subdir.split(RESULT_PATH)[1]
         if model_names is not None and model_name not in model_names:
             continue
 
@@ -495,6 +514,10 @@ def runner(model_names, test_categories, api_sanity_check):
 
                     API_TESTED = True
 
+                if not HAS_REPLACED_API_CREDENTIALS:
+                    apply_function_credential_config(input_path=PROMPT_PATH)
+                    HAS_REPLACED_API_CREDENTIALS = True
+
                 if (
                     test_category not in EXECUTABLE_TEST_CATEGORIES_HAVE_RUN
                     and not is_rest(test_category)
@@ -557,9 +580,9 @@ def runner(model_names, test_categories, api_sanity_check):
 
     # This function reads all the score files from local folder and updates the leaderboard table.
     # This is helpful when you only want to run the evaluation for a subset of models and test categories.
-    update_leaderboard_table_with_score_file(LEADERBOARD_TABLE, OUTPUT_PATH)
+    update_leaderboard_table_with_score_file(LEADERBOARD_TABLE, SCORE_PATH)
     # Write the leaderboard table to a file
-    generate_leaderboard_csv(LEADERBOARD_TABLE, OUTPUT_PATH, model_names, test_categories)
+    generate_leaderboard_csv(LEADERBOARD_TABLE, SCORE_PATH, model_names, test_categories)
 
     # Clean up the executable expected output files
     # They should be re-generated the next time the evaluation is run
@@ -570,21 +593,11 @@ def runner(model_names, test_categories, api_sanity_check):
     )
 
     print(
-        f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data_overall.csv')} for evaluation results on BFCL V2."
+        f"🏁 Evaluation completed. See {SCORE_PATH / 'data_overall.csv'} for evaluation results on BFCL V2."
     )
     print(
-        f"See {os.path.abspath(OUTPUT_PATH + 'data_live.csv')} and {os.path.abspath(OUTPUT_PATH + 'data_non_live.csv')} for evaluation results on BFCL V2 Live and Non-Live categories respectively."
+        f"See {SCORE_PATH / 'data_live.csv'} and {SCORE_PATH / 'data_non_live.csv'} for evaluation results on BFCL V2 Live and Non-Live categories respectively."
     )
-
-
-INPUT_PATH = "../../result/"
-PROMPT_PATH = "../../data/"
-POSSIBLE_ANSWER_PATH = "../../data/possible_answer/"
-OUTPUT_PATH = "../../score/"
-
-# A dictionary to store the results
-# Key is model name, value is a dictionary with keys as test category and values as a dictionary with accuracy and total count
-LEADERBOARD_TABLE = {}
 
 
 if __name__ == "__main__":
@@ -629,5 +642,5 @@ if __name__ == "__main__":
             # We patch it here to avoid confusing the user.
             model_names.append(model_name.replace("/", "_"))
 
-    load_dotenv(dotenv_path="../../.env", verbose=True, override=True)  # Load the .env file
+    load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
     runner(model_names, test_categories, api_sanity_check)

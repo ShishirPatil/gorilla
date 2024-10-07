@@ -1,16 +1,15 @@
-from bfcl.eval_checker.constant import REAL_TIME_MATCH_ALLOWED_DIFFERENCE
-from bfcl.eval_checker.executable_eval.custom_exception import NoAPIKeyError
+import json
+import time
 
 import requests  # Do not remove this import even though it seems to be unused. It's used in the executable_checker_rest function.
-import time
-import json
-
-
-#### Constants ####
-EVAL_GROUND_TRUTH_PATH = (
-    "./executable_eval/data/rest-eval-response_v5.jsonl"  # Ground truth file for v5 for rest execution
+from bfcl.eval_checker.constant import (
+    REAL_TIME_MATCH_ALLOWED_DIFFERENCE,
+    REST_EVAL_GROUND_TRUTH_PATH,
 )
-with open(EVAL_GROUND_TRUTH_PATH, "r") as f:
+from bfcl.eval_checker.executable_eval.custom_exception import NoAPIKeyError
+
+# Load the ground truth data for the `rest` test category
+with open(REST_EVAL_GROUND_TRUTH_PATH, "r") as f:
     EVAL_GROUND_TRUTH = f.readlines()
 
 
