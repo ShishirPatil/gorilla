@@ -72,7 +72,7 @@ def process_dir(input_dir, output_dir):
 def apply_function_credential_config(input_path=None, output_path=None):
     # Load the actual API keys, and verify that they are present
     for var in ENV_VARS:
-        if os.getenv(var) == "":
+        if var not in os.environ or not os.getenv(var):
             raise NoAPIKeyError()
         PLACEHOLDERS[f"YOUR-{var.replace('_', '-')}"] = os.getenv(var)
 
