@@ -480,7 +480,7 @@ class BaseHandler:
     def write(self, result):
         model_name_dir = self.model_name.replace("/", "_")
         model_result_dir = RESULT_PATH / model_name_dir
-        model_name_dir.mkdir(parents=True, exist_ok=True)
+        model_result_dir.mkdir(parents=True, exist_ok=True)
 
         if type(result) is dict:
             result = [result]

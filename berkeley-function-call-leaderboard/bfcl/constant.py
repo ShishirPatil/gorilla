@@ -178,8 +178,11 @@ TEST_COLLECTION_MAPPING = {
 
 # Construct the full path to use by other scripts
 script_dir = Path(__file__).parent
-RESULT_PATH = script_dir / RESULT_PATH
-PROMPT_PATH = script_dir / PROMPT_PATH
-POSSIBLE_ANSWER_PATH = script_dir / POSSIBLE_ANSWER_PATH
-SCORE_PATH = script_dir / SCORE_PATH
-DOTENV_PATH = script_dir / DOTENV_PATH
+RESULT_PATH = (script_dir / RESULT_PATH).resolve()
+PROMPT_PATH = (script_dir / PROMPT_PATH).resolve()
+POSSIBLE_ANSWER_PATH = (script_dir / POSSIBLE_ANSWER_PATH).resolve()
+SCORE_PATH = (script_dir / SCORE_PATH).resolve()
+DOTENV_PATH = (script_dir / DOTENV_PATH).resolve()
+
+RESULT_PATH.mkdir(parents=True, exist_ok=True)
+SCORE_PATH.mkdir(parents=True, exist_ok=True)

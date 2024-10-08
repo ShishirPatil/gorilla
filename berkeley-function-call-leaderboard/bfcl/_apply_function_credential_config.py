@@ -5,15 +5,8 @@ import os
 from bfcl.constant import PROMPT_PATH
 from bfcl.eval_checker.executable_eval.custom_exception import NoAPIKeyError
 
-# Load the actual API keys, and verify that they are present
 ENV_VARS = ("GEOCODE_API_KEY", "RAPID_API_KEY", "OMDB_API_KEY", "EXCHANGERATE_API_KEY")
 PLACEHOLDERS = {}
-for var in ENV_VARS:
-    if os.getenv(var) == "":
-        raise NoAPIKeyError()
-
-    PLACEHOLDERS[f"YOUR-{var.replace('_', '-')}"] = os.getenv(var)
-print("All API keys are present.")
 
 
 def replace_placeholders(data):
@@ -59,14 +52,13 @@ def process_file(input_file_path, output_file_path):
             f.write(modified_line)
             if i < len(modified_data) - 1:  # Check against the length of modified_data
                 f.write("\n")
-    print(f"All placeholders have been replaced for {input_file_path} 🦍.")
 
 
 def process_dir(input_dir, output_dir):
     # This function does not support nested directories
     # To support nested directories, refer to this commit:
     # https://github.com/ShishirPatil/gorilla/pull/508/commits/8b1e35590e5bce3bd52a7c6405775b1ce4a64945
-    print(f"Input directory: {input_dir}")
+
     # Get a list of all entries in the folder
     entries = os.scandir(input_dir)
 
@@ -78,6 +70,11 @@ def process_dir(input_dir, output_dir):
 
 
 def apply_function_credential_config(input_path=None, output_path=None):
+    # Load the actual API keys, and verify that they are present
+    for var in ENV_VARS:
+        if os.getenv(var) == "":
+            raise NoAPIKeyError()
+        PLACEHOLDERS[f"YOUR-{var.replace('_', '-')}"] = os.getenv(var)
 
     if input_path is None:
         input_path = PROMPT_PATH
@@ -89,3 +86,4 @@ def apply_function_credential_config(input_path=None, output_path=None):
         process_dir(input_path, output_path)
     else:
         process_file(input_path, output_path)
+    print("All placeholders API keys have been replaced. 🦍")

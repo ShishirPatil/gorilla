@@ -1,6 +1,5 @@
 import argparse
 
-from bfcl._apply_function_credential_config import apply_function_credential_config
 from bfcl.constant import (
     DOTENV_PATH,
     POSSIBLE_ANSWER_PATH,
@@ -411,12 +410,6 @@ def ast_file_runner(
     return accuracy, len(model_result)
 
 
-if not RESULT_PATH.exists():
-    RESULT_PATH.mkdir(parents=True, exist_ok=True)
-if not SCORE_PATH.exists():
-    SCORE_PATH.mkdir(parents=True, exist_ok=True)
-
-
 #### Main runner function ####
 def runner(model_names, test_categories, api_sanity_check):
 
@@ -426,7 +419,6 @@ def runner(model_names, test_categories, api_sanity_check):
     API_TESTED = False
     API_STATUS_ERROR_REST = None
     API_STATUS_ERROR_EXECUTABLE = None
-    HAS_REPLACED_API_CREDENTIALS = False
 
     # Before running the executable evaluation, we need to get the expected output from the ground truth.
     # So we need a list of all the test categories that we have ran the ground truth evaluation on.
@@ -434,28 +426,24 @@ def runner(model_names, test_categories, api_sanity_check):
     EXECUTABLE_TEST_CATEGORIES_HAVE_RUN = []
 
     # Get a list of all entries in the folder
-    entries = os.scandir(RESULT_PATH)
+    entries = RESULT_PATH.iterdir()
 
     # Filter out the subdirectories
-    subdirs = [entry.path for entry in entries if entry.is_dir()]
+    subdirs = [entry for entry in entries if entry.is_dir()]
 
     # Traverse each subdirectory
     for subdir in subdirs:
 
-        model_name = subdir.split(RESULT_PATH)[1]
+        model_name = subdir.relative_to(RESULT_PATH).name
         if model_names is not None and model_name not in model_names:
             continue
 
         model_name_escaped = model_name.replace("_", "/")
 
-        # Pattern to match JSON files in this subdirectory
-        json_files_pattern = os.path.join(subdir, "*.json")
-
         print(f"🦍 Model: {model_name}")
 
         # Find and process all JSON files in the subdirectory
-        for model_result_json in glob.glob(json_files_pattern):
-
+        for model_result_json in subdir.glob("*.json"):
             test_category = extract_test_category(model_result_json)
             if test_categories is not None and test_category not in test_categories:
                 continue
@@ -513,10 +501,6 @@ def runner(model_names, test_categories, api_sanity_check):
                     print("Continuing evaluation...")
 
                     API_TESTED = True
-
-                if not HAS_REPLACED_API_CREDENTIALS:
-                    apply_function_credential_config(input_path=PROMPT_PATH)
-                    HAS_REPLACED_API_CREDENTIALS = True
 
                 if (
                     test_category not in EXECUTABLE_TEST_CATEGORIES_HAVE_RUN
