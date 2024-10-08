@@ -732,7 +732,9 @@ OSS_LATENCY = {
 }
 
 # All OSS models will have no cost shown on the leaderboard. 
-NO_COST_MODELS = list(local_inference_handler_map.keys()) + [
+NO_COST_MODELS = list(local_inference_handler_map.keys())
+# The following models will also have no cost, even though they are queries through the API.
+NO_COST_MODELS += [
     "Nexusflow-Raven-v2",
     "firefunction-v1-FC",
     "firefunction-v2-FC",

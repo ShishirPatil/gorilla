@@ -90,6 +90,14 @@ def write_list_of_dicts_to_file(filename, data, subdir=None):
     # Write the list of dictionaries to the file in JSON format
     with open(filename, "w") as f:
         for i, entry in enumerate(data):
+            # Go through each key-value pair in the dictionary to make sure the values are JSON serializable
+            for key, value in entry.items():
+                try:
+                    json.dumps(value)
+                except:
+                    # If the value is not JSON serializable, wrap it in a string
+                    entry[key] = str(value)
+
             json_str = json.dumps(entry)
             f.write(json_str)
             if i < len(data) - 1:
@@ -338,6 +346,8 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
         ) / 1000
         cost = round(cost, 2)
 
+    # TODO: Have a formal way to calculate the cost and latency for OSS models
+    # Currently, all OSS models will have no cost.
     # if model_name in OSS_LATENCY:
     #     mean_latency, std_latency, percentile_95_latency = (
     #         OSS_LATENCY[model_name] / 1700,
