@@ -151,7 +151,7 @@
 {"id": "live_multiple_150-58-4", "ground_truth": [{"get_sensor_readings_latest": {"perPage": [100], "startingAfter": ["", null], "endingBefore": ["", null], "networkId": ["", []], "serials": ["", []], "metrics": ["", []]}}]}
 {"id": "live_multiple_151-58-5", "ground_truth": [{"get_sensor_readings_latest": {"perPage": [10], "startingAfter": ["", null], "endingBefore": ["", null], "networkId": ["", []], "serials": ["", []], "metrics": ["", []]}}]}
 {"id": "live_multiple_152-58-6", "ground_truth": [{"get_sensor_readings_latest": {"perPage": [100], "startingAfter": ["", null], "endingBefore": ["", null], "networkId": [["office-network-001"]], "serials": ["", []], "metrics": [["temperature", "humidity"]]}}]}
-{"id": "live_multiple_153-58-7", "ground_truth": [{"get_sensor_readings_history": {"perPage": [100], "startingAfter": ["", null], "endingBefore": ["", null], "networkId": [["12312"]], "serials": ["", []], "metrics": [["temperature"]], "timespan": [3600], "t0": ["", null], "t1": ["", null]}}]}
+{"id": "live_multiple_153-58-7", "ground_truth": [{"get_sensor_readings_history": {"perPage": [10], "startingAfter": ["", null], "endingBefore": ["", null], "networkId": [["12312"]], "serials": ["", []], "metrics": [["temperature"]], "timespan": [3600], "t0": ["", null], "t1": ["", null]}}]}
 {"id": "live_multiple_154-58-8", "ground_truth": [{"get_sensor_alerts": {"perPage": [50], "startingAfter": ["", null], "endingBefore": ["", null], "t0": ["", null], "t1": ["", null], "networkId": [["L_579838452023959405"]], "timespan": ["", 31536000], "sensorSerial": ["", null], "triggerMetric": ["", null]}}]}
 {"id": "live_multiple_155-58-9", "ground_truth": [{"get_sensor_readings_latest": {"perPage": [50], "startingAfter": ["", null], "endingBefore": ["", null], "networkId": ["", []], "serials": ["", []], "metrics": ["", []]}}]}
 {"id": "live_multiple_156-59-0", "ground_truth": [{"analysis_api.AnalysisApi.retrieve_analysis": {"project": ["SUPERFANCY"], "component": ["AB1010CD"], "vulnerability": ["ef903ac-893-f00"]}}]}
@@ -167,8 +167,8 @@
 {"id": "live_multiple_166-66-0", "ground_truth": [{"get_adriel_profile": {"user_id": ["12445"], "include_contacts": [true], "format": ["", "json"]}}]}
 {"id": "live_multiple_167-67-0", "ground_truth": [{"get_adriel_profile": {"user_id": ["12345"], "include_preferences": [true], "format": ["", "json"]}}]}
 {"id": "live_multiple_168-68-0", "ground_truth": [{"get_adriel_profile": {"user_id": [12345], "include_private": [true]}}]}
-{"id": "live_multiple_169-69-0", "ground_truth": [{"get_adriel_detail_experience_and_education": {"experience_or_education_type": ["", "experience"], "experience_or_education_name": ["Internship at Sebelas Maret University", "Sebelas Maret University"]}}]}
-{"id": "live_multiple_170-70-0", "ground_truth": [{"get_adriel_detail_experience_and_education": {"experience_or_education_type": ["", "work_experience"], "experience_or_education_name": ["Sebelas Maret University"]}}]}
+{"id": "live_multiple_169-69-0", "ground_truth": [{"get_adriel_detail_experience_and_education": {"experience_or_education_type": ["", "experience"], "experience_or_education_name": ["Internship at Sebelas Maret University", "Sebelas Maret University", "Internship"]}}]}
+{"id": "live_multiple_170-70-0", "ground_truth": [{"get_adriel_detail_experience_and_education": {"experience_or_education_type": ["", "work_experience"], "experience_or_education_name": ["Internship at Sebelas Maret University", "Sebelas Maret University", "Internship"]}}]}
 {"id": "live_multiple_171-71-0", "ground_truth": [{"get_adriel_detail_experience_and_education": {"experience_or_education_type": ["Internship"], "experience_or_education_name": ["", "Not specified"], "details": ["", ""], "start_date": ["", null], "end_date": ["", null]}}]}
 {"id": "live_multiple_172-71-1", "ground_truth": [{"get_adriel_list_projects": {"user_id": [123], "include_completed": ["", false], "project_status": ["", "active"], "date_filter": ["", null]}}]}
 {"id": "live_multiple_173-71-2", "ground_truth": [{"get_adriel_tech_stack": {"employee_id": ["123"], "include_past_technologies": [true], "category": ["", "programming_languages"]}}]}
@@ -257,32 +257,32 @@
 {"id": "live_multiple_256-120-0", "ground_truth": [{"vex_api.VexApi.export_project_as_cyclone_dx1": {"uuid": ["123e4567-e89b-12d3-a456-426614174000"], "download": ["", false]}}]}
 {"id": "live_multiple_257-121-0", "ground_truth": [{"vex_api.VexApi.export_project_as_cyclone_dx1": {"uuid": ["1a1a-c6"], "download": ["", false]}}]}
 {"id": "live_multiple_258-122-0", "ground_truth": [{"project_api.ProjectApi.get_project_by_name_and_version": {"name": ["Orion"], "version": ["2.1.3"]}}]}
-{"id": "live_multiple_259-123-0", "ground_truth": [{"project_api.ProjectApi.get_project_by_name_and_version": {"name": ["my_version_proj"], "version": ["a"]}}]}
+{"id": "live_multiple_259-123-0", "ground_truth": [{"project_api.ProjectApi.get_project_by_name_and_version": {"name": ["my_version_proj"], "version": ["1.2.3"]}}]}
 {"id": "live_multiple_260-124-0", "ground_truth": [{"version_api.VersionApi.get_version": {}}]}
 {"id": "live_multiple_261-125-0", "ground_truth": [{"rotateImageAction": {"degrees": [30], "image_format": ["", "JPEG"], "keep_original": ["", true]}}]}
 {"id": "live_multiple_262-125-1", "ground_truth": [{"rotateImageAction": {"degrees": [20], "image_format": ["", "JPEG"], "keep_original": ["", true]}}]}
 {"id": "live_multiple_263-126-0", "ground_truth": [{"EventQuery": {"search_string": ["gym session"], "start_date": ["", "null"], "end_date": ["", "null"], "include_recurring": ["", false]}}]}
 {"id": "live_multiple_264-126-1", "ground_truth": [{"EventQuery": {"search_string": ["trip"], "start_date": ["2023-04-01"], "end_date": ["2023-04-30"], "include_recurring": [true]}}]}
-{"id": "live_multiple_265-127-0", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Hanoi, Vietnam"], "date": ["", null]}}]}
-{"id": "live_multiple_266-127-1", "ground_truth": [{"Weather_1_GetWeather": {"city": ["San Diego, CA"], "date": ["", null]}}]}
-{"id": "live_multiple_267-127-2", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Vancouver, BC"], "date": ["2023-04-04"]}}]}
+{"id": "live_multiple_265-127-0", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Hanoi"], "date": ["", null]}}]}
+{"id": "live_multiple_266-127-1", "ground_truth": [{"Weather_1_GetWeather": {"city": ["San Diego"], "date": ["", null]}}]}
+{"id": "live_multiple_267-127-2", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Vancouver"], "date": ["2023-04-04"]}}]}
 {"id": "live_multiple_268-127-3", "ground_truth": [{"Weather_1_GetWeather": {"city": ["London, UK"], "date": ["2023-03-12"]}}]}
-{"id": "live_multiple_269-127-4", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Philadelphia, PA"], "date": ["2023-03-10"]}}]}
-{"id": "live_multiple_270-127-5", "ground_truth": [{"Weather_1_GetWeather": {"city": ["New York, NY"], "date": ["2023-04-17"]}}]}
-{"id": "live_multiple_271-127-6", "ground_truth": [{"Weather_1_GetWeather": {"city": ["San Diego, CA"], "date": ["2023-03-01"]}}]}
-{"id": "live_multiple_272-127-7", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Nairobi, Kenya"], "date": ["", null]}}]}
-{"id": "live_multiple_273-127-8", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Phoenix, AZ"], "date": ["2023-04-14"]}}]}
-{"id": "live_multiple_274-127-9", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Chicago, IL", "Chi-town"], "date": ["2024-02-13"]}}]}
-{"id": "live_multiple_275-127-10", "ground_truth": [{"Weather_1_GetWeather": {"city": ["American canyon, CA"], "date": ["2023-03-12"]}}]}
-{"id": "live_multiple_276-127-11", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Los Angeles, CA"], "date": ["2023-03-09"]}}]}
+{"id": "live_multiple_269-127-4", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Philadelphia"], "date": ["2023-03-10"]}}]}
+{"id": "live_multiple_270-127-5", "ground_truth": [{"Weather_1_GetWeather": {"city": ["New York"], "date": ["2023-04-17"]}}]}
+{"id": "live_multiple_271-127-6", "ground_truth": [{"Weather_1_GetWeather": {"city": ["San Diego"], "date": ["2023-03-01"]}}]}
+{"id": "live_multiple_272-127-7", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Nairobi"], "date": ["", null]}}]}
+{"id": "live_multiple_273-127-8", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Phoenix"], "date": ["2023-04-14"]}}]}
+{"id": "live_multiple_274-127-9", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Chicago", "Chi-town"], "date": ["2024-02-13"]}}]}
+{"id": "live_multiple_275-127-10", "ground_truth": [{"Weather_1_GetWeather": {"city": ["American canyon"], "date": ["2023-03-12"]}}]}
+{"id": "live_multiple_276-127-11", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Los Angeles"], "date": ["2023-03-09"]}}]}
 {"id": "live_multiple_277-128-0", "ground_truth": [{"Restaurants_2_FindRestaurants": {"category": ["American"], "location": ["New York, NY"], "price_range": ["", "moderate"], "has_vegetarian_options": ["", false], "has_seating_outdoors": [true]}}]}
 {"id": "live_multiple_278-128-1", "ground_truth": [{"Restaurants_2_FindRestaurants": {"category": ["Italian"], "location": ["Oakland, CA"], "price_range": ["", "moderate"], "has_vegetarian_options": ["", false], "has_seating_outdoors": ["", false]}}]}
-{"id": "live_multiple_279-128-2", "ground_truth": [{"Restaurants_2_FindRestaurants": {"category": ["Asian"], "location": ["Santa Clara, CA"], "price_range": ["", "moderate"], "has_vegetarian_options": ["", false], "has_seating_outdoors": ["", false]}}]}
+{"id": "live_multiple_279-128-2", "ground_truth": [{"Restaurants_2_FindRestaurants": {"category": ["Asian Fusion"], "location": ["Santa Clara, CA"], "price_range": ["", "moderate"], "has_vegetarian_options": ["", false], "has_seating_outdoors": ["", false]}}]}
 {"id": "live_multiple_280-128-3", "ground_truth": [{"Restaurants_2_FindRestaurants": {"category": ["Coffeehouse"], "location": ["New York, NY"], "price_range": ["", "moderate"], "has_vegetarian_options": ["", false], "has_seating_outdoors": ["", false]}}]}
 {"id": "live_multiple_281-128-4", "ground_truth": [{"Restaurants_2_FindRestaurants": {"category": ["Vegetarian"], "location": ["Berkeley, CA"], "price_range": ["cheap"], "has_vegetarian_options": [true], "has_seating_outdoors": ["", false]}}]}
 {"id": "live_multiple_282-128-5", "ground_truth": [{"Restaurants_2_FindRestaurants": {"category": ["American"], "location": ["Mountain View, CA"], "price_range": ["", "moderate"], "has_vegetarian_options": ["", false], "has_seating_outdoors": [true]}}]}
-{"id": "live_multiple_283-128-6", "ground_truth": [{"Restaurants_2_FindRestaurants": {"category": ["Izakaya"], "location": ["SFO, CA", "San Francisco International Airport, CA", "San Francisco Airport, CA"], "price_range": ["cheap"], "has_vegetarian_options": ["", false], "has_seating_outdoors": ["", false]}}]}
-{"id": "live_multiple_284-128-7", "ground_truth": [{"Restaurants_2_FindRestaurants": {"category": ["Italian"], "location": ["SFO, CA", "San Francisco International Airport, CA", "San Francisco Airport, CA"], "price_range": ["", "moderate"], "has_vegetarian_options": ["", false], "has_seating_outdoors": ["", false]}}]}
+{"id": "live_multiple_283-128-6", "ground_truth": [{"Restaurants_2_FindRestaurants": {"category": ["Izakaya"], "location": ["San Francisco, CA"], "price_range": ["cheap"], "has_vegetarian_options": ["", false], "has_seating_outdoors": ["", false]}}]}
+{"id": "live_multiple_284-128-7", "ground_truth": [{"Restaurants_2_FindRestaurants": {"category": ["Italian"], "location": ["San Francisco, CA"], "price_range": ["", "moderate"], "has_vegetarian_options": ["", false], "has_seating_outdoors": ["", false]}}]}
 {"id": "live_multiple_285-129-0", "ground_truth": [{"Services_4_FindProvider": {"city": ["Pittsburgh, PA"], "type": ["Psychiatrist"], "insurance_accepted": ["", true]}}]}
 {"id": "live_multiple_286-129-1", "ground_truth": [{"Services_4_FindProvider": {"city": ["San Jose, CA"], "type": ["Psychologist"], "insurance_accepted": ["", true]}}]}
 {"id": "live_multiple_287-129-2", "ground_truth": [{"Services_4_FindProvider": {"city": ["Los Gatos, CA"], "type": ["Family Counselor"], "insurance_accepted": ["", true]}}]}
@@ -300,8 +300,8 @@
 {"id": "live_multiple_299-130-8", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Sydney, Australia"], "has_laundry_service": ["True"], "number_of_adults": [3], "rating": ["", 0.0]}}]}
 {"id": "live_multiple_300-130-9", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Rio de Janeiro, Brazil"], "has_laundry_service": ["", "dontcare"], "number_of_adults": [2], "rating": [4.2]}}]}
 {"id": "live_multiple_301-131-0", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["London, UK"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
-{"id": "live_multiple_302-131-1", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["New York City, NY"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
-{"id": "live_multiple_303-131-2", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Vancouver, BC"], "star_rating": ["3"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
+{"id": "live_multiple_302-131-1", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["New York, NY"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
+{"id": "live_multiple_303-131-2", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Vancouver"], "star_rating": ["3"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
 {"id": "live_multiple_304-131-3", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Los Angeles, CA"], "star_rating": ["4"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
 {"id": "live_multiple_305-131-4", "ground_truth": [{"Hotels_4_ReserveHotel": {"place_name": ["dontcare"], "check_in_date": ["2023-07-15"], "stay_length": [5], "location": ["dontcare"], "number_of_rooms": ["", "dontcare"]}}]}
 {"id": "live_multiple_306-131-5", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Kuala Lumpur, Malaysia"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
@@ -318,8 +318,8 @@
 {"id": "live_multiple_317-132-7", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Guillermo del Toro"], "genre": ["Fantasy"], "cast": ["Emma Watson"]}}]}
 {"id": "live_multiple_318-132-8", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["", "dontcare"], "genre": ["", "dontcare"], "cast": ["Daniel Camp"]}}]}
 {"id": "live_multiple_319-132-9", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Gavin Hood"], "genre": ["Mystery"], "cast": ["Hattie Morahan"]}}]}
-{"id": "live_multiple_320-132-10", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Thurop Van Orman"], "genre": ["Animation"], "cast": ["Pete Davidson"]}}]}
-{"id": "live_multiple_321-132-11", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Quentin Tarantino"], "genre": ["Offbeat"], "cast": ["Maya Hawke"]}}]}
+{"id": "live_multiple_320-132-10", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Thurop Van Orman"], "genre": ["", "dontcare"], "cast": ["Pete Davidson"]}}]}
+{"id": "live_multiple_321-132-11", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Quentin Tarantino"], "genre": ["Bizarre"], "cast": ["Maya Hawke"]}}]}
 {"id": "live_multiple_322-132-12", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Peter Jackson"], "genre": ["Fantasy"], "cast": ["Dominic Monaghan"]}}]}
 {"id": "live_multiple_323-132-13", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Steven Spielberg"], "genre": ["", "dontcare"], "cast": ["Josef Sommer"]}}]}
 {"id": "live_multiple_324-132-14", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["", "dontcare"], "genre": ["", "dontcare"], "cast": ["Zoe Margaret Colletti"]}}]}
@@ -335,7 +335,7 @@
 {"id": "live_multiple_334-132-24", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["", "dontcare"], "genre": ["Thriller"], "cast": ["Lisa Tharps"]}}]}
 {"id": "live_multiple_335-132-25", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Taika Waititi"], "genre": ["Comedy"], "cast": ["", "dontcare"]}}]}
 {"id": "live_multiple_336-133-0", "ground_truth": [{"Music_3_PlayMedia": {"track": ["Shape of You"], "artist": ["Ed Sheeran"], "device": ["Kitchen"], "album": ["", "dontcare"]}}]}
-{"id": "live_multiple_337-133-1", "ground_truth": [{"Music_3_PlayMedia": {"track": ["dontcare"], "artist": ["Carrie Underwood"], "device": ["", "Living room"], "album": ["", "dontcare"]}}]}
+{"id": "live_multiple_337-133-1", "ground_truth": [{"Music_3_PlayMedia": {"track": ["Remind Me"], "artist": ["Carrie Underwood"], "device": ["", "Living room"], "album": ["", "dontcare"]}}]}
 {"id": "live_multiple_338-133-2", "ground_truth": [{"Music_3_LookupMusic": {"artist": ["", "dontcare"], "album": ["", "dontcare"], "genre": ["Rock"], "year": ["", "dontcare"]}}]}
 {"id": "live_multiple_339-133-3", "ground_truth": [{"Music_3_LookupMusic": {"artist": ["", "dontcare"], "album": ["Speak Now"], "genre": ["", "dontcare"], "year": ["", 2010]}}]}
 {"id": "live_multiple_340-133-4", "ground_truth": [{"Music_3_LookupMusic": {"artist": ["", "dontcare"], "album": ["", "dontcare"], "genre": ["", "dontcare"], "year": [2022]}}]}
@@ -360,7 +360,7 @@
 {"id": "live_multiple_359-134-4", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Josh Cooley"], "genre": ["Animation"], "cast": ["Bill Hader"]}}]}
 {"id": "live_multiple_360-134-5", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Paul Downs Colaizzo"], "genre": ["Play"], "cast": ["", "dontcare"]}}]}
 {"id": "live_multiple_361-134-6", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["david leitch"], "genre": ["Action"], "cast": ["ryan reynolds"]}}]}
-{"id": "live_multiple_362-134-7", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Sujeeth"], "genre": ["Action"], "cast": ["Supreet Reddy"]}}]}
+{"id": "live_multiple_362-134-7", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Sujeeth Reddy"], "genre": ["Action"], "cast": ["Supreet Reddy"]}}]}
 {"id": "live_multiple_363-134-8", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Thurop Van Orman"], "genre": ["", "dontcare"], "cast": ["Zach Woods"]}}]}
 {"id": "live_multiple_364-134-9", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Wes Anderson"], "genre": ["Comedy"], "cast": ["", "dontcare"]}}]}
 {"id": "live_multiple_365-134-10", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Gene Stupnitsky"], "genre": ["Comedy-drama"], "cast": ["Josh Barclay Caras"]}}]}
@@ -399,16 +399,16 @@
 {"id": "live_multiple_398-139-2", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Music"], "city": ["San Diego, CA"], "date": ["2023-05-02"]}}]}
 {"id": "live_multiple_399-139-3", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Theater"], "city": ["Chicago, IL"], "date": ["2023-05-02"]}}]}
 {"id": "live_multiple_400-139-4", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Theater"], "city": ["Chicago, IL"], "date": ["2023-10-02"]}}]}
-{"id": "live_multiple_401-139-5", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Music"], "city": ["Toronto, CA"], "date": ["2023-10-02"]}}]}
+{"id": "live_multiple_401-139-5", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Music"], "city": ["Toronto, ON", "Toronto, Canada"], "date": ["2023-10-02"]}}]}
 {"id": "live_multiple_402-139-6", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Theater"], "city": ["London, UK"], "date": ["2023-10-02"]}}]}
 {"id": "live_multiple_403-139-7", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Theater"], "city": ["London, UK"], "date": ["2023-04-05"]}}]}
-{"id": "live_multiple_404-140-0", "ground_truth": [{"RideSharing_2_GetRide": {"destination": ["123 Beijing Street, San Francisco, CA"], "number_of_seats": [1], "ride_type": ["Regular"]}}]}
-{"id": "live_multiple_405-140-1", "ground_truth": [{"RideSharing_2_GetRide": {"destination": ["123 Main St, Anytown, Anystate"], "number_of_seats": [2], "ride_type": ["Luxury"]}}]}
-{"id": "live_multiple_406-140-2", "ground_truth": [{"RideSharing_2_GetRide": {"destination": ["2508 University Avenue, Palo Alto, CA"], "number_of_seats": [""], "ride_type": [""]}}]}
-{"id": "live_multiple_407-140-3", "ground_truth": [{"RideSharing_2_GetRide": {"destination": ["540 El Camino Real, Berkeley, CA"], "number_of_seats": [""], "ride_type": ["Regular"]}}]}
-{"id": "live_multiple_408-140-4", "ground_truth": [{"RideSharing_2_GetRide": {"destination": ["Park Branham Apartments, San Jose, CA"], "number_of_seats": [2], "ride_type": ["Pool"]}}]}
-{"id": "live_multiple_409-140-5", "ground_truth": [{"RideSharing_2_GetRide": {"destination": ["Bowl & Plate at White Shallot, San Jose, CA"], "number_of_seats": [1], "ride_type": ["Pool"]}}]}
-{"id": "live_multiple_410-140-6", "ground_truth": [{"RideSharing_2_GetRide": {"destination": ["3236 Grand Avenue, Oakland, CA"], "number_of_seats": [""], "ride_type": ["Luxury"]}}]}
+{"id": "live_multiple_404-140-0", "ground_truth": [{"RideSharing_2_GetRide": {"destination": ["123 Beijing Street, San Francisco"], "number_of_seats": [1], "ride_type": ["Regular"]}}]}
+{"id": "live_multiple_405-140-1", "ground_truth": [{"RideSharing_2_GetRide": {"destination": ["123 Main Street, Anytown"], "number_of_seats": [2], "ride_type": ["Luxury"]}}]}
+{"id": "live_multiple_406-140-2", "ground_truth": [{"RideSharing_2_GetRide": {"destination": ["2508 University Avenue, Palo Alto"], "number_of_seats": [""], "ride_type": [""]}}]}
+{"id": "live_multiple_407-140-3", "ground_truth": [{"RideSharing_2_GetRide": {"destination": ["540 El Camino Real, Berkeley"], "number_of_seats": [""], "ride_type": ["Regular"]}}]}
+{"id": "live_multiple_408-140-4", "ground_truth": [{"RideSharing_2_GetRide": {"destination": ["123 Park Branham Apartments, San Jose"], "number_of_seats": [2], "ride_type": ["Pool"]}}]}
+{"id": "live_multiple_409-140-5", "ground_truth": [{"RideSharing_2_GetRide": {"destination": ["123 White Street, San Jose"], "number_of_seats": [1], "ride_type": ["Pool"]}}]}
+{"id": "live_multiple_410-140-6", "ground_truth": [{"RideSharing_2_GetRide": {"destination": ["3236 Grand Avenue, Oakland"], "number_of_seats": [""], "ride_type": ["Luxury"]}}]}
 {"id": "live_multiple_411-141-0", "ground_truth": [{"Movies_1_FindMovies": {"location": ["Union City, CA"], "theater_name": ["", "dontcare"], "genre": ["Animation"], "show_type": ["imax"]}}]}
 {"id": "live_multiple_412-141-1", "ground_truth": [{"Movies_1_BuyMovieTickets": {"movie_name": ["The Grand Adventure"], "number_of_tickets": [2], "show_date": ["2023-11-15"], "location": ["Santa Rosa, CA"], "show_time": ["17:30"], "show_type": ["", "regular"]}}]}
 {"id": "live_multiple_413-141-2", "ground_truth": [{"Movies_1_BuyMovieTickets": {"movie_name": ["After The Wedding"], "number_of_tickets": [2], "show_date": ["2023-04-22"], "location": ["Berkeley, CA"], "show_time": ["19:00"], "show_type": ["", "regular"]}}]}
@@ -418,7 +418,7 @@
 {"id": "live_multiple_417-141-6", "ground_truth": [{"Movies_1_FindMovies": {"location": ["San Jose, CA"], "theater_name": ["", "dontcare"], "genre": ["", "dontcare"], "show_type": ["", "dontcare"]}}]}
 {"id": "live_multiple_418-141-7", "ground_truth": [{"Movies_1_BuyMovieTickets": {"movie_name": ["Space Adventure"], "number_of_tickets": [2], "show_date": ["2023-04-15"], "location": ["New York, NY"], "show_time": ["19:30"], "show_type": ["", "regular"]}}]}
 {"id": "live_multiple_419-141-8", "ground_truth": [{"Movies_1_FindMovies": {"location": ["San Ramon, CA"], "theater_name": ["Regal Crow Canyon"], "genre": ["Drama"], "show_type": ["regular"]}}]}
-{"id": "live_multiple_420-141-9", "ground_truth": [{"Movies_1_BuyMovieTickets": {"movie_name": ["latest Marvel movie"], "number_of_tickets": [3], "show_date": ["2023-10-06"], "location": ["Los Angeles, CA"], "show_time": ["19:00"], "show_type": ["", "regular"]}}]}
+{"id": "live_multiple_420-141-9", "ground_truth": [{"Movies_1_BuyMovieTickets": {"movie_name": ["Avengers"], "number_of_tickets": [3], "show_date": ["2023-10-06"], "location": ["Los Angeles, CA"], "show_time": ["19:00"], "show_type": ["", "regular"]}}]}
 {"id": "live_multiple_421-141-10", "ground_truth": [{"Movies_1_FindMovies": {"location": ["Mountain View, CA"], "theater_name": ["", "dontcare"], "genre": ["", "dontcare"], "show_type": ["", "dontcare"]}}]}
 {"id": "live_multiple_422-141-11", "ground_truth": [{"Movies_1_FindMovies": {"location": ["Santa Rosa, CA"], "theater_name": ["", "dontcare"], "genre": ["Animation"], "show_type": ["imax"]}}]}
 {"id": "live_multiple_423-141-12", "ground_truth": [{"Movies_1_BuyMovieTickets": {"movie_name": ["The Last Adventure"], "number_of_tickets": [2], "show_date": [""], "location": ["San Francisco, CA"], "show_time": ["20:30"], "show_type": ["", "regular"]}}]}
@@ -449,12 +449,12 @@
 {"id": "live_multiple_448-144-8", "ground_truth": [{"Services_4_FindProvider": {"city": ["St. Helena, CA"], "type": ["Family Counselor"], "accepts_insurance": ["", false]}}]}
 {"id": "live_multiple_449-145-0", "ground_truth": [{"Flights_4_SearchRoundtripFlights": {"origin_airport": ["JFK"], "destination_airport": ["LAX"], "departure_date": ["2023-04-15"], "return_date": ["2023-04-22"], "seating_class": ["Business"], "number_of_tickets": ["", 1], "airlines": ["", "dontcare"]}}]}
 {"id": "live_multiple_450-145-1", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["Paris, France"], "free_entry": ["", "dontcare"], "category": ["", "dontcare"], "good_for_kids": ["True"]}}]}
-{"id": "live_multiple_451-145-2", "ground_truth": [{"Flights_4_SearchRoundtripFlights": {"origin_airport": ["Atlanta, GA"], "destination_airport": ["Boston, MA"], "departure_date": ["2023-03-12"], "return_date": ["2023-03-19"], "seating_class": ["", "Economy"], "number_of_tickets": ["", 1], "airlines": ["", "dontcare"]}}]}
+{"id": "live_multiple_451-145-2", "ground_truth": [{"Flights_4_SearchRoundtripFlights": {"origin_airport": ["Atlanta"], "destination_airport": ["Boston"], "departure_date": ["2023-03-12"], "return_date": ["2023-03-19"], "seating_class": ["", "Economy"], "number_of_tickets": ["", 1], "airlines": ["", "dontcare"]}}]}
 {"id": "live_multiple_452-145-3", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["New York, NY"], "free_entry": ["True"], "category": ["Museum"], "good_for_kids": ["True"]}}]}
 {"id": "live_multiple_453-145-4", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["San Francisco, CA"], "free_entry": ["True"], "category": ["", "dontcare"], "good_for_kids": ["True"]}}]}
-{"id": "live_multiple_454-145-5", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["London, England"], "free_entry": ["True"], "category": ["Museum"], "good_for_kids": ["True"]}}]}
+{"id": "live_multiple_454-145-5", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["London, UK"], "free_entry": ["True"], "category": ["Museum"], "good_for_kids": ["True"]}}]}
 {"id": "live_multiple_455-145-6", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["London, UK"], "free_entry": ["True"], "category": ["Park"], "good_for_kids": ["", "dontcare"]}}]}
-{"id": "live_multiple_456-145-7", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["London"], "free_entry": ["True"], "category": ["Performing Arts Venue"], "good_for_kids": ["", "dontcare"]}}]}
+{"id": "live_multiple_456-145-7", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["London, UK"], "free_entry": ["True"], "category": ["Performing Arts Venue"], "good_for_kids": ["", "dontcare"]}}]}
 {"id": "live_multiple_457-145-8", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["Paris, France"], "free_entry": ["", "dontcare"], "category": ["", "dontcare"], "good_for_kids": ["True"]}}]}
 {"id": "live_multiple_458-145-9", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["Paris, France"], "free_entry": ["True"], "category": ["", "dontcare"], "good_for_kids": ["True"]}}]}
 {"id": "live_multiple_459-145-10", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["Berlin, Germany"], "free_entry": ["True"], "category": ["", "dontcare"], "good_for_kids": ["True"]}}]}
@@ -463,7 +463,7 @@
 {"id": "live_multiple_462-145-13", "ground_truth": [{"Flights_4_SearchRoundtripFlights": {"origin_airport": ["San Francisco"], "destination_airport": ["Atlanta"], "departure_date": ["2023-03-01"], "return_date": ["2023-03-06"], "seating_class": ["", "Economy"], "number_of_tickets": ["", 1], "airlines": ["American Airlines"]}}]}
 {"id": "live_multiple_463-145-14", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["Philadelphia, PA"], "free_entry": ["True"], "category": ["", "dontcare"], "good_for_kids": ["", "dontcare"]}}]}
 {"id": "live_multiple_464-145-15", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["Orlando, FL"], "free_entry": ["True"], "category": ["Theme Park"], "good_for_kids": ["True"]}}]}
-{"id": "live_multiple_465-145-16", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["JFK"], "destination_airport": ["LAX"], "departure_date": ["2023-10-06"], "seating_class": ["", "Economy"], "number_of_tickets": ["", 1], "airlines": ["", "dontcare"]}}]}
+{"id": "live_multiple_465-145-16", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["JFK"], "destination_airport": ["LAX"], "departure_date": ["2023-10-06"], "seating_class": ["", "Economy"], "number_of_tickets": [1], "airlines": ["", "dontcare"]}}]}
 {"id": "live_multiple_466-145-17", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["New York, NY"], "free_entry": ["True"], "category": ["Shopping Area"], "good_for_kids": ["True"]}}]}
 {"id": "live_multiple_467-145-18", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["Portland, OR"], "free_entry": ["False"], "category": ["Historical Landmark"], "good_for_kids": ["True"]}}]}
 {"id": "live_multiple_468-145-19", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["Seattle, WA"], "free_entry": ["", "dontcare"], "category": ["", "dontcare"], "good_for_kids": ["True"]}}]}
@@ -502,23 +502,23 @@
 {"id": "live_multiple_501-148-11", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Theater"], "city": ["San Francisco, CA"], "date": ["2023-10-01"]}}]}
 {"id": "live_multiple_502-148-12", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Theater"], "city": ["New York, NY"], "date": ["2023-03-12"]}}]}
 {"id": "live_multiple_503-149-0", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["JFK"], "destination_airport": ["LAX"], "departure_date": ["2023-04-15"], "seating_class": ["Premium Economy"], "number_of_tickets": ["", 1], "airlines": ["", "dontcare"]}}]}
-{"id": "live_multiple_504-149-1", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["New York"], "destination_airport": ["Los Angeles"], "departure_date": ["2023-04-15"], "seating_class": ["", "Economy"], "number_of_tickets": ["", 1], "airlines": ["Delta Airlines"]}}]}
-{"id": "live_multiple_505-149-2", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["San Diego"], "destination_airport": ["Chicago"], "departure_date": ["2023-05-20"], "seating_class": ["Business"], "number_of_tickets": ["", 1], "airlines": ["American Airlines"]}}]}
-{"id": "live_multiple_506-149-3", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["JFK"], "destination_airport": ["LAX"], "departure_date": ["2023-04-15"], "seating_class": ["", "Economy"], "number_of_tickets": ["", 1], "airlines": ["", "dontcare"]}}]}
-{"id": "live_multiple_507-149-4", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["dontcare", "New York"], "destination_airport": ["New York"], "departure_date": ["2023-03-14"], "seating_class": ["", "Economy"], "number_of_tickets": ["", 1], "airlines": ["", "dontcare"]}}]}
-{"id": "live_multiple_508-149-5", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["JFK"], "destination_airport": ["LAX"], "departure_date": ["2023-04-15"], "seating_class": ["", "Economy"], "number_of_tickets": ["", 1], "airlines": ["", "dontcare"]}}]}
-{"id": "live_multiple_509-149-6", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["Vancouver, BC"], "destination_airport": ["Seattle"], "departure_date": ["2023-03-12"], "seating_class": ["Business"], "number_of_tickets": ["", 1], "airlines": ["", "dontcare"]}}]}
-{"id": "live_multiple_510-149-7", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["JFK"], "destination_airport": ["Portland, OR", "PDX"], "departure_date": ["2023-04-20"], "seating_class": ["", "Economy"], "number_of_tickets": ["", 1], "airlines": ["", "dontcare"]}}]}
-{"id": "live_multiple_511-149-8", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["Chicago"], "destination_airport": ["dontcare"], "departure_date": ["dontcare"], "seating_class": ["", "Economy"], "number_of_tickets": ["", 1], "airlines": ["Delta Airlines"]}}]}
+{"id": "live_multiple_504-149-1", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["New York"], "destination_airport": ["Los Angeles"], "departure_date": ["2023-04-15"], "seating_class": ["", "Economy"], "number_of_tickets": [1], "airlines": ["Delta Airlines"]}}]}
+{"id": "live_multiple_505-149-2", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["San Diego"], "destination_airport": ["Chicago"], "departure_date": ["2023-05-20"], "seating_class": ["Business"], "number_of_tickets": [1], "airlines": ["American Airlines"]}}]}
+{"id": "live_multiple_506-149-3", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["JFK"], "destination_airport": ["LAX"], "departure_date": ["2023-04-15"], "seating_class": ["", "Economy"], "number_of_tickets": [1], "airlines": ["", "dontcare"]}}]}
+{"id": "live_multiple_507-149-4", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": [""], "destination_airport": ["New York"], "departure_date": ["2023-03-14"], "seating_class": ["", "Economy"], "number_of_tickets": [1], "airlines": ["", "dontcare"]}}]}
+{"id": "live_multiple_508-149-5", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["JFK"], "destination_airport": ["LAX"], "departure_date": ["2023-04-15"], "seating_class": ["", "Economy"], "number_of_tickets": [1], "airlines": ["", "dontcare"]}}]}
+{"id": "live_multiple_509-149-6", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["Vancouver"], "destination_airport": ["Seattle"], "departure_date": ["2023-03-12"], "seating_class": ["Business"], "number_of_tickets": [1], "airlines": ["", "dontcare"]}}]}
+{"id": "live_multiple_510-149-7", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["JFK"], "destination_airport": ["Portland", "PDX"], "departure_date": ["2023-04-20"], "seating_class": ["", "Economy"], "number_of_tickets": [1], "airlines": ["", "dontcare"]}}]}
+{"id": "live_multiple_511-149-8", "ground_truth": [{"Flights_4_SearchOnewayFlight": {"origin_airport": ["Chicago"], "destination_airport": ["Shanghai"], "departure_date": ["2023-04-15"], "seating_class": ["", "Economy"], "number_of_tickets": ["", 1], "airlines": ["Delta Airlines"]}}]}
 {"id": "live_multiple_512-150-0", "ground_truth": [{"Movies_1_FindMovies": {"location": ["Los Angeles, CA"], "theater_name": ["", "dontcare"], "genre": ["", "dontcare"], "show_type": ["3d"]}}]}
 {"id": "live_multiple_513-150-1", "ground_truth": [{"Movies_1_FindMovies": {"location": ["New York, NY"], "theater_name": ["", "dontcare"], "genre": ["Action"], "show_type": ["", "dontcare"]}}]}
-{"id": "live_multiple_514-150-2", "ground_truth": [{"Movies_1_FindMovies": {"location": ["San Jose, CA"], "theater_name": ["Century 20 Oakridge and XD"], "genre": ["", "dontcare"], "show_type": ["regular"]}}]}
-{"id": "live_multiple_515-150-3", "ground_truth": [{"Movies_1_FindMovies": {"location": ["San Jose, CA"], "theater_name": ["West Wind Capitol Drive-In"], "genre": ["Horror"], "show_type": ["", "dontcare"]}}]}
-{"id": "live_multiple_516-150-4", "ground_truth": [{"Movies_1_FindMovies": {"location": ["San Ramon, CA"], "theater_name": ["Regal Crow Canyon"], "genre": ["", "dontcare"], "show_type": ["imax"]}}]}
+{"id": "live_multiple_514-150-2", "ground_truth": [{"Movies_1_FindMovies": {"location": ["San Jose, CA"], "theater_name": ["Century 20"], "genre": ["", "dontcare"], "show_type": ["regular"]}}]}
+{"id": "live_multiple_515-150-3", "ground_truth": [{"Movies_1_FindMovies": {"location": ["San Jose, CA"], "theater_name": ["West Wind Capitol Drive-In", "West Wind Capitol"], "genre": ["Horror"], "show_type": ["", "dontcare"]}}]}
+{"id": "live_multiple_516-150-4", "ground_truth": [{"Movies_1_FindMovies": {"location": ["San Ramon, CA"], "theater_name": ["Regal", "Regal Theater"], "genre": ["", "dontcare"], "show_type": ["imax"]}}]}
 {"id": "live_multiple_517-150-5", "ground_truth": [{"Movies_1_FindMovies": {"location": ["Los Angeles, CA"], "theater_name": ["", "dontcare"], "genre": ["Supernatural"], "show_type": ["regular"]}}]}
 {"id": "live_multiple_518-150-6", "ground_truth": [{"Movies_1_FindMovies": {"location": ["Sonoma, CA"], "theater_name": ["", "dontcare"], "genre": ["Action"], "show_type": ["", "dontcare"]}}]}
 {"id": "live_multiple_519-150-7", "ground_truth": [{"Movies_1_FindMovies": {"location": ["Los Angeles, CA"], "theater_name": ["", "dontcare"], "genre": ["Documentary"], "show_type": ["regular"]}}]}
-{"id": "live_multiple_520-150-8", "ground_truth": [{"Movies_1_FindMovies": {"location": ["Saratoga, CA"], "theater_name": ["", "dontcare"], "genre": ["", "dontcare"], "show_type": ["", "dontcare"]}}]}
+{"id": "live_multiple_520-150-8", "ground_truth": [{"Movies_1_FindMovies": {"location": ["Saratoga, CA"], "theater_name": ["AMC"], "genre": ["", "dontcare"], "show_type": ["", "dontcare"]}}]}
 {"id": "live_multiple_521-150-9", "ground_truth": [{"Movies_1_FindMovies": {"location": ["Sonoma, CA"], "theater_name": ["", "dontcare"], "genre": ["Family"], "show_type": ["3d"]}}]}
 {"id": "live_multiple_522-150-10", "ground_truth": [{"Movies_1_FindMovies": {"location": ["Larkspur, CA"], "theater_name": ["", "dontcare"], "genre": ["Action"], "show_type": ["", "dontcare"]}}]}
 {"id": "live_multiple_523-150-11", "ground_truth": [{"Movies_1_FindMovies": {"location": ["San Jose, CA"], "theater_name": ["3 Below Theaters and Lounge"], "genre": ["War"], "show_type": ["regular"]}}]}
@@ -551,8 +551,8 @@
 {"id": "live_multiple_550-152-12", "ground_truth": [{"Homes_2_FindHomeByArea": {"area": ["Denver, CO"], "intent": ["rent"], "number_of_beds": [2], "number_of_baths": [2], "has_garage": ["", false], "in_unit_laundry": [true]}}]}
 {"id": "live_multiple_551-153-0", "ground_truth": [{"Services_1_FindProvider": {"city": ["Berkeley, CA"], "is_unisex": ["", "dontcare"]}}]}
 {"id": "live_multiple_552-153-1", "ground_truth": [{"Services_1_FindProvider": {"city": ["Walnut Creek"], "is_unisex": [true]}}]}
-{"id": "live_multiple_553-153-2", "ground_truth": [{"Services_1_FindProvider": {"city": ["San Francisco, CA"], "is_unisex": ["", "dontcare"]}}]}
-{"id": "live_multiple_554-154-0", "ground_truth": [{"RentalCars_3_GetCarsAvailable": {"city": ["London"], "start_date": ["2023-03-10"], "pickup_time": ["10:00"], "end_date": ["2023-03-17"], "car_type": ["", "dontcare"]}}]}
+{"id": "live_multiple_553-153-2", "ground_truth": [{"Services_1_FindProvider": {"city": ["San Francisco, CA"], "is_unisex": ["", false]}}]}
+{"id": "live_multiple_554-154-0", "ground_truth": [{"RentalCars_3_GetCarsAvailable": {"city": ["London, UK"], "start_date": ["2023-03-10"], "pickup_time": ["10:00"], "end_date": ["2023-03-17"], "car_type": ["", "dontcare"]}}]}
 {"id": "live_multiple_555-154-1", "ground_truth": [{"RentalCars_3_GetCarsAvailable": {"city": ["Los Angeles, CA"], "start_date": ["2023-04-14"], "pickup_time": ["10:00"], "end_date": ["2023-04-18"], "car_type": ["Sedan"]}}]}
 {"id": "live_multiple_556-154-2", "ground_truth": [{"RentalCars_3_GetCarsAvailable": {"city": ["Long Beach, CA"], "start_date": ["2023-04-12"], "pickup_time": ["14:00"], "end_date": ["2023-04-12"], "car_type": ["Sedan"]}}]}
 {"id": "live_multiple_557-154-3", "ground_truth": [{"RentalCars_3_GetCarsAvailable": {"city": ["Los Angeles, CA"], "start_date": ["2023-04-18"], "pickup_time": ["10:00"], "end_date": ["2023-04-24"], "car_type": ["", "dontcare"]}}]}
@@ -597,8 +597,8 @@
 {"id": "live_multiple_596-158-2", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["San Francisco, CA"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": [1]}}]}
 {"id": "live_multiple_597-158-3", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Toronto, Canada"], "star_rating": ["4"], "smoking_allowed": ["", false], "number_of_rooms": ["", "dontcare"]}}]}
 {"id": "live_multiple_598-158-4", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Washington D.C."], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", "dontcare"]}}]}
-{"id": "live_multiple_599-158-5", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Delhi, India", "New Delhi, India"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", "dontcare"]}}]}
-{"id": "live_multiple_600-158-6", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["London, UK", "London, England", "London, Great Britain"], "star_rating": ["", "dontcare"], "smoking_allowed": [true], "number_of_rooms": [2]}}]}
+{"id": "live_multiple_599-158-5", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Delhi, India"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", "dontcare"]}}]}
+{"id": "live_multiple_600-158-6", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["London, UK"], "star_rating": ["", "dontcare"], "smoking_allowed": [true], "number_of_rooms": [2]}}]}
 {"id": "live_multiple_601-158-7", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Kuala Lumpur"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", "dontcare"]}}]}
 {"id": "live_multiple_602-158-8", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Nairobi, Kenya"], "star_rating": ["4"], "smoking_allowed": ["", false], "number_of_rooms": ["", "dontcare"]}}]}
 {"id": "live_multiple_603-158-9", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["New York, NY"], "star_rating": ["3"], "smoking_allowed": ["", false], "number_of_rooms": ["", "dontcare"]}}]}
@@ -711,7 +711,7 @@
 {"id": "live_multiple_710-164-26", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["", "dontcare"], "genre": ["Comedy"], "cast": ["", "dontcare"]}}]}
 {"id": "live_multiple_711-164-27", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Jim Henson"], "genre": ["Fantasy"], "cast": ["Steve Whitmire"]}}]}
 {"id": "live_multiple_712-164-28", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["David Leitch"], "genre": ["Action"], "cast": ["", "dontcare"]}}]}
-{"id": "live_multiple_713-165-0", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["London, England"], "has_laundry_service": ["True"], "number_of_adults": ["", 1], "rating": ["", 3.0]}}]}
+{"id": "live_multiple_713-165-0", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["London, UK"], "has_laundry_service": ["True"], "number_of_adults": ["", 1], "rating": ["", 3.0]}}]}
 {"id": "live_multiple_714-165-1", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Phoenix, Arizona", "Phoenix, AZ"], "has_laundry_service": ["", "dontcare"], "number_of_adults": ["", 1], "rating": [4.1]}}]}
 {"id": "live_multiple_715-165-2", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Austin, TX"], "has_laundry_service": ["True"], "number_of_adults": [2], "rating": [4.4]}}]}
 {"id": "live_multiple_716-165-3", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Austin, TX"], "has_laundry_service": ["", "dontcare"], "number_of_adults": ["", 1], "rating": ["", 3.0]}}]}
