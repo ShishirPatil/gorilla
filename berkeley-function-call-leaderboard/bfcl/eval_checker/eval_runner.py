@@ -46,6 +46,20 @@ def multi_turn_runner(
         multi_turn_ground_truth_list: list[list[str]] = possible_answer[i]["ground_truth"]
         test_entry: dict = prompt[i]
 
+        if type(multi_turn_model_result_list) != list:
+            result.append(
+                {
+                    "id": index,
+                    "model_name": model_name,
+                    "test_category": test_category,
+                    "valid": False,
+                    "error": ["Error during inference phase. Model did not output a list of model responses."],
+                    "error_type": "multi_turn:inference_error",
+                    "prompt": test_entry,
+                    "model_result": multi_turn_model_result_list,
+                    "possible_answer": multi_turn_ground_truth_list,
+                }
+            )
         # Check if force-terminated during inference phase.
         # This happens when the model has retried too many times and still haven't figured out the answer.
         # When force-terminated, no further evaluation is needed. This whole entry will be failed.
@@ -432,7 +446,7 @@ def runner(model_names, test_categories, api_sanity_check):
     subdirs = [entry for entry in entries if entry.is_dir()]
 
     # Traverse each subdirectory
-    for subdir in subdirs:
+    for subdir in tqdm(subdirs, desc="Number of models evaluated"):
 
         model_name = subdir.relative_to(RESULT_PATH).name
         if model_names is not None and model_name not in model_names:
