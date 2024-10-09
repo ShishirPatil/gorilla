@@ -23,7 +23,6 @@ class SalesforceHandler(OSSHandler):
         return decoded_output
 
     def decode_execute(self, result):
-        result = result
         if isinstance(result, list):
             tool_calls = result
         elif isinstance(result, dict):
@@ -70,8 +69,8 @@ class SalesforceHandler(OSSHandler):
                     [f"{key}={repr(value)}" for key, value in arguments.items()]
                 )
                 python_format.append(f"{name}({args_str})")
-            else:
-                print(f"Invalid format: {tool_call}")
+            # else:
+                # print(f"Invalid format: {tool_call}")
 
         return python_format
 

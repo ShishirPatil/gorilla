@@ -49,7 +49,7 @@ class File:
         self.last_modified = datetime.datetime.now()
 
     def __repr__(self):
-        return f"<File: {self.name}, Last Modified: {self.last_modified}>"
+        return f"<<File: {self.name}, Last Modified: {self.last_modified}, Content: {self.content}>>"
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, File):
@@ -121,7 +121,7 @@ class Directory:
         return list(self.contents.keys())
 
     def __repr__(self):
-        return f"<Directory: {self.name}, Contents: {list(self.contents.keys())}>"
+        return f"<Directory: {self.name}, Parent: {self.parent.name if self.parent else None}, Contents: {self.contents}>"
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Directory):
