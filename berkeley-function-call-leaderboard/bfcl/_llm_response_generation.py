@@ -14,7 +14,7 @@ from bfcl.constant import (
     TEST_FILE_MAPPING,
 )
 from bfcl.eval_checker.eval_runner_helper import is_executable
-from bfcl.model_handler.handler_map import handler_map
+from bfcl.model_handler.handler_map import HANDLER_MAP
 from bfcl.model_handler.model_style import ModelStyle
 from dotenv import load_dotenv
 from tqdm import tqdm
@@ -46,7 +46,7 @@ def get_args():
 
 
 def build_handler(model_name, temperature):
-    handler = handler_map[model_name](model_name, temperature)
+    handler = HANDLER_MAP[model_name](model_name, temperature)
     return handler
 
 
@@ -195,7 +195,6 @@ def generate_results(args, model_name, test_cases_total):
 
 
 def main(args):
-    load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
 
     if type(args.model) is not list:
         args.model = [args.model]

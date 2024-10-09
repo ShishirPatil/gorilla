@@ -664,6 +664,7 @@ if __name__ == "__main__":
     )
 
     args = parser.parse_args()
+
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
     
     main(args.model, args.test_category, args.api_sanity_check)

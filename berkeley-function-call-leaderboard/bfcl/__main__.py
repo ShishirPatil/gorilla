@@ -1,15 +1,15 @@
-from typing import List
-from collections import namedtuple
-import typer
-from bfcl._openfunctions_evaluation import main as openfunctions_main
-from bfcl.eval_checker import eval_runner
-from bfcl.eval_checker.eval_runner_helper import MODEL_METADATA_MAPPING
-from bfcl.constant import TEST_COLLECTION_MAPPING
-import os
-from pathlib import Path
-from datetime import datetime
-from tabulate import tabulate
 import csv
+from collections import namedtuple
+from datetime import datetime
+from typing import List
+
+import typer
+from bfcl._llm_response_generation import main as generation_main
+from bfcl.constant import DOTENV_PATH, RESULT_PATH, SCORE_PATH, TEST_COLLECTION_MAPPING
+from bfcl.eval_checker import eval_runner
+from bfcl.model_handler.handler_map import HANDLER_MAP
+from dotenv import load_dotenv
+from tabulate import tabulate
 
 
 class ExecutionOrderGroup(typer.core.TyperGroup):
@@ -17,9 +17,9 @@ class ExecutionOrderGroup(typer.core.TyperGroup):
         return [
             "models",
             "test-categories",
-            "run",
+            "generation",
             "results",
-            "evaluate",
+            "evaluation",
             "scores",
         ]
 
@@ -50,7 +50,7 @@ def models():
     List available models.
     """
     table = tabulate(
-        [[model] for model in MODEL_METADATA_MAPPING],
+        [[model] for model in HANDLER_MAP.keys()],
         tablefmt="plain",
         colalign=("left",),
     )
@@ -58,7 +58,7 @@ def models():
 
 
 @cli.command()
-def run(
+def generation(
     model: List[str] = typer.Option(
         ["gorilla-openfunctions-v2"], help="A list of model names to evaluate."
     ),
@@ -74,46 +74,40 @@ def run(
     temperature: float = typer.Option(
         0.001, help="The temperature parameter for the model."
     ),
-    top_p: float = typer.Option(1.0, help="The top-p parameter for the model."),
-    max_tokens: int = typer.Option(
-        1200, help="The maximum number of tokens for the model."
+    include_debugging_log: bool = typer.Option(
+        False, help="Include debugging log in the response file to see model's interaction with the state machine."
     ),
     num_gpus: int = typer.Option(1, help="The number of GPUs to use."),
-    timeout: int = typer.Option(60, help="The timeout for the model in seconds."),
     num_threads: int = typer.Option(1, help="The number of threads to use."),
     gpu_memory_utilization: float = typer.Option(
         0.9, help="The GPU memory utilization."
     ),
 ):
     """
-    Run one or more models on a test-category (same as openfunctions_evaluation).
+    Generate the LLM response for one or more models on a test-category (same as openfunctions_evaluation.py).
     """
-    RunArgs = namedtuple(
-        "RunArgs",
+    generationArgs = namedtuple(
+        "generationArgs",
         [
             "model",
             "test_category",
             "api_sanity_check",
             "temperature",
-            "top_p",
-            "max_tokens",
+            "include_debugging_log",
             "num_gpus",
-            "timeout",
             "num_threads",
             "gpu_memory_utilization",
         ],
     )
 
-    openfunctions_main(
-        RunArgs(
+    generation_main(
+        generationArgs(
             model=model,
             test_category=test_category,
             api_sanity_check=api_sanity_check,
             temperature=temperature,
-            top_p=top_p,
-            max_tokens=max_tokens,
+            include_debugging_log=include_debugging_log,
             num_gpus=num_gpus,
-            timeout=timeout,
             num_threads=num_threads,
             gpu_memory_utilization=gpu_memory_utilization,
         )
@@ -136,17 +130,14 @@ def results():
         Returns:
             str: The original name of the model.
         """
-        if name not in MODEL_METADATA_MAPPING:
+        if name not in HANDLER_MAP:
             candidate = name.replace("_", "/")
-            if candidate in MODEL_METADATA_MAPPING:
+            if candidate in HANDLER_MAP:
                 return candidate
             print(f"Unknown model name: {name}")
         return name
 
-    result_dir = Path("./result")  # todo: make this configurable
-    if not result_dir.exists():
-        print("No results available.")
-        return
+    result_dir = RESULT_PATH
 
     results_data = []
     for dir in result_dir.iterdir():
@@ -158,6 +149,7 @@ def results():
                 ),
             )
         )
+
     print(
         tabulate(
             results_data,
@@ -168,7 +160,7 @@ def results():
 
 
 @cli.command()
-def evaluate(
+def evaluation(
     model: List[str] = typer.Option(..., help="A list of model names to evaluate."),
     test_category: List[str] = typer.Option(
         ..., help="A list of test categories to run the evaluation on."
@@ -183,11 +175,6 @@ def evaluate(
     """
     Evaluate results from run of one or more models on a test-category (same as eval_runner).
     """
-    # todo: make these params eval_runner_main
-    eval_runner.INPUT_PATH = "./result/"
-    eval_runner.PROMPT_PATH = "./data/"
-    eval_runner.POSSIBLE_ANSWER_PATH = "./data/possible_answer/"
-    eval_runner.OUTPUT_PATH = "./score/"
 
     eval_runner.main(model, test_category, api_sanity_check)
 
@@ -200,10 +187,10 @@ def scores():
     def truncate(text, length=22):
         return (text[:length] + '...') if len(text) > length else text
 
-    # files = ["./score/data_non_live.csv", "./score/data_live.csv", "./score/data_combined.csv"]
-    files = ["./score/data_overall.csv"]  # todo: make ./score configurable
+    # files = ["./score/data_non_live.csv", "./score/data_live.csv", "./score/data_overall.csv"]
+    files = [SCORE_PATH / "data_overall.csv"]
     for file in files:
-        if os.path.exists(file):
+        if file.exists():
             with open(file, newline='') as csvfile:
                 reader = csv.reader(csvfile)
                 headers = [truncate(header) for header in next(reader)]  # Read the header row
@@ -213,4 +200,5 @@ def scores():
             print(f"\nFile {file} not found.\n")
 
 if __name__ == "__main__":
+    load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
     cli()
