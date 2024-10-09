@@ -71,12 +71,7 @@ To run the executable test categories, there are 4 API keys to include:
 3. OMDB API: http://www.omdbapi.com/apikey.aspx
 4. Geocode API: https://geocode.maps.co/
 
-The `apply_function_credential_config.py` will automatically search for dataset files in the default `./data/` directory and replace the placeholder values with the actual API keys.
-After you have filled in the necessary values in the `.env` file, you can run the following command to apply the real API keys to the dataset files.
-
-```bash
-python apply_function_credential_config.py
-```
+The evaluation script will automatically search for dataset files in the default `./data/` directory and replace the placeholder values with the actual API keys you provided in the `.env` file.
 
 ## Evaluating different models on the BFCL
 

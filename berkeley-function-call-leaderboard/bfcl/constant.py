@@ -1,5 +1,15 @@
+from pathlib import Path
+
+# NOTE: These paths are relative to the `bfcl` directory where this script is located.
+RESULT_PATH = "../result/"
+PROMPT_PATH = "../data/"
+POSSIBLE_ANSWER_PATH = "../data/possible_answer/"
+SCORE_PATH = "../score/"
+DOTENV_PATH = "../.env"
+
 VERSION_PREFIX = "BFCL_v3"
 
+# These are in the PROMPT_PATH
 TEST_FILE_MAPPING = {
     "exec_simple": f"{VERSION_PREFIX}_exec_simple.json",
     "exec_parallel": f"{VERSION_PREFIX}_exec_parallel.json",
@@ -164,3 +174,15 @@ TEST_COLLECTION_MAPPING = {
         "live_relevance",
     ],
 }
+
+
+# Construct the full path to use by other scripts
+script_dir = Path(__file__).parent
+RESULT_PATH = (script_dir / RESULT_PATH).resolve()
+PROMPT_PATH = (script_dir / PROMPT_PATH).resolve()
+POSSIBLE_ANSWER_PATH = (script_dir / POSSIBLE_ANSWER_PATH).resolve()
+SCORE_PATH = (script_dir / SCORE_PATH).resolve()
+DOTENV_PATH = (script_dir / DOTENV_PATH).resolve()
+
+RESULT_PATH.mkdir(parents=True, exist_ok=True)
+SCORE_PATH.mkdir(parents=True, exist_ok=True)

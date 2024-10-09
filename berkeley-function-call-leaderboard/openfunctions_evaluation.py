@@ -5,7 +5,15 @@ import os
 import time
 from concurrent.futures import ThreadPoolExecutor
 
-from bfcl.constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING
+from bfcl._apply_function_credential_config import apply_function_credential_config
+from bfcl.constant import (
+    DOTENV_PATH,
+    PROMPT_PATH,
+    RESULT_PATH,
+    TEST_COLLECTION_MAPPING,
+    TEST_FILE_MAPPING,
+)
+from bfcl.eval_checker.eval_runner_helper import is_executable
 from bfcl.model_handler.handler_map import handler_map
 from bfcl.model_handler.model_style import ModelStyle
 from dotenv import load_dotenv
@@ -82,26 +90,19 @@ def parse_test_category_argument(test_category_args):
 
 def collect_test_cases(test_filename_total, model_name):
     model_name_dir = model_name.replace("/", "_")
+    model_result_dir = RESULT_PATH / model_name_dir
+
     test_cases_total = []
     for file_to_open in test_filename_total:
         test_cases = []
-        with open("./data/" + file_to_open) as f:
+        with open(PROMPT_PATH / file_to_open) as f:
             for line in f:
                 test_cases.append(json.loads(line))
 
         existing_result = []
-        if os.path.exists(
-            "./result/"
-            + model_name_dir
-            + "/"
-            + file_to_open.replace(".json", "_result.json")
-        ):
-            with open(
-                "./result/"
-                + model_name_dir
-                + "/"
-                + file_to_open.replace(".json", "_result.json")
-            ) as f:
+        result_file_path = model_result_dir / file_to_open.replace(".json", "_result.json")
+        if result_file_path.exists():
+            with open(result_file_path) as f:
                 for line in f:
                     existing_result.append(json.loads(line))
 
@@ -194,7 +195,7 @@ def generate_results(args, model_name, test_cases_total):
 
 
 if __name__ == "__main__":
-    load_dotenv(dotenv_path="./.env", verbose=True, override=True)  # Load the .env file
+    load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
 
     args = get_args()
 
@@ -206,6 +207,10 @@ if __name__ == "__main__":
     test_name_total, test_filename_total = parse_test_category_argument(args.test_category)
 
     print(f"Generating results for {args.model} on test category: {test_name_total}.")
+
+    # Apply function credential config if any of the test categories are executable
+    if any([is_executable(category) for category in test_name_total]):
+        apply_function_credential_config(input_path=PROMPT_PATH)
 
     for model_name in args.model:
         if (
