@@ -1,20 +1,22 @@
-import glob
 import json
 import os
 import re
 import statistics
-import subprocess
+from pathlib import Path
+from typing import Union
 
 import numpy as np
+from bfcl._apply_function_credential_config import apply_function_credential_config
+from bfcl.constant import VERSION_PREFIX
 from bfcl.eval_checker.constant import *
 from bfcl.eval_checker.executable_eval.custom_exception import BadAPIStatusError
 from bfcl.eval_checker.model_metadata import *
-from bfcl.constant import VERSION_PREFIX
 from bfcl.model_handler.handler_map import handler_map
 from tqdm import tqdm
 
 
-def extract_test_category(input_string):
+def extract_test_category(input_string: Union[str, Path]) -> str:
+    input_string = str(input_string)
     pattern = fr".*{VERSION_PREFIX}_(\w+?)(?:_score|_result)?\.json"
     match = re.search(pattern, input_string)
 
@@ -25,9 +27,8 @@ def extract_test_category(input_string):
         raise ValueError(f"Could not extract the test category from the input string: {input_string}")
 
 
-def find_file_with_suffix(folder_path, suffix):
-    json_files_pattern = os.path.join(folder_path, "*.json")
-    for json_file in glob.glob(json_files_pattern):
+def find_file_with_suffix(folder_path: Path, suffix: str) -> Path:
+    for json_file in folder_path.glob("*.json"):
         if extract_test_category(json_file) == suffix:
             return json_file
     raise FileNotFoundError(f"No JSON file found with suffix: {suffix}")
@@ -156,12 +157,7 @@ def api_status_sanity_check_rest():
     ground_truth_dummy = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
 
     # Use the ground truth data to make sure the API is working correctly
-    command = f"cd ../.. ; python apply_function_credential_config.py --input-path ./bfcl/eval_checker/{REST_API_GROUND_TRUTH_FILE_PATH};"
-    try:
-        subprocess.run(command, shell=True, capture_output=True, text=True, check=True)
-    except subprocess.CalledProcessError as e:
-        write_list_of_dicts_to_file(REST_API_GROUND_TRUTH_FILE_PATH, ground_truth_dummy)
-        raise RuntimeError(e.stderr) from e
+    apply_function_credential_config(input_path=REST_API_GROUND_TRUTH_FILE_PATH)
 
     ground_truth_replaced = load_file(REST_API_GROUND_TRUTH_FILE_PATH)
     write_list_of_dicts_to_file(REST_API_GROUND_TRUTH_FILE_PATH, ground_truth_dummy)
@@ -630,7 +626,7 @@ def generate_leaderboard_csv(
 
     data_non_live.insert(0, COLUMNS_NON_LIVE)
 
-    filepath = os.path.join(output_path, "data_non_live.csv")
+    filepath = output_path / "data_non_live.csv"
     with open(filepath, "w") as f:
         for i, row in enumerate(data_non_live):
             if i < len(data_non_live) - 1:
@@ -647,7 +643,7 @@ def generate_leaderboard_csv(
 
     data_live.insert(0, COLUMNS_LIVE)
 
-    filepath = os.path.join(output_path, "data_live.csv")
+    filepath = output_path / "data_live.csv"
     with open(filepath, "w") as f:
         for i, row in enumerate(data_live):
             if i < len(data_live) - 1:
@@ -670,7 +666,7 @@ def generate_leaderboard_csv(
 
     data_combined.insert(0, COLUMNS_OVERALL)
 
-    filepath = os.path.join(output_path, "data_overall.csv")
+    filepath = output_path / "data_overall.csv"
     with open(filepath, "w") as f:
         for i, row in enumerate(data_combined):
             if i < len(data_combined) - 1:
@@ -804,20 +800,18 @@ def check_all_category_present(category_status, eval_models=None, eval_categorie
     return found_issues
 
 
-def update_leaderboard_table_with_score_file(leaderboard_table, score_path):
+def update_leaderboard_table_with_score_file(leaderboard_table, score_path: Path) -> None:
 
-    entries = os.scandir(score_path)
+    entries = score_path.iterdir()
 
     # Filter out the subdirectories
-    subdirs = [entry.path for entry in entries if entry.is_dir()]
+    subdirs = [entry for entry in entries if entry.is_dir()]
 
     # Traverse each subdirectory
     for subdir in subdirs:
-        # Pattern to match JSON files in this subdirectory
-        json_files_pattern = os.path.join(subdir, "*.json")
-        model_name = subdir.split(score_path)[1]
+        model_name = subdir.relative_to(score_path).name
         # Find and process all JSON files in the subdirectory
-        for model_score_json in glob.glob(json_files_pattern):
+        for model_score_json in subdir.glob("*.json"):
             metadata = load_file(model_score_json)[0]
             accuracy, total_count = metadata["accuracy"], metadata["total_count"]
             test_category = extract_test_category(model_score_json)

@@ -1,17 +1,16 @@
 import json
-import os
 import time
 
+from bfcl.constant import RESULT_PATH, VERSION_PREFIX
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import (
     execute_multi_turn_func_call,
     is_empty_execute_response,
 )
 from bfcl.model_handler.constant import (
-    MAXIMUM_ROUND_LIMIT,
     DEFAULT_USER_PROMPT_FOR_ADDITIONAL_FUNCTION_FC,
     DEFAULT_USER_PROMPT_FOR_ADDITIONAL_FUNCTION_PROMPTING,
+    MAXIMUM_ROUND_LIMIT,
 )
-from bfcl.constant import VERSION_PREFIX
 from bfcl.model_handler.model_style import ModelStyle
 
 
@@ -480,7 +479,8 @@ class BaseHandler:
 
     def write(self, result):
         model_name_dir = self.model_name.replace("/", "_")
-        os.makedirs(f"./result/{model_name_dir}", exist_ok=True)
+        model_result_dir = RESULT_PATH / model_name_dir
+        model_result_dir.mkdir(parents=True, exist_ok=True)
 
         if type(result) is dict:
             result = [result]
@@ -488,7 +488,7 @@ class BaseHandler:
         for entry in result:
             test_category = entry["id"].rsplit("_", 1)[0]
             file_to_write = f"{VERSION_PREFIX}_{test_category}_result.json"
-            file_to_write = f"./result/{model_name_dir}/{file_to_write}"
+            file_to_write = model_result_dir / file_to_write
             with open(file_to_write, "a+") as f:
                 try:
                     f.write(json.dumps(entry) + "\n")

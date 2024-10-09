@@ -1,6 +1,15 @@
 import argparse
 
-from bfcl.constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING, VERSION_PREFIX
+from bfcl.constant import (
+    DOTENV_PATH,
+    POSSIBLE_ANSWER_PATH,
+    PROMPT_PATH,
+    RESULT_PATH,
+    SCORE_PATH,
+    TEST_COLLECTION_MAPPING,
+    TEST_FILE_MAPPING,
+    VERSION_PREFIX,
+)
 from bfcl.eval_checker.ast_eval.ast_checker import ast_checker
 from bfcl.eval_checker.eval_runner_helper import *
 from bfcl.eval_checker.executable_eval.custom_exception import BadAPIStatusError
@@ -16,7 +25,9 @@ from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import is_empty_execute_
 from dotenv import load_dotenv
 from tqdm import tqdm
 
-# NOTE: This file should be run in the `eval_checker` directory
+# A dictionary to store the evaluation scores.
+# Key is model name, value is a dictionary with keys as test category and values as a dictionary with accuracy and total count
+LEADERBOARD_TABLE = {}
 
 
 def multi_turn_runner(
@@ -138,7 +149,7 @@ def multi_turn_runner(
         },
     )
     output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = os.path.join(OUTPUT_PATH, model_name)
+    output_file_dir = SCORE_PATH / model_name
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
@@ -241,7 +252,7 @@ def executable_file_runner(handler, model_result, prompt, model_name, test_categ
         },
     )
     output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = os.path.join(OUTPUT_PATH, model_name)
+    output_file_dir = SCORE_PATH / model_name
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
@@ -313,7 +324,7 @@ def relevance_file_runner(handler, model_result, prompt, model_name, test_catego
         },
     )
     output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = os.path.join(OUTPUT_PATH, model_name)
+    output_file_dir = SCORE_PATH / model_name
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
@@ -407,7 +418,7 @@ def ast_file_runner(
         },
     )
     output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = os.path.join(OUTPUT_PATH, model_name)
+    output_file_dir = SCORE_PATH / model_name
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
@@ -429,28 +440,24 @@ def runner(model_names, test_categories, api_sanity_check):
     EXECUTABLE_TEST_CATEGORIES_HAVE_RUN = []
 
     # Get a list of all entries in the folder
-    entries = os.scandir(INPUT_PATH)
+    entries = RESULT_PATH.iterdir()
 
     # Filter out the subdirectories
-    subdirs = [entry.path for entry in entries if entry.is_dir()]
+    subdirs = [entry for entry in entries if entry.is_dir()]
 
     # Traverse each subdirectory
     for subdir in tqdm(subdirs, desc="Number of models evaluated"):
 
-        model_name = subdir.split(INPUT_PATH)[1]
+        model_name = subdir.relative_to(RESULT_PATH).name
         if model_names is not None and model_name not in model_names:
             continue
 
         model_name_escaped = model_name.replace("_", "/")
 
-        # Pattern to match JSON files in this subdirectory
-        json_files_pattern = os.path.join(subdir, "*.json")
-
         print(f"🦍 Model: {model_name}")
 
         # Find and process all JSON files in the subdirectory
-        for model_result_json in glob.glob(json_files_pattern):
-
+        for model_result_json in subdir.glob("*.json"):
             test_category = extract_test_category(model_result_json)
             if test_categories is not None and test_category not in test_categories:
                 continue
@@ -571,9 +578,9 @@ def runner(model_names, test_categories, api_sanity_check):
 
     # This function reads all the score files from local folder and updates the leaderboard table.
     # This is helpful when you only want to run the evaluation for a subset of models and test categories.
-    update_leaderboard_table_with_score_file(LEADERBOARD_TABLE, OUTPUT_PATH)
+    update_leaderboard_table_with_score_file(LEADERBOARD_TABLE, SCORE_PATH)
     # Write the leaderboard table to a file
-    generate_leaderboard_csv(LEADERBOARD_TABLE, OUTPUT_PATH, model_names, test_categories)
+    generate_leaderboard_csv(LEADERBOARD_TABLE, SCORE_PATH, model_names, test_categories)
 
     # Clean up the executable expected output files
     # They should be re-generated the next time the evaluation is run
@@ -584,21 +591,11 @@ def runner(model_names, test_categories, api_sanity_check):
     )
 
     print(
-        f"🏁 Evaluation completed. See {os.path.abspath(OUTPUT_PATH + 'data_overall.csv')} for evaluation results on BFCL V2."
+        f"🏁 Evaluation completed. See {SCORE_PATH / 'data_overall.csv'} for evaluation results on BFCL V2."
     )
     print(
-        f"See {os.path.abspath(OUTPUT_PATH + 'data_live.csv')} and {os.path.abspath(OUTPUT_PATH + 'data_non_live.csv')} for evaluation results on BFCL V2 Live and Non-Live categories respectively."
+        f"See {SCORE_PATH / 'data_live.csv'} and {SCORE_PATH / 'data_non_live.csv'} for evaluation results on BFCL V2 Live and Non-Live categories respectively."
     )
-
-
-INPUT_PATH = "../../result/"
-PROMPT_PATH = "../../data/"
-POSSIBLE_ANSWER_PATH = "../../data/possible_answer/"
-OUTPUT_PATH = "../../score/"
-
-# A dictionary to store the results
-# Key is model name, value is a dictionary with keys as test category and values as a dictionary with accuracy and total count
-LEADERBOARD_TABLE = {}
 
 
 if __name__ == "__main__":
@@ -643,5 +640,5 @@ if __name__ == "__main__":
             # We patch it here to avoid confusing the user.
             model_names.append(model_name.replace("/", "_"))
 
-    load_dotenv(dotenv_path="../../.env", verbose=True, override=True)  # Load the .env file
+    load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
     runner(model_names, test_categories, api_sanity_check)
