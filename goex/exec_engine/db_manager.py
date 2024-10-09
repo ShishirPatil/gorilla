@@ -300,3 +300,120 @@ class MySQLManager(DBManager):
         if self.conn:
             self.cursor.close()
             self.conn.close()
+
+class PostgreSQLManager(DBManager):
+    """PostgreSQL database manager.
+    
+    Attributes:
+        _postgresql_imported (bool): flag to check if postgresql is imported.
+        
+    Methods:
+        connect: Establish connections to the DB
+        execute_db_call: Execute SQL call
+        commit_db_calls: Commit SQL calls
+        rollback_db_calls: Rollback SQL calls
+        close: Close the connection to the database
+    """
+    _postgresql_imported = False
+    db_type = "postgresql"
+    TEST_CONFIG = "{'host': '127.0.0.1', 'user': 'root', 'password': ''}\n Use psycopg2 and make sure to create the database using subprocess before connection."
+    def __init__(self, connection_config, docker_sandbox: DockerSandbox = None):
+        """Initialize the PostgreSQLManager.
+
+        Args:
+            connection_config (dict): configuration for the database connection, including keys for 'user', 'password', 'host', and 'database'.
+        """
+        if not PostgreSQLManager._postgresql_imported:
+            global psycopg2
+            import psycopg2
+            PostgreSQLManager._postgresql_imported = True
+        
+        keys = connection_config.keys()
+
+        if any(key not in keys for key in ['host', 'user', 'password', 'database']):
+            raise ValueError("Failed to initialize PostgreSQL Manager due to bad configs")
+        elif any([not connection_config['host'], not connection_config['user'], not connection_config['password'], not connection_config['database']]):
+            raise ValueError("Failed to initialize PostgreSQL Manager due to missing configs")
+
+        self.connection_config = {
+            'dbname': connection_config['database'] if 'database' in connection_config else 'postgres',
+            'user': connection_config['user'] if 'user' in connection_config else 'postgres',
+            'password': connection_config['password'] if 'password' in connection_config else '',
+            'host': connection_config['host'] if 'host' in connection_config else '127.0.0.1'
+        }
+
+    def connect(self):
+        """Establish connection to the MySQL database and create a cursor."""
+        connection = None
+        try:
+            connection = psycopg2.connect(**self.connection_config)
+            self.conn = connection
+            self.cursor = connection.cursor()
+            self.update_schema_info()
+        except Exception as e:
+            if connection:
+                connection.close()
+            print("Failed to connect to the database. Error:", e)
+
+    def update_schema_info(self):
+        schema_info = {}
+        get_all_tables_query = """
+        SELECT table_name
+        FROM information_schema.tables
+        WHERE table_schema = 'public'
+        """
+        self.cursor.execute(get_all_tables_query)
+        tables = self.cursor.fetchall()
+        for (table_name,) in tables:
+            self.cursor.execute(f"SELECT column_name, data_type, is_nullable, column_default FROM information_schema.columns WHERE table_name = '{table_name}';")
+            schema_info[table_name] = self.cursor.fetchall()
+        
+        self.schema = schema_info
+    
+    def execute_db_call(self, call):
+        """Execute a SQL call using the cursor."""
+        if not self.conn:
+            self.connect()
+        try:
+            self.cursor.execute(call)
+            self.update_schema_info()
+            return 0
+        except Exception as e:
+            return 1
+
+    def fetch_db_call(self, call: str) -> list[dict]:
+        """Execute a SQL call and return the results.
+        
+        Args:
+            call (str): SQL query to execute.
+        
+        Returns:
+            list[dict]: A list of dictionaries representing each row in the query result.
+        """
+        if not self.conn:
+            self.connect()
+        try:
+            self.cursor.execute(call)
+            ret_val = self.cursor.fetchall()
+            self.update_schema_info()
+            return ret_val
+        except Exception as e:
+            return []
+
+    def commit_db_calls(self):
+        """Commit SQL calls."""
+        if not self.conn:
+            self.connect()
+        self.conn.commit()
+
+    def rollback_db_calls(self):
+        """Rollback SQL calls not committed."""
+        if not self.conn:
+            self.connect()
+        self.conn.rollback()
+
+    def close(self):
+        """Close the cursor and the connection to the database."""
+        if self.conn:
+            self.cursor.close()
+            self.conn.close()
