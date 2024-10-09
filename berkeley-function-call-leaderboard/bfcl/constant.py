@@ -54,14 +54,14 @@ TEST_COLLECTION_MAPPING = {
         "multi_turn_miss_func",
         "multi_turn_miss_param",
         "multi_turn_long_context",
-        "multi_turn_composite",
+        # "multi_turn_composite",  # Composite is currently not included in the leaderboard
     ],
     "multi_turn": [
         "multi_turn_base",
         "multi_turn_miss_func",
         "multi_turn_miss_param",
         "multi_turn_long_context",
-        "multi_turn_composite",
+        # "multi_turn_composite",  # Composite is currently not included in the leaderboard
     ],
     "single_turn": [
         "exec_simple",

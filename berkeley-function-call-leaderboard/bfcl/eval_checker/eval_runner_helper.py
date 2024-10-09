@@ -90,6 +90,14 @@ def write_list_of_dicts_to_file(filename, data, subdir=None):
     # Write the list of dictionaries to the file in JSON format
     with open(filename, "w") as f:
         for i, entry in enumerate(data):
+            # Go through each key-value pair in the dictionary to make sure the values are JSON serializable
+            for key, value in entry.items():
+                try:
+                    json.dumps(value)
+                except:
+                    # If the value is not JSON serializable, wrap it in a string
+                    entry[key] = str(value)
+
             json_str = json.dumps(entry)
             f.write(json_str)
             if i < len(data) - 1:
@@ -338,15 +346,17 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
         ) / 1000
         cost = round(cost, 2)
 
-    if model_name in OSS_LATENCY:
-        mean_latency, std_latency, percentile_95_latency = (
-            OSS_LATENCY[model_name] / 1700,
-            "N/A",
-            "N/A",
-        )
-        mean_latency = round(mean_latency, 2)
-        cost = mean_latency * 1000 * V100_x8_PRICE_PER_HOUR / 3600
-        cost = round(cost, 2)
+    # TODO: Have a formal way to calculate the cost and latency for OSS models
+    # Currently, all OSS models will have no cost.
+    # if model_name in OSS_LATENCY:
+    #     mean_latency, std_latency, percentile_95_latency = (
+    #         OSS_LATENCY[model_name] / 1700,
+    #         "N/A",
+    #         "N/A",
+    #     )
+    #     mean_latency = round(mean_latency, 2)
+    #     cost = mean_latency * 1000 * V100_x8_PRICE_PER_HOUR / 3600
+    #     cost = round(cost, 2)
 
     elif len(latency_data["data"]) != 0:
         mean_latency = statistics.mean(latency_data["data"])
@@ -612,7 +622,7 @@ def generate_leaderboard_csv(
         )
         
     # Write Non-Live Score File
-    data_non_live.sort(key=lambda x: x[1], reverse=True)
+    data_non_live.sort(key=lambda x: x[2], reverse=True)
     for i in range(len(data_non_live)):
         data_non_live[i][0] = str(i + 1)
         for j in range(2, len(data_non_live[i])):
@@ -629,7 +639,7 @@ def generate_leaderboard_csv(
                 f.write(",".join(row))
     
     # Write Live Score File
-    data_live.sort(key=lambda x: x[1], reverse=True)
+    data_live.sort(key=lambda x: x[2], reverse=True)
     for i in range(len(data_live)):
         data_live[i][0] = str(i + 1)
         for j in range(2, len(data_live[i])):
