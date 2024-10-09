@@ -3,17 +3,16 @@ import time
 from functools import lru_cache
 
 import requests  # Do not remove this import even though it seems to be unused. It's used in the executable_checker_rest function.
-from bfcl.eval_checker.constant import REAL_TIME_MATCH_ALLOWED_DIFFERENCE
+from bfcl.eval_checker.constant import (
+    REAL_TIME_MATCH_ALLOWED_DIFFERENCE,
+    REST_EVAL_GROUND_TRUTH_PATH,
+)
 from bfcl.eval_checker.executable_eval.custom_exception import NoAPIKeyError
 
-#### Constants ####
-EVAL_GROUND_TRUTH_PATH = (
-    "./executable_eval/data/rest-eval-response_v5.jsonl"  # Ground truth file for v5 for rest execution
-)
-
+# Load the ground truth data for the `rest` test category
 @lru_cache(maxsize=1)  # cache the result, effectively loading data once
 def load_eval_ground_truth():
-    with open(EVAL_GROUND_TRUTH_PATH, "r") as f:
+    with open(REST_EVAL_GROUND_TRUTH_PATH, "r") as f:
         return f.readlines()
 
 #### Main function ####
