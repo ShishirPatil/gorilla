@@ -17,9 +17,9 @@ class ExecutionOrderGroup(typer.core.TyperGroup):
         return [
             "models",
             "test-categories",
-            "generation",
+            "generate",
             "results",
-            "evaluation",
+            "evaluate",
             "scores",
         ]
 
@@ -61,7 +61,7 @@ def models():
 
 
 @cli.command()
-def generation(
+def generate(
     model: List[str] = typer.Option(
         ["gorilla-openfunctions-v2"], help="A list of model names to evaluate."
     ),
@@ -164,7 +164,7 @@ def results():
 
 
 @cli.command()
-def evaluation(
+def evaluate(
     model: List[str] = typer.Option(None, help="A list of model names to evaluate."),
     test_category: List[str] = typer.Option(
         None, help="A list of test categories to run the evaluation on."

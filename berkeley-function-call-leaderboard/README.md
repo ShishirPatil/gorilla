@@ -101,7 +101,7 @@ If decided to run locally-hosted model, the generation script uses vLLM and ther
 Use the following command for LLM inference of the evaluation dataset with specific models.
 
 ```bash
-bfcl generation --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1
+bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1
 ```
 
 You can optionally specify the number of threads to use for _parallel inference_ by setting the `--num-threads` flag to speed up inference for **hosted models**, not applicable for OSS models.
@@ -247,7 +247,7 @@ In the following two sections, the optional `--test-category` parameter can be u
 Navigate to the `gorilla/berkeley-function-call-leaderboard/bfcl/eval_checker` directory and run the `eval_runner.py` script with the desired parameters. The basic syntax is as follows:
 
 ```bash
-bfcl evaluation --model MODEL_NAME --test-category TEST_CATEGORY
+bfcl evaluate --model MODEL_NAME --test-category TEST_CATEGORY
 ```
 
 For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section.
@@ -259,25 +259,25 @@ If no `MODEL_NAME` is provided, all available model results will be evaluated by
 If you want to run all tests for the `gorilla-openfunctions-v2` model, you can use the following command:
 
 ```bash
-bfcl evaluation --model gorilla-openfunctions-v2
+bfcl evaluate --model gorilla-openfunctions-v2
 ```
 
 If you want to evaluate all offline tests (do not require RapidAPI keys) for OpenAI GPT-3.5, you can use the following command:
 
 ```bash
-bfcl evaluation --model gpt-3.5-turbo-0125 --test-category ast
+bfcl evaluate --model gpt-3.5-turbo-0125 --test-category ast
 ```
 
 If you want to run the `rest` tests for a few Claude models, you can use the following command:
 
 ```bash
-bfcl evaluation --model claude-3-5-sonnet-20240620 claude-3-opus-20240229 claude-3-sonnet-20240229 --test-category rest
+bfcl evaluate --model claude-3-5-sonnet-20240620 claude-3-opus-20240229 claude-3-sonnet-20240229 --test-category rest
 ```
 
 If you want to run `live_simple` and `javascript` tests for a few models and `gorilla-openfunctions-v2`, you can use the following command:
 
 ```bash
-bfcl evaluation --model gorilla-openfunctions-v2 claude-3-5-sonnet-20240620 gpt-4-0125-preview gemini-1.5-pro-preview-0514 --test-category live_simple javascript
+bfcl evaluate --model gorilla-openfunctions-v2 claude-3-5-sonnet-20240620 gpt-4-0125-preview gemini-1.5-pro-preview-0514 --test-category live_simple javascript
 ```
 
 ### Model-Specific Optimization
