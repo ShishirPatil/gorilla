@@ -1,8 +1,10 @@
 import json
-from bfcl.model_handler.model_style import ModelStyle
-from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
-from bfcl.model_handler.oss_model.constant import VLLM_PORT
-from openai import OpenAI
+
+from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
+from bfcl.model_handler.utils import (
+    convert_system_prompt_into_user_prompt,
+    func_doc_language_specific_pre_processing,
+)
 
 TASK_INSTRUCTION = """You are a tool calling assistant. In order to complete the user's request, you need to select one or more appropriate tools from the following tools and fill in the correct values for the tool parameters. Your specific tasks are:
 1. Make one or more function/tool calls to meet the request based on the question.
@@ -22,12 +24,11 @@ The example format is as follows. Please make sure the parameter type is correct
 """
 
 
-class HammerHandler(SalesforceHandler):
+class HammerHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.client = OpenAI(base_url=f"http://localhost:{VLLM_PORT}/v1", api_key="EMPTY")
-    @staticmethod
-    def _format_prompt(messages, function):
+
+    def _format_prompt(self, messages, function):
         """
         "chat_template": "{% set system_message = 'You are a helpful assistant.' %}{% if messages[0]['role'] == 'system' %}{% set system_message = messages[0]['content'] %}{% endif %}{% if system_message is defined %}{{ '<|im_start|>system\n' + system_message + '<|im_end|>\n' }}{% endif %}{% for message in messages %}{% set content = message['content'] %}{% if message['role'] == 'user' %}{{ '<|im_start|>user\n' + content + '<|im_end|>\n<|im_start|>assistant\n' }}{% elif message['role'] == 'assistant' %}{{ content + '<|im_end|>' + '\n' }}{% endif %}{% endfor %}",
         """
@@ -42,7 +43,9 @@ class HammerHandler(SalesforceHandler):
                 }
 
                 for param in format_tools["parameters"].keys():
-                    if "properties" in format_tools["parameters"][param] and isinstance(format_tools["parameters"][param]["properties"], dict):
+                    if "properties" in format_tools["parameters"][param] and isinstance(
+                        format_tools["parameters"][param]["properties"], dict
+                    ):
                         required = format_tools["parameters"][param].get("required", [])
                         format_tools["parameters"][param] = format_tools["parameters"][param]["properties"]
                         for p in required:
@@ -66,23 +69,11 @@ class HammerHandler(SalesforceHandler):
         tools = convert_to_format_tool(function)
 
         user_query = ""
-        
-        N = len(messages)
-        if N == 2:            
-            for message in messages:
-                if message["role"] == "user":
-                    user_query += f"{message['content']}"
 
-        else: 
-            for message in messages:
-                if message['role'] == 'assistant':
-                    if message['content'] != []:
-                         user_query += f"{message['role']}: ```\n{json.dumps(message['content'])}\n```\n"
-                elif message['role'] != 'system':
-                    user_query += f"{message['role']}: {message['content']}\n"
-            if messages[-1]['role'] != 'user':
-                user_query += "user:  \n"
-
+        for message in messages:
+            user_query += f"{message['role']}: {message['content']}\n"
+        if messages[-1]["role"] != "user":
+            user_query += "user:  \n"
 
         content = f"[BEGIN OF TASK INSTRUCTION]\n{TASK_INSTRUCTION}\n[END OF TASK INSTRUCTION]\n\n"
         content += (
@@ -92,52 +83,76 @@ class HammerHandler(SalesforceHandler):
         )
         content += f"[BEGIN OF FORMAT INSTRUCTION]\n{FORMAT_INSTRUCTION}\n[END OF FORMAT INSTRUCTION]\n\n"
         content += f"[BEGIN OF QUERY]\n{user_query}\n[END OF QUERY]\n\n"
-        
-        return content
 
+        return f"<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n<|im_start|>user\n{content}<|im_end|>\n<|im_start|>assistant\n"
 
-    
-    def _parse_query_response_prompting(self, api_response: any) -> dict:
-        if api_response["choices"][0]["message"]["tool_calls"] != []:
-            return {
-                "model_responses": api_response["choices"][0]["message"]["tool_calls"],
-                "input_token": 0,
-                "output_token": 0,
-            }
-        else:
-            return {
-                "model_responses": api_response["choices"][0]["message"]["content"],
-                "input_token": 0,
-                "output_token": 0,
-            }
-
-    def _query_prompting(self, inference_data: dict):
-        function: list[dict] = inference_data["function"]
-        message: list[dict] = inference_data["message"]
-
-        formatted_prompt = self._format_prompt(message, function)
-        inference_data["inference_input_log"] = {"formatted_prompt": formatted_prompt}
-        message_new = [{"role":"user","content":formatted_prompt}]
-        outputs = self.client.chat.completions.create(
-                model=self.model_name,
-                temperature=self.temperature,
-                messages=message_new,
-                max_tokens=4096,  
-            )
-        agent_action = outputs.choices[0].message.content
-        action = agent_action.replace("```", "")
+    def decode_ast(self, result, language="Python"):
+        result = result.replace("```", "")
         try:
-            action = json.loads(action)
-            
+            result = json.loads(result)
         except:
-            action = []
+            result = []
 
-        return {
-            'choices': [{
-                'message': {
-                    'role': 'assistant',
-                    'content': action,
-                    'tool_calls': action
-                }
-            }]
-        }
+        decoded_output = []
+        for invoked_function in result:
+            name = invoked_function["name"]
+            params = invoked_function["arguments"]
+            decoded_output.append({name: params})
+        return decoded_output
+
+    @staticmethod
+    def xlam_json_to_python_tool_calls(tool_calls):
+        """
+        Converts a list of function calls in xLAM JSON format to Python format.
+
+        Parameters:
+        tool_calls (list): A list of dictionaries, where each dictionary represents a function call in xLAM JSON format.
+
+        Returns:
+        python_format (list): A list of strings, where each string is a function call in Python format.
+        """
+        if not isinstance(tool_calls, list):
+            tool_calls = [tool_calls]
+
+        python_format = []
+        for tool_call in tool_calls:
+            if isinstance(tool_call, dict):
+                name = tool_call.get("name", "")
+                arguments = tool_call.get("arguments", {})
+                args_str = ", ".join(
+                    [f"{key}={repr(value)}" for key, value in arguments.items()]
+                )
+                python_format.append(f"{name}({args_str})")
+
+        return python_format
+
+    def decode_execute(self, result):
+        result = result.replace("```", "")
+        try:
+            result = json.loads(result)
+        except:
+            result = []
+
+        if isinstance(result, list):
+            tool_calls = result
+        elif isinstance(result, dict):
+            tool_calls = result.get("tool_calls", [])
+        else:
+            tool_calls = []
+        function_call = self.xlam_json_to_python_tool_calls(tool_calls)
+        return function_call
+
+    def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
+        functions: list = test_entry["function"]
+        test_category: str = test_entry["id"].rsplit("_", 1)[0]
+
+        functions = func_doc_language_specific_pre_processing(functions, test_category)
+
+        # Convert all system prompts to user prompts, as Hammer doesn't take system prompts
+        test_entry["question"][0] = convert_system_prompt_into_user_prompt(
+            test_entry["question"][0]
+        )
+
+        # Hammer have its own system prompt, so we don't need to add the default system prompt
+
+        return {"message": [], "function": functions}
