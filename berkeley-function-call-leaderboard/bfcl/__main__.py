@@ -161,9 +161,9 @@ def results():
 
 @cli.command()
 def evaluation(
-    model: List[str] = typer.Option(..., help="A list of model names to evaluate."),
+    model: List[str] = typer.Option(None, help="A list of model names to evaluate."),
     test_category: List[str] = typer.Option(
-        ..., help="A list of test categories to run the evaluation on."
+        None, help="A list of test categories to run the evaluation on."
     ),
     api_sanity_check: bool = typer.Option(
         False,
@@ -173,7 +173,7 @@ def evaluation(
     ),
 ):
     """
-    Evaluate results from run of one or more models on a test-category (same as eval_runner).
+    Evaluate results from run of one or more models on a test-category (same as eval_runner.py).
     """
 
     eval_runner.main(model, test_category, api_sanity_check)
