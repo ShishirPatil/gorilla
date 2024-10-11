@@ -417,3 +417,37 @@ class PostgreSQLManager(DBManager):
         if self.conn:
             self.cursor.close()
             self.conn.close()
+
+class MongoDBManager(DBManager):
+    """MongoDB database manager.
+    
+    Attributes:
+        _mongodb_imported (bool): flag to check if mongodb is imported.
+        
+    Methods:
+        connect: Establish connections to the DB
+        execute_db_call: Execute SQL call
+        commit_db_calls: Commit SQL calls
+        rollback_db_calls: Rollback SQL calls
+        close: Close the connection to the database
+    """
+    _mongodb_imported = False
+    db_type = "mongodb"
+    TEST_CONFIG = "{'host': '127.0.0.1', 'user': 'root', 'password': ''}\n Use pymongo and make sure to create the database using subprocess before connection."
+    def __init__(self, connection_config, docker_sandbox: DockerSandbox = None):
+        """Initialize the MongoDBManager.
+
+        Args:
+            connection_config (dict): configuration for the database connection, including keys for 'user', 'password', 'host', and 'database'.
+        """
+        if not MongoDBManager._mongodb_imported:
+            global pymongo
+            import pymongo
+            MongoDBManager._mongodb_imported = True
+        
+        keys = connection_config.keys()
+
+        if any(key not in keys for key in ['host', 'user', 'password', 'database']):
+            raise ValueError("Failed to initialize MongoDB Manager due to bad configs")
+        elif any([not connection_config['host'], not connection_config['user'], not connection_config['password'], not connection_config['database']]):
+            raise ValueError("Failed to initialize MongoDB Manager due to missing configs")
