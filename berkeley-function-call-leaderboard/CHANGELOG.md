@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Oct 10, 2024] [#621](https://github.com/ShishirPatil/gorilla/pull/621), [#675](https://github.com/ShishirPatil/gorilla/pull/675): Add a basic command-line interface for ease of use.
 - [Oct 5, 2024] [#642](https://github.com/ShishirPatil/gorilla/pull/642): Add the following new models to the leaderboard:
   - `Qwen/Qwen2.5-7B-Instruct`
   - `Qwen/Qwen2.5-1.5B-Instruct`
