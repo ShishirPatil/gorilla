@@ -37,7 +37,10 @@ def test_categories():
     List available test categories.
     """
     table = tabulate(
-        [(category, "\n".join(test for test in tests)) for category, tests in TEST_COLLECTION_MAPPING.items()],
+        [
+            (category, "\n".join(test for test in tests))
+            for category, tests in TEST_COLLECTION_MAPPING.items()
+        ],
         headers=["Test category", "Test names"],
         tablefmt="grid",
     )
@@ -75,7 +78,8 @@ def generation(
         0.001, help="The temperature parameter for the model."
     ),
     include_debugging_log: bool = typer.Option(
-        False, help="Include debugging log in the response file to see model's interaction with the state machine."
+        False,
+        help="Include debugging log in the response file to see model's interaction with the state machine.",
     ),
     num_gpus: int = typer.Option(1, help="The number of GPUs to use."),
     num_threads: int = typer.Option(1, help="The number of threads to use."),
@@ -184,20 +188,42 @@ def scores():
     """
     Display the leaderboard.
     """
+
     def truncate(text, length=22):
-        return (text[:length] + '...') if len(text) > length else text
+        return (text[:length] + "...") if len(text) > length else text
 
     # files = ["./score/data_non_live.csv", "./score/data_live.csv", "./score/data_overall.csv"]
-    files = [SCORE_PATH / "data_overall.csv"]
-    for file in files:
-        if file.exists():
-            with open(file, newline='') as csvfile:
-                reader = csv.reader(csvfile)
-                headers = [truncate(header) for header in next(reader)]  # Read the header row
-                data = [[truncate(cell) for cell in row] for row in reader]  # Read the rest of the data
-                print(tabulate(data, headers=headers, tablefmt='grid'))
-        else:
-            print(f"\nFile {file} not found.\n")
+    file = SCORE_PATH / "data_overall.csv"
+
+    hidden_columns = [
+        "Model Link",
+        "Cost ($ Per 1k Function Calls)",
+        "Latency Mean (s)",
+        "Latency Standard Deviation (s)",
+        "Latency 95th Percentile (s)",
+        "Organization",
+        "License",
+    ]
+
+    if file.exists():
+        with open(file, newline="") as csvfile:
+            reader = csv.reader(csvfile)
+            headers = next(reader)  # Read the header row
+            column_indices = [
+                i for i, header in enumerate(headers) if header not in hidden_columns
+            ]
+            filtered_headers = [headers[i] for i in column_indices]
+            data = [
+                [row[i] for i in column_indices] for row in reader
+            ]  # Read the rest of the data
+            model_names = [row[2] for row in data]  # The model name will be used as the row header
+            data = [row[:2] + row[3:] for row in data]  # Remove the model name from the data
+            filtered_headers.remove("Model")
+            transposed_data = list(zip(filtered_headers, *data))
+            print(tabulate(transposed_data, headers=model_names, tablefmt="grid"))
+    else:
+        print(f"\nFile {file} not found.\n")
+
 
 if __name__ == "__main__":
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
