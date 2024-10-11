@@ -104,6 +104,7 @@ def generate(
         ],
     )
 
+    load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
     generation_main(
         generationArgs(
             model=model,
@@ -184,6 +185,7 @@ def evaluate(
     Evaluate results from run of one or more models on a test-category (same as eval_runner.py).
     """
 
+    load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
     eval_runner.main(model, test_category, api_sanity_check)
 
 
@@ -199,36 +201,31 @@ def scores():
     # files = ["./score/data_non_live.csv", "./score/data_live.csv", "./score/data_overall.csv"]
     file = SCORE_PATH / "data_overall.csv"
 
-    hidden_columns = [
-        "Model Link",
-        "Cost ($ Per 1k Function Calls)",
-        "Latency Mean (s)",
-        "Latency Standard Deviation (s)",
-        "Latency 95th Percentile (s)",
-        "Organization",
-        "License",
+    selected_columns = [
+        "Rank",
+        "Model",
+        "Overall Acc",
+        "Non-Live AST Acc",
+        "Non-Live Exec Acc",
+        "Live Acc",
+        "Multi Turn Acc",
+        "Relevance Detection",
+        "Irrelevance Detection",
     ]
 
     if file.exists():
         with open(file, newline="") as csvfile:
             reader = csv.reader(csvfile)
             headers = next(reader)  # Read the header row
-            column_indices = [
-                i for i, header in enumerate(headers) if header not in hidden_columns
-            ]
-            filtered_headers = [headers[i] for i in column_indices]
+            column_indices = [headers.index(col) for col in selected_columns]
             data = [
                 [row[i] for i in column_indices] for row in reader
             ]  # Read the rest of the data
-            model_names = [row[2] for row in data]  # The model name will be used as the row header
-            data = [row[:2] + row[3:] for row in data]  # Remove the model name from the data
-            filtered_headers.remove("Model")
-            transposed_data = list(zip(filtered_headers, *data))
-            print(tabulate(transposed_data, headers=model_names, tablefmt="grid"))
+            selected_columns = selected_columns[:-2] + ["Relevance", "Irrelevance"]  # Shorten the column names
+            print(tabulate(data, headers=selected_columns, tablefmt="grid"))
     else:
         print(f"\nFile {file} not found.\n")
 
 
 if __name__ == "__main__":
-    load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
     cli()
