@@ -447,7 +447,25 @@ class MongoDBManager(DBManager):
         
         keys = connection_config.keys()
 
-        if any(key not in keys for key in ['host', 'user', 'password', 'database']):
+        if 'host' not in keys:
             raise ValueError("Failed to initialize MongoDB Manager due to bad configs")
-        elif any([not connection_config['host'], not connection_config['user'], not connection_config['password'], not connection_config['database']]):
-            raise ValueError("Failed to initialize MongoDB Manager due to missing configs")
+
+    def connect(self):
+        """Establish connection to the MySQL database and create a cursor."""
+        connection = None
+        try:
+            connection = pymongo.MongoClient(self.connection_config['host'])
+            self.conn = connection
+            self.update_schema_info()
+        except Exception as e:
+            if connection:
+                connection.close()
+            print("Failed to connect to the database. Error:", e)
+    
+    def update_schema_info(self):
+        schema_info = {}
+        db = self.conn.list_database_names()
+        for database in db:
+            schema_info[database] = self.conn[database].list_collection_names()
+        
+        self.schema = schema_info
