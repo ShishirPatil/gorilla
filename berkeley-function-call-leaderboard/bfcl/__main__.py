@@ -145,6 +145,10 @@ def results():
 
     results_data = []
     for dir in result_dir.iterdir():
+        # Check if it is a directory and not a file
+        if not dir.is_dir():
+            continue
+
         results_data.append(
             (
                 display_name(dir.name),
