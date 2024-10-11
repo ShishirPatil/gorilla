@@ -1,7 +1,6 @@
 docker
 uvicorn
 fastapi
-sqlite3
 psycopg2
 pymongo
 docopt==0.6.2
