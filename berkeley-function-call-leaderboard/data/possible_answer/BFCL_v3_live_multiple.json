@@ -23,7 +23,7 @@
 {"id": "live_multiple_22-4-14", "ground_truth": [{"HNA_WQA.search": {"keyword": ["\uc784\uc9c4\uc65c\ub780"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
 {"id": "live_multiple_23-5-0", "ground_truth": [{"search_products": {"color": ["red"], "size": ["8"], "category": ["shoes"], "price_min": ["", 0.0], "price_max": ["", null], "brand": ["", null]}}]}
 {"id": "live_multiple_24-5-1", "ground_truth": [{"search_products": {"color": ["", null], "size": ["XL", "Extra Large"], "category": ["clothing"], "price_min": ["", 0.0], "price_max": ["", null], "brand": ["", null]}}]}
-{"id": "live_multiple_25-6-0", "ground_truth": [{"recall_memory_search": {"query": ["when is shishir's birthday", "shishir birthday", "Shishir birthday"], "page": ["", 0], "request_heartbeat": ["", false]}}]}
+{"id": "live_multiple_25-6-0", "ground_truth": [{"recall_memory_search": {"query": ["when is shishir's birthday", "when's shishir's birthday", "shishir birthday", "shishir's birthday"], "page": ["", 0], "request_heartbeat": ["", false]}}]}
 {"id": "live_multiple_26-6-1", "ground_truth": [{"recall_memory_search": {"query": ["Shishir Patil's birthday", "Shishir Patil birthday"], "page": ["", 0], "request_heartbeat": ["", false]}}]}
 {"id": "live_multiple_27-7-0", "ground_truth": [{"add": {"a": [100], "b": [-40]}}]}
 {"id": "live_multiple_28-8-0", "ground_truth": [{"my_core_function": {"name": ["Balkrushn"]}}]}
@@ -40,7 +40,7 @@
 {"id": "live_multiple_39-14-1", "ground_truth": [{"review_of_interviewer": {"interviewer_name": ["Charlie Brown"], "include_comments": [true]}}]}
 {"id": "live_multiple_40-15-0", "ground_truth": [{"oven_preheat": {"duration": [36], "temperature": [201]}}]}
 {"id": "live_multiple_41-16-0", "ground_truth": [{"get_services": {"namespace": ["default"]}}]}
-{"id": "live_multiple_42-16-1", "ground_truth": [{"get_pods": {"namespace": ["cascade-sandbox"], "label_selector": ["", ""], "field_selector": ["", ""], "include_uninitialized": ["", false]}}]}
+{"id": "live_multiple_42-16-1", "ground_truth": [{"get_pods": {"namespace": ["cascade-sandbox"], "label_selector": [""], "field_selector": [""], "include_uninitialized": ["", false]}}]}
 {"id": "live_multiple_43-16-2", "ground_truth": [{"get_services": {"namespace": ["cascade-sandbox"]}}]}
 {"id": "live_multiple_44-17-0", "ground_truth": [{"BankStatementOverView": {"bank_name": ["U.S. Bank"], "account_number": ["1-523-1713-5704"], "account_type": ["checking"], "full_name": ["SILVER BUSINESS CHECKING"], "transaction_overview": [{"total_deposits": [7132.76], "total_withdrawals": [5927.4], "start_date": ["2019-10-01"], "end_date": ["2019-10-31"]}]}}]}
 {"id": "live_multiple_45-18-0", "ground_truth": [{"product_search": {"category": ["clothing"], "color": ["red"], "size": ["medium"]}}]}
@@ -72,7 +72,7 @@
 {"id": "live_multiple_71-31-0", "ground_truth": [{"add_postgres_server": {"nickname": ["EnterpriseDB"], "host": ["db.company.com"], "port": ["", 5432], "database": ["sales_data"], "username": ["dbadmin"], "password": ["secure*pwd123"]}}]}
 {"id": "live_multiple_72-32-0", "ground_truth": [{"add_postgres_server": {"nickname": ["PrimaryDB"], "host": ["192.168.0.10"], "port": [5432], "database": ["main"], "username": ["admin_user"], "password": ["secure*pass123"]}}]}
 {"id": "live_multiple_73-33-0", "ground_truth": [{"add_postgres_server": {"nickname": ["PrimaryDB"], "host": ["192.168.0.12"], "port": [5432], "database": ["main_db"], "username": ["admin"], "password": ["securePass123"]}}]}
-{"id": "live_multiple_74-34-0", "ground_truth": [{"dartfx_help": {"topic": ["trading"], "subtopic": ["", ""], "include_examples": [true]}}]}
+{"id": "live_multiple_74-34-0", "ground_truth": [{"dartfx_help": {"topic": ["trading"], "subtopic": [""], "include_examples": [true]}}]}
 {"id": "live_multiple_75-34-1", "ground_truth": [{"add_postgres_server": {"nickname": ["PrimaryDB"], "host": ["plgah.ca"], "port": ["", 5432], "database": ["maindb"], "username": ["admin"], "password": ["12341234"]}}]}
 {"id": "live_multiple_76-35-0", "ground_truth": [{"dartfx_help": {"topic": ["charts"], "language": ["Spanish"]}}]}
 {"id": "live_multiple_77-35-1", "ground_truth": [{"add_postgres_server": {"nickname": ["X"], "host": ["http://plga.ca"], "port": [5432, ""], "database": ["postgres"], "username": ["admin"], "password": ["secure_password123"]}}]}
@@ -169,7 +169,7 @@
 {"id": "live_multiple_168-68-0", "ground_truth": [{"get_adriel_profile": {"user_id": [12345], "include_private": [true]}}]}
 {"id": "live_multiple_169-69-0", "ground_truth": [{"get_adriel_detail_experience_and_education": {"experience_or_education_type": ["", "experience"], "experience_or_education_name": ["Internship at Sebelas Maret University", "Sebelas Maret University", "Internship"]}}]}
 {"id": "live_multiple_170-70-0", "ground_truth": [{"get_adriel_detail_experience_and_education": {"experience_or_education_type": ["", "work_experience"], "experience_or_education_name": ["Internship at Sebelas Maret University", "Sebelas Maret University", "Internship"]}}]}
-{"id": "live_multiple_171-71-0", "ground_truth": [{"get_adriel_detail_experience_and_education": {"experience_or_education_type": ["Internship"], "experience_or_education_name": ["", "Not specified"], "details": ["", ""], "start_date": ["", null], "end_date": ["", null]}}]}
+{"id": "live_multiple_171-71-0", "ground_truth": [{"get_adriel_detail_experience_and_education": {"experience_or_education_type": ["Internship"], "experience_or_education_name": ["", "Not specified"], "details": [""], "start_date": ["", null], "end_date": ["", null]}}]}
 {"id": "live_multiple_172-71-1", "ground_truth": [{"get_adriel_list_projects": {"user_id": [123], "include_completed": ["", false], "project_status": ["", "active"], "date_filter": ["", null]}}]}
 {"id": "live_multiple_173-71-2", "ground_truth": [{"get_adriel_tech_stack": {"employee_id": ["123"], "include_past_technologies": [true], "category": ["", "programming_languages"]}}]}
 {"id": "live_multiple_174-72-0", "ground_truth": [{"get_adriel_detail_experience_and_education": {"experience_or_education_type": ["Internship at Sebelas Maret University (UNS)"]}}]}
@@ -204,7 +204,7 @@
 {"id": "live_multiple_203-90-5", "ground_truth": [{"detail_adriel_project": {"project_name": ["e-commerce-website"], "include_financials": ["", false], "completion_date": ["", null]}}]}
 {"id": "live_multiple_204-90-6", "ground_truth": [{"adriel_experiences_and_education": {}}]}
 {"id": "live_multiple_205-90-7", "ground_truth": [{"adriel_experiences_and_education": {}}]}
-{"id": "live_multiple_206-91-0", "ground_truth": [{"contact": {"person_name": ["Adriel"], "phone_number": ["", ""], "email_address": ["", ""]}}]}
+{"id": "live_multiple_206-91-0", "ground_truth": [{"contact": {"person_name": ["Adriel"], "phone_number": [""], "email_address": [""]}}]}
 {"id": "live_multiple_207-91-1", "ground_truth": [{"get_tech_stack": {"employee_id": ["Adriel"], "include_tools": ["", false], "as_of_date": ["", null]}}]}
 {"id": "live_multiple_208-91-2", "ground_truth": [{"list_projects": {"user_id": ["1234"], "include_completed": [true], "sort_order": ["", "asc"]}}]}
 {"id": "live_multiple_209-91-3", "ground_truth": [{"detail_project": {"project_name": ["turing-machine"], "include_status": ["", false], "start_date": ["", null]}}]}
@@ -815,14 +815,14 @@
 {"id": "live_multiple_814-176-5", "ground_truth": [{"Alarm_1_AddAlarm": {"new_alarm_time": ["17:15"], "new_alarm_name": ["", "New alarm"]}}]}
 {"id": "live_multiple_815-176-6", "ground_truth": [{"Alarm_1_AddAlarm": {"new_alarm_time": ["07:30"], "new_alarm_name": ["Morning workout"]}}]}
 {"id": "live_multiple_816-176-7", "ground_truth": [{"Alarm_1_AddAlarm": {"new_alarm_time": ["15:30"], "new_alarm_name": ["Cleaning"]}}]}
-{"id": "live_multiple_817-177-0", "ground_truth": [{"Events_3_BuyEventTickets": {"event_name": ["Anthony Green"], "number_of_tickets": [2], "date": ["2023-03-10"], "city": ["", ""]}}]}
+{"id": "live_multiple_817-177-0", "ground_truth": [{"Events_3_BuyEventTickets": {"event_name": ["Anthony Green"], "number_of_tickets": [2], "date": ["2023-03-10"], "city": [""]}}]}
 {"id": "live_multiple_818-177-1", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Music"], "city": ["New York, NY"], "date": ["", null]}}]}
 {"id": "live_multiple_819-177-2", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Music"], "city": ["Los Angeles, CA"], "date": ["2023-07-20"]}}]}
 {"id": "live_multiple_820-177-3", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Music"], "city": ["New York, NY"], "date": ["", null]}}]}
 {"id": "live_multiple_821-177-4", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Theater"], "city": ["Seattle, WA"], "date": ["", null]}}]}
 {"id": "live_multiple_822-177-5", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Music"], "city": ["Seattle, WA"], "date": ["2023-03-12"]}}]}
 {"id": "live_multiple_823-177-6", "ground_truth": [{"Events_3_BuyEventTickets": {"event_name": ["Brockhampton"], "number_of_tickets": [4], "date": ["2023-03-13"], "city": ["Berkeley, CA"]}}]}
-{"id": "live_multiple_824-177-7", "ground_truth": [{"Events_3_BuyEventTickets": {"event_name": ["Read The Tempest"], "number_of_tickets": [3], "date": ["2023-03-02"], "city": ["", ""]}}]}
+{"id": "live_multiple_824-177-7", "ground_truth": [{"Events_3_BuyEventTickets": {"event_name": ["Read The Tempest"], "number_of_tickets": [3], "date": ["2023-03-02"], "city": [""]}}]}
 {"id": "live_multiple_825-178-0", "ground_truth": [{"Music_3_LookupMusic": {"artist": ["", "dontcare"], "album": ["Isolation"], "genre": ["Funk"], "year": ["", "dontcare"]}}]}
 {"id": "live_multiple_826-178-1", "ground_truth": [{"Music_3_LookupMusic": {"artist": ["", "dontcare"], "album": ["", "dontcare"], "genre": ["", "dontcare"], "year": ["2015"]}}]}
 {"id": "live_multiple_827-178-2", "ground_truth": [{"Music_3_LookupMusic": {"artist": ["", "dontcare"], "album": ["", "dontcare"], "genre": ["", "dontcare"], "year": ["2021"]}}]}
@@ -950,7 +950,7 @@
 {"id": "live_multiple_949-199-0", "ground_truth": [{"play_song": {"query": ["David Guetta"], "shuffle": ["", false], "repeat": ["", false], "volume": ["", 70]}}]}
 {"id": "live_multiple_950-199-1", "ground_truth": [{"set_alarm": {"alarm_time": ["23:00"], "purpose": ["", "General reminder"]}}]}
 {"id": "live_multiple_951-200-0", "ground_truth": [{"version_api.VersionApi.get_version": {}}]}
-{"id": "live_multiple_952-201-0", "ground_truth": [{"uber.eat.order": {"restaurant": ["McDonald's"], "items": [["fries"]], "quantities": [[5]], "notes": ["", ""], "delivery_option": ["", "standard"]}}]}
+{"id": "live_multiple_952-201-0", "ground_truth": [{"uber.eat.order": {"restaurant": ["McDonald's"], "items": [["fries"]], "quantities": [[5]], "notes": [""], "delivery_option": ["", "standard"]}}]}
 {"id": "live_multiple_953-201-1", "ground_truth": [{"flight.status.check": {"flight_identifier": ["IND5463"], "passenger_name": ["karan"], "ticket_number": ["IND5463"]}}]}
 {"id": "live_multiple_954-202-0", "ground_truth": [{"flight.status.check": {"airlines": ["Delta"], "person_name": ["Karan Sharma"], "ticket_number": ["IND4567"]}}]}
 {"id": "live_multiple_955-202-1", "ground_truth": [{"uber.eat.order": {"restaurant": ["mc donalds", "McDonald's"], "items": [["fries"]], "quantities": [[5]]}}]}
@@ -964,7 +964,7 @@
 {"id": "live_multiple_963-206-0", "ground_truth": [{"GET_PARCEL_STATE": {"parcelTrackingId": ["TX1234567890"], "includeHistory": ["", false]}}]}
 {"id": "live_multiple_964-207-0", "ground_truth": [{"transfer_to_human_agent": {"question": ["Can you tell me what is the minimum package arrival time?"]}}]}
 {"id": "live_multiple_965-207-1", "ground_truth": [{"transfer_to_human_agent": {"statement": ["I've submitted a complaint and would like to discuss its status with a human agent."]}}]}
-{"id": "live_multiple_966-208-0", "ground_truth": [{"handover_to_agent": {"statement": ["I've submitted a complaint earlier, and I would like to check its current status with a human agent, please."], "urgency": ["medium"], "language": ["", "en"], "context": ["", ""]}}]}
+{"id": "live_multiple_966-208-0", "ground_truth": [{"handover_to_agent": {"statement": ["I've submitted a complaint earlier, and I would like to check its current status with a human agent, please."], "urgency": ["medium"], "language": ["", "en"], "context": [""]}}]}
 {"id": "live_multiple_967-209-0", "ground_truth": [{"handover_to_human_agent": {"statement": ["I'd like to speak with a human agent about the status of my complaint, please. It's quite urgent."], "urgency_level": ["high"], "user_id": ["", "anonymous"]}}]}
 {"id": "live_multiple_968-210-0", "ground_truth": [{"uber.ride": {"loc": ["2020 Addison Street, Berkeley, CA"], "type": ["plus"], "time": [10]}}]}
 {"id": "live_multiple_969-210-1", "ground_truth": [{"uber.eat.order": {"restaurant": ["McDonald's, 123 Fastfood Lane, Chicago, IL"], "items": [["burgers", "chicken wings"]], "quantities": [[5, 6]]}}]}
@@ -1005,15 +1005,15 @@
 {"id": "live_multiple_1004-233-0", "ground_truth": [{"audit_log_api.AuditLogApi.get_access_logs": {"offset": [434], "query": ["llama"], "pageSize": [9]}}]}
 {"id": "live_multiple_1005-234-0", "ground_truth": [{"host_agent_api.HostAgentApi.get_agent_snapshot": {"id": ["zzwzeem"], "to": ["", null], "windowSize": ["", 60]}}]}
 {"id": "live_multiple_1006-235-0", "ground_truth": [{"get_monitoring_state": {"api_key": ["your_api_key"], "environment": ["", "production"], "include_inactive": ["", false]}}]}
-{"id": "live_multiple_1007-236-0", "ground_truth": [{"software_versions": {"time": ["", "null"], "origin": ["", ""], "type": ["", ""], "name": ["", ""], "version": ["5.5"]}}]}
+{"id": "live_multiple_1007-236-0", "ground_truth": [{"software_versions": {"time": ["", "null"], "origin": [""], "type": [""], "name": [""], "version": ["5.5"]}}]}
 {"id": "live_multiple_1008-237-0", "ground_truth": [{"ApplicationAnalyzeApi.get_trace_download": {"id": ["grgr"], "retrievalSize": [1024], "offset": ["", 0], "ingestionTime": ["", null]}}]}
 {"id": "live_multiple_1009-238-0", "ground_truth": [{"get_website_geo_mapping_rules": {"websiteId": ["123e4567-e89b-12d3-a456-426614174000"]}}]}
 {"id": "live_multiple_1010-239-0", "ground_truth": [{"CustomDashboardsApi.get_custom_dashboards": {"query": ["dashing"], "pageSize": ["", 10], "page": ["", 1]}}]}
 {"id": "live_multiple_1011-240-0", "ground_truth": [{"get_synthetic_credential_names": {"filter": ["", "active"], "sort_order": ["", "asc"]}}]}
 {"id": "live_multiple_1012-241-0", "ground_truth": [{"get_synthetic_locations": {"sort": ["created_at"], "offset": [0], "limit": [50], "filter": ["details:alpha,beta,gamma"]}}]}
-{"id": "live_multiple_1013-242-0", "ground_truth": [{"get_synthetic_locations": {"sort": ["asc"], "offset": ["", 0], "limit": ["", 50], "filter": ["", ""]}}]}
+{"id": "live_multiple_1013-242-0", "ground_truth": [{"get_synthetic_locations": {"sort": ["asc"], "offset": ["", 0], "limit": ["", 50], "filter": [""]}}]}
 {"id": "live_multiple_1014-243-0", "ground_truth": [{"get_identity_provider_patch": {"tenant_id": ["12345-tenant-id"], "include_rules": ["", false]}}]}
-{"id": "live_multiple_1015-244-0", "ground_truth": [{"audit_log_api.AuditLogApi.get_access_logs": {"offset": [0], "query": ["", ""], "pageSize": [50]}}]}
+{"id": "live_multiple_1015-244-0", "ground_truth": [{"audit_log_api.AuditLogApi.get_access_logs": {"offset": [0], "query": [""], "pageSize": [50]}}]}
 {"id": "live_multiple_1016-245-0", "ground_truth": [{"create_global_application_alert_config": {"name": ["UrgentAlert77f7"], "alert_type": ["error_rate"], "threshold": [5.0], "recipients": [["admin@example.com", "support@example.com"]], "enabled": ["", true]}}]}
 {"id": "live_multiple_1017-246-0", "ground_truth": [{"events_api.EventsApi.get_event": {"eventId": ["efJG9"]}}]}
 {"id": "live_multiple_1018-247-0", "ground_truth": [{"website_configuration_api.get_websites": {"api_key": ["YOUR_API_KEY"], "status_filter": ["", "active"], "include_details": ["", false]}}]}
@@ -1027,11 +1027,11 @@
 {"id": "live_multiple_1026-255-0", "ground_truth": [{"CustomDashboardsApi.get_shareable_api_tokens": {"user_id": ["123456789"], "include_revoked": ["", false]}}]}
 {"id": "live_multiple_1027-255-1", "ground_truth": [{"CustomDashboardsApi.get_shareable_api_tokens": {"user_id": ["12345"], "include_revoked": ["", false]}}]}
 {"id": "live_multiple_1028-256-0", "ground_truth": [{"host_agent_api.get_agent_snapshot": {"id": ["zzwzee"], "to": ["", null], "windowSize": ["", 60]}}]}
-{"id": "live_multiple_1029-257-0", "ground_truth": [{"InfrastructureResourcesApi.software_versions": {"time": ["2023-04-01 12:00:00"], "origin": ["", ""], "type": ["", ""], "name": ["", ""], "version": ["5.5"]}}]}
+{"id": "live_multiple_1029-257-0", "ground_truth": [{"InfrastructureResourcesApi.software_versions": {"time": ["2023-04-01 12:00:00"], "origin": [""], "type": [""], "name": [""], "version": ["5.5"]}}]}
 {"id": "live_multiple_1030-258-0", "ground_truth": [{"get_website_geo_mapping_rules": {"websiteId": ["larry_rotter"]}}]}
 {"id": "live_multiple_1031-259-0", "ground_truth": [{"get_custom_dashboard": {"customDashboardId": ["dashing"]}}]}
-{"id": "live_multiple_1032-260-0", "ground_truth": [{"get_synthetic_locations": {"sort": ["", "asc"], "offset": ["", 0], "limit": [5], "filter": ["", ""]}}]}
+{"id": "live_multiple_1032-260-0", "ground_truth": [{"get_synthetic_locations": {"sort": ["", "asc"], "offset": ["", 0], "limit": [5], "filter": [""]}}]}
 {"id": "live_multiple_1033-261-0", "ground_truth": [{"SyntheticSettingsApi.get_synthetic_locations": {"limit": [20], "filter": ["name IN ('alpha', 'beta', 'gamma')", "name:alpha OR name:beta OR name:gamma"]}}]}
-{"id": "live_multiple_1034-262-0", "ground_truth": [{"audit_log_api.AuditLogApi.get_access_logs": {"offset": [0], "query": ["", ""], "pageSize": [50], "startDate": ["", null], "endDate": ["", null]}}]}
+{"id": "live_multiple_1034-262-0", "ground_truth": [{"audit_log_api.AuditLogApi.get_access_logs": {"offset": [0], "query": [""], "pageSize": [50], "startDate": ["", null], "endDate": ["", null]}}]}
 {"id": "live_multiple_1035-263-0", "ground_truth": [{"api_token_api.APITokenApi.get_api_tokens": {"user_id": [12345], "include_expired": ["", false]}}]}
 {"id": "live_multiple_1036-263-1", "ground_truth": [{"api_token_api.APITokenApi.get_api_tokens": {"user_id": [12345], "include_expired": ["", false]}}]}
