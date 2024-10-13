@@ -13,7 +13,7 @@
 
 **🟢 Gorilla is Apache 2.0** With Gorilla being fine-tuned on MPT, and Falcon, you can use Gorilla commercially with no obligations! :golf:  
 
-**:rocket: Try Gorilla in 60s** [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing) 
+**:rocket: Try Gorilla in 60s** [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1q7T7g3wmRNEUwsWujLcgjHLK7YNPjQxh?usp=sharing) 
 
 :computer: Use [Gorilla in your CLI](https://github.com/gorilla-llm/gorilla-cli) with `pip install gorilla-cli`
 
@@ -36,12 +36,12 @@
 - 🟢 [06/06] Released Commercially usable, Apache 2.0 licensed Gorilla models
 - :rocket: [05/30] Provided the [CLI interface](inference/README.md) to chat with Gorilla!
 - :rocket: [05/28] Released Torch Hub and TensorFlow Hub Models!
-- :rocket: [05/27] Released the first Gorilla model! [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing) or [:hugs:](https://huggingface.co/gorilla-llm/gorilla-7b-hf-delta-v0)!
+- :rocket: [05/27] Released the first Gorilla model! [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1q7T7g3wmRNEUwsWujLcgjHLK7YNPjQxh?usp=sharing) or [:hugs:](https://huggingface.co/gorilla-llm/gorilla-7b-hf-delta-v0)!
 - :fire: [05/27] We released the APIZoo contribution guide for community API contributions!
 - :fire: [05/25] We release the APIBench dataset and the evaluation code of Gorilla!
 
 ## Gorilla Gradio
-**Try Gorilla LLM models in [HF Spaces](https://huggingface.co/spaces/gorilla-llm/gorilla-demo/) or [![Gradio Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1ktnVWPJOgqTC9hLW8lJPVZszuIddMy7y?usp=sharing)**
+**Try Gorilla LLM models in [HF Spaces](https://huggingface.co/spaces/gorilla-llm/gorilla-demo/) or [![Gradio Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/18ru6QUVVegJGTTa9TzbLAXVok42KDkWx?usp=sharing)**
 ![gorilla_webUI_2](https://github.com/TanmayDoesAI/gorilla/assets/85993243/f30645bf-6798-4bd2-ac6e-6943840ae095)
 
 
