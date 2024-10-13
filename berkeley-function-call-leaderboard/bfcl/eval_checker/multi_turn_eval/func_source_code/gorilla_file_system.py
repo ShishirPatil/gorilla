@@ -126,7 +126,7 @@ class Directory:
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Directory):
             return False
-        return self.name == other.name and self.contents == other.contents and self.parent == other.parent
+        return self.name == other.name and self.contents == other.contents
 
 
 class GorillaFileSystem:
