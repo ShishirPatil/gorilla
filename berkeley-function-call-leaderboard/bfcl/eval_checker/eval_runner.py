@@ -46,6 +46,10 @@ def multi_turn_runner(
         multi_turn_ground_truth_list: list[list[str]] = possible_answer[i]["ground_truth"]
         test_entry: dict = prompt[i]
 
+        # Remove the function doc from the score file for better readability; they are repeated and way too long
+        if "function" in test_entry:
+            del test_entry["function"]
+
         if type(multi_turn_model_result_list) != list:
             result.append(
                 {
