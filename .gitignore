@@ -10,6 +10,7 @@ dist
 .editorconfig
 .DS_Store
 **/*.pyc
+goex/goex-env/
 goex/exec_engine/checkpoints/
 goex/exec_engine/credentials/*
 !goex/exec_engine/credentials/credentials_utils.py
