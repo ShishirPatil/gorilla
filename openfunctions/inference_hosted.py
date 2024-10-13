@@ -1,9 +1,6 @@
 import openai
 import json
 
-openai.api_key = "EMPTY"
-openai.api_base = "http://luigi.millennium.berkeley.edu:8000/v1"
-
 # Example dummy function hard coded to return the same weather
 # In production, this could be your backend API or an external API
 def get_current_weather(location, unit="fahrenheit"):
@@ -36,7 +33,11 @@ def run_conversation():
             },
         }
     ]
-    completion = openai.ChatCompletion.create(
+    client = openai.OpenAI(
+        api_key = "EMPTY",
+        base_url = "http://luigi.millennium.berkeley.edu:8000/v1"
+    )
+    completion = client.chat.completions.create(
         model='gorilla-openfunctions-v2',
         messages=messages,
         functions=functions,

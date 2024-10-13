@@ -35,7 +35,7 @@ All of our models are hosted on our Huggingface UC Berkeley gorilla-llm org: [go
 1. OpenFunctions is compatible with OpenAI Functions
 
 ```bash
-!pip install openai==0.28.1
+!pip install openai
 ```
 
 2. Point to Gorilla hosted servers
@@ -44,10 +44,12 @@ All of our models are hosted on our Huggingface UC Berkeley gorilla-llm org: [go
 import openai
 
 def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes", model="gorilla-openfunctions-v0", functions=[]):
-  openai.api_key = "EMPTY"
-  openai.api_base = "http://luigi.millennium.berkeley.edu:8000/v1"
   try:
-    completion = openai.ChatCompletion.create(
+    client = openai.OpenAI(
+      api_key = "EMPTY",
+      base_url = "http://luigi.millennium.berkeley.edu:8000/v1"
+    )
+    completion = client.chat.completions.create(
       model="gorilla-openfunctions-v2",
       temperature=0.0,
       messages=[{"role": "user", "content": prompt}],
