@@ -1,7 +1,7 @@
 # Gorilla OpenFunctions
 
 💡 Comes with Parallel Function Calling!  
-🚀 Try it out on [Colab](https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd?usp=sharing)   
+🚀 Try it out on [Colab](https://colab.research.google.com/drive/1qe3xecYw8xvS3JbaXUDcl5vmnFVQZMTx?usp=sharing)   
 📣 Read more in our [OpenFunctions release blog](https://gorilla.cs.berkeley.edu/blogs/4_open_functions.html)
 
 ## Introduction
@@ -21,7 +21,7 @@ All of our models are hosted on our Huggingface UC Berkeley gorilla-llm org: [go
 1. OpenFunctions is compatible with OpenAI Functions
 
 ```bash
-!pip install openai==0.28.1
+!pip install openai
 ```
 
 2. Point to Gorilla hosted servers
@@ -30,10 +30,12 @@ All of our models are hosted on our Huggingface UC Berkeley gorilla-llm org: [go
 import openai
 
 def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes", model="gorilla-openfunctions-v0", functions=[]):
-  openai.api_key = "EMPTY"
-  openai.api_base = "http://luigi.millennium.berkeley.edu:8000/v1"
   try:
-    completion = openai.ChatCompletion.create(
+    client = openai.OpenAI(
+        api_key = "EMPTY"
+        base_url = "http://luigi.millennium.berkeley.edu:8000/v1"
+    )
+    completion = client.chat.completions.create(
       model="gorilla-openfunctions-v1",
       temperature=0.0,
       messages=[{"role": "user", "content": prompt}],
@@ -149,11 +151,11 @@ print(output)
 
 ## Self-Hosting OpenFunctions
 
-This section provides a guide on how to self-host the OpenFunctions model on your local machine or serve it locally for your enterprise. The server deploys the OpenFunctions-v0 model with uvicorn, while the client interacts with this local server using the OpenAI package (0.28.xx). 
+This section provides a guide on how to self-host the OpenFunctions model on your local machine or serve it locally for your enterprise. The server deploys the OpenFunctions-v0 model with uvicorn, while the client interacts with this local server using the OpenAI package. 
 
 ### Setting Up Your Local Server
 
-The server API endpoint mirrors the interface of the API call executed by `openai.ChatCompletion.create`, ensuring compatibility with clients using the OpenAI package.
+The server API endpoint mirrors the interface of the API call executed by `client.chat.completions.create`, ensuring compatibility with clients using the OpenAI package.
 
 Ensure you have the required libraries:
 ```bash
@@ -246,10 +248,10 @@ if __name__ == "__main__":
 
 Ensure you have the required libraries:
 ```bash
-!pip install openai==0.28.1
+!pip install openai
 ```
 
-The example client below demonstrates how to interact with the locally hosted OpenFunctions model using `openai.ChatCompletion.create`, akin to using Gorilla hosted servers.
+The example client below demonstrates how to interact with the locally hosted OpenFunctions model using `client.chat.completions.create`, akin to using Gorilla hosted servers.
 
 ```python
 import openai
@@ -272,10 +274,12 @@ def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley 
     Raises:
     - Exception: If there's an issue with processing the request or communicating with the server.
     """
-    openai.api_key = "EMPTY"
-    openai.api_base = "http://localhost:8000"  # Point to the local server
     try:
-        completion = openai.ChatCompletion.create(
+        client = openai.OpenAI(
+            api_key = "EMPTY",
+            base_url = "http://localhost:8000"  # Point to the local server
+        )
+        completion = client.chat.completions.create(
             model="gorilla-openfunctions-v0",
             temperature=0.0,
             messages=[{"role": "user", "content": prompt}],
