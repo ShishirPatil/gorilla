@@ -108,7 +108,7 @@ We aim to build an open-source, one-stop-shop for all APIs, LLMs can interact wi
 
 ## FAQ(s)
 
-1. I would like to use Gorilla commercially. Is there going to be a Apache 2.0 licensed version?
+1. I would like to use Gorilla commercially. Is there going to be an Apache 2.0 licensed version?
 
 Yes! We now have models that you can use commercially without any obligations.
 
