@@ -49,7 +49,7 @@ class File:
         self.last_modified = datetime.datetime.now()
 
     def __repr__(self):
-        return f"<<File: {self.name}, Last Modified: {self.last_modified}, Content: {self.content}>>"
+        return f"<<File: {self.name}, Content: {self.content}>>"
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, File):
