@@ -2,6 +2,10 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Oct 14, 2024] [#696](https://github.com/ShishirPatil/gorilla/pull/696): Add the following new models to the leaderboard:
+  - `google/gemma-2-2b-it`
+  - `google/gemma-2-9b-it`
+  - `google/gemma-2-27b-it`
 - [Oct 5, 2024] [#642](https://github.com/ShishirPatil/gorilla/pull/642): Add the following new models to the leaderboard:
   - `Qwen/Qwen2.5-7B-Instruct`
   - `Qwen/Qwen2.5-1.5B-Instruct`

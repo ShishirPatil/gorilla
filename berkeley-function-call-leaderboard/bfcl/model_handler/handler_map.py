@@ -23,7 +23,7 @@ from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
 
-# TODO: Add Deepseek V2 and Gemma V2, meta-llama/Llama-3.1-405B-Instruct
+# TODO: Add Deepseek V2, meta-llama/Llama-3.1-405B-Instruct
 
 # Inference through API calls
 api_inference_handler_map = {
