@@ -337,6 +337,36 @@ MODEL_METADATA_MAPPING = {
         "Deepseek",
         "Deepseek License",
     ],
+     "deepseek-ai/DeepSeek-V2-Chat-0628": [
+        "DeepSeek-V2-Chat-0628",
+        "https://huggingface.co/deepseek-ai/DeepSeek-V2-Chat-0628",
+        "DeepSeek",
+        "DeepSeek License",
+    ],
+    "deepseek-ai/DeepSeek-V2-Chat": [
+        "DeepSeek-V2-Chat",
+        "https://huggingface.co/deepseek-ai/DeepSeek-V2-Chat",
+        "DeepSeek",
+        "DeepSeek License",
+    ],
+    "deepseek-ai/DeepSeek-V2": [
+        "DeepSeek-V2",
+        "https://huggingface.co/deepseek-ai/DeepSeek-V2",
+        "DeepSeek",
+        "DeepSeek License",
+    ],
+    "deepseek-ai/DeepSeek-V2-Lite": [
+        "DeepSeek-V2-Lite",
+        "https://huggingface.co/deepseek-ai/DeepSeek-V2-Lite",
+        "DeepSeek",
+        "DeepSeek License",
+    ],
+    "deepseek-ai/DeepSeek-V2-Lite-Chat": [
+        "DeepSeek-V2-Lite-Chat",
+        "https://huggingface.co/deepseek-ai/DeepSeek-V2-Lite-Chat",
+        "DeepSeek",
+        "DeepSeek License",
+    ],
     "google/gemma-7b-it": [
         "Gemma-7b-it (Prompt)",
         "https://blog.google/technology/developers/gemma-open-models/",
@@ -665,6 +695,11 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus-FC-optimized": 3,
     "command-r-plus-optimized": 3,
     "yi-large-fc": 3,
+    "deepseek-ai/DeepSeek-V2-Chat-0628": 0.14,
+    "deepseek-ai/DeepSeek-V2-Chat": 0.14,
+    "deepseek-ai/DeepSeek-V2": 0.14,
+    "deepseek-ai/DeepSeek-V2-Lite": 0.14,
+    "deepseek-ai/DeepSeek-V2-Lite-Chat":0.14
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -723,6 +758,11 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus-FC-optimized": 15,
     "command-r-plus-optimized": 15,
     "yi-large-fc": 3,
+    "deepseek-ai/DeepSeek-V2-Chat-0628": 0.28,
+    "deepseek-ai/DeepSeek-V2-Chat": 0.28,
+    "deepseek-ai/DeepSeek-v2": 0.28,
+    "deepseek-ai/DeepSeek-V2-Lite": 0.28,
+    "deepseek-ai/DeepSeek-V2-Lite-Chat": 0.28,
 }
 
 # The latency of the open-source models are hardcoded here.

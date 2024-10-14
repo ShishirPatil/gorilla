@@ -22,6 +22,7 @@ from bfcl.model_handler.proprietary_model.nexus import NexusHandler
 from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
+from bfcl.model_handler.proprietary_model.deepseekv2 import DeepseekV2Handler
 
 # TODO: Add Deepseek V2 and Gemma V2, meta-llama/Llama-3.1-405B-Instruct
 
@@ -118,6 +119,11 @@ local_inference_handler_map = {
     "Qwen/Qwen2.5-1.5B-Instruct": QwenHandler,
     "Qwen/Qwen2.5-7B-Instruct": QwenHandler,
     "Team-ACE/ToolACE-8B": LlamaHandler,
+    "deepseek-ai/DeepSeek-V2-Chat-0628": DeepseekV2Handler,
+    "deepseek-ai/DeepSeek-V2-Chat": DeepseekV2Handler,
+    "deepseek-ai/DeepSeek-V2": DeepseekV2Handler,
+    "deepseek-ai/DeepSeek-V2-Lite": DeepseekV2Handler,
+    "deepseek-ai/DeepSeek-V2-Lite-Chat": DeepseekV2Handler,
 }
 
 # Deprecated/outdated models, no longer on the leaderboard
