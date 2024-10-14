@@ -337,6 +337,12 @@ MODEL_METADATA_MAPPING = {
         "Deepseek",
         "Deepseek License",
     ],
+    "deepseek-ai/DeepSeek-Coder-V2-Instruct": [
+        "DeepSeek-Coder-V2",
+        "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct",
+        "DeepSeek",
+        "DeepSeek License"
+    ],
      "deepseek-ai/DeepSeek-V2-Chat-0628": [
         "DeepSeek-V2-Chat-0628",
         "https://huggingface.co/deepseek-ai/DeepSeek-V2-Chat-0628",
@@ -695,11 +701,6 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus-FC-optimized": 3,
     "command-r-plus-optimized": 3,
     "yi-large-fc": 3,
-    "deepseek-ai/DeepSeek-V2-Chat-0628": 0.14,
-    "deepseek-ai/DeepSeek-V2-Chat": 0.14,
-    "deepseek-ai/DeepSeek-V2": 0.14,
-    "deepseek-ai/DeepSeek-V2-Lite": 0.14,
-    "deepseek-ai/DeepSeek-V2-Lite-Chat":0.14
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -758,11 +759,6 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus-FC-optimized": 15,
     "command-r-plus-optimized": 15,
     "yi-large-fc": 3,
-    "deepseek-ai/DeepSeek-V2-Chat-0628": 0.28,
-    "deepseek-ai/DeepSeek-V2-Chat": 0.28,
-    "deepseek-ai/DeepSeek-v2": 0.28,
-    "deepseek-ai/DeepSeek-V2-Lite": 0.28,
-    "deepseek-ai/DeepSeek-V2-Lite-Chat": 0.28,
 }
 
 # The latency of the open-source models are hardcoded here.
@@ -782,4 +778,9 @@ NO_COST_MODELS += [
     "meetkai/functionary-medium-v3.1-FC",
     "snowflake/arctic",
     "nvidia/nemotron-4-340b-instruct",
+    "deepseek-ai/DeepSeek-Coder-V2-Instruct",
+    "deepseek-ai/DeepSeek-V2-Chat",
+    "deepseek-ai/DeepSeek-V2",
+    "deepseek-ai/DeepSeek-V2-Lite",
+    "deepseek-ai/DeepSeek-V2-Lite-Chat",
 ]

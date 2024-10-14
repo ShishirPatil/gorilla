@@ -124,6 +124,7 @@ local_inference_handler_map = {
     "deepseek-ai/DeepSeek-V2": DeepseekV2Handler,
     "deepseek-ai/DeepSeek-V2-Lite": DeepseekV2Handler,
     "deepseek-ai/DeepSeek-V2-Lite-Chat": DeepseekV2Handler,
+    "deepseek-ai/-Coder-V2-Instruct": DeepseekHandler,
 }
 
 # Deprecated/outdated models, no longer on the leaderboard
