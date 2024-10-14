@@ -39,7 +39,7 @@ def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley 
       model="gorilla-openfunctions-v1",
       temperature=0.0,
       messages=[{"role": "user", "content": prompt}],
-      functions=functions,
+      tools=functions,
     )
     return completion.choices[0].message.content
   except Exception as e:
@@ -52,10 +52,29 @@ def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley 
 query = "Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes"
 functions = [
     {
-        "name": "Uber Carpool",
-        "api_name": "uber.ride",
-        "description": "Find suitable ride for customers given the location, type of ride, and the amount of time the customer is willing to wait as parameters",
-        "parameters":  [{"name": "loc", "description": "location of the starting place of the uber ride"}, {"name":"type", "enum": ["plus", "comfort", "black"], "description": "types of uber ride user is ordering"}, {"name": "time", "description": "the amount of time in minutes the customer is willing to wait"}]
+        "type": "function",
+        "function": {
+            "name": "uber.ride",
+            "description": "Find suitable ride for customers given the location, type of ride, and the amount of time the customer is willing to wait as parameters",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "type": "string",
+                        "description": "description": "location of the starting place of the uber ride"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["plus", "comfort","black"],
+                        "description": "types of uber ride user is ordering"
+                    },
+                    "time": {
+                        "type": "string",
+                        "description": "The amount of time in minutes the customer is willing to wait"
+                    }
+                }
+            }
+        }
     }
 ]
 get_gorilla_response(query, functions=functions)
@@ -69,7 +88,7 @@ uber.ride(loc="berkeley", type="plus", time=10)
 
 ## Running OpenFunctions Locally
 
-You can try this out on our [Local OpenFunctions Colab](https://colab.research.google.com/drive/1I9UJoKh9sngE2MfPfQD5kbn2-twq2xvY?usp=sharing) to see how it works!
+You can try this out on our [Local OpenFunctions Colab](https://colab.research.google.com/drive/1h9r2PZWXkAm3xmIn0dw6CrQDpXbNsgOj?usp=sharing) to see how it works!
 
 If you want to Run OpenFunctions locally, here is the prompt format that we used: 
 
@@ -109,7 +128,7 @@ device : str = "cuda:0" if torch.cuda.is_available() else "cpu"
 torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
 
 # Model and tokenizer setup
-model_id : str = "gorilla-llm/gorilla-openfunctions-v0"
+model_id : str = "gorilla-llm/gorilla-openfunctions-v1"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=torch_dtype, low_cpu_mem_usage=True)
 
@@ -131,14 +150,29 @@ pipe = pipeline(
 query: str = "Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes"
 functions = [
     {
-        "name": "Uber Carpool",
-        "api_name": "uber.ride",
-        "description": "Find suitable ride for customers given the location, type of ride, and the amount of time the customer is willing to wait as parameters",
-        "parameters":  [
-            {"name": "loc", "description": "Location of the starting place of the Uber ride"},
-            {"name": "type", "enum": ["plus", "comfort", "black"], "description": "Types of Uber ride user is ordering"},
-            {"name": "time", "description": "The amount of time in minutes the customer is willing to wait"}
-        ]
+        "type": "function",
+        "function": {
+            "name": "uber.ride",
+            "description": "Find suitable ride for customers given the location, type of ride, and the amount of time the customer is willing to wait as parameters",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "loc": {
+                        "type": "string",
+                        "description": "description": "location of the starting place of the uber ride"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["plus", "comfort","black"],
+                        "description": "types of uber ride user is ordering"
+                    },
+                    "time": {
+                        "type": "string",
+                        "description": "The amount of time in minutes the customer is willing to wait"
+                    }
+                }
+            }
+        }
     }
 ]
 
@@ -151,7 +185,7 @@ print(output)
 
 ## Self-Hosting OpenFunctions
 
-This section provides a guide on how to self-host the OpenFunctions model on your local machine or serve it locally for your enterprise. The server deploys the OpenFunctions-v0 model with uvicorn, while the client interacts with this local server using the OpenAI package. 
+This section provides a guide on how to self-host the OpenFunctions model on your local machine or serve it locally for your enterprise. The server deploys the OpenFunctions-v1 model with uvicorn, while the client interacts with this local server using the OpenAI package. 
 
 ### Setting Up Your Local Server
 
@@ -177,7 +211,7 @@ class ChatCompletionRequest(BaseModel):
     model: str
     temperature: float
     messages: list
-    functions: list = []
+    tools: list = []
 
 # Initialize the FastAPI app
 app = FastAPI()
@@ -187,7 +221,7 @@ device = "cuda:0" if torch.cuda.is_available() else "cpu"
 torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
 
 # Model and tokenizer setup
-model_id = "gorilla-llm/gorilla-openfunctions-v0"
+model_id = "gorilla-llm/gorilla-openfunctions-v1"
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=torch_dtype, low_cpu_mem_usage=True)
 
@@ -226,7 +260,7 @@ def get_prompt(user_query: str, functions: list) -> str:
 @app.post("/chat/completions")
 async def chat_completion(request: ChatCompletionRequest):
     user_query = request.messages[0]['content']
-    prompt = get_prompt(user_query, request.functions)
+    prompt = get_prompt(user_query, request.tools)
     output = pipe(prompt)
     generated_text = output[0]['generated_text']
 
@@ -256,7 +290,7 @@ The example client below demonstrates how to interact with the locally hosted Op
 ```python
 import openai
 
-def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes", model="gorilla-openfunctions-v0", functions=[]):
+def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley at zipcode 94704 in 10 minutes", model="gorilla-openfunctions-v1", functions=[]):
     """
     Sends a request to the self-hosted OpenFunctions model and retrieves the response.
 
@@ -280,10 +314,10 @@ def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley 
             base_url = "http://localhost:8000"  # Point to the local server
         )
         completion = client.chat.completions.create(
-            model="gorilla-openfunctions-v0",
+            model="gorilla-openfunctions-v1",
             temperature=0.0,
             messages=[{"role": "user", "content": prompt}],
-            functions=functions,
+            tools=functions,
         )
         return completion.choices[0].text
     except Exception as e:
@@ -293,20 +327,22 @@ def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley 
 query: str = "Get the latest news headlines from CNN."
 functions = [
     {
-        "name": "News Headlines",
-        "api_call": "news.get_headlines",
-        "description": "Retrieve the latest news headlines from a specific news source.",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "source": {
-                    "type": "string",
-                    "description": "The news source, e.g. CNN"
-                }
-            },
-            "required": [
-                "source"
-            ]
+        "type": "function",
+        "function": {
+            "name": "news.get_headlines",
+            "description": "Retrieve the latest news headlines from a specific news source.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "source": {
+                        "type": "string",
+                        "description": "The news source, e.g. CNN"
+                    }
+                },
+                "required": [
+                    "source"
+                ]
+            }
         }
     }
 ]
@@ -316,7 +352,7 @@ print(resp)
 ```
 
 ### Try Out Self-Hosting OpenFunctions on Colab
-You can try out setting up a local server to self-host the OpenFunctions model using this [OpenFunctions Self-Hosted Colab notebook](https://colab.research.google.com/drive/1aBxYJ9VncxDRN1-DyMT3J-ozmCRRvSje?usp=sharing).
+You can try out setting up a local server to self-host the OpenFunctions model using this [OpenFunctions Self-Hosted Colab notebook](https://colab.research.google.com/drive/1_12w6fBxMcS8SqoYFEBaZ45Xfy0rdfIR?usp=sharing).
 Make sure you select an A100/V100 instance to run the notebook – smaller instances like T-4 do not suffice due to memory constraints.
 To remotely access the server running on the Colab instance from a local client, ngrok is used to tunnel the server ports from the Colab instance to public URLs. Instructions for setting up ngrok are provided in the notebook.
 

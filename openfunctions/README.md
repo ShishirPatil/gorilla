@@ -53,7 +53,7 @@ def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley 
       model="gorilla-openfunctions-v2",
       temperature=0.0,
       messages=[{"role": "user", "content": prompt}],
-      functions=functions,
+      tools=functions,
     )
     return completion.choices[0]
   except Exception as e:
@@ -66,19 +66,22 @@ def get_gorilla_response(prompt="Call me an Uber ride type \"Plus\" in Berkeley 
 query = "What's the weather like in the two cities of Boston and San Francisco?"
 functions = [
     {
-        "name": "get_current_weather",
-        "description": "Get the current weather in a given location",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "location": {
-                    "type": "string",
-                    "description": "The city and state, e.g. San Francisco, CA",
+        "type": "function",
+        "function": {
+            "name": "get_current_weather",
+            "description": "Get the current weather in a given location",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The city and state, e.g. San Francisco, CA",
+                    },
+                    "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]},
                 },
-                "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]},
+                "required": ["location"],
             },
-            "required": ["location"],
-        },
+        }
     }
 ]
 get_gorilla_response(query, functions=functions)
