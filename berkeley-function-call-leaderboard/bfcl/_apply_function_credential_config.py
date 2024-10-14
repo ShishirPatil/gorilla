@@ -1,24 +1,12 @@
 import glob
 import json
-import argparse
 import os
+
+from bfcl.constant import PROMPT_PATH
 from bfcl.eval_checker.executable_eval.custom_exception import NoAPIKeyError
-from dotenv import load_dotenv
 
-parser = argparse.ArgumentParser(description="Replace placeholders in the function credential config file.")
-parser.add_argument("--input-path", help="Path to the function credential config file. Can be a file or a directory.")
-parser.add_argument("--output-path", help="Path to the output file.")
-args = parser.parse_args()
-
-# Load the actual API keys
-load_dotenv()
 ENV_VARS = ("GEOCODE_API_KEY", "RAPID_API_KEY", "OMDB_API_KEY", "EXCHANGERATE_API_KEY")
 PLACEHOLDERS = {}
-for var in ENV_VARS:
-    if os.getenv(var) == "":
-        raise NoAPIKeyError()
-
-    PLACEHOLDERS[f"YOUR-{var.replace('_', '-')}"] = os.getenv(var)
 
 
 def replace_placeholders(data):
@@ -57,21 +45,20 @@ def process_file(input_file_path, output_file_path):
                 # Handle the case where a line is not a valid JSON object
                 print("Invalid JSON line skipped.")
                 continue
-    
+
     # Write the modified data to the output file
     with open(output_file_path, "w") as f:
         for i, modified_line in enumerate(modified_data):
             f.write(modified_line)
             if i < len(modified_data) - 1:  # Check against the length of modified_data
-                f.write("\n")        
-    print(f"All placeholders have been replaced for {input_file_path} 🦍.")
-    
-    
+                f.write("\n")
+
+
 def process_dir(input_dir, output_dir):
     # This function does not support nested directories
     # To support nested directories, refer to this commit:
     # https://github.com/ShishirPatil/gorilla/pull/508/commits/8b1e35590e5bce3bd52a7c6405775b1ce4a64945
-    print(f"Input directory: {input_dir}")
+
     # Get a list of all entries in the folder
     entries = os.scandir(input_dir)
 
@@ -80,24 +67,23 @@ def process_dir(input_dir, output_dir):
         file_name = os.path.basename(input_file_path)
         output_file_path = os.path.join(output_dir, file_name)
         process_file(input_file_path, output_file_path)
-        
 
-if __name__ == "__main__":
-    # Verify all values are provided
-    for key, value in PLACEHOLDERS.items():
-        if value == "":
+
+def apply_function_credential_config(input_path=None, output_path=None):
+    # Load the actual API keys, and verify that they are present
+    for var in ENV_VARS:
+        if var not in os.environ or not os.getenv(var):
             raise NoAPIKeyError()
-    print("All API keys are present.")
-    
-    input_path = args.input_path
+        PLACEHOLDERS[f"YOUR-{var.replace('_', '-')}"] = os.getenv(var)
+
     if input_path is None:
-        input_path = "./data/" 
-    
-    output_path = args.output_path
+        input_path = PROMPT_PATH
+
     if output_path is None:
         output_path = input_path
-    
+
     if os.path.isdir(input_path):
         process_dir(input_path, output_path)
     else:
         process_file(input_path, output_path)
+    print("All placeholders API keys have been replaced. 🦍")
