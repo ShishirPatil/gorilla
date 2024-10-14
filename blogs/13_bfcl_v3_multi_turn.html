@@ -152,7 +152,7 @@
 
     <div class="blog-container">
       <div class="blog-post">
-        <h2 class="blog-title">BFCL V3: Multi-Turn & Multi-Step Function Calling Evaluation</h2>
+        <h2 class="blog-title">BFCL V3 • Multi-Turn & Multi-Step Function Calling Evaluation</h2>
         <div class="col-md-12">
           <h4 class="text-center" style="margin: 0;">
             <br>
@@ -204,16 +204,20 @@
           <h3 id="intro">Introduction</h3>
           <p>
             <strong> The Berkeley Function-Calling Leaderboard (BFCL) V3</strong> takes a significant leap forward by
-            introducing multi-turn, and multi-step function calling (tool usage) benchmarking.
-            Only at BFCL V3, you will see a LLM stuck in a loop, listing the current directory, write a non-existing
+            introducing a new multi-turn, and multi-step function calling (tool usage) category.
+            Only at <i>BFCL V3 • Multi-Turn & Multi-Step</i>, you will see a LLM stuck in a loop, listing the current directory, write a non-existing
             file, and list the directory again... You will ask LLM to make a social media post.
             LLM will force you to spell your username and password to login despite the fact that you are already
             browsing other people’s posts! This is only possible with <strong>multi-turn</strong>,
-            and <strong>multi-step</strong> function calling (tool usage).
+            and <strong>multi-step</strong> function calling (tool usage). <i>Note that BFCL V3 contains the Expert Curated (Non-live) dataset introduced in <a href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html">BFCL V1</a> and User Contributed (Live) dataset introduced in <a href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html">BFCL V2</a> and the multi-turn, and multi-step category introduced in BFCL V3.</i>
           </p>
-
           <p>
-            BFCL V3 is a critical advancement in evaluating how Large Language Models (LLMs) interact with diverse
+              Understanding these more advanced interactions builds on the foundation of single-turn single-step function calling, where models takes an user input prompt and selects one or more functions with appropriately filled parameters from a set of provided function options, without further interaction. If you're unfamiliar with single-turn single-step function calling and the evaluation metrics we used, check out our <a href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html">earlier blog</a> on single-turn single-step function calling for a deeper dive.
+              
+
+          </p>
+          <p>
+            <i>BFCL V3 • Multi-Turn & Multi-Step</i> is a critical advancement in evaluating how Large Language Models (LLMs) interact with diverse
             scenarios through invoking right functions.
             Multi-turn function calling allows models to engage in a back-and-forth interaction with users, making it
             possible for LLMs to navigate through
@@ -514,8 +518,8 @@
 
           <div></div>
           <h3 id="curation">Data Curation Methodology</h3>
-          <p>In this section, we detail our data curation methodology for the BFCL V3 dataset. The dataset curation
-            process consists of hand-curated data generation for four components of BFCL V3: API codebase creation, graph
+          <p>In this section, we detail our data curation methodology for the <i>BFCL V3 • Multi-Turn & Multi-Step</i> dataset. The dataset curation
+            process consists of hand-curated data generation for four components of <i>BFCL V3 • Multi-Turn & Multi-Step</i>: API codebase creation, graph
             edge construction, task generation, and human-labeled ground truth multi-turn trajectories, as well as a
             comprehensive data validation process.</p>
           <h4>Dataset with human-in-the-loop pre-processing and post-processing</h4>
@@ -747,7 +751,7 @@
         </div>
         <div>
           <h3 id="inference">Multi-turn Model Inference and Execution</h3>
-          <p>In BFCL V3, we evaluate multi-turn function-calling models through two types of models: Function-Calling
+          <p>In <i>BFCL V3 • Multi-Turn & Multi-Step</i>, we evaluate multi-turn function-calling models through two types of models: Function-Calling
             (FC) models and prompting models. The distinction lies primarily in how the models generate outputs and
             how we handle those outputs during the inference process. This section explains the implementation behind
             model inference and how multi-turn interactions are managed, including the differences between various
@@ -767,13 +771,13 @@
 
           <h4>2. Handling Different Multi-Turn Function Call Patterns</h4>
           <p>Multi-turn function calling can present a variety of challenges in inference, particularly when it comes
-            to managing the flow of data and function results across multiple steps. In BFCL V3, our model handlers
+            to managing the flow of data and function results across multiple steps. In <i>BFCL V3 • Multi-Turn & Multi-Step</i>, our model handlers
             are designed to handle different function call patterns—simple, parallel, and nested—across multiple
             rounds of interaction. The distinction between these call patterns is explained in the previous section.
           </p>
 
           <h4>3. API Backend for State-Based Execution</h4>
-          <p>One of the primary innovations in BFCL V3 is the use of state-based evaluation. Our custom API backend
+          <p>One of the primary innovations in <i>BFCL V3 • Multi-Turn & Multi-Step</i> is the use of state-based evaluation. Our custom API backend
             ensures that the model's outputs lead to the correct changes in the system’s state. Each test case begins
             with an initial configuration, where API instances are initialized in a defined state. For example, a file
             system instance might start with a set of pre-existing files, and a messaging API might start with
@@ -787,7 +791,7 @@
             truth instance, the evaluation flags the issue as a failure for that turn.</p>
 
           <h4>4. Why We Avoid Certain Techniques (e.g. ReAct)</h4>
-          <p>In BFCL V3, we deliberately avoid using techniques like prompt engineering and ReAct, which combines
+          <p>In <i>BFCL V3 • Multi-Turn & Multi-Step</i>, we deliberately avoid using techniques like prompt engineering and ReAct, which combines
             reasoning and acting through specific prompting methods. While ReAct and other techniques can improve
             models’ function calling performance in certain cases, we chose not to use it throughout the BFCL series
             to evaluate base LLMs with the same standards to isolate the effects from using additional optimization
@@ -797,14 +801,14 @@
 
         <div>
           <h3 id="evaluation">Multi-turn Evaluation Metrics (State-based Evaluation)</h3>
-          <p>In BFCL V3, state-based evaluation is the primary metric used to assess the performance of models in
+          <p>In <i>BFCL V3 • Multi-Turn & Multi-Step</i>, state-based evaluation is the primary metric used to assess the performance of models in
             multi-turn function-calling scenarios. This approach focuses on comparing the instance’s final state after
             all function calls are executed at each turn of the conversation. The key idea is to track how the
             system's internal state changes after each step in the interaction and ensure that it aligns with the
             expected state trajectory.</p>
           <p>Response-based evaluation is an alternative approach, which evaluates 1) the function calling trajectory
             and 2) intermediate execution response equivalence of the function calls in each turn. Previous versions,
-            BFCL V1 and V2, used Abstract Syntax Tree (AST) and Executable categories for this method. In the
+            BFCL V1 and V2 • Live, used Abstract Syntax Tree (AST) and Executable categories for this method. In the
             following sections, we discuss the advantages of state-based evaluation and some limitations of
             response-based evaluation in multi-turn function calling.</p>
 
