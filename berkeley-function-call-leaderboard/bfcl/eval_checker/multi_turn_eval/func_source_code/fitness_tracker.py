@@ -12,6 +12,8 @@ class FitnessTrackerAPI:
         calorie_goal (Optional[float]): User's daily calorie goal
         protein_goal (Optional[float]): User's daily protein goal
         water_goal (Optional[float]): User's daily water intake goal measured in liters
+        running_start_time (Optional[datetime]): Logs user's run start time of the user's most recent run
+        running_duration (Optional[float]): Logs user's most recent run duration in minutes
     """
 
 
@@ -25,6 +27,8 @@ class FitnessTrackerAPI:
         self.calorie_goal: Optional[float] = None
         self.protein_goal: Optional[float] = None
         self.water_goal: Optional[float] = None
+        self.running_start_time: Optional[datetime] = None
+        self.running_duration: Optional[float] = None
     
     def add_activity(self, activity_name: str, calories_burned: float) -> Dict[str, str]:
         """
@@ -64,6 +68,12 @@ class FitnessTrackerAPI:
         Returns: 
             result (Dict[str, str]): Confirms food has been added
         """
+        if calories <= 0:
+            return {"error": "Calories per serving must be greater than zero."}
+        
+        if protein <= 0:
+            return {"error": "Calories per serving must be greater than zero."}
+        
         self.food_log.append({
             "food_name": food_name,
             "calories": calories,
@@ -140,6 +150,87 @@ class FitnessTrackerAPI:
             "message": "Summary of today's fitness activities and nutrition."
         }
     
+    def remaining_calories(self) -> float:
+        """
+        Calculate the remaining calories needed to meet the calorie goal
+
+        Returns:
+            remaining_calories (float): The number of calories left to be consumed to meet the goal
+        """
+        if self.calorie_goal is None:
+            return 0.0
+        remaining = self.calorie_goal - self.calories_eaten()
+        return max(0.0, remaining)
+    
+    def eat_until_calorie_goal(self, food_name: str) -> Dict[str, Union[str, float, int]]:
+        """
+        Continue to eat specified food item repeatedly until daily calorie goal is met
+
+        Args:
+            food_name (str): The name of the food item to eat
+        
+        Returns:
+            result (Dict[str, Union[str, float, int]]): Number of servings ate to reach calorie goal
+        """
+        if not self.calorie_goal:
+            return {"error": "Calorie goal not set."}
+        
+        food_item = next((food for food in self.food_log if food['food_name'] == food_name), None)
+    
+        if not food_item or not food_item.get('calories'):
+            return {"error": f"Food item '{food_name}' is not in the food log or no calorie information."}
+    
+        calories_per_serving = food_item['calories']
+        protein_per_serving = food_item['protein']
+        
+        calories_needed = self.calorie_goal - self.calories_eaten()
+        servings = 0
+
+        while calories_needed > 0:
+            self.log_food(food_name, calories=calories_per_serving, protein=protein_per_serving)
+            calories_needed -= calories_per_serving
+            servings += 1
+        
+        return {
+            "result": f"Ate {servings} servings of {food_name} to meet your calorie goal.",
+            "servings": servings,
+            "total_calories": servings * calories_per_serving
+        }
+    
+    def eat_until_protein_goal(self, food_name: str) -> Dict[str, Union[str, float, int]]:
+        """
+        Continue to eat specified food item repeatedly until daily protein goal is met
+
+        Args:
+            food_name (str): The name of the food item to eat
+        
+        Returns:
+            result (Dict[str, Union[str, float, int]]): Number of servings ate to reach protein goal
+        """
+        if not self.protein_goal:
+            return {"error": "Protein goal not set."}
+        food_item = next((food for food in self.food_log if food['food_name'] == food_name), None)
+    
+        if not food_item or not food_item.get('protein'):
+            return {"error": f"Food item '{food_name}' is not in the food log or no protein information."}
+    
+        calories_per_serving = food_item['calories']
+        protein_per_serving = food_item['protein']
+        
+        protein_needed = self.protein_goal - self.protein_eaten()
+        servings = 0
+
+        while protein_needed > 0:
+            self.log_food(food_name, calories=calories_per_serving, protein=protein_per_serving)
+            protein_needed -= protein_per_serving
+            servings += 1
+        
+        return {
+            "result": f"Ate {servings} servings of {food_name} to meet your protein goal.",
+            "servings": servings,
+            "total_protein": servings * protein_per_serving
+        }
+
     def check_goals(self) -> Dict[str, str]:
         """
         Check if the fitness goals have been met 
@@ -156,3 +247,45 @@ class FitnessTrackerAPI:
             "protein_goal": f"Protein goal is {protein_status}.",
             "water_goal": f"Water intake goal is {water_status}."
         }
+    
+    def start_running(self) -> Dict[str, str]:
+        """
+        User starts their run by logging their start time
+        
+        Returns:
+            result (Dict[str, str]): Confirms the user has started running
+        """
+        self.running_start_time = datetime.now()
+        return {"result": "Running session started."}
+    
+    def stop_running(self) -> Dict[str, Union[str, float]]:
+        """
+        Stop the running session and calculates the total run time
+        
+        Returns:
+            result (Dict[str, Union[str, float]]): The total time in minutes of the run
+        """
+        if not self.running_start_time:
+            return {"error": "No run in progress."}
+        
+        running_end_time = datetime.now()
+        duration = (running_end_time - self.running_start_time).total_seconds() / 60 
+        self.running_duration = duration
+        self.running_start_time = None
+        return {"result": f"Running session ended. You ran for {duration:.2f} minutes."}
+
+    def calculate_distance(self, pace: float) -> Dict[str, Union[str, float]]:
+        """
+        Calculate the total distance covered based on running time and pace
+
+        Args:
+            pace (float): Running pace in miles per minute.
+        
+        Returns:
+            result (Dict[str, Union[str, float]]): The total distance ran in miles
+        """
+        if self.running_duration is None:
+            return {"error": "Run not started or still in progess."}
+        distance = self.running_duration * pace
+        return {"result": f"You ran {distance:.2f} miles."}
+    
