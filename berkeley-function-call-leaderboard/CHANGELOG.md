@@ -2,6 +2,11 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Oct 11, 2024] [#667](https://github.com/ShishirPatil/gorilla/pull/667): Add the following new models to the leaderboard:
+  - `MadeAgents/Hammer2.0-7b`
+  - `MadeAgents/Hammer2.0-3b`
+  - `MadeAgents/Hammer2.0-1.5b`
+  - `MadeAgents/Hammer2.0-0.5b`
 - [Oct 5, 2024] [#642](https://github.com/ShishirPatil/gorilla/pull/642): Add the following new models to the leaderboard:
   - `Qwen/Qwen2.5-7B-Instruct`
   - `Qwen/Qwen2.5-1.5B-Instruct`
