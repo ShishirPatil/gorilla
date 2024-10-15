@@ -58,7 +58,11 @@ class MessageAPI:
                 "receiver_id": "USR004",
                 "message": "Could you upload the file?",
             },
-            4: {"sender_id": "USR003", "receiver_id": "USR002", "message": "I am busy."},
+            4: {
+                "sender_id": "USR003",
+                "receiver_id": "USR002",
+                "message": "I am busy.",
+            },
             5: {
                 "sender_id": "USR004",
                 "receiver_id": "USR002",
@@ -67,6 +71,7 @@ class MessageAPI:
         }
         self.message_count: int = 0  # useless(?)
         self.current_user: Optional[str] = None
+        self._random: random.Random = random.Random(200191)
 
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """
@@ -82,7 +87,7 @@ class MessageAPI:
     def __eq__(self, value: object) -> bool:
         if not isinstance(value, MessageAPI):
             return False
- 
+
         for attr_name in vars(self):
             if attr_name.startswith("_"):
                 continue
