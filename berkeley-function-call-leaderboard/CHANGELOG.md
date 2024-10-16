@@ -2,6 +2,13 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Oct 16, 2024] [#661](https://github.com/ShishirPatil/gorilla/pull/661): Bug fix in the dataset and possible answers.
+  - Irrelevance: 1 affected
+  - Parallel Multiple: 2 affected
+  - Live Simple: 104 affected
+  - Live Multiple: 547 affected
+  - Live Parallel: 11 affected
+  - Live Parallel Multiple: 17 affected
 - [Oct 11, 2024] [#667](https://github.com/ShishirPatil/gorilla/pull/667): Add the following new models to the leaderboard:
   - `MadeAgents/Hammer2.0-7b`
   - `MadeAgents/Hammer2.0-3b`
