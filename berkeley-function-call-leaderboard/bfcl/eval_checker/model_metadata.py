@@ -625,6 +625,12 @@ MODEL_METADATA_MAPPING = {
         "Huawei Noah & USTC",
         "Apache-2.0",
     ],
+    "openbmb/MiniCPM3-4B": [
+        "MiniCPM3-4B (FC)",
+        "https://huggingface.co/openbmb/MiniCPM3-4B",
+        "openbmb",
+        "Apache-2.0",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
