@@ -2,6 +2,13 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Oct 16, 2024] [#661](https://github.com/ShishirPatil/gorilla/pull/661): Bug fix in the dataset and possible answers.
+  - Irrelevance: 1 affected
+  - Parallel Multiple: 2 affected
+  - Live Simple: 104 affected
+  - Live Multiple: 547 affected
+  - Live Parallel: 11 affected
+  - Live Parallel Multiple: 17 affected
 - [Oct 11, 2024] [#667](https://github.com/ShishirPatil/gorilla/pull/667): Add the following new models to the leaderboard:
   - `MadeAgents/Hammer2.0-7b`
   - `MadeAgents/Hammer2.0-3b`
@@ -23,10 +30,6 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
   - `microsoft/Phi-3-small-8k-instruct`
   - `microsoft/Phi-3-mini-128k-instruct`
   - `microsoft/Phi-3-mini-4k-instruct`
-- [Sept 27, 2024] [#661](https://github.com/ShishirPatil/gorilla/pull/661): Bug fix in the dataset and possible answers.
-  - Live Simple: 5 affected
-  - Live Multiple: 1 affected
-  - Parallel Multiple: 2 affected
 - [Sept 25, 2024] [#660](https://github.com/ShishirPatil/gorilla/pull/660): Bug fix in `parse_nested_value` function to handle nested dictionary values properly. 
 - [Sept 24, 2024] [#657](https://github.com/ShishirPatil/gorilla/pull/657): Add the following new models to the leaderboard:
   - `meta-llama/Llama-3.2-1B-Instruct`
