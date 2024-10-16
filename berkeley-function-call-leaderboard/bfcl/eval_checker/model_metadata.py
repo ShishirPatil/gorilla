@@ -1,3 +1,5 @@
+from bfcl.model_handler.handler_map import local_inference_handler_map
+
 MODEL_METADATA_MAPPING = {
     "o1-preview-2024-09-12": [
         "o1-preview-2024-09-12 (Prompt)",
@@ -200,12 +202,6 @@ MODEL_METADATA_MAPPING = {
     "meetkai/functionary-small-v3.1-FC": [
         "Functionary-Small-v3.1 (FC)",
         "https://huggingface.co/meetkai/functionary-small-v3.1",
-        "MeetKai",
-        "MIT",
-    ],
-    "meetkai/functionary-small-v3.2-FC": [
-        "Functionary-Small-v3.2 (FC)",
-        "https://huggingface.co/meetkai/functionary-small-v3.2",
         "MeetKai",
         "MIT",
     ],
@@ -533,9 +529,27 @@ MODEL_METADATA_MAPPING = {
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "MadeAgents/Hammer-7b": [
-        "Hammer-7b (FC)",
-        "https://huggingface.co/MadeAgents/Hammer-7b",
+    "MadeAgents/Hammer2.0-7b": [
+        "Hammer2.0-7b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.0-7b",
+        "MadeAgents",
+        "cc-by-nc-4.0",
+    ],
+    "MadeAgents/Hammer2.0-3b": [
+        "Hammer2.0-3b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.0-3b",
+        "MadeAgents",
+        "cc-by-nc-4.0",
+    ],
+    "MadeAgents/Hammer2.0-1.5b": [
+        "Hammer2.0-1.5b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.0-1.5b",
+        "MadeAgents",
+        "cc-by-nc-4.0",
+    ],
+    "MadeAgents/Hammer2.0-0.5b": [
+        "Hammer2.0-0.5b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.0-0.5b",
         "MadeAgents",
         "cc-by-nc-4.0",
     ],
@@ -739,26 +753,16 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
 # Because we do batching when generating the data, so the latency is not accurate from the result data.
 # This is the latency for the whole batch of data, when using 8 V100 GPUs.
 OSS_LATENCY = {
-    "deepseek-ai/deepseek-coder-6.7b-instruct": 909,
-    "google/gemma-7b-it": 95,
-    "NousResearch/Hermes-2-Pro-Mistral-7B": 135,
-    "NousResearch/Hermes-2-Pro-Llama-3-8B": 77,
-    "NousResearch/Hermes-2-Theta-Llama-3-8B": 73,
-    "NousResearch/Hermes-2-Theta-Llama-3-70B": 716,
-    "NousResearch/Hermes-2-Pro-Llama-3-70B": 674,
-    "meta-llama/Meta-Llama-3-8B-Instruct": 73,
-    "meta-llama/Meta-Llama-3-70B-Instruct": 307,
-    "gorilla-openfunctions-v2": 83,
-    "THUDM/glm-4-9b-chat": 223,
 }
 
-
-NO_COST_MODELS = [
+# All OSS models will have no cost shown on the leaderboard. 
+NO_COST_MODELS = list(local_inference_handler_map.keys())
+# The following models will also have no cost, even though they are queries through the API.
+NO_COST_MODELS += [
     "Nexusflow-Raven-v2",
     "firefunction-v1-FC",
     "firefunction-v2-FC",
     "meetkai/functionary-small-v3.1-FC",
-    "meetkai/functionary-small-v3.2-FC",
     "meetkai/functionary-medium-v3.1-FC",
     "snowflake/arctic",
     "nvidia/nemotron-4-340b-instruct",
@@ -769,5 +773,9 @@ NO_COST_MODELS = [
     "Salesforce/xLAM-7b-r",
     "Salesforce/xLAM-8x7b-r",
     "Salesforce/xLAM-8x22b-r",
-    "Team-ACE/ToolACE-8B",
+     "Team-ACE/ToolACE-8B",
+    "MadeAgents/Hammer2.0-7b",
+    "MadeAgents/Hammer2.0-3b",
+    "MadeAgents/Hammer2.0-1.5b",
+    "MadeAgents/Hammer2.0-0.5b",
 ]

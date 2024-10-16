@@ -49,7 +49,9 @@ def multi_turn_checker(
                 involved_classes=involved_classes,
                 model_name=model_name + "_ground_truth",
                 test_entry_id=test_entry_id,
-                long_context=("long_context" in test_category or "composite" in test_category),
+                long_context=(
+                    "long_context" in test_category or "composite" in test_category
+                ),
                 is_evaL_run=True,
             )
         )
@@ -66,7 +68,9 @@ def multi_turn_checker(
                     involved_classes=involved_classes,
                     model_name=model_name,
                     test_entry_id=test_entry_id,
-                    long_context=("long_context" in test_category or "composite" in test_category),
+                    long_context=(
+                        "long_context" in test_category or "composite" in test_category
+                    ),
                     is_evaL_run=True,
                 )
             )
@@ -114,9 +118,8 @@ def multi_turn_irrelevance_checker(
         multi_turn_ground_truth_list
     ):
         single_turn_model_response_list = multi_turn_model_result_list_decoded[turn_index]
-        if (
-            len(single_turn_ground_truth_list) == 0
-            and not is_empty_output(single_turn_model_response_list)
+        if len(single_turn_ground_truth_list) == 0 and not is_empty_output(
+            single_turn_model_response_list
         ):
             return {
                 "valid": False,
@@ -136,12 +139,28 @@ def state_checker(model_instances: dict, ground_truth_instances: dict):
     """
     for class_name, ground_truth_instance in ground_truth_instances.items():
         model_instance = model_instances[class_name]
-        valid, differeces = _compare_instances(model_instance, ground_truth_instance)
+        valid, differences = _compare_instances(model_instance, ground_truth_instance)
 
         if not valid:
+            model_instance_attributes = {
+                key: value
+                for key, value in vars(model_instance).items()
+                if not key.startswith("_")
+            }
+            ground_truth_instance_attributes = {
+                key: value
+                for key, value in vars(ground_truth_instance).items()
+                if not key.startswith("_")
+            }
+            # Format the error message for better readability
             return {
                 "valid": False,
-                "error": f"Model instance for {class_name} does not match the state with ground truth instance. \nDifferences: {differeces}. Model instance: {model_instance.__dict__}, Ground truth instance: {ground_truth_instance.__dict__}",
+                "error": {
+                    "message": f"Model instance for {class_name} does not match the state with ground truth instance.",
+                    "details": differences,
+                    "model_instance_state": model_instance_attributes,
+                    "ground_truth_instance_state": ground_truth_instance_attributes,
+                },
                 "error_type": "multi_turn:instance_state_mismatch",
             }
 
@@ -211,7 +230,7 @@ def _compare_instances(model_obect, ground_truth_object):
     assert type(model_obect) == type(
         ground_truth_object
     ), "Objects are not of the same type."
-    differeces = {}
+    differences = {}
     valid = True
     for attr_name in vars(ground_truth_object):
         # We don't check for private attributes
@@ -222,11 +241,9 @@ def _compare_instances(model_obect, ground_truth_object):
 
         if model_attr != ground_truth_attr:
             valid = False
-            differeces[attr_name] = (
-                f"Model: {model_attr}, Ground Truth: {ground_truth_attr}"
-            )
+            differences[attr_name] = {"model": model_attr, "ground_truth": ground_truth_attr}
 
-    return valid, differeces
+    return valid, differences
 
 
 def _is_subsequence(list1, list2):
