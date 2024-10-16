@@ -48,7 +48,7 @@
 {"id": "live_simple_47-20-0", "ground_truth": [{"multiply": {"a": [3], "b": [2]}}]}
 {"id": "live_simple_48-21-0", "ground_truth": [{"find_beer": {"brewery": ["Sierra Nevada"], "taste": ["bitter"], "aroma": ["hoppy"], "color": ["pale"], "style": ["lager"], "abv_min": ["", 0.0], "abv_max": ["", 12.5], "ibu_min": ["", 0], "ibu_max": ["", 120], "pairings": ["", []]}}]}
 {"id": "live_simple_49-21-1", "ground_truth": [{"find_beer": {"brewery": ["Creek", "Creek brewery", "Creek Brewery", "Brewery Creek", "brewery creek"], "taste": ["slightly bitter"], "aroma": ["chocolatey"], "color": ["dark"], "style": ["porter"], "abv_min": ["", 0.0], "abv_max": ["", 12.5], "ibu_min": ["", 0], "ibu_max": ["", 120], "pairings": ["", []]}}]}
-{"id": "live_simple_50-22-0", "ground_truth": [{"get_latest_carbon_intensity": {"zone": ["Great Britain"]}}]}
+{"id": "live_simple_50-22-0", "ground_truth": [{"get_latest_carbon_intensity": {"zone": ["Great Britain", "GB"]}}]}
 {"id": "live_simple_51-23-0", "ground_truth": [{"ThinQ_Connect": {"body": [{"airConJobMode": ["COOL"], "windStrength": ["HIGH"], "airConOperationMode": ["POWER_ON"], "powerSaveEnabled": [true], "targetTemperature": [22], "relativeHourToStart": [1], "relativeMinuteToStart": [30]}]}}]}
 {"id": "live_simple_52-23-1", "ground_truth": [{"ThinQ_Connect": {"body": [{"airConJobMode": ["COOL"], "windStrength": ["MID"], "airConOperationMode": ["POWER_ON"], "targetTemperature": [20], "relativeHourToStop": [1]}]}}]}
 {"id": "live_simple_53-24-0", "ground_truth": [{"todo_add": {"content": ["go for shopping at 9 pm"]}}]}

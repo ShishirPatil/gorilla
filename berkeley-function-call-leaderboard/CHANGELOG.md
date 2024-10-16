@@ -5,7 +5,7 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
 - [Oct 16, 2024] [#661](https://github.com/ShishirPatil/gorilla/pull/661): Bug fix in the dataset and possible answers.
   - Irrelevance: 1 affected
   - Parallel Multiple: 2 affected
-  - Live Simple: 104 affected
+  - Live Simple: 105 affected
   - Live Multiple: 547 affected
   - Live Parallel: 11 affected
   - Live Parallel Multiple: 17 affected
