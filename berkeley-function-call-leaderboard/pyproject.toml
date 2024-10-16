@@ -27,7 +27,7 @@ dependencies = [
     "mistralai==1.1.0",
     "anthropic==0.31.1",
     "cohere==5.5.8",
-    "google-cloud-aiplatform==1.65.0",
+    "google-cloud-aiplatform>=1.70.0",
     "pathlib",
 ]
 
@@ -38,4 +38,4 @@ include = ["bfcl*"]
 Repository = "https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard"
 
 [project.optional-dependencies]
-oss_eval = ["vllm==0.6.1.post2"]
+oss_eval = ["vllm==0.6.3"]
