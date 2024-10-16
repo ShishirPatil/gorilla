@@ -7,6 +7,7 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
   - `MadeAgents/Hammer2.0-3b`
   - `MadeAgents/Hammer2.0-1.5b`
   - `MadeAgents/Hammer2.0-0.5b`
+- [Oct 5, 2024] [#633](https://github.com/ShishirPatil/gorilla/pull/633): Add new model `openbmb/MiniCPM3-4B` to the leaderboard.
 - [Oct 5, 2024] [#642](https://github.com/ShishirPatil/gorilla/pull/642): Add the following new models to the leaderboard:
   - `Qwen/Qwen2.5-7B-Instruct`
   - `Qwen/Qwen2.5-1.5B-Instruct`
