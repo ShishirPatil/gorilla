@@ -24,7 +24,7 @@ from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
 
-# TODO: Add Deepseek V2 and Gemma V2, meta-llama/Llama-3.1-405B-Instruct
+# TODO: Add Deepseek V2, meta-llama/Llama-3.1-405B-Instruct
 
 # Inference through API calls
 api_inference_handler_map = {
@@ -84,6 +84,9 @@ api_inference_handler_map = {
 
 # Inference through local hosting
 local_inference_handler_map = {
+    "google/gemma-2-2b-it": GemmaHandler,
+    "google/gemma-2-9b-it": GemmaHandler,
+    "google/gemma-2-27b-it": GemmaHandler,
     "meta-llama/Meta-Llama-3-8B-Instruct": LlamaHandler,
     "meta-llama/Meta-Llama-3-70B-Instruct": LlamaHandler,
     "meta-llama/Llama-3.1-8B-Instruct-FC": LlamaFCHandler,
@@ -147,4 +150,4 @@ outdated_model_handler_map = {
     # "deepseek-ai/deepseek-coder-6.7b-instruct": DeepseekHandler,
 }
 
-handler_map = {**api_inference_handler_map, **local_inference_handler_map}
+HANDLER_MAP = {**api_inference_handler_map, **local_inference_handler_map}
