@@ -2,6 +2,10 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Oct 16, 2024] [#696](https://github.com/ShishirPatil/gorilla/pull/696): Add the following new models to the leaderboard:
+  - `google/gemma-2-2b-it`
+  - `google/gemma-2-9b-it`
+  - `google/gemma-2-27b-it`
 - [Oct 16, 2024] [#661](https://github.com/ShishirPatil/gorilla/pull/661): Bug fix in the dataset and possible answers.
   - Irrelevance: 1 affected
   - Parallel Multiple: 2 affected

@@ -145,6 +145,7 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |gpt-4o-mini-2024-07-18-FC | Function Calling|
 |gpt-4o-mini-2024-07-18 | Prompt|
 |google/gemma-7b-it 💻| Prompt|
+|google/gemma-2-{2b,9b,27b}-it 💻| Prompt|
 |meetkai/functionary-medium-v3.1-FC| Function Calling|
 |meetkai/functionary-small-{v3.1,v3.2}-FC| Function Calling|
 |meta-llama/Meta-Llama-3-{8B,70B}-Instruct 💻| Prompt|
