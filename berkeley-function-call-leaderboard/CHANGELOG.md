@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Oct 16, 2024] [#701](https://github.com/ShishirPatil/gorilla/pull/701): Bug fix the multi turn function source code for `TravelAPI`.
 - [Oct 16, 2024] [#696](https://github.com/ShishirPatil/gorilla/pull/696): Add the following new models to the leaderboard:
   - `google/gemma-2-2b-it`
   - `google/gemma-2-9b-it`

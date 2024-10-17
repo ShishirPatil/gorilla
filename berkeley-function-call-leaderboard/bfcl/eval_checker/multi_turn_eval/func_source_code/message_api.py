@@ -58,7 +58,11 @@ class MessageAPI:
                 "receiver_id": "USR004",
                 "message": "Could you upload the file?",
             },
-            4: {"sender_id": "USR003", "receiver_id": "USR002", "message": "I am busy."},
+            4: {
+                "sender_id": "USR003",
+                "receiver_id": "USR002",
+                "message": "I am busy.",
+            },
             5: {
                 "sender_id": "USR004",
                 "receiver_id": "USR002",
@@ -82,7 +86,7 @@ class MessageAPI:
     def __eq__(self, value: object) -> bool:
         if not isinstance(value, MessageAPI):
             return False
- 
+
         for attr_name in vars(self):
             if attr_name.startswith("_"):
                 continue

@@ -20,7 +20,9 @@ class TravelAPI:
         self.budget_limit: Optional[float]
 
     def _load_scenario(
-        self, scenario: Dict[str, Union[Dict, str, int, float]], long_context: bool = False
+        self,
+        scenario: Dict[str, Union[Dict, str, int, float]],
+        long_context: bool = False,
     ) -> None:
         """
         Load a scenario from the scenarios folder
@@ -358,7 +360,9 @@ class TravelAPI:
         elif travel_class == "first":
             factor = 5
         else:
-            raise ValueError("Invalid travel class. Options are: economy, business, first.")
+            raise ValueError(
+                "Invalid travel class. Options are: economy, business, first."
+            )
 
         # Determine the multiplier based on the travel date
         digit_sum = sum(int(char) for char in travel_date if char.isdigit())
@@ -369,9 +373,21 @@ class TravelAPI:
 
         travel_cost_list = []
         if self.long_context:
-            for k,v in base_costs.items():
+            for k, v in base_costs.items():
                 travel_cost = float(v * factor * travel_date_multiplier)
-                travel_cost_list.append("From: " + k[0] + " To: " + k[1] + " Cost: " + str(travel_cost) + " USD. This is a domestica flight with a travel class of " + travel_class + " and a travel date of " + travel_date + ".")
+                travel_cost_list.append(
+                    "From: "
+                    + k[0]
+                    + " To: "
+                    + k[1]
+                    + " Cost: "
+                    + str(travel_cost)
+                    + " USD. This is a domestica flight with a travel class of "
+                    + travel_class
+                    + " and a travel date of "
+                    + travel_date
+                    + "."
+                )
             return travel_cost_list
         return travel_cost
 
@@ -439,7 +455,10 @@ class TravelAPI:
             self.budget_limit is not None
             and self.credit_card_list[card_id]["balance"] < self.budget_limit
         ):
-            return {"booking_status": False, "error": "Balance is less than budget limit"}
+            return {
+                "booking_status": False,
+                "error": "Balance is less than budget limit",
+            }
         self.credit_card_list[card_id]["balance"] -= travel_cost
         booking_id = str(self._random.randint(1000000, 9999999))  # 7 digits
         transaction_id = str(self._random.randint(10000000, 99999999))  # 8 digits
@@ -570,7 +589,7 @@ class TravelAPI:
 
         """
         exchange_rates = {
-            ("USD", "RMS"): 7,
+            ("USD", "RMB"): 7,
             ("USD", "EUR"): 0.8,
             ("USD", "JPY"): 110,
             ("USD", "GBP"): 0.7,
