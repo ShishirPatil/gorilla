@@ -17,7 +17,7 @@ class File:
         """
         self.name: str = name
         self.content: str = content
-        self.last_modified: datetime.datetime = datetime.datetime.now()
+        self._last_modified: datetime.datetime = datetime.datetime.now()
 
     def _write(self, new_content: str) -> None:
         """
@@ -27,7 +27,7 @@ class File:
             new_content (str): The new content to write to the file.
         """
         self.content = new_content
-        self.last_modified = datetime.datetime.now()
+        self._last_modified = datetime.datetime.now()
 
     def _read(self) -> str:
         """
@@ -46,10 +46,10 @@ class File:
             additional_content (str): The content to append to the file.
         """
         self.content += additional_content
-        self.last_modified = datetime.datetime.now()
+        self._last_modified = datetime.datetime.now()
 
     def __repr__(self):
-        return f"<<File: {self.name}, Last Modified: {self.last_modified}, Content: {self.content}>>"
+        return f"<<File: {self.name}, Content: {self.content}>>"
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, File):
@@ -136,7 +136,7 @@ class GorillaFileSystem:
         Initialize the Gorilla file system with a root directory
         """
         self.root: Directory
-        self.current_dir: Directory
+        self._current_dir: Directory
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, GorillaFileSystem):
@@ -192,7 +192,7 @@ class GorillaFileSystem:
                 scenario["root"][list(scenario["root"].keys())[0]]["contents"],
                 root_dir
             )
-            self.current_dir = self.root
+            self._current_dir = self.root
 
     def _load_directory(
         self, current: dict, parent: Optional[Directory] = None
@@ -253,7 +253,7 @@ class GorillaFileSystem:
 
         """
         path = []
-        dir = self.current_dir
+        dir = self._current_dir
         while dir is not None and dir.name != self.root:
             path.append(dir.name)
             dir = dir.parent
@@ -269,7 +269,7 @@ class GorillaFileSystem:
         Returns:
             current_directory_content (list): A list of the contents of the specified directory.
         """
-        contents = self.current_dir._list_contents()
+        contents = self._current_dir._list_contents()
         if not a:
             contents = [item for item in contents if not item.startswith(".")]
         return {"current_directory_content": contents}
@@ -286,9 +286,9 @@ class GorillaFileSystem:
         """
         # Handle navigating to the parent directory with "cd .."
         if folder == "..":
-            if self.current_dir.parent:
-                self.current_dir = self.current_dir.parent
-            elif self.root == self.current_dir:
+            if self._current_dir.parent:
+                self._current_dir = self._current_dir.parent
+            elif self.root == self._current_dir:
                 return {"error": "Cuurent directory is already the root. Cannot go back."}
             else:
                 return {"error": "cd: ..: No such directory"}
@@ -300,7 +300,7 @@ class GorillaFileSystem:
             return {
                 "error": f"cd: {folder}: No such directory. You cannot use path to change directory."
             }
-        self.current_dir = target_dir
+        self._current_dir = target_dir
         return {"current_working_directory": target_dir.name}
 
     def _validate_file_or_directory_name(self, dir_name: str) -> bool:
@@ -322,10 +322,10 @@ class GorillaFileSystem:
             return {
                 "error": f"mkdir: cannot create directory '{dir_name}': Invalid character"
             }
-        if dir_name in self.current_dir.contents:
+        if dir_name in self._current_dir.contents:
             return {"error": f"mkdir: cannot create directory '{dir_name}': File exists"}
 
-        self.current_dir._add_directory(dir_name)
+        self._current_dir._add_directory(dir_name)
         return None
 
     def touch(self, file_name: str) -> Union[None, Dict[str, str]]:
@@ -341,10 +341,10 @@ class GorillaFileSystem:
         if not self._validate_file_or_directory_name(file_name):
             return {"error": f"touch: cannot touch '{file_name}': Invalid character"}
 
-        if file_name in self.current_dir.contents:
+        if file_name in self._current_dir.contents:
             return {"error": f"touch: cannot touch '{file_name}': File exists"}
 
-        self.current_dir._add_file(file_name)
+        self._current_dir._add_file(file_name)
         return {}
 
     def echo(
@@ -366,10 +366,10 @@ class GorillaFileSystem:
             return {"error": f"echo: cannot touch '{file_name}': Invalid character"}
 
         if file_name:
-            if file_name in self.current_dir.contents:
-                self.current_dir._get_item(file_name)._write(content)
+            if file_name in self._current_dir.contents:
+                self._current_dir._get_item(file_name)._write(content)
             else:
-                self.current_dir._add_file(file_name, content)
+                self._current_dir._add_file(file_name, content)
         else:
             return {"terminal_output": content}
 
@@ -386,8 +386,8 @@ class GorillaFileSystem:
         if not self._validate_file_or_directory_name(file_name):
             return {"error": f"cat: '{file_name}': Invalid character"}
 
-        if file_name in self.current_dir.contents:
-            item = self.current_dir._get_item(file_name)
+        if file_name in self._current_dir.contents:
+            item = self._current_dir._get_item(file_name)
             if isinstance(item, File):
                 return {"file_content": item._read()}
             else:
@@ -415,7 +415,7 @@ class GorillaFileSystem:
             This method performs a recursive search through all subdirectories of the given path.
         """
         matches = []
-        target_dir = self.current_dir
+        target_dir = self._current_dir
 
         def recursive_search(directory: Directory, base_path: str) -> None:
             for item_name, item in directory.contents.items():
@@ -442,8 +442,8 @@ class GorillaFileSystem:
         if mode not in ["l", "w", "c"]:
             return {"error": f"wc: invalid mode '{mode}'"}
 
-        if file_name in self.current_dir.contents:
-            file = self.current_dir._get_item(file_name)
+        if file_name in self._current_dir.contents:
+            file = self._current_dir._get_item(file_name)
             if isinstance(file, File):
                 content = file._read()
 
@@ -471,8 +471,8 @@ class GorillaFileSystem:
         Returns:
             sorted_content (str): The sorted content of the file.
         """
-        if file_name in self.current_dir.contents:
-            file = self.current_dir._get_item(file_name)
+        if file_name in self._current_dir.contents:
+            file = self._current_dir._get_item(file_name)
             if isinstance(file, File):
                 content = file._read()
 
@@ -493,8 +493,8 @@ class GorillaFileSystem:
         Returns:
             matching_lines (list): Lines that match the pattern.
         """
-        if file_name in self.current_dir.contents:
-            file = self.current_dir._get_item(file_name)
+        if file_name in self._current_dir.contents:
+            file = self._current_dir._get_item(file_name)
             if isinstance(file, File):
                 content = file._read()
 
@@ -516,8 +516,8 @@ class GorillaFileSystem:
             output (str): The result of the command execution.
         """
         if file_name:
-            if file_name in self.current_dir.contents:
-                file = self.current_dir._get_item(file_name)
+            if file_name in self._current_dir.contents:
+                file = self._current_dir._get_item(file_name)
                 if isinstance(file, File):
                     args = file._read().splitlines()
                 else:
@@ -581,8 +581,8 @@ class GorillaFileSystem:
         Returns:
             last_lines (str): The last part of the file.
         """
-        if file_name in self.current_dir.contents:
-            file = self.current_dir._get_item(file_name)
+        if file_name in self._current_dir.contents:
+            file = self._current_dir._get_item(file_name)
             if isinstance(file, File):
                 content = file._read().splitlines()
 
@@ -606,11 +606,11 @@ class GorillaFileSystem:
             diff_lines (str): The differences between the two files.
         """
         if (
-            file_name1 in self.current_dir.contents
-            and file_name2 in self.current_dir.contents
+            file_name1 in self._current_dir.contents
+            and file_name2 in self._current_dir.contents
         ):
-            file1 = self.current_dir._get_item(file_name1)
-            file2 = self.current_dir._get_item(file_name2)
+            file1 = self._current_dir._get_item(file_name1)
+            file2 = self._current_dir._get_item(file_name2)
 
             if isinstance(file1, File) and isinstance(file2, File):
                 content1 = file1._read().splitlines()
@@ -638,10 +638,10 @@ class GorillaFileSystem:
         Returns:
             result (str): The result of the move operation.
         """
-        if source not in self.current_dir.contents:
+        if source not in self._current_dir.contents:
             return {"error": f"mv: cannot move '{source}': No such file or directory"}
 
-        item = self.current_dir._get_item(source)
+        item = self._current_dir._get_item(source)
 
         if not isinstance(item, (File, Directory)):
             return {"error": f"mv: cannot move '{source}': Not a file or directory"}
@@ -650,8 +650,8 @@ class GorillaFileSystem:
             return {"error": f"mv: no path allowed in destination. Only file name and folder name is supported for this operation."}
 
         # Check if the destination is an existing directory
-        if destination in self.current_dir.contents:
-            dest_item = self.current_dir._get_item(destination)
+        if destination in self._current_dir.contents:
+            dest_item = self._current_dir._get_item(destination)
             if isinstance(dest_item, Directory):
                 # Move source into the destination directory
                 new_destination = f"{source}"
@@ -660,7 +660,7 @@ class GorillaFileSystem:
                         "error": f"mv: cannot move '{source}' to '{destination}/{source}': File exists"
                     }
                 else:
-                    self.current_dir.contents.pop(source)
+                    self._current_dir.contents.pop(source)
                     if isinstance(item, File):
                         dest_item._add_file(source, item.content)
                     else:
@@ -673,12 +673,12 @@ class GorillaFileSystem:
                 }
         else:
             # Destination is not an existing directory, move/rename the item
-            self.current_dir.contents.pop(source)
+            self._current_dir.contents.pop(source)
             if isinstance(item, File):
-                self.current_dir._add_file(destination, item.content)
+                self._current_dir._add_file(destination, item.content)
             else:
-                self.current_dir._add_directory(destination)
-                self.current_dir.contents[destination].contents = item.contents
+                self._current_dir._add_directory(destination)
+                self._current_dir.contents[destination].contents = item.contents
             return {"result": f"'{source}' moved to '{destination}'"}
 
     def rm(self, file_name: str) -> Dict[str, str]:
@@ -691,10 +691,10 @@ class GorillaFileSystem:
         Returns:
             result (str): The result of the remove operation.
         """
-        if file_name in self.current_dir.contents:
-            item = self.current_dir._get_item(file_name)
+        if file_name in self._current_dir.contents:
+            item = self._current_dir._get_item(file_name)
             if isinstance(item, File) or isinstance(item, Directory):
-                self.current_dir.contents.pop(file_name)
+                self._current_dir.contents.pop(file_name)
                 return {"result": f"'{file_name}' removed"}
             else:
                 return {
@@ -713,15 +713,15 @@ class GorillaFileSystem:
         Returns:
             result (str): The result of the remove operation.
         """
-        if dir_name in self.current_dir.contents:
-            item = self.current_dir._get_item(dir_name)
+        if dir_name in self._current_dir.contents:
+            item = self._current_dir._get_item(dir_name)
             if isinstance(item, Directory):
                 if item.contents:  # Check if directory is not empty
                     return {
                         "error": f"rmdir: failed to remove '{dir_name}': Directory not empty"
                     }
                 else:
-                    self.current_dir.contents.pop(dir_name)
+                    self._current_dir.contents.pop(dir_name)
                     return {"result": f"'{dir_name}' removed"}
             else:
                 return {"error": f"rmdir: cannot remove '{dir_name}': Not a directory"}
@@ -748,10 +748,10 @@ class GorillaFileSystem:
         Returns:
             result (str): The result of the copy operation or an error message if the operation fails.
         """
-        if source not in self.current_dir.contents:
+        if source not in self._current_dir.contents:
             return {"error": f"cp: cannot copy '{source}': No such file or directory"}
 
-        item = self.current_dir._get_item(source)
+        item = self._current_dir._get_item(source)
 
         if not isinstance(item, (File, Directory)):
             return {"error": f"cp: cannot copy '{source}': Not a file or directory"}
@@ -759,8 +759,8 @@ class GorillaFileSystem:
         if "/" in destination:
             return {"error": f"cp: don't allow path in destination. Only file name and folder name is supported for this operation."}
         # Check if the destination is an existing directory
-        if destination in self.current_dir.contents:
-            dest_item = self.current_dir._get_item(destination)
+        if destination in self._current_dir.contents:
+            dest_item = self._current_dir._get_item(destination)
             if isinstance(dest_item, Directory):
                 # Copy source into the destination directory
                 new_destination = f"{destination}/{source}"
@@ -782,10 +782,10 @@ class GorillaFileSystem:
         else:
             # Destination is not an existing directory, perform the copy
             if isinstance(item, File):
-                self.current_dir._add_file(destination, item.content)
+                self._current_dir._add_file(destination, item.content)
             else:
-                self.current_dir._add_directory(destination)
-                self.current_dir.contents[destination].contents = item.contents.copy()
+                self._current_dir._add_directory(destination)
+                self._current_dir.contents[destination].contents = item.contents.copy()
             return {"result": f"'{source}' copied to '{destination}'"}
 
     def _navigate_to_directory(
@@ -801,12 +801,12 @@ class GorillaFileSystem:
             target_directory (Directory or dict): The target directory object or error message.
         """
         if path is None or path == ".":
-            return self.current_dir
+            return self._current_dir
         elif path == "/":
             return self.root
 
         dirs = path.strip("/").split("/")
-        temp_dir = self.current_dir if not path.startswith("/") else self.root
+        temp_dir = self._current_dir if not path.startswith("/") else self.root
 
         for dir_name in dirs:
             next_dir = temp_dir._get_item(dir_name)

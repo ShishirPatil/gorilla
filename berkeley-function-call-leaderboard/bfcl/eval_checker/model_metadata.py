@@ -343,6 +343,24 @@ MODEL_METADATA_MAPPING = {
         "Google",
         "gemma-terms-of-use",
     ],
+    "google/gemma-2-2b-it": [
+        "Gemma-2-2b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-open-models/",
+        "Google",
+        "gemma-terms-of-use",
+    ],
+    "google/gemma-2-9b-it": [
+        "Gemma-2-9b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-open-models/",
+        "Google",
+        "gemma-terms-of-use",
+    ],
+    "google/gemma-2-27b-it": [
+        "Gemma-2-27b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-open-models/",
+        "Google",
+        "gemma-terms-of-use",
+    ],
     "glaiveai/glaive-function-calling-v1": [
         "Glaive-v1 (FC)",
         "https://huggingface.co/glaiveai/glaive-function-calling-v1",
@@ -623,6 +641,12 @@ MODEL_METADATA_MAPPING = {
         "ToolACE-8B (FC)",
         "https://huggingface.co/Team-ACE/ToolACE-8B",
         "Huawei Noah & USTC",
+        "Apache-2.0",
+    ],
+    "openbmb/MiniCPM3-4B": [
+        "MiniCPM3-4B (FC)",
+        "https://huggingface.co/openbmb/MiniCPM3-4B",
+        "openbmb",
         "Apache-2.0",
     ],
 }
