@@ -11,7 +11,7 @@ from bfcl.constant import VERSION_PREFIX
 from bfcl.eval_checker.constant import *
 from bfcl.eval_checker.executable_eval.custom_exception import BadAPIStatusError
 from bfcl.eval_checker.model_metadata import *
-from bfcl.model_handler.handler_map import handler_map
+from bfcl.model_handler.handler_map import HANDLER_MAP
 from tqdm import tqdm
 
 
@@ -77,7 +77,7 @@ def load_file(file_path):
 
 
 def get_handler(model_name):
-    return handler_map[model_name](model_name, temperature=0)  #Temperature doesn't matter for evaluation
+    return HANDLER_MAP[model_name](model_name, temperature=0)  #Temperature doesn't matter for evaluation
 
 
 def write_list_of_dicts_to_file(filename, data, subdir=None):
@@ -92,17 +92,27 @@ def write_list_of_dicts_to_file(filename, data, subdir=None):
     with open(filename, "w") as f:
         for i, entry in enumerate(data):
             # Go through each key-value pair in the dictionary to make sure the values are JSON serializable
-            for key, value in entry.items():
-                try:
-                    json.dumps(value)
-                except:
-                    # If the value is not JSON serializable, wrap it in a string
-                    entry[key] = str(value)
-
+            entry = make_json_serializable(entry)
             json_str = json.dumps(entry)
             f.write(json_str)
             if i < len(data) - 1:
                 f.write("\n")
+
+
+def make_json_serializable(value):
+    if isinstance(value, dict):
+        # If the value is a dictionary, we need to go through each key-value pair recursively
+        return {k: make_json_serializable(v) for k, v in value.items()}
+    elif isinstance(value, list):
+        # If the value is a list, we need to process each element recursively
+        return [make_json_serializable(item) for item in value]
+    else:
+        # Try to serialize the value directly, and if it fails, convert it to a string
+        try:
+            json.dumps(value)
+            return value
+        except (TypeError, ValueError):
+            return str(value)
 
 
 def is_function_calling_format_output(decoded_output):

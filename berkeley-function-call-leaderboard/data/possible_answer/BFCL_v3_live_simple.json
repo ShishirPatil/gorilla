@@ -5,11 +5,11 @@
 {"id": "live_simple_4-3-0", "ground_truth": [{"get_current_weather": {"location": ["Tel Aviv, Israel"], "unit": ["fahrenheit", ""]}}]}
 {"id": "live_simple_5-3-1", "ground_truth": [{"get_current_weather": {"location": ["Divin\u00f3polis, MG"], "unit": ["fahrenheit", ""]}}]}
 {"id": "live_simple_6-3-2", "ground_truth": [{"get_current_weather": {"location": ["San Francisco, CA"], "unit": ["fahrenheit", ""]}}]}
-{"id": "live_simple_7-3-3", "ground_truth": [{"get_current_weather": {"location": ["Riga, Latvia"], "unit": ["fahrenheit", ""]}}]}
-{"id": "live_simple_8-3-4", "ground_truth": [{"get_current_weather": {"location": ["London, UK"], "unit": ["fahrenheit", ""]}}]}
+{"id": "live_simple_7-3-3", "ground_truth": [{"get_current_weather": {"location": ["Riga, Latvia"], "unit": ["fahrenheit", "", "celsius"]}}]}
+{"id": "live_simple_8-3-4", "ground_truth": [{"get_current_weather": {"location": ["London, UK", "London, England"], "unit": ["fahrenheit", ""]}}]}
 {"id": "live_simple_9-3-5", "ground_truth": [{"get_current_weather": {"location": ["Hyderabad, India"], "unit": ["fahrenheit", ""]}}]}
 {"id": "live_simple_10-3-6", "ground_truth": [{"get_current_weather": {"location": ["Yosemite National Park, CA"], "unit": ["celsius"]}}]}
-{"id": "live_simple_11-3-7", "ground_truth": [{"get_current_weather": {"location": ["Naples, FL"], "unit": ["", "fahrenheit"]}}]}
+{"id": "live_simple_11-3-7", "ground_truth": [{"get_current_weather": {"location": ["Naples, FL", "Naples, Florida"], "unit": ["", "fahrenheit"]}}]}
 {"id": "live_simple_12-3-8", "ground_truth": [{"get_current_weather": {"location": ["New York, NY"], "unit": ["celsius"]}}]}
 {"id": "live_simple_13-3-9", "ground_truth": [{"get_current_weather": {"location": ["Shanghai, China"], "unit": ["celsius"]}}]}
 {"id": "live_simple_14-3-10", "ground_truth": [{"get_current_weather": {"location": ["Bangkok, Thailand"], "unit": ["", "fahrenheit"]}}]}
@@ -18,7 +18,7 @@
 {"id": "live_simple_17-3-13", "ground_truth": [{"get_current_weather": {"location": ["Boston, MA"], "unit": ["", "fahrenheit"]}}]}
 {"id": "live_simple_18-3-14", "ground_truth": [{"get_current_weather": {"location": ["Moscow, Russia"], "unit": ["celsius"]}}]}
 {"id": "live_simple_19-3-15", "ground_truth": [{"get_current_weather": {"location": ["Quintana Roo, Mexico"], "unit": ["celsius"]}}]}
-{"id": "live_simple_20-4-0", "ground_truth": [{"change_food": {"food_item": ["burger"], "modification_request": ["no onions,extra cheese"]}}]}
+{"id": "live_simple_20-4-0", "ground_truth": [{"change_food": {"food_item": ["burger"], "modification_request": ["no onions, extra cheese"]}}]}
 {"id": "live_simple_21-4-1", "ground_truth": [{"change_food": {"food_item": ["chicken dish"], "modification_request": ["extra spicy"]}}]}
 {"id": "live_simple_22-5-0", "ground_truth": [{"ChaFod": {"TheFod": ["BURGER"]}}]}
 {"id": "live_simple_23-5-1", "ground_truth": [{"ChaFod": {"TheFod": ["PIZZA"]}}]}
@@ -47,8 +47,8 @@
 {"id": "live_simple_46-19-0", "ground_truth": [{"ThinQ_Connect": {"airConJobMode": ["COOL"], "windStrength": ["MID"], "monitoringEnabled": [true], "airCleanOperationMode": ["START"], "airConOperationMode": ["POWER_ON"], "powerSaveEnabled": [false], "targetTemperature": [24]}}]}
 {"id": "live_simple_47-20-0", "ground_truth": [{"multiply": {"a": [3], "b": [2]}}]}
 {"id": "live_simple_48-21-0", "ground_truth": [{"find_beer": {"brewery": ["Sierra Nevada"], "taste": ["bitter"], "aroma": ["hoppy"], "color": ["pale"], "style": ["lager"], "abv_min": ["", 0.0], "abv_max": ["", 12.5], "ibu_min": ["", 0], "ibu_max": ["", 120], "pairings": ["", []]}}]}
-{"id": "live_simple_49-21-1", "ground_truth": [{"find_beer": {"brewery": ["Creek"], "taste": ["slightly bitter"], "aroma": ["chocolatey"], "color": ["dark"], "style": ["porter"], "abv_min": ["", 0.0], "abv_max": ["", 12.5], "ibu_min": ["", 0], "ibu_max": ["", 120], "pairings": ["", []]}}]}
-{"id": "live_simple_50-22-0", "ground_truth": [{"get_latest_carbon_intensity": {"zone": ["Great Britain"]}}]}
+{"id": "live_simple_49-21-1", "ground_truth": [{"find_beer": {"brewery": ["Creek", "Creek brewery", "Creek Brewery", "Brewery Creek", "brewery creek"], "taste": ["slightly bitter"], "aroma": ["chocolatey"], "color": ["dark"], "style": ["porter"], "abv_min": ["", 0.0], "abv_max": ["", 12.5], "ibu_min": ["", 0], "ibu_max": ["", 120], "pairings": ["", []]}}]}
+{"id": "live_simple_50-22-0", "ground_truth": [{"get_latest_carbon_intensity": {"zone": ["Great Britain", "GB"]}}]}
 {"id": "live_simple_51-23-0", "ground_truth": [{"ThinQ_Connect": {"body": [{"airConJobMode": ["COOL"], "windStrength": ["HIGH"], "airConOperationMode": ["POWER_ON"], "powerSaveEnabled": [true], "targetTemperature": [22], "relativeHourToStart": [1], "relativeMinuteToStart": [30]}]}}]}
 {"id": "live_simple_52-23-1", "ground_truth": [{"ThinQ_Connect": {"body": [{"airConJobMode": ["COOL"], "windStrength": ["MID"], "airConOperationMode": ["POWER_ON"], "targetTemperature": [20], "relativeHourToStop": [1]}]}}]}
 {"id": "live_simple_53-24-0", "ground_truth": [{"todo_add": {"content": ["go for shopping at 9 pm"]}}]}
@@ -76,8 +76,8 @@
 {"id": "live_simple_75-36-3", "ground_truth": [{"detect_beats_and_filter": {"capture_percentage": [93], "confidence_window_size": [0.5]}}]}
 {"id": "live_simple_76-37-0", "ground_truth": [{"language_translator.translate": {"source_language": ["en"], "target_language": ["fr"], "text": ["What is your name?"]}}]}
 {"id": "live_simple_77-38-0", "ground_truth": [{"weather.get": {"city": ["London"], "country": ["GB"], "units": ["", "metric"], "include_forecast": ["", false]}}]}
-{"id": "live_simple_78-39-0", "ground_truth": [{"send_email": {"to_address": ["cobus@humanfirst.ai"], "subject": ["Sales Forecast Request"], "body": ["Could you please provide the latest sales forecast spreadsheet?"], "cc_address": ["", ""], "bcc_address": ["", ""], "attachments": ["", []]}}]}
-{"id": "live_simple_79-40-0", "ground_truth": [{"search_hotels": {"location": ["San Diago, CA"]}}]}
+{"id": "live_simple_78-39-0", "ground_truth": [{"send_email": {"to_address": ["cobus@humanfirst.ai"], "subject": ["Sales Forecast Request"], "body": ["Could you please provide the latest sales forecast spreadsheet?"], "cc_address": [""], "bcc_address": [""], "attachments": ["", []]}}]}
+{"id": "live_simple_79-40-0", "ground_truth": [{"search_hotels": {"location": ["San Diego, CA"]}}]}
 {"id": "live_simple_80-41-0", "ground_truth": [{"sitefinity_create_contentitem": {"Title": ["Breakthrough in Artificial Intelligence"], "Content": ["The recent breakthroughs in machine learning algorithms."], "MetaTitle": ["AI Breakthrough \u2013 Latest Developments in Machine Learning"], "MetaDescription": ["An overview of the recent significant advancements in artificial intelligence and machine learning technology"], "UrlName": ["ai-breakthrough-latest-developments"]}}]}
 {"id": "live_simple_81-42-0", "ground_truth": [{"sitefinity_create_contentitem": {"ContentItem": ["NewsItem"], "Title": ["Julian is testing12"], "Content": ["", null], "MetaTitle": ["", null], "MetaDescription": ["", null], "UrlName": ["", null]}}]}
 {"id": "live_simple_82-43-0", "ground_truth": [{"sitefinity_create_contentitem": {"ContentItem": ["News"], "Title": ["Julian is testing"], "Content": ["", null], "MetaTitle": ["", null], "MetaDescription": ["", null], "UrlName": ["", null]}}]}
@@ -112,7 +112,7 @@
 {"id": "live_simple_111-67-1", "ground_truth": [{"record": {"acc_routing_start": ["", []], "atm_finder_start": [["Where is the closest ATM to my current location?", "Find ATM for immediate cash needs"]], "faq_link_accounts_start": ["", []], "get_balance_start": [["What is my balance?", "Tell me my available balance, please", "What is my current available balance?", "Please provide my current account balance", "Show me my balance information.", "What is the balance in my account at this moment?", "How much money is in my account?", "Tell me my available balance"]], "get_transactions_start": ["", []], "outofscope": ["", []]}}]}
 {"id": "live_simple_112-68-0", "ground_truth": [{"record": {"acc_routing_start": [], "atm_finder_start": [], "faq_link_accounts_start": [], "get_balance_start": [], "get_transactions_start": [], "outofscope": [["what is the weather like"]]}}]}
 {"id": "live_simple_113-69-0", "ground_truth": [{"calculate_dynamic_pricing": {"geolocation": ["34.0522, -118.2437"], "base_price": [100.0], "minimum_price": [90.0], "location_multiplier": ["", 1.0]}}]}
-{"id": "live_simple_114-70-0", "ground_truth": [{"update_user_profile": {"user_id": [12345], "profile_data": [{"email": ["john.doe@example.com"], "age": [30], "bio": ["", ""]}], "notify": ["", true]}}]}
+{"id": "live_simple_114-70-0", "ground_truth": [{"update_user_profile": {"user_id": [12345], "profile_data": [{"email": ["john.doe@example.com"], "age": [30], "bio": [""]}], "notify": ["", true]}}]}
 {"id": "live_simple_115-71-0", "ground_truth": [{"calculate_sum": {"number1": [133.0], "number2": [34.0]}}]}
 {"id": "live_simple_116-72-0", "ground_truth": [{"sum_numbers": {"numbers_list": [[133.0, 34.0]]}}]}
 {"id": "live_simple_117-73-0", "ground_truth": [{"reverse_input": {"input_value": ["say hi"]}}]}
@@ -129,7 +129,7 @@
 {"id": "live_simple_128-83-0", "ground_truth": [{"requests.get": {"url": ["https://192.168.11.33/sedgeapi/v1/cisco-nir/api/api/telemetry/flowrules/nodes?fabricName=PEK-ACI"], "fabricName": ["PEK-ACI"]}}]}
 {"id": "live_simple_129-83-1", "ground_truth": [{"requests.get": {"url": ["https://3.321.3232.2/sedgeapi/v1/cisco-nir/api/api/telemetry/flowrules/nodes?fabricName=fab-ed"], "fabricName": ["fab-ed"]}}]}
 {"id": "live_simple_130-84-0", "ground_truth": [{"requests.get": {"url": ["https://192.120.45.67/sedgeapi/v1/cisco-nir/api/api/telemetry/flowrules/interfaceInfo"], "params": [{"fabricName": ["Network1"], "nodeId": [12], "podId": [10], "interfaceType": ["ethernet"], "infoType": ["statistics"]}]}}]}
-{"id": "live_simple_131-84-1", "ground_truth": [{"requests.get": {"url": ["https://192.120.45.67/sedgeapi/v1/cisco-nir/api/api/telemetry/flowrules/interfaceInfo"], "params": [{"fabricName": ["Network1"], "nodeId": [12], "podId": [10], "interfaceType": ["Ethernet"], "infoType": ["Speed"]}]}}]}
+{"id": "live_simple_131-84-1", "ground_truth": [{"requests.get": {"url": ["https://192.120.45.67/sedgeapi/v1/cisco-nir/api/api/telemetry/flowrules/interfaceInfo"], "params": [{"fabricName": ["Network1"], "nodeId": [12], "podId": [10], "interfaceType": ["ethernet"], "infoType": ["Speed"]}]}}]}
 {"id": "live_simple_132-85-0", "ground_truth": [{"requests.get": {"url": ["https://example.com/device-connector-versions.json"], "params": ["", {}]}}]}
 {"id": "live_simple_133-86-0", "ground_truth": [{"requests.get": {"url": ["https://api.example.com/recommendations"], "params": [{"advisoryId": ["dac"]}]}}]}
 {"id": "live_simple_134-87-0", "ground_truth": [{"requests.get": {"url": ["https://api.insights.com/groups"], "params": [{"limit": [20], "sort": ["desc"]}]}}]}
@@ -139,10 +139,10 @@
 {"id": "live_simple_138-91-0", "ground_truth": [{"reschedule": {"identifier": ["Bob-123"], "dateOrTime": ["2023-11-01T18:00:00"], "timezone": ["Europe/London"]}}]}
 {"id": "live_simple_139-92-0", "ground_truth": [{"requests.get": {"url": ["https://192.168.1.1/sedgeapi/v1/cisco-nir/api/api/v1/anomalies/summary"], "params": [{"fabric": ["network222"], "insightsGroup": ["", "defaultInsightsGroup"]}]}}]}
 {"id": "live_simple_140-93-0", "ground_truth": [{"greet_partner": {"user_name": ["Emily"], "partner_name": ["Jeff"], "relationship": ["husband"]}}]}
-{"id": "live_simple_141-94-0", "ground_truth": [{"cmd_controller.execute": {"command": ["docker --version"], "unit": ["", "seconds"]}}]}
-{"id": "live_simple_142-94-1", "ground_truth": [{"cmd_controller.execute": {"command": ["dir Desktop"], "unit": ["", "seconds"]}}]}
+{"id": "live_simple_141-94-0", "ground_truth": [{"cmd_controller.execute": {"command": ["docker --version"], "unit": ["", "N/A"]}}]}
+{"id": "live_simple_142-94-1", "ground_truth": [{"cmd_controller.execute": {"command": ["dir Desktop"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_143-95-0", "ground_truth": [{"cmd_controller.execute": {"command": ["docker ps"], "unit": ["", "N/A"]}}]}
-{"id": "live_simple_144-95-1", "ground_truth": [{"cmd_controller.execute": {"command": ["taskkill /F /IM firefox.exe", "taskkill /IM firefox.exe /F"], "unit": ["", "N/A"]}}]}
+{"id": "live_simple_144-95-1", "ground_truth": [{"cmd_controller.execute": {"command": ["taskkill /F /IM firefox.exe", "taskkill /IM firefox.exe /F", "taskkill /IM firefox.exe"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_145-95-2", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_146-95-3", "ground_truth": [{"cmd_controller.execute": {"command": ["start https://huggingface.co"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_147-95-4", "ground_truth": [{"cmd_controller.execute": {"command": ["taskkill /F /IM timer.exe"], "unit": ["", "N/A"]}}]}
@@ -150,14 +150,14 @@
 {"id": "live_simple_149-95-6", "ground_truth": [{"cmd_controller.execute": {"command": ["echo hi"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_150-95-7", "ground_truth": [{"cmd_controller.execute": {"command": ["shutdown /s /t 0"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_151-95-8", "ground_truth": [{"cmd_controller.execute": {"command": ["netsh wlan disconnect"], "unit": ["", "N/A"]}}]}
-{"id": "live_simple_152-95-9", "ground_truth": [{"cmd_controller.execute": {"command": ["dir D:\\ && echo testing.txt > D:\\testing.txt"], "unit": ["", "N/A"]}}]}
+{"id": "live_simple_152-95-9", "ground_truth": [{"cmd_controller.execute": {"command": ["dir D:\\ && echo testing.txt"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_153-95-10", "ground_truth": [{"cmd_controller.execute": {"command": ["del \"%userprofile%\\Desktop\\putty.lnk\""], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_154-95-11", "ground_truth": [{"cmd_controller.execute": {"command": ["start https://www.youtube.com/watch?v=dQw4w9WgXcQ"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_155-95-12", "ground_truth": [{"cmd_controller.execute": {"command": ["date /t", "echo %date%"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_156-95-13", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_157-95-14", "ground_truth": [{"cmd_controller.execute": {"command": ["echo %time%"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_158-95-15", "ground_truth": [{"cmd_controller.execute": {"command": ["taskkill /IM code.exe /F", "taskkill /F /IM code.exe"], "unit": ["", "N/A"]}}]}
-{"id": "live_simple_159-95-16", "ground_truth": [{"cmd_controller.execute": {"command": ["timeout 10 && echo \"bring a condom\""], "unit": ["seconds"]}}]}
+{"id": "live_simple_159-95-16", "ground_truth": [{"cmd_controller.execute": {"command": ["timeout 10"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_160-95-17", "ground_truth": [{"cmd_controller.execute": {"command": ["start microsoft.windows.camera:"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_161-96-0", "ground_truth": [{"get_items": {"items": [["Blue square", "Red square", "Green square", "Yellow square", "Superman logo", "Iron Man logo", "Hulk logo", "Batman logo", "Fist", "Bat", "Face mask", "Outline"]]}}]}
 {"id": "live_simple_162-96-1", "ground_truth": [{"get_items": {"items": [["Red and blue circle logo", "Red and yellow circle logo", "Green circle logo", "Black circle logo"]]}}]}
@@ -181,14 +181,14 @@
 {"id": "live_simple_180-105-0", "ground_truth": [{"get_service_id": {"service_id": [2], "province_id": [1], "rating": [4.0]}}]}
 {"id": "live_simple_181-106-0", "ground_truth": [{"get_service_id": {"service_id": [2], "province_id": ["", 1], "district_name": ["Chatuchak"], "rating": [4.5]}}]}
 {"id": "live_simple_182-107-0", "ground_truth": [{"get_service_providers": {"service_id": [2], "province_id": [1], "district_name": ["Khlong Sam Wa"], "sub_district_name": ["Sai Kong"], "rating": [4.5]}}]}
-{"id": "live_simple_183-108-0", "ground_truth": [{"getDataForProfessional": {"avg_rating": [4.0], "province_id": [1], "districts_name": ["", "All districts"], "service_id": [1]}}]}
+{"id": "live_simple_183-108-0", "ground_truth": [{"getDataForProfessional": {"rating": [4.0], "province_id": [1], "districts_name": ["", "All districts", "Bangkok"], "service_id": [1]}}]}
 {"id": "live_simple_184-109-0", "ground_truth": [{"getDataForProfessional": {"service_id": [1], "province_id": [1], "district_name": ["", null], "rating": [4.0]}}]}
 {"id": "live_simple_185-110-0", "ground_truth": [{"get_service_providers": {"service_id": [2], "province_id": [3], "district_name": ["", null], "sub_district_name": ["", null], "rating": [4.5], "start_available_date": ["2023-09-30"]}}]}
 {"id": "live_simple_186-111-0", "ground_truth": [{"get_service_providers": {"service_id": [2], "province_id": [3], "district_name": ["", null], "sub_district_name": ["", null], "rating": [4.5], "start_available_date": ["2024-03-12 16:00:00"], "end_available_date": ["2024-03-12 18:00:00"]}}]}
 {"id": "live_simple_187-112-0", "ground_truth": [{"get_service_providers": {"service_id": [2], "province_id": [3], "district_name": ["", "Any"], "sub_district_name": ["", "Any"], "rating": [4.5], "start_available_date": ["2024-03-12", "2024-12-03"], "end_available_date": ["2024-03-12", "2024-12-03"], "has_late_check_in": ["", false]}}]}
 {"id": "live_simple_188-113-0", "ground_truth": [{"getDataForProfessional": {"service_id": [2], "province_id": [2], "district_name": ["Sankampang"], "sub_district_name": ["Ton Pao"], "start_available_date": ["", null], "end_available_date": ["", null], "has_late_check_in": ["", false], "rating": [4.5]}}]}
 {"id": "live_simple_189-114-0", "ground_truth": [{"extractor.extract_information": {"data": [[{"name": ["Chester"], "age": [42]}, {"name": ["Jane"], "age": [43]}]]}}]}
-{"id": "live_simple_190-115-0", "ground_truth": [{"raptor.mpn.specs": {"identifier": ["ACHD"], "search_type": ["", "MPN"], "include_images": ["", false]}}]}
+{"id": "live_simple_190-115-0", "ground_truth": [{"raptor.mpn.specs": {"identifier": ["ACHD"], "search_type": ["", "MPN"], "include_images": [true]}}]}
 {"id": "live_simple_191-115-1", "ground_truth": [{"raptor.mpn.specs": {"identifier": ["3pak7"], "search_type": ["", "MPN"], "include_images": ["", false]}}]}
 {"id": "live_simple_192-116-0", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Pacifica"], "date": ["2023-04-11"]}}]}
 {"id": "live_simple_193-116-1", "ground_truth": [{"Weather_1_GetWeather": {"city": ["New York"], "date": ["2023-03-08"]}}]}
@@ -212,7 +212,7 @@
 {"id": "live_simple_211-117-3", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["", "dontcare"], "genre": ["Comedy"], "cast": ["James Corden"]}}]}
 {"id": "live_simple_212-117-4", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Edgar Wright"], "genre": ["Comedy"], "cast": ["", "dontcare"]}}]}
 {"id": "live_simple_213-117-5", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Tim Burton"], "genre": ["Offbeat"], "cast": ["", "dontcare"]}}]}
-{"id": "live_simple_214-117-6", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Nitesh Tiwari"], "genre": ["Comedy"], "cast": ["", "dontcare"]}}]}
+{"id": "live_simple_214-117-6", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Nitesh Tiwari"], "genre": ["Comedy", "Comedy-drama"], "cast": ["", "dontcare"]}}]}
 {"id": "live_simple_215-117-7", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["", "dontcare"], "genre": ["Fantasy"], "cast": ["", "dontcare"]}}]}
 {"id": "live_simple_216-117-8", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["David Leitch"], "genre": ["Action"], "cast": ["Alex King"]}}]}
 {"id": "live_simple_217-117-9", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Nitesh Tiwari"], "genre": ["", "dontcare"], "cast": ["", "dontcare"]}}]}
@@ -225,7 +225,7 @@
 {"id": "live_simple_224-117-16", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Tim Burton"], "genre": ["Offbeat"], "cast": ["Johnny Depp"]}}]}
 {"id": "live_simple_225-117-17", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Kirill Mikhanovsky"], "genre": ["Comedy-drama"], "cast": ["", "dontcare"]}}]}
 {"id": "live_simple_226-118-0", "ground_truth": [{"text_to_speech.convert": {"text": ["I am a pretty girl"], "language": ["es-ES"], "gender": ["", "female"], "format": ["", "mp3"], "speed": ["", 1.0]}}]}
-{"id": "live_simple_227-118-1", "ground_truth": [{"text_to_speech.convert": {"text": ["\u6211\u7231\u5b66\u4e60"], "language": ["de-DE"], "gender": ["male"], "format": ["wav"], "speed": ["", 1.0]}}]}
+{"id": "live_simple_227-118-1", "ground_truth": [{"text_to_speech.convert": {"text": ["\u6211\u7231\u5b66\u4e60"], "language": ["en-US"], "gender": ["male"], "format": ["wav"], "speed": ["", 1.0]}}]}
 {"id": "live_simple_228-119-0", "ground_truth": [{"text_to_speech.convert": {"text": ["I am a pretty girl"], "language": ["", "en-US"], "gender": ["", "female"], "speed": ["", 1.0]}}]}
 {"id": "live_simple_229-120-0", "ground_truth": [{"requests.get": {"anchor": ["user"]}}]}
 {"id": "live_simple_230-121-0", "ground_truth": [{"play_song": {"song_id": ["Roar"], "artist": ["Katy Perry", "Katty Perry"], "quality": ["high"], "device_id": ["", null]}}]}
@@ -248,10 +248,10 @@
 {"id": "live_simple_247-129-0", "ground_truth": [{"version_api.VersionApi.get_version": {}}]}
 {"id": "live_simple_248-130-0", "ground_truth": [{"acl_api.AclApi.retrieve_projects": {"uuid": ["12"], "excludeInactive": [true], "onlyRoot": [true]}}]}
 {"id": "live_simple_249-131-0", "ground_truth": [{"chat_with_friend": {"user_message": ["Hey bunny, How are you doing"]}}]}
-{"id": "live_simple_250-132-0", "ground_truth": [{"uber.eat.order": {"restaurants": ["McDonald's"], "items": [["Big Mac", "McFlurry"]], "quantities": [[2, 1]]}}]}
+{"id": "live_simple_250-132-0", "ground_truth": [{"uber.eat.order": {"restaurants": ["McDonald's", "McDonalds", "McDonald"], "items": [["Big Mac", "McFlurry"]], "quantities": [[2, 1]]}}]}
 {"id": "live_simple_251-133-0", "ground_truth": [{"flight.status.check": {"flight_id": ["6E123"], "passenger_name": ["Karan"], "ticket_number": ["IND4567"]}}]}
-{"id": "live_simple_252-134-0", "ground_truth": [{"flight.status.check": {"airlines": ["Indigo"], "person_name": ["Karan"], "ticket_number": ["IND4567"]}}]}
-{"id": "live_simple_253-135-0", "ground_truth": [{"uber.eat.order": {"restaurants": ["McDonlad"], "items": [["burgers", "chicken wings"], ["burger", "chicken wing"]], "quantities": [[5, 6]]}}]}
+{"id": "live_simple_252-134-0", "ground_truth": [{"flight.status.check": {"airlines": ["Indigo"], "person_name": ["Karan LNU"], "ticket_number": ["IND4567"]}}]}
+{"id": "live_simple_253-135-0", "ground_truth": [{"uber.eat.order": {"restaurants": ["McDonald's", "McDonalds"], "items": [["burgers", "chicken wings"], ["burger", "chicken wing"]], "quantities": [[5, 6]]}}]}
 {"id": "live_simple_254-136-0", "ground_truth": [{"user.mandates": {"user_id": ["U123"], "status": ["pending"]}}]}
 {"id": "live_simple_255-136-1", "ground_truth": [{"user.mandates": {"user_id": ["U123456"], "status": ["", "active"]}}]}
 {"id": "live_simple_256-137-0", "ground_truth": [{"answer_question": {"statement": ["I have had submit a compaint and I like to check its status"], "urgency": ["", "medium"], "language": ["", "en"]}}]}
