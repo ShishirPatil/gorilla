@@ -71,7 +71,6 @@ class MessageAPI:
         }
         self.message_count: int = 0  # useless(?)
         self.current_user: Optional[str] = None
-        self._random: random.Random = random.Random(200191)
 
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """
