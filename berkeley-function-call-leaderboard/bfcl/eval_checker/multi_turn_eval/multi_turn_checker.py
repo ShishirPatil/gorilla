@@ -82,7 +82,7 @@ def multi_turn_checker(
         ), f"Model instances and ground truth instances do not match in length for turn {turn_index}. Model instances: {len(model_instances)}, Ground truth instances: {len(ground_truth_instances)}"
         assert set(model_instances.keys()) == set(ground_truth_instances.keys())
 
-        # Check the status of the instances
+        # Check the state of the instances
         state_check_result = state_checker(model_instances, ground_truth_instances)
         if not state_check_result["valid"]:
             return state_check_result
