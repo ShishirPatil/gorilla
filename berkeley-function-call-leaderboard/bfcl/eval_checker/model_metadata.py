@@ -343,6 +343,24 @@ MODEL_METADATA_MAPPING = {
         "Google",
         "gemma-terms-of-use",
     ],
+    "google/gemma-2-2b-it": [
+        "Gemma-2-2b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-open-models/",
+        "Google",
+        "gemma-terms-of-use",
+    ],
+    "google/gemma-2-9b-it": [
+        "Gemma-2-9b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-open-models/",
+        "Google",
+        "gemma-terms-of-use",
+    ],
+    "google/gemma-2-27b-it": [
+        "Gemma-2-27b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-open-models/",
+        "Google",
+        "gemma-terms-of-use",
+    ],
     "glaiveai/glaive-function-calling-v1": [
         "Glaive-v1 (FC)",
         "https://huggingface.co/glaiveai/glaive-function-calling-v1",

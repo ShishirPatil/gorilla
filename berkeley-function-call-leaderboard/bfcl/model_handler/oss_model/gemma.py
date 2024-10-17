@@ -20,7 +20,7 @@ class GemmaHandler(OSSHandler):
         formatted_prompt = "<bos>"
 
         for message in messages:
-            formatted_prompt += f"'<start_of_turn>'{message['role']}\n{message['content'].strip()}<end_of_turn>\n"
+            formatted_prompt += f"<start_of_turn>{message['role']}\n{message['content'].strip()}<end_of_turn>\n"
 
         formatted_prompt += f"<start_of_turn>model\n"
 
