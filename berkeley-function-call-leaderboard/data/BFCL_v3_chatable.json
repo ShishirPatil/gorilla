@@ -1,0 +1,200 @@
+{"question": "Find the area of a triangle with a base of 10 units and height of 5 units.", "function": ""}
+{"question": "Calculate the factorial of 5 using math functions.", "function": ""}
+{"question": "Calculate the hypotenuse of a right triangle given the lengths of the other two sides as 4 and 5.", "function": ""}
+{"question": "Find the roots of a quadratic equation with coefficients a=1, b=-3, c=2.", "function": ""}
+{"question": "Solve a quadratic equation where a=2, b=6, and c=5", "function": ""}
+{"question": "Find the roots of a quadratic equation given coefficients a = 3, b = -11, and c = -4.", "function": ""}
+{"question": "What are the roots of the quadratic equation where a=2, b=5 and c=3 ?", "function": ""}
+{"question": "What is the circumference of a circle with a radius of 4 inches?", "function": ""}
+{"question": "What's the area of a circle with a radius of 10?", "function": ""}
+{"question": "Calculate the area of a circle with a radius of 5 units.", "function": ""}
+{"question": "Calculate the area of a right-angled triangle given the lengths of its base and height as 6cm and 10cm.", "function": ""}
+{"question": "What is the area of a triangle with base of 10 units and height of 5 units?", "function": ""}
+{"question": "Calculate the circumference of a circle with radius 3", "function": ""}
+{"question": "Calculate the area under the curve y=x^2 from x=1 to x=3.", "function": ""}
+{"question": "Calculate the derivative of the function 3x^2 + 2x - 1.", "function": ""}
+{"question": "Calculate the area under the curve from x = -2 to x = 3 for the function y = x^3 using simpson method.", "function": ""}
+{"question": "Calculate the derivative of the function 2x^2 at x = 1.", "function": ""}
+{"question": "Find the prime factors of 450", "function": ""}
+{"question": "Find the prime factors of the number 123456.", "function": ""}
+{"question": "Calculate the greatest common divisor of two numbers: 40 and 50", "function": ""}
+{"question": "Find the highest common factor of 36 and 24.", "function": ""}
+{"question": "Find the Greatest Common Divisor (GCD) of two numbers, say 36 and 48.", "function": ""}
+{"question": "Calculate the greatest common divisor of two given numbers, for example 12 and 15.", "function": ""}
+{"question": "What is the prime factorization of the number 60? Return them in the form of dictionary", "function": ""}
+{"question": "Find the greatest common divisor (GCD) of 12 and 18", "function": ""}
+{"question": "Calculate the final velocity of an object falling from a 150 meter building, assuming initial velocity is zero.", "function": ""}
+{"question": "Calculate the velocity of a car that travels a distance of 50 kilometers for a duration of 2 hours?", "function": ""}
+{"question": "Calculate the final velocity of a vehicle after accelerating at 2 meters/second^2 for a duration of 5 seconds, starting from a speed of 10 meters/second.", "function": ""}
+{"question": "Calculate the displacement of a car given the initial velocity of 10 and acceleeration of 9.8 within 5 seconds.", "function": ""}
+{"question": "What is the final speed of an object dropped from rest after falling for 5 seconds if we neglect air resistance?", "function": ""}
+{"question": "What is the final velocity of a vehicle that started from rest and accelerated at 4 m/s^2 for a distance of 300 meters?", "function": ""}
+{"question": "Calculate the final velocity of an object, knowing that it started from rest, accelerated at a rate of 9.8 m/s^2 for a duration of 5 seconds.", "function": ""}
+{"question": "Calculate the final speed of an object dropped from 100 m without air resistance.", "function": ""}
+{"question": "Get directions from Sydney to Melbourne using the fastest route.", "function": ""}
+{"question": "Create an itinerary for a 7 days trip to Tokyo with daily budgets not exceeding $100 and prefer exploring nature.", "function": ""}
+{"question": "Find an all vegan restaurant in New York that opens until at least 11 PM.", "function": ""}
+{"question": "Find the shortest driving distance between New York City and Washington D.C.", "function": ""}
+{"question": "Find the estimated travel time by car from San Francisco to Los Angeles with stops at Santa Barbara and Monterey.", "function": ""}
+{"question": "What is the electrostatic potential between two charged bodies of 1e-9 and 2e-9 of distance 0.05?", "function": ""}
+{"question": "Calculate the electric field at a point 3 meters away from a charge of 2 coulombs.", "function": ""}
+{"question": "Calculate the magnetic field produced at the center of a circular loop carrying current of 5 Ampere with a radius of 4 meters", "function": ""}
+{"question": "Calculate the electromagnetic force between two charges of 5C and 7C placed 3 meters apart.", "function": ""}
+{"question": "Calculate the resonant frequency of an LC circuit given capacitance of 100\u00b5F and inductance of 50mH.", "function": ""}
+{"question": "Calculate the magnetic field strength 10 meters away from a long wire carrying a current of 20 Amperes.", "function": ""}
+{"question": "Calculate the electric field strength 4 meters away from a charge of 0.01 Coulombs.", "function": ""}
+{"question": "Calculate the energy (in Joules) absorbed or released during the phase change of 100g of water from liquid to steam at its boiling point.", "function": ""}
+{"question": "Calculate the final temperature when 20 kg of water at 30 degree Celsius is mixed with 15 kg of water at 60 degree Celsius.", "function": ""}
+{"question": "Find the boiling point and melting point of water under the sea level of 5000m.", "function": ""}
+{"question": "What is the density of a substance with a mass of 45 kg and a volume of 15 m\u00b3?", "function": ""}
+{"question": "Calculate the absolute pressure in pascals given atmospheric pressure of 1 atm and a gauge pressure of 2 atm.", "function": ""}
+{"question": "What is the change in entropy in Joules per Kelvin of a 1kg ice block at 0\u00b0C if it is heated to 100\u00b0C under 1 atmosphere of pressure?", "function": ""}
+{"question": "Calculate the entropy change for a certain process given an initial temperature of 300K, a final temperature of 400K, and a heat capacity of 5J/K.", "function": ""}
+{"question": "Calculate the heat capacity at constant pressure for air, given its temperature is 298K and volume is 10 m^3.", "function": ""}
+{"question": "Retrieve the sequence of DNA molecule with id `DNA123`.", "function": ""}
+{"question": "Identify the protein sequence of a given human gene 'BRCA1'.", "function": ""}
+{"question": "Find me detailed information about the structure of human cell", "function": ""}
+{"question": "What are the names of proteins found in the plasma membrane?", "function": ""}
+{"question": "Calculate the cell density in a sample with an optical density of 0.6, where the experiment dilution is 5 times.", "function": ""}
+{"question": "What is the function of ATP synthase in mitochondria?", "function": ""}
+{"question": "Calculate the molecular weight of Glucose (C6H12O6).", "function": ""}
+{"question": "Find the type of gene mutation based on SNP (Single Nucleotide Polymorphism) ID rs6034464.", "function": ""}
+{"question": "Predict whether a person with weight 150lbs and height 5ft 10in who is lightly active will get type 2 diabetes.", "function": ""}
+{"question": "Analyze the DNA sequence 'AGTCGATCGAACGTACGTACG' for any potential substitution mutations based on a reference sequence 'AGTCCATCGAACGTACGTACG'.", "function": ""}
+{"question": "Find out how genetically similar a human and a chimp are in percentage.", "function": ""}
+{"question": "What is the genotype frequency of AA genotype in a population, given that allele frequency of A is 0.3?", "function": ""}
+{"question": "Calculate the Population Density for Brazil in 2022 if the population is 213 million and the land area is 8.5 million square kilometers.", "function": ""}
+{"question": "Get me data on average precipitation in the Amazon rainforest for the last six months.", "function": ""}
+{"question": "Identify a small green bird in forest.", "function": ""}
+{"question": "Predict the growth of forest in Yellowstone National Park for the next 5 years including human impact.", "function": ""}
+{"question": "Find out the population and species of turtles in Mississippi river in 2020.", "function": ""}
+{"question": "What is the carbon footprint of a gas-powered vehicle driving 1500 miles in a year?", "function": ""}
+{"question": "Generate a DNA sequence with 100 bases including more G (Guanine) and C (Cytosine).", "function": ""}
+{"question": "Calculate the expected evolutionary fitness of a creature, with trait A contributing to 40% of the fitness and trait B contributing 60%, if trait A has a value of 0.8 and trait B a value of 0.7.", "function": ""}
+{"question": "What's the projected population growth in United States in the next 20 years?", "function": ""}
+{"question": "Calculate the evolution rate of a bacteria population, start with 5000 bacteria, each bacteria duplicates every hour for 6 hours.", "function": ""}
+{"question": "Estimate the population size of elephants of 35000 in the next 5 years given the current growth rate of 0.015.", "function": ""}
+{"question": "Get me the predictions of the evolutionary rate for Homo Sapiens for next 50 years using Darwin model", "function": ""}
+{"question": "Find a nearby restaurant that serves vegan food in Los Angeles.", "function": ""}
+{"question": "Get the average temperature in Austin for the next 3 days in Celsius.", "function": ""}
+{"question": "Create a histogram for student scores with the following data: 85, 90, 88, 92, 86, 89, 91 and set bin range to 5.", "function": ""}
+{"question": "I want to find 5 restaurants nearby my location, Manhattan, offering Thai food and a vegan menu.", "function": ""}
+{"question": "Find the fastest route from San Francisco to Los Angeles with toll roads avoided.", "function": ""}
+{"question": "Calculate the average of list of integers [12, 15, 18, 20, 21, 26, 30].", "function": ""}
+{"question": "Calculate the distance between two GPS coordinates (33.4484 N, 112.0740 W) and (34.0522 N, 118.2437 W) in miles.", "function": ""}
+{"question": "Calculate the Body Mass Index (BMI) of a person with a weight of 85 kilograms and height of 180 cm.", "function": ""}
+{"question": "What's the approximate distance between Boston, MA, and Washington, D.C. in mile?", "function": ""}
+{"question": "Find the shortest distance between two cities, New York and Los Angeles, through the train and you can transfer.", "function": ""}
+{"question": "Sort the list [5, 3, 4, 1, 2] in ascending order.", "function": ""}
+{"question": "Calculate the BMI (Body Mass Index) of a person who weighs 70kg and is 1.75m tall.", "function": ""}
+{"question": "Fetch all records for students studying Science in 'Bluebird High School' from the StudentDB.", "function": ""}
+{"question": "Retrieve Personal Info and Job History data of a specific employee whose ID is 345 in company 'ABC Ltd.'", "function": ""}
+{"question": "Get the highest rated sushi restaurant in Boston, that opens on Sundays.", "function": ""}
+{"question": "Find all movies starring Leonardo DiCaprio in the year 2010 from IMDB database.", "function": ""}
+{"question": "Fetch me the list of IMAX movie releases in theaters near LA for the next week.", "function": ""}
+{"question": "Update my customer information with user id 43523 'name':'John Doe', 'email':'johndoe@email.com' in the database.", "function": ""}
+{"question": "Calculate the area of a triangle with base 5m and height 3m.", "function": ""}
+{"question": "Find records in database in user table where age is greater than 25 and job is 'engineer'.", "function": ""}
+{"question": "Calculate the factorial of the number 5", "function": ""}
+{"question": "What will be the angle between the hour and minute hands of a clock at 6:30 PM?", "function": ""}
+{"question": "Plot a sine wave from 0 to 2 pi with a frequency of 5 Hz.", "function": ""}
+{"question": "How much time will it take for the light to reach earth from a star 4 light years away?", "function": ""}
+{"question": "Calculate the speed of an object in km/h if it traveled 450 meters in 20 seconds.", "function": ""}
+{"question": "What's the distance in milesfrom the Earth to the Moon?", "function": ""}
+{"question": "Calculate the area under the curve y=3x^2 + 2x - 4, between x = -1 and x = 2.", "function": ""}
+{"question": "Calculate the area of a triangle with base 6 and height 10.", "function": ""}
+{"question": "Calculate the power of 3 raised to the power 4.", "function": ""}
+{"question": "Train a random forest classifier on dataset your_dataset_name with maximum depth of trees as 5, and number of estimators as 100.", "function": ""}
+{"question": "Calculate the Body Mass Index for a person with a weight of 70 kg and a height of 175 cm.", "function": ""}
+{"question": "Run a linear regression model with predictor variables 'Age', 'Income' and 'Education' and a target variable 'Purchase_Amount'. Also apply standardization.", "function": ""}
+{"question": "Generate a random forest model with 100 trees and a depth of 5 on the provided data my_data.", "function": ""}
+{"question": "Predict the price of the house in San Francisco with 3 bedrooms, 2 bathrooms and area of 1800 square feet.", "function": ""}
+{"question": "Generate a random number from a normal distribution with mean 0 and standard deviation 1.", "function": ""}
+{"question": "Calculate the probability of drawing a king from a deck of cards.", "function": ""}
+{"question": "What's the probability of rolling a six on a six-sided die twice in a row?", "function": ""}
+{"question": "Find the probability of getting exactly 5 heads in 10 fair coin tosses.", "function": ""}
+{"question": "Calculate the probability of getting exactly 5 heads in 8 tosses of a fair coin.", "function": ""}
+{"question": "What's the probability of drawing a king from a well shuffled standard deck of 52 cards?", "function": ""}
+{"question": "What are the odds of pulling a heart suit from a well-shuffled standard deck of 52 cards? Format it as ratio.", "function": ""}
+{"question": "Perform a two-sample t-test on my experiment data of Control [10, 15, 12, 14, 11] and Treated [18, 16, 17, 20, 22] group with alpha equals to 0.05", "function": ""}
+{"question": "Perform a hypothesis test for two independent samples with scores of Sample1: [22,33,42,12,34] and Sample2: [23,45,44,14,38] at a significance level of 0.05.", "function": ""}
+{"question": "Run a two sample T-test to compare the average of Group A [3, 4, 5, 6, 4] and Group B [7, 8, 9, 8, 7] assuming equal variance.", "function": ""}
+{"question": "Calculate the probability of observing 60 heads if I flip a coin 100 times with probability of heads 0.5.", "function": ""}
+{"question": "Perform a Chi-Squared test for independence on a 2x2 contingency table [ [10, 20], [30, 40] ]", "function": ""}
+{"question": "Perform a two-sample t-test to determine if there is a significant difference between the mean of group1 (e.g., 12.4, 15.6, 11.2, 18.9) and group2 (e.g., 10.5, 9.8, 15.2, 13.8) at the significance level 0.05.", "function": ""}
+{"question": "Find the statistical significance between two set of variables, dataset_A with the values 12, 24, 36 and dataset_B with the values 15, 30, 45.", "function": ""}
+{"question": "Predict house price in San Francisco based on its area of 2500 square feet, number of rooms as 5 and year of construction is 1990.", "function": ""}
+{"question": "What is the coefficient of determination (R-squared) for a model using engine size and fuel economy variables to predict car_price with a dataset in path C:/data/cars.csv?", "function": ""}
+{"question": "Find the Net Present Value (NPV) of an investment, given cash_flows=[200,300,400,500], a discount rate of 10%, and an initial investment of $2000.", "function": ""}
+{"question": "What's the quarterly dividend per share of a company with 100 million outstanding shares and total dividend payout of 50 million USD?", "function": ""}
+{"question": "Calculate the discounted cash flow of a bond that is giving a coupon payment of $100 annually for next 5 years with discount rate 4%.", "function": ""}
+{"question": "What's the NPV (Net Present Value) of a series of cash flows: [-50000, 10000, 15000, 20000, 25000, 30000] discounted at 8% annually?", "function": ""}
+{"question": "Calculate the compound interest for an initial principal amount of $10000, with an annual interest rate of 5% and the number of times interest applied per time period is 4 and the time the money is invested for 10 years.", "function": ""}
+{"question": "Calculate the company's return on equity given its net income of $2,000,000, shareholder's equity of $10,000,000, and dividends paid of $200,000.", "function": ""}
+{"question": "Predict the future value of a $5000 investment with an annual interest rate of 5% in 3 years with monthly compounding.", "function": ""}
+{"question": "Predict the total expected profit of stocks XYZ in 5 years given I have invested $5000 and annual return rate is 7%.", "function": ""}
+{"question": "Calculate the return on investment for a stock bought at $20, sold at $25, with a dividend of $2.", "function": ""}
+{"question": "Find the compound interest for an investment of $10000 with an annual interest rate of 5% compounded monthly for 5 years.", "function": ""}
+{"question": "Calculate the projected return on a $5000 investment in ABC company's stock, if the expected annual growth rate is 6% and the holding period is 5 years.", "function": ""}
+{"question": "Calculate the future value of my portfolio if I invest $5000 in stock 'X' with an expected annual return of 5% for 7 years.", "function": ""}
+{"question": "What is the estimated return on a mutual fund, given that it has a yearly yield of 5%, an investment amount of $2000 and a time period of 3 years?", "function": ""}
+{"question": "Calculate the Compound Annual Growth Rate (CAGR) for an initial investment of $2000, final value of $3000 in a period of 4 years.", "function": ""}
+{"question": "Get current Gold price per ounce.", "function": ""}
+{"question": "Find the NASDAQ stock price for the company Amazon at closing March.11, 2022.", "function": ""}
+{"question": "'Get stock price of Apple for the last 5 days in NASDAQ.'", "function": ""}
+{"question": "Find the market performance of the S&P 500 and the Dow Jones over the past 5 days.", "function": ""}
+{"question": "Calculate the compounded interest for an initial principal of $5000, annual interest rate of 5%, and compounding period of 10 years.", "function": ""}
+{"question": "What's the price of Amazon stock for the last 3 days?", "function": ""}
+{"question": "Retrieve stock prices of Microsoft and Google for the last 2 weeks.", "function": ""}
+{"question": "Calculate the future value of an investment with an annual rate of return of 8%, an initial investment of $20000, and a time frame of 5 years.", "function": ""}
+{"question": "What's the current stock price of Apple and Microsoft?", "function": ""}
+{"question": "Calculate the return of investment of a bank's savings account with a deposit of $1000, annual interest rate of 3% for 1 year.", "function": ""}
+{"question": "Find the highest grossing banks in the U.S for year 2020.", "function": ""}
+{"question": "Calculate the balance of a mutual fund given a total investment of $50000 with a 5% annual yield after 3 years.", "function": ""}
+{"question": "Calculate the compounded interest on an initial deposit of $5000 at an annual interest rate of 3% for 5 years, compounded quarterly.", "function": ""}
+{"question": "Calculate the Future Value of a $5000 investment made today for a term of 10 years at an annual interest rate of 5%", "function": ""}
+{"question": "Calculate the future value of my investment of $1000 with an annual interest rate of 5% over 2 years.", "function": ""}
+{"question": "Look up details of a felony crime record for case number CA123456 in San Diego County", "function": ""}
+{"question": "Find out if an individual John Doe with a birthday 01-01-1980 has any prior felony convictions in California.", "function": ""}
+{"question": "Find the information of criminal cases of Mr. X in New York between 2012 and 2015.", "function": ""}
+{"question": "Give me the details of Criminal Law Amendment Act of 2013.", "function": ""}
+{"question": "Who was the victim in the case docket numbered 2022/AL2562 in California?", "function": ""}
+{"question": "Find out the possible punishments for the crime of theft in California in detail.", "function": ""}
+{"question": "Generate a customized law contract between John and Alice for rental agreement in California.", "function": ""}
+{"question": "Provide me with the property records of my house located at 123 main street, with parcel number 1234567890 in Santa Clara county. Include owners information in the response.", "function": ""}
+{"question": "Provide me the official crime rate of violent crime in San Francisco in 2020.", "function": ""}
+{"question": "Retrieve cases from 2020 about theft crimes in Los Angeles, California", "function": ""}
+{"question": "Find a lawyer specializing in divorce cases and charge fee less than 400 dollars per hour in Chicago.", "function": ""}
+{"question": "Retrieve the details of a Supreme Court case titled 'Roe v. Wade'.Include dissent information.", "function": ""}
+{"question": "Search for ongoing lawsuits related to the company 'Google' filed after January 1, 2021 in California.", "function": ""}
+{"question": "Find the details of the court case identified by docket number 123456 in Texas. Don't return full text", "function": ""}
+{"question": "Find a historical law case about fraud from 2010 to 2015.", "function": ""}
+{"question": "Fetch details of a law case with number 43403 in New York court for year 2018.", "function": ""}
+{"question": "How to obtain the detailed case information of the R vs Adams legal case?", "function": ""}
+{"question": "Find state law cases related to land disputes in the past 5 years from 2015 to 2021 in New York.", "function": ""}
+{"question": "Get me the top 10 landmark cases in constitutional law in China.", "function": ""}
+{"question": "How many months of experience a Lawyer John Doe has on handling Bankruptcy cases.", "function": ""}
+{"question": "Find details of patent lawsuits involving the company 'Apple Inc.' from the year 2010.", "function": ""}
+{"question": "Find all Patent lawsuit cases of Facebook in 2018.", "function": ""}
+{"question": "Find details about lawsuit case numbered 'LAX2019080202' in the Los Angeles court.", "function": ""}
+{"question": "Find the latest court case between Apple and Samsung occured in USA.", "function": ""}
+{"question": "Find the lawsuits filed against the company Google in California in the year 2020.", "function": ""}
+{"question": "Get details of a lawsuit with case number '123456-ABC' filed in Los Angeles court with verdict", "function": ""}
+{"question": "Retrieve all the lawsuit details for case number XYZ123", "function": ""}
+{"question": "Search for current lawsuits filed against Apple in Santa Clara County.", "function": ""}
+{"question": "I need the details of the lawsuit case with case ID of 1234 and verify if it's already closed.", "function": ""}
+{"question": "What will be the weather in New York in the next 72 hours including the precipitation?", "function": ""}
+{"question": "What is the temperature in celsius and humidity level of Tokyo, Japan right now?", "function": ""}
+{"question": "What's the current temperature and humidity in Seattle, Washington?", "function": ""}
+{"question": "What is the humidity level in Miami, Florida in the upcoming 7 days?", "function": ""}
+{"question": "Get weather information for New York, USA for the next 3 days with details.", "function": ""}
+{"question": "What's the elevation and area of Yellowstone National Park?", "function": ""}
+{"question": "Find me the 5 tallest mountains within 50km of Denver, Colorado.", "function": ""}
+{"question": "Calculate the slope gradient in degree between two points on a landscape with coordinates (40.7128, -74.0060) and (34.0522, -118.2437).", "function": ""}
+{"question": "Find the best local nurseries in Toronto with a good variety of annual plants.", "function": ""}
+{"question": "What are the top three plants suitable for a hill slope in terms of erosion prevention?", "function": ""}
+{"question": "Calculate the carbon footprint of my lifestyle, assuming I drive 20 miles a day, consume 3 meat meals a week, and produce 500 lbs of trash in a year.", "function": ""}
+{"question": "What is the air quality index in London 2022/08/16?", "function": ""}
+{"question": "Find the air quality index in San Diego at 12pm.", "function": ""}
+{"question": "Calculate the required water daily intake for a person with weight 70 kg.", "function": ""}
+{"question": "Find air quality index in San Jose for next three days.", "function": ""}

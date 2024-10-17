@@ -21,11 +21,13 @@ pip install -r requirements.txt
 ```
 
 Arguments:
-- `--datapath` - the path at which the document is located
+- `--datapath` - if a file, the path at which the document is located. If a folder, the path at which to load all documents
 - `--output` - the path at which to save the dataset
-- `--output-format` - the format of the output dataset. Defaults to `hf` for HuggingFace. Can be one of `hf`, `completion`, `chat`.
+- `--output-format` - the format of the output dataset. Defaults to `hf` for HuggingFace. Can be one of `hf`, `completion`, `chat`, `eval`.
 - `--output-type` - the type of the output dataset file. Defaults to `jsonl`. Can be one of `jsonl`, `parquet`.
 - `--output-chat-system-prompt` - The system prompt to use when the output format is `chat`. Optional.
+- `--output-completion-prompt-column` - The column (json field name) for the `prompt` / `instruction` when using the `completion` output format. Defaults to `prompt`.
+- `--output-completion-completion-column` - The column (json field name) for the `completion` when using the `completion` output format. Defaults to `completion`.
 - `--distractors` - the number of distractor documents to include per data point / triplet
 - `--doctype` - the type of the document, must be one of the accepted doctypes
   - currently accepted doctypes: `pdf`, `txt`, `json`, `api`
@@ -37,8 +39,11 @@ Arguments:
 - `--openai_key` - your OpenAI key used to make queries to GPT-3.5 or GPT-4
 - `--embedding-model` - The embedding model to use to encode documents chunks. Defaults to `text-embedding-ada-002`.
 - `--completion-model` - The model to use to generate questions and answers. Defaults to `gpt-4`.
-- `--fast` - Fast mode flag. By default, this flag is not included and the script runs in safe mode, where it saves checkpoint datasets, allowing the script to recover and continue where it left off in the case of an interruption. Include this flag to run RAFT without recovery. 
+- `--system-prompt-key` - The system prompt key to use to generate the dataset. Defaults to `gpt`. Can by one of `gpt`, `llama`.
+- `--workers` - The number of worker threads to use to generate the dataset. Defaults to 2.
+- `--auto-clean-checkpoints` - Whether to auto clean the checkpoints after the dataset is generated. Defaults to `false`.
 
+*Note*: The `--fast` mode flag has been removed, checkpointing is now always active.
 
 ## Usage
 
@@ -136,6 +141,13 @@ This details the command and process used to generate the example dataset found 
 ```bash 
 python3 raft.py --datapath sample_data/United_States_PDF.pdf --output ./sample_ds4 --distractors 4 --doctype pdf --chunk_size 512 --questions 5 --openai_key OPENAI_KEY
 ```
+### Usage with Completely locally using hugging-face models
+
+This details the command and process used to generate the example dataset found in `./sample_ds4`. The document is a pdf of the Wikipedia page on the United States of America. 
+To run the script completely locally use 
+```
+python3 raft_local.py --datapath sample_data/UC_Berkeley_short.pdf --output ./sample_ds4 --chunk_size 512 --questions 5 --doctype pdf --fast
+```
 
 #### 1. Chunk generation
 RAFT takes pdf and divides text into chunks of size 512 tokens. A sample chunk:  
@@ -212,6 +224,27 @@ python3 format.py --input output/data-00000-of-00001.arrow --output output.compl
 
 ```
 python3 format.py --help
+
+usage: format.py [-h] --input INPUT [--input-type {arrow,jsonl}] --output OUTPUT --output-format {hf,completion,chat,eval} [--output-type {parquet,jsonl}] [--output-chat-system-prompt OUTPUT_CHAT_SYSTEM_PROMPT] [--output-completion-prompt-column OUTPUT_COMPLETION_PROMPT_COLUMN] [--output-completion-completion-column OUTPUT_COMPLETION_COMPLETION_COLUMN] [--output-completion-stop OUTPUT_COMPLETION_STOP]
+
+options:
+  -h, --help            show this help message and exit
+  --input INPUT         Input HuggingFace dataset file (default: None)
+  --input-type {arrow,jsonl}
+                        Format of the input dataset. Defaults to arrow. (default: arrow)
+  --output OUTPUT       Output file (default: None)
+  --output-format {hf,completion,chat,eval}
+                        Format to convert the dataset to (default: None)
+  --output-type {parquet,jsonl}
+                        Type to export the dataset to. Defaults to jsonl. (default: jsonl)
+  --output-chat-system-prompt OUTPUT_CHAT_SYSTEM_PROMPT
+                        The system prompt to use when the output format is chat (default: None)
+  --output-completion-prompt-column OUTPUT_COMPLETION_PROMPT_COLUMN
+                        The prompt column name to use for the completion format (default: prompt)
+  --output-completion-completion-column OUTPUT_COMPLETION_COMPLETION_COLUMN
+                        The completion column name to use for the completion format (default: completion)
+  --output-completion-stop OUTPUT_COMPLETION_STOP
+                        The stop keyword to use for the completion format (default: <STOP>)
 ```
 
 **Note**: If fine tuning a chat model, then you need to use `--output-format chat` and optionally add the `--output-chat-system-prompt` parameter to configure the system prompt included in the dataset.
