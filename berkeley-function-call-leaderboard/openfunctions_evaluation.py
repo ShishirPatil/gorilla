@@ -41,6 +41,7 @@ def get_args():
     parser.add_argument("--num-threads", default=1, type=int)
     parser.add_argument("--num-gpus", default=1, type=int)
     parser.add_argument("--gpu-memory-utilization", default=0.9, type=float)
+    parser.add_argument("--backend", default="sglang", type=str, choices=["vllm", "sglang"])
     args = parser.parse_args()
     return args
 
@@ -173,6 +174,7 @@ def generate_results(args, model_name, test_cases_total):
             test_entries=test_cases_total,
             num_gpus=args.num_gpus,
             gpu_memory_utilization=args.gpu_memory_utilization,
+            backend=args.backend,
             include_debugging_log=args.include_debugging_log,
         )
 
