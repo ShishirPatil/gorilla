@@ -41,10 +41,10 @@ To do LLM generation on self-hosted open source models, you need to run the foll
 pip install -e .[oss_eval]
 ```
 
-**Note**: You can choose to use `vllm` or `sglang` for local inference. This requires GPU supported by `vllm` or `sglang`, and it only works on Linux or Windows, but not on MacOS.
+**Note**:
+You can choose to use `vllm` or `sglang` for local inference. This requires GPU supported by `vllm` or `sglang`, and it only works on Linux or Windows, but not on MacOS.
 
-
-If you choose to use `sglang`, you need to additionally install the `flashinfer` package. 
+If you choose to use `sglang`, you need to additionally install the `flashinfer` package.
 Depends on the CUDA version, you can find the specific `flashinfer` installation command [here](https://docs.flashinfer.ai/installation.html).
 
 ### Setting up Environment Variables
@@ -104,17 +104,27 @@ If decided to run locally-hosted model, the generation script uses vLLM and ther
 
 Use the following command for LLM inference of the evaluation dataset with specific models.
 
-```bash
-bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1 --backend {vllm,sglang}
-```
-
-You can optionally specify the number of threads to use for _parallel inference_ by setting the `--num-threads` flag to speed up inference for **hosted models**, not applicable for OSS models. The default is 1, which means no parallel inference.
-
-If you want to self-host the OSS models, you can choose between `vllm` and `sglang` as the backend and set the `--backend` flag. The default is `sglang`.
-
 For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section below.
 
 If no `MODEL_NAME` is provided, the model `gorilla-openfunctions-v2` will be used by default. If no `TEST_CATEGORY` is provided, all test categories will be run by default.
+
+#### For API-hosted models:
+
+```bash
+bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1
+```
+
+You can optionally specify the number of threads to use for _parallel inference_ by setting the `--num-threads` flag to speed up inference for **hosted models**. The default is 1, which means no parallel inference. The maximum number of parallel inference depends on your API rate limit.
+
+#### For locally-hosted models:
+
+```bash
+bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --backend {vllm,sglang} --num-gpus 1 --gpu-memory-utilization 0.9
+```
+
+You can choose between `vllm` and `sglang` as the backend and set the `--backend` flag; The default is `vllm`.
+You can also specify the number of GPUs to use for inference (multi-GPU tensor parallelism) by setting the `--num-gpus` flag. The default is 1.
+You can also specify the GPU memory utilization by setting the `--gpu-memory-utilization` flag. The default is 0.9. This is helpful if you encounter out-of-memory issues.
 
 ### Models Available
 
