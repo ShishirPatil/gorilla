@@ -10,8 +10,8 @@ import webbrowser
 import wsgiref.simple_server
 import wsgiref.util
 from urllib.parse import quote, urlparse, parse_qs
-from .consts import AUTH_URL, CERT_FILE_PATH, KEY_FILE_PATH
-
+from consts import AUTH_URL, CERT_FILE_PATH, KEY_FILE_PATH
+print(CERT_FILE_PATH)
 SPOTIFY_FOLDER_PATH = os.path.join(os.path.dirname(Path(os.path.realpath(__file__)).parent.parent), 'exec_engine/credentials/spotify')
 TOKEN_FILE = os.path.join(SPOTIFY_FOLDER_PATH, 'token.pickle')
 
@@ -23,6 +23,7 @@ def main():
             creds = pickle.load(token)
     # If there are no (valid) credentials available, let the user log in
     creds = run_spotify_flow()
+    print(creds)
     # Save the credentials for the next run
     if not os.path.isdir(SPOTIFY_FOLDER_PATH):
         os.mkdir(SPOTIFY_FOLDER_PATH)
