@@ -79,26 +79,46 @@ pipe = pipeline(
 query_1: str = "What's the weather like in the two cities of Boston and San Francisco?"
 functions_1 = [
     {
-        "name": "get_current_weather",
-        "description": "Get the current weather in a given location",
-        "parameters": {
-            "type": "object",
-            "properties": {
-                "location": {
-                    "type": "string",
-                    "description": "The city and state, e.g. San Francisco, CA",
+        "type": "function",
+        "function": {
+            "name": "get_current_weather",
+            "description": "Get the current weather in a given location",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "The city and state, e.g. San Francisco, CA",
+                    },
+                    "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]},
                 },
-                "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]},
+                "required": ["location"],
             },
-            "required": ["location"],
-        },
+        }
     }
 ]
 
 # Example usage 2
 #  This should return an error since the function cann't help with the prompt
 query_2: str = "What is the freezing point of water at a pressure of 10 kPa?"
-functions_2 = [{"name": "thermodynamics.calculate_boiling_point", "description": "Calculate the boiling point of a given substance at a specific pressure.", "parameters": {"type": "object", "properties": {"substance": {"type": "string", "description": "The substance for which to calculate the boiling point."}, "pressure": {"type": "number", "description": "The pressure at which to calculate the boiling point."}, "unit": {"type": "string", "description": "The unit of the pressure. Default is 'kPa'."}}, "required": ["substance", "pressure"]}}]
+functions_2 = [
+    {
+        "type": "function",
+        "function": {
+            "name": "thermodynamics.calculate_boiling_point", 
+            "description": "Calculate the boiling point of a given substance at a specific pressure.", 
+            "parameters": {
+                "type": "object", 
+                "properties": {
+                    "substance": {"type": "string", "description": "The substance for which to calculate the boiling point."},
+                    "pressure": {"type": "number", "description": "The pressure at which to calculate the boiling point."},
+                    "unit": {"type": "string", "description": "The unit of the pressure. Default is 'kPa'."}
+                }, 
+                "required": ["substance", "pressure"]
+            }
+        }
+    }
+]
 
 # Generate prompt and obtain model output
 prompt_1 = get_prompt(query_1, functions=functions_1)
