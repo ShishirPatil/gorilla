@@ -87,7 +87,7 @@ def generate(
         0.9, help="The GPU memory utilization."
     ),
     backend: str = typer.Option(
-        "vllm", help="The backend to use for the model.", choices=["vllm", "sglang"]
+        "vllm", help="The backend to use for the model."
     ),
 ):
     """
