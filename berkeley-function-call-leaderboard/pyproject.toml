@@ -15,6 +15,7 @@ dependencies = [
     "tqdm",
     "numpy==1.26.4",
     "pandas",
+    "pathlib",
     "huggingface_hub",
     "pydantic>=2.8.2",
     "python-dotenv>=1.0.1",
@@ -25,9 +26,13 @@ dependencies = [
     "mistralai==1.1.0",
     "anthropic==0.31.1",
     "cohere==5.5.8",
+    "typer>=0.12.5",
+    "tabulate>=0.9.0",
     "google-cloud-aiplatform>=1.70.0",
-    "pathlib",
 ]
+
+[project.scripts]
+bfcl = "bfcl.__main__:cli"
 
 [tool.setuptools.packages.find]
 include = ["bfcl*"]

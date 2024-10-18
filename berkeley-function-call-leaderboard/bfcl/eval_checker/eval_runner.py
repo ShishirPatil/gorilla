@@ -602,6 +602,50 @@ def runner(model_names, test_categories, api_sanity_check):
     )
 
 
+def main(model, test_category, api_sanity_check):
+    test_categories = None
+    if test_category is not None:
+        test_categories = []
+        for category in test_category:
+            if category in TEST_COLLECTION_MAPPING:
+                test_categories.extend(TEST_COLLECTION_MAPPING[category])
+            else:
+                test_categories.append(category)
+
+    model_names = None
+    if model is not None:
+        model_names = []
+        for model_name in model:
+            # Runner takes in the model name that contains "_", instead of "/", for the sake of file path issues.
+            # This is differnet than the model name format that the generation script "openfunctions_evaluation.py" takes in (where the name contains "/").
+            # We patch it here to avoid confusing the user.
+            model_names.append(model_name.replace("/", "_"))
+
+    runner(model_names, test_categories, api_sanity_check)
+
+
+def main(model, test_category, api_sanity_check):
+    test_categories = None
+    if test_category is not None:
+        test_categories = []
+        for category in test_category:
+            if category in TEST_COLLECTION_MAPPING:
+                test_categories.extend(TEST_COLLECTION_MAPPING[category])
+            else:
+                test_categories.append(category)
+
+    model_names = None
+    if model is not None:
+        model_names = []
+        for model_name in model:
+            # Runner takes in the model name that contains "_", instead of "/", for the sake of file path issues.
+            # This is differnet than the model name format that the generation script "openfunctions_evaluation.py" takes in (where the name contains "/").
+            # We patch it here to avoid confusing the user.
+            model_names.append(model_name.replace("/", "_"))
+
+    runner(model_names, test_categories, api_sanity_check)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process two lists of strings.")
 
@@ -625,24 +669,6 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    api_sanity_check = args.api_sanity_check
-    test_categories = None
-    if args.test_category is not None:
-        test_categories = []
-        for test_category in args.test_category:
-            if test_category in TEST_COLLECTION_MAPPING:
-                test_categories.extend(TEST_COLLECTION_MAPPING[test_category])
-            else:
-                test_categories.append(test_category)
-
-    model_names = args.model
-    if args.model is not None:
-        model_names = []
-        for model_name in args.model:
-            # Runner takes in the model name that contains "_", instead of "/", for the sake of file path issues.
-            # This is differnet than the model name format that the generation script "openfunctions_evaluation.py" takes in (where the name contains "/").
-            # We patch it here to avoid confusing the user.
-            model_names.append(model_name.replace("/", "_"))
-
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
-    runner(model_names, test_categories, api_sanity_check)
+    
+    main(args.model, args.test_category, args.api_sanity_check)

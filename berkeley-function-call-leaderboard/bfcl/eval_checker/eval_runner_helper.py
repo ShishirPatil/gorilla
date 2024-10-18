@@ -11,7 +11,7 @@ from bfcl.constant import VERSION_PREFIX
 from bfcl.eval_checker.constant import *
 from bfcl.eval_checker.executable_eval.custom_exception import BadAPIStatusError
 from bfcl.eval_checker.model_metadata import *
-from bfcl.model_handler.handler_map import handler_map
+from bfcl.model_handler.handler_map import HANDLER_MAP
 from tqdm import tqdm
 
 
@@ -77,7 +77,7 @@ def load_file(file_path):
 
 
 def get_handler(model_name):
-    return handler_map[model_name](model_name, temperature=0)  #Temperature doesn't matter for evaluation
+    return HANDLER_MAP[model_name](model_name, temperature=0)  #Temperature doesn't matter for evaluation
 
 
 def write_list_of_dicts_to_file(filename, data, subdir=None):

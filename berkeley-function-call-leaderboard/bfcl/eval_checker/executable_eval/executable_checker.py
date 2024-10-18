@@ -1,5 +1,6 @@
 import json
 import time
+from functools import lru_cache
 
 import requests  # Do not remove this import even though it seems to be unused. It's used in the executable_checker_rest function.
 from bfcl.eval_checker.constant import (
@@ -9,12 +10,15 @@ from bfcl.eval_checker.constant import (
 from bfcl.eval_checker.executable_eval.custom_exception import NoAPIKeyError
 
 # Load the ground truth data for the `rest` test category
-with open(REST_EVAL_GROUND_TRUTH_PATH, "r") as f:
-    EVAL_GROUND_TRUTH = f.readlines()
-
+@lru_cache(maxsize=1)  # cache the result, effectively loading data once
+def load_eval_ground_truth():
+    with open(REST_EVAL_GROUND_TRUTH_PATH, "r") as f:
+        return f.readlines()
 
 #### Main function ####
 def executable_checker_rest(func_call, idx):
+    EVAL_GROUND_TRUTH = load_eval_ground_truth()
+    
     if "https://geocode.maps.co" in func_call:
         time.sleep(2)
     if "requests_get" in func_call:
