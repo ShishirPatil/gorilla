@@ -35,13 +35,28 @@ pip install -e .
 
 ### Installing Extra Dependencies for Self-Hosted Open Source Models
 
-To do LLM generation on self-hosted open source models, you need to run the following command to install the extra dependencies.
+To do LLM generation on self-hosted open source models, you can choose to use `vllm` or `sglang` for local inference. Both options require GPUs supported by the respective libraries, and it only works on Linux or Windows, but not on MacOS.
+
+`sglang` is much faster than `vllm` but only supports newer GPUs with SM 80+ (Ampere etc).
+If you are using an older GPU (T4/V100), you should use `vllm` instead as it supports a much wider range of GPUs.
+
+Use the following commands to install the necessary dependencies based on your choice:
+
+#### For Local Inference Using `vllm`
 
 ```bash
-pip install -e .[oss_eval]
+pip install -e .[oss_eval_vllm]
 ```
 
-Note that this requires GPU supported by vLLM and it can only be installed on Linux and Windows (not Mac).
+#### For Local Inference Using `sglang`
+
+```bash
+pip install -e .[oss_eval_sglang]
+```
+
+**Note**:
+If you choose `sglang`, we recommend also installing the `flashinfer` package for even faster and more efficient inference.
+Depends on the CUDA version, you can find the specific `flashinfer` installation command [here](https://docs.flashinfer.ai/installation.html).
 
 ### Setting up Environment Variables
 
@@ -100,15 +115,27 @@ If decided to run locally-hosted model, the generation script uses vLLM and ther
 
 Use the following command for LLM inference of the evaluation dataset with specific models.
 
+For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section below.
+
+If no `MODEL_NAME` is provided, the model `gorilla-openfunctions-v2` will be used by default. If no `TEST_CATEGORY` is provided, all test categories will be run by default.
+
+#### For API-hosted models:
+
 ```bash
 bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1
 ```
 
-You can optionally specify the number of threads to use for _parallel inference_ by setting the `--num-threads` flag to speed up inference for **hosted models**, not applicable for OSS models.
+You can optionally specify the number of threads to use for _parallel inference_ by setting the `--num-threads` flag to speed up inference for **hosted models**. The default is 1, which means no parallel inference. The maximum number of parallel inference depends on your API rate limit.
 
-For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section below.
+#### For locally-hosted models:
 
-If no `MODEL_NAME` is provided, the model `gorilla-openfunctions-v2` will be used by default. If no `TEST_CATEGORY` is provided, all test categories will be run by default.
+```bash
+bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --backend {vllm,sglang} --num-gpus 1 --gpu-memory-utilization 0.9
+```
+
+You can choose between `vllm` and `sglang` as the backend and set the `--backend` flag; The default is `vllm`.
+You can also specify the number of GPUs to use for inference (multi-GPU tensor parallelism) by setting the `--num-gpus` flag. The default is 1.
+You can also specify the GPU memory utilization by setting the `--gpu-memory-utilization` flag. The default is 0.9. This is helpful if you encounter out-of-memory issues.
 
 ### Models Available
 

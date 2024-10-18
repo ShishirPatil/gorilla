@@ -6,9 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "bfcl"
 version = "1.0.0"
 description = "Berkeley Function Calling Leaderboard (BFCL)"
-authors = [
-    {name="Sky Computing Lab", email="sky@cs.berkeley.edu"}
-]
+authors = [{ name = "Sky Computing Lab", email = "sky@cs.berkeley.edu" }]
 readme = "README.md"
 requires-python = ">=3.10"
 license = { "text" = "Apache 2.0" }
@@ -43,4 +41,5 @@ include = ["bfcl*"]
 Repository = "https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard"
 
 [project.optional-dependencies]
-oss_eval = ["vllm==0.6.3"]
+oss_eval_vllm = ["vllm==0.6.3"]
+oss_eval_sglang = ["sglang[all]==0.3.3.post1"]
