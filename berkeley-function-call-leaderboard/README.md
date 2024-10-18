@@ -35,16 +35,27 @@ pip install -e .
 
 ### Installing Extra Dependencies for Self-Hosted Open Source Models
 
-To do LLM generation on self-hosted open source models, you need to run the following command to install the extra dependencies.
+To do LLM generation on self-hosted open source models, you can choose to use `vllm` or `sglang` for local inference. Both options require GPUs supported by the respective libraries, and it only works on Linux or Windows, but not on MacOS.
+
+`sglang` is much faster than `vllm` but only supports newer GPUs with SM 80+ (Ampere etc).
+If you are using an older GPU (T4/V100), you should use `vllm` instead as it supports a much wider range of GPUs.
+
+Use the following commands to install the necessary dependencies based on your choice:
+
+#### For Local Inference Using `vllm`
 
 ```bash
-pip install -e .[oss_eval]
+pip install -e .[oss_eval_vllm]
+```
+
+#### For Local Inference Using `sglang`
+
+```bash
+pip install -e .[oss_eval_sglang]
 ```
 
 **Note**:
-You can choose to use `vllm` or `sglang` for local inference. This requires GPU supported by `vllm` or `sglang`, and it only works on Linux or Windows, but not on MacOS.
-
-If you choose to use `sglang`, you need to additionally install the `flashinfer` package.
+If you choose `sglang`, we recommend also installing the `flashinfer` package for even faster and more efficient inference.
 Depends on the CUDA version, you can find the specific `flashinfer` installation command [here](https://docs.flashinfer.ai/installation.html).
 
 ### Setting up Environment Variables
