@@ -75,15 +75,13 @@ class OSSHandler(BaseHandler):
                 text=True,  # To get the output as text instead of bytes
             )
         elif backend == "sglang":
-            # Check if the flashinfer package is installed
+            # Check if the flashinfer package is installed to determine the backend
             try:
                 import flashinfer
+                backend_choice = "flashinfer"
             except ImportError as e:
-                print(
-                    "sglang requires the flashinfer package to be installed. Please install it using the following link:"
-                    "https://docs.flashinfer.ai/installation.html"
-                )
-                raise e
+                backend_choice = "triton"
+                pass
 
             process = subprocess.Popen(
                 [
@@ -100,6 +98,8 @@ class OSSHandler(BaseHandler):
                     str(num_gpus),
                     "--mem-fraction-static",
                     str(gpu_memory_utilization),
+                    "--attention-backend",
+                    str(backend_choice),
                     "--trust-remote-code",
                 ],
                 stdout=subprocess.PIPE,  # Capture stdout

@@ -41,4 +41,5 @@ include = ["bfcl*"]
 Repository = "https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard"
 
 [project.optional-dependencies]
-oss_eval = ["vllm==0.6.3", "sglang==0.3.3.post1"]
+oss_eval_vllm = ["vllm==0.6.3"]
+oss_eval_sglang = ["sglang[all]==0.3.3.post1"]
