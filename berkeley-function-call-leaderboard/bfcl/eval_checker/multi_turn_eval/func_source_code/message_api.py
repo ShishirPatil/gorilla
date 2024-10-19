@@ -21,7 +21,7 @@ class MessageAPI:
         list_users(): List all users in the workspace.
         get_user_id(user: str): Get the user ID for a given username.
         login(user_id: str): Log in a user.
-        send_message(sender_id: str, receiver_id: str, message: str): Send a message to another user.
+        send_message(receiver_id: str, message: str): Send a message to another user.
         view_messages_received(): View messages received by the current user.
         view_messages_sent(): View messages sent by the current user.
         delete_message(receiver_id: str, message_index: int): Delete a sent message.
@@ -153,12 +153,11 @@ class MessageAPI:
         }
 
     def send_message(
-        self, sender_id: str, receiver_id: str, message: str
+        self, receiver_id: str, message: str
     ) -> Dict[str, Union[str, bool]]:
         """
         Send a message to a user.
         Args:
-            sender_id (str): User ID of the user sending the message.
             receiver_id (str): User ID of the user to send the message to.
             message (str): Message to be sent.
         Returns:
@@ -176,7 +175,7 @@ class MessageAPI:
         message_id = self.generate_id()
         # Store the message in the inbox
         self.inbox[message_id] = {
-            "sender_id": sender_id,
+            "sender_id": self.current_user,
             "receiver_id": receiver_id,
             "message": message,
         }
