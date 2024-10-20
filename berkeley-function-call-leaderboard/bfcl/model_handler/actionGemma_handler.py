@@ -1,7 +1,7 @@
 import json
 
-from model_handler.oss_handler import OSSHandler
-from model_handler.model_style import ModelStyle
+from bfcl.model_handler.oss_handler import OSSHandler
+from bfcl.model_handler.model_style import ModelStyle
 
 SYSTEM_PROMPT ="""<bos>
 <start_of_turn>system
@@ -31,7 +31,7 @@ The example format is as follows. Please make sure the parameter type is correct
 ```
 """
 
-class actionGemmaHandler(OSSHandler):
+class ActionGemmaHandler(OSSHandler):
     def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=512, dtype="bfloat16") -> None:
         super().__init__(model_name, temperature, top_p, max_tokens, dtype)
         self.model_style = ModelStyle.OSSMODEL
