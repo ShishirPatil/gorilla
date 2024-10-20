@@ -1,7 +1,38 @@
 import random
 from typing import Dict, List, Optional, Union
-
-
+from copy import deepcopy
+DEFAULT_STATE = {
+    "generated_ids": set(),
+    "user_count": 4,
+    "user_map": {
+        "Alice": "USR001",
+        "Bob": "USR002",
+        "Catherine": "USR003",
+        "Daniel": "USR004",
+    },
+    "inbox": {
+        1: {
+            "sender_id": "USR001",
+            "receiver_id": "USR002",
+            "message": "My name is Alice. I want to connect.",
+        },
+        2: {
+            "sender_id": "USR001",
+            "receiver_id": "USR003",
+            "message": "Could you upload the file?",
+        },
+        3: {
+            "sender_id": "USR001",
+            "receiver_id": "USR004",
+            "message": "Could you upload the file?",
+        },
+        4: {"sender_id": "USR001", "receiver_id": "USR002", "message": "I am busy."},
+        5: {"sender_id": "USR001", "receiver_id": "USR002", "message": "I am on leave."},
+    },
+    "message_count": 0,
+    "current_user": None,
+}
+    
 class MessageAPI:
     """
     A class representing a Message API for managing user interactions in a workspace.
@@ -34,43 +65,13 @@ class MessageAPI:
         """
         Initialize the MessageAPI with a workspace ID.
         """
-        self.generated_ids = set()
-        self.user_count: int = 4
-        self.user_map: Dict[str, str] = {
-            "Alice": "USR001",
-            "Bob": "USR002",
-            "Catherine": "USR003",
-            "Daniel": "USR004",
-        }
-        self.inbox: Dict[int, Dict[str, Union[str, int]]] = {
-            1: {
-                "sender_id": "USR001",
-                "receiver_id": "USR002",
-                "message": "My name is Alice. I want to connect.",
-            },
-            2: {
-                "sender_id": "USR001",
-                "receiver_id": "USR003",
-                "message": "Could you upload the file?",
-            },
-            3: {
-                "sender_id": "USR001",
-                "receiver_id": "USR004",
-                "message": "Could you upload the file?",
-            },
-            4: {
-                "sender_id": "USR001",
-                "receiver_id": "USR002",
-                "message": "I am busy.",
-            },
-            5: {
-                "sender_id": "USR001",
-                "receiver_id": "USR002",
-                "message": "I am on leave.",
-            },
-        }
-        self.message_count: int = 0  # useless(?)
-        self.current_user: Optional[str] = None
+        DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
+        self.generated_ids = DEFAULT_STATE_COPY["generated_ids"]
+        self.user_count: int = DEFAULT_STATE_COPY["user_count"]
+        self.user_map: Dict[str, str] = DEFAULT_STATE_COPY["user_map"]
+        self.inbox: Dict[int, Dict[str, Union[str, int]]] = DEFAULT_STATE_COPY["inbox"]
+        self.message_count: int = DEFAULT_STATE_COPY["message_count"]
+        self.current_user: Optional[str] = DEFAULT_STATE_COPY["current_user"]
 
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """
@@ -79,9 +80,11 @@ class MessageAPI:
         Args:
             scenario (dict): A dictionary containing message data.
         """
+        DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
         self._random = random.Random((scenario.get("random_seed", 200191)))
-        self.user_count = scenario.get("user_count", 4)
-        self.current_user = scenario.get("current_user", None)
+        self.user_count = scenario.get("user_count", DEFAULT_STATE_COPY["user_count"])
+        self.current_user = scenario.get("current_user", DEFAULT_STATE_COPY["current_user"])
+        self.user_map = scenario.get("user_map", DEFAULT_STATE_COPY["user_map"])
 
     def __eq__(self, value: object) -> bool:
         if not isinstance(value, MessageAPI):
