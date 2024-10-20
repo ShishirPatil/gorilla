@@ -86,6 +86,9 @@ def generate(
     gpu_memory_utilization: float = typer.Option(
         0.9, help="The GPU memory utilization."
     ),
+    backend: str = typer.Option(
+        "vllm", help="The backend to use for the model."
+    ),
 ):
     """
     Generate the LLM response for one or more models on a test-category (same as openfunctions_evaluation.py).
@@ -101,6 +104,7 @@ def generate(
             "num_gpus",
             "num_threads",
             "gpu_memory_utilization",
+            "backend",
         ],
     )
 
@@ -115,6 +119,7 @@ def generate(
             num_gpus=num_gpus,
             num_threads=num_threads,
             gpu_memory_utilization=gpu_memory_utilization,
+            backend=backend,
         )
     )
 
