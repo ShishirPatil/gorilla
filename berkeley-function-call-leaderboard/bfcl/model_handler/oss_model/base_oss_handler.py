@@ -29,7 +29,7 @@ class OSSHandler(BaseHandler):
     def inference(self, test_entry: dict, include_debugging_log: bool):
         """
         OSS models have a different inference method.
-        They needs to spin up a vllm server first and then send requests to it.
+        They needs to spin up a server first and then send requests to it.
         It is more efficient to spin up the server once for the whole batch, instead of for each individual entry.
         So we implement batch_inference method instead.
         """
@@ -48,35 +48,70 @@ class OSSHandler(BaseHandler):
         test_entries: list[dict],
         num_gpus: int,
         gpu_memory_utilization: float,
+        backend: str,
         include_debugging_log: bool,
     ):
         """
         Batch inference for OSS models.
         """
+        if backend == "vllm":
+            process = subprocess.Popen(
+                [
+                    "vllm",
+                    "serve",
+                    str(self.model_name_huggingface),
+                    "--port",
+                    str(VLLM_PORT),
+                    "--dtype",
+                    str(self.dtype),
+                    "--tensor-parallel-size",
+                    str(num_gpus),
+                    "--gpu-memory-utilization",
+                    str(gpu_memory_utilization),
+                    "--trust-remote-code",
+                ],
+                stdout=subprocess.PIPE,  # Capture stdout
+                stderr=subprocess.PIPE,  # Capture stderr
+                text=True,  # To get the output as text instead of bytes
+            )
+        elif backend == "sglang":
+            # Check if the flashinfer package is installed to determine the backend
+            try:
+                import flashinfer
+                backend_choice = "flashinfer"
+            except ImportError as e:
+                backend_choice = "triton"
+                pass
 
-        process = subprocess.Popen(
-            [
-                "vllm",
-                "serve",
-                str(self.model_name_huggingface),
-                "--port",
-                str(VLLM_PORT),
-                "--dtype",
-                str(self.dtype),
-                "--tensor-parallel-size",
-                str(num_gpus),
-                "--gpu-memory-utilization",
-                str(gpu_memory_utilization),
-                "--trust-remote-code",
-            ],
-            stdout=subprocess.PIPE,  # Capture stdout
-            stderr=subprocess.PIPE,  # Capture stderr
-            text=True,  # To get the output as text instead of bytes
-        )
+            process = subprocess.Popen(
+                [
+                    "python",
+                    "-m",
+                    "sglang.launch_server",
+                    "--model-path",
+                    str(self.model_name_huggingface),
+                    "--port",
+                    str(VLLM_PORT),
+                    "--dtype",
+                    str(self.dtype),
+                    "--tp",
+                    str(num_gpus),
+                    "--mem-fraction-static",
+                    str(gpu_memory_utilization),
+                    "--attention-backend",
+                    str(backend_choice),
+                    "--trust-remote-code",
+                ],
+                stdout=subprocess.PIPE,  # Capture stdout
+                stderr=subprocess.PIPE,  # Capture stderr
+                text=True,  # To get the output as text instead of bytes
+            )
+        else:
+            raise ValueError(f"Backend {backend} is not supported.")
 
         stop_event = (
             threading.Event()
-        )  # Event to signal threads to stop; no need to see vllm logs after server is ready
+        )  # Event to signal threads to stop; no need to see logs after server is ready
 
         def log_subprocess_output(pipe, stop_event):
             # Read lines until stop event is set
@@ -86,7 +121,7 @@ class OSSHandler(BaseHandler):
                 else:
                     print(line, end="")
             pipe.close()
-            print("vllm server log tracking thread stopped successfully.")
+            print("server log tracking thread stopped successfully.")
 
         # Start threads to read and print stdout and stderr
         stdout_thread = threading.Thread(
@@ -116,7 +151,7 @@ class OSSHandler(BaseHandler):
                     response = requests.get(f"http://localhost:{VLLM_PORT}/v1/models")
                     if response.status_code == 200:
                         server_ready = True
-                        print("vllm server is ready!")
+                        print("server is ready!")
                 except requests.exceptions.ConnectionError:
                     # If the connection is not ready, wait and try again
                     time.sleep(1)
@@ -197,7 +232,7 @@ class OSSHandler(BaseHandler):
         )
 
     def _query_prompting(self, inference_data: dict):
-        # We use the OpenAI Completions API with vLLM
+        # We use the OpenAI Completions API
         function: list[dict] = inference_data["function"]
         message: list[dict] = inference_data["message"]
 

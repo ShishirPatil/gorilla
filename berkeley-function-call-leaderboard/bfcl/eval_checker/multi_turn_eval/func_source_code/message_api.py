@@ -21,7 +21,7 @@ class MessageAPI:
         list_users(): List all users in the workspace.
         get_user_id(user: str): Get the user ID for a given username.
         login(user_id: str): Log in a user.
-        send_message(sender_id: str, receiver_id: str, message: str): Send a message to another user.
+        send_message(receiver_id: str, message: str): Send a message to another user.
         view_messages_received(): View messages received by the current user.
         view_messages_sent(): View messages sent by the current user.
         delete_message(receiver_id: str, message_index: int): Delete a sent message.
@@ -49,22 +49,22 @@ class MessageAPI:
                 "message": "My name is Alice. I want to connect.",
             },
             2: {
-                "sender_id": "USR002",
+                "sender_id": "USR001",
                 "receiver_id": "USR003",
                 "message": "Could you upload the file?",
             },
             3: {
-                "sender_id": "USR002",
+                "sender_id": "USR001",
                 "receiver_id": "USR004",
                 "message": "Could you upload the file?",
             },
             4: {
-                "sender_id": "USR003",
+                "sender_id": "USR001",
                 "receiver_id": "USR002",
                 "message": "I am busy.",
             },
             5: {
-                "sender_id": "USR004",
+                "sender_id": "USR001",
                 "receiver_id": "USR002",
                 "message": "I am on leave.",
             },
@@ -153,12 +153,11 @@ class MessageAPI:
         }
 
     def send_message(
-        self, sender_id: str, receiver_id: str, message: str
+        self, receiver_id: str, message: str
     ) -> Dict[str, Union[str, bool]]:
         """
         Send a message to a user.
         Args:
-            sender_id (str): User ID of the user sending the message.
             receiver_id (str): User ID of the user to send the message to.
             message (str): Message to be sent.
         Returns:
@@ -176,7 +175,7 @@ class MessageAPI:
         message_id = self.generate_id()
         # Store the message in the inbox
         self.inbox[message_id] = {
-            "sender_id": sender_id,
+            "sender_id": self.current_user,
             "receiver_id": receiver_id,
             "message": message,
         }
@@ -188,12 +187,11 @@ class MessageAPI:
         }
 
     def delete_message(
-        self, sender_id: str, receiver_id: str, message_id: int
+        self, receiver_id: str, message_id: int
     ) -> Dict[str, Union[bool, str]]:
         """
         Delete a message sent to a user.
         Args:
-            sender_id (str): User ID of the user sending the message.
             receiver_id (str): User ID of the user to send the message to.
             message_id (int): ID of the message to be deleted.
         Returns:
@@ -215,7 +213,7 @@ class MessageAPI:
             return {"error": "You do not have permission to delete this message."}
         # Check if the sender and receiver match the input arguments
         if (
-            message_data["sender_id"] != sender_id
+            message_data["sender_id"] != self.current_user
             or message_data["receiver_id"] != receiver_id
         ):
             return {
