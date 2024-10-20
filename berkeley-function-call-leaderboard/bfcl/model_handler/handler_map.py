@@ -23,7 +23,7 @@ from bfcl.model_handler.proprietary_model.nexus import NexusHandler
 from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
-from bfcl.model_handler.actionGemma_handler import actionGemmaHandler
+from bfcl.model_handler.oss_model.actionGemma_handler import ActionGemmaHandler
 
 # TODO: Add Deepseek V2, meta-llama/Llama-3.1-405B-Instruct
 
@@ -80,7 +80,7 @@ api_inference_handler_map = {
     "command-r-plus-optimized": CohereHandler,
     "snowflake/arctic": NvidiaHandler,
     "nvidia/nemotron-4-340b-instruct": NvidiaHandler,
-    "KishoreK/ActionGemma-9B":actionGemmaHandler,
+    "KishoreK/ActionGemma-9B":ActionGemmaHandler,
     # "yi-large-fc": YiHandler,  #  Their API is under maintenance, and will not be back online in the near future
 }
 

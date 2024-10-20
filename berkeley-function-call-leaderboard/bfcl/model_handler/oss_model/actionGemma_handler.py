@@ -1,6 +1,6 @@
 import json
 
-from bfcl.model_handler.oss_handler import OSSHandler
+from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
 from bfcl.model_handler.model_style import ModelStyle
 
 SYSTEM_PROMPT ="""<bos>
@@ -32,8 +32,8 @@ The example format is as follows. Please make sure the parameter type is correct
 """
 
 class ActionGemmaHandler(OSSHandler):
-    def __init__(self, model_name, temperature=0.001, top_p=1, max_tokens=512, dtype="bfloat16") -> None:
-        super().__init__(model_name, temperature, top_p, max_tokens, dtype)
+    def __init__(self, model_name, temperature=0.001) -> None:
+        super().__init__(model_name, temperature)
         self.model_style = ModelStyle.OSSMODEL
 
     def _format_prompt(query, functions, test_category):
