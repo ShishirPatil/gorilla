@@ -738,9 +738,7 @@ def format_execution_results_prompting(
 
 
 def default_decode_ast_prompting(result, language="Python"):
-    result = result.strip()
-    result = result.rstrip("\n")
-    result = result.lstrip('\n')
+    result = result.strip("`\n ")
     if not result.startswith("["):
         result = "[" + result
     if not result.endswith("]"):
@@ -750,9 +748,7 @@ def default_decode_ast_prompting(result, language="Python"):
 
 
 def default_decode_execute_prompting(result):
-    result = result.strip()
-    result = result.rstrip("\n")
-    result = result.lstrip('\n')
+    result = result.strip("`\n ")
     if not result.startswith("["):
         result = "[" + result
     if not result.endswith("]"):
