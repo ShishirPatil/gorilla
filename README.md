@@ -5,21 +5,21 @@
 
 **🚒  GoEx: A Runtime for executing LLM generated actions like code & API calls** GoEx presents “undo” and “damage confinement” abstractions for mitigating the risk of unintended actions taken in LLM-powered systems. [Release blog](https://gorilla.cs.berkeley.edu/blogs/10_gorilla_exec_engine.html) [Paper](https://arxiv.org/abs/2404.06921).
 
-**🎉 Berkeley Function Calling Leaderboard** How do models stack up for function calling? :dart: Releasing the [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard). Read more in our [Release Blog](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html). 
+**🎉 Berkeley Function Calling Leaderboard :** How do models stack up for function calling? :dart: Releasing the [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard). Read more in our [Release Blog](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html). 
 
-**:trophy: Gorilla OpenFunctions v2** Sets new SoTA for open-source LLMs :muscle: On-par with GPT-4 :raised_hands: Supports more languages :ok_hand: [Blog](https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html). 
+**:trophy: Gorilla OpenFunctions v2** Sets a new SoTA for open-source LLMs :muscle: On-par with GPT-4 :raised_hands: Supports more languages :ok_hand: [Blog](https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html). 
 
 **:fire: Gorilla OpenFunctions** is a drop-in alternative for function calling! [Release Blog](https://gorilla.cs.berkeley.edu/blogs/4_open_functions.html)
 
-**🟢 Gorilla is Apache 2.0** With Gorilla being fine-tuned on MPT, and Falcon, you can use Gorilla commercially with no obligations! :golf:  
+**🟢 Gorilla is Apache 2.0** With Gorilla being fine-tuned on MPT and Falcon, you can use Gorilla commercially with no obligations! :golf:  
 
 **:rocket: Try Gorilla in 60s** [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing) 
 
 :computer: Use [Gorilla in your CLI](https://github.com/gorilla-llm/gorilla-cli) with `pip install gorilla-cli`
 
-**:fax: Checkout our [blogs](https://gorilla.cs.berkeley.edu/blog.html) for all things tools-use/function-calling!** 
+**:fax: Check out our [blogs](https://gorilla.cs.berkeley.edu/blog.html) for all things tools-use/function-calling!** 
 
-**:newspaper_roll: Checkout our paper!** [![arXiv](https://img.shields.io/badge/arXiv-2305.15334-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334)
+**:newspaper_roll: Check out our paper!** [![arXiv](https://img.shields.io/badge/arXiv-2305.15334-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334)
 
 **:wave: Join our Discord!** [![Discord](https://img.shields.io/discord/1111172801899012102?label=Discord&logo=discord&logoColor=green&style=flat-square)](https://discord.gg/grXXvj9Whz)
 
@@ -63,7 +63,7 @@ Our repository organization is shown below.
 
 For our dataset collections, all the 1640 API documentation is in `data/api`. We also include the `APIBench` dataset created by self-instruct in `data/apibench`. For evaluation, we convert this into a LLM-friendly chat format, and the questions are in `eval/eval-data/questions`, and the corresponding responses are in `eval/eval-data/responses`.  We have also included the evaluation scripts are in `eval/eval-scripts`. This would be entirely sufficient to train Gorilla yourself, and reproduce our results. Please see [evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval) for the details on how to use our evaluation pipeline.
 
-Additionally, we have released all the model weights. `gorilla-7b-hf-v0` lets you invoke over 925 Hugging Face APIs. Similarly, `gorilla-7b-tf-v0` and `gorilla-7b-th-v0` have 626 (exhaustive) Tensorflow v2, and 94 (exhaustive) Torch Hub APIs. `gorilla-mpt-7b-hf-v0` and `gorilla-falcon-7b-hf-v0` are Apache 2.0 licensed models (commercially usable) fine-tuned on MPT-7B and Falcon-7B respectively. We will release a model with all three combined with generic chat capability and community contributed APIs as soon as we can scale our serving infrastructure. You can run Gorilla locally from instructions in the `inference/` sub-directory, or we also provide a hosted Gorilla chat completion API (see Colab)! If you have any suggestions, or if you run into any issues please feel free to reach out to us either through Discord or email or raise a Github issue.
+Additionally, we have released all the model weights. `gorilla-7b-hf-v0` lets you invoke over 925 Hugging Face APIs. Similarly, `gorilla-7b-tf-v0` and `gorilla-7b-th-v0` have 626 (exhaustive) Tensorflow v2, and 94 (exhaustive) Torch Hub APIs. `gorilla-mpt-7b-hf-v0` and `gorilla-falcon-7b-hf-v0` are Apache 2.0 licensed models (commercially usable) fine-tuned on MPT-7B and Falcon-7B respectively. We will release a model with all three combined with generic chat capability and community contributed APIs as soon as we can scale our serving infrastructure. You can run Gorilla locally from instructions in the `inference/` sub-directory, or we also provide a hosted Gorilla chat completion API (see Colab)! If you have any suggestions or if you run into any issues, please feel free to reach out to us either through Discord or email or raise a Github issue.
 
 ```
 gorilla
