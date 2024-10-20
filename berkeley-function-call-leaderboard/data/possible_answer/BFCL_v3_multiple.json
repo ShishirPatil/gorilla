@@ -1,0 +1,200 @@
+{"id": "multiple_0", "ground_truth": [{"triangle_properties.get": {"side1": [5], "side2": [4], "side3": [3], "get_area": ["", true], "get_perimeter": ["", true], "get_angles": ["", true]}}]}
+{"id": "multiple_1", "ground_truth": [{"math.triangle_area_heron": {"side1": [3], "side2": [4], "side3": [5]}}]}
+{"id": "multiple_2", "ground_truth": [{"country_info.capital": {"country": ["Brazil"]}}]}
+{"id": "multiple_3", "ground_truth": [{"EuclideanDistance.calculate": {"pointA": [[3, 4]], "pointB": [[1, 2]], "rounding": ["", 0]}}]}
+{"id": "multiple_4", "ground_truth": [{"kinematics.calculate_displacement": {"initial_speed": [20], "acceleration": [10], "time": [5], "rounding": ["", 2]}}]}
+{"id": "multiple_5", "ground_truth": [{"weather.get_by_coordinates_date": {"coordinates": [[46.603354, 1.888334]], "date": ["2019-12-13"]}}]}
+{"id": "multiple_6", "ground_truth": [{"capacitance_calculator.calculate": {"A": [10], "d": [0.01], "K": [1.0, ""]}}]}
+{"id": "multiple_7", "ground_truth": [{"wildlife_population.assess_growth": {"species": ["deer", "Deer"], "location": ["Washington state", "WA", "Washington"], "duration": [10]}}]}
+{"id": "multiple_8", "ground_truth": [{"realestate.find_properties": {"location": ["SD", "San Diego", "San Diego, CA", "CA"], "propertyType": ["villa"], "bedrooms": [3], "budget": [{"min": [300000], "max": [400000]}]}}]}
+{"id": "multiple_9", "ground_truth": [{"calculate_average": {"gradeDict": [{"math": [90], "science": [75], "history": [82], "music": [89]}]}}]}
+{"id": "multiple_10", "ground_truth": [{"database.modify_columns": {"db_name": ["employees"], "table": ["personal_data"], "operation": ["delete"], "columns": [["email", "ssn"], ["ssn", "email"], ["email", "social_security_number"], ["social_security_number", "email"], ["email", "social security number"], ["social security number", "email"]]}}]}
+{"id": "multiple_11", "ground_truth": [{"math_roots.quadratic": {"a": [5], "b": [20], "c": [-25]}}]}
+{"id": "multiple_12", "ground_truth": [{"corporate_finance.calculate_YOY_growth_rate": {"company_name": ["Tech Inc"], "year1": [2019], "year1_revenue": [1000000], "year2": [2020], "year2_revenue": [1200000]}}]}
+{"id": "multiple_13", "ground_truth": [{"corporate_finance.revenue_forecast": {"company": ["XYZ"], "product": ["A", "Product A"], "sales_units_increase_percentage": [10]}}]}
+{"id": "multiple_14", "ground_truth": [{"finance.property_depreciation": {"initial_cost": [200000], "depreciation_rate": [3], "years": [5], "monthly": [false, true, ""]}}]}
+{"id": "multiple_15", "ground_truth": [{"solarFarm.potential": {"coordinates": [[43.653225, -79.383186]], "panelArea": [80000], "month": ["December", "Dec"]}}]}
+{"id": "multiple_16", "ground_truth": [{"population_genetics.calculate_ne": {"species": ["wild tiger", "tiger"], "generations": [100], "probability": [0.95]}}]}
+{"id": "multiple_17", "ground_truth": [{"currency_conversion.get_rate": {"from_currency": ["EUR", "Euro"], "to_currency": ["Dollar", "USD"], "date": ["2022-01-01", "01/01/2022", "1/1/2022", "Jan.1,2022", "January 1, 2022", "2022-1-1"]}}]}
+{"id": "multiple_18", "ground_truth": [{"european_history.battle_details": {"battle": ["Battle of Stalingrad", "Stalingrad"]}}]}
+{"id": "multiple_19", "ground_truth": [{"religion_history.get_schisms": {"religion": ["Christianity"], "count": [3]}}]}
+{"id": "multiple_20", "ground_truth": [{"sculpture_price.calculate": {"material": ["marble"], "size": [3], "complexity": ["medium", ""]}}]}
+{"id": "multiple_21", "ground_truth": [{"generate_sound_wave": {"frequency": [440], "duration": [5], "wave_type": ["sine", ""]}}]}
+{"id": "multiple_22", "ground_truth": [{"sports_data.basketball.most_points_single_game": {"league": ["NBA"]}}]}
+{"id": "multiple_23", "ground_truth": [{"basketball.player_stats.get": {"player_name": ["LeBron James"], "stats_fields": [["points per game", "assists", "minutes per game"], ["points per game", "minutes per game", "assists"], ["assists", "points per game", "minutes per game"], ["assists", "minutes per game", "points per game"], ["minutes per game", "points per game", "assists"], ["minutes per game", "assists", "points per game"], ["points", "assists", "minutes"], ["points", "minutes", "assists"], ["assists", "points", "minutes"], ["assists", "minutes", "points"], ["minutes", "points", "assists"], ["minutes", "assists", "points"], ["points_per_game", "assists", "minutes_per_game"], ["points_per_game", "minutes_per_game", "assists"], ["assists", "points_per_game", "minutes_per_game"], ["assists", "minutes_per_game", "points_per_game"], ["minutes_per_game", "points_per_game", "assists"], ["minutes_per_game", "assists", "points_per_game"]]}}]}
+{"id": "multiple_24", "ground_truth": [{"route_planner.calculate_route": {"start": ["London"], "destination": ["Edinburgh"], "method": ["fastest", ""]}}]}
+{"id": "multiple_25", "ground_truth": [{"video_games.store_price": {"game_title": ["Assassins Creed Valhalla"], "platform": ["PlayStation", "PS"], "region": ["United States", "US", ""]}}]}
+{"id": "multiple_26", "ground_truth": [{"game_rewards.get": {"game": ["Fortnite"], "platform": ["Playstation", "PS"], "mission": [""], "trophy": [""]}}]}
+{"id": "multiple_27", "ground_truth": [{"maps.shortest_path": {"start_location": ["Paris, France", "Paris"], "end_location": ["Rome, Italy", "Rome"], "mode": ["transit"]}}]}
+{"id": "multiple_28", "ground_truth": [{"solve.quadratic_equation": {"a": [2], "b": [3], "c": [-4]}}]}
+{"id": "multiple_29", "ground_truth": [{"functions.intersect": {"function1": ["3x + 2", "lambda x: 3x + 2"], "function2": ["2x + 3", "lambda x: 2x + 3"]}}]}
+{"id": "multiple_30", "ground_truth": [{"rectangle.area": {"length": [12], "width": [5]}}]}
+{"id": "multiple_31", "ground_truth": [{"geometry_rectangle.calculate": {"width": [7], "length": [10]}}]}
+{"id": "multiple_32", "ground_truth": [{"geometry.calculate_cone_volume": {"radius": [4], "height": [7], "round_off": ["", 0]}}]}
+{"id": "multiple_33", "ground_truth": [{"calculate_integral": {"func": ["3x**2", "lambda x: 3x**2"], "a": [1], "b": [2]}}]}
+{"id": "multiple_34", "ground_truth": [{"math.lcm": {"num1": [18], "num2": [12]}}]}
+{"id": "multiple_35", "ground_truth": [{"calculate_gcd": {"num1": [128], "num2": [256], "algorithm": ["euclidean", ""]}}]}
+{"id": "multiple_36", "ground_truth": [{"kinematics.calculate_speed_from_rest": {"distance": [20], "time": [4], "initial_speed": [0, ""]}}]}
+{"id": "multiple_37", "ground_truth": [{"kinematics.final_velocity": {"initial_velocity": [40], "time": [6], "acceleration": [-9.81, ""]}}]}
+{"id": "multiple_38", "ground_truth": [{"library.search_book": {"book_name": ["The Alchemist"], "city": ["New York", "New York, NY", "New York City", "NYC", "NY"], "availability": ["", false], "genre": [""]}}]}
+{"id": "multiple_39", "ground_truth": [{"ride_hailing.get_rides": {"source": ["New York", "New York, NY", "New York City", "NYC", "NY"], "destination": ["Philadelphia"], "max_cost": [50]}}]}
+{"id": "multiple_40", "ground_truth": [{"electromagnetism.biot_savart_law": {"current": [12], "distance": [8], "mu0": [1.256e-06, 1.256e-06, ""]}}]}
+{"id": "multiple_41", "ground_truth": [{"magnetic_field.calculate": {"I": [10], "r": [0.01]}}]}
+{"id": "multiple_42", "ground_truth": [{"calculate_final_temperature": {"quantity1": [2], "temperature1": [300], "quantity2": [3], "temperature2": [400]}}]}
+{"id": "multiple_43", "ground_truth": [{"biological.calc_energy": {"mols": [5], "substance": ["C6H12O6"], "joules_per_mol": [2800, ""]}}]}
+{"id": "multiple_44", "ground_truth": [{"calculate.weight_in_space": {"weight_earth_kg": [70], "planet": ["Mars"]}}]}
+{"id": "multiple_45", "ground_truth": [{"geology.get_era": {"era_name": ["Ice age"], "calculate_years_ago": [true]}}]}
+{"id": "multiple_46", "ground_truth": [{"sort_list": {"elements": [["Sam", "Alice", "Jack"]], "order": ["asc", ""]}}]}
+{"id": "multiple_47", "ground_truth": [{"cosine_similarity.calculate": {"vector1": [[3, 2, 1]], "vector2": [[1, 2, 3]], "rounding": ["", 0]}}]}
+{"id": "multiple_48", "ground_truth": [{"library.find_nearby": {"location": ["New York City", "NYC", "New York City, NY"], "preferences": [["Pet-friendly", "Disabled Access"], ["Disabled Access", "Pet-friendly"]]}}]}
+{"id": "multiple_49", "ground_truth": [{"calc_Compound_Interest": {"principle_amount": [1500], "duration": [2], "annual_rate": [2.5], "compound_freq": ["", 1]}}]}
+{"id": "multiple_50", "ground_truth": [{"house_price_forecast": {"location": ["New York", "New York, NY", "NYC", "New York City"], "months": [1], "features": [[], ""]}}]}
+{"id": "multiple_51", "ground_truth": [{"dice_roll_probability": {"desired_sum": [7], "sides_per_die": [6], "n_rolls": [2]}}]}
+{"id": "multiple_52", "ground_truth": [{"currency_conversion": {"amount": [100], "from_currency": ["Euro", "EUR"], "to_currency": ["USD", "US Dollar"]}}]}
+{"id": "multiple_53", "ground_truth": [{"linear_regression": {"independent_var": [["interest rates", "unemployment rates"], ["interest_rate", "unemployment_rate"], ["interest rate", "unemployment rate"]], "dependent_var": ["house_price", "house price"], "forecast_period": [5]}}]}
+{"id": "multiple_54", "ground_truth": [{"corporate_finance.dividend_data": {"company": ["Apple Inc", "Apple", "Apple Inc."], "years": [5], "frequency": ["", "annually"]}}]}
+{"id": "multiple_55", "ground_truth": [{"stock_forecast": {"company": ["Google", "GOOG"], "days": [3], "model": ["", "regression"]}}]}
+{"id": "multiple_56", "ground_truth": [{"avg_closing_price": {"company": ["Apple"], "days": [60], "data_source": ["yahoo finance", ""]}}]}
+{"id": "multiple_57", "ground_truth": [{"financial.compound_interest": {"principle": [1000], "rate": [0.05], "time": [10], "n": [4]}}]}
+{"id": "multiple_58", "ground_truth": [{"lawyer.search": {"location": ["Los Angeles", "Los Angeles, CA", "LA"], "expertise": ["Divorce"]}}]}
+{"id": "multiple_59", "ground_truth": [{"lawyer_finder": {"location": ["New York", "New York, NY", "NY", "New York City", "NYC"], "specialization": [["Criminal Law"], ["criminal law"]], "experience": ["", 1]}}]}
+{"id": "multiple_60", "ground_truth": [{"humidity_temperature_forecast": {"location": ["New York City", "NYC"], "days": [7]}}]}
+{"id": "multiple_61", "ground_truth": [{"landscape_architect.find_specialty": {"location": ["Portland", "Portland, OR"], "specialization": ["small space garden design"], "years_experience": [5]}}]}
+{"id": "multiple_62", "ground_truth": [{"nature_park.find_nearby": {"location": ["Boston, MA", "Boston"], "features": [["Camping", "Scenic View"], ["Scenic View", "Camping"]]}}]}
+{"id": "multiple_63", "ground_truth": [{"air_quality_forecast": {"location": ["New York", "New York, NY", "New York City", "NYC"], "days": [7]}}]}
+{"id": "multiple_64", "ground_truth": [{"uv_index.get_future": {"location": ["Tokyo"], "date": ["06-01-2023"]}}]}
+{"id": "multiple_65", "ground_truth": [{"geodistance.find": {"origin": ["New York City", "NYC"], "destination": ["Los Angeles", "LA"], "unit": ["miles", ""]}}]}
+{"id": "multiple_66", "ground_truth": [{"traffic_estimate": {"start_location": ["Las Vegas"], "end_location": ["Los Angeles"], "time_period": ["weekend"]}}]}
+{"id": "multiple_67", "ground_truth": [{"translate": {"text": ["Hello, how are you?"], "source_language": ["English"], "target_language": ["French"]}}]}
+{"id": "multiple_68", "ground_truth": [{"library.search_books": {"location": ["New York", "New York, NY", "New York City", "New York City, NY", "NYC", "New York public library"], "genre": ["Historical Fiction", "historical fiction"], "title": [""]}}]}
+{"id": "multiple_69", "ground_truth": [{"five_factor_model.analyse": {"talkative": [true], "nervous": [true], "artistic_interests": [false], "lazy": [true], "forgiving": [true]}}]}
+{"id": "multiple_70", "ground_truth": [{"european_history.get_monarchs": {"country": ["France"], "century": [18]}}]}
+{"id": "multiple_71", "ground_truth": [{"get_population": {"year": [1954], "category": ["veterans"]}}]}
+{"id": "multiple_72", "ground_truth": [{"us_history.population_by_state_year": {"state": ["California", "CA"], "year": [1970]}}]}
+{"id": "multiple_73", "ground_truth": [{"religion.get_origin": {"religion": ["Buddhism"]}}]}
+{"id": "multiple_74", "ground_truth": [{"art_auction.fetch_artwork_price": {"artwork_name": ["Starry Night"], "artist": ["Van Gogh"], "platform": ["all", ""]}}]}
+{"id": "multiple_75", "ground_truth": [{"paint_color.trends": {"room": ["living room", "Living room"], "period": ["", "Daily"]}}]}
+{"id": "multiple_76", "ground_truth": [{"sculpture.create_custom": {"item": ["horse", "Horse"], "material": ["Bronze", "bronze"], "size": ["", 12]}}]}
+{"id": "multiple_77", "ground_truth": [{"artwork_search.find": {"type": ["sculpture"], "location": ["New York", "New York, NY", "New York City", "NYC"], "era": ["contemporary", ""]}}]}
+{"id": "multiple_78", "ground_truth": [{"museum_info": {"museum": ["Natural History Museum"], "city": ["London"], "features": [["timings", "exhibitions", "accessibility"], ["exhibitions", "timings", "accessibility"], ["exhibitions", "accessibility", "timings"], ["accessibility", "timings", "exhibitions"], ["accessibility", "exhibitions", "timings"], ["timings", "accessibility", "exhibitions"]]}}]}
+{"id": "multiple_79", "ground_truth": [{"exhibition_info": {"museum_name": ["Museum of Modern Art", "MOMA", "Museum of Modern Art, New York"], "month": ["", 1]}}]}
+{"id": "multiple_80", "ground_truth": [{"music_shop.find_nearby": {"location": ["Nashville, TN", "Nashville"], "services": [["Violin Lessons"]], "instruments": [["Guitars"]]}}]}
+{"id": "multiple_81", "ground_truth": [{"concert.book_ticket": {"artist": ["Eminem"], "location": ["New York City", "NYC"], "add_ons": [["Backstage Pass"]]}}]}
+{"id": "multiple_82", "ground_truth": [{"music.generate": {"key": ["C Major"], "tempo": [120], "time_signature": ["", "4/4"]}}]}
+{"id": "multiple_83", "ground_truth": [{"player_stats.get_all_time_goals": {"player_name": ["Lionel Messi"], "team_name": ["Barcelona"], "competition": [""]}}]}
+{"id": "multiple_84", "ground_truth": [{"getTopGoalScorers": {"competition": ["UEFA Champions League"], "team": ["Barcelona"], "number": [10]}}]}
+{"id": "multiple_85", "ground_truth": [{"soccer_scores.get_scores": {"team": ["Real Madrid"], "league": ["La Liga"], "rounds": [5]}}]}
+{"id": "multiple_86", "ground_truth": [{"BoardGameGeek.recommend": {"numPlayers": [2], "category": ["strategy"], "difficulty": ["", "beginner"]}}]}
+{"id": "multiple_87", "ground_truth": [{"games.update.find": {"game": ["Cyberpunk 2077"], "platform": ["Xbox"], "region": ["", "global"]}}]}
+{"id": "multiple_88", "ground_truth": [{"video_games.get_player_count": {"game_title": ["World of Warcraft"], "year": [2020], "platform": ["", "PC"]}}]}
+{"id": "multiple_89", "ground_truth": [{"recipe_search": {"ingredients": [["chicken", "mushrooms"], ["mushrooms", "chicken"]], "calories": [500], "meal": ["lunch", ""]}}]}
+{"id": "multiple_90", "ground_truth": [{"restaurant.find_group": {"location": ["Seattle", "Seattle, WA"], "cuisine": [["Seafood"]], "group_size": [5]}}]}
+{"id": "multiple_91", "ground_truth": [{"recipe.find": {"mainIngredient": ["apple pie", "apple"], "ingredientLimit": [4]}}]}
+{"id": "multiple_92", "ground_truth": [{"walmart.vegan_products": {"location": ["Denver, CO", "Denver"], "categories": [["vegan", "gluten-free"], ["gluten-free", "vegan"]]}}]}
+{"id": "multiple_93", "ground_truth": [{"hotel.book": {"location": ["New York", "New York, NY", "NYC"], "roomType": ["deluxe", "Deluxe"], "nights": [2], "additional_services": [["breakfast"]]}}]}
+{"id": "multiple_94", "ground_truth": [{"hotel_room_pricing.get": {"hotelName": ["Hilton New York"], "roomType": ["suite with queen size bed"], "nights": [3]}}]}
+{"id": "multiple_95", "ground_truth": [{"currency_exchange.convert": {"amount": [200], "from_currency": ["EUR"], "to_currency": ["USD"], "live_conversion": [true]}}]}
+{"id": "multiple_96", "ground_truth": [{"solve_quadratic_equation": {"a": [2], "b": [6], "c": [5]}}]}
+{"id": "multiple_97", "ground_truth": [{"geometry.area_circle": {"radius": [10], "units": ["", "meters"]}}]}
+{"id": "multiple_98", "ground_truth": [{"geometry.circumference": {"radius": [3], "units": ["cm", ""]}}]}
+{"id": "multiple_99", "ground_truth": [{"calculus.derivative": {"function": ["2x**2", "lambda x: 2x**2"], "value": [1], "function_variable": ["x", ""]}}]}
+{"id": "multiple_100", "ground_truth": [{"math.hcf": {"number1": [36], "number2": [24]}}]}
+{"id": "multiple_101", "ground_truth": [{"math.gcd": {"num1": [12], "num2": [18]}}]}
+{"id": "multiple_102", "ground_truth": [{"calculate_displacement": {"initial_velocity": [10], "time": [5], "acceleration": [9.8]}}]}
+{"id": "multiple_103", "ground_truth": [{"calculate_final_speed": {"initial_velocity": [0], "height": [100], "gravity": [9.8, ""]}}]}
+{"id": "multiple_104", "ground_truth": [{"get_shortest_driving_distance": {"origin": ["New York City", "NYC"], "destination": ["Washington D.C.", "D.C.", "DC"], "unit": ["", "kilometers"]}}]}
+{"id": "multiple_105", "ground_truth": [{"calculate_magnetic_field": {"current": [5], "radius": [4], "permeability": ["", 0.01]}}]}
+{"id": "multiple_106", "ground_truth": [{"calculate_electric_field_strength": {"charge": [0.01], "distance": [4], "medium": ["", "vacuum"]}}]}
+{"id": "multiple_107", "ground_truth": [{"calculate_density": {"mass": [45], "volume": [15], "unit": ["kg/m\u00b3", ""]}}]}
+{"id": "multiple_108", "ground_truth": [{"calc_heat_capacity": {"temp": [298], "volume": [10], "gas": ["air", ""]}}]}
+{"id": "multiple_109", "ground_truth": [{"cellbio.get_proteins": {"cell_compartment": ["plasma membrane"], "include_description": [false, ""]}}]}
+{"id": "multiple_110", "ground_truth": [{"mutation_type.find": {"snp_id": ["rs6034464"], "species": ["Homo sapiens", ""]}}]}
+{"id": "multiple_111", "ground_truth": [{"calculate_genotype_frequency": {"allele_frequency": [0.3], "genotype": ["AA"]}}]}
+{"id": "multiple_112", "ground_truth": [{"forest_growth_forecast": {"location": ["Yellowstone National Park"], "years": [5], "include_human_impact": [true]}}]}
+{"id": "multiple_113", "ground_truth": [{"calculate_fitness": {"trait_values": [[0.8, 0.7]], "trait_contributions": [[0.4, 0.6]]}}]}
+{"id": "multiple_114", "ground_truth": [{"prediction.evolution": {"species": ["Homo Sapiens", "Homo sapiens"], "years": [50], "model": ["Darwin", ""]}}]}
+{"id": "multiple_115", "ground_truth": [{"find_restaurants": {"location": ["Manhattan"], "food_type": ["Thai"], "number": [5], "dietary_requirements": [["vegan"]]}}]}
+{"id": "multiple_116", "ground_truth": [{"calculate_bmi": {"weight": [85], "height": [180], "unit": ["", "metric"]}}]}
+{"id": "multiple_117", "ground_truth": [{"calculate_BMI": {"weight_kg": [70], "height_m": [1.75]}}]}
+{"id": "multiple_118", "ground_truth": [{"imdb.find_movies_by_actor": {"actor_name": ["Leonardo DiCaprio"], "year": [2010], "category": ["", "all"]}}]}
+{"id": "multiple_119", "ground_truth": [{"database.query": {"table": ["user"], "conditions": [[{"field": ["age"], "operation": [">"], "value": ["25"]}, {"field": ["job"], "operation": ["="], "value": ["engineer"]}]]}}]}
+{"id": "multiple_120", "ground_truth": [{"light_travel_time": {"distance_in_light_years": [4], "speed_of_light": [299792458, ""]}}]}
+{"id": "multiple_121", "ground_truth": [{"geometry.area_triangle": {"base": [6], "height": [10], "unit": ["", "square meters"]}}]}
+{"id": "multiple_122", "ground_truth": [{"run_linear_regression": {"predictors": [["Age", "Income", "Education"], ["Age", "Education", "Income"], ["Income", "Age", "Education"], ["Income", "Education", "Age"], ["Education", "Age", "Income"], ["Education", "Income", "Age"]], "target": ["Purchase_Amount"], "standardize": [true]}}]}
+{"id": "multiple_123", "ground_truth": [{"calculate_probability": {"total_outcomes": [52], "favorable_outcomes": [4], "round_to": ["", 2]}}]}
+{"id": "multiple_124", "ground_truth": [{"probabilities.calculate_single": {"total_outcomes": [52], "event_outcomes": [4], "round": ["", 2]}}]}
+{"id": "multiple_125", "ground_truth": [{"run_two_sample_ttest": {"group1": [[3, 4, 5, 6, 4]], "group2": [[7, 8, 9, 8, 7]], "equal_variance": [true, ""]}}]}
+{"id": "multiple_126", "ground_truth": [{"t_test": {"dataset_A": [[12, 24, 36]], "dataset_B": [[15, 30, 45]], "alpha": ["", 0.05]}}]}
+{"id": "multiple_127", "ground_truth": [{"finance.calculate_quarterly_dividend_per_share": {"total_payout": [50000000], "outstanding_shares": [100000000]}}]}
+{"id": "multiple_128", "ground_truth": [{"calculate_return_on_equity": {"net_income": [2000000], "shareholder_equity": [10000000], "dividends_paid": [200000]}}]}
+{"id": "multiple_129", "ground_truth": [{"compound_interest": {"principal": [10000], "annual_rate": [5], "compounding_freq": ["monthly"], "time_in_years": [5]}}]}
+{"id": "multiple_130", "ground_truth": [{"calculate_cagr": {"initial_value": [2000], "final_value": [3000], "period_in_years": [4]}}]}
+{"id": "multiple_131", "ground_truth": [{"market_performance.get_data": {"indexes": [["S&P 500", "Dow Jones"]], "days": [5], "detailed": ["", false]}}]}
+{"id": "multiple_132", "ground_truth": [{"finance.calculate_future_value": {"initial_investment": [20000], "rate_of_return": [0.08], "years": [5], "contribution": ["", 0]}}]}
+{"id": "multiple_133", "ground_truth": [{"calculate_mutual_fund_balance": {"investment_amount": [50000], "annual_yield": [0.05], "years": [3]}}]}
+{"id": "multiple_134", "ground_truth": [{"crime_record.get_record": {"case_number": ["CA123456"], "county": ["San Diego", "San Diego County"], "details": [true]}}]}
+{"id": "multiple_135", "ground_truth": [{"get_case_info": {"docket": ["2022/AL2562"], "court": ["California", "CA"], "info_type": ["victim"]}}]}
+{"id": "multiple_136", "ground_truth": [{"get_crime_rate": {"city": ["San Francisco", "San Francisco, CA", "SF"], "state": ["California", "CA"], "type": ["violent", "Violent"], "year": [2020]}}]}
+{"id": "multiple_137", "ground_truth": [{"lawsuit_search": {"company": ["Google"], "start_date": ["2021-01-01", "01/01/2021", "Jan.1,2021", "January 1, 2021"], "location": ["California", "CA"], "status": ["ongoing", ""]}}]}
+{"id": "multiple_138", "ground_truth": [{"legal_case.fetch": {"case_id": ["R vs Adams", "R_vs_Adams"], "details": [true]}}]}
+{"id": "multiple_139", "ground_truth": [{"lawsuit_details.find": {"company_name": ["Apple Inc."], "year": [2010], "case_type": ["Patent"]}}]}
+{"id": "multiple_140", "ground_truth": [{"lawsuits_search": {"company_name": ["Google"], "location": ["California", "CA"], "year": [2020], "case_type": ["", "all"]}}]}
+{"id": "multiple_141", "ground_truth": [{"lawsuit.check_case": {"case_id": [1234], "closed_status": [true]}}]}
+{"id": "multiple_142", "ground_truth": [{"weather.humidity_forecast": {"location": ["Miami", "Miami, Florida", "FL"], "days": [7], "min_humidity": ["", 0]}}]}
+{"id": "multiple_143", "ground_truth": [{"calculate_slope_gradient": {"point1": [[40.7128, -74.006]], "point2": [[34.0522, -118.2437]], "unit": ["degree", ""]}}]}
+{"id": "multiple_144", "ground_truth": [{"air_quality": {"location": ["London"], "date": ["2022-08-16", "16/08/2022", "Aug.16,2022", "2022/08/16", "16\\08\\2022"]}}]}
+{"id": "multiple_145", "ground_truth": [{"calculate_emissions": {"distance": [12000], "fuel_type": ["gas", "gasoline"], "fuel_efficiency": [20], "efficiency_reduction": ["", 0.0]}}]}
+{"id": "multiple_146", "ground_truth": [{"restaurant.find_nearby": {"location": ["Seattle", "Seattle, WA"], "cuisine": ["Chinese"], "max_distance": [10]}}]}
+{"id": "multiple_147", "ground_truth": [{"map_service.get_directions": {"start": ["New York", "New York, NY", "NYC"], "end": ["Los Angeles", "LA"], "avoid": [["highways", "tolls"], ["tolls", "highways"]]}}]}
+{"id": "multiple_148", "ground_truth": [{"get_stock_info": {"company_name": ["Apple Inc.", "Apple"], "detail_level": ["detailed"], "market": ["NASDAQ", ""]}}]}
+{"id": "multiple_149", "ground_truth": [{"sentiment_analysis": {"text": ["I love the food here! It's always fresh and delicious."], "language": ["english", "English"]}}]}
+{"id": "multiple_150", "ground_truth": [{"calculate_neuronal_activity": {"input_synaptic_rate": [200], "weight": [0.5], "decay_rate": [0.1]}}]}
+{"id": "multiple_151", "ground_truth": [{"social_media_analytics.most_followed": {"topic": ["psychology", "Psychology"], "sub_topics": [["behaviour", "group dynamics"], ["group dynamics", "behaviour"]], "region": ["", "global"]}}]}
+{"id": "multiple_152", "ground_truth": [{"history.get_key_events": {"country": ["Germany"], "start_year": [1871], "end_year": [1945], "event_type": [["War"]]}}]}
+{"id": "multiple_153", "ground_truth": [{"get_event_date": {"event": ["Treaty of Lisbon", "Signing of the Treaty of Lisbon"], "location": ["", "global", "Lisbon", "Lisbon, Portugal"]}}]}
+{"id": "multiple_154", "ground_truth": [{"US_president.in_year": {"year": [1861], "full_name": [true, ""]}}]}
+{"id": "multiple_155", "ground_truth": [{"get_discoverer": {"discovery": ["neutron"], "detail": [true]}}]}
+{"id": "multiple_156", "ground_truth": [{"historical_contrib.get_contrib": {"scientist": ["Albert Einstein"], "date": ["1915-03-17", "03/17/1915", "Mar.17,1915"], "category": ["", "all"]}}]}
+{"id": "multiple_157", "ground_truth": [{"get_earliest_reference": {"name": ["Jesus Christ"], "source": ["historical records"]}}]}
+{"id": "multiple_158", "ground_truth": [{"religious_history.get_papal_biography": {"papal_name": ["Innocent III", "Pope Innocent III"], "include_contributions": [true]}}]}
+{"id": "multiple_159", "ground_truth": [{"calculate_paint_needed": {"coverage_rate": [400], "length": [30], "height": [12]}}]}
+{"id": "multiple_160", "ground_truth": [{"get_sculpture_info": {"artist_name": ["James Plensa"], "detail": [true]}}]}
+{"id": "multiple_161", "ground_truth": [{"find_exhibition": {"location": ["New York", "New York, NY", "New York City", "NYC", "NY"], "art_form": ["sculpture", "modern sculpture"], "month": ["upcoming", "next month", "upcoming month", "next", ""], "user_ratings": ["high", ""]}}]}
+{"id": "multiple_162", "ground_truth": [{"analyze_structure": {"building_id": ["B1004"], "floors": [[2, 3, 4]], "mode": ["dynamic"]}}]}
+{"id": "multiple_163", "ground_truth": [{"metropolitan_museum.get_top_artworks": {"number": [5], "sort_by": ["popularity"]}}]}
+{"id": "multiple_164", "ground_truth": [{"instrument_price.get": {"brand": ["Fender"], "model": ["American Professional II Stratocaster"], "finish": ["Rosewood"]}}]}
+{"id": "multiple_165", "ground_truth": [{"guitar_price.find": {"model": ["Gibson Les Paul"], "condition": ["Excellent"], "location": ["Chicago", "Chicago area"]}}]}
+{"id": "multiple_166", "ground_truth": [{"concert.search": {"genre": ["classical"], "location": ["Los Angeles", "LA"], "date": ["this weekend", "weekend"], "price_range": ["cheap"]}}]}
+{"id": "multiple_167", "ground_truth": [{"music_generator.generate_melody": {"key": ["C"], "start_note": ["C4"], "length": [16], "tempo": [120, ""]}}]}
+{"id": "multiple_168", "ground_truth": [{"get_song_lyrics": {"song_title": ["Bohemian Rhapsody"], "artist_name": ["Queen"], "lang": ["English", ""]}}]}
+{"id": "multiple_169", "ground_truth": [{"musical_scale": {"key": ["C#", "C sharp"], "scale_type": ["major", ""]}}]}
+{"id": "multiple_170", "ground_truth": [{"soccer_stat.get_player_stats": {"player_name": ["Cristiano Ronaldo"], "season": ["2019-2020"], "league": ["all", ""]}}]}
+{"id": "multiple_171", "ground_truth": [{"game_result.get_winner": {"teams": [["Lakers", "Clippers"], ["Clippers", "Lakers"]], "date": ["2021-01-28", "01/28/2021", "Jan.28,2021"], "venue": [""]}}]}
+{"id": "multiple_172", "ground_truth": [{"sports_db.find_athlete": {"name": ["Lebron James"], "sport": ["Basketball"], "team": [""]}}]}
+{"id": "multiple_173", "ground_truth": [{"get_defense_ranking": {"season": [2021], "top": [1, ""]}}]}
+{"id": "multiple_174", "ground_truth": [{"sports_ranking": {"team": ["Manchester United", "Man United", "Man U", "MUFC"], "league": ["Premier League"], "season": ["", 2024]}}]}
+{"id": "multiple_175", "ground_truth": [{"sports_ranking.get_top_player": {"sport": ["tennis"], "gender": ["women"]}}]}
+{"id": "multiple_176", "ground_truth": [{"sports_team.get_schedule": {"team_name": ["Manchester United", "Man United", "Man U", "MUFC"], "num_of_games": [6], "league": ["Premier League", "PL"], "location": [""]}}]}
+{"id": "multiple_177", "ground_truth": [{"board_game.chess.get_top_players": {"location": ["New York", "New York, NY", "NYC"], "minimum_rating": [2300], "number_of_players": ["", 10]}}]}
+{"id": "multiple_178", "ground_truth": [{"find_card_in_deck": {"rank": ["Queen"], "suit": ["Hearts"], "deck": [""]}}]}
+{"id": "multiple_179", "ground_truth": [{"poker_probability.full_house": {"deck_size": [52], "hand_size": [5]}}]}
+{"id": "multiple_180", "ground_truth": [{"game_stats.fetch_player_statistics": {"game": ["Zelda"], "username": ["Sam"], "platform": ["Switch", "Nintendo Switch"]}}]}
+{"id": "multiple_181", "ground_truth": [{"soccer.get_last_match": {"team_name": ["Liverpool F.C.", "Liverpool"], "include_stats": [true]}}]}
+{"id": "multiple_182", "ground_truth": [{"multiplayer_game_finder": {"platform": ["Windows 10"], "rating": [4.5], "genre": [""]}}]}
+{"id": "multiple_183", "ground_truth": [{"recipe_info.get_calories": {"website": ["Foodnetwork.com"], "recipe": ["Beef Lasagna", "Beef Lasagna Recipe"], "optional_meal_time": [""]}}]}
+{"id": "multiple_184", "ground_truth": [{"recipe_search": {"dietary_restriction": ["Vegetarian"], "ingredients": [["pasta", "cheese"], ["cheese", "pasta"]], "servings": [2]}}]}
+{"id": "multiple_185", "ground_truth": [{"restaurant_search.find_closest": {"location": ["Boston", "Boston, MA"], "cuisine": ["Sushi"], "amenities": [["Patio"]]}}]}
+{"id": "multiple_186", "ground_truth": [{"find_recipe": {"dietary_restrictions": ["vegan"], "recipe_type": ["dessert"], "time": [30]}}]}
+{"id": "multiple_187", "ground_truth": [{"whole_foods.check_price": {"location": ["Los Angeles", "LA"], "items": [["tomatoes", "lettuce"], ["lettuce", "tomatoes"]]}}]}
+{"id": "multiple_188", "ground_truth": [{"grocery_store.find_best": {"my_location": ["Berkeley", "Berkeley,California", "Berkeley,CA", "Berkeley, CA"], "rating": [4.5], "products": [["tomatoes", "pet food"], ["pet food", "tomatoes"], ["Tomatoes", "Pet food"], ["Pet food", "Tomatoes"]]}}]}
+{"id": "multiple_189", "ground_truth": [{"timezone.convert": {"time": ["3pm"], "from_timezone": ["America/New_York", "New York", "New York, NY", "NY", "NYC", "Eastern Standard Time", "EST"], "to_timezone": ["Europe/London", "London", "British Summer Time", "BST", "Greenwich Mean Time", "GMT"]}}]}
+{"id": "multiple_190", "ground_truth": [{"book_hotel": {"hotel_name": ["Hilton Hotel", "Hilton"], "location": ["Chicago"], "room_type": ["single", "Single"], "start_date": ["2022-12-10", "10/12/2022", "Dec.10,2022", "10th December 2022", "10 December 2022"], "nights": [2]}}]}
+{"id": "multiple_191", "ground_truth": [{"book_hotel": {"hotel_name": ["Hotel Paradise"], "location": ["Las Vegas", "Las Vegas, NV", "LV"], "room_type": ["luxury", "Luxury"], "start_date": ["05-12-2022", "2022-05-12", "12/05/2022", "May.12,2022", "May 12, 2022"], "stay_duration": [3], "view": ["city", "city view"]}}]}
+{"id": "multiple_192", "ground_truth": [{"currency_conversion.convert": {"amount": [150], "from_currency": ["EUR"], "to_currency": ["CAD"]}}]}
+{"id": "multiple_193", "ground_truth": [{"maps.get_distance_duration": {"start_location": ["Eiffel Tower"], "end_location": ["Louvre Museum"], "traffic": ["", false]}}]}
+{"id": "multiple_194", "ground_truth": [{"get_museum_hours": {"museum_name": ["Metropolitan Museum of Art", "The Met", "Met Museum"], "day": ["Saturday"]}}]}
+{"id": "multiple_195", "ground_truth": [{"calc_heat_capacity": {"temp": [298], "volume": [10], "gas": ["air", ""]}}]}
+{"id": "multiple_196", "ground_truth": [{"cellbio.get_proteins": {"cell_compartment": ["plasma membrane"], "include_description": ["", false]}}]}
+{"id": "multiple_197", "ground_truth": [{"mutation_type.find": {"snp_id": ["rs6034464"], "species": ["", "Homo sapiens"]}}]}
+{"id": "multiple_198", "ground_truth": [{"calculate_genotype_frequency": {"allele_frequency": [0.3], "genotype": ["AA"]}}]}
+{"id": "multiple_199", "ground_truth": [{"forest_growth_forecast": {"location": ["Yellowstone", "yellowstone"], "years": [5], "include_human_impact": [true]}}]}
