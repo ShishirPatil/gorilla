@@ -1,7 +1,38 @@
 import random
 from typing import Dict, List, Optional, Union
-
-
+from copy import deepcopy
+DEFAULT_STATE = {
+    "generated_ids": set(),
+    "user_count": 4,
+    "user_map": {
+        "Alice": "USR001",
+        "Bob": "USR002",
+        "Catherine": "USR003",
+        "Daniel": "USR004",
+    },
+    "inbox": {
+        1: {
+            "sender_id": "USR001",
+            "receiver_id": "USR002",
+            "message": "My name is Alice. I want to connect.",
+        },
+        2: {
+            "sender_id": "USR001",
+            "receiver_id": "USR003",
+            "message": "Could you upload the file?",
+        },
+        3: {
+            "sender_id": "USR001",
+            "receiver_id": "USR004",
+            "message": "Could you upload the file?",
+        },
+        4: {"sender_id": "USR001", "receiver_id": "USR002", "message": "I am busy."},
+        5: {"sender_id": "USR001", "receiver_id": "USR002", "message": "I am on leave."},
+    },
+    "message_count": 0,
+    "current_user": None,
+}
+    
 class MessageAPI:
     """
     A class representing a Message API for managing user interactions in a workspace.
@@ -21,7 +52,7 @@ class MessageAPI:
         list_users(): List all users in the workspace.
         get_user_id(user: str): Get the user ID for a given username.
         login(user_id: str): Log in a user.
-        send_message(sender_id: str, receiver_id: str, message: str): Send a message to another user.
+        send_message(receiver_id: str, message: str): Send a message to another user.
         view_messages_received(): View messages received by the current user.
         view_messages_sent(): View messages sent by the current user.
         delete_message(receiver_id: str, message_index: int): Delete a sent message.
@@ -34,43 +65,13 @@ class MessageAPI:
         """
         Initialize the MessageAPI with a workspace ID.
         """
-        self.generated_ids = set()
-        self.user_count: int = 4
-        self.user_map: Dict[str, str] = {
-            "Alice": "USR001",
-            "Bob": "USR002",
-            "Catherine": "USR003",
-            "Daniel": "USR004",
-        }
-        self.inbox: Dict[int, Dict[str, Union[str, int]]] = {
-            1: {
-                "sender_id": "USR001",
-                "receiver_id": "USR002",
-                "message": "My name is Alice. I want to connect.",
-            },
-            2: {
-                "sender_id": "USR002",
-                "receiver_id": "USR003",
-                "message": "Could you upload the file?",
-            },
-            3: {
-                "sender_id": "USR002",
-                "receiver_id": "USR004",
-                "message": "Could you upload the file?",
-            },
-            4: {
-                "sender_id": "USR003",
-                "receiver_id": "USR002",
-                "message": "I am busy.",
-            },
-            5: {
-                "sender_id": "USR004",
-                "receiver_id": "USR002",
-                "message": "I am on leave.",
-            },
-        }
-        self.message_count: int = 0  # useless(?)
-        self.current_user: Optional[str] = None
+        DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
+        self.generated_ids = DEFAULT_STATE_COPY["generated_ids"]
+        self.user_count: int = DEFAULT_STATE_COPY["user_count"]
+        self.user_map: Dict[str, str] = DEFAULT_STATE_COPY["user_map"]
+        self.inbox: Dict[int, Dict[str, Union[str, int]]] = DEFAULT_STATE_COPY["inbox"]
+        self.message_count: int = DEFAULT_STATE_COPY["message_count"]
+        self.current_user: Optional[str] = DEFAULT_STATE_COPY["current_user"]
 
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """
@@ -79,9 +80,11 @@ class MessageAPI:
         Args:
             scenario (dict): A dictionary containing message data.
         """
+        DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
         self._random = random.Random((scenario.get("random_seed", 200191)))
-        self.user_count = scenario.get("user_count", 4)
-        self.current_user = scenario.get("current_user", None)
+        self.user_count = scenario.get("user_count", DEFAULT_STATE_COPY["user_count"])
+        self.current_user = scenario.get("current_user", DEFAULT_STATE_COPY["current_user"])
+        self.user_map = scenario.get("user_map", DEFAULT_STATE_COPY["user_map"])
 
     def __eq__(self, value: object) -> bool:
         if not isinstance(value, MessageAPI):
@@ -153,12 +156,11 @@ class MessageAPI:
         }
 
     def send_message(
-        self, sender_id: str, receiver_id: str, message: str
+        self, receiver_id: str, message: str
     ) -> Dict[str, Union[str, bool]]:
         """
         Send a message to a user.
         Args:
-            sender_id (str): User ID of the user sending the message.
             receiver_id (str): User ID of the user to send the message to.
             message (str): Message to be sent.
         Returns:
@@ -176,7 +178,7 @@ class MessageAPI:
         message_id = self.generate_id()
         # Store the message in the inbox
         self.inbox[message_id] = {
-            "sender_id": sender_id,
+            "sender_id": self.current_user,
             "receiver_id": receiver_id,
             "message": message,
         }
@@ -188,12 +190,11 @@ class MessageAPI:
         }
 
     def delete_message(
-        self, sender_id: str, receiver_id: str, message_id: int
+        self, receiver_id: str, message_id: int
     ) -> Dict[str, Union[bool, str]]:
         """
         Delete a message sent to a user.
         Args:
-            sender_id (str): User ID of the user sending the message.
             receiver_id (str): User ID of the user to send the message to.
             message_id (int): ID of the message to be deleted.
         Returns:
@@ -215,7 +216,7 @@ class MessageAPI:
             return {"error": "You do not have permission to delete this message."}
         # Check if the sender and receiver match the input arguments
         if (
-            message_data["sender_id"] != sender_id
+            message_data["sender_id"] != self.current_user
             or message_data["receiver_id"] != receiver_id
         ):
             return {
