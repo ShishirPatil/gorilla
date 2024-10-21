@@ -36,10 +36,10 @@ class GPTRetriever(BaseRetriever, BaseModel):
     ) -> List[List[float]]:
         assert len(list_of_text) <= 2048, "The number of docs should be <= 2048"
         list_of_text = [text.replace("\n", " ") for text in list_of_text]
-        openai.api_key = os.environ["OPENAI_API_KEY"]
-        data = openai.Embedding.create(input=list_of_text, engine="text-embedding-ada-002").data
-        data = sorted(data, key=lambda x: x["index"])  # maintain the same order as input.
-        return [d["embedding"] for d in data]
+        client = openai.OpenAI()  # os.environ["OPENAI_API_KEY"] is default
+        data = client.embeddings.create(input=list_of_text,model="text-embedding-ada-002").data
+        data = sorted(data, key=lambda x: x.index)  # maintain the same order as input.
+        return [d.embedding for d in data]
   
     def from_documents(self, documents: List):
         contents = [document.page_content for document in documents]
