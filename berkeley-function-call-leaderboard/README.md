@@ -213,6 +213,7 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |Qwen/Qwen2-{1.5B,7B}-Instruct 💻| Prompt|
 |Team-ACE/ToolACE-8B 💻| Function Calling|
 |openbmb/MiniCPM3-4B 💻| Function Calling|
+|BitAgent/GoGoAgent 💻| Function Calling|
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function-calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
 
@@ -339,7 +340,7 @@ We welcome additions to the Function Calling Leaderboard! To add a new model, pl
 3. **Update the Handler Map and Model Metadata:**
 
    - Modify `bfcl/model_handler/handler_map.py`. This is a mapping of the model name to their handler class.
-   - Modify `bfcl/val_checker/model_metadata.py`:
+   - Modify `bfcl/eval_checker/model_metadata.py`:
      - Update the `MODEL_METADATA_MAPPING` with the model's display name, URL, license, and company information. The key should match the one in `bfcl/model_handler/handler_map.py`.
      - If your model is price-based, update the `INPUT_PRICE_PER_MILLION_TOKEN` and `OUTPUT_PRICE_PER_MILLION_TOKEN`.
      - If your model doesn't have a cost, add it to the `NO_COST_MODELS` list.
