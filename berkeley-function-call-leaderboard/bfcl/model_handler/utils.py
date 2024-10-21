@@ -254,6 +254,7 @@ def convert_to_tool(functions, mapping, model_style):
             ModelStyle.OpenAI,
             ModelStyle.Mistral,
             ModelStyle.FIREWORK_AI,
+            ModelStyle.WRITER,
         ]:
             oai_tool.append({"type": "function", "function": item})
     return oai_tool
