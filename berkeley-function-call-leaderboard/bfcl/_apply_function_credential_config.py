@@ -39,6 +39,7 @@ def process_file(input_file_path, output_file_path):
     #     lines = f.readlines()
     with jsonlines.open(input_file_path) as reader:
         lines = [obj for obj in reader]
+        reader.close()
         for line in lines:
             try:
                 data = json.loads(line)  # Parse each line as a JSON object
@@ -61,6 +62,7 @@ def process_file(input_file_path, output_file_path):
             writer.write(modified_line)
             # if i < len(modified_data) - 1:  # Check against the length of modified_data
             #     f.write("\n")
+            writer.close()
 
 
 def process_dir(input_dir, output_dir):
