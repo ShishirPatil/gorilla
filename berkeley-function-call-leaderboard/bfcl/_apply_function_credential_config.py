@@ -57,7 +57,7 @@ def process_file(input_file_path, output_file_path):
     #         if i < len(modified_data) - 1:  # Check against the length of modified_data
     #             f.write("\n")
     with jsonlines.open(output_file_path, "w") as writer:
-        for i, modified_line in enumerate(modified_data):
+        for modified_line in modified_data:
             writer.write(modified_line)
             # if i < len(modified_data) - 1:  # Check against the length of modified_data
             #     f.write("\n")
