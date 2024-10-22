@@ -4,6 +4,7 @@ import re
 import statistics
 from pathlib import Path
 from typing import Union
+import jsonlines
 
 import numpy as np
 from bfcl._apply_function_credential_config import apply_function_credential_config
@@ -17,7 +18,8 @@ from tqdm import tqdm
 
 def extract_test_category(input_string: Union[str, Path]) -> str:
     input_string = str(input_string)
-    pattern = fr".*{VERSION_PREFIX}_(\w+?)(?:_score|_result)?\.json"
+    # pattern = fr".*{VERSION_PREFIX}_(\w+?)(?:_score|_result)?\.json"
+    pattern = fr".*{VERSION_PREFIX}_(\w+?)(?:_score|_result)?\.jsonl"
     match = re.search(pattern, input_string)
 
     # Check if there's a match and extract the captured group
@@ -28,10 +30,14 @@ def extract_test_category(input_string: Union[str, Path]) -> str:
 
 
 def find_file_with_suffix(folder_path: Path, suffix: str) -> Path:
-    for json_file in folder_path.glob("*.json"):
-        if extract_test_category(json_file) == suffix:
-            return json_file
-    raise FileNotFoundError(f"No JSON file found with suffix: {suffix}")
+    # for json_file in folder_path.glob("*.json"):
+    #     if extract_test_category(json_file) == suffix:
+    #         return json_file
+    # raise FileNotFoundError(f"No JSON file found with suffix: {suffix}")
+    for jsonl_file in folder_path.glob("*.jsonl"):
+        if extract_test_category(jsonl_file) == suffix:
+            return jsonl_file
+    raise FileNotFoundError(f"No JSONL file found with suffix: {suffix}")
 
 def is_multi_turn(test_category):
     return "multi_turn" in test_category
@@ -69,10 +75,14 @@ def is_sql(test_category):
 
 def load_file(file_path):
     result = []
-    with open(file_path) as f:
-        file = f.readlines()
-        for line in file:
-            result.append(json.loads(line))
+    # with open(file_path) as f:
+    #     file = f.readlines()
+    #     for line in file:
+    #         result.append(json.loads(line))
+    with jsonlines.open(file_path) as reader:
+        for obj in reader:
+            result.append(obj)
+        reader.close()
     return result
 
 
@@ -89,15 +99,20 @@ def write_list_of_dicts_to_file(filename, data, subdir=None):
         filename = os.path.join(subdir, filename)
 
     # Write the list of dictionaries to the file in JSON format
-    with open(filename, "w") as f:
-        for i, entry in enumerate(data):
-            # Go through each key-value pair in the dictionary to make sure the values are JSON serializable
+    # with open(filename, "w") as f:
+    #     for i, entry in enumerate(data):
+    #         # Go through each key-value pair in the dictionary to make sure the values are JSON serializable
+    #         entry = make_json_serializable(entry)
+    #         json_str = json.dumps(entry)
+    #         f.write(json_str)
+    #         if i < len(data) - 1:
+    #             f.write("\n")
+    with jsonlines.open(filename) as writer:
+        for entry in data:
             entry = make_json_serializable(entry)
             json_str = json.dumps(entry)
-            f.write(json_str)
-            if i < len(data) - 1:
-                f.write("\n")
-
+            writer.write(json_str)
+            writer.close()
 
 def make_json_serializable(value):
     if isinstance(value, dict):
@@ -730,7 +745,8 @@ def check_model_category_status(score_path):
         result_subdir = os.path.join(result_path, model_name)
         if os.path.exists(result_subdir):
             for result_file in os.listdir(result_subdir):
-                if result_file.endswith('.json'):
+                # if result_file.endswith('.json'):
+                if result_file.endswith('.jsonl'):
                     test_category = extract_test_category(result_file)
                     if test_category in category_status[model_name]:
                         category_status[model_name][test_category]["generated"] = True
@@ -820,11 +836,16 @@ def update_leaderboard_table_with_score_file(leaderboard_table, score_path: Path
     # Traverse each subdirectory
     for subdir in subdirs:
         model_name = subdir.relative_to(score_path).name
-        # Find and process all JSON files in the subdirectory
-        for model_score_json in subdir.glob("*.json"):
-            metadata = load_file(model_score_json)[0]
+        # # Find and process all JSON files in the subdirectory
+        # for model_score_json in subdir.glob("*.json"):
+        #     metadata = load_file(model_score_json)[0]
+        #     accuracy, total_count = metadata["accuracy"], metadata["total_count"]
+        #     test_category = extract_test_category(model_score_json)
+        # Find and process all JSONL files in the subdirectory
+        for model_score_jsonl in subdir.glob("*.jsonl"):
+            metadata = load_file(model_score_jsonl)[0]
             accuracy, total_count = metadata["accuracy"], metadata["total_count"]
-            test_category = extract_test_category(model_score_json)
+            test_category = extract_test_category(model_score_jsonl)
             if model_name not in leaderboard_table:
                 leaderboard_table[model_name] = {}
             if test_category not in leaderboard_table[model_name]:
@@ -834,10 +855,15 @@ def update_leaderboard_table_with_score_file(leaderboard_table, score_path: Path
                 }
 
 
-def collapse_json_objects(file_path):
-    with open(file_path, "r") as file:
-        content = file.read()
+# def collapse_json_objects(file_path):
+    # with open(file_path, "r") as file:
+    #     content = file.read()
 
+def collapse_jsonl_objects(file_path):
+    with jsonlines.open(file_path) as reader:
+        content = [obj for obj in reader]
+        reader.close()
+    
     objects = []
     depth = 0
     obj_start = 0
@@ -852,8 +878,15 @@ def collapse_json_objects(file_path):
                 obj = content[obj_start : i + 1]
                 objects.append(obj)
 
-    with open(file_path, "w") as out_file:
+    # with open(file_path, "w") as out_file:
+    #     for obj in objects:
+    #         json_obj = json.loads(obj)
+    #         compact_json = json.dumps(json_obj, separators=(",", ":"))
+    #         out_file.write(compact_json + "\n")
+    
+    with jsonlines.open(file_path) as writer:
         for obj in objects:
             json_obj = json.loads(obj)
             compact_json = json.dumps(json_obj, separators=(",", ":"))
-            out_file.write(compact_json + "\n")
+            writer.write(compact_json)
+            writer.close()
