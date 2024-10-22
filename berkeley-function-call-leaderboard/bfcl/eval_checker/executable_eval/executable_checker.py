@@ -1,6 +1,7 @@
 import json
 import time
 from functools import lru_cache
+import jsonlines
 
 import requests  # Do not remove this import even though it seems to be unused. It's used in the executable_checker_rest function.
 from bfcl.eval_checker.constant import (
@@ -12,8 +13,10 @@ from bfcl.eval_checker.executable_eval.custom_exception import NoAPIKeyError
 # Load the ground truth data for the `rest` test category
 @lru_cache(maxsize=1)  # cache the result, effectively loading data once
 def load_eval_ground_truth():
-    with open(REST_EVAL_GROUND_TRUTH_PATH, "r") as f:
-        return f.readlines()
+    # with open(REST_EVAL_GROUND_TRUTH_PATH, "r") as f:
+    #     return f.readlines()
+    with jsonlines.open(REST_EVAL_GROUND_TRUTH_PATH) as reader:
+        return reader.readlines()
 
 #### Main function ####
 def executable_checker_rest(func_call, idx):
