@@ -1,6 +1,7 @@
 import glob
 import json
 import os
+import jsonlines
 
 from bfcl.constant import PROMPT_PATH
 from bfcl.eval_checker.executable_eval.custom_exception import NoAPIKeyError
@@ -34,24 +35,32 @@ def replace_placeholders(data):
 
 def process_file(input_file_path, output_file_path):
     modified_data = []
-    with open(input_file_path, "r") as f:
-        lines = f.readlines()
+    # with open(input_file_path, "r") as f:
+    #     lines = f.readlines()
+    with jsonlines.open(input_file_path) as reader:
+        lines = [obj for obj in reader]
         for line in lines:
             try:
                 data = json.loads(line)  # Parse each line as a JSON object
                 data = replace_placeholders(data)  # Replace placeholders
                 modified_data.append(json.dumps(data))  # Convert back to string and store
+                
             except json.JSONDecodeError:
                 # Handle the case where a line is not a valid JSON object
                 print("Invalid JSON line skipped.")
                 continue
 
     # Write the modified data to the output file
-    with open(output_file_path, "w") as f:
+    # with open(output_file_path, "w") as f:
+    #     for i, modified_line in enumerate(modified_data):
+    #         f.write(modified_line)
+    #         if i < len(modified_data) - 1:  # Check against the length of modified_data
+    #             f.write("\n")
+    with jsonlines.open(output_file_path, "w") as writer:
         for i, modified_line in enumerate(modified_data):
-            f.write(modified_line)
-            if i < len(modified_data) - 1:  # Check against the length of modified_data
-                f.write("\n")
+            writer.write(modified_line)
+            # if i < len(modified_data) - 1:  # Check against the length of modified_data
+            #     f.write("\n")
 
 
 def process_dir(input_dir, output_dir):
@@ -62,8 +71,8 @@ def process_dir(input_dir, output_dir):
     # Get a list of all entries in the folder
     entries = os.scandir(input_dir)
 
-    json_files_pattern = os.path.join(input_dir, "*.json")
-    for input_file_path in glob.glob(json_files_pattern):
+    jsonl_files_pattern = os.path.join(input_dir, "*.jsonl")
+    for input_file_path in glob.glob(jsonl_files_pattern):
         file_name = os.path.basename(input_file_path)
         output_file_path = os.path.join(output_dir, file_name)
         process_file(input_file_path, output_file_path)
