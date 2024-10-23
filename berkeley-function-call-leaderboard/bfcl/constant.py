@@ -3,6 +3,7 @@ from pathlib import Path
 # NOTE: These paths are relative to the `bfcl` directory where this script is located.
 RESULT_PATH = "../result/"
 PROMPT_PATH = "../data/"
+MULTI_TURN_FUNC_DOC_PATH = "../data/multi_turn_func_doc/"
 POSSIBLE_ANSWER_PATH = "../data/possible_answer/"
 SCORE_PATH = "../score/"
 DOTENV_PATH = "../.env"
@@ -175,11 +176,23 @@ TEST_COLLECTION_MAPPING = {
     ],
 }
 
+MULTI_TURN_FUNC_DOC_FILE_MAPPING = {
+    "GorillaFileSystem": "gorilla_file_system.json",
+    "MathAPI": "math_api.json",
+    "MessageAPI": "message_api.json",
+    "TwitterAPI": "posting_api.json",
+    "TicketAPI": "ticket_api.json",
+    "TradingBot": "trading_bot.json",
+    "TravelAPI": "travel_booking.json",
+    "VehicleControlAPI": "vehicle_control.json",
+}
+
 
 # Construct the full path to use by other scripts
 script_dir = Path(__file__).parent
 RESULT_PATH = (script_dir / RESULT_PATH).resolve()
 PROMPT_PATH = (script_dir / PROMPT_PATH).resolve()
+MULTI_TURN_FUNC_DOC_PATH = (script_dir / MULTI_TURN_FUNC_DOC_PATH).resolve()
 POSSIBLE_ANSWER_PATH = (script_dir / POSSIBLE_ANSWER_PATH).resolve()
 SCORE_PATH = (script_dir / SCORE_PATH).resolve()
 DOTENV_PATH = (script_dir / DOTENV_PATH).resolve()
