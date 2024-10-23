@@ -118,6 +118,7 @@ def collect_test_cases(test_name_total, test_filename_total, model_name):
         test_cases_to_generate = process_multi_turn_test_case(
             test_cases_to_generate, test_category
         )
+
         test_cases_total.extend(test_cases_to_generate)
 
     return sorted(test_cases_total, key=sort_key)
@@ -130,13 +131,14 @@ def process_multi_turn_test_case(test_cases, test_category):
     if not is_multi_turn(test_category):
         return test_cases
     for entry in test_cases:
-        involved_classes = test_cases["involved_classes"]
+        involved_classes = entry["involved_classes"]
         entry["function"] = []
         for func_collection in involved_classes:
+            # func_doc is a list of dict
             func_doc = load_file(
                 MULTI_TURN_FUNC_DOC_PATH / MULTI_TURN_FUNC_DOC_FILE_MAPPING[func_collection]
             )
-            entry["function"].append(func_doc)
+            entry["function"].extend(func_doc)
 
         # Handle Miss Func category; we need to remove the holdout function doc
         if "missed_function" in entry:
