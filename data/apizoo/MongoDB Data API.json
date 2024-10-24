@@ -1,0 +1,269 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "MongoDB Data API: Insert Document",
+        "api_call": "/action/insertOne",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/{{CONTENT_TYPE}}"
+                },
+                {
+                    "key": "Access-Control-Request-Headers",
+                    "value": "*"
+                },
+                {
+                    "key": "api-key",
+                    "value": "{{API_KEY}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n      \"dataSource\": \"{{DATA_SOURCE}}\",\n      \"database\": \"{{DATABASE}}\",\n      \"collection\": \"{{COLLECTION}}\",\n      \"document\": {\n        \"name\": \"John Sample\",\n        \"age\": 42\n      }\n  }"
+            }
+        },
+        "functionality": "Using the `/insertOne` endpoint, you can add a document to a collection. Use the `document` property in the request body"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "MongoDB Data API: Find Document",
+        "api_call": "/action/findOne",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/{{CONTENT_TYPE}}"
+                },
+                {
+                    "key": "Access-Control-Request-Headers",
+                    "value": "*"
+                },
+                {
+                    "key": "api-key",
+                    "value": "{{API_KEY}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/{{CONTENT_TYPE}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n      \"dataSource\": \"{{DATA_SOURCE}}\",\n      \"database\": \"{{DATABASE}}\",\n      \"collection\": \"{{COLLECTION}}\",\n      \"filter\": { \"name\": \"John Sample\" }\n  }"
+            }
+        },
+        "functionality": "Using the\u00a0`/findOne`\u00a0endpoint will let you retrieve a single document from a collection. Use the\u00a0`filter`\u00a0property in the request body to specify"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "MongoDB Data API: Update Document",
+        "api_call": "/action/updateOne",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/{{CONTENT_TYPE}}"
+                },
+                {
+                    "key": "Access-Control-Request-Headers",
+                    "value": "*"
+                },
+                {
+                    "key": "api-key",
+                    "value": "{{API_KEY}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n      \"dataSource\": \"{{DATA_SOURCE}}\",\n      \"database\": \"{{DATABASE}}\",\n      \"collection\": \"{{COLLECTION}}\",\n      \"filter\": { \"name\": \"John Sample\" },\n      \"update\": { \"$set\": { \"age\": 24 } }\n  }"
+            }
+        },
+        "functionality": "You can use the `/updateOne` endpoint to update a single record. Use the `filter` property in the request body to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "MongoDB Data API: Delete Document",
+        "api_call": "/action/deleteOne",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/{{CONTENT_TYPE}}"
+                },
+                {
+                    "key": "Access-Control-Request-Headers",
+                    "value": "*"
+                },
+                {
+                    "key": "api-key",
+                    "value": "{{API_KEY}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n      \"dataSource\": \"{{DATA_SOURCE}}\",\n      \"database\": \"{{DATABASE}}\",\n      \"collection\": \"{{COLLECTION}}\",\n      \"filter\": { \"name\": \"John Sample\" }\n  }"
+            }
+        },
+        "functionality": "To delete a single document, use the `/deleteOne` endpoint. Use the\u00a0`filter`\u00a0property in the request body to specify the search criteria."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "MongoDB Data API: Insert Multiple Documents",
+        "api_call": "/action/insertMany",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/{{CONTENT_TYPE}}"
+                },
+                {
+                    "key": "Access-Control-Request-Headers",
+                    "value": "*"
+                },
+                {
+                    "key": "api-key",
+                    "value": "{{API_KEY}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n      \"dataSource\": \"{{DATA_SOURCE}}\",\n      \"database\": \"{{DATABASE}}\",\n      \"collection\": \"{{COLLECTION}}\",\n      \"documents\": [{\n        \"name\": \"John Sample\",\n        \"age\": 42\n      },{\n        \"name\": \"Mister Postman\",\n        \"age\": 37\n      },{\n        \"name\": \"Miss MongoDB\",\n        \"age\": 35\n      }]\n  }"
+            }
+        },
+        "functionality": "You can add more than one document at a time by using the `/insertMany` endpoint. In that case, you must"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "MongoDB Data API: Find Multiple Documents",
+        "api_call": "/action/find",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/{{CONTENT_TYPE}}"
+                },
+                {
+                    "key": "Access-Control-Request-Headers",
+                    "value": "*"
+                },
+                {
+                    "key": "api-key",
+                    "value": "{{API_KEY}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/{{CONTENT_TYPE}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n      \"dataSource\": \"{{DATA_SOURCE}}\",\n      \"database\": \"{{DATABASE}}\",\n      \"collection\": \"{{COLLECTION}}\",\n      \"filter\": { \"age\": { \"$lt\": 40 } }\n  }"
+            }
+        },
+        "functionality": "Using the `/find` endpoint, you can fetch multiple documents at once. Use the `filter` property in the body of the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "MongoDB Data API: Update Multiple Documents",
+        "api_call": "/action/updateMany",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/{{CONTENT_TYPE}}"
+                },
+                {
+                    "key": "Access-Control-Request-Headers",
+                    "value": "*"
+                },
+                {
+                    "key": "api-key",
+                    "value": "{{API_KEY}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n      \"dataSource\": \"{{DATA_SOURCE}}\",\n      \"database\": \"{{DATABASE}}\",\n      \"collection\": \"{{COLLECTION}}\",\n      \"filter\": { \"age\": { \"$lt\": 40 } },\n      \"update\": { \"$set\": { \"age\": 42 } }\n  }"
+            }
+        },
+        "functionality": "Using `/updateMany`, you can update all the documents matching a specific `filter` specified in the body of the request. Use"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "MongoDB Data API: Delete Many Documents",
+        "api_call": "/action/deleteMany",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/{{CONTENT_TYPE}}"
+                },
+                {
+                    "key": "Access-Control-Request-Headers",
+                    "value": "*"
+                },
+                {
+                    "key": "api-key",
+                    "value": "{{API_KEY}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n      \"dataSource\": \"{{DATA_SOURCE}}\",\n      \"database\": \"{{DATABASE}}\",\n      \"collection\": \"{{COLLECTION}}\",\n      \"filter\": { }\n  }"
+            }
+        },
+        "functionality": "You can use `/deleteMany` to delete multiple documents at once. Use the `filter` property to specify which documents to delete."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "MongoDB Data API: Run Aggregation Pipeline",
+        "api_call": "/action/aggregate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/{{CONTENT_TYPE}}"
+                },
+                {
+                    "key": "Access-Control-Request-Headers",
+                    "value": "*"
+                },
+                {
+                    "key": "api-key",
+                    "value": "{{API_KEY}}"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/{{CONTENT_TYPE}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n      \"dataSource\": \"{{DATA_SOURCE}}\",\n      \"database\": \"{{DATABASE}}\",\n      \"collection\": \"{{COLLECTION}}\",\n      \"pipeline\": [\n          {\n              \"$sort\": { \"age\": 1 }\n          },\n          {\n              \"$limit\": 1\n          }\n      ]\n  }"
+            }
+        },
+        "functionality": "You can even run [aggregation pipelines](https://docs.mongodb.com/manual/core/aggregation-pipeline/) with the Data API. To do so, use the `/aggregate` endpoint and specify your"
+    }
+]
