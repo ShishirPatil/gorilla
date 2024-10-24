@@ -1,6 +1,6 @@
 from datetime import datetime, time
 from typing import Dict, List, Optional, Union
-
+from copy import deepcopy
 from .long_context import (
     AUTOMOBILE_EXTENSION,
     MA_5_EXTENSION,
@@ -10,6 +10,112 @@ from .long_context import (
     TRANSACTION_HISTORY_EXTENSION,
     WATCH_LIST_EXTENSION,
 )
+
+DEFAULT_STATE = {
+    "orders": {
+        12345: {
+            "symbol": "AAPL",
+            "price": 210.65,
+            "num_shares": 10,
+            "status": "Completed",
+        },
+        12446: {
+            "symbol": "GOOG",
+            "price": 2840.56,
+            "num_shares": 5,
+            "status": "Pending",
+        },
+    },
+    "account_info": {
+        "account_id": 12345,
+        "balance": 10000.0,
+        "binding_card": 1974202140965533,
+    },
+    "authenticated": False,
+    "market_status": "Closed",
+    "order_counter": 12446,
+    "stocks": {
+        "AAPL": {
+            "price": 227.16,
+            "percent_change": 0.17,
+            "volume": 2.552,
+            "MA(5)": 227.11,
+            "MA(20)": 227.09,
+        },
+        "GOOG": {
+            "price": 2840.34,
+            "percent_change": 0.24,
+            "volume": 1.123,
+            "MA(5)": 2835.67,
+            "MA(20)": 2842.15,
+        },
+        "TSLA": {
+            "price": 667.92,
+            "percent_change": -0.12,
+            "volume": 1.654,
+            "MA(5)": 671.15,
+            "MA(20)": 668.20,
+        },
+        "MSFT": {
+            "price": 310.23,
+            "percent_change": 0.09,
+            "volume": 3.234,
+            "MA(5)": 309.88,
+            "MA(20)": 310.11,
+        },
+        "NVDA": {
+            "price": 220.34,
+            "percent_change": 0.34,
+            "volume": 1.234,
+            "MA(5)": 220.45,
+            "MA(20)": 220.67,
+        },
+        "ALPH": {
+            "price": 1320.45,
+            "percent_change": -0.08,
+            "volume": 1.567,
+            "MA(5)": 1321.12,
+            "MA(20)": 1325.78,
+        },
+        "OMEG": {
+            "price": 457.23,
+            "percent_change": 0.12,
+            "volume": 2.345,
+            "MA(5)": 456.78,
+            "MA(20)": 458.12,
+        },
+        "QUAS": {
+            "price": 725.89,
+            "percent_change": -0.03,
+            "volume": 1.789,
+            "MA(5)": 726.45,
+            "MA(20)": 728.00,
+        },
+        "NEPT": {
+            "price": 88.34,
+            "percent_change": 0.19,
+            "volume": 0.654,
+            "MA(5)": 88.21,
+            "MA(20)": 88.67,
+        },
+        "SYNX": {
+            "price": 345.67,
+            "percent_change": 0.11,
+            "volume": 2.112,
+            "MA(5)": 345.34,
+            "MA(20)": 346.12,
+        },
+        "ZETA": {
+            "price": 22.09,
+            "percent_change": -0.05,
+            "volume": 0.789,
+            "MA(5)": 22.12,
+            "MA(20)": 22.34,
+        },
+    },
+    "watch_list": ["NVDA"],
+    "transaction_history": [],
+}
 
 
 class TradingBot:
@@ -47,111 +153,28 @@ class TradingBot:
         Args:
             scenario (dict): A scenario dictionary containing data to load.
         """
-        self.orders = scenario.get("orders", {
-            12345: {
-            "symbol": "AAPL",
-            "price": 210.65,
-            "num_shares": 10,
-            "status": "Completed",
-            },
-            12446: {
-                "symbol": "GOOG",
-                "price": 2840.56,
-                "num_shares": 5,
-                "status": "Pending",
-            }
-        })
+        DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
+        self.orders = scenario.get("orders", DEFAULT_STATE_COPY["orders"])
         # Convert all string keys that can be interpreted as integers to integer keys
-        self.orders = {int(k) if isinstance(k, str) and k.isdigit() else k: v for k, v in self.orders.items()}
-        self.account_info = scenario.get("account_info", {
-            "account_id": 12345,
-            "balance": 10000.0,
-            "binding_card": 1974202140965533,
-        })
-        self.authenticated = scenario.get("authenticated", False)
-        self.market_status = scenario.get("market_status", "Closed")
-        self.order_counter = scenario.get("order_counter", 12446) # Start counter from the next order ID
-        self.stocks = scenario.get("stocks", {
-            "AAPL": {
-                "price": 227.16,
-                "percent_change": 0.17,
-                "volume": 2.552,
-                "MA(5)": 227.11,
-                "MA(20)": 227.09,
-            },
-            "GOOG": {
-                "price": 2840.34,
-                "percent_change": 0.24,
-                "volume": 1.123,
-                "MA(5)": 2835.67,
-                "MA(20)": 2842.15,
-            },
-            "TSLA": {
-                "price": 667.92,
-                "percent_change": -0.12,
-                "volume": 1.654,
-                "MA(5)": 671.15,
-                "MA(20)": 668.20,
-            },
-            "MSFT": {
-                "price": 310.23,
-                "percent_change": 0.09,
-                "volume": 3.234,
-                "MA(5)": 309.88,
-                "MA(20)": 310.11,
-            },
-            "NVDA": {
-                "price": 220.34,
-                "percent_change": 0.34,
-                "volume": 1.234,
-                "MA(5)": 220.45,
-                "MA(20)": 220.67,
-            },
-            "ALPH": {
-                "price": 1320.45,
-                "percent_change": -0.08,
-                "volume": 1.567,
-                "MA(5)": 1321.12,
-                "MA(20)": 1325.78,
-            },
-            "OMEG": {
-                "price": 457.23,
-                "percent_change": 0.12,
-                "volume": 2.345,
-                "MA(5)": 456.78,
-                "MA(20)": 458.12,
-            },
-            "QUAS": {
-                "price": 725.89,
-                "percent_change": -0.03,
-                "volume": 1.789,
-                "MA(5)": 726.45,
-                "MA(20)": 728.00,
-            },
-            "NEPT": {
-                "price": 88.34,
-                "percent_change": 0.19,
-                "volume": 0.654,
-                "MA(5)": 88.21,
-                "MA(20)": 88.67,
-            },
-            "SYNX": {
-                "price": 345.67,
-                "percent_change": 0.11,
-                "volume": 2.112,
-                "MA(5)": 345.34,
-                "MA(20)": 346.12,
-            },
-            "ZETA": {
-                "price": 22.09,
-                "percent_change": -0.05,
-                "volume": 0.789,
-                "MA(5)": 22.12,
-                "MA(20)": 22.34,
-            },
-        })
-        self.watch_list = scenario.get("watch_list", ["NVDA"])
-        self.transaction_history = scenario.get("transaction_history", [])
+        self.orders = {
+            int(k) if isinstance(k, str) and k.isdigit() else k: v
+            for k, v in self.orders.items()
+        }
+        self.account_info = scenario.get("account_info", DEFAULT_STATE_COPY["account_info"])
+        self.authenticated = scenario.get(
+            "authenticated", DEFAULT_STATE_COPY["authenticated"]
+        )
+        self.market_status = scenario.get(
+            "market_status", DEFAULT_STATE_COPY["market_status"]
+        )
+        self.order_counter = scenario.get(
+            "order_counter", DEFAULT_STATE_COPY["order_counter"]
+        )  # Start counter from the next order ID
+        self.stocks = scenario.get("stocks", DEFAULT_STATE_COPY["stocks"])
+        self.watch_list = scenario.get("watch_list", DEFAULT_STATE_COPY["watch_list"])
+        self.transaction_history = scenario.get(
+            "transaction_history", DEFAULT_STATE_COPY["transaction_history"]
+        )
         self.long_context = long_context
 
     def get_current_time(self) -> str:
@@ -420,6 +443,16 @@ class TradingBot:
         self.authenticated = True
         return {"status": "Logged in successfully"}
 
+    def trading_get_login_status(self) -> Dict[str, bool]:
+        """
+        Get the login status.
+
+        Returns:
+            status (bool): Login status.
+        """
+
+        return {"status": bool(self.authenticated)}
+
     def trading_logout(self) -> Dict[str, str]:
         """
         Handle user logout for trading system.
@@ -455,7 +488,6 @@ class TradingBot:
             "status": "Account funded successfully",
             "new_balance": self.account_info["balance"],
         }
-
 
     def remove_stock_from_watchlist(self, symbol: str) -> Dict[str, str]:
         """
