@@ -644,8 +644,14 @@ MODEL_METADATA_MAPPING = {
         "Apache-2.0",
     ],
     "openbmb/MiniCPM3-4B": [
-        "MiniCPM3-4B (FC)",
+        "MiniCPM3-4B (Prompt)",
         "https://huggingface.co/openbmb/MiniCPM3-4B",
+        "openbmb",
+        "Apache-2.0",
+    ],
+    "openbmb/MiniCPM3-4B-FC": [
+        "MiniCPM3-4B-FC (FC)",
+        "https://huggingface.co/openbmb/MiniCPM3-4B-FC",
         "openbmb",
         "Apache-2.0",
     ],
