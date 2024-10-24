@@ -29,7 +29,6 @@ logger = logging.getLogger("minicpm")
 class MiniCPMFCHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
-        self.model_name_huggingface = "/user/panyinxu/models/minicpm3-4b"
         self.stop_token_ids = [2, 73440]
 
     @overrides
