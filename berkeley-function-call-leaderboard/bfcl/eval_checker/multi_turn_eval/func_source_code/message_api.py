@@ -70,7 +70,7 @@ class MessageAPI:
         Load a scenario into the MessageAPI.
 
         Args:
-            scenario (dict): A dictionary containing message data.
+            scenario (Dict): A dictionary containing message data.
         """
         DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
         self._random = random.Random((scenario.get("random_seed", 200191)))
@@ -103,6 +103,9 @@ class MessageAPI:
     def generate_id(self):
         """
         Generate a unique ID for a message.
+
+        Returns:
+            new_id (int): A unique ID for a message.
         """
         new_id = self._random.randint(
             10000, 99999
@@ -110,14 +113,14 @@ class MessageAPI:
         while new_id in self.generated_ids:
             new_id = self._random.randint(10000, 99999)
         self.generated_ids.add(new_id)
-        return new_id
+        return {"new_id": new_id}
 
     def list_users(self) -> Dict[str, List[str]]:
         """
         List all users in the workspace.
 
         Returns:
-            user_list (List[str]): List of all users in the workspace.
+          user_list (List[str]): List of all users in the workspace.
         """
         return {"user_list": list(self.user_map.keys())}
 
@@ -129,7 +132,7 @@ class MessageAPI:
             user (str): User name of the user.
 
         Returns:
-            user_id (Optional[str]): User ID of the user, or None if not found.
+            user_id (str): User ID of the user
         """
         if user not in self.user_map:
             return {"error": f"User '{user}' not found in the workspace."}
@@ -222,7 +225,8 @@ class MessageAPI:
         View all historical messages sent by the current user.
 
         Returns:
-            messages (Dict[str, List[str]]): Dictionary of receivers and messages sent by the current user.
+            messages (Dict): Dictionary of messages grouped by receiver An example of the messages dictionary is {"USR001":["Hello"],"USR002":["World"]}.
+
         """
         if not self.current_user:
             return {"error": "No user is currently logged in."}
@@ -268,10 +272,9 @@ class MessageAPI:
         Args:
             keyword (str): The keyword to search for in messages.
         Returns:
-            results (List[Dict[str, Union[str, List[str]]]]): List of dictionaries containing matching messages.
-                - sender_id (str): The ID of the user who sent the message.
-                - receiver_id (str): The ID of the user who received the message.
-                - messages (List[str]): List of messages containing the keyword.
+            results (List[Dict]): List of dictionaries containing matching messages.
+                - receiver_id (str): User ID of the receiver of the message.
+                - message (str): The message containing the keyword.
         """
         if not self.current_user:
             return {"error": "No user is currently logged in."}
@@ -294,8 +297,7 @@ class MessageAPI:
         """
         Get statistics about messages for the current user.
         Returns:
-            stats (Dict[str, int]): Dictionary containing message statistics.
-                - sent_count (int): Number of messages sent by the current user.
+            stats (Dict): Dictionary containing message statistics.
                 - received_count (int): Number of messages received by the current user.
                 - total_contacts (int): Total number of contacts the user has interacted with.
         """
