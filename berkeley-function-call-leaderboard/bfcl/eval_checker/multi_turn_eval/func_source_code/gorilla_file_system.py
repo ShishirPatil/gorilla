@@ -1,5 +1,6 @@
 import datetime
 import subprocess
+from copy import deepcopy
 from typing import Dict, List, Optional, Union
 
 from .long_context import FILE_CONTENT_EXTENSION, FILES_TAIL_USED
@@ -129,6 +130,10 @@ class Directory:
         return self.name == other.name and self.contents == other.contents
 
 
+DEFAULT_STATE = {
+    "root": Directory("/", None)
+}
+
 class GorillaFileSystem:
 
     def __init__(self) -> None:
@@ -183,16 +188,16 @@ class GorillaFileSystem:
             }
         }
         """
+        DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
         self.long_context = long_context
-        self.root = Directory("/")
-        self.long_context = long_context
+        self.root = DEFAULT_STATE_COPY["root"]
         if "root" in scenario:
             root_dir = Directory(list(scenario["root"].keys())[0], None)
             self.root = self._load_directory(
                 scenario["root"][list(scenario["root"].keys())[0]]["contents"],
                 root_dir
             )
-            self._current_dir = self.root
+        self._current_dir = self.root
 
     def _load_directory(
         self, current: dict, parent: Optional[Directory] = None

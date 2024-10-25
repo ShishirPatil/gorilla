@@ -1,16 +1,29 @@
+from copy import deepcopy
 from typing import Dict, List, Optional, Union
+
+DEFAULT_STATE = {
+    "username": "john",
+    "password": "john123",
+    "authenticated": False,
+    "tweets": {},
+    "comments": {},
+    "retweets": {},
+    "following_list": ["alice", "bob"],
+    "tweet_counter": 0,
+}
 
 
 class TwitterAPI:
     def __init__(self):
-        self.username: str = "john"
-        self.password: str = "john1234"
-        self.authenticated: bool = False
-        self.tweets: Dict[int, Dict[str, Union[int, str, List[str]]]] = {}
-        self.comments: Dict[int, List[Dict[str, str]]] = {}
-        self.retweets: Dict[str, List[int]] = {}
-        self.following_list: List[str] = ["alice", "bob"]
-        self.tweet_counter: int = 1
+        self.username: str
+        self.password: str
+        self.authenticated: bool
+        self.tweets: Dict[int, Dict[str, Union[int, str, List[str]]]]
+        self.comments: Dict[int, List[Dict[str, str]]]
+        self.retweets: Dict[str, List[int]]
+        self.following_list: List[str]
+        # tweet_counter is used to assign unique IDs to tweets, it might not be the same as the length of the tweets list for different scenarios
+        self.tweet_counter: int
 
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """
@@ -18,14 +31,21 @@ class TwitterAPI:
         Args:
             scenario (dict): A dictionary containing Twitter data.
         """
-        self.username = scenario.get("username", "john")
-        self.password = scenario.get("password", "john1234")
-        self.authenticated = scenario.get("authenticated", False)
-        self.tweets = scenario.get("tweets", {})
-        self.comments = scenario.get("comments", {})
-        self.retweets = scenario.get("retweets", {})
-        self.following_list = scenario.get("following_list", ["alice", "bob"])
-        self.tweet_counter = scenario.get("tweet_counter", 1)
+        DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
+        self.username = scenario.get("username", DEFAULT_STATE_COPY["username"])
+        self.password = scenario.get("password", DEFAULT_STATE_COPY["password"])
+        self.authenticated = scenario.get(
+            "authenticated", DEFAULT_STATE_COPY["authenticated"]
+        )
+        self.tweets = scenario.get("tweets", DEFAULT_STATE_COPY["tweets"])
+        self.comments = scenario.get("comments", DEFAULT_STATE_COPY["comments"])
+        self.retweets = scenario.get("retweets", DEFAULT_STATE_COPY["retweets"])
+        self.following_list = scenario.get(
+            "following_list", DEFAULT_STATE_COPY["following_list"]
+        )
+        self.tweet_counter = scenario.get(
+            "tweet_counter", DEFAULT_STATE_COPY["tweet_counter"]
+        )
 
     def authenticate_twitter(self, username: str, password: str) -> Dict[str, bool]:
         """
@@ -41,6 +61,15 @@ class TwitterAPI:
             self.authenticated = True
             return {"authentication_status": True}
         return {"authentication_status": False}
+
+    def posting_get_login_status(self) -> Dict[str, Union[bool, str]]:
+        """
+        Get the login status of the current user.
+
+        Returns:
+            login_status (bool): True if the current user is logged in, False otherwise.
+        """
+        return {"login_status": bool(self.authenticated)}
 
     def post_tweet(
         self, content: str, tags: List[str] = [], mentions: List[str] = []
@@ -229,7 +258,7 @@ class TwitterAPI:
         Search for tweets containing a specific keyword.
 
         Args:
-            keyword (str): Keyword to search for in tweets.
+            keyword (str): Keyword to search for in the content of the tweets.
         Returns:
             matching_tweets (List[Dict]): List of dictionaries, each containing tweet information.
         """

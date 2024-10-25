@@ -1,4 +1,5 @@
 import random
+from copy import deepcopy
 from typing import Dict, List, Union
 
 from .long_context import (
@@ -13,6 +14,35 @@ MIN_FUEL_LEVEL = 0.0
 MILE_PER_GALLON = 20.0
 MAX_BATTERY_VOLTAGE = 14.0
 MIN_BATTERY_VOLTAGE = 10.0
+
+DEFAULT_STATE = {
+    "random_seed": 141053,
+    "fuelLevel": 0.0,
+    "batteryVoltage": 12.6,
+    "engine_state": "stopped",
+    "remainingUnlockedDoors": 4,
+    "doorStatus": {
+        "driver": "unlocked",
+        "passenger": "unlocked",
+        "rear_left": "unlocked",
+        "rear_right": "unlocked",
+    },
+    "acTemperature": 25.0,
+    "fanSpeed": 50,
+    "acMode": "auto",
+    "humidityLevel": 50.0,
+    "headLightStatus": "off",
+    "brakeStatus": "released",
+    "brakeForce": 0.0,
+    "slopeAngle": 0.0,
+    "distanceToNextVehicle": 50.0,
+    "cruiseStatus": "inactive",
+    "destination": "None",
+    "frontLeftTirePressure": 32.0,
+    "frontRightTirePressure": 32.0,
+    "rearLeftTirePressure": 30.0,
+    "rearRightTirePressure": 30.0,
+}
 
 
 class VehicleControlAPI:
@@ -49,42 +79,70 @@ class VehicleControlAPI:
         Args:
             scenario (dict): The scenario to load.
         """
-        self._random = random.Random((scenario.get("random_seed", 140337)))
-        self.fuelLevel = scenario.get("fuelLevel", 0.0)  # in gallons
-        self.batteryVoltage = scenario.get("batteryVoltage", 12.6)  # in volts
-        self.engine_state = scenario.get("engineState", "stopped")  # running, stopped
+        DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
+        self._random = random.Random(
+            (scenario.get("random_seed", DEFAULT_STATE_COPY["random_seed"]))
+        )
+        self.fuelLevel = scenario.get(
+            "fuelLevel", DEFAULT_STATE_COPY["fuelLevel"]
+        )  # in gallons
+        self.batteryVoltage = scenario.get(
+            "batteryVoltage", DEFAULT_STATE_COPY["batteryVoltage"]
+        )  # in volts
+        self.engine_state = scenario.get(
+            "engineState", DEFAULT_STATE_COPY["engine_state"]
+        )  # running, stopped
         self.remainingUnlockedDoors = scenario.get(
-            "remainingUnlockedDoors", 4
+            "remainingUnlockedDoors", DEFAULT_STATE_COPY["remainingUnlockedDoors"]
         )  # driver, passenger, rear_left, rear_right
         self.doorStatus = scenario.get(
             "doorStatus",
-            {
-                "driver": "unlocked",
-                "passenger": "unlocked",
-                "rear_left": "unlocked",
-                "rear_right": "unlocked",
-            },
+            DEFAULT_STATE_COPY["doorStatus"],
         )
         self.remainingUnlockedDoors = 4 - len(
             [1 for door in self.doorStatus.keys() if self.doorStatus[door] == "locked"]
         )
-        self.acTemperature = scenario.get("acTemperature", 25.0)  # in degree Celsius
-        self.fanSpeed = scenario.get("fanSpeed", 50)  # 0 to 100
-        self.acMode = scenario.get("acMode", "auto")  # auto, cool, heat, defrost
-        self.humidityLevel = scenario.get("humidityLevel", 50.0)  # in percentage
-        self.headLightStatus = scenario.get("headLightStatus", "off")  # on, off
-        self.brakeStatus = scenario.get("brakeStatus", "released")  # released, engaged
-        self.brakeForce = scenario.get("brakeForce", 0.0)  # in Newtons
-        self.slopeAngle = scenario.get("slopeAngle", 0.0)  # in degrees
+        self.acTemperature = scenario.get(
+            "acTemperature", DEFAULT_STATE_COPY["acTemperature"]
+        )  # in degree Celsius
+        self.fanSpeed = scenario.get("fanSpeed", DEFAULT_STATE_COPY["fanSpeed"])  # 0 to 100
+        self.acMode = scenario.get(
+            "acMode", DEFAULT_STATE_COPY["acMode"]
+        )  # auto, cool, heat, defrost
+        self.humidityLevel = scenario.get(
+            "humidityLevel", DEFAULT_STATE_COPY["humidityLevel"]
+        )  # in percentage
+        self.headLightStatus = scenario.get(
+            "headLightStatus", DEFAULT_STATE_COPY["headLightStatus"]
+        )  # on, off
+        self.brakeStatus = scenario.get(
+            "brakeStatus", DEFAULT_STATE_COPY["brakeStatus"]
+        )  # released, engaged
+        self.brakeForce = scenario.get(
+            "brakeForce", DEFAULT_STATE_COPY["brakeForce"]
+        )  # in Newtons
+        self.slopeAngle = scenario.get(
+            "slopeAngle", DEFAULT_STATE_COPY["slopeAngle"]
+        )  # in degrees
         self.distanceToNextVehicle = scenario.get(
-            "distanceToNextVehicle", 50.0
+            "distanceToNextVehicle", DEFAULT_STATE_COPY["distanceToNextVehicle"]
         )  # in meters
-        self.cruiseStatus = scenario.get("cruiseStatus", "inactive")  # active, inactive
-        self.destination = scenario.get("destination", "None")
-        self.frontLeftTirePressure = scenario.get("frontLeftTirePressure", 32.0)
-        self.frontRightTirePressure = scenario.get("frontRightTirePressure", 32.0)
-        self.rearLeftTirePressure = scenario.get("rearLeftTirePressure", 30.0)
-        self.rearRightTirePressure = scenario.get("rearRightTirePressure", 30.0)
+        self.cruiseStatus = scenario.get(
+            "cruiseStatus", DEFAULT_STATE_COPY["cruiseStatus"]
+        )  # active, inactive
+        self.destination = scenario.get("destination", DEFAULT_STATE_COPY["destination"])
+        self.frontLeftTirePressure = scenario.get(
+            "frontLeftTirePressure", DEFAULT_STATE_COPY["frontLeftTirePressure"]
+        )
+        self.frontRightTirePressure = scenario.get(
+            "frontRightTirePressure", DEFAULT_STATE_COPY["frontRightTirePressure"]
+        )
+        self.rearLeftTirePressure = scenario.get(
+            "rearLeftTirePressure", DEFAULT_STATE_COPY["rearLeftTirePressure"]
+        )
+        self.rearRightTirePressure = scenario.get(
+            "rearRightTirePressure", DEFAULT_STATE_COPY["rearRightTirePressure"]
+        )
 
         self.long_context = long_context
 
@@ -145,7 +203,7 @@ class VehicleControlAPI:
         """
         Fills the fuel tank of the vehicle. The fuel tank can hold up to 50 gallons.
         Args:
-            fuelAmount (float): The amount of fuel to fill in gallons.
+            fuelAmount (float): The amount of fuel to fill in gallons; this is the additional fuel to add to the tank.
         Returns:
             fuelLevel (float): The fuel level of the vehicle in gallons.
         """
