@@ -40,5 +40,5 @@ for class_name, file_name in CLASS_FILE_PATH_MAPPING.items():
 
     with open(MULTI_TURN_FUNC_DOC_PATH / f"{file_name.rsplit('.')[-1]}.json", "w") as f:
         for method_name, method_json in class_method_name_mapping[class_name].items():
-            f.write(json.dumps({method_name: json.loads(method_json)}))
+            f.write(method_json)
             f.write("\n")
