@@ -1,4 +1,11 @@
+from copy import deepcopy
 from typing import Dict, List, Optional, Union
+
+DEFAULT_STATE = {
+    "ticket_queue": [],
+    "ticket_counter": 1,
+    "current_user": None,
+}
 
 
 class TicketAPI:
@@ -20,9 +27,9 @@ class TicketAPI:
         """
         Initialize the TicketAPI instance.
         """
-        self.ticket_queue: List[Dict[str, Union[int, str]]] = []
-        self.ticket_counter: int = 1
-        self.current_user: Optional[str] = None
+        self.ticket_queue: List[Dict[str, Union[int, str]]]
+        self.ticket_counter: int
+        self.current_user: Optional[str]
 
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """
@@ -31,9 +38,12 @@ class TicketAPI:
         Args:
             scenario (dict): A dictionary containing ticket data.
         """
-        self.ticket_queue = scenario.get("ticket_queue", [])
-        self.ticket_counter = scenario.get("ticket_counter", 1)
-        self.current_user = scenario.get("current_user", None)
+        DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
+        self.ticket_queue = scenario.get("ticket_queue", DEFAULT_STATE_COPY["ticket_queue"])
+        self.ticket_counter = scenario.get(
+            "ticket_counter", DEFAULT_STATE_COPY["ticket_counter"]
+        )
+        self.current_user = scenario.get("current_user", DEFAULT_STATE_COPY["current_user"])
 
     def create_ticket(
         self, title: str, description: str = "", priority: int = 1
@@ -194,6 +204,15 @@ class TicketAPI:
             self.current_user = username
             return {"success": True}
         return {"success": False}
+
+    def ticket_get_login_status(self) -> Dict[str, bool]:
+        """
+        Get the username of the currently authenticated user.
+
+        Returns:
+            result (bool): Result of the login status check.
+        """
+        return {"username": bool(self.current_user)}
 
     def logout(self) -> Dict[str, bool]:
         """
