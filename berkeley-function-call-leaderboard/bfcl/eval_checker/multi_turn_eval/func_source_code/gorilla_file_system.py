@@ -317,9 +317,6 @@ class GorillaFileSystem:
 
         Args:
             dir_name (str): The name of the new directory at current directory. You can only create directory at current directory.
-
-        Returns:
-            None or error (str): None if successful, or error message if directory already exists.
         """
         if not self._validate_file_or_directory_name(dir_name):
             return {
