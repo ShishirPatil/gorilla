@@ -334,9 +334,6 @@ class GorillaFileSystem:
 
         Args:
             file_name (str): The name of the new file in the current directory. file_name is local to the current directory and does not allow path.
-
-        Returns:
-            None or error (str): None if successful, or error message if file already exists.
         """
         if not self._validate_file_or_directory_name(file_name):
             return {"error": f"touch: cannot touch '{file_name}': Invalid character"}
@@ -345,7 +342,7 @@ class GorillaFileSystem:
             return {"error": f"touch: cannot touch '{file_name}': File exists"}
 
         self._current_dir._add_file(file_name)
-        return {}
+        return None
 
     def echo(
         self, content: str, file_name: Optional[str] = None
