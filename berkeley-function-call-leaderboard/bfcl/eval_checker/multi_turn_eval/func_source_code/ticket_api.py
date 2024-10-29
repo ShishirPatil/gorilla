@@ -36,7 +36,7 @@ class TicketAPI:
         Load a scenario into the ticket queue.
 
         Args:
-            scenario (dict): A dictionary containing ticket data.
+            scenario (Dict): A dictionary containing ticket data.
         """
         DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
         self.ticket_queue = scenario.get("ticket_queue", DEFAULT_STATE_COPY["ticket_queue"])
@@ -57,12 +57,11 @@ class TicketAPI:
             priority (int): Priority of the ticket, from 1 to 5. Defaults to 1.
 
         Returns:
-            ticket (Dict[str, str]): Created ticket object.
-                id (int): Unique identifier of the ticket.
-                title (str): Title of the ticket.
-                description (str): Description of the ticket.
-                status (str): Current status of the ticket.
-                priority (int): Priority level of the ticket.
+            id (int): Unique identifier of the ticket.
+            title (str): Title of the ticket.
+            description (str): Description of the ticket.
+            status (str): Current status of the ticket.
+            priority (int): Priority level of the ticket.
         """
         if not self.current_user:
             return {"error": "User not authenticated. Please log in to create a ticket."}
@@ -88,13 +87,12 @@ class TicketAPI:
             ticket_id (int): ID of the ticket to retrieve.
 
         Returns:
-            ticket (Dict[str, str]): Retrieved ticket object.
-                id (int): Unique identifier of the ticket.
-                title (str): Title of the ticket.
-                description (str): Description of the ticket.
-                status (str): Current status of the ticket.
-                priority (int): Priority level of the ticket.
-                created_by (str): Username of the ticket creator.
+            id (int): Unique identifier of the ticket.
+            title (str): Title of the ticket.
+            description (str): Description of the ticket.
+            status (str): Current status of the ticket.
+            priority (int): Priority level of the ticket.
+            created_by (str): Username of the ticket creator.
         """
         ticket = self.find_ticket(ticket_id)
         if not ticket:
@@ -109,8 +107,7 @@ class TicketAPI:
             ticket_id (int): ID of the ticket to be closed.
 
         Returns:
-            result (Dict[str, str]): Result of the close operation.
-                status (str): Status of the close operation.
+            status (str): Status of the close operation.
         """
         ticket = self.find_ticket(ticket_id)
         if not ticket:
@@ -129,8 +126,7 @@ class TicketAPI:
             resolution (str): Resolution details for the ticket.
 
         Returns:
-            result (Dict[str, str]): Result of the resolve operation.
-                status (str): Status of the resolve operation.
+            status (str): Status of the resolve operation.
         """
         ticket = self.find_ticket(ticket_id)
         if not ticket:
@@ -149,13 +145,14 @@ class TicketAPI:
 
         Args:
             ticket_id (int): ID of the ticket to be changed.
-            updates (Dict[str, str]]): Dictionary containing the fields to be updated.
-                                                            Keys can be 'title', 'description', 'status', or 'priority'.
-                                                            Values are the new values for these fields.
+            updates (Dict): Dictionary containing the fields to be updated.
+                - title (str) : [Optional] New title for the ticket.
+                - description (str): [Optional] New description for the ticket.
+                - status (str): [Optional] New status for the ticket.
+                - priority (int): [Optional] New priority for the ticket.
 
         Returns:
-            result (Dict[str, str]): Result of the update operation.
-                status (str): Status of the update operation.
+            status (str): Status of the update operation.
         """
         ticket = self.find_ticket(ticket_id)
         if not ticket:
@@ -180,7 +177,12 @@ class TicketAPI:
             ticket_id (int): ID of the ticket to find.
 
         Returns:
-            ticket (Dict[str, str]): Ticket object if found, None otherwise. Optional parameter.
+            id (int): Unique identifier of the ticket.
+            title (str): Title of the ticket.
+            description (str): Description of the ticket.
+            status (str): Current status of the ticket.
+            priority (int): Priority level of the ticket.
+            created_by (str): Username of the ticket creator.
         """
         for ticket in self.ticket_queue:
             if ticket["id"] == ticket_id:
@@ -196,8 +198,7 @@ class TicketAPI:
             password (str): Password of the user.
 
         Returns:
-            result (Dict[str, bool]): Result of the login operation.
-                success (bool): True if login was successful, False otherwise.
+            success (bool): True if login was successful, False otherwise.
         """
         # In a real system, you would validate the credentials against a database
         if username and password:  # Simplified authentication
@@ -210,7 +211,8 @@ class TicketAPI:
         Get the username of the currently authenticated user.
 
         Returns:
-            result (bool): Result of the login status check.
+            username (bool): True if a user is logged in, False otherwise.
+
         """
         return {"username": bool(self.current_user)}
 
@@ -219,8 +221,7 @@ class TicketAPI:
         Log out the current user.
 
         Returns:
-            result (Dict[str, bool]): Result of the logout operation.
-                success (bool): True if logout was successful, False otherwise.
+            success (bool): True if logout was successful, False otherwise.
         """
         if self.current_user:
             self.current_user = None
@@ -234,10 +235,15 @@ class TicketAPI:
         Get all tickets created by the current user, optionally filtered by status.
 
         Args:
-            status (Optional[str]): Status to filter tickets by. If None, return all tickets.
+            status (str): [Optional] Status to filter tickets by. If None, return all tickets.
 
         Returns:
-            tickets (List[Dict[str, str]]): List of ticket objects matching the criteria.
+            id (int): Unique identifier of the ticket.
+            title (str): Title of the ticket.
+            description (str): Description of the ticket.
+            status (str): Current status of the ticket.
+            priority (int): Priority level of the ticket.
+            created_by (str): Username of the ticket
         """
         if not self.current_user:
             return [{"error": "User not authenticated. Please log in to view tickets."}]

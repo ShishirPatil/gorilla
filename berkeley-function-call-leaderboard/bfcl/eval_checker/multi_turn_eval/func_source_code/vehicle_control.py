@@ -77,7 +77,7 @@ class VehicleControlAPI:
         """
         Loads the scenario for the vehicle control.
         Args:
-            scenario (dict): The scenario to load.
+            scenario (Dict): The scenario to load.
         """
         DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
         self._random = random.Random(
@@ -165,9 +165,9 @@ class VehicleControlAPI:
         """
         Starts the engine of the vehicle.
         Args:
-            ignitionMode (str): The ignition mode of the vehicle. Possible values are "START" and "STOP".
+            ignitionMode (str): The ignition mode of the vehicle. [Enum]: ["START", "STOP"]
         Returns:
-            engineState (str): The state of the engine. Possible values are "running" and "stopped".
+            engineState (str): The state of the engine. [Enum]: ["running", "stopped"]
             fuelLevel (float): The fuel level of the vehicle in gallons.
             batteryVoltage (float): The battery voltage of the vehicle in volts.
         """
@@ -221,9 +221,9 @@ class VehicleControlAPI:
         Locks the doors of the vehicle.
         Args:
             unlock (bool): True if the doors are to be unlocked, False otherwise.
-            door (list[str]): The list of doors to lock or unlock. Possible values are "driver", "passenger", "rear_left", "rear_right".
+            door (List[str]): The list of doors to lock or unlock. [Enum]: ["driver", "passenger", "rear_left", "rear_right"]
         Returns:
-            lockStatus (str): The status of the lock. Possible values are "locked" and "unlocked".
+            lockStatus (str): The status of the lock. [Enum]: ["locked", "unlocked"]
             remainingUnlockedDoors (int): The number of remaining unlocked doors.
         """
         if unlock:
@@ -254,9 +254,9 @@ class VehicleControlAPI:
         Adjusts the climate control of the vehicle.
         Args:
             temperature (float): The temperature to set in degree. Default to be celsius.
-            unit (str): The unit of temperature. Possible values are "celsius" or "fahrenheit". Default is "celsius".
-            fanSpeed (int): The fan speed to set from 0 to 100. Default is 50.
-            mode (str): The climate mode to set. Possible values are "auto", "cool", "heat", "defrost". Default is "auto".
+            unit (str): [Optional] The unit of temperature. Possible values are "celsius" or "fahrenheit". Default is "celsius".
+            fanSpeed (int): [Optional] The fan speed to set from 0 to 100. Default is 50.
+            mode (str): [Optional] The climate mode to set. Possible values are "auto", "cool", "heat", "defrost". Default is "auto".
         Returns:
             currentTemperature (float): The current temperature set in degree Celsius.
             climateMode (str): The current climate mode set.
@@ -298,9 +298,9 @@ class VehicleControlAPI:
         """
         Sets the headlights of the vehicle.
         Args:
-            mode (str): The mode of the headlights. Possible values are "on", "off", "auto".
+            mode (str): The mode of the headlights. [Enum]: ["on", "off", "auto"]
         Returns:
-            headlightStatus (str): The status of the headlights. Possible values are "on" and "off".
+            headlightStatus (str): The status of the headlights. [Enum]: ["on", "off"]
         """
         if mode not in ["on", "off", "auto"]:
             return {"error": "Invalid headlight mode."}
@@ -315,9 +315,20 @@ class VehicleControlAPI:
         """
         Displays the status of the vehicle based on the provided display option.
         Args:
-            option (str): The option to display. Possible values are "fuel", "battery", "doors", "climate", "headlights", "brake", "engine".
+            option (str): The option to display. [Enum]: ["fuel", "battery", "doors", "climate", "headlights", "brake", "engine"]
         Returns:
-            status (dict): The status of the vehicle based on the option.
+            status (Dict): The status of the vehicle based on the option.
+                - fuelLevel (float): The fuel level of the vehicle in gallons.
+                - batteryVoltage (float): The battery voltage of the vehicle in volts.
+                - doorStatus (Dict): The status of the doors.
+                    - driver (str): The status of the driver door. [Enum]: ["locked", "unlocked"]
+                    - passenger (str): The status of the passenger door. [Enum]: ["locked", "unlocked"]
+                    - rear_left (str): The status of the rear left door. [Enum]: ["locked", "unlocked"]
+                    - rear_right (str): The status of the rear right door. [Enum]: ["locked", "unlocked"]
+                - currentACTemperature (float): The current temperature set in degree Celsius.
+                - headlightStatus (str): The status of the headlights. [Enum]: ["on", "off"]
+                - brakeStatus (str): The status of the brake. [Enum]: ["engaged", "released"]
+                - engineState (str): The state of the engine. [Enum]: ["running", "stopped"]
         """
         status = {}
         if self.long_context:
@@ -349,9 +360,9 @@ class VehicleControlAPI:
         """
         Activates the parking brake of the vehicle.
         Args:
-            mode (str): The mode to set. Possible values are "engage", "release".
+            mode (str): The mode to set. [Enum]: ["engage", "release"]
         Returns:
-            brakeStatus (str): The status of the brake. Possible values are "engaged" and "released".
+            brakeStatus (str): The status of the brake. [Enum]: ["engaged", "released"]
             brakeForce (float): The force applied to the brake in Newtons.
             slopeAngle (float): The slope angle in degrees.
         """
@@ -392,7 +403,7 @@ class VehicleControlAPI:
             activate (bool): True to activate the cruise control, False to deactivate.
             distanceToNextVehicle (float): The distance to the next vehicle in meters.
         Returns:
-            cruiseStatus (str): The status of the cruise control. Possible values are "active" and "inactive".
+            cruiseStatus (str): The status of the cruise control. [Enum]: ["active", "inactive"]
             currentSpeed (float): The current speed of the vehicle in km/h.
             distanceToNextVehicle (float): The distance to the next vehicle in meters.
         """
@@ -425,13 +436,13 @@ class VehicleControlAPI:
         """
         return {"currentSpeed": self._random.uniform(0.0, 120.0)}
 
-    def display_log(self, messages: list[str]):
+    def display_log(self, messages: List[str]):
         """
         Displays the log messages.
         Args:
-            messages (list[str]): The list of messages to display.
+            messages (List[str]): The list of messages to display.
         Returns:
-            log (list[str]): The list of messages displayed.
+            log (List[str]): The list of messages displayed.
         """
         return {"log": messages}
 
@@ -448,7 +459,7 @@ class VehicleControlAPI:
         else:
             return {"canDrive": True}
 
-    def liter_to_gallon(self, liter: float) -> float:
+    def liter_to_gallon(self, liter: float) -> Dict[str, float]:
         """
         Converts the liter to gallon.
         Args:
@@ -456,9 +467,9 @@ class VehicleControlAPI:
         Returns:
             gallon (float): The amount of gallon converted.
         """
-        return liter * 0.264172
+        return {"gallon": liter * 0.264172}
 
-    def gallon_to_liter(self, gallon: float) -> float:
+    def gallon_to_liter(self, gallon: float) -> Dict[str, float]:
         """
         Converts the gallon to liter.
         Args:
@@ -466,7 +477,7 @@ class VehicleControlAPI:
         Returns:
             liter (float): The amount of liter converted.
         """
-        return gallon * 3.78541
+        return {"liter": gallon * 3.78541}
 
     def estimate_distance(self, cityA: str, cityB: str) -> Dict[str, float]:
         """
@@ -518,7 +529,7 @@ class VehicleControlAPI:
 
         if self.long_context:
             distance["intermediaryCities"] = INTERMEDIARY_CITIES
-        return distance
+        return {"distance": distance}
 
     def get_zipcode_based_on_city(self, city: str) -> Dict[str, str]:
         """
@@ -559,7 +570,7 @@ class VehicleControlAPI:
         Args:
             destination (str): The destination to navigate in the format of street, city, state.
         Returns:
-            status (dict): The status of the navigation.
+            status (str): The status of the navigation.
         """
         self.destination = destination
         return {"status": "Navigating to " + destination}
@@ -568,7 +579,13 @@ class VehicleControlAPI:
         """
         Checks the tire pressure of the vehicle.
         Returns:
-            tirePressure (dict): The tire pressure of the vehicle.
+            tirePressure (Dict): The tire pressure of the vehicle.
+                - frontLeftTirePressure (float): The pressure of the front left tire in psi.
+                - frontRightTirePressure (float): The pressure of the front right tire in psi.
+                - rearLeftTirePressure (float): The pressure of the rear left tire in psi.
+                - rearRightTirePressure (float): The pressure of the rear right tire in psi.
+                - healthy_tire_pressure (bool): True if the tire pressure is healthy, False otherwise.
+                - car_info (Dict): The metadata of the car.
         """
         healthy_tire_pressure = (
             self.frontLeftTirePressure
@@ -582,6 +599,7 @@ class VehicleControlAPI:
             "rearLeftTirePressure": self.rearLeftTirePressure,
             "rearRightTirePressure": self.rearRightTirePressure,
             "healthy_tire_pressure": healthy_tire_pressure,
+            "car_info": {},
         }
 
         if self.long_context:

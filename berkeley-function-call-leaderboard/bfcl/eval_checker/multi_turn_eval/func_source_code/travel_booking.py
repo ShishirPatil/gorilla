@@ -1,9 +1,9 @@
 import random
+from copy import deepcopy
 from datetime import datetime
 from typing import Dict, List, Optional, Tuple, Union
 
 from .long_context import BOOKING_RECORD_EXTENSION, CREDIT_CARD_EXTENSION
-from copy import deepcopy
 
 DEFAULT_STATE = {
     "random_seed": 141053,
@@ -118,12 +118,12 @@ class TravelAPI:
         Authenticate the user with the travel API
 
         Args:
-            client_id (str): [Required] The client applications client_id supplied by App Management
-            client_secret (str): [Required] The client applications client_secret supplied by App Management
-            refresh_token (str): [Required] The refresh token obtained from the initial authentication
-            grant_type (str): [Required] The grant type of the authentication request. Here are the options: read_write, read, write
-            user_first_name (str): [Required] The first name of the user
-            user_last_name (str): [Required] The last name of the user
+            client_id (str): The client applications client_id supplied by App Management
+            client_secret (str): The client applications client_secret supplied by App Management
+            refresh_token (str): The refresh token obtained from the initial authentication
+            grant_type (str): The grant type of the authentication request. Here are the options: read_write, read, write
+            user_first_name (str): The first name of the user
+            user_last_name (str): The last name of the user
         Returns:
             expires_in (int): The number of time it can use until the access token expires
             access_token (str): The access token to be used in the Authorization header of future requests
@@ -162,10 +162,10 @@ class TravelAPI:
         Get the budget fiscal year
 
         Args:
-            lastModifiedAfter (Optional[str]): Use this field if you only want Fiscal Years that were changed after the supplied date. The supplied date will be interpreted in the UTC time zone. If lastModifiedAfter is not supplied, the service will return all Fiscal Years, regardless of modified date. Example: 2016-03-29T16:12:20. Return in the format of YYYY-MM-DDTHH:MM:SS.
-            includeRemoved (Optional[str]): If true, the service will return all Fiscal Years, including those that were previously removed. If not supplied, this field defaults to false.
+            lastModifiedAfter (str): [Optional] Use this field if you only want Fiscal Years that were changed after the supplied date. The supplied date will be interpreted in the UTC time zone. If lastModifiedAfter is not supplied, the service will return all Fiscal Years, regardless of modified date. Example: 2016-03-29T16:12:20. Return in the format of YYYY-MM-DDTHH:MM:SS.
+            includeRemoved (str): [Optional] If true, the service will return all Fiscal Years, including those that were previously removed. If not supplied, this field defaults to false.
         Returns:
-            budget (Dict[str, str]): A dictionary containing the budget fiscal year
+            budget_fiscal_year (str): The budget fiscal year
         """
         return {"budget_fiscal_year": "2018"}
 
@@ -181,11 +181,11 @@ class TravelAPI:
         Register a credit card
 
         Args:
-            access_token (str): [Required] The access token obtained from the authenticate method
-            card_number (str): [Required] The credit card number
-            expiration_date (str): [Required] The expiration date of the credit card in the format MM/YYYY
-            cardholder_name (str): [Required] The name of the cardholder
-            card_verification_number (int): [Required] The card verification number
+            access_token (str): The access token obtained from the authenticate method
+            card_number (str): The credit card number
+            expiration_date (str): The expiration date of the credit card in the format MM/YYYY
+            cardholder_name (str): The name of the cardholder
+            card_verification_number (int): The card verification number
         Returns:
             card_id (str): The ID of the registered credit card
         """
@@ -214,24 +214,24 @@ class TravelAPI:
         Set the balance of a credit card
 
         Args:
-            card_id (str): [Required] The ID of the credit card
-            balance (float): [Required] The balance of the credit card
+            card_id (str): The ID of the credit card
+            balance (float): The balance of the credit card
         """
         self.credit_card_list[card_id]["balance"] = balance
 
     def get_flight_cost(
         self, travel_from: str, travel_to: str, travel_date: str, travel_class: str
-    ) -> float:
+    ) -> Dict[str, List[float]]:
         """
-        Get the cost of a flight in USD based on location, date, and class
+        Get the list of cost of a flight in USD based on location, date, and class
 
         Args:
-            travel_from (str): [Required] The 3 letter code of the departing airport
-            travel_to (str): [Required] The 3 letter code of the arriving airport
-            travel_date (str): [Required] The date of the travel in the format 'YYYY-MM-DD'
-            travel_class (str): [Required] The class of the travel. Options are: economy, business, first.
+            travel_from (str): The 3 letter code of the departing airport
+            travel_to (str): The 3 letter code of the arriving airport
+            travel_date (str): The date of the travel in the format 'YYYY-MM-DD'
+            travel_class (str): The class of the travel. Options are: economy, business, first.
         Returns:
-            travel_cost (float): The cost of the travel
+            travel_cost_list (List[float]): The list of cost of the travel
         """
         base_costs: Dict[Tuple[str, str], int] = {
             ("SFO", "LAX"): 200,
@@ -428,8 +428,8 @@ class TravelAPI:
                     + travel_date
                     + "."
                 )
-            return travel_cost_list
-        return travel_cost
+            return {"travel_cost_list": travel_cost_list}
+        return {"travel_cost_list": [travel_cost]}
 
     def get_credit_card_balance(
         self, access_token: str, card_id: str
@@ -437,8 +437,8 @@ class TravelAPI:
         """
         Get the balance of a credit card
         Args:
-            access_token (str): [Required] The access token obtained from the authenticate
-            card_id (str): [Required] The ID of the credit card
+            access_token (str): The access token obtained from the authenticate
+            card_id (str): The ID of the credit card
         Returns:
             card_balance (float): The balance of the credit card
         """
@@ -468,18 +468,25 @@ class TravelAPI:
         Book a flight given the travel information. From and To should be the airport codes in the IATA format.
 
         Args:
-            access_token (str): [Required] The access token obtained from the authenticate
-            card_id (str): [Required] The ID of the credit card to use for the booking
-            travel_date (str): [Required] The date of the travel in the format YYYY-MM-DD
-            travel_from (str): [Required] The location the travel is from
-            travel_to (str): [Required] The location the travel is to
-            travel_class (str): [Required] The class of the travel
-            travel_cost (float): [Required] The cost of the travel
+            access_token (str): The access token obtained from the authenticate
+            card_id (str): The ID of the credit card to use for the booking
+            travel_date (str): The date of the travel in the format YYYY-MM-DD
+            travel_from (str): The location the travel is from
+            travel_to (str): The location the travel is to
+            travel_class (str): The class of the travel
+            travel_cost (float): The cost of the travel
         Returns:
             booking_id (str): The ID of the booking
             transaction_id (str): The ID of the transaction
             booking_status (bool): The status of the booking, True if successful, False if failed
-            error (str): The error message if the booking failed
+            booking_history (Dict): The booking history if long context is enabled
+                - booking_id (str): The ID of the booking
+                - transaction_id (str): The ID of the transaction
+                - travel_date (str): The date of the travel
+                - travel_from (str): The location the travel is from
+                - travel_to (str): The location the travel is to
+                - travel_class (str): The class of the travel
+                - travel_cost (float): The cost of the travel
         """
         if self.token_expires_in == 0:
             return {"booking_status": False, "error": "Token expired"}
@@ -523,6 +530,7 @@ class TravelAPI:
             "booking_id": booking_id,
             "transaction_id": transaction_id,
             "booking_status": True,
+            "booking_history": {},
         }
 
     def retrieve_invoice(
@@ -535,12 +543,18 @@ class TravelAPI:
         Retrieve the invoice for a booking
 
         Args:
-            access_token (str): [Required] The access token obtained from the authenticate
-            booking_id (Optional[str]): Optional The ID of the booking
-            insurance_id (Optional[str]): Optional The ID of the insurance
+            access_token (str): The access token obtained from the authenticate
+            booking_id (str): [Optional] The ID of the booking
+            insurance_id (str): [Optional] The ID of the insurance
         Returns:
-            invoice (dict): The invoice for the booking
-            error (str): The error message if the booking was not found
+            invoice (Dict): The invoice for the booking
+                - booking_id (str): The ID of the booking
+                - travel_date (str): The date of the travel
+                - travel_from (str): The location the travel is from
+                - travel_to (str): The location the travel is to
+                - travel_class (str): The class of the travel
+                - travel_cost (float): The cost of the travel
+                - transaction_id (str): The ID of the transaction
         """
         if self.token_expires_in == 0:
             return {"error": "Token expired"}
@@ -600,11 +614,10 @@ class TravelAPI:
         Cancel a booking
 
         Args:
-            access_token (str): [Required] The access token obtained from the authenticate
-            booking_id (str): [Required] The ID of the booking
+            access_token (str): The access token obtained from the authenticate
+            booking_id (str): The ID of the booking
         Returns:
             cancel_status (bool): The status of the cancellation, True if successful, False if failed
-            error (str): The error message if the cancellation failed
         """
         if self.token_expires_in == 0:
             return {"cancel_status": False, "error": "Token expired"}
@@ -626,9 +639,9 @@ class TravelAPI:
         Compute the exchange rate between two currencies
 
         Args:
-            base_currency (str): [Required] The base currency
-            target_currency (str): [Required] The target currency
-            value (float): [Required] The value to convert
+            base_currency (str): The base currency
+            target_currency (str): The target currency
+            value (float): The value to convert
         Returns:
             exchanged_value (float): The value after the exchange
 
@@ -647,9 +660,9 @@ class TravelAPI:
         }
         for key, val in exchange_rates.items():
             if base_currency == key[0] and target_currency == key[1]:
-                return value * val
+                return {"exchanged_value": value * val}
             elif base_currency == key[1] and target_currency == key[0]:
-                return round(value / val, 2)
+                return {"exchanged_value": round(value / val, 2)}
         raise ValueError("No available exchange rate for the given currencies.")
 
     def verify_traveler_information(
@@ -659,10 +672,10 @@ class TravelAPI:
         Verify the traveler information
 
         Args:
-            first_name (str): [Required] The first name of the traveler
-            last_name (str): [Required] The last name of the traveler
-            date_of_birth (str): [Required] The date of birth of the traveler in the format YYYY-MM-DD
-            passport_number (str): [Required] The passport number of the traveler
+            first_name (str): The first name of the traveler
+            last_name (str): The last name of the traveler
+            date_of_birth (str): The date of birth of the traveler in the format YYYY-MM-DD
+            passport_number (str): The passport number of the traveler
         Returns:
             verification_status (bool): The status of the verification, True if successful, False if failed
             verification_failure (str): The reason for the verification failure
@@ -713,8 +726,8 @@ class TravelAPI:
         Set the budget limit for the user
 
         Args:
-            access_token (str): [Required] The access token obtained from the authentication process or initial configuration.
-            budget_limit (float): [Required] The budget limit to set in USD
+            access_token (str): The access token obtained from the authentication process or initial configuration.
+            budget_limit (float): The budget limit to set in USD
         Returns:
             budget_limit (float): The budget limit set in USD
         """
@@ -731,7 +744,7 @@ class TravelAPI:
         Get the nearest airport to the given location
 
         Args:
-            location (str): [Required] The name of the location.
+            location (str): The name of the location.
         Returns:
             nearest_airport (str): The nearest airport to the given location
         """
@@ -775,15 +788,14 @@ class TravelAPI:
         Purchase insurance
 
         Args:
-            access_token (str): [Required] The access token obtained from the authenticate
-            insurance_type (str): [Required] The type of insurance to purchase
-            insurance_cost (float): [Required] The cost of the insurance
-            booking_id (str): [Required] The ID of the booking
-            card_id (str): [Required] The ID of the credit card to use for the
+            access_token (str): The access token obtained from the authenticate
+            insurance_type (str): The type of insurance to purchase
+            insurance_cost (float): The cost of the insurance
+            booking_id (str): The ID of the booking
+            card_id (str): The ID of the credit card to use for the
         Returns:
             insurance_id (str): The ID of the insurance
             insurance_status (bool): The status of the insurance purchase, True if successful, False if failed
-            error (str): The error message if the insurance purchase failed
         """
         if self.token_expires_in == 0:
             return {"insurance_status": False, "error": "Token expired"}
@@ -807,13 +819,13 @@ class TravelAPI:
         Contact customer support
 
         Args:
-            booking_id (str): [Required] The ID of the booking
-            message (str): [Required] The message to send to customer support
+            booking_id (str): The ID of the booking
+            message (str): The message to send to customer support
         Returns:
             customer_support_message (str): The message from customer support
         """
-        # if booking_id not in self.booking_record:
-        #     raise ValueError("Booking not found")
+        if booking_id not in self.booking_record:
+            return {"error": "Booking not found"}
         return {
             "customer_support_message": "Thank you for contacting customer support. We will get back to you shortly. "
             + message
@@ -823,9 +835,12 @@ class TravelAPI:
         """
         Get all registered credit cards
 
-        Args:
-            None
         Returns:
-            credit_card_list (Dict[str, Dict[str, Union[str, int, float]]]): A dictionary containing all registered credit cards
+            credit_card_list (Dict): A dictionary containing all registered credit cards
+                - card_number (str): The number of the credit card
+                - expiration_date (str): The expiration date of the credit card in the format YYYY-MM-DD
+                - cardholder_name (str): The name of the cardholder
+                - card_verification_value (int): The verification value of the credit card
+                - balance (float): The balance of the credit card
         """
         return {"credit_card_list": self.credit_card_list}
