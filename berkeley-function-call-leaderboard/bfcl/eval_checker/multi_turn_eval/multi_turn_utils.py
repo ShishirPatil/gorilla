@@ -78,21 +78,21 @@ def execute_multi_turn_func_call(
         # Evaluate the function call
         try:
             func_call_result = eval(func_call)
+
+            if type(func_call_result) == str:
+                pass
+            elif type(func_call_result) == dict:
+                # Some function returns a object instance, which is not serializable
+                try:
+                    func_call_result = json.dumps(func_call_result)
+                except:
+                    func_call_result = str(func_call_result)
+            else:
+                func_call_result = str(func_call_result)
+
             execution_results.append(func_call_result)
         except Exception as e:
             execution_results.append(f"Error during execution: {str(e)}")
-
-    for index in range(len(execution_results)):
-        if type(execution_results[index]) == str:
-            continue
-        elif type(execution_results[index]) == dict:
-            # Some function returns a object instance, which is not serializable
-            try:
-                execution_results[index] = json.dumps(execution_results[index])
-            except:
-                execution_results[index] = str(execution_results[index])
-        else:
-            execution_results[index] = str(execution_results[index])
 
     return execution_results, involved_instances
 
