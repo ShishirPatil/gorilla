@@ -49,7 +49,7 @@ class TwitterAPI:
 
     def authenticate_twitter(self, username: str, password: str) -> Dict[str, bool]:
         """
-        Authenticate a user with username and password. Always authenticate the user first.
+        Authenticate a user with username and password.
 
         Args:
             username (str): Username of the user.
@@ -79,8 +79,8 @@ class TwitterAPI:
 
         Args:
             content (str): Content of the tweet.
-            tags (List[str]): List of tags for the tweet. Tag name should start with #.
-            mentions (List[str]): List of users mentioned in the tweet. Mention name should start with @.
+            tags (List[str]): [Optional] List of tags for the tweet. Tag name should start with #.
+            mentions (List[str]): [Optional] List of users mentioned in the tweet. Mention name should start with @.
         Returns:
             id (int): ID of the posted tweet.
             username (str): Username of the poster.
@@ -89,7 +89,7 @@ class TwitterAPI:
             mentions (List[str]): List of users mentioned in the tweet.
         """
         if not self.authenticated:
-            raise ValueError("User not authenticated. Please authenticate before posting.")
+            return {"error": "User not authenticated. Please authenticate before posting."}
 
         tweet = {
             "id": self.tweet_counter,
@@ -112,9 +112,7 @@ class TwitterAPI:
             retweet_status (str): Status of the retweet action.
         """
         if not self.authenticated:
-            raise ValueError(
-                "User not authenticated. Please authenticate before retweeting."
-            )
+            return {"error": "User not authenticated. Please authenticate before retweeting."}
 
         if tweet_id not in self.tweets:
             return {"error": f"Tweet with ID {tweet_id} not found."}
@@ -139,9 +137,8 @@ class TwitterAPI:
             comment_status (str): Status of the comment action.
         """
         if not self.authenticated:
-            raise ValueError(
-                "User not authenticated. Please authenticate before commenting."
-            )
+            raise {"error": "User not authenticated. Please authenticate before commenting."}
+
 
         if tweet_id not in self.tweets:
             return {"error": f"Tweet with ID {tweet_id} not found."}
@@ -182,12 +179,11 @@ class TwitterAPI:
             follow_status (bool): True if followed, False if already following.
         """
         if not self.authenticated:
-            raise ValueError(
-                "User not authenticated. Please authenticate before following."
-            )
+            return {"error": "User not authenticated. Please authenticate before following."}
 
         if username_to_follow in self.following_list:
             return {"follow_status": False}
+
         self.following_list.append(username_to_follow)
         return {"follow_status": True}
 
@@ -195,15 +191,12 @@ class TwitterAPI:
         """
         List all users that the authenticated user is following.
 
-        Args:
-            None
         Returns:
             following_list (List[str]): List of all users that the authenticated user is following.
         """
         if not self.authenticated:
-            raise ValueError(
-                "User not authenticated. Please authenticate before listing following."
-            )
+            return {"error": "User not authenticated. Please authenticate before listing following."}
+
         return self.following_list
 
     def unfollow_user(self, username_to_unfollow: str) -> Dict[str, bool]:
@@ -216,16 +209,15 @@ class TwitterAPI:
             unfollow_status (bool): True if unfollowed, False if not following.
         """
         if not self.authenticated:
-            raise ValueError(
-                "User not authenticated. Please authenticate before unfollowing."
-            )
+            return {"error": "User not authenticated. Please authenticate before unfollowing."}
 
         if username_to_unfollow not in self.following_list:
             return {"unfollow_status": False}
+
         self.following_list.remove(username_to_unfollow)
         return {"unfollow_status": True}
 
-    def get_tweet(self, tweet_id: int) -> Optional[Dict[str, Union[int, str, List[str]]]]:
+    def get_tweet(self, tweet_id: int) -> Dict[str, Union[int, str, List[str]]]:
         """
         Retrieve a specific tweet.
 
@@ -240,6 +232,7 @@ class TwitterAPI:
         """
         if tweet_id not in self.tweets:
             return {"error": f"Tweet with ID {tweet_id} not found."}
+
         return self.tweets[tweet_id]
 
     def get_user_tweets(self, username: str) -> List[Dict[str, Union[int, str, List[str]]]]:
@@ -250,6 +243,11 @@ class TwitterAPI:
             username (str): Username of the user whose tweets to retrieve.
         Returns:
             user_tweets (List[Dict]): List of dictionaries, each containing tweet information.
+                - id (int): ID of the retrieved tweet.
+                - username (str): Username of the tweet's author.
+                - content (str): Content of the tweet.
+                - tags (List[str]): List of tags associated with the tweet.
+                - mentions (List[str]): List of users mentioned in the tweet.
         """
         return [tweet for tweet in self.tweets.values() if tweet["username"] == username]
 
@@ -261,6 +259,11 @@ class TwitterAPI:
             keyword (str): Keyword to search for in the content of the tweets.
         Returns:
             matching_tweets (List[Dict]): List of dictionaries, each containing tweet information.
+                - id (int): ID of the retrieved tweet.
+                - username (str): Username of the tweet's author.
+                - content (str): Content of the tweet.
+                - tags (List[str]): List of tags associated with the tweet.
+                - mentions (List[str]): List of users mentioned in the tweet.
         """
         return [
             tweet
@@ -277,6 +280,8 @@ class TwitterAPI:
             tweet_id (int): ID of the tweet to retrieve comments for.
         Returns:
             comments (List[Dict]): List of dictionaries, each containing comment information.
+                - username (str): Username of the commenter.
+                - content (str): Content of the comment.
         """
         if tweet_id not in self.tweets:
             return {"error": f"Tweet with ID {tweet_id} not found."}

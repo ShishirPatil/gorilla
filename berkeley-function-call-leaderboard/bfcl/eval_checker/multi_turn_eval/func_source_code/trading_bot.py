@@ -1,6 +1,7 @@
+from copy import deepcopy
 from datetime import datetime, time
 from typing import Dict, List, Optional, Union
-from copy import deepcopy
+
 from .long_context import (
     AUTOMOBILE_EXTENSION,
     MA_5_EXTENSION,
@@ -177,7 +178,7 @@ class TradingBot:
         )
         self.long_context = long_context
 
-    def get_current_time(self) -> str:
+    def get_current_time(self) -> Dict[str, str]:
         """
         Get the current time.
 
@@ -185,7 +186,7 @@ class TradingBot:
             current_time (str): Current time in HH:MM AM/PM format.
         """
         current_time = datetime(2024, 9, 1, 10, 30)
-        return current_time.strftime("%I:%M %p")
+        return {"current_time": current_time.strftime("%I:%M %p")}
 
     def update_market_status(self, current_time_str: str) -> Dict[str, str]:
         """
@@ -209,7 +210,7 @@ class TradingBot:
             self.market_status = "Closed"
             return {"status": "Closed"}
 
-    def get_symbol_by_name(self, name: str) -> str:
+    def get_symbol_by_name(self, name: str) -> Dict[str, str]:
         """
         Get the symbol of a stock by company name.
 
@@ -234,7 +235,7 @@ class TradingBot:
             "Amazon": "AMZN",
         }
 
-        return symbol_map.get(name, "Stock not found")
+        return {"symbol": symbol_map.get(name, "Stock not found")}
 
     def get_stock_info(self, symbol: str) -> Dict[str, Union[float, int, str]]:
         """
@@ -508,7 +509,7 @@ class TradingBot:
         self.watch_list.remove(symbol)
         return {"status": f"Stock {symbol} removed from watchlist successfully."}
 
-    def get_watchlist(self) -> List[str]:
+    def get_watchlist(self) -> Dict[str, List[str]]:
         """
         Get the watchlist.
 
@@ -522,17 +523,17 @@ class TradingBot:
             watch_list = self.watch_list.copy()
             watch_list.extend(WATCH_LIST_EXTENSION)
             return watch_list
-        return self.watch_list
+        return {"watchlist": self.watch_list}
 
     def get_transaction_history(
         self, start_date: Optional[str] = None, end_date: Optional[str] = None
-    ) -> List[Dict[str, Union[str, float]]]:
+    ) -> Dict[str, List[Dict[str, Union[str, float]]]]:
         """
         Get the transaction history within a specified date range.
 
         Args:
-            start_date (Optional[str]): Start date for the history (format: 'YYYY-MM-DD').
-            end_date (Optional[str]): End date for the history (format: 'YYYY-MM-DD').
+            start_date (str): [Optional] Start date for the history (format: 'YYYY-MM-DD').
+            end_date (str): [Optional] End date for the history (format: 'YYYY-MM-DD').
 
         Returns:
             history (List[Dict[str, str]]): List of transactions within the specified date range.
@@ -563,7 +564,7 @@ class TradingBot:
         if self.long_context:
             filtered_history.extend(TRANSACTION_HISTORY_EXTENSION)
 
-        return filtered_history
+        return {"history": filtered_history}
 
     def update_stock_price(
         self, symbol: str, new_price: float
@@ -592,7 +593,7 @@ class TradingBot:
         return {"symbol": symbol, "old_price": old_price, "new_price": new_price}
 
     # below contains a list of functions to be nested
-    def get_available_stocks(self, sector: str) -> List[str]:
+    def get_available_stocks(self, sector: str) -> Dict[str, List[str]]:
         """
         Get a list of stock symbols in the given sector.
 
@@ -610,11 +611,11 @@ class TradingBot:
         if self.long_context:
             sector_map["Technology"].extend(TECHNOLOGY_EXTENSION)
             sector_map["Automobile"].extend(AUTOMOBILE_EXTENSION)
-        return sector_map.get(sector, [])
+        return {"stock_list": sector_map.get(sector, [])}
 
     def filter_stocks_by_price(
         self, stocks: List[str], min_price: float, max_price: float
-    ) -> List[str]:
+    ) -> Dict[str, List[str]]:
         """
         Filter stocks based on a price range.
 
@@ -632,9 +633,9 @@ class TradingBot:
             if self.stocks.get(symbol, {}).get("price", 0) >= min_price
             and self.stocks.get(symbol, {}).get("price", 0) <= max_price
         ]
-        return filtered_stocks
+        return {"filtered_stocks": filtered_stocks}
 
-    def add_to_watchlist(self, stocks: List[str]) -> List[str]:
+    def add_to_watchlist(self, stocks: List[str]) -> Dict[str, List[str]]:
         """
         Add a list of stocks to the watchlist.
 
@@ -648,7 +649,7 @@ class TradingBot:
             if symbol not in self.watch_list:
                 if symbol in self.stocks:  # Ensure symbol is valid
                     self.watch_list.append(symbol)
-        return self.watch_list
+        return {"symbols": self.watch_list}
 
     def notify_price_change(self, stocks: List[str], threshold: float) -> Dict[str, str]:
         """
@@ -659,7 +660,7 @@ class TradingBot:
             threshold (float): Percentage change threshold to trigger a notification.
 
         Returns:
-            notifications (Dict[str, str]): Notification message about the price changes.
+            notification (str): Notification message about the price changes.
         """
         changed_stocks = [
             symbol
@@ -669,8 +670,6 @@ class TradingBot:
         ]
 
         if changed_stocks:
-            return {
-                "notification": f"Stocks {', '.join(changed_stocks)} have significant price changes."
-            }
+            return {"notification": f"Stocks {', '.join(changed_stocks)} have significant price changes."}
         else:
             return {"notification": "No significant price changes in the selected stocks."}
