@@ -1,7 +1,7 @@
 import inspect
 import json
 import re
-from typing import Dict, Union
+from typing import Dict, Union, Optional
 
 TYPE_MAPPING = {
     "str": "string",
@@ -14,12 +14,9 @@ TYPE_MAPPING = {
     "tuple": "tuple",
 }
 
-
 # Type Conversions
 def convert_type_to_json_compatible(type_name: str) -> str:
-
     return TYPE_MAPPING.get(type_name.lower(), "any")
-
 
 def parse_type_string(type_str: str) -> dict:
     """
@@ -62,7 +59,6 @@ def parse_type_string(type_str: str) -> dict:
     base_type = convert_type_to_json_compatible(type_str)
     return {"type": base_type}
 
-
 def parse_docstring(docstring: str) -> Dict[str, Union[str, dict]]:
     description = ""
     parameters = {}
@@ -71,6 +67,7 @@ def parse_docstring(docstring: str) -> Dict[str, Union[str, dict]]:
     current_section = None
     indent_levels = []
     base_indent = None
+    parent_param = None
 
     for idx, line in enumerate(lines):
         original_line = line
@@ -97,9 +94,22 @@ def parse_docstring(docstring: str) -> Dict[str, Union[str, dict]]:
                 type_info = parse_type_string(param_type_str)
                 param_entry = type_info
                 param_entry["description"] = param_desc
+                if type_info["type"] == "dict":
+                    param_entry["properties"] = {}
+                    parent_param = param_name  # Track the parent parameter for nested dict entries
                 parameters[param_name] = param_entry
             else:
-                if parameters:
+                # Handle nested parameters in dicts if they start with a dash
+                nested_match = re.match(r"-\s*(\w+)\s*\(([^)]+)\):\s*(.+)", stripped_line)
+                if nested_match and parent_param:
+                    nested_name, nested_type_str, nested_desc = nested_match.groups()
+                    nested_desc = nested_desc.replace("[Optional]", "").strip()
+                    nested_type_info = parse_type_string(nested_type_str)
+                    nested_param_entry = nested_type_info
+                    nested_param_entry["description"] = nested_desc
+                    # Add nested property to the parent parameter
+                    parameters[parent_param]["properties"][nested_name] = nested_param_entry
+                elif parameters:
                     last_param = list(parameters.keys())[-1]
                     parameters[last_param]["description"] += " " + stripped_line
         elif current_section == "response":
@@ -161,7 +171,6 @@ def parse_docstring(docstring: str) -> Dict[str, Union[str, dict]]:
         "response_properties": response,
     }
 
-
 def function_to_json(func) -> str:
     func_name = func.__name__
     docstring = func.__doc__
@@ -213,36 +222,28 @@ def function_to_json(func) -> str:
 
     return json.dumps(json_representation)
 
-
 # PROOF OF CONCEPT TEST
-
 
 class TestAPI:
     # Amitoj Note: PASTE WHICHEVER FUNCTION YOU WANT TO CHECK HERE AND REPLACE
-    def displayCarStatus(
-        self, option: str, format: str = "detailed"
-    ) -> Dict[str, Union[str, float, Dict[str, str]]]:
+    def edit_ticket(
+        self, ticket_id: int, updates: Dict[str, Optional[Union[str, int]]]
+    ) -> Dict[str, str]:
         """
-        Displays the status of the vehicle based on the provided display option.
+        Modify the details of an existing ticket.
+
         Args:
-            option (str): The option to display. [Enum]: ["fuel", "battery", "doors", "climate", "headlights", "brake", "engine"]
-            format (str): [Optional] The format of the display. [Enum]: ["detailed", "simple"]
+            ticket_id (int): ID of the ticket to be changed.
+            updates (Dict): Dictionary containing the fields to be updated.
+                - title (str): [Optional] New title for the ticket.
+                - description (str): [Optional] New description for the ticket.
+                - status (str): [Optional] New status for the ticket.
+                - priority (int): [Optional] New priority for the ticket.
+
         Returns:
-            status (Dict): The status of the vehicle based on the option.
-                - fuelLevel (float): The fuel level of the vehicle in gallons.
-                - batteryVoltage (float): The battery voltage of the vehicle in volts.
-                - doorStatus (Dict): The status of the doors. [Enum]: ["driver", "passenger", "rear_left", "rear_right"]
-                    - driver (str): The status of the driver door. [Enum]: ["locked", "unlocked"]
-                    - passenger (str): The status of the passenger door. [Enum]: ["locked", "unlocked"]
-                    - rear_left (str): The status of the rear left door. [Enum]: ["locked", "unlocked"]
-                    - rear_right (str): The status of the rear right door. [Enum]: ["locked", "unlocked"]
-                - currentACTemperature (float): The current temperature set in degree Celsius.
-                - headlightStatus (str): The status of the headlights. [Enum]: ["on", "off"]
-                - brakeStatus (str): The status of the brake. [Enum]: ["engaged", "released"]
-                - engineState (str): The state of the engine. [Enum]: ["running", "stopped"]
+            status (str): Status of the update operation.
         """
         pass
 
-
 # test_api = TestAPI()
-# print(function_to_json(test_api.displayCarStatus))
+# print(function_to_json(test_api.edit_ticket))
