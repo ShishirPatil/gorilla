@@ -1,6 +1,6 @@
 import json
 
-from bfcl.eval_checker.eval_runner_helper import (
+from bfcl.utils import (
     contain_unachievable_task,
     is_empty_output,
 )

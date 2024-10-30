@@ -5,7 +5,6 @@ import json
 import os
 import re
 
-from bfcl.eval_checker.eval_runner_helper import is_multi_turn
 from bfcl.model_handler.constant import (
     DEFAULT_SYSTEM_PROMPT,
     DEFAULT_SYSTEM_PROMPT_FOR_MULTI_TURN,
@@ -14,6 +13,7 @@ from bfcl.model_handler.constant import (
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.parser.java_parser import parse_java_function_call
 from bfcl.model_handler.parser.js_parser import parse_javascript_function_call
+from bfcl.utils import is_multi_turn
 
 
 def _cast_to_openai_type(properties, mapping):

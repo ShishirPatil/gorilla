@@ -22,6 +22,8 @@ from bfcl.eval_checker.multi_turn_eval.multi_turn_checker import (
     multi_turn_irrelevance_checker,
 )
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import is_empty_execute_response
+from bfcl.model_handler.handler_map import HANDLER_MAP
+from bfcl.utils import *
 from dotenv import load_dotenv
 from tqdm import tqdm
 
@@ -643,6 +645,12 @@ def main(model, test_category, api_sanity_check):
             model_names.append(model_name.replace("/", "_"))
 
     runner(model_names, test_categories, api_sanity_check)
+
+
+def get_handler(model_name):
+    return HANDLER_MAP[model_name](
+        model_name, temperature=0
+    )  # Temperature doesn't matter for evaluation
 
 
 if __name__ == "__main__":
