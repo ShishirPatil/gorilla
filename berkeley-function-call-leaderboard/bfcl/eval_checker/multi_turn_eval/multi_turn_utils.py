@@ -77,6 +77,17 @@ def execute_multi_turn_func_call(
 
         # Evaluate the function call
         try:
+            # Before calling `eval`, we need to make sure that the function call is safe
+            # We do so by checking if the function is `kill` or `exit`, etc.
+            # Extract the function name first
+            if "(" in func_call:
+                func_call = func_call.split("(")[0]
+            # Situation where the function call is a method call
+            if "." in func_call:
+                func_call = func_call.split(".")[1]
+            if func_call in ["kill", "exit", "quit", "remove", "unlink", "rmdir", "popen", "Popen", "run"]:
+                raise Exception(f"Function call {func_call} is not allowed.")
+
             func_call_result = eval(func_call)
 
             if type(func_call_result) == str:
