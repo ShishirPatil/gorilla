@@ -157,6 +157,21 @@ def is_empty_output(decoded_output):
         return True
     return False
 
+
+def contain_unachievable_task(decoded_output: list[str]):
+    """
+    Check if the decoded output contains a function call to the `flag_task_unachievable` function, which signals that the task is unachievable in the given context.
+    The model should only invoke this function in the irrelevance scenario, and not in other scenarios.
+    
+    Args:
+        decoded_output (list[str]): The decoded output from the model, from the `decode_exec` function.
+    """
+    for item in decoded_output:
+        if "flag_task_unachievable" in item:
+            return True
+    return False
+
+
 def api_status_sanity_check_rest():
 
     # We only need to import the executable_checker_rest in this function. So a local import is used.
