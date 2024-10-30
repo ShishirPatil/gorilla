@@ -500,35 +500,6 @@ class GorillaFileSystem:
 
         return {"error": f"grep: {file_name}: No such file or directory"}
 
-    def xargs(self, command: str, file_name: str = None):
-        """
-        Execute a command with arguments read from a file or standard input.
-
-        Args:
-            command (str): The command to execute with arguments.
-            file_name (str): [Optional] The file containing arguments. Defaults to None.
-
-        Returns:
-            output (str): The result of the command execution.
-        """
-        if file_name:
-            if file_name in self._current_dir.contents:
-                file = self._current_dir._get_item(file_name)
-                if isinstance(file, File):
-                    args = file._read().splitlines()
-                else:
-                    return {"error": f"xargs: {file_name}: Not a file"}
-            else:
-                return {"error": f"xargs: {file_name}: No such file or directory"}
-        else:
-            return {"error": f"Argument not supported"}
-
-        try:
-            result = subprocess.run([command] + args, capture_output=True, text=True)
-            return {"output": result.stdout, "error": result.stderr}
-        except Exception as e:
-            return {"error": str(e)}
-
     def du(self, human_readable: bool = False) -> Dict[str, str]:
         """
         Estimate the disk usage of a directory and its contents.
