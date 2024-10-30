@@ -10,6 +10,7 @@ from bfcl.model_handler.constant import (
     DEFAULT_USER_PROMPT_FOR_ADDITIONAL_FUNCTION_FC,
     DEFAULT_USER_PROMPT_FOR_ADDITIONAL_FUNCTION_PROMPTING,
     MAXIMUM_ROUND_LIMIT,
+    UNACHIEVABLE_TASK_FUNC_DOC,
 )
 from bfcl.model_handler.model_style import ModelStyle
 
@@ -56,6 +57,9 @@ class BaseHandler:
         involved_classes: list = test_entry["involved_classes"]
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
+
+        # Add the unachievable task function to the function list
+        test_entry["function"].append(UNACHIEVABLE_TASK_FUNC_DOC)
 
         # This is only for the miss function category
         # A mapping from turn index to function to holdout
@@ -237,6 +241,9 @@ class BaseHandler:
         involved_classes: list = test_entry["involved_classes"]
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
+
+        # Add the unachievable task function to the function list
+        test_entry["function"].append(UNACHIEVABLE_TASK_FUNC_DOC)
 
         # This is only for the miss function category
         # A mapping from turn index to function to holdout
