@@ -1,7 +1,9 @@
 import json
 import os
-
+import logging
 from anthropic import Anthropic
+from transformers import GPT2TokenizerFast
+
 from anthropic.types import TextBlock, ToolUseBlock
 from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT, GORILLA_TO_OPENAPI
@@ -18,12 +20,14 @@ from bfcl.model_handler.utils import (
     system_prompt_pre_processing_chat_model,
 )
 
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 class ClaudeHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.Anthropic
-        self.client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        self.client = Anthropic(os.getenv("ANTHROPIC_API_KEY"))
+        #print(os.getenv("ANTHROPIC_API_KEY"))
 
     def decode_ast(self, result, language="Python"):
         if "FC" not in self.model_name:
@@ -75,14 +79,55 @@ class ClaudeHandler(BaseHandler):
             "tools": inference_data["tools"],
         }
 
-        return self.client.messages.create(
+        tools = inference_data["tools"]
+
+        if tools:
+            # Use a tokenizer to calculate token counts
+            tokenizer = GPT2TokenizerFast.from_pretrained("gpt2")
+
+            cumulative_token_count = 0
+            cacheable_tools = []
+            cache_control_applied = False
+
+            for idx, tool in enumerate(tools):
+                tool_text = json.dumps(tool)
+                token_count = len(tokenizer.encode(tool_text))
+                cumulative_token_count += token_count
+                cacheable_tools.append(tool)
+
+                # Apply cache_control when cumulative tokens exceed 1024
+                if not cache_control_applied and cumulative_token_count >= 1024:
+                    cacheable_tools[idx]['cache_control'] = {'type': 'ephemeral'}
+                    cache_control_applied = True
+                    print(f"Caching tools up to index {idx} with cumulative tokens {cumulative_token_count}")
+                    break  # Only one cache breakpoint needed here
+
+            if not cache_control_applied:
+                # If cumulative tokens never reached 1024, no caching will occur
+                print("Cumulative token count did not reach 1024. No caching applied.")
+        else:
+            cacheable_tools = tools
+
+        response = self.client.beta.prompt_caching.messages.create(
             model=self.model_name.strip("-FC"),
             max_tokens=(
                 8192 if "claude-3-5-sonnet-20240620" in self.model_name else 4096
-            ),  # 3.5 Sonnet has a higher max token limit
-            tools=inference_data["tools"],
-            messages=inference_data["message"],
+            ),
+            tools=cacheable_tools,
+            messages=inference_data["message"]
         )
+
+        # Corrected way to access usage attributes
+        usage = response.usage
+        if usage:
+            print(f"Cache Creation Tokens: {getattr(usage, 'cache_creation_input_tokens', 0)}")
+            print(f"Cache Read Tokens: {getattr(usage, 'cache_read_input_tokens', 0)}")
+            print(f"Regular Input Tokens: {getattr(usage, 'input_tokens', 0)}")
+            print(f"Output Tokens: {getattr(usage, 'output_tokens', 0)}")
+
+        return response
+
+
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         for round_idx in range(len(test_entry["question"])):
@@ -188,17 +233,49 @@ class ClaudeHandler(BaseHandler):
             "system_prompt": inference_data["system_prompt"],
         }
 
-        api_response =  self.client.messages.create(
+         # Use the GPT2 tokenizer to calculate token counts
+        tokenizer = GPT2TokenizerFast.from_pretrained("gpt2")
+
+        system_prompt_text = inference_data["system_prompt"]
+        token_count = len(tokenizer.encode(system_prompt_text))
+
+        system_prompt = [
+            {
+                "type": "text",
+                "text": system_prompt_text
+            }
+        ]
+
+        # Decide whether to apply caching based on token count
+        if token_count >= 1024:
+            # Add 'cache_control' to the system prompt
+            system_prompt[0]['cache_control'] = {"type": "ephemeral"}
+            print(f"Caching system prompt with token count: {token_count}")
+        else:
+            print(f"System prompt token count ({token_count}) is less than 1024. No caching applied.")
+
+
+        # Use the beta prompt caching endpoint
+        api_response = self.client.beta.prompt_caching.messages.create(
             model=self.model_name,
             max_tokens=(
                 8192 if "claude-3-5-sonnet-20240620" in self.model_name else 4096
-            ),  # 3.5 Sonnet has a higher max token limit
+            ),
             temperature=self.temperature,
-            system=inference_data["system_prompt"],
-            messages=inference_data["message"],
+            system=system_prompt,
+            messages=inference_data["message"]
         )
-        
+
+        # Log caching metrics
+        usage = api_response.usage
+        if usage:
+            print(f"Cache Creation Tokens: {getattr(usage, 'cache_creation_input_tokens', 0)}")
+            print(f"Cache Read Tokens: {getattr(usage, 'cache_read_input_tokens', 0)}")
+            print(f"Regular Input Tokens: {getattr(usage, 'input_tokens', 0)}")
+            print(f"Output Tokens: {getattr(usage, 'output_tokens', 0)}")
+
         return api_response
+        
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
@@ -262,3 +339,4 @@ class ClaudeHandler(BaseHandler):
         )
 
         return inference_data
+
