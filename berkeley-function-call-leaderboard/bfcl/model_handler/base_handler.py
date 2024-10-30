@@ -1,5 +1,6 @@
 import json
 import time
+from copy import deepcopy
 
 from bfcl.constant import RESULT_PATH, VERSION_PREFIX
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import (
@@ -59,7 +60,7 @@ class BaseHandler:
         test_category: str = test_entry_id.rsplit("_", 1)[0]
 
         # Add the unachievable task function to the function list
-        test_entry["function"].append(UNACHIEVABLE_TASK_FUNC_DOC)
+        test_entry["function"].append(deepcopy(UNACHIEVABLE_TASK_FUNC_DOC))
 
         # This is only for the miss function category
         # A mapping from turn index to function to holdout
@@ -243,7 +244,7 @@ class BaseHandler:
         test_category: str = test_entry_id.rsplit("_", 1)[0]
 
         # Add the unachievable task function to the function list
-        test_entry["function"].append(UNACHIEVABLE_TASK_FUNC_DOC)
+        test_entry["function"].append(deepcopy(UNACHIEVABLE_TASK_FUNC_DOC))
 
         # This is only for the miss function category
         # A mapping from turn index to function to holdout
