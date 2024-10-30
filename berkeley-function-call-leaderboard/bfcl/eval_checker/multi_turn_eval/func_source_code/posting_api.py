@@ -38,6 +38,7 @@ class TwitterAPI:
             "authenticated", DEFAULT_STATE_COPY["authenticated"]
         )
         self.tweets = scenario.get("tweets", DEFAULT_STATE_COPY["tweets"])
+        self.tweets = {int(k): v for k, v in self.tweets.items()} # Convert tweet keys from string to int from loaded scenario
         self.comments = scenario.get("comments", DEFAULT_STATE_COPY["comments"])
         self.retweets = scenario.get("retweets", DEFAULT_STATE_COPY["retweets"])
         self.following_list = scenario.get(
@@ -79,8 +80,8 @@ class TwitterAPI:
 
         Args:
             content (str): Content of the tweet.
-            tags (List[str]): [Optional] List of tags for the tweet. Tag name should start with #.
-            mentions (List[str]): [Optional] List of users mentioned in the tweet. Mention name should start with @.
+            tags (List[str]): [Optional] List of tags for the tweet. Tag name should start with #. This is only relevant if the user wants to add tags to the tweet.
+            mentions (List[str]): [Optional] List of users mentioned in the tweet. Mention name should start with @. This is only relevant if the user wants to add mentions to the tweet.
         Returns:
             id (int): ID of the posted tweet.
             username (str): Username of the poster.
@@ -113,7 +114,7 @@ class TwitterAPI:
         """
         if not self.authenticated:
             return {"error": "User not authenticated. Please authenticate before retweeting."}
-
+                
         if tweet_id not in self.tweets:
             return {"error": f"Tweet with ID {tweet_id} not found."}
 

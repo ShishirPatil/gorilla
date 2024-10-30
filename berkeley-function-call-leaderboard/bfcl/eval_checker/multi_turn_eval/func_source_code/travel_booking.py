@@ -383,6 +383,7 @@ class TravelAPI:
             ("ATV", "GFD"): 240,
             ("PHV", "GFD"): 220,
             ("LHR", "CDG"): 100,
+            ("OKD", "LAX"): 220
         }
 
         # Ensure the travel_from and travel_to is a tuple in the correct order (from, to)
@@ -639,8 +640,8 @@ class TravelAPI:
         Compute the exchange rate between two currencies
 
         Args:
-            base_currency (str): The base currency
-            target_currency (str): The target currency
+            base_currency (str): The base currency. [Enum]: USD, RMB, EUR, JPY, GBP, CAD, AUD, INR, RUB, BRL, MXN
+            target_currency (str): The target currency. [Enum]: USD, RMB, EUR, JPY, GBP, CAD, AUD, INR, RUB, BRL, MXN
             value (float): The value to convert
         Returns:
             exchanged_value (float): The value after the exchange
@@ -656,7 +657,7 @@ class TravelAPI:
             ("USD", "INR"): 70,
             ("USD", "RUB"): 60,
             ("USD", "BRL"): 3.8,
-            ("USD", "MXN"): 20,
+            ("USD", "MXN"): 20
         }
         for key, val in exchange_rates.items():
             if base_currency == key[0] and target_currency == key[1]:
@@ -744,7 +745,7 @@ class TravelAPI:
         Get the nearest airport to the given location
 
         Args:
-            location (str): The name of the location.
+            location (str): The name of the location. [Enum]: Rivermist, Stonebrook, Maplecrest, Silverpine, Shadowridge, London, Paris, Sunset Valley, Oakendale, Willowbend, Crescent Hollow, Autumnville, Pinehaven, Greenfield, San Francisco, Los Angeles, New York, Chicago, Boston, Beijing, Hong Kong, Rome, Tokyo
         Returns:
             nearest_airport (str): The nearest airport to the given location
         """

@@ -2,7 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
-- [Oct 24, 2024] [#719](https://github.com/ShishirPatil/gorilla/pull/719), [#722](https://github.com/ShishirPatil/gorilla/pull/722): Bug fix in the dataset and ground truth for the multi-turn categories.
+- [Oct 24, 2024] [#719](https://github.com/ShishirPatil/gorilla/pull/719), [#722](https://github.com/ShishirPatil/gorilla/pull/722), [#723](https://github.com/ShishirPatil/gorilla/pull/723): Bug fix in the dataset and ground truth for the multi-turn categories.
 - [Oct 17, 2024] [#683](https://github.com/ShishirPatil/gorilla/pull/683): Bug fix for the multi turn categories for ambiguity in action intention and function parameters.
 - [Oct 17, 2024] [#709](https://github.com/ShishirPatil/gorilla/pull/709): Rephrase question prompt for Java and JavaScript categories to improve clarity and action intent.
 - [Oct 17, 2024] [#708](https://github.com/ShishirPatil/gorilla/pull/708): Update the ground truth for the REST category to be up-to-date with the latest API response structure.
