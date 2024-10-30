@@ -2,6 +2,11 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Oct 29, 2024] [#725](https://github.com/ShishirPatil/gorilla/pull/725): Update evaluation metric for irrelevance detection in multi-turn scenarios (affecting `multi_turn_miss_func` and `multi_turn_miss_param`):
+  - Added a dummy `flag_task_unachievable` function for all multi-turn entries.
+  - If the model identifies a task as unachievable, it should invoke this function explicitly.
+  - During evaluation, if `flag_task_unachievable` is called, the entry will be marked correct for irrelevance detection, even if other functions were called before.
+  - This ensures the model can attempt reasonable exploratory actions before concluding a task is unachievable, aligning multi-turn behavior with single-turn irrelevance standards.
 - [Oct 24, 2024] [#719](https://github.com/ShishirPatil/gorilla/pull/719), [#722](https://github.com/ShishirPatil/gorilla/pull/722): Bug fix in the dataset and ground truth for the multi-turn categories.
 - [Oct 17, 2024] [#683](https://github.com/ShishirPatil/gorilla/pull/683): Bug fix for the multi turn categories for ambiguity in action intention and function parameters.
 - [Oct 17, 2024] [#709](https://github.com/ShishirPatil/gorilla/pull/709): Rephrase question prompt for Java and JavaScript categories to improve clarity and action intent.
