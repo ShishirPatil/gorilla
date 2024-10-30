@@ -26,7 +26,8 @@ def multi_turn_checker(
     involved_classes: list = test_entry["involved_classes"]
     test_entry_id: str = test_entry["id"]
     test_category: str = test_entry_id.rsplit("_", 1)[0]
-    log = []
+    execution_results: list[dict] = []
+
     # First execute all the function calls
     for turn_index, single_turn_ground_truth_list in enumerate(
         multi_turn_ground_truth_list
@@ -37,6 +38,7 @@ def multi_turn_checker(
                 "valid": False,
                 "error": f"Model response list is empty for turn {turn_index}",
                 "error_type": "multi_turn:empty_turn_model_response",
+                "execution_result": execution_results,
             }
 
         # Execute the ground truth function calls
@@ -53,12 +55,6 @@ def multi_turn_checker(
                 is_evaL_run=True,
             )
         )
-
-        # If the ground truth list is empty, this is the turn where the model should eventually fail to achieve the user request.
-        # The actual check for irrelevance is done in the multi_turn_irrelevance_checker function
-        # Note: If the model outputs any function call in this turn, we will still execute it so that the state check at the next turn is accurate.
-        if not single_turn_ground_truth_list:
-            continue
 
         # Note that we combine all the sub-turn results into a single list, for easier comparison
         single_turn_model_execution_results = []
@@ -79,6 +75,19 @@ def multi_turn_checker(
                 )
             )
             single_turn_model_execution_results.extend(sub_round_model_execution_results)
+            
+        execution_results.append(
+            {
+                "model": single_turn_model_execution_results,
+                "ground_truth": single_turn_ground_truth_execution_results,
+            }
+        )
+
+        # If the ground truth list is empty, this is the turn where the model should eventually fail to achieve the user request.
+        # The actual check for irrelevance is done in the multi_turn_irrelevance_checker function
+        # Note: If the model outputs any function call in this turn, we will still execute it so that the state check at the next turn is accurate.
+        if not single_turn_ground_truth_list:
+            continue
 
         ## Check after each turn ##
         assert len(model_instances) == len(
@@ -89,6 +98,7 @@ def multi_turn_checker(
         # Check the state of the instances
         state_check_result = state_checker(model_instances, ground_truth_instances)
         if not state_check_result["valid"]:
+            state_check_result["execution_result"] = execution_results
             return state_check_result
 
         # # Check the response of the function calls
