@@ -100,7 +100,7 @@ class MessageAPI:
 
         return True
 
-    def generate_id(self):
+    def _generate_id(self):
         """
         Generate a unique ID for a message.
 
@@ -113,7 +113,7 @@ class MessageAPI:
         while new_id in self.generated_ids:
             new_id = self._random.randint(10000, 99999)
         self.generated_ids.add(new_id)
-        return {"new_id": new_id}
+        return new_id
 
     def list_users(self) -> Dict[str, List[str]]:
         """
@@ -184,7 +184,7 @@ class MessageAPI:
         if receiver_id not in self.user_map.values():
             return {"error": f"Receiver ID '{receiver_id}' not found."}
         # Generate a unique message ID
-        message_id = self.generate_id()
+        message_id = self._generate_id()
         # Store the message in the inbox
         self.inbox.append({receiver_id: message})
         self.message_count += 1
