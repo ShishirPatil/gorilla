@@ -26,7 +26,7 @@ class TravelAPI:
         self.credit_card_list: Dict[str, Dict[str, Union[str, int, float]]]
         self.booking_record: Dict[str, Dict[str, Union[str, float]]]
         self.access_token: Optional[str]
-        self.toke_type: Optional[str]
+        self.token_type: Optional[str]
         self.token_expires_in: Optional[int]
         self.token_scope: Optional[str]
         self.user_first_name: Optional[str]
