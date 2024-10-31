@@ -223,7 +223,7 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
     #     cost = mean_latency * 1000 * V100_x8_PRICE_PER_HOUR / 3600
     #     cost = round(cost, 2)
 
-    elif len(latency_data["data"]) != 0:
+    if len(latency_data["data"]) != 0:
         mean_latency = statistics.mean(latency_data["data"])
         std_latency = statistics.stdev(latency_data["data"])
         percentile_95_latency = np.percentile(latency_data["data"], 95)
@@ -231,9 +231,9 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
         std_latency = round(std_latency, 2)
         percentile_95_latency = round(percentile_95_latency, 2)
 
-        if model_name not in INPUT_PRICE_PER_MILLION_TOKEN:
-            cost = sum(latency_data["data"]) * V100_x8_PRICE_PER_HOUR / 3600
-            cost = round(cost, 2)
+        # if model_name not in INPUT_PRICE_PER_MILLION_TOKEN:
+        #     cost = sum(latency_data["data"]) * V100_x8_PRICE_PER_HOUR / 3600
+        #     cost = round(cost, 2)
 
     if model_name in NO_COST_MODELS:
         cost = "N/A"

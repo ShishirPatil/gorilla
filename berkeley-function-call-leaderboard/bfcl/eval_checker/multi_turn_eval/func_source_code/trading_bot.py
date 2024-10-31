@@ -733,8 +733,6 @@ class TradingBot:
         ]
 
         if changed_stocks:
-            return {
-                "notification": f"Stocks {', '.join(changed_stocks)} have significant price changes."
-            }
+            return {"notification": f"Stocks {', '.join(changed_stocks)} have significant price changes."}
         else:
             return {"notification": "No significant price changes in the selected stocks."}
