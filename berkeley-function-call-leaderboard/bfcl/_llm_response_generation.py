@@ -14,13 +14,10 @@ from bfcl.constant import (
     TEST_COLLECTION_MAPPING,
     TEST_FILE_MAPPING,
 )
-from bfcl.eval_checker.eval_runner_helper import (
-    is_executable,
-    is_multi_turn,
-    load_file,
-)
+from bfcl.eval_checker.eval_runner_helper import load_file
 from bfcl.model_handler.handler_map import HANDLER_MAP
 from bfcl.model_handler.model_style import ModelStyle
+from bfcl.utils import is_executable, is_multi_turn
 from tqdm import tqdm
 
 RETRY_LIMIT = 3

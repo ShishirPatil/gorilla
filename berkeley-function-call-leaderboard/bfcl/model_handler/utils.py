@@ -5,10 +5,15 @@ import json
 import os
 import re
 
-from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
+from bfcl.model_handler.constant import (
+    DEFAULT_SYSTEM_PROMPT,
+    DEFAULT_SYSTEM_PROMPT_FOR_MULTI_TURN,
+    GORILLA_TO_OPENAPI,
+)
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.parser.java_parser import parse_java_function_call
 from bfcl.model_handler.parser.js_parser import parse_javascript_function_call
+from bfcl.utils import is_multi_turn
 
 
 def _cast_to_openai_type(properties, mapping):
@@ -100,11 +105,15 @@ def convert_to_tool(functions, mapping, model_style):
                     del params["maximum"]
                 # No `minItems` field.
                 if "minItems" in params:
-                    params["description"] += f" Minimum number of items: {str(params['minItems'])}."
+                    params[
+                        "description"
+                    ] += f" Minimum number of items: {str(params['minItems'])}."
                     del params["minItems"]
                 # No `maxItems` field.
                 if "maxItemsmax" in params:
-                    params["description"] += f" Maximum number of items: {str(params['maxItems'])}."
+                    params[
+                        "description"
+                    ] += f" Maximum number of items: {str(params['maxItems'])}."
                     del params["maxItems"]
                 # No `additionalProperties` field.
                 if "additionalProperties" in params:
@@ -375,8 +384,17 @@ def resolve_ast_by_type(value):
     return output
 
 
-def system_prompt_pre_processing_chat_model(prompts, system_prompt_template, function_docs):
+def system_prompt_pre_processing_chat_model(prompts, function_docs, test_category):
+    """
+    Add a system prompt to the chat model to instruct the model on the available functions and the expected response format.
+    If the prompts list already contains a system prompt, append the additional system prompt content to the existing system prompt.
+    """
     assert type(prompts) == list
+
+    if is_multi_turn(test_category):
+        system_prompt_template = DEFAULT_SYSTEM_PROMPT_FOR_MULTI_TURN
+    else:
+        system_prompt_template = DEFAULT_SYSTEM_PROMPT
 
     system_prompt = system_prompt_template.format(functions=function_docs)
 
@@ -700,6 +718,7 @@ def _convert_value(value, type_str):
     except ValueError:
         return value
 
+
 # TODO: Re-organize this file to make it more readable and maintainable
 def extract_system_prompt(prompts: list[dict]) -> str:
     for i, prompt in enumerate(prompts):
@@ -776,9 +795,12 @@ def parse_nested_value(value):
             return f"{func_name}({args_str})"
         else:
             # If it's a simple dictionary, treat it as key-value pairs
-            return "{" + ", ".join(f"'{k}': {parse_nested_value(v)}" for k, v in value.items()) + "}"
+            return (
+                "{"
+                + ", ".join(f"'{k}': {parse_nested_value(v)}" for k, v in value.items())
+                + "}"
+            )
     return repr(value)
-
 
 
 def decoded_output_to_execution_list(decoded_output):
@@ -794,9 +816,6 @@ def decoded_output_to_execution_list(decoded_output):
     execution_list = []
     for function_call in decoded_output:
         for key, value in function_call.items():
-            args_str = ", ".join(
-                f"{k}={parse_nested_value(v)}" for k, v in value.items()
-            )
+            args_str = ", ".join(f"{k}={parse_nested_value(v)}" for k, v in value.items())
             execution_list.append(f"{key}({args_str})")
     return execution_list
-    

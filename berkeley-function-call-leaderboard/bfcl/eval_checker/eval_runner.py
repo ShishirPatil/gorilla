@@ -22,6 +22,8 @@ from bfcl.eval_checker.multi_turn_eval.multi_turn_checker import (
     multi_turn_irrelevance_checker,
 )
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import is_empty_execute_response
+from bfcl.model_handler.handler_map import HANDLER_MAP
+from bfcl.utils import *
 from dotenv import load_dotenv
 from tqdm import tqdm
 
@@ -92,8 +94,9 @@ def multi_turn_runner(
         for single_turn_model_result_list in multi_turn_model_result_list:
             single_turn_model_result_list_decoded = []
             for model_result_item in single_turn_model_result_list:
+                # model_result_item is per step
                 try:
-                    decoded_result = handler.decode_execute(model_result_item)
+                    decoded_result: list[str] = handler.decode_execute(model_result_item)
                     if is_empty_execute_response(decoded_result):
                         # Empty output is not considered as a valid function call
                         continue
@@ -119,14 +122,11 @@ def multi_turn_runner(
         
         # Perform additional check for multi-turn irrelevance
         # This happens when the model is expected to not output any function calls in a certain turn due to miss parameters or miss functions
-        if contain_multi_turn_irrelevance(test_category):
-            irrelevance_checker_result = multi_turn_irrelevance_checker(
-                multi_turn_model_result_list_decoded,
-                multi_turn_ground_truth_list,
-            )
-        else:
-            irrelevance_checker_result = {"valid": True}
-        
+        irrelevance_checker_result = multi_turn_irrelevance_checker(
+            multi_turn_model_result_list_decoded,
+            multi_turn_ground_truth_list,
+        )
+
         if not irrelevance_checker_result["valid"] or not accuracy_checker_result["valid"]:
             temp = {}
             temp["id"] = index
@@ -135,10 +135,9 @@ def multi_turn_runner(
             # We display the irrelevance checker result first, then the accuracy checker result if irrelevance is passed
             temp.update(irrelevance_checker_result if not irrelevance_checker_result["valid"] else accuracy_checker_result)
             temp["prompt"] = test_entry
-            temp["model_result"] = multi_turn_model_result_list
+            temp["model_result_raw"] = multi_turn_model_result_list
+            temp["model_result_decoded"] = multi_turn_model_result_list_decoded
             temp["possible_answer"] = multi_turn_ground_truth_list
-            temp.update(irrelevance_checker_result)
-            temp.update(accuracy_checker_result)
             result.append(temp)
         else:
             correct_count += 1
@@ -644,6 +643,12 @@ def main(model, test_category, api_sanity_check):
             model_names.append(model_name.replace("/", "_"))
 
     runner(model_names, test_categories, api_sanity_check)
+
+
+def get_handler(model_name):
+    return HANDLER_MAP[model_name](
+        model_name, temperature=0
+    )  # Temperature doesn't matter for evaluation
 
 
 if __name__ == "__main__":

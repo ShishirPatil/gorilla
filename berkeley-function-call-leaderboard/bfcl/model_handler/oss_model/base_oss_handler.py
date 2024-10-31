@@ -5,7 +5,6 @@ from concurrent.futures import ThreadPoolExecutor
 
 import requests
 from bfcl.model_handler.base_handler import BaseHandler
-from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.oss_model.constant import VLLM_PORT
 from bfcl.model_handler.utils import (
@@ -264,7 +263,7 @@ class OSSHandler(BaseHandler):
         functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
-            test_entry["question"][0], DEFAULT_SYSTEM_PROMPT, functions
+            test_entry["question"][0], functions, test_category
         )
 
         return {"message": [], "function": functions}
