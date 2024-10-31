@@ -342,7 +342,7 @@ class GorillaFileSystem:
             return {"error": f"touch: cannot touch '{file_name}': File exists"}
 
         self._current_dir._add_file(file_name)
-        return {}
+        return None
 
     def echo(
         self, content: str, file_name: Optional[str] = None
