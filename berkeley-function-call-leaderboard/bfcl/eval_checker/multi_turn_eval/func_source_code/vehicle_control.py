@@ -596,12 +596,20 @@ class VehicleControlAPI:
             cityA == "47329" and cityB == "62947"
         ):
             distance = {"distance": 1053.0}
+        elif (cityA == "94016" and cityB == "62947") or (
+            cityA == "62947" and cityB == "94016"
+        ):
+            distance = {"distance": 780.0}
+        elif (cityA == "74532" and cityB == "94016") or (
+            cityA == "94016" and cityB == "74532"
+        ):
+            distance = {"distance": 880.0}
         else:
             distance = {"error": "distance not found in database."}
 
         if self.long_context:
             distance["intermediaryCities"] = INTERMEDIARY_CITIES
-        return {"distance": distance}
+        return distance
 
     def get_zipcode_based_on_city(self, city: str) -> Dict[str, str]:
         """
