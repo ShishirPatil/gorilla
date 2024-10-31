@@ -32,14 +32,26 @@ def multi_turn_checker(
     for turn_index, single_turn_ground_truth_list in enumerate(
         multi_turn_ground_truth_list
     ):
+        # If the ground truth list is not empty, then the model response list should not be empty
         single_turn_model_response_list = multi_turn_model_result_list_decoded[turn_index]
-        if single_turn_ground_truth_list and not single_turn_model_response_list:
-            return {
-                "valid": False,
-                "error": f"Model response list is empty for turn {turn_index}",
-                "error_type": "multi_turn:empty_turn_model_response",
-                "execution_result": execution_results,
-            }
+        if len(single_turn_ground_truth_list) > 0:
+            if not single_turn_model_response_list or is_empty_output(
+                single_turn_model_response_list
+            ):
+                return {
+                    "valid": False,
+                    "error": f"Model response list is empty for turn {turn_index}",
+                    "error_type": "multi_turn:empty_turn_model_response",
+                    "execution_result": execution_results,
+                }
+            # The flag_task_unachievable should also not be called in this turn
+            elif contain_unachievable_task(single_turn_model_response_list):
+                return {
+                    "valid": False,
+                    "error": f"Model response list calls flag_task_unachievable for turn {turn_index} when it should not",
+                    "error_type": "multi_turn:unexpected_flag_task_unachievable",
+                    "execution_result": execution_results,
+                }
 
         # Execute the ground truth function calls
         single_turn_ground_truth_execution_results, ground_truth_instances = (
@@ -75,7 +87,7 @@ def multi_turn_checker(
                 )
             )
             single_turn_model_execution_results.extend(sub_round_model_execution_results)
-            
+
         execution_results.append(
             {
                 "model": single_turn_model_execution_results,
@@ -140,7 +152,7 @@ def multi_turn_irrelevance_checker(
             else:
                 return {
                     "valid": False,
-                    "error": f"Model outputs a valid function call when it should not for turn {turn_index}. Model response decoded: {single_turn_model_response_list}",
+                    "error": f"Model outputs valid function calls when it should not for turn {turn_index}. Model response decoded: {single_turn_model_response_list}",
                     "error_type": "multi_turn:irrelevance_error:decoder_success",
                 }
     return {"valid": True}
