@@ -54,7 +54,7 @@ class TicketAPI:
         Args:
             title (str): Title of the ticket.
             description (str): Description of the ticket. Defaults to an empty string.
-            priority (int): Priority of the ticket, from 1 to 5. Defaults to 1.
+            priority (int): Priority of the ticket, from 1 to 5. Defaults to 1. 5 is the highest priority.
 
         Returns:
             id (int): Unique identifier of the ticket.

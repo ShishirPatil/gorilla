@@ -113,7 +113,7 @@ class MessageAPI:
         while new_id in self.generated_ids:
             new_id = self._random.randint(10000, 99999)
         self.generated_ids.add(new_id)
-        return new_id
+        return {"new_id": new_id}
 
     def list_users(self) -> Dict[str, List[str]]:
         """

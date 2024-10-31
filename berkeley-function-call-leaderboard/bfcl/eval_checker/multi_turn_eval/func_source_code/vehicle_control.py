@@ -181,6 +181,8 @@ class VehicleControlAPI:
             fuelLevel (float): The fuel level of the vehicle in gallons.
             batteryVoltage (float): The battery voltage of the vehicle in volts.
         """
+        if ignitionMode == "STOP":
+            self.engine_state = "stopped"
         if self.remainingUnlockedDoors > 0:
             return {
                 "error": "All doors must be locked before starting the engine. Here are the unlocked doors: "
@@ -200,8 +202,6 @@ class VehicleControlAPI:
             return {"error": "Fuel tank is empty."}
         if ignitionMode == "START":
             self.engine_state = "running"
-        elif ignitionMode == "STOP":
-            self.engine_state = "stopped"
         else:
             return {"error": "Invalid ignition mode."}
 
@@ -597,11 +597,11 @@ class VehicleControlAPI:
         ):
             distance = {"distance": 1053.0}
         else:
-            distance = {"distance": 0.0}
+            distance = {"error": "distance not found in database."}
 
         if self.long_context:
             distance["intermediaryCities"] = INTERMEDIARY_CITIES
-        return distance
+        return {"distance": distance}
 
     def get_zipcode_based_on_city(self, city: str) -> Dict[str, str]:
         """
