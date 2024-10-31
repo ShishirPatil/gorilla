@@ -1,12 +1,10 @@
 import json
 
-from bfcl.utils import (
-    contain_unachievable_task,
-    is_empty_output,
-)
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import (
     execute_multi_turn_func_call,
+    is_empty_execute_response,
 )
+from bfcl.utils import contain_unachievable_task
 
 #### Main functions ####
 
@@ -35,7 +33,7 @@ def multi_turn_checker(
         # If the ground truth list is not empty, then the model response list should not be empty
         single_turn_model_response_list = multi_turn_model_result_list_decoded[turn_index]
         if len(single_turn_ground_truth_list) > 0:
-            if not single_turn_model_response_list or is_empty_output(
+            if not single_turn_model_response_list or is_empty_execute_response(
                 single_turn_model_response_list
             ):
                 return {
@@ -145,7 +143,7 @@ def multi_turn_irrelevance_checker(
     ):
         single_turn_model_response_list = multi_turn_model_result_list_decoded[turn_index]
         if len(single_turn_ground_truth_list) == 0:
-            if is_empty_output(single_turn_model_response_list):
+            if is_empty_execute_response(single_turn_model_response_list):
                 continue
             elif contain_unachievable_task(single_turn_model_response_list):
                 continue
