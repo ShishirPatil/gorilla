@@ -1,0 +1,650 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Cat Facts",
+        "api_call": "https://cat-fact.herokuapp.com/facts/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Facts about cats.\n\nURL - https://alexwohlbruck.github.io/cat-facts/"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Dog Breeds",
+        "api_call": "https://dog.ceo/api/breeds/list/all",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "List all dog breeds.\n\nURL - https://dog.ceo/dog-api/documentation/"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Pet Food Facts",
+        "api_call": "https://world.openpetfoodfacts.org/api/v0/product/20106836.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns facts on pet food using barcode."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Films",
+        "api_call": "https://ghibliapi.herokuapp.com/films",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The Films endpoint returns information about all of the Studio Ghibli films."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: People",
+        "api_call": "https://ghibliapi.herokuapp.com/people",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The People endpoint returns information about all of the Studio Ghibli people. This broadly includes all Ghibli characters, human and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Locations",
+        "api_call": "https://ghibliapi.herokuapp.com/locations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The Locations endpoint returns information about all of the Studio Ghibli locations. This broadly includes lands, countries, and places."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Species",
+        "api_call": "https://ghibliapi.herokuapp.com/species",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The Species endpoint returns information about all of the Studio Ghibli species. This includes humans, animals, and spirits et al."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Vehicles",
+        "api_call": "https://ghibliapi.herokuapp.com/vehicles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The Vehicles endpoint returns information about all of the Studio Ghibli vechiles. This includes cars, ships, and planes."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: List API",
+        "api_call": "http://api.apis.guru/v2/list.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "List all of the APIs in the directory."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Barcode Lookup",
+        "api_call": "https://world.openfoodfacts.org/api/v0/product/737628064502.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Searches for product details using barcode."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Biking Incidents",
+        "api_call": "https://bikewise.org:443/api/v2/incidents?page=1&proximity_square=100",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Bikewise is a place to learn about and report bike crashes, hazards, and thefts."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Book",
+        "api_call": "https://openlibrary.org/api/books?bibkeys=ISBN:0201558025,LCCN:93005405&format=json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The API allows requesting information on one or more books using ISBNs, OCLC Numbers, LCCNs and OLIDs (Open Library IDs)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Covers",
+        "api_call": "http://covers.openlibrary.org/b/isbn/0385472579-S.jpg",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Our Covers API provides a programmatic method to access the book covers and author photos available in the Open Library"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Search",
+        "api_call": "http://openlibrary.org/search.json?q=the+lord+of+the+rings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Open Library provides an experimental API to search."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Makes of Cars",
+        "api_call": "https://vpic.nhtsa.dot.gov/api/vehicles/getallmakes?format=json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of makes of cars.\n\nWebsite - https://vpic.nhtsa.dot.gov/api/"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Car Manufacturers",
+        "api_call": "https://vpic.nhtsa.dot.gov/api/vehicles/getallmanufacturers?format=json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of car manufacturers.\n\nWebsite - https://vpic.nhtsa.dot.gov/api/"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Today",
+        "api_call": "http://calapi.inadiutorium.cz/api/v0/en/calendars/general-en/today",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "Query the calendar for today."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Tomorrow",
+        "api_call": "http://calapi.inadiutorium.cz/api/v0/en/calendars/general-en/tomorrow",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "Query the calendar for tomorrow."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Yesterday",
+        "api_call": "http://calapi.inadiutorium.cz/api/v0/en/calendars/general-en/yesterday",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "Query the calendar for yesterday."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Jewish Calendar",
+        "api_call": "https://www.hebcal.com/hebcal/?v=1&cfg=json&maj=on&min=on&mod=on&nx=on&year=now&month=x&ss=on&mf=on&c=on&geo=geoname&geonameid=3448439&m=50&s=on",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Providing Jewish calendar data."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Shabbat Times",
+        "api_call": "https://www.hebcal.com/shabbat/?cfg=json&geonameid=3448439&m=50",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Providing Shabbat Times"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: XKCD",
+        "api_call": "https://xkcd.com/info.0.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns the latest XKCD comic."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Current Bitcoin Price",
+        "api_call": "https://api.coindesk.com/v1/bpi/currentprice.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns the current Bitcoin price."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Simple Ticker",
+        "api_call": "https://api.cryptonator.com/api/ticker/btc-usd",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns actual volume-weighted price, total 24h volume and the price change."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Complete Ticker",
+        "api_call": "https://api.cryptonator.com/api/full/btc-usd",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns actual volume-weighted price, total 24h volume, rate change as well as prices and volumes across all connected exchanges."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Domain Search",
+        "api_call": "https://api.domainsdb.info/v1/domains/search?domain=postman&zone=com",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Registered domains search checks the lists of registered domains for names containing particular words/phrases/numbers or symbols. "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Drone Stirkes",
+        "api_call": "http://api.dronestre.am/data",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Real-time and historical data about every reported covert United States drone strike."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Earthquakes",
+        "api_call": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2020-01-01&endtime=2020-01-02",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of eqrthquakes for a time period."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Characters",
+        "api_call": "https://www.anapioficeandfire.com/api/characters",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of Game of Thrones characters.\n\nWebsite - https://anapioficeandfire.com/Documentation"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Books",
+        "api_call": "https://www.anapioficeandfire.com/api/books",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of Game of Thrones books.\n\nWebsite - https://anapioficeandfire.com/Documentation"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Houses",
+        "api_call": "https://www.anapioficeandfire.com/api/houses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of Game of Thrones houses.\n\nWebsite - https://anapioficeandfire.com/Documentation"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Gender Detector",
+        "api_call": "https://api.genderize.io?name=mary",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "A simple API to predict the gender of a person given their name."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: IP Adress Lookup",
+        "api_call": "https://api.ipify.org?format=json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "Looks up the IP address of the requestor."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Associate IP Address with Country",
+        "api_call": "https://api.ip2country.info/ip?98.234.97.10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Associates the IP address with a country."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Jobs ",
+        "api_call": "http://api.dataatwork.org/v1/jobs",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of jobs."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Skills",
+        "api_call": "http://api.dataatwork.org/v1/skills",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of skills."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: GitHub Jobs",
+        "api_call": "https://jobs.github.com/positions.json?description=api&location=new+york",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a list of jobs with a word in the description and locaiton."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Random Joke",
+        "api_call": "https://official-joke-api.appspot.com/random_joke",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a random joke."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Dad Jokes",
+        "api_call": "https://icanhazdadjoke.com/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Returns a random dad joke."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Chuic Norris Joke",
+        "api_call": "http://api.icndb.com/jokes/random?firstName=John&amp;lastName=Doe",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Generates a Chuck Norris joke."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Logo",
+        "api_call": "https://logo.clearbit.com/:domain",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "If you\u2019re only interested in a Company\u2019s logo, and don\u2019t need any other data about the company, you can use"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Lyrics Search",
+        "api_call": "https://api.lyrics.ovh/v1/:artist/:title",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Searches for the lyrics of an artist and song title."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Historical American Newspapers",
+        "api_call": "https://chroniclingamerica.loc.gov/search/titles/results/?terms=oakland&format=json&page=5",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Chronicling America provides access to information about historic newspapers and select digitized newspaper pages. To encourage a wide range of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Pokemon Search",
+        "api_call": "https://pokeapi.co/api/v2/pokemon/ditto/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "All the Pok\u00e9mon data you'll ever need in one place,\neasily accessible through a modern RESTful API."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Zip Code Lookup",
+        "api_call": "http://api.zippopotam.us/us/98121",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Looks up a country and zip code."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Ron Swanson Quotes",
+        "api_call": "https://ron-swanson-quotes.herokuapp.com/v2/quotes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a Ron Swanson quote."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Random Yes/No",
+        "api_call": "https://yesno.wtf/api",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a random yes or no."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Refuge Restrooms",
+        "api_call": "https://www.refugerestrooms.org/api/v1/restrooms/search?page=1&per_page=10&offset=0&query=san%20francisco",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Refuge Restrooms is a web application that seeks to provide safe restroom access for transgender, intersex, and gender nonconforming individuals."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Latest SpaceX Launch",
+        "api_call": "https://api.spacexdata.com/v3/launches/latest",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns the latest SpaceX launch."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Sunrise and Sunset",
+        "api_call": "https://api.sunrise-sunset.org/json?lat=36.7201600&lng=-4.4203400",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns the sunrise and sunset for a longitude and latitude."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Random Taco Recipes",
+        "api_call": "http://taco-randomizer.herokuapp.com/random/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Chooses a random taco recipe from a taco recipe database."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: TVMaze Search",
+        "api_call": "http://api.tvmaze.com/search/shows?q=postman",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Searches the TVMaze television search."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: ALL CAPS AS A SERVICE",
+        "api_call": "HTTP://API.SHOUTCLOUD.IO/V1/SHOUT",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"INPUT\": \"hello world\"\n}"
+            }
+        },
+        "functionality": "Capitalizes every letter for input set using body."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Random Trivia Question",
+        "api_call": "http://jservice.io/api/random",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns a random trivia question.\n\nWebsite - http://jservice.io/"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: University Search",
+        "api_call": "http://universities.hipolabs.com/search?name=middle",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Searches for universities."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Public REST APIs: Breaches",
+        "api_call": "https://haveibeenpwned.com/api/v2/breaches",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets all known website breaches."
+    }
+]
