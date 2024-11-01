@@ -1,0 +1,1571 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Generate Token (Authenticate)",
+        "api_call": "https://api.symbl.ai/oauth2/token:generate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"type\": \"application\",\n    \"appId\": \"{{app_id}}\",\n    \"appSecret\": \"{{app_secret}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Generate the access token which is required for making any API call. You must execute this API before executing any"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Text (Short Transcript) - Submit New Conversation",
+        "api_call": "https://api.symbl.ai/v1/process/text",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Postman Default Meeting (Sales/Demo)\",\n    \"startTime\": \"2023-01-17T17:26:12\",\n    \"features\": {\n        \"featureList\": [\n            \"insights\",\n            \"callScore\"\n        ]\n    },\n    \"conversationType\": \"sales\",\n    \"metadata\": {\n        \"salesStage\": \"general\",\n        \"prospectName\": \"Audio File LLC\"\n    },\n    \"messages\": [\n        {\n            \"payload\": {\n                \"content\": \"Hello.  So this is a live demo that we are trying to give very we are going to show how the platform detects various insights can do transcription in real time and also the different topics of discussions, which would be generated after the call is over, and they will be an email that will be sent to the inbox.  So that is the idea.  So I am going to do a quick conversation.  I would say where I will demonstrate all of this great catching up.  Thanks for calling good to hear.  From you.  And I would love to hear more about what you have to offer?  I will set up a time and appointment probably sometime tomorrow evening where we can go over the documents that you're providing.  I love all the plants.  I just need to discuss with my family in terms of which one will we go forward with it?  It very excited to hear from you and the discount and look forward to talking sharply.  I have a quick question though.  Is there basically website?  Where I can go to and look at all these details myself.  It will be very helpful.  Can you also share the quotation to me on email so that I can go ahead and talk about it with my other kind of folks in the family?  That's it.  Thanks a lot.  Thanks for calling good catching up.  Talk soon.\",\n                \"contentType\": \"text/plain\"\n            },\n            \"from\": {\n                \"name\": \"John\",\n                \"userId\": \"john@example.com\"\n            }\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Submit Text Conversation\nSubmit the Request with Text Conversation Payload. \n\nIt can be useful in any use case where you"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Text (Long Transcript) - Submit New Conversation",
+        "api_call": "https://api.symbl.ai/v1/process/text",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_token}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Elevate Fitness - Sales Opportunity\",\n    \"startTime\": \"2023-01-17T17:26:12\",\n    \"features\": {\n        \"featureList\": [\n            \"insights\",\n            \"callScore\"\n        ]\n    },\n    \"conversationType\": \"sales\",\n    \"metadata\": {\n        \"salesStage\": \"general\",\n        \"prospectName\": \"Audio File LLC\"\n    },\n    \"messages\": [\n        {\n            \"payload\": {\n                \"content\": \"Hello everyone, thank you for joining this call. Can you all hear me?\",\n                \"contentType\": \"text/plain\"\n            },\n            \"from\": {\n                \"name\": \"Derek\",\n                \"userId\": \"derek.harding@elevatefitness.com\"\n            },\n            \"duration\": {\n                \"startTime\": \"2023-06-02T03:27:16.174Z\",\n                \"endTime\": \"2023-06-02T03:27:16.774Z\"\n            }\n        },\n        {\n            \"payload\": {\n                \"content\": \"Yes, we can hear you, Derek.\",\n                \"contentType\": \"text/plain\"\n            },\n            \"from\": {\n                \"name\": \"Sarah\",\n                \"userId\": \"sarah.parker@companyx.com\"\n            },\n            \"duration\": {\n                \"startTime\": \"2023-06-02T03:27:30.174Z\",\n                \"endTime\": \"2023-06-02T03:27:30.774Z\"\n            }\n        },\n        {\n            \"payload\": {\n                \"content\": \"Alright, let's get started. I'm Derek from Elevate Fitness. We offer a broad range of fitness equipment and software solutions...\",\n                \"contentType\": \"text/plain\"\n            },\n            \"from\": {\n                \"name\": \"Derek\",\n                \"userId\": \"derek.harding@elevatefitness.com\"\n            },\n            \"duration\": {\n                \"startTime\": \"2023-06-02T03:28:00.174Z\",\n                \"endTime\": \"2023-06-02T03:28:20.774Z\"\n            }\n        },\n        {\n            \"payload\": {\n                \"content\": \"Interesting. How does your software integrate with our current systems?\",\n                \"contentType\": \"text/plain\"\n            },\n            \"from\": {\n                \"name\": \"John\",\n                \"userId\": \"john.doe@companyy.com\"\n            },\n            \"duration\": {\n                \"startTime\": \"2023-06-02T03:29:00.174Z\",\n                \"endTime\": \"2023-06-02T03:29:10.774Z\"\n            }\n        },\n        {\n            \"payload\": {\n                \"content\": \"Great question, John. Our software is designed to easily integrate with existing systems using APIs...\",\n                \"contentType\": \"text/plain\"\n            },\n            \"from\": {\n                \"name\": \"Derek\",\n                \"userId\": \"derek.harding@elevatefitness.com\"\n            },\n            \"duration\": {\n                \"startTime\": \"2023-06-02T03:30:00.174Z\",\n                \"endTime\": \"2023-06-02T03:30:30.774Z\"\n            }\n        },\n        {\n            \"payload\": {\n                \"content\": \"That's promising. Can you elaborate on the costs?\",\n                \"contentType\": \"text/plain\"\n            },\n            \"from\": {\n                \"name\": \"Julia\",\n                \"userId\": \"julia.martin@companyz.com\"\n            },\n            \"duration\": {\n                \"startTime\": \"2023-06-02T03:31:00.174Z\",\n                \"endTime\": \"2023-06-02T03:31:10.774Z\"\n            }\n        },\n        {\n            \"payload\": {\n                \"content\": \"Of course, Julia. We offer different pricing models based on your specific needs and usage...\",\n                \"contentType\": \"text/plain\"\n            },\n            \"from\": {\n                \"name\": \"Derek\",\n                \"userId\": \"derek.harding@elevatefitness.com\"\n            },\n            \"duration\": {\n                \"startTime\": \"2023-06-02T03:32:00.174Z\",\n                \"endTime\": \"2023-06-02T03:32:30.774Z\"\n            }\n        },\n        {\n            \"payload\": {\n                \"content\": \"Thank you, Derek. We will take this into consideration and get back to you.\",\n                \"contentType\": \"text/plain\"\n            },\n            \"from\": {\n                \"name\": \"Mike\",\n                \"userId\": \"mike.hill@companyw.com\"\n            },\n            \"duration\": {\n                \"startTime\": \"2023-06-02T03:57:00.174Z\",\n                \"endTime\": \"2023-06-02T03:57:10.774Z\"\n            }\n        },\n        {\n            \"payload\": {\n                \"content\": \"Thank you all for your time. Looking forward to hearing from you soon.\",\n                \"contentType\": \"text/plain\"\n            },\n            \"from\": {\n                \"name\": \"Derek\",\n                \"userId\": \"derek.harding@elevatefitness.com\"\n            },\n            \"duration\": {\n                \"startTime\": \"2023-06-02T03:57:20.174Z\",\n                \"endTime\": \"2023-06-02T03:57:30.774Z\"\n            }\n        }\n    ],\n    \"trackers\": [\n        {\n            \"name\": \"Connection Issues\",\n            \"vocabulary\": [\n                \"unable to hear\",\n                \"cant hear\",\n                \"not audible\",\n                \"barely hear\"\n            ]\n        },\n        {\n            \"name\": \"Follow up\",\n            \"vocabulary\": [\n                \"\\\\bfollow up\\\\b\"\n            ]\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Submit the Request with Text Conversation Payload. Same as the one above, just shows an example with a longer conversation"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Text (Email) - Submit New Conversation",
+        "api_call": "https://api.symbl.ai/v1/process/text",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Elevate Fitness - Sales Opportunity\",\n    \"startTime\": \"2023-01-17T17:26:12\",\n    \"features\": {\n        \"featureList\": [\n            \"insights\",\n            \"callScore\"\n        ]\n    },\n    \"conversationType\": \"sales\",\n    \"metadata\": {\n        \"salesStage\": \"general\",\n        \"prospectName\": \"Audio File LLC\"\n    },\n    \"messages\": [\n        {\n            \"payload\": {\n                \"content\": \"Hi Mike, Natalia here. Hope you don\u2019t mind me reaching out. Who would be the best possible person to discuss internships and student recruitment at ABC Corp? Would you mind pointing me toward the right person and the best way to reach them? Thanks in advance for your help, I really appreciate it!\"\n            },\n            \"from\": {\n                \"userId\": \"natalia@example.com\",\n                \"name\": \"Natalia\"\n            }\n        },\n        {\n            \"payload\": {\n                \"content\": \"Hey Natalia, thanks for reaching out. I am connecting you with Steve who handles recruitements for us.\"\n            },\n            \"from\": {\n                \"userId\": \"mike@abccorp.com\",\n                \"name\": \"Mike\"\n            }\n        },\n        {\n            \"payload\": {\n                \"content\": \"Thanks Mike! Great to connect with you Steve. I would really like to learn more about your recruitment needs. A quick call would be helpful. What time works best for you?\"\n            },\n            \"from\": {\n                \"userId\": \"natalia@example.com\",\n                \"name\": \"Natalia\"\n            }\n        },\n        {\n            \"payload\": {\n                \"content\": \"Hi Natalia, great to connect with you as well. I am pretty open tomorrow after 2 pm.\"\n            },\n            \"from\": {\n                \"userId\": \"steve@abccorp.com\",\n                \"name\": \"Steve\"\n            }\n        },\n        {\n            \"payload\": {\n                \"content\": \"That's perfect. I will block some time at 2pm tomorrow to discuss further. Looking forward to talk to you. Looking forward to talk to you.\"\n            },\n            \"from\": {\n                \"userId\": \"natalia@example.com\",\n                \"name\": \"Natalia\"\n            }\n        }\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Submit the Request with Text Conversation Payload. Same as the one above, just shows an example with an email thread.\n\nLearn"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Text - Append to Existing Conversation",
+        "api_call": "https://api.symbl.ai/v1/process/text/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_token}}"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"messages\": [\n    {\n      \"payload\": {\n        \"content\": \"Hi Steve, it was great chatting with you! I was really impressed with your recruitment philosophy. I will set up meetings with two students for the internship positions that match your screening criteria over next week. Hope you have a great weekend.\"\n      },\n      \"from\": {\n        \"userId\": \"natalia@example.com\",\n        \"name\": \"Natalia\"\n      }\n    },\n    {\n      \"payload\": {\n        \"content\": \"Thanks Natalia. It was great talking with you as well. Looking forward.\"\n      },\n      \"from\": {\n        \"userId\": \"steve@abccorp.com\",\n        \"name\": \"Steve\"\n      }\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# Append Text Conversation\nThe PUT Async Text API allows you to process any text payload to append the transcription of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Audio - Submit New Audio File (wav/mp3)",
+        "api_call": "https://api.symbl.ai/v1/process/audio",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_token}}"
+                }
+            ],
+            "body": {
+                "mode": "file",
+                "file": {
+                    "src": "/Users/subodhjena/Downloads/GMT20230503-040516_Recording.m4a"
+                }
+            }
+        },
+        "functionality": "# Submit Audio File\nThe Async Audio API allows you to process an audio file.\n\nIt can be utilized for any use"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Audio - Append to existing Conversation",
+        "api_call": "https://api.symbl.ai/v1/process/audio/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_token}}"
+                }
+            ],
+            "body": {
+                "mode": "file",
+                "file": {}
+            }
+        },
+        "functionality": "# Append Audio File\nThe Async Audio API allows you to process an additional audio file to the previous conversation, append"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Audio(URL)  - Submit New Conversation",
+        "api_call": "https://api.symbl.ai/v1/process/audio/url",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Postman Default Meeting (Sales/Demo)\",\n    \"url\": \"https://storage.googleapis.com/sales-intelligence-call-recordings/Realtor_Sales_Call_Youtube_12min.mp3\",\n    \"confidenceThreshold\": 0.6,\n    \"timezoneOffset\": 0,\n    \"enableSpeakerDiarization\": true,\n    \"diarizationSpeakerCount\": 2,\n    \"startTime\": \"2023-01-17T17:26:12\",\n    \"features\": {\n        \"featureList\": [\n            \"insights\",\n            \"callScore\"\n        ]\n    },\n    \"conversationType\": \"sales\",\n    \"metadata\": {\n        \"salesStage\": \"general\",\n        \"prospectName\": \"Audio File LLC\"\n    }\n}"
+            }
+        },
+        "functionality": "# Submit New Audio File URL:\n\nThe Async Audio URL API takes in a url link of your audio to proccess"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Audio(URL)  -  Append to existing Conversation",
+        "api_call": "https://api.symbl.ai/v1/process/audio/url/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"url\": \"https://symbltestdata.s3.us-east-2.amazonaws.com/sample_audio_file.wav\",\n  \"confidenceThreshold\": 0.6,\n  \"timezoneOffset\": 0\n}"
+            }
+        },
+        "functionality": "# Append Audio File URL:\n\nThe Async Audio URL API allows you to append an additional audio URL to the previous"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Video - Submit New Video File (mp4)",
+        "api_call": "https://api.symbl.ai/v1/process/video?name=Postman Default Meeting (Sales/Demo)&languageCode=en-US&mode=default&enableSpeakerDiarization=true&conversationType=sales&startTime=2023-04-20T17:26:12&features={\"featureList\": [\"insights\", \"callScore\"]}&metadata={\"salesStage\":\"general\",\"prospectName\":\"Audio File LLC\"}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_token}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "video/mp4"
+                }
+            ],
+            "body": {
+                "mode": "file",
+                "file": {
+                    "src": "/Users/subodhjena/Downloads/GMT20230503-040516_Recording_1920x1080.mp4"
+                }
+            }
+        },
+        "functionality": "# About this API\nSubmit the MP4 Video file for processing.\n\n## Request Body\nBinary payload of MP4 video file.\n\n## Content-Type Header\nMust be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Video - Append to Existing Conversation",
+        "api_call": "https://api.symbl.ai/v1/process/video/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_token}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "video/mp4"
+                }
+            ],
+            "body": {
+                "mode": "file",
+                "file": {
+                    "src": ""
+                }
+            }
+        },
+        "functionality": "# About this API\nAppend to existing Conversation with MP4 Video file.\n\n><h4>The conversationId of the conversation processed from any channels (Realtime,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Video (URL)  - Submit New Conversation",
+        "api_call": "https://api.symbl.ai/v1/process/video/url",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_token}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"url\": \"https://symbltestdata.s3.us-east-2.amazonaws.com/sample_video_file.mp4\",\n    \"name\": \"Postman Default Meeting\",\n    \"customVocabulary\": [\n        \"Customer\",\n        \"Sales\",\n        \"Targets\"\n    ],\n    \"enableAllTrackers\": true,\n    \"enableSummary\": true,\n    \"detectEntities\": true,\n    \"detectPhrases\": true,\n    \"languageCode\": \"en-US\",\n    \"mode\": \"default\",\n    \"timezoneOffset\": 0,\n    \"confidenceThreshold\": 0.6,\n    \"trackers\": [\n        {\n            \"name\": \"COVID-19\",\n            \"vocabulary\": [\n                \"social distancing\",\n                \"cover your face with mask\",\n                \"vaccination\"\n            ]\n        }\n    ],\n    \"enableSpeakerDiarization\": true,\n    \"diarizationSpeakerCount\": 2,\n    \"startTime\": \"2023-01-17T17:26:12\",\n    \"features\": {\n        \"featureList\": [\n            \"insights\",\n            \"callScore\"\n        ]\n    },\n    \"conversationType\": \"sales\",\n    \"metadata\": {\n        \"salesStage\": \"general\",\n        \"prospectName\": \"Audio File LLC\"\n    }\n}"
+            }
+        },
+        "functionality": "# About this API:\n\nThe Async Video URL API allows you to process a mp4 video and return the full text"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Video(URL)  -  Append to existing Conversation",
+        "api_call": "https://api.symbl.ai/v1/process/video/url/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"url\": \"https://symbltestdata.s3.us-east-2.amazonaws.com/sample_video_file.mp4\",\n  \"confidenceThreshold\": 0.6,\n  \"timezoneOffset\": 0\n}"
+            }
+        },
+        "functionality": "# About this API:\n\nThe Async Video URL API allows you to process an additional video file to the previous conversation,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Check Request Status (Job status)",
+        "api_call": "https://api.symbl.ai/v1/job/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# About this API\nCheck the status of the Async Request job using `jobId` returned after successful submission of any Async"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Start Connection (PSTN)",
+        "api_call": "https://api.symbl.ai/v1/endpoint:connect",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n\t\"operation\": \"start\",\r\n\t\"endpoint\": {\r\n\t  \"type\" : \"pstn\",\r\n\t  \"phoneNumber\": \"__phone_number__\", \r\n\t  \"dtmf\": \"__dtmf_sequence__\"\r\n\t},\r\n\t\"actions\": [{\r\n\t  \"invokeOn\": \"stop\",\r\n\t  \"name\": \"sendSummaryEmail\",\r\n\t  \"parameters\": {\r\n\t    \"emails\": [\r\n\t      \"__email_address__\"  \r\n\t    ]\r\n\t  }\r\n\t}],\r\n\t\"data\" : {\r\n\t\t\"session\": {\r\n\t\t\t\"name\" : \"__name_of_this_call__\"\r\n\t\t}\r\n    }\r\n}"
+            }
+        },
+        "functionality": "# About this API\nTelephony API Telephony to connect to a PSTN endpoint and start the connection and start processing.\n\n## Prerequisite\nYou"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Start Connection (SIP)",
+        "api_call": "https://api.symbl.ai/v1/endpoint:connect",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_token}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n\t\"operation\": \"start\",\r\n\t\"endpoint\": {\r\n\t  \"type\" : \"sip\",\r\n\r\n\t  // Replace with a valid SIP URI, accessible over internet. See more - https://tools.ietf.org/html/rfc5630\r\n\t  // SIP with RTP and SIPS with SRTP for secure VoIP traffic are supported\r\n\t  // URI paramters can be passed in\r\n\t  // include country code, example - \"sip:john.99332@example.com\"\r\n\t  \"uri\": \"__sip_uri__\"\r\n\t},\r\n\t\"actions\": [{\r\n\t  \"invokeOn\": \"stop\",\r\n\t  \"name\": \"sendSummaryEmail\",\r\n\t  \"parameters\": {\r\n\t    \"emails\": [\r\n\t\t\t// list of valid email addresses. \r\n\t\t\t// If added, an email will be sent at the end of the call\r\n\t      \"__email_address__\"  \r\n\t    ]\r\n\t  }\r\n\t}],\r\n\t\"data\" : {\r\n\t\t\"session\": {\r\n\t\t\t// Give name to your meeting/call\r\n\t\t\t\"name\" : \"__name_of_this_session__\"\r\n\t\t\t// Optionally, send participants in the meeting/call, Uncomment following 'users' array.\r\n\t\t\t// \"users\": [{\r\n\t\t\t// \t\"user\": {\r\n\t\t\t// \t\t\"name\": \"John\",\r\n\t\t\t// \t\t\"userId\": \"john@example.com\",\r\n\t\t\t// \t\t\"role\": \"organizer\"\r\n\t\t\t// \t}\r\n\t\t\t// }, \r\n\t\t\t// {\r\n\t\t\t// \t\"user\": {\r\n\t\t\t// \t\t\"name\": \"Mary\",\r\n\t\t\t// \t\t\"userId\": \"mary@example.com\"\r\n\t\t\t// \t}\r\n\t\t\t// }]\r\n\t\t}\r\n    }\r\n}"
+            }
+        },
+        "functionality": "# About this API\nTelephony API Telephony to connect to SIP endpoint (SIP Trunk) and start the connection for processing.\n\n## Prerequisite\nYou"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Stop Connection",
+        "api_call": "https://api.symbl.ai/v1/endpoint:connect",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\r\n\t\"operation\": \"stop\",\r\n\t\"connectionId\": \"{{connection_id}}\"\r\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "# About this API\nStop currently active connection created using Telephony API for PSTN or SIP endpoint.\n\n## Prerequisite\n* You must have"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Text Experience UI",
+        "api_call": "https://api.symbl.ai/v1/conversations//experiences",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_token}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n      \"name\": \"verbose-text-summary\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Video Experience UI",
+        "api_call": "https://api.symbl.ai/v1/conversations//experiences",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_token}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"video-summary\",\n  \"videoUrl\": \"https://storage.googleapis.com/rammer-transcription-bucket/small.mp4\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Trackers and Analytics UI",
+        "api_call": "https://api.symbl.ai/v1/conversations//experiences",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_token}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"audio-summary\",\n  \"audioUrl\": \"https://symbltestdata.s3.us-east-2.amazonaws.com/sample_audio_file.wav\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Insights UI - All Conversations",
+        "api_call": "https://api.symbl.ai/v1/conversations/experiences/insights/list?includeCallScore=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Insights UI - Conversation by ID",
+        "api_call": "https://api.symbl.ai/v1/conversations/experiences/insights/details/:conversationId?includeCallScore=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Create bookmark",
+        "api_call": "https://api.symbl.ai/v1/conversations//bookmarks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"label\": \"pin\",\n    \"description\": \"4-Digit pin\",\n    \"user\": {\n        \"name\": \"Michael\",\n        \"userId\": \"michael@symbl.ai\"\n    },\n    \"beginTimeOffset\": 2,\n    \"duration\": 5\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Update bookmark by id",
+        "api_call": "https://api.symbl.ai/v1/conversations//bookmarks/:bookmarkId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"label\": \"4 Digit Pin Bookmark\",\n    \"description\": \"4-Digit pin\",\n    \"user\": {\n        \"name\": \"Michael\",\n        \"userId\": \"michael@symbl.ai\"\n    },\n    \"beginTimeOffset\": 2,\n    \"duration\": 5\n}\n",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Get bookmark by id",
+        "api_call": "https://api.symbl.ai/v1/conversations//bookmarks/:bookmarkId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Delete bookmark with id",
+        "api_call": "https://api.symbl.ai/v1/conversations//bookmarks/:bookmarkId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"label\": \"pain point\",\n    \"description\": \"<description of the bookmark>\",\n    \"user\": {\n        \"name\": \"natalie\",\n        \"userId\": \"natalie1@example.com\"\n    },\n    \"beginTimeOffset\": 20.00,\n    \"duration\": 30.00\n}\n// or\n// {\n// \t\"label\": \"pain point\",\n// \t\"description\": \"<description of the bookmark>\",\n// \t\"user\": {\n// \t\t\"name\": \"natalie\",\n// \t\t\"userId\": \"natalie1@example.com\"\n// \t},\n// \t\"messageRefs\": [\n// \t    {\"id\": \"<message-refs-id>\"},\n// \t    {\"id\": \"<message-refs-id>\"}\n// \t]\n// }",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Get all bookmarks",
+        "api_call": "https://api.symbl.ai/v1/conversations//bookmarks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Create multiple bookmarks",
+        "api_call": "https://api.symbl.ai/v1/conversations//bookmarks/bulk",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n    {\n        \"label\": \"pain point\",\n        \"description\": \"<description of the bookmark>\",\n        \"user\": {\n            \"name\": \"natalie\",\n            \"userId\": \"natalie1@example.com\"\n        },\n        \"beginTimeOffset\": 20.00,\n        \"duration\": 30.00\n    },\n    {\n        \"label\": \"pain point 2\",\n        \"description\": \"<description of the bookmark>\",\n        \"user\": {\n            \"name\": \"natalie\",\n            \"userId\": \"natalie1@example.com\"\n        },\n        \"beginTimeOffset\": 35.00,\n        \"duration\": 40.00\n    }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Get bookmark summary by id",
+        "api_call": "https://api.symbl.ai/v1/conversations//bookmarks/:bookmarkId/summary",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Get bookmark summary",
+        "api_call": "https://api.symbl.ai/v1/conversations//bookmarks-summary",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Conversation Data",
+        "api_call": "https://api.symbl.ai/v1/conversations/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: All Conversations",
+        "api_call": "https://api.symbl.ai/v1/conversations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Update Conversation",
+        "api_call": "https://api.symbl.ai/v1/conversations/:coversationId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"metadata\": {\n        \"key\": \"value\",\n        \"agentId\": \"johndoe\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Messages (Transcript)",
+        "api_call": "https://api.symbl.ai/v1/conversations//messages?sentiment=true&verbose=true",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Formatted Transcript",
+        "api_call": "https://api.symbl.ai/v1/conversations//transcript",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"contentType\": \"text/srt\", // text/srt || text/markdown\n    \"showSpeakerSeparation\": true\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Members (Participants/Attendees)",
+        "api_call": "https://api.symbl.ai/v1/conversations//members",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Update Members",
+        "api_call": "https://api.symbl.ai/v1/conversations//members/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_token}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"id\": \"{{member_id}}\", \n    \"email\": \"john@example.com\",\n    \"name\": \"John\"\n}\n"
+            }
+        },
+        "functionality": "## Defination\nUpdate an existing member in an conversation. This API can be used for updating the unique speakers detected as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Update Speaker Events",
+        "api_call": "https://api.symbl.ai/v1/conversations//speakers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_token}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"speakerEvents\": [\n        {\n            \"type\": \"started_speaking\",\n            \"user\": {\n                \"id\": \"4194eb50-357d-4712-a02d-94215ead1064\",\n                \"name\": \"Derek\",\n                \"email\": \"Derek@example.com\"\n            },\n            \"offset\": {\n                \"seconds\": 0,\n                \"nanos\": 5000000000\n            }\n        },\n        {\n            \"type\": \"stopped_speaking\",\n            \"user\": {\n                \"id\": \"4194eb50-357d-4712-a02d-94215ead1064\",\n                \"name\": \"Derek\",\n                \"email\": \"Derek@example.com\"\n            },\n            \"offset\": {\n                \"seconds\": 15,\n                \"nanos\": 5000000000\n            }\n        },\n        {\n            \"type\": \"started_speaking\",\n            \"user\": {\n                \"id\": \"4194eb50-357d-4712-a02d-94215ead2104\",\n                \"name\": \"Richard\",\n                \"email\": \"Richard@example.com\"\n            },\n            \"offset\": {\n                \"seconds\": 10,\n                \"nanos\": 5000000000\n            }\n        },\n        {\n            \"type\": \"stopped_speaking\",\n            \"user\": {\n                \"id\": \"4194eb50-357d-4712-a02d-94215ead2104\",\n                \"name\": \"Richard\",\n                \"email\": \"Richard@example.com\"\n            },\n            \"offset\": {\n                \"seconds\": 20,\n                \"nanos\": 5000000000\n            }\n        }\n    ]\n}"
+            }
+        },
+        "functionality": "## Defination\nUpdate an existing member in an conversation. This API can be used for updating the unique speakers detected as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Trackers Detected",
+        "api_call": "https://api.symbl.ai/v1/conversations//trackers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This API allows you to get all the [Trackers](https://docs.symbl.ai/docs/concepts/trackers) from your conversation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Topics",
+        "api_call": "https://api.symbl.ai/v1/conversations//topics",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Action Items",
+        "api_call": "https://api.symbl.ai/v1/conversations//action-items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Follow Ups",
+        "api_call": "https://api.symbl.ai/v1/conversations//follow-ups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Retrieve any follow up insights detected by a conversationId"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Questions",
+        "api_call": "https://api.symbl.ai/v1/conversations//questions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Analytics",
+        "api_call": "https://api.symbl.ai/v1/conversations//analytics",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Entities",
+        "api_call": "https://api.symbl.ai/v1/conversations//entities",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Delete Conversation",
+        "api_call": "https://api.symbl.ai/v1/conversations/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "type": "text",
+                    "value": "{{api_token}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Summary",
+        "api_call": "https://api.symbl.ai/v1/conversations//summary",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Get Call Score",
+        "api_call": "https://api.symbl.ai/v1/conversations/:conversationId/callscore",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Get Call Score Status By Id",
+        "api_call": "https://api.symbl.ai/v1/conversations/:conversationId/callscore/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Get Insight Status By Id",
+        "api_call": "https://api.symbl.ai/v1/conversations/:conversationId/lm-insights/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Create a tracker",
+        "api_call": "https://api.symbl.ai/v1/manage/trackers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"Promotion Mention\",\n    \"description\": \"Promotion Mention\",\n    \"categories\": [\n        \"Sales\",\n        \"Contact Center\"\n    ],\n    \"languages\": [\n        \"en-US\",\n        \"en-GB\"\n    ],\n    \"vocabulary\": [\n        \"We have a special promotion going on if you book this before\",\n        \"I can offer you a discount of 10 20 percent you being a new customer for us\",\n        \"We are running a monthly special\",\n        \"We have a sale right now on\"\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Create multiple trackers",
+        "api_call": "https://api.symbl.ai/v1/manage/trackers/bulk",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n    {\n        \"name\": \"Billing Issue\",\n        \"description\": \"Billing Issue\",\n        \"categories\": [\n            \"Sales\",\n            \"Contact Center\"\n        ],\n        \"languages\": [\n            \"en-US\",\n            \"en-GB\"\n        ],\n        \"vocabulary\": [\n            \"billing issue\",\n            \"something wrong with my billing\",\n            \"I have a billing problem\",\n            \"I am having issue with billing\",\n            \"I cannot see my bill\",\n            \"bill is not showing up\",\n            \"the amount in the bill is wrong\",\n            \"there is something wrong with my bill\",\n            \"it looks like there is something wrong with my bill this month\"\n        ]\n    },\n    {\n        \"name\": \"Credit Card Added\",\n        \"description\": \"Credit Card Added\",\n        \"categories\": [\n            \"Sales\",\n            \"Contact Center\"\n        ],\n        \"languages\": [\n            \"en-US\",\n            \"en-GB\"\n        ],\n        \"vocabulary\": [\n            \"I added all my credit card details\",\n            \"credit card details are updated\",\n            \"my credit card details are up to date\"\n        ]\n    }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Update a tracker by Id",
+        "api_call": "https://api.symbl.ai/v1/manage/trackers/:trackerId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/name\",\n        \"value\": \"Updated Promotion Mention\"\n    },\n    {\n        \"op\": \"add\",\n        \"path\": \"/vocabulary\",\n        \"value\": [\n            \"Website is not loading\"\n        ]\n    },\n    {\n        \"op\": \"add\",\n        \"path\": \"/languages\",\n        \"value\": [\n            \"en-GB\"\n        ]\n    },\n    {\n        \"op\": \"remove\",\n        \"path\": \"/categories\",\n        \"value\": [\n            \"General\"\n        ]\n    }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Get All Trackers",
+        "api_call": "https://api.symbl.ai/v1/manage/trackers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Get Tracker by Name",
+        "api_call": "https://api.symbl.ai/v1/manage/trackers?name=Promotion Mention",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Get Tracker By ID",
+        "api_call": "https://api.symbl.ai/v1/manage/trackers/:trackerId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Get Trackers By Categories",
+        "api_call": "https://api.symbl.ai/v1/manage/trackers?categories=General",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Get Trackers By Languages",
+        "api_call": "https://api.symbl.ai/v1/manage/trackers?languages=en-US",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Delete By Tracker ID",
+        "api_call": "https://api.symbl.ai/v1/manage/trackers/:trackerId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Trackers - Submit a new Tracker",
+        "api_call": "https://api.symbl.ai/v1/manage/trackers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n    {\n        \"name\": \"Promotion Mention Tracker\",\n        \"vocabulary\": [\n            \"We have a special promotion going on if you book this before\",\n            \"I can offer you a discount of 10 20 percent you being a new customer for us\",\n            \"We have our month special this month\",\n            \"We have a sale right now on\"\n        ]\n    }\n]"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Trackers - Append to an existing Tracker",
+        "api_call": "https://api.symbl.ai/v1/manage/tracker/:trackerId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"name\": \"COVID-19 Tracker\",\n    \"vocabulary\": [\n      \"covid\",\n      \"cover your mouth with a mask\", \n      \"coughing\",\n      \"social distancing\",\n      \"vaccine\"\n    ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Trackers (with Name)",
+        "api_call": "https://api.symbl.ai/v1/manage/trackers?name=Promotion Mention",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Trackers (with ID)",
+        "api_call": "https://api.symbl.ai/v1/manage/tracker/:trackerId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Trackers (with ID)",
+        "api_call": "https://api.symbl.ai/v1/manage/tracker/:trackerId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Create Conversation Groups",
+        "api_call": "https://api.symbl.ai/v1/manage/group",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Calls made by John\",\n  \"description\": \"All the conversations made by the agent John Doe are captured in this Group.\",\n  \"criteria\": \"conversation.metadata.agentId==johndoe\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Read Conversation Groups",
+        "api_call": "https://api.symbl.ai/v1/manage/group/{groupId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Read Multiple Conversation Groups",
+        "api_call": "https://api.symbl.ai/v1/manage/groups",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Update Conversation Groups",
+        "api_call": "https://api.symbl.ai/v1/manage/group/{groupId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"id\": \"{groupId}\",\n  \"name\": \"Calls made by John\",\n  \"description\": \"All the conversations made by the agent John Doe are captured under this Group.\",\n  \"criteria\": \"conversation.metadata.agentId==johndoe\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Delete Conversation Groups",
+        "api_call": "https://api.symbl.ai/v1/manage/group/{groupId}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: settings",
+        "api_call": "https://api.symbl.ai/v1/manage/settings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: settings",
+        "api_call": "https://api.symbl.ai/v1/manage/settings",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n    {\n        \"op\": \"add\",\n        \"path\": \"/intelligence/bookmarks/duration\",\n        \"value\": 35.0\n    },\n    {\n        \"op\": \"replace\",\n        \"path\": \"/intelligence/bookmarks/duration\",\n        \"value\": 40.0\n    }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Create entity",
+        "api_call": "https://api.symbl.ai/v1/manage/entities",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"type\": \"Cricket\",\n    \"subType\": \"Dhoni\",\n    \"category\": \"Custom\",\n    \"values\": [\n        \"World Cup\",\n        \"2011\",\n        \"Dhoni\"\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Create multiple entities",
+        "api_call": "https://api.symbl.ai/v1/manage/entities/bulk",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n    {\n        \"type\": \"motor\",\n        \"subType\": \"motor1\",\n        \"category\": \"Custom\",\n        \"values\": [\n            \"tyre\",\n            \"brake\"\n        ]\n    },\n    {\n        \"type\": \"School\",\n        \"subType\": \"CBSE\",\n        \"category\": \"Custom\",\n        \"values\": [\n            \"tyre\",\n            \"brake\"\n        ]\n    }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Update an entity by id",
+        "api_call": "https://api.symbl.ai/v1/manage/entities/:entityId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"subType\": \"CBSE\",\n    \"type\": \"Cricket\",\n    \"category\": \"Custom\",\n    \"values\": [\n        \"1\",\n        \"12\"\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Get all entities",
+        "api_call": "https://api.symbl.ai/v1/manage/entities",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Get entity by Id",
+        "api_call": "https://api.symbl.ai/v1/manage/entities/:entityId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Get entity by subType",
+        "api_call": "https://api.symbl.ai/v1/manage/entities?subType=CBSE",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Delete entity by Id",
+        "api_call": "https://api.symbl.ai/v1/manage/entities/:entityId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Comprehensive Action Items",
+        "api_call": "https://api-labs.symbl.ai/v1/conversations//comprehensive/action-items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "x-api-key",
+                    "value": "{{api_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Symbl API: Abstract Topics",
+        "api_call": "https://api-labs.symbl.ai/v1/conversations//abstract-topics",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
