@@ -19,6 +19,32 @@ DEFAULT_USER_PROMPT_FOR_ADDITIONAL_FUNCTION_FC = "I have updated some more funct
 
 DEFAULT_USER_PROMPT_FOR_ADDITIONAL_FUNCTION_PROMPTING = "{functions}\n" + DEFAULT_USER_PROMPT_FOR_ADDITIONAL_FUNCTION_FC
 
+DEFAULT_SYSTEM_PROMPT_FOR_MULTI_TURN = (
+    DEFAULT_SYSTEM_PROMPT
+    + """
+Your should try to complete the tasks requested by the user within the current turn. Continue outputting functions to call until you have fulfilled the user's request to the best of your ability. Once you have no more functions to call, the system will consider the current turn complete and proceed to the next turn or task.
+If you determine that one or more of the requested tasks cannot be accomplished within the current context, please explicitly indicate this by calling the `flag_task_unachievable` function for each impossible task, with a task description and an explanation of why you believe it cannot be completed."""
+)
+
+UNACHIEVABLE_TASK_FUNC_DOC = {
+    "name": "flag_task_unachievable",
+    "description": "Marks a task as 'unachievable'. Call this function only when some task that the user asked for is impossible to be accomplished within the current context. If there are more than one task that are impossible to be accomplished, this function should be called for each of them.",
+    "parameters": {
+        "type": "dict",
+        "properties": {
+            "task": {
+                "type": "string",
+                "description": "A description of the task that is not possible to be done.",
+            },
+            "reason": {
+                "type": "string",
+                "description": "A description of the reason why you think the task is not possible to be done.",
+            },
+        },
+        "required": ["task", "reason"],
+    },
+}
+
 GORILLA_TO_OPENAPI = {
     "integer": "integer",
     "number": "number",

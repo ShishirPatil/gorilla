@@ -1,9 +1,10 @@
 import json
 
-from bfcl.eval_checker.eval_runner_helper import is_empty_output
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import (
     execute_multi_turn_func_call,
+    is_empty_execute_response,
 )
+from bfcl.utils import contain_unachievable_task
 
 #### Main functions ####
 
@@ -23,23 +24,32 @@ def multi_turn_checker(
     involved_classes: list = test_entry["involved_classes"]
     test_entry_id: str = test_entry["id"]
     test_category: str = test_entry_id.rsplit("_", 1)[0]
-    log = []
+    execution_results: list[dict] = []
+
     # First execute all the function calls
     for turn_index, single_turn_ground_truth_list in enumerate(
         multi_turn_ground_truth_list
     ):
+        # If the ground truth list is not empty, then the model response list should not be empty
         single_turn_model_response_list = multi_turn_model_result_list_decoded[turn_index]
-        if single_turn_ground_truth_list and not single_turn_model_response_list:
-            return {
-                "valid": False,
-                "error": f"Model response list is empty for turn {turn_index}",
-                "error_type": "multi_turn:empty_turn_model_response",
-            }
-
-        # If the ground truth list is empty, this is the turn where the model should not output anything, so we skip the turn
-        # The actual check for irrelevance is done in the multi_turn_irrelevance_checker function
-        if not single_turn_ground_truth_list:
-            continue
+        if len(single_turn_ground_truth_list) > 0:
+            if not single_turn_model_response_list or is_empty_execute_response(
+                single_turn_model_response_list
+            ):
+                return {
+                    "valid": False,
+                    "error": f"Model response list is empty for turn {turn_index}",
+                    "error_type": "multi_turn:empty_turn_model_response",
+                    "execution_result": execution_results,
+                }
+            # The flag_task_unachievable should also not be called in this turn
+            elif contain_unachievable_task(single_turn_model_response_list):
+                return {
+                    "valid": False,
+                    "error": f"Model response list calls flag_task_unachievable for turn {turn_index} when it should not",
+                    "error_type": "multi_turn:unexpected_flag_task_unachievable",
+                    "execution_result": execution_results,
+                }
 
         # Execute the ground truth function calls
         single_turn_ground_truth_execution_results, ground_truth_instances = (
@@ -76,6 +86,19 @@ def multi_turn_checker(
             )
             single_turn_model_execution_results.extend(sub_round_model_execution_results)
 
+        execution_results.append(
+            {
+                "model": single_turn_model_execution_results,
+                "ground_truth": single_turn_ground_truth_execution_results,
+            }
+        )
+
+        # If the ground truth list is empty, this is the turn where the model should eventually fail to achieve the user request.
+        # The actual check for irrelevance is done in the multi_turn_irrelevance_checker function
+        # Note: If the model outputs any function call in this turn, we will still execute it so that the state check at the next turn is accurate.
+        if not single_turn_ground_truth_list:
+            continue
+
         ## Check after each turn ##
         assert len(model_instances) == len(
             ground_truth_instances
@@ -85,6 +108,7 @@ def multi_turn_checker(
         # Check the state of the instances
         state_check_result = state_checker(model_instances, ground_truth_instances)
         if not state_check_result["valid"]:
+            state_check_result["execution_result"] = execution_results
             return state_check_result
 
         # # Check the response of the function calls
@@ -118,14 +142,17 @@ def multi_turn_irrelevance_checker(
         multi_turn_ground_truth_list
     ):
         single_turn_model_response_list = multi_turn_model_result_list_decoded[turn_index]
-        if len(single_turn_ground_truth_list) == 0 and not is_empty_output(
-            single_turn_model_response_list
-        ):
-            return {
-                "valid": False,
-                "error": f"Model outputs a valid function call when it should not for turn {turn_index}. Model response decoded: {single_turn_model_response_list}",
-                "error_type": "multi_turn:irrelevance_error:decoder_success",
-            }
+        if len(single_turn_ground_truth_list) == 0:
+            if is_empty_execute_response(single_turn_model_response_list):
+                continue
+            elif contain_unachievable_task(single_turn_model_response_list):
+                continue
+            else:
+                return {
+                    "valid": False,
+                    "error": f"Model outputs valid function calls when it should not for turn {turn_index}. Model response decoded: {single_turn_model_response_list}",
+                    "error_type": "multi_turn:irrelevance_error:decoder_success",
+                }
     return {"valid": True}
 
 
