@@ -1,5 +1,3 @@
-import json
-
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import (
     execute_multi_turn_func_call,
     is_empty_execute_response,

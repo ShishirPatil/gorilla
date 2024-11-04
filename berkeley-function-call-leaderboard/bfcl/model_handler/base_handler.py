@@ -1,6 +1,5 @@
 import json
 import time
-from copy import deepcopy
 
 from bfcl.constant import RESULT_PATH, VERSION_PREFIX
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import (
@@ -151,7 +150,9 @@ class BaseHandler:
                         current_round_debugging_log.append(
                             {
                                 "role": "handler_log",
-                                "content": f"Empty response from the model. Proceed to next turn. Model response decoded: {decoded_model_responses}. Model response raw: {model_responses}",
+                                "content": f"Empty response from the model. Proceed to next turn.",
+                                "model response decoded": decoded_model_responses,
+                                "model response raw": model_responses,
                             }
                         )
                         break
@@ -161,7 +162,8 @@ class BaseHandler:
                     current_round_debugging_log.append(
                         {
                             "role": "handler_log",
-                            "content": f"Error decoding the model response. Proceed to next turn. Error: {e}. Model response: {model_responses}.",
+                            "content": f"Error decoding the model response. Proceed to next turn. Error: {e}.",
+                            "model response raw": model_responses,
                         }
                     )
                     break
@@ -172,7 +174,10 @@ class BaseHandler:
                 current_round_debugging_log.append(
                     {
                         "role": "handler_log",
-                        "content": f"Decoded: {decoded_model_responses}. Raw: {model_responses}",
+                        "content": {
+                            "model response decoded": decoded_model_responses,
+                            "model response raw": model_responses,
+                        },
                     }
                 )
 
@@ -328,7 +333,9 @@ class BaseHandler:
                         current_round_debugging_log.append(
                             {
                                 "role": "handler_log",
-                                "content": f"Empty response from the model. Proceed to next turn. Model response decoded: {decoded_model_responses}. Model response raw: {model_responses}",
+                                "content": f"Empty response from the model. Proceed to next turn.",
+                                "model response decoded": decoded_model_responses,
+                                "model response raw": model_responses,
                             }
                         )
                         break
@@ -338,7 +345,8 @@ class BaseHandler:
                     current_round_debugging_log.append(
                         {
                             "role": "handler_log",
-                            "content": f"Error decoding the model response. Proceed to next turn. Error: {e}. Model response: {model_responses}.",
+                            "content": f"Error decoding the model response. Proceed to next turn. Error: {e}.",
+                            "model response raw": model_responses,
                         }
                     )
                     break
@@ -349,7 +357,10 @@ class BaseHandler:
                 current_round_debugging_log.append(
                     {
                         "role": "handler_log",
-                        "content": f"Decoded: {decoded_model_responses}. Raw: {model_responses}",
+                        "content": {
+                            "model response decoded": decoded_model_responses,
+                            "model response raw": model_responses,
+                        },
                     }
                 )
 
