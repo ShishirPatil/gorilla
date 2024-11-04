@@ -64,6 +64,7 @@ class MessageAPI:
         self.inbox: List[Dict[str, str]]
         self.message_count: int
         self.current_user: Optional[str]
+        self._api_description = "This tool belongs to the Message API, which is used to manage user interactions in a workspace."
 
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """
