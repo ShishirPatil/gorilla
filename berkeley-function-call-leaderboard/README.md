@@ -309,6 +309,12 @@ If you want to run `live_simple` and `javascript` tests for a few models and `go
 bfcl evaluate --model gorilla-openfunctions-v2 claude-3-5-sonnet-20240620 gpt-4-0125-preview gemini-1.5-pro-preview-0514 --test-category live_simple javascript
 ```
 
+If you want to log the evaluation results as WandB artifacts to a specific WandB entity and project, you can use the following argument:
+```bash
+bfcl evaluate --model gpt-3.5-turbo-0125  
+--wandb-project <wandb_entity:wandb_project>
+```
+
 ### Model-Specific Optimization
 
 Some companies have proposed some optimization strategies in their models' handler, which we (BFCL) think is unfair to other models, as those optimizations are not generalizable to all models. Therefore, we have disabled those optimizations during the evaluation process by default. You can enable those optimizations by setting the `USE_{COMPANY}_OPTIMIZATION` flag to `True` in the `.env` file.

@@ -185,13 +185,17 @@ def evaluate(
         "-c",
         help="Perform the REST API status sanity check before running the evaluation.",
     ),
+    wandb_project: str = typer.Option(
+        None,
+        help="The entity and project to which to log the generated .csv in the format 'entity:project'"
+    )
 ):
     """
     Evaluate results from run of one or more models on a test-category (same as eval_runner.py).
     """
 
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
-    eval_runner.main(model, test_category, api_sanity_check)
+    eval_runner.main(model, test_category, api_sanity_check,wandb_project)
 
 
 @cli.command()

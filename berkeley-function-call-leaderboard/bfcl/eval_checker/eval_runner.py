@@ -428,7 +428,7 @@ def ast_file_runner(
 
 
 #### Main runner function ####
-def runner(model_names, test_categories, api_sanity_check):
+def runner(model_names, test_categories, api_sanity_check, wandb_project):
 
     # A flag to indicate if the API has been tested.
     # We should always test the API with ground truth first before running the executable tests.
@@ -583,7 +583,7 @@ def runner(model_names, test_categories, api_sanity_check):
     # This is helpful when you only want to run the evaluation for a subset of models and test categories.
     update_leaderboard_table_with_score_file(LEADERBOARD_TABLE, SCORE_PATH)
     # Write the leaderboard table to a file
-    generate_leaderboard_csv(LEADERBOARD_TABLE, SCORE_PATH, model_names, test_categories)
+    generate_leaderboard_csv(LEADERBOARD_TABLE, SCORE_PATH, model_names, test_categories, wandb_project)
 
     # Clean up the executable expected output files
     # They should be re-generated the next time the evaluation is run
@@ -623,6 +623,28 @@ def main(model, test_category, api_sanity_check):
     runner(model_names, test_categories, api_sanity_check)
 
 
+def main(model, test_category, api_sanity_check, wandb_project):
+    test_categories = None
+    if test_category is not None:
+        test_categories = []
+        for category in test_category:
+            if category in TEST_COLLECTION_MAPPING:
+                test_categories.extend(TEST_COLLECTION_MAPPING[category])
+            else:
+                test_categories.append(category)
+
+    model_names = None
+    if model is not None:
+        model_names = []
+        for model_name in model:
+            # Runner takes in the model name that contains "_", instead of "/", for the sake of file path issues.
+            # This is differnet than the model name format that the generation script "openfunctions_evaluation.py" takes in (where the name contains "/").
+            # We patch it here to avoid confusing the user.
+            model_names.append(model_name.replace("/", "_"))
+
+    runner(model_names, test_categories, api_sanity_check, wandb_project)
+
+
 def get_handler(model_name):
     return HANDLER_MAP[model_name](
         model_name, temperature=0
@@ -650,8 +672,14 @@ if __name__ == "__main__":
         help="Perform the REST API status sanity check before running the evaluation. By default, the sanity check is skipped.",
     )
 
+    parser.add_argument(
+        "--wandb_project",
+        default=None,
+        type=str,
+        help="The entity and project to which to log the generated .csv in the format 'entity:project'"
+    )
     args = parser.parse_args()
 
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
     
-    main(args.model, args.test_category, args.api_sanity_check)
+    main(args.model, args.test_category, args.api_sanity_check, args.wandb_project)
