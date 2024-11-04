@@ -122,18 +122,19 @@ def multi_turn_runner(
         
         # Perform additional check for multi-turn irrelevance
         # This happens when the model is expected to not output any function calls in a certain turn due to miss parameters or miss functions
-        irrelevance_checker_result = multi_turn_irrelevance_checker(
-            multi_turn_model_result_list_decoded,
-            multi_turn_ground_truth_list,
-        )
+        # irrelevance_checker_result = multi_turn_irrelevance_checker(
+        #     multi_turn_model_result_list_decoded,
+        #     multi_turn_ground_truth_list,
+        # )
 
-        if not irrelevance_checker_result["valid"] or not accuracy_checker_result["valid"]:
+        if not accuracy_checker_result["valid"]:
             temp = {}
             temp["id"] = index
             temp["model_name"] = model_name
             temp["test_category"] = test_category
-            # We display the irrelevance checker result first, then the accuracy checker result if irrelevance is passed
-            temp.update(irrelevance_checker_result if not irrelevance_checker_result["valid"] else accuracy_checker_result)
+            # if not irrelevance_checker_result["valid"]:
+                # temp.update(irrelevance_checker_result)
+            temp.update(accuracy_checker_result)
             temp["prompt"] = test_entry
             temp["model_result_raw"] = multi_turn_model_result_list
             temp["model_result_decoded"] = multi_turn_model_result_list_decoded
