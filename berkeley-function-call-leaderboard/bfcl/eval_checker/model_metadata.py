@@ -343,6 +343,24 @@ MODEL_METADATA_MAPPING = {
         "Google",
         "gemma-terms-of-use",
     ],
+    "google/gemma-2-2b-it": [
+        "Gemma-2-2b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-open-models/",
+        "Google",
+        "gemma-terms-of-use",
+    ],
+    "google/gemma-2-9b-it": [
+        "Gemma-2-9b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-open-models/",
+        "Google",
+        "gemma-terms-of-use",
+    ],
+    "google/gemma-2-27b-it": [
+        "Gemma-2-27b-it (Prompt)",
+        "https://blog.google/technology/developers/gemma-open-models/",
+        "Google",
+        "gemma-terms-of-use",
+    ],
     "glaiveai/glaive-function-calling-v1": [
         "Glaive-v1 (FC)",
         "https://huggingface.co/glaiveai/glaive-function-calling-v1",
@@ -529,9 +547,27 @@ MODEL_METADATA_MAPPING = {
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "MadeAgents/Hammer-7b": [
-        "Hammer-7b (FC)",
-        "https://huggingface.co/MadeAgents/Hammer-7b",
+    "MadeAgents/Hammer2.0-7b": [
+        "Hammer2.0-7b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.0-7b",
+        "MadeAgents",
+        "cc-by-nc-4.0",
+    ],
+    "MadeAgents/Hammer2.0-3b": [
+        "Hammer2.0-3b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.0-3b",
+        "MadeAgents",
+        "cc-by-nc-4.0",
+    ],
+    "MadeAgents/Hammer2.0-1.5b": [
+        "Hammer2.0-1.5b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.0-1.5b",
+        "MadeAgents",
+        "cc-by-nc-4.0",
+    ],
+    "MadeAgents/Hammer2.0-0.5b": [
+        "Hammer2.0-0.5b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.0-0.5b",
         "MadeAgents",
         "cc-by-nc-4.0",
     ],
@@ -607,6 +643,12 @@ MODEL_METADATA_MAPPING = {
         "Huawei Noah & USTC",
         "Apache-2.0",
     ],
+    "openbmb/MiniCPM3-4B": [
+        "MiniCPM3-4B (FC)",
+        "https://huggingface.co/openbmb/MiniCPM3-4B",
+        "openbmb",
+        "Apache-2.0",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -631,8 +673,8 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-small-2402-FC": 1,
     "mistral-small-2402": 1,
     "mistral-tiny-2312": 0.25,
-    "o1-preview-2024-09-12": 60,
-    "o1-mini-2024-09-12": 12,
+    "o1-preview-2024-09-12": 15,
+    "o1-mini-2024-09-12": 3,
     "gpt-4o-2024-05-13-FC": 5,
     "gpt-4o-2024-05-13": 5,
     "gpt-4o-2024-08-06-FC": 2.5,
@@ -742,4 +784,16 @@ NO_COST_MODELS += [
     "meetkai/functionary-medium-v3.1-FC",
     "snowflake/arctic",
     "nvidia/nemotron-4-340b-instruct",
+    "ibm-granite/granite-20b-functioncalling",
+    "THUDM/glm-4-9b-chat",
+    "Salesforce/xLAM-1b-fc-r",
+    "Salesforce/xLAM-7b-fc-r",
+    "Salesforce/xLAM-7b-r",
+    "Salesforce/xLAM-8x7b-r",
+    "Salesforce/xLAM-8x22b-r",
+     "Team-ACE/ToolACE-8B",
+    "MadeAgents/Hammer2.0-7b",
+    "MadeAgents/Hammer2.0-3b",
+    "MadeAgents/Hammer2.0-1.5b",
+    "MadeAgents/Hammer2.0-0.5b",
 ]

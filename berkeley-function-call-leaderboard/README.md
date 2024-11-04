@@ -35,13 +35,28 @@ pip install -e .
 
 ### Installing Extra Dependencies for Self-Hosted Open Source Models
 
-To do LLM generation on self-hosted open source models, you need to run the following command to install the extra dependencies.
+To do LLM generation on self-hosted open source models, you can choose to use `vllm` or `sglang` for local inference. Both options require GPUs supported by the respective libraries, and it only works on Linux or Windows, but not on MacOS.
+
+`sglang` is much faster than `vllm` but only supports newer GPUs with SM 80+ (Ampere etc).
+If you are using an older GPU (T4/V100), you should use `vllm` instead as it supports a much wider range of GPUs.
+
+Use the following commands to install the necessary dependencies based on your choice:
+
+#### For Local Inference Using `vllm`
 
 ```bash
-pip install -e .[oss_eval]
+pip install -e .[oss_eval_vllm]
 ```
 
-Note that this requires GPU supported by vLLM and it can only be installed on Linux and Windows (not Mac).
+#### For Local Inference Using `sglang`
+
+```bash
+pip install -e .[oss_eval_sglang]
+```
+
+**Note**:
+If you choose `sglang`, we recommend also installing the `flashinfer` package for even faster and more efficient inference.
+Depends on the CUDA version, you can find the specific `flashinfer` installation command [here](https://docs.flashinfer.ai/installation.html).
 
 ### Setting up Environment Variables
 
@@ -100,19 +115,31 @@ If decided to run locally-hosted model, the generation script uses vLLM and ther
 
 Use the following command for LLM inference of the evaluation dataset with specific models.
 
-```bash
-python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1
-```
-
-You can optionally specify the number of threads to use for _parallel inference_ by setting the `--num-threads` flag to speed up inference for **hosted models**, not applicable for OSS models.
-
 For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section below.
 
 If no `MODEL_NAME` is provided, the model `gorilla-openfunctions-v2` will be used by default. If no `TEST_CATEGORY` is provided, all test categories will be run by default.
 
+#### For API-hosted models:
+
+```bash
+bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1
+```
+
+You can optionally specify the number of threads to use for _parallel inference_ by setting the `--num-threads` flag to speed up inference for **hosted models**. The default is 1, which means no parallel inference. The maximum number of parallel inference depends on your API rate limit.
+
+#### For locally-hosted models:
+
+```bash
+bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --backend {vllm,sglang} --num-gpus 1 --gpu-memory-utilization 0.9
+```
+
+You can choose between `vllm` and `sglang` as the backend and set the `--backend` flag; The default is `vllm`.
+You can also specify the number of GPUs to use for inference (multi-GPU tensor parallelism) by setting the `--num-gpus` flag. The default is 1.
+You can also specify the GPU memory utilization by setting the `--gpu-memory-utilization` flag. The default is 0.9. This is helpful if you encounter out-of-memory issues.
+
 ### Models Available
 
-Below is _a table of models we support_ to run our leaderboard evaluation against. If the models support function calling (FC), we will follow its function calling format provided by official documentation. Otherwise, we use a consistent system message to prompt the model to generate function calls in the right format.
+Below is _a table of models we support_ to run our leaderboard evaluation against. If the models support function calling (FC), we will follow its function calling format provided by official documentation. Otherwise, we use a consistent system message to prompt the model to generate function calls in the right format. You can also use `bfcl models` command to list out all available models.
 
 |Model | Type |
 |---|---|
@@ -145,6 +172,7 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |gpt-4o-mini-2024-07-18-FC | Function Calling|
 |gpt-4o-mini-2024-07-18 | Prompt|
 |google/gemma-7b-it 💻| Prompt|
+|google/gemma-2-{2b,9b,27b}-it 💻| Prompt|
 |meetkai/functionary-medium-v3.1-FC| Function Calling|
 |meetkai/functionary-small-{v3.1,v3.2}-FC| Function Calling|
 |meta-llama/Meta-Llama-3-{8B,70B}-Instruct 💻| Prompt|
@@ -180,10 +208,11 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |THUDM/glm-4-9b-chat 💻| Function Calling|
 |ibm-granite/granite-20b-functioncalling 💻| Function Calling|
 |yi-large-fc | Function Calling|
-|MadeAgents/Hammer-7b 💻| Function Calling|
+|MadeAgents/Hammer2.0-{7b,3b,1.5b,0.5b} 💻| Function Calling|
 |Qwen/Qwen2.5-{1.5B,7B}-Instruct 💻| Prompt|
 |Qwen/Qwen2-{1.5B,7B}-Instruct 💻| Prompt|
 |Team-ACE/ToolACE-8B 💻| Function Calling|
+|openbmb/MiniCPM3-4B 💻| Function Calling|
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function-calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
 
@@ -196,7 +225,7 @@ For `Databrick-DBRX-instruct`, you need to create a Databrick Azure workspace an
 
 In the following two sections, the optional `--test-category` parameter can be used to specify the category of tests to run. You can specify multiple categories separated by spaces. Available options include:
 
-- Available test groups:
+- Available test groups (you can also use `bfcl test-categories` command to see):
   - `all`: All test categories.
     - This is the default option if no test category is provided.
   - `multi_turn`: All multi-turn test categories.
@@ -247,7 +276,7 @@ In the following two sections, the optional `--test-category` parameter can be u
 Navigate to the `gorilla/berkeley-function-call-leaderboard/bfcl/eval_checker` directory and run the `eval_runner.py` script with the desired parameters. The basic syntax is as follows:
 
 ```bash
-python eval_runner.py --model MODEL_NAME --test-category TEST_CATEGORY
+bfcl evaluate --model MODEL_NAME --test-category TEST_CATEGORY
 ```
 
 For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section.
@@ -259,25 +288,25 @@ If no `MODEL_NAME` is provided, all available model results will be evaluated by
 If you want to run all tests for the `gorilla-openfunctions-v2` model, you can use the following command:
 
 ```bash
-python eval_runner.py --model gorilla-openfunctions-v2
+bfcl evaluate --model gorilla-openfunctions-v2
 ```
 
 If you want to evaluate all offline tests (do not require RapidAPI keys) for OpenAI GPT-3.5, you can use the following command:
 
 ```bash
-python eval_runner.py --model gpt-3.5-turbo-0125 --test-category ast
+bfcl evaluate --model gpt-3.5-turbo-0125 --test-category ast
 ```
 
 If you want to run the `rest` tests for a few Claude models, you can use the following command:
 
 ```bash
-python eval_runner.py --model claude-3-5-sonnet-20240620 claude-3-opus-20240229 claude-3-sonnet-20240229 --test-category rest
+bfcl evaluate --model claude-3-5-sonnet-20240620 claude-3-opus-20240229 claude-3-sonnet-20240229 --test-category rest
 ```
 
 If you want to run `live_simple` and `javascript` tests for a few models and `gorilla-openfunctions-v2`, you can use the following command:
 
 ```bash
-python eval_runner.py --model gorilla-openfunctions-v2 claude-3-5-sonnet-20240620 gpt-4-0125-preview gemini-1.5-pro-preview-0514 --test-category live_simple javascript
+bfcl evaluate --model gorilla-openfunctions-v2 claude-3-5-sonnet-20240620 gpt-4-0125-preview gemini-1.5-pro-preview-0514 --test-category live_simple javascript
 ```
 
 ### Model-Specific Optimization

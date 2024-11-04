@@ -1,9 +1,10 @@
 import json
 
-from bfcl.eval_checker.eval_runner_helper import is_empty_output
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import (
     execute_multi_turn_func_call,
+    is_empty_execute_response,
 )
+from bfcl.utils import contain_unachievable_task
 
 #### Main functions ####
 
@@ -23,23 +24,32 @@ def multi_turn_checker(
     involved_classes: list = test_entry["involved_classes"]
     test_entry_id: str = test_entry["id"]
     test_category: str = test_entry_id.rsplit("_", 1)[0]
-    log = []
+    execution_results: list[dict] = []
+
     # First execute all the function calls
     for turn_index, single_turn_ground_truth_list in enumerate(
         multi_turn_ground_truth_list
     ):
+        # If the ground truth list is not empty, then the model response list should not be empty
         single_turn_model_response_list = multi_turn_model_result_list_decoded[turn_index]
-        if single_turn_ground_truth_list and not single_turn_model_response_list:
-            return {
-                "valid": False,
-                "error": f"Model response list is empty for turn {turn_index}",
-                "error_type": "multi_turn:empty_turn_model_response",
-            }
-
-        # If the ground truth list is empty, this is the turn where the model should not output anything, so we skip the turn
-        # The actual check for irrelevance is done in the multi_turn_irrelevance_checker function
-        if not single_turn_ground_truth_list:
-            continue
+        if len(single_turn_ground_truth_list) > 0:
+            if not single_turn_model_response_list or is_empty_execute_response(
+                single_turn_model_response_list
+            ):
+                return {
+                    "valid": False,
+                    "error": f"Model response list is empty for turn {turn_index}",
+                    "error_type": "multi_turn:empty_turn_model_response",
+                    "execution_result": execution_results,
+                }
+            # The flag_task_unachievable should also not be called in this turn
+            elif contain_unachievable_task(single_turn_model_response_list):
+                return {
+                    "valid": False,
+                    "error": f"Model response list calls flag_task_unachievable for turn {turn_index} when it should not",
+                    "error_type": "multi_turn:unexpected_flag_task_unachievable",
+                    "execution_result": execution_results,
+                }
 
         # Execute the ground truth function calls
         single_turn_ground_truth_execution_results, ground_truth_instances = (
@@ -49,7 +59,9 @@ def multi_turn_checker(
                 involved_classes=involved_classes,
                 model_name=model_name + "_ground_truth",
                 test_entry_id=test_entry_id,
-                long_context=("long_context" in test_category or "composite" in test_category),
+                long_context=(
+                    "long_context" in test_category or "composite" in test_category
+                ),
                 is_evaL_run=True,
             )
         )
@@ -66,11 +78,26 @@ def multi_turn_checker(
                     involved_classes=involved_classes,
                     model_name=model_name,
                     test_entry_id=test_entry_id,
-                    long_context=("long_context" in test_category or "composite" in test_category),
+                    long_context=(
+                        "long_context" in test_category or "composite" in test_category
+                    ),
                     is_evaL_run=True,
                 )
             )
             single_turn_model_execution_results.extend(sub_round_model_execution_results)
+
+        execution_results.append(
+            {
+                "model": single_turn_model_execution_results,
+                "ground_truth": single_turn_ground_truth_execution_results,
+            }
+        )
+
+        # If the ground truth list is empty, this is the turn where the model should eventually fail to achieve the user request.
+        # The actual check for irrelevance is done in the multi_turn_irrelevance_checker function
+        # Note: If the model outputs any function call in this turn, we will still execute it so that the state check at the next turn is accurate.
+        if not single_turn_ground_truth_list:
+            continue
 
         ## Check after each turn ##
         assert len(model_instances) == len(
@@ -78,9 +105,10 @@ def multi_turn_checker(
         ), f"Model instances and ground truth instances do not match in length for turn {turn_index}. Model instances: {len(model_instances)}, Ground truth instances: {len(ground_truth_instances)}"
         assert set(model_instances.keys()) == set(ground_truth_instances.keys())
 
-        # Check the status of the instances
+        # Check the state of the instances
         state_check_result = state_checker(model_instances, ground_truth_instances)
         if not state_check_result["valid"]:
+            state_check_result["execution_result"] = execution_results
             return state_check_result
 
         # # Check the response of the function calls
@@ -114,15 +142,17 @@ def multi_turn_irrelevance_checker(
         multi_turn_ground_truth_list
     ):
         single_turn_model_response_list = multi_turn_model_result_list_decoded[turn_index]
-        if (
-            len(single_turn_ground_truth_list) == 0
-            and not is_empty_output(single_turn_model_response_list)
-        ):
-            return {
-                "valid": False,
-                "error": f"Model outputs a valid function call when it should not for turn {turn_index}. Model response decoded: {single_turn_model_response_list}",
-                "error_type": "multi_turn:irrelevance_error:decoder_success",
-            }
+        if len(single_turn_ground_truth_list) == 0:
+            if is_empty_execute_response(single_turn_model_response_list):
+                continue
+            elif contain_unachievable_task(single_turn_model_response_list):
+                continue
+            else:
+                return {
+                    "valid": False,
+                    "error": f"Model outputs valid function calls when it should not for turn {turn_index}. Model response decoded: {single_turn_model_response_list}",
+                    "error_type": "multi_turn:irrelevance_error:decoder_success",
+                }
     return {"valid": True}
 
 
@@ -136,12 +166,28 @@ def state_checker(model_instances: dict, ground_truth_instances: dict):
     """
     for class_name, ground_truth_instance in ground_truth_instances.items():
         model_instance = model_instances[class_name]
-        valid, differeces = _compare_instances(model_instance, ground_truth_instance)
+        valid, differences = _compare_instances(model_instance, ground_truth_instance)
 
         if not valid:
+            model_instance_attributes = {
+                key: value
+                for key, value in vars(model_instance).items()
+                if not key.startswith("_")
+            }
+            ground_truth_instance_attributes = {
+                key: value
+                for key, value in vars(ground_truth_instance).items()
+                if not key.startswith("_")
+            }
+            # Format the error message for better readability
             return {
                 "valid": False,
-                "error": f"Model instance for {class_name} does not match the state with ground truth instance. \nDifferences: {differeces}. Model instance: {model_instance.__dict__}, Ground truth instance: {ground_truth_instance.__dict__}",
+                "error": {
+                    "message": f"Model instance for {class_name} does not match the state with ground truth instance.",
+                    "details": differences,
+                    "model_instance_state": model_instance_attributes,
+                    "ground_truth_instance_state": ground_truth_instance_attributes,
+                },
                 "error_type": "multi_turn:instance_state_mismatch",
             }
 
@@ -211,7 +257,7 @@ def _compare_instances(model_obect, ground_truth_object):
     assert type(model_obect) == type(
         ground_truth_object
     ), "Objects are not of the same type."
-    differeces = {}
+    differences = {}
     valid = True
     for attr_name in vars(ground_truth_object):
         # We don't check for private attributes
@@ -222,11 +268,9 @@ def _compare_instances(model_obect, ground_truth_object):
 
         if model_attr != ground_truth_attr:
             valid = False
-            differeces[attr_name] = (
-                f"Model: {model_attr}, Ground Truth: {ground_truth_attr}"
-            )
+            differences[attr_name] = {"model": model_attr, "ground_truth": ground_truth_attr}
 
-    return valid, differeces
+    return valid, differences
 
 
 def _is_subsequence(list1, list2):

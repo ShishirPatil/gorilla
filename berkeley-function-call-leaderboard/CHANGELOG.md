@@ -2,6 +2,35 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Oct 30, 2024] [#725](https://github.com/ShishirPatil/gorilla/pull/725): Update evaluation metric for irrelevance detection in multi-turn scenarios:
+  - Added a dummy `flag_task_unachievable` function for all multi-turn entries.
+  - If the model identifies a task as unachievable, it should invoke this function explicitly.
+  - During evaluation, if `flag_task_unachievable` is called in a turn, that turn will be marked correct for irrelevance detection, even if other functions were also called in that turn.
+    - This also means that if the model calls `flag_task_unachievable` in a normal (non-irrelevant) turn, that turn will be marked incorrect.
+  - This ensures the model can attempt reasonable exploratory actions before concluding a task is unachievable, aligning multi-turn behavior with single-turn irrelevance standards.
+- [Oct 30, 2024] [#719](https://github.com/ShishirPatil/gorilla/pull/719), [#722](https://github.com/ShishirPatil/gorilla/pull/722), [#723](https://github.com/ShishirPatil/gorilla/pull/723), [#728](https://github.com/ShishirPatil/gorilla/pull/728), [#732](https://github.com/ShishirPatil/gorilla/pull/732): Bug fix in the dataset and ground truth for the multi-turn categories.
+- [Oct 17, 2024] [#683](https://github.com/ShishirPatil/gorilla/pull/683): Bug fix for the multi turn categories for ambiguity in action intention and function parameters.
+- [Oct 17, 2024] [#709](https://github.com/ShishirPatil/gorilla/pull/709): Rephrase question prompt for Java and JavaScript categories to improve clarity and action intent.
+- [Oct 17, 2024] [#708](https://github.com/ShishirPatil/gorilla/pull/708): Update the ground truth for the REST category to be up-to-date with the latest API response structure.
+- [Oct 16, 2024] [#701](https://github.com/ShishirPatil/gorilla/pull/701): Bug fix the multi turn function source code for `TravelAPI`.
+- [Oct 16, 2024] [#696](https://github.com/ShishirPatil/gorilla/pull/696): Add the following new models to the leaderboard:
+  - `google/gemma-2-2b-it`
+  - `google/gemma-2-9b-it`
+  - `google/gemma-2-27b-it`
+- [Oct 16, 2024] [#661](https://github.com/ShishirPatil/gorilla/pull/661): Bug fix in the dataset and possible answers.
+  - Irrelevance: 1 affected
+  - Parallel Multiple: 2 affected
+  - Live Simple: 104 affected
+  - Live Multiple: 547 affected
+  - Live Parallel: 11 affected
+  - Live Parallel Multiple: 17 affected
+- [Oct 11, 2024] [#667](https://github.com/ShishirPatil/gorilla/pull/667): Add the following new models to the leaderboard:
+  - `MadeAgents/Hammer2.0-7b`
+  - `MadeAgents/Hammer2.0-3b`
+  - `MadeAgents/Hammer2.0-1.5b`
+  - `MadeAgents/Hammer2.0-0.5b`
+- [Oct 10, 2024] [#621](https://github.com/ShishirPatil/gorilla/pull/621), [#675](https://github.com/ShishirPatil/gorilla/pull/675): Add a basic command-line interface for ease of use.
+- [Oct 5, 2024] [#633](https://github.com/ShishirPatil/gorilla/pull/633): Add new model `openbmb/MiniCPM3-4B` to the leaderboard.
 - [Oct 5, 2024] [#642](https://github.com/ShishirPatil/gorilla/pull/642): Add the following new models to the leaderboard:
   - `Qwen/Qwen2.5-7B-Instruct`
   - `Qwen/Qwen2.5-1.5B-Instruct`
