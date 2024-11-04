@@ -120,12 +120,12 @@ class BaseHandler:
                 api_response = self._query_FC(inference_data)
                 query_latency = time.time() - start_time
 
-                current_round_debugging_log.append(
-                    {
-                        "role": "handler_log:inference_input",
-                        "content": inference_data.get("inference_input_log", ""),
-                    }
-                )
+                # current_round_debugging_log.append(
+                #     {
+                #         "role": "handler_log:inference_input",
+                #         "content": inference_data.get("inference_input_log", ""),
+                #     }
+                # )
 
                 # Try parsing the model response
                 model_response_data = self._parse_query_response_FC(api_response)
@@ -174,10 +174,9 @@ class BaseHandler:
                 current_round_debugging_log.append(
                     {
                         "role": "handler_log",
-                        "content": {
-                            "model response decoded": decoded_model_responses,
-                            "model response raw": model_responses,
-                        },
+                        "content": "Models output valid functions to execute.",
+                        "model response decoded": decoded_model_responses,
+                        "model response raw": model_responses,
                     }
                 )
 
@@ -303,12 +302,13 @@ class BaseHandler:
                 start_time = time.time()
                 api_response = self._query_prompting(inference_data)
                 query_latency = time.time() - start_time
-                current_round_debugging_log.append(
-                    {
-                        "role": "handler_log:inference_input",
-                        "content": inference_data["inference_input_log"],
-                    }
-                )
+
+                # current_round_debugging_log.append(
+                #     {
+                #         "role": "handler_log:inference_input",
+                #         "content": inference_data["inference_input_log"],
+                #     }
+                # )
 
                 # Try parsing the model response
                 model_response_data = self._parse_query_response_prompting(api_response)
@@ -357,10 +357,9 @@ class BaseHandler:
                 current_round_debugging_log.append(
                     {
                         "role": "handler_log",
-                        "content": {
-                            "model response decoded": decoded_model_responses,
-                            "model response raw": model_responses,
-                        },
+                        "content": "Models output valid functions to execute.",
+                        "model response decoded": decoded_model_responses,
+                        "model response raw": model_responses,
                     }
                 )
 
