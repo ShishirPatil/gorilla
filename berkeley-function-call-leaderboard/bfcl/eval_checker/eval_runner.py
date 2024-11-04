@@ -623,28 +623,6 @@ def main(model, test_category, api_sanity_check):
     runner(model_names, test_categories, api_sanity_check)
 
 
-def main(model, test_category, api_sanity_check):
-    test_categories = None
-    if test_category is not None:
-        test_categories = []
-        for category in test_category:
-            if category in TEST_COLLECTION_MAPPING:
-                test_categories.extend(TEST_COLLECTION_MAPPING[category])
-            else:
-                test_categories.append(category)
-
-    model_names = None
-    if model is not None:
-        model_names = []
-        for model_name in model:
-            # Runner takes in the model name that contains "_", instead of "/", for the sake of file path issues.
-            # This is differnet than the model name format that the generation script "openfunctions_evaluation.py" takes in (where the name contains "/").
-            # We patch it here to avoid confusing the user.
-            model_names.append(model_name.replace("/", "_"))
-
-    runner(model_names, test_categories, api_sanity_check)
-
-
 def get_handler(model_name):
     return HANDLER_MAP[model_name](
         model_name, temperature=0
