@@ -132,9 +132,10 @@ def multi_turn_runner(
             temp["id"] = index
             temp["model_name"] = model_name
             temp["test_category"] = test_category
-            # if not irrelevance_checker_result["valid"]:
-                # temp.update(irrelevance_checker_result)
-            temp.update(accuracy_checker_result)
+            # Rename 'error' to 'error_message' for better readability
+            accuracy_checker_result["error_message"] = accuracy_checker_result.pop("error")
+            temp["valid"] = accuracy_checker_result.pop("valid")
+            temp["error"] = accuracy_checker_result
             temp["prompt"] = test_entry
             temp["model_result_raw"] = multi_turn_model_result_list
             temp["model_result_decoded"] = multi_turn_model_result_list_decoded
@@ -595,10 +596,10 @@ def runner(model_names, test_categories, api_sanity_check):
     )
 
     print(
-        f"🏁 Evaluation completed. See {SCORE_PATH / 'data_overall.csv'} for evaluation results on BFCL V2."
+        f"🏁 Evaluation completed. See {SCORE_PATH / 'data_overall.csv'} for evaluation results on BFCL V3."
     )
     print(
-        f"See {SCORE_PATH / 'data_live.csv'} and {SCORE_PATH / 'data_non_live.csv'} for evaluation results on BFCL V2 Live and Non-Live categories respectively."
+        f"See {SCORE_PATH / 'data_live.csv'} and {SCORE_PATH / 'data_non_live.csv'} for evaluation results on BFCL V3 Live and Non-Live categories respectively."
     )
 
 

@@ -84,7 +84,9 @@ def multi_turn_checker(
                     "valid": False,
                     "error": f"Model response list is empty for turn {turn_index}",
                     "error_type": "multi_turn:empty_turn_model_response",
-                    "execution_result": execution_results,
+                    "details": {
+                        "execution_result": execution_results,
+                    },
                 }
 
         # If the ground truth list is empty, this is the turn where the model should eventually fail to achieve the user request.
@@ -143,8 +145,11 @@ def multi_turn_irrelevance_checker(
             else:
                 return {
                     "valid": False,
-                    "error": f"Model outputs valid function calls when it should not for turn {turn_index}. Model response decoded: {single_turn_model_response_list}",
+                    "error": f"Model outputs valid function calls when it should not for turn {turn_index}.",
                     "error_type": "multi_turn:irrelevance_error:decoder_success",
+                    "details": {
+                        "model response decoded": single_turn_model_response_list,
+                    },
                 }
     return {"valid": True}
 
@@ -175,13 +180,13 @@ def state_checker(model_instances: dict, ground_truth_instances: dict):
             # Format the error message for better readability
             return {
                 "valid": False,
-                "error": {
-                    "message": f"Model instance for {class_name} does not match the state with ground truth instance.",
-                    "details": differences,
+                "error": f"Model instance for {class_name} does not match the state with ground truth instance.",
+                "error_type": "multi_turn:instance_state_mismatch",
+                "details": {
+                    "differences": differences,
                     "model_instance_state": model_instance_attributes,
                     "ground_truth_instance_state": ground_truth_instance_attributes,
                 },
-                "error_type": "multi_turn:instance_state_mismatch",
             }
 
     return {"valid": True}
@@ -203,9 +208,11 @@ def response_checker(
             "valid": False,
             "error": f"Model response execution results do not match the ground truth response execution results for turn {turn_index}.",
             "error_type": "multi_turn:execution_response_mismatch",
-            "missing_items": missing_items,
-            "model response": model_response_list,
-            "ground truth response": ground_truth_response_list,
+            "details": {
+                "missing_items": missing_items,
+                "model_response": model_response_list,
+                "ground_truth_response": ground_truth_response_list,
+            },
         }
 
     return {"valid": True}
