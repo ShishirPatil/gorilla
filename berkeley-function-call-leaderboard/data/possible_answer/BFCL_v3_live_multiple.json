@@ -1,4 +1,4 @@
-{"id": "live_multiple_0-0-0", "ground_truth": [{"ChaDri.change_drink": {"drink_id": ["latte"], "new_preferences": [{"size": ["large"], "milk_type": ["coconut"], "sweetness_level": ["extra"], "temperature": ["hot"], "special_instructions": ["served boiling hot", "serve boiling hot", "boiling hot"]}]}}]}
+{"id": "live_multiple_0-0-0", "ground_truth": [{"ChaDri.change_drink": {"drink_id": ["latte"], "new_preferences": [{"size": ["large"], "milk_type": ["coconut"], "sweetness_level": ["extra"], "temperature": ["hot"], "special_instructions": ["served boiling hot", "serve boiling hot", "boiling hot", "served 'boiling hot'"]}]}}]}
 {"id": "live_multiple_1-0-1", "ground_truth": [{"ChaDri.change_drink": {"drink_id": ["1234"], "new_preferences": [{"sweetness_level": ["none"], "temperature": ["hot"]}]}}]}
 {"id": "live_multiple_2-1-0", "ground_truth": [{"uber.ride": {"loc": ["2150 Shattuck Ave, Berkeley, CA"], "type": ["plus"], "time": [10]}}]}
 {"id": "live_multiple_3-2-0", "ground_truth": [{"api.weather": {"loc": ["Ha Noi, Vietnam"]}}]}
@@ -9,27 +9,27 @@
 {"id": "live_multiple_8-4-0", "ground_truth": [{"cookbook.search_recipe": {"keyword": ["steak"], "cuisine": ["Indian"], "max_results": ["", 10]}}]}
 {"id": "live_multiple_9-4-1", "ground_truth": [{"HNA_WQA.search": {"keyword": ["Imjin war"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
 {"id": "live_multiple_10-4-2", "ground_truth": [{"ControlAppliance.execute": {"command": ["\ub2e4\uc6a9\ub3c4\uc2e4, \ud1b5\ub3cc\uc774, \uc911\uc9c0"]}}]}
-{"id": "live_multiple_11-4-3", "ground_truth": [{"HNA_WQA.search": {"keyword": ["ji sung park", "Ji Sung Park"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
-{"id": "live_multiple_12-4-4", "ground_truth": [{"HNA_WQA.search": {"keyword": ["Park Ji Sung"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
-{"id": "live_multiple_13-4-5", "ground_truth": [{"OpenWeatherMap.get_current_weather": {"location": ["Big Sur, USA"], "units": ["imperial"], "api_key": ["", "YOUR_API_KEY_HERE"]}}]}
+{"id": "live_multiple_11-4-3", "ground_truth": [{"HNA_WQA.search": {"keyword": ["ji sung park", "Ji Sung Park", "Park Ji Sung", "park ji sung", "Park Ji-sung", "Ji Sung Park footballer", "Park Ji-sung footballer"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
+{"id": "live_multiple_12-4-4", "ground_truth": [{"HNA_WQA.search": {"keyword": ["Park Ji Sung", "park ji sung", "Park Ji-sung", "ji sung park", "Ji Sung Park", "Ji Sung Park footballer", "Park Ji-sung footballer"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
+{"id": "live_multiple_13-4-5", "ground_truth": [{"OpenWeatherMap.get_current_weather": {"location": ["Santa Cruz, USA"], "units": ["imperial"], "api_key": ["", "YOUR_API_KEY_HERE"]}}]}
 {"id": "live_multiple_14-4-6", "ground_truth": [{"ControlAppliance.execute": {"command": ["\ub2e4\uc6a9\ub3c4\uc2e4, \ud1b5\ub3cc\uc774, \uc911\uc9c0"]}}]}
 {"id": "live_multiple_15-4-7", "ground_truth": [{"HNA_NEWS.search": {"keyword": ["Son's latest goal"], "category": ["Sports"], "date_range": ["", "null"], "sort_by": ["", "date"], "language": ["", "EN"]}}]}
 {"id": "live_multiple_16-4-8", "ground_truth": [{"HNA_NEWS.search": {"keyword": ["\ubc15\uc9c0\uc131"], "category": ["", "General"], "date_range": ["", "null"], "sort_by": ["", "date"], "language": ["", "EN"]}}]}
 {"id": "live_multiple_17-4-9", "ground_truth": [{"cookbook.search_recipe": {"keyword": ["sikhae"], "cuisine": ["", "Italian"], "max_results": ["", 10]}}]}
-{"id": "live_multiple_18-4-10", "ground_truth": [{"HNA_NEWS.search": {"keyword": ["artificial intelligence", "ai"], "category": ["", "General"], "date_range": ["2023-10-01 to 2023-10-07"], "sort_by": ["", "date"], "language": ["", "EN"]}}]}
+{"id": "live_multiple_18-4-10", "ground_truth": [{"HNA_NEWS.search": {"keyword": ["artificial intelligence", "ai","Artificial Intelligence"], "category": ["", "General"], "date_range": ["2023-10-01 to 2023-10-07"], "sort_by": ["", "date"], "language": ["", "EN"]}}]}
 {"id": "live_multiple_19-4-11", "ground_truth": [{"ControlAppliance.execute": {"command": ["\uac70\uc2e4, \uc5d0\uc5b4\ucee8, \uc2e4\ud589"]}}]}
 {"id": "live_multiple_20-4-12", "ground_truth": [{"ControlAppliance.execute": {"command": ["\ub2e4\uc6a9\ub3c4\uc2e4, \ud1b5\ub3cc\uc774, \uc911\uc9c0"]}}]}
 {"id": "live_multiple_21-4-13", "ground_truth": [{"cookbook.search_recipe": {"keyword": ["\uc2a4\ud14c\uc774\ud06c"], "cuisine": ["", "Italian"], "max_results": ["", 10]}}]}
 {"id": "live_multiple_22-4-14", "ground_truth": [{"HNA_WQA.search": {"keyword": ["\uc784\uc9c4\uc65c\ub780"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
 {"id": "live_multiple_23-5-0", "ground_truth": [{"search_products": {"color": ["red"], "size": ["8"], "category": ["shoes"], "price_min": ["", 0.0], "price_max": ["", null], "brand": ["", null]}}]}
 {"id": "live_multiple_24-5-1", "ground_truth": [{"search_products": {"color": ["", null], "size": ["XL", "Extra Large"], "category": ["clothing"], "price_min": ["", 0.0], "price_max": ["", null], "brand": ["", null]}}]}
-{"id": "live_multiple_25-6-0", "ground_truth": [{"recall_memory_search": {"query": ["when is shishir's birthday", "when's shishir's birthday", "shishir birthday", "shishir's birthday"], "page": ["", 0], "request_heartbeat": ["", false]}}]}
+{"id": "live_multiple_25-6-0", "ground_truth": [{"recall_memory_search": {"query": ["when is shishir's birthday", "when's shishir's birthday", "shishir birthday", "shishir's birthday", "Shishir's birthday"], "page": ["", 0], "request_heartbeat": ["", false]}}]}
 {"id": "live_multiple_26-6-1", "ground_truth": [{"recall_memory_search": {"query": ["Shishir Patil's birthday", "Shishir Patil birthday"], "page": ["", 0], "request_heartbeat": ["", false]}}]}
 {"id": "live_multiple_27-7-0", "ground_truth": [{"add": {"a": [100], "b": [-40]}}]}
 {"id": "live_multiple_28-8-0", "ground_truth": [{"my_core_function": {"name": ["Balkrushn"]}}]}
 {"id": "live_multiple_29-9-0", "ground_truth": [{"multiply": {"a": [3], "b": [10]}}]}
 {"id": "live_multiple_30-10-0", "ground_truth": [{"duck_duck_go.search": {"query": ["LangFuse and its application in generative AI projects", "Find information on LangFuse and its application in generative AI projects"], "format": ["", "json"], "no_redirect": ["", false], "no_html": ["", false]}}]}
-{"id": "live_multiple_31-10-1", "ground_truth": [{"duck_duck_go.search": {"query": ["trending items on Amazon DE", "search for trending items on the Amazon DE", "trending items on the Amazon DE", "Amazon DE trending items"], "format": ["", "json"], "no_redirect": ["", false], "no_html": ["", false]}}]}
+{"id": "live_multiple_31-10-1", "ground_truth": [{"duck_duck_go.search": {"query": ["trending items"], "format": ["", "json"], "no_redirect": ["", false], "no_html": ["", false]}}]}
 {"id": "live_multiple_32-10-2", "ground_truth": [{"sub": {"a": [100], "b": [40]}}]}
 {"id": "live_multiple_33-10-3", "ground_truth": [{"multiply": {"a": [3], "b": [10]}}]}
 {"id": "live_multiple_34-11-0", "ground_truth": [{"get_news_report": {"location": ["Letterkenny, Ireland"]}}]}
@@ -48,7 +48,7 @@
 {"id": "live_multiple_47-18-2", "ground_truth": [{"order_status_check": {"order_id": ["123456789"], "product": ["Smart LED TV"]}}]}
 {"id": "live_multiple_48-18-3", "ground_truth": [{"inventory_management": {"product_id": ["123123"], "sizes": ["", []], "color": ["", "any"], "quantity": [30]}}]}
 {"id": "live_multiple_49-19-0", "ground_truth": [{"interviewer_review.get": {"name": ["Charlie Ji"]}}]}
-{"id": "live_multiple_50-20-0", "ground_truth": [{"get_movies": {"city": ["Noida"], "cinema_hall": ["", null], "movie_date": ["", null], "movie_language": ["", "Hindi"], "movie_format": ["", "2D"]}}]}
+{"id": "live_multiple_50-20-0", "ground_truth": [{"get_movies": {"city": ["Noida"], "cinema_hall": ["", null], "movie_date": ["04-11-2024"], "movie_language": ["", "Hindi"], "movie_format": ["", "2D"]}}]}
 {"id": "live_multiple_51-21-0", "ground_truth": [{"order_status_check": {"order_id": ["#123"], "product": ["a pair of sneakers", "pair of sneakers", "sneakers", "sneaker"]}}]}
 {"id": "live_multiple_52-21-1", "ground_truth": [{"inventory_management": {"product_id": ["SK123"], "sizes": ["", []], "color": ["Red"], "quantity": ["", 1]}}]}
 {"id": "live_multiple_53-22-0", "ground_truth": [{"inventory_management": {"product_id": ["V-neck sweate"], "sizes": [["M", "L"]], "color": ["maroon"]}}]}
