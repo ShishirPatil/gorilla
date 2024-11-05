@@ -82,7 +82,7 @@ def multi_turn_checker(
             ):
                 return {
                     "valid": False,
-                    "error": f"Model response list is empty for turn {turn_index}",
+                    "error_message": f"Model response list is empty for turn {turn_index}",
                     "error_type": "multi_turn:empty_turn_model_response",
                     "details": {
                         "execution_result": execution_results,
@@ -145,7 +145,7 @@ def multi_turn_irrelevance_checker(
             else:
                 return {
                     "valid": False,
-                    "error": f"Model outputs valid function calls when it should not for turn {turn_index}.",
+                    "error_message": f"Model outputs valid function calls when it should not for turn {turn_index}.",
                     "error_type": "multi_turn:irrelevance_error:decoder_success",
                     "details": {
                         "model response decoded": single_turn_model_response_list,
@@ -180,7 +180,7 @@ def state_checker(model_instances: dict, ground_truth_instances: dict):
             # Format the error message for better readability
             return {
                 "valid": False,
-                "error": f"Model instance for {class_name} does not match the state with ground truth instance.",
+                "error_message": f"Model instance for {class_name} does not match the state with ground truth instance.",
                 "error_type": "multi_turn:instance_state_mismatch",
                 "details": {
                     "differences": differences,
@@ -206,7 +206,7 @@ def response_checker(
     if not is_subsequence:
         return {
             "valid": False,
-            "error": f"Model response execution results do not match the ground truth response execution results for turn {turn_index}.",
+            "error_message": f"Model response execution results do not match the ground truth response execution results for turn {turn_index}.",
             "error_type": "multi_turn:execution_response_mismatch",
             "details": {
                 "missing_items": missing_items,
@@ -244,7 +244,7 @@ def method_invoke_order_checker(model_instances: dict, ground_truth_instances: d
         if not is_subsequence:
             return {
                 "valid": False,
-                "error": f"Model instance for {class_name} does not match the method invoke order with ground truth instance. Missing items: {missing_items}",
+                "error_message": f"Model instance for {class_name} does not match the method invoke order with ground truth instance. Missing items: {missing_items}",
                 "error_type": "multi_turn:method_invoke_order_mismatch",
             }
 

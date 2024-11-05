@@ -138,8 +138,6 @@ def multi_turn_runner(
             temp["id"] = index
             temp["model_name"] = model_name
             temp["test_category"] = test_category
-            # Rename 'error' to 'error_message' for better readability
-            accuracy_checker_result["error_message"] = accuracy_checker_result.pop("error")
             temp["valid"] = accuracy_checker_result.pop("valid")
             temp["error"] = accuracy_checker_result
             temp["prompt"] = test_entry
