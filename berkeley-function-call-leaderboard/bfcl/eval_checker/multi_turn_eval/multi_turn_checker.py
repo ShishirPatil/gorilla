@@ -206,7 +206,7 @@ def response_checker(
     if not is_subsequence:
         return {
             "valid": False,
-            "error_message": f"Model response execution results do not match the ground truth response execution results for turn {turn_index}.",
+            "error_message": f"Model response execution results so far does not contain all the ground truth response execution results for turn {turn_index}.",
             "error_type": "multi_turn:execution_response_mismatch",
             "details": {
                 "missing_items": missing_items,
