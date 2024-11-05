@@ -1,4 +1,4 @@
-MAXIMUM_ROUND_LIMIT = 20
+MAXIMUM_STEP_LIMIT = 20
 
 DEFAULT_SYSTEM_PROMPT_WITHOUT_FUNC_DOC = """You are an expert in composing functions. You are given a question and a set of possible functions. Based on the question, you will need to make one or more function/tool calls to achieve the purpose.
 If none of the function can be used, point it out. If the given question lacks the parameters required by the function, also point it out.

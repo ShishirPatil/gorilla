@@ -32,14 +32,14 @@ def multi_turn_checker(
 
         # Note that we combine all the sub-step results into a single list, for easier comparison
         single_turn_model_execution_results = []
+        single_turn_ground_truth_execution_results = []
         model_instances = {}  # Will be overwritten in the for loop
-        sub_round_model_execution_results = []  # Will be overwritten in the for loop
-        single_turn_ground_truth_execution_results = []  # Will be overwritten later
+        single_step_model_execution_results = []  # Will be overwritten in the for loop
     
-        for model_response in single_turn_model_response_list:
-            sub_round_model_execution_results, model_instances = (
+        for single_step_model_response in single_turn_model_response_list:
+            single_step_model_execution_results, model_instances = (
                 execute_multi_turn_func_call(
-                    func_call_list=model_response,
+                    func_call_list=single_step_model_response,
                     initial_config=initial_config,
                     involved_classes=involved_classes,
                     model_name=model_name,
@@ -50,7 +50,7 @@ def multi_turn_checker(
                     is_evaL_run=True,
                 )
             )
-            single_turn_model_execution_results.extend(sub_round_model_execution_results)
+            single_turn_model_execution_results.extend(single_step_model_execution_results)
 
         # Execute the ground truth function calls
         single_turn_ground_truth_execution_results, ground_truth_instances = (
