@@ -59,8 +59,12 @@ def multi_turn_runner(
                     "model_name": model_name,
                     "test_category": test_category,
                     "valid": False,
-                    "error": ["Error during inference phase. Model did not output a list of model responses."],
-                    "error_type": "multi_turn:inference_error",
+                    "error": {
+                        "error_message": [
+                            "Error during inference phase. Model did not output a list of model responses."
+                        ],
+                        "error_type": "multi_turn:inference_error",
+                    },
                     "prompt": test_entry,
                     "model_result": multi_turn_model_result_list,
                     "possible_answer": multi_turn_ground_truth_list,
@@ -76,10 +80,12 @@ def multi_turn_runner(
                     "model_name": model_name,
                     "test_category": test_category,
                     "valid": False,
-                    "error": [
-                        f"Model was force-terminated during inference phase. The length of the model result turns ({len(multi_turn_model_result_list)}) does not match the length of the ground truth turns ({len(multi_turn_ground_truth_list)})."
-                    ],
-                    "error_type": "multi_turn:force_terminated",
+                    "error": {
+                        "error_message": [
+                            f"Model was force-terminated during inference phase. The length of the model result turns ({len(multi_turn_model_result_list)}) does not match the length of the ground truth turns ({len(multi_turn_ground_truth_list)})."
+                        ],
+                        "error_type": "multi_turn:force_terminated",
+                    },
                     "prompt": test_entry,
                     "model_result": multi_turn_model_result_list,
                     "possible_answer": multi_turn_ground_truth_list,
