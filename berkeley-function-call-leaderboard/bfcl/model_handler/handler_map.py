@@ -23,7 +23,6 @@ from bfcl.model_handler.proprietary_model.nexus import NexusHandler
 from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
-from bfcl.model_handler.proprietary_model.claudeOlder import ClaudeHandlerOld
 # TODO: Add Deepseek V2, meta-llama/Llama-3.1-405B-Instruct
 
 # Inference through API calls
@@ -47,8 +46,6 @@ api_inference_handler_map = {
     "claude-3-haiku-20240307-FC": ClaudeHandler,
     "claude-3-5-sonnet-20240620": ClaudeHandler,
     "claude-3-5-sonnet-20240620-FC": ClaudeHandler,
-    "claude-3-5-sonnet-20240620-old": ClaudeHandlerOld,
-    "claude-3-5-sonnet-20240620-FC-old": ClaudeHandlerOld,
     "open-mistral-nemo-2407": MistralHandler,
     "open-mistral-nemo-2407-FC": MistralHandler,
     "open-mixtral-8x22b": MistralHandler,

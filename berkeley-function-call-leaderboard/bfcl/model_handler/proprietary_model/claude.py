@@ -1,6 +1,5 @@
 import json
 import os
-import logging
 from anthropic import Anthropic
 from transformers import GPT2TokenizerFast
 
@@ -20,15 +19,19 @@ from bfcl.model_handler.utils import (
     system_prompt_pre_processing_chat_model,
 )
 
+# in order to avoid the warning:
+# huggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+# To disable this warning, you can either:
+# 	- Avoid using `tokenizers` before the fork if possible
+# 	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 class ClaudeHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_style = ModelStyle.Anthropic
-        self.client = Anthropic(os.getenv("ANTHROPIC_API_KEY"))
-        #print(os.getenv("ANTHROPIC_API_KEY"))
-
+        self.client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+    
     def decode_ast(self, result, language="Python"):
         if "FC" not in self.model_name:
             func = result
@@ -95,15 +98,14 @@ class ClaudeHandler(BaseHandler):
                 cumulative_token_count += token_count
                 cacheable_tools.append(tool)
 
-                # Apply cache_control when cumulative tokens exceed 1024
-                if not cache_control_applied and cumulative_token_count >= 1024:
-                    cacheable_tools[idx]['cache_control'] = {'type': 'ephemeral'}
-                    cache_control_applied = True
-                    print(f"Caching tools up to index {idx} with cumulative tokens {cumulative_token_count}")
-                    break  # Only one cache breakpoint needed here
+            # Apply cache_control if cumulative tokens exceed 1024
+            if not cache_control_applied and cumulative_token_count >= 1024:
+                cacheable_tools[-1]['cache_control'] = {'type': 'ephemeral'}
+                cache_control_applied = True
+                print(f"Caching all tools with cumulative tokens {cumulative_token_count}")
 
             if not cache_control_applied:
-                # If cumulative tokens never reached 1024, no caching will occur
+                # If cumulative tokens never reached 1024, no caching will occur because 1024 is the threshold for caching
                 print("Cumulative token count did not reach 1024. No caching applied.")
         else:
             cacheable_tools = tools
@@ -116,14 +118,6 @@ class ClaudeHandler(BaseHandler):
             tools=cacheable_tools,
             messages=inference_data["message"]
         )
-
-        # Corrected way to access usage attributes
-        usage = response.usage
-        if usage:
-            print(f"Cache Creation Tokens: {getattr(usage, 'cache_creation_input_tokens', 0)}")
-            print(f"Cache Read Tokens: {getattr(usage, 'cache_read_input_tokens', 0)}")
-            print(f"Regular Input Tokens: {getattr(usage, 'input_tokens', 0)}")
-            print(f"Output Tokens: {getattr(usage, 'output_tokens', 0)}")
 
         return response
 
@@ -174,6 +168,8 @@ class ClaudeHandler(BaseHandler):
             "tool_call_ids": tool_call_ids,
             "input_token": api_response.usage.input_tokens,
             "output_token": api_response.usage.output_tokens,
+            "prompt_write_cache_token_count": getattr(api_response.usage, 'cache_creation_input_tokens', 0),
+            "prompt_read_cache_token_count": getattr(api_response.usage, 'cache_read_input_tokens', 0),
         }
 
     def add_first_turn_message_FC(
@@ -266,14 +262,6 @@ class ClaudeHandler(BaseHandler):
             messages=inference_data["message"]
         )
 
-        # Log caching metrics
-        usage = api_response.usage
-        if usage:
-            print(f"Cache Creation Tokens: {getattr(usage, 'cache_creation_input_tokens', 0)}")
-            print(f"Cache Read Tokens: {getattr(usage, 'cache_read_input_tokens', 0)}")
-            print(f"Regular Input Tokens: {getattr(usage, 'input_tokens', 0)}")
-            print(f"Output Tokens: {getattr(usage, 'output_tokens', 0)}")
-
         return api_response
         
 
@@ -303,6 +291,8 @@ class ClaudeHandler(BaseHandler):
             "model_responses": api_response.content[0].text,
             "input_token": api_response.usage.input_tokens,
             "output_token": api_response.usage.output_tokens,
+            "prompt_write_cache_token_count": getattr(api_response.usage, 'cache_creation_input_tokens', 0),
+            "prompt_read_cache_token_count": getattr(api_response.usage, 'cache_read_input_tokens', 0),
         }
 
     def add_first_turn_message_prompting(
