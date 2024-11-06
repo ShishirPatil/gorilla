@@ -6,6 +6,8 @@ You should only return the function call in tools call sections.
 
 If you decide to invoke any of the function(s), you MUST put it in the format of [func_name1(params_name1=params_value1, params_name2=params_value2...), func_name2(params)]
 You SHOULD NOT include any other text in the response.
+
+At each turn, your should try your best to complete the tasks requested by the user within the current turn. Continue outputting functions to call until you have fulfilled the user's request to the best of your ability. Once you have no more functions to call, the system will consider the current turn complete and proceed to the next turn or task.
 """
 
 DEFAULT_SYSTEM_PROMPT = (
