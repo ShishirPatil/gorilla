@@ -54,11 +54,11 @@
 {"id": "live_multiple_53-22-0", "ground_truth": [{"inventory_management": {"product_id": ["V-neck sweate"], "sizes": [["M", "L"]], "color": ["maroon"]}}]}
 {"id": "live_multiple_54-22-1", "ground_truth": [{"inventory_management": {"product_id": ["12345XYZ"], "sizes": [["M"]], "color": ["merah"]}}]}
 {"id": "live_multiple_55-22-2", "ground_truth": [{"inventory_management": {"product_id": ["iPhone 12"], "sizes": ["", []], "color": ["white"]}}]}
-{"id": "live_multiple_56-22-3", "ground_truth": [{"inventory_management": {"product_id": ["111"], "sizes": [["L", "M"]], "color": ["", "Any"]}}]}
+{"id": "live_multiple_56-22-3", "ground_truth": [{"inventory_management": {"product_id": ["111"], "sizes": [["L"]], "color": ["", "Any"]}}]}
 {"id": "live_multiple_57-22-4", "ground_truth": [{"get_product_details": {"product_id": ["282828"], "color": ["", "all colors"], "size": ["", "all sizes"]}}]}
 {"id": "live_multiple_58-22-5", "ground_truth": [{"inventory_management": {"product_id": ["XY123"], "sizes": [["M"]], "color": ["", "Any"]}}]}
-{"id": "live_multiple_59-22-6", "ground_truth": [{"inventory_management": {"product_id": ["Wonderland maxi dress"], "sizes": [["S", "M"]]}}]}
-{"id": "live_multiple_60-22-7", "ground_truth": [{"inventory_management": {"product_id": ["ABC123"], "sizes": [["L", "4L"]], "color": ["", "Any"]}}]}
+{"id": "live_multiple_59-22-6", "ground_truth": [{"inventory_management": {"product_id": ["Wonderland maxi dress"], "sizes": [["S"]]}}]}
+{"id": "live_multiple_60-22-7", "ground_truth": [{"inventory_management": {"product_id": ["ABC123"], "sizes": [["L"]], "color": ["", "Any"]}}]}
 {"id": "live_multiple_61-23-0", "ground_truth": [{"get_movies": {"city": ["Noida"], "cinema_hall": ["", null], "movie_date": ["", null], "movie_language": ["", null], "movie_format": ["", "2D"]}}]}
 {"id": "live_multiple_62-24-0", "ground_truth": [{"todoIdx": {"type": ["delete"], "index": [1]}}]}
 {"id": "live_multiple_63-25-0", "ground_truth": [{"uber.eat.order": {"restaurant_id": ["McDonald's"], "items": [[{"item": ["burgers"], "quantity": [5]}, {"item": ["chicken wings"], "quantity": [6]}]]}}]}
@@ -85,7 +85,7 @@
 {"id": "live_multiple_84-38-1", "ground_truth": [{"add_postgres_server": {"nickname": ["PG1"], "host": ["pg.example.org"], "port": [5432], "database": ["main_db"], "username": ["admin"], "password": ["123412"]}}]}
 {"id": "live_multiple_85-38-2", "ground_truth": [{"add_mtnards_server": {"nickname": ["primary_db_server"], "host": ["192.168.0.5"], "api_key": ["1234123"]}}]}
 {"id": "live_multiple_86-38-3", "ground_truth": [{"add_mtnards_server": {"nickname": ["RSD1"], "host": ["http://rds.com"], "api_key": ["1234123"]}}]}
-{"id": "live_multiple_87-38-4", "ground_truth": [{"list_servers": {"type": ["all", ""]}}]}
+{"id": "live_multiple_87-38-4", "ground_truth": [{"list_servers": {"type": ["openai"]}}]}
 {"id": "live_multiple_88-38-5", "ground_truth": [{"list_servers": {"type": ["all", ""]}}]}
 {"id": "live_multiple_89-39-0", "ground_truth": [{"render_ui_date_picker_widget": {"default_date": ["20-09-2023"]}}]}
 {"id": "live_multiple_90-40-0", "ground_truth": [{"add_mtnards_server": {"nickname": ["FastDataServer"], "host": ["data.example.com"], "api_key": ["12345-ABCDE"]}}]}
@@ -99,7 +99,7 @@
 {"id": "live_multiple_98-42-2", "ground_truth": [{"open_project": {"path": ["/Foo/Bar"], "create_if_missing": [true, ""], "access_mode": ["", "readwrite"]}}]}
 {"id": "live_multiple_99-42-3", "ground_truth": [{"connect_to_server": {"nickname": ["pg1"], "timeout": ["", 30], "retry_attempts": ["", 3], "use_ssl": ["", true]}}]}
 {"id": "live_multiple_100-42-4", "ground_truth": [{"connect_to_server": {"nickname": ["text01"], "timeout": ["", 30], "retry_attempts": ["", 3], "use_ssl": ["", true]}}]}
-{"id": "live_multiple_101-42-5", "ground_truth": [{"connect_to_server": {"nickname": ["SQL01"], "timeout": [59], "retry_attempts": ["", 3], "use_ssl": ["", true]}}]}
+{"id": "live_multiple_101-42-5", "ground_truth": [{"connect_to_server": {"nickname": ["SQL01"], "timeout": [60], "retry_attempts": ["", 3], "use_ssl": ["", true]}}]}
 {"id": "live_multiple_102-43-0", "ground_truth": [{"list_files": {"type": ["json"], "include_hidden": ["", false]}}]}
 {"id": "live_multiple_103-43-1", "ground_truth": [{"add_postgres_server": {"nickname": ["PG1"], "host": ["localhost"], "port": [5432], "database": ["main_db"], "username": ["admin"], "password": ["secure_pass123"]}}]}
 {"id": "live_multiple_104-43-2", "ground_truth": [{"open_project": {"path": ["/foo/bar"], "create_new": [false, ""], "access_mode": ["", "edit"]}}]}
@@ -107,7 +107,7 @@
 {"id": "live_multiple_106-43-4", "ground_truth": [{"add_mtnards_server": {"nickname": ["FastQuery"], "host": ["rds.example.org"], "api_key": ["1231231"]}}]}
 {"id": "live_multiple_107-43-5", "ground_truth": [{"list_files": {"type": ["sav"], "include_hidden": [true]}}]}
 {"id": "live_multiple_108-43-6", "ground_truth": [{"list_servers": {"type": ["postgres"]}}]}
-{"id": "live_multiple_109-43-7", "ground_truth": [{"list_servers": {"type": ["rds", "mtna"]}}]}
+{"id": "live_multiple_109-43-7", "ground_truth": [{"list_servers": {"type": ["mtna"]}}]}
 {"id": "live_multiple_110-43-8", "ground_truth": [{"list_files": {"type": ["txt"], "include_hidden": [true]}}]}
 {"id": "live_multiple_111-43-9", "ground_truth": [{"dartfx_help": {"topic": ["database optimization"], "search_deep": ["", false], "language": ["Spanish"], "format": ["video"]}}]}
 {"id": "live_multiple_112-43-10", "ground_truth": [{"list_servers": {"type": ["postgres"]}}]}
@@ -174,7 +174,7 @@
 {"id": "live_multiple_173-71-2", "ground_truth": [{"get_adriel_tech_stack": {"employee_id": ["123"], "include_past_technologies": [true], "category": ["", "programming_languages"]}}]}
 {"id": "live_multiple_174-72-0", "ground_truth": [{"get_adriel_detail_experience_and_education": {"experience_or_education_type": ["Internship at Sebelas Maret University (UNS)"]}}]}
 {"id": "live_multiple_175-72-1", "ground_truth": [{"get_adriel_list_projects": {"user_id": ["12345"], "status": ["", "active"], "include_dates": ["", false]}}]}
-{"id": "live_multiple_176-73-0", "ground_truth": [{"recall_memory_search": {"query": ["Shishir\u2019s birthday"], "page": ["", 0], "request_heartbeat": ["", false]}}]}
+{"id": "live_multiple_176-73-0", "ground_truth": [{"recall_memory_search": {"query": ["Shishir's birthday"], "page": ["", 0], "request_heartbeat": ["", false]}}]}
 {"id": "live_multiple_177-74-0", "ground_truth": [{"get_trip": {"location": ["New York, NY"]}}]}
 {"id": "live_multiple_178-75-0", "ground_truth": [{"HNA_NEWS.search": {"keyword": ["Ji Sung Park"], "category": ["", "World"], "language": ["", "en"], "limit": [5], "sort_by": ["", "Date"]}}]}
 {"id": "live_multiple_179-75-1", "ground_truth": [{"HNA_NEWS.search": {"keyword": ["artificial intelligence"], "category": ["Technology"], "language": ["", "en"], "limit": ["", 10], "sort_by": ["", "Date"]}}]}
