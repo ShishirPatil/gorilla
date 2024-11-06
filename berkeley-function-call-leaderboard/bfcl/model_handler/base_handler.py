@@ -113,7 +113,7 @@ class BaseHandler:
             while True:
                 print("-" * 100)
                 print(
-                    f"ID: {'_'.join(test_entry_id.split('_')[-2:])}, Turn: {turn_idx}, Step: {count}"
+                    f"ID: {test_entry_id.replace('multi_turn_', '')}, Turn: {turn_idx}, Step: {count}"
                 )
 
                 start_time = time.time()
@@ -298,7 +298,7 @@ class BaseHandler:
             while True:
                 print("-" * 100)
                 print(
-                    f"ID: {'_'.join(test_entry_id.split('_')[-2:])}, Turn: {turn_idx}, Step: {count}"
+                    f"ID: {test_entry_id.replace('multi_turn_', '')}, Turn: {turn_idx}, Step: {count}"
                 )
 
                 start_time = time.time()
