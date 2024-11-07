@@ -264,12 +264,21 @@ class OSSHandler(BaseHandler):
         else:
             leftover_tokens_count = min(4096, self.max_context_length - input_token_count - 2)
 
-        api_response = self.client.completions.create(
-            model=self.model_name_huggingface,
-            temperature=self.temperature,
-            prompt=formatted_prompt,
-            max_tokens=leftover_tokens_count,
-        )
+        if hasattr(self, "stop_token_ids"):
+            api_response = self.client.completions.create(
+                model=self.model_name_huggingface,
+                temperature=self.temperature,
+                prompt=formatted_prompt,
+                max_tokens=leftover_tokens_count,
+                extra_body={"stop_token_ids": self.stop_token_ids},
+            )
+        else:
+            api_response = self.client.completions.create(
+                model=self.model_name_huggingface,
+                temperature=self.temperature,
+                prompt=formatted_prompt,
+                max_tokens=leftover_tokens_count,
+            )
 
         return api_response
 
