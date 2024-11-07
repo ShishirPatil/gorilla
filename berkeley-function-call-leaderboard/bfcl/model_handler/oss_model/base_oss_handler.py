@@ -217,6 +217,7 @@ class OSSHandler(BaseHandler):
             print("-" * 100)
 
             model_responses = f"Error during inference: {str(e)}"
+            metadata = {}
 
         result_to_write = {
             "id": test_case["id"],
