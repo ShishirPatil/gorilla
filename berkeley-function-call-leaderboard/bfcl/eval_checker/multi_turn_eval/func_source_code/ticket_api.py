@@ -170,7 +170,7 @@ class TicketAPI:
 
         return {"status": f"Ticket {ticket_id} has been updated successfully."}
 
-    def find_ticket(self, ticket_id: int) -> Optional[Dict[str, Union[int, str]]]:
+    def _find_ticket(self, ticket_id: int) -> Optional[Dict[str, Union[int, str]]]:
         """
         Find a ticket by its ID.
 
