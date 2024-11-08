@@ -28,29 +28,29 @@ class BaseHandler:
         self.temperature = temperature
         self.is_fc_model = False  # Whether the model is a function calling model
 
-    def inference(self, test_entry: dict, include_debugging_log: bool):
+    def inference(self, test_entry: dict, include_inference_input_log: bool):
         # This method is used to retrive model response for each model.
 
         # FC model
         # TODO: Let all models have the is_fc_model attribute and remove the "FC" check
         if "FC" in self.model_name or self.is_fc_model:
             if "multi_turn" in test_entry["id"]:
-                return self.inference_multi_turn_FC(test_entry, include_debugging_log)
+                return self.inference_multi_turn_FC(test_entry, include_inference_input_log)
             else:
-                return self.inference_single_turn_FC(test_entry, include_debugging_log)
+                return self.inference_single_turn_FC(test_entry, include_inference_input_log)
         # Prompting model
         else:
             if "multi_turn" in test_entry["id"]:
                 return self.inference_multi_turn_prompting(
-                    test_entry, include_debugging_log
+                    test_entry, include_inference_input_log
                 )
             else:
                 return self.inference_single_turn_prompting(
-                    test_entry, include_debugging_log
+                    test_entry, include_inference_input_log
                 )
 
     def inference_multi_turn_FC(
-        self, test_entry: dict, include_debugging_log: bool
+        self, test_entry: dict, include_inference_input_log: bool
     ) -> tuple[list[list], dict]:
         initial_config: dict = test_entry["initial_config"]
         involved_classes: list = test_entry["involved_classes"]
@@ -122,12 +122,13 @@ class BaseHandler:
 
                 # This part of logging is disabled by default because it is too verbose and will make the result file extremely large
                 # It is only useful to see if the inference pipeline is working as expected (eg, does it convert all the inputs correctly)
-                # current_turn_debugging_log.append(
-                #     {
-                #         "role": "handler_log:inference_input",
-                #         "content": inference_data.get("inference_input_log", ""),
-                #     }
-                # )
+                if include_inference_input_log:
+                    current_turn_debugging_log.append(
+                        {
+                            "role": "handler_log:inference_input",
+                            "content": inference_data.get("inference_input_log", ""),
+                        }
+                    )
 
                 # Try parsing the model response
                 model_response_data = self._parse_query_response_FC(api_response)
@@ -143,6 +144,10 @@ class BaseHandler:
                 current_turn_output_token_count.append(model_response_data["output_token"])
                 current_turn_latency.append(query_latency)
 
+                current_turn_debugging_log.append(
+                    {"role": "assistant", "content": model_responses}
+                )
+
                 # Try decoding the model response
                 try:
                     decoded_model_responses = self.decode_execute(model_responses)
@@ -154,7 +159,6 @@ class BaseHandler:
                                 "role": "handler_log",
                                 "content": f"Empty response from the model. Proceed to next turn.",
                                 "model response decoded": decoded_model_responses,
-                                "model response raw": model_responses,
                             }
                         )
                         break
@@ -164,23 +168,14 @@ class BaseHandler:
                     current_turn_debugging_log.append(
                         {
                             "role": "handler_log",
-                            "content": f"Error decoding the model response. Proceed to next turn. Error: {e}.",
-                            "model response raw": model_responses,
+                            "content": f"Error decoding the model response. Proceed to next turn.",
+                            "error": str(e),
                         }
                     )
                     break
 
                 finally:
                     current_turn_response.append(model_responses)
-
-                current_turn_debugging_log.append(
-                    {
-                        "role": "handler_log",
-                        "content": "Models output valid functions to execute.",
-                        "model response decoded": decoded_model_responses,
-                        "model response raw": model_responses,
-                    }
-                )
 
                 # Obtain the execution results
                 execution_results, involved_instances = execute_multi_turn_func_call(
@@ -189,7 +184,9 @@ class BaseHandler:
                     involved_classes,
                     self.model_name_underline_replaced,
                     test_entry_id,
-                    long_context=("long_context" in test_category or "composite" in test_category),
+                    long_context=(
+                        "long_context" in test_category or "composite" in test_category
+                    ),
                     is_evaL_run=False,
                 )
 
@@ -228,17 +225,17 @@ class BaseHandler:
             if force_quit:
                 break
 
-        metadata = {}
-        if include_debugging_log:
-            metadata["debugging_log"] = all_debugging_log
-        metadata["input_token_count"] = total_input_token_count
-        metadata["output_token_count"] = total_output_token_count
-        metadata["latency"] = total_latency
+        metadata = {
+            "input_token_count": total_input_token_count,
+            "output_token_count": total_output_token_count,
+            "latency": total_latency,
+            "debugging_log": all_debugging_log,
+        }
 
         return all_model_response, metadata
 
     def inference_multi_turn_prompting(
-        self, test_entry: dict, include_debugging_log: bool
+        self, test_entry: dict, include_inference_input_log: bool
     ) -> tuple[list[list], dict]:
         initial_config: dict = test_entry["initial_config"]
         involved_classes: list = test_entry["involved_classes"]
@@ -307,12 +304,13 @@ class BaseHandler:
 
                 # This part of logging is disabled by default because it is too verbose and will make the result file extremely large
                 # It is only useful to see if the inference pipeline is working as expected (eg, does it convert all the inputs correctly)
-                # current_turn_debugging_log.append(
-                #     {
-                #         "role": "handler_log:inference_input",
-                #         "content": inference_data["inference_input_log"],
-                #     }
-                # )
+                if include_inference_input_log:
+                    current_turn_debugging_log.append(
+                        {
+                            "role": "handler_log:inference_input",
+                            "content": inference_data.get("inference_input_log", ""),
+                        }
+                    )
 
                 # Try parsing the model response
                 model_response_data = self._parse_query_response_prompting(api_response)
@@ -328,6 +326,10 @@ class BaseHandler:
                 current_turn_output_token_count.append(model_response_data["output_token"])
                 current_turn_latency.append(query_latency)
 
+                current_turn_debugging_log.append(
+                    {"role": "assistant", "content": model_responses}
+                )
+
                 # Try decoding the model response
                 try:
                     decoded_model_responses = self.decode_execute(model_responses)
@@ -339,7 +341,6 @@ class BaseHandler:
                                 "role": "handler_log",
                                 "content": f"Empty response from the model. Proceed to next turn.",
                                 "model response decoded": decoded_model_responses,
-                                "model response raw": model_responses,
                             }
                         )
                         break
@@ -349,23 +350,14 @@ class BaseHandler:
                     current_turn_debugging_log.append(
                         {
                             "role": "handler_log",
-                            "content": f"Error decoding the model response. Proceed to next turn. Error: {e}.",
-                            "model response raw": model_responses,
+                            "content": f"Error decoding the model response. Proceed to next turn.",
+                            "error": str(e),
                         }
                     )
                     break
 
                 finally:
                     current_turn_response.append(model_responses)
-
-                current_turn_debugging_log.append(
-                    {
-                        "role": "handler_log",
-                        "content": "Models output valid functions to execute.",
-                        "model response decoded": decoded_model_responses,
-                        "model response raw": model_responses,
-                    }
-                )
 
                 # Obtain the execution results
                 execution_results, involved_instances = execute_multi_turn_func_call(
@@ -374,7 +366,9 @@ class BaseHandler:
                     involved_classes,
                     self.model_name_underline_replaced,
                     test_entry_id,
-                    long_context=("long_context" in test_category or "composite" in test_category),
+                    long_context=(
+                        "long_context" in test_category or "composite" in test_category
+                    ),
                     is_evaL_run=False,
                 )
 
@@ -413,12 +407,12 @@ class BaseHandler:
             if force_quit:
                 break
 
-        metadata = {}
-        if include_debugging_log:
-            metadata["debugging_log"] = all_debugging_log
-        metadata["input_token_count"] = total_input_token_count
-        metadata["output_token_count"] = total_output_token_count
-        metadata["latency"] = total_latency
+        metadata = {
+            "input_token_count": total_input_token_count,
+            "output_token_count": total_output_token_count,
+            "latency": total_latency,
+            "debugging_log": all_debugging_log,
+        }
 
         return all_model_response, metadata
 
