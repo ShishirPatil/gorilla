@@ -108,7 +108,7 @@ def convert_to_tool(functions, mapping, model_style):
                     ] += f" Minimum number of items: {str(params['minItems'])}."
                     del params["minItems"]
                 # No `maxItems` field.
-                if "maxItemsmax" in params:
+                if "maxItems" in params:
                     params[
                         "description"
                     ] += f" Maximum number of items: {str(params['maxItems'])}."
