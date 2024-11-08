@@ -222,6 +222,8 @@ goex execute -prompt "In the users table, add 500 to everyone's current balance"
   ```
   goex -set_config dbtype postgreSQL
   ```
+#### MongoDB
+- **MongoDB currently does not support a general method of executing queries. More work may need be done to support different combinations of queries for mongoDB databases**
 
 ### Filesystem
 
