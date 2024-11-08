@@ -144,6 +144,7 @@ class BaseHandler:
                 current_turn_output_token_count.append(model_response_data["output_token"])
                 current_turn_latency.append(query_latency)
 
+                current_turn_response.append(model_responses)
                 current_turn_debugging_log.append(
                     {"role": "assistant", "content": model_responses}
                 )
@@ -151,6 +152,13 @@ class BaseHandler:
                 # Try decoding the model response
                 try:
                     decoded_model_responses = self.decode_execute(model_responses)
+                    current_turn_debugging_log.append(
+                        {
+                            "role": "handler_log",
+                            "content": "Successfully decoded model response.",
+                            "model response decoded": decoded_model_responses,
+                        }
+                    )
 
                     if is_empty_execute_response(decoded_model_responses):
                         print("Empty response from the model. Proceed to next turn.")
@@ -173,9 +181,6 @@ class BaseHandler:
                         }
                     )
                     break
-
-                finally:
-                    current_turn_response.append(model_responses)
 
                 # Obtain the execution results
                 execution_results, involved_instances = execute_multi_turn_func_call(
@@ -326,6 +331,7 @@ class BaseHandler:
                 current_turn_output_token_count.append(model_response_data["output_token"])
                 current_turn_latency.append(query_latency)
 
+                current_turn_response.append(model_responses)
                 current_turn_debugging_log.append(
                     {"role": "assistant", "content": model_responses}
                 )
@@ -333,6 +339,14 @@ class BaseHandler:
                 # Try decoding the model response
                 try:
                     decoded_model_responses = self.decode_execute(model_responses)
+                    current_turn_debugging_log.append(
+                        {
+                            "role": "handler_log",
+                            "content": "Successfully decoded model response.",
+                            "model response decoded": decoded_model_responses,
+                        }
+                    )
+
                     model_response_data["model_responses_decoded"] = decoded_model_responses
                     if is_empty_execute_response(decoded_model_responses):
                         print("Empty response from the model. Proceed to next turn.")
@@ -355,9 +369,6 @@ class BaseHandler:
                         }
                     )
                     break
-
-                finally:
-                    current_turn_response.append(model_responses)
 
                 # Obtain the execution results
                 execution_results, involved_instances = execute_multi_turn_func_call(
@@ -417,7 +428,7 @@ class BaseHandler:
         return all_model_response, metadata
 
     def inference_single_turn_FC(
-        self, test_entry: dict, include_debugging_log: bool
+        self, test_entry: dict, include_inference_input_log: bool
     ) -> tuple[any, dict]:
         inference_data: dict = {}
         inference_data = self._pre_query_processing_FC(inference_data, test_entry)
@@ -435,11 +446,11 @@ class BaseHandler:
 
         # Process the metadata
         metadata = {}
-        if include_debugging_log:
+        if include_inference_input_log:
             metadata["debugging_log"] = [
                 {
                     "role": "handler_log:inference_input",
-                    "content": inference_data["inference_input_log"],
+                    "content": inference_data.get("inference_input_log", ""),
                 }
             ]
         metadata["input_token_count"] = model_response_data["input_token"]
@@ -449,7 +460,7 @@ class BaseHandler:
         return model_response_data["model_responses"], metadata
 
     def inference_single_turn_prompting(
-        self, test_entry: dict, include_debugging_log: bool
+        self, test_entry: dict, include_inference_input_log: bool
     ) -> tuple[any, dict]:
         inference_data: dict = self._pre_query_processing_prompting(test_entry)
         inference_data = self.add_first_turn_message_prompting(
@@ -465,11 +476,11 @@ class BaseHandler:
 
         # Process the metadata
         metadata = {}
-        if include_debugging_log:
+        if include_inference_input_log:
             metadata["debugging_log"] = [
                 {
                     "role": "handler_log:inference_input",
-                    "content": inference_data["inference_input_log"],
+                    "content": inference_data.get("inference_input_log", ""),
                 }
             ]
         metadata["input_token_count"] = model_response_data["input_token"]

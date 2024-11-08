@@ -50,7 +50,7 @@ def multi_turn_checker(
                     is_evaL_run=True,
                 )
             )
-            single_turn_model_execution_results.extend(single_step_model_execution_results)
+            single_turn_model_execution_results.append(single_step_model_execution_results)
 
         # Execute the ground truth function calls
         single_turn_ground_truth_execution_results, ground_truth_instances = (
@@ -67,7 +67,7 @@ def multi_turn_checker(
             )
         )
 
-        all_turn_model_execution_results.extend(single_turn_model_execution_results)
+        all_turn_model_execution_results.append(single_turn_model_execution_results)
         execution_results.append(
             {
                 "model": single_turn_model_execution_results,
