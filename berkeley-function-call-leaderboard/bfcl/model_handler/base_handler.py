@@ -67,7 +67,7 @@ class BaseHandler:
         all_model_response: list[list] = (
             []
         )  # The model response that will be used for later evaluation
-        all_debugging_log: list[list[dict]] = (
+        all_inference_log: list[list[dict]] = (
             []
         )  # The debugging log for human to understand
         force_quit = False  # Whether the model has been forced to quit. If True, this whole entry will be failed.
@@ -104,7 +104,7 @@ class BaseHandler:
                 )
 
             current_turn_response = []
-            current_turn_debugging_log: list[dict] = [current_turn_message]
+            current_turn_inference_log: list[dict] = [current_turn_message]
             current_turn_input_token_count: list[float] = []
             current_turn_output_token_count: list[float] = []
             current_turn_latency: list[float] = []
@@ -123,7 +123,7 @@ class BaseHandler:
                 # This part of logging is disabled by default because it is too verbose and will make the result file extremely large
                 # It is only useful to see if the inference pipeline is working as expected (eg, does it convert all the inputs correctly)
                 if include_inference_input_log:
-                    current_turn_debugging_log.append(
+                    current_turn_inference_log.append(
                         {
                             "role": "handler_log:inference_input",
                             "content": inference_data.get("inference_input_log", ""),
@@ -145,14 +145,14 @@ class BaseHandler:
                 current_turn_latency.append(query_latency)
 
                 current_turn_response.append(model_responses)
-                current_turn_debugging_log.append(
+                current_turn_inference_log.append(
                     {"role": "assistant", "content": model_responses}
                 )
 
                 # Try decoding the model response
                 try:
                     decoded_model_responses = self.decode_execute(model_responses)
-                    current_turn_debugging_log.append(
+                    current_turn_inference_log.append(
                         {
                             "role": "handler_log",
                             "content": "Successfully decoded model response.",
@@ -162,7 +162,7 @@ class BaseHandler:
 
                     if is_empty_execute_response(decoded_model_responses):
                         print("Empty response from the model. Proceed to next turn.")
-                        current_turn_debugging_log.append(
+                        current_turn_inference_log.append(
                             {
                                 "role": "handler_log",
                                 "content": f"Empty response from the model. Proceed to next turn.",
@@ -173,7 +173,7 @@ class BaseHandler:
 
                 except Exception as e:
                     print("Failed to decode the model response. Proceed to next turn.")
-                    current_turn_debugging_log.append(
+                    current_turn_inference_log.append(
                         {
                             "role": "handler_log",
                             "content": f"Error decoding the model response. Proceed to next turn.",
@@ -201,7 +201,7 @@ class BaseHandler:
                 )
 
                 for execution_result in execution_results:
-                    current_turn_debugging_log.append(
+                    current_turn_inference_log.append(
                         {
                             "role": "tool",
                             "content": execution_result,
@@ -212,7 +212,7 @@ class BaseHandler:
                 # Force quit after too many steps
                 if count > MAXIMUM_STEP_LIMIT:
                     force_quit = True
-                    current_turn_debugging_log.append(
+                    current_turn_inference_log.append(
                         {
                             "role": "handler_log",
                             "content": f"Model has been forced to quit after {MAXIMUM_STEP_LIMIT} steps.",
@@ -222,7 +222,7 @@ class BaseHandler:
 
             # Add to the total list
             all_model_response.append(current_turn_response)
-            all_debugging_log.append(current_turn_debugging_log)
+            all_inference_log.append(current_turn_inference_log)
             total_input_token_count.append(current_turn_input_token_count)
             total_output_token_count.append(current_turn_output_token_count)
             total_latency.append(current_turn_latency)
@@ -234,7 +234,7 @@ class BaseHandler:
             "input_token_count": total_input_token_count,
             "output_token_count": total_output_token_count,
             "latency": total_latency,
-            "debugging_log": all_debugging_log,
+            "inference_log": all_inference_log,
         }
 
         return all_model_response, metadata
@@ -257,7 +257,7 @@ class BaseHandler:
         all_model_response: list[list] = (
             []
         )  # The model response that will be used for later evaluation
-        all_debugging_log: list[list[dict]] = (
+        all_inference_log: list[list[dict]] = (
             []
         )  # The debugging log for human to understand
         force_quit = False  # Whether the model has been forced to quit. If True, this whole entry will be failed.
@@ -291,7 +291,7 @@ class BaseHandler:
                 )
 
             current_turn_response = []
-            current_turn_debugging_log: list[dict] = [current_turn_message]
+            current_turn_inference_log: list[dict] = [current_turn_message]
             current_turn_input_token_count: list[float] = []
             current_turn_output_token_count: list[float] = []
             current_turn_latency: list[float] = []
@@ -310,7 +310,7 @@ class BaseHandler:
                 # This part of logging is disabled by default because it is too verbose and will make the result file extremely large
                 # It is only useful to see if the inference pipeline is working as expected (eg, does it convert all the inputs correctly)
                 if include_inference_input_log:
-                    current_turn_debugging_log.append(
+                    current_turn_inference_log.append(
                         {
                             "role": "handler_log:inference_input",
                             "content": inference_data.get("inference_input_log", ""),
@@ -332,14 +332,14 @@ class BaseHandler:
                 current_turn_latency.append(query_latency)
 
                 current_turn_response.append(model_responses)
-                current_turn_debugging_log.append(
+                current_turn_inference_log.append(
                     {"role": "assistant", "content": model_responses}
                 )
 
                 # Try decoding the model response
                 try:
                     decoded_model_responses = self.decode_execute(model_responses)
-                    current_turn_debugging_log.append(
+                    current_turn_inference_log.append(
                         {
                             "role": "handler_log",
                             "content": "Successfully decoded model response.",
@@ -350,7 +350,7 @@ class BaseHandler:
                     model_response_data["model_responses_decoded"] = decoded_model_responses
                     if is_empty_execute_response(decoded_model_responses):
                         print("Empty response from the model. Proceed to next turn.")
-                        current_turn_debugging_log.append(
+                        current_turn_inference_log.append(
                             {
                                 "role": "handler_log",
                                 "content": f"Empty response from the model. Proceed to next turn.",
@@ -361,7 +361,7 @@ class BaseHandler:
 
                 except Exception as e:
                     print("Failed to decode the model response. Proceed to next turn.")
-                    current_turn_debugging_log.append(
+                    current_turn_inference_log.append(
                         {
                             "role": "handler_log",
                             "content": f"Error decoding the model response. Proceed to next turn.",
@@ -389,7 +389,7 @@ class BaseHandler:
                 )
 
                 for execution_result in execution_results:
-                    current_turn_debugging_log.append(
+                    current_turn_inference_log.append(
                         {
                             "role": "tool",
                             "content": execution_result,
@@ -400,7 +400,7 @@ class BaseHandler:
                 # Force quit after too many steps
                 if count > MAXIMUM_STEP_LIMIT:
                     force_quit = True
-                    current_turn_debugging_log.append(
+                    current_turn_inference_log.append(
                         {
                             "role": "handler_log",
                             "content": f"Model has been forced to quit after {MAXIMUM_STEP_LIMIT} steps.",
@@ -410,7 +410,7 @@ class BaseHandler:
 
             # Add to the total list
             all_model_response.append(current_turn_response)
-            all_debugging_log.append(current_turn_debugging_log)
+            all_inference_log.append(current_turn_inference_log)
             total_input_token_count.append(current_turn_input_token_count)
             total_output_token_count.append(current_turn_output_token_count)
             total_latency.append(current_turn_latency)
@@ -422,7 +422,7 @@ class BaseHandler:
             "input_token_count": total_input_token_count,
             "output_token_count": total_output_token_count,
             "latency": total_latency,
-            "debugging_log": all_debugging_log,
+            "inference_log": all_inference_log,
         }
 
         return all_model_response, metadata
@@ -447,7 +447,7 @@ class BaseHandler:
         # Process the metadata
         metadata = {}
         if include_inference_input_log:
-            metadata["debugging_log"] = [
+            metadata["inference_log"] = [
                 {
                     "role": "handler_log:inference_input",
                     "content": inference_data.get("inference_input_log", ""),
@@ -477,7 +477,7 @@ class BaseHandler:
         # Process the metadata
         metadata = {}
         if include_inference_input_log:
-            metadata["debugging_log"] = [
+            metadata["inference_log"] = [
                 {
                     "role": "handler_log:inference_input",
                     "content": inference_data.get("inference_input_log", ""),

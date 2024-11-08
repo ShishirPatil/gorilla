@@ -144,7 +144,7 @@ def multi_turn_runner(
             temp["model_result_raw"] = multi_turn_model_result_list
             temp["model_result_decoded"] = multi_turn_model_result_list_decoded
             temp["possible_answer"] = multi_turn_ground_truth_list
-            temp["inference_log"] = model_result[i].get("debugging_log", "")
+            temp["inference_log"] = model_result[i].get("inference_log", "")
             result.append(temp)
         else:
             correct_count += 1
