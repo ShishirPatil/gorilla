@@ -1,7 +1,8 @@
 import csv
 from collections import namedtuple
 from datetime import datetime
-from typing import List
+from typing import List, Optional
+from typing_extensions import Annotated
 
 import typer
 from bfcl._llm_response_generation import main as generation_main
@@ -89,6 +90,9 @@ def generate(
     backend: str = typer.Option(
         "vllm", help="The backend to use for the model."
     ),
+    rerun: str = typer.Option(
+        None, "--rerun", help="Path to a file containing a list of test cases to rerun."
+    )
 ):
     """
     Generate the LLM response for one or more models on a test-category (same as openfunctions_evaluation.py).
@@ -105,6 +109,7 @@ def generate(
             "num_threads",
             "gpu_memory_utilization",
             "backend",
+            "rerun"
         ],
     )
 
@@ -120,6 +125,7 @@ def generate(
             num_threads=num_threads,
             gpu_memory_utilization=gpu_memory_utilization,
             backend=backend,
+            rerun=rerun,
         )
     )
 

@@ -43,6 +43,7 @@ def get_args():
     parser.add_argument("--num-gpus", default=1, type=int)
     parser.add_argument("--backend", default="vllm", type=str, choices=["vllm", "sglang"])
     parser.add_argument("--gpu-memory-utilization", default=0.9, type=float)
+    parser.add_argument("--rerun", type=str, default=None)
     args = parser.parse_args()
     return args
 
@@ -90,16 +91,20 @@ def parse_test_category_argument(test_category_args):
     return sorted(list(test_name_total)), sorted(list(test_filename_total))
 
 
-def collect_test_cases(test_name_total, test_filename_total, model_name):
+def collect_test_cases(test_name_total, test_filename_total, model_name, rerun_cases_list):
     model_name_dir = model_name.replace("/", "_")
     model_result_dir = RESULT_PATH / model_name_dir
 
     test_cases_total = []
+    rerun_cases_total = []
     for test_category, file_to_open in zip(test_name_total, test_filename_total):
         test_cases = []
         with open(PROMPT_PATH / file_to_open) as f:
             for line in f:
-                test_cases.append(json.loads(line))
+                entry = json.loads(line)
+                test_cases.append(entry)
+                if entry['id'] in rerun_cases_list:
+                    rerun_cases_total.append(entry)
 
         existing_result = []
         result_file_path = model_result_dir / file_to_open.replace(".json", "_result.json")
@@ -118,8 +123,7 @@ def collect_test_cases(test_name_total, test_filename_total, model_name):
 
         test_cases_total.extend(test_cases_to_generate)
 
-    return sorted(test_cases_total, key=sort_key)
-
+    return sorted(test_cases_total, key=sort_key), rerun_cases_total
 
 def process_multi_turn_test_case(test_cases, test_category):
     """
@@ -204,7 +208,7 @@ def multi_threaded_inference(handler, test_case, include_debugging_log):
     return result_to_write
 
 
-def generate_results(args, model_name, test_cases_total):
+def generate_results(args, model_name, test_cases_total, overwrite=False):
 
     handler = build_handler(model_name, args.temperature)
 
@@ -216,6 +220,7 @@ def generate_results(args, model_name, test_cases_total):
             gpu_memory_utilization=args.gpu_memory_utilization,
             backend=args.backend,
             include_debugging_log=args.include_debugging_log,
+            overwrite=overwrite,
         )
 
     else:
@@ -237,9 +242,20 @@ def generate_results(args, model_name, test_cases_total):
                 for future in futures:
                     # This will wait for the task to complete, so that we are always writing in order
                     result = future.result()
-                    handler.write(result)
+                    if overwrite:
+                        result["result"] = ["guaguaguaguaguaguagauag"]
+                        handler.overwrite(result)
+                    else:
+                        handler.write(result)
                     pbar.update()
 
+def get_rerun_filename(args):
+    if args.rerun is not None:
+        with open(args.rerun, 'r') as f:
+            file_names = [line.strip() for line in f]
+    else:
+        file_names = []
+    return file_names
 
 def main(args):
 
@@ -249,12 +265,13 @@ def main(args):
         args.test_category = [args.test_category]
 
     test_name_total, test_filename_total = parse_test_category_argument(args.test_category)
-
     print(f"Generating results for {args.model} on test category: {test_name_total}.")
 
     # Apply function credential config if any of the test categories are executable
     if any([is_executable(category) for category in test_name_total]):
         apply_function_credential_config(input_path=PROMPT_PATH)
+
+    rerun_cases_list = get_rerun_filename(args)
 
     for model_name in args.model:
         if (
@@ -263,13 +280,19 @@ def main(args):
         ):
             model_name = model_name + "-optimized"
 
-        test_cases_total = collect_test_cases(
-            test_name_total, test_filename_total, model_name
+        test_cases_total, rerun_cases_total = collect_test_cases(
+            test_name_total, test_filename_total, model_name, rerun_cases_list
         )
 
         if len(test_cases_total) == 0:
-            print(
-                f"All selected test cases have been previously generated for {model_name}. No new test cases to generate."
-            )
+            if args.rerun is not None:
+                print(f"Rerunning test cases: {rerun_cases_list}")
+                generate_results(args, model_name, rerun_cases_total, overwrite=True)
+            else:
+                print(
+                    f"All selected test cases have been previously generated for {model_name}. No new test cases to generate."
+                )
         else:
             generate_results(args, model_name, test_cases_total)
+
+

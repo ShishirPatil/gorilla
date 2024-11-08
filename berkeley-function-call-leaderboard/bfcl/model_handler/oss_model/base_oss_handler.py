@@ -1,9 +1,11 @@
 import subprocess
 import threading
 import time
+import json
 from concurrent.futures import ThreadPoolExecutor
 
 import requests
+from bfcl.constant import RESULT_PATH, VERSION_PREFIX
 from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.oss_model.constant import VLLM_PORT
@@ -49,6 +51,7 @@ class OSSHandler(BaseHandler):
         gpu_memory_utilization: float,
         backend: str,
         include_debugging_log: bool,
+        overwrite: bool,
     ):
         """
         Batch inference for OSS models.
@@ -173,7 +176,10 @@ class OSSHandler(BaseHandler):
                     for future in futures:
                         # This will wait for the task to complete, so that we are always writing in order
                         result = future.result()
-                        self.write(result)
+                        if overwrite:
+                            self.overwrite(result)
+                        else:
+                            self.write(result)
                         pbar.update()
 
 
