@@ -243,7 +243,6 @@ def generate_results(args, model_name, test_cases_total, overwrite=False):
                     # This will wait for the task to complete, so that we are always writing in order
                     result = future.result()
                     if overwrite:
-                        result["result"] = ["guaguaguaguaguaguagauag"]
                         handler.overwrite(result)
                     else:
                         handler.write(result)
