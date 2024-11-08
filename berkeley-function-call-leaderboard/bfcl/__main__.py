@@ -68,17 +68,13 @@ def generate(
     test_category: List[str] = typer.Option(
         ["all"], help="A list of test categories to run the evaluation on."
     ),
-    api_sanity_check: bool = typer.Option(
-        False,
-        "--api-sanity-check",
-        "-c",
-        help="Perform the REST API status sanity check before running the evaluation.",
-    ),
     temperature: float = typer.Option(
         0.001, help="The temperature parameter for the model."
     ),
-    include_debugging_log: bool = typer.Option(
+    include_inference_input_log: bool = typer.Option(
         False,
+        "--include-inference-input-log",
+        "-i",
         help="Include debugging log in the response file to see model's interaction with the state machine.",
     ),
     num_gpus: int = typer.Option(1, help="The number of GPUs to use."),
@@ -98,9 +94,8 @@ def generate(
         [
             "model",
             "test_category",
-            "api_sanity_check",
             "temperature",
-            "include_debugging_log",
+            "include_inference_input_log",
             "num_gpus",
             "num_threads",
             "gpu_memory_utilization",
@@ -113,9 +108,8 @@ def generate(
         generationArgs(
             model=model,
             test_category=test_category,
-            api_sanity_check=api_sanity_check,
             temperature=temperature,
-            include_debugging_log=include_debugging_log,
+            include_inference_input_log=include_inference_input_log,
             num_gpus=num_gpus,
             num_threads=num_threads,
             gpu_memory_utilization=gpu_memory_utilization,
