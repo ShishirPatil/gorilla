@@ -3,7 +3,7 @@ import subprocess
 from copy import deepcopy
 from typing import Dict, List, Optional, Union
 
-from .long_context import FILE_CONTENT_EXTENSION, FILES_TAIL_USED
+from .long_context import FILE_CONTENT_EXTENSION, FILES_TAIL_USED, POPULATE_FILE_EXTENSION
 
 
 class File:
@@ -141,6 +141,7 @@ class GorillaFileSystem:
         """
         self.root: Directory
         self._current_dir: Directory
+        self._api_description = "This tool belongs to the Gorilla file system. It is a simple file system that allows users to perform basic file operations such as navigating directories, creating files and directories, reading and writing to files, etc."
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, GorillaFileSystem):
@@ -227,23 +228,22 @@ class GorillaFileSystem:
                 parent.contents[dir_name] = new_file
 
         if is_bottommost and self.long_context:
-            self._populate_directory(parent, 30)
+            self._populate_directory(parent)
 
         return parent
 
     def _populate_directory(
-        self, directory: Directory, file_count: int = 200
+        self, directory: Directory
     ) -> None:  # Used only for long context
         """
         Populate an innermost directory with multiple empty files.
 
         Args:
             directory (Directory): The innermost directory to populate.
-            file_count (int): The number of empty files to create. Defaults to 5.
         """
-        for i in range(file_count):
-            name = str(abs(hash(str(i + 1) + "gorilla")))
-            file_name = f"image_{name}.jpg"
+        for i in range(len(POPULATE_FILE_EXTENSION)):
+            name = POPULATE_FILE_EXTENSION[i]
+            file_name = f"{name}"
             directory._add_file(file_name)
 
     def pwd(self):

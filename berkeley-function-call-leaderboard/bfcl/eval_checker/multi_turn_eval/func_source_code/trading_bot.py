@@ -154,6 +154,7 @@ class TradingBot:
         self.stocks: Dict[str, Dict[str, Union[float, int]]]
         self.watch_list: List[str]
         self.transaction_history: List[Dict[str, Union[str, float, int]]]
+        self._api_description = "This tool belongs to the trading system, which allows users to trade stocks, manage their account, and view stock information."
 
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """
@@ -300,9 +301,11 @@ class TradingBot:
             order_id (int): ID of the order.
 
         Returns:
+            id (int): ID of the order.
+            order_type (str): Type of the order.
             symbol (str): Symbol of the stock in the order.
             price (float): Price at which the order was placed.
-            num_shares (int): Number of shares in the order.
+            amount (int): Number of shares in the order.
             status (str): Current status of the order. [Enum]: ["Open", "Pending", "Completed", "Cancelled"]
         """
         if order_id not in self.orders:
