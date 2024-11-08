@@ -30,6 +30,6 @@ berkeley-function-call-leaderboard/score/
 # Ignore environment variables
 berkeley-function-call-leaderboard/.env
 !berkeley-function-call-leaderboard/.env.example
-
+goex/goex-env/*
 .direnv/
 .venv

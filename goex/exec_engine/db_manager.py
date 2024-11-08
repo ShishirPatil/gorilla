@@ -456,6 +456,7 @@ class MongoDBManager(DBManager):
         self.connection_config = {
             'host': connection_config['host'] if 'host' in connection_config else '127.0.0.1',
             'port': connection_config['port'] if 'port' in connection_config else '27017',
+            'password': connection_config['password'] if 'password' in connection_config else '',
             'dbname': connection_config['database'] if 'database' in connection_config else 'mydb',
         }
 
