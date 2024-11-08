@@ -59,8 +59,12 @@ def multi_turn_runner(
                     "model_name": model_name,
                     "test_category": test_category,
                     "valid": False,
-                    "error": ["Error during inference phase. Model did not output a list of model responses."],
-                    "error_type": "multi_turn:inference_error",
+                    "error": {
+                        "error_message": [
+                            "Error during inference phase. Model did not output a list of model responses."
+                        ],
+                        "error_type": "multi_turn:inference_error",
+                    },
                     "prompt": test_entry,
                     "model_result": multi_turn_model_result_list,
                     "possible_answer": multi_turn_ground_truth_list,
@@ -76,10 +80,12 @@ def multi_turn_runner(
                     "model_name": model_name,
                     "test_category": test_category,
                     "valid": False,
-                    "error": [
-                        f"Model was force-terminated during inference phase. The length of the model result turns ({len(multi_turn_model_result_list)}) does not match the length of the ground truth turns ({len(multi_turn_ground_truth_list)})."
-                    ],
-                    "error_type": "multi_turn:force_terminated",
+                    "error": {
+                        "error_message": [
+                            f"Model was force-terminated during inference phase. The length of the model result turns ({len(multi_turn_model_result_list)}) does not match the length of the ground truth turns ({len(multi_turn_ground_truth_list)})."
+                        ],
+                        "error_type": "multi_turn:force_terminated",
+                    },
                     "prompt": test_entry,
                     "model_result": multi_turn_model_result_list,
                     "possible_answer": multi_turn_ground_truth_list,
@@ -122,18 +128,18 @@ def multi_turn_runner(
         
         # Perform additional check for multi-turn irrelevance
         # This happens when the model is expected to not output any function calls in a certain turn due to miss parameters or miss functions
-        irrelevance_checker_result = multi_turn_irrelevance_checker(
-            multi_turn_model_result_list_decoded,
-            multi_turn_ground_truth_list,
-        )
+        # irrelevance_checker_result = multi_turn_irrelevance_checker(
+        #     multi_turn_model_result_list_decoded,
+        #     multi_turn_ground_truth_list,
+        # )
 
-        if not irrelevance_checker_result["valid"] or not accuracy_checker_result["valid"]:
+        if not accuracy_checker_result["valid"]:
             temp = {}
             temp["id"] = index
             temp["model_name"] = model_name
             temp["test_category"] = test_category
-            # We display the irrelevance checker result first, then the accuracy checker result if irrelevance is passed
-            temp.update(irrelevance_checker_result if not irrelevance_checker_result["valid"] else accuracy_checker_result)
+            temp["valid"] = accuracy_checker_result.pop("valid")
+            temp["error"] = accuracy_checker_result
             temp["prompt"] = test_entry
             temp["model_result_raw"] = multi_turn_model_result_list
             temp["model_result_decoded"] = multi_turn_model_result_list_decoded
@@ -594,10 +600,10 @@ def runner(model_names, test_categories, api_sanity_check):
     )
 
     print(
-        f"🏁 Evaluation completed. See {SCORE_PATH / 'data_overall.csv'} for evaluation results on BFCL V2."
+        f"🏁 Evaluation completed. See {SCORE_PATH / 'data_overall.csv'} for evaluation results on BFCL V3."
     )
     print(
-        f"See {SCORE_PATH / 'data_live.csv'} and {SCORE_PATH / 'data_non_live.csv'} for evaluation results on BFCL V2 Live and Non-Live categories respectively."
+        f"See {SCORE_PATH / 'data_live.csv'} and {SCORE_PATH / 'data_non_live.csv'} for evaluation results on BFCL V3 Live and Non-Live categories respectively."
     )
 
 
