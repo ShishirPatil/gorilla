@@ -21,21 +21,6 @@ STATELESS_CLASSES = [
 ]
 
 
-def flag_task_unachievable(task: str, reason: str) -> None:
-    """
-    Marks a task as 'unachievable'. 
-    Call this function only when some task that the user asked for is impossible to be accomplished within the current context.
-    If there are more than one task that are impossible to be accomplished, this function should be called for each of them.
-    
-    Args:
-        task (str): A description of the task that is not possible to be done.
-        reason (str): A description of the reason why you think the task is not possible to be done.
-    """
-    # We do not need to do anything here
-    # In the future, we may want to log the model reasoning and do some analysis on it
-    pass
-
-
 def execute_multi_turn_func_call(
     func_call_list: list[str],  # a list of strings of func calls
     initial_config: dict,
@@ -102,7 +87,7 @@ def execute_multi_turn_func_call(
             # Situation where the function call is a method call
             if "." in func_call_copy:
                 func_call_copy = func_call_copy.split(".")[1]
-            if func_call_copy in ["kill", "exit", "quit", "remove", "unlink", "rmdir", "popen", "Popen", "run"]:
+            if func_call_copy in ["kill", "exit", "quit", "remove", "unlink", "popen", "Popen", "run"]:
                 raise Exception(f"Function call {func_call_copy} is not allowed.")
 
             func_call_result = eval(func_call)

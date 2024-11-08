@@ -7,13 +7,11 @@ import re
 
 from bfcl.model_handler.constant import (
     DEFAULT_SYSTEM_PROMPT,
-    DEFAULT_SYSTEM_PROMPT_FOR_MULTI_TURN,
     GORILLA_TO_OPENAPI,
 )
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.parser.java_parser import parse_java_function_call
 from bfcl.model_handler.parser.js_parser import parse_javascript_function_call
-from bfcl.utils import is_multi_turn
 
 
 def _cast_to_openai_type(properties, mapping):
@@ -110,7 +108,7 @@ def convert_to_tool(functions, mapping, model_style):
                     ] += f" Minimum number of items: {str(params['minItems'])}."
                     del params["minItems"]
                 # No `maxItems` field.
-                if "maxItemsmax" in params:
+                if "maxItems" in params:
                     params[
                         "description"
                     ] += f" Maximum number of items: {str(params['maxItems'])}."
@@ -391,10 +389,7 @@ def system_prompt_pre_processing_chat_model(prompts, function_docs, test_categor
     """
     assert type(prompts) == list
 
-    if is_multi_turn(test_category):
-        system_prompt_template = DEFAULT_SYSTEM_PROMPT_FOR_MULTI_TURN
-    else:
-        system_prompt_template = DEFAULT_SYSTEM_PROMPT
+    system_prompt_template = DEFAULT_SYSTEM_PROMPT
 
     system_prompt = system_prompt_template.format(functions=function_docs)
 

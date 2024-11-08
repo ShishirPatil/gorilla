@@ -23,6 +23,7 @@ for class_name in CLASS_FILE_PATH_MAPPING.keys():
     module = importlib.import_module(module_name)
     class_ = getattr(module, class_name)
     class_instance = class_()
+    api_description = class_instance._api_description
     # Retrieve all method names and map them to the instance
     for method_name, method in inspect.getmembers(
         class_instance, predicate=inspect.ismethod
@@ -33,8 +34,9 @@ for class_name in CLASS_FILE_PATH_MAPPING.keys():
         if class_name not in class_method_name_mapping:
             class_method_name_mapping[class_name] = {}
         # class_method_name_mapping[class_name][method_name] = method
-        class_method_name_mapping[class_name][method_name] = function_to_json(method)
-
+        class_method_name_mapping[class_name][method_name] = json.loads(function_to_json(method))
+        class_method_name_mapping[class_name][method_name]["description"] = api_description + " Tool description: " + class_method_name_mapping[class_name][method_name]["description"]
+        class_method_name_mapping[class_name][method_name] = json.dumps(class_method_name_mapping[class_name][method_name])
 # Store the methods one json file per class
 for class_name, file_name in CLASS_FILE_PATH_MAPPING.items():
 

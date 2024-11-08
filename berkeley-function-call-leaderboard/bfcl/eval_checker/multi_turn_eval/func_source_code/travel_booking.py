@@ -32,6 +32,7 @@ class TravelAPI:
         self.user_first_name: Optional[str]
         self.user_last_name: Optional[str]
         self.budget_limit: Optional[float]
+        self._api_description = "This tool belongs to the travel system, which allows users to book flights, manage credit cards, and view budget information."
 
     def _load_scenario(
         self,
@@ -817,7 +818,7 @@ class TravelAPI:
 
     def contact_customer_support(self, booking_id: str, message: str) -> Dict[str, str]:
         """
-        Contact customer support
+        Contact travel booking customer support, get immediate support on an issue with an online call. 
 
         Args:
             booking_id (str): The ID of the booking

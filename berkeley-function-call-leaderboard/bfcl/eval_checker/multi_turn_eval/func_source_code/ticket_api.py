@@ -30,6 +30,7 @@ class TicketAPI:
         self.ticket_queue: List[Dict[str, Union[int, str]]]
         self.ticket_counter: int
         self.current_user: Optional[str]
+        self._api_description = "This tool belongs to the ticketing system that is part of a company, which allows users to create, view, and manage support business tickets."
 
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """

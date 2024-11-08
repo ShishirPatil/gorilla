@@ -1,10 +1,7 @@
-import json
-
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import (
     execute_multi_turn_func_call,
     is_empty_execute_response,
 )
-from bfcl.utils import contain_unachievable_task
 
 #### Main functions ####
 
@@ -25,31 +22,35 @@ def multi_turn_checker(
     test_entry_id: str = test_entry["id"]
     test_category: str = test_entry_id.rsplit("_", 1)[0]
     execution_results: list[dict] = []
+    all_turn_model_execution_results: list[str] = []
 
     # First execute all the function calls
     for turn_index, single_turn_ground_truth_list in enumerate(
         multi_turn_ground_truth_list
     ):
-        # If the ground truth list is not empty, then the model response list should not be empty
         single_turn_model_response_list = multi_turn_model_result_list_decoded[turn_index]
-        if len(single_turn_ground_truth_list) > 0:
-            if not single_turn_model_response_list or is_empty_execute_response(
-                single_turn_model_response_list
-            ):
-                return {
-                    "valid": False,
-                    "error": f"Model response list is empty for turn {turn_index}",
-                    "error_type": "multi_turn:empty_turn_model_response",
-                    "execution_result": execution_results,
-                }
-            # The flag_task_unachievable should also not be called in this turn
-            elif contain_unachievable_task(single_turn_model_response_list):
-                return {
-                    "valid": False,
-                    "error": f"Model response list calls flag_task_unachievable for turn {turn_index} when it should not",
-                    "error_type": "multi_turn:unexpected_flag_task_unachievable",
-                    "execution_result": execution_results,
-                }
+
+        # Note that we combine all the sub-step results into a single list, for easier comparison
+        single_turn_model_execution_results = []
+        single_turn_ground_truth_execution_results = []
+        model_instances = {}  # Will be overwritten in the for loop
+        single_step_model_execution_results = []  # Will be overwritten in the for loop
+    
+        for single_step_model_response in single_turn_model_response_list:
+            single_step_model_execution_results, model_instances = (
+                execute_multi_turn_func_call(
+                    func_call_list=single_step_model_response,
+                    initial_config=initial_config,
+                    involved_classes=involved_classes,
+                    model_name=model_name,
+                    test_entry_id=test_entry_id,
+                    long_context=(
+                        "long_context" in test_category or "composite" in test_category
+                    ),
+                    is_evaL_run=True,
+                )
+            )
+            single_turn_model_execution_results.extend(single_step_model_execution_results)
 
         # Execute the ground truth function calls
         single_turn_ground_truth_execution_results, ground_truth_instances = (
@@ -66,32 +67,27 @@ def multi_turn_checker(
             )
         )
 
-        # Note that we combine all the sub-turn results into a single list, for easier comparison
-        single_turn_model_execution_results = []
-        model_instances = {}  # Will be overwritten in the for loop
-
-        for model_response in single_turn_model_response_list:
-            sub_round_model_execution_results, model_instances = (
-                execute_multi_turn_func_call(
-                    func_call_list=model_response,
-                    initial_config=initial_config,
-                    involved_classes=involved_classes,
-                    model_name=model_name,
-                    test_entry_id=test_entry_id,
-                    long_context=(
-                        "long_context" in test_category or "composite" in test_category
-                    ),
-                    is_evaL_run=True,
-                )
-            )
-            single_turn_model_execution_results.extend(sub_round_model_execution_results)
-
+        all_turn_model_execution_results.extend(single_turn_model_execution_results)
         execution_results.append(
             {
                 "model": single_turn_model_execution_results,
                 "ground_truth": single_turn_ground_truth_execution_results,
             }
         )
+
+        # If the ground truth list is not empty, then the model response list should not be empty
+        if len(single_turn_ground_truth_list) > 0:
+            if not single_turn_model_response_list or is_empty_execute_response(
+                single_turn_model_response_list
+            ):
+                return {
+                    "valid": False,
+                    "error_message": f"Model response list is empty for turn {turn_index}",
+                    "error_type": "multi_turn:empty_turn_model_response",
+                    "details": {
+                        "execution_result": execution_results,
+                    },
+                }
 
         # If the ground truth list is empty, this is the turn where the model should eventually fail to achieve the user request.
         # The actual check for irrelevance is done in the multi_turn_irrelevance_checker function
@@ -111,14 +107,15 @@ def multi_turn_checker(
             state_check_result["execution_result"] = execution_results
             return state_check_result
 
-        # # Check the response of the function calls
-        # response_check_result = response_checker(
-        #     single_turn_model_execution_results,
-        #     single_turn_ground_truth_execution_results,
-        #     turn_index,
-        # )
-        # if not response_check_result["valid"]:
-        #     return response_check_result
+        # Check the response of the function calls
+        # We use the all_turn_model_execution_results to accomodate the situation where the model invokes a function in a previous turn, and thus don't need to invoke it again in the current turn.
+        response_check_result = response_checker(
+            all_turn_model_execution_results,
+            single_turn_ground_truth_execution_results,
+            turn_index,
+        )
+        if not response_check_result["valid"]:
+            return response_check_result
 
         # # Check the method invoke order
         # method_invoke_order_check_result = method_invoke_order_checker(
@@ -145,13 +142,14 @@ def multi_turn_irrelevance_checker(
         if len(single_turn_ground_truth_list) == 0:
             if is_empty_execute_response(single_turn_model_response_list):
                 continue
-            elif contain_unachievable_task(single_turn_model_response_list):
-                continue
             else:
                 return {
                     "valid": False,
-                    "error": f"Model outputs valid function calls when it should not for turn {turn_index}. Model response decoded: {single_turn_model_response_list}",
+                    "error_message": f"Model outputs valid function calls when it should not for turn {turn_index}.",
                     "error_type": "multi_turn:irrelevance_error:decoder_success",
+                    "details": {
+                        "model response decoded": single_turn_model_response_list,
+                    },
                 }
     return {"valid": True}
 
@@ -182,13 +180,13 @@ def state_checker(model_instances: dict, ground_truth_instances: dict):
             # Format the error message for better readability
             return {
                 "valid": False,
-                "error": {
-                    "message": f"Model instance for {class_name} does not match the state with ground truth instance.",
-                    "details": differences,
+                "error_message": f"Model instance for {class_name} does not match the state with ground truth instance.",
+                "error_type": "multi_turn:instance_state_mismatch",
+                "details": {
+                    "differences": differences,
                     "model_instance_state": model_instance_attributes,
                     "ground_truth_instance_state": ground_truth_instance_attributes,
                 },
-                "error_type": "multi_turn:instance_state_mismatch",
             }
 
     return {"valid": True}
@@ -201,14 +199,20 @@ def response_checker(
     Checks if the model_response is a subsequence of the ground_truth_response.
     Each list contains the response of the function calls executed in that single turn.
     """
-    is_subsequence, missing_items = _is_subsequence(
+    # We don't need to enforce the order of the responses, because many entries have parallel operations, and so the model can execute them in any order.
+    is_subsequence, missing_items = _is_subsequence_unordered(
         ground_truth_response_list, model_response_list
     )
     if not is_subsequence:
         return {
             "valid": False,
-            "error": f"Model response execution results do not match the ground truth response execution results for turn {turn_index}. Missing items: {missing_items}. Model response: {model_response_list}, Ground truth response: {ground_truth_response_list}",
+            "error_message": f"Model response execution results so far does not contain all the ground truth response execution results for turn {turn_index}.",
             "error_type": "multi_turn:execution_response_mismatch",
+            "details": {
+                "missing_items": missing_items,
+                "model_response": model_response_list,
+                "ground_truth_response": ground_truth_response_list,
+            },
         }
 
     return {"valid": True}
@@ -240,7 +244,7 @@ def method_invoke_order_checker(model_instances: dict, ground_truth_instances: d
         if not is_subsequence:
             return {
                 "valid": False,
-                "error": f"Model instance for {class_name} does not match the method invoke order with ground truth instance. Missing items: {missing_items}",
+                "error_message": f"Model instance for {class_name} does not match the method invoke order with ground truth instance. Missing items: {missing_items}",
                 "error_type": "multi_turn:method_invoke_order_mismatch",
             }
 
@@ -273,7 +277,7 @@ def _compare_instances(model_obect, ground_truth_object):
     return valid, differences
 
 
-def _is_subsequence(list1, list2):
+def _is_subsequence(list1, list2) -> tuple[bool, list]:
     """
     Checks if list1 is a subsequence of list2, i.e., all elements of list1 are present in list2 in the same order.
     Also returns the elements of list1 that are not present in list2.
@@ -283,3 +287,26 @@ def _is_subsequence(list1, list2):
     return all(item in iter_list2 for item in list1), [
         item for item in list1 if item not in list2
     ]
+
+
+def _is_subsequence_unordered(list1, list2) -> tuple[bool, list]:
+    """
+    Checks if all elements of list1 are present in list2, regardless of order.
+    Also returns the elements of list1 that are not present in list2.
+    """
+    # Copy list2 to avoid modifying the original list during checks
+    list2_copy = list2[:]
+    
+    # Check each item in list1 to see if it exists in list2_copy
+    missing_elements = []
+    for item in list1:
+        try:
+            # Attempt to remove one occurrence of `item` from list2_copy to handle duplicates
+            list2_copy.remove(item)
+        except ValueError:
+            # If item is not found, add it to missing_elements
+            missing_elements.append(item)
+    
+    # If there are missing elements, list1 is not a subsequence of list2
+    is_subsequence = len(missing_elements) == 0
+    return is_subsequence, missing_elements
