@@ -673,6 +673,12 @@ MODEL_METADATA_MAPPING = {
         "openbmb",
         "Apache-2.0",
     ],
+    "BitAgent/GoGoAgent": [
+        "GoGoAgent",
+        "https://gogoagent.ai",
+        "BitAgent",
+        "Proprietary",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -828,4 +834,5 @@ NO_COST_MODELS += [
     "MadeAgents/Hammer2.0-3b",
     "MadeAgents/Hammer2.0-1.5b",
     "MadeAgents/Hammer2.0-0.5b",
+    "BitAgent/GoGoAgent",
 ]

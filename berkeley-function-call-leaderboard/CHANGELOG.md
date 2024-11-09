@@ -7,6 +7,7 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
   - `claude-3-5-haiku-20241022-FC`
   - `claude-3-5-sonnet-20241022`
   - `claude-3-5-sonnet-20241022-FC`
+- [Nov 8, 2024] [#720](https://github.com/ShishirPatil/gorilla/pull/720): Add new model `BitAgent/GoGoAgent` to the leaderboard.
 - [Oct 30, 2024] [#725](https://github.com/ShishirPatil/gorilla/pull/725), [#733](https://github.com/ShishirPatil/gorilla/pull/733): Update evaluation metric for multi-turn categories:
   - Introduce a new response-based checker, which works alongside with the existing state-based checker.
     - The new checker compares the model’s execution result against the ground truth execution result, ensuring that the model’s result encompasses the ground truth (i.e., ground truth must be a strict subset of the model result).
