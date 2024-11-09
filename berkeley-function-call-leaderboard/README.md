@@ -153,7 +153,8 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |command-r-plus-FC | Function Calling|
 |command-r-plus | Prompt|
 |databrick-dbrx-instruct | Prompt|
-|deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
+|deepseek-ai/DeepSeek-{V2,V2-Lite} 💻| Prompt|
+|deepseek-ai/DeepSeek-Coder-{V2,V2-Lite}-Instruct 💻| Prompt|
 |firefunction-{v1,v2}-FC | Function Calling|
 |gemini-1.0-pro-{001,002}-FC | Function Calling|
 |gemini-1.0-pro-{001,002} | Prompt|
