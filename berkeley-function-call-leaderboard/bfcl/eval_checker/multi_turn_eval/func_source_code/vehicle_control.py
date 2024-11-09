@@ -76,6 +76,7 @@ class VehicleControlAPI:
         self.frontRightTirePressure: float
         self.rearLeftTirePressure: float
         self.rearRightTirePressure: float
+        self._api_description = "This tool belongs to the vehicle control system, which allows users to control various aspects of the car such as engine, doors, climate control, lights, and more."
 
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """
@@ -447,7 +448,7 @@ class VehicleControlAPI:
         # Update the brake pedal status and force
         self.brakePedalStatus = "pressed"
         self._brakePedalForce = force
-        return {"brakePedalStatus": "pressed", "brakePedalForce": force}
+        return {"brakePedalStatus": "pressed", "brakePedalForce": float(force)}
 
     def releaseBrakePedal(self) -> Dict[str, Union[str, float]]:
         """
