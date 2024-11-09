@@ -497,7 +497,6 @@ class BaseHandler:
             test_category = entry["id"].rsplit("_", 1)[0]
             file_to_write = f"{VERSION_PREFIX}_{test_category}_result.json"
             file_to_write = model_result_dir / file_to_write
-
             with open(file_to_write, "a+") as f:
                 try:
                     f.write(json.dumps(entry) + "\n")
@@ -512,30 +511,6 @@ class BaseHandler:
                         )
                         + "\n"
                     )
-
-    def overwrite(self, result):
-        model_name_dir = self.model_name.replace("/", "_")
-        model_result_dir = RESULT_PATH / model_name_dir
-        model_result_dir.mkdir(parents=True, exist_ok=True)
-
-        if type(result) is dict:
-            result = [result]
-
-        for entry in result:
-            test_category, index = entry["id"].rsplit("_", 1)
-            file_to_write = f"{VERSION_PREFIX}_{test_category}_result.json"
-            file_to_write = model_result_dir / file_to_write
-            index = int(index)
-
-            with open(file_to_write, 'r') as file:
-                file_data = [json.loads(line) for line in file]
-
-            file_data[index] = entry
-
-            with open(file_to_write, 'w') as file:
-                for entry in file_data:
-                    json_line = json.dumps(entry)
-                    file.write(json_line + "\n")
 
     #### FC methods ####
 

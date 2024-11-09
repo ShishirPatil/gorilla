@@ -14,6 +14,7 @@ from bfcl.constant import (
     TEST_COLLECTION_MAPPING,
     TEST_FILE_MAPPING,
 )
+from bfcl.constant import RESULT_PATH, VERSION_PREFIX
 from bfcl.eval_checker.eval_runner_helper import load_file
 from bfcl.model_handler.handler_map import HANDLER_MAP
 from bfcl.model_handler.model_style import ModelStyle
@@ -44,6 +45,7 @@ def get_args():
     parser.add_argument("--backend", default="vllm", type=str, choices=["vllm", "sglang"])
     parser.add_argument("--gpu-memory-utilization", default=0.9, type=float)
     parser.add_argument("--rerun", type=str, default=None)
+    parser.add_argument("--rerun-all", action="store_true", default=False)
     args = parser.parse_args()
     return args
 
@@ -91,39 +93,43 @@ def parse_test_category_argument(test_category_args):
     return sorted(list(test_name_total)), sorted(list(test_filename_total))
 
 
-def collect_test_cases(test_name_total, test_filename_total, model_name, rerun_cases_list):
+def collect_test_cases(test_name_total, test_filename_total, model_name, rerun_all, rerun_cases_list):
     model_name_dir = model_name.replace("/", "_")
     model_result_dir = RESULT_PATH / model_name_dir
 
     test_cases_total = []
-    rerun_cases_total = []
     for test_category, file_to_open in zip(test_name_total, test_filename_total):
         test_cases = []
         with open(PROMPT_PATH / file_to_open) as f:
             for line in f:
                 entry = json.loads(line)
                 test_cases.append(entry)
-                if entry['id'] in rerun_cases_list:
-                    rerun_cases_total.append(entry)
 
-        existing_result = []
-        result_file_path = model_result_dir / file_to_open.replace(".json", "_result.json")
-        if result_file_path.exists():
-            with open(result_file_path) as f:
-                for line in f:
-                    existing_result.append(json.loads(line))
+        if not rerun_all and len(rerun_cases_list) == 0:
+            existing_result = []
+            result_file_path = model_result_dir / file_to_open.replace(".json", "_result.json")
+            if result_file_path.exists():
+                with open(result_file_path) as f:
+                    for line in f:
+                        existing_result.append(json.loads(line))
+            existing_ids = [entry["id"] for entry in existing_result]
+            test_cases_to_generate = [
+                test_case for test_case in test_cases if test_case["id"] not in existing_ids
+            ]
+        elif rerun_all:
+            test_cases_to_generate = test_cases
+        else:
+            test_cases_to_generate = [
+                test_case for test_case in test_cases if test_case["id"] in rerun_cases_list
+            ]
 
-        existing_ids = [entry["id"] for entry in existing_result]
-        test_cases_to_generate = [
-            test_case for test_case in test_cases if test_case["id"] not in existing_ids
-        ]
         test_cases_to_generate = process_multi_turn_test_case(
             test_cases_to_generate, test_category
         )
 
         test_cases_total.extend(test_cases_to_generate)
 
-    return sorted(test_cases_total, key=sort_key), rerun_cases_total
+    return sorted(test_cases_total, key=sort_key)
 
 def process_multi_turn_test_case(test_cases, test_category):
     """
@@ -256,6 +262,16 @@ def get_rerun_filename(args):
         file_names = []
     return file_names
 
+def unlink_files(model_name, test_name_total):
+    model_name_dir = model_name.replace("/", "_")
+    model_result_dir = RESULT_PATH / model_name_dir
+    for test_category in test_name_total:
+        file_to_write = f"{VERSION_PREFIX}_{test_category}_result.json"
+        file_to_write = model_result_dir / file_to_write
+        if file_to_write.exists():
+            print(f'{file_to_write} unlinked')
+            file_to_write.unlink()
+
 def main(args):
 
     if type(args.model) is not list:
@@ -279,19 +295,23 @@ def main(args):
         ):
             model_name = model_name + "-optimized"
 
-        test_cases_total, rerun_cases_total = collect_test_cases(
-            test_name_total, test_filename_total, model_name, rerun_cases_list
+        test_cases_total = collect_test_cases(
+            test_name_total, test_filename_total, model_name, args.rerun_all, rerun_cases_list
         )
 
-        if len(test_cases_total) == 0:
-            if args.rerun is not None:
-                print(f"Rerunning test cases: {rerun_cases_list}")
-                generate_results(args, model_name, rerun_cases_total, overwrite=True)
-            else:
-                print(
-                    f"All selected test cases have been previously generated for {model_name}. No new test cases to generate."
-                )
-        else:
+        if args.rerun:
+            print(f"Rerunning test cases: {rerun_cases_list}")
+            generate_results(args, model_name, test_cases_total, overwrite=True)
+        elif args.rerun_all:
+            print(f"Rerunning all test cases")
+            unlink_files(model_name, test_name_total)
             generate_results(args, model_name, test_cases_total)
+        elif len(test_cases_total) != 0:
+            generate_results(args, model_name, test_cases_total)
+        else:
+            print(
+                f"All selected test cases have been previously generated for {model_name}. No new test cases to generate."
+            )
+
 
 

@@ -91,7 +91,10 @@ def generate(
         "vllm", help="The backend to use for the model."
     ),
     rerun: str = typer.Option(
-        None, "--rerun", help="Path to a file containing a list of test cases to rerun."
+        None, "--rerun", help="Rerun selected test cases, input path to a file containing a list of test cases to rerun."
+    ),
+    rerun_all: bool = typer.Option(
+        False, "--rerun-all", help="Rerun all test cases, overwriting existing generated files"
     )
 ):
     """
@@ -109,7 +112,8 @@ def generate(
             "num_threads",
             "gpu_memory_utilization",
             "backend",
-            "rerun"
+            "rerun",
+            "rerun_all",
         ],
     )
 
@@ -126,6 +130,7 @@ def generate(
             gpu_memory_utilization=gpu_memory_utilization,
             backend=backend,
             rerun=rerun,
+            rerun_all=rerun_all,
         )
     )
 
