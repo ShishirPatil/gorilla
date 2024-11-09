@@ -1,8 +1,9 @@
 import datetime
 import subprocess
+from copy import deepcopy
 from typing import Dict, List, Optional, Union
 
-from .long_context import FILE_CONTENT_EXTENSION, FILES_TAIL_USED
+from .long_context import FILE_CONTENT_EXTENSION, FILES_TAIL_USED, POPULATE_FILE_EXTENSION
 
 
 class File:
@@ -116,7 +117,7 @@ class Directory:
         List the names of all contents in the directory.
 
         Returns:
-            contents (list): A list of names of the files and subdirectories in the directory.
+            contents (List[str]): A list of names of the files and subdirectories in the directory.
         """
         return list(self.contents.keys())
 
@@ -129,6 +130,9 @@ class Directory:
         return self.name == other.name and self.contents == other.contents
 
 
+DEFAULT_STATE = {"root": Directory("/", None)}
+
+
 class GorillaFileSystem:
 
     def __init__(self) -> None:
@@ -137,6 +141,7 @@ class GorillaFileSystem:
         """
         self.root: Directory
         self._current_dir: Directory
+        self._api_description = "This tool belongs to the Gorilla file system. It is a simple file system that allows users to perform basic file operations such as navigating directories, creating files and directories, reading and writing to files, etc."
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, GorillaFileSystem):
@@ -183,16 +188,15 @@ class GorillaFileSystem:
             }
         }
         """
+        DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
         self.long_context = long_context
-        self.root = Directory("/")
-        self.long_context = long_context
+        self.root = DEFAULT_STATE_COPY["root"]
         if "root" in scenario:
             root_dir = Directory(list(scenario["root"].keys())[0], None)
             self.root = self._load_directory(
-                scenario["root"][list(scenario["root"].keys())[0]]["contents"],
-                root_dir
+                scenario["root"][list(scenario["root"].keys())[0]]["contents"], root_dir
             )
-            self._current_dir = self.root
+        self._current_dir = self.root
 
     def _load_directory(
         self, current: dict, parent: Optional[Directory] = None
@@ -222,25 +226,24 @@ class GorillaFileSystem:
                     content += FILE_CONTENT_EXTENSION
                 new_file = File(dir_name, content)
                 parent.contents[dir_name] = new_file
-        
+
         if is_bottommost and self.long_context:
-            self._populate_directory(parent, 30)
-        
+            self._populate_directory(parent)
+
         return parent
 
     def _populate_directory(
-        self, directory: Directory, file_count: int = 200
+        self, directory: Directory
     ) -> None:  # Used only for long context
         """
         Populate an innermost directory with multiple empty files.
 
         Args:
             directory (Directory): The innermost directory to populate.
-            file_count (int): The number of empty files to create. Defaults to 5.
         """
-        for i in range(file_count):
-            name = str(abs(hash(str(i + 1) + "gorilla")))
-            file_name = f"image_{name}.jpg"
+        for i in range(len(POPULATE_FILE_EXTENSION)):
+            name = POPULATE_FILE_EXTENSION[i]
+            file_name = f"{name}"
             directory._add_file(file_name)
 
     def pwd(self):
@@ -264,10 +267,10 @@ class GorillaFileSystem:
         List the contents of the current directory.
 
         Args:
-            a (bool, optional): Show hidden files and directories. Defaults to False.
+            a (bool): [Optional] Show hidden files and directories. Defaults to False.
 
         Returns:
-            current_directory_content (list): A list of the contents of the specified directory.
+            current_directory_content (List[str]): A list of the contents of the specified directory.
         """
         contents = self._current_dir._list_contents()
         if not a:
@@ -314,9 +317,6 @@ class GorillaFileSystem:
 
         Args:
             dir_name (str): The name of the new directory at current directory. You can only create directory at current directory.
-
-        Returns:
-            None or error (dict): None if successful, or error message if directory already exists.
         """
         if not self._validate_file_or_directory_name(dir_name):
             return {
@@ -334,9 +334,6 @@ class GorillaFileSystem:
 
         Args:
             file_name (str): The name of the new file in the current directory. file_name is local to the current directory and does not allow path.
-
-        Returns:
-            None or error (dict): None if successful, or error message if file already exists.
         """
         if not self._validate_file_or_directory_name(file_name):
             return {"error": f"touch: cannot touch '{file_name}': Invalid character"}
@@ -345,7 +342,7 @@ class GorillaFileSystem:
             return {"error": f"touch: cannot touch '{file_name}': File exists"}
 
         self._current_dir._add_file(file_name)
-        return {}
+        return None
 
     def echo(
         self, content: str, file_name: Optional[str] = None
@@ -355,7 +352,7 @@ class GorillaFileSystem:
 
         Args:
             content (str): The content to write or display.
-            file_name (str, optional): The name of the file at current directory to write the content to. Defaults to None.
+            file_name (str): [Optional] The name of the file at current directory to write the content to. Defaults to None.
 
         Returns:
             terminal_output (str): The content if no file name is provided, or None if written to file.
@@ -402,17 +399,15 @@ class GorillaFileSystem:
         This method searches for files and directories within a specified path that match
         the given name. If no name is provided, it returns all files and directories
         in the specified path and its subdirectories.
+        Note: This method performs a recursive search through all subdirectories of the given path.
 
         Args:
             path (str): The directory path to start the search. Defaults to the current directory (".").
-            name (Optional[str]): The name of the file or directory to search for. If None, all items are returned.
+            name (str): [Optional] The name of the file or directory to search for. If None, all items are returned.
 
         Returns:
-            Dict[str, List[str]]: A dictionary with a single key "matches" containing a list of
-            matching file and directory paths relative to the given path.
+            matches (List[str]): A list of matching file and directory paths relative to the given path.
 
-        Note:
-            This method performs a recursive search through all subdirectories of the given path.
         """
         matches = []
         target_dir = self._current_dir
@@ -437,7 +432,8 @@ class GorillaFileSystem:
             mode (str): Mode of operation ('l' for lines, 'w' for words, 'c' for characters).
 
         Returns:
-            dict: Dictionary containing line count, word count, and byte count.
+            count (int): The count of the number of lines, words, or characters in the file.
+            type (str): The type of unit we are counting. [Enum]: ["lines", "words", "characters"]
         """
         if mode not in ["l", "w", "c"]:
             return {"error": f"wc: invalid mode '{mode}'"}
@@ -449,15 +445,15 @@ class GorillaFileSystem:
 
                 if mode == "l":
                     line_count = len(content.splitlines())
-                    return {"lines": line_count}
+                    return {"count": line_count, "type": "lines"}
 
                 elif mode == "w":
                     word_count = len(content.split())
-                    return {"words": word_count}
+                    return {"count": word_count, "type": "words"}
 
                 elif mode == "c":
                     char_count = len(content)
-                    return {"characters": char_count}
+                    return {"count": char_count, "type": "characters"}
 
         return {"error": f"wc: {file_name}: No such file or directory"}
 
@@ -491,7 +487,7 @@ class GorillaFileSystem:
             pattern (str): The pattern to search for.
 
         Returns:
-            matching_lines (list): Lines that match the pattern.
+            matching_lines (List[str]): Lines that match the pattern.
         """
         if file_name in self._current_dir.contents:
             file = self._current_dir._get_item(file_name)
@@ -503,35 +499,6 @@ class GorillaFileSystem:
                 return {"matching_lines": matching_lines}
 
         return {"error": f"grep: {file_name}: No such file or directory"}
-
-    def xargs(self, command: str, file_name: str = None):
-        """
-        Execute a command with arguments read from a file or standard input.
-
-        Args:
-            command (str): The command to execute with arguments.
-            file_name (str, optional): The file containing arguments. Defaults to None.
-
-        Returns:
-            output (str): The result of the command execution.
-        """
-        if file_name:
-            if file_name in self._current_dir.contents:
-                file = self._current_dir._get_item(file_name)
-                if isinstance(file, File):
-                    args = file._read().splitlines()
-                else:
-                    return {"error": f"xargs: {file_name}: Not a file"}
-            else:
-                return {"error": f"xargs: {file_name}: No such file or directory"}
-        else:
-           return {"error": f"Argument not supported"}
-
-        try:
-            result = subprocess.run([command] + args, capture_output=True, text=True)
-            return {"output": result.stdout, "error": result.stderr}
-        except Exception as e:
-            return {"error": str(e)}
 
     def du(self, human_readable: bool = False) -> Dict[str, str]:
         """
@@ -632,8 +599,7 @@ class GorillaFileSystem:
 
         Args:
             source (str): Source name of the file or directory to move. Source must be local to the current directory.
-            destination (str): The destination name to move the file or directory to. Destination must be local to the current directory and cannot be a path.
-            If destination is not an existing directory like when renaming something, destination is the new file name.
+            destination (str): The destination name to move the file or directory to. Destination must be local to the current directory and cannot be a path. If destination is not an existing directory like when renaming something, destination is the new file name.
 
         Returns:
             result (str): The result of the move operation.
@@ -645,9 +611,11 @@ class GorillaFileSystem:
 
         if not isinstance(item, (File, Directory)):
             return {"error": f"mv: cannot move '{source}': Not a file or directory"}
-        
+
         if "/" in destination:
-            return {"error": f"mv: no path allowed in destination. Only file name and folder name is supported for this operation."}
+            return {
+                "error": f"mv: no path allowed in destination. Only file name and folder name is supported for this operation."
+            }
 
         # Check if the destination is an existing directory
         if destination in self._current_dir.contents:
@@ -757,7 +725,9 @@ class GorillaFileSystem:
             return {"error": f"cp: cannot copy '{source}': Not a file or directory"}
 
         if "/" in destination:
-            return {"error": f"cp: don't allow path in destination. Only file name and folder name is supported for this operation."}
+            return {
+                "error": f"cp: don't allow path in destination. Only file name and folder name is supported for this operation."
+            }
         # Check if the destination is an existing directory
         if destination in self._current_dir.contents:
             dest_item = self._current_dir._get_item(destination)
@@ -795,7 +765,7 @@ class GorillaFileSystem:
         Navigate to a specified directory path from the current directory.
 
         Args:
-            path (str, optional): The path to navigate to. Defaults to None (current directory).
+            path (str): [Optional] The path to navigate to. Defaults to None (current directory).
 
         Returns:
             target_directory (Directory or dict): The target directory object or error message.

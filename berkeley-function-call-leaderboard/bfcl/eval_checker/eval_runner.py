@@ -22,6 +22,8 @@ from bfcl.eval_checker.multi_turn_eval.multi_turn_checker import (
     multi_turn_irrelevance_checker,
 )
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import is_empty_execute_response
+from bfcl.model_handler.handler_map import HANDLER_MAP
+from bfcl.utils import *
 from dotenv import load_dotenv
 from tqdm import tqdm
 
@@ -57,8 +59,12 @@ def multi_turn_runner(
                     "model_name": model_name,
                     "test_category": test_category,
                     "valid": False,
-                    "error": ["Error during inference phase. Model did not output a list of model responses."],
-                    "error_type": "multi_turn:inference_error",
+                    "error": {
+                        "error_message": [
+                            "Error during inference phase. Model did not output a list of model responses."
+                        ],
+                        "error_type": "multi_turn:inference_error",
+                    },
                     "prompt": test_entry,
                     "model_result": multi_turn_model_result_list,
                     "possible_answer": multi_turn_ground_truth_list,
@@ -74,10 +80,12 @@ def multi_turn_runner(
                     "model_name": model_name,
                     "test_category": test_category,
                     "valid": False,
-                    "error": [
-                        f"Model was force-terminated during inference phase. The length of the model result turns ({len(multi_turn_model_result_list)}) does not match the length of the ground truth turns ({len(multi_turn_ground_truth_list)})."
-                    ],
-                    "error_type": "multi_turn:force_terminated",
+                    "error": {
+                        "error_message": [
+                            f"Model was force-terminated during inference phase. The length of the model result turns ({len(multi_turn_model_result_list)}) does not match the length of the ground truth turns ({len(multi_turn_ground_truth_list)})."
+                        ],
+                        "error_type": "multi_turn:force_terminated",
+                    },
                     "prompt": test_entry,
                     "model_result": multi_turn_model_result_list,
                     "possible_answer": multi_turn_ground_truth_list,
@@ -92,8 +100,9 @@ def multi_turn_runner(
         for single_turn_model_result_list in multi_turn_model_result_list:
             single_turn_model_result_list_decoded = []
             for model_result_item in single_turn_model_result_list:
+                # model_result_item is per step
                 try:
-                    decoded_result = handler.decode_execute(model_result_item)
+                    decoded_result: list[str] = handler.decode_execute(model_result_item)
                     if is_empty_execute_response(decoded_result):
                         # Empty output is not considered as a valid function call
                         continue
@@ -119,26 +128,22 @@ def multi_turn_runner(
         
         # Perform additional check for multi-turn irrelevance
         # This happens when the model is expected to not output any function calls in a certain turn due to miss parameters or miss functions
-        if contain_multi_turn_irrelevance(test_category):
-            irrelevance_checker_result = multi_turn_irrelevance_checker(
-                multi_turn_model_result_list_decoded,
-                multi_turn_ground_truth_list,
-            )
-        else:
-            irrelevance_checker_result = {"valid": True}
-        
-        if not irrelevance_checker_result["valid"] or not accuracy_checker_result["valid"]:
+        # irrelevance_checker_result = multi_turn_irrelevance_checker(
+        #     multi_turn_model_result_list_decoded,
+        #     multi_turn_ground_truth_list,
+        # )
+
+        if not accuracy_checker_result["valid"]:
             temp = {}
             temp["id"] = index
             temp["model_name"] = model_name
             temp["test_category"] = test_category
-            # We display the irrelevance checker result first, then the accuracy checker result if irrelevance is passed
-            temp.update(irrelevance_checker_result if not irrelevance_checker_result["valid"] else accuracy_checker_result)
+            temp["valid"] = accuracy_checker_result.pop("valid")
+            temp["error"] = accuracy_checker_result
             temp["prompt"] = test_entry
-            temp["model_result"] = multi_turn_model_result_list
+            temp["model_result_raw"] = multi_turn_model_result_list
+            temp["model_result_decoded"] = multi_turn_model_result_list_decoded
             temp["possible_answer"] = multi_turn_ground_truth_list
-            temp.update(irrelevance_checker_result)
-            temp.update(accuracy_checker_result)
             result.append(temp)
         else:
             correct_count += 1
@@ -595,10 +600,10 @@ def runner(model_names, test_categories, api_sanity_check):
     )
 
     print(
-        f"🏁 Evaluation completed. See {SCORE_PATH / 'data_overall.csv'} for evaluation results on BFCL V2."
+        f"🏁 Evaluation completed. See {SCORE_PATH / 'data_overall.csv'} for evaluation results on BFCL V3."
     )
     print(
-        f"See {SCORE_PATH / 'data_live.csv'} and {SCORE_PATH / 'data_non_live.csv'} for evaluation results on BFCL V2 Live and Non-Live categories respectively."
+        f"See {SCORE_PATH / 'data_live.csv'} and {SCORE_PATH / 'data_non_live.csv'} for evaluation results on BFCL V3 Live and Non-Live categories respectively."
     )
 
 
@@ -624,26 +629,10 @@ def main(model, test_category, api_sanity_check):
     runner(model_names, test_categories, api_sanity_check)
 
 
-def main(model, test_category, api_sanity_check):
-    test_categories = None
-    if test_category is not None:
-        test_categories = []
-        for category in test_category:
-            if category in TEST_COLLECTION_MAPPING:
-                test_categories.extend(TEST_COLLECTION_MAPPING[category])
-            else:
-                test_categories.append(category)
-
-    model_names = None
-    if model is not None:
-        model_names = []
-        for model_name in model:
-            # Runner takes in the model name that contains "_", instead of "/", for the sake of file path issues.
-            # This is differnet than the model name format that the generation script "openfunctions_evaluation.py" takes in (where the name contains "/").
-            # We patch it here to avoid confusing the user.
-            model_names.append(model_name.replace("/", "_"))
-
-    runner(model_names, test_categories, api_sanity_check)
+def get_handler(model_name):
+    return HANDLER_MAP[model_name](
+        model_name, temperature=0
+    )  # Temperature doesn't matter for evaluation
 
 
 if __name__ == "__main__":

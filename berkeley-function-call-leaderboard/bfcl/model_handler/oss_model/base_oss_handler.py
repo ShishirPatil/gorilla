@@ -5,7 +5,6 @@ from concurrent.futures import ThreadPoolExecutor
 
 import requests
 from bfcl.model_handler.base_handler import BaseHandler
-from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.oss_model.constant import VLLM_PORT
 from bfcl.model_handler.utils import (
@@ -54,6 +53,22 @@ class OSSHandler(BaseHandler):
         """
         Batch inference for OSS models.
         """
+        from transformers import AutoConfig, AutoTokenizer
+
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name_huggingface)
+
+        config = AutoConfig.from_pretrained(self.model_name_huggingface)
+        if hasattr(config, "max_position_embeddings"):
+            self.max_context_length = config.max_position_embeddings
+        elif self.tokenizer.model_max_length is not None:
+            self.max_context_length = self.tokenizer.model_max_length
+        else:
+            if not hasattr(self, "max_context_length"):
+                raise ValueError(
+                    "Model does not have a max_position_embeddings attribute or tokenizer.model_max_length attribute. Please set the max_context_length attribute in the corresponding model handler."
+                )
+        print(f"Max context length: {self.max_context_length}")
+
         if backend == "vllm":
             process = subprocess.Popen(
                 [
@@ -218,11 +233,15 @@ class OSSHandler(BaseHandler):
             print("-" * 100)
 
             model_responses = f"Error during inference: {str(e)}"
+            metadata = {}
 
-        return {
+        result_to_write = {
             "id": test_case["id"],
             "result": model_responses,
         }
+        result_to_write.update(metadata)
+
+        return result_to_write
 
     #### Prompting methods ####
 
@@ -239,20 +258,30 @@ class OSSHandler(BaseHandler):
         formatted_prompt: str = self._format_prompt(message, function)
         inference_data["inference_input_log"] = {"formatted_prompt": formatted_prompt}
 
+        # Tokenize the formatted prompt to get token count
+        input_token_count = len(self.tokenizer.tokenize(formatted_prompt))
+
+        # Determine the number of tokens to request. Cap it at 4096 if the model has a larger limit.
+        if self.max_context_length < input_token_count + 2:
+            # If the prompt is already at the max length, just request 1000 token, we will get an error anyway
+            leftover_tokens_count = 1000
+        else:
+            leftover_tokens_count = min(4096, self.max_context_length - input_token_count - 2)
+
         if hasattr(self, "stop_token_ids"):
             api_response = self.client.completions.create(
                 model=self.model_name_huggingface,
                 temperature=self.temperature,
                 prompt=formatted_prompt,
-                stop_token_ids=self.stop_token_ids,
-                max_tokens=4096,  # TODO: Is there a better way to handle this?
+                max_tokens=leftover_tokens_count,
+                extra_body={"stop_token_ids": self.stop_token_ids},
             )
         else:
             api_response = self.client.completions.create(
                 model=self.model_name_huggingface,
                 temperature=self.temperature,
                 prompt=formatted_prompt,
-                max_tokens=4096,
+                max_tokens=leftover_tokens_count,
             )
 
         return api_response
@@ -264,7 +293,7 @@ class OSSHandler(BaseHandler):
         functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
-            test_entry["question"][0], DEFAULT_SYSTEM_PROMPT, functions
+            test_entry["question"][0], functions, test_category
         )
 
         return {"message": [], "function": functions}
