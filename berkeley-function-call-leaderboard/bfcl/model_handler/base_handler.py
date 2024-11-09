@@ -154,7 +154,7 @@ class BaseHandler:
                     decoded_model_responses = self.decode_execute(model_responses)
                     current_turn_inference_log.append(
                         {
-                            "role": "handler_log",
+                            "role": "handler_log:decode_success",
                             "content": "Successfully decoded model response.",
                             "model response decoded": decoded_model_responses,
                         }
@@ -164,7 +164,7 @@ class BaseHandler:
                         print("Empty response from the model. Proceed to next turn.")
                         current_turn_inference_log.append(
                             {
-                                "role": "handler_log",
+                                "role": "handler_log:empty_response",
                                 "content": f"Empty response from the model. Proceed to next turn.",
                                 "model response decoded": decoded_model_responses,
                             }
@@ -175,7 +175,7 @@ class BaseHandler:
                     print("Failed to decode the model response. Proceed to next turn.")
                     current_turn_inference_log.append(
                         {
-                            "role": "handler_log",
+                            "role": "handler_log:decode_failure",
                             "content": f"Error decoding the model response. Proceed to next turn.",
                             "error": str(e),
                         }
@@ -214,7 +214,7 @@ class BaseHandler:
                     force_quit = True
                     current_turn_inference_log.append(
                         {
-                            "role": "handler_log",
+                            "role": "handler_log:force_quit",
                             "content": f"Model has been forced to quit after {MAXIMUM_STEP_LIMIT} steps.",
                         }
                     )
@@ -341,7 +341,7 @@ class BaseHandler:
                     decoded_model_responses = self.decode_execute(model_responses)
                     current_turn_inference_log.append(
                         {
-                            "role": "handler_log",
+                            "role": "handler_log:decode_success",
                             "content": "Successfully decoded model response.",
                             "model response decoded": decoded_model_responses,
                         }
@@ -352,7 +352,7 @@ class BaseHandler:
                         print("Empty response from the model. Proceed to next turn.")
                         current_turn_inference_log.append(
                             {
-                                "role": "handler_log",
+                                "role": "handler_log:empty_response",
                                 "content": f"Empty response from the model. Proceed to next turn.",
                                 "model response decoded": decoded_model_responses,
                             }
@@ -363,7 +363,7 @@ class BaseHandler:
                     print("Failed to decode the model response. Proceed to next turn.")
                     current_turn_inference_log.append(
                         {
-                            "role": "handler_log",
+                            "role": "handler_log:decode_failure",
                             "content": f"Error decoding the model response. Proceed to next turn.",
                             "error": str(e),
                         }
@@ -402,7 +402,7 @@ class BaseHandler:
                     force_quit = True
                     current_turn_inference_log.append(
                         {
-                            "role": "handler_log",
+                            "role": "handler_log:force_quit",
                             "content": f"Model has been forced to quit after {MAXIMUM_STEP_LIMIT} steps.",
                         }
                     )
