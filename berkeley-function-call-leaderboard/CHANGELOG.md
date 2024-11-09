@@ -2,12 +2,14 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
-- [Oct 30, 2024] [#725](https://github.com/ShishirPatil/gorilla/pull/725): Update evaluation metric for irrelevance detection in multi-turn scenarios:
-  - Added a dummy `flag_task_unachievable` function for all multi-turn entries.
-  - If the model identifies a task as unachievable, it should invoke this function explicitly.
-  - During evaluation, if `flag_task_unachievable` is called in a turn, that turn will be marked correct for irrelevance detection, even if other functions were also called in that turn.
-    - This also means that if the model calls `flag_task_unachievable` in a normal (non-irrelevant) turn, that turn will be marked incorrect.
-  - This ensures the model can attempt reasonable exploratory actions before concluding a task is unachievable, aligning multi-turn behavior with single-turn irrelevance standards.
+- [Oct 30, 2024] [#725](https://github.com/ShishirPatil/gorilla/pull/725), [#733](https://github.com/ShishirPatil/gorilla/pull/733): Update evaluation metric for multi-turn categories:
+  - Introduce a new response-based checker, which works alongside with the existing state-based checker.
+    - The new checker compares the model’s execution result against the ground truth execution result, ensuring that the model’s result encompasses the ground truth (i.e., ground truth must be a strict subset of the model result).
+    - It complements the state-based checker, which doesn't work well when the functions don't directly alter the state. For example, it's unclear whether the model actually invoked `get_zipcode_by_city` or `estimate_distance` by just using the state-based checker.
+    - Any multi turn entry will now only be marked correct if it passes both the state and response checkers.
+  - Remove the irrelevance detection for multi-turn categories.
+    - Instead of checking if the model produces no output in a turn with missing function/parameter information, we now assess whether the model can perform correctly once the missing information is provided.
+  - A few dataset entries have been modified to align with these changes.
 - [Oct 30, 2024] [#719](https://github.com/ShishirPatil/gorilla/pull/719), [#722](https://github.com/ShishirPatil/gorilla/pull/722), [#723](https://github.com/ShishirPatil/gorilla/pull/723), [#728](https://github.com/ShishirPatil/gorilla/pull/728), [#732](https://github.com/ShishirPatil/gorilla/pull/732): Bug fix in the dataset and ground truth for the multi-turn categories.
 - [Oct 17, 2024] [#683](https://github.com/ShishirPatil/gorilla/pull/683): Bug fix for the multi turn categories for ambiguity in action intention and function parameters.
 - [Oct 17, 2024] [#709](https://github.com/ShishirPatil/gorilla/pull/709): Rephrase question prompt for Java and JavaScript categories to improve clarity and action intent.
