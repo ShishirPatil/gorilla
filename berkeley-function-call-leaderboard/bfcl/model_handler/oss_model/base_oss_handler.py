@@ -5,7 +5,6 @@ from concurrent.futures import ThreadPoolExecutor
 
 import requests
 from bfcl.model_handler.base_handler import BaseHandler
-from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.oss_model.constant import VLLM_PORT
 from bfcl.model_handler.utils import (
@@ -29,7 +28,7 @@ class OSSHandler(BaseHandler):
     def inference(self, test_entry: dict, include_debugging_log: bool):
         """
         OSS models have a different inference method.
-        They needs to spin up a vllm server first and then send requests to it.
+        They needs to spin up a server first and then send requests to it.
         It is more efficient to spin up the server once for the whole batch, instead of for each individual entry.
         So we implement batch_inference method instead.
         """
@@ -48,35 +47,86 @@ class OSSHandler(BaseHandler):
         test_entries: list[dict],
         num_gpus: int,
         gpu_memory_utilization: float,
+        backend: str,
         include_debugging_log: bool,
     ):
         """
         Batch inference for OSS models.
         """
+        from transformers import AutoConfig, AutoTokenizer
 
-        process = subprocess.Popen(
-            [
-                "vllm",
-                "serve",
-                str(self.model_name_huggingface),
-                "--port",
-                str(VLLM_PORT),
-                "--dtype",
-                str(self.dtype),
-                "--tensor-parallel-size",
-                str(num_gpus),
-                "--gpu-memory-utilization",
-                str(gpu_memory_utilization),
-                "--trust-remote-code",
-            ],
-            stdout=subprocess.PIPE,  # Capture stdout
-            stderr=subprocess.PIPE,  # Capture stderr
-            text=True,  # To get the output as text instead of bytes
-        )
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name_huggingface)
+
+        config = AutoConfig.from_pretrained(self.model_name_huggingface)
+        if hasattr(config, "max_position_embeddings"):
+            self.max_context_length = config.max_position_embeddings
+        elif self.tokenizer.model_max_length is not None:
+            self.max_context_length = self.tokenizer.model_max_length
+        else:
+            if not hasattr(self, "max_context_length"):
+                raise ValueError(
+                    "Model does not have a max_position_embeddings attribute or tokenizer.model_max_length attribute. Please set the max_context_length attribute in the corresponding model handler."
+                )
+        print(f"Max context length: {self.max_context_length}")
+
+        if backend == "vllm":
+            process = subprocess.Popen(
+                [
+                    "vllm",
+                    "serve",
+                    str(self.model_name_huggingface),
+                    "--port",
+                    str(VLLM_PORT),
+                    "--dtype",
+                    str(self.dtype),
+                    "--tensor-parallel-size",
+                    str(num_gpus),
+                    "--gpu-memory-utilization",
+                    str(gpu_memory_utilization),
+                    "--trust-remote-code",
+                ],
+                stdout=subprocess.PIPE,  # Capture stdout
+                stderr=subprocess.PIPE,  # Capture stderr
+                text=True,  # To get the output as text instead of bytes
+            )
+        elif backend == "sglang":
+            # Check if the flashinfer package is installed to determine the backend
+            try:
+                import flashinfer
+                backend_choice = "flashinfer"
+            except ImportError as e:
+                backend_choice = "triton"
+                pass
+
+            process = subprocess.Popen(
+                [
+                    "python",
+                    "-m",
+                    "sglang.launch_server",
+                    "--model-path",
+                    str(self.model_name_huggingface),
+                    "--port",
+                    str(VLLM_PORT),
+                    "--dtype",
+                    str(self.dtype),
+                    "--tp",
+                    str(num_gpus),
+                    "--mem-fraction-static",
+                    str(gpu_memory_utilization),
+                    "--attention-backend",
+                    str(backend_choice),
+                    "--trust-remote-code",
+                ],
+                stdout=subprocess.PIPE,  # Capture stdout
+                stderr=subprocess.PIPE,  # Capture stderr
+                text=True,  # To get the output as text instead of bytes
+            )
+        else:
+            raise ValueError(f"Backend {backend} is not supported.")
 
         stop_event = (
             threading.Event()
-        )  # Event to signal threads to stop; no need to see vllm logs after server is ready
+        )  # Event to signal threads to stop; no need to see logs after server is ready
 
         def log_subprocess_output(pipe, stop_event):
             # Read lines until stop event is set
@@ -86,7 +136,7 @@ class OSSHandler(BaseHandler):
                 else:
                     print(line, end="")
             pipe.close()
-            print("vllm server log tracking thread stopped successfully.")
+            print("server log tracking thread stopped successfully.")
 
         # Start threads to read and print stdout and stderr
         stdout_thread = threading.Thread(
@@ -116,7 +166,7 @@ class OSSHandler(BaseHandler):
                     response = requests.get(f"http://localhost:{VLLM_PORT}/v1/models")
                     if response.status_code == 200:
                         server_ready = True
-                        print("vllm server is ready!")
+                        print("server is ready!")
                 except requests.exceptions.ConnectionError:
                     # If the connection is not ready, wait and try again
                     time.sleep(1)
@@ -183,11 +233,15 @@ class OSSHandler(BaseHandler):
             print("-" * 100)
 
             model_responses = f"Error during inference: {str(e)}"
+            metadata = {}
 
-        return {
+        result_to_write = {
             "id": test_case["id"],
             "result": model_responses,
         }
+        result_to_write.update(metadata)
+
+        return result_to_write
 
     #### Prompting methods ####
 
@@ -197,27 +251,37 @@ class OSSHandler(BaseHandler):
         )
 
     def _query_prompting(self, inference_data: dict):
-        # We use the OpenAI Completions API with vLLM
+        # We use the OpenAI Completions API
         function: list[dict] = inference_data["function"]
         message: list[dict] = inference_data["message"]
 
         formatted_prompt: str = self._format_prompt(message, function)
         inference_data["inference_input_log"] = {"formatted_prompt": formatted_prompt}
 
+        # Tokenize the formatted prompt to get token count
+        input_token_count = len(self.tokenizer.tokenize(formatted_prompt))
+
+        # Determine the number of tokens to request. Cap it at 4096 if the model has a larger limit.
+        if self.max_context_length < input_token_count + 2:
+            # If the prompt is already at the max length, just request 1000 token, we will get an error anyway
+            leftover_tokens_count = 1000
+        else:
+            leftover_tokens_count = min(4096, self.max_context_length - input_token_count - 2)
+
         if hasattr(self, "stop_token_ids"):
             api_response = self.client.completions.create(
                 model=self.model_name_huggingface,
                 temperature=self.temperature,
                 prompt=formatted_prompt,
-                stop_token_ids=self.stop_token_ids,
-                max_tokens=4096,  # TODO: Is there a better way to handle this?
+                max_tokens=leftover_tokens_count,
+                extra_body={"stop_token_ids": self.stop_token_ids},
             )
         else:
             api_response = self.client.completions.create(
                 model=self.model_name_huggingface,
                 temperature=self.temperature,
                 prompt=formatted_prompt,
-                max_tokens=4096,
+                max_tokens=leftover_tokens_count,
             )
 
         return api_response
@@ -229,7 +293,7 @@ class OSSHandler(BaseHandler):
         functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
-            test_entry["question"][0], DEFAULT_SYSTEM_PROMPT, functions
+            test_entry["question"][0], functions, test_category
         )
 
         return {"message": [], "function": functions}

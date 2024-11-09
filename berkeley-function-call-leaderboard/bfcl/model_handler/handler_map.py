@@ -10,6 +10,7 @@ from bfcl.model_handler.oss_model.llama_fc import LlamaFCHandler
 from bfcl.model_handler.oss_model.phi import PhiHandler
 from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
 from bfcl.model_handler.oss_model.qwen import QwenHandler
+from bfcl.model_handler.oss_model.minicpm import MiniCPMHandler
 from bfcl.model_handler.proprietary_model.claude import ClaudeHandler
 from bfcl.model_handler.proprietary_model.cohere import CohereHandler
 from bfcl.model_handler.proprietary_model.databricks import DatabricksHandler
@@ -23,8 +24,9 @@ from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
 from bfcl.model_handler.proprietary_model.deepseekv2 import DeepseekV2Handler
+from bfcl.model_handler.proprietary_model.gogoagent import GoGoAgentHandler
 
-# TODO: Add Deepseek V2 and Gemma V2, meta-llama/Llama-3.1-405B-Instruct
+# TODO: Add Deepseek V2, meta-llama/Llama-3.1-405B-Instruct
 
 # Inference through API calls
 api_inference_handler_map = {
@@ -79,11 +81,15 @@ api_inference_handler_map = {
     "command-r-plus-optimized": CohereHandler,
     "snowflake/arctic": NvidiaHandler,
     "nvidia/nemotron-4-340b-instruct": NvidiaHandler,
+    "BitAgent/GoGoAgent": GoGoAgentHandler,
     # "yi-large-fc": YiHandler,  #  Their API is under maintenance, and will not be back online in the near future
 }
 
 # Inference through local hosting
 local_inference_handler_map = {
+    "google/gemma-2-2b-it": GemmaHandler,
+    "google/gemma-2-9b-it": GemmaHandler,
+    "google/gemma-2-27b-it": GemmaHandler,
     "meta-llama/Meta-Llama-3-8B-Instruct": LlamaHandler,
     "meta-llama/Meta-Llama-3-70B-Instruct": LlamaHandler,
     "meta-llama/Llama-3.1-8B-Instruct-FC": LlamaFCHandler,
@@ -112,13 +118,17 @@ local_inference_handler_map = {
     "NousResearch/Hermes-2-Pro-Llama-3-70B": HermesHandler,
     "NousResearch/Hermes-2-Theta-Llama-3-70B": HermesHandler,
     "ibm-granite/granite-20b-functioncalling": GraniteHandler,
-    # "MadeAgents/Hammer-7b": HammerHandler,  # TODO: Update handler once they have a multi-turn format
+    "MadeAgents/Hammer2.0-7b": HammerHandler,
+    "MadeAgents/Hammer2.0-3b": HammerHandler,
+    "MadeAgents/Hammer2.0-1.5b": HammerHandler,
+    "MadeAgents/Hammer2.0-0.5b": HammerHandler,
     "THUDM/glm-4-9b-chat": GLMHandler,
     "Qwen/Qwen2-1.5B-Instruct": QwenHandler,
     "Qwen/Qwen2-7B-Instruct": QwenHandler,
     "Qwen/Qwen2.5-1.5B-Instruct": QwenHandler,
     "Qwen/Qwen2.5-7B-Instruct": QwenHandler,
     "Team-ACE/ToolACE-8B": LlamaHandler,
+    "openbmb/MiniCPM3-4B": MiniCPMHandler,
     "deepseek-ai/DeepSeek-V2-Chat-0628": DeepseekV2Handler,
     "deepseek-ai/DeepSeek-V2-Chat": DeepseekV2Handler,
     "deepseek-ai/DeepSeek-V2": DeepseekV2Handler,
@@ -149,4 +159,4 @@ outdated_model_handler_map = {
     # "deepseek-ai/deepseek-coder-6.7b-instruct": DeepseekHandler,
 }
 
-handler_map = {**api_inference_handler_map, **local_inference_handler_map}
+HANDLER_MAP = {**api_inference_handler_map, **local_inference_handler_map}

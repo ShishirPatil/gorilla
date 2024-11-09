@@ -6,9 +6,12 @@ import mpmath
 
 
 class MathAPI:
+    def __init__(self):
+        self._api_description = "This tool belongs to the Math API, which provides various mathematical operations."
+        
     def logarithm(
         self, value: float, base: float, precision: int
-    ) -> Dict[str, Union[float, str]]:
+    ) -> Dict[str, float]:
         """
         Compute the logarithm of a number with adjustable precision using mpmath.
 
@@ -18,7 +21,7 @@ class MathAPI:
             precision (int): Desired precision for the result.
 
         Returns:
-            result (Dict[str]): The logarithm of the number with respect to the given base, or an error message.
+            result (float): The logarithm of the number with respect to the given base.
         """
         try:
             # Set precision for mpmath
@@ -31,7 +34,7 @@ class MathAPI:
         except Exception as e:
             return {"error": str(e)}
 
-    def mean(self, numbers: List[float]) -> Dict[str, Union[float, str]]:
+    def mean(self, numbers: List[float]) -> Dict[str, float]:
         """
         Calculate the mean of a list of numbers.
 
@@ -48,7 +51,7 @@ class MathAPI:
         except TypeError:
             return {"error": "All elements in the list must be numbers"}
 
-    def standard_deviation(self, numbers: List[float]) -> Dict[str, Union[float, str]]:
+    def standard_deviation(self, numbers: List[float]) -> Dict[str, float]:
         """
         Calculate the standard deviation of a list of numbers.
 
@@ -69,7 +72,7 @@ class MathAPI:
 
     def si_unit_conversion(
         self, value: float, unit_in: str, unit_out: str
-    ) -> Dict[str, Union[float, str]]:
+    ) -> Dict[str, float]:
         """
         Convert a value from one SI unit to another.
 
@@ -101,7 +104,7 @@ class MathAPI:
 
     def imperial_si_conversion(
         self, value: float, unit_in: str, unit_out: str
-    ) -> Dict[str, Union[float, str]]:
+    ) -> Dict[str, float]:
         """
         Convert a value between imperial and SI units.
 
@@ -152,7 +155,7 @@ class MathAPI:
         except OverflowError:
             return {"error": "Conversion resulted in a value too large to represent"}
 
-    def add(self, a: float, b: float) -> Dict[str, Union[float, str]]:
+    def add(self, a: float, b: float) -> Dict[str, float]:
         """
         Add two numbers.
 
@@ -168,7 +171,7 @@ class MathAPI:
         except TypeError:
             return {"error": "Both inputs must be numbers"}
 
-    def subtract(self, a: float, b: float) -> Dict[str, Union[float, str]]:
+    def subtract(self, a: float, b: float) -> Dict[str, float]:
         """
         Subtract one number from another.
 
@@ -184,7 +187,7 @@ class MathAPI:
         except TypeError:
             return {"error": "Both inputs must be numbers"}
 
-    def multiply(self, a: float, b: float) -> Dict[str, Union[float, str]]:
+    def multiply(self, a: float, b: float) -> Dict[str, float]:
         """
         Multiply two numbers.
 
@@ -203,7 +206,7 @@ class MathAPI:
         except TypeError:
             return {"error": "Both inputs must be numbers"}
 
-    def divide(self, a: float, b: float) -> Dict[str, Union[float, str]]:
+    def divide(self, a: float, b: float) -> Dict[str, float]:
         """
         Divide one number by another.
 
@@ -221,7 +224,7 @@ class MathAPI:
         except TypeError:
             return {"error": "Both inputs must be numbers"}
 
-    def power(self, base: float, exponent: float) -> Dict[str, Union[float, str]]:
+    def power(self, base: float, exponent: float) -> Dict[str, float]:
         """
         Raise a number to a power.
 
@@ -237,7 +240,7 @@ class MathAPI:
         except TypeError:
             return {"error": "Both inputs must be numbers"}
 
-    def square_root(self, number: float, precision: int) -> Dict[str, Union[float, str]]:
+    def square_root(self, number: float, precision: int) -> Dict[str, float]:
         """
         Calculate the square root of a number with adjustable precision using the decimal module.
 
@@ -246,7 +249,7 @@ class MathAPI:
             precision (int): Desired precision for the result.
 
         Returns:
-            result (Dict[str]): The square root of the number, or an error message.
+            result (float): The square root of the number, or an error message.
         """
         try:
             if number < 0:
@@ -265,7 +268,7 @@ class MathAPI:
                 "error": "Input must be a number or computation resulted in an invalid operation"
             }
 
-    def absolute_value(self, number: float) -> Dict[str, Union[float, str]]:
+    def absolute_value(self, number: float) -> Dict[str, float]:
         """
         Calculate the absolute value of a number.
 
@@ -282,13 +285,13 @@ class MathAPI:
 
     def round_number(
         self, number: float, decimal_places: int = 0
-    ) -> Dict[str, Union[float, str]]:
+    ) -> Dict[str, float]:
         """
         Round a number to a specified number of decimal places.
 
         Args:
             number (float): The number to round.
-            decimal_places (int): The number of decimal places to round to. Defaults to 0.
+            decimal_places (int): [Optional] The number of decimal places to round to. Defaults to 0.
 
         Returns:
             result (float): The rounded number.
@@ -300,7 +303,7 @@ class MathAPI:
                 "error": "First input must be a number, second input must be an integer"
             }
 
-    def percentage(self, part: float, whole: float) -> Dict[str, Union[float, str]]:
+    def percentage(self, part: float, whole: float) -> Dict[str, float]:
         """
         Calculate the percentage of a part relative to a whole.
 
@@ -318,7 +321,7 @@ class MathAPI:
         except TypeError:
             return {"error": "Both inputs must be numbers"}
 
-    def min_value(self, numbers: List[float]) -> Dict[str, Union[float, str]]:
+    def min_value(self, numbers: List[float]) -> Dict[str, float]:
         """
         Find the minimum value in a list of numbers.
 
@@ -335,7 +338,7 @@ class MathAPI:
         except TypeError:
             return {"error": "All elements in the list must be numbers"}
 
-    def max_value(self, numbers: List[float]) -> Dict[str, Union[float, str]]:
+    def max_value(self, numbers: List[float]) -> Dict[str, float]:
         """
         Find the maximum value in a list of numbers.
 
@@ -352,7 +355,7 @@ class MathAPI:
         except TypeError:
             return {"error": "All elements in the list must be numbers"}
 
-    def sum_values(self, numbers: List[float]) -> Dict[str, Union[float, str]]:
+    def sum_values(self, numbers: List[float]) -> Dict[str, float]:
         """
         Calculate the sum of a list of numbers.
 
