@@ -1,34 +1,31 @@
-import os
-import pickle
 import spotipy
-from spotipy import add_to_queue
 from spotipy.oauth2 import SpotifyOAuth
 from spotipy.oauth2 import SpotifyClientCredentials
+
 def spotify_queue(song_name):
-    # Load spotify credentials
-    credentials_path = './credentials/spotify/token.pickle'
-    if os.path.exists(credentials_path):
-        with open(credentials_path, 'rb') as token_file:
-            spotify_token = pickle.load(token_file)
-    else:
-        raise FileNotFoundError("Spotify token file not found.")
-    token_info = SpotifyOAuth(token=spotify_token)
-    # Initialization 
-    if not token_info:
-        print("No account found")
-        return None
-    else:
-        sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
-    if sp is None:
-        return None
+    # Define scope
+    scope = "user-modify-playback-state"
+
+    # Initialization
+    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+        client_id='0322795be61e4903af31ff1c14248eb0',
+        client_secret='493439dbbf2143acb9ce28ad6dd62634',
+        redirect_uri='http://localhost:8888/callback',  #Change ID, Secret, and redirct uri to match the correct ones
+        scope=scope
+    ))
+
     # Get track uri from the song name
-    # '''searches song name and finds the most popular match and then provides the URI from that'''
+    # searches song name and finds the most popular match and then provides the URI from that
     results = sp.search(q=song_name, type='track', limit=1)
     tracks = results['tracks']['items']
     if tracks:
         song = tracks[0]['uri'] 
     else:
-        print("No tracks found for:", song_name)
+        print("No tracks found")
         return None
-    # Uses the URI to play the song on Spotify
-    add_to_queue(song, device_id=None)
+    # Uses the URI to add the song to queue on Spotify
+    try:
+        sp.add_to_queue(song)
+        print(tracks[0]['name'], "added to queue:")
+    except spotipy.SpotifyException as e:
+        print('Error', e)

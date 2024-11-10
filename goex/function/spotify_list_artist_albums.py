@@ -5,38 +5,29 @@ from spotipy.oauth2 import SpotifyOAuth
 from spotipy.oauth2 import SpotifyClientCredentials
 
 def spotify_list_artist_albums(artist):
-    # Load spotify credentials
-    credentials_path = './credentials/spotify/token.pickle'
-    if os.path.exists(credentials_path):
-        with open(credentials_path, 'rb') as token_file:
-            spotify_token = pickle.load(token_file)
-    else:
-        raise FileNotFoundError("Spotify token file not found.")
-    token_info = SpotifyOAuth(token=spotify_token)
-    # Initialization 
-    if not token_info:
-        print("No account found")
-        return None
-    else:
-        sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
-    if sp is None:
-        return None
+    # Initialization
+    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+        client_id='0322795be61e4903af31ff1c14248eb0',
+        client_secret='493439dbbf2143acb9ce28ad6dd62634',
+        redirect_uri='http://localhost:8888/callback', #Change ID, Secret, and redirct uri to match the correct ones
+    ))
+
     # Returns the most popular artist's URI with the same name 
     results = sp.search(q=artist, type='artist', limit=1)
-    artista = results['artist']['items']
-    if artista:
+    artista = results['artists']['items']
+
+    if artista:     
          artistaa = artista[0]['uri'] 
     else:
         print("No artist found for:", artist)
         return None
+
     # Uses the artist URI to search through their spotify discography and returns the names of all their albums
-
-    spotify = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
-
-    albums_results = spotify.artist_albums(artistaa, album_type='album')
+    albums_results = sp.artist_albums(artistaa, album_type='album')
     albums = albums_results['items']
+
     while albums_results['next']:
-        albums_results = spotify.next(albums_results)
+        albums_results = sp.next(albums_results)
         albums.extend(albums_results['items'])
 
     for album in albums:

@@ -1,29 +1,34 @@
-import pyautogui
-import os
-import pickle
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from spotipy.oauth2 import SpotifyClientCredentials
 
 def spotify_pause():
-    # Load spotify credentials
-    credentials_path = './credentials/spotify/token.pickle'
-    if os.path.exists(credentials_path):
-        with open(credentials_path, 'rb') as token_file:
-            spotify_token = pickle.load(token_file)
-    else:
-        raise FileNotFoundError("Spotify token file not found.")
-    token_info = SpotifyOAuth(token=spotify_token)
+    # Describe Scope
+    scope = "user-modify-playback-state"
+
     # Initialization 
-    if not token_info:
-        print("No account found")
+    sp = spotipy.Spotify(auth_manager=SpotifyOAuth(
+        client_id='0322795be61e4903af31ff1c14248eb0',
+        client_secret='493439dbbf2143acb9ce28ad6dd62634',
+        redirect_uri='http://localhost:8888/callback',  #Change ID, Secret, and redirct uri to match the correct ones
+        scope=scope
+    ))
+
+    # Get list of available devices
+    devices = sp.devices()
+    if not devices['devices']:
+        print("No devices found")
         return None
-    else:
-        sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
-    if sp is None:
-        return None
-    # Check to see if a song is currently playing
-    if sp.currently_playing:
-        pyautogui.press('stop')
-    else:
-        print("No song currently playing")
+
+    # Choose the first available device (or specify a preferred one)
+    device_id = devices['devices'][0]['id']
+
+    # Check to see if a song is currently playing and Pause if there is
+    try: 
+        if sp.currently_playing:
+            sp.pause_playback()
+            print('Paused')
+        else:
+            print("No song currently playing")
+    except spotipy.SpotifyException as e:
+        print('error', e)

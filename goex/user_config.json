@@ -1,0 +1,1 @@
+{"max_attempt": 1, "option": 2, "show_debug": true, "model": "gpt-4-turbo-preview", "undo": true, "dbtype": "sqlite", "lfs_limit": 200, "fs_path": ""}
