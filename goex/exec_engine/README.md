@@ -24,3 +24,18 @@ If the user has the dry run testing option on (option 2), then before the API ca
 - the setup required for each DB will be performed in a shell script located in `docker/docker/container_setup`
 
 Afterwards, a Python script will run with the API call wrapped around a reversion tester to see if the state before running the API call and after the API call + its negation are the same. This gets captured and sent back as the dry run result. From their, the CLI or GUI can prompt the user to confirm or cancel the operation if it is deemed to be irreversible by the generated negation API.
+
+### API
+
+With the spotify API specifically, the functions can be tests by calling them and then running the file. 
+However when testing, the credentials must be editted first. 
+
+Steps to test:
+  1. Go to the specific spotify function that is needed to be tested
+  2. Change the credentials, like the client ID, client Secret, and the redirect URI
+  3. Run the spotify_api_details function and sign in to a spotify account
+  4. Call the fucntion in the file, for example to test spotify_play_song
+     Call by writing
+     >>> spotify_play_song('song_name')
+                                  ^ type in any song that you want to be played!
+    All inputs to the functions are strings, but they can vary from album names, song names, to playlist names and song names. 
