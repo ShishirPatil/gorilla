@@ -128,7 +128,7 @@ To test out database interactions locally, each database server requires its own
 
   Press `Ctrl-D` to exit out and now your `.db` file will be created!
 
-- Run `demo/env_setup.py` to get your environment variables set up
+- Run `demo/envsetup.py_` to get your environment variables set up
   Use default values if you are running just the demo.
 
   ```
@@ -184,6 +184,46 @@ goex execute -prompt "In the users table, add 500 to everyone's current balance"
   ```
   goex -set_config dbtype mysql
   ```
+
+#### PostgreSQL
+
+- Install PostgreSQL
+  - For non-Mac, [install postgresql here](https://www.postgresql.org/download/)
+  - Mac:
+
+  ```
+  brew install postgresql
+  ```
+
+- Put the user, password, host, and database name info into `.env` by running this script
+
+  ```
+  python3 demo/env_setup.py
+  ```
+
+- If you don't have your own server, import the example database using `demo/postgresql_setup.py` by running:
+
+  ```sh
+  python3 demo/postgreSQL_setup.py mydb
+  ```
+
+- If password authentication is required, update the authentication method in `/etc/postgresql/<version>/main/pg_hba.conf` to the following:  
+
+  ```
+  local   all             postgres                                md5
+  ```
+
+  Then create a pgpass file to keep track of the authentication required for database operations `~/.pgpass`, with the following content, and with octal permissions 0600.
+  ```
+  hostname:port:database:username:password
+  ```
+
+- Set GoEx to use PostgreSQL for DB operations
+  ```
+  goex -set_config dbtype postgreSQL
+  ```
+#### MongoDB
+- **MongoDB currently does not support a general method of executing queries. More work may need be done to support different combinations of queries for mongoDB databases**
 
 ### Filesystem
 

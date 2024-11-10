@@ -1,6 +1,8 @@
 docker
 uvicorn
 fastapi
+psycopg2
+pymongo
 docopt==0.6.2
 google_api_python_client==2.118.0
 google_auth_oauthlib==1.2.0
