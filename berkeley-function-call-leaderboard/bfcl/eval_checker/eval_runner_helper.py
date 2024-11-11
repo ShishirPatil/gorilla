@@ -289,7 +289,7 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
 
 # TODO: Refactor this function to reduce code duplication
 def generate_leaderboard_csv(
-    leaderboard_table, output_path, eval_models=None, eval_categories=None, wandb_project=None
+    leaderboard_table, output_path, eval_models=None, eval_categories=None
 ):
     print("📈 Aggregating data to generate leaderboard score table...")
     data_non_live = []
@@ -599,6 +599,8 @@ def generate_leaderboard_csv(
     #     check_all_category_present(
     #         category_status, eval_models=eval_models, eval_categories=eval_categories
     #     )
+
+    wandb_project = os.getenv("WANDB_PROJECT")
 
     if wandb_project:
         # Initialize WandB and log results

@@ -435,7 +435,7 @@ def ast_file_runner(
 
 
 #### Main runner function ####
-def runner(model_names, test_categories, api_sanity_check, wandb_project):
+def runner(model_names, test_categories, api_sanity_check):
 
     # A flag to indicate if the API has been tested.
     # We should always test the API with ground truth first before running the executable tests.
@@ -590,7 +590,7 @@ def runner(model_names, test_categories, api_sanity_check, wandb_project):
     # This is helpful when you only want to run the evaluation for a subset of models and test categories.
     update_leaderboard_table_with_score_file(LEADERBOARD_TABLE, SCORE_PATH)
     # Write the leaderboard table to a file
-    generate_leaderboard_csv(LEADERBOARD_TABLE, SCORE_PATH, model_names, test_categories, wandb_project)
+    generate_leaderboard_csv(LEADERBOARD_TABLE, SCORE_PATH, model_names, test_categories)
 
     # Clean up the executable expected output files
     # They should be re-generated the next time the evaluation is run
@@ -630,7 +630,7 @@ def main(model, test_category, api_sanity_check):
     runner(model_names, test_categories, api_sanity_check)
 
 
-def main(model, test_category, api_sanity_check, wandb_project):
+def main(model, test_category, api_sanity_check):
     test_categories = None
     if test_category is not None:
         test_categories = []
@@ -649,7 +649,7 @@ def main(model, test_category, api_sanity_check, wandb_project):
             # We patch it here to avoid confusing the user.
             model_names.append(model_name.replace("/", "_"))
 
-    runner(model_names, test_categories, api_sanity_check, wandb_project)
+    runner(model_names, test_categories, api_sanity_check)
 
 
 def get_handler(model_name):
@@ -679,14 +679,8 @@ if __name__ == "__main__":
         help="Perform the REST API status sanity check before running the evaluation. By default, the sanity check is skipped.",
     )
 
-    parser.add_argument(
-        "--wandb_project",
-        default=None,
-        type=str,
-        help="The entity and project to which to log the generated .csv in the format 'entity:project'"
-    )
     args = parser.parse_args()
 
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
     
-    main(args.model, args.test_category, args.api_sanity_check, args.wandb_project)
+    main(args.model, args.test_category, args.api_sanity_check)
