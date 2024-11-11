@@ -2,7 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
-- [Nov 11, 2024] [#752](https://github.com/ShishirPatil/gorilla/pull/752): Update Llama prompting handler for Llama 3.0 vs. 3.1/3.2 chat template differences. Only Llama 3.1 & 3.2 prompting models are affected.
+- [Nov 11, 2024] [#752](https://github.com/ShishirPatil/gorilla/pull/752): Update Llama prompting handler for Llama 3.0 vs. 3.1 chat template differences. Only Llama 3.1 prompting models are affected.
 - [Nov 10, 2024] [#740](https://github.com/ShishirPatil/gorilla/pull/740): Polish ambiguous prompts that have unclear user intents to eliminate biased-judgement and saturation in multi-turn categories.
 - [Nov 8, 2024] [#720](https://github.com/ShishirPatil/gorilla/pull/720): Add new model `BitAgent/GoGoAgent` to the leaderboard.
 - [Oct 30, 2024] [#725](https://github.com/ShishirPatil/gorilla/pull/725), [#733](https://github.com/ShishirPatil/gorilla/pull/733): Update evaluation metric for multi-turn categories:
