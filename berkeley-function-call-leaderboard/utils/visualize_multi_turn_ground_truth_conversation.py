@@ -78,13 +78,17 @@ for file_path in test_filename_total:
                 try:
                     execution_result_copy = json.loads(execution_result)
                 except Exception as e:
-                    continue
+                    execution_result_copy = execution_result
+                    pass
+
                 if (
                     # Backend function returns an error
-                    type(execution_result_copy) == dict and "error" in execution_result_copy
+                    type(execution_result_copy) == dict
+                    and "error" in execution_result_copy
                 ) or (
                     # Error during the `eval` phase
-                    type(execution_result_copy) == str and "Error during execution: " in execution_result_copy
+                    type(execution_result_copy) == str
+                    and "Error during execution: " in execution_result_copy
                 ):
                     print("------")
                     print(test_entry["id"])
