@@ -32,6 +32,7 @@ def multi_turn_checker(
 
         # Note that we combine all the sub-step results into a single list, for easier comparison
         single_turn_model_execution_results = []
+        single_turn_model_execution_results_uncombined = []
         single_turn_ground_truth_execution_results = []
         model_instances = {}  # Will be overwritten in the for loop
         single_step_model_execution_results = []  # Will be overwritten in the for loop
@@ -51,6 +52,7 @@ def multi_turn_checker(
                 )
             )
             single_turn_model_execution_results.extend(single_step_model_execution_results)
+            single_turn_model_execution_results_uncombined.append(single_step_model_execution_results)
 
         # Execute the ground truth function calls
         single_turn_ground_truth_execution_results, ground_truth_instances = (
@@ -70,7 +72,7 @@ def multi_turn_checker(
         all_turn_model_execution_results.extend(single_turn_model_execution_results)
         execution_results.append(
             {
-                "model": single_turn_model_execution_results,
+                "model": single_turn_model_execution_results_uncombined,
                 "ground_truth": single_turn_ground_truth_execution_results,
             }
         )
@@ -210,8 +212,8 @@ def response_checker(
             "error_type": "multi_turn:execution_response_mismatch",
             "details": {
                 "missing_items": missing_items,
-                "model_response": model_response_list,
-                "ground_truth_response": ground_truth_response_list,
+                "model_response (including all previous turns)": model_response_list,
+                "ground_truth_response (only the current turn)": ground_truth_response_list,
             },
         }
 

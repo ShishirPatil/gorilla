@@ -68,18 +68,18 @@ def generate(
     test_category: List[str] = typer.Option(
         ["all"], help="A list of test categories to run the evaluation on."
     ),
-    api_sanity_check: bool = typer.Option(
-        False,
-        "--api-sanity-check",
-        "-c",
-        help="Perform the REST API status sanity check before running the evaluation.",
-    ),
     temperature: float = typer.Option(
         0.001, help="The temperature parameter for the model."
     ),
-    include_debugging_log: bool = typer.Option(
+    include_input_log: bool = typer.Option(
         False,
-        help="Include debugging log in the response file to see model's interaction with the state machine.",
+        "--include-input-log",
+        help="Include the fully-transformed input to the model inference endpoint in the inference log; only relevant for debugging input integrity and format.",
+    ),
+    include_state_log: bool = typer.Option(
+        False,
+        "--include-state-log",
+        help="Include info about the state of each API system after each turn in the inference log; only relevant for multi-turn categories.",
     ),
     num_gpus: int = typer.Option(1, help="The number of GPUs to use."),
     num_threads: int = typer.Option(1, help="The number of threads to use."),
@@ -98,9 +98,9 @@ def generate(
         [
             "model",
             "test_category",
-            "api_sanity_check",
             "temperature",
-            "include_debugging_log",
+            "include_input_log",
+            "include_state_log",
             "num_gpus",
             "num_threads",
             "gpu_memory_utilization",
@@ -113,9 +113,9 @@ def generate(
         generationArgs(
             model=model,
             test_category=test_category,
-            api_sanity_check=api_sanity_check,
             temperature=temperature,
-            include_debugging_log=include_debugging_log,
+            include_input_log=include_input_log,
+            include_state_log=include_state_log,
             num_gpus=num_gpus,
             num_threads=num_threads,
             gpu_memory_utilization=gpu_memory_utilization,
