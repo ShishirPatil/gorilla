@@ -29,7 +29,7 @@ for file_path in test_filename_total:
             [],
             initial_config,
             involved_classes,
-            "ground_truth_conversion",  # the model_name is not important here, could use any string
+            "ground_truth_conversation",  # the model_name is not important here, could use any string
             test_entry_id,
             long_context=("long_context" in test_category or "composite" in test_category),
             is_evaL_run=False,
@@ -66,7 +66,7 @@ for file_path in test_filename_total:
                 single_turn_ground_truth,
                 initial_config,
                 involved_classes,
-                "ground_truth_conversion",  # the model_name is not important here, could use any string
+                "ground_truth_conversation",  # the model_name is not important here, could use any string
                 test_entry_id,
                 long_context=(
                     "long_context" in test_category or "composite" in test_category
