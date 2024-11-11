@@ -138,7 +138,7 @@ class MiniCPMFCHandler(OSSHandler):
                 execution_list.append(f"{func_name}({args_str})")
             return execution_list
         else:
-            return msg["content"]
+            return []
 
 
 def message_format(msg, system_suffix="", user_prefix=""):
