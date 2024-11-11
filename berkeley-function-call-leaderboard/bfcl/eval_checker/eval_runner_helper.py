@@ -600,7 +600,7 @@ def generate_leaderboard_csv(
     #         category_status, eval_models=eval_models, eval_categories=eval_categories
     #     )
 
-    wandb_project = os.getenv("WANDB_PROJECT")
+    wandb_project = os.getenv("WANDB_BFCL_PROJECT")
 
     if wandb_project:
         # Initialize WandB and log results

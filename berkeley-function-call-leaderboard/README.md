@@ -313,15 +313,15 @@ If you want to run `live_simple` and `javascript` tests for a few models and `go
 ```bash
 bfcl evaluate --model gorilla-openfunctions-v2 claude-3-5-sonnet-20240620 gpt-4-0125-preview gemini-1.5-pro-preview-0514 --test-category live_simple javascript
 ```
-
+#### WandB Evaluation Logging
 If you want to log the evaluation results as WandB artifacts to a specific WandB entity and project, you can install wandb as an optional dependency:
 ```bash
 pip install .[wandb]
 ```
 
-And you can specify the entity and project name you want to log to on Wandb using the WANDB_PROJECT environment variable in the `.env`file like so:
+And you can specify the entity and project name you want to log to on Wandb using the WANDB_PROJECT environment variable in the `.env`file in the following format:
 ```python
-WANDB_PROJECT=ENTITY:PROJECT
+WANDB__BFCL_PROJECT=ENTITY:PROJECT
 ```
 
 ### Model-Specific Optimization
