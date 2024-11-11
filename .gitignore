@@ -29,5 +29,8 @@ berkeley-function-call-leaderboard/score/
 berkeley-function-call-leaderboard/.env
 !berkeley-function-call-leaderboard/.env.example
 
+# Ignore multi turn ground truth conversation log
+berkeley-function-call-leaderboard/utils/ground_truth_conversation/
+
 .direnv/
 .venv
