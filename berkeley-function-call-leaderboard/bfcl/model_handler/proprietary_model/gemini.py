@@ -3,7 +3,7 @@ import os
 
 import vertexai
 from bfcl.model_handler.base_handler import BaseHandler
-from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT, GORILLA_TO_OPENAPI
+from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     convert_to_tool,
@@ -408,7 +408,7 @@ class GeminiHandler(BaseHandler):
             )
 
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
-            test_entry["question"][0], DEFAULT_SYSTEM_PROMPT, functions
+            test_entry["question"][0], functions, test_category
         )
         # Gemini has system prompt in a specific field
         system_prompt = extract_system_prompt(test_entry["question"][0])

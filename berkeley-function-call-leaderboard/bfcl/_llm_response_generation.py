@@ -14,13 +14,10 @@ from bfcl.constant import (
     TEST_COLLECTION_MAPPING,
     TEST_FILE_MAPPING,
 )
-from bfcl.eval_checker.eval_runner_helper import (
-    is_executable,
-    is_multi_turn,
-    load_file,
-)
+from bfcl.eval_checker.eval_runner_helper import load_file
 from bfcl.model_handler.handler_map import HANDLER_MAP
 from bfcl.model_handler.model_style import ModelStyle
+from bfcl.utils import is_executable, is_multi_turn
 from tqdm import tqdm
 
 RETRY_LIMIT = 3
@@ -41,7 +38,8 @@ def get_args():
 
     # Parameters for the model that you want to test.
     parser.add_argument("--temperature", type=float, default=0.001)
-    parser.add_argument("--include-debugging-log", action="store_true", default=False)
+    parser.add_argument("--include-input-log", action="store_true", default=False)
+    parser.add_argument("--include-state-log", action="store_true", default=False)
     parser.add_argument("--num-threads", default=1, type=int)
     parser.add_argument("--num-gpus", default=1, type=int)
     parser.add_argument("--backend", default="vllm", type=str, choices=["vllm", "sglang"])
@@ -156,7 +154,7 @@ def process_multi_turn_test_case(test_cases, test_category):
     return test_cases
 
 
-def multi_threaded_inference(handler, test_case, include_debugging_log):
+def multi_threaded_inference(handler, test_case, include_input_log, include_state_log):
 
     assert type(test_case["function"]) is list
 
@@ -165,7 +163,7 @@ def multi_threaded_inference(handler, test_case, include_debugging_log):
     while True:
         try:
             result, metadata = handler.inference(
-                copy.deepcopy(test_case), include_debugging_log
+                copy.deepcopy(test_case), include_input_log, include_state_log
             )
             break  # Success, exit the loop
         except Exception as e:
@@ -218,7 +216,8 @@ def generate_results(args, model_name, test_cases_total):
             num_gpus=args.num_gpus,
             gpu_memory_utilization=args.gpu_memory_utilization,
             backend=args.backend,
-            include_debugging_log=args.include_debugging_log,
+            include_input_log=args.include_input_log,
+            include_state_log=args.include_state_log,
         )
 
     else:
@@ -233,7 +232,8 @@ def generate_results(args, model_name, test_cases_total):
                         multi_threaded_inference,
                         handler,
                         test_case,
-                        args.include_debugging_log,
+                        args.include_input_log,
+                        args.include_state_log,
                     )
                     futures.append(future)
 
