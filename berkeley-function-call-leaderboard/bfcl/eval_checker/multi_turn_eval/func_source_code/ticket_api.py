@@ -95,7 +95,7 @@ class TicketAPI:
             priority (int): Priority level of the ticket.
             created_by (str): Username of the ticket creator.
         """
-        ticket = self.find_ticket(ticket_id)
+        ticket = self._find_ticket(ticket_id)
         if not ticket:
             return {"error": f"Ticket with ID {ticket_id} not found."}
         return ticket
@@ -110,7 +110,7 @@ class TicketAPI:
         Returns:
             status (str): Status of the close operation.
         """
-        ticket = self.find_ticket(ticket_id)
+        ticket = self._find_ticket(ticket_id)
         if not ticket:
             return {"error": f"Ticket with ID {ticket_id} not found."}
         if ticket["status"] == "Closed":
@@ -129,7 +129,7 @@ class TicketAPI:
         Returns:
             status (str): Status of the resolve operation.
         """
-        ticket = self.find_ticket(ticket_id)
+        ticket = self._find_ticket(ticket_id)
         if not ticket:
             return {"error": f"Ticket with ID {ticket_id} not found."}
         if ticket["status"] == "Resolved":
@@ -155,7 +155,7 @@ class TicketAPI:
         Returns:
             status (str): Status of the update operation.
         """
-        ticket = self.find_ticket(ticket_id)
+        ticket = self._find_ticket(ticket_id)
         if not ticket:
             return {"error": f"Ticket with ID {ticket_id} not found."}
 
