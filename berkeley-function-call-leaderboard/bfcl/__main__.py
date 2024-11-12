@@ -11,6 +11,7 @@ from bfcl.eval_checker import eval_runner
 from bfcl.model_handler.handler_map import HANDLER_MAP
 from dotenv import load_dotenv
 from tabulate import tabulate
+from pathlib import Path
 
 
 class ExecutionOrderGroup(typer.core.TyperGroup):
@@ -90,6 +91,9 @@ def generate(
     backend: str = typer.Option(
         "vllm", help="The backend to use for the model."
     ),
+    result_dir: str = typer.Option(
+        RESULT_PATH, "--result-dir", help="Path to the folder where output files will be stored."
+    ),
     rerun: str = typer.Option(
         None, "--rerun", help="Rerun selected test cases, input path to a file containing a list of test cases to rerun."
     ),
@@ -112,6 +116,7 @@ def generate(
             "num_threads",
             "gpu_memory_utilization",
             "backend",
+            "result_dir",
             "rerun",
             "rerun_all",
         ],
@@ -129,6 +134,7 @@ def generate(
             num_threads=num_threads,
             gpu_memory_utilization=gpu_memory_utilization,
             backend=backend,
+            result_dir=result_dir,
             rerun=rerun,
             rerun_all=rerun_all,
         )
@@ -196,13 +202,16 @@ def evaluate(
         "-c",
         help="Perform the REST API status sanity check before running the evaluation.",
     ),
+    score_dir: str = typer.Option(
+        SCORE_PATH, "--score-dir", help="Path to the folder where output files will be stored."
+    ),
 ):
     """
     Evaluate results from run of one or more models on a test-category (same as eval_runner.py).
     """
 
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
-    eval_runner.main(model, test_category, api_sanity_check)
+    eval_runner.main(model, test_category, api_sanity_check, Path(score_dir))
 
 
 @cli.command()

@@ -492,9 +492,9 @@ class BaseHandler:
         # This method takes raw model output and convert it to standard execute checker input.
         raise NotImplementedError
 
-    def write(self, result):
+    def write(self, result, result_dir=RESULT_PATH):
         model_name_dir = self.model_name.replace("/", "_")
-        model_result_dir = RESULT_PATH / model_name_dir
+        model_result_dir = result_dir / model_name_dir
         model_result_dir.mkdir(parents=True, exist_ok=True)
 
         if type(result) is dict:
@@ -520,9 +520,9 @@ class BaseHandler:
                         + "\n"
                     )
 
-    def overwrite(self, result):
+    def overwrite(self, result, result_dir=RESULT_PATH):
         model_name_dir = self.model_name.replace("/", "_")
-        model_result_dir = RESULT_PATH / model_name_dir
+        model_result_dir = result_dir / model_name_dir
         model_result_dir.mkdir(parents=True, exist_ok=True)
 
         if type(result) is dict:

@@ -20,6 +20,7 @@ from bfcl.model_handler.handler_map import HANDLER_MAP
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.utils import is_executable, is_multi_turn
 from tqdm import tqdm
+from pathlib import Path
 
 RETRY_LIMIT = 3
 # 60s for the timer to complete. But often we find that even with 60 there is a conflict. So 65 is a safe no.
@@ -44,6 +45,7 @@ def get_args():
     parser.add_argument("--num-gpus", default=1, type=int)
     parser.add_argument("--backend", default="vllm", type=str, choices=["vllm", "sglang"])
     parser.add_argument("--gpu-memory-utilization", default=0.9, type=float)
+    parser.add_argument("--result-dir", default=RESULT_PATH, type=str)
     parser.add_argument("--rerun", type=str, default=None)
     parser.add_argument("--rerun-all", action="store_true", default=False)
     args = parser.parse_args()
@@ -227,6 +229,7 @@ def generate_results(args, model_name, test_cases_total, overwrite=False):
             backend=args.backend,
             include_debugging_log=args.include_debugging_log,
             overwrite=overwrite,
+            result_dir=args.result_dir
         )
 
     else:
@@ -249,9 +252,9 @@ def generate_results(args, model_name, test_cases_total, overwrite=False):
                     # This will wait for the task to complete, so that we are always writing in order
                     result = future.result()
                     if overwrite:
-                        handler.overwrite(result)
+                        handler.overwrite(result, RESULT_PATH)
                     else:
-                        handler.write(result)
+                        handler.write(result, RESULT_PATH)
                     pbar.update()
 
 def get_rerun_filename(args):
@@ -269,7 +272,6 @@ def unlink_files(model_name, test_name_total):
         file_to_write = f"{VERSION_PREFIX}_{test_category}_result.json"
         file_to_write = model_result_dir / file_to_write
         if file_to_write.exists():
-            print(f'{file_to_write} unlinked')
             file_to_write.unlink()
 
 def main(args):
@@ -278,6 +280,9 @@ def main(args):
         args.model = [args.model]
     if type(args.test_category) is not list:
         args.test_category = [args.test_category]
+
+    global RESULT_PATH
+    RESULT_PATH = Path(args.result_dir)
 
     test_name_total, test_filename_total = parse_test_category_argument(args.test_category)
     print(f"Generating results for {args.model} on test category: {test_name_total}.")

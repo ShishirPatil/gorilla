@@ -52,6 +52,7 @@ class OSSHandler(BaseHandler):
         backend: str,
         include_debugging_log: bool,
         overwrite: bool,
+        result_dir=RESULT_PATH,
     ):
         """
         Batch inference for OSS models.
@@ -193,9 +194,9 @@ class OSSHandler(BaseHandler):
                         # This will wait for the task to complete, so that we are always writing in order
                         result = future.result()
                         if overwrite:
-                            self.overwrite(result)
+                            self.overwrite(result, result_dir)
                         else:
-                            self.write(result)
+                            self.write(result, result_dir)
                         pbar.update()
 
 

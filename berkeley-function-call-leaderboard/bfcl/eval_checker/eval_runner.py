@@ -607,7 +607,10 @@ def runner(model_names, test_categories, api_sanity_check):
     )
 
 
-def main(model, test_category, api_sanity_check):
+def main(model, test_category, api_sanity_check, score_dir=SCORE_PATH):
+    global SCORE_PATH
+    SCORE_PATH = score_dir
+    print(SCORE_PATH)
     test_categories = None
     if test_category is not None:
         test_categories = []
@@ -655,9 +658,12 @@ if __name__ == "__main__":
         default=False,  # Default value is False, meaning the sanity check is skipped unless the flag is specified
         help="Perform the REST API status sanity check before running the evaluation. By default, the sanity check is skipped.",
     )
+    parser.add_argument(
+        "--score-dir", default=SCORE_PATH, type=str
+    )
 
     args = parser.parse_args()
+    SCORE_PATH = args.score_dir
 
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
-    
     main(args.model, args.test_category, args.api_sanity_check)
