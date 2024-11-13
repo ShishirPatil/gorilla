@@ -23,6 +23,7 @@ from bfcl.eval_checker.multi_turn_eval.multi_turn_checker import (
 )
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import is_empty_execute_response
 from bfcl.model_handler.handler_map import HANDLER_MAP
+from bfcl.model_handler.handler_loader import HandlerLoader
 from bfcl.utils import *
 from dotenv import load_dotenv
 from tqdm import tqdm
@@ -631,9 +632,12 @@ def main(model, test_category, api_sanity_check):
 
 
 def get_handler(model_name):
-    return HANDLER_MAP[model_name](
-        model_name, temperature=0
-    )  # Temperature doesn't matter for evaluation
+    """Create a handler instance"""
+    handler_class = HandlerLoader.get_handler_class(model_name)
+    if handler_class is None:
+        raise ValueError(f"No handler found for model: {model_name}")
+
+    return handler_class(model_name, temperature=0)
 
 
 if __name__ == "__main__":
