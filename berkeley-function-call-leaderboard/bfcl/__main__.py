@@ -7,7 +7,7 @@ from typing_extensions import Annotated
 import typer
 from bfcl._llm_response_generation import main as generation_main
 from bfcl.constant import DOTENV_PATH, RESULT_PATH, SCORE_PATH, TEST_COLLECTION_MAPPING
-from bfcl.eval_checker import eval_runner
+from bfcl.eval_checker.eval_runner import main as evaluation_main
 from bfcl.model_handler.handler_map import HANDLER_MAP
 from dotenv import load_dotenv
 from tabulate import tabulate
@@ -202,8 +202,15 @@ def evaluate(
         "-c",
         help="Perform the REST API status sanity check before running the evaluation.",
     ),
+    result_dir: str = typer.Option(
+        None,
+        "--result-dir",
+        help="Path to the folder where the model response files are stored; relative to the `berkeley-function-call-leaderboard` root folder",
+    ),
     score_dir: str = typer.Option(
-        SCORE_PATH, "--score-dir", help="Path to the folder where output files will be stored."
+        None,
+        "--score-dir",
+        help="Path to the folder where the evaluation score files will be stored; relative to the `berkeley-function-call-leaderboard` root folder",
     ),
 ):
     """
@@ -211,8 +218,7 @@ def evaluate(
     """
 
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
-    eval_runner.main(model, test_category, api_sanity_check, Path(score_dir))
-
+    evaluation_main(model, test_category, api_sanity_check, result_dir, score_dir)
 
 @cli.command()
 def scores():
