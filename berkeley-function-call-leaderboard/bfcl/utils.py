@@ -108,6 +108,28 @@ def make_json_serializable(value):
             return str(value)
 
 
+def sort_key(entry):
+    """
+    Index comes in two forms: TestCategory_Index or TestCategory_Index-FuncDocSubIndex-PromptSubIndex; both 0-indexed.
+
+    TestCategory_Index: For example, `simple_20` means the 21st entry in the `simple` test category.
+
+    TestCategory_Index-FuncDocSubIndex-PromptSubIndex is used when there are multiple prompts for a single function doc; this only happens in the live dataset.
+    FuncDocSubIndex increments for each unique function doc.
+    PromptSubIndex is per function doc. It resets to 0 for each function doc.
+        For example, `live_simple_19-3-15` means the 20th entry in the `live_simple` test category.
+        This entry has the 4th unique function doc and the 16th prompt for that function doc (there are at least 15 other prompts for this same function doc in this category).
+
+    In either case, the universal index is enough to sort the entries.
+    """
+    parts = entry["id"].rsplit("_", 1)
+    test_category, index = parts[0], parts[1]
+    # This handles the case where the index is in the form TestCategory_Index-FuncDocSubIndex-PromptSubIndex
+    if "-" in index:
+        index = index.split("-")[0]
+    return (test_category, int(index))
+
+
 def is_function_calling_format_output(decoded_output):
     # Ensure the output is a list of dictionaries
     if type(decoded_output) == list:
