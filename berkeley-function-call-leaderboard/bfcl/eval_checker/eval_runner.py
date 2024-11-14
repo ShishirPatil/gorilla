@@ -3,6 +3,7 @@ import argparse
 from bfcl.constant import (
     DOTENV_PATH,
     POSSIBLE_ANSWER_PATH,
+    PROJECT_ROOT,
     PROMPT_PATH,
     RESULT_PATH,
     SCORE_PATH,
@@ -33,7 +34,7 @@ LEADERBOARD_TABLE = {}
 
 
 def multi_turn_runner(
-    handler, model_result, prompt, possible_answer, model_name, test_category
+    handler, model_result, prompt, possible_answer, model_name, test_category, score_dir
 ):
     assert (
         len(model_result) == len(prompt) == len(possible_answer)
@@ -125,7 +126,7 @@ def multi_turn_runner(
             test_category,
             model_name,
         )
-        
+
         # Perform additional check for multi-turn irrelevance
         # This happens when the model is expected to not output any function calls in a certain turn due to miss parameters or miss functions
         # irrelevance_checker_result = multi_turn_irrelevance_checker(
@@ -159,13 +160,15 @@ def multi_turn_runner(
         },
     )
     output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = SCORE_PATH / model_name
+    output_file_dir = score_dir / model_name
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
 
 
-def executable_file_runner(handler, model_result, prompt, model_name, test_category):
+def executable_file_runner(
+    handler, model_result, prompt, model_name, test_category, score_dir
+):
     assert len(model_result) == len(prompt)
 
     result = []
@@ -262,13 +265,15 @@ def executable_file_runner(handler, model_result, prompt, model_name, test_categ
         },
     )
     output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = SCORE_PATH / model_name
+    output_file_dir = score_dir / model_name
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
 
 
-def relevance_file_runner(handler, model_result, prompt, model_name, test_category):
+def relevance_file_runner(
+    handler, model_result, prompt, model_name, test_category, score_dir
+):
     # This function serves for both relevance and irrelevance tests, which share the exact opposite logic.
     # If `test_category` is "irrelevance", the model is expected to output no function call.
     # No function call means either the AST decoding fails (a error message is generated) or the decoded AST does not contain any function call (such as a empty list, `[]`).
@@ -334,14 +339,21 @@ def relevance_file_runner(handler, model_result, prompt, model_name, test_catego
         },
     )
     output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = SCORE_PATH / model_name
+    output_file_dir = score_dir / model_name
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
 
 
 def ast_file_runner(
-    handler, model_result, prompt, possible_answer, language, test_category, model_name
+    handler,
+    model_result,
+    prompt,
+    possible_answer,
+    language,
+    test_category,
+    model_name,
+    score_dir,
 ):
     assert (
         len(model_result) == len(prompt) == len(possible_answer)
@@ -428,14 +440,14 @@ def ast_file_runner(
         },
     )
     output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
-    output_file_dir = SCORE_PATH / model_name
+    output_file_dir = score_dir / model_name
     write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
 
     return accuracy, len(model_result)
 
 
 #### Main runner function ####
-def runner(model_names, test_categories, api_sanity_check):
+def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir):
 
     # A flag to indicate if the API has been tested.
     # We should always test the API with ground truth first before running the executable tests.
@@ -450,7 +462,7 @@ def runner(model_names, test_categories, api_sanity_check):
     EXECUTABLE_TEST_CATEGORIES_HAVE_RUN = []
 
     # Get a list of all entries in the folder
-    entries = RESULT_PATH.iterdir()
+    entries = result_dir.iterdir()
 
     # Filter out the subdirectories
     subdirs = [entry for entry in entries if entry.is_dir()]
@@ -458,7 +470,7 @@ def runner(model_names, test_categories, api_sanity_check):
     # Traverse each subdirectory
     for subdir in tqdm(subdirs, desc="Number of models evaluated"):
 
-        model_name = subdir.relative_to(RESULT_PATH).name
+        model_name = subdir.relative_to(result_dir).name
         if model_names is not None and model_name not in model_names:
             continue
 
@@ -495,7 +507,7 @@ def runner(model_names, test_categories, api_sanity_check):
 
             if is_relevance_or_irrelevance(test_category):
                 accuracy, total_count = relevance_file_runner(
-                    handler, model_result, prompt, model_name, test_category
+                    handler, model_result, prompt, model_name, test_category, score_dir
                 )
                 record_result(
                     LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
@@ -542,7 +554,7 @@ def runner(model_names, test_categories, api_sanity_check):
                     prompt = load_file(prompt_file)
 
                 accuracy, total_count = executable_file_runner(
-                    handler, model_result, prompt, model_name, test_category
+                    handler, model_result, prompt, model_name, test_category, score_dir
                 )
                 record_result(
                     LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
@@ -565,6 +577,7 @@ def runner(model_names, test_categories, api_sanity_check):
                     possible_answer,
                     model_name,
                     test_category,
+                    score_dir,
                 )
                 record_result(
                     LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
@@ -580,6 +593,7 @@ def runner(model_names, test_categories, api_sanity_check):
                     language,
                     test_category,
                     model_name,
+                    score_dir,
                 )
                 record_result(
                     LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
@@ -588,9 +602,9 @@ def runner(model_names, test_categories, api_sanity_check):
 
     # This function reads all the score files from local folder and updates the leaderboard table.
     # This is helpful when you only want to run the evaluation for a subset of models and test categories.
-    update_leaderboard_table_with_score_file(LEADERBOARD_TABLE, SCORE_PATH)
+    update_leaderboard_table_with_score_file(LEADERBOARD_TABLE, score_dir)
     # Write the leaderboard table to a file
-    generate_leaderboard_csv(LEADERBOARD_TABLE, SCORE_PATH, model_names, test_categories)
+    generate_leaderboard_csv(LEADERBOARD_TABLE, score_dir, model_names, test_categories)
 
     # Clean up the executable expected output files
     # They should be re-generated the next time the evaluation is run
@@ -601,17 +615,24 @@ def runner(model_names, test_categories, api_sanity_check):
     )
 
     print(
-        f"🏁 Evaluation completed. See {SCORE_PATH / 'data_overall.csv'} for evaluation results on BFCL V3."
+        f"🏁 Evaluation completed. See {score_dir / 'data_overall.csv'} for evaluation results on BFCL V3."
     )
     print(
-        f"See {SCORE_PATH / 'data_live.csv'} and {SCORE_PATH / 'data_non_live.csv'} for evaluation results on BFCL V3 Live and Non-Live categories respectively."
+        f"See {score_dir / 'data_live.csv'} and {score_dir / 'data_non_live.csv'} for evaluation results on BFCL V3 Live and Non-Live categories respectively."
     )
 
 
-def main(model, test_category, api_sanity_check, score_dir=SCORE_PATH):
-    global SCORE_PATH
-    SCORE_PATH = score_dir
-    print(SCORE_PATH)
+def main(model, test_category, api_sanity_check, result_dir, score_dir):
+    if result_dir is None:
+        result_dir = RESULT_PATH
+    else:
+        result_dir = (PROJECT_ROOT / result_dir).resolve()
+
+    if score_dir is None:
+        score_dir = SCORE_PATH
+    else:
+        result_dir = (PROJECT_ROOT / score_dir).resolve()
+
     test_categories = None
     if test_category is not None:
         test_categories = []
@@ -660,11 +681,25 @@ if __name__ == "__main__":
         help="Perform the REST API status sanity check before running the evaluation. By default, the sanity check is skipped.",
     )
     parser.add_argument(
-        "--score-dir", default=SCORE_PATH, type=str
+        "--result-dir",
+        default=None,
+        type=str,
+        help="Path to the folder where the model response files are stored; relative to the `berkeley-function-call-leaderboard` root folder",
+    )
+    parser.add_argument(
+        "--score-dir",
+        default=None,
+        type=str,
+        help="Path to the folder where the evaluation score files will be stored; relative to the `berkeley-function-call-leaderboard` root folder",
     )
 
     args = parser.parse_args()
-    SCORE_PATH = args.score_dir
 
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
-    main(args.model, args.test_category, args.api_sanity_check)
+    main(
+        args.model,
+        args.test_category,
+        args.api_sanity_check,
+        args.result_dir,
+        args.score_dir,
+    )
