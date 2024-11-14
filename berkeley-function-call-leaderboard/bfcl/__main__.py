@@ -1,17 +1,23 @@
 import csv
 from collections import namedtuple
 from datetime import datetime
+from pathlib import Path
 from typing import List, Optional
-from typing_extensions import Annotated
 
 import typer
 from bfcl._llm_response_generation import main as generation_main
-from bfcl.constant import DOTENV_PATH, RESULT_PATH, SCORE_PATH, TEST_COLLECTION_MAPPING
+from bfcl.constant import (
+    DOTENV_PATH,
+    PROJECT_ROOT,
+    RESULT_PATH,
+    SCORE_PATH,
+    TEST_COLLECTION_MAPPING,
+)
 from bfcl.eval_checker.eval_runner import main as evaluation_main
 from bfcl.model_handler.handler_map import HANDLER_MAP
 from dotenv import load_dotenv
 from tabulate import tabulate
-from pathlib import Path
+from typing_extensions import Annotated
 
 
 class ExecutionOrderGroup(typer.core.TyperGroup):
@@ -142,7 +148,13 @@ def generate(
 
 
 @cli.command()
-def results():
+def results(
+    result_dir: str = typer.Option(
+        None,
+        "--result-dir",
+        help="Relative path to the model response folder, if different from the default; Path should be relative to the `berkeley-function-call-leaderboard` root folder",
+    ),
+):
     """
     List the results available for evaluation.
     """
@@ -164,7 +176,10 @@ def results():
             print(f"Unknown model name: {name}")
         return name
 
-    result_dir = RESULT_PATH
+    if result_dir is None:
+        result_dir = RESULT_PATH
+    else:
+        result_dir = (PROJECT_ROOT / result_dir).resolve()
 
     results_data = []
     for dir in result_dir.iterdir():
@@ -205,12 +220,12 @@ def evaluate(
     result_dir: str = typer.Option(
         None,
         "--result-dir",
-        help="Path to the folder where the model response files are stored; relative to the `berkeley-function-call-leaderboard` root folder",
+        help="Relative path to the model response folder, if different from the default; Path should be relative to the `berkeley-function-call-leaderboard` root folder",
     ),
     score_dir: str = typer.Option(
         None,
         "--score-dir",
-        help="Path to the folder where the evaluation score files will be stored; relative to the `berkeley-function-call-leaderboard` root folder",
+        help="Relative path to the evaluation score folder, if different from the default; Path should be relative to the `berkeley-function-call-leaderboard` root folder",
     ),
 ):
     """
@@ -221,7 +236,13 @@ def evaluate(
     evaluation_main(model, test_category, api_sanity_check, result_dir, score_dir)
 
 @cli.command()
-def scores():
+def scores(
+    score_dir: str = typer.Option(
+        None,
+        "--score-dir",
+        help="Relative path to the evaluation score folder, if different from the default; Path should be relative to the `berkeley-function-call-leaderboard` root folder",
+    ),
+):
     """
     Display the leaderboard.
     """
@@ -229,8 +250,12 @@ def scores():
     def truncate(text, length=22):
         return (text[:length] + "...") if len(text) > length else text
 
+    if score_dir is None:
+        score_dir = SCORE_PATH
+    else:
+        score_dir = (PROJECT_ROOT / score_dir).resolve()
     # files = ["./score/data_non_live.csv", "./score/data_live.csv", "./score/data_overall.csv"]
-    file = SCORE_PATH / "data_overall.csv"
+    file = score_dir / "data_overall.csv"
 
     selected_columns = [
         "Rank",
