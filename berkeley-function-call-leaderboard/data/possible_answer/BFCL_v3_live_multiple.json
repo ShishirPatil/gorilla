@@ -9,21 +9,21 @@
 {"id": "live_multiple_8-4-0", "ground_truth": [{"cookbook.search_recipe": {"keyword": ["steak"], "cuisine": ["Indian"], "max_results": ["", 10]}}]}
 {"id": "live_multiple_9-4-1", "ground_truth": [{"HNA_WQA.search": {"keyword": ["Imjin war"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
 {"id": "live_multiple_10-4-2", "ground_truth": [{"ControlAppliance.execute": {"command": ["\ub2e4\uc6a9\ub3c4\uc2e4, \ud1b5\ub3cc\uc774, \uc911\uc9c0"]}}]}
-{"id": "live_multiple_11-4-3", "ground_truth": [{"HNA_WQA.search": {"keyword": ["ji sung park", "Ji Sung Park", "Park Ji Sung", "park ji sung", "Park Ji-sung", "Ji Sung Park footballer", "Park Ji-sung footballer"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
-{"id": "live_multiple_12-4-4", "ground_truth": [{"HNA_WQA.search": {"keyword": ["Park Ji Sung", "park ji sung", "Park Ji-sung", "ji sung park", "Ji Sung Park", "Ji Sung Park footballer", "Park Ji-sung footballer"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
+{"id": "live_multiple_11-4-3", "ground_truth": [{"HNA_WQA.search": {"keyword": ["Ji Sung Park", "Park Ji Sung", "Ji Sung Park footballer", "Park Ji-sung footballer"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
+{"id": "live_multiple_12-4-4", "ground_truth": [{"HNA_WQA.search": {"keyword": ["Ji Sung Park", "Park Ji Sung", "Ji Sung Park footballer", "Park Ji-sung footballer"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
 {"id": "live_multiple_13-4-5", "ground_truth": [{"OpenWeatherMap.get_current_weather": {"location": ["Santa Cruz, USA"], "units": ["imperial"], "api_key": ["", "YOUR_API_KEY_HERE"]}}]}
 {"id": "live_multiple_14-4-6", "ground_truth": [{"ControlAppliance.execute": {"command": ["\ub2e4\uc6a9\ub3c4\uc2e4, \ud1b5\ub3cc\uc774, \uc911\uc9c0"]}}]}
 {"id": "live_multiple_15-4-7", "ground_truth": [{"HNA_NEWS.search": {"keyword": ["Son's latest goal"], "category": ["Sports"], "date_range": ["", "null"], "sort_by": ["", "date"], "language": ["", "EN"]}}]}
 {"id": "live_multiple_16-4-8", "ground_truth": [{"HNA_NEWS.search": {"keyword": ["\ubc15\uc9c0\uc131"], "category": ["", "General"], "date_range": ["", "null"], "sort_by": ["", "date"], "language": ["", "EN"]}}]}
 {"id": "live_multiple_17-4-9", "ground_truth": [{"cookbook.search_recipe": {"keyword": ["sikhae"], "cuisine": ["", "Italian"], "max_results": ["", 10]}}]}
-{"id": "live_multiple_18-4-10", "ground_truth": [{"HNA_NEWS.search": {"keyword": ["artificial intelligence", "ai","Artificial Intelligence"], "category": ["", "General"], "date_range": ["2023-10-01 to 2023-10-07"], "sort_by": ["", "date"], "language": ["", "EN"]}}]}
+{"id": "live_multiple_18-4-10", "ground_truth": [{"HNA_NEWS.search": {"keyword": ["artificial intelligence", "ai"], "category": ["", "General"], "date_range": ["2023-10-01 to 2023-10-07"], "sort_by": ["", "date"], "language": ["", "EN"]}}]}
 {"id": "live_multiple_19-4-11", "ground_truth": [{"ControlAppliance.execute": {"command": ["\uac70\uc2e4, \uc5d0\uc5b4\ucee8, \uc2e4\ud589"]}}]}
 {"id": "live_multiple_20-4-12", "ground_truth": [{"ControlAppliance.execute": {"command": ["\ub2e4\uc6a9\ub3c4\uc2e4, \ud1b5\ub3cc\uc774, \uc911\uc9c0"]}}]}
 {"id": "live_multiple_21-4-13", "ground_truth": [{"cookbook.search_recipe": {"keyword": ["\uc2a4\ud14c\uc774\ud06c"], "cuisine": ["", "Italian"], "max_results": ["", 10]}}]}
 {"id": "live_multiple_22-4-14", "ground_truth": [{"HNA_WQA.search": {"keyword": ["\uc784\uc9c4\uc65c\ub780"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
 {"id": "live_multiple_23-5-0", "ground_truth": [{"search_products": {"color": ["red"], "size": ["8"], "category": ["shoes"], "price_min": ["", 0.0], "price_max": ["", null], "brand": ["", null]}}]}
 {"id": "live_multiple_24-5-1", "ground_truth": [{"search_products": {"color": ["", null], "size": ["XL", "Extra Large"], "category": ["clothing"], "price_min": ["", 0.0], "price_max": ["", null], "brand": ["", null]}}]}
-{"id": "live_multiple_25-6-0", "ground_truth": [{"recall_memory_search": {"query": ["when is shishir's birthday", "when's shishir's birthday", "shishir birthday", "shishir's birthday", "Shishir's birthday"], "page": ["", 0], "request_heartbeat": ["", false]}}]}
+{"id": "live_multiple_25-6-0", "ground_truth": [{"recall_memory_search": {"query": ["when is shishir's birthday", "when's shishir's birthday", "shishir birthday", "shishir's birthday"], "page": ["", 0], "request_heartbeat": ["", false]}}]}
 {"id": "live_multiple_26-6-1", "ground_truth": [{"recall_memory_search": {"query": ["Shishir Patil's birthday", "Shishir Patil birthday"], "page": ["", 0], "request_heartbeat": ["", false]}}]}
 {"id": "live_multiple_27-7-0", "ground_truth": [{"add": {"a": [100], "b": [-40]}}]}
 {"id": "live_multiple_28-8-0", "ground_truth": [{"my_core_function": {"name": ["Balkrushn"]}}]}
@@ -238,7 +238,7 @@
 {"id": "live_multiple_237-106-3", "ground_truth": [{"set_point": {"x": [2], "y": [3], "z": [4], "point_name": ["pointA"]}}]}
 {"id": "live_multiple_238-106-4", "ground_truth": [{"set_float": {"number_name": ["roomHeight"], "number_value": [4.2]}}]}
 {"id": "live_multiple_239-107-0", "ground_truth": [{"search_web_tool": {"query": ["apple"], "num_results": ["", 3], "source": ["", "text"]}}]}
-{"id": "live_multiple_240-107-1", "ground_truth": [{"search_web_tool": {"query": ["weather in India", "current weather in India", "What's the current weather in India","What's the current weather in India?"], "num_results": ["", 3], "source": ["", "text"]}}]}
+{"id": "live_multiple_240-107-1", "ground_truth": [{"search_web_tool": {"query": ["weather in India", "current weather in India", "What's the current weather in India", "What's the current weather in India?"], "num_results": ["", 3], "source": ["", "text"]}}]}
 {"id": "live_multiple_241-107-2", "ground_truth": [{"search_web_tool": {"query": ["flight prices from NYC to New Delhi"], "num_results": ["", 3], "source": ["", "text"]}}]}
 {"id": "live_multiple_242-107-3", "ground_truth": [{"tts_tool": {"content": ["If you could have dinner with any historical figure, who would you choose and why?, also genart a photo of that figure"]}}]}
 {"id": "live_multiple_243-107-4", "ground_truth": [{"search_web_tool": {"query": ["Find a recent news article about corona virus", "recent news article about corona virus","recent news corona virus"], "num_results": ["", 3], "source": ["news"]}}]}
