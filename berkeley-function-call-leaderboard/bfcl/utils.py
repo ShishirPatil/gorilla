@@ -21,6 +21,10 @@ def extract_test_category(input_string: Union[str, Path]) -> str:
         )
 
 
+def extract_test_category_from_id(test_entry_id: str) -> str:
+    return test_entry_id.rsplit("_", 1)[0]
+
+
 def find_file_with_suffix(folder_path: Path, suffix: str) -> Path:
     for json_file in folder_path.glob("*.json"):
         if extract_test_category(json_file) == suffix:

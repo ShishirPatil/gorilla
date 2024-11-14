@@ -1,26 +1,30 @@
 import argparse
-import copy
 import json
 import os
 import time
 from concurrent.futures import ThreadPoolExecutor
+from copy import deepcopy
 
 from bfcl._apply_function_credential_config import apply_function_credential_config
 from bfcl.constant import (
     MULTI_TURN_FUNC_DOC_FILE_MAPPING,
     MULTI_TURN_FUNC_DOC_PATH,
+    PROJECT_ROOT,
     PROMPT_PATH,
     RESULT_PATH,
     TEST_COLLECTION_MAPPING,
     TEST_FILE_MAPPING,
+    TEST_IDS_TO_GENERATE_PATH,
 )
-from bfcl.constant import RESULT_PATH, VERSION_PREFIX
 from bfcl.eval_checker.eval_runner_helper import load_file
 from bfcl.model_handler.handler_map import HANDLER_MAP
 from bfcl.model_handler.model_style import ModelStyle
-from bfcl.utils import is_executable, is_multi_turn
+from bfcl.utils import (
+    is_executable,
+    is_multi_turn,
+    sort_key,
+)
 from tqdm import tqdm
-from pathlib import Path
 
 RETRY_LIMIT = 3
 # 60s for the timer to complete. But often we find that even with 60 there is a conflict. So 65 is a safe no.
@@ -46,9 +50,9 @@ def get_args():
     parser.add_argument("--num-gpus", default=1, type=int)
     parser.add_argument("--backend", default="vllm", type=str, choices=["vllm", "sglang"])
     parser.add_argument("--gpu-memory-utilization", default=0.9, type=float)
-    parser.add_argument("--result-dir", default=RESULT_PATH, type=str)
-    parser.add_argument("--rerun", type=str, default=None)
-    parser.add_argument("--rerun-all", action="store_true", default=False)
+    parser.add_argument("--result-dir", default=None, type=str)
+    parser.add_argument("--test-ids-file", action="store_true", default=False)
+    parser.add_argument("--allow-overwrite", action="store_true", default=False)
     args = parser.parse_args()
     return args
 
@@ -56,28 +60,6 @@ def get_args():
 def build_handler(model_name, temperature):
     handler = HANDLER_MAP[model_name](model_name, temperature)
     return handler
-
-
-def sort_key(entry):
-    """
-    Index comes in two forms: TestCategory_Index or TestCategory_Index-FuncDocSubIndex-PromptSubIndex; both 0-indexed.
-
-    TestCategory_Index: For example, `simple_20` means the 21st entry in the `simple` test category.
-
-    TestCategory_Index-FuncDocSubIndex-PromptSubIndex is used when there are multiple prompts for a single function doc; this only happens in the live dataset.
-    FuncDocSubIndex increments for each unique function doc.
-    PromptSubIndex is per function doc. It resets to 0 for each function doc.
-        For example, `live_simple_19-3-15` means the 20th entry in the `live_simple` test category.
-        This entry has the 4th unique function doc and the 16th prompt for that function doc (there are at least 15 other prompts for this same function doc in this category).
-
-    In either case, the universal index is enough to sort the entries.
-    """
-    parts = entry["id"].rsplit("_", 1)
-    test_category, index = parts[0], parts[1]
-    # This handles the case where the index is in the form TestCategory_Index-FuncDocSubIndex-PromptSubIndex
-    if "-" in index:
-        index = index.split("-")[0]
-    return (test_category, int(index))
 
 
 def parse_test_category_argument(test_category_args):
@@ -96,43 +78,63 @@ def parse_test_category_argument(test_category_args):
     return sorted(list(test_name_total)), sorted(list(test_filename_total))
 
 
-def collect_test_cases(test_name_total, test_filename_total, model_name, rerun_all, rerun_cases_list):
+def get_involved_test_entries(test_category_args, test_ids_file):
+    all_test_file_paths, all_test_categories = parse_test_category_argument(test_category_args)
+    all_test_entries_involved = []
+    for test_category, file_to_open in zip(all_test_categories, all_test_file_paths):
+        all_test_entries_involved.extend(load_file(file_to_open))
+
+    if test_ids_file:
+        with open(TEST_IDS_TO_GENERATE_PATH) as f:
+            test_ids_to_generate = json.load(f)
+        for category, test_ids in test_ids_to_generate.items():
+            test_file_path = TEST_FILE_MAPPING[category]
+            if category in all_test_categories:
+                # All entries in that category has already been loaded, so there is no need to load individual entries
+                continue
+            else:
+                all_test_entries_involved.extend(
+                    [
+                        entry
+                        for entry in load_file(test_file_path)
+                        if entry["id"] in test_ids
+                    ]
+                )
+                all_test_categories.append(category)
+                all_test_file_paths.append(test_file_path)
+
+    return all_test_file_paths, all_test_categories, all_test_entries_involved
+
+
+def collect_test_cases(
+    args, model_name, all_test_categories, all_test_file_paths, all_test_entries_involved
+):
     model_name_dir = model_name.replace("/", "_")
-    model_result_dir = RESULT_PATH / model_name_dir
+    model_result_dir = args.result_dir / model_name_dir
 
-    test_cases_total = []
-    for test_category, file_to_open in zip(test_name_total, test_filename_total):
-        test_cases = []
-        with open(PROMPT_PATH / file_to_open) as f:
-            for line in f:
-                entry = json.loads(line)
-                test_cases.append(entry)
+    existing_result = []
+    for test_category, file_to_open in zip(all_test_categories, all_test_file_paths):
 
-        if not rerun_all and len(rerun_cases_list) == 0:
-            existing_result = []
-            result_file_path = model_result_dir / file_to_open.replace(".json", "_result.json")
-            if result_file_path.exists():
-                with open(result_file_path) as f:
-                    for line in f:
-                        existing_result.append(json.loads(line))
-            existing_ids = [entry["id"] for entry in existing_result]
-            test_cases_to_generate = [
-                test_case for test_case in test_cases if test_case["id"] not in existing_ids
-            ]
-        elif rerun_all:
-            test_cases_to_generate = test_cases
-        else:
-            test_cases_to_generate = [
-                test_case for test_case in test_cases if test_case["id"] in rerun_cases_list
-            ]
+        result_file_path = model_result_dir / file_to_open.replace(".json", "_result.json")
+        if result_file_path.exists():
+            existing_result.extend(load_file(result_file_path))
 
+        existing_ids = [entry["id"] for entry in existing_result]
+
+    if not args.allow_overwrite:
+        test_cases_to_generate = [
+            test_case
+            for test_case in all_test_entries_involved
+            if test_case["id"] not in existing_ids
+        ]
         test_cases_to_generate = process_multi_turn_test_case(
             test_cases_to_generate, test_category
         )
+    else:
+        test_cases_to_generate = all_test_entries_involved
 
-        test_cases_total.extend(test_cases_to_generate)
+    return sorted(test_cases_to_generate, key=sort_key)
 
-    return sorted(test_cases_total, key=sort_key)
 
 def process_multi_turn_test_case(test_cases, test_category):
     """
@@ -175,7 +177,7 @@ def multi_threaded_inference(handler, test_case, include_input_log, include_stat
     while True:
         try:
             result, metadata = handler.inference(
-                copy.deepcopy(test_case), include_input_log, include_state_log
+                deepcopy(test_case), include_input_log, include_state_log
             )
             break  # Success, exit the loop
         except Exception as e:
@@ -217,8 +219,8 @@ def multi_threaded_inference(handler, test_case, include_input_log, include_stat
     return result_to_write
 
 
-def generate_results(args, model_name, test_cases_total, overwrite=False):
-
+def generate_results(args, model_name, test_cases_total):
+    update_mode = args.allow_overwrite
     handler = build_handler(model_name, args.temperature)
 
     if handler.model_style == ModelStyle.OSSMODEL:
@@ -230,8 +232,8 @@ def generate_results(args, model_name, test_cases_total, overwrite=False):
             backend=args.backend,
             include_input_log=args.include_input_log,
             include_state_log=args.include_state_log,
-            overwrite=overwrite,
-            result_dir=args.result_dir
+            result_dir=args.result_dir,
+            update_mode=update_mode,
         )
 
     else:
@@ -254,28 +256,11 @@ def generate_results(args, model_name, test_cases_total, overwrite=False):
                 for future in futures:
                     # This will wait for the task to complete, so that we are always writing in order
                     result = future.result()
-                    if overwrite:
-                        handler.overwrite(result, RESULT_PATH)
-                    else:
-                        handler.write(result, RESULT_PATH)
+                    handler.write(
+                        result, result_dir=args.result_dir, update_mode=update_mode
+                    )
                     pbar.update()
 
-def get_rerun_filename(args):
-    if args.rerun is not None:
-        with open(args.rerun, 'r') as f:
-            file_names = [line.strip() for line in f]
-    else:
-        file_names = []
-    return file_names
-
-def unlink_files(model_name, test_name_total):
-    model_name_dir = model_name.replace("/", "_")
-    model_result_dir = RESULT_PATH / model_name_dir
-    for test_category in test_name_total:
-        file_to_write = f"{VERSION_PREFIX}_{test_category}_result.json"
-        file_to_write = model_result_dir / file_to_write
-        if file_to_write.exists():
-            file_to_write.unlink()
 
 def main(args):
 
@@ -284,17 +269,20 @@ def main(args):
     if type(args.test_category) is not list:
         args.test_category = [args.test_category]
 
-    global RESULT_PATH
-    RESULT_PATH = Path(args.result_dir)
+    all_test_file_paths, all_test_categories, all_test_entries_involved = (
+        get_involved_test_entries(args.test_category, args.test_ids_file)
+    )
 
-    test_name_total, test_filename_total = parse_test_category_argument(args.test_category)
-    print(f"Generating results for {args.model} on test category: {test_name_total}.")
+    # print(f"Generating results for {args.model} on test category: {test_name_total}.")  FIXME
 
     # Apply function credential config if any of the test categories are executable
-    if any([is_executable(category) for category in test_name_total]):
+    if any([is_executable(category) for category in all_test_categories]):
         apply_function_credential_config(input_path=PROMPT_PATH)
 
-    rerun_cases_list = get_rerun_filename(args)
+    if args.result_dir is not None:
+        args.result_dir = PROJECT_ROOT / args.result_dir
+    else:
+        args.result_dir = RESULT_PATH
 
     for model_name in args.model:
         if (
@@ -304,22 +292,16 @@ def main(args):
             model_name = model_name + "-optimized"
 
         test_cases_total = collect_test_cases(
-            test_name_total, test_filename_total, model_name, args.rerun_all, rerun_cases_list
+            args,
+            model_name,
+            all_test_categories,
+            all_test_file_paths,
+            all_test_entries_involved,
         )
 
-        if args.rerun:
-            print(f"Rerunning test cases: {rerun_cases_list}")
-            generate_results(args, model_name, test_cases_total, overwrite=True)
-        elif args.rerun_all:
-            print(f"Rerunning all test cases")
-            unlink_files(model_name, test_name_total)
-            generate_results(args, model_name, test_cases_total)
-        elif len(test_cases_total) != 0:
-            generate_results(args, model_name, test_cases_total)
-        else:
+        if len(test_cases_total) == 0:
             print(
                 f"All selected test cases have been previously generated for {model_name}. No new test cases to generate."
             )
-
-
-
+        else:
+            generate_results(args, model_name, test_cases_total)

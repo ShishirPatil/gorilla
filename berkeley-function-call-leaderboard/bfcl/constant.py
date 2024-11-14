@@ -9,6 +9,7 @@ SCORE_PATH = "../score/"
 DOTENV_PATH = "../.env"
 UTILS_PATH = "../utils/"
 PROJECT_ROOT = "../"
+TEST_IDS_TO_GENERATE_PATH = "../test_case_ids_to_generate.json"
 
 VERSION_PREFIX = "BFCL_v3"
 
@@ -200,6 +201,7 @@ SCORE_PATH = (script_dir / SCORE_PATH).resolve()
 DOTENV_PATH = (script_dir / DOTENV_PATH).resolve()
 UTILS_PATH = (script_dir / UTILS_PATH).resolve()
 PROJECT_ROOT = (script_dir / PROJECT_ROOT).resolve()
+TEST_IDS_TO_GENERATE_PATH = (script_dir / TEST_IDS_TO_GENERATE_PATH).resolve()
 
 RESULT_PATH.mkdir(parents=True, exist_ok=True)
 SCORE_PATH.mkdir(parents=True, exist_ok=True)
