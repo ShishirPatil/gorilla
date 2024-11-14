@@ -4,16 +4,17 @@ from copy import deepcopy
 
 from bfcl.constant import RESULT_PATH, VERSION_PREFIX
 from bfcl.eval_checker.multi_turn_eval.multi_turn_utils import (
+    STATELESS_CLASSES,
     execute_multi_turn_func_call,
     is_empty_execute_response,
 )
 from bfcl.model_handler.constant import (
     DEFAULT_USER_PROMPT_FOR_ADDITIONAL_FUNCTION_FC,
     DEFAULT_USER_PROMPT_FOR_ADDITIONAL_FUNCTION_PROMPTING,
-    MAXIMUM_ROUND_LIMIT,
-    UNACHIEVABLE_TASK_FUNC_DOC,
+    MAXIMUM_STEP_LIMIT,
 )
 from bfcl.model_handler.model_style import ModelStyle
+from bfcl.utils import make_json_serializable
 
 
 class BaseHandler:
@@ -30,37 +31,34 @@ class BaseHandler:
         self.temperature = temperature
         self.is_fc_model = False  # Whether the model is a function calling model
 
-    def inference(self, test_entry: dict, include_debugging_log: bool):
+    def inference(self, test_entry: dict, include_input_log: bool, include_state_log: bool):
         # This method is used to retrive model response for each model.
 
         # FC model
         # TODO: Let all models have the is_fc_model attribute and remove the "FC" check
         if "FC" in self.model_name or self.is_fc_model:
             if "multi_turn" in test_entry["id"]:
-                return self.inference_multi_turn_FC(test_entry, include_debugging_log)
+                return self.inference_multi_turn_FC(test_entry, include_input_log, include_state_log)
             else:
-                return self.inference_single_turn_FC(test_entry, include_debugging_log)
+                return self.inference_single_turn_FC(test_entry, include_input_log)
         # Prompting model
         else:
             if "multi_turn" in test_entry["id"]:
                 return self.inference_multi_turn_prompting(
-                    test_entry, include_debugging_log
+                    test_entry, include_input_log, include_state_log
                 )
             else:
                 return self.inference_single_turn_prompting(
-                    test_entry, include_debugging_log
+                    test_entry, include_input_log
                 )
 
     def inference_multi_turn_FC(
-        self, test_entry: dict, include_debugging_log: bool
+        self, test_entry: dict, include_input_log: bool, include_state_log: bool
     ) -> tuple[list[list], dict]:
         initial_config: dict = test_entry["initial_config"]
         involved_classes: list = test_entry["involved_classes"]
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
-
-        # Add the unachievable task function to the function list
-        test_entry["function"].append(deepcopy(UNACHIEVABLE_TASK_FUNC_DOC))
 
         # This is only for the miss function category
         # A mapping from turn index to function to holdout
@@ -72,65 +70,102 @@ class BaseHandler:
         all_model_response: list[list] = (
             []
         )  # The model response that will be used for later evaluation
-        all_debugging_log: list[list[dict]] = (
+        all_inference_log: list[list[dict]] = (
             []
         )  # The debugging log for human to understand
         force_quit = False  # Whether the model has been forced to quit. If True, this whole entry will be failed.
+
+        # Execute no function call, but just to get a reference to all the instances to get the initial state for logging purpose
+        if include_state_log:
+            _, involved_instances = execute_multi_turn_func_call(
+                [],
+                initial_config,
+                involved_classes,
+                self.model_name_underline_replaced,
+                test_entry_id,
+                long_context=(
+                    "long_context" in test_category or "composite" in test_category
+                ),
+                is_evaL_run=False,
+            )
+            state_log = []
+            for class_name, class_instance in involved_instances.items():
+                if class_name in STATELESS_CLASSES:
+                    continue
+                class_instance = deepcopy(class_instance)  # Avoid modification in future turns
+                state_log.append(
+                    {
+                        "role": "state_info",
+                        "class_name": class_name,
+                        "content": {
+                            key: value
+                            for key, value in vars(class_instance).items()
+                            if not key.startswith("_")
+                        },
+                    }
+                )
+            all_inference_log.append(state_log)
 
         inference_data: dict = {}
         inference_data = self._pre_query_processing_FC(inference_data, test_entry)
         inference_data = self._compile_tools(inference_data, test_entry)
 
         all_multi_turn_messages: list[list[dict]] = test_entry["question"]
-        for round_idx, current_round_message in enumerate(all_multi_turn_messages):
-            current_round_message: list[dict]
+        for turn_idx, current_turn_message in enumerate(all_multi_turn_messages):
+            current_turn_message: list[dict]
 
-            if str(round_idx) in holdout_function:
-                test_entry["function"].extend(holdout_function[str(round_idx)])
+            if str(turn_idx) in holdout_function:
+                test_entry["function"].extend(holdout_function[str(turn_idx)])
                 # Since we have added new functions, we need to recompile the tools
                 inference_data = self._compile_tools(inference_data, test_entry)
                 assert (
-                    len(current_round_message) == 0
-                ), "Holdout round should not have user message."
-                current_round_message = [
+                    len(current_turn_message) == 0
+                ), "Holdout turn should not have user message."
+                current_turn_message = [
                     {
                         "role": "user",
                         "content": DEFAULT_USER_PROMPT_FOR_ADDITIONAL_FUNCTION_FC,
                     }
                 ]
 
-            if round_idx == 0:
+            if turn_idx == 0:
                 inference_data = self.add_first_turn_message_FC(
-                    inference_data, current_round_message
+                    inference_data, current_turn_message
                 )
             else:
                 inference_data = self._add_next_turn_user_message_FC(
-                    inference_data, current_round_message
+                    inference_data, current_turn_message
                 )
 
-            current_round_response = []
-            current_round_debugging_log: list[dict] = [current_round_message]
-            current_round_input_token_count: list[float] = []
-            current_round_output_token_count: list[float] = []
-            current_round_latency: list[float] = []
+            current_turn_response = []
+            current_turn_inference_log: list[dict] = {"begin_of_turn_query": current_turn_message}
+            current_turn_input_token_count: list[float] = []
+            current_turn_output_token_count: list[float] = []
+            current_turn_latency: list[float] = []
 
             count = 0
             while True:
                 print("-" * 100)
                 print(
-                    f"ID: {test_entry_id.rsplit('_', 1)[1]}, Round: {round_idx}, Count: {count}"
+                    f"ID: {test_entry_id.replace('multi_turn_', '')}, Turn: {turn_idx}, Step: {count}"
                 )
+                current_step_inference_log: list[dict] = []
+                # Add to the current_turn_inference_log at beginning of each step so that we don't need to bother dealing with the break statements
+                current_turn_inference_log[f"step_{count}"] = current_step_inference_log
 
                 start_time = time.time()
                 api_response = self._query_FC(inference_data)
                 query_latency = time.time() - start_time
 
-                current_round_debugging_log.append(
-                    {
-                        "role": "handler_log:inference_input",
-                        "content": inference_data.get("inference_input_log", ""),
-                    }
-                )
+                # This part of logging is disabled by default because it is too verbose and will make the result file extremely large
+                # It is only useful to see if the inference pipeline is working as expected (eg, does it convert all the inputs correctly)
+                if include_input_log:
+                    current_step_inference_log.append(
+                        {
+                            "role": "handler_log",
+                            "content": inference_data.get("inference_input_log", ""),
+                        }
+                    )
 
                 # Try parsing the model response
                 model_response_data = self._parse_query_response_FC(api_response)
@@ -142,43 +177,47 @@ class BaseHandler:
                 )
 
                 # Process the metadata
-                current_round_input_token_count.append(model_response_data["input_token"])
-                current_round_output_token_count.append(model_response_data["output_token"])
-                current_round_latency.append(query_latency)
+                current_turn_input_token_count.append(model_response_data["input_token"])
+                current_turn_output_token_count.append(model_response_data["output_token"])
+                current_turn_latency.append(query_latency)
+
+                current_turn_response.append(model_responses)
+                current_step_inference_log.append(
+                    {"role": "assistant", "content": model_responses}
+                )
 
                 # Try decoding the model response
                 try:
                     decoded_model_responses = self.decode_execute(model_responses)
+                    current_step_inference_log.append(
+                        {
+                            "role": "handler_log",
+                            "content": "Successfully decoded model response.",
+                            "model_response_decoded": decoded_model_responses,
+                        }
+                    )
 
                     if is_empty_execute_response(decoded_model_responses):
                         print("Empty response from the model. Proceed to next turn.")
-                        current_round_debugging_log.append(
+                        current_step_inference_log.append(
                             {
                                 "role": "handler_log",
-                                "content": f"Empty response from the model. Proceed to next turn. Model response decoded: {decoded_model_responses}. Model response raw: {model_responses}",
+                                "content": f"Empty response from the model. Proceed to next turn.",
+                                "model_response_decoded": decoded_model_responses,
                             }
                         )
                         break
 
                 except Exception as e:
                     print("Failed to decode the model response. Proceed to next turn.")
-                    current_round_debugging_log.append(
+                    current_step_inference_log.append(
                         {
                             "role": "handler_log",
-                            "content": f"Error decoding the model response. Proceed to next turn. Error: {e}. Model response: {model_responses}.",
+                            "content": f"Error decoding the model response. Proceed to next turn.",
+                            "error": str(e),
                         }
                     )
                     break
-
-                finally:
-                    current_round_response.append(model_responses)
-
-                current_round_debugging_log.append(
-                    {
-                        "role": "handler_log",
-                        "content": f"Decoded: {decoded_model_responses}. Raw: {model_responses}",
-                    }
-                )
 
                 # Obtain the execution results
                 execution_results, involved_instances = execute_multi_turn_func_call(
@@ -187,17 +226,19 @@ class BaseHandler:
                     involved_classes,
                     self.model_name_underline_replaced,
                     test_entry_id,
-                    long_context=("long_context" in test_category or "composite" in test_category),
+                    long_context=(
+                        "long_context" in test_category or "composite" in test_category
+                    ),
                     is_evaL_run=False,
                 )
 
-                # Add the execution results to the chat history for the next round
+                # Add the execution results to the chat history for the next turn
                 inference_data = self._add_execution_results_FC(
                     inference_data, execution_results, model_response_data
                 )
 
                 for execution_result in execution_results:
-                    current_round_debugging_log.append(
+                    current_step_inference_log.append(
                         {
                             "role": "tool",
                             "content": execution_result,
@@ -205,46 +246,63 @@ class BaseHandler:
                     )
 
                 count += 1
-                # Force quit after too many rounds
-                if count > MAXIMUM_ROUND_LIMIT:
+                # Force quit after too many steps
+                if count > MAXIMUM_STEP_LIMIT:
                     force_quit = True
-                    current_round_debugging_log.append(
+                    current_step_inference_log.append(
                         {
                             "role": "handler_log",
-                            "content": f"Model has been forced to quit after {MAXIMUM_ROUND_LIMIT} rounds.",
+                            "content": f"Model has been forced to quit after {MAXIMUM_STEP_LIMIT} steps.",
                         }
                     )
+
                     break
 
             # Add to the total list
-            all_model_response.append(current_round_response)
-            all_debugging_log.append(current_round_debugging_log)
-            total_input_token_count.append(current_round_input_token_count)
-            total_output_token_count.append(current_round_output_token_count)
-            total_latency.append(current_round_latency)
+            all_model_response.append(current_turn_response)
+            all_inference_log.append(current_turn_inference_log)
+            total_input_token_count.append(current_turn_input_token_count)
+            total_output_token_count.append(current_turn_output_token_count)
+            total_latency.append(current_turn_latency)
+
+            if include_state_log:
+                state_log = []
+                for class_name, class_instance in involved_instances.items():
+                    if class_name in STATELESS_CLASSES:
+                        continue
+                    class_instance = deepcopy(class_instance)  # Avoid modification in future turns
+                    state_log.append(
+                        {
+                            "role": "state_info",
+                            "class_name": class_name,
+                            "content": {
+                                key: value
+                                for key, value in vars(class_instance).items()
+                                if not key.startswith("_")
+                            },
+                        }
+                    )
+                all_inference_log.append(state_log)
 
             if force_quit:
                 break
 
-        metadata = {}
-        if include_debugging_log:
-            metadata["debugging_log"] = all_debugging_log
-        metadata["input_token_count"] = total_input_token_count
-        metadata["output_token_count"] = total_output_token_count
-        metadata["latency"] = total_latency
+        metadata = {
+            "input_token_count": total_input_token_count,
+            "output_token_count": total_output_token_count,
+            "latency": total_latency,
+            "inference_log": all_inference_log,
+        }
 
         return all_model_response, metadata
 
     def inference_multi_turn_prompting(
-        self, test_entry: dict, include_debugging_log: bool
+        self, test_entry: dict, include_input_log: bool, include_state_log: bool
     ) -> tuple[list[list], dict]:
         initial_config: dict = test_entry["initial_config"]
         involved_classes: list = test_entry["involved_classes"]
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
-
-        # Add the unachievable task function to the function list
-        test_entry["function"].append(deepcopy(UNACHIEVABLE_TASK_FUNC_DOC))
 
         # This is only for the miss function category
         # A mapping from turn index to function to holdout
@@ -256,61 +314,99 @@ class BaseHandler:
         all_model_response: list[list] = (
             []
         )  # The model response that will be used for later evaluation
-        all_debugging_log: list[list[dict]] = (
+        all_inference_log: list[list[dict]] = (
             []
         )  # The debugging log for human to understand
         force_quit = False  # Whether the model has been forced to quit. If True, this whole entry will be failed.
 
+        # Execute no function call, but just to get a reference to all the instances to get the initial state for logging purpose
+        if include_state_log:
+            _, involved_instances = execute_multi_turn_func_call(
+                [],
+                initial_config,
+                involved_classes,
+                self.model_name_underline_replaced,
+                test_entry_id,
+                long_context=(
+                    "long_context" in test_category or "composite" in test_category
+                ),
+                is_evaL_run=False,
+            )
+            state_log = []
+            for class_name, class_instance in involved_instances.items():
+                if class_name in STATELESS_CLASSES:
+                    continue
+                class_instance = deepcopy(class_instance)  # Avoid modification in future turns
+                state_log.append(
+                    {
+                        "role": "state_info",
+                        "class_name": class_name,
+                        "content": {
+                            key: value
+                            for key, value in vars(class_instance).items()
+                            if not key.startswith("_")
+                        },
+                    }
+                )
+            all_inference_log.append(state_log)
+
         inference_data: dict = self._pre_query_processing_prompting(test_entry)
 
         all_multi_turn_messages: list[list[dict]] = test_entry["question"]
-        for round_idx, current_round_message in enumerate(all_multi_turn_messages):
-            current_round_message: list[dict]
+        for turn_idx, current_turn_message in enumerate(all_multi_turn_messages):
+            current_turn_message: list[dict]
 
-            if str(round_idx) in holdout_function:
+            if str(turn_idx) in holdout_function:
                 assert (
-                    len(current_round_message) == 0
-                ), "Holdout round should not have user message."
-                current_round_message = [
+                    len(current_turn_message) == 0
+                ), "Holdout turn should not have user message."
+                current_turn_message = [
                     {
                         "role": "user",
                         "content": DEFAULT_USER_PROMPT_FOR_ADDITIONAL_FUNCTION_PROMPTING.format(
-                            functions=holdout_function[str(round_idx)]
+                            functions=holdout_function[str(turn_idx)]
                         ),
                     }
                 ]
 
-            if round_idx == 0:
+            if turn_idx == 0:
                 inference_data = self.add_first_turn_message_prompting(
-                    inference_data, current_round_message
+                    inference_data, current_turn_message
                 )
             else:
                 inference_data = self._add_next_turn_user_message_prompting(
-                    inference_data, current_round_message
+                    inference_data, current_turn_message
                 )
 
-            current_round_response = []
-            current_round_debugging_log: list[dict] = [current_round_message]
-            current_round_input_token_count: list[float] = []
-            current_round_output_token_count: list[float] = []
-            current_round_latency: list[float] = []
+            current_turn_response = []
+            current_turn_inference_log: list[dict] = {"begin_of_turn_query": current_turn_message}
+            current_turn_input_token_count: list[float] = []
+            current_turn_output_token_count: list[float] = []
+            current_turn_latency: list[float] = []
 
             count = 0
             while True:
                 print("-" * 100)
                 print(
-                    f"ID: {test_entry_id.rsplit('_', 1)[1]}, Round: {round_idx}, Count: {count}"
+                    f"ID: {test_entry_id.replace('multi_turn_', '')}, Turn: {turn_idx}, Step: {count}"
                 )
+                current_step_inference_log: list[dict] = []
+                # Add to the current_turn_inference_log at beginning of each step so that we don't need to bother dealing with the break statements
+                current_turn_inference_log[f"step_{count}"] = current_step_inference_log
 
                 start_time = time.time()
                 api_response = self._query_prompting(inference_data)
                 query_latency = time.time() - start_time
-                current_round_debugging_log.append(
-                    {
-                        "role": "handler_log:inference_input",
-                        "content": inference_data["inference_input_log"],
-                    }
-                )
+
+                # This part of logging is disabled by default because it is too verbose and will make the result file extremely large
+                # It is only useful to see if the inference pipeline is working as expected (eg, does it convert all the inputs correctly)
+                if include_input_log:
+                    current_step_inference_log.append(
+                        {
+                            "role": "handler_log",
+                            "content": inference_data.get("inference_input_log", ""),
+                        }
+                    )
 
                 # Try parsing the model response
                 model_response_data = self._parse_query_response_prompting(api_response)
@@ -322,43 +418,48 @@ class BaseHandler:
                 )
 
                 # Process the metadata
-                current_round_input_token_count.append(model_response_data["input_token"])
-                current_round_output_token_count.append(model_response_data["output_token"])
-                current_round_latency.append(query_latency)
+                current_turn_input_token_count.append(model_response_data["input_token"])
+                current_turn_output_token_count.append(model_response_data["output_token"])
+                current_turn_latency.append(query_latency)
+
+                current_turn_response.append(model_responses)
+                current_step_inference_log.append(
+                    {"role": "assistant", "content": model_responses}
+                )
 
                 # Try decoding the model response
                 try:
                     decoded_model_responses = self.decode_execute(model_responses)
+                    current_step_inference_log.append(
+                        {
+                            "role": "handler_log",
+                            "content": "Successfully decoded model response.",
+                            "model_response_decoded": decoded_model_responses,
+                        }
+                    )
+
                     model_response_data["model_responses_decoded"] = decoded_model_responses
                     if is_empty_execute_response(decoded_model_responses):
                         print("Empty response from the model. Proceed to next turn.")
-                        current_round_debugging_log.append(
+                        current_step_inference_log.append(
                             {
                                 "role": "handler_log",
-                                "content": f"Empty response from the model. Proceed to next turn. Model response decoded: {decoded_model_responses}. Model response raw: {model_responses}",
+                                "content": f"Empty response from the model. Proceed to next turn.",
+                                "model_response_decoded": decoded_model_responses,
                             }
                         )
                         break
 
                 except Exception as e:
                     print("Failed to decode the model response. Proceed to next turn.")
-                    current_round_debugging_log.append(
+                    current_step_inference_log.append(
                         {
                             "role": "handler_log",
-                            "content": f"Error decoding the model response. Proceed to next turn. Error: {e}. Model response: {model_responses}.",
+                            "content": f"Error decoding the model response. Proceed to next turn.",
+                            "error": str(e),
                         }
                     )
                     break
-
-                finally:
-                    current_round_response.append(model_responses)
-
-                current_round_debugging_log.append(
-                    {
-                        "role": "handler_log",
-                        "content": f"Decoded: {decoded_model_responses}. Raw: {model_responses}",
-                    }
-                )
 
                 # Obtain the execution results
                 execution_results, involved_instances = execute_multi_turn_func_call(
@@ -367,17 +468,19 @@ class BaseHandler:
                     involved_classes,
                     self.model_name_underline_replaced,
                     test_entry_id,
-                    long_context=("long_context" in test_category or "composite" in test_category),
+                    long_context=(
+                        "long_context" in test_category or "composite" in test_category
+                    ),
                     is_evaL_run=False,
                 )
 
-                # Add the execution results to the chat history for the next round
+                # Add the execution results to the chat history for the next turn
                 inference_data = self._add_execution_results_prompting(
                     inference_data, execution_results, model_response_data
                 )
 
                 for execution_result in execution_results:
-                    current_round_debugging_log.append(
+                    current_step_inference_log.append(
                         {
                             "role": "tool",
                             "content": execution_result,
@@ -385,38 +488,57 @@ class BaseHandler:
                     )
 
                 count += 1
-                # Force quit after too many rounds
-                if count > MAXIMUM_ROUND_LIMIT:
+                # Force quit after too many steps
+                if count > MAXIMUM_STEP_LIMIT:
                     force_quit = True
-                    current_round_debugging_log.append(
+                    current_step_inference_log.append(
                         {
                             "role": "handler_log",
-                            "content": f"Model has been forced to quit after {MAXIMUM_ROUND_LIMIT} rounds.",
+                            "content": f"Model has been forced to quit after {MAXIMUM_STEP_LIMIT} steps.",
                         }
                     )
                     break
 
             # Add to the total list
-            all_model_response.append(current_round_response)
-            all_debugging_log.append(current_round_debugging_log)
-            total_input_token_count.append(current_round_input_token_count)
-            total_output_token_count.append(current_round_output_token_count)
-            total_latency.append(current_round_latency)
+            all_model_response.append(current_turn_response)
+            all_inference_log.append(current_turn_inference_log)
+            total_input_token_count.append(current_turn_input_token_count)
+            total_output_token_count.append(current_turn_output_token_count)
+            total_latency.append(current_turn_latency)
+
+            if include_state_log:
+                state_log = []
+                for class_name, class_instance in involved_instances.items():
+                    if class_name in STATELESS_CLASSES:
+                        continue
+                    class_instance = deepcopy(class_instance)  # Avoid modification in future turns
+                    state_log.append(
+                        {
+                            "role": "state_info",
+                            "class_name": class_name,
+                            "content": {
+                                key: value
+                                for key, value in vars(class_instance).items()
+                                if not key.startswith("_")
+                            },
+                        }
+                    )
+                all_inference_log.append(state_log)
 
             if force_quit:
                 break
 
-        metadata = {}
-        if include_debugging_log:
-            metadata["debugging_log"] = all_debugging_log
-        metadata["input_token_count"] = total_input_token_count
-        metadata["output_token_count"] = total_output_token_count
-        metadata["latency"] = total_latency
+        metadata = {
+            "input_token_count": total_input_token_count,
+            "output_token_count": total_output_token_count,
+            "latency": total_latency,
+            "inference_log": all_inference_log,
+        }
 
         return all_model_response, metadata
 
     def inference_single_turn_FC(
-        self, test_entry: dict, include_debugging_log: bool
+        self, test_entry: dict, include_input_log: bool
     ) -> tuple[any, dict]:
         inference_data: dict = {}
         inference_data = self._pre_query_processing_FC(inference_data, test_entry)
@@ -434,11 +556,11 @@ class BaseHandler:
 
         # Process the metadata
         metadata = {}
-        if include_debugging_log:
-            metadata["debugging_log"] = [
+        if include_input_log:
+            metadata["inference_log"] = [
                 {
-                    "role": "handler_log:inference_input",
-                    "content": inference_data["inference_input_log"],
+                    "role": "handler_log",
+                    "content": inference_data.get("inference_input_log", ""),
                 }
             ]
         metadata["input_token_count"] = model_response_data["input_token"]
@@ -448,7 +570,7 @@ class BaseHandler:
         return model_response_data["model_responses"], metadata
 
     def inference_single_turn_prompting(
-        self, test_entry: dict, include_debugging_log: bool
+        self, test_entry: dict, include_input_log: bool
     ) -> tuple[any, dict]:
         inference_data: dict = self._pre_query_processing_prompting(test_entry)
         inference_data = self.add_first_turn_message_prompting(
@@ -464,11 +586,11 @@ class BaseHandler:
 
         # Process the metadata
         metadata = {}
-        if include_debugging_log:
-            metadata["debugging_log"] = [
+        if include_input_log:
+            metadata["inference_log"] = [
                 {
-                    "role": "handler_log:inference_input",
-                    "content": inference_data["inference_input_log"],
+                    "role": "handler_log",
+                    "content": inference_data.get("inference_input_log", ""),
                 }
             ]
         metadata["input_token_count"] = model_response_data["input_token"]
@@ -498,19 +620,10 @@ class BaseHandler:
             file_to_write = f"{VERSION_PREFIX}_{test_category}_result.json"
             file_to_write = model_result_dir / file_to_write
             with open(file_to_write, "a+") as f:
-                try:
-                    f.write(json.dumps(entry) + "\n")
-                except Exception as e:
-                    print(f"❗️Failed to write result: {e}")
-                    f.write(
-                        json.dumps(
-                            {
-                                "id": entry["id"],
-                                "result": repr(entry),
-                            }
-                        )
-                        + "\n"
-                    )
+                # Go through each key-value pair in the dictionary to make sure the values are JSON serializable
+                entry = make_json_serializable(entry)
+                json_str = json.dumps(entry)
+                f.write(json_str + "\n")
 
     #### FC methods ####
 
@@ -567,7 +680,7 @@ class BaseHandler:
     ) -> dict:
         """
         [Only for multi-turn]
-        Add next round user message to the chat history for query.
+        Add next turn user message to the chat history for query.
         user_message is a list of 1 element, which is the user message.
         """
         raise NotImplementedError
@@ -584,7 +697,7 @@ class BaseHandler:
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
         """
-        Add the execution results to the chat history to prepare for the next round of query.
+        Add the execution results to the chat history to prepare for the next turn of query.
         Some models may need to add additional information to the chat history, such as tool call IDs.
         """
         raise NotImplementedError
@@ -637,7 +750,7 @@ class BaseHandler:
     ) -> dict:
         """
         [Only for multi-turn]
-        Add next round user message to the chat history for query.
+        Add next turn user message to the chat history for query.
         user_message is a list of 1 element, which is the user message.
         """
         raise NotImplementedError
@@ -654,7 +767,7 @@ class BaseHandler:
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
         """
-        Add the execution results to the chat history to prepare for the next round of query.
+        Add the execution results to the chat history to prepare for the next turn of query.
         Some models may need to add additional information to the chat history, such as tool call IDs.
         """
         raise NotImplementedError

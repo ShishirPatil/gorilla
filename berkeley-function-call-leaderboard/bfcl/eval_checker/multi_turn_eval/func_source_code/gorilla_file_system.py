@@ -3,7 +3,7 @@ import subprocess
 from copy import deepcopy
 from typing import Dict, List, Optional, Union
 
-from .long_context import FILE_CONTENT_EXTENSION, FILES_TAIL_USED
+from .long_context import FILE_CONTENT_EXTENSION, FILES_TAIL_USED, POPULATE_FILE_EXTENSION
 
 
 class File:
@@ -141,6 +141,7 @@ class GorillaFileSystem:
         """
         self.root: Directory
         self._current_dir: Directory
+        self._api_description = "This tool belongs to the Gorilla file system. It is a simple file system that allows users to perform basic file operations such as navigating directories, creating files and directories, reading and writing to files, etc."
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, GorillaFileSystem):
@@ -227,23 +228,22 @@ class GorillaFileSystem:
                 parent.contents[dir_name] = new_file
 
         if is_bottommost and self.long_context:
-            self._populate_directory(parent, 30)
+            self._populate_directory(parent)
 
         return parent
 
     def _populate_directory(
-        self, directory: Directory, file_count: int = 200
+        self, directory: Directory
     ) -> None:  # Used only for long context
         """
         Populate an innermost directory with multiple empty files.
 
         Args:
             directory (Directory): The innermost directory to populate.
-            file_count (int): The number of empty files to create. Defaults to 5.
         """
-        for i in range(file_count):
-            name = str(abs(hash(str(i + 1) + "gorilla")))
-            file_name = f"image_{name}.jpg"
+        for i in range(len(POPULATE_FILE_EXTENSION)):
+            name = POPULATE_FILE_EXTENSION[i]
+            file_name = f"{name}"
             directory._add_file(file_name)
 
     def pwd(self):
@@ -330,7 +330,7 @@ class GorillaFileSystem:
 
     def touch(self, file_name: str) -> Union[None, Dict[str, str]]:
         """
-        Create a new file in the current directory.
+        Create a new file of any extension in the current directory.
 
         Args:
             file_name (str): The name of the new file in the current directory. file_name is local to the current directory and does not allow path.
@@ -372,7 +372,7 @@ class GorillaFileSystem:
 
     def cat(self, file_name: str) -> Dict[str, str]:
         """
-        Display the contents of a file from currrent directory.
+        Display the contents of a file of any extension from currrent directory.
 
         Args:
             file_name (str): The name of the file from current directory to display. No path is allowed.
@@ -396,7 +396,7 @@ class GorillaFileSystem:
         """
         Find any file or directories under specific path that contain name in its file name.
 
-        This method searches for files and directories within a specified path that match
+        This method searches for files of any extension and directories within a specified path that match
         the given name. If no name is provided, it returns all files and directories
         in the specified path and its subdirectories.
         Note: This method performs a recursive search through all subdirectories of the given path.
@@ -425,7 +425,7 @@ class GorillaFileSystem:
 
     def wc(self, file_name: str, mode: str = "l") -> Dict[str, Union[int, str]]:
         """
-        Count the number of lines, words, and characters in a file from current directory.
+        Count the number of lines, words, and characters in a file of any extension from current directory.
 
         Args:
             file_name (str): Name of the file of current directory to perform wc operation on.
@@ -480,7 +480,7 @@ class GorillaFileSystem:
 
     def grep(self, file_name: str, pattern: str) -> Dict[str, List[str]]:
         """
-        Search for lines in a file at current directory that contain the specified pattern.
+        Search for lines in a file of any extension at current directory that contain the specified pattern.
 
         Args:
             file_name (str): The name of the file to search. No path is allowed and you can only perform on file at local directory.
@@ -539,7 +539,7 @@ class GorillaFileSystem:
 
     def tail(self, file_name: str, lines: int = 10) -> Dict[str, str]:
         """
-        Display the last part of a file.
+        Display the last part of a file of any extension.
 
         Args:
             file_name (str): The name of the file to display. No path is allowed and you can only perform on file at local directory.
@@ -563,7 +563,7 @@ class GorillaFileSystem:
 
     def diff(self, file_name1: str, file_name2: str) -> Dict[str, str]:
         """
-        Compare two files line by line at the current directory.
+        Compare two files of any extension line by line at the current directory.
 
         Args:
             file_name1 (str): The name of the first file in current directory.
