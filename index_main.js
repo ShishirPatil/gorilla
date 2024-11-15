@@ -662,7 +662,7 @@ async function init(datasetName) {
 }
 
 // Initialize the table header creation when the page loads
-document.addEventListener('DOMContentLoaded', init("combined_Sep_20_2024"));
+document.addEventListener('DOMContentLoaded', init("overall"));
 
 
 function parseCSV_leaderboard(text, datasetName) {
