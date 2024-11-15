@@ -58,7 +58,6 @@ COLUMNS_MULTI_TURN = [
     "Miss Func",
     "Miss Param",
     "Long Context",
-    "Composite",
 ]
 
 
@@ -91,7 +90,6 @@ COLUMNS_OVERALL = [
     "Multi Turn Miss Func",
     "Multi Turn Miss Param",
     "Multi Turn Long Context",
-    "Multi Turn Composite",
     "Relevance Detection",
     "Irrelevance Detection",
     "Organization",
