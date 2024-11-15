@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Nov 14, 2024] [#747](https://github.com/ShishirPatil/gorilla/pull/747): Minor Grammatical Corrections to `DEFAULT_SYSTEM_PROMPT` that is supplied to all prompting models.
 - [Nov 13, 2024] [#737](https://github.com/ShishirPatil/gorilla/pull/737), [#739](https://github.com/ShishirPatil/gorilla/pull/739), [#740](https://github.com/ShishirPatil/gorilla/pull/740): Bug fix in the dataset and possible answers for the live and multi-turn categories.
 - [Nov 8, 2024] [#720](https://github.com/ShishirPatil/gorilla/pull/720): Add new model `BitAgent/GoGoAgent` to the leaderboard.
 - [Oct 30, 2024] [#725](https://github.com/ShishirPatil/gorilla/pull/725), [#733](https://github.com/ShishirPatil/gorilla/pull/733): Update evaluation metric for multi-turn categories:
