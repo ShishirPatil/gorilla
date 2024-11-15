@@ -8,10 +8,10 @@
 {"id": "live_simple_7-3-3", "ground_truth": [{"get_current_weather": {"location": ["Riga, Latvia"], "unit": ["fahrenheit", "", "celsius"]}}]}
 {"id": "live_simple_8-3-4", "ground_truth": [{"get_current_weather": {"location": ["London, UK", "London, England"], "unit": ["fahrenheit", ""]}}]}
 {"id": "live_simple_9-3-5", "ground_truth": [{"get_current_weather": {"location": ["Hyderabad, India"], "unit": ["fahrenheit", ""]}}]}
-{"id": "live_simple_10-3-6", "ground_truth": [{"get_current_weather": {"location": ["Yosemite National Park, CA"], "unit": ["celsius"]}}]}
+{"id": "live_simple_10-3-6", "ground_truth": [{"get_current_weather": {"location": ["Mariposa, CA"], "unit": ["celsius"]}}]}
 {"id": "live_simple_11-3-7", "ground_truth": [{"get_current_weather": {"location": ["Naples, FL", "Naples, Florida"], "unit": ["", "fahrenheit"]}}]}
 {"id": "live_simple_12-3-8", "ground_truth": [{"get_current_weather": {"location": ["New York, NY"], "unit": ["celsius"]}}]}
-{"id": "live_simple_13-3-9", "ground_truth": [{"get_current_weather": {"location": ["Shanghai, China"], "unit": ["celsius"]}}]}
+{"id": "live_simple_13-3-9", "ground_truth": [{"get_current_weather": {"location": ["Shanghai, China","上海,中国"], "unit": ["celsius"]}}]}
 {"id": "live_simple_14-3-10", "ground_truth": [{"get_current_weather": {"location": ["Bangkok, Thailand"], "unit": ["", "fahrenheit"]}}]}
 {"id": "live_simple_15-3-11", "ground_truth": [{"get_current_weather": {"location": ["Chennai, Tamil Nadu"], "unit": ["", "fahrenheit"]}}]}
 {"id": "live_simple_16-3-12", "ground_truth": [{"get_current_weather": {"location": ["Lang Son, Vietnam"], "unit": ["", "fahrenheit"]}}]}
@@ -24,21 +24,21 @@
 {"id": "live_simple_23-5-1", "ground_truth": [{"ChaFod": {"TheFod": ["PIZZA"]}}]}
 {"id": "live_simple_24-5-2", "ground_truth": [{"ChaFod": {"TheFod": ["BURGER"]}}]}
 {"id": "live_simple_25-5-3", "ground_truth": [{"ChaFod": {"TheFod": ["SALAD"]}}]}
-{"id": "live_simple_26-6-0", "ground_truth": [{"uber.ride": {"loc": ["123 \u0110\u01b0\u1eddng \u0110\u1ea1i h\u1ecdc, Berkeley, CA"], "type": ["plus"], "time": [10]}}]}
+{"id": "live_simple_26-6-0", "ground_truth": [{"uber.ride": {"loc": ["123 \u0110\u01b0\u1eddng \u0110\u1ea1i h\u1ecdc, Berkeley, CA", "123 University Street, Berkeley, CA"], "type": ["plus"], "time": [10]}}]}
 {"id": "live_simple_27-7-0", "ground_truth": [{"uber.eat.order": {"restaurant": ["uber pitada"], "items": [["burgers", "chicken wings"]], "quantities": [[5, 6]]}}]}
 {"id": "live_simple_28-7-1", "ground_truth": [{"uber.eat.order": {"restaurant": ["\u80af\u5fb7\u57fa", "KFC"], "items": [["\u9ea6\u8fa3\u9e21\u817f\u5821", "\u53ef\u53e3\u53ef\u4e50", "\u6cb9\u70b8\u9e21\u7fc5", "\u85af\u6761"]], "quantities": [[10, 50, 30, 90]]}}]}
 {"id": "live_simple_29-7-2", "ground_truth": [{"uber.eat.order": {"restaurant": ["McDonald's"], "items": [["pizza"]], "quantities": [[1]]}}]}
 {"id": "live_simple_30-8-0", "ground_truth": [{"aws.lexv2_models.list_exports": {"botId": ["my-bot-id"], "botVersion": ["v2"], "sortBy": ["", "ASC"], "filterName": ["", null], "filterOperator": ["", "EQ"], "filterValue": ["", null], "maxResults": ["", 50], "nextToken": ["", null], "localeId": ["", null]}}]}
 {"id": "live_simple_31-8-1", "ground_truth": [{"aws.lexv2_models.list_exports": {"botId": ["B12345"], "botVersion": ["v1"], "sortBy": ["DESC"], "filterName": ["", null], "filterOperator": ["", "EQ"], "filterValue": ["", null], "maxResults": ["", 50], "nextToken": ["", null], "localeId": ["", null]}}]}
-{"id": "live_simple_32-9-0", "ground_truth": [{"answer.string": {"answer": ["Sure, here is the answer to the question:\\n\\n**Logistic regression is not present in the text, therefore I cannot answer this question.**"]}}]}
-{"id": "live_simple_33-10-0", "ground_truth": [{"answer.string": {"answer": ["Sure, here is the answer to the question:\n\n**Logistic regression is not present in the text, therefore I cannot answer this question.**"]}}]}
-{"id": "live_simple_34-11-0", "ground_truth": [{"answer.string": {"answer": ["**Logistic regression is not present in the text, therefore I cannot answer this question.**", "Logistic regression is not present in the text, therefore I cannot answer this question."]}}]}
-{"id": "live_simple_35-12-0", "ground_truth": [{"answer.string": {"answer": ["Sure, here is the answer to the question:\\n\\n**Logistic regression is not present in the text, therefore I cannot answer this question.**"]}}]}
+{"id": "live_simple_32-9-0", "ground_truth": [{"answer.string": {"answer": ["Logistic regression is not present in the text, therefore I cannot answer this question."]}}]}
+{"id": "live_simple_33-10-0", "ground_truth": [{"answer.string": {"answer": ["Logistic regression is not present in the text, therefore I cannot answer this question."]}}]}
+{"id": "live_simple_34-11-0", "ground_truth": [{"answer.string": {"answer": ["Logistic regression is not present in the text, therefore I cannot answer this question."]}}]}
+{"id": "live_simple_35-12-0", "ground_truth": [{"answer.string": {"answer": ["Logistic regression is not present in the text, therefore I cannot answer this question."]}}]}
 {"id": "live_simple_36-13-0", "ground_truth": [{"parseAnswer": {"answer": ["The text does not define logistic regression, therefore I cannot answer this question."]}}]}
-{"id": "live_simple_37-14-0", "ground_truth": [{"parseAnswer": {"answer": ["\\n\\nThe text does not define logistic regression, therefore I cannot answer this question."]}}]}
-{"id": "live_simple_38-15-0", "ground_truth": [{"get_current_weather": {"url": ["", "https://api.open-meteo.com/v1/forecast"], "location": ["Yosemite National Park, CA"], "unit": ["fahrenheit"]}}]}
+{"id": "live_simple_37-14-0", "ground_truth": [{"parseAnswer": {"answer": ["The text does not define logistic regression, therefore I cannot answer this question."]}}]}
+{"id": "live_simple_38-15-0", "ground_truth": [{"get_current_weather": {"url": ["", "https://api.open-meteo.com/v1/forecast"], "location": ["Mariposa, CA"], "unit": ["fahrenheit"]}}]}
 {"id": "live_simple_39-16-0", "ground_truth": [{"fetch_weather_data": {"url": ["", "https://api.open-meteo.com/v1/forecast"], "latitude": [37.8651], "longitude": [-119.5383], "units": ["", "metric"], "language": ["", "en"]}}]}
-{"id": "live_simple_40-17-0", "ground_truth": [{"ThinQ_Connect": {"body": [{"airConJobMode": ["AIR_CLEAN"], "windStrength": ["HIGH"], "monitoringEnabled": [true], "airCleanOperationMode": ["POWER_OFF", ""], "powerSaveEnabled": ["", false], "coolTargetTemperature": ["", 24], "targetTemperature": ["", 22]}]}}]}
+{"id": "live_simple_40-17-0", "ground_truth": [{"ThinQ_Connect": {"body": [{"airConJobMode": ["AIR_CLEAN"], "windStrength": ["HIGH"], "monitoringEnabled": [true], "airCleanOperationMode": ["POWER_ON"], "powerSaveEnabled": ["", false], "coolTargetTemperature": ["", 24], "targetTemperature": ["", 22]}]}}]}
 {"id": "live_simple_41-17-1", "ground_truth": [{"ThinQ_Connect": {"body": [{"airConJobMode": ["AIR_DRY"], "windStrength": ["MID", ""], "monitoringEnabled": ["", false], "airCleanOperationMode": ["POWER_OFF", ""], "powerSaveEnabled": ["", false], "coolTargetTemperature": ["", 24], "targetTemperature": ["", 22]}]}}]}
 {"id": "live_simple_42-17-2", "ground_truth": [{"ThinQ_Connect": {"body": [{"airConJobMode": ["", "COOL"], "windStrength": ["", "MID"], "monitoringEnabled": ["", false], "airCleanOperationMode": ["POWER_OFF", ""], "powerSaveEnabled": ["", false], "coolTargetTemperature": [22], "targetTemperature": ["", 22]}]}}]}
 {"id": "live_simple_43-17-3", "ground_truth": [{"ThinQ_Connect": {"body": [{"airConJobMode": ["", "COOL"], "windStrength": ["HIGH"], "monitoringEnabled": ["", false], "airCleanOperationMode": ["POWER_OFF", ""], "powerSaveEnabled": ["", false], "coolTargetTemperature": ["", 24], "targetTemperature": ["", 22]}]}}]}
@@ -59,7 +59,7 @@
 {"id": "live_simple_58-27-0", "ground_truth": [{"get_movies": {"city": ["Mumbai"], "cinema_hall": ["", "All"], "movie_date": ["", null], "movie_language": ["", "All"], "movie_format": ["", "2D"]}}]}
 {"id": "live_simple_59-28-0", "ground_truth": [{"get_movies": {"city": ["Mumbai"], "cinema_hall": ["", null], "movie_date": ["", null], "movie_language": ["", null], "movie_format": ["", "2D"]}}]}
 {"id": "live_simple_60-29-0", "ground_truth": [{"todo": {"type": ["complete"], "content": ["Submit monthly financial report"]}}]}
-{"id": "live_simple_61-29-1", "ground_truth": [{"todo": {"type": ["add"], "content": ["go to gym tomorrow"]}}]}
+{"id": "live_simple_61-29-1", "ground_truth": [{"todo": {"type": ["add"], "content": ["go to gym tomorrow."]}}]}
 {"id": "live_simple_62-29-2", "ground_truth": [{"todo": {"type": ["delete"], "content": ["ravi"]}}]}
 {"id": "live_simple_63-29-3", "ground_truth": [{"todo": {"type": ["add"], "content": ["go to sleep at 9 pm"]}}]}
 {"id": "live_simple_64-29-4", "ground_truth": [{"todo": {"type": ["add"], "content": ["go to Goa"]}}]}
@@ -69,16 +69,16 @@
 {"id": "live_simple_68-32-0", "ground_truth": [{"sum": {"a": [5.0], "b": [3.0]}}]}
 {"id": "live_simple_69-33-0", "ground_truth": [{"analysis_api.AnalysisApi.retrieve_analysis": {"project": ["SUPERFANCY"], "component": ["AB1010CD"], "vulnerability": ["ef903ac-893-f00"]}}]}
 {"id": "live_simple_70-34-0", "ground_truth": [{"get_sensor_alerts": {"perPage": [10], "startingAfter": ["", null], "endingBefore": ["", null], "t0": ["", null], "t1": [""], "networkId": ["", []], "timespan": [""], "sensorSerial": ["Q3CC-CRT3-SZ2G"], "triggerMetric": ["", null]}}]}
-{"id": "live_simple_71-35-0", "ground_truth": [{"extract_parameters_v1": {"demographics": [["millennials"]], "targets": [["brand:Apple"]], "metrics": ["usage frequency"], "country": ["", null], "min_date": ["2022-07-01"], "max_date": ["", null], "interval": ["", null]}}]}
+{"id": "live_simple_71-35-0", "ground_truth": [{"extract_parameters_v1": {"demographics": [["millennials"]], "targets": [["brand:Apple"]], "metrics": ["view"], "country": ["", null], "min_date": ["2022-07-01"], "max_date": ["", null], "interval": ["", null]}}]}
 {"id": "live_simple_72-36-0", "ground_truth": [{"detect_beats_and_filter": {"capture_percentage": [50], "confidence_window_size": [0.5]}}]}
 {"id": "live_simple_73-36-1", "ground_truth": [{"detect_beats_and_filter": {"capture_percentage": [90], "confidence_window_size": [0.25]}}]}
 {"id": "live_simple_74-36-2", "ground_truth": [{"detect_beats_and_filter": {"capture_percentage": [70], "confidence_window_size": [0.8]}}]}
 {"id": "live_simple_75-36-3", "ground_truth": [{"detect_beats_and_filter": {"capture_percentage": [93], "confidence_window_size": [0.5]}}]}
 {"id": "live_simple_76-37-0", "ground_truth": [{"language_translator.translate": {"source_language": ["en"], "target_language": ["fr"], "text": ["What is your name?"]}}]}
 {"id": "live_simple_77-38-0", "ground_truth": [{"weather.get": {"city": ["London"], "country": ["GB"], "units": ["", "metric"], "include_forecast": ["", false]}}]}
-{"id": "live_simple_78-39-0", "ground_truth": [{"send_email": {"to_address": ["cobus@humanfirst.ai"], "subject": ["Sales Forecast Request"], "body": ["Could you please provide the latest sales forecast spreadsheet?"], "cc_address": [""], "bcc_address": [""], "attachments": ["", []]}}]}
+{"id": "live_simple_78-39-0", "ground_truth": [{"send_email": {"to_address": ["andy@gorilla.ai"], "subject": ["Sales Forecast Request"], "body": ["where is the latest sales forecast spreadsheet?"], "cc_address": [""], "bcc_address": [""], "attachments": ["", []]}}]}
 {"id": "live_simple_79-40-0", "ground_truth": [{"search_hotels": {"location": ["San Diego, CA"]}}]}
-{"id": "live_simple_80-41-0", "ground_truth": [{"sitefinity_create_contentitem": {"Title": ["Breakthrough in Artificial Intelligence"], "Content": ["The recent breakthroughs in machine learning algorithms."], "MetaTitle": ["AI Breakthrough \u2013 Latest Developments in Machine Learning"], "MetaDescription": ["An overview of the recent significant advancements in artificial intelligence and machine learning technology"], "UrlName": ["ai-breakthrough-latest-developments"]}}]}
+{"id": "live_simple_80-41-0", "ground_truth": [{"sitefinity_create_contentitem": {"Title": ["Breakthrough in Artificial Intelligence"], "Content": ["The recent breakthroughs in machine learning algorithms."], "MetaTitle": ["AI Breakthrough Latest Developments in Machine Learning"], "MetaDescription": ["An overview of the recent significant advancements in artificial intelligence and machine learning technology"], "UrlName": ["ai-breakthrough-latest-developments"]}}]}
 {"id": "live_simple_81-42-0", "ground_truth": [{"sitefinity_create_contentitem": {"ContentItem": ["NewsItem"], "Title": ["Julian is testing12"], "Content": ["", null], "MetaTitle": ["", null], "MetaDescription": ["", null], "UrlName": ["", null]}}]}
 {"id": "live_simple_82-43-0", "ground_truth": [{"sitefinity_create_contentitem": {"ContentItem": ["News"], "Title": ["Julian is testing"], "Content": ["", null], "MetaTitle": ["", null], "MetaDescription": ["", null], "UrlName": ["", null]}}]}
 {"id": "live_simple_83-44-0", "ground_truth": [{"sitefinity_create_contentitem": {"ContentItem": ["news"], "Title": ["Julian is Testing"], "Content": ["a detailed analysis on the impact of sleep patterns on productivity"], "MetaTitle": ["Productivity and Sleep Patterns"], "MetaDescription": ["Exploring how sleep affects work efficiency"], "UrlName": ["julian-testing-productivity"]}}]}
@@ -122,7 +122,7 @@
 {"id": "live_simple_121-77-0", "ground_truth": [{"generate_chart": {"data_labels": [["Software Engineer", "Graphic Designer", "Data Analyst", "Sales Manager", "Nurse"]], "data_values": [[90000, 50000, 70000, 60000, 80000]]}}]}
 {"id": "live_simple_122-78-0", "ground_truth": [{"process_data": {"image_path": ["image.png"], "question": ["generate with technically complex attention to detail a description of what you see"], "model": ["vikhyatk/moondream2"]}}]}
 {"id": "live_simple_123-79-0", "ground_truth": [{"pipeline": {"image_path": ["http://www.thewowstyle.com/wp-content/uploads/2015/01/Home-Interior-Design-Hd-Wallpaper-Hd-Background-With-Simple-Staircase-And-Plasma-TV-Also-Nice-Laminate-Flooring-Ideas-With-Modern-Furniture-Interior-Minimalist-Design.jpg"], "question": ["How does the arrangement of furniture contribute to the minimalist design of the interior?"]}}]}
-{"id": "live_simple_124-80-0", "ground_truth": [{"get_tickets": {"customer": ["\u7ea2\u661f\u79d1\u6280"], "status": ["open"], "limit": [10]}}]}
+{"id": "live_simple_124-80-0", "ground_truth": [{"get_tickets": {"customer": ["\u7ea2\u661f\u79d1\u6280","红星科技"], "status": ["open"], "limit": [10]}}]}
 {"id": "live_simple_125-81-0", "ground_truth": [{"concat_strings": {"strings": [["John", "Doe"]], "separator": [" "]}}]}
 {"id": "live_simple_126-82-0", "ground_truth": [{"telemetry.flowrules.interfaceInfo.get": {"fabricName": ["Global-Fabric"], "nodeId": [1200], "podId": [3], "interfaceType": ["ethernet"], "infoType": ["status"]}}]}
 {"id": "live_simple_127-82-1", "ground_truth": [{"telemetry.flowrules.interfaceInfo.get": {"fabricName": ["test-de"], "nodeId": [5], "podId": [1], "interfaceType": ["ethernet"], "infoType": ["status"]}}]}
@@ -135,7 +135,7 @@
 {"id": "live_simple_134-87-0", "ground_truth": [{"requests.get": {"url": ["https://api.insights.com/groups"], "params": [{"limit": [20], "sort": ["desc"]}]}}]}
 {"id": "live_simple_135-88-0", "ground_truth": [{"requests.get": {"url": ["https://api.example.com/v1/data"], "params": [{"limit": [50]}]}}]}
 {"id": "live_simple_136-89-0", "ground_truth": [{"requests.get": {"url": ["https://192.168.1.1/api/v1/applications/topologies"], "params": [{"filter": ["accountName:AcmeCorp AND applicationName:SalesApp"]}]}}]}
-{"id": "live_simple_137-90-0", "ground_truth": [{"reschedule": {"identifier": ["Bob-123"], "dateOrTime": ["2023-11-01T18:00:00"], "timezone": ["Europe/London"]}}]}
+{"id": "live_simple_137-90-0", "ground_truth": [{"reschedule": {"identifier": ["Alice-One-one-One"], "dateOrTime": ["2023-11-01T22:00:00"], "timezone": ["Europe/London"]}}]}
 {"id": "live_simple_138-91-0", "ground_truth": [{"reschedule": {"identifier": ["Bob-123"], "dateOrTime": ["2023-11-01T18:00:00"], "timezone": ["Europe/London"]}}]}
 {"id": "live_simple_139-92-0", "ground_truth": [{"requests.get": {"url": ["https://192.168.1.1/sedgeapi/v1/cisco-nir/api/api/v1/anomalies/summary"], "params": [{"fabric": ["network222"], "insightsGroup": ["", "defaultInsightsGroup"]}]}}]}
 {"id": "live_simple_140-93-0", "ground_truth": [{"greet_partner": {"user_name": ["Emily"], "partner_name": ["Jeff"], "relationship": ["husband"]}}]}
@@ -143,18 +143,18 @@
 {"id": "live_simple_142-94-1", "ground_truth": [{"cmd_controller.execute": {"command": ["dir Desktop"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_143-95-0", "ground_truth": [{"cmd_controller.execute": {"command": ["docker ps"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_144-95-1", "ground_truth": [{"cmd_controller.execute": {"command": ["taskkill /F /IM firefox.exe", "taskkill /IM firefox.exe /F", "taskkill /IM firefox.exe"], "unit": ["", "N/A"]}}]}
-{"id": "live_simple_145-95-2", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\"], "unit": ["", "N/A"]}}]}
+{"id": "live_simple_145-95-2", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\","dir C:\\\\"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_146-95-3", "ground_truth": [{"cmd_controller.execute": {"command": ["start https://huggingface.co"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_147-95-4", "ground_truth": [{"cmd_controller.execute": {"command": ["taskkill /F /IM timer.exe"], "unit": ["", "N/A"]}}]}
-{"id": "live_simple_148-95-5", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\"], "unit": ["", "N/A"]}}]}
+{"id": "live_simple_148-95-5", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\","dir C:\\\\"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_149-95-6", "ground_truth": [{"cmd_controller.execute": {"command": ["echo hi"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_150-95-7", "ground_truth": [{"cmd_controller.execute": {"command": ["shutdown /s /t 0"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_151-95-8", "ground_truth": [{"cmd_controller.execute": {"command": ["netsh wlan disconnect"], "unit": ["", "N/A"]}}]}
-{"id": "live_simple_152-95-9", "ground_truth": [{"cmd_controller.execute": {"command": ["dir D:\\ && echo testing.txt"], "unit": ["", "N/A"]}}]}
-{"id": "live_simple_153-95-10", "ground_truth": [{"cmd_controller.execute": {"command": ["del \"%userprofile%\\Desktop\\putty.lnk\""], "unit": ["", "N/A"]}}]}
-{"id": "live_simple_154-95-11", "ground_truth": [{"cmd_controller.execute": {"command": ["start https://www.youtube.com/watch?v=dQw4w9WgXcQ"], "unit": ["", "N/A"]}}]}
+{"id": "live_simple_152-95-9", "ground_truth": [{"cmd_controller.execute": {"command": ["dir D:\\\\ && echo testing.txt"], "unit": ["", "N/A"]}}]}
+{"id": "live_simple_153-95-10", "ground_truth": [{"cmd_controller.execute": {"command": ["del \"%userprofile%\\Desktop\\putty.lnk\"","del \\\"%userprofile%\\\\Desktop\\\\putty.lnk\\"], "unit": ["", "N/A"]}}]}
+{"id": "live_simple_154-95-11", "ground_truth": [{"cmd_controller.execute": {"command": ["start https://www.youtube.com/watch?v=dQw4w9WgXcQ", "start https://www.youtube.com/watch?v=dQw4w9WgXcQ\\"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_155-95-12", "ground_truth": [{"cmd_controller.execute": {"command": ["date /t", "echo %date%"], "unit": ["", "N/A"]}}]}
-{"id": "live_simple_156-95-13", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\"], "unit": ["", "N/A"]}}]}
+{"id": "live_simple_156-95-13", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\", "dir C:\\\\"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_157-95-14", "ground_truth": [{"cmd_controller.execute": {"command": ["echo %time%"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_158-95-15", "ground_truth": [{"cmd_controller.execute": {"command": ["taskkill /IM code.exe /F", "taskkill /F /IM code.exe"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_159-95-16", "ground_truth": [{"cmd_controller.execute": {"command": ["timeout 10"], "unit": ["", "N/A"]}}]}
@@ -165,10 +165,10 @@
 {"id": "live_simple_164-97-0", "ground_truth": [{"get_copyright_info": {"copyright_content": ["Coca-Cola logo"], "copyright_holder": ["The Coca-Cola Company"], "confidence_score": [100.0]}}]}
 {"id": "live_simple_165-98-0", "ground_truth": [{"extractor.extract_information": {"data": [[{"name": ["\u674e\u96f7"], "age": [18]}, {"name": ["\u674e\u4e3d"], "age": [21]}]], "schema": ["personal_info"]}}]}
 {"id": "live_simple_166-99-0", "ground_truth": [{"cmd_controller.execute": {"command": ["echo %time%"]}}]}
-{"id": "live_simple_167-99-1", "ground_truth": [{"cmd_controller.execute": {"command": ["tasklist /FI \"IMAGENAME eq Code.exe\""]}}]}
-{"id": "live_simple_168-99-2", "ground_truth": [{"cmd_controller.execute": {"command": ["start docker", "docker start"]}}]}
+{"id": "live_simple_167-99-1", "ground_truth": [{"cmd_controller.execute": {"command": ["tasklist /FI \"IMAGENAME eq Code.exe\"","tasklist /FI \\\"IMAGENAME eq Code.exe\\\""]}}]}
+{"id": "live_simple_168-99-2", "ground_truth": [{"cmd_controller.execute": {"command": ["docker start"]}}]}
 {"id": "live_simple_169-99-3", "ground_truth": [{"cmd_controller.execute": {"command": ["d:/playground/pc_contoller/env/Scripts/python.exe d:/playground/pc_contoller/test.py"]}}]}
-{"id": "live_simple_170-99-4", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\"]}}]}
+{"id": "live_simple_170-99-4", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\","dir C:\\\\"]}}]}
 {"id": "live_simple_171-99-5", "ground_truth": [{"cmd_controller.execute": {"command": ["echo %date%"]}}]}
 {"id": "live_simple_172-99-6", "ground_truth": [{"cmd_controller.execute": {"command": ["docker ps"]}}]}
 {"id": "live_simple_173-99-7", "ground_truth": [{"cmd_controller.execute": {"command": ["start calc"]}}]}
@@ -181,7 +181,7 @@
 {"id": "live_simple_180-105-0", "ground_truth": [{"get_service_id": {"service_id": [2], "province_id": [1], "rating": [4.0]}}]}
 {"id": "live_simple_181-106-0", "ground_truth": [{"get_service_id": {"service_id": [2], "province_id": ["", 1], "district_name": ["Chatuchak"], "rating": [4.5]}}]}
 {"id": "live_simple_182-107-0", "ground_truth": [{"get_service_providers": {"service_id": [2], "province_id": [1], "district_name": ["Khlong Sam Wa"], "sub_district_name": ["Sai Kong"], "rating": [4.5]}}]}
-{"id": "live_simple_183-108-0", "ground_truth": [{"getDataForProfessional": {"rating": [4.0], "province_id": [1], "districts_name": ["", "All districts", "Bangkok"], "service_id": [1]}}]}
+{"id": "live_simple_183-108-0", "ground_truth": [{"getDataForProfessional": {"rating": [2.0], "province_id": [1], "districts_name": ["", "All districts", "Bangkok"], "service_id": [1]}}]}
 {"id": "live_simple_184-109-0", "ground_truth": [{"getDataForProfessional": {"service_id": [1], "province_id": [1], "district_name": ["", null], "rating": [4.0]}}]}
 {"id": "live_simple_185-110-0", "ground_truth": [{"get_service_providers": {"service_id": [2], "province_id": [3], "district_name": ["", null], "sub_district_name": ["", null], "rating": [4.5], "start_available_date": ["2023-09-30"]}}]}
 {"id": "live_simple_186-111-0", "ground_truth": [{"get_service_providers": {"service_id": [2], "province_id": [3], "district_name": ["", null], "sub_district_name": ["", null], "rating": [4.5], "start_available_date": ["2024-03-12 16:00:00"], "end_available_date": ["2024-03-12 18:00:00"]}}]}
@@ -224,11 +224,11 @@
 {"id": "live_simple_223-117-15", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["", "dontcare"], "genre": ["Fantasy"], "cast": ["", "dontcare"]}}]}
 {"id": "live_simple_224-117-16", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Tim Burton"], "genre": ["Offbeat"], "cast": ["Johnny Depp"]}}]}
 {"id": "live_simple_225-117-17", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Kirill Mikhanovsky"], "genre": ["Comedy-drama"], "cast": ["", "dontcare"]}}]}
-{"id": "live_simple_226-118-0", "ground_truth": [{"text_to_speech.convert": {"text": ["I am a pretty girl"], "language": ["es-ES"], "gender": ["", "female"], "format": ["", "mp3"], "speed": ["", 1.0]}}]}
-{"id": "live_simple_227-118-1", "ground_truth": [{"text_to_speech.convert": {"text": ["\u6211\u7231\u5b66\u4e60"], "language": ["en-US"], "gender": ["male"], "format": ["wav"], "speed": ["", 1.0]}}]}
+{"id": "live_simple_226-118-0", "ground_truth": [{"text_to_speech.convert": {"text": ["I am a pretty girl","Soy una chica bonita"], "language": ["es-ES"], "gender": ["", "female"], "format": ["", "mp3"], "speed": ["", 1.0]}}]}
+{"id": "live_simple_227-118-1", "ground_truth": [{"text_to_speech.convert": {"text": ["\u6211\u7231\u5b66\u4e60","我爱学习"], "language": ["zh-CN"], "gender": ["male"], "format": ["wav"], "speed": ["", 1.0]}}]}
 {"id": "live_simple_228-119-0", "ground_truth": [{"text_to_speech.convert": {"text": ["I am a pretty girl"], "language": ["", "en-US"], "gender": ["", "female"], "speed": ["", 1.0]}}]}
 {"id": "live_simple_229-120-0", "ground_truth": [{"requests.get": {"anchor": ["user"]}}]}
-{"id": "live_simple_230-121-0", "ground_truth": [{"play_song": {"song_id": ["Roar"], "artist": ["Katy Perry", "Katty Perry"], "quality": ["high"], "device_id": ["", null]}}]}
+{"id": "live_simple_230-121-0", "ground_truth": [{"play_song": {"song_id": ["wjeiruhuq_roar"], "artist": ["Katy Perry"], "quality": ["high"], "device_id": ["", null]}}]}
 {"id": "live_simple_231-122-0", "ground_truth": [{"reschedule_event": {"event_identifier": ["456123"], "new_datetime": ["2022-10-30T16:30:00Z"]}}]}
 {"id": "live_simple_232-122-1", "ground_truth": [{"reschedule_event": {"event_identifier": ["med123"], "new_datetime": ["2021-04-15T13:45:00Z"]}}]}
 {"id": "live_simple_233-123-0", "ground_truth": [{"book_flight": {"departure_location": ["Paris, France"], "departure_time": ["12/03/2023 15:00"], "return_time": ["", null]}}]}
@@ -250,7 +250,7 @@
 {"id": "live_simple_249-131-0", "ground_truth": [{"chat_with_friend": {"user_message": ["Hey bunny, How are you doing"]}}]}
 {"id": "live_simple_250-132-0", "ground_truth": [{"uber.eat.order": {"restaurants": ["McDonald's", "McDonalds", "McDonald"], "items": [["Big Mac", "McFlurry"]], "quantities": [[2, 1]]}}]}
 {"id": "live_simple_251-133-0", "ground_truth": [{"flight.status.check": {"flight_id": ["6E123"], "passenger_name": ["Karan"], "ticket_number": ["IND4567"]}}]}
-{"id": "live_simple_252-134-0", "ground_truth": [{"flight.status.check": {"airlines": ["Indigo"], "person_name": ["Karan LNU"], "ticket_number": ["IND4567"]}}]}
+{"id": "live_simple_252-134-0", "ground_truth": [{"flight.status.check": {"airlines": ["Indigo"], "person_name": ["Karan"], "ticket_number": ["IND4567"]}}]}
 {"id": "live_simple_253-135-0", "ground_truth": [{"uber.eat.order": {"restaurants": ["McDonald's", "McDonalds"], "items": [["burgers", "chicken wings"], ["burger", "chicken wing"]], "quantities": [[5, 6]]}}]}
 {"id": "live_simple_254-136-0", "ground_truth": [{"user.mandates": {"user_id": ["U123"], "status": ["pending"]}}]}
 {"id": "live_simple_255-136-1", "ground_truth": [{"user.mandates": {"user_id": ["U123456"], "status": ["", "active"]}}]}
