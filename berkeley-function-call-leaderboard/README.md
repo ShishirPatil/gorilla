@@ -265,7 +265,6 @@ In the following two sections, the optional `--test-category` parameter can be u
   - `multi_turn_miss_func`: Multi-turn function calls with missing function.
   - `multi_turn_miss_param`: Multi-turn function calls with missing parameter.
   - `multi_turn_long_context`: Multi-turn function calls with long context.
-  - `multi_turn_composite`: Multi-turn function calls with missing function, missing parameter, and long context.
 - If no test category is provided, the script will run all available test categories. (same as `all`)
 
 > If you want to run the `all`, `non_live`, `executable` or `python` category, make sure to register your REST API keys in the `.env` file. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API!
