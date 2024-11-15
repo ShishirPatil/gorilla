@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Nov 14, 2024] [#760](https://github.com/ShishirPatil/gorilla/pull/760), [#761](https://github.com/ShishirPatil/gorilla/pull/761): Upstream  `google-cloud-aiplatform` library fixed typecasting bugs in Function Calling. Updated to version `1.72.0` and remove the workaround patch introduced in [#648](https://github.com/ShishirPatil/gorilla/pull/648).
 - [Nov 13, 2024] [#737](https://github.com/ShishirPatil/gorilla/pull/737), [#739](https://github.com/ShishirPatil/gorilla/pull/739), [#740](https://github.com/ShishirPatil/gorilla/pull/740): Bug fix in the dataset and possible answers for the live and multi-turn categories.
 - [Nov 8, 2024] [#720](https://github.com/ShishirPatil/gorilla/pull/720): Add new model `BitAgent/GoGoAgent` to the leaderboard.
 - [Oct 30, 2024] [#725](https://github.com/ShishirPatil/gorilla/pull/725), [#733](https://github.com/ShishirPatil/gorilla/pull/733): Update evaluation metric for multi-turn categories:
