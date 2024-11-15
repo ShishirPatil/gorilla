@@ -14,6 +14,16 @@ from bfcl.model_handler.utils import (
     func_doc_language_specific_pre_processing,
     system_prompt_pre_processing_chat_model,
 )
+from google.api_core.exceptions import ResourceExhausted
+
+from tenacity import (
+    retry,
+    stop_after_attempt,
+    wait_random_exponential,
+    retry_if_exception_type
+    
+)
+
 
 # This import from struct_pb2 should eventually be removed. See comment in the `_handle_struct_values` and `_handle_list_values` method below
 from google.protobuf.struct_pb2 import ListValue, Struct
@@ -197,6 +207,15 @@ class GeminiHandler(BaseHandler):
 
     #### FC methods ####
 
+
+    @retry(
+        wait=wait_random_exponential(min=6, max=120),
+        stop=stop_after_attempt(10),
+        retry=retry_if_exception_type(ResourceExhausted)
+    )
+    def generate_with_backoff(self, client, **kwargs):
+        return client.generate_content(**kwargs)
+
     def _query_FC(self, inference_data: dict):
         # Gemini models needs to first conver the function doc to FunctionDeclaration and Tools objects.
         # We do it here to avoid json serialization issues.
@@ -226,21 +245,17 @@ class GeminiHandler(BaseHandler):
                 self.model_name.replace("-FC", ""),
                 system_instruction=inference_data["system_prompt"],
             )
-            api_response = client.generate_content(
-                contents=inference_data["message"],
-                generation_config=GenerationConfig(
-                    temperature=self.temperature,
-                ),
-                tools=tools if len(tools) > 0 else None,
-            )
         else:
-            api_response = self.client.generate_content(
-                contents=inference_data["message"],
-                generation_config=GenerationConfig(
-                    temperature=self.temperature,
-                ),
-                tools=tools if len(tools) > 0 else None,
-            )
+            client = self.client
+
+        api_response = self.generate_with_backoff(
+            client=client,
+            contents=inference_data["message"],
+            generation_config=GenerationConfig(
+                temperature=self.temperature,
+            ),
+            tools=tools if len(tools) > 0 else None,
+        )
         return api_response
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
