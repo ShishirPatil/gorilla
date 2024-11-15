@@ -513,6 +513,23 @@ def generate_leaderboard_csv(
             else:
                 f.write(",".join(row))
 
+    # Write Multi Turn Score File
+    data_multi_turn.sort(key=lambda x: x[2], reverse=True)
+    for i in range(len(data_multi_turn)):
+        data_multi_turn[i][0] = str(i + 1)
+        for j in range(2, len(data_multi_turn[i])):
+            data_multi_turn[i][j] = "{:.2f}%".format(data_multi_turn[i][j] * 100)
+
+    data_multi_turn.insert(0, COLUMNS_MULTI_TURN)
+
+    filepath = output_path / "data_multi_turn.csv"
+    with open(filepath, "w") as f:
+        for i, row in enumerate(data_multi_turn):
+            if i < len(data_multi_turn) - 1:
+                f.write(",".join(row) + "\n")
+            else:
+                f.write(",".join(row))
+
     # Write Total Score File
     data_combined.sort(key=lambda x: x[1], reverse=True)
     for i in range(len(data_combined)):
