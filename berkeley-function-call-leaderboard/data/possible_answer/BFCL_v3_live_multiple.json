@@ -1,4 +1,4 @@
-{"id": "live_multiple_0-0-0", "ground_truth": [{"ChaDri.change_drink": {"drink_id": ["latte"], "new_preferences": [{"size": ["large"], "milk_type": ["coconut"], "sweetness_level": ["extra"], "temperature": ["hot"], "special_instructions": ["served boiling hot", "serve boiling hot", "boiling hot"]}]}}]}
+{"id": "live_multiple_0-0-0", "ground_truth": [{"ChaDri.change_drink": {"drink_id": ["latte"], "new_preferences": [{"size": ["large"], "milk_type": ["coconut"], "sweetness_level": ["extra"], "temperature": ["hot"], "special_instructions": ["served boiling hot", "serve boiling hot", "boiling hot", "served 'boiling hot'"]}]}}]}
 {"id": "live_multiple_1-0-1", "ground_truth": [{"ChaDri.change_drink": {"drink_id": ["1234"], "new_preferences": [{"sweetness_level": ["none"], "temperature": ["hot"]}]}}]}
 {"id": "live_multiple_2-1-0", "ground_truth": [{"uber.ride": {"loc": ["2150 Shattuck Ave, Berkeley, CA"], "type": ["plus"], "time": [10]}}]}
 {"id": "live_multiple_3-2-0", "ground_truth": [{"api.weather": {"loc": ["Ha Noi, Vietnam"]}}]}
@@ -9,9 +9,9 @@
 {"id": "live_multiple_8-4-0", "ground_truth": [{"cookbook.search_recipe": {"keyword": ["steak"], "cuisine": ["Indian"], "max_results": ["", 10]}}]}
 {"id": "live_multiple_9-4-1", "ground_truth": [{"HNA_WQA.search": {"keyword": ["Imjin war"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
 {"id": "live_multiple_10-4-2", "ground_truth": [{"ControlAppliance.execute": {"command": ["\ub2e4\uc6a9\ub3c4\uc2e4, \ud1b5\ub3cc\uc774, \uc911\uc9c0"]}}]}
-{"id": "live_multiple_11-4-3", "ground_truth": [{"HNA_WQA.search": {"keyword": ["ji sung park", "Ji Sung Park"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
-{"id": "live_multiple_12-4-4", "ground_truth": [{"HNA_WQA.search": {"keyword": ["Park Ji Sung"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
-{"id": "live_multiple_13-4-5", "ground_truth": [{"OpenWeatherMap.get_current_weather": {"location": ["Big Sur, USA"], "units": ["imperial"], "api_key": ["", "YOUR_API_KEY_HERE"]}}]}
+{"id": "live_multiple_11-4-3", "ground_truth": [{"HNA_WQA.search": {"keyword": ["Ji Sung Park", "Park Ji Sung", "Ji Sung Park footballer", "Park Ji-sung footballer"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
+{"id": "live_multiple_12-4-4", "ground_truth": [{"HNA_WQA.search": {"keyword": ["Ji Sung Park", "Park Ji Sung", "Ji Sung Park footballer", "Park Ji-sung footballer"], "result_format": ["", "text"], "language": ["", "EN"], "max_results": ["", 10]}}]}
+{"id": "live_multiple_13-4-5", "ground_truth": [{"OpenWeatherMap.get_current_weather": {"location": ["Santa Cruz, USA"], "units": ["imperial"], "api_key": ["", "YOUR_API_KEY_HERE"]}}]}
 {"id": "live_multiple_14-4-6", "ground_truth": [{"ControlAppliance.execute": {"command": ["\ub2e4\uc6a9\ub3c4\uc2e4, \ud1b5\ub3cc\uc774, \uc911\uc9c0"]}}]}
 {"id": "live_multiple_15-4-7", "ground_truth": [{"HNA_NEWS.search": {"keyword": ["Son's latest goal"], "category": ["Sports"], "date_range": ["", "null"], "sort_by": ["", "date"], "language": ["", "EN"]}}]}
 {"id": "live_multiple_16-4-8", "ground_truth": [{"HNA_NEWS.search": {"keyword": ["\ubc15\uc9c0\uc131"], "category": ["", "General"], "date_range": ["", "null"], "sort_by": ["", "date"], "language": ["", "EN"]}}]}
@@ -29,7 +29,7 @@
 {"id": "live_multiple_28-8-0", "ground_truth": [{"my_core_function": {"name": ["Balkrushn"]}}]}
 {"id": "live_multiple_29-9-0", "ground_truth": [{"multiply": {"a": [3], "b": [10]}}]}
 {"id": "live_multiple_30-10-0", "ground_truth": [{"duck_duck_go.search": {"query": ["LangFuse and its application in generative AI projects", "Find information on LangFuse and its application in generative AI projects"], "format": ["", "json"], "no_redirect": ["", false], "no_html": ["", false]}}]}
-{"id": "live_multiple_31-10-1", "ground_truth": [{"duck_duck_go.search": {"query": ["trending items on Amazon DE", "search for trending items on the Amazon DE", "trending items on the Amazon DE", "Amazon DE trending items"], "format": ["", "json"], "no_redirect": ["", false], "no_html": ["", false]}}]}
+{"id": "live_multiple_31-10-1", "ground_truth": [{"duck_duck_go.search": {"query": ["trending items"], "format": ["", "json"], "no_redirect": ["", false], "no_html": ["", false]}}]}
 {"id": "live_multiple_32-10-2", "ground_truth": [{"sub": {"a": [100], "b": [40]}}]}
 {"id": "live_multiple_33-10-3", "ground_truth": [{"multiply": {"a": [3], "b": [10]}}]}
 {"id": "live_multiple_34-11-0", "ground_truth": [{"get_news_report": {"location": ["Letterkenny, Ireland"]}}]}
@@ -48,17 +48,17 @@
 {"id": "live_multiple_47-18-2", "ground_truth": [{"order_status_check": {"order_id": ["123456789"], "product": ["Smart LED TV"]}}]}
 {"id": "live_multiple_48-18-3", "ground_truth": [{"inventory_management": {"product_id": ["123123"], "sizes": ["", []], "color": ["", "any"], "quantity": [30]}}]}
 {"id": "live_multiple_49-19-0", "ground_truth": [{"interviewer_review.get": {"name": ["Charlie Ji"]}}]}
-{"id": "live_multiple_50-20-0", "ground_truth": [{"get_movies": {"city": ["Noida"], "cinema_hall": ["", null], "movie_date": ["", null], "movie_language": ["", "Hindi"], "movie_format": ["", "2D"]}}]}
+{"id": "live_multiple_50-20-0", "ground_truth": [{"get_movies": {"city": ["Noida"], "cinema_hall": ["", null], "movie_date": ["04-11-2024"], "movie_language": ["", "Hindi"], "movie_format": ["", "2D"]}}]}
 {"id": "live_multiple_51-21-0", "ground_truth": [{"order_status_check": {"order_id": ["#123"], "product": ["a pair of sneakers", "pair of sneakers", "sneakers", "sneaker"]}}]}
 {"id": "live_multiple_52-21-1", "ground_truth": [{"inventory_management": {"product_id": ["SK123"], "sizes": ["", []], "color": ["Red"], "quantity": ["", 1]}}]}
 {"id": "live_multiple_53-22-0", "ground_truth": [{"inventory_management": {"product_id": ["V-neck sweate"], "sizes": [["M", "L"]], "color": ["maroon"]}}]}
 {"id": "live_multiple_54-22-1", "ground_truth": [{"inventory_management": {"product_id": ["12345XYZ"], "sizes": [["M"]], "color": ["merah"]}}]}
 {"id": "live_multiple_55-22-2", "ground_truth": [{"inventory_management": {"product_id": ["iPhone 12"], "sizes": ["", []], "color": ["white"]}}]}
-{"id": "live_multiple_56-22-3", "ground_truth": [{"inventory_management": {"product_id": ["111"], "sizes": [["L", "M"]], "color": ["", "Any"]}}]}
+{"id": "live_multiple_56-22-3", "ground_truth": [{"inventory_management": {"product_id": ["111"], "sizes": [["L"]], "color": ["", "Any"]}}]}
 {"id": "live_multiple_57-22-4", "ground_truth": [{"get_product_details": {"product_id": ["282828"], "color": ["", "all colors"], "size": ["", "all sizes"]}}]}
 {"id": "live_multiple_58-22-5", "ground_truth": [{"inventory_management": {"product_id": ["XY123"], "sizes": [["M"]], "color": ["", "Any"]}}]}
-{"id": "live_multiple_59-22-6", "ground_truth": [{"inventory_management": {"product_id": ["Wonderland maxi dress"], "sizes": [["S", "M"]]}}]}
-{"id": "live_multiple_60-22-7", "ground_truth": [{"inventory_management": {"product_id": ["ABC123"], "sizes": [["L", "4L"]], "color": ["", "Any"]}}]}
+{"id": "live_multiple_59-22-6", "ground_truth": [{"inventory_management": {"product_id": ["Wonderland maxi dress"], "sizes": [["S"]]}}]}
+{"id": "live_multiple_60-22-7", "ground_truth": [{"inventory_management": {"product_id": ["ABC123"], "sizes": [["L"]], "color": ["", "Any"]}}]}
 {"id": "live_multiple_61-23-0", "ground_truth": [{"get_movies": {"city": ["Noida"], "cinema_hall": ["", null], "movie_date": ["", null], "movie_language": ["", null], "movie_format": ["", "2D"]}}]}
 {"id": "live_multiple_62-24-0", "ground_truth": [{"todoIdx": {"type": ["delete"], "index": [1]}}]}
 {"id": "live_multiple_63-25-0", "ground_truth": [{"uber.eat.order": {"restaurant_id": ["McDonald's"], "items": [[{"item": ["burgers"], "quantity": [5]}, {"item": ["chicken wings"], "quantity": [6]}]]}}]}
@@ -85,7 +85,7 @@
 {"id": "live_multiple_84-38-1", "ground_truth": [{"add_postgres_server": {"nickname": ["PG1"], "host": ["pg.example.org"], "port": [5432], "database": ["main_db"], "username": ["admin"], "password": ["123412"]}}]}
 {"id": "live_multiple_85-38-2", "ground_truth": [{"add_mtnards_server": {"nickname": ["primary_db_server"], "host": ["192.168.0.5"], "api_key": ["1234123"]}}]}
 {"id": "live_multiple_86-38-3", "ground_truth": [{"add_mtnards_server": {"nickname": ["RSD1"], "host": ["http://rds.com"], "api_key": ["1234123"]}}]}
-{"id": "live_multiple_87-38-4", "ground_truth": [{"list_servers": {"type": ["all", ""]}}]}
+{"id": "live_multiple_87-38-4", "ground_truth": [{"list_servers": {"type": ["openai"]}}]}
 {"id": "live_multiple_88-38-5", "ground_truth": [{"list_servers": {"type": ["all", ""]}}]}
 {"id": "live_multiple_89-39-0", "ground_truth": [{"render_ui_date_picker_widget": {"default_date": ["20-09-2023"]}}]}
 {"id": "live_multiple_90-40-0", "ground_truth": [{"add_mtnards_server": {"nickname": ["FastDataServer"], "host": ["data.example.com"], "api_key": ["12345-ABCDE"]}}]}
@@ -99,7 +99,7 @@
 {"id": "live_multiple_98-42-2", "ground_truth": [{"open_project": {"path": ["/Foo/Bar"], "create_if_missing": [true, ""], "access_mode": ["", "readwrite"]}}]}
 {"id": "live_multiple_99-42-3", "ground_truth": [{"connect_to_server": {"nickname": ["pg1"], "timeout": ["", 30], "retry_attempts": ["", 3], "use_ssl": ["", true]}}]}
 {"id": "live_multiple_100-42-4", "ground_truth": [{"connect_to_server": {"nickname": ["text01"], "timeout": ["", 30], "retry_attempts": ["", 3], "use_ssl": ["", true]}}]}
-{"id": "live_multiple_101-42-5", "ground_truth": [{"connect_to_server": {"nickname": ["SQL01"], "timeout": [59], "retry_attempts": ["", 3], "use_ssl": ["", true]}}]}
+{"id": "live_multiple_101-42-5", "ground_truth": [{"connect_to_server": {"nickname": ["SQL01"], "timeout": [60], "retry_attempts": ["", 3], "use_ssl": ["", true]}}]}
 {"id": "live_multiple_102-43-0", "ground_truth": [{"list_files": {"type": ["json"], "include_hidden": ["", false]}}]}
 {"id": "live_multiple_103-43-1", "ground_truth": [{"add_postgres_server": {"nickname": ["PG1"], "host": ["localhost"], "port": [5432], "database": ["main_db"], "username": ["admin"], "password": ["secure_pass123"]}}]}
 {"id": "live_multiple_104-43-2", "ground_truth": [{"open_project": {"path": ["/foo/bar"], "create_new": [false, ""], "access_mode": ["", "edit"]}}]}
@@ -107,7 +107,7 @@
 {"id": "live_multiple_106-43-4", "ground_truth": [{"add_mtnards_server": {"nickname": ["FastQuery"], "host": ["rds.example.org"], "api_key": ["1231231"]}}]}
 {"id": "live_multiple_107-43-5", "ground_truth": [{"list_files": {"type": ["sav"], "include_hidden": [true]}}]}
 {"id": "live_multiple_108-43-6", "ground_truth": [{"list_servers": {"type": ["postgres"]}}]}
-{"id": "live_multiple_109-43-7", "ground_truth": [{"list_servers": {"type": ["rds", "mtna"]}}]}
+{"id": "live_multiple_109-43-7", "ground_truth": [{"list_servers": {"type": ["mtna"]}}]}
 {"id": "live_multiple_110-43-8", "ground_truth": [{"list_files": {"type": ["txt"], "include_hidden": [true]}}]}
 {"id": "live_multiple_111-43-9", "ground_truth": [{"dartfx_help": {"topic": ["database optimization"], "search_deep": ["", false], "language": ["Spanish"], "format": ["video"]}}]}
 {"id": "live_multiple_112-43-10", "ground_truth": [{"list_servers": {"type": ["postgres"]}}]}
@@ -174,7 +174,7 @@
 {"id": "live_multiple_173-71-2", "ground_truth": [{"get_adriel_tech_stack": {"employee_id": ["123"], "include_past_technologies": [true], "category": ["", "programming_languages"]}}]}
 {"id": "live_multiple_174-72-0", "ground_truth": [{"get_adriel_detail_experience_and_education": {"experience_or_education_type": ["Internship at Sebelas Maret University (UNS)"]}}]}
 {"id": "live_multiple_175-72-1", "ground_truth": [{"get_adriel_list_projects": {"user_id": ["12345"], "status": ["", "active"], "include_dates": ["", false]}}]}
-{"id": "live_multiple_176-73-0", "ground_truth": [{"recall_memory_search": {"query": ["Shishir\u2019s birthday"], "page": ["", 0], "request_heartbeat": ["", false]}}]}
+{"id": "live_multiple_176-73-0", "ground_truth": [{"recall_memory_search": {"query": ["Shishir's birthday"], "page": ["", 0], "request_heartbeat": ["", false]}}]}
 {"id": "live_multiple_177-74-0", "ground_truth": [{"get_trip": {"location": ["New York, NY"]}}]}
 {"id": "live_multiple_178-75-0", "ground_truth": [{"HNA_NEWS.search": {"keyword": ["Ji Sung Park"], "category": ["", "World"], "language": ["", "en"], "limit": [5], "sort_by": ["", "Date"]}}]}
 {"id": "live_multiple_179-75-1", "ground_truth": [{"HNA_NEWS.search": {"keyword": ["artificial intelligence"], "category": ["Technology"], "language": ["", "en"], "limit": ["", 10], "sort_by": ["", "Date"]}}]}
@@ -217,7 +217,7 @@
 {"id": "live_multiple_216-92-0", "ground_truth": [{"find_flights": {"origin": ["BER"], "destination": ["JFK"], "date": ["2021-10-10"], "passengers": [2]}}]}
 {"id": "live_multiple_217-93-0", "ground_truth": [{"Subdomain": {"domain": ["google.com"]}}]}
 {"id": "live_multiple_218-94-0", "ground_truth": [{"get_sensor_readings_history_by_interval": {"perPage": [100], "startingAfter": ["", null], "endingBefore": ["", null], "networkIds": [["L_579838452023959405"]], "serials": ["", []], "metrics": [["temperature"]], "timespan": [3600], "t0": ["", null], "t1": ["", null], "interval": ["", 86400], "models": ["", []]}}]}
-{"id": "live_multiple_219-94-1", "ground_truth": [{"get_sensor_readings_history": {"perPage": ["", 10], "startingAfter": ["", null], "endingBefore": ["", null], "networkIds": ["", []], "serials": ["", []], "metrics": [["current"]], "timespan": [120], "t0": ["2024-03-10T15:30:00Z"], "t1": ["2024-03-10T15:32:00Z"]}}]}
+{"id": "live_multiple_219-94-1", "ground_truth": [{"get_sensor_readings_history": {"perPage": [100], "startingAfter": ["", null], "endingBefore": ["", null], "networkIds": ["", []], "serials": ["", []], "metrics": [["current"]], "timespan": [120], "t0": ["2024-03-10T15:30:00Z"], "t1": ["2024-03-10T15:32:00Z"]}}]}
 {"id": "live_multiple_220-94-2", "ground_truth": [{"get_sensor_readings_latest": {"perPage": [100], "startingAfter": ["", null], "endingBefore": ["", null], "networkIds": ["", []], "serials": ["", []], "metrics": [["temperature"]]}}]}
 {"id": "live_multiple_221-95-0", "ground_truth": [{"segment": {"img_path": ["./yoha.jpg"]}}]}
 {"id": "live_multiple_222-96-0", "ground_truth": [{"uber.ride": {"loc": ["456 Elm St, Springville, IL"], "type": ["comfort"], "time": [10]}}]}
@@ -238,10 +238,10 @@
 {"id": "live_multiple_237-106-3", "ground_truth": [{"set_point": {"x": [2], "y": [3], "z": [4], "point_name": ["pointA"]}}]}
 {"id": "live_multiple_238-106-4", "ground_truth": [{"set_float": {"number_name": ["roomHeight"], "number_value": [4.2]}}]}
 {"id": "live_multiple_239-107-0", "ground_truth": [{"search_web_tool": {"query": ["apple"], "num_results": ["", 3], "source": ["", "text"]}}]}
-{"id": "live_multiple_240-107-1", "ground_truth": [{"search_web_tool": {"query": ["weather in India"], "num_results": ["", 3], "source": ["", "text"]}}]}
+{"id": "live_multiple_240-107-1", "ground_truth": [{"search_web_tool": {"query": ["weather in India", "current weather in India", "What's the current weather in India", "What's the current weather in India?"], "num_results": ["", 3], "source": ["", "text"]}}]}
 {"id": "live_multiple_241-107-2", "ground_truth": [{"search_web_tool": {"query": ["flight prices from NYC to New Delhi"], "num_results": ["", 3], "source": ["", "text"]}}]}
 {"id": "live_multiple_242-107-3", "ground_truth": [{"tts_tool": {"content": ["If you could have dinner with any historical figure, who would you choose and why?, also genart a photo of that figure"]}}]}
-{"id": "live_multiple_243-107-4", "ground_truth": [{"search_web_tool": {"query": ["Find a recent news article about corona virus", "recent news article about corona virus"], "num_results": ["", 3], "source": ["news"]}}]}
+{"id": "live_multiple_243-107-4", "ground_truth": [{"search_web_tool": {"query": ["Find a recent news article about corona virus", "recent news article about corona virus","recent news corona virus"], "num_results": ["", 3], "source": ["news"]}}]}
 {"id": "live_multiple_244-108-0", "ground_truth": [{"version_api.VersionApi.get_version": {}}]}
 {"id": "live_multiple_245-109-0", "ground_truth": [{"version_api.VersionApi.get_version": {}}]}
 {"id": "live_multiple_246-110-0", "ground_truth": [{"version_api.VersionApi.get_version": {}}]}
@@ -266,14 +266,14 @@
 {"id": "live_multiple_265-127-0", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Hanoi"], "date": ["", null]}}]}
 {"id": "live_multiple_266-127-1", "ground_truth": [{"Weather_1_GetWeather": {"city": ["San Diego"], "date": ["", null]}}]}
 {"id": "live_multiple_267-127-2", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Vancouver"], "date": ["2023-04-04"]}}]}
-{"id": "live_multiple_268-127-3", "ground_truth": [{"Weather_1_GetWeather": {"city": ["London, UK"], "date": ["2023-03-12"]}}]}
+{"id": "live_multiple_268-127-3", "ground_truth": [{"Weather_1_GetWeather": {"city": ["London, UK", "London"], "date": ["2023-03-12"]}}]}
 {"id": "live_multiple_269-127-4", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Philadelphia"], "date": ["2023-03-10"]}}]}
 {"id": "live_multiple_270-127-5", "ground_truth": [{"Weather_1_GetWeather": {"city": ["New York"], "date": ["2023-04-17"]}}]}
 {"id": "live_multiple_271-127-6", "ground_truth": [{"Weather_1_GetWeather": {"city": ["San Diego"], "date": ["2023-03-01"]}}]}
 {"id": "live_multiple_272-127-7", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Nairobi"], "date": ["", null]}}]}
-{"id": "live_multiple_273-127-8", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Phoenix"], "date": ["2023-04-14"]}}]}
+{"id": "live_multiple_273-127-8", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Phoenix","Phoenix, AZ"], "date": ["2023-04-14"]}}]}
 {"id": "live_multiple_274-127-9", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Chicago", "Chi-town"], "date": ["2024-02-13"]}}]}
-{"id": "live_multiple_275-127-10", "ground_truth": [{"Weather_1_GetWeather": {"city": ["American canyon"], "date": ["2023-03-12"]}}]}
+{"id": "live_multiple_275-127-10", "ground_truth": [{"Weather_1_GetWeather": {"city": ["American Canyon"], "date": ["2023-03-12"]}}]}
 {"id": "live_multiple_276-127-11", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Los Angeles"], "date": ["2023-03-09"]}}]}
 {"id": "live_multiple_277-128-0", "ground_truth": [{"Restaurants_2_FindRestaurants": {"category": ["American"], "location": ["New York, NY"], "price_range": ["", "moderate"], "has_vegetarian_options": ["", false], "has_seating_outdoors": [true]}}]}
 {"id": "live_multiple_278-128-1", "ground_truth": [{"Restaurants_2_FindRestaurants": {"category": ["Italian"], "location": ["Oakland, CA"], "price_range": ["", "moderate"], "has_vegetarian_options": ["", false], "has_seating_outdoors": ["", false]}}]}
@@ -296,7 +296,7 @@
 {"id": "live_multiple_295-130-4", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Los Angeles, CA"], "has_laundry_service": ["", "dontcare"], "number_of_adults": ["", 0], "rating": ["", 0.0]}}]}
 {"id": "live_multiple_296-130-5", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Austin, TX"], "has_laundry_service": ["True"], "number_of_adults": [4], "rating": [4.0]}}]}
 {"id": "live_multiple_297-130-6", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Long Beach, CA"], "has_laundry_service": ["True"], "number_of_adults": [1], "rating": ["", 0.0]}}]}
-{"id": "live_multiple_298-130-7", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Chi-town, IL"], "has_laundry_service": ["True"], "number_of_adults": ["", 0], "rating": [3.9]}}]}
+{"id": "live_multiple_298-130-7", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Chicago, IL"], "has_laundry_service": ["True"], "number_of_adults": ["", 0], "rating": [3.9]}}]}
 {"id": "live_multiple_299-130-8", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Sydney, Australia"], "has_laundry_service": ["True"], "number_of_adults": [3], "rating": ["", 0.0]}}]}
 {"id": "live_multiple_300-130-9", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Rio de Janeiro, Brazil"], "has_laundry_service": ["", "dontcare"], "number_of_adults": [2], "rating": [4.2]}}]}
 {"id": "live_multiple_301-131-0", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["London, UK"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
@@ -304,7 +304,7 @@
 {"id": "live_multiple_303-131-2", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Vancouver"], "star_rating": ["3"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
 {"id": "live_multiple_304-131-3", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Los Angeles, CA"], "star_rating": ["4"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
 {"id": "live_multiple_305-131-4", "ground_truth": [{"Hotels_4_ReserveHotel": {"place_name": ["dontcare"], "check_in_date": ["2023-07-15"], "stay_length": [5], "location": ["dontcare"], "number_of_rooms": ["", "dontcare"]}}]}
-{"id": "live_multiple_306-131-5", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Kuala Lumpur, Malaysia"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
+{"id": "live_multiple_306-131-5", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Kuala Lumpur, Malaysia"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", "dontcare"]}}]}
 {"id": "live_multiple_307-131-6", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Philadelphia, PA"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": [3]}}]}
 {"id": "live_multiple_308-131-7", "ground_truth": [{"Hotels_4_SearchHotel": {"location": ["Phoenix, AZ"], "star_rating": ["", "dontcare"], "smoking_allowed": ["", false], "number_of_rooms": ["", 1]}}]}
 {"id": "live_multiple_309-131-8", "ground_truth": [{"Hotels_4_ReserveHotel": {"place_name": ["dontcare"], "check_in_date": ["2023-08-15"], "stay_length": [2], "location": ["Berkeley, CA"], "number_of_rooms": ["", "dontcare"]}}]}
@@ -623,7 +623,7 @@
 {"id": "live_multiple_622-160-2", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["credit card"], "amount": [29], "receiver": ["Thomas"], "private_visibility": ["", false]}}]}
 {"id": "live_multiple_623-160-3", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["Wilson"], "amount": [42], "private_visibility": [true]}}]}
 {"id": "live_multiple_624-160-4", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["JohnDoe@example.com"], "amount": [150.25], "private_visibility": [true]}}]}
-{"id": "live_multiple_625-160-5", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["savings account"], "amount": [200.0], "receiver": ["amelia@example.com"], "private_visibility": [true]}}]}
+{"id": "live_multiple_625-160-5", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["debit card"], "amount": [200.0], "receiver": ["amelia@example.com"], "private_visibility": [true]}}]}
 {"id": "live_multiple_626-160-6", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["johndoe@example.com"], "amount": [83], "private_visibility": [true]}}]}
 {"id": "live_multiple_627-160-7", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["app balance"], "amount": [200.0], "receiver": ["Diego"], "private_visibility": [true]}}]}
 {"id": "live_multiple_628-160-8", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["Diego"], "amount": [108.0], "private_visibility": ["", false]}}]}
@@ -754,7 +754,7 @@
 {"id": "live_multiple_753-169-8", "ground_truth": [{"Media_3_FindMovies": {"genre": ["Animation"], "starring": ["Anri Katsu"]}}]}
 {"id": "live_multiple_754-169-9", "ground_truth": [{"Media_3_FindMovies": {"genre": ["Comedy"], "starring": ["Ana de Armas"]}}]}
 {"id": "live_multiple_755-169-10", "ground_truth": [{"Media_3_FindMovies": {"genre": ["Fantasy", "Any"], "starring": ["Peter Jackson"]}}]}
-{"id": "live_multiple_756-169-11", "ground_truth": [{"Media_3_FindMovies": {"genre": ["Any"], "starring": ["Betsy Widhalm"]}}]}
+{"id": "live_multiple_756-169-11", "ground_truth": [{"Media_3_FindMovies": {"genre": ["horror"], "starring": ["Betsy Widhalm"]}}]}
 {"id": "live_multiple_757-169-12", "ground_truth": [{"Media_3_FindMovies": {"genre": ["Family"], "starring": ["Debbie McCann"]}}]}
 {"id": "live_multiple_758-169-13", "ground_truth": [{"Media_3_FindMovies": {"genre": ["Thriller"], "starring": ["Roberts Blossom"]}}]}
 {"id": "live_multiple_759-169-14", "ground_truth": [{"Media_3_FindMovies": {"genre": ["Comedy", "Animation"], "starring": ["", "Any"]}}]}
@@ -815,14 +815,14 @@
 {"id": "live_multiple_814-176-5", "ground_truth": [{"Alarm_1_AddAlarm": {"new_alarm_time": ["17:15"], "new_alarm_name": ["", "New alarm"]}}]}
 {"id": "live_multiple_815-176-6", "ground_truth": [{"Alarm_1_AddAlarm": {"new_alarm_time": ["07:30"], "new_alarm_name": ["Morning workout"]}}]}
 {"id": "live_multiple_816-176-7", "ground_truth": [{"Alarm_1_AddAlarm": {"new_alarm_time": ["15:30"], "new_alarm_name": ["Cleaning"]}}]}
-{"id": "live_multiple_817-177-0", "ground_truth": [{"Events_3_BuyEventTickets": {"event_name": ["Anthony Green"], "number_of_tickets": [2], "date": ["2023-03-10"], "city": [""]}}]}
+{"id": "live_multiple_817-177-0", "ground_truth": [{"Events_3_BuyEventTickets": {"event_name": ["Anthony Green"], "number_of_tickets": [2], "date": ["2023-03-10"], "city": ["Seattle, WA"]}}]}
 {"id": "live_multiple_818-177-1", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Music"], "city": ["New York, NY"], "date": ["", null]}}]}
 {"id": "live_multiple_819-177-2", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Music"], "city": ["Los Angeles, CA"], "date": ["2023-07-20"]}}]}
 {"id": "live_multiple_820-177-3", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Music"], "city": ["New York, NY"], "date": ["2023-03-04"]}}]}
 {"id": "live_multiple_821-177-4", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Theater"], "city": ["Seattle, WA"], "date": ["", null]}}]}
 {"id": "live_multiple_822-177-5", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Music"], "city": ["Seattle, WA"], "date": ["2023-03-12"]}}]}
 {"id": "live_multiple_823-177-6", "ground_truth": [{"Events_3_BuyEventTickets": {"event_name": ["Brockhampton"], "number_of_tickets": [4], "date": ["2023-03-13"], "city": ["Berkeley, CA"]}}]}
-{"id": "live_multiple_824-177-7", "ground_truth": [{"Events_3_BuyEventTickets": {"event_name": ["Read The Tempest"], "number_of_tickets": [3], "date": ["2023-03-02"], "city": [""]}}]}
+{"id": "live_multiple_824-177-7", "ground_truth": [{"Events_3_BuyEventTickets": {"event_name": ["Read The Tempest"], "number_of_tickets": [3], "date": ["2023-03-02"], "city": ["Princeton, NJ"]}}]}
 {"id": "live_multiple_825-178-0", "ground_truth": [{"Music_3_LookupMusic": {"artist": ["", "dontcare"], "album": ["Isolation"], "genre": ["Funk"], "year": ["", "dontcare"]}}]}
 {"id": "live_multiple_826-178-1", "ground_truth": [{"Music_3_LookupMusic": {"artist": ["", "dontcare"], "album": ["", "dontcare"], "genre": ["", "dontcare"], "year": ["2015"]}}]}
 {"id": "live_multiple_827-178-2", "ground_truth": [{"Music_3_LookupMusic": {"artist": ["", "dontcare"], "album": ["", "dontcare"], "genre": ["", "dontcare"], "year": ["2021"]}}]}
@@ -928,7 +928,7 @@
 {"id": "live_multiple_927-191-15", "ground_truth": [{"get_service_providers": {"avg_rating": [4.5], "province_id": [1], "district_name": ["", null], "sub_district_name": ["", null], "start_available_date": ["", null], "end_available_date": ["", null], "min_age": ["", null], "max_age": ["", null], "has_quality_problem": ["", false], "has_late_check_in": ["", false], "is_excellent": [true], "is_package": ["", false], "is_subscription": ["", false], "service_id": [1], "available_for_pet": ["", false], "professional_group_id": ["", null], "job_qty": ["", null], "is_cleaning_condo": ["", false], "is_cleaning_home": ["", false], "is_cleaning_office": ["", false]}}]}
 {"id": "live_multiple_928-191-16", "ground_truth": [{"get_service_providers": {"avg_rating": ["", null], "province_id": ["", null], "district_name": ["", null], "sub_district_name": ["", null], "start_available_date": ["", null], "end_available_date": ["", null], "min_age": ["", null], "max_age": ["", null], "has_quality_problem": ["", false], "has_late_check_in": ["", false], "is_excellent": ["", false], "is_package": ["", false], "is_subscription": [true], "service_id": ["", null], "available_for_pet": ["", false], "professional_group_id": [2], "job_qty": ["", null], "is_cleaning_condo": ["", false], "is_cleaning_home": ["", false], "is_cleaning_office": ["", false]}}]}
 {"id": "live_multiple_929-191-17", "ground_truth": [{"get_service_providers": {"avg_rating": [4.7], "province_id": [2], "district_name": ["Muang"], "sub_district_name": ["", null], "start_available_date": ["2024-03-19 09:30:00"], "end_available_date": ["", null], "min_age": ["", null], "max_age": ["", null], "has_quality_problem": ["", false], "has_late_check_in": ["", false], "is_excellent": ["", false], "is_package": ["", false], "is_subscription": ["", false], "service_id": [1], "available_for_pet": ["", false], "professional_group_id": ["", null], "job_qty": ["", null], "is_cleaning_condo": ["", false], "is_cleaning_home": ["", false], "is_cleaning_office": ["", false]}}]}
-{"id": "live_multiple_930-191-18", "ground_truth": [{"get_service_providers": {"avg_rating": ["", null], "province_id": ["", null], "district_name": ["", null], "sub_district_name": ["", null], "start_available_date": ["", null], "end_available_date": ["", null], "min_age": ["", null], "max_age": ["", null], "has_quality_problem": ["", false], "has_late_check_in": ["", false], "is_excellent": ["", false], "is_package": ["", false], "is_subscription": ["", false], "service_id": [240319], "available_for_pet": ["", false], "professional_group_id": ["", null], "job_qty": ["", null], "is_cleaning_condo": ["", false], "is_cleaning_home": ["", false], "is_cleaning_office": ["", false]}}]}
+{"id": "live_multiple_930-191-18", "ground_truth": [{"get_service_providers": {"avg_rating": ["", null], "province_id": ["", null], "district_name": ["", null], "sub_district_name": ["", null], "start_available_date": ["", null], "end_available_date": ["", null], "min_age": ["", null], "max_age": ["", null], "has_quality_problem": ["", false], "has_late_check_in": ["", false], "is_excellent": ["", false], "is_package": ["", false], "is_subscription": ["", false], "service_id": [35], "available_for_pet": ["", false], "professional_group_id": ["", null], "job_qty": ["", null], "is_cleaning_condo": ["", false], "is_cleaning_home": ["", false], "is_cleaning_office": ["", false]}}]}
 {"id": "live_multiple_931-191-19", "ground_truth": [{"get_service_providers": {"avg_rating": ["", null], "province_id": ["", null], "district_name": ["", null], "sub_district_name": ["Phra Khanong"], "start_available_date": ["", null], "end_available_date": ["", null], "min_age": ["", null], "max_age": ["", null], "has_quality_problem": ["", false], "has_late_check_in": ["", false], "is_excellent": [true], "is_package": ["", false], "is_subscription": ["", false], "service_id": ["", null], "available_for_pet": ["", false], "professional_group_id": ["", null], "job_qty": ["", null], "is_cleaning_condo": ["", false], "is_cleaning_home": ["", false], "is_cleaning_office": ["", false]}}]}
 {"id": "live_multiple_932-191-20", "ground_truth": [{"view_service_provider_profile": {"professional_id": [4724]}}]}
 {"id": "live_multiple_933-191-21", "ground_truth": [{"get_service_providers": {"avg_rating": ["", null], "province_id": [1], "district_name": ["Ratchathewi"], "sub_district_name": ["", null], "start_available_date": ["2024-03-20 11:00:00"], "end_available_date": ["", null], "min_age": ["", null], "max_age": ["", null], "has_quality_problem": ["", false], "has_late_check_in": ["", false], "is_excellent": ["", false], "is_package": ["", false], "is_subscription": ["", false], "service_id": ["", null], "available_for_pet": [true], "professional_group_id": ["", null], "job_qty": ["", null], "is_cleaning_condo": ["", false], "is_cleaning_home": ["", false], "is_cleaning_office": ["", false]}}]}
@@ -983,7 +983,7 @@
 {"id": "live_multiple_982-215-6", "ground_truth": [{"get_service_providers": {"avg_rating": ["", null], "province_id": [1], "district_name": ["", null], "start_available_date": ["2024-03-20 18:00:00"], "end_available_date": ["", null], "min_age": ["", null], "max_age": ["", null], "has_quality_problem": ["", false], "has_late_check_in": ["", false], "is_excellent": ["", false], "is_package": ["", false], "is_subscription": ["", false], "service_id": [1], "extra_service_id": [2], "available_for_pet": ["", false], "professional_group_id": ["", null], "job_qty": ["", null], "is_cleaning_condo": ["", false], "is_cleaning_home": ["", false], "is_cleaning_office": ["", false]}}]}
 {"id": "live_multiple_983-215-7", "ground_truth": [{"get_service_providers": {"avg_rating": [5.0], "province_id": [1], "district_name": ["Watthana District"], "start_available_date": ["2024-03-22 11:00:00"], "end_available_date": ["2024-03-22 13:00:00"], "min_age": ["", null], "max_age": ["", null], "has_quality_problem": ["", false], "has_late_check_in": ["", false], "is_excellent": ["", false], "is_package": ["", false], "is_subscription": ["", false], "service_id": ["", null], "extra_service_id": ["", null], "available_for_pet": ["", false], "professional_group_id": ["", null], "job_qty": ["", null], "is_cleaning_condo": ["", false], "is_cleaning_home": ["", false], "is_cleaning_office": ["", false]}}]}
 {"id": "live_multiple_984-215-8", "ground_truth": [{"get_service_providers": {"avg_rating": ["", null], "province_id": [1], "district_name": ["", null], "start_available_date": ["", null], "end_available_date": ["", null], "min_age": ["", null], "max_age": ["", null], "has_quality_problem": ["", false], "has_late_check_in": ["", false], "is_excellent": ["", false], "is_package": ["", false], "is_subscription": ["", false], "service_id": ["", null], "extra_service_id": ["", null], "available_for_pet": ["", false], "professional_group_id": ["", null], "job_qty": ["", null], "is_cleaning_condo": ["", false], "is_cleaning_home": ["", false], "is_cleaning_office": ["", false]}}]}
-{"id": "live_multiple_985-216-0", "ground_truth": [{"reminders_complete": {"token": ["token"]}}]}
+{"id": "live_multiple_985-216-0", "ground_truth": [{"reminders_complete": {"token": ["1231289312"]}}]}
 {"id": "live_multiple_986-217-0", "ground_truth": [{"version_api.VersionApi.get_version": {}}]}
 {"id": "live_multiple_987-218-0", "ground_truth": [{"version_api.VersionApi.get_version": {}}]}
 {"id": "live_multiple_988-219-0", "ground_truth": [{"EventSettingsApi.get_event_specification_infos_by_ids": {"event_ids": [["efJG9"]], "include_details": [true]}}]}
@@ -1004,7 +1004,7 @@
 {"id": "live_multiple_1003-232-2", "ground_truth": [{"api_token_api.APITokenApi.get_api_tokens": {"user_id": ["12345"], "include_expired": ["", false]}}]}
 {"id": "live_multiple_1004-233-0", "ground_truth": [{"audit_log_api.AuditLogApi.get_access_logs": {"offset": [434], "query": ["llama"], "pageSize": [9]}}]}
 {"id": "live_multiple_1005-234-0", "ground_truth": [{"host_agent_api.HostAgentApi.get_agent_snapshot": {"id": ["zzwzeem"], "to": ["", null], "windowSize": ["", 60]}}]}
-{"id": "live_multiple_1006-235-0", "ground_truth": [{"get_monitoring_state": {"api_key": ["your_api_key"], "environment": ["", "production"], "include_inactive": ["", false]}}]}
+{"id": "live_multiple_1006-235-0", "ground_truth": [{"get_monitoring_state": {"api_key": ["gorilla-123"], "environment": ["", "production"], "include_inactive": ["", false]}}]}
 {"id": "live_multiple_1007-236-0", "ground_truth": [{"software_versions": {"time": ["", "null"], "origin": [""], "type": [""], "name": [""], "version": ["5.5"]}}]}
 {"id": "live_multiple_1008-237-0", "ground_truth": [{"ApplicationAnalyzeApi.get_trace_download": {"id": ["grgr"], "retrievalSize": [1024], "offset": ["", 0], "ingestionTime": ["", null]}}]}
 {"id": "live_multiple_1009-238-0", "ground_truth": [{"get_website_geo_mapping_rules": {"websiteId": ["123e4567-e89b-12d3-a456-426614174000"]}}]}
