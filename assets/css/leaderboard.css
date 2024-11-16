@@ -334,3 +334,21 @@ canvas {
 .toggle-button:focus {
     outline: none;                   /* Remove focus outline */
 }
+
+/* .search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+#search-input {
+    padding: 8px;
+    margin-right: 5px;
+    width: 200px;
+    border: none;
+}
+
+#search-btn {
+    padding: 8px;
+    cursor: pointer;
+} */
