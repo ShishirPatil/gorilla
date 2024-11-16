@@ -1,3 +1,4 @@
+import logging
 import os
 
 import vertexai
@@ -29,6 +30,7 @@ from vertexai.generative_models import (
     Tool,
 )
 
+logging.basicConfig(level=logging.INFO)
 
 class GeminiHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:
@@ -76,15 +78,19 @@ class GeminiHandler(BaseHandler):
                     )
             return func_call_list
 
-    #### FC methods ####
-
     @retry(
         wait=wait_random_exponential(min=6, max=120),
         stop=stop_after_attempt(10),
-        retry=retry_if_exception_type(ResourceExhausted)
+        retry=retry_if_exception_type(ResourceExhausted),
+        before_sleep=lambda retry_state: print(
+            f"Attempt {retry_state.attempt_number} failed. Sleeping for {float(round(retry_state.next_action.sleep, 2))} seconds before retrying..."
+            f"Error: {retry_state.outcome.exception()}"
+        ),
     )
     def generate_with_backoff(self, client, **kwargs):
         return client.generate_content(**kwargs)
+
+    #### FC methods ####
 
     def _query_FC(self, inference_data: dict):
         # Gemini models needs to first conver the function doc to FunctionDeclaration and Tools objects.
@@ -248,19 +254,15 @@ class GeminiHandler(BaseHandler):
                 self.model_name.replace("-FC", ""),
                 system_instruction=inference_data["system_prompt"],
             )
-            api_response = client.generate_content(
-                contents=inference_data["message"],
-                generation_config=GenerationConfig(
-                    temperature=self.temperature,
-                ),
-            )
         else:
-            api_response = self.client.generate_content(
-                contents=inference_data["message"],
-                generation_config=GenerationConfig(
-                    temperature=self.temperature,
-                ),
-            )
+            client = self.client
+        api_response = self.generate_with_backoff(
+            client=client,
+            contents=inference_data["message"],
+            generation_config=GenerationConfig(
+                temperature=self.temperature,
+            ),
+        )
         return api_response
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
