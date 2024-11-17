@@ -209,9 +209,10 @@ class GeminiHandler(BaseHandler):
     def _add_assistant_message_FC(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
-        inference_data["message"].append(
-            model_response_data["model_responses_message_for_chat_history"]
-        )
+        if len(model_response_data["model_responses_message_for_chat_history"].parts):
+            inference_data["message"].append(
+                model_response_data["model_responses_message_for_chat_history"]
+            )
         return inference_data
 
     def _add_execution_results_FC(
