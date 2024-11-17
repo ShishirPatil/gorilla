@@ -80,7 +80,6 @@ class GeminiHandler(BaseHandler):
 
     @retry(
         wait=wait_random_exponential(min=6, max=120),
-        stop=stop_after_attempt(10),
         retry=retry_if_exception_type(ResourceExhausted),
         before_sleep=lambda retry_state: print(
             f"Attempt {retry_state.attempt_number} failed. Sleeping for {float(round(retry_state.next_action.sleep, 2))} seconds before retrying..."
