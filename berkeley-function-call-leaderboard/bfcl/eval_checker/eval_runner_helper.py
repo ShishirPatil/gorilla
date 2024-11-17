@@ -183,10 +183,9 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
     output_token = []
     latency = []
     for data in model_output_data:
-        for data in model_output_data:
-            process_data("latency", data, latency)
-            process_data("input_token_count", data, input_token)
-            process_data("output_token_count", data, output_token)
+        process_data("latency", data, latency)
+        process_data("input_token_count", data, input_token)
+        process_data("output_token_count", data, output_token)
 
     leaderboard_table[model_name]["cost"]["input_data"].extend(input_token)
     leaderboard_table[model_name]["cost"]["output_data"].extend(output_token)
