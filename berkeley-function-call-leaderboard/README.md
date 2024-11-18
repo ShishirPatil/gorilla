@@ -182,7 +182,6 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |meta-llama/Meta-Llama-3-{8B,70B}-Instruct 💻| Prompt|
 |meta-llama/Llama-3.1-{8B,70B}-Instruct-FC 💻| Function Calling|
 |meta-llama/Llama-3.1-{8B,70B}-Instruct 💻| Prompt|
-|meta-llama/Llama-3.2-{1B,3B}-Instruct-FC 💻| Function Calling|
 |meta-llama/Llama-3.2-{1B,3B}-Instruct 💻| Prompt|
 |open-mixtral-{8x7b,8x22b} | Prompt|
 |open-mixtral-8x22b-FC | Function Calling|
@@ -265,7 +264,6 @@ In the following two sections, the optional `--test-category` parameter can be u
   - `multi_turn_miss_func`: Multi-turn function calls with missing function.
   - `multi_turn_miss_param`: Multi-turn function calls with missing parameter.
   - `multi_turn_long_context`: Multi-turn function calls with long context.
-  - `multi_turn_composite`: Multi-turn function calls with missing function, missing parameter, and long context.
 - If no test category is provided, the script will run all available test categories. (same as `all`)
 
 > If you want to run the `all`, `non_live`, `executable` or `python` category, make sure to register your REST API keys in the `.env` file. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API!

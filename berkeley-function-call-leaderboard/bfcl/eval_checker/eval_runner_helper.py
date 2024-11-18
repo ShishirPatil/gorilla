@@ -230,10 +230,9 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
     output_token = []
     latency = []
     for data in model_output_data:
-        for data in model_output_data:
-            process_data("latency", data, latency)
-            process_data("input_token_count", data, input_token)
-            process_data("output_token_count", data, output_token)
+        process_data("latency", data, latency)
+        process_data("input_token_count", data, input_token)
+        process_data("output_token_count", data, output_token)
 
     leaderboard_table[model_name]["cost"]["input_data"].extend(input_token)
     leaderboard_table[model_name]["cost"]["output_data"].extend(output_token)
@@ -455,16 +454,12 @@ def generate_leaderboard_csv(
         multi_turn_long_context = value.get(
             "multi_turn_long_context", {"accuracy": 0, "total_count": 0}
         )
-        multi_turn_composite = value.get(
-            "multi_turn_composite", {"accuracy": 0, "total_count": 0}
-        )
         overall_accuracy_multi_turn = calculate_unweighted_accuracy(
             [
                 multi_turn_base,
                 multi_turn_miss_func,
                 multi_turn_miss_param,
                 multi_turn_long_context,
-                # multi_turn_composite,  # Composite is currently not included in the leaderboard, because it takes too long to evaluate
             ]
         )
 
@@ -477,7 +472,6 @@ def generate_leaderboard_csv(
                 multi_turn_miss_func["accuracy"],
                 multi_turn_miss_param["accuracy"],
                 multi_turn_long_context["accuracy"],
-                # multi_turn_composite["accuracy"],
             ]
         )
         
@@ -524,8 +518,6 @@ def generate_leaderboard_csv(
                 multi_turn_miss_func["accuracy"],
                 multi_turn_miss_param["accuracy"],
                 multi_turn_long_context["accuracy"],
-                'N/A',  # No composite score for now
-                # multi_turn_composite["accuracy"],
                 total_relevance["accuracy"],
                 total_irrelevance["accuracy"],
                 MODEL_METADATA_MAPPING[model_name_escaped][2],
@@ -569,6 +561,23 @@ def generate_leaderboard_csv(
             else:
                 f.write(",".join(row))
 
+    # Write Multi Turn Score File
+    data_multi_turn.sort(key=lambda x: x[2], reverse=True)
+    for i in range(len(data_multi_turn)):
+        data_multi_turn[i][0] = str(i + 1)
+        for j in range(2, len(data_multi_turn[i])):
+            data_multi_turn[i][j] = "{:.2f}%".format(data_multi_turn[i][j] * 100)
+
+    data_multi_turn.insert(0, COLUMNS_MULTI_TURN)
+
+    filepath = output_path / "data_multi_turn.csv"
+    with open(filepath, "w") as f:
+        for i, row in enumerate(data_multi_turn):
+            if i < len(data_multi_turn) - 1:
+                f.write(",".join(row) + "\n")
+            else:
+                f.write(",".join(row))
+
     # Write Total Score File
     data_combined.sort(key=lambda x: x[1], reverse=True)
     for i in range(len(data_combined)):
@@ -577,8 +586,7 @@ def generate_leaderboard_csv(
         for j in range(4, 8):
             data_combined[i][j] = str(data_combined[i][j])
         for j in range(8, len(data_combined[i]) - 2):
-            # TODO: Remove this after composite is added
-            data_combined[i][j] = "{:.2f}%".format(data_combined[i][j] * 100) if data_combined[i][j] != 'N/A' else 'N/A'
+            data_combined[i][j] = "{:.2f}%".format(data_combined[i][j] * 100)
         for j in range(len(data_combined[i]) - 2, len(data_combined[i])):
             data_combined[i][j] = str(data_combined[i][j])
 
