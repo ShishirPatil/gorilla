@@ -105,7 +105,10 @@ class GeminiHandler(BaseHandler):
                 )
             )
 
-        tools = [Tool(function_declarations=func_declarations)]
+        if func_declarations:
+            tools = [Tool(function_declarations=func_declarations)]
+        else:
+            tools = []
 
         inference_data["inference_input_log"] = {
             "message": repr(inference_data["message"]),
