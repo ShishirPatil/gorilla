@@ -375,7 +375,7 @@ class TradingBot:
             return {"error": f"Invalid stock symbol: {symbol}"}
         if price <= 0 or amount <= 0:
             return {"error": "Price and amount must be positive values."}
-
+        price = float(price)
         order_id = self.order_counter
         self.orders[order_id] = {
             "id": order_id,
@@ -566,16 +566,10 @@ class TradingBot:
     
     def get_order_history(self) -> Dict[str, List[Dict[str, Union[str, int, float]]]]:
         """
-        Get the stock order history.
+        Get the stock order ID history.
 
         Returns:
-            order_history (List[Dict]): List of orders in the order history.
-                - id (int): Order ID.
-                - order_type (str): Type of the order. [Enum]: ["Buy", "Sell"]
-                - symbol (str): Symbol of the stock in the order.
-                - price (float): Price at which the order was placed.
-                - amount (int): Number of shares in the order.
-                - status (str): Current status of the order. [Enum]: ["Open", "Pending", "Completed", "Cancelled"]
+            order_history (List[int]): List of orders ID in the order history.
         """
         if not self.authenticated:
             return [
@@ -584,7 +578,7 @@ class TradingBot:
                 }
             ]
 
-        return {"history": list(self.orders.values())}
+        return {"history": list(self.orders.keys())}
 
     def get_transaction_history(
         self, start_date: Optional[str] = None, end_date: Optional[str] = None
