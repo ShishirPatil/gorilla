@@ -18,7 +18,6 @@ from google.api_core.exceptions import ResourceExhausted
 from tenacity import (
     retry,
     retry_if_exception_type,
-    stop_after_attempt,
     wait_random_exponential,
 )
 from vertexai.generative_models import (
