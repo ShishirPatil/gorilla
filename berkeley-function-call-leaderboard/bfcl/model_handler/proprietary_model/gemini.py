@@ -108,7 +108,7 @@ class GeminiHandler(BaseHandler):
         if func_declarations:
             tools = [Tool(function_declarations=func_declarations)]
         else:
-            tools = []
+            tools = None
 
         inference_data["inference_input_log"] = {
             "message": repr(inference_data["message"]),
@@ -133,7 +133,7 @@ class GeminiHandler(BaseHandler):
             generation_config=GenerationConfig(
                 temperature=self.temperature,
             ),
-            tools=tools if len(tools) > 0 else None,
+            tools=tools
         )
         return api_response
 
