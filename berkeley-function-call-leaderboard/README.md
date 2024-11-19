@@ -312,6 +312,20 @@ If you want to run `live_simple` and `javascript` tests for a few models and `go
 bfcl evaluate --model gorilla-openfunctions-v2 claude-3-5-sonnet-20240620 gpt-4-0125-preview gemini-1.5-pro-preview-0514 --test-category live_simple javascript
 ```
 
+#### WandB Evaluation Logging
+
+If you want to additionally log the evaluation results as WandB artifacts to a specific WandB entity and project, you can install wandb as an optional dependency:
+
+```bash
+pip install -e.[wandb]
+```
+
+And you can specify the entity and project name you want to log to on Wandb using the `WANDB_BFCL_PROJECT` environment variable in the `.env` file in the following format:
+
+```bash
+WANDB_BFCL_PROJECT=ENTITY:PROJECT
+```
+
 ### Model-Specific Optimization
 
 Some companies have proposed some optimization strategies in their models' handler, which we (BFCL) think is unfair to other models, as those optimizations are not generalizable to all models. Therefore, we have disabled those optimizations during the evaluation process by default. You can enable those optimizations by setting the `USE_{COMPANY}_OPTIMIZATION` flag to `True` in the `.env` file.

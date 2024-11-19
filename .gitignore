@@ -34,3 +34,6 @@ berkeley-function-call-leaderboard/utils/ground_truth_conversation/
 
 .direnv/
 .venv
+
+# Ignore the wandb cache:
+**/wandb/
