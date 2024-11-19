@@ -179,6 +179,14 @@ class GeminiHandler(BaseHandler):
                 text_parts.append(part.text)
 
         model_responses = fc_parts if fc_parts else text_parts
+        
+        if len(api_response.candidates[0].content.parts) == 0:
+            response_function_call_content = Content(
+                role="model",
+                parts=[
+                    Part.from_text("The model did not return any response."),
+                ],
+            )
 
         return {
             "model_responses": model_responses,
