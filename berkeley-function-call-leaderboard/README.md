@@ -320,7 +320,7 @@ If you want to additionally log the evaluation results as WandB artifacts to a s
 pip install -e.[wandb]
 ```
 
-And you can specify the entity and project name you want to log to on Wandb using the WANDB_PROJECT environment variable in the `.env`file in the following format:
+And you can specify the entity and project name you want to log to on Wandb using the `WANDB_BFCL_PROJECT` environment variable in the `.env` file in the following format:
 
 ```bash
 WANDB_BFCL_PROJECT=ENTITY:PROJECT

@@ -563,7 +563,7 @@ def generate_leaderboard_csv(
     #     )
 
     wandb_project = os.getenv("WANDB_BFCL_PROJECT")
-    if wandb_project != "ENTITY:PROJECT":
+    if wandb_project and wandb_project != "ENTITY:PROJECT":
         import wandb
 
         # Initialize WandB run
