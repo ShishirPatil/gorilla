@@ -179,6 +179,14 @@ class GeminiHandler(BaseHandler):
                 text_parts.append(part.text)
 
         model_responses = fc_parts if fc_parts else text_parts
+        
+        if len(api_response.candidates[0].content.parts) == 0:
+            response_function_call_content = Content(
+                role="model",
+                parts=[
+                    Part.from_text("The model did not return any response."),
+                ],
+            )
 
         return {
             "model_responses": model_responses,
@@ -210,10 +218,9 @@ class GeminiHandler(BaseHandler):
     def _add_assistant_message_FC(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
-        if len(model_response_data["model_responses_message_for_chat_history"].parts):
-            inference_data["message"].append(
-                model_response_data["model_responses_message_for_chat_history"]
-            )
+        inference_data["message"].append(
+            model_response_data["model_responses_message_for_chat_history"]
+        )
         return inference_data
 
     def _add_execution_results_FC(
