@@ -185,7 +185,6 @@ def evaluate(
         "-c",
         help="Perform the REST API status sanity check before running the evaluation.",
     ),
-
 ):
     """
     Evaluate results from run of one or more models on a test-category (same as eval_runner.py).
