@@ -18,7 +18,6 @@ from google.api_core.exceptions import ResourceExhausted
 from tenacity import (
     retry,
     retry_if_exception_type,
-    stop_after_attempt,
     wait_random_exponential,
 )
 from vertexai.generative_models import (
@@ -80,7 +79,6 @@ class GeminiHandler(BaseHandler):
 
     @retry(
         wait=wait_random_exponential(min=6, max=120),
-        stop=stop_after_attempt(10),
         retry=retry_if_exception_type(ResourceExhausted),
         before_sleep=lambda retry_state: print(
             f"Attempt {retry_state.attempt_number} failed. Sleeping for {float(round(retry_state.next_action.sleep, 2))} seconds before retrying..."
@@ -105,7 +103,10 @@ class GeminiHandler(BaseHandler):
                 )
             )
 
-        tools = [Tool(function_declarations=func_declarations)]
+        if func_declarations:
+            tools = [Tool(function_declarations=func_declarations)]
+        else:
+            tools = None
 
         inference_data["inference_input_log"] = {
             "message": repr(inference_data["message"]),
@@ -130,7 +131,7 @@ class GeminiHandler(BaseHandler):
             generation_config=GenerationConfig(
                 temperature=self.temperature,
             ),
-            tools=tools if len(tools) > 0 else None,
+            tools=tools
         )
         return api_response
 
@@ -178,6 +179,14 @@ class GeminiHandler(BaseHandler):
                 text_parts.append(part.text)
 
         model_responses = fc_parts if fc_parts else text_parts
+        
+        if len(api_response.candidates[0].content.parts) == 0:
+            response_function_call_content = Content(
+                role="model",
+                parts=[
+                    Part.from_text("The model did not return any response."),
+                ],
+            )
 
         return {
             "model_responses": model_responses,
