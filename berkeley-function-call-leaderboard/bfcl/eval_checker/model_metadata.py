@@ -92,7 +92,7 @@ MODEL_METADATA_MAPPING = {
         "Apache 2.0",
     ],
     "claude-3-opus-20240229-FC": [
-        "Claude-3-Opus-20240229 (FC tools-2024-04-04)",
+        "Claude-3-Opus-20240229 (FC)",
         "https://www.anthropic.com/news/claude-3-family",
         "Anthropic",
         "Proprietary",
@@ -152,7 +152,7 @@ MODEL_METADATA_MAPPING = {
         "Proprietary",
     ],
     "claude-3-sonnet-20240229-FC": [
-        "Claude-3-Sonnet-20240229 (FC tools-2024-04-04)",
+        "Claude-3-Sonnet-20240229 (FC)",
         "https://www.anthropic.com/news/claude-3-family",
         "Anthropic",
         "Proprietary",
@@ -164,7 +164,7 @@ MODEL_METADATA_MAPPING = {
         "Proprietary",
     ],
     "claude-3-haiku-20240307-FC": [
-        "Claude-3-Haiku-20240307 (FC tools-2024-04-04)",
+        "Claude-3-Haiku-20240307 (FC)",
         "https://www.anthropic.com/news/claude-3-family",
         "Anthropic",
         "Proprietary",
@@ -176,7 +176,7 @@ MODEL_METADATA_MAPPING = {
         "Proprietary",
     ],
     "claude-3-5-haiku-20241022-FC": [
-        "claude-3.5-haiku-20241022 (FC tools-2024-04-04)",
+        "claude-3.5-haiku-20241022 (FC)",
         "https://www.anthropic.com/news/3-5-models-and-computer-use",
         "Anthropic",
         "Proprietary",
