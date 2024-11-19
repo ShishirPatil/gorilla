@@ -615,10 +615,10 @@ def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir
     )
 
     print(
-        f"🏁 Evaluation completed. See {score_dir / 'data_overall.csv'} for evaluation results on BFCL V3."
+        f"🏁 Evaluation completed. See {score_dir / 'data_overall.csv'} for overall evaluation results on BFCL V3."
     )
     print(
-        f"See {score_dir / 'data_live.csv'} and {score_dir / 'data_non_live.csv'} for evaluation results on BFCL V3 Live and Non-Live categories respectively."
+        f"See {score_dir / 'data_live.csv'}, {score_dir / 'data_non_live.csv'} and {score_dir / 'data_multi_turn.csv'} for detailed evaluation results on each sub-section categories respectively."
     )
 
 
