@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Nov 18, 2024] [#768](https://github.com/ShishirPatil/gorilla/pull/768), [#770](https://github.com/ShishirPatil/gorilla/pull/770): Resolve issues in Gemini models (FC mode) related to handling scenarios with no tools available and cases where the model output is empty.
 - [Nov 17, 2024] [#767](https://github.com/ShishirPatil/gorilla/pull/767): Fix price and latency calculation. A merge conflict results in a duplicate line, and counting the input and output token for each entry multiple times.
 - [Nov 15, 2024] [#762](https://github.com/ShishirPatil/gorilla/pull/762): Supply `data_multi_turn.csv` for multi-turn evaluation results
 - [Nov 14, 2024] [#760](https://github.com/ShishirPatil/gorilla/pull/760), [#761](https://github.com/ShishirPatil/gorilla/pull/761): Upstream  `google-cloud-aiplatform` library fixed typecasting bugs in Function Calling. Updated to version `1.72.0` and remove the workaround patch introduced in [#648](https://github.com/ShishirPatil/gorilla/pull/648).
