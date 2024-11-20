@@ -1,4 +1,3 @@
-import logging
 import os
 
 import vertexai
@@ -29,7 +28,6 @@ from vertexai.generative_models import (
     Tool,
 )
 
-logging.basicConfig(level=logging.INFO)
 
 class GeminiHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:

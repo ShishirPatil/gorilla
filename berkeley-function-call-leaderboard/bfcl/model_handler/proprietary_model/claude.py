@@ -92,7 +92,9 @@ class ClaudeHandler(BaseHandler):
 
         return self.client.beta.prompt_caching.messages.create(
             model=self.model_name.strip("-FC"),
-            max_tokens=(8192 if "claude-3-5-sonnet-20240620" in self.model_name else 4096),
+            max_tokens=(
+                8192 if "claude-3-5" in self.model_name else 4096
+            ),  # 3.5 Sonnet has a higher max token limit
             tools=inference_data["tools"],
             messages=messages,
         )
