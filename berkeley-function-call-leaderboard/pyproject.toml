@@ -30,7 +30,8 @@ dependencies = [
     "tabulate>=0.9.0",
     "google-cloud-aiplatform==1.72.0",
     "mpmath==1.3.0",
-    "tenacity==9.0.0"
+    "tenacity==9.0.0",
+    "transformers==4.46.3"
 ]
 
 [project.scripts]
