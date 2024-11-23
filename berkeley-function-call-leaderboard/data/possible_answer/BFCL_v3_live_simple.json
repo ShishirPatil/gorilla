@@ -11,7 +11,7 @@
 {"id": "live_simple_10-3-6", "ground_truth": [{"get_current_weather": {"location": ["Mariposa, CA"], "unit": ["celsius"]}}]}
 {"id": "live_simple_11-3-7", "ground_truth": [{"get_current_weather": {"location": ["Naples, FL", "Naples, Florida"], "unit": ["", "fahrenheit"]}}]}
 {"id": "live_simple_12-3-8", "ground_truth": [{"get_current_weather": {"location": ["New York, NY"], "unit": ["celsius"]}}]}
-{"id": "live_simple_13-3-9", "ground_truth": [{"get_current_weather": {"location": ["Shanghai, China","上海,中国"], "unit": ["celsius"]}}]}
+{"id": "live_simple_13-3-9", "ground_truth": [{"get_current_weather": {"location": ["Shanghai, China", "\\u4e0a\\u6d77,\\u4e2d\\u56fd"], "unit": ["celsius"]}}]}
 {"id": "live_simple_14-3-10", "ground_truth": [{"get_current_weather": {"location": ["Bangkok, Thailand"], "unit": ["", "fahrenheit"]}}]}
 {"id": "live_simple_15-3-11", "ground_truth": [{"get_current_weather": {"location": ["Chennai, Tamil Nadu"], "unit": ["", "fahrenheit"]}}]}
 {"id": "live_simple_16-3-12", "ground_truth": [{"get_current_weather": {"location": ["Lang Son, Vietnam"], "unit": ["", "fahrenheit"]}}]}
@@ -122,7 +122,7 @@
 {"id": "live_simple_121-77-0", "ground_truth": [{"generate_chart": {"data_labels": [["Software Engineer", "Graphic Designer", "Data Analyst", "Sales Manager", "Nurse"]], "data_values": [[90000, 50000, 70000, 60000, 80000]]}}]}
 {"id": "live_simple_122-78-0", "ground_truth": [{"process_data": {"image_path": ["image.png"], "question": ["generate with technically complex attention to detail a description of what you see"], "model": ["vikhyatk/moondream2"]}}]}
 {"id": "live_simple_123-79-0", "ground_truth": [{"pipeline": {"image_path": ["http://www.thewowstyle.com/wp-content/uploads/2015/01/Home-Interior-Design-Hd-Wallpaper-Hd-Background-With-Simple-Staircase-And-Plasma-TV-Also-Nice-Laminate-Flooring-Ideas-With-Modern-Furniture-Interior-Minimalist-Design.jpg"], "question": ["How does the arrangement of furniture contribute to the minimalist design of the interior?"]}}]}
-{"id": "live_simple_124-80-0", "ground_truth": [{"get_tickets": {"customer": ["\u7ea2\u661f\u79d1\u6280","红星科技"], "status": ["open"], "limit": [10]}}]}
+{"id": "live_simple_124-80-0", "ground_truth": [{"get_tickets": {"customer": ["\u7ea2\u661f\u79d1\u6280"], "status": ["open"], "limit": [10]}}]}
 {"id": "live_simple_125-81-0", "ground_truth": [{"concat_strings": {"strings": [["John", "Doe"]], "separator": [" "]}}]}
 {"id": "live_simple_126-82-0", "ground_truth": [{"telemetry.flowrules.interfaceInfo.get": {"fabricName": ["Global-Fabric"], "nodeId": [1200], "podId": [3], "interfaceType": ["ethernet"], "infoType": ["status"]}}]}
 {"id": "live_simple_127-82-1", "ground_truth": [{"telemetry.flowrules.interfaceInfo.get": {"fabricName": ["test-de"], "nodeId": [5], "podId": [1], "interfaceType": ["ethernet"], "infoType": ["status"]}}]}
@@ -225,7 +225,7 @@
 {"id": "live_simple_224-117-16", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Tim Burton"], "genre": ["Offbeat"], "cast": ["Johnny Depp"]}}]}
 {"id": "live_simple_225-117-17", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Kirill Mikhanovsky"], "genre": ["Comedy-drama"], "cast": ["", "dontcare"]}}]}
 {"id": "live_simple_226-118-0", "ground_truth": [{"text_to_speech.convert": {"text": ["I am a pretty girl","Soy una chica bonita"], "language": ["es-ES"], "gender": ["", "female"], "format": ["", "mp3"], "speed": ["", 1.0]}}]}
-{"id": "live_simple_227-118-1", "ground_truth": [{"text_to_speech.convert": {"text": ["\u6211\u7231\u5b66\u4e60","我爱学习"], "language": ["zh-CN"], "gender": ["male"], "format": ["wav"], "speed": ["", 1.0]}}]}
+{"id": "live_simple_227-118-1", "ground_truth": [{"text_to_speech.convert": {"text": ["\u6211\u7231\u5b66\u4e60"], "language": ["zh-CN"], "gender": ["male"], "format": ["wav"], "speed": ["", 1.0]}}]}
 {"id": "live_simple_228-119-0", "ground_truth": [{"text_to_speech.convert": {"text": ["I am a pretty girl"], "language": ["", "en-US"], "gender": ["", "female"], "speed": ["", 1.0]}}]}
 {"id": "live_simple_229-120-0", "ground_truth": [{"requests.get": {"anchor": ["user"]}}]}
 {"id": "live_simple_230-121-0", "ground_truth": [{"play_song": {"song_id": ["wjeiruhuq_roar"], "artist": ["Katy Perry"], "quality": ["high"], "device_id": ["", null]}}]}
