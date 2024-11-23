@@ -55,8 +55,7 @@
 #leaderboard td:nth-child(24),
 #leaderboard td:nth-child(25),
 #leaderboard td:nth-child(26),
-#leaderboard td:nth-child(27),
-#leaderboard td:nth-child(28) {
+#leaderboard td:nth-child(27){
     background-color: #efabdf;
 }
 

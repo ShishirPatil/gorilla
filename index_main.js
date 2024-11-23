@@ -659,6 +659,19 @@ async function init(datasetName) {
             button.setAttribute('data-expanded', !isExpanded);
         });
     });
+
+    document.getElementById("search-btn").addEventListener("click", () => {
+        const keyword = document.getElementById("search-input").value.trim();
+        filterTableByModelName(keyword);
+    });
+
+    document.getElementById("search-input").addEventListener("input", () => {
+        const keyword = document.getElementById("search-input").value.trim();
+        filterTableByModelName(keyword);
+        // if (keyword === "") {
+        //     filterTableByModelName(""); // Show all rows when input is cleared
+        // }
+    });
 }
 
 // Initialize the table header creation when the page loads
@@ -676,33 +689,6 @@ function parseCSV_leaderboard(text, datasetName) {
             }
             return value;
         });
-        // if (datasetName == "combined") {
-        //     result[i].splice(result[i].length, 0, result[i][4]);
-        //     result[i].splice(result[i].length, 0, result[i][5]);
-        //     result[i].splice(4, 2);
-        //     result[i].splice(4, 0, result[i][result[i].length - 6]);
-        //     result[i].splice(5, 0, result[i][result[i].length - 5]);
-        //     result[i].splice(8, 0, result[i][result[i].length - 8]);
-        //     result[i].splice(9, 0, result[i][result[i].length - 7]);
-        //     result[i].splice(10, 0, result[i][result[i].length - 6]);
-        //     result[i].splice(11, 0, result[i][result[i].length - 5]);
-        //     result[i].splice(12, 0, result[i][result[i].length - 4]);
-        //     result[i].splice(13, 0, result[i][result[i].length - 3]);
-        //     result[i].splice(result[i].length - 6, 4);
-        // } else if (datasetName == "live") {
-        //     result[i].splice(result[i].length, 0, result[i][4]);
-        //     result[i].splice(result[i].length, 0, result[i][5]);
-        //     result[i].splice(4, 2);
-        //     result[i].splice(4, 0, result[i][result[i].length - 6]);
-        //     result[i].splice(5, 0, result[i][result[i].length - 5]);
-        //     result[i].splice(7, 0, result[i][result[i].length - 8]);
-        //     result[i].splice(8, 0, result[i][result[i].length - 7]);
-        //     result[i].splice(9, 0, result[i][result[i].length - 6]);
-        //     result[i].splice(10, 0, result[i][result[i].length - 5]);
-        //     result[i].splice(11, 0, result[i][result[i].length - 4]);
-        //     result[i].splice(12, 0, result[i][result[i].length - 3]);
-        //     result[i].splice(result[i].length - 6, 4);
-        // }
     }
     console.log(result)
     return result;
@@ -949,7 +935,7 @@ function generateChart(csvData) {
                 csvData[i][13],
                 csvData[i][18],
                 csvData[i][23],
-                csvData[i][30],
+                csvData[i][29],
             ],
             fill: true,
             backgroundColor: convertRGBtoRGBA(color[i - 1]),
@@ -1325,3 +1311,22 @@ function updateStickyColumnsLeft() {
     }
 }
 
+// Function to filter table rows based on search input
+function filterTableByModelName(keyword) {
+    const tableRows = document.querySelectorAll("#leaderboard-table tbody tr");
+    const searchTerm = keyword.toLowerCase();
+
+    tableRows.forEach(row => {
+        const modelNameCell = row.querySelector("td:nth-child(3)"); // Assuming the model name is in the 3rd column
+        if (modelNameCell) {
+            const modelName = modelNameCell.textContent.toLowerCase();
+            if (modelName.includes(searchTerm)) {
+                row.style.display = ""; // Show row if it matches
+            } else {
+                row.style.display = "none"; // Hide row if it doesn't match
+            }
+        }
+    });
+
+    console.log("called function")
+}
