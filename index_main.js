@@ -396,10 +396,7 @@ function buildHeader(formKey, headerData) {
                 th.appendChild(button);
             }
 
-            // Disable Multiturn Composite Column
-            if (!col.disabled) {
-                tr.appendChild(th);
-            }
+            tr.appendChild(th);
         });
         tableHead.appendChild(tr);
     });
@@ -751,9 +748,7 @@ function addToTable(dataArray) {
                     td.className = "multiturn-sub-cell";
                 }
 
-                if (cellIndex != 28) {
-                    tr.appendChild(td);
-                }
+                tr.appendChild(td);
             }
 
             tbody.appendChild(tr);
