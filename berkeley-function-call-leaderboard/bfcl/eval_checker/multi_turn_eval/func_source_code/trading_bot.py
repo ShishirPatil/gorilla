@@ -700,10 +700,10 @@ class TradingBot:
         Add a list of stocks to the watchlist.
 
         Args:
-            stock (str): stock symbols to add to the watchlist.
+            stock (str): the stock symbol to add to the watchlist.
 
         Returns:
-            symbols (str): symbol that were successfully added to the watchlist.
+            symbol (str): the symbol that were successfully added to the watchlist.
         """
         if stock not in self.watch_list:
             if stock in self.stocks:  # Ensure symbol is valid
