@@ -695,21 +695,20 @@ class TradingBot:
         ]
         return {"filtered_stocks": filtered_stocks}
 
-    def add_to_watchlist(self, stocks: List[str]) -> Dict[str, List[str]]:
+    def add_to_watchlist(self, stock: str) -> Dict[str, List[str]]:
         """
         Add a list of stocks to the watchlist.
 
         Args:
-            stocks (List[str]): List of stock symbols to add to the watchlist.
+            stock (str): stock symbols to add to the watchlist.
 
         Returns:
-            symbols (List[str]): List of stock symbols that were successfully added to the watchlist.
+            symbols (str): symbol that were successfully added to the watchlist.
         """
-        for symbol in stocks:
-            if symbol not in self.watch_list:
-                if symbol in self.stocks:  # Ensure symbol is valid
-                    self.watch_list.append(symbol)
-        return {"symbols": self.watch_list}
+        if stock not in self.watch_list:
+            if stock in self.stocks:  # Ensure symbol is valid
+                self.watch_list.append(stock)
+        return {"symbol": self.watch_list}
 
     def notify_price_change(self, stocks: List[str], threshold: float) -> Dict[str, str]:
         """
