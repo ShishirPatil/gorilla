@@ -4,23 +4,21 @@ from bfcl._llm_response_generation import (
     parse_test_category_argument,
     process_multi_turn_test_case,
 )
-from bfcl.constant import PROMPT_PATH
-from bfcl.utils import load_file, is_java, is_js
+from bfcl.constant import POSSIBLE_ANSWER_PATH, PROMPT_PATH
+from bfcl.utils import (
+    is_executable,
+    is_java,
+    is_js,
+    is_multi_turn,
+    is_relevance_or_irrelevance,
+    load_file,
+    write_list_of_dicts_to_file,
+)
 
 """
 This script checks for illegal function parameter names in Python.
 Credit to Pan Yinxu (@Cppowboy) for the original idea and implementation
 """
-
-def rename_tool(tool, model_name):
-    properties = {}
-    for key, value in tool["parameters"]["properties"].items():
-        if key in kwlist:
-            properties["_" + key] = value
-        else:
-            properties[key] = value
-    tool["parameters"]["properties"] = properties
-    return tool
 
 
 test_categories_total, test_filename_total = parse_test_category_argument(["all"])
@@ -30,15 +28,47 @@ for test_category, file_path in zip(test_categories_total, test_filename_total):
     if is_java(test_category) or is_js(test_category):
         continue
     dataset_data = load_file(PROMPT_PATH / file_path)
-    dataset_data = process_multi_turn_test_case(
-        dataset_data, test_category
-    )
+    dataset_data = process_multi_turn_test_case(dataset_data, test_category)
     for test_entry in dataset_data:
         for function in test_entry["function"]:
             if "parameters" in function and "properties" in function["parameters"]:
+                properties = {}
                 for param_name, param_description in function["parameters"]["properties"].items():
                     if param_name in kwlist:
                         print("--------------------")
                         print(f"Illegal parameter name: {param_name}")
                         print(f"Entry ID: {test_entry['id']}")
                         print(f"Function: {function['name']}")
+                        if is_multi_turn(test_category):
+                            raise ValueError("Illegal parameter name in multi-turn test case; cannot be automatically fixed")
+                        properties["_" + param_name] = param_description
+                    else:
+                        properties[param_name] = param_description
+                function["parameters"]["properties"] = properties
+    write_list_of_dicts_to_file(file_path, dataset_data, subdir=PROMPT_PATH)
+
+    if (
+        is_executable(test_category)
+        or is_relevance_or_irrelevance(test_category)
+        or is_multi_turn(test_category)
+    ):
+        continue
+
+    ground_truth_data = load_file(POSSIBLE_ANSWER_PATH / file_path)
+    for ground_truth_entry in ground_truth_data:
+        for ground_truth in ground_truth_entry["ground_truth"]:
+            ground_truth: dict
+            assert len(ground_truth.keys()) == 1
+            function_name = list(ground_truth.keys())[0]
+            properties = {}
+            for param_name, param_description in ground_truth[function_name].items():
+                if param_name in kwlist:
+                    print("--------------------")
+                    print(f"Illegal parameter name: {param_name}")
+                    print(f"Ground Truth ID: {ground_truth_entry['id']}")
+                    print(f"Function: {function_name}")
+                    properties["_" + param_name] = param_description
+                else:
+                    properties[param_name] = param_description
+            ground_truth[function_name] = properties
+    write_list_of_dicts_to_file(file_path, ground_truth_data, subdir=POSSIBLE_ANSWER_PATH)
