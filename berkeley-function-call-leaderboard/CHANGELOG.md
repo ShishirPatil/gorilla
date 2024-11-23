@@ -2,6 +2,11 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Nov 19, 2024] [#750](https://github.com/ShishirPatil/gorilla/pull/750): Add the following new models to the leaderboard:
+  - `claude-3-5-haiku-20241022`
+  - `claude-3-5-haiku-20241022-FC`
+  - `claude-3-5-sonnet-20241022`
+  - `claude-3-5-sonnet-20241022-FC`
 - [Nov 18, 2024] [#736](https://github.com/ShishirPatil/gorilla/pull/736): Add the option to additionally log the evaluation results to [WandB](https://github.com/wandb/wandb) artifacts. User can enable this feature by providing the entity and project name in `WANDB_BFCL_PROJECT` in the `.env` file.
 - [Nov 18, 2024] [#768](https://github.com/ShishirPatil/gorilla/pull/768), [#770](https://github.com/ShishirPatil/gorilla/pull/770): Resolve issues in Gemini models (FC mode) related to handling scenarios with no tools available and cases where the model output is empty.
 - [Nov 17, 2024] [#767](https://github.com/ShishirPatil/gorilla/pull/767): Fix price and latency calculation. A merge conflict results in a duplicate line, and counting the input and output token for each entry multiple times.
