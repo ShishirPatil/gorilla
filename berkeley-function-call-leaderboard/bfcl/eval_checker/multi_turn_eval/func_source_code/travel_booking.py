@@ -509,6 +509,7 @@ class TravelAPI:
                 "booking_status": False,
                 "error": "Balance is less than budget limit",
             }
+        travel_cost = float(travel_cost)
         self.credit_card_list[card_id]["balance"] -= travel_cost
         booking_id = str(self._random.randint(1000000, 9999999))  # 7 digits
         transaction_id = str(self._random.randint(10000000, 99999999))  # 8 digits
@@ -738,6 +739,7 @@ class TravelAPI:
         if access_token != self.access_token:
             self.token_expires_in -= 1
             return {"error": "Invalid access token"}
+        budget_limit = float(budget_limit)
         self.budget_limit = budget_limit
         return {"budget_limit": budget_limit}
 
