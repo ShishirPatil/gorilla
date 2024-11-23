@@ -150,8 +150,10 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |gorilla-openfunctions-v2 | Function Calling|
 |claude-3-{opus-20240229,sonnet-20240229,haiku-20240307}-FC | Function Calling |
 |claude-3-{opus-20240229,sonnet-20240229,haiku-20240307} | Prompt |
-|claude-3-5-sonnet-20240620-FC | Function Calling |
-|claude-3-5-sonnet-20240620 | Prompt |
+|claude-3-5-sonnet-{20240620,20241022}-FC | Function Calling |
+|claude-3-5-sonnet-{20240620,20241022} | Prompt |
+|claude-3-5-haiku-20241022-FC | Function Calling |
+|claude-3-5-haiku-20241022 | Prompt |
 |claude-{2.1,instant-1.2}| Prompt|
 |command-r-plus-FC | Function Calling|
 |command-r-plus | Prompt|
@@ -182,7 +184,6 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |meta-llama/Meta-Llama-3-{8B,70B}-Instruct 💻| Prompt|
 |meta-llama/Llama-3.1-{8B,70B}-Instruct-FC 💻| Function Calling|
 |meta-llama/Llama-3.1-{8B,70B}-Instruct 💻| Prompt|
-|meta-llama/Llama-3.2-{1B,3B}-Instruct-FC 💻| Function Calling|
 |meta-llama/Llama-3.2-{1B,3B}-Instruct 💻| Prompt|
 |open-mixtral-{8x7b,8x22b} | Prompt|
 |open-mixtral-8x22b-FC | Function Calling|
@@ -265,7 +266,6 @@ In the following two sections, the optional `--test-category` parameter can be u
   - `multi_turn_miss_func`: Multi-turn function calls with missing function.
   - `multi_turn_miss_param`: Multi-turn function calls with missing parameter.
   - `multi_turn_long_context`: Multi-turn function calls with long context.
-  - `multi_turn_composite`: Multi-turn function calls with missing function, missing parameter, and long context.
 - If no test category is provided, the script will run all available test categories. (same as `all`)
 
 > If you want to run the `all`, `non_live`, `executable` or `python` category, make sure to register your REST API keys in the `.env` file. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API!
@@ -312,6 +312,20 @@ If you want to run `live_simple` and `javascript` tests for a few models and `go
 
 ```bash
 bfcl evaluate --model gorilla-openfunctions-v2 claude-3-5-sonnet-20240620 gpt-4-0125-preview gemini-1.5-pro-preview-0514 --test-category live_simple javascript
+```
+
+#### WandB Evaluation Logging
+
+If you want to additionally log the evaluation results as WandB artifacts to a specific WandB entity and project, you can install wandb as an optional dependency:
+
+```bash
+pip install -e.[wandb]
+```
+
+And you can specify the entity and project name you want to log to on Wandb using the `WANDB_BFCL_PROJECT` environment variable in the `.env` file in the following format:
+
+```bash
+WANDB_BFCL_PROJECT=ENTITY:PROJECT
 ```
 
 ### Model-Specific Optimization
