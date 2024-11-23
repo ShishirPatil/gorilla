@@ -143,15 +143,15 @@
 {"id": "live_simple_142-94-1", "ground_truth": [{"cmd_controller.execute": {"command": ["dir Desktop"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_143-95-0", "ground_truth": [{"cmd_controller.execute": {"command": ["docker ps"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_144-95-1", "ground_truth": [{"cmd_controller.execute": {"command": ["taskkill /F /IM firefox.exe", "taskkill /IM firefox.exe /F", "taskkill /IM firefox.exe"], "unit": ["", "N/A"]}}]}
-{"id": "live_simple_145-95-2", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\","dir C:\\\\"], "unit": ["", "N/A"]}}]}
+{"id": "live_simple_145-95-2", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\", "dir C:\\\\"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_146-95-3", "ground_truth": [{"cmd_controller.execute": {"command": ["start https://huggingface.co"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_147-95-4", "ground_truth": [{"cmd_controller.execute": {"command": ["taskkill /F /IM timer.exe"], "unit": ["", "N/A"]}}]}
-{"id": "live_simple_148-95-5", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\","dir C:\\\\"], "unit": ["", "N/A"]}}]}
+{"id": "live_simple_148-95-5", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\", "dir C:\\\\"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_149-95-6", "ground_truth": [{"cmd_controller.execute": {"command": ["echo hi"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_150-95-7", "ground_truth": [{"cmd_controller.execute": {"command": ["shutdown /s /t 0"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_151-95-8", "ground_truth": [{"cmd_controller.execute": {"command": ["netsh wlan disconnect"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_152-95-9", "ground_truth": [{"cmd_controller.execute": {"command": ["dir D:\\\\ && echo testing.txt"], "unit": ["", "N/A"]}}]}
-{"id": "live_simple_153-95-10", "ground_truth": [{"cmd_controller.execute": {"command": ["del \"%userprofile%\\Desktop\\putty.lnk\"","del \\\"%userprofile%\\\\Desktop\\\\putty.lnk\\"], "unit": ["", "N/A"]}}]}
+{"id": "live_simple_153-95-10", "ground_truth": [{"cmd_controller.execute": {"command": ["del \"%userprofile%\\Desktop\\putty.lnk\"", "del \\\"%userprofile%\\\\Desktop\\\\putty.lnk\\"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_154-95-11", "ground_truth": [{"cmd_controller.execute": {"command": ["start https://www.youtube.com/watch?v=dQw4w9WgXcQ", "start https://www.youtube.com/watch?v=dQw4w9WgXcQ\\"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_155-95-12", "ground_truth": [{"cmd_controller.execute": {"command": ["date /t", "echo %date%"], "unit": ["", "N/A"]}}]}
 {"id": "live_simple_156-95-13", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\", "dir C:\\\\"], "unit": ["", "N/A"]}}]}
@@ -165,10 +165,10 @@
 {"id": "live_simple_164-97-0", "ground_truth": [{"get_copyright_info": {"copyright_content": ["Coca-Cola logo"], "copyright_holder": ["The Coca-Cola Company"], "confidence_score": [100.0]}}]}
 {"id": "live_simple_165-98-0", "ground_truth": [{"extractor.extract_information": {"data": [[{"name": ["\u674e\u96f7"], "age": [18]}, {"name": ["\u674e\u4e3d"], "age": [21]}]], "schema": ["personal_info"]}}]}
 {"id": "live_simple_166-99-0", "ground_truth": [{"cmd_controller.execute": {"command": ["echo %time%"]}}]}
-{"id": "live_simple_167-99-1", "ground_truth": [{"cmd_controller.execute": {"command": ["tasklist /FI \"IMAGENAME eq Code.exe\"","tasklist /FI \\\"IMAGENAME eq Code.exe\\\""]}}]}
+{"id": "live_simple_167-99-1", "ground_truth": [{"cmd_controller.execute": {"command": ["tasklist /FI \"IMAGENAME eq Code.exe\"", "tasklist /FI \\\"IMAGENAME eq Code.exe\\\""]}}]}
 {"id": "live_simple_168-99-2", "ground_truth": [{"cmd_controller.execute": {"command": ["docker start"]}}]}
 {"id": "live_simple_169-99-3", "ground_truth": [{"cmd_controller.execute": {"command": ["d:/playground/pc_contoller/env/Scripts/python.exe d:/playground/pc_contoller/test.py"]}}]}
-{"id": "live_simple_170-99-4", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\","dir C:\\\\"]}}]}
+{"id": "live_simple_170-99-4", "ground_truth": [{"cmd_controller.execute": {"command": ["dir C:\\", "dir C:\\\\"]}}]}
 {"id": "live_simple_171-99-5", "ground_truth": [{"cmd_controller.execute": {"command": ["echo %date%"]}}]}
 {"id": "live_simple_172-99-6", "ground_truth": [{"cmd_controller.execute": {"command": ["docker ps"]}}]}
 {"id": "live_simple_173-99-7", "ground_truth": [{"cmd_controller.execute": {"command": ["start calc"]}}]}
@@ -224,7 +224,7 @@
 {"id": "live_simple_223-117-15", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["", "dontcare"], "genre": ["Fantasy"], "cast": ["", "dontcare"]}}]}
 {"id": "live_simple_224-117-16", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Tim Burton"], "genre": ["Offbeat"], "cast": ["Johnny Depp"]}}]}
 {"id": "live_simple_225-117-17", "ground_truth": [{"Movies_3_FindMovies": {"directed_by": ["Kirill Mikhanovsky"], "genre": ["Comedy-drama"], "cast": ["", "dontcare"]}}]}
-{"id": "live_simple_226-118-0", "ground_truth": [{"text_to_speech.convert": {"text": ["I am a pretty girl","Soy una chica bonita"], "language": ["es-ES"], "gender": ["", "female"], "format": ["", "mp3"], "speed": ["", 1.0]}}]}
+{"id": "live_simple_226-118-0", "ground_truth": [{"text_to_speech.convert": {"text": ["I am a pretty girl", "Soy una chica bonita"], "language": ["es-ES"], "gender": ["", "female"], "format": ["", "mp3"], "speed": ["", 1.0]}}]}
 {"id": "live_simple_227-118-1", "ground_truth": [{"text_to_speech.convert": {"text": ["\u6211\u7231\u5b66\u4e60"], "language": ["zh-CN"], "gender": ["male"], "format": ["wav"], "speed": ["", 1.0]}}]}
 {"id": "live_simple_228-119-0", "ground_truth": [{"text_to_speech.convert": {"text": ["I am a pretty girl"], "language": ["", "en-US"], "gender": ["", "female"], "speed": ["", 1.0]}}]}
 {"id": "live_simple_229-120-0", "ground_truth": [{"requests.get": {"anchor": ["user"]}}]}
