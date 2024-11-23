@@ -697,7 +697,7 @@ class TradingBot:
 
     def add_to_watchlist(self, stock: str) -> Dict[str, List[str]]:
         """
-        Add a list of stocks to the watchlist.
+        Add a stock to the watchlist.
 
         Args:
             stock (str): the stock symbol to add to the watchlist.
