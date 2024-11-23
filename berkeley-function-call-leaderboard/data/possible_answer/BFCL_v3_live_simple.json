@@ -11,7 +11,7 @@
 {"id": "live_simple_10-3-6", "ground_truth": [{"get_current_weather": {"location": ["Mariposa, CA"], "unit": ["celsius"]}}]}
 {"id": "live_simple_11-3-7", "ground_truth": [{"get_current_weather": {"location": ["Naples, FL", "Naples, Florida"], "unit": ["", "fahrenheit"]}}]}
 {"id": "live_simple_12-3-8", "ground_truth": [{"get_current_weather": {"location": ["New York, NY"], "unit": ["celsius"]}}]}
-{"id": "live_simple_13-3-9", "ground_truth": [{"get_current_weather": {"location": ["Shanghai, China","上海,中国"], "unit": ["celsius"]}}]}
+{"id": "live_simple_13-3-9", "ground_truth": [{"get_current_weather": {"location": ["Shanghai, China", "\\u4e0a\\u6d77,\\u4e2d\\u56fd"], "unit": ["celsius"]}}]}
 {"id": "live_simple_14-3-10", "ground_truth": [{"get_current_weather": {"location": ["Bangkok, Thailand"], "unit": ["", "fahrenheit"]}}]}
 {"id": "live_simple_15-3-11", "ground_truth": [{"get_current_weather": {"location": ["Chennai, Tamil Nadu"], "unit": ["", "fahrenheit"]}}]}
 {"id": "live_simple_16-3-12", "ground_truth": [{"get_current_weather": {"location": ["Lang Son, Vietnam"], "unit": ["", "fahrenheit"]}}]}
