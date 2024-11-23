@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Nov 22, 2024] [#777](https://github.com/ShishirPatil/gorilla/pull/777), [#778](https://github.com/ShishirPatil/gorilla/pull/778): Fix dataset entries where the function doc contains illegal Python parameter names (such as `class`). 55 entries are affected.
 - [Nov 19, 2024] [#750](https://github.com/ShishirPatil/gorilla/pull/750): Add the following new models to the leaderboard:
   - `claude-3-5-haiku-20241022`
   - `claude-3-5-haiku-20241022-FC`
