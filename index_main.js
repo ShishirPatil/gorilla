@@ -935,7 +935,7 @@ function generateChart(csvData) {
                 csvData[i][13],
                 csvData[i][18],
                 csvData[i][23],
-                csvData[i][30],
+                csvData[i][29],
             ],
             fill: true,
             backgroundColor: convertRGBtoRGBA(color[i - 1]),
