@@ -20,7 +20,7 @@ This script checks for illegal function parameter names in Python.
 Credit to Pan Yinxu (@Cppowboy) for the original idea and implementation
 """
 
-
+entry_id_with_problem = set()
 test_categories_total, test_filename_total = parse_test_category_argument(["all"])
 
 for test_category, file_path in zip(test_categories_total, test_filename_total):
@@ -42,6 +42,7 @@ for test_category, file_path in zip(test_categories_total, test_filename_total):
                         if is_multi_turn(test_category):
                             raise ValueError("Illegal parameter name in multi-turn test case; cannot be automatically fixed")
                         properties["_" + param_name] = param_description
+                        entry_id_with_problem.add(test_entry["id"])
                     else:
                         properties[param_name] = param_description
                 function["parameters"]["properties"] = properties
@@ -68,7 +69,11 @@ for test_category, file_path in zip(test_categories_total, test_filename_total):
                     print(f"Ground Truth ID: {ground_truth_entry['id']}")
                     print(f"Function: {function_name}")
                     properties["_" + param_name] = param_description
+                    entry_id_with_problem.add(ground_truth_entry["id"])
                 else:
                     properties[param_name] = param_description
             ground_truth[function_name] = properties
     write_list_of_dicts_to_file(file_path, ground_truth_data, subdir=POSSIBLE_ANSWER_PATH)
+
+print("The following entries have illegal parameter names and has been fixed:")
+print(entry_id_with_problem)
