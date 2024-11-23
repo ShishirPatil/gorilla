@@ -670,9 +670,10 @@ async function init(datasetName) {
 
     document.getElementById("search-input").addEventListener("input", () => {
         const keyword = document.getElementById("search-input").value.trim();
-        if (keyword === "") {
-            filterTableByModelName(""); // Show all rows when input is cleared
-        }
+        filterTableByModelName(keyword);
+        // if (keyword === "") {
+        //     filterTableByModelName(""); // Show all rows when input is cleared
+        // }
     });
 }
 
