@@ -34,13 +34,9 @@ RETRY_DELAY = 65  # Delay in seconds
 def get_args():
     parser = argparse.ArgumentParser()
     # Refer to model_choice for supported models.
-    parser.add_argument(
-        "--model", type=str, default="gorilla-openfunctions-v2", nargs="+"
-    )
+    parser.add_argument("--model", type=str, default="gorilla-openfunctions-v2", nargs="+")
     # Refer to test_categories for supported categories.
-    parser.add_argument(
-        "--test-category", type=str, default="all", nargs="+"
-    )
+    parser.add_argument("--test-category", type=str, default="all", nargs="+")
 
     # Parameters for the model that you want to test.
     parser.add_argument("--temperature", type=float, default=0.001)
@@ -51,8 +47,8 @@ def get_args():
     parser.add_argument("--backend", default="vllm", type=str, choices=["vllm", "sglang"])
     parser.add_argument("--gpu-memory-utilization", default=0.9, type=float)
     parser.add_argument("--result-dir", default=None, type=str)
-    parser.add_argument("--test-ids-file", action="store_true", default=False)
-    parser.add_argument("--allow-overwrite", action="store_true", default=False)
+    parser.add_argument("--run-ids", action="store_true", default=False)
+    parser.add_argument("--allow-overwrite", "-o", action="store_true", default=False)
     args = parser.parse_args()
     return args
 
@@ -78,30 +74,25 @@ def parse_test_category_argument(test_category_args):
     return sorted(list(test_name_total)), sorted(list(test_filename_total))
 
 
-def get_involved_test_entries(test_category_args, test_ids_file):
-    all_test_file_paths, all_test_categories = parse_test_category_argument(test_category_args)
-    all_test_entries_involved = []
-    for test_category, file_to_open in zip(all_test_categories, all_test_file_paths):
-        all_test_entries_involved.extend(load_file(file_to_open))
-
-    if test_ids_file:
+def get_involved_test_entries(test_category_args, run_ids):
+    all_test_file_paths, all_test_categories, all_test_entries_involved = [], [], []
+    if run_ids:
         with open(TEST_IDS_TO_GENERATE_PATH) as f:
             test_ids_to_generate = json.load(f)
         for category, test_ids in test_ids_to_generate.items():
-            test_file_path = TEST_FILE_MAPPING[category]
-            if category in all_test_categories:
-                # All entries in that category has already been loaded, so there is no need to load individual entries
+            if len(test_ids) == 0:
                 continue
-            else:
-                all_test_entries_involved.extend(
-                    [
-                        entry
-                        for entry in load_file(test_file_path)
-                        if entry["id"] in test_ids
-                    ]
-                )
-                all_test_categories.append(category)
-                all_test_file_paths.append(test_file_path)
+            test_file_path = TEST_FILE_MAPPING[category]
+            all_test_entries_involved.extend(
+                [entry for entry in load_file(PROMPT_PATH / test_file_path) if entry["id"] in test_ids]
+            )
+            all_test_categories.append(category)
+            all_test_file_paths.append(test_file_path)
+
+    else:
+        all_test_categories, all_test_file_paths = parse_test_category_argument(test_category_args)
+        for test_category, file_to_open in zip(all_test_categories, all_test_file_paths):
+            all_test_entries_involved.extend(load_file(PROMPT_PATH / file_to_open))
 
     return all_test_file_paths, all_test_categories, all_test_entries_involved
 
@@ -117,21 +108,26 @@ def collect_test_cases(
 
         result_file_path = model_result_dir / file_to_open.replace(".json", "_result.json")
         if result_file_path.exists():
-            existing_result.extend(load_file(result_file_path))
+            # Not allowing overwrite, we will load the existing results
+            if not args.allow_overwrite:
+                existing_result.extend(load_file(result_file_path))
+            # Allow overwrite and not running specific test ids, we will delete the existing result file before generating new results
+            elif not args.run_ids:
+                result_file_path.unlink()
+            # Allow overwrite and running specific test ids, we will do nothing here
+            else:
+                pass
 
         existing_ids = [entry["id"] for entry in existing_result]
 
-    if not args.allow_overwrite:
-        test_cases_to_generate = [
-            test_case
-            for test_case in all_test_entries_involved
-            if test_case["id"] not in existing_ids
-        ]
-        test_cases_to_generate = process_multi_turn_test_case(
-            test_cases_to_generate, test_category
-        )
-    else:
-        test_cases_to_generate = all_test_entries_involved
+    test_cases_to_generate = [
+        test_case
+        for test_case in all_test_entries_involved
+        if test_case["id"] not in existing_ids
+    ]
+    test_cases_to_generate = process_multi_turn_test_case(
+        test_cases_to_generate, test_category
+    )
 
     return sorted(test_cases_to_generate, key=sort_key)
 
@@ -257,8 +253,8 @@ def generate_results(args, model_name, test_cases_total):
                     # This will wait for the task to complete, so that we are always writing in order
                     result = future.result()
                     handler.write(
-                        result, result_dir=args.result_dir, update_mode=update_mode
-                    )
+                        result, result_dir=args.result_dir, update_mode=args.run_ids
+                    )  # Only when we run specific test ids, we will need update_mode=True to keep entries in the same order
                     pbar.update()
 
 
@@ -270,7 +266,7 @@ def main(args):
         args.test_category = [args.test_category]
 
     all_test_file_paths, all_test_categories, all_test_entries_involved = (
-        get_involved_test_entries(args.test_category, args.test_ids_file)
+        get_involved_test_entries(args.test_category, args.run_ids)
     )
 
     # print(f"Generating results for {args.model} on test category: {test_name_total}.")  FIXME

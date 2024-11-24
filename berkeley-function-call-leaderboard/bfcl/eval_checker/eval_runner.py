@@ -498,12 +498,12 @@ def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir
 
             print(f"🔍 Running test: {test_category}")
 
-            model_result = load_file(model_result_json)
+            model_result = load_file(model_result_json, sort_by_id=True)
             record_cost_latency(LEADERBOARD_TABLE, model_name, model_result)
 
             # Find the corresponding test file
             prompt_file = find_file_with_suffix(PROMPT_PATH, test_category)
-            prompt = load_file(prompt_file)
+            prompt = load_file(prompt_file, sort_by_id=True)
 
             if is_relevance_or_irrelevance(test_category):
                 accuracy, total_count = relevance_file_runner(
@@ -551,7 +551,7 @@ def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir
                     )
                     EXECUTABLE_TEST_CATEGORIES_HAVE_RUN.append(test_category)
                     # Need to re-load the prompt file after getting the expected output, as the prompt file has been updated
-                    prompt = load_file(prompt_file)
+                    prompt = load_file(prompt_file, sort_by_id=True)
 
                 accuracy, total_count = executable_file_runner(
                     handler, model_result, prompt, model_name, test_category, score_dir
@@ -567,7 +567,7 @@ def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir
             possible_answer_file = find_file_with_suffix(
                 POSSIBLE_ANSWER_PATH, test_category
             )
-            possible_answer = load_file(possible_answer_file)
+            possible_answer = load_file(possible_answer_file, sort_by_id=True)
 
             if is_multi_turn(test_category):
                 accuracy, total_count = multi_turn_runner(
@@ -651,7 +651,7 @@ def main(model, test_category, api_sanity_check, result_dir, score_dir):
             # We patch it here to avoid confusing the user.
             model_names.append(model_name.replace("/", "_"))
 
-    runner(model_names, test_categories, api_sanity_check)
+    runner(model_names, test_categories, api_sanity_check, result_dir, score_dir)
 
 
 def get_handler(model_name):

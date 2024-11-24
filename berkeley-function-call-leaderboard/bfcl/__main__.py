@@ -1,8 +1,7 @@
 import csv
 from collections import namedtuple
 from datetime import datetime
-from pathlib import Path
-from typing import List, Optional
+from typing import List
 
 import typer
 from bfcl._llm_response_generation import main as generation_main
@@ -17,7 +16,6 @@ from bfcl.eval_checker.eval_runner import main as evaluation_main
 from bfcl.model_handler.handler_map import HANDLER_MAP
 from dotenv import load_dotenv
 from tabulate import tabulate
-from typing_extensions import Annotated
 
 
 class ExecutionOrderGroup(typer.core.TyperGroup):
@@ -91,21 +89,24 @@ def generate(
     ),
     num_gpus: int = typer.Option(1, help="The number of GPUs to use."),
     num_threads: int = typer.Option(1, help="The number of threads to use."),
-    gpu_memory_utilization: float = typer.Option(
-        0.9, help="The GPU memory utilization."
-    ),
-    backend: str = typer.Option(
-        "vllm", help="The backend to use for the model."
-    ),
+    gpu_memory_utilization: float = typer.Option(0.9, help="The GPU memory utilization."),
+    backend: str = typer.Option("vllm", help="The backend to use for the model."),
     result_dir: str = typer.Option(
-        RESULT_PATH, "--result-dir", help="Path to the folder where output files will be stored."
+        RESULT_PATH,
+        "--result-dir",
+        help="Path to the folder where output files will be stored.",
     ),
-    rerun: str = typer.Option(
-        None, "--rerun", help="Rerun selected test cases, input path to a file containing a list of test cases to rerun."
+    allow_overwrite: bool = typer.Option(
+        False,
+        "--allow-overwrite",
+        "-o",
+        help="Allow overwriting existing results for regeneration.",
     ),
-    rerun_all: bool = typer.Option(
-        False, "--rerun-all", help="Rerun all test cases, overwriting existing generated files"
-    )
+    run_ids: bool = typer.Option(
+        False,
+        "--run-ids",
+        help="If true, also run the test entry mentioned in the test_case_ids_to_generate.json file, in addition to the --test_category argument.",
+    ),
 ):
     """
     Generate the LLM response for one or more models on a test-category (same as openfunctions_evaluation.py).
@@ -123,8 +124,8 @@ def generate(
             "gpu_memory_utilization",
             "backend",
             "result_dir",
-            "rerun",
-            "rerun_all",
+            "allow_overwrite",
+            "run_ids",
         ],
     )
 
@@ -141,8 +142,8 @@ def generate(
             gpu_memory_utilization=gpu_memory_utilization,
             backend=backend,
             result_dir=result_dir,
-            rerun=rerun,
-            rerun_all=rerun_all,
+            allow_overwrite=allow_overwrite,
+            run_ids=run_ids,
         )
     )
 
@@ -190,9 +191,7 @@ def results(
         results_data.append(
             (
                 display_name(dir.name),
-                datetime.fromtimestamp(dir.stat().st_ctime).strftime(
-                    "%Y-%m-%d %H:%M:%S"
-                ),
+                datetime.fromtimestamp(dir.stat().st_ctime).strftime("%Y-%m-%d %H:%M:%S"),
             )
         )
 
@@ -234,6 +233,7 @@ def evaluate(
 
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
     evaluation_main(model, test_category, api_sanity_check, result_dir, score_dir)
+
 
 @cli.command()
 def scores(
@@ -277,7 +277,10 @@ def scores(
             data = [
                 [row[i] for i in column_indices] for row in reader
             ]  # Read the rest of the data
-            selected_columns = selected_columns[:-2] + ["Relevance", "Irrelevance"]  # Shorten the column names
+            selected_columns = selected_columns[:-2] + [
+                "Relevance",
+                "Irrelevance",
+            ]  # Shorten the column names
             print(tabulate(data, headers=selected_columns, tablefmt="grid"))
     else:
         print(f"\nFile {file} not found.\n")

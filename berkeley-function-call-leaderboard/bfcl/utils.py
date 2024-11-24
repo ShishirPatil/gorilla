@@ -68,12 +68,15 @@ def is_sql(test_category):
     return "sql" in test_category
 
 
-def load_file(file_path):
+def load_file(file_path, sort_by_id=False):
     result = []
     with open(file_path) as f:
         file = f.readlines()
         for line in file:
             result.append(json.loads(line))
+
+    if sort_by_id:
+        result.sort(key=sort_key)
     return result
 
 
