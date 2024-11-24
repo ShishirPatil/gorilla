@@ -743,53 +743,35 @@
 
         </div>
         <div>
-          <h3 id="inference">Multi-turn Model Inference and Execution</h3>
-          <p>In <i>BFCL V3 • Multi-Turn & Multi-Step</i>, we evaluate multi-turn function-calling models through two types of models: Function-Calling
-            (FC) models and prompting models. The distinction lies primarily in how the models generate outputs and
-            how we handle those outputs during the inference process. This section explains the implementation behind
-            model inference and how multi-turn interactions are managed, including the differences between various
-            model types and the steps taken to ensure correct function execution and state-based evaluation.</p>
-
-          <h4>1. Differences in Inference Patterns Between FC and Prompting Models</h4>
-          <p>For FC models, the output is generated in JSON format, where each function call is structured with clear
-            parameters and ready for direct execution by the API backend.</p>
-          <p>In contrast, prompting models generate outputs as function call strings. For instance, the model may
-            output a function call in the following format:</p>
-          <pre><code>"[write_to_file(filename='log.txt', content='hello'), close_file(filename='log.txt')]".</code></pre>
-          <p>These outputs require parsing before they can be executed. The string format is first parsed into
-            individual function calls, and each function call is then executed in the backend as if it were a normal
-            function-calling API.</p>
-          <p>The key distinction is that FC models produce structured, executable JSON directly, while prompting
-            models require post-processing to interpret and extract the function calls from the string format.</p>
-
-          <h4>2. Handling Different Multi-Turn Function Call Patterns</h4>
-          <p>Multi-turn function calling can present a variety of challenges in inference, particularly when it comes
-            to managing the flow of data and function results across multiple steps. In <i>BFCL V3 • Multi-Turn & Multi-Step</i>, our model handlers
-            are designed to handle different function call patterns—simple, parallel, and nested—across multiple
-            rounds of interaction. The distinction between these call patterns is explained in the previous section.
+          <h3 id="inference">Multi-turn Model Inference Pipeline</h3>
+          <ol>
+            <li>
+              Each entry comes with its own initial configuration, which is used to initialize the API backend state. For example, a file system backend might start with a set of pre-existing files, and a messaging API might start with a specific message inbox history. The initial configuration is loaded into the API backend at the beginning of each test entry, but it is not provided to the model directly, as the model can call exploration functions to figure out the state of the system and retrieve the necessary information.
+            </li>
+            <li>
+              At the beginning of each turn, a user query is provided to the model, along with the tools available for the task. A step_counter is also initialized to track the number of steps used in this turn; it resets to 0 at the beginning of each turn.
+            </li>
+            <li>
+              If the model makes any function calls (i.e., <code>decode_exec</code> in the model handler returns a non-empty list), the function calls are executed in the API backend (in order) and their execution results are provided back to the model. The current turn continues.
+            </li>
+            <li>
+              If the model doesn't output any valid function calls, we consider this the end of the current turn, and move on to the next turn. This could be due to either the model outputs a human-message, or the model response cannot be properly decoded into executable function calls.
+            </li>
+            <li>
+              If the model takes more than 20 steps in a turn, the turn is force-terminated and this test entry is marked as wrong; no further turns will be queried. This usually happens when the model gets stuck in a loop or is unable to make progress (e.g., keep calling <code>ls</code> in the Gorilla File System entries).
+            </li>
+          </ol>
+          <h4>Note For Multi Turn Missing Function Category</h4>
+          <p>
+            In this category, one or more functions are held out from the function list provided to the model at the beginning; they will be provided in a later turns (say, turn 3). For FC models, the added functions will just be appended to the <code>tools</code> list. But for prompting models, since we supplied all the tools at the beginning in the system prompt and it's not possible to modify the system prompt in the middle of the conversation, we will provide the held-out function definitions in the content of a user message instead.
           </p>
 
-          <h4>3. API Backend for State-Based Execution</h4>
-          <p>One of the primary innovations in <i>BFCL V3 • Multi-Turn & Multi-Step</i> is the use of state-based evaluation. Our custom API backend
-            ensures that the model's outputs lead to the correct changes in the system's state. Each test case begins
-            with an initial configuration, where API instances are initialized in a defined state. For example, a file
-            system instance might start with a set of pre-existing files, and a messaging API might start with
-            specific user data.</p>
-          <p>As the model interacts with the API instances across multiple turns, the backend tracks how the state
-            evolves. Each function call alters the state, such as creating new files, changing configurations, or
-            updating logs. At every turn, we compare the instance's current state from executing the model function
-            calls with the expected ground truth state from executing the ground truth function calls to determine if
-            the sequence of function calls is correct.</p>
-          <p>If any discrepancy is detected between the model's instance state and the expected state for the ground
-            truth instance, the evaluation flags the issue as a failure for that turn.</p>
-
-          <h4>4. Why We Avoid Certain Techniques (e.g. ReAct)</h4>
+          <h4>Why We Avoid Certain Techniques (e.g. ReAct)</h4>
           <p>In <i>BFCL V3 • Multi-Turn & Multi-Step</i>, we deliberately avoid using techniques like prompt engineering and ReAct, which combines
             reasoning and acting through specific prompting methods. While ReAct and other techniques can improve
             models' function calling performance in certain cases, we chose not to use it throughout the BFCL series
             to evaluate base LLMs with the same standards to isolate the effects from using additional optimization
             techniques.</p>
-
         </div>
 
         <div>
