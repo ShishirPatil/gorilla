@@ -1,9 +1,11 @@
 import subprocess
 import threading
 import time
+import json
 from concurrent.futures import ThreadPoolExecutor
 
 import requests
+from bfcl.constant import RESULT_PATH, VERSION_PREFIX
 from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.oss_model.constant import VLLM_PORT
@@ -25,7 +27,7 @@ class OSSHandler(BaseHandler):
         self.dtype = dtype
         self.client = OpenAI(base_url=f"http://localhost:{VLLM_PORT}/v1", api_key="EMPTY")
 
-    def inference(self, test_entry: dict, include_debugging_log: bool):
+    def inference(self, test_entry: dict, include_input_log: bool, include_state_log: bool):
         """
         OSS models have a different inference method.
         They needs to spin up a server first and then send requests to it.
@@ -48,7 +50,10 @@ class OSSHandler(BaseHandler):
         num_gpus: int,
         gpu_memory_utilization: float,
         backend: str,
-        include_debugging_log: bool,
+        include_input_log: bool,
+        include_state_log: bool,
+        overwrite: bool,
+        result_dir=RESULT_PATH,
     ):
         """
         Batch inference for OSS models.
@@ -183,13 +188,16 @@ class OSSHandler(BaseHandler):
                 ) as pbar:
 
                     for test_case in test_entries:
-                        future = executor.submit(self._multi_threaded_inference, test_case, include_debugging_log)
+                        future = executor.submit(self._multi_threaded_inference, test_case, include_input_log, include_state_log)
                         futures.append(future)
 
                     for future in futures:
                         # This will wait for the task to complete, so that we are always writing in order
                         result = future.result()
-                        self.write(result)
+                        if overwrite:
+                            self.overwrite(result, result_dir)
+                        else:
+                            self.write(result, result_dir)
                         pbar.update()
 
 
@@ -213,7 +221,7 @@ class OSSHandler(BaseHandler):
             stdout_thread.join()
             stderr_thread.join()
             
-    def _multi_threaded_inference(self, test_case, include_debugging_log):
+    def _multi_threaded_inference(self, test_case, include_input_log: bool, include_state_log: bool):
         """
         This is a wrapper function to make sure that, if an error occurs during inference, the process does not stop.
         """
@@ -221,9 +229,9 @@ class OSSHandler(BaseHandler):
 
         try:
             if "multi_turn" in test_case["id"]:
-                model_responses, metadata = self.inference_multi_turn_prompting(test_case, include_debugging_log)
+                model_responses, metadata = self.inference_multi_turn_prompting(test_case, include_input_log, include_state_log)
             else:
-                model_responses, metadata = self.inference_single_turn_prompting(test_case, include_debugging_log)
+                model_responses, metadata = self.inference_single_turn_prompting(test_case, include_input_log)
         except Exception as e:
             print("-" * 100)
             print(

@@ -2,11 +2,31 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
-- [Nov 9, 2024] [#697](https://github.com/ShishirPatil/gorilla/pull/697): Add the following new models to the leaderboard:
-  - `deepseek-ai/DeepSeek-Coder-V2-Instruct`
+- [Nov 25, 2024] [#697](https://github.com/ShishirPatil/gorilla/pull/697): Add the following new models to the leaderboard:
+  - `deepseek-ai/DeepSeek-Coder-V2-Instruct-0724`
   - `deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct`
-  - `deepseek-ai/DeepSeek-V2`
+  - `deepseek-ai/DeepSeek-V2-Chat-0628`
   - `deepseek-ai/DeepSeek-V2-Lite`
+- [Nov 24, 2024] [#743](https://github.com/ShishirPatil/gorilla/pull/743): Add support for regeneration, specific test entry IDs, and custom directory locations:
+  - Introduce the `--allow-overwrite` flag for the `generate` command to enable regeneration of test entries even if they already exist.
+  - Add a new `--run-ids` flag for the `generate` command, allowing execution of specific test entry IDs from `test_case_ids_to_generate.json`.
+    - Note: This cannot be used together with `--test-category`.
+    - Test ids needs to be the exact same as the ones in the dataset. Example: `"simple": ["simple_10", "simple_53"]`.
+  - Add `--score-dir` and `--result-dir` options for `generate` and `evaluate` commands, enabling custom paths for result and score directories relative to the project root `berkeley-function-call-leaderboard` directory.
+- [Nov 22, 2024] [#777](https://github.com/ShishirPatil/gorilla/pull/777), [#778](https://github.com/ShishirPatil/gorilla/pull/778): Fix dataset entries where the function doc contains illegal Python parameter names (such as `class`). 55 entries are affected.
+- [Nov 19, 2024] [#750](https://github.com/ShishirPatil/gorilla/pull/750): Add the following new models to the leaderboard:
+  - `claude-3-5-haiku-20241022`
+  - `claude-3-5-haiku-20241022-FC`
+  - `claude-3-5-sonnet-20241022`
+  - `claude-3-5-sonnet-20241022-FC`
+- [Nov 18, 2024] [#736](https://github.com/ShishirPatil/gorilla/pull/736): Add the option to additionally log the evaluation results to [WandB](https://github.com/wandb/wandb) artifacts. User can enable this feature by providing the entity and project name in `WANDB_BFCL_PROJECT` in the `.env` file.
+- [Nov 18, 2024] [#768](https://github.com/ShishirPatil/gorilla/pull/768), [#770](https://github.com/ShishirPatil/gorilla/pull/770): Resolve issues in Gemini models (FC mode) related to handling scenarios with no tools available and cases where the model output is empty.
+- [Nov 17, 2024] [#767](https://github.com/ShishirPatil/gorilla/pull/767): Fix price and latency calculation. A merge conflict results in a duplicate line, and counting the input and output token for each entry multiple times.
+- [Nov 15, 2024] [#762](https://github.com/ShishirPatil/gorilla/pull/762): Supply `data_multi_turn.csv` for multi-turn evaluation results
+- [Nov 14, 2024] [#760](https://github.com/ShishirPatil/gorilla/pull/760), [#761](https://github.com/ShishirPatil/gorilla/pull/761): Upstream  `google-cloud-aiplatform` library fixed typecasting bugs in Function Calling. Updated to version `1.72.0` and remove the workaround patch introduced in [#648](https://github.com/ShishirPatil/gorilla/pull/648).
+- [Nov 14, 2024] [#747](https://github.com/ShishirPatil/gorilla/pull/747): Minor Grammatical Corrections to `DEFAULT_SYSTEM_PROMPT` that is supplied to all prompting models.
+- [Nov 13, 2024] [#737](https://github.com/ShishirPatil/gorilla/pull/737), [#739](https://github.com/ShishirPatil/gorilla/pull/739), [#740](https://github.com/ShishirPatil/gorilla/pull/740), [#763](https://github.com/ShishirPatil/gorilla/pull/763), [#772](https://github.com/ShishirPatil/gorilla/pull/772): Bug fix in the dataset and possible answers for the live and multi-turn categories.
+- [Nov 9, 2024] [#749](https://github.com/ShishirPatil/gorilla/pull/749): Remove `Llama-3.2-3B-Instruct-FC` and `Llama-3.2-1B-Instruct-FC` from the leaderboard. According to the [official Llama documentation](https://www.llama.com/docs/model-cards-and-prompt-formats/llama3_2#-tool-calling-(1b/3b)-), these models perform function calling using the prompt-style chat template rather than the specialized function-calling format.
 - [Nov 8, 2024] [#720](https://github.com/ShishirPatil/gorilla/pull/720): Add new model `BitAgent/GoGoAgent` to the leaderboard.
 - [Oct 30, 2024] [#725](https://github.com/ShishirPatil/gorilla/pull/725), [#733](https://github.com/ShishirPatil/gorilla/pull/733): Update evaluation metric for multi-turn categories:
   - Introduce a new response-based checker, which works alongside with the existing state-based checker.

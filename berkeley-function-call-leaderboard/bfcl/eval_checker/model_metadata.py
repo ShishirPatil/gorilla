@@ -92,7 +92,7 @@ MODEL_METADATA_MAPPING = {
         "Apache 2.0",
     ],
     "claude-3-opus-20240229-FC": [
-        "Claude-3-Opus-20240229 (FC tools-2024-04-04)",
+        "Claude-3-Opus-20240229 (FC)",
         "https://www.anthropic.com/news/claude-3-family",
         "Anthropic",
         "Proprietary",
@@ -152,7 +152,7 @@ MODEL_METADATA_MAPPING = {
         "Proprietary",
     ],
     "claude-3-sonnet-20240229-FC": [
-        "Claude-3-Sonnet-20240229 (FC tools-2024-04-04)",
+        "Claude-3-Sonnet-20240229 (FC)",
         "https://www.anthropic.com/news/claude-3-family",
         "Anthropic",
         "Proprietary",
@@ -164,7 +164,7 @@ MODEL_METADATA_MAPPING = {
         "Proprietary",
     ],
     "claude-3-haiku-20240307-FC": [
-        "Claude-3-Haiku-20240307 (FC tools-2024-04-04)",
+        "Claude-3-Haiku-20240307 (FC)",
         "https://www.anthropic.com/news/claude-3-family",
         "Anthropic",
         "Proprietary",
@@ -172,6 +172,18 @@ MODEL_METADATA_MAPPING = {
     "claude-3-haiku-20240307": [
         "Claude-3-Haiku-20240307 (Prompt)",
         "https://www.anthropic.com/news/claude-3-family",
+        "Anthropic",
+        "Proprietary",
+    ],
+    "claude-3-5-haiku-20241022-FC": [
+        "claude-3.5-haiku-20241022 (FC)",
+        "https://www.anthropic.com/news/3-5-models-and-computer-use",
+        "Anthropic",
+        "Proprietary",
+    ],
+    "claude-3-5-haiku-20241022": [
+        "claude-3.5-haiku-20241022 (Prompt)",
+        "https://www.anthropic.com/news/3-5-models-and-computer-use",
         "Anthropic",
         "Proprietary",
     ],
@@ -184,6 +196,18 @@ MODEL_METADATA_MAPPING = {
     "claude-3-5-sonnet-20240620": [
         "Claude-3.5-Sonnet-20240620 (Prompt)",
         "https://www.anthropic.com/news/claude-3-5-sonnet",
+        "Anthropic",
+        "Proprietary",
+    ],
+    "claude-3-5-sonnet-20241022-FC": [
+        "Claude-3.5-Sonnet-20241022 (FC)",
+        "https://www.anthropic.com/news/3-5-models-and-computer-use",
+        "Anthropic",
+        "Proprietary",
+    ],
+    "claude-3-5-sonnet-20241022": [
+        "Claude-3.5-Sonnet-20241022 (Prompt)",
+        "https://www.anthropic.com/news/3-5-models-and-computer-use",
         "Anthropic",
         "Proprietary",
     ],
@@ -337,9 +361,9 @@ MODEL_METADATA_MAPPING = {
         "Deepseek",
         "Deepseek License",
     ],
-    "deepseek-ai/DeepSeek-Coder-V2-Instruct": [
+    "deepseek-ai/DeepSeek-Coder-V2-Instruct-0724": [
         "DeepSeek-Coder-V2 (Prompt)",
-        "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct",
+        "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct-0724",
         "DeepSeek",
         "DeepSeek License"
     ],
@@ -349,9 +373,9 @@ MODEL_METADATA_MAPPING = {
         "DeepSeek",
         "DeepSeek License"
     ],
-    "deepseek-ai/DeepSeek-V2": [
+    "deepseek-ai/DeepSeek-V2-Chat-0628": [
         "DeepSeek-V2 (Prompt)",
-        "https://huggingface.co/deepseek-ai/DeepSeek-V2",
+        "https://huggingface.co/deepseek-ai/DeepSeek-V2-Chat-0628",
         "DeepSeek",
         "DeepSeek License",
     ],
@@ -471,18 +495,6 @@ MODEL_METADATA_MAPPING = {
     ],
     "meta-llama/Llama-3.1-70B-Instruct-FC": [
         "Llama-3.1-70B-Instruct (FC)",
-        "https://llama.meta.com/llama3",
-        "Meta",
-        "Meta Llama 3 Community",
-    ],
-    "meta-llama/Llama-3.2-1B-Instruct-FC": [
-        "Llama-3.2-1B-Instruct (FC)",
-        "https://llama.meta.com/llama3",
-        "Meta",
-        "Meta Llama 3 Community",
-    ],
-    "meta-llama/Llama-3.2-3B-Instruct-FC": [
-        "Llama-3.2-3B-Instruct (FC)",
         "https://llama.meta.com/llama3",
         "Meta",
         "Meta Llama 3 Community",
@@ -686,10 +698,14 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-3-opus-20240229": 15,
     "claude-3-sonnet-20240229-FC": 3,
     "claude-3-sonnet-20240229": 3,
-    "claude-3-haiku-20240307-FC": 0.25,
-    "claude-3-haiku-20240307": 0.25,
     "claude-3-5-sonnet-20240620-FC": 3,
     "claude-3-5-sonnet-20240620": 3,
+    "claude-3-5-sonnet-20241022-FC": 3,
+    "claude-3-5-sonnet-20241022": 3,
+    "claude-3-haiku-20240307-FC": 0.25,
+    "claude-3-haiku-20240307": 0.25,
+    "claude-3-5-haiku-20241022-FC": 1,
+    "claude-3-5-haiku-20241022": 1,
     "claude-2.1": 8,
     "claude-instant-1.2": 0.8,
     "open-mistral-nemo-2407": 0.3,
@@ -746,8 +762,12 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-3-sonnet-20240229": 15,
     "claude-3-5-sonnet-20240620-FC": 15,
     "claude-3-5-sonnet-20240620": 15,
+    "claude-3-5-sonnet-20241022-FC": 15,
+    "claude-3-5-sonnet-20241022": 15,
     "claude-3-haiku-20240307-FC": 1.25,
     "claude-3-haiku-20240307": 1.25,
+    "claude-3-5-haiku-20241022-FC": 5,
+    "claude-3-5-haiku-20241022": 5,
     "claude-2.1": 24,
     "claude-instant-1.2": 2.4,
     "open-mistral-nemo-2407": 0.3,
