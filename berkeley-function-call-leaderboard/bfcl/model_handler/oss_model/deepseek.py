@@ -2,6 +2,10 @@ from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
 
 
 class DeepseekHandler(OSSHandler):
+    """
+    This is the handler for the Deepseek model. Deepseek-Coder models should use the DeepseekCoderHandler instead.
+    Note: `deepseek-ai/DeepSeek-V2.5` DO NOT use this handler, but the DeepseekCoderHandler, because it share the same chat template with the DeepSeek-Coder models.
+    """
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
 

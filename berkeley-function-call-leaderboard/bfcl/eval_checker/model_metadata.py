@@ -355,20 +355,20 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
-    "deepseek-ai/deepseek-coder-6.7b-instruct": [
-        "Deepseek-v1.5 (Prompt)",
-        "https://huggingface.co/deepseek-ai/deepseek-coder-7b-instruct-v1.5",
-        "Deepseek",
-        "Deepseek License",
+    "deepseek-ai/DeepSeek-V2.5": [
+        "DeepSeek-V2.5 (FC)",
+        "https://huggingface.co/deepseek-ai/DeepSeek-V2.5",
+        "DeepSeek",
+        "DeepSeek License"
     ],
     "deepseek-ai/DeepSeek-Coder-V2-Instruct-0724": [
-        "DeepSeek-Coder-V2 (Prompt)",
+        "DeepSeek-Coder-V2 (FC)",
         "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct-0724",
         "DeepSeek",
         "DeepSeek License"
     ],
     "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct": [
-        "DeepSeek-Coder-V2-Lite-Instruct (Prompt)",
+        "DeepSeek-Coder-V2-Lite-Instruct (FC)",
         "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct",
         "DeepSeek",
         "DeepSeek License"
