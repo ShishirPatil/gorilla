@@ -3,7 +3,7 @@
 {"id": "javascript_2", "ground_truth": [{"extractLastTransactionId": {"filepath": ["/var/log/db.log"], "status": [["completed", "failed"]], "encoding": ["utf-8"], "processFunction": ["processFunction"]}}]}
 {"id": "javascript_3", "ground_truth": [{"submitAtCoordinate": {"action": ["submit"], "formId": ["loginForm"], "coordinates": [[0.6, 0.3]]}}]}
 {"id": "javascript_4", "ground_truth": [{"emailFormatValidator": {"email": ["example@domain.com"], "domain": ["domain.com"]}}]}
-{"id": "javascript_5", "ground_truth": [{"manageReactState": {"store": [{"initialState": ["initialStateObject"], "reducers": ["reducersMap"], "middlewares": [["loggerMiddleware"]], "enhancers": [["applyMiddleware('myMiddleWare')"]]}], "context": ["React.createContext()"], "hooks": [{"useStateSelector": "useStateSelectorHook", "useDispatchAction": "useDispatchActionHook"}]}}]}
+{"id": "javascript_5", "ground_truth": [{"manageReactState": {"store": [{"initialState": ["initialStateObject"], "reducers": ["reducersMap"], "middlewares": [["loggerMiddleware"]], "enhancers": [["applyMiddleware('myMiddleWare')"]]}], "context": ["React.createContext()"], "hooks": [{"useStateSelector": ["useStateSelectorHook"], "useDispatchAction": ["useDispatchActionHook"]}]}}]}
 {"id": "javascript_6", "ground_truth": [{"mapTransitions": {"category": ["transition"], "limit": [4.0]}}]}
 {"id": "javascript_7", "ground_truth": [{"getNextKeyValues": {"ctx": ["dataAnalysisContext"], "currentKey": ["userId"]}}]}
 {"id": "javascript_8", "ground_truth": [{"doesEmailInputExist": {"formElem": ["emailForm"], "inputName": ["emailAddress"]}}]}
