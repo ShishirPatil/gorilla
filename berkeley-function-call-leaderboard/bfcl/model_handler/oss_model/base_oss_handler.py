@@ -52,7 +52,7 @@ class OSSHandler(BaseHandler):
         backend: str,
         include_input_log: bool,
         include_state_log: bool,
-        overwrite: bool,
+        update_mode: bool,
         result_dir=RESULT_PATH,
     ):
         """
@@ -194,10 +194,7 @@ class OSSHandler(BaseHandler):
                     for future in futures:
                         # This will wait for the task to complete, so that we are always writing in order
                         result = future.result()
-                        if overwrite:
-                            self.overwrite(result, result_dir)
-                        else:
-                            self.write(result, result_dir)
+                        self.write(result, result_dir, update_mode=update_mode)
                         pbar.update()
 
 
