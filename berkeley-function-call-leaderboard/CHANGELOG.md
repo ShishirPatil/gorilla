@@ -5,7 +5,8 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
 - [Nov 24, 2024] [#743](https://github.com/ShishirPatil/gorilla/pull/743): Add support for regeneration, specific test entry IDs, and custom directory locations:
   - Introduce the `--allow-overwrite` flag for the `generate` command to enable regeneration of test entries even if they already exist.
   - Add a new `--run-ids` flag for the `generate` command, allowing execution of specific test entry IDs from `test_case_ids_to_generate.json`.
-    - Note: This cannot be used together with `--test-category`.  
+    - Note: This cannot be used together with `--test-category`.
+    - Test ids needs to be the exact same as the ones in the dataset. Example: `"simple": ["simple_10", "simple_53"]`.
   - Add `--score-dir` and `--result-dir` options for `generate` and `evaluate` commands, enabling custom paths for result and score directories relative to the project root `berkeley-function-call-leaderboard` directory.
 - [Nov 22, 2024] [#777](https://github.com/ShishirPatil/gorilla/pull/777), [#778](https://github.com/ShishirPatil/gorilla/pull/778): Fix dataset entries where the function doc contains illegal Python parameter names (such as `class`). 55 entries are affected.
 - [Nov 19, 2024] [#750](https://github.com/ShishirPatil/gorilla/pull/750): Add the following new models to the leaderboard:
