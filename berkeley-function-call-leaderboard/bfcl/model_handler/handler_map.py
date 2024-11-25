@@ -1,4 +1,5 @@
 from bfcl.model_handler.oss_model.deepseek import DeepseekHandler
+from bfcl.model_handler.oss_model.deepseek_coder import DeepseekCoderHandler
 from bfcl.model_handler.oss_model.gemma import GemmaHandler
 from bfcl.model_handler.oss_model.glaive import GlaiveHandler
 from bfcl.model_handler.oss_model.glm import GLMHandler
@@ -130,10 +131,10 @@ local_inference_handler_map = {
     "Qwen/Qwen2.5-7B-Instruct": QwenHandler,
     "Team-ACE/ToolACE-8B": LlamaHandler,
     "openbmb/MiniCPM3-4B": MiniCPMHandler,
-    "deepseek-ai/DeepSeek-Coder-V2-Instruct-0724": DeepseekHandler,
-    "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct": DeepseekHandler,
+    "deepseek-ai/DeepSeek-Coder-V2-Instruct-0724": DeepseekCoderHandler,
+    "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct": DeepseekCoderHandler,
     "deepseek-ai/DeepSeek-V2-Chat-0628": DeepseekHandler,
-    "deepseek-ai/DeepSeek-V2-Lite": DeepseekHandler,
+    "deepseek-ai/DeepSeek-V2-Lite-Chat": DeepseekHandler,
 }
 
 # Deprecated/outdated models, no longer on the leaderboard

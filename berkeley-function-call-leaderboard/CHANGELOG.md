@@ -6,7 +6,7 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
   - `deepseek-ai/DeepSeek-Coder-V2-Instruct-0724`
   - `deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct`
   - `deepseek-ai/DeepSeek-V2-Chat-0628`
-  - `deepseek-ai/DeepSeek-V2-Lite`
+  - `deepseek-ai/DeepSeek-V2-Lite-Chat`
 - [Nov 24, 2024] [#743](https://github.com/ShishirPatil/gorilla/pull/743): Add support for regeneration, specific test entry IDs, and custom directory locations:
   - Introduce the `--allow-overwrite` flag for the `generate` command to enable regeneration of test entries even if they already exist.
   - Add a new `--run-ids` flag for the `generate` command, allowing execution of specific test entry IDs from `test_case_ids_to_generate.json`.

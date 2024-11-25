@@ -379,9 +379,9 @@ MODEL_METADATA_MAPPING = {
         "DeepSeek",
         "DeepSeek License",
     ],
-    "deepseek-ai/DeepSeek-V2-Lite": [
+    "deepseek-ai/DeepSeek-V2-Lite-Chat": [
         "DeepSeek-V2-Lite (Prompt)",
-        "https://huggingface.co/deepseek-ai/DeepSeek-V2-Lite",
+        "https://huggingface.co/deepseek-ai/DeepSeek-V2-Lite-Chat",
         "DeepSeek",
         "DeepSeek License",
     ],
