@@ -50,10 +50,6 @@ class WriterHandler(BaseHandler):
         inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
 
         if len(tools) > 0:
-            for tool in tools:
-                if "response" in tool["function"]:
-                    del tool["function"]["response"]
-            
             api_response = self.client.chat.chat(
                 messages=message,
                 model=self.model_name.replace("-FC", ""),
