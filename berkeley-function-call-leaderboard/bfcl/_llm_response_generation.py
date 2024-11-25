@@ -269,7 +269,11 @@ def main(args):
         get_involved_test_entries(args.test_category, args.run_ids)
     )
 
-    # print(f"Generating results for {args.model} on test category: {test_name_total}.")  FIXME
+    print(f"Generating results for {args.model}")
+    if args.run_ids:
+        print("Running specific test cases. Ignoring `--test-category` argument.")
+    else:
+        print(f"Running full test cases for categories: {all_test_categories}.")
 
     # Apply function credential config if any of the test categories are executable
     if any([is_executable(category) for category in all_test_categories]):
