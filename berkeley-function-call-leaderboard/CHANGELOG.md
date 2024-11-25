@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Nov 25, 2024] [#787](https://github.com/ShishirPatil/gorilla/pull/787): Add new model `Qwen/Qwen2.5-72B-Instruct` to the leaderboard.
 - [Nov 24, 2024] [#743](https://github.com/ShishirPatil/gorilla/pull/743): Add support for regeneration, specific test entry IDs, and custom directory locations:
   - Introduce the `--allow-overwrite` flag for the `generate` command to enable regeneration of test entries even if they already exist.
   - Add a new `--run-ids` flag for the `generate` command, allowing execution of specific test entry IDs from `test_case_ids_to_generate.json`.
