@@ -111,40 +111,21 @@ def generate(
     """
     Generate the LLM response for one or more models on a test-category (same as openfunctions_evaluation.py).
     """
-    generationArgs = namedtuple(
-        "generationArgs",
-        [
-            "model",
-            "test_category",
-            "temperature",
-            "include_input_log",
-            "include_state_log",
-            "num_gpus",
-            "num_threads",
-            "gpu_memory_utilization",
-            "backend",
-            "result_dir",
-            "allow_overwrite",
-            "run_ids",
-        ],
-    )
 
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
     generation_main(
-        generationArgs(
-            model=model,
-            test_category=test_category,
-            temperature=temperature,
-            include_input_log=include_input_log,
-            include_state_log=include_state_log,
-            num_gpus=num_gpus,
-            num_threads=num_threads,
-            gpu_memory_utilization=gpu_memory_utilization,
-            backend=backend,
-            result_dir=result_dir,
-            allow_overwrite=allow_overwrite,
-            run_ids=run_ids,
-        )
+        model=model,
+        test_category=test_category,
+        temperature=temperature,
+        include_input_log=include_input_log,
+        include_state_log=include_state_log,
+        num_gpus=num_gpus,
+        num_threads=num_threads,
+        gpu_memory_utilization=gpu_memory_utilization,
+        backend=backend,
+        result_dir=result_dir,
+        allow_overwrite=allow_overwrite,
+        run_ids=run_ids,
     )
 
 
