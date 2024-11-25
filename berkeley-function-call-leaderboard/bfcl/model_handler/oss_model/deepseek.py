@@ -9,6 +9,21 @@ class DeepseekHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
 
+    def decode_ast(self, result, language="Python"):
+        result = result.strip()
+        if result.startswith("```json"):
+            result = result[len("```json"):]
+        if result.startswith("```python"):
+            result = result[len("```python"):]
+        return super().decode_ast(result, language)
+
+    def decode_execute(self, result):
+        if result.startswith("```json"):
+            result = result[len("```json"):]
+        if result.startswith("```python"):
+            result = result[len("```python"):]
+        return super().decode_execute(result)
+
     def _format_prompt(self, messages, function):
         """
         "bos_token": {
