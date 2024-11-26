@@ -14,7 +14,9 @@ class MiniCPMHandler(OSSHandler):
         formatted_prompt = ""
 
         for message in messages:
-            formatted_prompt += f"<|im_start|>{message['role']}\n{message['content']}<|im_end|>\n"
+            formatted_prompt += (
+                f"<|im_start|>{message['role']}\n{message['content']}<|im_end|>\n"
+            )
 
         formatted_prompt += f"<|im_start|>assistant\n"
 
