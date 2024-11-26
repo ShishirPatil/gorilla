@@ -1,12 +1,8 @@
 import ast
 import json
-import keyword
-import logging
-import traceback
 from typing import Dict, List
 
 import datamodel_code_generator
-from bfcl.eval_checker.ast_eval.ast_checker import convert_func_name
 from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
 from bfcl.model_handler.utils import (
@@ -19,8 +15,6 @@ from datamodel_code_generator.model import get_data_model_types
 from datamodel_code_generator.parser.jsonschema import JsonSchemaParser
 from overrides import overrides
 
-logger = logging.getLogger("minicpm")
-
 
 class MiniCPMFCHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
@@ -28,7 +22,6 @@ class MiniCPMFCHandler(OSSHandler):
         self.stop_token_ids = [2, 73440]
         self.skip_special_tokens = False
         self.model_name_huggingface = model_name.replace("-FC", "")
-
 
     @overrides
     def _format_prompt(self, messages, function):
@@ -61,21 +54,6 @@ class MiniCPMFCHandler(OSSHandler):
         return {"message": [], "function": functions}
 
     @overrides
-    def _add_execution_results_prompting(
-        self,
-        inference_data: dict,
-        execution_results: list[str],
-        model_response_data: dict,
-    ) -> dict:
-        for execution_result, decoded_model_response in zip(
-            execution_results, model_response_data["model_responses_decoded"]
-        ):
-            inference_data["message"].append(
-                {"role": "tool", "content": execution_result}
-            )
-
-        return inference_data
-
     def decode_ast(self, result, language="Python"):
         msg = fc2dict(result)
         if (
@@ -90,6 +68,7 @@ class MiniCPMFCHandler(OSSHandler):
         else:
             return msg["content"]
 
+    @overrides
     def decode_execute(self, result):
         msg = fc2dict(result)
         if (
@@ -154,7 +133,6 @@ def message_format(msg, system_suffix="", user_prefix=""):
                 + "\n```\n<|tool_call_end|>\n"
                 + content
             )
-            # msg["tool_call_string"] = "\n".join(tool_calls).strip()
             msg["content"] = content
         else:
             content = thought_prefix + content
@@ -214,7 +192,6 @@ def transform_function(function: dict):
     content = jsonschema_to_code(function["parameters"])
     if "class" in content:
         i = content.index("class")
-        # print(content[:i])
         content = content[i:]
     classes, args = content.split("class Model(BaseModel):", 1)
     lint_msg = f'    """\n    {f_des}\n    Args:\n{args}\n    """\n'
@@ -222,18 +199,6 @@ def transform_function(function: dict):
     if len(classes) > 0:
         res = classes + res
     return res
-
-
-def rename_tool(tool, model_name):
-    properties = {}
-    tool["name"] = convert_func_name(tool["name"], model_name)
-    for key, value in tool["parameters"]["properties"].items():
-        if key in keyword.kwlist:
-            properties["_" + key] = value
-        else:
-            properties[key] = value
-    tool["parameters"]["properties"] = properties
-    return tool
 
 
 def minicpm_input_format(
@@ -258,11 +223,11 @@ def minicpm_input_format(
         header = "from enum import Enum\nfrom typing import List, Dict, Optional\nfrom pydantic import BaseModel, Field\n\n"
         tools_string = header
         for tool in tools:
-            tool = rename_tool(tool, model_name)
             try:
                 tools_string += "\n\n" + transform_function(tool)
             except:
-                print(traceback.format_exc())
+                pass
+                # print(traceback.format_exc())
         tools_template = """# Functions
 Here is a list of functions that you can invoke:
 ```python
@@ -306,7 +271,6 @@ func2(params)
 
 
 def convert_function_call_to_json(string):
-    # print('converting', string)
     try:
         tool_calls = []
         x = ast.parse(string)
@@ -316,7 +280,6 @@ def convert_function_call_to_json(string):
             for kw in tool.value.keywords:
                 function_args[kw.arg] = ast.literal_eval(kw.value)
             this_one = {"name": function_name, "arguments": function_args}
-            # print('converted to', this_one)
             tool_calls.append(this_one)
         return tool_calls
     except Exception:
@@ -347,16 +310,6 @@ def fc2dict(
                     tool_call_string = tool_call_string.lstrip("python").strip()
             if tool_call_string.endswith("```"):
                 tool_call_string = tool_call_string.rstrip("```").strip()
-            for kw in keyword.kwlist:
-                tool_call_string = tool_call_string.replace(
-                    "," + kw + "=", "," + kw + "_="
-                )
-                tool_call_string = tool_call_string.replace(
-                    " " + kw + "=", " " + kw + "_="
-                )
-                tool_call_string = tool_call_string.replace(
-                    "(" + kw + "=", "(" + kw + "_="
-                )
 
             parsed = ast.parse(tool_call_string)
 
@@ -365,14 +318,8 @@ def fc2dict(
                 calls = resolve_ast_call(elem.value)
 
                 for func_name, func_args in calls.items():
-                    new_args = {}
-                    for k, v in func_args.items():
-                        for kw in keyword.kwlist:
-                            if k == kw + "_":
-                                k = kw
-                        new_args[k] = v
 
-                    this_one = {"name": func_name, "arguments": new_args}
+                    this_one = {"name": func_name, "arguments": func_args}
                     tool_calls.append(this_one)
 
             return {
@@ -381,7 +328,6 @@ def fc2dict(
                 "role": "assistant",
             }
         except:
-            logger.error(traceback.format_exc())
             return {
                 "content": content.strip(),
                 "role": "assistant",
