@@ -1,5 +1,6 @@
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
 
+
 class MiniCPMHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
@@ -11,7 +12,9 @@ class MiniCPMHandler(OSSHandler):
         formatted_prompt = ""
 
         for message in messages:
-            formatted_prompt += f"<|im_start|>{message['role']}\n{message['content']}<|im_end|>\n"
+            formatted_prompt += (
+                f"<|im_start|>{message['role']}\n{message['content']}<|im_end|>\n"
+            )
 
         formatted_prompt += f"<|im_start|>assistant\n"
 
