@@ -1,6 +1,8 @@
 import json
 import re
 
+from overrides import overrides
+
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
 from bfcl.model_handler.utils import (
     combine_consecutive_user_prompts,
@@ -18,12 +20,15 @@ class DeepseekCoderHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
 
+    @overrides
     def decode_ast(self, result, language="Python"):
         return result
 
+    @overrides
     def decode_execute(self, result):
         return convert_to_function_call(result)
 
+    @overrides
     def _format_prompt(self, messages, function):
         """
         "bos_token": {
@@ -105,6 +110,7 @@ class DeepseekCoderHandler(OSSHandler):
 
         return formatted_prompt
 
+    @overrides
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
@@ -131,6 +137,7 @@ class DeepseekCoderHandler(OSSHandler):
 
         return {"message": [], "function": functions}
 
+    @overrides
     def _parse_query_response_prompting(self, api_response: any) -> dict:
         model_responses = api_response.choices[0].text
         extracted_tool_calls = self.extract_tool_calls(model_responses)
@@ -158,6 +165,7 @@ class DeepseekCoderHandler(OSSHandler):
             "output_token": api_response.usage.completion_tokens,
         }
 
+    @overrides
     def _add_assistant_message_prompting(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:

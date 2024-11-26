@@ -3,6 +3,7 @@ import threading
 import time
 import json
 from concurrent.futures import ThreadPoolExecutor
+from overrides import EnforceOverrides, final
 
 import requests
 from bfcl.constant import RESULT_PATH, VERSION_PREFIX
@@ -19,7 +20,7 @@ from openai import OpenAI
 from tqdm import tqdm
 
 
-class OSSHandler(BaseHandler):
+class OSSHandler(BaseHandler, EnforceOverrides):
     def __init__(self, model_name, temperature, dtype="bfloat16") -> None:
         super().__init__(model_name, temperature)
         self.model_name_huggingface = model_name
@@ -44,6 +45,7 @@ class OSSHandler(BaseHandler):
     def decode_execute(self, result):
         return default_decode_execute_prompting(result)
 
+    @final
     def batch_inference(
         self,
         test_entries: list[dict],
@@ -218,6 +220,7 @@ class OSSHandler(BaseHandler):
             stdout_thread.join()
             stderr_thread.join()
             
+    @final
     def _multi_threaded_inference(self, test_case, include_input_log: bool, include_state_log: bool):
         """
         This is a wrapper function to make sure that, if an error occurs during inference, the process does not stop.
@@ -249,7 +252,6 @@ class OSSHandler(BaseHandler):
         return result_to_write
 
     #### Prompting methods ####
-
     def _format_prompt(self, messages, function):
         raise NotImplementedError(
             "OSS Models should implement their own prompt formatting."

@@ -6,6 +6,7 @@ from bfcl.model_handler.utils import (
     func_doc_language_specific_pre_processing,
 )
 
+from overrides import overrides
 TASK_INSTRUCTION = """You are a tool calling assistant. In order to complete the user's request, you need to select one or more appropriate tools from the following tools and fill in the correct values for the tool parameters. Your specific tasks are:
 1. Make one or more function/tool calls to meet the request based on the question.
 2. If none of the function can be used, point it out and refuse to answer.
@@ -28,6 +29,7 @@ class HammerHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
 
+    @overrides
     def _format_prompt(self, messages, function):
         """
         "chat_template": "{% set system_message = 'You are a helpful assistant.' %}{% if messages[0]['role'] == 'system' %}{% set system_message = messages[0]['content'] %}{% endif %}{% if system_message is defined %}{{ '<|im_start|>system\n' + system_message + '<|im_end|>\n' }}{% endif %}{% for message in messages %}{% set content = message['content'] %}{% if message['role'] == 'user' %}{{ '<|im_start|>user\n' + content + '<|im_end|>\n<|im_start|>assistant\n' }}{% elif message['role'] == 'assistant' %}{{ content + '<|im_end|>' + '\n' }}{% endif %}{% endfor %}",
@@ -86,6 +88,7 @@ class HammerHandler(OSSHandler):
 
         return f"<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n<|im_start|>user\n{content}<|im_end|>\n<|im_start|>assistant\n"
 
+    @overrides
     def decode_ast(self, result, language="Python"):
         result = result.replace("```", "")
         try:
@@ -126,6 +129,7 @@ class HammerHandler(OSSHandler):
 
         return python_format
 
+    @overrides
     def decode_execute(self, result):
         result = result.replace("```", "")
         try:
@@ -142,6 +146,7 @@ class HammerHandler(OSSHandler):
         function_call = self.xlam_json_to_python_tool_calls(tool_calls)
         return function_call
 
+    @overrides
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
