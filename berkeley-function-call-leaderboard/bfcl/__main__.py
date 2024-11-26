@@ -1,14 +1,20 @@
 import csv
-from collections import namedtuple
 from datetime import datetime
+from types import SimpleNamespace
 from typing import List
 import json
 import os
 
 import typer
 from bfcl._llm_response_generation import main as generation_main
-from bfcl.constant import DOTENV_PATH, RESULT_PATH, SCORE_PATH, TEST_COLLECTION_MAPPING
-from bfcl.eval_checker import eval_runner
+from bfcl.constant import (
+    DOTENV_PATH,
+    PROJECT_ROOT,
+    RESULT_PATH,
+    SCORE_PATH,
+    TEST_COLLECTION_MAPPING,
+)
+from bfcl.eval_checker.eval_runner import main as evaluation_main
 from bfcl.model_handler.handler_map import HANDLER_MAP
 from dotenv import load_dotenv
 from tabulate import tabulate
@@ -98,49 +104,55 @@ def generate(
     ),
     num_gpus: int = typer.Option(1, help="The number of GPUs to use."),
     num_threads: int = typer.Option(1, help="The number of threads to use."),
-    gpu_memory_utilization: float = typer.Option(
-        0.9, help="The GPU memory utilization."
+    gpu_memory_utilization: float = typer.Option(0.9, help="The GPU memory utilization."),
+    backend: str = typer.Option("vllm", help="The backend to use for the model."),
+    result_dir: str = typer.Option(
+        RESULT_PATH,
+        "--result-dir",
+        help="Path to the folder where output files will be stored.",
     ),
-    backend: str = typer.Option(
-        "vllm", help="The backend to use for the model."
+    allow_overwrite: bool = typer.Option(
+        False,
+        "--allow-overwrite",
+        "-o",
+        help="Allow overwriting existing results for regeneration.",
+    ),
+    run_ids: bool = typer.Option(
+        False,
+        "--run-ids",
+        help="If true, also run the test entry mentioned in the test_case_ids_to_generate.json file, in addition to the --test_category argument.",
     ),
 ):
     """
     Generate the LLM response for one or more models on a test-category (same as openfunctions_evaluation.py).
     """
-    generationArgs = namedtuple(
-        "generationArgs",
-        [
-            "model",
-            "test_category",
-            "temperature",
-            "include_input_log",
-            "include_state_log",
-            "num_gpus",
-            "num_threads",
-            "gpu_memory_utilization",
-            "backend",
-        ],
-    )
 
-    load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
-    generation_main(
-        generationArgs(
-            model=model,
-            test_category=test_category,
-            temperature=temperature,
-            include_input_log=include_input_log,
-            include_state_log=include_state_log,
-            num_gpus=num_gpus,
-            num_threads=num_threads,
-            gpu_memory_utilization=gpu_memory_utilization,
-            backend=backend,
-        )
+    args = SimpleNamespace(
+        model=model,
+        test_category=test_category,
+        temperature=temperature,
+        include_input_log=include_input_log,
+        include_state_log=include_state_log,
+        num_gpus=num_gpus,
+        num_threads=num_threads,
+        gpu_memory_utilization=gpu_memory_utilization,
+        backend=backend,
+        result_dir=result_dir,
+        allow_overwrite=allow_overwrite,
+        run_ids=run_ids,
     )
+    load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
+    generation_main(args)
 
 
 @cli.command()
-def results():
+def results(
+    result_dir: str = typer.Option(
+        None,
+        "--result-dir",
+        help="Relative path to the model response folder, if different from the default; Path should be relative to the `berkeley-function-call-leaderboard` root folder",
+    ),
+):
     """
     List the results available for evaluation.
     """
@@ -162,7 +174,10 @@ def results():
             print(f"Unknown model name: {name}")
         return name
 
-    result_dir = RESULT_PATH
+    if result_dir is None:
+        result_dir = RESULT_PATH
+    else:
+        result_dir = (PROJECT_ROOT / result_dir).resolve()
 
     results_data = []
     for dir in result_dir.iterdir():
@@ -173,9 +188,7 @@ def results():
         results_data.append(
             (
                 display_name(dir.name),
-                datetime.fromtimestamp(dir.stat().st_ctime).strftime(
-                    "%Y-%m-%d %H:%M:%S"
-                ),
+                datetime.fromtimestamp(dir.stat().st_ctime).strftime("%Y-%m-%d %H:%M:%S"),
             )
         )
 
@@ -200,17 +213,33 @@ def evaluate(
         "-c",
         help="Perform the REST API status sanity check before running the evaluation.",
     ),
+    result_dir: str = typer.Option(
+        None,
+        "--result-dir",
+        help="Relative path to the model response folder, if different from the default; Path should be relative to the `berkeley-function-call-leaderboard` root folder",
+    ),
+    score_dir: str = typer.Option(
+        None,
+        "--score-dir",
+        help="Relative path to the evaluation score folder, if different from the default; Path should be relative to the `berkeley-function-call-leaderboard` root folder",
+    ),
 ):
     """
     Evaluate results from run of one or more models on a test-category (same as eval_runner.py).
     """
 
     load_dotenv(dotenv_path=DOTENV_PATH, verbose=True, override=True)  # Load the .env file
-    eval_runner.main(model, test_category, api_sanity_check)
+    evaluation_main(model, test_category, api_sanity_check, result_dir, score_dir)
 
 
 @cli.command()
-def scores():
+def scores(
+    score_dir: str = typer.Option(
+        None,
+        "--score-dir",
+        help="Relative path to the evaluation score folder, if different from the default; Path should be relative to the `berkeley-function-call-leaderboard` root folder",
+    ),
+):
     """
     Display the leaderboard.
     """
@@ -218,8 +247,12 @@ def scores():
     def truncate(text, length=22):
         return (text[:length] + "...") if len(text) > length else text
 
+    if score_dir is None:
+        score_dir = SCORE_PATH
+    else:
+        score_dir = (PROJECT_ROOT / score_dir).resolve()
     # files = ["./score/data_non_live.csv", "./score/data_live.csv", "./score/data_overall.csv"]
-    file = SCORE_PATH / "data_overall.csv"
+    file = score_dir / "data_overall.csv"
 
     selected_columns = [
         "Rank",
@@ -241,7 +274,10 @@ def scores():
             data = [
                 [row[i] for i in column_indices] for row in reader
             ]  # Read the rest of the data
-            selected_columns = selected_columns[:-2] + ["Relevance", "Irrelevance"]  # Shorten the column names
+            selected_columns = selected_columns[:-2] + [
+                "Relevance",
+                "Irrelevance",
+            ]  # Shorten the column names
             print(tabulate(data, headers=selected_columns, tablefmt="grid"))
     else:
         print(f"\nFile {file} not found.\n")

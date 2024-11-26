@@ -122,8 +122,10 @@ UNDERSCORE_TO_DOT = [
     "gpt-3.5-turbo-0125-FC",
     "claude-3-opus-20240229-FC",
     "claude-3-sonnet-20240229-FC",
-    "claude-3-haiku-20240307-FC",
     "claude-3-5-sonnet-20240620-FC",
+    "claude-3-5-sonnet-20241022-FC",
+    "claude-3-haiku-20240307-FC",
+    "claude-3-5-haiku-20241022-FC",
     "open-mistral-nemo-2407-FC",
     "open-mixtral-8x22b-FC",
     "mistral-large-2407-FC",
@@ -148,4 +150,5 @@ UNDERSCORE_TO_DOT = [
     "THUDM/glm-4-9b-chat",
     "ibm-granite/granite-20b-functioncalling",
     "yi-large-fc",
+    "openbmb/MiniCPM3-4B-FC",
 ]

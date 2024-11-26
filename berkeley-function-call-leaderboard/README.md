@@ -90,7 +90,7 @@ The evaluation script will automatically search for dataset files in the default
 
 ## Evaluating different models on the BFCL
 
-Make sure the model API keys are included in your `.env` file. Running proprietary models like GPTs, Claude, Mistral-X will require them.
+Make sure the model API keys are included in your `.env` file. Running proprietary models like GPTs, Claude, Mistral-X, Palmyra, will require them.
 
 ```bash
 OPENAI_API_KEY=sk-XXXXXX
@@ -100,6 +100,7 @@ ANTHROPIC_API_KEY=
 NVIDIA_API_KEY=nvapi-XXXXXX
 YI_API_KEY=
 GOGOAGENT_API_KEY=
+WRITER_API_KEY=
 
 VERTEX_AI_PROJECT_ID=
 VERTEX_AI_LOCATION=
@@ -150,13 +151,17 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |gorilla-openfunctions-v2 | Function Calling|
 |claude-3-{opus-20240229,sonnet-20240229,haiku-20240307}-FC | Function Calling |
 |claude-3-{opus-20240229,sonnet-20240229,haiku-20240307} | Prompt |
-|claude-3-5-sonnet-20240620-FC | Function Calling |
-|claude-3-5-sonnet-20240620 | Prompt |
+|claude-3-5-sonnet-{20240620,20241022}-FC | Function Calling |
+|claude-3-5-sonnet-{20240620,20241022} | Prompt |
+|claude-3-5-haiku-20241022-FC | Function Calling |
+|claude-3-5-haiku-20241022 | Prompt |
 |claude-{2.1,instant-1.2}| Prompt|
 |command-r-plus-FC | Function Calling|
 |command-r-plus | Prompt|
 |databrick-dbrx-instruct | Prompt|
-|deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
+|deepseek-ai/DeepSeek-V2.5 💻| Function Calling|
+|deepseek-ai/DeepSeek-V2-{Chat-0628,Lite-Chat} 💻| Prompt|
+|deepseek-ai/DeepSeek-Coder-V2-{Instruct-0724,Lite-Instruct} 💻| Function Calling|
 |firefunction-{v1,v2}-FC | Function Calling|
 |gemini-1.0-pro-{001,002}-FC | Function Calling|
 |gemini-1.0-pro-{001,002} | Prompt|
@@ -197,6 +202,7 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |NousResearch/Hermes-2-Pro-Llama-3-{8B,70B} 💻| Function Calling|
 |NousResearch/Hermes-2-Pro-Mistral-7B 💻| Function Calling|
 |NousResearch/Hermes-2-Theta-Llama-3-{8B,70B} 💻| Function Calling|
+|palmyra-x-004 | Function Calling|
 |snowflake/arctic | Prompt|
 |Salesforce/xLAM-1b-fc-r 💻| Function Calling|
 |Salesforce/xLAM-7b-fc-r 💻| Function Calling|
@@ -215,7 +221,8 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |Qwen/Qwen2.5-{1.5B,7B}-Instruct 💻| Prompt|
 |Qwen/Qwen2-{1.5B,7B}-Instruct 💻| Prompt|
 |Team-ACE/ToolACE-8B 💻| Function Calling|
-|openbmb/MiniCPM3-4B 💻| Function Calling|
+|openbmb/MiniCPM3-4B-FC 💻| Function Calling|
+|openbmb/MiniCPM3-4B 💻| Prompt|
 |BitAgent/GoGoAgent 💻| Prompt|
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function-calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
@@ -310,6 +317,20 @@ If you want to run `live_simple` and `javascript` tests for a few models and `go
 
 ```bash
 bfcl evaluate --model gorilla-openfunctions-v2 claude-3-5-sonnet-20240620 gpt-4-0125-preview gemini-1.5-pro-preview-0514 --test-category live_simple javascript
+```
+
+#### WandB Evaluation Logging
+
+If you want to additionally log the evaluation results as WandB artifacts to a specific WandB entity and project, you can install wandb as an optional dependency:
+
+```bash
+pip install -e.[wandb]
+```
+
+And you can specify the entity and project name you want to log to on Wandb using the `WANDB_BFCL_PROJECT` environment variable in the `.env` file in the following format:
+
+```bash
+WANDB_BFCL_PROJECT=ENTITY:PROJECT
 ```
 
 ### Model-Specific Optimization
