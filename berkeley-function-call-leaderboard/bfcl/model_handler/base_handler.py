@@ -15,6 +15,7 @@ from bfcl.model_handler.constant import (
 )
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.utils import load_file, make_json_serializable, sort_key
+from overrides import final
 
 
 class BaseHandler:
@@ -31,6 +32,7 @@ class BaseHandler:
         self.temperature = temperature
         self.is_fc_model = False  # Whether the model is a function calling model
 
+    @final
     def inference(self, test_entry: dict, include_input_log: bool, include_state_log: bool):
         # This method is used to retrive model response for each model.
 
@@ -52,6 +54,7 @@ class BaseHandler:
                     test_entry, include_input_log
                 )
 
+    @final
     def inference_multi_turn_FC(
         self, test_entry: dict, include_input_log: bool, include_state_log: bool
     ) -> tuple[list[list], dict]:
@@ -296,6 +299,7 @@ class BaseHandler:
 
         return all_model_response, metadata
 
+    @final
     def inference_multi_turn_prompting(
         self, test_entry: dict, include_input_log: bool, include_state_log: bool
     ) -> tuple[list[list], dict]:
@@ -537,6 +541,7 @@ class BaseHandler:
 
         return all_model_response, metadata
 
+    @final
     def inference_single_turn_FC(
         self, test_entry: dict, include_input_log: bool
     ) -> tuple[any, dict]:
@@ -569,6 +574,7 @@ class BaseHandler:
 
         return model_response_data["model_responses"], metadata
 
+    @final
     def inference_single_turn_prompting(
         self, test_entry: dict, include_input_log: bool
     ) -> tuple[any, dict]:
@@ -607,6 +613,7 @@ class BaseHandler:
         # This method takes raw model output and convert it to standard execute checker input.
         raise NotImplementedError
 
+    @final
     def write(self, result, result_dir, update_mode=False):
         model_name_dir = self.model_name.replace("/", "_")
         model_result_dir = result_dir / model_name_dir

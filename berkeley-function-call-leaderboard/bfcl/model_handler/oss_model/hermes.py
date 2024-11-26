@@ -1,9 +1,14 @@
-from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
-from bfcl.model_handler.utils import convert_to_tool, func_doc_language_specific_pre_processing
+import inspect
+import json
+
 from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
-import json
-import inspect
+from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
+from bfcl.model_handler.utils import (
+    convert_to_tool,
+    func_doc_language_specific_pre_processing,
+)
+from overrides import overrides
 
 
 class HermesHandler(OSSHandler):
@@ -13,6 +18,7 @@ class HermesHandler(OSSHandler):
         if model_name == "NousResearch/Hermes-2-Pro-Llama-3-8B":
             self.dtype = "float16"
 
+    @overrides
     def _format_prompt(self, messages, function):
         # Hermes use Langchain to OpenAI conversion. It does not use tool call but function call.
         function = convert_to_tool(function, GORILLA_TO_OPENAPI, ModelStyle.OSSMODEL)
@@ -49,6 +55,7 @@ class HermesHandler(OSSHandler):
 
         return formatted_prompt
 
+    @overrides
     def decode_ast(self, result, language="Python"):
         lines = result.split("\n")
         flag = False
@@ -66,6 +73,7 @@ class HermesHandler(OSSHandler):
                 flag = False
         return func_call
 
+    @overrides
     def decode_execute(self, result):
         lines = result.split("\n")
         flag = False
@@ -91,6 +99,7 @@ class HermesHandler(OSSHandler):
                 )
         return execution_list
 
+    @overrides
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
@@ -101,6 +110,7 @@ class HermesHandler(OSSHandler):
 
         return {"message": [], "function": functions}
 
+    @overrides
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:

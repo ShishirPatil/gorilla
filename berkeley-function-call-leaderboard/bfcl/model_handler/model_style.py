@@ -11,3 +11,4 @@ class ModelStyle(Enum):
     NEXUS = "nexus"
     OSSMODEL = "ossmodel"
     COHERE = "cohere"
+    WRITER = "writer"

@@ -25,6 +25,7 @@ from bfcl.model_handler.proprietary_model.mistral import MistralHandler
 from bfcl.model_handler.proprietary_model.nexus import NexusHandler
 from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
+from bfcl.model_handler.proprietary_model.writer import WriterHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
 
 # TODO: Add meta-llama/Llama-3.1-405B-Instruct
@@ -88,6 +89,7 @@ api_inference_handler_map = {
     "nvidia/nemotron-4-340b-instruct": NvidiaHandler,
     "BitAgent/GoGoAgent": GoGoAgentHandler,
     # "yi-large-fc": YiHandler,  #  Their API is under maintenance, and will not be back online in the near future
+    "palmyra-x-004": WriterHandler,
 }
 
 # Inference through local hosting
