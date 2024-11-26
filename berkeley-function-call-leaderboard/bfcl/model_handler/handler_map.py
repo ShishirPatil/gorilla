@@ -9,6 +9,7 @@ from bfcl.model_handler.oss_model.hermes import HermesHandler
 from bfcl.model_handler.oss_model.llama import LlamaHandler
 from bfcl.model_handler.oss_model.llama_fc import LlamaFCHandler
 from bfcl.model_handler.oss_model.minicpm import MiniCPMHandler
+from bfcl.model_handler.oss_model.minicpm_fc import MiniCPMFCHandler
 from bfcl.model_handler.oss_model.phi import PhiHandler
 from bfcl.model_handler.oss_model.qwen import QwenHandler
 from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
@@ -132,6 +133,7 @@ local_inference_handler_map = {
     "Qwen/Qwen2.5-72B-Instruct": QwenHandler,
     "Team-ACE/ToolACE-8B": LlamaHandler,
     "openbmb/MiniCPM3-4B": MiniCPMHandler,
+    "openbmb/MiniCPM3-4B-FC": MiniCPMFCHandler,
     "deepseek-ai/DeepSeek-V2.5": DeepseekCoderHandler,
     "deepseek-ai/DeepSeek-Coder-V2-Instruct-0724": DeepseekCoderHandler,
     "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct": DeepseekCoderHandler,
