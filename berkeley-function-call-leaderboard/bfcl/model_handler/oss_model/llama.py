@@ -1,7 +1,6 @@
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
 from overrides import overrides
 
-
 # Note: This is the handler for the Llama models in prompring mode.
 # For function call mode, use LlamaFCHandler instead.
 # Llama 3 series are benchmarked in prompting mode while the Llama 3.1 series are benchmarked in function call mode.

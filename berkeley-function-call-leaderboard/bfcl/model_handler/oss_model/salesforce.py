@@ -6,6 +6,7 @@ from bfcl.model_handler.oss_model.constant import VLLM_PORT
 from openai import OpenAI
 from overrides import overrides
 
+from overrides import overrides
 
 class SalesforceHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
