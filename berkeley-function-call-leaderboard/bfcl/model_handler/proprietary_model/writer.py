@@ -22,7 +22,7 @@ class WriterHandler(OpenAIHandler):
         if len(tools) > 0:
             api_response = self.client.chat.chat(
                 messages=message,
-                model=self.model_name.replace("-FC", ""),
+                model=self.model_name,
                 temperature=self.temperature,
                 tools=tools,
                 tool_choice="auto",
@@ -30,7 +30,7 @@ class WriterHandler(OpenAIHandler):
         else:
             api_response = self.client.chat.chat(
                 messages=message,
-                model=self.model_name.replace("-FC", ""),
+                model=self.model_name,
                 temperature=self.temperature,
             )
         return api_response
