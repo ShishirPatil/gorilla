@@ -1,13 +1,28 @@
+import json
+import re
+
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
-from bfcl.model_handler.utils import func_doc_language_specific_pre_processing
+from bfcl.model_handler.utils import (
+    combine_consecutive_user_prompts,
+    convert_system_prompt_into_user_prompt,
+    convert_to_function_call,
+    func_doc_language_specific_pre_processing,
+)
 
 
 class DeepseekCoderHandler(OSSHandler):
     """
     This is the handler for the Deepseek-Coder models. Models are benchmarked in their Function Calling mode.
     """
+
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
+
+    def decode_ast(self, result, language="Python"):
+        return result
+
+    def decode_execute(self, result):
+        return convert_to_function_call(result)
 
     def _format_prompt(self, messages, function):
         """
@@ -19,7 +34,6 @@ class DeepseekCoderHandler(OSSHandler):
             "rstrip": false,
             "single_word": false
         },
-        "chat_template": "{% if not add_generation_prompt is defined %}{% set add_generation_prompt = false %}{% endif %}{% set ns = namespace(is_first=false, is_tool=false, is_output_first=true, system_prompt='') %}{%- for message in messages %}    {%- if message['role'] == 'system' %}        {% set ns.system_prompt = message['content'] %}    {%- endif %}{%- endfor %}{{bos_token}}{{ns.system_prompt}}{%- for message in messages %}    {%- if message['role'] == 'user' %}    {%- set ns.is_tool = false -%}{{'<｜User｜>' + message['content']}}    {%- endif %}    {%- if message['role'] == 'assistant' and message['content'] is none %}        {%- set ns.is_tool = false -%}        {%- for tool in message['tool_calls']%}            {%- if not ns.is_first %}{{'<｜Assistant｜><｜tool▁calls▁begin｜><｜tool▁call▁begin｜>' + tool['type'] + '<｜tool▁sep｜>' + tool['function']['name'] + '\\n' + '```json' + '\\n' + tool['function']['arguments'] + '\\n' + '```' + '<｜tool▁call▁end｜>'}}            {%- set ns.is_first = true -%}            {%- else %}{{'\\n' + '<｜tool▁call▁begin｜>' + tool['type'] + '<｜tool▁sep｜>' + tool['function']['name'] + '\\n' + '```json' + '\\n' + tool['function']['arguments'] + '\\n' + '```' + '<｜tool▁call▁end｜>'}}{{'<｜tool▁calls▁end｜><｜end▁of▁sentence｜>'}}                   {%- endif %}        {%- endfor %}    {%- endif %}    {%- if message['role'] == 'assistant' and message['content'] is not none %}        {%- if ns.is_tool %}{{'<｜tool▁outputs▁end｜>' + message['content'] + '<｜end▁of▁sentence｜>'}}        {%- set ns.is_tool = false -%}        {%- else %}{{'<｜Assistant｜>' + message['content'] + '<｜end▁of▁sentence｜>'}}        {%- endif %}    {%- endif %}    {%- if message['role'] == 'tool' %}        {%- set ns.is_tool = true -%}        {%- if ns.is_output_first %}{{'<｜tool▁outputs▁begin｜><｜tool▁output▁begin｜>' + message['content'] + '<｜tool▁output▁end｜>'}}        {%- set ns.is_output_first = false %}        {%- else %}{{'\\n<｜tool▁output▁begin｜>' + message['content'] + '<｜tool▁output▁end｜>'}}        {%- endif %}    {%- endif %}{%- endfor -%}{% if ns.is_tool %}{{'<｜tool▁outputs▁end｜>'}}{% endif %}{% if add_generation_prompt and not ns.is_tool %}{{'<｜Assistant｜>'}}{% endif %}"
         "chat_template": "{% if not add_generation_prompt is defined %}{% set add_generation_prompt = false %}{% endif %}{% set ns = namespace(is_first=false, is_tool=false, is_output_first=true, system_prompt='') %}{%- for message in messages %}    {%- if message['role'] == 'system' %}        {% set ns.system_prompt = message['content'] %}    {%- endif %}{%- endfor %}{{bos_token}}{{ns.system_prompt}}{%- for message in messages %}    {%- if message['role'] == 'user' %}    {%- set ns.is_tool = false -%}{{'<｜User｜>' + message['content']}}    {%- endif %}    {%- if message['role'] == 'assistant' and message['content'] is none %}        {%- set ns.is_tool = false -%}        {%- for tool in message['tool_calls']%}            {%- if not ns.is_first %}{{'<｜Assistant｜><｜tool▁calls▁begin｜><｜tool▁call▁begin｜>' + tool['type'] + '<｜tool▁sep｜>' + tool['function']['name'] + '\\n' + '```json' + '\\n' + tool['function']['arguments'] + '\\n' + '```' + '<｜tool▁call▁end｜>'}}            {%- set ns.is_first = true -%}            {%- else %}{{'\\n' + '<｜tool▁call▁begin｜>' + tool['type'] + '<｜tool▁sep｜>' + tool['function']['name'] + '\\n' + '```json' + '\\n' + tool['function']['arguments'] + '\\n' + '```' + '<｜tool▁call▁end｜>'}}{{'<｜tool▁calls▁end｜><｜end▁of▁sentence｜>'}}                   {%- endif %}        {%- endfor %}    {%- endif %}    {%- if message['role'] == 'assistant' and message['content'] is not none %}        {%- if ns.is_tool %}{{'<｜tool▁outputs▁end｜>' + message['content'] + '<｜end▁of▁sentence｜>'}}        {%- set ns.is_tool = false -%}        {%- else %}{{'<｜Assistant｜>' + message['content'] + '<｜end▁of▁sentence｜>'}}        {%- endif %}    {%- endif %}    {%- if message['role'] == 'tool' %}        {%- set ns.is_tool = true -%}        {%- if ns.is_output_first %}{{'<｜tool▁outputs▁begin｜><｜tool▁output▁begin｜>' + message['content'] + '<｜tool▁output▁end｜>'}}        {%- set ns.is_output_first = false %}        {%- else %}{{'\\n<｜tool▁output▁begin｜>' + message['content'] + '<｜tool▁output▁end｜>'}}        {%- endif %}    {%- endif %}{%- endfor -%}{% if ns.is_tool %}{{'<｜tool▁outputs▁end｜>'}}{% endif %}{% if add_generation_prompt and not ns.is_tool %}{{'<｜Assistant｜>'}}{% endif %}"
         """
         formatted_prompt = "<｜begin▁of▁sentence｜>"
@@ -97,6 +111,88 @@ class DeepseekCoderHandler(OSSHandler):
 
         functions = func_doc_language_specific_pre_processing(functions, test_category)
 
-        # Deepseek coder is in FC mode, so no need to add the default system prompt
+        # Deepseek coder use its own system prompt
+        for round_idx in range(len(test_entry["question"])):
+            test_entry["question"][round_idx] = convert_system_prompt_into_user_prompt(
+                test_entry["question"][round_idx]
+            )
+            test_entry["question"][round_idx] = combine_consecutive_user_prompts(
+                test_entry["question"][round_idx]
+            )
+
+        tool_system_prompt = "You are a helpful Assistant.\n\n## Tools\n\n### Function\n\nYou have the following functions available:\n\n"
+        for function in functions:
+            tool_system_prompt += f"- `{function['name']}`:\n"
+            tool_system_prompt += f"```json\n{json.dumps(function, indent=4)}\n```\n"
+
+        test_entry["question"][0].insert(
+            0, {"role": "system", "content": tool_system_prompt}
+        )
 
         return {"message": [], "function": functions}
+
+    def _parse_query_response_prompting(self, api_response: any) -> dict:
+        model_responses = api_response.choices[0].text
+        extracted_tool_calls = self.extract_tool_calls(model_responses)
+
+        if len(extracted_tool_calls) > 0:
+            model_responses_message_for_chat_history = {
+                "role": "assistant",
+                "content": None,
+                "tool_calls": extracted_tool_calls,
+            }
+            model_responses = [
+                {item["name"]: item["argument"]} for item in extracted_tool_calls
+            ]
+        else:
+            model_responses_message_for_chat_history = {
+                "role": "assistant",
+                "content": api_response.choices[0].text,
+            }
+
+        return {
+            "model_responses": model_responses,
+            "model_responses_message_for_chat_history": model_responses_message_for_chat_history,
+            "input_token": api_response.usage.prompt_tokens,
+            "output_token": api_response.usage.completion_tokens,
+        }
+
+    def _add_assistant_message_prompting(
+        self, inference_data: dict, model_response_data: dict
+    ) -> dict:
+        inference_data["message"].append(
+            model_response_data["model_responses_message_for_chat_history"],
+        )
+        return inference_data
+
+    @staticmethod
+    def extract_tool_calls(input_string):
+        """
+        Input is like this:
+        "<\uff5ctool\u2581calls\u2581begin\uff5c><\uff5ctool\u2581call\u2581begin\uff5c>function<\uff5ctool\u2581sep\uff5c>calculate_cosine.similarity\n```json\n{\"vectorA\": [0.5, 0.7, 0.2, 0.9, 0.1], \"vectorB\": [0.3, 0.6, 0.2, 0.8, 0.1]}\n```<\uff5ctool\u2581call\u2581end\uff5c>\n<\uff5ctool\u2581call\u2581begin\uff5c>function<\uff5ctool\u2581sep\uff5c>calculate_cosine_similarity\n```json\n{\"vectorA\": [0.2, 0.4, 0.6, 0.8, 1.0], \"vectorB\": [1.0, 0.8, 0.6, 0.4, 0.2]}\n```<\uff5ctool\u2581call\u2581end\uff5c>\n<\uff5ctool\u2581call\u2581begin\uff5c>function<\uff5ctool\u2581sep\uff5c>calculate_cosine_similarity\n```json\n{\"vectorA\": [0.1, 0.2, 0.3, 0.4, 0.5], \"vectorB\": [0.5, 0.4, 0.3, 0.2, 0.1]}\n```<\uff5ctool\u2581call\u2581end\uff5c><\uff5ctool\u2581calls\u2581end\uff5c>"
+
+        We want to extract the tool calls from this string.
+        Expected output:
+        [{'type': 'function', 'name': 'calculate_cosine.similarity', 'argument': {'vectorA': [0.5, 0.7, 0.2, 0.9, 0.1], 'vectorB': [0.3, 0.6, 0.2, 0.8, 0.1]}}, {'type': 'function', 'name': 'calculate_cosine_similarity', 'argument': {'vectorA': [0.2, 0.4, 0.6, 0.8, 1.0], 'vectorB': [1.0, 0.8, 0.6, 0.4, 0.2]}}, {'type': 'function', 'name': 'calculate_cosine_similarity', 'argument': {'vectorA': [0.1, 0.2, 0.3, 0.4, 0.5], 'vectorB': [0.5, 0.4, 0.3, 0.2, 0.1]}}]
+        """
+        # Regular expression to match tool calls
+        pattern = re.compile(
+            r"<｜tool▁call▁begin｜>(\w+)<｜tool▁sep｜>(.*?)\n```json\n(.*?)\n```<｜tool▁call▁end｜>"
+        )
+
+        # Find all matches in the input string
+        matches = pattern.findall(input_string)
+
+        # Process matches into a list of dictionaries
+        result = []
+        for match in matches:
+            type = match[0]
+            name = match[1]
+            argument = match[2]
+            try:
+                argument = json.loads(argument)
+            except Exception as e:
+                pass
+            result.append({"type": type, "name": name, "argument": argument})
+
+        return result
