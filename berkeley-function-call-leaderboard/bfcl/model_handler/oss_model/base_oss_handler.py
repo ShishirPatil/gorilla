@@ -1,7 +1,6 @@
 import subprocess
 import threading
 import time
-import json
 from concurrent.futures import ThreadPoolExecutor
 
 import requests
@@ -16,10 +15,11 @@ from bfcl.model_handler.utils import (
     system_prompt_pre_processing_chat_model,
 )
 from openai import OpenAI
+from overrides import EnforceOverrides, final
 from tqdm import tqdm
 
 
-class OSSHandler(BaseHandler):
+class OSSHandler(BaseHandler, EnforceOverrides):
     def __init__(self, model_name, temperature, dtype="bfloat16") -> None:
         super().__init__(model_name, temperature)
         self.model_name_huggingface = model_name
@@ -27,6 +27,7 @@ class OSSHandler(BaseHandler):
         self.dtype = dtype
         self.client = OpenAI(base_url=f"http://localhost:{VLLM_PORT}/v1", api_key="EMPTY")
 
+    @final
     def inference(self, test_entry: dict, include_input_log: bool, include_state_log: bool):
         """
         OSS models have a different inference method.
@@ -44,6 +45,7 @@ class OSSHandler(BaseHandler):
     def decode_execute(self, result):
         return default_decode_execute_prompting(result)
 
+    @final
     def batch_inference(
         self,
         test_entries: list[dict],
@@ -218,6 +220,7 @@ class OSSHandler(BaseHandler):
             stdout_thread.join()
             stderr_thread.join()
             
+    @final
     def _multi_threaded_inference(self, test_case, include_input_log: bool, include_state_log: bool):
         """
         This is a wrapper function to make sure that, if an error occurs during inference, the process does not stop.
