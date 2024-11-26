@@ -1,9 +1,11 @@
 import subprocess
 import threading
 import time
+import json
 from concurrent.futures import ThreadPoolExecutor
 
 import requests
+from bfcl.constant import RESULT_PATH, VERSION_PREFIX
 from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.oss_model.constant import VLLM_PORT
@@ -50,15 +52,17 @@ class OSSHandler(BaseHandler):
         backend: str,
         include_input_log: bool,
         include_state_log: bool,
+        update_mode: bool,
+        result_dir=RESULT_PATH,
     ):
         """
         Batch inference for OSS models.
         """
         from transformers import AutoConfig, AutoTokenizer
 
-        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name_huggingface)
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name_huggingface, trust_remote_code=True)
 
-        config = AutoConfig.from_pretrained(self.model_name_huggingface)
+        config = AutoConfig.from_pretrained(self.model_name_huggingface, trust_remote_code=True)
         if hasattr(config, "max_position_embeddings"):
             self.max_context_length = config.max_position_embeddings
         elif self.tokenizer.model_max_length is not None:
@@ -190,7 +194,7 @@ class OSSHandler(BaseHandler):
                     for future in futures:
                         # This will wait for the task to complete, so that we are always writing in order
                         result = future.result()
-                        self.write(result)
+                        self.write(result, result_dir, update_mode=update_mode)
                         pbar.update()
 
 
