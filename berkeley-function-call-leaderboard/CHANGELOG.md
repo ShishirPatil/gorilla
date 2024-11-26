@@ -2,6 +2,12 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Nov 25, 2024] [#697](https://github.com/ShishirPatil/gorilla/pull/697): Add the following new models to the leaderboard:
+  - `deepseek-ai/DeepSeek-V2.5`
+  - `deepseek-ai/DeepSeek-Coder-V2-Instruct-0724`
+  - `deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct`
+  - `deepseek-ai/DeepSeek-V2-Chat-0628`
+  - `deepseek-ai/DeepSeek-V2-Lite-Chat`
 - [Nov 25, 2024] [#787](https://github.com/ShishirPatil/gorilla/pull/787): Add new model `Qwen/Qwen2.5-72B-Instruct` to the leaderboard.
 - [Nov 24, 2024] [#743](https://github.com/ShishirPatil/gorilla/pull/743): Add support for regeneration, specific test entry IDs, and custom directory locations:
   - Introduce the `--allow-overwrite` flag for the `generate` command to enable regeneration of test entries even if they already exist.

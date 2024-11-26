@@ -125,20 +125,18 @@ def collect_test_cases(
         for test_case in all_test_entries_involved
         if test_case["id"] not in existing_ids
     ]
-    test_cases_to_generate = process_multi_turn_test_case(
-        test_cases_to_generate, test_category
-    )
+    test_cases_to_generate = process_multi_turn_test_case(test_cases_to_generate)
 
     return sorted(test_cases_to_generate, key=sort_key)
 
 
-def process_multi_turn_test_case(test_cases, test_category):
+def process_multi_turn_test_case(test_cases):
     """
     Multi-turn test cases don't have the function doc in the prompt. We need to add them here.
     """
-    if not is_multi_turn(test_category):
-        return test_cases
     for entry in test_cases:
+        if not is_multi_turn(entry["id"]):
+            continue
         involved_classes = entry["involved_classes"]
         entry["function"] = []
         for func_collection in involved_classes:
