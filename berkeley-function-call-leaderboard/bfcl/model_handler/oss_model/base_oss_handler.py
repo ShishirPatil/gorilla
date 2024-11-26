@@ -60,9 +60,9 @@ class OSSHandler(BaseHandler):
         """
         from transformers import AutoConfig, AutoTokenizer
 
-        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name_huggingface)
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name_huggingface, trust_remote_code=True)
 
-        config = AutoConfig.from_pretrained(self.model_name_huggingface)
+        config = AutoConfig.from_pretrained(self.model_name_huggingface, trust_remote_code=True)
         if hasattr(config, "max_position_embeddings"):
             self.max_context_length = config.max_position_embeddings
         elif self.tokenizer.model_max_length is not None:
