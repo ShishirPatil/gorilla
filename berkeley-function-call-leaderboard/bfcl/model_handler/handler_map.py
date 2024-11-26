@@ -1,4 +1,5 @@
 from bfcl.model_handler.oss_model.deepseek import DeepseekHandler
+from bfcl.model_handler.oss_model.deepseek_coder import DeepseekCoderHandler
 from bfcl.model_handler.oss_model.gemma import GemmaHandler
 from bfcl.model_handler.oss_model.glaive import GlaiveHandler
 from bfcl.model_handler.oss_model.glm import GLMHandler
@@ -7,26 +8,26 @@ from bfcl.model_handler.oss_model.hammer import HammerHandler
 from bfcl.model_handler.oss_model.hermes import HermesHandler
 from bfcl.model_handler.oss_model.llama import LlamaHandler
 from bfcl.model_handler.oss_model.llama_fc import LlamaFCHandler
-from bfcl.model_handler.oss_model.phi import PhiHandler
-from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
-from bfcl.model_handler.oss_model.qwen import QwenHandler
 from bfcl.model_handler.oss_model.minicpm import MiniCPMHandler
+from bfcl.model_handler.oss_model.phi import PhiHandler
+from bfcl.model_handler.oss_model.qwen import QwenHandler
+from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
 from bfcl.model_handler.proprietary_model.claude import ClaudeHandler
 from bfcl.model_handler.proprietary_model.cohere import CohereHandler
 from bfcl.model_handler.proprietary_model.databricks import DatabricksHandler
 from bfcl.model_handler.proprietary_model.fireworks import FireworksHandler
 from bfcl.model_handler.proprietary_model.functionary import FunctionaryHandler
 from bfcl.model_handler.proprietary_model.gemini import GeminiHandler
+from bfcl.model_handler.proprietary_model.gogoagent import GoGoAgentHandler
 from bfcl.model_handler.proprietary_model.gorilla import GorillaHandler
 from bfcl.model_handler.proprietary_model.mistral import MistralHandler
 from bfcl.model_handler.proprietary_model.nexus import NexusHandler
 from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
-from bfcl.model_handler.proprietary_model.yi import YiHandler
-from bfcl.model_handler.proprietary_model.gogoagent import GoGoAgentHandler
 from bfcl.model_handler.proprietary_model.writer import WriterHandler
+from bfcl.model_handler.proprietary_model.yi import YiHandler
 
-# TODO: Add Deepseek V2, meta-llama/Llama-3.1-405B-Instruct
+# TODO: Add meta-llama/Llama-3.1-405B-Instruct
 
 # Inference through API calls
 api_inference_handler_map = {
@@ -130,8 +131,14 @@ local_inference_handler_map = {
     "Qwen/Qwen2-7B-Instruct": QwenHandler,
     "Qwen/Qwen2.5-1.5B-Instruct": QwenHandler,
     "Qwen/Qwen2.5-7B-Instruct": QwenHandler,
+    "Qwen/Qwen2.5-72B-Instruct": QwenHandler,
     "Team-ACE/ToolACE-8B": LlamaHandler,
     "openbmb/MiniCPM3-4B": MiniCPMHandler,
+    "deepseek-ai/DeepSeek-V2.5": DeepseekCoderHandler,
+    "deepseek-ai/DeepSeek-Coder-V2-Instruct-0724": DeepseekCoderHandler,
+    "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct": DeepseekCoderHandler,
+    "deepseek-ai/DeepSeek-V2-Chat-0628": DeepseekHandler,
+    "deepseek-ai/DeepSeek-V2-Lite-Chat": DeepseekHandler,
 }
 
 # Deprecated/outdated models, no longer on the leaderboard

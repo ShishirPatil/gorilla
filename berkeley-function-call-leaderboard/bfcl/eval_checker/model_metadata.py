@@ -361,11 +361,35 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
-    "deepseek-ai/deepseek-coder-6.7b-instruct": [
-        "Deepseek-v1.5 (Prompt)",
-        "https://huggingface.co/deepseek-ai/deepseek-coder-7b-instruct-v1.5",
-        "Deepseek",
-        "Deepseek License",
+    "deepseek-ai/DeepSeek-V2.5": [
+        "DeepSeek-V2.5 (FC)",
+        "https://huggingface.co/deepseek-ai/DeepSeek-V2.5",
+        "DeepSeek",
+        "DeepSeek License"
+    ],
+    "deepseek-ai/DeepSeek-Coder-V2-Instruct-0724": [
+        "DeepSeek-Coder-V2 (FC)",
+        "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct-0724",
+        "DeepSeek",
+        "DeepSeek License"
+    ],
+    "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct": [
+        "DeepSeek-Coder-V2-Lite-Instruct (FC)",
+        "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct",
+        "DeepSeek",
+        "DeepSeek License"
+    ],
+    "deepseek-ai/DeepSeek-V2-Chat-0628": [
+        "DeepSeek-V2 (Prompt)",
+        "https://huggingface.co/deepseek-ai/DeepSeek-V2-Chat-0628",
+        "DeepSeek",
+        "DeepSeek License",
+    ],
+    "deepseek-ai/DeepSeek-V2-Lite-Chat": [
+        "DeepSeek-V2-Lite (Prompt)",
+        "https://huggingface.co/deepseek-ai/DeepSeek-V2-Lite-Chat",
+        "DeepSeek",
+        "DeepSeek License",
     ],
     "google/gemma-7b-it": [
         "Gemma-7b-it (Prompt)",
@@ -655,6 +679,12 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/Qwen2.5-72B-Instruct": [
+        "Qwen2.5-72B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Team-ACE/ToolACE-8B": [
         "ToolACE-8B (FC)",
         "https://huggingface.co/Team-ACE/ToolACE-8B",
@@ -818,17 +848,4 @@ NO_COST_MODELS += [
     "meetkai/functionary-medium-v3.1-FC",
     "snowflake/arctic",
     "nvidia/nemotron-4-340b-instruct",
-    "ibm-granite/granite-20b-functioncalling",
-    "THUDM/glm-4-9b-chat",
-    "Salesforce/xLAM-1b-fc-r",
-    "Salesforce/xLAM-7b-fc-r",
-    "Salesforce/xLAM-7b-r",
-    "Salesforce/xLAM-8x7b-r",
-    "Salesforce/xLAM-8x22b-r",
-     "Team-ACE/ToolACE-8B",
-    "MadeAgents/Hammer2.0-7b",
-    "MadeAgents/Hammer2.0-3b",
-    "MadeAgents/Hammer2.0-1.5b",
-    "MadeAgents/Hammer2.0-0.5b",
-    "BitAgent/GoGoAgent",
 ]
