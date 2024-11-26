@@ -89,7 +89,7 @@ api_inference_handler_map = {
     "nvidia/nemotron-4-340b-instruct": NvidiaHandler,
     "BitAgent/GoGoAgent": GoGoAgentHandler,
     # "yi-large-fc": YiHandler,  #  Their API is under maintenance, and will not be back online in the near future
-    "palmyra-x-004-FC": WriterHandler,
+    "palmyra-x-004": WriterHandler,
 }
 
 # Inference through local hosting

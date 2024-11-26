@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Nov 26, 2024] [#755](https://github.com/ShishirPatil/gorilla/pull/755): Add new model `palmyra-x-004` to the leaderboard.
 - [Nov 25, 2024] [#718](https://github.com/ShishirPatil/gorilla/pull/718): Add new model `openbmb/MiniCPM3-4B-FC` to the leaderboard.
 - [Nov 25, 2024] [#697](https://github.com/ShishirPatil/gorilla/pull/697): Add the following new models to the leaderboard:
   - `deepseek-ai/DeepSeek-V2.5`

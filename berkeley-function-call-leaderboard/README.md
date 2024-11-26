@@ -202,7 +202,7 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |NousResearch/Hermes-2-Pro-Llama-3-{8B,70B} 💻| Function Calling|
 |NousResearch/Hermes-2-Pro-Mistral-7B 💻| Function Calling|
 |NousResearch/Hermes-2-Theta-Llama-3-{8B,70B} 💻| Function Calling|
-|palmyra-x-004-FC | Function Calling|
+|palmyra-x-004 | Function Calling|
 |snowflake/arctic | Prompt|
 |Salesforce/xLAM-1b-fc-r 💻| Function Calling|
 |Salesforce/xLAM-7b-fc-r 💻| Function Calling|
