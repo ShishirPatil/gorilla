@@ -90,7 +90,7 @@ The evaluation script will automatically search for dataset files in the default
 
 ## Evaluating different models on the BFCL
 
-Make sure the model API keys are included in your `.env` file. Running proprietary models like GPTs, Claude, Mistral-X will require them.
+Make sure the model API keys are included in your `.env` file. Running proprietary models like GPTs, Claude, Mistral-X, Palmyra, will require them.
 
 ```bash
 OPENAI_API_KEY=sk-XXXXXX
@@ -100,6 +100,7 @@ ANTHROPIC_API_KEY=
 NVIDIA_API_KEY=nvapi-XXXXXX
 YI_API_KEY=
 GOGOAGENT_API_KEY=
+WRITER_API_KEY=
 
 VERTEX_AI_PROJECT_ID=
 VERTEX_AI_LOCATION=
@@ -201,6 +202,7 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |NousResearch/Hermes-2-Pro-Llama-3-{8B,70B} 💻| Function Calling|
 |NousResearch/Hermes-2-Pro-Mistral-7B 💻| Function Calling|
 |NousResearch/Hermes-2-Theta-Llama-3-{8B,70B} 💻| Function Calling|
+|palmyra-x-004 | Function Calling|
 |snowflake/arctic | Prompt|
 |Salesforce/xLAM-1b-fc-r 💻| Function Calling|
 |Salesforce/xLAM-7b-fc-r 💻| Function Calling|
