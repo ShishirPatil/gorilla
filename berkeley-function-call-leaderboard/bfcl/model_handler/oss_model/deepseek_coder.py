@@ -142,7 +142,8 @@ class DeepseekCoderHandler(OSSHandler):
                 "tool_calls": extracted_tool_calls,
             }
             model_responses = [
-                {item["name"]: item["argument"]} for item in extracted_tool_calls
+                {item["function"]["name"]: item["function"]["arguments"]}
+                for item in extracted_tool_calls
             ]
         else:
             model_responses_message_for_chat_history = {
@@ -169,7 +170,18 @@ class DeepseekCoderHandler(OSSHandler):
     def extract_tool_calls(input_string):
         """
         Input is like this:
-        "<\uff5ctool\u2581calls\u2581begin\uff5c><\uff5ctool\u2581call\u2581begin\uff5c>function<\uff5ctool\u2581sep\uff5c>calculate_cosine.similarity\n```json\n{\"vectorA\": [0.5, 0.7, 0.2, 0.9, 0.1], \"vectorB\": [0.3, 0.6, 0.2, 0.8, 0.1]}\n```<\uff5ctool\u2581call\u2581end\uff5c>\n<\uff5ctool\u2581call\u2581begin\uff5c>function<\uff5ctool\u2581sep\uff5c>calculate_cosine_similarity\n```json\n{\"vectorA\": [0.2, 0.4, 0.6, 0.8, 1.0], \"vectorB\": [1.0, 0.8, 0.6, 0.4, 0.2]}\n```<\uff5ctool\u2581call\u2581end\uff5c>\n<\uff5ctool\u2581call\u2581begin\uff5c>function<\uff5ctool\u2581sep\uff5c>calculate_cosine_similarity\n```json\n{\"vectorA\": [0.1, 0.2, 0.3, 0.4, 0.5], \"vectorB\": [0.5, 0.4, 0.3, 0.2, 0.1]}\n```<\uff5ctool\u2581call\u2581end\uff5c><\uff5ctool\u2581calls\u2581end\uff5c>"
+        "<｜tool▁calls▁begin｜><｜tool▁call▁begin｜>function<｜tool▁sep｜>calculate_cosine.similarity
+        ```json
+        {"vectorA": [0.5, 0.7, 0.2, 0.9, 0.1], "vectorB": [0.3, 0.6, 0.2, 0.8, 0.1]}
+        ```<｜tool▁call▁end｜>
+        <｜tool▁call▁begin｜>function<｜tool▁sep｜>calculate_cosine_similarity
+        ```json
+        {"vectorA": [0.2, 0.4, 0.6, 0.8, 1.0], "vectorB": [1.0, 0.8, 0.6, 0.4, 0.2]}
+        ```<｜tool▁call▁end｜>
+        <｜tool▁call▁begin｜>function<｜tool▁sep｜>calculate_cosine_similarity
+        ```json
+        {"vectorA": [0.1, 0.2, 0.3, 0.4, 0.5], "vectorB": [0.5, 0.4, 0.3, 0.2, 0.1]}
+        ```<｜tool▁call▁end｜><｜tool▁calls▁end｜>"
 
         We want to extract the tool calls from this string.
         Expected output:
@@ -177,7 +189,7 @@ class DeepseekCoderHandler(OSSHandler):
         """
         # Regular expression to match tool calls
         pattern = re.compile(
-            r"<｜tool▁call▁begin｜>(\w+)<｜tool▁sep｜>(.*?)\n```json\n(.*?)\n```<｜tool▁call▁end｜>"
+            r"<｜tool▁call▁begin｜>(\w+)<｜tool▁sep｜>(.*?)(?:\n|\\n)```json(?:\n|\\n)(.*?)(?:\n|\\n)```<｜tool▁call▁end｜>"
         )
 
         # Find all matches in the input string
@@ -193,6 +205,5 @@ class DeepseekCoderHandler(OSSHandler):
                 argument = json.loads(argument)
             except Exception as e:
                 pass
-            result.append({"type": type, "name": name, "argument": argument})
-
+            result.append({"type": type, "function": {"name": name, "arguments": argument}})
         return result
