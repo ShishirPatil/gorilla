@@ -31,7 +31,7 @@ class MiniCPMFCHandler(OSSHandler):
         tools = convert_to_tool(function, GORILLA_TO_OPENAPI, self.model_style)
 
         formated_messages = minicpm_input_format(
-            messages=messages, tools=function, model_name=self.model_name
+            messages=messages, tools=tools, model_name=self.model_name
         )
         formatted_prompt = ""
         for message in formated_messages:
