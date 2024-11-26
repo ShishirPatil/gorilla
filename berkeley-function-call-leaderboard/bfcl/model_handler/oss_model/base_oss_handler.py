@@ -1,9 +1,7 @@
 import subprocess
 import threading
 import time
-import json
 from concurrent.futures import ThreadPoolExecutor
-from overrides import EnforceOverrides, final
 
 import requests
 from bfcl.constant import RESULT_PATH, VERSION_PREFIX
@@ -17,6 +15,7 @@ from bfcl.model_handler.utils import (
     system_prompt_pre_processing_chat_model,
 )
 from openai import OpenAI
+from overrides import EnforceOverrides, final
 from tqdm import tqdm
 
 
@@ -28,6 +27,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         self.dtype = dtype
         self.client = OpenAI(base_url=f"http://localhost:{VLLM_PORT}/v1", api_key="EMPTY")
 
+    @final
     def inference(self, test_entry: dict, include_input_log: bool, include_state_log: bool):
         """
         OSS models have a different inference method.
@@ -252,6 +252,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         return result_to_write
 
     #### Prompting methods ####
+
     def _format_prompt(self, messages, function):
         raise NotImplementedError(
             "OSS Models should implement their own prompt formatting."

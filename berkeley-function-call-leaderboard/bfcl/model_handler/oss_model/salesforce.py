@@ -1,11 +1,11 @@
 import json
 
 from bfcl.model_handler.model_style import ModelStyle
-from bfcl.model_handler.oss_model.constant import VLLM_PORT
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
+from bfcl.model_handler.oss_model.constant import VLLM_PORT
 from openai import OpenAI
-
 from overrides import overrides
+
 
 class SalesforceHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
@@ -78,7 +78,8 @@ class SalesforceHandler(OSSHandler):
 
         return python_format
 
-    def convert_to_dict(self, input_str):
+    @staticmethod
+    def convert_to_dict(input_str):
         """
         Convert a JSON-formatted string into a dictionary of tool calls and their arguments.
 

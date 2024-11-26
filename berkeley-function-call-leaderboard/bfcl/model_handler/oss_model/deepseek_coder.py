@@ -1,8 +1,6 @@
 import json
 import re
 
-from overrides import overrides
-
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
 from bfcl.model_handler.utils import (
     combine_consecutive_user_prompts,
@@ -10,6 +8,7 @@ from bfcl.model_handler.utils import (
     convert_to_function_call,
     func_doc_language_specific_pre_processing,
 )
+from overrides import overrides
 
 
 class DeepseekCoderHandler(OSSHandler):

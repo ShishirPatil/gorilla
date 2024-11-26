@@ -1,7 +1,9 @@
+import json
+
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
 from bfcl.model_handler.utils import convert_to_function_call
-import json
 from overrides import overrides
+
 
 class GlaiveHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:

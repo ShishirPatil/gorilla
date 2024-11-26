@@ -5,8 +5,8 @@ from bfcl.model_handler.utils import (
     convert_system_prompt_into_user_prompt,
     func_doc_language_specific_pre_processing,
 )
-
 from overrides import overrides
+
 TASK_INSTRUCTION = """You are a tool calling assistant. In order to complete the user's request, you need to select one or more appropriate tools from the following tools and fill in the correct values for the tool parameters. Your specific tasks are:
 1. Make one or more function/tool calls to meet the request based on the question.
 2. If none of the function can be used, point it out and refuse to answer.

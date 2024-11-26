@@ -2,10 +2,7 @@ import json
 
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
 from bfcl.model_handler.utils import func_doc_language_specific_pre_processing
-
 from overrides import overrides
-
-# TODO: Merge with LlamaHandler
 
 
 class LlamaFCHandler(OSSHandler):
