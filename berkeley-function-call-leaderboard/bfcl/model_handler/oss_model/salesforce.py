@@ -1,9 +1,10 @@
 import json
 
 from bfcl.model_handler.model_style import ModelStyle
-from bfcl.model_handler.oss_model.constant import VLLM_PORT
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
+from bfcl.model_handler.oss_model.constant import VLLM_PORT
 from openai import OpenAI
+from overrides import overrides
 
 
 class SalesforceHandler(OSSHandler):
@@ -14,6 +15,7 @@ class SalesforceHandler(OSSHandler):
         config = xLAMConfig(base_url=f"http://localhost:{VLLM_PORT}/v1/", model=self.model_name)
         self.client = xLAMChatCompletion.from_config(config)
 
+    @overrides
     def decode_ast(self, result, language="Python"):
         decoded_output = []
         for invoked_function in result:
@@ -22,6 +24,7 @@ class SalesforceHandler(OSSHandler):
             decoded_output.append({name: params})
         return decoded_output
 
+    @overrides
     def decode_execute(self, result):
         if isinstance(result, list):
             tool_calls = result
@@ -32,6 +35,7 @@ class SalesforceHandler(OSSHandler):
         function_call = self.xlam_json_to_python_tool_calls(tool_calls)
         return function_call
 
+    @overrides
     def _parse_query_response_prompting(self, api_response: any) -> dict:
         if api_response["choices"][0]["message"]["tool_calls"] != []:
             return {
@@ -74,7 +78,8 @@ class SalesforceHandler(OSSHandler):
 
         return python_format
 
-    def convert_to_dict(self, input_str):
+    @staticmethod
+    def convert_to_dict(input_str):
         """
         Convert a JSON-formatted string into a dictionary of tool calls and their arguments.
 
@@ -99,6 +104,7 @@ class SalesforceHandler(OSSHandler):
 
         return result_list
 
+    @overrides
     def _query_prompting(self, inference_data: dict):
         function: list[dict] = inference_data["function"]
         message: list[dict] = inference_data["message"]

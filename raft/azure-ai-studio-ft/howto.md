@@ -1,5 +1,7 @@
 # HOWTO: Fine-tune llama-2-7b in Azure AI Studio
 
+> ⚠️ See the **Azure RAFT Distillation Recipe repo** ([Azure-Samples/raft-distillation-recipe](https://aka.ms/raft-recipe)) for instructions, notebooks and infrastructure provisioning for Meta Llama 3.1 and 3.2 as well as GPT-4o.
+
 ## Prerequisites
 
 [Prerequisites in MS Learn article "Fine-tune a Llama 2 model in Azure AI Studio"](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/fine-tune-model-llama#prerequisites)
