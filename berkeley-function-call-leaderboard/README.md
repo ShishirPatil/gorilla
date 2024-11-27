@@ -119,6 +119,15 @@ For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the 
 
 If no `MODEL_NAME` is provided, the model `gorilla-openfunctions-v2` will be used by default. If no `TEST_CATEGORY` is provided, all test categories will be run by default.
 
+To evaluate multiple models or test categories, separate them with commas. For example:
+```bash
+# Multiple models
+bfcl generate --model gorilla-openfunctions-v2,claude-3-5-sonnet-20240620-FC,gpt-4-0125-preview
+
+# Multiple test categories
+bfcl generate --model gorilla-openfunctions-v2 --test-category simple,multiple,rest
+```
+
 #### For API-hosted models:
 
 ```bash
@@ -282,6 +291,15 @@ bfcl evaluate --model MODEL_NAME --test-category TEST_CATEGORY
 For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section.
 
 If no `MODEL_NAME` is provided, all available model results will be evaluated by default. If no `TEST_CATEGORY` is provided, all test categories will be run by default.
+
+To evaluate multiple models or test categories, separate them with commas. For example:
+```bash
+# Multiple models
+bfcl evaluate --model gorilla-openfunctions-v2,claude-3-sonnet-20240229,gpt-4-0125-preview
+
+# Multiple test categories
+bfcl evaluate --model gorilla-openfunctions-v2 --test-category simple,multiple,rest
+```
 
 ### Example Usage
 
