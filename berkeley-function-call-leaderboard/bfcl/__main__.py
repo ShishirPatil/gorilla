@@ -37,6 +37,12 @@ cli = typer.Typer(
 )
 
 
+# Input is like 'a,b,c,d', we need to transform it to ['a', 'b', 'c', 'd'] because that's the expected format in the actual main funciton
+handle_multiple_input = lambda x: [
+    item.strip() for item in ",".join(x).split(",") if item.strip()
+]
+
+
 @cli.command()
 def test_categories():
     """
@@ -71,12 +77,12 @@ def generate(
     model: List[str] = typer.Option(
         ["gorilla-openfunctions-v2"], 
         help="A list of model names to evaluate. Use commas to separate multiple models.",
-        callback=lambda x: [item.strip() for item in ','.join(x).split(',') if item.strip()]
+        callback=handle_multiple_input
     ),
     test_category: List[str] = typer.Option(
         ["all"], 
         help="A list of test categories to run the evaluation on. Use commas to separate multiple test categories.",
-        callback=lambda x: [item.strip() for item in ','.join(x).split(',') if item.strip()]
+        callback=handle_multiple_input
     ),
     temperature: float = typer.Option(
         0.001, help="The temperature parameter for the model."
@@ -195,12 +201,12 @@ def evaluate(
     model: List[str] = typer.Option(
         None, 
         help="A list of model names to evaluate.",
-        callback=lambda x: [item.strip() for item in ','.join(x).split(',') if item.strip()]
+        callback=handle_multiple_input
     ),
     test_category: List[str] = typer.Option(
         None, 
         help="A list of test categories to run the evaluation on.",
-        callback=lambda x: [item.strip() for item in ','.join(x).split(',') if item.strip()]
+        callback=handle_multiple_input
     ),
     api_sanity_check: bool = typer.Option(
         False,

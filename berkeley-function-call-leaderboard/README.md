@@ -121,14 +121,10 @@ For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the 
 
 If no `MODEL_NAME` is provided, the model `gorilla-openfunctions-v2` will be used by default. If no `TEST_CATEGORY` is provided, all test categories will be run by default.
 
-To evaluate multiple models or test categories, separate them with commas. For example:
+To generate the model response for multiple models or test categories at once, you can separate them with commas. For example:
 
 ```bash
-# Multiple models
-bfcl generate --model gorilla-openfunctions-v2,claude-3-5-sonnet-20240620-FC,gpt-4-0125-preview
-
-# Multiple test categories
-bfcl generate --model gorilla-openfunctions-v2 --test-category simple,multiple,rest
+bfcl generate --model claude-3-5-sonnet-20241022-FC,gpt-4o-2024-08-06-FC --test-category parallel,multiple,exec_simple
 ```
 
 > An inference log will be included along with the llm response to help you analyze and debug the model's performance, and to better understand the model behavior. To see a more verbose log, you can set the `--include-state-log` and/or the `--include-input-log` flag in the generation command.
@@ -303,13 +299,10 @@ For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the 
 
 If no `MODEL_NAME` is provided, all available model results will be evaluated by default. If no `TEST_CATEGORY` is provided, all test categories will be run by default.
 
-To evaluate multiple models or test categories, separate them with commas. For example:
-```bash
-# Multiple models
-bfcl evaluate --model gorilla-openfunctions-v2,claude-3-sonnet-20240229,gpt-4-0125-preview
+Similar to the generation command, you can specify multiple models or test categories by separating them with commas.
 
-# Multiple test categories
-bfcl evaluate --model gorilla-openfunctions-v2 --test-category simple,multiple,rest
+```bash
+bfcl evaluate --model claude-3-5-sonnet-20241022-FC,gpt-4o-2024-08-06-FC --test-category parallel,multiple,exec_simple
 ```
 
 ### Example Usage
