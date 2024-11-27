@@ -15,7 +15,7 @@ from bfcl.model_handler.utils import (
     system_prompt_pre_processing_chat_model,
 )
 from openai import OpenAI
-from overrides import EnforceOverrides, final
+from overrides import EnforceOverrides, final, override
 from tqdm import tqdm
 
 
@@ -27,7 +27,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         self.dtype = dtype
         self.client = OpenAI(base_url=f"http://localhost:{VLLM_PORT}/v1", api_key="EMPTY")
 
-    @final
+    @override
     def inference(self, test_entry: dict, include_input_log: bool, include_state_log: bool):
         """
         OSS models have a different inference method.
@@ -39,9 +39,11 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             "OSS Models should call the batch_inference method instead."
         )
 
+    @override
     def decode_ast(self, result, language="Python"):
         return default_decode_ast_prompting(result, language)
 
+    @override
     def decode_execute(self, result):
         return default_decode_execute_prompting(result)
 
@@ -258,6 +260,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             "OSS Models should implement their own prompt formatting."
         )
 
+    @override
     def _query_prompting(self, inference_data: dict):
         # We use the OpenAI Completions API
         function: list[dict] = inference_data["function"]
@@ -300,6 +303,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
 
         return api_response
 
+    @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
@@ -312,6 +316,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
 
         return {"message": [], "function": functions}
 
+    @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
         return {
             "model_responses": api_response.choices[0].text,
@@ -319,18 +324,21 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             "output_token": api_response.usage.completion_tokens,
         }
 
+    @override
     def add_first_turn_message_prompting(
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
         inference_data["message"].extend(first_turn_message)
         return inference_data
 
+    @override
     def _add_next_turn_user_message_prompting(
         self, inference_data: dict, user_message: list[dict]
     ) -> dict:
         inference_data["message"].extend(user_message)
         return inference_data
 
+    @override
     def _add_assistant_message_prompting(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
@@ -339,6 +347,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         )
         return inference_data
 
+    @override
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
