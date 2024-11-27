@@ -9,7 +9,7 @@
       "search_query": "A search query to return objects from a search index.",
       "integer_property_filter": {
         "property_name": "Name of the numeric property to filter on",
-        "operator": "Comparison operator (=, <, >, <=, >=)",
+        "operator": "Comparison operator (=, <, >, ≤, ≥)",
         "value": "Numeric value to compare against"
       },
       "text_property_filter": {
