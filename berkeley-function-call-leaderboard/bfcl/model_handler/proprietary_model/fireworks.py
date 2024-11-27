@@ -12,7 +12,7 @@ class FireworksHandler(OpenAIHandler):
 
         self.client = OpenAI(
             base_url="https://api.fireworks.ai/inference/v1",
-            api_key=os.getenv("FIRE_WORKS_API_KEY"),
+            api_key=os.getenv("FIREWORKS_API_KEY"),
         )
 
     #### FC methods ####

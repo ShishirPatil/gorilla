@@ -65,8 +65,8 @@
 {"id": "java_64", "ground_truth": [{"DateScriptFieldType.createFieldType": {"name": ["timestamp"], "factory": ["dateFactory"], "script": ["dateScript"], "meta": [{"format": "epoch_millis"}], "onScriptError": ["FAIL"]}}]}
 {"id": "java_65", "ground_truth": [{"RootObjectMapper.doXContent": {"builder": ["xContentBuilderInstance"], "params": [["include_defaults", true, "TOXCONTENT_SKIP_RUNTIME", true]]}}]}
 {"id": "java_66", "ground_truth": [{"CompositeRuntimeField.createChildRuntimeField": {"parserContext": ["mappingParserContext"], "parent": ["compositeField1"], "parentScriptFactory": ["compositeScriptFactory"], "onScriptError": ["onScriptError.IGNORE"]}}]}
-{"id": "java_67", "ground_truth": [{"MacDmgBundler.prepareDMGSetupScript": {"appLocation": ["/Applications/PhotoEditor.app"], "params": [{"APP_NAME": "PhotoEditor"}, {"IMAGES_ROOT": "/path/to/images"}, {"BACKGROUND_IMAGE_FOLDER": "background"}, {"BACKGROUND_IMAGE": "custom-bg.png"}]}}]}
-{"id": "java_68", "ground_truth": [{"MacBaseInstallerBundler.validateAppImageAndBundeler": {"params": [{"/Applications/MyApp.app": "MyApp"}]}}]}
+{"id": "java_67", "ground_truth": [{"MacDmgBundler.prepareDMGSetupScript": {"appLocation": ["/Applications/PhotoEditor.app"], "params": [{"APP_NAME": ["PhotoEditor"]}, {"IMAGES_ROOT": ["/path/to/images"]}, {"BACKGROUND_IMAGE_FOLDER": ["background"]}, {"BACKGROUND_IMAGE": ["custom-bg.png"]}]}}]}
+{"id": "java_68", "ground_truth": [{"MacBaseInstallerBundler.validateAppImageAndBundeler": {"params": [{"/Applications/MyApp.app": ["MyApp"]}]}}]}
 {"id": "java_69", "ground_truth": [{"DurationImpl.alignSigns": {"buf": ["durations"], "start": [2], "end": [5]}}]}
 {"id": "java_70", "ground_truth": [{"XMLNamespaceBinder.endElement": {"element": ["new QName('http://www.example.com', 'item', 'ex')"], "augs": ["augmentations"]}}]}
 {"id": "java_71", "ground_truth": [{"CoroutineManager.co_exit_to": {"arg_object": ["resultData"], "thisCoroutine": [5], "toCoroutine": [10]}}]}

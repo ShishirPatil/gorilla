@@ -6,6 +6,9 @@ import mpmath
 
 
 class MathAPI:
+    def __init__(self):
+        self._api_description = "This tool belongs to the Math API, which provides various mathematical operations."
+        
     def logarithm(
         self, value: float, base: float, precision: int
     ) -> Dict[str, float]:

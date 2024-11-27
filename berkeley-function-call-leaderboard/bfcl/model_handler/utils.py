@@ -7,13 +7,11 @@ import re
 
 from bfcl.model_handler.constant import (
     DEFAULT_SYSTEM_PROMPT,
-    DEFAULT_SYSTEM_PROMPT_FOR_MULTI_TURN,
     GORILLA_TO_OPENAPI,
 )
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.parser.java_parser import parse_java_function_call
 from bfcl.model_handler.parser.js_parser import parse_javascript_function_call
-from bfcl.utils import is_multi_turn
 
 
 def _cast_to_openai_type(properties, mapping):
@@ -110,7 +108,7 @@ def convert_to_tool(functions, mapping, model_style):
                     ] += f" Minimum number of items: {str(params['minItems'])}."
                     del params["minItems"]
                 # No `maxItems` field.
-                if "maxItemsmax" in params:
+                if "maxItems" in params:
                     params[
                         "description"
                     ] += f" Maximum number of items: {str(params['maxItems'])}."
@@ -223,6 +221,7 @@ def convert_to_tool(functions, mapping, model_style):
                 ModelStyle.Anthropic,
                 ModelStyle.Google,
                 ModelStyle.FIREWORK_AI,
+                ModelStyle.WRITER,
             ]:
                 item[
                     "description"
@@ -256,6 +255,7 @@ def convert_to_tool(functions, mapping, model_style):
             ModelStyle.OpenAI,
             ModelStyle.Mistral,
             ModelStyle.FIREWORK_AI,
+            ModelStyle.WRITER,
         ]:
             oai_tool.append({"type": "function", "function": item})
     return oai_tool
@@ -264,11 +264,14 @@ def convert_to_tool(functions, mapping, model_style):
 def convert_to_function_call(function_call_list):
     if type(function_call_list) == dict:
         function_call_list = [function_call_list]
+    # function_call_list is of type list[dict[str, str]] or list[dict[str, dict]]
     execution_list = []
     for function_call in function_call_list:
         for key, value in function_call.items():
+            if type(value) == str:
+                value = json.loads(value)
             execution_list.append(
-                f"{key}({','.join([f'{k}={repr(v)}' for k,v in json.loads(value).items()])})"
+                f"{key}({','.join([f'{k}={repr(v)}' for k,v in value.items()])})"
             )
 
     return execution_list
@@ -391,10 +394,7 @@ def system_prompt_pre_processing_chat_model(prompts, function_docs, test_categor
     """
     assert type(prompts) == list
 
-    if is_multi_turn(test_category):
-        system_prompt_template = DEFAULT_SYSTEM_PROMPT_FOR_MULTI_TURN
-    else:
-        system_prompt_template = DEFAULT_SYSTEM_PROMPT
+    system_prompt_template = DEFAULT_SYSTEM_PROMPT
 
     system_prompt = system_prompt_template.format(functions=function_docs)
 

@@ -2,12 +2,44 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
-- [Oct 30, 2024] [#725](https://github.com/ShishirPatil/gorilla/pull/725): Update evaluation metric for irrelevance detection in multi-turn scenarios:
-  - Added a dummy `flag_task_unachievable` function for all multi-turn entries.
-  - If the model identifies a task as unachievable, it should invoke this function explicitly.
-  - During evaluation, if `flag_task_unachievable` is called in a turn, that turn will be marked correct for irrelevance detection, even if other functions were also called in that turn.
-    - This also means that if the model calls `flag_task_unachievable` in a normal (non-irrelevant) turn, that turn will be marked incorrect.
-  - This ensures the model can attempt reasonable exploratory actions before concluding a task is unachievable, aligning multi-turn behavior with single-turn irrelevance standards.
+- [Nov 26, 2024] [#755](https://github.com/ShishirPatil/gorilla/pull/755): Add new model `palmyra-x-004` to the leaderboard.
+- [Nov 25, 2024] [#718](https://github.com/ShishirPatil/gorilla/pull/718): Add new model `openbmb/MiniCPM3-4B-FC` to the leaderboard.
+- [Nov 25, 2024] [#697](https://github.com/ShishirPatil/gorilla/pull/697): Add the following new models to the leaderboard:
+  - `deepseek-ai/DeepSeek-V2.5`
+  - `deepseek-ai/DeepSeek-Coder-V2-Instruct-0724`
+  - `deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct`
+  - `deepseek-ai/DeepSeek-V2-Chat-0628`
+  - `deepseek-ai/DeepSeek-V2-Lite-Chat`
+- [Nov 25, 2024] [#787](https://github.com/ShishirPatil/gorilla/pull/787): Add new model `Qwen/Qwen2.5-72B-Instruct` to the leaderboard.
+- [Nov 24, 2024] [#743](https://github.com/ShishirPatil/gorilla/pull/743): Add support for regeneration, specific test entry IDs, and custom directory locations:
+  - Introduce the `--allow-overwrite` flag for the `generate` command to enable regeneration of test entries even if they already exist.
+  - Add a new `--run-ids` flag for the `generate` command, allowing execution of specific test entry IDs from `test_case_ids_to_generate.json`.
+    - Note: This cannot be used together with `--test-category`.
+    - Test ids needs to be the exact same as the ones in the dataset. Example: `"simple": ["simple_10", "simple_53"]`.
+  - Add `--score-dir` and `--result-dir` options for `generate` and `evaluate` commands, enabling custom paths for result and score directories relative to the project root `berkeley-function-call-leaderboard` directory.
+- [Nov 22, 2024] [#777](https://github.com/ShishirPatil/gorilla/pull/777), [#778](https://github.com/ShishirPatil/gorilla/pull/778): Fix dataset entries where the function doc contains illegal Python parameter names (such as `class`). 55 entries are affected.
+- [Nov 19, 2024] [#750](https://github.com/ShishirPatil/gorilla/pull/750): Add the following new models to the leaderboard:
+  - `claude-3-5-haiku-20241022`
+  - `claude-3-5-haiku-20241022-FC`
+  - `claude-3-5-sonnet-20241022`
+  - `claude-3-5-sonnet-20241022-FC`
+- [Nov 18, 2024] [#736](https://github.com/ShishirPatil/gorilla/pull/736): Add the option to additionally log the evaluation results to [WandB](https://github.com/wandb/wandb) artifacts. User can enable this feature by providing the entity and project name in `WANDB_BFCL_PROJECT` in the `.env` file.
+- [Nov 18, 2024] [#768](https://github.com/ShishirPatil/gorilla/pull/768), [#770](https://github.com/ShishirPatil/gorilla/pull/770): Resolve issues in Gemini models (FC mode) related to handling scenarios with no tools available and cases where the model output is empty.
+- [Nov 17, 2024] [#767](https://github.com/ShishirPatil/gorilla/pull/767): Fix price and latency calculation. A merge conflict results in a duplicate line, and counting the input and output token for each entry multiple times.
+- [Nov 15, 2024] [#762](https://github.com/ShishirPatil/gorilla/pull/762): Supply `data_multi_turn.csv` for multi-turn evaluation results
+- [Nov 14, 2024] [#760](https://github.com/ShishirPatil/gorilla/pull/760), [#761](https://github.com/ShishirPatil/gorilla/pull/761): Upstream  `google-cloud-aiplatform` library fixed typecasting bugs in Function Calling. Updated to version `1.72.0` and remove the workaround patch introduced in [#648](https://github.com/ShishirPatil/gorilla/pull/648).
+- [Nov 14, 2024] [#747](https://github.com/ShishirPatil/gorilla/pull/747): Minor Grammatical Corrections to `DEFAULT_SYSTEM_PROMPT` that is supplied to all prompting models.
+- [Nov 13, 2024] [#737](https://github.com/ShishirPatil/gorilla/pull/737), [#739](https://github.com/ShishirPatil/gorilla/pull/739), [#740](https://github.com/ShishirPatil/gorilla/pull/740), [#763](https://github.com/ShishirPatil/gorilla/pull/763), [#772](https://github.com/ShishirPatil/gorilla/pull/772): Bug fix in the dataset and possible answers for the live and multi-turn categories.
+- [Nov 9, 2024] [#749](https://github.com/ShishirPatil/gorilla/pull/749): Remove `Llama-3.2-3B-Instruct-FC` and `Llama-3.2-1B-Instruct-FC` from the leaderboard. According to the [official Llama documentation](https://www.llama.com/docs/model-cards-and-prompt-formats/llama3_2#-tool-calling-(1b/3b)-), these models perform function calling using the prompt-style chat template rather than the specialized function-calling format.
+- [Nov 8, 2024] [#720](https://github.com/ShishirPatil/gorilla/pull/720): Add new model `BitAgent/GoGoAgent` to the leaderboard.
+- [Oct 30, 2024] [#725](https://github.com/ShishirPatil/gorilla/pull/725), [#733](https://github.com/ShishirPatil/gorilla/pull/733): Update evaluation metric for multi-turn categories:
+  - Introduce a new response-based checker, which works alongside with the existing state-based checker.
+    - The new checker compares the model’s execution result against the ground truth execution result, ensuring that the model’s result encompasses the ground truth (i.e., ground truth must be a strict subset of the model result).
+    - It complements the state-based checker, which doesn't work well when the functions don't directly alter the state. For example, it's unclear whether the model actually invoked `get_zipcode_by_city` or `estimate_distance` by just using the state-based checker.
+    - Any multi turn entry will now only be marked correct if it passes both the state and response checkers.
+  - Remove the irrelevance detection for multi-turn categories.
+    - Instead of checking if the model produces no output in a turn with missing function/parameter information, we now assess whether the model can perform correctly once the missing information is provided.
+  - A few dataset entries have been modified to align with these changes.
 - [Oct 30, 2024] [#719](https://github.com/ShishirPatil/gorilla/pull/719), [#722](https://github.com/ShishirPatil/gorilla/pull/722), [#723](https://github.com/ShishirPatil/gorilla/pull/723), [#728](https://github.com/ShishirPatil/gorilla/pull/728), [#732](https://github.com/ShishirPatil/gorilla/pull/732): Bug fix in the dataset and ground truth for the multi-turn categories.
 - [Oct 17, 2024] [#683](https://github.com/ShishirPatil/gorilla/pull/683): Bug fix for the multi turn categories for ambiguity in action intention and function parameters.
 - [Oct 17, 2024] [#709](https://github.com/ShishirPatil/gorilla/pull/709): Rephrase question prompt for Java and JavaScript categories to improve clarity and action intent.

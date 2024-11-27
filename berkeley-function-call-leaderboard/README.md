@@ -90,7 +90,7 @@ The evaluation script will automatically search for dataset files in the default
 
 ## Evaluating different models on the BFCL
 
-Make sure the model API keys are included in your `.env` file. Running proprietary models like GPTs, Claude, Mistral-X will require them.
+Make sure the model API keys are included in your `.env` file. Running proprietary models like GPTs, Claude, Mistral-X, Palmyra, will require them.
 
 ```bash
 OPENAI_API_KEY=sk-XXXXXX
@@ -99,6 +99,8 @@ FIREWORKS_API_KEY=
 ANTHROPIC_API_KEY=
 NVIDIA_API_KEY=nvapi-XXXXXX
 YI_API_KEY=
+GOGOAGENT_API_KEY=
+WRITER_API_KEY=
 
 VERTEX_AI_PROJECT_ID=
 VERTEX_AI_LOCATION=
@@ -120,6 +122,7 @@ For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the 
 If no `MODEL_NAME` is provided, the model `gorilla-openfunctions-v2` will be used by default. If no `TEST_CATEGORY` is provided, all test categories will be run by default.
 
 To evaluate multiple models or test categories, separate them with commas. For example:
+
 ```bash
 # Multiple models
 bfcl generate --model gorilla-openfunctions-v2,claude-3-5-sonnet-20240620-FC,gpt-4-0125-preview
@@ -127,6 +130,9 @@ bfcl generate --model gorilla-openfunctions-v2,claude-3-5-sonnet-20240620-FC,gpt
 # Multiple test categories
 bfcl generate --model gorilla-openfunctions-v2 --test-category simple,multiple,rest
 ```
+
+> An inference log will be included along with the llm response to help you analyze and debug the model's performance, and to better understand the model behavior. To see a more verbose log, you can set the `--include-state-log` and/or the `--include-input-log` flag in the generation command.
+> Please refer to the `LOG_GUIDE.md` file for more information on how to interpret the inference logs and what each flag does.
 
 #### For API-hosted models:
 
@@ -155,13 +161,17 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |gorilla-openfunctions-v2 | Function Calling|
 |claude-3-{opus-20240229,sonnet-20240229,haiku-20240307}-FC | Function Calling |
 |claude-3-{opus-20240229,sonnet-20240229,haiku-20240307} | Prompt |
-|claude-3-5-sonnet-20240620-FC | Function Calling |
-|claude-3-5-sonnet-20240620 | Prompt |
+|claude-3-5-sonnet-{20240620,20241022}-FC | Function Calling |
+|claude-3-5-sonnet-{20240620,20241022} | Prompt |
+|claude-3-5-haiku-20241022-FC | Function Calling |
+|claude-3-5-haiku-20241022 | Prompt |
 |claude-{2.1,instant-1.2}| Prompt|
 |command-r-plus-FC | Function Calling|
 |command-r-plus | Prompt|
 |databrick-dbrx-instruct | Prompt|
-|deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
+|deepseek-ai/DeepSeek-V2.5 💻| Function Calling|
+|deepseek-ai/DeepSeek-V2-{Chat-0628,Lite-Chat} 💻| Prompt|
+|deepseek-ai/DeepSeek-Coder-V2-{Instruct-0724,Lite-Instruct} 💻| Function Calling|
 |firefunction-{v1,v2}-FC | Function Calling|
 |gemini-1.0-pro-{001,002}-FC | Function Calling|
 |gemini-1.0-pro-{001,002} | Prompt|
@@ -187,7 +197,6 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |meta-llama/Meta-Llama-3-{8B,70B}-Instruct 💻| Prompt|
 |meta-llama/Llama-3.1-{8B,70B}-Instruct-FC 💻| Function Calling|
 |meta-llama/Llama-3.1-{8B,70B}-Instruct 💻| Prompt|
-|meta-llama/Llama-3.2-{1B,3B}-Instruct-FC 💻| Function Calling|
 |meta-llama/Llama-3.2-{1B,3B}-Instruct 💻| Prompt|
 |open-mixtral-{8x7b,8x22b} | Prompt|
 |open-mixtral-8x22b-FC | Function Calling|
@@ -203,6 +212,7 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |NousResearch/Hermes-2-Pro-Llama-3-{8B,70B} 💻| Function Calling|
 |NousResearch/Hermes-2-Pro-Mistral-7B 💻| Function Calling|
 |NousResearch/Hermes-2-Theta-Llama-3-{8B,70B} 💻| Function Calling|
+|palmyra-x-004 | Function Calling|
 |snowflake/arctic | Prompt|
 |Salesforce/xLAM-1b-fc-r 💻| Function Calling|
 |Salesforce/xLAM-7b-fc-r 💻| Function Calling|
@@ -221,7 +231,9 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |Qwen/Qwen2.5-{1.5B,7B}-Instruct 💻| Prompt|
 |Qwen/Qwen2-{1.5B,7B}-Instruct 💻| Prompt|
 |Team-ACE/ToolACE-8B 💻| Function Calling|
-|openbmb/MiniCPM3-4B 💻| Function Calling|
+|openbmb/MiniCPM3-4B-FC 💻| Function Calling|
+|openbmb/MiniCPM3-4B 💻| Prompt|
+|BitAgent/GoGoAgent 💻| Prompt|
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function-calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
 
@@ -269,7 +281,6 @@ In the following two sections, the optional `--test-category` parameter can be u
   - `multi_turn_miss_func`: Multi-turn function calls with missing function.
   - `multi_turn_miss_param`: Multi-turn function calls with missing parameter.
   - `multi_turn_long_context`: Multi-turn function calls with long context.
-  - `multi_turn_composite`: Multi-turn function calls with missing function, missing parameter, and long context.
 - If no test category is provided, the script will run all available test categories. (same as `all`)
 
 > If you want to run the `all`, `non_live`, `executable` or `python` category, make sure to register your REST API keys in the `.env` file. This is because Gorilla Openfunctions Leaderboard wants to test model's generated output on real world API!
@@ -327,6 +338,20 @@ If you want to run `live_simple` and `javascript` tests for a few models and `go
 bfcl evaluate --model gorilla-openfunctions-v2 claude-3-5-sonnet-20240620 gpt-4-0125-preview gemini-1.5-pro-preview-0514 --test-category live_simple javascript
 ```
 
+#### WandB Evaluation Logging
+
+If you want to additionally log the evaluation results as WandB artifacts to a specific WandB entity and project, you can install wandb as an optional dependency:
+
+```bash
+pip install -e.[wandb]
+```
+
+And you can specify the entity and project name you want to log to on Wandb using the `WANDB_BFCL_PROJECT` environment variable in the `.env` file in the following format:
+
+```bash
+WANDB_BFCL_PROJECT=ENTITY:PROJECT
+```
+
 ### Model-Specific Optimization
 
 Some companies have proposed some optimization strategies in their models' handler, which we (BFCL) think is unfair to other models, as those optimizations are not generalizable to all models. Therefore, we have disabled those optimizations during the evaluation process by default. You can enable those optimizations by setting the `USE_{COMPANY}_OPTIMIZATION` flag to `True` in the `.env` file.
@@ -357,7 +382,7 @@ We welcome additions to the Function Calling Leaderboard! To add a new model, pl
 3. **Update the Handler Map and Model Metadata:**
 
    - Modify `bfcl/model_handler/handler_map.py`. This is a mapping of the model name to their handler class.
-   - Modify `bfcl/val_checker/model_metadata.py`:
+   - Modify `bfcl/eval_checker/model_metadata.py`:
      - Update the `MODEL_METADATA_MAPPING` with the model's display name, URL, license, and company information. The key should match the one in `bfcl/model_handler/handler_map.py`.
      - If your model is price-based, update the `INPUT_PRICE_PER_MILLION_TOKEN` and `OUTPUT_PRICE_PER_MILLION_TOKEN`.
      - If your model doesn't have a cost, add it to the `NO_COST_MODELS` list.
