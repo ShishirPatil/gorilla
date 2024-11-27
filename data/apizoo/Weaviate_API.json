@@ -1,6 +1,6 @@
 [
   {
-    "user_name": "weaviate",
+    "user_name": "CShorten",
     "api_name": "Weaviate API - Query Database",
     "api_call": "weaviate_client.query_database(collection_name=collection, search_query=query, integer_property_filter=int_filter, text_property_filter=text_filter, boolean_property_filter=bool_filter, integer_property_aggregation=int_agg, text_property_aggregation=text_agg, boolean_property_aggregation=bool_agg, groupby_property=groupby)",
     "api_version": "4.9.4",
@@ -16,6 +16,7 @@
         "property_name": "Name of the text property to filter on", 
         "operator": "Text comparison operator (=, LIKE)",
         "value": "Text value to compare against"
+      },
       "boolean_property_filter": {
         "property_name": "Name of the boolean property to filter on",
         "operator": "Boolean comparison operator (=, !=)",
