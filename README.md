@@ -4,8 +4,11 @@
   <img src="https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/img/logo.png" width="50%" height="50%">
 </div>
 
+**🏟️ Agent Arena: Compare LLM agents across models, tools, and frameworks!** Evaluate agent workflows and subcomponents using the extended Bradley-Terry Model, access 2,000+ real-world agent battles. Explore the Prompt Hub for user contributed prompts used for agent evaluations. [Release Blog](https://gorilla.cs.berkeley.edu/blogs/11_agent_arena.html)
 
 **🚒  GoEx: A Runtime for executing LLM generated actions like code & API calls** GoEx presents “undo” and “damage confinement” abstractions for mitigating the risk of unintended actions taken in LLM-powered systems. [Release blog](https://gorilla.cs.berkeley.edu/blogs/10_gorilla_exec_engine.html) [Paper](https://arxiv.org/abs/2404.06921).
+
+**📚🦍 RAFT: Fine-Tuning LLMs for Robust Domain-Specific Retrieval-Augmented Generation (RAG)** RAFT (Retrieval-Augmented Fine-Tuning) introduces a novel approach to train LLMs for domain-specific open-book tasks by teaching them to focus on relevant documents while ignoring distractors. Combining fine-tuning and RAG, RAFT improves reasoning with chain-of-thought answers and domain adaptation. Tested on datasets like PubMed, HotpotQA, and Gorilla API Bench, RAFT consistently outperforms existing methods. 
 
 **🎉 Berkeley Function Calling Leaderboard :** How do models stack up for function calling? :dart: Releasing the [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard). Read more in our [Release Blog](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html). 
 
