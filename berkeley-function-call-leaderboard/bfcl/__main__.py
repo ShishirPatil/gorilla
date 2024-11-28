@@ -37,10 +37,22 @@ cli = typer.Typer(
 )
 
 
-# Input is like 'a,b,c,d', we need to transform it to ['a', 'b', 'c', 'd'] because that's the expected format in the actual main funciton
-handle_multiple_input = lambda x: [
-    item.strip() for item in ",".join(x).split(",") if item.strip()
-]
+def handle_multiple_input(input_str):
+    """
+    Input is like 'a,b,c,d', we need to transform it to ['a', 'b', 'c', 'd'] because that's the expected format in the actual main funciton
+    """
+    if input_str is None:
+        """
+        Cannot return None here, as typer will check the length of the return value and len(None) will raise an error
+        But when default is None, an empty list will be internally converted to None, and so the pipeline still works as expected
+        ```
+        if default_value is None and len(value) == 0:
+            return None
+        ```
+        """
+        return []
+
+    return [item.strip() for item in ",".join(input_str).split(",") if item.strip()]
 
 
 @cli.command()

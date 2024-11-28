@@ -21,10 +21,16 @@ class DeepseekCoderHandler(OSSHandler):
 
     @overrides
     def decode_ast(self, result, language="Python"):
+        # The input is already a list of dictionaries, so no need to decode
+        # `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}]`
+        if type(result) != list:
+            return []
         return result
 
     @overrides
     def decode_execute(self, result):
+        if type(result) != list:
+            return []
         return convert_to_function_call(result)
 
     @overrides
