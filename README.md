@@ -12,7 +12,7 @@
 
 **🎉 Berkeley Function Calling Leaderboard :** How do models stack up for function calling? :dart: Releasing the [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard). Read more in our [Release Blog](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html). 
 
-**:trophy: Gorilla OpenFunctions v2** Sets a new SoTA for open-source LLMs :muscle: On-par with GPT-4 :raised_hands: Supports more languages :ok_hand: [Blog](https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html). 
+**:trophy: Gorilla OpenFunctions v2** Sets a new SoTA for open-source LLMs :muscle: On-par with GPT-4 :raised_hands: We trained a model that supports parallel functions (generate multiple functions at a time) and multiple functions (select one or more functions). Java/REST/Python APIs are also supported for the first time with extended data types 📷 [Blog](https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html). 
 
 **:fire: Gorilla OpenFunctions** is a drop-in alternative for function calling! [Release Blog](https://gorilla.cs.berkeley.edu/blogs/4_open_functions.html)
 
