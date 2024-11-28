@@ -30,7 +30,7 @@ class HammerHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
 
-    @overrides
+    @override
     def _format_prompt(self, messages, function):
         """
         "chat_template": "{% set system_message = 'You are a helpful assistant.' %}{% if messages[0]['role'] == 'system' %}{% set system_message = messages[0]['content'] %}{% endif %}{% if system_message is defined %}{{ '<|im_start|>system\n' + system_message + '<|im_end|>\n' }}{% endif %}{% for message in messages %}{% set content = message['content'] %}{% if message['role'] == 'user' %}{{ '<|im_start|>user\n' + content + '<|im_end|>\n<|im_start|>assistant\n' }}{% elif message['role'] == 'assistant' %}{{ content + '<|im_end|>' + '\n' }}{% endif %}{% endfor %}",
@@ -89,7 +89,7 @@ class HammerHandler(OSSHandler):
 
         return f"<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n<|im_start|>user\n{content}<|im_end|>\n<|im_start|>assistant\n"
 
-    @overrides
+    @override
     def decode_ast(self, result, language="Python"):
         result = result.replace("```", "")
         try:
@@ -130,7 +130,7 @@ class HammerHandler(OSSHandler):
 
         return python_format
 
-    @overrides
+    @override
     def decode_execute(self, result):
         result = result.replace("```", "")
         try:
@@ -147,7 +147,7 @@ class HammerHandler(OSSHandler):
         function_call = self.xlam_json_to_python_tool_calls(tool_calls)
         return function_call
 
-    @overrides
+    @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]

@@ -8,7 +8,7 @@ class QwenHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
 
-    @overrides
+    @override
     def _format_prompt(self, messages, function):
         # Qwen is using its prompting mode, not the tool use mode
         """

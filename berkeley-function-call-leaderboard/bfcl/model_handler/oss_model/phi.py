@@ -12,7 +12,7 @@ class PhiHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
 
-    @overrides
+    @override
     def _format_prompt(self, messages, function):
         if "Phi-3-small" in self.model_name:
             # Phi-3-small
@@ -37,7 +37,7 @@ class PhiHandler(OSSHandler):
 
         return formatted_prompt
 
-    @overrides
+    @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]

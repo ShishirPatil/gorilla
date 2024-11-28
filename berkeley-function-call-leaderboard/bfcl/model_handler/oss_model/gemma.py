@@ -13,7 +13,7 @@ class GemmaHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
 
-    @overrides
+    @override
     def _format_prompt(self, messages, function):
         """
         "bos_token": "<bos>",
@@ -28,7 +28,7 @@ class GemmaHandler(OSSHandler):
 
         return formatted_prompt
 
-    @overrides
+    @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]

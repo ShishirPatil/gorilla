@@ -8,7 +8,7 @@ class LlamaHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
 
-    @overrides
+    @override
     def _format_prompt(self, messages, function):
         formatted_prompt = "<|begin_of_text|>"
 

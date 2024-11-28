@@ -10,7 +10,7 @@ class LlamaFCHandler(OSSHandler):
         super().__init__(model_name, temperature)
         self.model_name_huggingface = model_name.replace("-FC", "")
 
-    @overrides
+    @override
     def _format_prompt(self, messages, function):
         """
         "bos_token": "<|begin_of_text|>",
@@ -173,7 +173,7 @@ class LlamaFCHandler(OSSHandler):
 
         return formatted_prompt
 
-    @overrides
+    @override
     def decode_ast(self, result, language="Python"):
         result = result.replace("<|python_tag|>", "")
         # Llama sometimes separates the function calls with `;` and sometimes with `,`
@@ -199,7 +199,7 @@ class LlamaFCHandler(OSSHandler):
 
         return decoded_output
 
-    @overrides
+    @override
     def decode_execute(self, result):
         result = result.replace("<|python_tag|>", "")
         # Llama sometimes separates the function calls with `;` and sometimes with `,`
@@ -221,7 +221,7 @@ class LlamaFCHandler(OSSHandler):
 
         return execution_list
 
-    @overrides
+    @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
