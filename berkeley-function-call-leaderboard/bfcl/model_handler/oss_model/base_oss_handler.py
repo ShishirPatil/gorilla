@@ -2,7 +2,6 @@ import subprocess
 import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
-from overrides import EnforceOverrides, final
 
 import requests
 from bfcl.constant import RESULT_PATH, VERSION_PREFIX
@@ -255,6 +254,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         return result_to_write
 
     #### Prompting methods ####
+
     def _format_prompt(self, messages, function):
         raise NotImplementedError(
             "OSS Models should implement their own prompt formatting."

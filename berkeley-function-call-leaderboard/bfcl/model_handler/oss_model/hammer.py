@@ -145,7 +145,7 @@ class HammerHandler(OSSHandler):
             tool_calls = []
         function_call = self.xlam_json_to_python_tool_calls(tool_calls)
         return function_call
-      
+
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]

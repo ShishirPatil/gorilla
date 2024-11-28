@@ -10,11 +10,12 @@ from bfcl.model_handler.utils import (
 )
 from overrides import override
 
+
 class GLMHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.stop_token_ids = [151329, 151336, 151338]
-        
+
     @override
     def _format_prompt(self, messages, function):
         """
@@ -54,7 +55,7 @@ class GLMHandler(OSSHandler):
         elif len(args) >= 2:
             func = [{args[0]: json.loads(args[1])}]
         return func
-      
+
     @override
     def decode_execute(self, result):
         args = result.split("\n")

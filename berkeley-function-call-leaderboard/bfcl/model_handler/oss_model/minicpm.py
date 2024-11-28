@@ -1,6 +1,7 @@
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
 from overrides import override
 
+
 class MiniCPMHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)

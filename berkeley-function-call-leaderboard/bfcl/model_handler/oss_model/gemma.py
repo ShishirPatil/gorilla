@@ -7,6 +7,7 @@ from bfcl.model_handler.utils import (
 )
 from overrides import override
 
+
 class GemmaHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)

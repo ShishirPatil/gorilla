@@ -10,6 +10,7 @@ from bfcl.model_handler.utils import (
 )
 from overrides import override
 
+
 class HermesHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
