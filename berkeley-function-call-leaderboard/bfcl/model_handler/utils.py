@@ -5,13 +5,11 @@ import json
 import os
 import re
 
-from bfcl.model_handler.constant import (
-    DEFAULT_SYSTEM_PROMPT,
-    GORILLA_TO_OPENAPI,
-)
+from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT, GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.parser.java_parser import parse_java_function_call
 from bfcl.model_handler.parser.js_parser import parse_javascript_function_call
+from tenacity import retry, retry_if_exception_type, wait_random_exponential
 
 
 def _cast_to_openai_type(properties, mapping):
@@ -819,3 +817,27 @@ def decoded_output_to_execution_list(decoded_output):
             args_str = ", ".join(f"{k}={parse_nested_value(v)}" for k, v in value.items())
             execution_list.append(f"{key}({args_str})")
     return execution_list
+
+
+def retry_with_backoff(error_type, min_wait=6, max_wait=120):
+    """
+    General decorator to retry with backoff for a specific error type.
+
+    :param error_type: The exception type to retry on.
+    :param min_wait: Minimum wait time for the backoff.
+    :param max_wait: Maximum wait time for the backoff.
+    """
+
+    def decorator(func):
+        @retry(
+            wait=wait_random_exponential(min=min_wait, max=max_wait),
+            retry=retry_if_exception_type(error_type),
+            before_sleep=lambda retry_state: print(
+                f"Attempt {retry_state.attempt_number} failed. Sleeping for {float(round(retry_state.next_action.sleep, 2))} seconds before retrying..."
+                f"Error: {retry_state.outcome.exception()}"
+            ),
+        )
+        def wrapped(*args, **kwargs):
+            return func(*args, **kwargs)
+        return wrapped
+    return decorator

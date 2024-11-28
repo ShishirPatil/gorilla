@@ -164,7 +164,7 @@ class BaseHandler:
                 if include_input_log:
                     current_step_inference_log.append(
                         {
-                            "role": "handler_log",
+                            "role": "inference_input",
                             "content": inference_data.get("inference_input_log", ""),
                         }
                     )
@@ -406,7 +406,7 @@ class BaseHandler:
                 if include_input_log:
                     current_step_inference_log.append(
                         {
-                            "role": "handler_log",
+                            "role": "inference_input",
                             "content": inference_data.get("inference_input_log", ""),
                         }
                     )
@@ -563,7 +563,7 @@ class BaseHandler:
         if include_input_log:
             metadata["inference_log"] = [
                 {
-                    "role": "handler_log",
+                    "role": "inference_input",
                     "content": inference_data.get("inference_input_log", ""),
                 }
             ]
@@ -594,7 +594,7 @@ class BaseHandler:
         if include_input_log:
             metadata["inference_log"] = [
                 {
-                    "role": "handler_log",
+                    "role": "inference_input",
                     "content": inference_data.get("inference_input_log", ""),
                 }
             ]
