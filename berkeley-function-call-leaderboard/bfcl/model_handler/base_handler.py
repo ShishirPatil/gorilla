@@ -32,7 +32,6 @@ class BaseHandler:
         self.temperature = temperature
         self.is_fc_model = False  # Whether the model is a function calling model
 
-    @final
     def inference(self, test_entry: dict, include_input_log: bool, include_state_log: bool):
         # This method is used to retrive model response for each model.
 
