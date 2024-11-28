@@ -1,5 +1,5 @@
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
-from overrides import overrides
+from overrides import override
 
 
 class DeepseekHandler(OSSHandler):
@@ -10,7 +10,7 @@ class DeepseekHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
 
-    @overrides
+    @override
     def decode_ast(self, result, language="Python"):
         result = result.strip()
         if result.startswith("```json"):
@@ -19,7 +19,7 @@ class DeepseekHandler(OSSHandler):
             result = result[len("```python"):]
         return super().decode_ast(result, language)
 
-    @overrides
+    @override
     def decode_execute(self, result):
         if result.startswith("```json"):
             result = result[len("```json"):]
@@ -27,7 +27,7 @@ class DeepseekHandler(OSSHandler):
             result = result[len("```python"):]
         return super().decode_execute(result)
 
-    @overrides
+    @override
     def _format_prompt(self, messages, function):
         """
         "bos_token": {
@@ -62,7 +62,7 @@ class DeepseekHandler(OSSHandler):
 
         return formatted_prompt
 
-    @overrides
+    @override
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:

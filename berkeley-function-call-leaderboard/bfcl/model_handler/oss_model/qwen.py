@@ -1,12 +1,12 @@
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
-from overrides import overrides
+from overrides import override
 
 
 class QwenHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
 
-    @overrides
+    @override
     def _format_prompt(self, messages, function):
         # Qwen is using its prompting mode, not the tool use mode
         """
