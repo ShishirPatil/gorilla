@@ -5,9 +5,7 @@ from bfcl.model_handler.utils import (
     func_doc_language_specific_pre_processing,
     system_prompt_pre_processing_chat_model,
 )
-from overrides import overrides
-
-from overrides import overrides
+from overrides import override
 
 class GemmaHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:

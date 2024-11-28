@@ -8,9 +8,7 @@ from bfcl.model_handler.utils import (
     convert_to_tool,
     func_doc_language_specific_pre_processing,
 )
-from overrides import overrides
-
-from overrides import overrides
+from overrides import override
 
 class GLMHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:

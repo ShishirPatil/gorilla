@@ -1,5 +1,5 @@
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
-from overrides import overrides
+from overrides import override
 
 # Note: This is the handler for the Llama models in prompring mode.
 # For function call mode, use LlamaFCHandler instead.

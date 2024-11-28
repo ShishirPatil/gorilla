@@ -2,7 +2,7 @@ import json
 
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
 from bfcl.model_handler.utils import convert_to_function_call
-from overrides import overrides
+from overrides import override
 
 
 class GlaiveHandler(OSSHandler):

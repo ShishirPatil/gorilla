@@ -5,9 +5,8 @@ from bfcl.model_handler.utils import (
     func_doc_language_specific_pre_processing,
     system_prompt_pre_processing_chat_model,
 )
-from overrides import overrides
+from overrides import override
 
-from overrides import overrides
 class PhiHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)

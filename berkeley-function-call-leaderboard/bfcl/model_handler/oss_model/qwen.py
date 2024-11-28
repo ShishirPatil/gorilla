@@ -1,5 +1,5 @@
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
-from overrides import overrides
+from overrides import override
 
 
 class QwenHandler(OSSHandler):

@@ -13,7 +13,7 @@ from bfcl.model_handler.utils import (
 from datamodel_code_generator import DataModelType
 from datamodel_code_generator.model import get_data_model_types
 from datamodel_code_generator.parser.jsonschema import JsonSchemaParser
-from overrides import overrides
+from overrides import override
 
 
 class MiniCPMFCHandler(OSSHandler):
