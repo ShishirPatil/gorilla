@@ -11,14 +11,10 @@ from bfcl.model_handler.utils import (
     extract_system_prompt,
     format_execution_results_prompting,
     func_doc_language_specific_pre_processing,
+    retry_with_backoff,
     system_prompt_pre_processing_chat_model,
 )
 from google.api_core.exceptions import ResourceExhausted
-from tenacity import (
-    retry,
-    retry_if_exception_type,
-    wait_random_exponential,
-)
 from vertexai.generative_models import (
     Content,
     FunctionDeclaration,
@@ -75,14 +71,7 @@ class GeminiHandler(BaseHandler):
                     )
             return func_call_list
 
-    @retry(
-        wait=wait_random_exponential(min=6, max=120),
-        retry=retry_if_exception_type(ResourceExhausted),
-        before_sleep=lambda retry_state: print(
-            f"Attempt {retry_state.attempt_number} failed. Sleeping for {float(round(retry_state.next_action.sleep, 2))} seconds before retrying..."
-            f"Error: {retry_state.outcome.exception()}"
-        ),
-    )
+    @retry_with_backoff(ResourceExhausted)
     def generate_with_backoff(self, client, **kwargs):
         return client.generate_content(**kwargs)
 
