@@ -52,9 +52,9 @@
 
 ## Get Started 
 
-Inference: Run Gorilla locally [`inference/README.md`](inference/README.md)
+Inference: Run Gorilla locally [`gorilla/inference/README.md`](gorilla/inference/README.md)
 
-Evaluation: We have included prompts and responses for the APIBench with and without retrievers along with the Abstract Syntax Tree (AST) matching evaluation script at [evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval).
+Evaluation: We have included prompts and responses for the APIBench with and without retrievers along with the Abstract Syntax Tree (AST) matching evaluation script at [gorilla/eval](https://github.com/ShishirPatil/gorilla/tree/main/gorilla/eval).
 
 ## Repository Organization
 
@@ -62,13 +62,14 @@ Our repository organization is shown below.
 
   - The `berkeley-function-call-leaderboard` folder contains scripts for evaluating function-calling ability of models.
   - The `data` folder contains all the evaluation APIs `(APIBench)` and the community contributed APIs.
-  - The `eval` folder contains all our evaluation code as well as the Gorilla outputs.
-  - The `inference` folder contains all the inference code for running Gorilla locally.
+  - The `gorilla` folder contains all the replication code for the original Gorilla paper. 
+    - The `gorilla/eval` folder contains all our evaluation code as well as the Gorilla outputs.
+    - The `gorilla/inference` folder contains all the inference code for running Gorilla locally.
   - The `openfunctions` folder contains the inference code for the OpenFunctions model(s).
 
-For our dataset collections, all the 1640 API documentation is in `data/api`. We also include the `APIBench` dataset created by self-instruct in `data/apibench`. For evaluation, we convert this into a LLM-friendly chat format, and the questions are in `eval/eval-data/questions`, and the corresponding responses are in `eval/eval-data/responses`.  We have also included the evaluation scripts are in `eval/eval-scripts`. This would be entirely sufficient to train Gorilla yourself, and reproduce our results. Please see [evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval) for the details on how to use our evaluation pipeline.
+For our dataset collections, all the 1640 API documentation is in `data/api`. We also include the `APIBench` dataset created by self-instruct in `data/apibench`. For evaluation, we convert this into a LLM-friendly chat format, and the questions are in `gorilla/eval/eval-data/questions`, and the corresponding responses are in `gorilla/eval/eval-data/responses`.  We have also included the evaluation scripts are in `gorilla/eval/eval-scripts`. This would be entirely sufficient to train Gorilla yourself, and reproduce our results. Please see [evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval) for the details on how to use our evaluation pipeline.
 
-Additionally, we have released all the model weights. `gorilla-7b-hf-v0` lets you invoke over 925 Hugging Face APIs. Similarly, `gorilla-7b-tf-v0` and `gorilla-7b-th-v0` have 626 (exhaustive) Tensorflow v2, and 94 (exhaustive) Torch Hub APIs. `gorilla-mpt-7b-hf-v0` and `gorilla-falcon-7b-hf-v0` are Apache 2.0 licensed models (commercially usable) fine-tuned on MPT-7B and Falcon-7B respectively. We will release a model with all three combined with generic chat capability and community contributed APIs as soon as we can scale our serving infrastructure. You can run Gorilla locally from instructions in the `inference/` sub-directory, or we also provide a hosted Gorilla chat completion API (see Colab)! If you have any suggestions or if you run into any issues, please feel free to reach out to us either through Discord or email or raise a Github issue.
+Additionally, we have released all the model weights. `gorilla-7b-hf-v0` lets you invoke over 925 Hugging Face APIs. Similarly, `gorilla-7b-tf-v0` and `gorilla-7b-th-v0` have 626 (exhaustive) Tensorflow v2, and 94 (exhaustive) Torch Hub APIs. `gorilla-mpt-7b-hf-v0` and `gorilla-falcon-7b-hf-v0` are Apache 2.0 licensed models (commercially usable) fine-tuned on MPT-7B and Falcon-7B respectively. We will release a model with all three combined with generic chat capability and community contributed APIs as soon as we can scale our serving infrastructure. You can run Gorilla locally from instructions in the `gorilla/inference/` sub-directory, or we also provide a hosted Gorilla chat completion API (see Colab)! If you have any suggestions or if you run into any issues, please feel free to reach out to us either through Discord or email or raise a Github issue.
 
 ```
 gorilla
