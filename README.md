@@ -4,6 +4,15 @@
   <img src="https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/img/logo.png" width="50%" height="50%">
 </div>
 
+<div align="center">
+  
+[![Arxiv](https://img.shields.io/badge/Gorilla_Paper-2305.15334-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334) [![Arxiv](https://img.shields.io/badge/Raft_Paper-2403.10131-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334) [![Arxiv](https://img.shields.io/badge/GoEX_Paper-2403.10131-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2404.06921) [![Discord](https://img.shields.io/discord/1111172801899012102?label=Discord&logo=discord&logoColor=green&style=flat-square)](https://discord.gg/grXXvj9Whz) [![Gorilla Blog](https://img.shields.io/badge/Blog-gorilla.cs.berkeley.edu-blue?style=flat-square)](https://gorilla.cs.berkeley.edu/blog.html)
+
+</div>
+
+`Gorilla` enables LLMs to use tools by invoking APIs. Given a natural language query, Gorilla comes up with the semantically- and syntactically- correct API to invoke. With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (and growing) API calls accurately while reducing hallucination. We also release APIBench, the largest collection of APIs, curated and easy to be trained on! Join us, as we try to expand the largest API store and teach LLMs how to write them! Hop on our Discord, or open a PR, or email us if you would like to have your API incorporated as well.
+
+
 **🏟️ Agent Arena: Compare LLM agents across models, tools, and frameworks!** Evaluate agent workflows and subcomponents using the extended Bradley-Terry Model, access 2,000+ real-world agent battles. Explore the Prompt Hub for user contributed prompts used for agent evaluations. [[Release Blog]](https://gorilla.cs.berkeley.edu/blogs/11_agent_marketplace.html)
 
 **🚒  GoEx: A Runtime for executing LLM generated actions like code & API calls** GoEx presents “undo” and “damage confinement” abstractions for mitigating the risk of unintended actions taken in LLM-powered systems. [[Release blog]](https://gorilla.cs.berkeley.edu/blogs/10_gorilla_exec_engine.html) [[Paper]](https://arxiv.org/abs/2404.06921).
@@ -21,15 +30,6 @@
 **:rocket: Try Gorilla in 60s** [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing) 
 
 :computer: Use [Gorilla in your CLI](https://github.com/gorilla-llm/gorilla-cli) with `pip install gorilla-cli`
-
-**:fax: Check out our [blogs](https://gorilla.cs.berkeley.edu/blog.html) for all things tools-use/function-calling!** 
-
-**:newspaper_roll: Check out our paper!** [![arXiv](https://img.shields.io/badge/arXiv-2305.15334-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334)
-
-**:wave: Join our Discord!** [![Discord](https://img.shields.io/discord/1111172801899012102?label=Discord&logo=discord&logoColor=green&style=flat-square)](https://discord.gg/grXXvj9Whz)
-
-
-`Gorilla` enables LLMs to use tools by invoking APIs. Given a natural language query, Gorilla comes up with the semantically- and syntactically- correct API to invoke. With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (and growing) API calls accurately while reducing hallucination. We also release APIBench, the largest collection of APIs, curated and easy to be trained on! Join us, as we try to expand the largest API store and teach LLMs how to write them! Hop on our Discord, or open a PR, or email us if you would like to have your API incorporated as well.
 
 ## News
 - ⏰: [04/01] Introducing cost and latency metrics into [Berkeley function calling leaderboard](https://gorilla.cs.berkeley.edu/leaderboard)!
