@@ -6,7 +6,7 @@
 
 <div align="center">
   
-[![Arxiv](https://img.shields.io/badge/Gorilla_Paper-2305.15334-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334) [![Arxiv](https://img.shields.io/badge/Raft_Paper-2403.10131-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334) [![Arxiv](https://img.shields.io/badge/GoEX_Paper-2403.10131-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2404.06921) [![Discord](https://img.shields.io/discord/1111172801899012102?label=Discord&logo=discord&logoColor=green&style=flat-square)](https://discord.gg/grXXvj9Whz) [![Gorilla Blog](https://img.shields.io/badge/Blog-gorilla.cs.berkeley.edu-blue?style=flat-square)](https://gorilla.cs.berkeley.edu/blog.html) [![Hugging Face](https://img.shields.io/badge/🤗-gorilla--llm-yellow.svg?style=flat-square)](https://huggingface.co/gorilla-llm)
+[![Arxiv](https://img.shields.io/badge/Gorilla_Paper-2305.15334-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334) [![Arxiv](https://img.shields.io/badge/RAFT_Paper-2403.10131-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334) [![Arxiv](https://img.shields.io/badge/GoEX_Paper-2403.10131-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2404.06921) [![Discord](https://img.shields.io/discord/1111172801899012102?label=Discord&logo=discord&logoColor=green&style=flat-square)](https://discord.gg/grXXvj9Whz) [![Gorilla Blog](https://img.shields.io/badge/Blog-gorilla.cs.berkeley.edu-blue?style=flat-square)](https://gorilla.cs.berkeley.edu/blog.html) [![Hugging Face](https://img.shields.io/badge/🤗-gorilla--llm-yellow.svg?style=flat-square)](https://huggingface.co/gorilla-llm)
 
 </div>
 
