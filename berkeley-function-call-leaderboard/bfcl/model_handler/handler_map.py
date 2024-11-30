@@ -9,6 +9,7 @@ from bfcl.model_handler.oss_model.hermes import HermesHandler
 from bfcl.model_handler.oss_model.llama import LlamaHandler
 from bfcl.model_handler.oss_model.llama_fc import LlamaFCHandler
 from bfcl.model_handler.oss_model.minicpm import MiniCPMHandler
+from bfcl.model_handler.oss_model.minicpm_fc import MiniCPMFCHandler
 from bfcl.model_handler.oss_model.phi import PhiHandler
 from bfcl.model_handler.oss_model.qwen import QwenHandler
 from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
@@ -24,6 +25,7 @@ from bfcl.model_handler.proprietary_model.mistral import MistralHandler
 from bfcl.model_handler.proprietary_model.nexus import NexusHandler
 from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
+from bfcl.model_handler.proprietary_model.writer import WriterHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
 
 # TODO: Add meta-llama/Llama-3.1-405B-Instruct
@@ -87,6 +89,7 @@ api_inference_handler_map = {
     "nvidia/nemotron-4-340b-instruct": NvidiaHandler,
     "BitAgent/GoGoAgent": GoGoAgentHandler,
     # "yi-large-fc": YiHandler,  #  Their API is under maintenance, and will not be back online in the near future
+    "palmyra-x-004": WriterHandler,
 }
 
 # Inference through local hosting
@@ -132,6 +135,7 @@ local_inference_handler_map = {
     "Qwen/Qwen2.5-72B-Instruct": QwenHandler,
     "Team-ACE/ToolACE-8B": LlamaHandler,
     "openbmb/MiniCPM3-4B": MiniCPMHandler,
+    "openbmb/MiniCPM3-4B-FC": MiniCPMFCHandler,
     "deepseek-ai/DeepSeek-V2.5": DeepseekCoderHandler,
     "deepseek-ai/DeepSeek-Coder-V2-Instruct-0724": DeepseekCoderHandler,
     "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct": DeepseekCoderHandler,

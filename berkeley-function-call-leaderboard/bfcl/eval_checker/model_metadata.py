@@ -1,6 +1,12 @@
 from bfcl.model_handler.handler_map import local_inference_handler_map
 
 MODEL_METADATA_MAPPING = {
+    "palmyra-x-004": [
+        "palmyra-x-004 (FC)",
+        "https://writer.com/engineering/actions-with-palmyra-x-004/",
+        "Writer",
+        "Proprietary",
+    ],
     "o1-preview-2024-09-12": [
         "o1-preview-2024-09-12 (Prompt)",
         "https://openai.com/index/introducing-openai-o1-preview/",
@@ -686,7 +692,13 @@ MODEL_METADATA_MAPPING = {
         "Apache-2.0",
     ],
     "openbmb/MiniCPM3-4B": [
-        "MiniCPM3-4B (FC)",
+        "MiniCPM3-4B (Prompt)",
+        "https://huggingface.co/openbmb/MiniCPM3-4B",
+        "openbmb",
+        "Apache-2.0",
+    ],
+    "openbmb/MiniCPM3-4B-FC": [
+        "MiniCPM3-4B-FC (FC)",
         "https://huggingface.co/openbmb/MiniCPM3-4B",
         "openbmb",
         "Apache-2.0",
@@ -747,10 +759,10 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gemini-1.5-pro-002-FC": 1.25,
     "gemini-1.5-pro-001": 1.25,
     "gemini-1.5-pro-001-FC": 1.25,
-    "gemini-1.5-flash-002": 0.075 ,
-    "gemini-1.5-flash-002-FC": 0.075 ,
-    "gemini-1.5-flash-001": 0.075 ,
-    "gemini-1.5-flash-001-FC": 0.075 ,
+    "gemini-1.5-flash-002": 0.075,
+    "gemini-1.5-flash-002-FC": 0.075,
+    "gemini-1.5-flash-001": 0.075,
+    "gemini-1.5-flash-001-FC": 0.075,
     "gemini-1.0-pro-002": 0.5,
     "gemini-1.0-pro-002-FC": 0.5,
     "databricks-dbrx-instruct": 2.25,
@@ -759,6 +771,7 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus-FC-optimized": 3,
     "command-r-plus-optimized": 3,
     "yi-large-fc": 3,
+    "palmyra-x-004": 5,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -821,15 +834,15 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus-FC-optimized": 15,
     "command-r-plus-optimized": 15,
     "yi-large-fc": 3,
+    "palmyra-x-004": 12,
 }
 
 # The latency of the open-source models are hardcoded here.
 # Because we do batching when generating the data, so the latency is not accurate from the result data.
 # This is the latency for the whole batch of data, when using 8 V100 GPUs.
-OSS_LATENCY = {
-}
+OSS_LATENCY = {}
 
-# All OSS models will have no cost shown on the leaderboard. 
+# All OSS models will have no cost shown on the leaderboard.
 NO_COST_MODELS = list(local_inference_handler_map.keys())
 # The following models will also have no cost, even though they are queries through the API.
 NO_COST_MODELS += [
