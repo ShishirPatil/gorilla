@@ -328,7 +328,10 @@ class ClaudeHandler(BaseHandler):
             inference_data, execution_results, model_response_data
         )
         inference_data["message"].append(
-            {"role": "user", "content": formatted_results_message}
+            {
+                "role": "user",
+                "content": [{"type": "text", "text": formatted_results_message}],
+            }
         )
 
         return inference_data
