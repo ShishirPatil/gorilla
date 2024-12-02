@@ -8,7 +8,7 @@ from bfcl.model_handler.utils import (
     convert_to_function_call,
     func_doc_language_specific_pre_processing,
 )
-from overrides import overrides
+from overrides import override
 
 
 class DeepseekCoderHandler(OSSHandler):
@@ -19,15 +19,21 @@ class DeepseekCoderHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
 
-    @overrides
+    @override
     def decode_ast(self, result, language="Python"):
+        # The input is already a list of dictionaries, so no need to decode
+        # `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}]`
+        if type(result) != list:
+            return []
         return result
 
-    @overrides
+    @override
     def decode_execute(self, result):
+        if type(result) != list:
+            return []
         return convert_to_function_call(result)
 
-    @overrides
+    @override
     def _format_prompt(self, messages, function):
         """
         "bos_token": {
@@ -109,7 +115,7 @@ class DeepseekCoderHandler(OSSHandler):
 
         return formatted_prompt
 
-    @overrides
+    @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
@@ -136,7 +142,7 @@ class DeepseekCoderHandler(OSSHandler):
 
         return {"message": [], "function": functions}
 
-    @overrides
+    @override
     def _parse_query_response_prompting(self, api_response: any) -> dict:
         model_responses = api_response.choices[0].text
         extracted_tool_calls = self.extract_tool_calls(model_responses)
@@ -164,7 +170,7 @@ class DeepseekCoderHandler(OSSHandler):
             "output_token": api_response.usage.completion_tokens,
         }
 
-    @overrides
+    @override
     def _add_assistant_message_prompting(
         self, inference_data: dict, model_response_data: dict
     ) -> dict:
