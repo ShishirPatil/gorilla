@@ -155,9 +155,7 @@ class BaseHandler:
                 # Add to the current_turn_inference_log at beginning of each step so that we don't need to bother dealing with the break statements
                 current_turn_inference_log[f"step_{count}"] = current_step_inference_log
 
-                start_time = time.time()
-                api_response = self._query_FC(inference_data)
-                query_latency = time.time() - start_time
+                api_response, query_latency = self._query_FC(inference_data)
 
                 # This part of logging is disabled by default because it is too verbose and will make the result file extremely large
                 # It is only useful to see if the inference pipeline is working as expected (eg, does it convert all the inputs correctly)
@@ -397,9 +395,7 @@ class BaseHandler:
                 # Add to the current_turn_inference_log at beginning of each step so that we don't need to bother dealing with the break statements
                 current_turn_inference_log[f"step_{count}"] = current_step_inference_log
 
-                start_time = time.time()
-                api_response = self._query_prompting(inference_data)
-                query_latency = time.time() - start_time
+                api_response, query_latency = self._query_prompting(inference_data)
 
                 # This part of logging is disabled by default because it is too verbose and will make the result file extremely large
                 # It is only useful to see if the inference pipeline is working as expected (eg, does it convert all the inputs correctly)
@@ -551,9 +547,7 @@ class BaseHandler:
             inference_data, test_entry["question"][0]
         )
 
-        start_time = time.time()
-        api_response = self._query_FC(inference_data)
-        query_latency = time.time() - start_time
+        api_response, query_latency = self._query_FC(inference_data)
 
         # Try parsing the model response
         model_response_data = self._parse_query_response_FC(api_response)
@@ -582,9 +576,7 @@ class BaseHandler:
             inference_data, test_entry["question"][0]
         )
 
-        start_time = time.time()
-        api_response = self._query_prompting(inference_data)
-        query_latency = time.time() - start_time
+        api_response, query_latency = self._query_prompting(inference_data)
 
         # Try parsing the model response
         model_response_data = self._parse_query_response_prompting(api_response)

@@ -1,4 +1,5 @@
 import os
+import time
 
 import vertexai
 from bfcl.model_handler.base_handler import BaseHandler
@@ -73,7 +74,11 @@ class GeminiHandler(BaseHandler):
 
     @retry_with_backoff(ResourceExhausted)
     def generate_with_backoff(self, client, **kwargs):
-        return client.generate_content(**kwargs)
+        start_time = time.time()
+        api_response = client.generate_content(**kwargs)
+        end_time = time.time()
+
+        return api_response, end_time - start_time
 
     #### FC methods ####
 
@@ -112,7 +117,7 @@ class GeminiHandler(BaseHandler):
         else:
             client = self.client
 
-        api_response = self.generate_with_backoff(
+        return self.generate_with_backoff(
             client=client,
             contents=inference_data["message"],
             generation_config=GenerationConfig(
@@ -120,7 +125,6 @@ class GeminiHandler(BaseHandler):
             ),
             tools=tools
         )
-        return api_response
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
 

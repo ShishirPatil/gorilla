@@ -285,6 +285,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         if hasattr(self, "skip_special_tokens"):
             extra_body["skip_special_tokens"] = self.skip_special_tokens
 
+        start_time = time.time()
         if len(extra_body) > 0:
             api_response = self.client.completions.create(
                 model=self.model_name_huggingface,
@@ -300,8 +301,9 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                 prompt=formatted_prompt,
                 max_tokens=leftover_tokens_count,
             )
+        end_time = time.time()
 
-        return api_response
+        return api_response, end_time - start_time
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
