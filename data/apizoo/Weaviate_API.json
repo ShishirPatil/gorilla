@@ -1,0 +1,54 @@
+[
+  {
+    "user_name": "CShorten",
+    "api_name": "Weaviate API - Query Database",
+    "api_call": "weaviate_client.query_database(collection_name=collection, search_query=query, integer_property_filter=int_filter, text_property_filter=text_filter, boolean_property_filter=bool_filter, integer_property_aggregation=int_agg, text_property_aggregation=text_agg, boolean_property_aggregation=bool_agg, groupby_property=groupby)",
+    "api_version": "4.9.4",
+    "api_arguments": {
+      "collection_name": "The collection to query.",
+      "search_query": "A search query to return objects from a search index.",
+      "integer_property_filter": {
+        "property_name": "Name of the numeric property to filter on",
+        "operator": "Comparison operator (=, <, >, ≤, ≥)",
+        "value": "Numeric value to compare against"
+      },
+      "text_property_filter": {
+        "property_name": "Name of the text property to filter on", 
+        "operator": "Text comparison operator (=, LIKE)",
+        "value": "Text value to compare against"
+      },
+      "boolean_property_filter": {
+        "property_name": "Name of the boolean property to filter on",
+        "operator": "Boolean comparison operator (=, !=)",
+        "value": "Boolean value to compare against"
+      },
+      "integer_property_aggregation": {
+        "property_name": "Name of numeric property to aggregate",
+        "metrics": "Statistical function (COUNT, TYPE, MIN, MAX, MEAN, MEDIAN, MODE, SUM)"
+      },
+      "text_property_aggregation": {
+        "property_name": "Name of text property to aggregate",
+        "metrics": "Text analysis function (COUNT, TYPE, TOP_OCCURRENCES)",
+        "top_occurrences_limit": "Limit for TOP_OCCURRENCES metric"
+      },
+      "boolean_property_aggregation": {
+        "property_name": "Name of boolean property to aggregate", 
+        "metrics": "Boolean statistics (COUNT, TYPE, TOTAL_TRUE, TOTAL_FALSE, PERCENTAGE_TRUE, PERCENTAGE_FALSE)"
+      },
+      "groupby_property": "Property to group results by"
+    },
+    "functionality": "Query a Weaviate database with filtering, aggregation and grouping capabilities",
+    "env_requirements": ["weaviate-client"],
+    "example_code": "import weaviate\nclient = weaviate.Client()\nresults = client.query_database(\n    collection_name='Restaurants',\n    search_query='pizza',\n    boolean_property_filter={\n        'property_name': 'inBoston',\n        'operator': '=',\n        'value': True\n    },\n    integer_property_aggregation={\n        'property_name': 'rating',\n        'metrics': 'MEAN'\n    }\n)",
+    "meta_data": {
+      "description": "The Weaviate Query API allows for complex queries on vector search databases with filtering, aggregation and grouping capabilities",
+      "documentation_link": "https://weaviate.io/developers/weaviate/api/rest"
+    },
+    "questions": [
+      "Find all Italian restaurants in the Restaurants collection",
+      "Show me restaurants with a rating of 4 or higher", 
+      "What percentage of restaurants in the database are vegetarian?",
+      "Find restaurants that serve seafood pasta dishes"
+    ]
+  }
+]
