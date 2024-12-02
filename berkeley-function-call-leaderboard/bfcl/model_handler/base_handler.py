@@ -32,21 +32,21 @@ class BaseHandler:
         self.temperature = temperature
         self.is_fc_model = False  # Whether the model is a function calling model
 
-    def inference(self, test_entry: dict, include_input_log: bool, include_state_log: bool):
+    def inference(self, test_entry: dict, include_input_log: bool, exclude_state_log: bool):
         # This method is used to retrive model response for each model.
 
         # FC model
         # TODO: Let all models have the is_fc_model attribute and remove the "FC" check
         if "FC" in self.model_name or self.is_fc_model:
             if "multi_turn" in test_entry["id"]:
-                return self.inference_multi_turn_FC(test_entry, include_input_log, include_state_log)
+                return self.inference_multi_turn_FC(test_entry, include_input_log, exclude_state_log)
             else:
                 return self.inference_single_turn_FC(test_entry, include_input_log)
         # Prompting model
         else:
             if "multi_turn" in test_entry["id"]:
                 return self.inference_multi_turn_prompting(
-                    test_entry, include_input_log, include_state_log
+                    test_entry, include_input_log, exclude_state_log
                 )
             else:
                 return self.inference_single_turn_prompting(
@@ -55,7 +55,7 @@ class BaseHandler:
 
     @final
     def inference_multi_turn_FC(
-        self, test_entry: dict, include_input_log: bool, include_state_log: bool
+        self, test_entry: dict, include_input_log: bool, exclude_state_log: bool
     ) -> tuple[list[list], dict]:
         initial_config: dict = test_entry["initial_config"]
         involved_classes: list = test_entry["involved_classes"]
@@ -78,7 +78,7 @@ class BaseHandler:
         force_quit = False  # Whether the model has been forced to quit. If True, this whole entry will be failed.
 
         # Execute no function call, but just to get a reference to all the instances to get the initial state for logging purpose
-        if include_state_log:
+        if not exclude_state_log:
             _, involved_instances = execute_multi_turn_func_call(
                 [],
                 initial_config,
@@ -265,7 +265,7 @@ class BaseHandler:
             total_output_token_count.append(current_turn_output_token_count)
             total_latency.append(current_turn_latency)
 
-            if include_state_log:
+            if not exclude_state_log:
                 state_log = []
                 for class_name, class_instance in involved_instances.items():
                     if class_name in STATELESS_CLASSES:
@@ -298,7 +298,7 @@ class BaseHandler:
 
     @final
     def inference_multi_turn_prompting(
-        self, test_entry: dict, include_input_log: bool, include_state_log: bool
+        self, test_entry: dict, include_input_log: bool, exclude_state_log: bool
     ) -> tuple[list[list], dict]:
         initial_config: dict = test_entry["initial_config"]
         involved_classes: list = test_entry["involved_classes"]
@@ -321,7 +321,7 @@ class BaseHandler:
         force_quit = False  # Whether the model has been forced to quit. If True, this whole entry will be failed.
 
         # Execute no function call, but just to get a reference to all the instances to get the initial state for logging purpose
-        if include_state_log:
+        if not exclude_state_log:
             _, involved_instances = execute_multi_turn_func_call(
                 [],
                 initial_config,
@@ -505,7 +505,7 @@ class BaseHandler:
             total_output_token_count.append(current_turn_output_token_count)
             total_latency.append(current_turn_latency)
 
-            if include_state_log:
+            if not exclude_state_log:
                 state_log = []
                 for class_name, class_instance in involved_instances.items():
                     if class_name in STATELESS_CLASSES:
