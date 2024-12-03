@@ -1,4 +1,5 @@
 import os
+import time
 
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
@@ -19,6 +20,7 @@ class WriterHandler(OpenAIHandler):
         tools = inference_data["tools"]
         inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
 
+        start_time = time.time()
         if len(tools) > 0:
             api_response = self.client.chat.chat(
                 messages=message,
@@ -33,4 +35,6 @@ class WriterHandler(OpenAIHandler):
                 model=self.model_name,
                 temperature=self.temperature,
             )
-        return api_response
+        end_time = time.time()
+
+        return api_response, end_time - start_time

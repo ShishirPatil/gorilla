@@ -1,5 +1,6 @@
 import json
 import os
+import time
 
 from anthropic import Anthropic, RateLimitError
 from anthropic.types import TextBlock, ToolUseBlock
@@ -71,7 +72,11 @@ class ClaudeHandler(BaseHandler):
 
     @retry_with_backoff(RateLimitError)
     def generate_with_backoff(self, **kwargs):
-        return self.client.beta.prompt_caching.messages.create(**kwargs)
+        start_time = time.time()
+        api_response = self.client.beta.prompt_caching.messages.create(**kwargs)
+        end_time = time.time()
+
+        return api_response, end_time - start_time
 
     #### FC methods ####
 
@@ -244,14 +249,13 @@ class ClaudeHandler(BaseHandler):
                             del message["content"][0]["cache_control"]
                     count += 1
 
-        api_response = self.generate_with_backoff(
+        return self.generate_with_backoff(
             model=self.model_name,
             max_tokens=(8192 if "claude-3-5-sonnet-20240620" in self.model_name else 4096),
             temperature=self.temperature,
             system=inference_data["system_prompt"],
             messages=inference_data["message"],
         )
-        return api_response
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]

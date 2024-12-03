@@ -131,6 +131,8 @@ class CohereHandler(BaseHandler):
             "chat_history": inference_data.get("chat_history", None),
             "preamble": self.preamble,
         }
+
+        start_time = time.time()
         api_response = self.client.chat(
             message=inference_data["message"],
             model=self.model_name.replace("-FC", ""),
@@ -140,8 +142,9 @@ class CohereHandler(BaseHandler):
             preamble=self.preamble,
             chat_history=inference_data.get("chat_history", None),
         )
+        end_time = time.time()
 
-        return api_response
+        return api_response, end_time - start_time
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         for round_idx in range(len(test_entry["question"])):
@@ -242,6 +245,7 @@ class CohereHandler(BaseHandler):
             "chat_history": inference_data.get("chat_history", None),
         }
 
+        start_time = time.time()
         api_response = self.client.chat(
             message=inference_data["message"],
             model=self.model_name,
@@ -249,8 +253,9 @@ class CohereHandler(BaseHandler):
             preamble=inference_data["system_prompt"],
             chat_history=inference_data.get("chat_history", None),
         )
+        end_time = time.time()
 
-        return api_response
+        return api_response, end_time - start_time
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]

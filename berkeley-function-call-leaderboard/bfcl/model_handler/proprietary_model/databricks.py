@@ -65,13 +65,16 @@ class DatabricksHandler(OpenAIHandler):
     def _query_prompting(self, inference_data: dict):
         message = inference_data["message"]
         inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
-        
+
+        start_time = time.time()
         api_response = self.client.chat.completions.create(
             messages=message,
             model=self.model_name,
             temperature=self.temperature,
         )
-        return api_response
+        end_time = time.time()
+
+        return api_response, end_time - start_time
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
@@ -82,7 +85,7 @@ class DatabricksHandler(OpenAIHandler):
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
             test_entry["question"][0], functions, test_category
         )
-        
+
         # Databricks doesn't allow consecutive user prompts, so we need to combine them
         for round_idx in range(len(test_entry["question"])):
             test_entry["question"][round_idx] = combine_consecutive_user_prompts(

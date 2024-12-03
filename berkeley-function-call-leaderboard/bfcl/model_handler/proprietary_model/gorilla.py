@@ -1,4 +1,5 @@
 import json
+import time
 
 import requests
 from bfcl.model_handler.base_handler import BaseHandler
@@ -42,6 +43,8 @@ class GorillaHandler(BaseHandler):
             "temperature": self.temperature,
         }
         url = "https://luigi.millennium.berkeley.edu:443/v1/chat/completions"
+
+        start_time = time.time()
         api_response = requests.post(
             url,
             headers={
@@ -50,8 +53,9 @@ class GorillaHandler(BaseHandler):
             },
             data=json.dumps(requestData),
         )
+        end_time = time.time()
 
-        return api_response.json()
+        return api_response.json(), end_time - start_time
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         inference_data["message"] = []

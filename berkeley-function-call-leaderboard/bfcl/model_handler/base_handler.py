@@ -32,21 +32,21 @@ class BaseHandler:
         self.temperature = temperature
         self.is_fc_model = False  # Whether the model is a function calling model
 
-    def inference(self, test_entry: dict, include_input_log: bool, include_state_log: bool):
+    def inference(self, test_entry: dict, include_input_log: bool, exclude_state_log: bool):
         # This method is used to retrive model response for each model.
 
         # FC model
         # TODO: Let all models have the is_fc_model attribute and remove the "FC" check
         if "FC" in self.model_name or self.is_fc_model:
             if "multi_turn" in test_entry["id"]:
-                return self.inference_multi_turn_FC(test_entry, include_input_log, include_state_log)
+                return self.inference_multi_turn_FC(test_entry, include_input_log, exclude_state_log)
             else:
                 return self.inference_single_turn_FC(test_entry, include_input_log)
         # Prompting model
         else:
             if "multi_turn" in test_entry["id"]:
                 return self.inference_multi_turn_prompting(
-                    test_entry, include_input_log, include_state_log
+                    test_entry, include_input_log, exclude_state_log
                 )
             else:
                 return self.inference_single_turn_prompting(
@@ -55,7 +55,7 @@ class BaseHandler:
 
     @final
     def inference_multi_turn_FC(
-        self, test_entry: dict, include_input_log: bool, include_state_log: bool
+        self, test_entry: dict, include_input_log: bool, exclude_state_log: bool
     ) -> tuple[list[list], dict]:
         initial_config: dict = test_entry["initial_config"]
         involved_classes: list = test_entry["involved_classes"]
@@ -78,7 +78,7 @@ class BaseHandler:
         force_quit = False  # Whether the model has been forced to quit. If True, this whole entry will be failed.
 
         # Execute no function call, but just to get a reference to all the instances to get the initial state for logging purpose
-        if include_state_log:
+        if not exclude_state_log:
             _, involved_instances = execute_multi_turn_func_call(
                 [],
                 initial_config,
@@ -155,9 +155,7 @@ class BaseHandler:
                 # Add to the current_turn_inference_log at beginning of each step so that we don't need to bother dealing with the break statements
                 current_turn_inference_log[f"step_{count}"] = current_step_inference_log
 
-                start_time = time.time()
-                api_response = self._query_FC(inference_data)
-                query_latency = time.time() - start_time
+                api_response, query_latency = self._query_FC(inference_data)
 
                 # This part of logging is disabled by default because it is too verbose and will make the result file extremely large
                 # It is only useful to see if the inference pipeline is working as expected (eg, does it convert all the inputs correctly)
@@ -267,7 +265,7 @@ class BaseHandler:
             total_output_token_count.append(current_turn_output_token_count)
             total_latency.append(current_turn_latency)
 
-            if include_state_log:
+            if not exclude_state_log:
                 state_log = []
                 for class_name, class_instance in involved_instances.items():
                     if class_name in STATELESS_CLASSES:
@@ -300,7 +298,7 @@ class BaseHandler:
 
     @final
     def inference_multi_turn_prompting(
-        self, test_entry: dict, include_input_log: bool, include_state_log: bool
+        self, test_entry: dict, include_input_log: bool, exclude_state_log: bool
     ) -> tuple[list[list], dict]:
         initial_config: dict = test_entry["initial_config"]
         involved_classes: list = test_entry["involved_classes"]
@@ -323,7 +321,7 @@ class BaseHandler:
         force_quit = False  # Whether the model has been forced to quit. If True, this whole entry will be failed.
 
         # Execute no function call, but just to get a reference to all the instances to get the initial state for logging purpose
-        if include_state_log:
+        if not exclude_state_log:
             _, involved_instances = execute_multi_turn_func_call(
                 [],
                 initial_config,
@@ -397,9 +395,7 @@ class BaseHandler:
                 # Add to the current_turn_inference_log at beginning of each step so that we don't need to bother dealing with the break statements
                 current_turn_inference_log[f"step_{count}"] = current_step_inference_log
 
-                start_time = time.time()
-                api_response = self._query_prompting(inference_data)
-                query_latency = time.time() - start_time
+                api_response, query_latency = self._query_prompting(inference_data)
 
                 # This part of logging is disabled by default because it is too verbose and will make the result file extremely large
                 # It is only useful to see if the inference pipeline is working as expected (eg, does it convert all the inputs correctly)
@@ -509,7 +505,7 @@ class BaseHandler:
             total_output_token_count.append(current_turn_output_token_count)
             total_latency.append(current_turn_latency)
 
-            if include_state_log:
+            if not exclude_state_log:
                 state_log = []
                 for class_name, class_instance in involved_instances.items():
                     if class_name in STATELESS_CLASSES:
@@ -551,9 +547,7 @@ class BaseHandler:
             inference_data, test_entry["question"][0]
         )
 
-        start_time = time.time()
-        api_response = self._query_FC(inference_data)
-        query_latency = time.time() - start_time
+        api_response, query_latency = self._query_FC(inference_data)
 
         # Try parsing the model response
         model_response_data = self._parse_query_response_FC(api_response)
@@ -582,9 +576,7 @@ class BaseHandler:
             inference_data, test_entry["question"][0]
         )
 
-        start_time = time.time()
-        api_response = self._query_prompting(inference_data)
-        query_latency = time.time() - start_time
+        api_response, query_latency = self._query_prompting(inference_data)
 
         # Try parsing the model response
         model_response_data = self._parse_query_response_prompting(api_response)

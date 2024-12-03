@@ -104,10 +104,10 @@ def generate(
         "--include-input-log",
         help="Include the fully-transformed input to the model inference endpoint in the inference log; only relevant for debugging input integrity and format.",
     ),
-    include_state_log: bool = typer.Option(
+    exclude_state_log: bool = typer.Option(
         False,
-        "--include-state-log",
-        help="Include info about the state of each API system after each turn in the inference log; only relevant for multi-turn categories.",
+        "--exclude-state-log",
+        help="Exclude info about the state of each API system after each turn in the inference log; only relevant for multi-turn categories.",
     ),
     num_gpus: int = typer.Option(1, help="The number of GPUs to use."),
     num_threads: int = typer.Option(1, help="The number of threads to use."),
@@ -139,7 +139,7 @@ def generate(
         test_category=test_category,
         temperature=temperature,
         include_input_log=include_input_log,
-        include_state_log=include_state_log,
+        exclude_state_log=exclude_state_log,
         num_gpus=num_gpus,
         num_threads=num_threads,
         gpu_memory_utilization=gpu_memory_utilization,
