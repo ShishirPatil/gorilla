@@ -1,3 +1,5 @@
+import os
+
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from openai import OpenAI
 
