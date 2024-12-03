@@ -288,7 +288,7 @@ class GeminiHandler(BaseHandler):
             return {"message": []}
 
     def _parse_query_response_prompting(self, api_response: any) -> dict:
-        if len(api_response.candidates[0].content.parts) > 0:
+        if len(api_response.candidates) > 0 and len(api_response.candidates[0].content.parts) > 0:
             model_responses = api_response.text
         else:
             model_responses = "The model did not return any response."
