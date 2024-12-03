@@ -1,4 +1,5 @@
 import os
+import time
 
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
@@ -22,6 +23,7 @@ class FireworksHandler(OpenAIHandler):
         tools = inference_data["tools"]
         inference_data["inference_input_log"] = {"message": message, "tools": tools}
 
+        start_time = time.time()
         if len(tools) > 0:
             api_response = self.client.chat.completions.create(
                 messages=message,
@@ -35,12 +37,13 @@ class FireworksHandler(OpenAIHandler):
                 model=f"accounts/fireworks/models/{self.model_name.replace('-FC', '')}",
                 temperature=self.temperature,
             )
+        end_time = time.time()
 
-        return api_response
+        return api_response, end_time - start_time
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         return super()._pre_query_processing_FC(inference_data, test_entry)
-    
+
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         return super()._compile_tools(inference_data, test_entry)
 

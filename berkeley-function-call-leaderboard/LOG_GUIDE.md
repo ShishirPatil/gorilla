@@ -1,6 +1,6 @@
 # Guide to Inference Logs
 
-> An inference log is included along with the llm response in the results file to help you analyze and debug the model's performance, and to better understand the model behavior. To enable a more detailed log, use the `--include-state-log` flag and/or the `--include-input-log` flag in the generation command.
+> An inference log is included along with the llm response in the results file to help you analyze and debug the model's performance, and to better understand the model behavior. To enable a more detailed log, use the `--include-input-log` flag in the generation command.
 
 ## Log Structure
 
@@ -9,7 +9,7 @@ The log is structured as a list, representing a conversational interaction betwe
 1. **`user`**: Represents the user's input or query.
 2. **`assistant`**: Represents the model's raw response.
 3. **`tool`**: Represents the output of a function execution, if the model makes a valid function call. Each function call results in a separate `tool` entry.
-4. **`state_info`**: Represents the state of the backend API system at the end of each turn. The initial state is also included at the beginning of the log. This entry is available only if the `--include-state-log` flag is set in the generation command.
+4. **`state_info`**: Represents the state of the backend API system at the end of each turn. The initial state is also included at the beginning of the log. You can exclude this entry by using the `--exclude-state-log` flag in the generation command.
 5. **`inference_input`**: Snapshot of the fully-transformed input just before it's sent to the model API endpoint. Useful for debugging input integrity and format.
 
    - Available only if the `--include-input-log` flag is set  in the generation command.
