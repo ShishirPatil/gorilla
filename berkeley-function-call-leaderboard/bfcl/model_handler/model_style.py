@@ -12,4 +12,3 @@ class ModelStyle(Enum):
     OSSMODEL = "ossmodel"
     COHERE = "cohere"
     WRITER = "writer"
-    Grok = "grok"
