@@ -27,22 +27,21 @@ class OpenAIHandler(BaseHandler):
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     def decode_ast(self, result, language="Python"):
-        if "FC" not in self.model_name:
-            return default_decode_ast_prompting(result, language)
-        else:
+        if "FC" in self.model_name or self.is_fc_model:
             decoded_output = []
             for invoked_function in result:
                 name = list(invoked_function.keys())[0]
                 params = json.loads(invoked_function[name])
                 decoded_output.append({name: params})
-        return decoded_output
+            return decoded_output
+        else:
+            return default_decode_ast_prompting(result, language)
 
     def decode_execute(self, result):
-        if "FC" not in self.model_name:
-            return default_decode_execute_prompting(result)
+        if "FC" in self.model_name or self.is_fc_model:
+            return convert_to_function_call(result)
         else:
-            function_call = convert_to_function_call(result)
-            return function_call
+            return default_decode_execute_prompting(result)
 
     @retry_with_backoff(RateLimitError)
     def generate_with_backoff(self, **kwargs):
