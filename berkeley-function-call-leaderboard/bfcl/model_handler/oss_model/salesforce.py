@@ -1,4 +1,5 @@
 import json
+import time
 
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
@@ -114,9 +115,11 @@ class SalesforceHandler(OSSHandler):
             "function": function,
         }
 
+        start_time = time.time()
         api_response = self.client.completion(messages=message, tools=function)
+        end_time = time.time()
 
-        return api_response
+        return api_response, end_time - start_time
 
 
 # fmt: off

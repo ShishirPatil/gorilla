@@ -123,7 +123,7 @@ class GeminiHandler(BaseHandler):
             generation_config=GenerationConfig(
                 temperature=self.temperature,
             ),
-            tools=tools
+            tools=tools,
         )
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
@@ -152,32 +152,37 @@ class GeminiHandler(BaseHandler):
         return inference_data
 
     def _parse_query_response_FC(self, api_response: any) -> dict:
-        response_function_call_content = api_response.candidates[0].content
         tool_call_func_names = []
         fc_parts = []
         text_parts = []
-        for part in api_response.candidates[0].content.parts:
-            # part.function_call is a FunctionCall object, so it will always be True even if it contains no function call
-            # So we need to check if the function name is empty `""` to determine if Gemini returned a function call
-            if part.function_call and part.function_call.name:
-                part_func_name = part.function_call.name
-                part_func_args = part.function_call.args
-                part_func_args_dict = {k: v for k, v in part_func_args.items()}
 
-                fc_parts.append({part_func_name: part_func_args_dict})
-                tool_call_func_names.append(part_func_name)
-            else:
-                text_parts.append(part.text)
+        if (
+            len(api_response.candidates) > 0
+            and len(api_response.candidates[0].content.parts) > 0
+        ):
+            response_function_call_content = api_response.candidates[0].content
 
-        model_responses = fc_parts if fc_parts else text_parts
-        
-        if len(api_response.candidates[0].content.parts) == 0:
+            for part in api_response.candidates[0].content.parts:
+                # part.function_call is a FunctionCall object, so it will always be True even if it contains no function call
+                # So we need to check if the function name is empty `""` to determine if Gemini returned a function call
+                if part.function_call and part.function_call.name:
+                    part_func_name = part.function_call.name
+                    part_func_args = part.function_call.args
+                    part_func_args_dict = {k: v for k, v in part_func_args.items()}
+
+                    fc_parts.append({part_func_name: part_func_args_dict})
+                    tool_call_func_names.append(part_func_name)
+                else:
+                    text_parts.append(part.text)
+        else:
             response_function_call_content = Content(
                 role="model",
                 parts=[
                     Part.from_text("The model did not return any response."),
                 ],
             )
+
+        model_responses = fc_parts if fc_parts else text_parts
 
         return {
             "model_responses": model_responses,
@@ -288,7 +293,10 @@ class GeminiHandler(BaseHandler):
             return {"message": []}
 
     def _parse_query_response_prompting(self, api_response: any) -> dict:
-        if len(api_response.candidates[0].content.parts) > 0:
+        if (
+            len(api_response.candidates) > 0
+            and len(api_response.candidates[0].content.parts) > 0
+        ):
             model_responses = api_response.text
         else:
             model_responses = "The model did not return any response."
