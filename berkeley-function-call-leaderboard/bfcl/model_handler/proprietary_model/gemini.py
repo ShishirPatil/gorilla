@@ -123,7 +123,7 @@ class GeminiHandler(BaseHandler):
             generation_config=GenerationConfig(
                 temperature=self.temperature,
             ),
-            tools=tools
+            tools=tools,
         )
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
@@ -156,7 +156,10 @@ class GeminiHandler(BaseHandler):
         fc_parts = []
         text_parts = []
 
-        if len(api_response.candidates) > 0 and len(api_response.candidates[0].content.parts) > 0:
+        if (
+            len(api_response.candidates) > 0
+            and len(api_response.candidates[0].content.parts) > 0
+        ):
             response_function_call_content = api_response.candidates[0].content
 
             for part in api_response.candidates[0].content.parts:
@@ -290,7 +293,10 @@ class GeminiHandler(BaseHandler):
             return {"message": []}
 
     def _parse_query_response_prompting(self, api_response: any) -> dict:
-        if len(api_response.candidates) > 0 and len(api_response.candidates[0].content.parts) > 0:
+        if (
+            len(api_response.candidates) > 0
+            and len(api_response.candidates[0].content.parts) > 0
+        ):
             model_responses = api_response.text
         else:
             model_responses = "The model did not return any response."
