@@ -41,7 +41,7 @@ def get_args():
     # Parameters for the model that you want to test.
     parser.add_argument("--temperature", type=float, default=0.001)
     parser.add_argument("--include-input-log", action="store_true", default=False)
-    parser.add_argument("--exclude-state-log", action="store_false", default=True)
+    parser.add_argument("--exclude-state-log", action="store_true", default=False)
     parser.add_argument("--num-threads", default=1, type=int)
     parser.add_argument("--num-gpus", default=1, type=int)
     parser.add_argument("--backend", default="vllm", type=str, choices=["vllm", "sglang"])

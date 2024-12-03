@@ -127,7 +127,7 @@ To generate the model response for multiple models or test categories at once, y
 bfcl generate --model claude-3-5-sonnet-20241022-FC,gpt-4o-2024-08-06-FC --test-category parallel,multiple,exec_simple
 ```
 
-> An inference log will be included along with the llm response to help you analyze and debug the model's performance, and to better understand the model behavior. To see a more verbose log, you can set the `--include-state-log` and/or the `--include-input-log` flag in the generation command.
+> An inference log will be included along with the llm response to help you analyze and debug the model's performance, and to better understand the model behavior. To see a more verbose log, you can set the `--include-input-log` flag in the generation command.
 > Please refer to the `LOG_GUIDE.md` file for more information on how to interpret the inference logs and what each flag does.
 
 #### For API-hosted models:

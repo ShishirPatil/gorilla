@@ -105,7 +105,7 @@ def generate(
         help="Include the fully-transformed input to the model inference endpoint in the inference log; only relevant for debugging input integrity and format.",
     ),
     exclude_state_log: bool = typer.Option(
-        True,
+        False,
         "--exclude-state-log",
         help="Exclude info about the state of each API system after each turn in the inference log; only relevant for multi-turn categories.",
     ),
