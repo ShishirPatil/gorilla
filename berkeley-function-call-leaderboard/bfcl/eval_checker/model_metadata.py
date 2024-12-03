@@ -709,6 +709,12 @@ MODEL_METADATA_MAPPING = {
         "BitAgent",
         "Proprietary",
     ],
+    "grok": [
+        "Grok",
+        "https://x.ai/",
+        "xAI",
+        "Proprietary",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -772,6 +778,7 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus-optimized": 3,
     "yi-large-fc": 3,
     "palmyra-x-004": 5,
+    "grok": 5,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -835,6 +842,7 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus-optimized": 15,
     "yi-large-fc": 3,
     "palmyra-x-004": 12,
+    "grok": 15,
 }
 
 # The latency of the open-source models are hardcoded here.
