@@ -91,7 +91,7 @@ api_inference_handler_map = {
     "BitAgent/GoGoAgent": GoGoAgentHandler,
     # "yi-large-fc": YiHandler,  #  Their API is under maintenance, and will not be back online in the near future
     "palmyra-x-004": WriterHandler,
-    "grok": GrokHandler,
+    "grok-beta": GrokHandler,
 }
 
 # Inference through local hosting
