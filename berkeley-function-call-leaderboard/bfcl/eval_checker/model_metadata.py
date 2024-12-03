@@ -1,11 +1,11 @@
 from bfcl.model_handler.handler_map import local_inference_handler_map
 
 MODEL_METADATA_MAPPING = {
-    "palmyra-x-004": [
-        "palmyra-x-004 (FC)",
-        "https://writer.com/engineering/actions-with-palmyra-x-004/",
-        "Writer",
-        "Proprietary",
+    "gorilla-openfunctions-v2": [
+        "Gorilla-OpenFunctions-v2 (FC)",
+        "https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html",
+        "Gorilla LLM",
+        "Apache 2.0",
     ],
     "o1-preview-2024-09-12": [
         "o1-preview-2024-09-12 (Prompt)",
@@ -90,12 +90,6 @@ MODEL_METADATA_MAPPING = {
         "https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo",
         "OpenAI",
         "Proprietary",
-    ],
-    "gorilla-openfunctions-v2": [
-        "Gorilla-OpenFunctions-v2 (FC)",
-        "https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html",
-        "Gorilla LLM",
-        "Apache 2.0",
     ],
     "claude-3-opus-20240229-FC": [
         "Claude-3-Opus-20240229 (FC)",
@@ -709,6 +703,18 @@ MODEL_METADATA_MAPPING = {
         "BitAgent",
         "Proprietary",
     ],
+    "palmyra-x-004": [
+        "palmyra-x-004 (FC)",
+        "https://writer.com/engineering/actions-with-palmyra-x-004/",
+        "Writer",
+        "Proprietary",
+    ],
+    "grok-beta": [
+        "Grok-beta (FC)",
+        "https://x.ai/",
+        "xAI",
+        "Proprietary",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -772,6 +778,7 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus-optimized": 3,
     "yi-large-fc": 3,
     "palmyra-x-004": 5,
+    "grok-beta": 5,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -835,6 +842,7 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus-optimized": 15,
     "yi-large-fc": 3,
     "palmyra-x-004": 12,
+    "grok-beta": 15,
 }
 
 # The latency of the open-source models are hardcoded here.

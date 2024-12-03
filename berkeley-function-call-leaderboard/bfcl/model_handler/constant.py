@@ -151,4 +151,5 @@ UNDERSCORE_TO_DOT = [
     "ibm-granite/granite-20b-functioncalling",
     "yi-large-fc",
     "openbmb/MiniCPM3-4B-FC",
+    "grok-beta",
 ]
