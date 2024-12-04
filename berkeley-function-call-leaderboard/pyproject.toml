@@ -33,7 +33,8 @@ dependencies = [
     "mpmath==1.3.0",
     "tenacity==9.0.0",
     "writer-sdk>=1.2.0",
-    "overrides"
+    "overrides",
+    "boto3"
 ]
 
 [project.scripts]
