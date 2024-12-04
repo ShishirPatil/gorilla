@@ -273,22 +273,22 @@
             <!-- Single-Turn Section -->
             <div class="box">
               <h4>Single-Turn</h4>
-              <p>In a single-turn interaction, there is exactly one exchange between the user and the assistant. The
-                user sends a single input, and the assistant responds with a single output.</p>
+              <p> In a single-turn interaction, assistant can fulfill a user's request by making one function call.
+                The user's request is typically a straight forward instruction or question that is state-agnostic.</p>
             </div>
 
             <!-- Multi-Step Section -->
             <div class="box">
               <h4>Multi-Step</h4>
               <p>Multi-step refers to an interaction where the assistant performs several internal function calls to
-                address a single user request. The result of one call may serve as input for subsequent calls.</p>
+                address a single user request. This can be interpreted as models proactively plan and gather information to fulfill a request.</p>
             </div>
 
             <!-- Multi-Turn Section -->
             <div class="box">
               <h4>Multi-Turn</h4>
               <p>Multi-turn interaction involves multiple exchanges between the user and the assistant. Each turn can
-                contain multiple steps, allowing for more complex workflows across several interactions.</p>
+                contain multiple steps. Multi-turn interaction requires models to collect from previous context to answer follow-up questions.</p>
             </div>
           </div>
         </div>
@@ -567,6 +567,9 @@
 
           <p>All eight domains took inspiration from our experience with Open Functions data collection and public
             interest in popular agent application domains.</p>
+          <p>The four primary API domains are evenly distributed across the test cases in Base, and Augmented Multi-Turn. For example, there are 200 test entries in 
+            Base category and 0-49 utilizes Gorilla File System, 50-99 utilizes Vehicle Control, 100-149 utilizes Trading Bots, and 150-199 utilizes Travel Booking.
+          </p>
 
           <br>
           <h4>2. Graph Edge Construction</h4>
@@ -748,19 +751,19 @@
 
         </div>
         <div>
-          <h3 id="inference">Multi-turn Model Inference Pipeline</h3>
+          <h3 id="inference">Model Inference & Execution</h3>
           <ol>
             <li>
-              Each entry comes with its own initial configuration, which is used to initialize the API backend state. For example, a file system backend might start with a set of pre-existing files, and a messaging API might start with a specific message inbox history. The initial configuration is loaded into the API backend at the beginning of each test entry, but it is not provided to the model directly, as the model can call exploration functions to figure out the state of the system and retrieve the necessary information.
+              Each entry comes with its own <code>initial_config</code>, which is used to initialize the API backend state. For example, a file system backend might start with a set of pre-existing files, and a messaging API might start with a specific message inbox history. The <code>initial_config</code> is loaded into the API backend at the beginning of each test entry, but it is not provided to the model directly, as the model can call exploration functions to figure out the state of the system and retrieve the necessary information.
             </li>
             <li>
-              At the beginning of each turn, a user query is provided to the model, along with the tools available for the task. A step_counter is also initialized to track the number of steps used in this turn; it resets to 0 at the beginning of each turn.
+              At the beginning of each turn, a user query is provided to the model, along with the tools available for the task. A <code>step_counter</code> is also initialized to track the number of steps used in this turn; it resets to 0 at the beginning of each turn.
             </li>
             <li>
               If the model makes any function calls (i.e., <code>decode_exec</code> in the model handler returns a non-empty list), the function calls are executed in the API backend (in order) and their execution results are provided back to the model. The current turn continues.
             </li>
             <li>
-              If the model doesn't output any valid function calls, we consider this the end of the current turn, and move on to the next turn. This could be due to either the model outputs a human-message, or the model response cannot be properly decoded into executable function calls.
+              If the model doesn't output any valid function calls, we consider this the end of the current turn, and move on to the next turn. This could be due to either the model outputs chatting messages, or the model response cannot be properly decoded into executable function calls.
             </li>
             <li>
               If the model takes more than 20 steps in a turn, the turn is force-terminated and this test entry is marked as wrong; no further turns will be queried. This usually happens when the model gets stuck in a loop or is unable to make progress (e.g., keep calling <code>ls</code> in the Gorilla File System entries).
@@ -781,17 +784,16 @@
 
         <div>
           <h3 id="evaluation">Multi-turn Evaluation Metrics</h3>
-          <p>In <i>BFCL V3 • Multi-Turn & Multi-Step</i>, both state-based evaluation and response-based evaluation are used to assess the model's performance the multi-turn categories. </p>
-          At the end of every turn, both evaluation methods will be executed. An entry will only be marked correct if it passes both checks in all turns. Note that force-terminated entries will be marked wrong, even if they pass the checks.
+          <p>In <i>BFCL V3 • Multi-Turn & Multi-Step</i>, we employed <strong>state-based</strong> evaluation and <strong>response-based</strong> evaluation to assess the model's performance the multi-turn categories. </p>
+          At the end of <strong>every</strong> turn, we mark an entry as correct if it passes both checks in all turns. Note that force-terminated entries will be marked wrong, even if they pass the checks.
 
           <ol>
             <li>
               <p>
-                State-based evaluation focuses on comparing the backend system's state (excluding the private attributes, i.e., the ones that start with <code>_</code>) after all function calls are executed at the end of each turn of the conversation. The key idea is to track how the
-                system's internal state changes after each step in the interaction and ensure that it aligns with the expected state trajectory.</p>
+                <strong>State-based</strong> evaluation focuses on comparing the backend system's state (excluding the private attributes, i.e., the ones that start with <code>_</code>) after all function calls are executed at the end of each turn of the conversation. We expect that given a user request, there can be multiple ways to fulfill the demand, which we are not able to measure, but the end state, or end result, should be consistent with ground truth labelling. The <strong>state-based</strong> evaluation capture the correctness of model executions that modify the internal state via <strong>write and delete</strong> e.g. create a new file, delete a stock from watchlist.</p>
             </li>
             <li>
-              <p>Response-based evaluation compares the model's execution result against the ground truth execution result, ensuring that the model's execution result encompasses the ground truth execution result (i.e., ground truth must be a strict subset of the model result). We don't penalize the model for additional function calls as long as all the ground truth function execution results are present in the model's execution path.
+              <p><strong>Response-based</strong> evaluation compares the model's execution path against the minimial viable execution result paths as labeled in ground truth. The minimial viable execution result paths refer to a list of function calls that must be executed in order to produce desired response as user requests. Having <strong>response-based</strong> evaluation ensure <strong>read only</strong> request can be properly evaluated e.g. get the stock price, get the weather information.
               </p>
             </li>
           </ol>
@@ -800,9 +802,7 @@
             following sections, we will discuss the advantages and limitations of state-based evaluation in multi-turn function calling and why we need a subset-matched response-based evaluation as well.</p>
 
           <h4>Why State-based Evaluation</h4>
-          <p>State-based evaluation provides a more accurate reflection of real-world performance. In multi-turn
-            interactions, the goal is often to update a system's state—whether it's controlling a vehicle, managing
-            files, or processing data. Instead of only checking if each individual function output is correct, we
+          <p>State-based evaluation provides a more accurate reflection of real-world performance as autonomous agents can detour on its own discreet while achieving the tasks after all. Instead of only checking if each individual function output is correct, we
             compare the attributes of the system's state after every turn against the expected state. If the model
             successfully brings the system to the correct state at the end of each turn, it passes the evaluation.</p>
           <p>For example, if a model is tasked with a series of actions such as:</p>
@@ -815,7 +815,7 @@
             data was written, and whether the file is properly closed. If all the required state attributes are
             present and correct at each turn, the evaluation succeeds.</p>
           
-          <h4>limitations of State-Based Evaluation</h4>
+          <h4>Limitations of State-Based Evaluation</h4>
           <p>
             While state-based evaluation is a powerful tool for assessing multi-turn function calling models, it does have some limitations. For example, some functions don't have a direct impact on the system's state, such as <code>get_zipcode_by_city</code> or <code>estimate_distance</code>. We will not be able to tell if the model has actually invoked those functions or not, if relying solely on state-based evaluation. We want to make sure that the model is making the necessary function calls and reasoning through the task, instead of just memorizing or guessing the correct information; we want the model to call <code>get_zipcode_by_city("Berkeley")</code> to get the zip code for Berkeley is 94710, and then use that zip code to call <code>get_weather_by_zipcode(94710)</code> to get the weather information, instead of directly calling <code>get_weather_by_zipcode(94710)</code> and hope that it is the correct zip code for Berkeley (this would be hallucination!).
             In such cases, response-based evaluation can be a good complement to state-based evaluation, as it can provide additional insights into the model's behavior and decision-making process.
@@ -860,8 +860,8 @@
             symbols and pattern-match the correct one. Although the model took more turns (function calls) and went
             through a trial-and-error process, it ultimately achieved the goal.</p>
           <p>This example illustrates how evaluating based solely on the response is not ideal. Sometimes, the model
-            may not have enough information to determine the shortest trajectory, and taking extra steps should not be
-            unfairly penalized when the task is completed successfully. Thus, we introduce a subset-matched response-based evaluation to address these limitations. The ground truth is the shortest trajectory that can achieve the task (e.g., minimial number of functions that must be called, even under the God's eye view of the initial configuration and avoid any exploration function calls). The model result is considered correct if it contains the ground truth as a subset, even if it contains additional function calls or takes a different trajectory.</p>
+            may not have enough information to determine the minimial viable execution result paths, and taking extra steps should not be
+            penalized. Thus, we introduce a subset-matched response-based evaluation to address these limitations. The ground truth is the the minimial viable execution result paths labled with full context of the existing states. The model result is considered correct if it contains the ground truth as a subset, even if it contains additional function calls or takes a different trajectory.</p>
           </p>
         </div>
         <h3 id='result'>Result & Error Analysis</h3>
