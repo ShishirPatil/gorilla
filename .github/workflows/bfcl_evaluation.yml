@@ -30,6 +30,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          cd berkeley-function-call-leaderboard
           pip install -e .
 
       - name: Cache pip packages
@@ -41,6 +42,7 @@ jobs:
             ${{ runner.os }}-pip-
 
       - name: Run BFCL generate
+        working-directory: berkeley-function-call-leaderboard
         run: |
           bfcl generate \
             --model claude-3-5-sonnet-20240620 \
@@ -49,6 +51,7 @@ jobs:
             --output-file generated_results.json
 
       - name: Run BFCL evaluate and check score
+        working-directory: berkeley-function-call-leaderboard
         run: |
           score=$(bfcl evaluate \
             --model claude-3-5-sonnet-20240620 \
