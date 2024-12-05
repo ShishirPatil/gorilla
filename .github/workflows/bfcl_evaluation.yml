@@ -59,6 +59,7 @@ jobs:
           fi
 
       - name: Comment on PR with results
+        if: github.event_name == 'pull_request'
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -73,9 +74,10 @@ jobs:
             - Minimum Threshold: ${threshold}
             - Status: ${passed ? '✅ Passed' : '❌ Failed'}`;
             
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
+            github.rest.pulls.createReview({
               owner: context.repo.owner,
               repo: context.repo.name,
-              body: body
+              pull_number: context.issue.number,
+              body: body,
+              event: 'COMMENT'
             });
