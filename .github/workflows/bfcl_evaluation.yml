@@ -33,33 +33,23 @@ jobs:
           cd berkeley-function-call-leaderboard
           pip install -e .
 
-      - name: Cache pip packages
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
       - name: Run BFCL generate
         working-directory: berkeley-function-call-leaderboard
         run: |
           bfcl generate \
             --model claude-3-5-sonnet-20240620 \
-            --test-category basic \
-            --output-file generated_results.json
+            --test-category basic
 
-      - name: Run BFCL evaluate and check score
+      - name: Run BFCL evaluate and extract score
         working-directory: berkeley-function-call-leaderboard
         run: |
-          score=$(bfcl evaluate \
+          bfcl evaluate \
             --model claude-3-5-sonnet-20240620 \
-            --test-category basic \
-            --input-file generated_results.json \
-            --output-file evaluation_results.json \
-            | grep -oP 'Average score: \K[0-9.]+')
+            --test-category basic
           
-          echo "Evaluation Score: $score"
+          # Read score from the JSON file
+          score=$(jq -r '.[0].accuracy' score/claude-3-5-sonnet-20240620/basic.json)
+          echo "EVALUATION_SCORE=${score}" >> $GITHUB_ENV
           
           if (( $(echo "$score < $MIN_ACCEPTABLE_SCORE" | bc -l) )); then
             echo "Score ($score) is below minimum threshold ($MIN_ACCEPTABLE_SCORE)"
