@@ -2,6 +2,8 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Dec 3, 2024] [#810](https://github.com/ShishirPatil/gorilla/pull/810): Add new model `grok-beta` to the leaderboard.
+- [Dec 2, 2024] [#809](https://github.com/ShishirPatil/gorilla/pull/809): Resolve issue in Gemini model when no model output.
 - [Dec 2, 2024] [#808](https://github.com/ShishirPatil/gorilla/pull/808): Improve latency measurement accuracy.
 - [Nov 26, 2024] [#755](https://github.com/ShishirPatil/gorilla/pull/755): Add new model `palmyra-x-004` to the leaderboard.
 - [Nov 25, 2024] [#718](https://github.com/ShishirPatil/gorilla/pull/718): Add new model `openbmb/MiniCPM3-4B-FC` to the leaderboard.
@@ -18,7 +20,7 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
     - Note: This cannot be used together with `--test-category`.
     - Test ids needs to be the exact same as the ones in the dataset. Example: `"simple": ["simple_10", "simple_53"]`.
   - Add `--score-dir` and `--result-dir` options for `generate` and `evaluate` commands, enabling custom paths for result and score directories relative to the project root `berkeley-function-call-leaderboard` directory.
-- [Nov 22, 2024] [#777](https://github.com/ShishirPatil/gorilla/pull/777), [#778](https://github.com/ShishirPatil/gorilla/pull/778): Fix dataset entries where the function doc contains illegal Python parameter names (such as `class`). 55 entries are affected.
+- [Nov 22, 2024] [#777](https://github.com/ShishirPatil/gorilla/pull/777), [#778](https://github.com/ShishirPatil/gorilla/pull/778), [#881](https://github.com/ShishirPatil/gorilla/pull/811): Fix dataset entries where the function doc contains illegal Python parameter names (such as `class`). 55 entries are affected.
 - [Nov 19, 2024] [#750](https://github.com/ShishirPatil/gorilla/pull/750): Add the following new models to the leaderboard:
   - `claude-3-5-haiku-20241022`
   - `claude-3-5-haiku-20241022-FC`
