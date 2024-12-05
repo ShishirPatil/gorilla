@@ -38,17 +38,17 @@ jobs:
         run: |
           bfcl generate \
             --model claude-3-5-sonnet-20240620 \
-            --test-category exec_simple
+            --test-category multi_turn_base
 
       - name: Run BFCL evaluate and extract score
         working-directory: berkeley-function-call-leaderboard
         run: |
           bfcl evaluate \
             --model claude-3-5-sonnet-20240620 \
-            --test-category exec_simple
+            --test-category multi_turn_base
           
           # Read score from the JSON file
-          score=$(jq -r '.[0].accuracy' score/claude-3-5-sonnet-20240620/exec_simple.json)
+          score=$(jq -r '.[0].accuracy' score/claude-3-5-sonnet-20240620/multi_turn_base.json)
           echo "EVALUATION_SCORE=${score}" >> $GITHUB_ENV
           
           if (( $(echo "$score < $MIN_ACCEPTABLE_SCORE" | bc -l) )); then
