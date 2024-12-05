@@ -47,7 +47,6 @@ jobs:
           bfcl generate \
             --model claude-3-5-sonnet-20240620 \
             --test-category basic \
-            --max-samples 5 \
             --output-file generated_results.json
 
       - name: Run BFCL evaluate and check score
