@@ -131,6 +131,7 @@ class NovaHandler(BaseHandler):
 
         else:
             model_responses = api_response["output"]["message"]["content"][0]["text"]
+            tool_call_ids = []
 
         return {
             "model_responses": model_responses,
@@ -170,23 +171,26 @@ class NovaHandler(BaseHandler):
         execution_results: list[str],
         model_response_data: dict,
     ) -> dict:
-        # Add the execution results to the current round result, one at a time
+        # Nova use the `user` role for the tool result message
+        tool_message = {
+            "role": "user",
+            "content": [],
+        }
         for execution_result, tool_call_id in zip(
             execution_results, model_response_data["tool_call_ids"]
         ):
-            tool_message = {
-                "role": "user",
-                "content": [
-                    {
+            tool_message["content"].append(
+                {
+                    "toolResult": {
                         "toolUseId": tool_call_id,
                         # Nova models supports json or text content
                         # Our pipeline force execution results to be text for all models
                         # So we will just use text here to be consistent
                         "content": [{"text": execution_result}],
                     }
-                ],
-            }
+                }
+            )
 
-            inference_data["message"].append(tool_message)
+        inference_data["message"].append(tool_message)
 
         return inference_data
