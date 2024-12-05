@@ -35,6 +35,8 @@ jobs:
 
       - name: Run BFCL generate
         working-directory: berkeley-function-call-leaderboard
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
         run: |
           bfcl generate \
             --model claude-3-5-sonnet-20240620 \
