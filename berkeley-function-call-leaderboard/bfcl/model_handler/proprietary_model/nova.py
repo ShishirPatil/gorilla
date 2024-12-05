@@ -39,7 +39,7 @@ class NovaHandler(BaseHandler):
 
     def _query_FC(self, inference_data: dict):
         message: list[dict] = inference_data["message"]
-        tools = {"tools": inference_data["tools"]}
+        tools = inference_data["tools"]
 
         if "system_prompt" in inference_data:
             system_prompt = inference_data["system_prompt"]
@@ -60,7 +60,7 @@ class NovaHandler(BaseHandler):
                 messages=message,
                 system=system_prompt,
                 inferenceConfig={"temperature": self.temperature},
-                toolConfig=tools,
+                toolConfig={"tools": tools},
             )
         else:
             api_response = self.client.converse(
