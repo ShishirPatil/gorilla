@@ -752,26 +752,58 @@
         </div>
         <div>
           <h3 id="inference">Model Inference & Execution</h3>
+          <h4>Initialization</h4>
+          <p> Each entry comes with its own <code>initial_config</code>, which is used to initialize the API backend
+            state. For example, a file system backend might start with a set of pre-existing files, and a messaging API
+            might start with a specific message inbox history. The <code>initial_config</code> is loaded into the API
+            backend at the beginning of each test entry, but it is not provided to the model directly, as the model can
+            call exploration functions to figure out the state of the system and retrieve the necessary information.
+          </p>
+          <h4>Start of a Turn</h4>
+          <p> At the beginning of each turn, a user query is added to the chat history, along with the tools available
+            for the task. </p>
+          <h4>Within a Turn</h4>
+          <h5>Step Execution</h5>
+          <p> Within a turn, the model can make multiple steps by making successive function calls based on the updated
+            information. Each function call and its result constitute a single step. A step involves the following
+            actions: </p>
           <ol>
-            <li>
-              Each entry comes with its own <code>initial_config</code>, which is used to initialize the API backend state. For example, a file system backend might start with a set of pre-existing files, and a messaging API might start with a specific message inbox history. The <code>initial_config</code> is loaded into the API backend at the beginning of each test entry, but it is not provided to the model directly, as the model can call exploration functions to figure out the state of the system and retrieve the necessary information.
-            </li>
-            <li>
-              At the beginning of each turn, a user query is provided to the model, along with the tools available for the task. A <code>step_counter</code> is also initialized to track the number of steps used in this turn; it resets to 0 at the beginning of each turn.
-            </li>
-            <li>
-              If the model makes any function calls (i.e., <code>decode_exec</code> in the model handler returns a non-empty list), the function calls are executed in the API backend (in order) and their execution results are provided back to the model. The current turn continues.
-            </li>
-            <li>
-              If the model doesn't output any valid function calls, we consider this the end of the current turn, and move on to the next turn. This could be due to either the model outputs chatting messages, or the model response cannot be properly decoded into executable function calls.
-            </li>
-            <li>
-              If the model takes more than 20 steps in a turn, the turn is force-terminated and this test entry is marked as wrong; no further turns will be queried. This usually happens when the model gets stuck in a loop or is unable to make progress (e.g., keep calling <code>ls</code> in the Gorilla File System entries).
-            </li>
+            <li> <strong>Inference Endpoint Call:</strong> The inference endpoint is called with all the information in
+              the chat history so far. </li>
+            <li> <strong>Function Call Execution:</strong> If the model makes any valid function calls (i.e.,
+              <code>decode_exec</code> in the model handler returns a non-empty list), the function calls are executed
+              in the API backend in the order that model provides. </li>
+            <li> <strong>Updating Chat History:</strong> The model's response is then added to the chat history, along
+              with the execution results (if any). For prompting models, since they don't use the `tool` role tag, we will provide back the execution results under the `user` role. </li>
+          </ol>
+          <h5>End of a Step</h5>
+          <p> After updating the chat history with the model's response and execution results, the current step ends.
+            The process then loops back to the inference endpoint for the next step, continuing until the termination
+            logic below is met. </p>
+          <h4>Termination of a Turn</h4>
+          <p> A turn ends when one of the following conditions is met: </p>
+          <ol>
+            <li> <strong>No Output Termination:</strong> If the model doesn't output any valid function calls in a step,
+              we consider this the end of the current turn and move on to the next turn. This could occur if the model
+              outputs chatting messages or if its response cannot be properly decoded into executable function calls
+              (the latter usually happens when the model is in prompting mode and is not following instructions). This method aligns with how we
+              determine if the model makes any function call in the <code>irrelevance</code> category in the single-turn
+              scenario, and we find it to work effectively. </li>
+            <li> <strong>Step Limit Force Termination:</strong> If the model takes more than 20 steps within a turn, the
+              turn is force-terminated, and this test entry is marked as incorrect; no further turns will be queried.
+              This usually happens when the model gets stuck in a loop or is unable to make progress (e.g., repeatedly
+              calling <code>ls</code> in the Gorilla File System entries). To save time and cost, we choose to
+              force-terminate the current turn. Since all following turns depend on the correct action plan in the
+              current turn, if the model is incorrect in the current turn, it cannot be correct in subsequent turns, so
+              we do not proceed with them. </li>
           </ol>
           <h4>Note For Multi Turn Missing Function Category</h4>
           <p>
-            In this category, one or more functions are held out from the function list provided to the model at the beginning; they will be provided in a later turns (say, turn 3). For FC models, the added functions will just be appended to the <code>tools</code> list. But for prompting models, since we supplied all the tools at the beginning in the system prompt and it's not possible to modify the system prompt in the middle of the conversation, we will provide the held-out function definitions in the content of a user message instead.
+            In this category, one or more functions are held out from the function list provided to the model at the
+            beginning; they will be provided in a later turns (never the first turn). For FC models, the added functions will
+            just be appended to the <code>tools</code> list. But for prompting models, since we supplied all the tools
+            at the beginning in the system prompt and it's not possible to modify the system prompt in the middle of the
+            conversation, we will provide the held-out function definitions in the content of a user message instead.
           </p>
 
           <h4>Why We Avoid Certain Techniques (e.g. ReAct)</h4>
@@ -802,7 +834,7 @@
             following sections, we will discuss the advantages and limitations of state-based evaluation in multi-turn function calling and why we need a subset-matched response-based evaluation as well.</p>
 
           <h4>Why State-based Evaluation</h4>
-          <p>Minicking state offer a more accurate evalution of real world performance as autonomous agents can detour on its own discreet while achieving the tasks after all. Instead of only checking if each individual function output is correct, we
+          <p>Minicking state offer a different perspective of real world performance evalution as autonomous agents can detour on its own discreet while achieving the tasks after all. Instead of only checking if each individual function output is correct, we
             compare the attributes of the system's state after every turn against the expected state. If the model
             successfully brings the system to the correct state at the end of each turn, it passes the evaluation.</p>
           <p>For example, if a model is tasked with a series of actions such as:</p>
