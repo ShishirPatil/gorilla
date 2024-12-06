@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Check for CLAUDE_API_KEY
+      - name: Check for OPENAI_API_KEY
         run: |
           if [ -z "$OPENAI_API_KEY" ]; then
             echo "Error: OPENAI_API_KEY is not set"
