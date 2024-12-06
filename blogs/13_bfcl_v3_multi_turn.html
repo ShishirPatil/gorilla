@@ -124,7 +124,7 @@
         <ul>
           <li><a href="13_bfcl_v3_multi_turn.html#intro">Introduction</a></li>
           <li><a href="13_bfcl_v3_multi_turn.html#definition">What is Multi-Step & Multi-Turn?</a></li>
-          <li><a href="13_bfcl_v3_multi_turn.html#existing">Existing Tooling Calling Dataset </a></li>
+          <li><a href="13_bfcl_v3_multi_turn.html#existing">Existing Tool Calling Dataset </a></li>
           <li><a href="13_bfcl_v3_multi_turn.html#composition">Dataset Composition</a></li>
           <li><a href="13_bfcl_v3_multi_turn.html#curation">Data Curation</a></li>
           <li><a href="13_bfcl_v3_multi_turn.html#validation">Data Validation</a></li>
@@ -195,7 +195,7 @@
         </style>
 
         <br>
-        <b><i style="font-size: 1.0em;">Last updated: 2024-09-19 <a
+        <b><i style="font-size: 1.0em;">Last updated: 2024-12-04 <a
               href="https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/CHANGELOG.md">[Change
               Log]</a></i></b>
 
@@ -208,7 +208,7 @@
             Only at <i>BFCL V3 • Multi-Turn & Multi-Step</i>, you will see a LLM stuck in a loop, listing the current directory, write a non-existing
             file, and list the directory again... You will ask LLM to make a social media post.
             LLM will force you to spell your username and password to login despite the fact that you are already
-            browsing other people’s posts! This is only possible with <strong>multi-turn</strong>,
+            browsing other people's posts! This is only possible with <strong>multi-turn</strong>,
             and <strong>multi-step</strong> function calling (tool usage). <i>Note that BFCL V3 contains the Expert Curated (Non-live) dataset introduced in <a href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html">BFCL V1</a> and User Contributed (Live) dataset introduced in <a href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html">BFCL V2</a> and the multi-turn, and multi-step category introduced in BFCL V3.</i>
           </p>
           <p>
@@ -273,22 +273,22 @@
             <!-- Single-Turn Section -->
             <div class="box">
               <h4>Single-Turn</h4>
-              <p>In a single-turn interaction, there is exactly one exchange between the user and the assistant. The
-                user sends a single input, and the assistant responds with a single output.</p>
+              <p> In a single-turn interaction, assistant can fulfill a user's request by making one function call.
+                The user's request is typically a straight forward instruction or question that is state-agnostic.</p>
             </div>
 
             <!-- Multi-Step Section -->
             <div class="box">
               <h4>Multi-Step</h4>
               <p>Multi-step refers to an interaction where the assistant performs several internal function calls to
-                address a single user request. The result of one call may serve as input for subsequent calls.</p>
+                address a single user request. This can be interpreted as models proactively plan and gather information to fulfill a request.</p>
             </div>
 
             <!-- Multi-Turn Section -->
             <div class="box">
               <h4>Multi-Turn</h4>
               <p>Multi-turn interaction involves multiple exchanges between the user and the assistant. Each turn can
-                contain multiple steps, allowing for more complex workflows across several interactions.</p>
+                contain multiple steps. Multi-turn interaction requires models to collect from previous context to answer follow-up questions.</p>
             </div>
           </div>
         </div>
@@ -300,14 +300,14 @@
           <ul>
             <li>Handle more dynamic and realistic user interactions by processing inputs across multiple rounds of
               dialogue. For example, users often want to provide clarification in subsequent conversations.</li>
-            <li>Perform complex workflows where one function’s output becomes the input for the next.</li>
+            <li>Perform complex workflows where one function's output becomes the input for the next.</li>
             <li>Identify and rectify errors over multiple exchanges, making the system more robust and adaptive to
               ambiguity.</li>
           </ul>
         </div>
         <br>
         <div>
-          <h3 id="existing">Existing Tooling Calling Dataset </h3>
+          <h3 id="existing">Existing Tool Calling Dataset </h3>
           <meta charset="UTF-8">
           <meta name="viewport">
           <title>Table Example</title>
@@ -567,6 +567,9 @@
 
           <p>All eight domains took inspiration from our experience with Open Functions data collection and public
             interest in popular agent application domains.</p>
+          <p>The four primary API domains are evenly distributed across the test cases in Base, and Augmented Multi-Turn. For example, there are 200 test entries in 
+            Base category and 0-49 utilizes Gorilla File System, 50-99 utilizes Vehicle Control, 100-149 utilizes Trading Bots, and 150-199 utilizes Travel Booking.
+          </p>
 
           <br>
           <h4>2. Graph Edge Construction</h4>
@@ -663,9 +666,9 @@
             <li><strong>Complete Information</strong>: The question and previous questions up to the current turn or
               through exploration within the environment must contain all the necessary details for the model to
               invoke the correct function.</li>
-            <p>Example: For a question related to using the TradingBot API to retrieve a particular stock’s
-              information, the question or the previous function calls’ execution results must specify the particular
-              stock’s name. For instance, the question should specify that the user wants to check Nvidia’s stock;
+            <p>Example: For a question related to using the TradingBot API to retrieve a particular stock's
+              information, the question or the previous function calls' execution results must specify the particular
+              stock's name. For instance, the question should specify that the user wants to check Nvidia's stock;
               otherwise, this will not provide complete information to call the function (in multi_turn_base
               scenarios, which assume complete information is given in each turn).</p>
           </ul>
@@ -681,7 +684,7 @@
 
             <li><strong>Alignment with User Request</strong>: The execution path must be reasonable and consistent
               with the question's intent, whether implicit or explicit.</li>
-            <p>Example: If the question asks for a flight reservation without providing the flight’s cost, the
+            <p>Example: If the question asks for a flight reservation without providing the flight's cost, the
               implicit request is to fetch the current ticket price by calling <code>get_flight_cost</code> before
               <code>book_flight</code>.</p>
 
@@ -748,73 +751,91 @@
 
         </div>
         <div>
-          <h3 id="inference">Multi-turn Model Inference and Execution</h3>
-          <p>In <i>BFCL V3 • Multi-Turn & Multi-Step</i>, we evaluate multi-turn function-calling models through two types of models: Function-Calling
-            (FC) models and prompting models. The distinction lies primarily in how the models generate outputs and
-            how we handle those outputs during the inference process. This section explains the implementation behind
-            model inference and how multi-turn interactions are managed, including the differences between various
-            model types and the steps taken to ensure correct function execution and state-based evaluation.</p>
-
-          <h4>1. Differences in Inference Patterns Between FC and Prompting Models</h4>
-          <p>For FC models, the output is generated in JSON format, where each function call is structured with clear
-            parameters and ready for direct execution by the API backend.</p>
-          <p>In contrast, prompting models generate outputs as function call strings. For instance, the model may
-            output a function call in the following format:</p>
-          <pre><code>"[write_to_file(filename='log.txt', content='hello'), close_file(filename='log.txt')]".</code></pre>
-          <p>These outputs require parsing before they can be executed. The string format is first parsed into
-            individual function calls, and each function call is then executed in the backend as if it were a normal
-            function-calling API.</p>
-          <p>The key distinction is that FC models produce structured, executable JSON directly, while prompting
-            models require post-processing to interpret and extract the function calls from the string format.</p>
-
-          <h4>2. Handling Different Multi-Turn Function Call Patterns</h4>
-          <p>Multi-turn function calling can present a variety of challenges in inference, particularly when it comes
-            to managing the flow of data and function results across multiple steps. In <i>BFCL V3 • Multi-Turn & Multi-Step</i>, our model handlers
-            are designed to handle different function call patterns—simple, parallel, and nested—across multiple
-            rounds of interaction. The distinction between these call patterns is explained in the previous section.
+          <h3 id="inference">Model Inference & Execution</h3>
+          <h4>Initialization</h4>
+          <p> Each entry comes with its own <code>initial_config</code>, which is used to initialize the API backend
+            state. For example, a file system backend might start with a set of pre-existing files, and a messaging API
+            might start with a specific message inbox history. The <code>initial_config</code> is loaded into the API
+            backend at the beginning of each test entry, but it is not provided to the model directly, as the model can
+            call exploration functions to figure out the state of the system and retrieve the necessary information.
+          </p>
+          <h4>Start of a Turn</h4>
+          <p> At the beginning of each turn, a user query is added to the chat history, along with the tools available
+            for the task. </p>
+          <h4>Within a Turn</h4>
+          <h5>Step Execution</h5>
+          <p> Within a turn, the model can make multiple steps by making successive function calls based on the updated
+            information. Each function call and its result constitute a single step. A step involves the following
+            actions: </p>
+          <ol>
+            <li> <strong>Inference Endpoint Call:</strong> The inference endpoint is called with all the information in
+              the chat history so far. </li>
+            <li> <strong>Function Call Execution:</strong> If the model makes any valid function calls (i.e.,
+              <code>decode_exec</code> in the model handler returns a non-empty list), the function calls are executed
+              in the API backend in the order that model provides. </li>
+            <li> <strong>Updating Chat History:</strong> The model's response is then added to the chat history, along
+              with the execution results (if any). For prompting models, since they don't use the `tool` role tag, we will provide back the execution results under the `user` role. </li>
+          </ol>
+          <h5>End of a Step</h5>
+          <p> After updating the chat history with the model's response and execution results, the current step ends.
+            The process then loops back to the inference endpoint for the next step, continuing until the termination
+            logic below is met. </p>
+          <h4>Termination of a Turn</h4>
+          <p> A turn ends when one of the following conditions is met: </p>
+          <ol>
+            <li> <strong>No Output Termination:</strong> If the model doesn't output any valid function calls in a step,
+              we consider this the end of the current turn and move on to the next turn. This could occur if the model
+              outputs chatting messages or if its response cannot be properly decoded into executable function calls
+              (the latter usually happens when the model is in prompting mode and is not following instructions). This method aligns with how we
+              determine if the model makes any function call in the <code>irrelevance</code> category in the single-turn
+              scenario, and we find it to work effectively. </li>
+            <li> <strong>Step Limit Force Termination:</strong> If the model takes more than 20 steps within a turn, the
+              turn is force-terminated, and this test entry is marked as incorrect; no further turns will be queried.
+              This usually happens when the model gets stuck in a loop or is unable to make progress (e.g., repeatedly
+              calling <code>ls</code> in the Gorilla File System entries). To save time and cost, we choose to
+              force-terminate the current turn. Since all following turns depend on the correct action plan in the
+              current turn, if the model is incorrect in the current turn, it cannot be correct in subsequent turns, so
+              we do not proceed with them. </li>
+          </ol>
+          <h4>Note For Multi Turn Missing Function Category</h4>
+          <p>
+            In this category, one or more functions are held out from the function list provided to the model at the
+            beginning; they will be provided in a later turns (never the first turn). For FC models, the added functions will
+            just be appended to the <code>tools</code> list. But for prompting models, since we supplied all the tools
+            at the beginning in the system prompt and it's not possible to modify the system prompt in the middle of the
+            conversation, we will provide the held-out function definitions in the content of a user message instead.
           </p>
 
-          <h4>3. API Backend for State-Based Execution</h4>
-          <p>One of the primary innovations in <i>BFCL V3 • Multi-Turn & Multi-Step</i> is the use of state-based evaluation. Our custom API backend
-            ensures that the model's outputs lead to the correct changes in the system’s state. Each test case begins
-            with an initial configuration, where API instances are initialized in a defined state. For example, a file
-            system instance might start with a set of pre-existing files, and a messaging API might start with
-            specific user data.</p>
-          <p>As the model interacts with the API instances across multiple turns, the backend tracks how the state
-            evolves. Each function call alters the state, such as creating new files, changing configurations, or
-            updating logs. At every turn, we compare the instance’s current state from executing the model function
-            calls with the expected ground truth state from executing the ground truth function calls to determine if
-            the sequence of function calls is correct.</p>
-          <p>If any discrepancy is detected between the model’s instance state and the expected state for the ground
-            truth instance, the evaluation flags the issue as a failure for that turn.</p>
-
-          <h4>4. Why We Avoid Certain Techniques (e.g. ReAct)</h4>
+          <h4>Why We Avoid Certain Techniques (e.g. ReAct)</h4>
           <p>In <i>BFCL V3 • Multi-Turn & Multi-Step</i>, we deliberately avoid using techniques like prompt engineering and ReAct, which combines
             reasoning and acting through specific prompting methods. While ReAct and other techniques can improve
-            models’ function calling performance in certain cases, we chose not to use it throughout the BFCL series
+            models' function calling performance in certain cases, we chose not to use it throughout the BFCL series
             to evaluate base LLMs with the same standards to isolate the effects from using additional optimization
             techniques.</p>
-
         </div>
 
         <div>
-          <h3 id="evaluation">Multi-turn Evaluation Metrics (State-based Evaluation)</h3>
-          <p>In <i>BFCL V3 • Multi-Turn & Multi-Step</i>, state-based evaluation is the primary metric used to assess the performance of models in
-            multi-turn function-calling scenarios. This approach focuses on comparing the instance’s final state after
-            all function calls are executed at each turn of the conversation. The key idea is to track how the
-            system's internal state changes after each step in the interaction and ensure that it aligns with the
-            expected state trajectory.</p>
-          <p>Response-based evaluation is an alternative approach, which evaluates 1) the function calling trajectory
-            and 2) intermediate execution response equivalence of the function calls in each turn. Previous versions,
-            BFCL V1 and V2 • Live, used Abstract Syntax Tree (AST) and Executable categories for this method. In the
-            following sections, we discuss the advantages of state-based evaluation and some limitations of
-            response-based evaluation in multi-turn function calling.</p>
+          <h3 id="evaluation">Multi-turn Evaluation Metrics</h3>
+          <p>In <i>BFCL V3 • Multi-Turn & Multi-Step</i>, we employed <strong>state-based</strong> evaluation and <strong>response-based</strong> evaluation to assess the model's performance the multi-turn categories. </p>
+          At the end of <strong>every</strong> turn, we mark an entry as correct if it passes both checks in all turns. Note that force-terminated entries will be marked wrong, even if they pass the checks.
 
-          <h4>Why State-based Evaluation is More Effective</h4>
-          <p>State-based evaluation provides a more accurate reflection of real-world performance. In multi-turn
-            interactions, the goal is often to update a system’s state—whether it's controlling a vehicle, managing
-            files, or processing data. Instead of only checking if each individual function output is correct, we
-            compare the attributes of the system’s state after every turn against the expected state. If the model
+          <ol>
+            <li>
+              <p>
+                <strong>State-based</strong> evaluation focuses on comparing the backend system's state (excluding the private attributes, i.e., the ones that start with <code>_</code>) after all function calls are executed at the end of each turn of the conversation. We expect that given a user request, there can be multiple ways to fulfill the demand, which we are not able to measure, but the end state, or end result, should be consistent with ground truth labelling. The <strong>state-based</strong> evaluation capture the correctness of model executions that modify the internal state via <strong>write and delete</strong> e.g. create a new file, delete a stock from watchlist.</p>
+            </li>
+            <li>
+              <p><strong>Response-based</strong> evaluation compares the model's execution path against the minimial viable execution result paths as labeled in ground truth. The minimial viable execution result paths refer to a list of function calls that must be executed in order to produce desired response as user requests. Having <strong>response-based</strong> evaluation ensure <strong>read only</strong> request can be properly evaluated e.g. get the stock price, get the weather information.
+              </p>
+            </li>
+          </ol>
+
+          <p> In the
+            following sections, we will discuss the advantages and limitations of state-based evaluation in multi-turn function calling and why we need a subset-matched response-based evaluation as well.</p>
+
+          <h4>Why State-based Evaluation</h4>
+          <p>Minicking state offer a different perspective of real world performance evalution as autonomous agents can detour on its own discreet while achieving the tasks after all. Instead of only checking if each individual function output is correct, we
+            compare the attributes of the system's state after every turn against the expected state. If the model
             successfully brings the system to the correct state at the end of each turn, it passes the evaluation.</p>
           <p>For example, if a model is tasked with a series of actions such as:</p>
           <ul>
@@ -825,16 +846,22 @@
           <p>In state-based evaluation, the system checks after each turn whether the file exists, whether the correct
             data was written, and whether the file is properly closed. If all the required state attributes are
             present and correct at each turn, the evaluation succeeds.</p>
+          
+          <h4>Limitations of State-Based Evaluation</h4>
+          <p>
+            While state-based evaluation is a powerful tool for assessing multi-turn function calling models, it does have some limitations. For example, some functions don't have a direct impact on the system's state, such as <code>get_zipcode_by_city</code> or <code>estimate_distance</code>. We will not be able to tell if the model has actually invoked those functions or not, if relying solely on state-based evaluation. We want to make sure that the model is making the necessary function calls and reasoning through the task, instead of just memorizing or guessing the correct information; we want the model to call <code>get_zipcode_by_city("Berkeley")</code> to get the zip code for Berkeley is 94710, and then use that zip code to call <code>get_weather_by_zipcode(94710)</code> to get the weather information, instead of directly calling <code>get_weather_by_zipcode(94710)</code> and hope that it is the correct zip code for Berkeley (this would be hallucination!).
+            In such cases, response-based evaluation can be a good complement to state-based evaluation, as it can provide additional insights into the model's behavior and decision-making process.
+          </p>
 
-          <h4>Response-based Evaluation and Its Limitations in Multi-Turn Evaluation</h4>
-          <p>In earlier versions like BFCL V1 and V2, response-based evaluation was used. This approach evaluated the
+          <h4>Why Subset-Matched Response-based Evaluation</h4>
+          <p>In earlier versions like BFCL V1 and V2, a pure response-based evaluation was used; the model response must match the ground truth in full. This approach evaluated the
             model based on the immediate function response, either by analyzing the return values or by checking the
-            Abstract Syntax Tree (AST) structure. However, response-based evaluation faces several limitations:</p>
+            Abstract Syntax Tree (AST) structure. However, it faces several limitations when it comes to multi-turn categories:</p>
           <ul>
             <li><strong>Inconsistent Trajectories</strong>: In multi-turn tasks, models may take different, equally
               valid trajectories that are hard to predict or constrain via the prompt. For instance, a model might
               choose to explore by listing files (e.g., using <code>ls</code>) before proceeding with a specific task
-              (e.g., <code>mkdir</code>), which isn’t inherently wrong but deviates from the expected trajectory
+              (e.g., <code>mkdir</code>), which isn't inherently wrong but deviates from the expected trajectory
               (e.g., a ground truth that only does <code>mkdir</code>).</li>
             <li><strong>Error Recovery Scenarios</strong>: In multi-turn function calling, models may encounter
               errors, such as invalid input or failed execution, that require recovery actions. Response-based
@@ -865,8 +892,9 @@
             symbols and pattern-match the correct one. Although the model took more turns (function calls) and went
             through a trial-and-error process, it ultimately achieved the goal.</p>
           <p>This example illustrates how evaluating based solely on the response is not ideal. Sometimes, the model
-            may not have enough information to determine the shortest trajectory, and taking extra steps should not be
-            unfairly penalized when the task is completed successfully.</p>
+            may not have enough information to determine the minimial viable execution result paths, and taking extra steps should not be
+            penalized. Thus, we introduce a subset-matched response-based evaluation to address these limitations. The ground truth is the the minimial viable execution result paths labled with full context of the existing states. The model result is considered correct if it contains the ground truth as a subset, even if it contains additional function calls or takes a different trajectory.</p>
+          </p>
         </div>
         <h3 id='result'>Result & Error Analysis</h3>
 
@@ -897,7 +925,7 @@
             <p><strong>Analysis:</strong> Knowing that we want to save money, filling the entire fuel tank does not
               logically make sense, and it will error out because you can't fuel beyond 50 gallons. The model failed
               to infer the need to check the existing fuel level before making the decision. Even though the user
-              prompt didn’t explicitly ask for it, the model should have inferred this step.</p>
+              prompt didn't explicitly ask for it, the model should have inferred this step.</p>
             <p><strong>Takeaway:</strong> LLMs still struggle with breaking down tasks and making the correct implicit
               calls in more complex scenarios.</p>
           </li>
