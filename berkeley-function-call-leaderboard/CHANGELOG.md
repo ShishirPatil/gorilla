@@ -2,6 +2,10 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Dec 4, 2024] [#815](https://github.com/ShishirPatil/gorilla/pull/815): Add the following new models to the leaderboard:
+  - `nova-pro-v1.0`
+  - `nova-lite-v1.0`
+  - `nova-micro-v1.0`
 - [Dec 3, 2024] [#810](https://github.com/ShishirPatil/gorilla/pull/810): Add new model `grok-beta` to the leaderboard.
 - [Dec 2, 2024] [#809](https://github.com/ShishirPatil/gorilla/pull/809): Resolve issue in Gemini model when no model output.
 - [Dec 2, 2024] [#808](https://github.com/ShishirPatil/gorilla/pull/808): Improve latency measurement accuracy.

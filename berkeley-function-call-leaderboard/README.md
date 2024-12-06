@@ -106,6 +106,9 @@ WRITER_API_KEY=
 VERTEX_AI_PROJECT_ID=
 VERTEX_AI_LOCATION=
 
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+
 COHERE_API_KEY=
 
 DATABRICKS_API_KEY=
@@ -163,6 +166,9 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |claude-3-5-haiku-20241022-FC | Function Calling |
 |claude-3-5-haiku-20241022 | Prompt |
 |claude-{2.1,instant-1.2}| Prompt|
+|nova-pro-v1.0| Function Calling|
+|nova-lite-v1.0| Function Calling|
+|nova-macro-v1.0| Function Calling|
 |command-r-plus-FC | Function Calling|
 |command-r-plus | Prompt|
 |databrick-dbrx-instruct | Prompt|
