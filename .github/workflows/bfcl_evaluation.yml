@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       MIN_ACCEPTABLE_SCORE: 0.60
 
     steps:
@@ -17,8 +17,8 @@ jobs:
       
       - name: Check for CLAUDE_API_KEY
         run: |
-          if [ -z "$CLAUDE_API_KEY" ]; then
-            echo "Error: CLAUDE_API_KEY is not set"
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "Error: OPENAI_API_KEY is not set"
             exit 1
           fi
       
@@ -36,21 +36,21 @@ jobs:
       - name: Run BFCL generate
         working-directory: berkeley-function-call-leaderboard
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           bfcl generate \
-            --model claude-3-5-sonnet-20240620 \
+            --model gpt-4o-2024-08-06-FC \
             --test-category live_parallel
 
       - name: Run BFCL evaluate and extract score
         working-directory: berkeley-function-call-leaderboard
         run: |
           bfcl evaluate \
-            --model claude-3-5-sonnet-20240620 \
+            --model gpt-4o-2024-08-06-FC \
             --test-category live_parallel
           
           # Read score from the JSON file - get the first line only and parse accuracy
-          score=$(head -n 1 score/claude-3-5-sonnet-20240620-FC/BFCL_v3_live_parallel_score.json | jq -r '.accuracy')
+          score=$(head -n 1 score/gpt-4o-2024-08-06-FC/BFCL_v3_live_parallel_score.json | jq -r '.accuracy')
           echo "EVALUATION_SCORE=${score}" >> $GITHUB_ENV
           
           if (( $(echo "$score < $MIN_ACCEPTABLE_SCORE" | bc -l) )); then
