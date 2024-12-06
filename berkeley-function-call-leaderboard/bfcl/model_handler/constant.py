@@ -112,6 +112,7 @@ JS_TYPE_CONVERSION = {
 }
 
 UNDERSCORE_TO_DOT = [
+    # TODO: Use the model style to determine this, single source of truth
     "gpt-4o-2024-08-06-FC",
     "gpt-4o-2024-05-13-FC",
     "gpt-4o-mini-2024-07-18-FC",
@@ -126,6 +127,9 @@ UNDERSCORE_TO_DOT = [
     "claude-3-5-sonnet-20241022-FC",
     "claude-3-haiku-20240307-FC",
     "claude-3-5-haiku-20241022-FC",
+    "nova-pro-v1.0",
+    "nova-lite-v1.0",
+    "nova-micro-v1.0",
     "open-mistral-nemo-2407-FC",
     "open-mixtral-8x22b-FC",
     "mistral-large-2407-FC",

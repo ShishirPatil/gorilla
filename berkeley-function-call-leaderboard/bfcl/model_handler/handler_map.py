@@ -21,13 +21,14 @@ from bfcl.model_handler.proprietary_model.functionary import FunctionaryHandler
 from bfcl.model_handler.proprietary_model.gemini import GeminiHandler
 from bfcl.model_handler.proprietary_model.gogoagent import GoGoAgentHandler
 from bfcl.model_handler.proprietary_model.gorilla import GorillaHandler
+from bfcl.model_handler.proprietary_model.grok import GrokHandler
 from bfcl.model_handler.proprietary_model.mistral import MistralHandler
 from bfcl.model_handler.proprietary_model.nexus import NexusHandler
+from bfcl.model_handler.proprietary_model.nova import NovaHandler
 from bfcl.model_handler.proprietary_model.nvidia import NvidiaHandler
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
 from bfcl.model_handler.proprietary_model.writer import WriterHandler
 from bfcl.model_handler.proprietary_model.yi import YiHandler
-from bfcl.model_handler.proprietary_model.grok import GrokHandler
 
 # TODO: Add meta-llama/Llama-3.1-405B-Instruct
 
@@ -56,6 +57,9 @@ api_inference_handler_map = {
     "claude-3-haiku-20240307-FC": ClaudeHandler,
     "claude-3-5-haiku-20241022": ClaudeHandler,
     "claude-3-5-haiku-20241022-FC": ClaudeHandler,
+    "nova-pro-v1.0": NovaHandler,
+    "nova-lite-v1.0": NovaHandler,
+    "nova-micro-v1.0": NovaHandler,
     "open-mistral-nemo-2407": MistralHandler,
     "open-mistral-nemo-2407-FC": MistralHandler,
     "open-mixtral-8x22b": MistralHandler,
