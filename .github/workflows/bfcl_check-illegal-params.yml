@@ -1,0 +1,65 @@
+name: BFCL Illegal Parameter Check
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check-illegal-params:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          cd berkeley-function-call-leaderboard
+          pip install -e .
+
+      - name: Check for illegal parameter names
+        id: check_params
+        working-directory: berkeley-function-call-leaderboard
+        run: |
+          # Capture the output of the script
+          OUTPUT=$(python utils/check_illegal_python_param_name.py)
+          echo "$OUTPUT"
+          
+          # If the output contains "Illegal parameter name", fail the check
+          if echo "$OUTPUT" | grep -q "Illegal parameter name"; then
+            echo "::error::Found illegal Python parameter names!"
+            echo "ILLEGAL_PARAMS_FOUND=true" >> $GITHUB_ENV
+            echo "$OUTPUT" > illegal_params.txt
+          else
+            echo "ILLEGAL_PARAMS_FOUND=false" >> $GITHUB_ENV
+          fi
+
+      - name: Comment on PR with results
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## BFCL Illegal Parameter Check Results
+            
+            ${{ env.ILLEGAL_PARAMS_FOUND == 'true' && '❌ Failed: Illegal Python parameter names detected!' || '✅ Passed: No illegal parameters found.' }}
+            
+            ${{ env.ILLEGAL_PARAMS_FOUND == 'true' && '### How to fix:
+            1. Run this script locally to automatically fix the illegal parameters:
+               ```bash
+               cd berkeley-function-call-leaderboard
+               python utils/check_illegal_python_param_name.py
+               ```
+            2. Commit and push the changes
+            3. Update your pull request' || '' }}
+
+      - name: Fail if illegal parameters found
+        if: env.ILLEGAL_PARAMS_FOUND == 'true'
+        run: |
+          cat illegal_params.txt
+          exit 1
