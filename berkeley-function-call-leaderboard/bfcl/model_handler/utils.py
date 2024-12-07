@@ -61,15 +61,14 @@ def convert_to_tool(functions, mapping, model_style):
     functions = copy.deepcopy(functions)
     oai_tool = []
     for item in functions:
-        if "." in item["name"] and model_style in [
-            ModelStyle.OpenAI,
-            ModelStyle.Mistral,
-            ModelStyle.Google,
-            ModelStyle.OSSMODEL,
-            ModelStyle.Anthropic,
-            ModelStyle.COHERE,
-            ModelStyle.AMAZON,
-        ]:
+        if "." in item["name"] and (
+            model_style == ModelStyle.OpenAI
+            or model_style == ModelStyle.Mistral
+            or model_style == ModelStyle.Google
+            or model_style == ModelStyle.OSSMODEL
+            or model_style == ModelStyle.Anthropic
+            or model_style == ModelStyle.COHERE
+        ):
             # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
             item["name"] = re.sub(r"\.", "_", item["name"])
 
@@ -80,10 +79,6 @@ def convert_to_tool(functions, mapping, model_style):
 
         if model_style == ModelStyle.Anthropic:
             item["input_schema"] = item["parameters"]
-            del item["parameters"]
-
-        if model_style == ModelStyle.AMAZON:
-            item["inputSchema"] = {"json": item["parameters"]}
             del item["parameters"]
 
         if model_style == ModelStyle.Google:
@@ -225,7 +220,6 @@ def convert_to_tool(functions, mapping, model_style):
                 ModelStyle.Google,
                 ModelStyle.FIREWORK_AI,
                 ModelStyle.WRITER,
-                ModelStyle.AMAZON,
             ]:
                 item[
                     "description"
@@ -262,9 +256,6 @@ def convert_to_tool(functions, mapping, model_style):
             ModelStyle.WRITER,
         ]:
             oai_tool.append({"type": "function", "function": item})
-        elif model_style == ModelStyle.AMAZON:
-            oai_tool.append({"toolSpec": item})
-
     return oai_tool
 
 
@@ -848,7 +839,5 @@ def retry_with_backoff(error_type, min_wait=6, max_wait=120):
         )
         def wrapped(*args, **kwargs):
             return func(*args, **kwargs)
-
         return wrapped
-
     return decorator
