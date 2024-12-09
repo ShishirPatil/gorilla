@@ -116,38 +116,6 @@ class NexusHandler(BaseHandler):
 
         return raven_prompt
 
-    def _query_raven(self, prompt):
-        """
-        Query Nexus-Raven.
-        """
-
-        API_URL = "http://nexusraven.nexusflow.ai"
-        headers = {"Content-Type": "application/json"}
-
-        def query(payload):
-            """
-            Sends a payload to a TGI endpoint.
-            """
-            response = requests.post(API_URL, headers=headers, json=payload)
-            return response.json()
-
-        start = time.time()
-        output = query(
-            {
-                "inputs": prompt,
-                "parameters": {
-                    "temperature": self.temperature,
-                    "stop": ["<bot_end>"],
-                    "do_sample": False,
-                    "max_new_tokens": self.max_tokens,
-                    "return_full_text": False,
-                },
-            }
-        )
-        latency = time.time() - start
-        call = output[0]["generated_text"].replace("Call:", "").strip()
-        return call, {"latency": latency, "processed_message": prompt}
-
     def decode_ast(self, result, language="Python"):
         if result.endswith(";"):
             result = result[:-1]
@@ -190,10 +158,13 @@ class NexusHandler(BaseHandler):
                 "return_full_text": False,
             },
         }
+        start_time = time.time()
         api_response = requests.post(
             "http://nexusraven.nexusflow.ai", headers=headers, json=payload
         )
-        return api_response.json()
+        end_time = time.time()
+
+        return api_response.json(), end_time - start_time
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         inference_data["message"] = []

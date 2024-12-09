@@ -90,7 +90,7 @@ The evaluation script will automatically search for dataset files in the default
 
 ## Evaluating different models on the BFCL
 
-Make sure the model API keys are included in your `.env` file. Running proprietary models like GPTs, Claude, Mistral-X will require them.
+Make sure the model API keys are included in your `.env` file. Running proprietary models like GPTs, Claude, Mistral-X, Palmyra, will require them.
 
 ```bash
 OPENAI_API_KEY=sk-XXXXXX
@@ -99,10 +99,15 @@ FIREWORKS_API_KEY=
 ANTHROPIC_API_KEY=
 NVIDIA_API_KEY=nvapi-XXXXXX
 YI_API_KEY=
+GROK_API_KEY=xai-XXXXXX
 GOGOAGENT_API_KEY=
+WRITER_API_KEY=
 
 VERTEX_AI_PROJECT_ID=
 VERTEX_AI_LOCATION=
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
 
 COHERE_API_KEY=
 
@@ -120,7 +125,13 @@ For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the 
 
 If no `MODEL_NAME` is provided, the model `gorilla-openfunctions-v2` will be used by default. If no `TEST_CATEGORY` is provided, all test categories will be run by default.
 
-> An inference log will be included along with the llm response to help you analyze and debug the model's performance, and to better understand the model behavior. To see a more verbose log, you can set the `--include-state-log` and/or the `--include-input-log` flag in the generation command.
+To generate the model response for multiple models or test categories at once, you can separate them with commas. For example:
+
+```bash
+bfcl generate --model claude-3-5-sonnet-20241022-FC,gpt-4o-2024-08-06-FC --test-category parallel,multiple,exec_simple
+```
+
+> An inference log will be included along with the llm response to help you analyze and debug the model's performance, and to better understand the model behavior. To see a more verbose log, you can set the `--include-input-log` flag in the generation command.
 > Please refer to the `LOG_GUIDE.md` file for more information on how to interpret the inference logs and what each flag does.
 
 #### For API-hosted models:
@@ -155,10 +166,15 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |claude-3-5-haiku-20241022-FC | Function Calling |
 |claude-3-5-haiku-20241022 | Prompt |
 |claude-{2.1,instant-1.2}| Prompt|
+|nova-pro-v1.0| Function Calling|
+|nova-lite-v1.0| Function Calling|
+|nova-macro-v1.0| Function Calling|
 |command-r-plus-FC | Function Calling|
 |command-r-plus | Prompt|
 |databrick-dbrx-instruct | Prompt|
-|deepseek-ai/deepseek-coder-6.7b-instruct 💻| Prompt|
+|deepseek-ai/DeepSeek-V2.5 💻| Function Calling|
+|deepseek-ai/DeepSeek-V2-{Chat-0628,Lite-Chat} 💻| Prompt|
+|deepseek-ai/DeepSeek-Coder-V2-{Instruct-0724,Lite-Instruct} 💻| Function Calling|
 |firefunction-{v1,v2}-FC | Function Calling|
 |gemini-1.0-pro-{001,002}-FC | Function Calling|
 |gemini-1.0-pro-{001,002} | Prompt|
@@ -199,6 +215,7 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |NousResearch/Hermes-2-Pro-Llama-3-{8B,70B} 💻| Function Calling|
 |NousResearch/Hermes-2-Pro-Mistral-7B 💻| Function Calling|
 |NousResearch/Hermes-2-Theta-Llama-3-{8B,70B} 💻| Function Calling|
+|palmyra-x-004 | Function Calling|
 |snowflake/arctic | Prompt|
 |Salesforce/xLAM-1b-fc-r 💻| Function Calling|
 |Salesforce/xLAM-7b-fc-r 💻| Function Calling|
@@ -217,8 +234,11 @@ Below is _a table of models we support_ to run our leaderboard evaluation agains
 |Qwen/Qwen2.5-{1.5B,7B}-Instruct 💻| Prompt|
 |Qwen/Qwen2-{1.5B,7B}-Instruct 💻| Prompt|
 |Team-ACE/ToolACE-8B 💻| Function Calling|
-|openbmb/MiniCPM3-4B 💻| Function Calling|
+|openbmb/MiniCPM3-4B-FC 💻| Function Calling|
+|openbmb/MiniCPM3-4B 💻| Prompt|
 |BitAgent/GoGoAgent 💻| Prompt|
+|palmyra-x-004 | Function Calling|
+|grok-beta | Function Calling|
 
 Here {MODEL} 💻 means the model needs to be hosted locally and called by vllm, {MODEL} means the models that are called API calls. For models with a trailing `-FC`, it means that the model supports function-calling feature. You can check out the table summarizing feature supports among different models [here](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#prompt).
 
@@ -287,6 +307,12 @@ bfcl evaluate --model MODEL_NAME --test-category TEST_CATEGORY
 For available options for `MODEL_NAME` and `TEST_CATEGORY`, please refer to the [Models Available](#models-available) and [Available Test Category](#available-test-category) section.
 
 If no `MODEL_NAME` is provided, all available model results will be evaluated by default. If no `TEST_CATEGORY` is provided, all test categories will be run by default.
+
+Similar to the generation command, you can specify multiple models or test categories by separating them with commas.
+
+```bash
+bfcl evaluate --model claude-3-5-sonnet-20241022-FC,gpt-4o-2024-08-06-FC --test-category parallel,multiple,exec_simple
+```
 
 ### Example Usage
 

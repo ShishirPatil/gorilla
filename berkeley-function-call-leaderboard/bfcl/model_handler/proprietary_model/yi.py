@@ -1,5 +1,6 @@
 import json
 import os
+import time
 
 from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
@@ -39,6 +40,7 @@ class YiHandler(BaseHandler):
         tools = inference_data["tools"]
         inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
 
+        start_time = time.time()
         if len(tools) > 0:
             api_response = self.client.chat.completions.create(
                 messages=message,
@@ -52,8 +54,9 @@ class YiHandler(BaseHandler):
                 model=self.model_name.replace("-FC", ""),
                 temperature=self.temperature,
             )
+        end_time = time.time()
 
-        return api_response
+        return api_response, end_time - start_time
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         inference_data["message"] = []

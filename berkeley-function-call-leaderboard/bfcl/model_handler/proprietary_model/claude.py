@@ -1,7 +1,8 @@
 import json
 import os
+import time
 
-from anthropic import Anthropic
+from anthropic import Anthropic, RateLimitError
 from anthropic.types import TextBlock, ToolUseBlock
 from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
@@ -15,6 +16,7 @@ from bfcl.model_handler.utils import (
     extract_system_prompt,
     format_execution_results_prompting,
     func_doc_language_specific_pre_processing,
+    retry_with_backoff,
     system_prompt_pre_processing_chat_model,
 )
 from bfcl.utils import is_multi_turn
@@ -68,6 +70,14 @@ class ClaudeHandler(BaseHandler):
             function_call = convert_to_function_call(result)
             return function_call
 
+    @retry_with_backoff(RateLimitError)
+    def generate_with_backoff(self, **kwargs):
+        start_time = time.time()
+        api_response = self.client.beta.prompt_caching.messages.create(**kwargs)
+        end_time = time.time()
+
+        return api_response, end_time - start_time
+
     #### FC methods ####
 
     def _query_FC(self, inference_data: dict):
@@ -90,7 +100,7 @@ class ClaudeHandler(BaseHandler):
                             del message["content"][0]["cache_control"]
                     count += 1
 
-        return self.client.beta.prompt_caching.messages.create(
+        return self.generate_with_backoff(
             model=self.model_name.strip("-FC"),
             max_tokens=(
                 8192 if "claude-3-5" in self.model_name else 4096
@@ -239,14 +249,13 @@ class ClaudeHandler(BaseHandler):
                             del message["content"][0]["cache_control"]
                     count += 1
 
-        api_response = self.client.beta.prompt_caching.messages.create(
+        return self.generate_with_backoff(
             model=self.model_name,
             max_tokens=(8192 if "claude-3-5-sonnet-20240620" in self.model_name else 4096),
             temperature=self.temperature,
             system=inference_data["system_prompt"],
             messages=inference_data["message"],
         )
-        return api_response
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
@@ -323,7 +332,10 @@ class ClaudeHandler(BaseHandler):
             inference_data, execution_results, model_response_data
         )
         inference_data["message"].append(
-            {"role": "user", "content": formatted_results_message}
+            {
+                "role": "user",
+                "content": [{"type": "text", "text": formatted_results_message}],
+            }
         )
 
         return inference_data
