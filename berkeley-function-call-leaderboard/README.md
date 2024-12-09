@@ -16,10 +16,12 @@
       - [Output and Logging](#output-and-logging)
       - [For API-based Models](#for-api-based-models)
       - [For Locally-hosted OSS Models](#for-locally-hosted-oss-models)
+      - [(Alternate) Script Execution for Generation](#alternate-script-execution-for-generation)
     - [Evaluating Generated Responses](#evaluating-generated-responses)
       - [(Optional) API Sanity Check](#optional-api-sanity-check)
       - [Output Structure](#output-structure)
       - [(Optional) WandB Evaluation Logging](#optional-wandb-evaluation-logging)
+      - [(Alternate) Script Execution for Evaluation](#alternate-script-execution-for-evaluation)
   - [Contributing \& How to Add New Models](#contributing--how-to-add-new-models)
   - [Additional Resources](#additional-resources)
 
@@ -153,6 +155,17 @@ bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --backend {vllm|s
 - Choose your backend using `--backend vllm` or `--backend sglang`. The default backend is `vllm`.
 - Control GPU usage by adjusting `--num-gpus` (default `1`, relevant for multi-GPU tensor parallelism) and `--gpu-memory-utilization` (default `0.9`), which can help avoid out-of-memory errors.
 
+#### (Alternate) Script Execution for Generation
+
+For those who prefer using script execution instead of the CLI, you can run the following command:
+
+```bash
+# Make sure you are inside the `berkeley-function-call-leaderboard` directory
+python openfunctions_evaluation.py --model MODEL_NAME --test-category TEST_CATEGORY
+```
+
+When specifying multiple models or test categories, separate them with **spaces**, not commas. All other flags mentioned earlier are compatible with the script execution method as well.
+
 ### Evaluating Generated Responses
 
 **Important:** You must have generated the model responses before running the evaluation.
@@ -193,6 +206,18 @@ pip install -e.[wandb]
 ```
 
 Mkae sure you also set `WANDB_BFCL_PROJECT=ENTITY:PROJECT` in `.env`.
+
+#### (Alternate) Script Execution for Evaluation
+
+For those who prefer using script execution instead of the CLI, you can run the following command:
+
+```bash
+# Make sure you are inside the `berkeley-function-call-leaderboard/bfcl/eval_checker` directory
+cd bfcl/eval_checker
+python eval_runner.py --model MODEL_NAME --test-category TEST_CATEGORY
+```
+
+When specifying multiple models or test categories, separate them with **spaces**, not commas. All other flags mentioned earlier are compatible with the script execution method as well.
 
 ## Contributing & How to Add New Models
 
