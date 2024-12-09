@@ -652,28 +652,30 @@ class BaseHandler:
                     for entry in entries:
                         f.write(json.dumps(entry) + "\n")
 
-
     #### FC methods ####
 
     def _query_FC(self, inference_data: dict):
         """
         Call the model API in FC mode to get the response.
-        Return the response object that can be used to feed into the decode method.
+        Return the response object that can be used to feed into the `_parse_query_response_FC` method.
         """
         raise NotImplementedError
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         """
         Preprocess the testset entry before sending it to the model.
-        This includes transforming the input user message into the format expected by the model, and any other necessary preprocessing steps.
+        This might includes transforming the input user message into the format expected by the model, extract out the system prompt (if any), and any other necessary preprocessing steps. Those steps can also be done in the `add_first_turn_message_FC` and `_add_next_turn_user_message_FC` methods, but it's usually cleaner to do it here.
         The inference_data dict is updated in place and returned.
+
+        Note: This method has different signature from its Prompting version.
         """
         raise NotImplementedError
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         """
-        Compile the tools from the test entry and add them to the inference data.
-        This method is used to prepare the tools for the model query in FC mode.
+        [Only for FC mode]
+        This method is used to prepare/compile the tools from the test entry and add them to the inference data to use for model query in FC mode.
+        Function docs usually need to be transformed to the format expected by the model, done through the `convert_to_tool` function from `model_handler/utils.py`.
         The inference_data dict is updated in place and returned.
         """
         raise NotImplementedError
@@ -699,7 +701,17 @@ class BaseHandler:
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
         """
-        Add the first turn message to the chat history.
+        Add the first turn message to the chat history, in the format that the model expects.
+
+        Args:
+            inference_data (dict): The inference data from previous processing steps.
+            first_turn_message (list[dict]): The first turn message from the test entry. It has variable length. It might contain one or more of the following roles:
+                - "system": The system message. This role will only appear at most once, at the beginning of the first turn. For most entry, this role will not appear.
+                - "user": The user message.
+                - "assistant": The assistant message. For most entry, this role will not appear.
+
+        Returns:
+            inference_data (dict): The updated inference data that will be send to `_query_FC` to call the model API.
         """
         raise NotImplementedError
 
@@ -709,7 +721,7 @@ class BaseHandler:
         """
         [Only for multi-turn]
         Add next turn user message to the chat history for query.
-        user_message is a list of 1 element, which is the user message.
+        user_message is a list of 1 element, which is guaranteed to be a `user` role message.
         """
         raise NotImplementedError
 
@@ -742,9 +754,12 @@ class BaseHandler:
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         """
         Preprocess the testset entry before sending it to the model.
+        This might includes transforming the input user message into the format expected by the model, extract out the system prompt (if any), and any other necessary preprocessing steps. Those steps can also be done in the `add_first_turn_message_prompting` and `_add_next_turn_user_message_prompting` methods, but it's usually cleaner to do it here.
+        The function docs are usually supplied to the prompting models as part of the system prompt, done via the `system_prompt_pre_processing_chat_model` function from `model_handler/utils.py`, unless the model has a different way of handling it.
         Returns a dict that contains all the necessary information for the query method.
-        `tools` and `message` must be included in the returned dict.
         Things like `system_prompt` and `chat_history` are optional, specific to the model.
+
+        Note: This method has different signature from its FC version.
         """
         raise NotImplementedError
 
@@ -760,7 +775,6 @@ class BaseHandler:
                 - model_responses (any): The parsed result that can be directly used as input to the decode method.
                 - input_token (int): The number of tokens used in the input to the model.
                 - output_token (int): The number of tokens generated by the model as output.
-                - tool_call_ids (list[str]): The IDs of the tool calls that are generated by the model. Optional.
                 - Any other metadata that is specific to the model.
         """
         raise NotImplementedError
@@ -769,7 +783,17 @@ class BaseHandler:
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
         """
-        Add the first turn message to the chat history.
+        Add the first turn message to the chat history, in the format that the model expects.
+
+        Args:
+            inference_data (dict): The inference data from previous processing steps.
+            first_turn_message (list[dict]): The first turn message from the test entry. It has variable length. It might contain one or more of the following roles:
+                - "system": The system message. This role will only appear at most once, at the beginning of the first turn.
+                - "user": The user message.
+                - "assistant": The assistant message. For most entry, this role will not appear.
+
+        Returns:
+            inference_data (dict): The updated inference data that will be send to `_query_prompting` to call the model API.
         """
         raise NotImplementedError
 
@@ -779,7 +803,7 @@ class BaseHandler:
         """
         [Only for multi-turn]
         Add next turn user message to the chat history for query.
-        user_message is a list of 1 element, which is the user message.
+        user_message is a list of 1 element, which is guaranteed to be a `user` role message.
         """
         raise NotImplementedError
 
@@ -796,6 +820,6 @@ class BaseHandler:
     ) -> dict:
         """
         Add the execution results to the chat history to prepare for the next turn of query.
-        Some models may need to add additional information to the chat history, such as tool call IDs.
+        By default, execution results are added back as a `user` role message, as most models don't support the `tool` role in prompting mode.
         """
         raise NotImplementedError
