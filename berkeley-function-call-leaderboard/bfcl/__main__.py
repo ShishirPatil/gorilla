@@ -116,7 +116,7 @@ def generate(
     result_dir: str = typer.Option(
         RESULT_PATH,
         "--result-dir",
-        help="Path to the folder where output files will be stored.",
+        help="Path to the folder where output files will be stored; Path should be relative to the `berkeley-function-call-leaderboard` root folder",
     ),
     allow_overwrite: bool = typer.Option(
         False,
