@@ -597,11 +597,15 @@ class BaseHandler:
         return model_response_data["model_responses"], metadata
 
     def decode_ast(self, result, language="Python"):
-        # This method takes raw model output and convert it to standard AST checker input.
+        """
+        This method takes raw model output (from `_parse_query_response_xxx`) and convert it to standard AST checker input.
+        """
         raise NotImplementedError
 
     def decode_execute(self, result):
-        # This method takes raw model output and convert it to standard execute checker input.
+        """
+        This method takes raw model output (from `_parse_query_response_xxx`) and convert it to standard execute checker input.
+        """
         raise NotImplementedError
 
     @final

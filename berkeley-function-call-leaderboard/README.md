@@ -14,12 +14,12 @@
     - [Generating LLM Responses](#generating-llm-responses)
       - [Selecting Models and Test Categories](#selecting-models-and-test-categories)
       - [Output and Logging](#output-and-logging)
-      - [For API-hosted Models](#for-api-hosted-models)
-      - [For Locally-hosted Models](#for-locally-hosted-models)
+      - [For API-based Models](#for-api-based-models)
+      - [For Locally-hosted OSS Models](#for-locally-hosted-oss-models)
     - [Evaluating Generated Responses](#evaluating-generated-responses)
-      - [API Sanity Check (Optional)](#api-sanity-check-optional)
+      - [(Optional) API Sanity Check](#optional-api-sanity-check)
       - [Output Structure](#output-structure)
-      - [\[Optional\] WandB Evaluation Logging](#optional-wandb-evaluation-logging)
+      - [(Optional) WandB Evaluation Logging](#optional-wandb-evaluation-logging)
   - [Contributing \& How to Add New Models](#contributing--how-to-add-new-models)
   - [Additional Resources](#additional-resources)
 
@@ -29,13 +29,13 @@
 
 We introduce the Berkeley Function Calling Leaderboard (BFCL), the **first comprehensive and executable function call evaluation** dedicated to assessing Large Language Models' (LLMs) ability to invoke functions. Unlike previous evaluations, BFCL accounts for various forms of function calls, diverse scenarios, and executability.
 
-💡 Read more in our Gorilla OpenFunctions Leaderboard Blogs:
+💡 Read more in our blog posts:
 
 - [BFCL v1 (original) Blog Post](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html)
 - [BFCL v2 (live dataset) Blog Post](https://gorilla.cs.berkeley.edu/blogs/12_bfcl_v2_live.html)
 - [BFCL v3 (multi-turn) Blog Post](https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html)
 
-**Live Leaderboard:** [https://gorilla.cs.berkeley.edu/leaderboard.html#leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html#leaderboard)
+🦍 See the live leaderboard at [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html#leaderboard)
 
 ![Architecture Diagram](./architecture_diagram.png)
 
@@ -135,7 +135,7 @@ bfcl generate --model claude-3-5-sonnet-20241022-FC,gpt-4o-2024-08-06-FC --test-
 
 An inference log is included with the model responses to help analyze/debug the model's performance, and to better understand the model behavior. For more verbose logging, use the `--include-input-log` flag. Refer to [LOG_GUIDE.md](./LOG_GUIDE.md) for details on how to interpret the inference logs.
 
-#### For API-hosted Models
+#### For API-based Models
 
 ```bash
 bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1
@@ -144,7 +144,7 @@ bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --num-threads 1
 - Use `--num-threads` to control the level of parallel inference. The default (`1`) means no parallelization.
 - The maximum allowable threads depends on your API’s rate limits.
 
-#### For Locally-hosted Models
+#### For Locally-hosted OSS Models
 
 ```bash
 bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --backend {vllm|sglang} --num-gpus 1 --gpu-memory-utilization 0.9
@@ -167,7 +167,7 @@ The `MODEL_NAME` and `TEST_CATEGORY` options are the same as those used in the [
 
 If in the previous step you stored the model responses in a custom directory, you should specify it using the `--result-dir` flag; path should be relative to the `berkeley-function-call-leaderboard` root folder.
 
-#### API Sanity Check (Optional)
+#### (Optional) API Sanity Check
 
 If any of your test categories involve executable tests (e.g., category name contains `exec` or `rest`), you can set the `--api-sanity-check` flag (or `-c` for short) to have the evaluation process perform a sanity check on all REST API endpoints involved. If any of them are not behaving as expected, you will be alerted in the console; the evaluation process will continue regardless.
 
@@ -184,7 +184,7 @@ Additionally, four CSV files are generated in `./score/`:
 - `data_non_live.csv` – Detailed breakdown of scores for each Non-Live (single-turn) test category.
 - `data_multi_turn.csv` – Detailed breakdown of scores for each Multi-Turn test category.
 
-#### [Optional] WandB Evaluation Logging
+#### (Optional) WandB Evaluation Logging
 
 If you'd like to log evaluation results to WandB artifacts:
 
