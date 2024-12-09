@@ -59,9 +59,7 @@ for file_path in test_filename_total:
             current_turn_inference_log: list[dict] = [
                 {"begin_of_turn_query": single_turn_query}
             ]
-            current_turn_inference_log.append(
-                {"role": "assistant", "content": single_turn_ground_truth}
-            )
+
             execution_results, involved_instances = execute_multi_turn_func_call(
                 single_turn_ground_truth,
                 initial_config,
@@ -74,7 +72,9 @@ for file_path in test_filename_total:
                 is_evaL_run=False,
             )
 
-            for execution_result in execution_results:
+            for ground_truth, execution_result in zip(
+                single_turn_ground_truth, execution_results
+            ):
                 try:
                     execution_result_copy = json.loads(execution_result)
                 except Exception as e:
@@ -95,6 +95,9 @@ for file_path in test_filename_total:
                     print(execution_result)
                     # raise Exception("Ground truth should not have error in execution")
 
+                current_turn_inference_log.append(
+                    {"role": "assistant", "content": ground_truth}
+                )
                 current_turn_inference_log.append(
                     {
                         "role": "tool",
