@@ -20,8 +20,8 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |gpt-3.5-turbo-0125| Prompt|
 |gpt-4-turbo-2024-04-09-FC| Function Calling|
 |gpt-4-turbo-2024-04-09| Prompt|
-|gpt-4o-2024-08-06-FC | Function Calling|
-|gpt-4o-2024-08-06 | Prompt|
+|gpt-4o-2024-11-20-FC | Function Calling|
+|gpt-4o-2024-11-20 | Prompt|
 |gpt-4o-mini-2024-07-18-FC | Function Calling|
 |gpt-4o-mini-2024-07-18 | Prompt|
 |gemini-1.0-pro-002-FC | Function Calling|
