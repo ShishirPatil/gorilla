@@ -113,7 +113,7 @@ JS_TYPE_CONVERSION = {
 
 UNDERSCORE_TO_DOT = [
     # TODO: Use the model style to determine this, single source of truth
-    "gpt-4o-2024-08-06-FC",
+    "gpt-4o-2024-11-20-FC",
     "gpt-4o-2024-05-13-FC",
     "gpt-4o-mini-2024-07-18-FC",
     "gpt-4-turbo-2024-04-09-FC",
