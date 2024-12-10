@@ -1,5 +1,30 @@
 import random
+from copy import deepcopy
 from typing import Dict, List, Optional, Union
+
+DEFAULT_STATE = {
+    "generated_ids": set(),
+    "user_count": 4,
+    "user_map": {
+        "Alice": "USR001",
+        "Bob": "USR002",
+        "Catherine": "USR003",
+        "Daniel": "USR004",
+    },
+    "inbox": [
+        {
+            "USR002": "My name is Alice. I want to connect.",
+        },
+        {
+            "USR003": "Could you upload the file?",
+        },
+        {
+            "USR004": "Could you upload the file?",
+        },
+    ],
+    "message_count": 3,
+    "current_user": None,
+}
 
 
 class MessageAPI:
@@ -21,8 +46,7 @@ class MessageAPI:
         list_users(): List all users in the workspace.
         get_user_id(user: str): Get the user ID for a given username.
         login(user_id: str): Log in a user.
-        send_message(sender_id: str, receiver_id: str, message: str): Send a message to another user.
-        view_messages_received(): View messages received by the current user.
+        send_message(receiver_id: str, message: str): Send a message to another user.
         view_messages_sent(): View messages sent by the current user.
         delete_message(receiver_id: str, message_index: int): Delete a sent message.
         add_contact(name: str, user_id: str): Add a new contact to the workspace.
@@ -34,55 +58,38 @@ class MessageAPI:
         """
         Initialize the MessageAPI with a workspace ID.
         """
-        self.generated_ids = set()
-        self.user_count: int = 4
-        self.user_map: Dict[str, str] = {
-            "Alice": "USR001",
-            "Bob": "USR002",
-            "Catherine": "USR003",
-            "Daniel": "USR004",
-        }
-        self.inbox: Dict[int, Dict[str, Union[str, int]]] = {
-            1: {
-                "sender_id": "USR001",
-                "receiver_id": "USR002",
-                "message": "My name is Alice. I want to connect.",
-            },
-            2: {
-                "sender_id": "USR002",
-                "receiver_id": "USR003",
-                "message": "Could you upload the file?",
-            },
-            3: {
-                "sender_id": "USR002",
-                "receiver_id": "USR004",
-                "message": "Could you upload the file?",
-            },
-            4: {"sender_id": "USR003", "receiver_id": "USR002", "message": "I am busy."},
-            5: {
-                "sender_id": "USR004",
-                "receiver_id": "USR002",
-                "message": "I am on leave.",
-            },
-        }
-        self.message_count: int = 0  # useless(?)
-        self.current_user: Optional[str] = None
+        self.generated_ids: set
+        self.user_count: int
+        self.user_map: Dict[str, str]
+        self.inbox: List[Dict[str, str]]
+        self.message_count: int
+        self.current_user: Optional[str]
+        self._api_description = "This tool belongs to the Message API, which is used to manage user interactions in a workspace."
 
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """
         Load a scenario into the MessageAPI.
 
         Args:
-            scenario (dict): A dictionary containing message data.
+            scenario (Dict): A dictionary containing message data.
         """
+        DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
         self._random = random.Random((scenario.get("random_seed", 200191)))
-        self.user_count = scenario.get("user_count", 4)
-        self.current_user = scenario.get("current_user", None)
+        self.generated_ids = scenario.get(
+            "generated_ids", DEFAULT_STATE_COPY["generated_ids"]
+        )
+        self.user_count = scenario.get("user_count", DEFAULT_STATE_COPY["user_count"])
+        self.user_map = scenario.get("user_map", DEFAULT_STATE_COPY["user_map"])
+        self.inbox = scenario.get("inbox", DEFAULT_STATE_COPY["inbox"])
+        self.message_count = scenario.get(
+            "message_count", DEFAULT_STATE_COPY["message_count"]
+        )
+        self.current_user = scenario.get("current_user", DEFAULT_STATE_COPY["current_user"])
 
     def __eq__(self, value: object) -> bool:
         if not isinstance(value, MessageAPI):
             return False
- 
+
         for attr_name in vars(self):
             if attr_name.startswith("_"):
                 continue
@@ -94,9 +101,12 @@ class MessageAPI:
 
         return True
 
-    def generate_id(self):
+    def _generate_id(self):
         """
         Generate a unique ID for a message.
+
+        Returns:
+            new_id (int): A unique ID for a message.
         """
         new_id = self._random.randint(
             10000, 99999
@@ -104,14 +114,14 @@ class MessageAPI:
         while new_id in self.generated_ids:
             new_id = self._random.randint(10000, 99999)
         self.generated_ids.add(new_id)
-        return new_id
+        return {"new_id": new_id}
 
     def list_users(self) -> Dict[str, List[str]]:
         """
         List all users in the workspace.
 
         Returns:
-            user_list (List[str]): List of all users in the workspace.
+          user_list (List[str]): List of all users in the workspace.
         """
         return {"user_list": list(self.user_map.keys())}
 
@@ -123,7 +133,7 @@ class MessageAPI:
             user (str): User name of the user.
 
         Returns:
-            user_id (Optional[str]): User ID of the user, or None if not found.
+            user_id (str): User ID of the user
         """
         if user not in self.user_map:
             return {"error": f"User '{user}' not found in the workspace."}
@@ -148,13 +158,19 @@ class MessageAPI:
             "message": f"User '{user_id}' logged in successfully.",
         }
 
-    def send_message(
-        self, sender_id: str, receiver_id: str, message: str
-    ) -> Dict[str, Union[str, bool]]:
+    def message_get_login_status(self) -> Dict[str, bool]:
+        """
+        Get the login status of the current user.
+
+        Returns:
+            login_status (bool): True if the current user is logged in, False otherwise.
+        """
+        return {"login_status": bool(self.current_user)}
+
+    def send_message(self, receiver_id: str, message: str) -> Dict[str, Union[str, bool]]:
         """
         Send a message to a user.
         Args:
-            sender_id (str): User ID of the user sending the message.
             receiver_id (str): User ID of the user to send the message to.
             message (str): Message to be sent.
         Returns:
@@ -169,13 +185,9 @@ class MessageAPI:
         if receiver_id not in self.user_map.values():
             return {"error": f"Receiver ID '{receiver_id}' not found."}
         # Generate a unique message ID
-        message_id = self.generate_id()
+        message_id = self._generate_id()
         # Store the message in the inbox
-        self.inbox[message_id] = {
-            "sender_id": sender_id,
-            "receiver_id": receiver_id,
-            "message": message,
-        }
+        self.inbox.append({receiver_id: message})
         self.message_count += 1
         return {
             "sent_status": True,
@@ -183,13 +195,10 @@ class MessageAPI:
             "message": f"Message sent to '{receiver_id}' successfully.",
         }
 
-    def delete_message(
-        self, sender_id: str, receiver_id: str, message_id: int
-    ) -> Dict[str, Union[bool, str]]:
+    def delete_message(self, receiver_id: str) -> Dict[str, Union[bool, str]]:
         """
-        Delete a message sent to a user.
+        Delete the latest message sent to a receiver.
         Args:
-            sender_id (str): User ID of the user sending the message.
             receiver_id (str): User ID of the user to send the message to.
             message_id (int): ID of the message to be deleted.
         Returns:
@@ -199,70 +208,38 @@ class MessageAPI:
         """
         if not self.current_user:
             return {"error": "No user is currently logged in."}
-        # Check if the message exists in the inbox
-        if message_id not in self.inbox:
-            return {"error": f"Message ID {message_id} not found."}
-        # Ensure the current user is either the sender or receiver of the message
-        message_data = self.inbox[message_id]
-        if (
-            message_data["sender_id"] != self.current_user
-            and message_data["receiver_id"] != self.current_user
-        ):
-            return {"error": "You do not have permission to delete this message."}
-        # Check if the sender and receiver match the input arguments
-        if (
-            message_data["sender_id"] != sender_id
-            or message_data["receiver_id"] != receiver_id
-        ):
-            return {
-                "error": f"Message ID {message_id} does not match the provided sender and receiver."
-            }
-        # If everything checks out, delete the message
-        del self.inbox[message_id]
-        return {
-            "deleted_status": True,
-            "message_id": message_id,
-            "message": f"Message ID {message_id} deleted successfully.",
-        }
 
-    def view_messages_received(self) -> Dict[str, Union[Dict[str, List[str]], str]]:
-        """
-        View all messages sent to the current user.
-
-        Returns:
-            messages (Dict[str, List[str]]): Dictionary of senders and their messages sent to the current user.
-        """
-        if not self.current_user:
-            return {"error": "No user is currently logged in."}
-        # Dictionary to collect messages grouped by sender
-        received_messages = {}
-        # Loop through the inbox and collect messages sent to the current user
-        for message_id, message_data in self.inbox.items():
-            if message_data["receiver_id"] == self.current_user:
-                sender = message_data["sender_id"]
-                if sender not in received_messages:
-                    received_messages[sender] = []
-                received_messages[sender].append(message_data["message"])
-        return {"messages": received_messages}
+        # Loop through the inbox in reverse order to find the first message sent to the receiver
+        for message in self.inbox[::-1]:
+            receiver, _ = list(message.items())[0]
+            if receiver == receiver_id:
+                self.inbox.remove(message)
+                return {
+                    "deleted_status": True,
+                    "message_id": receiver,
+                    "message": f"Receiver {receiver_id}'s first message deleted successfully.",
+                }
+        return {"error": f"Receiver ID {receiver_id} not found."}
 
     def view_messages_sent(self) -> Dict[str, Union[Dict[str, List[str]], str]]:
         """
         View all historical messages sent by the current user.
 
         Returns:
-            messages (Dict[str, List[str]]): Dictionary of receivers and messages sent by the current user.
+            messages (Dict): Dictionary of messages grouped by receiver An example of the messages dictionary is {"USR001":["Hello"],"USR002":["World"]}.
+
         """
         if not self.current_user:
             return {"error": "No user is currently logged in."}
         # Dictionary to collect messages grouped by receiver
         sent_messages = {}
         # Loop through the inbox and collect messages sent by the current user
-        for message_id, message_data in self.inbox.items():
-            if message_data["sender_id"] == self.current_user:
-                receiver = message_data["receiver_id"]
-                if receiver not in sent_messages:
-                    sent_messages[receiver] = []
-                sent_messages[receiver].append(message_data["message"])
+        for message in self.inbox:
+            receiver, message_content = list(message.items())[0]
+            if receiver not in sent_messages:
+                sent_messages[receiver] = [message_content]
+            else:
+                sent_messages[receiver].append(message_content)
         return {"messages": sent_messages}
 
     def add_contact(self, user_name: str) -> Dict[str, Union[bool, str]]:
@@ -296,40 +273,32 @@ class MessageAPI:
         Args:
             keyword (str): The keyword to search for in messages.
         Returns:
-            results (List[Dict[str, Union[str, List[str]]]]): List of dictionaries containing matching messages.
-                Each dictionary has keys:
-                - sender_id (str): The ID of the user who sent the message.
-                - receiver_id (str): The ID of the user who received the message.
-                - messages (List[str]): List of messages containing the keyword.
+            results (List[Dict]): List of dictionaries containing matching messages.
+                - receiver_id (str): User ID of the receiver of the message.
+                - message (str): The message containing the keyword.
         """
         if not self.current_user:
             return {"error": "No user is currently logged in."}
         keyword_lower = keyword.lower()
         results = []
         # Iterate through the inbox to search for the keyword in messages
-        for message_id, message_data in self.inbox.items():
-            # Check if the current user is either the sender or receiver
-            if (
-                message_data["sender_id"] == self.current_user
-                or message_data["receiver_id"] == self.current_user
-            ):
-                # Check if the message contains the keyword (case-insensitive)
-                if keyword_lower in message_data["message"].lower():
-                    results.append(
-                        {
-                            "sender_id": message_data["sender_id"],
-                            "receiver_id": message_data["receiver_id"],
-                            "message": message_data["message"],
-                        }
-                    )
+        # for message_id, message_data in self.inbox.items():
+        for message_data in self.inbox:
+            receiver_id, message_content = list(message_data.items())[0]
+            if keyword_lower in message_content.lower():
+                results.append(
+                    {
+                        "receiver_id": receiver_id,
+                        "message": message_content,
+                    }
+                )
         return {"results": results}
 
     def get_message_stats(self) -> Dict[str, Union[Dict[str, int], str]]:
         """
         Get statistics about messages for the current user.
         Returns:
-            stats (Dict[str, int]): Dictionary containing message statistics.
-                - sent_count (int): Number of messages sent by the current user.
+            stats (Dict): Dictionary containing message statistics.
                 - received_count (int): Number of messages received by the current user.
                 - total_contacts (int): Total number of contacts the user has interacted with.
         """
@@ -339,17 +308,13 @@ class MessageAPI:
         received_count = 0
         contacts = set()
         # Loop through the inbox to calculate stats
-        for message_id, message_data in self.inbox.items():
-            if message_data["sender_id"] == self.current_user:
-                sent_count += 1
-                contacts.add(message_data["receiver_id"])
-            if message_data["receiver_id"] == self.current_user:
-                received_count += 1
-                contacts.add(message_data["sender_id"])
+        for message_data in self.inbox:
+            receiver_id, message_content = list(message_data.items())[0]
+            received_count += 1
+            contacts.add(receiver_id)
         total_contacts = len(contacts)
         return {
             "stats": {
-                "sent_count": sent_count,
                 "received_count": received_count,
                 "total_contacts": total_contacts,
             }

@@ -1,8 +1,9 @@
 import json
 import os
+import time
 
 from bfcl.model_handler.base_handler import BaseHandler
-from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT, GORILLA_TO_OPENAPI
+from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     ast_parse,
@@ -66,13 +67,16 @@ class MistralHandler(BaseHandler):
             "tools": tool,
         }
 
+        start_time = time.time()
         api_response = self.client.chat.complete(
             model=self.model_name.replace("-FC", ""),
             messages=message,
             tools=tool,
             temperature=self.temperature,
         )
-        return api_response
+        end_time = time.time()
+
+        return api_response, end_time - start_time
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         inference_data["message"] = []
@@ -159,12 +163,15 @@ class MistralHandler(BaseHandler):
         message = inference_data["message"]
         inference_data["inference_input_log"] = {"message": message}
 
+        start_time = time.time()
         api_response = self.client.chat.complete(
             model=self.model_name,
             messages=message,
             temperature=self.temperature,
         )
-        return api_response
+        end_time = time.time()
+
+        return api_response, end_time - start_time
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
@@ -173,7 +180,7 @@ class MistralHandler(BaseHandler):
         functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
-            test_entry["question"][0], DEFAULT_SYSTEM_PROMPT, functions
+            test_entry["question"][0], functions, test_category
         )
 
         return {"message": []}

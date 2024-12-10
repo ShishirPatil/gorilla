@@ -5,10 +5,11 @@ import json
 import os
 import re
 
-from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
+from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT, GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.parser.java_parser import parse_java_function_call
 from bfcl.model_handler.parser.js_parser import parse_javascript_function_call
+from tenacity import retry, retry_if_exception_type, wait_random_exponential
 
 
 def _cast_to_openai_type(properties, mapping):
@@ -60,14 +61,15 @@ def convert_to_tool(functions, mapping, model_style):
     functions = copy.deepcopy(functions)
     oai_tool = []
     for item in functions:
-        if "." in item["name"] and (
-            model_style == ModelStyle.OpenAI
-            or model_style == ModelStyle.Mistral
-            or model_style == ModelStyle.Google
-            or model_style == ModelStyle.OSSMODEL
-            or model_style == ModelStyle.Anthropic
-            or model_style == ModelStyle.COHERE
-        ):
+        if "." in item["name"] and model_style in [
+            ModelStyle.OpenAI,
+            ModelStyle.Mistral,
+            ModelStyle.Google,
+            ModelStyle.OSSMODEL,
+            ModelStyle.Anthropic,
+            ModelStyle.COHERE,
+            ModelStyle.AMAZON,
+        ]:
             # OAI does not support "." in the function name so we replace it with "_". ^[a-zA-Z0-9_-]{1,64}$ is the regex for the name.
             item["name"] = re.sub(r"\.", "_", item["name"])
 
@@ -78,6 +80,10 @@ def convert_to_tool(functions, mapping, model_style):
 
         if model_style == ModelStyle.Anthropic:
             item["input_schema"] = item["parameters"]
+            del item["parameters"]
+
+        if model_style == ModelStyle.AMAZON:
+            item["inputSchema"] = {"json": item["parameters"]}
             del item["parameters"]
 
         if model_style == ModelStyle.Google:
@@ -100,11 +106,15 @@ def convert_to_tool(functions, mapping, model_style):
                     del params["maximum"]
                 # No `minItems` field.
                 if "minItems" in params:
-                    params["description"] += f" Minimum number of items: {str(params['minItems'])}."
+                    params[
+                        "description"
+                    ] += f" Minimum number of items: {str(params['minItems'])}."
                     del params["minItems"]
                 # No `maxItems` field.
-                if "maxItemsmax" in params:
-                    params["description"] += f" Maximum number of items: {str(params['maxItems'])}."
+                if "maxItems" in params:
+                    params[
+                        "description"
+                    ] += f" Maximum number of items: {str(params['maxItems'])}."
                     del params["maxItems"]
                 # No `additionalProperties` field.
                 if "additionalProperties" in params:
@@ -214,6 +224,8 @@ def convert_to_tool(functions, mapping, model_style):
                 ModelStyle.Anthropic,
                 ModelStyle.Google,
                 ModelStyle.FIREWORK_AI,
+                ModelStyle.WRITER,
+                ModelStyle.AMAZON,
             ]:
                 item[
                     "description"
@@ -247,19 +259,26 @@ def convert_to_tool(functions, mapping, model_style):
             ModelStyle.OpenAI,
             ModelStyle.Mistral,
             ModelStyle.FIREWORK_AI,
+            ModelStyle.WRITER,
         ]:
             oai_tool.append({"type": "function", "function": item})
+        elif model_style == ModelStyle.AMAZON:
+            oai_tool.append({"toolSpec": item})
+
     return oai_tool
 
 
 def convert_to_function_call(function_call_list):
     if type(function_call_list) == dict:
         function_call_list = [function_call_list]
+    # function_call_list is of type list[dict[str, str]] or list[dict[str, dict]]
     execution_list = []
     for function_call in function_call_list:
         for key, value in function_call.items():
+            if type(value) == str:
+                value = json.loads(value)
             execution_list.append(
-                f"{key}({','.join([f'{k}={repr(v)}' for k,v in json.loads(value).items()])})"
+                f"{key}({','.join([f'{k}={repr(v)}' for k,v in value.items()])})"
             )
 
     return execution_list
@@ -375,8 +394,14 @@ def resolve_ast_by_type(value):
     return output
 
 
-def system_prompt_pre_processing_chat_model(prompts, system_prompt_template, function_docs):
+def system_prompt_pre_processing_chat_model(prompts, function_docs, test_category):
+    """
+    Add a system prompt to the chat model to instruct the model on the available functions and the expected response format.
+    If the prompts list already contains a system prompt, append the additional system prompt content to the existing system prompt.
+    """
     assert type(prompts) == list
+
+    system_prompt_template = DEFAULT_SYSTEM_PROMPT
 
     system_prompt = system_prompt_template.format(functions=function_docs)
 
@@ -700,6 +725,7 @@ def _convert_value(value, type_str):
     except ValueError:
         return value
 
+
 # TODO: Re-organize this file to make it more readable and maintainable
 def extract_system_prompt(prompts: list[dict]) -> str:
     for i, prompt in enumerate(prompts):
@@ -738,9 +764,7 @@ def format_execution_results_prompting(
 
 
 def default_decode_ast_prompting(result, language="Python"):
-    result = result.strip()
-    result = result.rstrip("\n")
-    result = result.lstrip('\n')
+    result = result.strip("`\n ")
     if not result.startswith("["):
         result = "[" + result
     if not result.endswith("]"):
@@ -750,9 +774,7 @@ def default_decode_ast_prompting(result, language="Python"):
 
 
 def default_decode_execute_prompting(result):
-    result = result.strip()
-    result = result.rstrip("\n")
-    result = result.lstrip('\n')
+    result = result.strip("`\n ")
     if not result.startswith("["):
         result = "[" + result
     if not result.endswith("]"):
@@ -780,9 +802,12 @@ def parse_nested_value(value):
             return f"{func_name}({args_str})"
         else:
             # If it's a simple dictionary, treat it as key-value pairs
-            return "{" + ", ".join(f"'{k}': {parse_nested_value(v)}" for k, v in value.items()) + "}"
+            return (
+                "{"
+                + ", ".join(f"'{k}': {parse_nested_value(v)}" for k, v in value.items())
+                + "}"
+            )
     return repr(value)
-
 
 
 def decoded_output_to_execution_list(decoded_output):
@@ -798,9 +823,32 @@ def decoded_output_to_execution_list(decoded_output):
     execution_list = []
     for function_call in decoded_output:
         for key, value in function_call.items():
-            args_str = ", ".join(
-                f"{k}={parse_nested_value(v)}" for k, v in value.items()
-            )
+            args_str = ", ".join(f"{k}={parse_nested_value(v)}" for k, v in value.items())
             execution_list.append(f"{key}({args_str})")
     return execution_list
-    
+
+
+def retry_with_backoff(error_type, min_wait=6, max_wait=120):
+    """
+    General decorator to retry with backoff for a specific error type.
+
+    :param error_type: The exception type to retry on.
+    :param min_wait: Minimum wait time for the backoff.
+    :param max_wait: Maximum wait time for the backoff.
+    """
+
+    def decorator(func):
+        @retry(
+            wait=wait_random_exponential(min=min_wait, max=max_wait),
+            retry=retry_if_exception_type(error_type),
+            before_sleep=lambda retry_state: print(
+                f"Attempt {retry_state.attempt_number} failed. Sleeping for {float(round(retry_state.next_action.sleep, 2))} seconds before retrying..."
+                f"Error: {retry_state.outcome.exception()}"
+            ),
+        )
+        def wrapped(*args, **kwargs):
+            return func(*args, **kwargs)
+
+        return wrapped
+
+    return decorator

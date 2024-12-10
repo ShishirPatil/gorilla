@@ -1,4 +1,6 @@
-from datetime import datetime, time
+import random
+from copy import deepcopy
+from datetime import datetime, time, timedelta
 from typing import Dict, List, Optional, Union
 
 from .long_context import (
@@ -11,20 +13,133 @@ from .long_context import (
     WATCH_LIST_EXTENSION,
 )
 
+CURRENT_TIME = datetime(2024, 9, 1, 10, 30)
+
+DEFAULT_STATE = {
+    "orders": {
+        12345: {
+            "id": 12345,
+            "order_type": "Buy",
+            "symbol": "AAPL",
+            "price": 210.65,
+            "amount": 10,
+            "status": "Completed",
+        },
+        12446: {
+            "id": 12446,
+            "order_type": "Sell",
+            "symbol": "GOOG",
+            "price": 2840.56,
+            "amount": 5,
+            "status": "Pending",
+        },
+    },
+    "account_info": {
+        "account_id": 12345,
+        "balance": 10000.0,
+        "binding_card": 1974202140965533,
+    },
+    "authenticated": False,
+    "market_status": "Closed",
+    "order_counter": 12446,
+    "stocks": {
+        "AAPL": {
+            "price": 227.16,
+            "percent_change": 0.17,
+            "volume": 2.552,
+            "MA(5)": 227.11,
+            "MA(20)": 227.09,
+        },
+        "GOOG": {
+            "price": 2840.34,
+            "percent_change": 0.24,
+            "volume": 1.123,
+            "MA(5)": 2835.67,
+            "MA(20)": 2842.15,
+        },
+        "TSLA": {
+            "price": 667.92,
+            "percent_change": -0.12,
+            "volume": 1.654,
+            "MA(5)": 671.15,
+            "MA(20)": 668.20,
+        },
+        "MSFT": {
+            "price": 310.23,
+            "percent_change": 0.09,
+            "volume": 3.234,
+            "MA(5)": 309.88,
+            "MA(20)": 310.11,
+        },
+        "NVDA": {
+            "price": 220.34,
+            "percent_change": 0.34,
+            "volume": 1.234,
+            "MA(5)": 220.45,
+            "MA(20)": 220.67,
+        },
+        "ALPH": {
+            "price": 1320.45,
+            "percent_change": -0.08,
+            "volume": 1.567,
+            "MA(5)": 1321.12,
+            "MA(20)": 1325.78,
+        },
+        "OMEG": {
+            "price": 457.23,
+            "percent_change": 0.12,
+            "volume": 2.345,
+            "MA(5)": 456.78,
+            "MA(20)": 458.12,
+        },
+        "QUAS": {
+            "price": 725.89,
+            "percent_change": -0.03,
+            "volume": 1.789,
+            "MA(5)": 726.45,
+            "MA(20)": 728.00,
+        },
+        "NEPT": {
+            "price": 88.34,
+            "percent_change": 0.19,
+            "volume": 0.654,
+            "MA(5)": 88.21,
+            "MA(20)": 88.67,
+        },
+        "SYNX": {
+            "price": 345.67,
+            "percent_change": 0.11,
+            "volume": 2.112,
+            "MA(5)": 345.34,
+            "MA(20)": 346.12,
+        },
+        "ZETA": {
+            "price": 22.09,
+            "percent_change": -0.05,
+            "volume": 0.789,
+            "MA(5)": 22.12,
+            "MA(20)": 22.34,
+        },
+    },
+    "watch_list": ["NVDA"],
+    "transaction_history": [],
+    "random_seed": 1053520,
+}
+
 
 class TradingBot:
     """
     A class representing a trading bot for executing stock trades and managing a trading account.
 
     Attributes:
-        orders (Dict[int, Dict[str, Union[str, float, int]]]): A dictionary of orders, keyed by order ID.
+        orders (Dict[int, Dict[str, Union[str, float, int]]]): A dictionary of orders for purchasing and selling of stock, keyed by order ID.
         account_info (Dict[str, Union[int, float]]): Information about the trading account.
         authenticated (bool): Whether the user is currently authenticated.
         market_status (str): The current status of the market ('Open' or 'Closed').
         order_counter (int): A counter for generating unique order IDs.
         stocks (Dict[str, Dict[str, Union[float, int]]]): Information about various stocks.
         watch_list (List[str]): A list of stock symbols being watched.
-        transaction_history (List[Dict[str, Union[str, float, int]]]): A history of transactions.
+        transaction_history (List[Dict[str, Union[str, float, int]]]): A history of trading account related transactions.
     """
 
     def __init__(self):
@@ -39,6 +154,7 @@ class TradingBot:
         self.stocks: Dict[str, Dict[str, Union[float, int]]]
         self.watch_list: List[str]
         self.transaction_history: List[Dict[str, Union[str, float, int]]]
+        self._api_description = "This tool belongs to the trading system, which allows users to trade stocks, manage their account, and view stock information."
 
     def _load_scenario(self, scenario: dict, long_context=False) -> None:
         """
@@ -47,122 +163,63 @@ class TradingBot:
         Args:
             scenario (dict): A scenario dictionary containing data to load.
         """
-        self.orders = scenario.get("orders", {
-            12345: {
-            "symbol": "AAPL",
-            "price": 210.65,
-            "num_shares": 10,
-            "status": "Completed",
-            },
-            12446: {
-                "symbol": "GOOG",
-                "price": 2840.56,
-                "num_shares": 5,
-                "status": "Pending",
-            }
-        })
+        DEFAULT_STATE_COPY = deepcopy(DEFAULT_STATE)
+        self.orders = scenario.get("orders", DEFAULT_STATE_COPY["orders"])
         # Convert all string keys that can be interpreted as integers to integer keys
-        self.orders = {int(k) if isinstance(k, str) and k.isdigit() else k: v for k, v in self.orders.items()}
-        self.account_info = scenario.get("account_info", {
-            "account_id": 12345,
-            "balance": 10000.0,
-            "binding_card": 1974202140965533,
-        })
-        self.authenticated = scenario.get("authenticated", False)
-        self.market_status = scenario.get("market_status", "Closed")
-        self.order_counter = scenario.get("order_counter", 12446) # Start counter from the next order ID
-        self.stocks = scenario.get("stocks", {
-            "AAPL": {
-                "price": 227.16,
-                "percent_change": 0.17,
-                "volume": 2.552,
-                "MA(5)": 227.11,
-                "MA(20)": 227.09,
-            },
-            "GOOG": {
-                "price": 2840.34,
-                "percent_change": 0.24,
-                "volume": 1.123,
-                "MA(5)": 2835.67,
-                "MA(20)": 2842.15,
-            },
-            "TSLA": {
-                "price": 667.92,
-                "percent_change": -0.12,
-                "volume": 1.654,
-                "MA(5)": 671.15,
-                "MA(20)": 668.20,
-            },
-            "MSFT": {
-                "price": 310.23,
-                "percent_change": 0.09,
-                "volume": 3.234,
-                "MA(5)": 309.88,
-                "MA(20)": 310.11,
-            },
-            "NVDA": {
-                "price": 220.34,
-                "percent_change": 0.34,
-                "volume": 1.234,
-                "MA(5)": 220.45,
-                "MA(20)": 220.67,
-            },
-            "ALPH": {
-                "price": 1320.45,
-                "percent_change": -0.08,
-                "volume": 1.567,
-                "MA(5)": 1321.12,
-                "MA(20)": 1325.78,
-            },
-            "OMEG": {
-                "price": 457.23,
-                "percent_change": 0.12,
-                "volume": 2.345,
-                "MA(5)": 456.78,
-                "MA(20)": 458.12,
-            },
-            "QUAS": {
-                "price": 725.89,
-                "percent_change": -0.03,
-                "volume": 1.789,
-                "MA(5)": 726.45,
-                "MA(20)": 728.00,
-            },
-            "NEPT": {
-                "price": 88.34,
-                "percent_change": 0.19,
-                "volume": 0.654,
-                "MA(5)": 88.21,
-                "MA(20)": 88.67,
-            },
-            "SYNX": {
-                "price": 345.67,
-                "percent_change": 0.11,
-                "volume": 2.112,
-                "MA(5)": 345.34,
-                "MA(20)": 346.12,
-            },
-            "ZETA": {
-                "price": 22.09,
-                "percent_change": -0.05,
-                "volume": 0.789,
-                "MA(5)": 22.12,
-                "MA(20)": 22.34,
-            },
-        })
-        self.watch_list = scenario.get("watch_list", ["NVDA"])
-        self.transaction_history = scenario.get("transaction_history", [])
+        self.orders = {
+            int(k) if isinstance(k, str) and k.isdigit() else k: v
+            for k, v in self.orders.items()
+        }
+        self.account_info = scenario.get("account_info", DEFAULT_STATE_COPY["account_info"])
+        self.authenticated = scenario.get(
+            "authenticated", DEFAULT_STATE_COPY["authenticated"]
+        )
+        self.market_status = scenario.get(
+            "market_status", DEFAULT_STATE_COPY["market_status"]
+        )
+        self.order_counter = scenario.get(
+            "order_counter", DEFAULT_STATE_COPY["order_counter"]
+        )  # Start counter from the next order ID
+        self.stocks = scenario.get("stocks", DEFAULT_STATE_COPY["stocks"])
+        self.watch_list = scenario.get("watch_list", DEFAULT_STATE_COPY["watch_list"])
+        self.transaction_history = scenario.get(
+            "transaction_history", DEFAULT_STATE_COPY["transaction_history"]
+        )
         self.long_context = long_context
+        self._random = random.Random(
+            (scenario.get("random_seed", DEFAULT_STATE_COPY["random_seed"]))
+        )
 
-    def get_current_time(self) -> str:
+    def _generate_transaction_timestamp(self) -> str:
+        """
+        Generate a timestamp for a transaction.
+
+        Returns:
+            timestamp (str): A formatted timestamp string.
+        """
+        # Define the start and end dates for the range
+        start_date = CURRENT_TIME
+        end_date = CURRENT_TIME + timedelta(days=1)
+
+        start_timestamp = int(start_date.timestamp())
+        end_timestamp = int(end_date.timestamp())
+
+        # Generate a random timestamp within the range
+        random_timestamp = self._random.randint(start_timestamp, end_timestamp)
+
+        # Convert the random timestamp to a datetime object
+        random_date = datetime.fromtimestamp(random_timestamp)
+
+        return random_date.strftime("%Y-%m-%d %H:%M:%S")
+
+    def get_current_time(self) -> Dict[str, str]:
         """
         Get the current time.
 
         Returns:
             current_time (str): Current time in HH:MM AM/PM format.
         """
-        current_time = datetime(2024, 9, 1, 10, 30)
-        return current_time.strftime("%I:%M %p")
+        return {"current_time": CURRENT_TIME.strftime("%I:%M %p")}
 
     def update_market_status(self, current_time_str: str) -> Dict[str, str]:
         """
@@ -172,7 +229,7 @@ class TradingBot:
             current_time_str (str): Current time in HH:MM AM/PM format.
 
         Returns:
-            status (str): Status of the market ('Open' or 'Closed').
+            status (str): Status of the market. [Enum]: ["Open", "Closed"]
         """
         market_open_time = time(9, 30)  # Market opens at 9:30 AM
         market_close_time = time(16, 0)  # Market closes at 4:00 PM
@@ -186,7 +243,7 @@ class TradingBot:
             self.market_status = "Closed"
             return {"status": "Closed"}
 
-    def get_symbol_by_name(self, name: str) -> str:
+    def get_symbol_by_name(self, name: str) -> Dict[str, str]:
         """
         Get the symbol of a stock by company name.
 
@@ -211,7 +268,7 @@ class TradingBot:
             "Amazon": "AMZN",
         }
 
-        return symbol_map.get(name, "Stock not found")
+        return {"symbol": symbol_map.get(name, "Stock not found")}
 
     def get_stock_info(self, symbol: str) -> Dict[str, Union[float, int, str]]:
         """
@@ -224,8 +281,8 @@ class TradingBot:
             price (float): Current price of the stock.
             percent_change (float): Percentage change in stock price.
             volume (float): Trading volume of the stock.
-            MA5 (float): 5-day Moving Average of the stock.
-            MA20 (float): 20-day Moving Average of the stock.
+            MA(5) (float): 5-day Moving Average of the stock.
+            MA(20) (float): 20-day Moving Average of the stock.
         """
         if symbol not in self.stocks:
             return {"error": f"Stock with symbol '{symbol}' not found."}
@@ -244,10 +301,12 @@ class TradingBot:
             order_id (int): ID of the order.
 
         Returns:
+            id (int): ID of the order.
+            order_type (str): Type of the order.
             symbol (str): Symbol of the stock in the order.
             price (float): Price at which the order was placed.
-            num_shares (int): Number of shares in the order.
-            status (str): Current status of the order.
+            amount (int): Number of shares in the order.
+            status (str): Current status of the order. [Enum]: ["Open", "Pending", "Completed", "Cancelled"]
         """
         if order_id not in self.orders:
             return {
@@ -316,9 +375,10 @@ class TradingBot:
             return {"error": f"Invalid stock symbol: {symbol}"}
         if price <= 0 or amount <= 0:
             return {"error": "Price and amount must be positive values."}
-
+        price = float(price)
         order_id = self.order_counter
         self.orders[order_id] = {
+            "id": order_id,
             "order_type": order_type,
             "symbol": symbol,
             "price": price,
@@ -326,6 +386,9 @@ class TradingBot:
             "status": "Open",
         }
         self.order_counter += 1
+        # We return the status as "Pending" to indicate that the order has been placed but not yet executed
+        # When polled later, the status will show as 'Open'
+        # This is to simulate the delay between placing an order and it being executed
         return {
             "order_id": order_id,
             "order_type": order_type,
@@ -364,7 +427,7 @@ class TradingBot:
                 {
                     "type": "deposit",
                     "amount": amount,
-                    "timestamp": self.get_current_time(),
+                    "timestamp": self._generate_transaction_timestamp(),
                 }
             )
             return {
@@ -379,7 +442,7 @@ class TradingBot:
                 {
                     "type": "withdrawal",
                     "amount": amount,
-                    "timestamp": self.get_current_time(),
+                    "timestamp": self._generate_transaction_timestamp(),
                 }
             )
             return {
@@ -420,6 +483,16 @@ class TradingBot:
         self.authenticated = True
         return {"status": "Logged in successfully"}
 
+    def trading_get_login_status(self) -> Dict[str, bool]:
+        """
+        Get the login status.
+
+        Returns:
+            status (bool): Login status.
+        """
+
+        return {"status": bool(self.authenticated)}
+
     def trading_logout(self) -> Dict[str, str]:
         """
         Handle user logout for trading system.
@@ -449,13 +522,12 @@ class TradingBot:
             return {"error": "Funding amount must be positive."}
         self.account_info["balance"] += amount
         self.transaction_history.append(
-            {"type": "funding", "amount": amount, "timestamp": self.get_current_time()}
+            {"type": "deposit", "amount": amount, "timestamp": self._generate_transaction_timestamp()}
         )
         return {
             "status": "Account funded successfully",
             "new_balance": self.account_info["balance"],
         }
-
 
     def remove_stock_from_watchlist(self, symbol: str) -> Dict[str, str]:
         """
@@ -476,7 +548,7 @@ class TradingBot:
         self.watch_list.remove(symbol)
         return {"status": f"Stock {symbol} removed from watchlist successfully."}
 
-    def get_watchlist(self) -> List[str]:
+    def get_watchlist(self) -> Dict[str, List[str]]:
         """
         Get the watchlist.
 
@@ -490,20 +562,39 @@ class TradingBot:
             watch_list = self.watch_list.copy()
             watch_list.extend(WATCH_LIST_EXTENSION)
             return watch_list
-        return self.watch_list
+        return {"watchlist": self.watch_list}
+    
+    def get_order_history(self) -> Dict[str, List[Dict[str, Union[str, int, float]]]]:
+        """
+        Get the stock order ID history.
+
+        Returns:
+            order_history (List[int]): List of orders ID in the order history.
+        """
+        if not self.authenticated:
+            return [
+                {
+                    "error": "User not authenticated. Please log in to view order history."
+                }
+            ]
+
+        return {"history": list(self.orders.keys())}
 
     def get_transaction_history(
         self, start_date: Optional[str] = None, end_date: Optional[str] = None
-    ) -> List[Dict[str, Union[str, float]]]:
+    ) -> Dict[str, List[Dict[str, Union[str, float]]]]:
         """
         Get the transaction history within a specified date range.
 
         Args:
-            start_date (Optional[str]): Start date for the history (format: 'YYYY-MM-DD').
-            end_date (Optional[str]): End date for the history (format: 'YYYY-MM-DD').
+            start_date (str): [Optional] Start date for the history (format: 'YYYY-MM-DD').
+            end_date (str): [Optional] End date for the history (format: 'YYYY-MM-DD').
 
         Returns:
-            history (List[Dict[str, str]]): List of transactions within the specified date range.
+            transaction_history (List[Dict]): List of transactions within the specified date range.
+                - type (str): Type of transaction. [Enum]: ["deposit", "withdrawal"]
+                - amount (float): Amount involved in the transaction.
+                - timestamp (str): Timestamp of the transaction, formatted as 'YYYY-MM-DD HH:MM:SS'.
         """
         if not self.authenticated:
             return [
@@ -525,13 +616,15 @@ class TradingBot:
         filtered_history = [
             transaction
             for transaction in self.transaction_history
-            if start <= datetime.strptime(transaction["timestamp"], "%I:%M %p") <= end
+            if start
+            <= datetime.strptime(transaction["timestamp"], "%Y-%m-%d %H:%M:%S")
+            <= end
         ]
 
         if self.long_context:
             filtered_history.extend(TRANSACTION_HISTORY_EXTENSION)
 
-        return filtered_history
+        return {"transaction_history": filtered_history}
 
     def update_stock_price(
         self, symbol: str, new_price: float
@@ -560,7 +653,7 @@ class TradingBot:
         return {"symbol": symbol, "old_price": old_price, "new_price": new_price}
 
     # below contains a list of functions to be nested
-    def get_available_stocks(self, sector: str) -> List[str]:
+    def get_available_stocks(self, sector: str) -> Dict[str, List[str]]:
         """
         Get a list of stock symbols in the given sector.
 
@@ -578,11 +671,11 @@ class TradingBot:
         if self.long_context:
             sector_map["Technology"].extend(TECHNOLOGY_EXTENSION)
             sector_map["Automobile"].extend(AUTOMOBILE_EXTENSION)
-        return sector_map.get(sector, [])
+        return {"stock_list": sector_map.get(sector, [])}
 
     def filter_stocks_by_price(
         self, stocks: List[str], min_price: float, max_price: float
-    ) -> List[str]:
+    ) -> Dict[str, List[str]]:
         """
         Filter stocks based on a price range.
 
@@ -600,23 +693,22 @@ class TradingBot:
             if self.stocks.get(symbol, {}).get("price", 0) >= min_price
             and self.stocks.get(symbol, {}).get("price", 0) <= max_price
         ]
-        return filtered_stocks
+        return {"filtered_stocks": filtered_stocks}
 
-    def add_to_watchlist(self, stocks: List[str]) -> List[str]:
+    def add_to_watchlist(self, stock: str) -> Dict[str, List[str]]:
         """
-        Add a list of stocks to the watchlist.
+        Add a stock to the watchlist.
 
         Args:
-            stocks (List[str]): List of stock symbols to add to the watchlist.
+            stock (str): the stock symbol to add to the watchlist.
 
         Returns:
-            symbols (List[str]): List of stock symbols that were successfully added to the watchlist.
+            symbol (str): the symbol that were successfully added to the watchlist.
         """
-        for symbol in stocks:
-            if symbol not in self.watch_list:
-                if symbol in self.stocks:  # Ensure symbol is valid
-                    self.watch_list.append(symbol)
-        return self.watch_list
+        if stock not in self.watch_list:
+            if stock in self.stocks:  # Ensure symbol is valid
+                self.watch_list.append(stock)
+        return {"symbol": self.watch_list}
 
     def notify_price_change(self, stocks: List[str], threshold: float) -> Dict[str, str]:
         """
@@ -627,7 +719,7 @@ class TradingBot:
             threshold (float): Percentage change threshold to trigger a notification.
 
         Returns:
-            notifications (Dict[str, str]): Notification message about the price changes.
+            notification (str): Notification message about the price changes.
         """
         changed_stocks = [
             symbol
@@ -637,8 +729,6 @@ class TradingBot:
         ]
 
         if changed_stocks:
-            return {
-                "notification": f"Stocks {', '.join(changed_stocks)} have significant price changes."
-            }
+            return {"notification": f"Stocks {', '.join(changed_stocks)} have significant price changes."}
         else:
             return {"notification": "No significant price changes in the selected stocks."}

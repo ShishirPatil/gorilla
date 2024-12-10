@@ -3,7 +3,6 @@ import re
 import time
 
 from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
-from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     ast_parse,
@@ -66,13 +65,16 @@ class DatabricksHandler(OpenAIHandler):
     def _query_prompting(self, inference_data: dict):
         message = inference_data["message"]
         inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
-        
+
+        start_time = time.time()
         api_response = self.client.chat.completions.create(
             messages=message,
             model=self.model_name,
             temperature=self.temperature,
         )
-        return api_response
+        end_time = time.time()
+
+        return api_response, end_time - start_time
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
@@ -81,9 +83,9 @@ class DatabricksHandler(OpenAIHandler):
         functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
-            test_entry["question"][0], DEFAULT_SYSTEM_PROMPT, functions
+            test_entry["question"][0], functions, test_category
         )
-        
+
         # Databricks doesn't allow consecutive user prompts, so we need to combine them
         for round_idx in range(len(test_entry["question"])):
             test_entry["question"][round_idx] = combine_consecutive_user_prompts(

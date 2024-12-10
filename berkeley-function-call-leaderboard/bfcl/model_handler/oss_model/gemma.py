@@ -1,17 +1,18 @@
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
-from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT
 from bfcl.model_handler.utils import (
+    combine_consecutive_user_prompts,
+    convert_system_prompt_into_user_prompt,
     func_doc_language_specific_pre_processing,
     system_prompt_pre_processing_chat_model,
-    convert_system_prompt_into_user_prompt,
-    combine_consecutive_user_prompts,
 )
+from overrides import override
 
 
 class GemmaHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
 
+    @override
     def _format_prompt(self, messages, function):
         """
         "bos_token": "<bos>",
@@ -26,6 +27,7 @@ class GemmaHandler(OSSHandler):
 
         return formatted_prompt
 
+    @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
@@ -33,7 +35,7 @@ class GemmaHandler(OSSHandler):
         functions = func_doc_language_specific_pre_processing(functions, test_category)
 
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
-            test_entry["question"][0], DEFAULT_SYSTEM_PROMPT, functions
+            test_entry["question"][0], functions, test_category
         )
 
         for round_idx in range(len(test_entry["question"])):
