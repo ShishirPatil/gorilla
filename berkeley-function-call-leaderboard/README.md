@@ -127,7 +127,7 @@ The evaluation script will automatically search for dataset files in the default
 You can provide multiple models or test categories by separating them with commas. For example:
 
 ```bash
-bfcl generate --model claude-3-5-sonnet-20241022-FC,gpt-4o-2024-08-06-FC --test-category parallel,multiple,exec_simple
+bfcl generate --model claude-3-5-sonnet-20241022-FC,gpt-4o-2024-11-20-FC --test-category parallel,multiple,exec_simple
 ```
 
 #### Output and Logging
