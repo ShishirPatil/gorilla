@@ -3,6 +3,8 @@ name: BFCL Data Format Check
 on:
   pull_request:
     branches: [ main ]
+    paths:
+      - 'berkeley-function-call-leaderboard/data/**/*.json'  # Only run when JSON files in data directory change
 
 jobs:
   check-data-format:
