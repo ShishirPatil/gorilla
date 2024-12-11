@@ -6,6 +6,8 @@ from bfcl.utils import is_java, is_js, load_file
 
 """
 This script checks for the correct format of the function description for test category in Python.
+
+The section on checking correct type in the enum field is modified from the script that Chuanhui Zhang (@zhangch-ss) provided in https://github.com/ShishirPatil/gorilla/pull/826. Credit to him for the original idea and implementation. 
 """
 
 TYPE_MAP = {
