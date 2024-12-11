@@ -1,0 +1,129 @@
+name: BFCL Data Format Check
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check-data-format:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install jsonschema
+
+      - name: Create schema validation script
+        run: |
+          cat > validate_data.py << 'EOF'
+          import json
+          import sys
+          import os
+          from jsonschema import validate
+          from glob import glob
+          
+          # Print current working directory and list files for debugging
+          print(f"Current working directory: {os.getcwd()}")
+          print("Contents of current directory:", os.listdir())
+          
+          schema = {
+              "type": "object",
+              "required": ["id", "question", "initial_config", "path", "involved_classes"],
+              "properties": {
+                  "id": {"type": "string"},
+                  "question": {
+                      "type": "array",
+                      "items": {
+                          "type": "array",
+                          "items": {
+                              "type": "object",
+                              "required": ["role", "content"],
+                              "properties": {
+                                  "role": {"type": "string"},
+                                  "content": {"type": "string"}
+                              }
+                          }
+                      }
+                  },
+                  "initial_config": {"type": "object"},
+                  "path": {
+                      "type": "array",
+                      "items": {"type": "string"}
+                  },
+                  "involved_classes": {
+                      "type": "array",
+                      "items": {"type": "string"}
+                  }
+              }
+          }
+
+          def validate_file(filepath):
+              print(f"Validating file: {filepath}")  # Debug print
+              with open(filepath, 'r') as f:
+                  for line_num, line in enumerate(f, 1):
+                      try:
+                          data = json.loads(line.strip())
+                          validate(instance=data, schema=schema)
+                      except Exception as e:
+                          print(f"Error in file {filepath} at line {line_num}:")
+                          print(f"Line content: {line.strip()}")
+                          print(f"Error: {str(e)}")
+                          return False
+              return True
+
+          # Find all multi-turn files
+          pattern = "berkeley-function-call-leaderboard/data/*multi_turn*.json"
+          files = glob(pattern)
+          print(f"Found files matching pattern '{pattern}': {files}")  # Debug print
+          
+          if not files:
+              print("No files found! Check the path and pattern.")
+              sys.exit(1)
+
+          success = True
+          for filepath in files:
+              if not validate_file(filepath):
+                  success = False
+
+          sys.exit(0 if success else 1)
+          EOF
+
+      - name: Run format validation
+        id: validate
+        run: python validate_data.py
+
+      - name: Comment on PR with results
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## BFCL Data Format Check Results
+            
+            ${{ steps.validate.outcome == 'success' && '✅ Passed: All data files are correctly formatted.' || '❌ Failed: Data format validation failed. Please check the workflow logs for details.' }}
+            
+            ${{ steps.validate.outcome != 'success' && '### How to fix:
+            1. Review the workflow logs to see which files failed validation
+            2. Ensure all data entries follow the required format:
+               ```json
+               {
+                 "id": "string",
+                 "question": [[{"role": "string", "content": "string"}]],
+                 "initial_config": {},
+                 "path": ["string"],
+                 "involved_classes": ["string"]
+               }
+               ```
+            3. Update the files and push the changes' || '' }}
+
+      - name: Fail if validation failed
+        if: steps.validate.outcome != 'success'
+        run: exit 1
