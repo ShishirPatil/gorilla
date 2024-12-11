@@ -41,7 +41,7 @@ def get_args():
     # Parameters for the model that you want to test.
     parser.add_argument("--temperature", type=float, default=0.001)
     parser.add_argument("--include-input-log", action="store_true", default=False)
-    parser.add_argument("--include-state-log", action="store_true", default=False)
+    parser.add_argument("--exclude-state-log", action="store_true", default=False)
     parser.add_argument("--num-threads", default=1, type=int)
     parser.add_argument("--num-gpus", default=1, type=int)
     parser.add_argument("--backend", default="vllm", type=str, choices=["vllm", "sglang"])
@@ -125,20 +125,18 @@ def collect_test_cases(
         for test_case in all_test_entries_involved
         if test_case["id"] not in existing_ids
     ]
-    test_cases_to_generate = process_multi_turn_test_case(
-        test_cases_to_generate, test_category
-    )
+    test_cases_to_generate = process_multi_turn_test_case(test_cases_to_generate)
 
     return sorted(test_cases_to_generate, key=sort_key)
 
 
-def process_multi_turn_test_case(test_cases, test_category):
+def process_multi_turn_test_case(test_cases):
     """
     Multi-turn test cases don't have the function doc in the prompt. We need to add them here.
     """
-    if not is_multi_turn(test_category):
-        return test_cases
     for entry in test_cases:
+        if not is_multi_turn(entry["id"]):
+            continue
         involved_classes = entry["involved_classes"]
         entry["function"] = []
         for func_collection in involved_classes:
@@ -164,7 +162,7 @@ def process_multi_turn_test_case(test_cases, test_category):
     return test_cases
 
 
-def multi_threaded_inference(handler, test_case, include_input_log, include_state_log):
+def multi_threaded_inference(handler, test_case, include_input_log, exclude_state_log):
 
     assert type(test_case["function"]) is list
 
@@ -173,7 +171,7 @@ def multi_threaded_inference(handler, test_case, include_input_log, include_stat
     while True:
         try:
             result, metadata = handler.inference(
-                deepcopy(test_case), include_input_log, include_state_log
+                deepcopy(test_case), include_input_log, exclude_state_log
             )
             break  # Success, exit the loop
         except Exception as e:
@@ -227,7 +225,7 @@ def generate_results(args, model_name, test_cases_total):
             gpu_memory_utilization=args.gpu_memory_utilization,
             backend=args.backend,
             include_input_log=args.include_input_log,
-            include_state_log=args.include_state_log,
+            exclude_state_log=args.exclude_state_log,
             result_dir=args.result_dir,
             update_mode=update_mode,
         )
@@ -245,7 +243,7 @@ def generate_results(args, model_name, test_cases_total):
                         handler,
                         test_case,
                         args.include_input_log,
-                        args.include_state_log,
+                        args.exclude_state_log,
                     )
                     futures.append(future)
 

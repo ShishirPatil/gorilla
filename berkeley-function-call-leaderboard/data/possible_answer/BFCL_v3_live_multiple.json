@@ -1035,3 +1035,19 @@
 {"id": "live_multiple_1034-262-0", "ground_truth": [{"audit_log_api.AuditLogApi.get_access_logs": {"offset": [0], "query": [""], "pageSize": [50], "startDate": ["", null], "endDate": ["", null]}}]}
 {"id": "live_multiple_1035-263-0", "ground_truth": [{"api_token_api.APITokenApi.get_api_tokens": {"user_id": [12345], "include_expired": ["", false]}}]}
 {"id": "live_multiple_1036-263-1", "ground_truth": [{"api_token_api.APITokenApi.get_api_tokens": {"user_id": [12345], "include_expired": ["", false]}}]}
+{"id": "live_multiple_1037-264-0", "ground_truth": [{"calendar_event_create": {"start_date": ["2024-12-01"], "start_time": ["19:00"], "duration": [120], "rrule": ["Does not repeat"]}}]}
+{"id": "live_multiple_1038-265-0", "ground_truth": [{"detail_project": {"project_name": ["invoice-website"], "include_status": [true], "start_date": [null]}}]}
+{"id": "live_multiple_1039-266-0", "ground_truth": [{"detail_experience_and_education": {"experience_or_education_type": ["Education at Universitas Sebelas Maret (UNS)"], "experience_or_education_name": ["Not specified"]}}]}
+{"id": "live_multiple_1040-267-0", "ground_truth": [{"detail_experience_and_education": {"experience_or_education_type": ["Education at Universitas Sebelas Maret (UNS)"], "experience_or_education_name": ["Not specified"]}}]}
+{"id": "live_multiple_1041-268-0", "ground_truth": [{"get_sensor_readings_history_by_interval": {"perPage": [10], "timespan": [36000], "metrics": [["temperature"]], "t0": [null, ""], "t1": [null, ""], "interval": [86400]}}]}
+{"id": "live_multiple_1042-269-0", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Portland"], "date": ["2023-04-05"]}}]}
+{"id": "live_multiple_1043-270-0", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Marshall"], "date": ["2023-03-01"]}}]}
+{"id": "live_multiple_1044-271-0", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Chicago"], "date": ["2023-01-01"]}}]}
+{"id": "live_multiple_1045-272-0", "ground_truth": [{"Services_4_FindProvider": {"city": ["Lafayette"], "type": ["Family Counselor"], "insurance_accepted": [true]}}]}
+{"id": "live_multiple_1046-273-0", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Delhi"], "number_of_adults": [2], "rating": [4.6]}}]}
+{"id": "live_multiple_1047-274-0", "ground_truth": [{"Hotels_2_BookHouse": {"where_to": ["Cape Town"], "number_of_adults": [2], "check_in_date": ["05/15/2023"], "check_out_date": ["05/22/2023"]}}]}
+{"id": "live_multiple_1048-275-0", "ground_truth": [{"Hotels_2_SearchHouse": {"where_to": ["Paris"], "number_of_adults": [2]}}]}
+{"id": "live_multiple_1049-276-0", "ground_truth": [{"Trains_1_FindTrains": {"_from": ["Anaheim, CA"], "to": ["Berkeley, CA"], "date_of_journey": ["04/10/2023"]}}]}
+{"id": "live_multiple_1050-277-0", "ground_truth": [{"Weather_1_GetWeather": {"city": ["Atlanta"], "date": ["2023-03-07"]}}]}
+{"id": "live_multiple_1051-278-0", "ground_truth": [{"set_alarm": {"alarm_time": ["2023-12-01 07:00:00"], "purpose": ["wake up",""]}}]}
+{"id": "live_multiple_1052-279-0", "ground_truth": [{"set_volume": {"volume": [50]}}]}

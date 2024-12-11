@@ -37,6 +37,24 @@ cli = typer.Typer(
 )
 
 
+def handle_multiple_input(input_str):
+    """
+    Input is like 'a,b,c,d', we need to transform it to ['a', 'b', 'c', 'd'] because that's the expected format in the actual main funciton
+    """
+    if input_str is None:
+        """
+        Cannot return None here, as typer will check the length of the return value and len(None) will raise an error
+        But when default is None, an empty list will be internally converted to None, and so the pipeline still works as expected
+        ```
+        if default_value is None and len(value) == 0:
+            return None
+        ```
+        """
+        return []
+
+    return [item.strip() for item in ",".join(input_str).split(",") if item.strip()]
+
+
 @cli.command()
 def test_categories():
     """
@@ -69,10 +87,14 @@ def models():
 @cli.command()
 def generate(
     model: List[str] = typer.Option(
-        ["gorilla-openfunctions-v2"], help="A list of model names to evaluate."
+        ["gorilla-openfunctions-v2"], 
+        help="A list of model names to evaluate. Use commas to separate multiple models.",
+        callback=handle_multiple_input
     ),
     test_category: List[str] = typer.Option(
-        ["all"], help="A list of test categories to run the evaluation on."
+        ["all"], 
+        help="A list of test categories to run the evaluation on. Use commas to separate multiple test categories.",
+        callback=handle_multiple_input
     ),
     temperature: float = typer.Option(
         0.001, help="The temperature parameter for the model."
@@ -82,10 +104,10 @@ def generate(
         "--include-input-log",
         help="Include the fully-transformed input to the model inference endpoint in the inference log; only relevant for debugging input integrity and format.",
     ),
-    include_state_log: bool = typer.Option(
+    exclude_state_log: bool = typer.Option(
         False,
-        "--include-state-log",
-        help="Include info about the state of each API system after each turn in the inference log; only relevant for multi-turn categories.",
+        "--exclude-state-log",
+        help="Exclude info about the state of each API system after each turn in the inference log; only relevant for multi-turn categories.",
     ),
     num_gpus: int = typer.Option(1, help="The number of GPUs to use."),
     num_threads: int = typer.Option(1, help="The number of threads to use."),
@@ -94,7 +116,7 @@ def generate(
     result_dir: str = typer.Option(
         RESULT_PATH,
         "--result-dir",
-        help="Path to the folder where output files will be stored.",
+        help="Path to the folder where output files will be stored; Path should be relative to the `berkeley-function-call-leaderboard` root folder",
     ),
     allow_overwrite: bool = typer.Option(
         False,
@@ -117,7 +139,7 @@ def generate(
         test_category=test_category,
         temperature=temperature,
         include_input_log=include_input_log,
-        include_state_log=include_state_log,
+        exclude_state_log=exclude_state_log,
         num_gpus=num_gpus,
         num_threads=num_threads,
         gpu_memory_utilization=gpu_memory_utilization,
@@ -188,9 +210,15 @@ def results(
 
 @cli.command()
 def evaluate(
-    model: List[str] = typer.Option(None, help="A list of model names to evaluate."),
+    model: List[str] = typer.Option(
+        None, 
+        help="A list of model names to evaluate.",
+        callback=handle_multiple_input
+    ),
     test_category: List[str] = typer.Option(
-        None, help="A list of test categories to run the evaluation on."
+        None, 
+        help="A list of test categories to run the evaluation on.",
+        callback=handle_multiple_input
     ),
     api_sanity_check: bool = typer.Option(
         False,
