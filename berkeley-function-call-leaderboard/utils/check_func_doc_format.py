@@ -7,7 +7,111 @@ from bfcl.utils import is_java, is_js, load_file
 """
 This script checks for the correct format of the function description for test category in Python.
 
+To run this script, use the following command:
+```
+cd berkeley-function-call-leaderboard/utils
+python check_func_doc_format.py
+```
+
 The section on checking correct type in the enum field is modified from the script that Chuanhui Zhang (@zhangch-ss) provided in https://github.com/ShishirPatil/gorilla/pull/826. Credit to him for the original idea and implementation. 
+
+
+# Function Schema Validation Rules and Error Cases
+
+## Top-Level Structure
+The function description must be a dictionary with exactly three fields:
+- `name`: Function name
+- `description`: Function description
+- `parameters`: Parameter information dictionary
+
+## Parameters Object Structure
+The `parameters` field must be a dictionary with exactly three fields:
+- `type`: Must be "dict"
+- `properties`: Dictionary of parameter definitions
+- `required`: List of required parameter names
+
+## Parameter Definition Rules
+
+### Basic Parameter Structure
+Each parameter in `properties` must be a dictionary containing:
+- `type`: One of ["boolean", "array", "string", "integer", "float", "tuple", "any", "dict"]
+- `description`: String describing the parameter
+
+### Type-Specific Rules
+
+#### For Array/Tuple Types
+- Must include `items` field
+- `items` must be a dictionary with single field `type`
+- Cannot have `properties` field
+- Item type must be one of the allowed types
+
+#### For Dict Type
+Must have either:
+- `properties` field with nested parameter definitions, OR
+- `additionalProperties` field with `type` specification
+Cannot have `items` field
+
+#### For Basic Types (boolean, string, integer, float, any)
+- Cannot have `items` field
+- Cannot have `properties` field
+
+### Optional Fields
+
+#### Enum Field
+If present:
+- Must be a list
+- All values must match the parameter's declared type
+
+#### Default Value
+- Required for optional parameters (those not in `required` list)
+- Must not exist for required parameters
+- Must match the parameter's declared type
+- For `any` type, no type checking is performed
+
+### Parameter Naming
+- Cannot use Python keywords as parameter names
+- Cannot have duplicate parameter names
+
+## Error Cases
+
+1. Top-Level Structure Errors:
+   - Input is not a dictionary
+   - Missing required fields (name, description, parameters)
+   - Extra fields present
+   - Parameters field is not a dictionary
+
+2. Parameters Object Errors:
+   - Missing type/properties/required fields
+   - Extra fields present
+   - Required field is not a list
+   - Required parameter listed but not in properties
+   - Required parameter has default value
+   - Optional parameter missing default value
+
+3. Parameter Definition Errors:
+   - Parameter value is not a dictionary
+   - Missing type or description
+   - Invalid type specified
+   - Python keyword used as parameter name
+   - Duplicate parameter names
+
+4. Type-Specific Errors:
+   - Array/tuple without items field
+   - Array/tuple with properties field
+   - Dict without properties or additionalProperties
+   - Dict with items field
+   - Non-array with items field
+   - Non-dict with properties field
+
+5. Enum Validation Errors:
+   - Enum field is not a list
+   - Enum values don't match declared type
+
+6. Default Value Errors:
+   - Default value type doesn't match declared type
+   - Required parameter has default value
+   - Optional parameter missing default value
+
 """
 
 TYPE_MAP = {
