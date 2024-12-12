@@ -389,6 +389,7 @@ def param_checker(properties: dict):
         if "default" in param_details:
             if (
                 param_details["type"] != "any"
+                and param_details["default"] is not None
                 and type(param_details["default"]) != TYPE_MAP[param_details["type"]]
             ):
                 return (
