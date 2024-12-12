@@ -743,7 +743,7 @@ function addToTable(dataArray) {
                 } else if (cellIndex >= 19 && cellIndex <= 22) {
                     // class for specific columns
                     td.className = "liveast-sub-cell";
-                } else if (cellIndex >= 24 && cellIndex <= 28) {
+                } else if (cellIndex >= 24 && cellIndex <= 27) {
                     // class for specific columns
                     td.className = "multiturn-sub-cell";
                 }
