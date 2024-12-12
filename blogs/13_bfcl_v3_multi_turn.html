@@ -99,6 +99,67 @@
     .code-toggle:hover {
       text-decoration: underline;
     }
+
+    .level-1 {
+      background-color: #E2E2E2;
+      /* Darkest gray for top level */
+      font-weight: bold;
+    }
+
+    .level-2 {
+      background-color: #E8E8E8;
+      /* Slightly lighter gray */
+    }
+
+    .level-3 {
+      background-color: #EFEFEF;
+      /* Medium gray */
+    }
+
+    .level-4 {
+      background-color: #F5F5F5;
+      /* Light gray */
+    }
+
+    .level-5 {
+      background-color: #FFFFFF;
+      /* Pure white */
+    }
+
+    .scoring-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: auto;
+    }
+
+    .scoring-table th,
+    .scoring-table td {
+      word-wrap: break-word;
+      padding: 5px;
+      text-align: center;
+    }
+
+    @media screen and (max-width: 768px) {
+
+      .scoring-table th,
+      .scoring-table td {
+        padding: 1px;
+      }
+    }
+
+    .note {
+      font-size: 0.8em;
+      color: #666;
+    }
+
+    .na {
+      color: #999;
+      font-style: italic;
+    }
+
+    .emoji {
+      display: block;
+    }
   </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.0/es5/tex-mml-chtml.js" integrity="sha384-..."
     crossorigin="anonymous"></script>
@@ -269,7 +330,8 @@
             <div class="box">
               <h4>Single-Turn</h4>
               <p> In a single-turn interaction, assistant can fulfill a user's request by making one function call.
-                These requests are typically straightforward, self-contained, and state-agnostic (i.e., do not rely on prior context).
+                These requests are typically straightforward, self-contained, and state-agnostic (i.e., do not rely on
+                prior context).
               </p>
             </div>
 
@@ -277,7 +339,10 @@
             <div class="box">
               <h4>Multi-Step</h4>
               <p>
-                Multi-step interactions require the assistant to execute multiple internal function calls to address a single user request. This process reflects the assistant's ability to proactively plan and gather information to deliver a comprehensive response. The user only interacts with the model once (at the very beginning), and the model then interacts with the system back-and-forth to complete the task.
+                Multi-step interactions require the assistant to execute multiple internal function calls to address a
+                single user request. This process reflects the assistant's ability to proactively plan and gather
+                information to deliver a comprehensive response. The user only interacts with the model once (at the
+                very beginning), and the model then interacts with the system back-and-forth to complete the task.
               </p>
             </div>
 
@@ -285,7 +350,10 @@
             <div class="box">
               <h4>Multi-Turn</h4>
               <p>
-                Multi-turn interactions involve an extended exchange between the user and the assistant, consisting of multiple conversational turns. Each turn may involve several steps, and the assistant must retain and utilize contextual information from previous exchanges to handle follow-up queries effectively. The user will interact with the model multiple times throughout the process.
+                Multi-turn interactions involve an extended exchange between the user and the assistant, consisting of
+                multiple conversational turns. Each turn may involve several steps, and the assistant must retain and
+                utilize contextual information from previous exchanges to handle follow-up queries effectively. The user
+                will interact with the model multiple times throughout the process.
               </p>
             </div>
           </div>
@@ -416,12 +484,12 @@
         <br>
         <div>
           <h2 id="composition">Dataset Composition</h2>
+          <h3> Newly Introduced Categories</h3>
           <p style="text-align: center; margin-bottom: 0">
             <img src="../assets/img/blog_post_13_data_composition.png" alt="Responsive Image"
               style="max-width: 40%; height: auto;">
             <i style="font-size: 0.9em;">
-              Berkeley Function-Calling
-              Leaderboard (<i>BFCL V3 • Multi-Turn & Multi-Step Function Calling</i>) Data Composition
+              BFCL V3 • Multi-Turn & Multi-Step Function Calling Data Composition
             </i>
           </p>
           <br>
@@ -509,10 +577,233 @@
               <img src="../assets/img/blog_post_13_data_stat_tool.png" alt="Top 15 Tool Usage in BFCL V3"
                 style="width: 100%;">
             </div>
+          </div>
+          <h3> Full Leaderboard Score Composition</h3>
+          <p> The full bfcl v3 leaderboard score is composed of the following components:</p>
+          <div class="table-responsive">
+            <table class="scoring-table">
+              <!-- Row 1: Final Score -->
+              <tr>
+                <th colspan="22" class="level-1">
+                  <span class="emoji">🏆</span> Overall Score
+                  <div class="note">Unweighted Average</div>
+                </th>
+              </tr>
 
+              <!-- Row 2: Main Categories -->
+              <tr>
+                <th colspan="12" class="level-2 section-non-live">
+                  <span class="emoji">📂</span> Non-Live (Single-Turn)
+                  <div class="note">Unweighted Average</div>
+                </th>
+                <th colspan="6" class="level-2 section-live">
+                  <span class="emoji">💡</span> Live (Single-Turn)
+                  <div class="note">Weighted Average</div>
+                </th>
+                <th colspan="4" class="level-2">
+                  <span class="emoji">🔄</span> Multi-Turn
+                  <div class="note">Unweighted Average</div>
+                </th>
+              </tr>
+
+              <!-- Row 3: Sub-Categories -->
+              <tr>
+                <!-- Non-Live Section -->
+                <th colspan="6" class="level-3">
+                  <span class="emoji">🌳</span> AST
+                  <div class="note">Unweighted Average</div>
+                </th>
+                <th colspan="5" class="level-3">
+                  <span class="emoji">🚀</span> Exec
+                  <div class="note">Unweighted Average</div>
+                </th>
+                <th colspan="1" class="level-3 section-non-live">
+                  <span class="emoji">🧐</span> Relevance Detection
+                </th>
+
+                <!-- Live Section -->
+                <th colspan="4" class="level-3">
+                  <span class="emoji">🌳</span> AST
+                  <div class="note">Weighted Average</div>
+                </th>
+                <th colspan="2" class="level-3 section-live">
+                  <span class="emoji">🧐</span> Relevance Detection
+                  <div class="note">Independent Categories</div>
+                </th>
+
+                <!-- Multi-Turn Section -->
+                <th colspan="1" class="level-3">
+                  <span class="emoji">📝</span> Base Case
+                  <div class="note"></div>
+                </th>
+                <th colspan="3" class="level-3">
+                  <span class="emoji">🔍</span> Augmented Entries
+                  <div class="note">Independent Categories</div>
+                </th>
+              </tr>
+
+              <!-- Row 4: Detailed Categories -->
+              <tr>
+                <!-- Non-Live > AST -->
+                <th colspan="3" class="level-4">
+                  <span class="emoji">🤏</span> Simple
+                  <div class="note">Unweighted Average</div>
+                </th>
+                <th class="level-4">
+                  <span class="emoji">📦</span> Multiple
+                </th>
+                <th class="level-4">
+                  <span class="emoji">🔀</span> Parallel
+                </th>
+                <th class="level-4">
+                  <span class="emoji">📦🔀</span> Parallel Multiple
+                </th>
+
+                <!-- Non-Live > Exec -->
+                <th colspan="2" class="level-4">
+                  <span class="emoji">🤏</span> Simple
+                  <div class="note">Unweighted Average</div>
+                </th>
+                <th class="level-4">
+                  <span class="emoji">📦</span> Multiple
+                </th>
+                <th class="level-4">
+                  <span class="emoji">🔀</span> Parallel
+                </th>
+                <th class="level-4">
+                  <span class="emoji">📦🔀</span> Parallel Multiple
+                </th>
+
+                <!-- Non-Live > Irrelevance -->
+                <th class="level-4 section-non-live">
+                  <span class="note na"></span>
+                </th>
+
+                <!-- Live > LiveAST -->
+                <th class="level-4">
+                  <span class="emoji">🤏</span> Simple
+                </th>
+                <th class="level-4">
+                  <span class="emoji">📦</span> Multiple
+                </th>
+                <th class="level-4">
+                  <span class="emoji">🔀</span> Parallel
+                </th>
+                <th class="level-4">
+                  <span class="emoji">📦🔀</span> Parallel Multiple
+                </th>
+
+                <!-- Live > RelScore -->
+                <th class="level-4">
+                  <span class="note na"></span>
+                </th>
+                <th class="level-4 section-live">
+                  <span class="note na"></span>
+                </th>
+
+                <!-- Multi-Turn Section -->
+                <th class="level-4">
+                  <span class="note na"></span>
+                </th>
+                <th class="level-4">
+                  <span class="note na"></span>
+                </th>
+                <th class="level-4">
+                  <span class="note na"></span>
+                </th>
+                <th class="level-4">
+                  <span class="note na"></span>
+                </th>
+              </tr>
+
+              <!-- Row 5: Lowest Level Details -->
+              <tr>
+                <!-- Non-Live > AST > SimpleAST -->
+                <th class="level-5">
+                  <span class="emoji">🐍</span> Python Simple AST
+                </th>
+                <th class="level-5">
+                  <span class="emoji">☕</span> Java Simple AST
+                </th>
+                <th class="level-5">
+                  <span class="emoji">💻</span> JavaScript Simple AST
+                </th>
+
+                <!-- Non-Live AST other categories -->
+                <th class="level-5">
+                  <span class="emoji">🐍</span> Python Multiple AST
+                </th>
+                <th class="level-5">
+                  <span class="emoji">🐍</span> Python Parallel AST
+                </th>
+                <th class="level-5">
+                  <span class="emoji">🐍</span> Python Parallel Multiple AST
+                </th>
+
+                <!-- Non-Live > Exec > SimpleExec -->
+                <th class="level-5">
+                  <span class="emoji">🐍</span> Python Simple Exec
+                </th>
+                <th class="level-5">
+                  <span class="emoji">🌐</span> REST API Exec
+                </th>
+
+                <!-- Non-Live Exec other categories -->
+                <th class="level-5">
+                  <span class="emoji">🐍</span> Python Multiple Exec
+                </th>
+                <th class="level-5">
+                  <span class="emoji">🐍</span> Python Parallel Exec
+                </th>
+                <th class="level-5">
+                  <span class="emoji">🐍</span> Python Parallel Multiple Exec
+                </th>
+
+                <!-- Non-Live Irrelevance -->
+                <th class="level-5 section-non-live">
+                  <span class="emoji">❌</span> Irrelevance
+                </th>
+
+                <!-- Live AST categories -->
+                <th class="level-5">
+                  <span class="emoji">🐍</span> Python Live Simple AST
+                </th>
+                <th class="level-5">
+                  <span class="emoji">🐍</span> Python Live Multiple AST
+                </th>
+                <th class="level-5">
+                  <span class="emoji">🐍</span> Python Live Parallel AST
+                </th>
+                <th class="level-5">
+                  <span class="emoji">🐍</span> Python Live Parallel Multiple AST
+                </th>
+
+                <!-- Live RelScore categories -->
+                <th class="level-5">
+                  <span class="emoji">✅</span> Live Relevance
+                </th>
+                <th class="level-5 section-live">
+                  <span class="emoji">❌</span> Live Irrelevance
+                </th>
+
+                <!-- Multi-Turn categories -->
+                <th class="level-5">
+                  <span class="emoji">📝</span> Python Multi Turn Base
+                </th>
+                <th class="level-5">
+                  <span class="emoji">🔍</span> Python Multi Turn Missing Function
+                </th>
+                <th class="level-5">
+                  <span class="emoji">⚠️</span> Python Multi Turn Missing Parameter
+                </th>
+                <th class="level-5">
+                  <span class="emoji">📜</span> Python Multi Turn Long Context
+                </th>
+              </tr>
+            </table>
           </div>
 
-          <div></div>
+          <br>
           <h2 id="curation">Data Curation Methodology</h2>
           <p>In this section, we detail our data curation methodology for the <i>BFCL V3 • Multi-Turn & Multi-Step</i>
             dataset. The dataset curation
