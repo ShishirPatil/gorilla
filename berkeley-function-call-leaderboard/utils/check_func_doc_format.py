@@ -129,14 +129,13 @@ def format_checker(func_description: dict):
                 f"The parameter '{param_name}' is a required parameter and should not have a 'default' field.",
             )
 
-    # Don't mandate default values for optional parameters
-    # for param_name in all_param:
-    #     if param_name not in required:
-    #         if "default" not in properties[param_name]:
-    #             return (
-    #                 False,
-    #                 f"The parameter '{param_name}' is an optional parameter and should have a 'default' field with the default value in the correct type.",
-    #             )
+    for param_name in all_param:
+        if param_name not in required:
+            if "default" not in properties[param_name]:
+                return (
+                    False,
+                    f"The parameter '{param_name}' is an optional parameter and should have a 'default' field with the default value in the correct type.",
+                )
 
     return True, "Function description is correctly formatted.✅"
 
@@ -174,12 +173,11 @@ def param_checker(properties: dict):
                 f"The parameter '{param_name}' should contain a field 'type' with the parameter type. Allowed types are: {AVAILABLE_TYPES}. No other types are allowed.",
             )
 
-        # Parameter description is optional
-        # if "description" not in param_details:
-        #     return (
-        #         False,
-        #         f"The parameter '{param_name}' should contain a field 'description' with a description of the parameter.",
-        #     )
+        if "description" not in param_details:
+            return (
+                False,
+                f"The parameter '{param_name}' should contain a field 'description' with a description of the parameter.",
+            )
 
         if param_name in all_param:
             return (
@@ -283,6 +281,16 @@ def param_checker(properties: dict):
                         False,
                         f"The enum value {repr(enum_value)} is not of type {param_details['type']}. Expected {TYPE_MAP[param_details['type']]}, got {type(enum_value)}.",
                     )
+
+        if "default" in param_details:
+            if (
+                param_details["type"] != "any"
+                and type(param_details["default"]) != TYPE_MAP[param_details["type"]]
+            ):
+                return (
+                    False,
+                    f"The default value {repr(param_details['default'])} for the parameter '{param_name}' is not of type {param_details['type']}. Expected {TYPE_MAP[param_details['type']]}, got {type(param_details['default'])}.",
+                )
 
         all_param.append(param_name)
 
