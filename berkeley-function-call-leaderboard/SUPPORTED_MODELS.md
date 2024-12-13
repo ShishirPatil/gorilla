@@ -43,8 +43,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |nova-pro-v1.0| Function Calling|
 |nova-lite-v1.0| Function Calling|
 |nova-macro-v1.0| Function Calling|
-|command-r-plus-FC | Function Calling|
-|command-r-plus | Prompt|
+|command-r7b-12-2024-FC | Function Calling|
 |databrick-dbrx-instruct | Prompt|
 |firefunction-{v1,v2}-FC | Function Calling|
 |yi-large-fc | Function Calling|
