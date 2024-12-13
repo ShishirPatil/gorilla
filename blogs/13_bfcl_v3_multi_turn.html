@@ -189,7 +189,7 @@
           <li><a href="13_bfcl_v3_multi_turn.html#composition">Dataset Composition</a></li>
           <li><a href="13_bfcl_v3_multi_turn.html#curation">Data Curation</a></li>
           <li><a href="13_bfcl_v3_multi_turn.html#validation">Data Validation</a></li>
-          <li><a href="13_bfcl_v3_multi_turn.html#inference">Model Inference & Execution</a></li>
+          <li><a href="13_bfcl_v3_multi_turn.html#inference">Model Inference Process</a></li>
           <li><a href="13_bfcl_v3_multi_turn.html#evaluation">Evaluation Metrics</a></li>
           <li><a href="13_bfcl_v3_multi_turn.html#result">Result & Error Analysis</a></li>
           <li class="more-blogs">
@@ -496,61 +496,64 @@
           <ul>
             <li>
               <strong>Base Multi-Turn (200)</strong>: This category covers the foundational yet sufficiently diverse
-              basic multi-turn interactions. In this category, we provide complete information to call each
-              function (either through current turn question, execution result from previous turn, or initial state
-              configuration)
+              basic multi-turn interactions. In this category, we provide all the necessary information--whether from
+              the user request message, execution result from previous turn, or the output of exploratory functions--to
+              complete the task. The model is expected to handle the multi-turn interaction without any ambiguity.
             </li>
             <li>
-              <strong>Augmented Multi-Turn (800)</strong>: This category introduce additional complexity, such as
+              <strong>Augmented Multi-Turn (800)</strong>: These categories introduce additional complexity, such as
               ambiguous prompts or situations
-              where the model must process multiple pieces of information across turns (similar to Multihop QA),
-              requiring models to
-              handle more nuanced decision-making, disambiguation, and conditional logic across multiple turns.
+              where the model must process multiple pieces of information across turns (similar to Multihop QA).
+              Models must demonstrate more nuanced decision-making, disambiguation, and conditional logic across
+              multiple turns.
+              The following four sub-categories are included in the Augmented Multi-Turn dataset:
               <ul>
-                <strong>Missing Parameters (200)</strong>: This dataset challenges the model to identify required
-                missing information that cannot be retrieved
-                elsewhere in the system. In this scenario, we expect the LLM to ask for a follow-up to clarify the
-                misinformation.
-                This is distinct from certain entries in the Core Multi-Turn dataset where the question has implicit
-                intent that can be
-                answered by referencing the backend system.
-              </ul>
-              <ul>
-                <strong>Missing Functions (200)</strong>: This scenario denotes when we expect the model to recognize
-                that no action
-                should be taken given the lack of functions provided. If the LLM raises that concern, we then supply it
-                with the hold-out
-                functions that can successfully perform user intended tasks. Note that the Core dataset and the Missing
-                Function dataset
-                essentially contains the same sequence of actions except for the latter we hold-out a subset of
-                functions on execution path to
-                further challenge the model's inference ability.
-              </ul>
-              <ul>
-                <strong>Long-Context Multi-Turn (200)</strong>: This dataset challenges the model's resilience in long
-                context scenarios on function
-                calling. We inject random objects (e.g. hundreds of files in one directory or thousands of booking
-                records) to mimic real world API output,
-                which tend to be overtly informative. Here, we aim to test the model's ability to grasp the core
-                information from an overwhelmingly large context.
-              </ul>
-              <ul>
-                <strong>Composite (200)</strong>: Composite Category seeks to combine all three scenarios above to
-                create an exceptionally
-                hard challenge that, despite being rare, is important to handle when using autonomous agents at scale.
-                Through this category,
-                we want to convince the audience that a good model performance in this category offers a strong signal
-                that LLMs can function as autonomous
-                agents at scale despite rare and extremely difficult scenarios.
+                <li>
+
+
+                  <strong>Missing Parameters (200)</strong>: Tests the model's ability to recognize when essential
+                  information is missing from the user request and cannot be inferred from the system. In these cases,
+                  the
+                  model should
+                  request clarification rather than making unwarranted assumptions. This differs from cases in
+                  the Base Multi-Turn set, where implicit intentions can be resolved by referencing the backend system.
+                </li>
+                <li>
+
+                  <strong>Missing Functions (200)</strong>: Requires the model to identify that no available function
+                  can fulfill the user request. Once the model indicates this issue, we provide the missing functions in
+                  the next turn.
+                  Compared to the Base dataset, this scenario withholds a subset of functions at the beginning,
+                  challenging the model
+                  to infer the need for additional functions.
+                </li>
+                <li>
+                  <strong>Long-Context Multi-Turn (200)</strong>: Challenges the model's ability to maintain accuracy
+                  and relevance in lengthy, information-dense contexts. We introduce large volumes of extraneous data
+                  (e.g., hundreds of files or thousands of records) to test how well the model can extract crucial
+                  details from an overwhelming array of information.
+                </li>
+                <li>
+                  <strong>Composite (200)</strong>: Combines all three augmented challenges—Missing Parameters,
+                  Missing Functions, and Long-Context—into a single, highly complex scenario. While rare, success here
+                  strongly indicates that the model can function effectively as an autonomous agent at scale, even in
+                  intricate and demanding conditions.
+                </li>
               </ul>
             </li>
+          </ul>
+          </li>
           </ul>
           <br>
 
           <div style="text-align: center; width: 100%;">
             <img src="../assets/img/blog_post_13_multi_turn_examples.png" alt="Examples"
               style="max-width: 100%; width: 100%; margin-bottom: 20px;">
+            <i style="font-size: 0.9em;">
+              An example of how the missing parameter and missing function are augmented from the base entries.
+            </i>
           </div>
+          <br>
 
           <p>Here we visualize the data statistics of the <i>BFCL V3 Base Multi Turn</i> dataset (the augmented
             categories follow similar distributions):</p>
@@ -578,7 +581,7 @@
                 style="width: 100%;">
             </div>
           </div>
-          <h3> Full Leaderboard Score Composition</h3>
+          <h3 id="leaderboard-composition"> Full Leaderboard Score Composition</h3>
           <p> The full bfcl v3 leaderboard score is composed of the following components:</p>
           <div class="table-responsive">
             <table class="scoring-table">
@@ -1059,7 +1062,7 @@
 
         </div>
         <div>
-          <h2 id="inference">Model Inference & Execution</h2>
+          <h2 id="inference">Model Inference Process</h2>
           <h4>Initialization</h4>
           <p> Each entry comes with its own <code>initial_config</code>, which is used to initialize the API backend
             state. For example, a file system backend might start with a set of pre-existing files, and a messaging API
