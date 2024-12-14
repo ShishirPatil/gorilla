@@ -785,8 +785,9 @@ form.addEventListener("submit", (e) => {
 });
 
 const shown_model_list = [
-    "Claude-3.5-Sonnet-20240620 (FC)",
-    "Gorilla-OpenFunctions-v2 (FC)",
+    "Claude-3.5-Sonnet-20241022 (FC)",
+    "GPT-4o-2024-11-20 (FC)",
+    "Gemini-1.5-Pro-002 (FC)",
 ];
 const color = [
     "rgb(255, 99, 132)",
