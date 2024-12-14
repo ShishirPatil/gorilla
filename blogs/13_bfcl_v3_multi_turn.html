@@ -581,7 +581,8 @@
             </div>
           </div>
           <h3 id="leaderboard-composition"> Full Leaderboard Score Composition</h3>
-          <p> The full bfcl v3 leaderboard score is composed of the following components:</p>
+          <p> The full bfcl v3 leaderboard score is composed of the following components. Number in the parenthesis
+            indicates the number of entries in each category. </p>
           <div class="table-responsive">
             <table class="scoring-table">
               <!-- Row 1: Final Score -->
@@ -589,6 +590,7 @@
                 <th colspan="22" class="level-1">
                   <span class="emoji">🏆</span> Overall Score
                   <div class="note">Unweighted Average</div>
+                  <div class="note">(4751)</div>
                 </th>
               </tr>
 
@@ -597,14 +599,17 @@
                 <th colspan="12" class="level-2 section-non-live">
                   <span class="emoji">📂</span> Non-Live (Single-Turn)
                   <div class="note">Unweighted Average</div>
+                  <div class="note">(1700)</div>
                 </th>
                 <th colspan="6" class="level-2 section-live">
                   <span class="emoji">💡</span> Live (Single-Turn)
                   <div class="note">Weighted Average</div>
+                  <div class="note">(2251)</div>
                 </th>
                 <th colspan="4" class="level-2">
                   <span class="emoji">🔄</span> Multi-Turn
                   <div class="note">Unweighted Average</div>
+                  <div class="note">(800)</div>
                 </th>
               </tr>
 
@@ -614,33 +619,39 @@
                 <th colspan="6" class="level-3">
                   <span class="emoji">🌳</span> AST
                   <div class="note">Unweighted Average</div>
+                  <div class="note">(1150)</div>
                 </th>
                 <th colspan="5" class="level-3">
                   <span class="emoji">🚀</span> Exec
                   <div class="note">Unweighted Average</div>
+                  <div class="note">(310)</div>
                 </th>
                 <th colspan="1" class="level-3 section-non-live">
                   <span class="emoji">🧐</span> Relevance Detection
+                  <div class="note">(240)</div>
                 </th>
 
                 <!-- Live Section -->
                 <th colspan="4" class="level-3">
                   <span class="emoji">🌳</span> AST
                   <div class="note">Weighted Average</div>
+                  <div class="note">(1351)</div>
                 </th>
                 <th colspan="2" class="level-3 section-live">
                   <span class="emoji">🧐</span> Relevance Detection
                   <div class="note">Independent Categories</div>
+                  <div class="note">(900)</div>
                 </th>
 
                 <!-- Multi-Turn Section -->
                 <th colspan="1" class="level-3">
                   <span class="emoji">📝</span> Base Case
-                  <div class="note"></div>
+                  <div class="note">(200)</div>
                 </th>
                 <th colspan="3" class="level-3">
                   <span class="emoji">🔍</span> Augmented Entries
                   <div class="note">Independent Categories</div>
+                  <div class="note">(600)</div>
                 </th>
               </tr>
 
@@ -723,83 +734,105 @@
                 <!-- Non-Live > AST > SimpleAST -->
                 <th class="level-5">
                   <span class="emoji">🐍</span> Python Simple AST
+                  <div class="note">(400)</div>
                 </th>
                 <th class="level-5">
                   <span class="emoji">☕</span> Java Simple AST
+                  <div class="note">(100)</div>
                 </th>
                 <th class="level-5">
                   <span class="emoji">💻</span> JavaScript Simple AST
+                  <div class="note">(50)</div>
                 </th>
 
                 <!-- Non-Live AST other categories -->
                 <th class="level-5">
                   <span class="emoji">🐍</span> Python Multiple AST
+                  <div class="note">(200)</div>
                 </th>
                 <th class="level-5">
                   <span class="emoji">🐍</span> Python Parallel AST
+                  <div class="note">(200)</div>
                 </th>
                 <th class="level-5">
                   <span class="emoji">🐍</span> Python Parallel Multiple AST
+                  <div class="note">(200)</div>
                 </th>
 
                 <!-- Non-Live > Exec > SimpleExec -->
                 <th class="level-5">
                   <span class="emoji">🐍</span> Python Simple Exec
+                  <div class="note">(100)</div>
                 </th>
                 <th class="level-5">
                   <span class="emoji">🌐</span> REST API Exec
+                  <div class="note">(70)</div>
                 </th>
 
                 <!-- Non-Live Exec other categories -->
                 <th class="level-5">
                   <span class="emoji">🐍</span> Python Multiple Exec
+                  <div class="note">(50)</div>
                 </th>
                 <th class="level-5">
                   <span class="emoji">🐍</span> Python Parallel Exec
+                  <div class="note">(50)</div>
                 </th>
                 <th class="level-5">
                   <span class="emoji">🐍</span> Python Parallel Multiple Exec
+                  <div class="note">(40)</div>
                 </th>
 
                 <!-- Non-Live Irrelevance -->
                 <th class="level-5 section-non-live">
                   <span class="emoji">❌</span> Irrelevance
+                  <div class="note">(240)</div>
                 </th>
 
                 <!-- Live AST categories -->
                 <th class="level-5">
                   <span class="emoji">🐍</span> Python Live Simple AST
+                  <div class="note">(258)</div>
                 </th>
                 <th class="level-5">
                   <span class="emoji">🐍</span> Python Live Multiple AST
+                  <div class="note">(1053)</div>
                 </th>
                 <th class="level-5">
                   <span class="emoji">🐍</span> Python Live Parallel AST
+                  <div class="note">(16)</div>
                 </th>
                 <th class="level-5">
                   <span class="emoji">🐍</span> Python Live Parallel Multiple AST
+                  <div class="note">(24)</div>
                 </th>
 
                 <!-- Live RelScore categories -->
                 <th class="level-5">
                   <span class="emoji">✅</span> Live Relevance
+                  <div class="note">(18)</div>
                 </th>
                 <th class="level-5 section-live">
                   <span class="emoji">❌</span> Live Irrelevance
+                  <div class="note">(882)</div>
                 </th>
 
                 <!-- Multi-Turn categories -->
                 <th class="level-5">
                   <span class="emoji">📝</span> Python Multi Turn Base
+                  <div class="note">(200)</div>
                 </th>
                 <th class="level-5">
                   <span class="emoji">🔍</span> Python Multi Turn Missing Function
+                  <div class="note">(200)</div>
                 </th>
                 <th class="level-5">
                   <span class="emoji">⚠️</span> Python Multi Turn Missing Parameter
+                  <div class="note">(200)</div>
                 </th>
                 <th class="level-5">
                   <span class="emoji">📜</span> Python Multi Turn Long Context
+                  <div class="note">(200)</div>
                 </th>
               </tr>
             </table>
