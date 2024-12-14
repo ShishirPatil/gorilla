@@ -188,7 +188,6 @@
           <li><a href="13_bfcl_v3_multi_turn.html#existing">Existing Tool Calling Dataset </a></li>
           <li><a href="13_bfcl_v3_multi_turn.html#composition">Dataset Composition</a></li>
           <li><a href="13_bfcl_v3_multi_turn.html#curation">Data Curation</a></li>
-          <li><a href="13_bfcl_v3_multi_turn.html#validation">Data Validation</a></li>
           <li><a href="13_bfcl_v3_multi_turn.html#inference">Model Inference Process</a></li>
           <li><a href="13_bfcl_v3_multi_turn.html#evaluation">Evaluation Metrics</a></li>
           <li><a href="13_bfcl_v3_multi_turn.html#result">Result & Error Analysis</a></li>
@@ -946,7 +945,8 @@
             ground truth's quality. </p>
         </div>
         <div>
-          <h2 id="validation">Validation Process</h2>
+          <h3 id="validation">Validation Process</h3>
+          <br>
           <p style="text-align: center; margin-bottom: 0">
             <img src="../assets/img/blog_post_13_data_validation.png" alt="Responsive Image"
               style="max-width: 70%; height: auto;">
@@ -1131,13 +1131,21 @@
         </div>
 
         <div>
-          <h2 id="evaluation">Multi-turn Evaluation Metrics</h2>
-          <p>In <i>BFCL V3 • Multi-Turn & Multi-Step</i>, we employed <strong>state-based</strong> evaluation and
-            <strong>response-based</strong> evaluation to assess the model's performance the multi-turn categories.
+          <h2 id="evaluation">Evaluation Metrics</h2>
+          <p>BFCL V3 has different evaluation metrics for single-turn and multi-turn tasks. </p>
+          <h3 id="single-turn">Single-turn Evaluation Metrics</h3>
+          <p>
+            Single-turn evaluation metrics (i.e., Abstract Syntax Tree (AST) Evaluation, Executable Function Evaluation, and Relevance Detection) are the same as those used in <a href="8_berkeley_function_calling_leaderboard.html#metrics">BFCL v1</a> and  
+            <a href="12_bfcl_v2_live.html#composition">BFCL v2</a>. Please refer to the previous blog posts for more
+            details.
           </p>
-          At the end of <strong>every</strong> turn, we mark an entry as correct if it passes both checks in all turns.
-          Note that force-terminated entries will be marked wrong, even if they pass the checks.
-
+          <h3 id="evaluation">Multi-turn Evaluation Metrics</h3>
+          <p>For multi-turn tasks, two types of checks are used: <strong>state-based</strong> evaluation and
+            <strong>response-based</strong> evaluation.
+          </p>
+          These two checks are run at the end of every turn.
+          An entry is marked as correct if it passes <i>both</i> checks in <i>all</i> turns.
+          Note that force-terminated entries will be marked wrong, even if they happen to pass the checks.
           <ol>
             <li>
               <p>
@@ -1227,9 +1235,9 @@
               Example trajectory in multi-turn function calling that would fail in response-based evaluation but
               succeed in state-based evaluation.
             </i>
-            <br>
           </p>
-          <p>The question asks about purchasing Nvidia stock, and in order to do this, relevant stock information like
+          <br>
+          <p>In the above example, the question asks about purchasing Nvidia stock, and in order to do this, relevant stock information like
             its current price must be retrieved. In the ground truth, the <code>get_stock_info</code> function is
             invoked, with the stock symbol value (provided in the question) passed in. However, the model does not
             know that the value in the question is indeed the stock symbol, so it tries to first retrieve the symbol
