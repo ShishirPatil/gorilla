@@ -59,14 +59,16 @@ def get_response(get_response_input, api_key):
     
     try:
         if "gpt" in model:
-            openai.api_key = api_key
-            responses = openai.ChatCompletion.create(
+            client = openai.OpenAI(
+                api_key=api_key,
+            )
+            responses = client.chat.completions.create(
                 model=model,
                 messages=question,
-                n=1,
+                n = 1,
                 temperature=0,
             )
-            response = responses['choices'][0]['message']['content']
+            response = responses.choices[0].message.content
         elif "claude" in model:
             client = anthropic.Anthropic(api_key=api_key)
             responses = client.completions.create(
