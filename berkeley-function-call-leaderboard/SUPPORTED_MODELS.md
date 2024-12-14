@@ -79,7 +79,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |NousResearch/Hermes-2-Pro-Llama-3-{8B,70B} 💻| Function Calling|
 |NousResearch/Hermes-2-Pro-Mistral-7B 💻| Function Calling|
 |NousResearch/Hermes-2-Theta-Llama-3-{8B,70B} 💻| Function Calling|
-|MadeAgents/Hammer2.0-{7b,3b,1.5b,0.5b} 💻| Function Calling|
+|MadeAgents/Hammer2.1-{7b,3b,1.5b,0.5b} 💻| Function Calling|
 |openbmb/MiniCPM3-4B-FC 💻| Function Calling|
 |openbmb/MiniCPM3-4B 💻| Prompt|
 |THUDM/glm-4-9b-chat 💻| Function Calling|
