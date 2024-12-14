@@ -1,0 +1,195 @@
+[
+    {
+      "user_name": "halukdemirhan",
+      "api_name": "Gmail API - Send Email",
+      "api_call": "gmail.users.messages.send(userId={userId}, body={emailBody})",
+      "api_version": "v1",
+      "api_arguments": {
+        "userId": "The user's email address or 'me' for the authenticated user",
+        "emailBody": "The email content in raw format, encoded in Base64URL"
+      },
+      "functionality": "Send an email message via Gmail",
+      "env_requirements": ["google-auth", "google-auth-oauthlib", "google-auth-httplib2", "google-api-python-client"],
+      "example_code": "from googleapiclient.discovery import build \n from google.oauth2.credentials import Credentials \n service = build('gmail', 'v1', credentials=Credentials) \n message = {'raw': 'base64_encoded_email'} \n sent_message = service.users().messages().send(userId='me', body=message).execute()",
+      "meta_data": {
+        "description": "The Gmail API allows users to send emails using their Gmail account programmatically. This API integrates seamlessly with Google services and allows sending emails with attachments and in various formats.",
+        "documentation_link": "https://developers.google.com/gmail/api/v1/reference/users/messages/send"
+      },
+      "questions": [
+        "How can I automate sending emails for appointment reminders?",
+        "Is there a way to send emails from my application using my Gmail account?"
+      ]
+    },
+    {
+        "user_name": "halukdemirhan",
+        "api_name": "Gmail API - Delete Email",
+        "api_call": "gmail.users.messages.delete(userId={userId}, id={emailId})",
+        "api_version": "v1",
+        "api_arguments": {
+          "userId": "The user's email address or 'me' for the authenticated user",
+          "emailId": "The ID of the email to be deleted"
+        },
+        "functionality": "Delete an email message from Gmail",
+        "env_requirements": ["google-auth", "google-auth-oauthlib", "google-auth-httplib2", "google-api-python-client"],
+        "example_code": "from googleapiclient.discovery import build \n from google.oauth2.credentials import Credentials \n service = build('gmail', 'v1', credentials=Credentials) \n service.users().messages().delete(userId='me', id='email_id').execute()",
+        "meta_data": {
+          "description": "The Gmail API provides functionality to delete emails from a user's Gmail account. This can be used to programmatically manage emails, including automated clean-up and organization tasks.",
+          "documentation_link": "https://developers.google.com/gmail/api/v1/reference/users/messages/delete"
+        },
+        "questions": [
+          "How can I automatically delete emails from a specific sender?",
+          "Is there a way to programmatically manage my Gmail inbox?"
+        ]
+      },
+      {
+        "user_name": "halukdemirhan",
+        "api_name": "Slack API - Send Message",
+        "api_call": "slack.chat.postMessage(token={token}, channel={channel}, text={text})",
+        "api_version": "Latest",
+        "api_arguments": {
+          "token": "Authentication token with required scopes",
+          "channel": "Channel, private group, or IM channel ID or name to send message to",
+          "text": "Text of the message to send"
+        },
+        "functionality": "Send a message to a specified channel or user in Slack",
+        "env_requirements": ["slackclient"],
+        "example_code": "import slack \n client = slack.WebClient(token='your-token') \n response = client.chat_postMessage(channel='#general', text='Hello world!')",
+        "meta_data": {
+          "description": "Slack API's chat.postMessage method allows users to send a message to a specified channel, private group, or direct message. It is widely used for automated notifications and bot interactions within Slack.",
+          "documentation_link": "https://api.slack.com/methods/chat.postMessage"
+        },
+        "questions": [
+          "How can I automate sending notifications to my team's Slack channel?",
+          "Is there a way for a bot to post messages in Slack channels?"
+        ]
+      },
+      {
+        "user_name": "halukdemirhan",
+        "api_name": "Slack API - Delete Message",
+        "api_call": "slack.chat.delete(token={token}, channel={channel}, ts={timestamp})",
+        "api_version": "Latest",
+        "api_arguments": {
+          "token": "Authentication token with required scopes",
+          "channel": "Channel, private group, or IM channel ID or name from which to delete a message",
+          "timestamp": "Timestamp of the message to be deleted"
+        },
+        "functionality": "Delete a message from a specified channel or user in Slack",
+        "env_requirements": ["slackclient"],
+        "example_code": "import slack \n client = slack.WebClient(token='your-token') \n response = client.chat_delete(channel='#general', ts='message_timestamp')",
+        "meta_data": {
+          "description": "Slack API's chat.delete method allows users to delete a message from a channel or direct message. This is useful for correcting mistakes or managing bot messages programmatically.",
+          "documentation_link": "https://api.slack.com/methods/chat.delete"
+        },
+        "questions": [
+          "How can I remove a mistakenly sent message in a Slack channel?",
+          "Is it possible for a bot to delete its own messages in Slack?"
+        ]
+      },
+      {
+        "user_name": "halukdemirhan",
+        "api_name": "Stripe API - Create Payment Intent",
+        "api_call": "stripe.PaymentIntent.create(amount={amount}, currency={currency}, automatic_payment_methods={automatic_payment_methods})",
+        "api_version": "Latest",
+        "api_arguments": {
+          "amount": "Amount to be charged in the smallest currency unit (e.g., cents for USD)",
+          "currency": "Three-letter ISO currency code representing the currency",
+          "automatic_payment_methods": "Object indicating if automatic payment methods are enabled"
+        },
+        "functionality": "Create a payment intent to initiate a payment process",
+        "env_requirements": ["stripe"],
+        "example_code": "import stripe \n stripe.api_key = 'your-api-key' \n payment_intent = stripe.PaymentIntent.create( \n amount=2000, \n currency='usd', \n automatic_payment_methods={'enabled': True})",
+        "meta_data": {
+          "description": "Stripe's PaymentIntent API is used to create payment intents, which are required to handle complex payment flows including multiple payment methods and dynamic payment behaviors.",
+          "documentation_link": "https://stripe.com/docs/api/payment_intents/create"
+        },
+        "questions": [
+          "How can I initiate a payment process for an online purchase?",
+          "What's the method to handle payments with various currency options?"
+        ]
+      },
+      {
+        "user_name": "halukdemirhan",
+        "api_name": "Stripe API - Cancel Payment Intent",
+        "api_call": "stripe.PaymentIntent.cancel(payment_intent_id={payment_intent_id})",
+        "api_version": "Latest",
+        "api_arguments": {
+          "payment_intent_id": "The ID of the payment intent to cancel"
+        },
+        "functionality": "Cancel an existing payment intent",
+        "env_requirements": ["stripe"],
+        "example_code": "import stripe \n stripe.api_key = 'your-api-key' \n canceled_intent = stripe.PaymentIntent.cancel('pi_xxxxxxxxxxxxx')",
+        "meta_data": {
+          "description": "Stripe's PaymentIntent.cancel method allows for canceling a previously created payment intent. This is useful for handling situations where a payment needs to be aborted due to various reasons like customer request, inventory issues, or fraud detection.",
+          "documentation_link": "https://stripe.com/docs/api/payment_intents/cancel"
+        },
+        "questions": [
+          "How can I abort a payment process if the customer changes their mind?",
+          "What is the approach to cancel a payment due to stock unavailability?"
+        ]
+      },
+      {
+        "user_name": "halukdemirhan",
+        "api_name": "Google Calendar API - Insert Event",
+        "api_call": "google_calendar_service.events().insert(calendarId={calendarId}, body={eventBody})",
+        "api_version": "v3",
+        "api_arguments": {
+          "calendarId": "ID of the calendar where the event will be added",
+          "eventBody": "Object containing event details like summary, location, start time, end time"
+        },
+        "functionality": "Insert a new event into a specified Google Calendar",
+        "env_requirements": ["google-auth", "google-auth-oauthlib", "google-auth-httplib2", "google-api-python-client"],
+        "example_code": "from googleapiclient.discovery import build \n from google.oauth2.credentials import Credentials \n service = build('calendar', 'v3', credentials=Credentials) \n event = {'summary': 'Example Event', 'location': '800 Howard St., San Francisco, CA 94103', 'start': {'dateTime': '2024-01-30T09:00:00-07:00'}, 'end': {'dateTime': '2024-01-30T17:00:00-07:00'}} \n created_event = service.events().insert(calendarId='primary', body=event).execute()",
+        "meta_data": {
+          "description": "Google Calendar API's events.insert method allows users to add new events to their calendar. This API is widely used for programmatically managing calendar events, including scheduling and invitations.",
+          "documentation_link": "https://developers.google.com/calendar/api/v3/reference/events/insert"
+        },
+        "questions": [
+          "How can I automate adding business meetings to my Google Calendar?",
+          "What's the best way to programmatically schedule events in Google Calendar?"
+        ]
+      },
+      {
+        "user_name": "halukdemirhan",
+        "api_name": "Google Calendar API - Delete Event",
+        "api_call": "google_calendar_service.events().delete(calendarId={calendarId}, eventId={eventId})",
+        "api_version": "v3",
+        "api_arguments": {
+          "calendarId": "ID of the calendar from which the event will be deleted",
+          "eventId": "ID of the event to be deleted"
+        },
+        "functionality": "Delete an event from a specified Google Calendar",
+        "env_requirements": ["google-auth", "google-auth-oauthlib", "google-auth-httplib2", "google-api-python-client"],
+        "example_code": "from googleapiclient.discovery import build \n from google.oauth2.credentials import Credentials \n service = build('calendar', 'v3', credentials=Credentials) \n service.events().delete(calendarId='primary', eventId='event_id').execute()",
+        "meta_data": {
+          "description": "Google Calendar API's events.delete method allows users to delete events from their calendar. This is useful for managing and updating calendar events programmatically.",
+          "documentation_link": "https://developers.google.com/calendar/api/v3/reference/events/delete"
+        },
+        "questions": [
+          "How can I remove a canceled meeting from my Google Calendar automatically?",
+          "Is there a way to clean up past events from a Google Calendar programmatically?"
+        ]
+      },
+      {
+        "user_name": "halukdemirhan",
+        "api_name": "DoorDash API - Create Delivery",
+        "api_call": "requests.post(url={endpoint}, headers={headers}, json={request_body})",
+        "api_version": "v2",
+        "api_arguments": {
+          "endpoint": "Endpoint URL for creating deliveries",
+          "headers": "Headers including Authorization token and content type",
+          "request_body": "Details of the delivery such as addresses, phone numbers, and instructions"
+        },
+        "functionality": "Create a new delivery request with pickup and dropoff details",
+        "env_requirements": ["requests"],
+        "example_code": "import requests \n token = 'your-token' \n endpoint = 'https://openapi.doordash.com/drive/v2/deliveries/' \n headers = {'Accept-Encoding': 'application/json', 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json'} \n request_body = {'external_delivery_id': 'D-12345', 'pickup_address': '901 Market Street 6th Floor San Francisco, CA 94103', ...} \n create_delivery = requests.post(endpoint, headers=headers, json=request_body)",
+        "meta_data": {
+          "description": "DoorDash API's delivery creation endpoint allows for the scheduling of pickup and delivery services, useful for automating delivery requests.",
+          "documentation_link": "https://developer.doordash.com/en-US/docs/drive/tutorials/get_started/"
+        },
+        "questions": [
+          "How can I integrate an automated delivery system in my restaurant's app using DoorDash?",
+          "What's the method for programmatically scheduling deliveries with specific instructions?"
+        ]
+      }
+]
+  
