@@ -2,6 +2,11 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Dec 13, 2024] [#832](https://github.com/ShishirPatil/gorilla/pull/832): Add the following new models to the leaderboard:
+  - `MadeAgents/Hammer2.1-7b`
+  - `MadeAgents/Hammer2.1-3b`
+  - `MadeAgents/Hammer2.1-1.5b`
+  - `MadeAgents/Hammer2.1-0.5b`
 - [Dec 9, 2024] [#822](https://github.com/ShishirPatil/gorilla/pull/822): Add the following new models to the leaderboard:
   - `gpt-4o-2024-11-20`
   - `gpt-4o-2024-11-20-FC`
