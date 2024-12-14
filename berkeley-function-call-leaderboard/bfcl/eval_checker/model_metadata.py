@@ -601,27 +601,27 @@ MODEL_METADATA_MAPPING = {
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "MadeAgents/Hammer2.0-7b": [
-        "Hammer2.0-7b (FC)",
-        "https://huggingface.co/MadeAgents/Hammer2.0-7b",
+    "MadeAgents/Hammer2.1-7b": [
+        "Hammer2.1-7b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.1-7b",
         "MadeAgents",
         "cc-by-nc-4.0",
     ],
-    "MadeAgents/Hammer2.0-3b": [
-        "Hammer2.0-3b (FC)",
-        "https://huggingface.co/MadeAgents/Hammer2.0-3b",
+    "MadeAgents/Hammer2.1-3b": [
+        "Hammer2.1-3b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.1-3b",
+        "MadeAgents",
+        "qwen-research",
+    ],
+    "MadeAgents/Hammer2.1-1.5b": [
+        "Hammer2.1-1.5b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.1-1.5b",
         "MadeAgents",
         "cc-by-nc-4.0",
     ],
-    "MadeAgents/Hammer2.0-1.5b": [
-        "Hammer2.0-1.5b (FC)",
-        "https://huggingface.co/MadeAgents/Hammer2.0-1.5b",
-        "MadeAgents",
-        "cc-by-nc-4.0",
-    ],
-    "MadeAgents/Hammer2.0-0.5b": [
-        "Hammer2.0-0.5b (FC)",
-        "https://huggingface.co/MadeAgents/Hammer2.0-0.5b",
+    "MadeAgents/Hammer2.1-0.5b": [
+        "Hammer2.1-0.5b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.1-0.5b",
         "MadeAgents",
         "cc-by-nc-4.0",
     ],
