@@ -1,0 +1,1914 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: All Collections",
+        "api_call": "https://api.getpostman.com/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The `/collections` endpoint returns a list of all [collections](https://www.getpostman.com/docs/collections) that are accessible by you. The list includes your own collections"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Single Collection ",
+        "api_call": "https://api.getpostman.com/collections/{{collection_uid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Access the contents of a collection that is accessible to you using its unique id (`uid`).\n\n> Requires <a href=\"#authentication\">API Key</a>"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Create Collection",
+        "api_call": "https://api.getpostman.com/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"collection\": {\n        \"info\": {\n            \"name\": \"Sample Collection 743\",\n            \"description\": \"This is just a sample collection.\",\n            \"schema\": \"https://schema.getpostman.com/json/collection/v2.1.0/collection.json\"\n        },\n        \"item\": [\n            {\n                \"name\": \"This is a folder\",\n                \"item\": [\n                    {\n                        \"name\": \"Sample POST Request\",\n                        \"request\": {\n                            \"url\": \"https://postman-echo.com/post\",\n                            \"method\": \"POST\",\n                            \"header\": [\n                                {\n                                    \"key\": \"Content-Type\",\n                                    \"value\": \"application/json\"\n                                }\n                            ],\n                            \"body\": {\n                                \"mode\": \"raw\",\n                                \"raw\": \"{\\\"data\\\": \\\"123\\\"}\"\n                            },\n                            \"description\": \"This is a sample POST Request\"\n                        }\n                    }\n                ]\n            },\n            {\n                \"name\": \"Sample GET Request\",\n                \"request\": {\n                    \"url\": \"https://postman-echo/get\",\n                    \"method\": \"GET\",\n                    \"description\": \"This is a sample GET Request\"\n                }\n            }\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "This endpoint allows you to create collections using the Postman Collection v2 format. For more information about the v2 schema,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Update Collection",
+        "api_call": "https://api.getpostman.com/collections/{{collection_uid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"collection\": {\n        \"info\": {\n            \"name\": \"Sample Collection 799\",\n            \"description\": \"This is just a sample collection.\",\n            \"_postman_id\": \"174bad7c-07e3-45f3-914f-36cf84e5586f\",\n            \"schema\": \"https://schema.getpostman.com/json/collection/v2.1.0/collection.json\"\n        },\n        \"item\": [\n            {\n                \"name\": \"This is a folder\",\n                \"item\": [\n                    {\n                        \"name\": \"Sample POST Request\",\n                        \"request\": {\n                            \"url\": \"https://postman-echo.com/post\",\n                            \"method\": \"POST\",\n                            \"header\": [\n                                {\n                                    \"key\": \"Content-Type\",\n                                    \"value\": \"application/json\"\n                                }\n                            ],\n                            \"body\": {\n                                \"mode\": \"raw\",\n                                \"raw\": \"{\\\"data\\\": \\\"123\\\"}\"\n                            },\n                            \"description\": \"This is a sample POST Request\"\n                        }\n                    }\n                ]\n            },\n            {\n                \"name\": \"Sample GET Request\",\n                \"request\": {\n                    \"url\": \"https://postman-echo/get\",\n                    \"method\": \"GET\",\n                    \"description\": \"This is a sample GET Request\"\n                }\n            }\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "This endpoint allows you to update an existing collection using the Postman Collection v2 format. For more information about the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Delete Collection",
+        "api_call": "https://api.getpostman.com/collections/{{collection_uid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This endpoint allows you to delete an existing collection.\n\nOn successful deletion of the collection, the response returns the `id` and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Create a Fork",
+        "api_call": "https://api.getpostman.com/collections/fork/{{collection_uid}}?workspace={{workspace_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"name\": \"Fork name\"\n}"
+            }
+        },
+        "functionality": "This endpoint allows you to create a fork from an existing collection.\n\nOn successful creation of the collection, the response returns"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Merge a Fork",
+        "api_call": "https://api.getpostman.com/collections/merge",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "name": "Content-Type",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"strategy\": \"deleteSource\",\n    \"source\": \"{{source_collection_uid}}\",\n    \"destination\": \"{{destination_collection_uid}}\"\n}"
+            }
+        },
+        "functionality": "This endpoint allows you to merge a forked collection back to its destination collection.\n\nOn successful creation of the collection, the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: All Environments",
+        "api_call": "https://api.getpostman.com/environments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The `/environments` endpoint returns a list of all [environments](https://www.getpostman.com/docs/environments) that belong to you..\n\nThe response contains an array of environments' information"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Single Environment",
+        "api_call": "https://api.getpostman.com/environments/{{environment_uid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Access the contents of an environment that is accessible to you using its unique id (`uid`).\n\n> Requires <a href=\"#authentication\">API Key</a>"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Create Environment",
+        "api_call": "https://api.getpostman.com/environments",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"environment\": {\n        \"name\": \"Sample Environment Name (required)\",\n        \"values\": [\n            {\n                \"key\": \"variable_name_1\",\n                \"value\": \"The value of the variable\"\n            },\n            {\n                \"key\": \"variable_name_2\",\n                \"value\": \"\"\n            }\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "A sample body is added to the request that conforms to the following JSON schema:\n\n```json\n{\n  \"type\": \"object\",\n  \"properties\":"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Update Environment",
+        "api_call": "https://api.getpostman.com/environments/{{environment_uid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"environment\": {\n        \"name\": \"New Name\",\n        \"values\": [\n            {\n                \"key\": \"name\",\n                \"value\": \"Bruce Wayne\"\n            },\n            {\n                \"key\": \"occupation\",\n                \"value\": \"Vigilante\"\n            }\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "This endpoint replaces an existing environment.\n\nA sample body is added to the request that conforms to the following JSON schema:\n\n```json\n{\n\t\"type\":"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Delete Environment",
+        "api_call": "https://api.getpostman.com/environments/{{environment_uid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This endpoint allows you to delete a single environment based on an environment's unique `uid`.\n\n> Requires <a href=\"#authentication\">API Key</a> as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: All Mocks",
+        "api_call": "https://api.getpostman.com/mocks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint fetches all the mocks that you have created.\n\n> Requires <a href=\"#authentication\">API Key</a> as `X-Api-Key` request header or `apikey`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Single Mock",
+        "api_call": "https://api.getpostman.com/mocks/{{mock_uid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint fetches you the basic information about a single mock using its `uid`.\n\n> Requires <a href=\"#authentication\">API Key</a> as `X-Api-Key`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Create Mock",
+        "api_call": "https://api.getpostman.com/mocks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"mock\": {\n\t\t\"collection\": \"1679925-39fee52f-b806-3ffa-1173-00a6f5b183dc\",\n\t\t\"environment\": \"1679925-0b9e9f15-3208-a2b1-22e0-d58392f01524\"\n\t}\n}"
+            }
+        },
+        "functionality": "This endpoint allows you to create a mock on a collection. You can also provide an environment UID to resolve"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Update Mock",
+        "api_call": "https://api.getpostman.com/mocks/{{mock_uid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"mock\": {\n        \"name\": \"My Mock Server\",\n        \"environment\": \"11582779-ac1b6608-deb7-4c05-9d48-ee775aabfc19\",\n        \"description\": \"example describing update mock description\",\n        \"private\": false,\n        \"versionTag\": \"abf07d3d-f8ec-47d4-8015-9fe83078b4ec\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This endpoint allows you to update a mock you have created using its `uid`. The endpoint allows you to edit"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Delete Mock",
+        "api_call": "https://api.getpostman.com/mocks/{{mock_uid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This endpoint allows you to delete an existing mock using its `uid`.\n\n> Requires <a href=\"#authentication\">API Key</a> as `X-Api-Key` request header"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Publish Mock",
+        "api_call": "https://api.getpostman.com/mocks/{{mock_uid}}/publish",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "This endpoint publishes the mock you have created using its `uid`\n\n> Requires <a href=\"#authentication\">API Key</a> as `X-Api-Key ` request header"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Unpublish Mock",
+        "api_call": "https://api.getpostman.com/mocks/{{mock_uid}}/unpublish",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This endpoint unpublishes the mock you have created using its `uid`\n\n> Requires <a href=\"#authentication\">API Key</a> as `X-Api-Key ` request header"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: All Monitors",
+        "api_call": "https://api.getpostman.com/monitors",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The `/monitors` endpoint returns a list of all [monitors](https://monitor.getpostman.com/) that are accessible by you.\n\nThe response contains an array of monitors"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Single Monitor",
+        "api_call": "https://api.getpostman.com/monitors/{{monitor_uid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This endpoint fetches you basic information about the monitor using its `uid`.\n\n> Requires <a href=\"#authentication\">API Key</a> as `X-Api-Key` request header"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Create Monitor",
+        "api_call": "https://api.getpostman.com/monitors",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"monitor\": {\n    \"name\": \"This is a Monitor Name\",\n    \"schedule\": {\n      \"cron\": \"0 0 * * *\",\n      \"timezone\": \"Asia/Kolkata\"\n    },\n    \"collection\": \"5852-8d05dd85-222c-1452-553b-e76a531b71ed\",\n    \"environment\": \"5852-8a4c21ea-2a36-40d1-a82d-d717fac9d6ef\"\n  }\n}"
+            }
+        },
+        "functionality": "This endpoint allows you to create a monitor.\n\nSome sample `cron` values are:\n\n| Frequency       "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Update Monitor",
+        "api_call": "https://api.getpostman.com/monitors/{{monitor_uid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"monitor\": {\n    \"name\": \"Updated Monitor Name\",\n    \"schedule\": {\n      \"cron\": \"*/5 * * * *\",\n      \"timezone\": \"America/Chicago\"\n    }\n  }\n}"
+            }
+        },
+        "functionality": "This endpoint allows you to update a monitor using its `uid`. Only the monitor name and its schedule can be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Delete Monitor",
+        "api_call": "https://api.getpostman.com/monitors/{{monitor_uid}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This endpoint can be used to delete an existing monitor using its `uid`.\n\n> Requires <a href=\"#authentication\">API Key</a> as `X-Api-Key` request"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Run a Monitor",
+        "api_call": "https://api.getpostman.com/monitors/{{monitor_uid}}/run",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "This endpoint will run the monitor instantly and wait for the monitor to run completely. It responds with the run"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: All workspaces",
+        "api_call": "https://api.getpostman.com/workspaces",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The `/workspaces` endpoint returns a list of all [workspaces](https://www.getpostman.com/docs/v6/postman/workspaces/intro_to_workspaces) that is accessible by you. The list includes your own workspaces"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Single workspace",
+        "api_call": "https://api.getpostman.com/workspaces/{{workspace_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Access the contents of a workspace that is accessible to you using its id (`id`). Includes the collections, environments, mocks"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Create Workspace",
+        "api_call": "https://api.getpostman.com/workspaces",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "name": "Content-Type",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"workspace\": {\n        \"name\": \"New Workspace\",\n        \"type\": \"personal\",\n        \"description\": \"Some description\",\n        \"collections\": [\n            {\n                \"id\": \"e1fc3c38-a0b8-44a3-bd44-d753a96b2e9d\",\n                \"name\": \"Straw hats\",\n                \"uid\": \"8154-e1fc3c38-a0b8-44a3-bd44-d753a96b2e9d\"\n            }\n        ],\n        \"environments\": [\n            {\n                \"id\": \"83a1aaa2-a204-4bd8-9b92-4d486918906b\",\n                \"name\": \"env\",\n                \"uid\": \"8154-83a1aaa2-a204-4bd8-9b92-4d486918906b\"\n            }\n        ],\n        \"mocks\": [\n            {\n                \"id\": \"cda672ef-1375-40e9-baee-e20ece8d7b65\"\n            }\n        ],\n        \"monitors\": [\n            {\n                \"id\": \"1e889bd2-3862-4be0-b2c2-9b1fe9673aec\"\n            }\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "This endpoint allows you to create a workspace and populate it with entities like `collections`, `environments`, `mocks` and `monitors` using"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Update Workspace",
+        "api_call": "https://api.getpostman.com/workspaces/{{workspace_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "name": "Content-Type",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"workspace\": {\n        \"name\": \"New Workspace updated\",\n        \"description\": \"Some description\",\n        \"collections\": [\n            {\n                \"id\": \"e1fc3c38-a0b8-44a3-bd44-d753a96b2e9d\",\n                \"name\": \"Straw hats\",\n                \"uid\": \"8154-e1fc3c38-a0b8-44a3-bd44-d753a96b2e9d\"\n            }\n        ],\n        \"environments\": [\n            {\n                \"id\": \"83a1aaa2-a204-4bd8-9b92-4d486918906b\",\n                \"name\": \"env\",\n                \"uid\": \"8154-83a1aaa2-a204-4bd8-9b92-4d486918906b\"\n            }\n        ],\n        \"mocks\": [\n            {\n                \"id\": \"cda672ef-1375-40e9-baee-e20ece8d7b65\"\n            }\n        ],\n        \"monitors\": [\n            {\n                \"id\": \"1e889bd2-3862-4be0-b2c2-9b1fe9673aec\"\n            }\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "This endpoint allows you to update a workspace and update it's association to entities like `collections`, `environments`, `mocks` and `monitors`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Delete Workspace",
+        "api_call": "https://api.getpostman.com/workspaces/{{workspace_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This endpoint allows you to delete an existing workspace.\n\nOn successful deletion of the workspace, the response returns the `id`.\n\n> Requires"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: API Key Owner",
+        "api_call": "https://api.getpostman.com/me",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The `/me` endpoint allows you to fetch relevant information pertaining to the API Key being used.\n\n> Requires <a href=\"#authentication\">API Key</a>"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Import external API specification",
+        "api_call": "https://api.getpostman.com/import/openapi",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"type\" : \"json\",\n  \"input\": {\n    \"openapi\": \"3.0.0\",\n    \"info\": {\n  \t  \"version\": \"1.0.0\",\n  \t  \"title\": \"Swagger Petstore\",\n  \t  \"license\": {\n  \t    \"name\": \"MIT\"\n  \t  }\n    },\n    \"servers\": [\n      {\n        \"url\": \"http://petstore.swagger.io/v1\"\n      }\n    ],\n    \"paths\": {\n  \t  \"/pets\": {\n        \"get\": {\n          \"summary\": \"List all pets\",\n          \"operationId\": \"listPets\",\n          \"parameters\": [\n            {\n              \"name\": \"limit\",\n              \"in\": \"query\",\n              \"description\": \"limit\",\n              \"required\": false,\n              \"schema\": {\n                \"type\": \"integer\",\n                \"format\": \"int32\"\n              }\n            }\n          ],\n          \"responses\": {\n            \"default\": {\n              \"description\": \"unexpected error\",\n              \"content\": {\n                \"application/json\": {\n                  \"schema\": {\n                    \"required\": [\n                        \"code\",\n                        \"message\"\n                    ],\n                    \"properties\": {\n                        \"code\": {\n                        \"type\": \"integer\",\n                        \"format\": \"int32\"\n                        },\n                        \"message\": {\n                        \"type\": \"string\"\n                        }\n                    }\n                  }\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}"
+            }
+        },
+        "functionality": "This endpoint allows you to import external API specifications into Postman.\n\nCurrently, this endpoint only supports the <a href=\"https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.2.md\">OpenAPI</a> specification, for"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Import exported data",
+        "api_call": "https://api.getpostman.com/import/exported",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "name": "Content-Type",
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "type",
+                        "value": "file",
+                        "type": "text"
+                    },
+                    {
+                        "key": "file",
+                        "description": "File containing the exported collections or environments",
+                        "type": "file",
+                        "value": null
+                    }
+                ]
+            }
+        },
+        "functionality": "This endpoint allows you to import your exported Postman data.\nFor more information about how you can export your data, refer"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Create API Version",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "name": "Content-Type",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"version\": {\n\t\t\"name\": \"1.0\",\n\t\t\"source\": {\n\t\t\t\"id\": \"{{apiVersionId}}\",\n\t\t\t\"schema\": true,\n\t\t\t\"relations\": {\n\t\t\t\t\"monitor\": true,\n\t\t\t\t\"mock\": true,\n\t\t\t\t\"documentation\": true\n\t\t\t}\n\t\t}\n\t}\n}"
+            }
+        },
+        "functionality": "This call creates a new API version in the specified API.  \n\nRequest body should contain a `version` object which"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Update an API Version",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{apiVersionId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "name": "Content-Type",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"version\": {\n\t\t\"name\": \"2.0\"\n\t}\n}"
+            }
+        },
+        "functionality": "This call updates an existing API Version.  \n\nRequest body should contain a `version` object with the fields which need"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Delete an API Version",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{apiVersionId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This call deletes an existing API Version having the specified id.  \n\nResponse contains an `version` object with `id` of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get an API Version",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{apiVersionId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This call fetches details about the specified API Version.\n\nThe response will contain a `version` object which would contain all the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get All API Versions",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This call fetches details about the all the API Versions in the specified API.\n\nThe response will contain an array `versions`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Create Schema",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{apiVersionId}}/schemas",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "name": "Content-Type",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"schema\": {\n\t\t\"language\": \"yaml\",\n\t\t\"schema\": \"{\\n  \\\"openapi\\\": \\\"3.0.0\\\",\\n  \\\"info\\\": null,\\n  \\\"version\\\": \\\"v1.0\\\",\\n  \\\"title\\\": \\\"APi\\\",\\n  \\\"servers\\\": [\\n    {\\n      \\\"url\\\": \\\"http:\\/\\/localhost:3000\\\"\\n    }\\n  ],\\n  \\\"paths\\\": {\\n    \\\"\\/user\\\": {\\n      \\\"get\\\": {\\n        \\\"summary\\\": \\\"Returns details about a particular user\\\",\\n        \\\"operationId\\\": \\\"listUser\\\",\\n        \\\"tags\\\": [\\n          \\\"user\\\"\\n        ],\\n        \\\"parameters\\\": [\\n          {\\n            \\\"name\\\": \\\"id\\\",\\n            \\\"in\\\": \\\"query\\\",\\n            \\\"description\\\": \\\"ID of the user\\\",\\n            \\\"required\\\": true,\\n            \\\"schema\\\": {\\n              \\\"type\\\": \\\"integer\\\",\\n              \\\"format\\\": \\\"int32\\\"\\n            }\\n          }\\n        ],\\n        \\\"responses\\\": {\\n          \\\"200\\\": {\\n            \\\"description\\\": \\\"Details about a user by ID\\\",\\n            \\\"headers\\\": {\\n              \\\"x-next\\\": {\\n                \\\"description\\\": \\\"A link to the next page of responses\\\",\\n                \\\"schema\\\": {\\n                  \\\"type\\\": \\\"string\\\"\\n                }\\n              }\\n            },\\n            \\\"content\\\": {\\n              \\\"application\\/json\\\": {\\n                \\\"schema\\\": {\\n                  \\\"$ref\\\": \\\"\\\\\\\\'#\\/components\\/schemas\\/User\\\\\\\\'\\\"\\n                }\\n              }\\n            }\\n          },\\n          \\\"default\\\": {\\n            \\\"description\\\": \\\"Unexpected error\\\",\\n            \\\"content\\\": {\\n              \\\"application\\/json\\\": {\\n                \\\"schema\\\": {\\n                  \\\"$ref\\\": \\\"\\\\\\\\'#\\/components\\/schemas\\/Error\\\\\\\\'\\\"\\n                }\\n              }\\n            }\\n          }\\n        }\\n      }\\n    }\\n  },\\n  \\\"components\\\": {\\n    \\\"schemas\\\": {\\n      \\\"User\\\": {\\n        \\\"type\\\": \\\"object\\\",\\n        \\\"required\\\": [\\n          \\\"id\\\",\\n          \\\"name\\\"\\n        ],\\n        \\\"properties\\\": {\\n          \\\"id\\\": {\\n            \\\"type\\\": \\\"integer\\\",\\n            \\\"format\\\": \\\"int64\\\"\\n          },\\n          \\\"name\\\": {\\n            \\\"type\\\": \\\"string\\\"\\n          },\\n          \\\"tag\\\": {\\n            \\\"type\\\": \\\"string\\\"\\n          }\\n        }\\n      },\\n      \\\"Error\\\": {\\n        \\\"type\\\": \\\"object\\\",\\n        \\\"required\\\": [\\n          \\\"code\\\",\\n          \\\"message\\\"\\n        ],\\n        \\\"properties\\\": {\\n          \\\"code\\\": {\\n            \\\"type\\\": \\\"integer\\\",\\n            \\\"format\\\": \\\"int32\\\"\\n          },\\n          \\\"message\\\": {\\n            \\\"type\\\": \\\"string\\\"\\n          }\\n        }\\n      }\\n    }\\n  }\\n}\",\n\t\t\"type\": \"openapi3\"\n\t}\n}"
+            }
+        },
+        "functionality": "This call creates a new schema.\n\nRequest body should contain a `schema` object which should atleast have these properties with `string`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Update Schema",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{apiVersionId}}/schemas/{{schemaId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "name": "Content-Type",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"schema\": {\n\t\t\"language\": \"json\",\n\t\t\"schema\": \"{\\n  \\\"openapi\\\": \\\"3.0.0\\\",\\n  \\\"info\\\": null,\\n  \\\"version\\\": \\\"v1.0\\\",\\n  \\\"title\\\": \\\"APi\\\",\\n  \\\"servers\\\": [\\n    {\\n      \\\"url\\\": \\\"http:\\/\\/localhost:3000\\\"\\n    }\\n  ],\\n  \\\"paths\\\": {\\n    \\\"\\/user\\\": {\\n      \\\"get\\\": {\\n        \\\"summary\\\": \\\"Returns details about a particular user\\\",\\n        \\\"operationId\\\": \\\"listUser\\\",\\n        \\\"tags\\\": [\\n          \\\"user\\\"\\n        ],\\n        \\\"parameters\\\": [\\n          {\\n            \\\"name\\\": \\\"id\\\",\\n            \\\"in\\\": \\\"query\\\",\\n            \\\"description\\\": \\\"ID of the user\\\",\\n            \\\"required\\\": true,\\n            \\\"schema\\\": {\\n              \\\"type\\\": \\\"integer\\\",\\n              \\\"format\\\": \\\"int32\\\"\\n            }\\n          }\\n        ],\\n        \\\"responses\\\": {\\n          \\\"200\\\": {\\n            \\\"description\\\": \\\"Details about a user by ID\\\",\\n            \\\"headers\\\": {\\n              \\\"x-next\\\": {\\n                \\\"description\\\": \\\"A link to the next page of responses\\\",\\n                \\\"schema\\\": {\\n                  \\\"type\\\": \\\"string\\\"\\n                }\\n              }\\n            },\\n            \\\"content\\\": {\\n              \\\"application\\/json\\\": {\\n                \\\"schema\\\": {\\n                  \\\"$ref\\\": \\\"\\\\\\\\'#\\/components\\/schemas\\/User\\\\\\\\'\\\"\\n                }\\n              }\\n            }\\n          },\\n          \\\"default\\\": {\\n            \\\"description\\\": \\\"Unexpected error\\\",\\n            \\\"content\\\": {\\n              \\\"application\\/json\\\": {\\n                \\\"schema\\\": {\\n                  \\\"$ref\\\": \\\"\\\\\\\\'#\\/components\\/schemas\\/Error\\\\\\\\'\\\"\\n                }\\n              }\\n            }\\n          }\\n        }\\n      }\\n    }\\n  },\\n  \\\"components\\\": {\\n    \\\"schemas\\\": {\\n      \\\"User\\\": {\\n        \\\"type\\\": \\\"object\\\",\\n        \\\"required\\\": [\\n          \\\"id\\\",\\n          \\\"name\\\"\\n        ],\\n        \\\"properties\\\": {\\n          \\\"id\\\": {\\n            \\\"type\\\": \\\"integer\\\",\\n            \\\"format\\\": \\\"int64\\\"\\n          },\\n          \\\"name\\\": {\\n            \\\"type\\\": \\\"string\\\"\\n          },\\n          \\\"tag\\\": {\\n            \\\"type\\\": \\\"string\\\"\\n          }\\n        }\\n      },\\n      \\\"Error\\\": {\\n        \\\"type\\\": \\\"object\\\",\\n        \\\"required\\\": [\\n          \\\"code\\\",\\n          \\\"message\\\"\\n        ],\\n        \\\"properties\\\": {\\n          \\\"code\\\": {\\n            \\\"type\\\": \\\"integer\\\",\\n            \\\"format\\\": \\\"int32\\\"\\n          },\\n          \\\"message\\\": {\\n            \\\"type\\\": \\\"string\\\"\\n          }\\n        }\\n      }\\n    }\\n  }\\n}\",\n\t\t\"type\": \"openapi3\"\n\t}\n}"
+            }
+        },
+        "functionality": "This call updates an existing schema.\n\nRequest body should contain a `schema` object which should atleast have these properties with `string`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get Schema",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{apiVersionId}}/schemas/{{schemaId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This call fetches a single schema having the specified id.\n\nResponse contains a `schema` object with all the details related to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Create collection from schema",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{apiVersionId}}/schemas/{{schemaId}}/collections?workspace={{workspaceId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"name\": \"My generated collection\",\n\t\"relations\": [\n\t\t{\n\t\t\t\"type\": \"contracttest\"\n\t\t}\t\n\t]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This call creates a collection and links it to an API as one or multiple relations. \n\nRequest body requires two"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get linked relations",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{apiVersionId}}/relations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This call fetches all the relations which are linked to the specified API version along with their details.\n\nThe response will"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get  documentation relations",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{apiVersionId}}/documentation",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This call fetches all the relations by type which are linked to the specified API version along with their details.\n\nThe"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get environment relations",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{apiVersionId}}/environment",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This call fetches all the relations by type which are linked to the specified API version along with their details.\n\nThe"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get test suite relations",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{apiVersionId}}/testsuite",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This call fetches all the relations by type which are linked to the specified API version along with their details.\n\nThe"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get contract test relations",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{apiVersionId}}/contracttest",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This call fetches all the relations by type which are linked to the specified API version along with their details.\n\nThe"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get integration test relations",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{apiVersionId}}/integrationtest",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This call fetches all the relations by type which are linked to the specified API version along with their details.\n\nThe"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get monitor relations",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{apiVersionId}}/monitor",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This call fetches all the relations by type which are linked to the specified API version along with their details.\n\nThe"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Create relations",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}/versions/{{apiVersionId}}/relations",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"contracttest\": [\"collection-uid-1\"],\n\t\"testsuite\": [\"collection-uid-1\", \"collection-uid-2\"],\n\t\"documentation\": [\"collection-uid-3\"],\n\t\"mock\": [\"mock-uid-1\"]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "This call allows you to add existing Postman entities as new relations to an API. The request body should contain"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Sync relations with schema",
+        "api_call": "https://api.getpostman.com/apis/:apiId/versions/:apiVersionId/:entityType/:entityId/syncWithSchema",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": []
+        },
+        "functionality": "This call allows you to keep the relation in sync with the API schema.\n\n\n> Requires <a href=\"#authentication\">API Key</a> as `X-Api-Key`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Create API",
+        "api_call": "https://api.getpostman.com/apis?workspace={{workspaceId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "name": "Content-Type",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"api\": {\n\t\t\"name\": \"Sync Service API\",\n\t\t\"summary\": \"This is supposed to be a short summary.\",\n\t\t\"description\": \"This is description.\"\n\t}\n}"
+            }
+        },
+        "functionality": "This call creates a new API with a default API Version.  \n\nRequest body should contain an `api` object which"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Update an API",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "name": "Content-Type",
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"api\": {\n\t\t\"name\": \"New name\",\n\t\t\"description\": \"This is an updated Description\"\n\t}\n}"
+            }
+        },
+        "functionality": "This call updates an existing API .  \n\nRequest body should contain an `api` object which should have the fields"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Delete an API",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "This call deletes an existing API having the specified id.  \n\nResponse contains an `api` object with `id` of the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get all APIs",
+        "api_call": "https://api.getpostman.com/apis",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This call fetches all the APIs present in the specified workspace\n\nResponse contains an array named `apis` which would contain all"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Single API",
+        "api_call": "https://api.getpostman.com/apis/{{apiId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This call fetches a single API having the specified id.\n\nResponse contains an `api` object with all the details related to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Create Webhook",
+        "api_call": "https://api.getpostman.com/webhooks?workspace={{workspace_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"webhook\":{\n        \"name\": \"{{webhook_name}}\",\n        \"collection\": \"{{collection_id}}\"\n    }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a webhook that triggers a collection with your custom payload.\n\nYou can specify the webhook name and the collection to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: GET Request",
+        "api_call": "https://postman-echo.com/get?foo1=bar1&foo2=bar2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The HTTP `GET` request method is meant to retrieve data from a server. The data\nis identified by a unique URI"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: POST Raw Text",
+        "api_call": "https://postman-echo.com/post",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "This is expected to be sent back as part of response body."
+            }
+        },
+        "functionality": "The HTTP `POST` request method is meant to transfer data to a server \n(and elicit a response). What data is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: POST Form Data",
+        "api_call": "https://postman-echo.com/post",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "foo1",
+                        "value": "bar1",
+                        "type": "text"
+                    },
+                    {
+                        "key": "foo2",
+                        "value": "bar2",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "The HTTP `POST` request method is meant to transfer data to a server \n(and elicit a response). What data is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: PUT Request",
+        "api_call": "https://postman-echo.com/put",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "This is expected to be sent back as part of response body."
+            }
+        },
+        "functionality": "The HTTP `PUT` request method is similar to HTTP `POST`. It too is meant to \ntransfer data to a server"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: PATCH Request",
+        "api_call": "https://postman-echo.com/patch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "This is expected to be sent back as part of response body."
+            }
+        },
+        "functionality": "The HTTP `PATCH` method is used to update resources on a server. The exact\nuse of `PATCH` requests depends on the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: DELETE Request",
+        "api_call": "https://postman-echo.com/delete",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "This is expected to be sent back as part of response body."
+            }
+        },
+        "functionality": "The HTTP `DELETE` method is used to delete resources on a server. The exact\nuse of `DELETE` requests depends on the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Request Headers",
+        "api_call": "https://postman-echo.com/headers",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "my-sample-header",
+                    "value": "Lorem ipsum dolor sit amet"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A `GET` request to this endpoint returns the list of all request headers as part of the response JSON.\nIn Postman,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Response Headers",
+        "api_call": "https://postman-echo.com/response-headers?foo1=bar1&foo2=bar2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "This endpoint causes the server to send custom set of response headers. Providing header values as part of the URL"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: DigestAuth Success",
+        "api_call": "https://postman-echo.com/digest-auth",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "digest",
+                "digest": [
+                    {
+                        "key": "algorithm",
+                        "value": "MD5",
+                        "type": "string"
+                    },
+                    {
+                        "key": "username",
+                        "value": "postman",
+                        "type": "string"
+                    },
+                    {
+                        "key": "realm",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "password",
+                        "type": "string"
+                    },
+                    {
+                        "key": "nonce",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "nonceCount",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientNonce",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "opaque",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "qop",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "disableRetryRequest",
+                        "type": "any"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "Digest username=\"postman\", realm=\"Users\", nonce=\"ni1LiL0O37PRRhofWdCLmwFsnEtH1lew\", uri=\"/digest-auth\", response=\"254679099562cf07df9b6f5d8d15db44\", opaque=\"\""
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "This endpoint sends a hashed Digest Authorization header to gain access to a valid `200 Ok` response code. In Postman,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Hawk Auth",
+        "api_call": "https://postman-echo.com/auth/hawk",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "hawk",
+                "hawk": [
+                    {
+                        "key": "authId",
+                        "value": "dh37fgj492je",
+                        "type": "string"
+                    },
+                    {
+                        "key": "authKey",
+                        "value": "werxhqb98rpaxn39848xrunpaw3489ruxnpa98w4rxn",
+                        "type": "string"
+                    },
+                    {
+                        "key": "algorithm",
+                        "value": "sha256",
+                        "type": "string"
+                    },
+                    {
+                        "key": "user",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "saveHelperData",
+                        "type": "any"
+                    },
+                    {
+                        "key": "nonce",
+                        "value": "RZKGNz",
+                        "type": "string"
+                    },
+                    {
+                        "key": "extraData",
+                        "type": "any"
+                    },
+                    {
+                        "key": "appId",
+                        "type": "any"
+                    },
+                    {
+                        "key": "delegation",
+                        "type": "any"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "access_token",
+                        "value": "xyz1",
+                        "type": "text"
+                    },
+                    {
+                        "key": "id",
+                        "value": "U1",
+                        "type": "text"
+                    },
+                    {
+                        "key": "server_secret",
+                        "value": "zeppelin",
+                        "type": "text"
+                    },
+                    {
+                        "key": "admin",
+                        "value": "true",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "This endpoint is a Hawk Authentication protected endpoint. [Hawk authentication](https://github.com/hueniverse/hawk) is a widely used protocol for protecting API endpoints. One"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: OAuth1.0 (verify signature)",
+        "api_call": "https://postman-echo.com/oauth1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth1",
+                "oauth1": [
+                    {
+                        "key": "consumerKey",
+                        "value": "RKCGzna7bv9YD57c",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerSecret",
+                        "value": "D+EdQ-gs$-%@2Nu7",
+                        "type": "string"
+                    },
+                    {
+                        "key": "token",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "tokenSecret",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "signatureMethod",
+                        "value": "HMAC-SHA1",
+                        "type": "string"
+                    },
+                    {
+                        "key": "timestamp",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "nonce",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "version",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "realm",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addParamsToHeader",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "autoAddParam",
+                        "type": "any"
+                    },
+                    {
+                        "key": "addEmptyParamsToSign",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "code",
+                        "value": "xWnkliVQJURqB2x1",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code",
+                        "type": "text"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "https://www.getpostman.com/oauth2/callback",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "abc123",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_secret",
+                        "value": "ssh-secret",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "OAuth1.0a is a specification that defines a protocol that can be used by one\nservice to access \"protected\" resources (endpoints) on"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Set Cookies",
+        "api_call": "https://postman-echo.com/cookies/set?foo1=bar1&foo2=bar2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "The cookie setter endpoint accepts a list of cookies and their values as part of URL parameters of a `GET`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get Cookies",
+        "api_call": "https://postman-echo.com/cookies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "Use this endpoint to get a list of all cookies that are stored with respect to this domain. Whatever key-value"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Delete Cookies",
+        "api_call": "https://postman-echo.com/cookies/delete?foo1&foo2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "One or more cookies that has been set for this domain can be deleted by providing the cookie names as"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Response Status Code",
+        "api_call": "https://postman-echo.com/status/200",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "This endpoint allows one to instruct the server which status code to respond with.\n\nEvery response is accompanied by a status"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Streamed Response",
+        "api_call": "https://postman-echo.com/stream/5",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "This endpoint allows one to recieve streaming http response using [chunked transfer encoding](https://en.wikipedia.org/wiki/Chunked_transfer_encoding) of a configurable length.\n\nA streaming response does"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Delay Response",
+        "api_call": "https://postman-echo.com/delay/5",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Using this endpoint one can configure how long it takes for the server to come back with a response. Appending"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get UTF8 Encoded Response",
+        "api_call": "https://postman-echo.com/encoding/utf8",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "If a response of an endpoint requires to send data beyond the basic English / ASCII character set, the `charset`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: GZip Compressed Response",
+        "api_call": "https://postman-echo.com/gzip",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "This endpoint returns the response using [gzip compression algoritm](https://en.wikipedia.org/wiki/Gzip).\nThe uncompressed response is a JSON string containing the details of the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Deflate Compressed Response",
+        "api_call": "https://postman-echo.com/deflate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "This endpoint returns the response using [deflate compression algoritm](https://en.wikipedia.org/wiki/DEFLATE). \nThe uncompressed response is a JSON string containing the details of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: IP address in JSON format",
+        "api_call": "https://postman-echo.com/ip",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to return the IP address of the source request in the following `JSON` format:\n\n```json\n{\n  ip:"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Current UTC time",
+        "api_call": "https://postman-echo.com/time/now",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/now` to return the current timestamp as a UTC string.\n\n```\nFri, 04 Nov 2016 09:00:46 GMT\n```"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Timestamp validity",
+        "api_call": "https://postman-echo.com/time/valid?timestamp=2016-10-10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/valid` to determine the validity of the timestamp, (current by default).\nThis endpoint accepts `timestamp`, `locale`,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Format timestamp",
+        "api_call": "https://postman-echo.com/time/format?timestamp=2016-10-10&format=mm",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/format` to convert the timestamp to any desired valid format.\n\nThis endpoint accepts `timestamp`, `locale`, `format`,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Extract timestamp unit",
+        "api_call": "https://postman-echo.com/time/unit?timestamp=2016-10-10&unit=day",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/unit` to extract the specified timestamp unit (as provided in the `unit` query parameter). The"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Time addition",
+        "api_call": "https://postman-echo.com/time/add?timestamp=2016-10-10&years=100",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/add` to add units of time to the specified / current timestamp (as provided in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Time subtraction",
+        "api_call": "https://postman-echo.com/time/subtract?timestamp=2016-10-10&years=50",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/subtract` to subtract units of time from the specified / current timestamp (as provided in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Start of time",
+        "api_call": "https://postman-echo.com/time/start?timestamp=2016-10-10&unit=month",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/start` to return a relative timstamp in the past from the specified / current timestamp"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Object representation",
+        "api_call": "https://postman-echo.com/time/object?timestamp=2016-10-10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/object` to return the current / provided timestamp as a JSON object.\n\nFor instance, if the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Before comparisons",
+        "api_call": "https://postman-echo.com/time/before?timestamp=2016-10-10&target=2017-10-10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/before` to check if the provided timestamps is before a comparison `target` (query parameter).\n\nThis endpoint"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: After comparisons",
+        "api_call": "https://postman-echo.com/time/after?timestamp=2016-10-10&target=2017-10-10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/after` to check if the provided timestamps is after a comparison `target` (query parameter).\n\nThis endpoint"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Between timestamps",
+        "api_call": "https://postman-echo.com/time/between?timestamp=2016-10-10&start=2017-10-10&end=2019-10-10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/between` to check if the provided timestamp is between a range specified by the `start`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Leap year check",
+        "api_call": "https://postman-echo.com/time/leap?timestamp=2016-10-10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": []
+            }
+        },
+        "functionality": "A simple `GET` request to `/time/leap` to check if the provided/current timestamp belongs to a leap year.\n\nThis endpoint also accepts"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: DigestAuth Request",
+        "api_call": "https://postman-echo.com/digest-auth",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "code",
+                        "value": "xWnkliVQJURqB2x1",
+                        "type": "text"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code",
+                        "type": "text"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "https://www.getpostman.com/oauth2/callback",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_id",
+                        "value": "abc123",
+                        "type": "text"
+                    },
+                    {
+                        "key": "client_secret",
+                        "value": "ssh-secret",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "Performing a simple `GET` request to this endpoint returns status code `401 Unauthorized` with `WWW-Authenticate` header containing information to successfully"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: New Request",
+        "api_call": "https://postman-echo.com/post",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{{req_body}}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: 1. Basic visualizer demo",
+        "api_call": "postman-echo.com/post",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"data\": [\n        {\n            \"owner\": {\n                \"id\": \"jpxJ6CnDgBUcqmMTczMh\",\n                \"email\": \"edina.barbosa@example.com\",\n                \"firstName\": \"\u00c9dina\",\n                \"title\": \"ms\",\n                \"lastName\": \"Barbosa\",\n                \"picture\": \"https://randomuser.me/api/portraits/women/28.jpg\"\n            },\n            \"id\": \"yPyeyGhXNcn8dZP6e87o\",\n            \"message\": \"\ud83d\ude09\ud83d\ude09\ud83d\ude0d\ud83d\ude0d Pretty photo\",\n            \"publishDate\": \"2020-05-19T17:11:14.284Z\"\n        },\n        {\n            \"owner\": {\n                \"id\": \"IrNhFLyOw2a6R10BntKW\",\n                \"picture\": \"https://randomuser.me/api/portraits/women/66.jpg\",\n                \"lastName\": \"\u00c7etiner\",\n                \"title\": \"miss\",\n                \"email\": \"oya.cetiner@example.com\",\n                \"firstName\": \"Oya\"\n            },\n            \"id\": \"04aA0p5xh5Gj6SqXB8tB\",\n            \"message\": \"\ud83d\ude0a\ud83d\udc4d\ud83d\udc4d Awesome shot\",\n            \"publishDate\": \"2020-04-12T20:01:41.212Z\"\n        },\n        {\n            \"owner\": {\n                \"id\": \"URaBcSCMpXr96fpmjCjk\",\n                \"lastName\": \"Vega\",\n                \"email\": \"roberto.vega@example.com\",\n                \"firstName\": \"Roberto\",\n                \"picture\": \"https://randomuser.me/api/portraits/men/25.jpg\",\n                \"title\": \"mr\"\n            },\n            \"id\": \"ZQX9bfvymVusi36Go9D9\",\n            \"message\": \"\ud83d\ude01\ud83d\ude01\ud83d\ude0c\ud83d\ude0c Impressive image\",\n            \"publishDate\": \"2020-03-20T02:34:25.132Z\"\n        },\n        {\n            \"owner\": {\n                \"id\": \"yLyiEdhLwMn5tOPA447y\",\n                \"email\": \"andre.robert@example.com\",\n                \"title\": \"mr\",\n                \"firstName\": \"Andr\u00e9\",\n                \"lastName\": \"Robert\",\n                \"picture\": \"https://randomuser.me/api/portraits/men/9.jpg\"\n            },\n            \"id\": \"OQVzaZEOJkqwP26KMET0\",\n            \"message\": \"Cool pic\",\n            \"publishDate\": \"2020-01-17T03:42:22.157Z\"\n        }\n    ],\n    \"total\": 4,\n    \"page\": 0,\n    \"limit\": 10,\n    \"offset\": 0\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Send the data you want to visualize in the **Body** as **raw** `JSON` then pass it into the visualizer template"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: 2. Basic visualizer chart demo",
+        "api_call": "postman-echo.com/post",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"names\": [\n        \"Dorothea\", \"Rose\", \"Blanche\", \"Sophia\"\n    ],\n    \"nums\": [\n        1, 3, 2, 4\n    ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Send the data you want to visualize in the **Body** as **raw** `JSON` then pass it into the visualizer template"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Fake data to postman-echo",
+        "api_call": "https://postman-echo.com/get?randomName={{$randomFirstName}} {{$randomLastName}}&randomAddress={{$randomStreetAddress}}&randomDate={{$randomDateRecent}}&randomNumber={{$randomInt}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: First request",
+        "api_call": "https://postman-echo.com/get?request=1",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Second request",
+        "api_call": "https://postman-echo.com/get?request=2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Third request",
+        "api_call": "https://postman-echo.com/get?request=3",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Fourth request",
+        "api_call": "https://postman-echo.com/get?request=4",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Add comment",
+        "api_call": "https://postman-echo.com/get?foo=bar",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get echo name 1",
+        "api_call": "postman-echo.com/get?name=Sean",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get echo name 2",
+        "api_call": "postman-echo.com/get?name={{$randomFirstName}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get echo name 3",
+        "api_call": "postman-echo.com/get?name={{$randomFirstName}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get echo name 4",
+        "api_call": "postman-echo.com/get?name={{$randomFirstName}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get random number",
+        "api_call": "postman-echo.com/get?number={{$randomInt}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Get Artist Info",
+        "api_call": "https://joyce-spotify-graphql.herokuapp.com/graphql",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "graphql",
+                "graphql": {
+                    "query": "# ** Sample query using graphQL variables ** #\n\nquery getByArtist ($name: String!){\n    queryArtists (byName: $name){\n        name\n        image\n        albums {\n            name\n        }\n    }\n}\n\n\n# ** Query using hardcoded value ** #\n\n# query getArtistInfo{\n#     queryArtists(byName: \"DMX\"){\n#         name\n#         image\n#     }\n# }",
+                    "variables": "{\n    \"name\" : \"{{artist}}\"\n}"
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Using GraphQL query",
+        "api_call": "https://swapi.apis.guru",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/graphql",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "query{\n  allFilms\n  {\n   films {\n      id\n      title\n      episodeID\n    }\n  }\n}"
+            }
+        },
+        "functionality": "Similar to the previous example from [this community tutorial](https://www.codetraveler.io/2019/01/12/how-to-use-postman-with-a-graphql-api/), we learn that if the GraphQL endpoint accepts the header `application/graphql`,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Add params",
+        "api_call": "postman-echo.com/get?=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "## How to add params to a GET request\n\nI don't really know?\n\n![How to add params](https://media.giphy.com/media/SMw4MKJsIlCDOYQS41/giphy.gif)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Fake Store API  - New user",
+        "api_call": "https://fakestoreapi.com/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"email\": \"{{Email}}\",\n  \"username\": \"{{UserName}}\",\n  \"password\": \"{{Password}}\",\n  \"name\": {\n    \"firstname\": \"{{FirstName}}\",\n    \"lastname\": \"{{LastName}}\"\n  },\n  \"address\": {\n    \"city\": \"{{City}}\",\n    \"street\": \"{{StreetAddress}}\",\n    \"number\": 3,\n    \"zipcode\": \"{{zipcode}}\",\n    \"geolocation\": {\n      \"lat\": \"{{Latitude}}\",\n      \"long\": \"{{Longitude}}\"\n    }\n  },\n  \"phone\": \"{{PhoneNumber}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Bored API - Get activity",
+        "api_call": "http://www.boredapi.com/api/activity",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "10 Postman Features: Cocktail API - Search by ingredient",
+        "api_call": "www.thecocktaildb.com/api/json/v1/1/filter.php?i=gin",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

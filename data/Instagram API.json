@@ -1,0 +1,87 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Instagram API: Get Access Tokens of Pages You Manage",
+        "api_call": "https://graph.facebook.com/{{api_version}}/me/accounts?fields=name,access_token,tasks,instagram_business_account&access_token={{user_access_token}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "Postman/InstagramCollection",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This request uses a **User Access Token** to get a list of all the pages managed by a User. Make"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Instagram API: Get Specific Page Access Token",
+        "api_call": "https://graph.facebook.com/{{api_version}}/{{page_id}}?fields=name,access_token,instagram_business_account&access_token={{user_access_token}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "Postman/InstagramCollection",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "If you already have the `page_id` available, you can query directly this endpoint to get the specific **Page Access Token**"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Instagram API: Upload a Reel to an IG Container",
+        "api_call": "https://graph.facebook.com/{{api_version}}/{{ig_user_id}}/media?media_type=REELS&video_url={{video_url}}&caption=Hello World!&share_to_feed=false&access_token={{page_access_token}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "Postman/InstagramCollection",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This request will create an IG Container to hold the Reel. It will return a `container_id` that will be automatically"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Instagram API: Get IG Container Status",
+        "api_call": "https://graph.facebook.com/{{api_version}}/?fields=status_code,status&access_token={{page_access_token}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "Postman/InstagramCollection",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "After generating the IG Container, this request will allow you to monitor the status of the upload. Once the `status_code`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Instagram API: Publish Reel",
+        "api_call": "https://graph.facebook.com/{{api_version}}/{{ig_user_id}}/media_publish?creation_id=&access_token={{page_access_token}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "User-Agent",
+                    "value": "Postman/InstagramCollection",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "This request finalizes the Reels Publishing process and posts the Reel into a User's profile."
+    }
+]
