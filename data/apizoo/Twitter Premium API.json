@@ -1,0 +1,602 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Premium API: Search:30day (sandbox)",
+        "api_call": "https://api.twitter.com/1.1/tweets/search/30day/{{environment}}.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{bearer_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{Bearer Token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"maxResults\": 100,\n\t\"query\": \"#fridayfeeling has:images\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Premium API: Search:30day (paid tiers)",
+        "api_call": "https://api.twitter.com/1.1/tweets/search/30day/{{environment}}.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{bearer_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{Bearer Token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"maxResults\": 500,\n\t\"query\": \"#fridayfeeling has:images -is:retweet\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Premium API: Search:30day counts (paid tiers)",
+        "api_call": "https://api.twitter.com/1.1/tweets/search/30day/{{environment}}/counts.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{bearer_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{Bearer Token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"query\": \"#fridayfeeling has:images -is:retweet\",\n    \"bucket\": \"day\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Premium API: Search:FullArchive (sandbox)",
+        "api_call": "https://api.twitter.com/1.1/tweets/search/fullarchive/{{environment}}.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{bearer_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{Bearer Token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"maxResults\": 100,\n\t\"query\": \"#fridayfeeling has:images\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Premium API: Search:FullArchive (paid tiers)",
+        "api_call": "https://api.twitter.com/1.1/tweets/search/fullarchive/{{environment}}.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{bearer_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{Bearer Token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"maxResults\": 500,\n\t\"query\": \"#fridayfeeling has:images -is:retweet\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Premium API: Search:FullArchive counts (paid tiers)",
+        "api_call": "https://api.twitter.com/1.1/tweets/search/fullarchive/{{environment}}/counts.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{bearer_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{Bearer Token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"query\": \"#fridayfeeling has:images -is:retweet\",\n    \"bucket\": \"day\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Premium API: List Webhook URLs",
+        "api_call": "https://api.twitter.com/1.1/account_activity/all/webhooks.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{bearer_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{Bearer Token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Premium API: Create Webhook URL",
+        "api_call": "https://api.twitter.com/1.1/account_activity/all/{{environment}}/webhooks.json?url=http://127.0.0.1:4040",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth1",
+                "oauth1": [
+                    {
+                        "key": "addParamsToHeader",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "tokenSecret",
+                        "value": "{{app_owner_access_token_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "token",
+                        "value": "{{app_owner_access_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerSecret",
+                        "value": "{{consumer_key_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerKey",
+                        "value": "{{consumer_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "signatureMethod",
+                        "value": "HMAC-SHA1",
+                        "type": "string"
+                    },
+                    {
+                        "key": "version",
+                        "value": "1.0",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addEmptyParamsToSign",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Premium API: Check or reset webhook URL",
+        "api_call": "https://api.twitter.com/1.1/account_activity/all/{{environment}}/webhooks/:webhook_id?oauth_consumer_key=your premium App consumer key&oauth_nonce=UqnkudcQe1t&oauth_signature=DOlAihn1wQiWZVrvuGxK0+Dc+Yg=&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1625004314&oauth_token=your user access token",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth1",
+                "oauth1": [
+                    {
+                        "key": "tokenSecret",
+                        "value": "{{app_owner_access_token_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "token",
+                        "value": "{{app_owner_access_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addParamsToHeader",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "consumerSecret",
+                        "value": "{{consumer_key_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerKey",
+                        "value": "{{consumer_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "signatureMethod",
+                        "value": "HMAC-SHA1",
+                        "type": "string"
+                    },
+                    {
+                        "key": "version",
+                        "value": "1.0",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addEmptyParamsToSign",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "PUT",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Premium API: Delete webhook URL",
+        "api_call": "https://api.twitter.com/1.1/account_activity/all/{{environment}}/webhooks/:webhook_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth1",
+                "oauth1": [
+                    {
+                        "key": "tokenSecret",
+                        "value": "{{app_owner_access_token_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "token",
+                        "value": "{{app_owner_access_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addParamsToHeader",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "consumerSecret",
+                        "value": "{{consumer_key_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerKey",
+                        "value": "{{consumer_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "signatureMethod",
+                        "value": "HMAC-SHA1",
+                        "type": "string"
+                    },
+                    {
+                        "key": "version",
+                        "value": "1.0",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addEmptyParamsToSign",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Premium API: List active subscriptions",
+        "api_call": "https://api.twitter.com/1.1/account_activity/all/{{environment}}/subscriptions/list.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{bearer_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{Bearer Token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Premium API: Count active subscriptions",
+        "api_call": "https://api.twitter.com/1.1/account_activity/all/subscriptions/count.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{bearer_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{Bearer Token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Premium API: Create subscription",
+        "api_call": "https://api.twitter.com/1.1/account_activity/all/{{environment}}/subscriptions.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth1",
+                "oauth1": [
+                    {
+                        "key": "addParamsToHeader",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "tokenSecret",
+                        "value": "{{access_token_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerSecret",
+                        "value": "{{consumer_key_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerKey",
+                        "value": "{{consumer_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "signatureMethod",
+                        "value": "HMAC-SHA1",
+                        "type": "string"
+                    },
+                    {
+                        "key": "version",
+                        "value": "1.0",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addEmptyParamsToSign",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Premium API: Check subscription",
+        "api_call": "https://api.twitter.com/1.1/account_activity/all/{{environment}}/subscriptions.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth1",
+                "oauth1": [
+                    {
+                        "key": "tokenSecret",
+                        "value": "{{access_token_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addParamsToHeader",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "consumerSecret",
+                        "value": "{{consumer_key_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "consumerKey",
+                        "value": "{{consumer_key}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "signatureMethod",
+                        "value": "HMAC-SHA1",
+                        "type": "string"
+                    },
+                    {
+                        "key": "version",
+                        "value": "1.0",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addEmptyParamsToSign",
+                        "value": false,
+                        "type": "boolean"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Twitter Premium API: Delete subscription",
+        "api_call": "https://api.twitter.com/1.1/account_activity/all/{{environment}}/subscriptions/:user_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{bearer_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{Bearer Token}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "DELETE",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

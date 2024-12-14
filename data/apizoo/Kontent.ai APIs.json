@@ -1,0 +1,2295 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Get published content",
+        "api_call": "https://graphql.kontent.ai/:environment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "graphql",
+                "graphql": {
+                    "query": "",
+                    "variables": ""
+                }
+            }
+        },
+        "functionality": "1.  Add your environment ID to the Postman environment variable `environment_id` .\n2.  If you're using [secure access](https://kontent.ai/learn/tutorials/develop-apps/build-strong-foundation/restrict-public-access/), add"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Preview latest content",
+        "api_call": "https://preview-graphql.kontent.ai/:environment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "bearer",
+                "bearer": [
+                    {
+                        "key": "token",
+                        "value": "{{previewApiKey}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "password",
+                        "value": "{{secureApiKey}}",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "graphql",
+                "graphql": {
+                    "query": "",
+                    "variables": ""
+                }
+            }
+        },
+        "functionality": "1.  Add your environment ID and Preview API key to the Postman environment variables `environment_id` and `previewApiKey`.\n2.  Switch"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List content items",
+        "api_call": "https://deliver.kontent.ai/:environment_id/items?language=<string>&elements=<string>&order=<string>&depth=<integer>&skip=<integer>&limit=<integer>&includeTotalCount=<boolean>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines whether the API waits while fetching latest content. By default, the header is not set and the API serves stale content (if [cached by the CDN](https://kontent.ai/learn/link-to/id/80a237b0-f7bc-45c4-8b76-5da5d7578fc8)) while fetching the new content to minimize wait time.\n\nThe header can be useful if you know that the requested content had changed since your last request in a reaction to a [webhook](https://kontent.ai/learn/link-to/id/27f26a32-33ec-4b4c-b46e-edc022e15f87) notification.",
+                    "key": "X-KC-Wait-For-Loading-New-Content",
+                    "value": "<boolean>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a list of content items from the specified environment. By default, the API returns an unfiltered paginated list of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve a content item",
+        "api_call": "https://deliver.kontent.ai/:environment_id/items/:item_codename?language=<string>&elements=<string>&depth=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines whether the API waits while fetching latest content. By default, the header is not set and the API serves stale content (if [cached by the CDN](https://kontent.ai/learn/link-to/id/80a237b0-f7bc-45c4-8b76-5da5d7578fc8)) while fetching the new content to minimize wait time.\n\nThe header can be useful if you know that the requested content had changed since your last request in a reaction to a [webhook](https://kontent.ai/learn/link-to/id/27f26a32-33ec-4b4c-b46e-edc022e15f87) notification.",
+                    "key": "X-KC-Wait-For-Loading-New-Content",
+                    "value": "<boolean>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a content item by its codename.\n\nThe [response size](#section/Response-size) is limited to 2000 items."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Enumerate content items",
+        "api_call": "https://deliver.kontent.ai/:environment_id/items-feed?language=<string>&elements=<string>&order=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines whether the API waits while fetching latest content. By default, the header is not set and the API serves stale content (if [cached by the CDN](https://kontent.ai/learn/link-to/id/80a237b0-f7bc-45c4-8b76-5da5d7578fc8)) while fetching the new content to minimize wait time.\n\nThe header can be useful if you know that the requested content had changed since your last request in a reaction to a [webhook](https://kontent.ai/learn/link-to/id/27f26a32-33ec-4b4c-b46e-edc022e15f87) notification.",
+                    "key": "X-KC-Wait-For-Loading-New-Content",
+                    "value": "<boolean>"
+                },
+                {
+                    "description": "Determines the next page of results to retrieve. By default, when the header is not set, the API returns the first page of results.\n\nIf there are more items to enumerate, the response will come with the ```X-Continuation``` header. To get the next page of results, use the ```X-Continuation``` header from the response in your request.",
+                    "key": "X-Continuation",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a dynamically paginated list of content items ordered alphabetically by codename.\n\nIf the response comes with the ```X-Continuation``` header, it"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List content types",
+        "api_call": "https://deliver.kontent.ai/:environment_id/types?elements=<string>&skip=<integer>&limit=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines whether the API waits while fetching latest content. By default, the header is not set and the API serves stale content (if [cached by the CDN](https://kontent.ai/learn/link-to/id/80a237b0-f7bc-45c4-8b76-5da5d7578fc8)) while fetching the new content to minimize wait time.\n\nThe header can be useful if you know that the requested content had changed since your last request in a reaction to a [webhook](https://kontent.ai/learn/link-to/id/27f26a32-33ec-4b4c-b46e-edc022e15f87) notification.",
+                    "key": "X-KC-Wait-For-Loading-New-Content",
+                    "value": "<boolean>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a paginated list of content types. By default, the API returns all content types ordered alphabetically by codename.\n\nYou can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve a content type",
+        "api_call": "https://deliver.kontent.ai/:environment_id/types/:type_codename?elements=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines whether the API waits while fetching latest content. By default, the header is not set and the API serves stale content (if [cached by the CDN](https://kontent.ai/learn/link-to/id/80a237b0-f7bc-45c4-8b76-5da5d7578fc8)) while fetching the new content to minimize wait time.\n\nThe header can be useful if you know that the requested content had changed since your last request in a reaction to a [webhook](https://kontent.ai/learn/link-to/id/27f26a32-33ec-4b4c-b46e-edc022e15f87) notification.",
+                    "key": "X-KC-Wait-For-Loading-New-Content",
+                    "value": "<boolean>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a specific content type."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve a content type element",
+        "api_call": "https://deliver.kontent.ai/:environment_id/types/:type_codename/elements/:element_codename",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines whether the API waits while fetching latest content. By default, the header is not set and the API serves stale content (if [cached by the CDN](https://kontent.ai/learn/link-to/id/80a237b0-f7bc-45c4-8b76-5da5d7578fc8)) while fetching the new content to minimize wait time.\n\nThe header can be useful if you know that the requested content had changed since your last request in a reaction to a [webhook](https://kontent.ai/learn/link-to/id/27f26a32-33ec-4b4c-b46e-edc022e15f87) notification.",
+                    "key": "X-KC-Wait-For-Loading-New-Content",
+                    "value": "<boolean>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a content type element defined in a specific content type. Both the type and element must be specified by"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List languages",
+        "api_call": "https://deliver.kontent.ai/:environment_id/languages?skip=<integer>&limit=<integer>&order=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a list of active languages. By default, the API returns all languages ordered alphabetically by codename.\n\n\n\n<div class=\"callout callout--tip\">\n\n**Get only"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List taxonomy groups",
+        "api_call": "https://deliver.kontent.ai/:environment_id/taxonomies?skip=<integer>&limit=<integer>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines whether the API waits while fetching latest content. By default, the header is not set and the API serves stale content (if [cached by the CDN](https://kontent.ai/learn/link-to/id/80a237b0-f7bc-45c4-8b76-5da5d7578fc8)) while fetching the new content to minimize wait time.\n\nThe header can be useful if you know that the requested content had changed since your last request in a reaction to a [webhook](https://kontent.ai/learn/link-to/id/27f26a32-33ec-4b4c-b46e-edc022e15f87) notification.",
+                    "key": "X-KC-Wait-For-Loading-New-Content",
+                    "value": "<boolean>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a paginated list of taxonomy groups. By default, the API returns all taxonomy groups ordered alphabetically by codename.\n\nYou can"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve a taxonomy group",
+        "api_call": "https://deliver.kontent.ai/:environment_id/taxonomies/:taxonomy_group_codename",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines whether the API waits while fetching latest content. By default, the header is not set and the API serves stale content (if [cached by the CDN](https://kontent.ai/learn/link-to/id/80a237b0-f7bc-45c4-8b76-5da5d7578fc8)) while fetching the new content to minimize wait time.\n\nThe header can be useful if you know that the requested content had changed since your last request in a reaction to a [webhook](https://kontent.ai/learn/link-to/id/27f26a32-33ec-4b4c-b46e-edc022e15f87) notification.",
+                    "key": "X-KC-Wait-For-Loading-New-Content",
+                    "value": "<boolean>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a taxonomy group by its codename."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Upload a binary file",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/files/:file_name",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "description": "(Required) Specifies the size of the binary file in bytes.",
+                    "key": "Content-length",
+                    "value": "<integer>"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/octet-stream"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "<binary>"
+            }
+        },
+        "functionality": "Add a new file. The uploaded file will not be visible in the Kontent.ai UI unless you [add an asset](https://kontent.ai/learn/link-to/id/33e07eb5-fa13-4760-a42c-6674cdb3805f)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Add an asset",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/assets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"file_reference\": {\n    \"id\": \"<uuid>\",\n    \"type\": \"<string>\"\n  },\n  \"descriptions\": [\n    {\n      \"language\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      },\n      \"description\": \"<string>\"\n    },\n    {\n      \"language\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      },\n      \"description\": \"<string>\"\n    }\n  ],\n  \"elements\": [\n    {\n      \"element\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      },\n      \"value\": [\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"element\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      },\n      \"value\": [\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"external_id\": \"<string>\",\n  \"file_name\": \"<string>\",\n  \"folder\": {\n    \"id\": \"<uuid>\",\n    \"external_id\": \"<string>\"\n  },\n  \"collection\": {\n    \"reference\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    }\n  },\n  \"id\": \"<uuid>\",\n  \"codename\": \"<string>\",\n  \"image_height\": \"<integer,null-int32>\",\n  \"image_width\": \"<integer,null-int32>\",\n  \"last_modified\": \"<dateTime>\",\n  \"size\": \"<integer>\",\n  \"title\": \"<string,null>\",\n  \"type\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Use a file reference to link an existing [binary file](https://kontent.ai/learn/link-to/id/ce2c4b08-10e7-4497-b1ef-8ceebc606fe0) to a new asset. You can also [create assets by"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List assets",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/assets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines the page of results to retrieve.\n\nTo get the next page of results, check the pagination object in the API response and set the ```x-continuation``` header parameter to the value of the ```continuation_token``` property.",
+                    "key": "x-continuation",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a dynamically paginated list of assets."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve an asset",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/assets/:asset_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve information about a single asset."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Upsert an asset",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/assets/:asset_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"file_reference\": {\n    \"id\": \"<uuid>\",\n    \"type\": \"<string>\"\n  },\n  \"descriptions\": [\n    {\n      \"language\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      },\n      \"description\": \"<string>\"\n    },\n    {\n      \"language\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      },\n      \"description\": \"<string>\"\n    }\n  ],\n  \"elements\": [\n    {\n      \"element\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      },\n      \"value\": [\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"element\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      },\n      \"value\": [\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"folder\": {\n    \"id\": \"<uuid>\",\n    \"external_id\": \"<string>\"\n  },\n  \"collection\": {\n    \"reference\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    }\n  },\n  \"title\": \"<string>\",\n  \"codename\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Update an existing asset, or add a new asset specified by external ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Delete an asset",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/assets/:asset_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Delete an unused asset from an environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve asset folders",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/folders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve an array of all asset folders."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Add asset folders",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/folders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"folders\": [\n    {\n      \"folders\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/asset_folder detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/asset_folder detected>\"\n        }\n      ],\n      \"name\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    {\n      \"folders\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/asset_folder detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/asset_folder detected>\"\n        }\n      ],\n      \"name\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"id\": \"<string>\"\n    }\n  ],\n  \"last_modified\": \"<dateTime>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Add one or more asset folders. If your environment already has folders, use [modify asset folders](https://kontent.ai/learn/link-to/id/f9969c9e-2e51-48ca-8c84-2229e2461a5d) instead."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Modify asset folders",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/folders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"op\": \"<string>\",\n    \"value\": {\n      \"folders\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/asset_folder detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/asset_folder detected>\"\n        }\n      ],\n      \"name\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    \"reference\": {\n      \"id\": \"<uuid>\",\n      \"external_id\": \"<string>\"\n    },\n    \"after\": {\n      \"id\": \"<uuid>\",\n      \"external_id\": \"<string>\"\n    },\n    \"before\": {\n      \"id\": \"<uuid>\",\n      \"external_id\": \"<string>\"\n    }\n  },\n  {\n    \"op\": \"<string>\",\n    \"value\": {\n      \"folders\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/asset_folder detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/asset_folder detected>\"\n        }\n      ],\n      \"name\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"id\": \"<string>\"\n    },\n    \"reference\": {\n      \"id\": \"<uuid>\",\n      \"external_id\": \"<string>\"\n    },\n    \"after\": {\n      \"id\": \"<uuid>\",\n      \"external_id\": \"<string>\"\n    },\n    \"before\": {\n      \"id\": \"<uuid>\",\n      \"external_id\": \"<string>\"\n    }\n  }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Add, rename, or remove [asset folders](https://kontent.ai/learn/link-to/id/4bc4eea4-1f5a-4d86-a6cb-38d105f2d474)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List renditions",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/assets/:asset_identifier/renditions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines the page of results to retrieve.\n\nTo get the next page of results, check the pagination object in the API response and set the ```x-continuation``` header parameter to the value of the ```continuation_token``` property.",
+                    "key": "x-continuation",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Returns a paginated list of all renditions of the specified asset."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Add a rendition",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/assets/:asset_identifier/renditions",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"transformation\": {\n    \"mode\": \"<string>\",\n    \"fit\": \"<string>\",\n    \"custom_height\": \"<integer>\",\n    \"custom_width\": \"<integer>\",\n    \"x\": \"<integer>\",\n    \"y\": \"<integer>\",\n    \"width\": \"<integer>\",\n    \"height\": \"<integer>\"\n  },\n  \"rendition_id\": \"<uuid>\",\n  \"asset_id\": \"<uuid>\",\n  \"external_id\": \"<string,null>\",\n  \"last_modified\": \"<dateTime>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a new rendition of the specified asset."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve a rendition",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/assets/:asset_identifier/renditions/:rendition_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a rendition of the specified asset."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Modify a rendition",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/assets/:asset_identifier/renditions/:rendition_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"transformation\": {\n    \"mode\": \"<string>\",\n    \"fit\": \"<string>\",\n    \"custom_height\": \"<integer>\",\n    \"custom_width\": \"<integer>\",\n    \"x\": \"<integer>\",\n    \"y\": \"<integer>\",\n    \"width\": \"<integer>\",\n    \"height\": \"<integer>\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Modify a rendition of the asset."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List collections",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve an array of all collections."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Modify collections",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/collections",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"op\": \"<string>\",\n    \"value\": {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    },\n    \"after\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    },\n    \"before\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    }\n  },\n  {\n    \"op\": \"<string>\",\n    \"value\": {\n      \"name\": \"<string>\",\n      \"id\": \"<string>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    },\n    \"after\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    },\n    \"before\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    }\n  }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Add, reorder, update, or remove [collections](https://kontent.ai/learn/link-to/id/672a109a-bf6c-4498-a244-1b9263682e09)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Add a content item",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\",\n  \"type\": {\n    \"id\": \"<uuid>\",\n    \"codename\": \"<string>\",\n    \"external_id\": \"<string>\"\n  },\n  \"id\": \"<uuid>\",\n  \"codename\": \"<string>\",\n  \"collection\": {\n    \"id\": \"<uuid>\",\n    \"codename\": \"<string>\"\n  },\n  \"spaces\": [\n    {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    }\n  ],\n  \"external_id\": \"<string>\",\n  \"last_modified\": \"<dateTime>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a new content item based on a specific content type.\n\n\n\n<div class=\"callout callout--info\">\n\nContent items don't contain any content themselves directly."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List content items",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines the page of results to retrieve.\n\nTo get the next page of results, check the pagination object in the API response and set the ```x-continuation``` header parameter to the value of the ```continuation_token``` property.",
+                    "key": "x-continuation",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a dynamically paginated list of content items. "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve a content item",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/items/:item_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve metadata about a content item.\n\nIf you want to retrieve content data, see how to [retrieve language variants of a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Upsert a content item",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/items/:item_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\",\n  \"codename\": \"<string>\",\n  \"collection\": {\n    \"id\": \"<uuid>\",\n    \"codename\": \"<string>\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Update or create a content item.\n\n* To update a content item, you need to identify the existing item by its"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Delete a content item",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/items/:item_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Delete a content item.\n\nIf you only want to delete a specific language variant, see how to [delete a language variant](https://kontent.ai/learn/link-to/id/06fc9ccb-bdc3-4efb-bcf0-324421ac676a).\n\n\n\n<div"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Add a content type",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/types",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"elements\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"guidelines\": \"<string,null>\",\n      \"asset_count_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"maximum_file_size\": \"<integer>\",\n      \"allowed_file_types\": \"<string>\",\n      \"image_width_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"image_height_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"is_required\": \"<boolean>\",\n      \"is_non_localizable\": \"<boolean>\",\n      \"default\": {\n        \"global\": {\n          \"value\": [\n            {\n              \"id\": \"<uuid>\",\n              \"codename\": \"<string>\",\n              \"external_id\": \"<string>\"\n            },\n            {\n              \"id\": \"<uuid>\",\n              \"codename\": \"<string>\",\n              \"external_id\": \"<string>\"\n            }\n          ]\n        }\n      },\n      \"content_group\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"guidelines\": \"<string,null>\",\n      \"asset_count_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"maximum_file_size\": \"<integer>\",\n      \"allowed_file_types\": \"<string>\",\n      \"image_width_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"image_height_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"is_required\": \"<boolean>\",\n      \"is_non_localizable\": \"<boolean>\",\n      \"default\": {\n        \"global\": {\n          \"value\": [\n            {\n              \"id\": \"<uuid>\",\n              \"codename\": \"<string>\",\n              \"external_id\": \"<string>\"\n            },\n            {\n              \"id\": \"<uuid>\",\n              \"codename\": \"<string>\",\n              \"external_id\": \"<string>\"\n            }\n          ]\n        }\n      },\n      \"content_group\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      }\n    }\n  ],\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"codename\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"last_modified\": \"<dateTime>\",\n  \"content_groups\": [\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a new content type."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List content types",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/types",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines the page of results to retrieve.\n\nTo get the next page of results, check the pagination object in the API response and set the ```x-continuation``` header parameter to the value of the ```continuation_token``` property.",
+                    "key": "x-continuation",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a dynamically paginated list of content types."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve a content type",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/types/:type_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve information about a single content type."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Modify a content type",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/types/:type_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"op\": \"<string>\",\n    \"value\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"path\": \"<string>\",\n    \"before\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    },\n    \"after\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    }\n  },\n  {\n    \"op\": \"<string>\",\n    \"value\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"path\": \"<string>\",\n    \"before\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    },\n    \"after\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    }\n  }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Modify content types, their elements, and the configuration of specific objects.\n\nYou can modify the specified content type and its contents"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Delete a content type",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/types/:type_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Delete an unused content type."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Add a content type snippet",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/snippets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"elements\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"guidelines\": \"<string,null>\",\n      \"asset_count_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"maximum_file_size\": \"<integer>\",\n      \"allowed_file_types\": \"<string>\",\n      \"image_width_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"image_height_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"is_required\": \"<boolean>\",\n      \"is_non_localizable\": \"<boolean>\",\n      \"default\": {\n        \"global\": {\n          \"value\": [\n            {\n              \"id\": \"<uuid>\",\n              \"codename\": \"<string>\",\n              \"external_id\": \"<string>\"\n            },\n            {\n              \"id\": \"<uuid>\",\n              \"codename\": \"<string>\",\n              \"external_id\": \"<string>\"\n            }\n          ]\n        }\n      },\n      \"content_group\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"guidelines\": \"<string,null>\",\n      \"asset_count_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"maximum_file_size\": \"<integer>\",\n      \"allowed_file_types\": \"<string>\",\n      \"image_width_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"image_height_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"is_required\": \"<boolean>\",\n      \"is_non_localizable\": \"<boolean>\",\n      \"default\": {\n        \"global\": {\n          \"value\": [\n            {\n              \"id\": \"<uuid>\",\n              \"codename\": \"<string>\",\n              \"external_id\": \"<string>\"\n            },\n            {\n              \"id\": \"<uuid>\",\n              \"codename\": \"<string>\",\n              \"external_id\": \"<string>\"\n            }\n          ]\n        }\n      },\n      \"content_group\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      }\n    }\n  ],\n  \"name\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"codename\": \"<string>\",\n  \"last_modified\": \"<dateTime>\",\n  \"external_id\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a new snippet."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List content type snippets",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/snippets",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines the page of results to retrieve.\n\nTo get the next page of results, check the pagination object in the API response and set the ```x-continuation``` header parameter to the value of the ```continuation_token``` property.",
+                    "key": "x-continuation",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a dynamically paginated list of content type snippets."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve a content type snippet",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/snippets/:snippet_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve information about a single content type snippet."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Modify a content type snippet",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/snippets/:snippet_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"op\": \"<string>\",\n    \"value\": {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"guidelines\": \"<string,null>\",\n      \"asset_count_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"maximum_file_size\": \"<integer>\",\n      \"allowed_file_types\": \"<string>\",\n      \"image_width_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"image_height_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"is_required\": \"<boolean>\",\n      \"is_non_localizable\": \"<boolean>\",\n      \"default\": {\n        \"global\": {\n          \"value\": [\n            {\n              \"id\": \"<uuid>\",\n              \"codename\": \"<string>\",\n              \"external_id\": \"<string>\"\n            },\n            {\n              \"id\": \"<uuid>\",\n              \"codename\": \"<string>\",\n              \"external_id\": \"<string>\"\n            }\n          ]\n        }\n      },\n      \"content_group\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      }\n    },\n    \"path\": \"<string>\",\n    \"before\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    },\n    \"after\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    }\n  },\n  {\n    \"op\": \"<string>\",\n    \"value\": {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"id\": \"<string>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"guidelines\": \"<string,null>\",\n      \"asset_count_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"maximum_file_size\": \"<integer>\",\n      \"allowed_file_types\": \"<string>\",\n      \"image_width_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"image_height_limit\": {\n        \"value\": \"<integer>\",\n        \"condition\": \"<string>\"\n      },\n      \"is_required\": \"<boolean>\",\n      \"is_non_localizable\": \"<boolean>\",\n      \"default\": {\n        \"global\": {\n          \"value\": [\n            {\n              \"id\": \"<uuid>\",\n              \"codename\": \"<string>\",\n              \"external_id\": \"<string>\"\n            },\n            {\n              \"id\": \"<uuid>\",\n              \"codename\": \"<string>\",\n              \"external_id\": \"<string>\"\n            }\n          ]\n        }\n      },\n      \"content_group\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      }\n    },\n    \"path\": \"<string>\",\n    \"before\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    },\n    \"after\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    }\n  }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Modify content type snippets, their elements, and the configuration of specific objects.\n\nYou can modify the specified content type snippet and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Delete a content type snippet",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/snippets/:snippet_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Delete an unused content type snippet."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Clone an environment",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/clone-environment",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\",\n  \"roles_to_activate\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Creates a clone of an existing environment. By default, only the user who initiated the cloning and users with the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Get status of environment cloning",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/environment-cloning-state",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve the cloning status of the specified environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve environment information",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve the ID and display name of your project's environment. Using this endpoint, you can also validate your [Management API"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Rename an environment",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"op\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Change the display name of an environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Delete an environment",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Deletes an environment from your project. If an environment is [marked as production](https://kontent.ai/learn/link-to/id/af032462-8389-449f-9508-032b0277c2aa), it cannot be deleted."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Mark environment as production",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/mark-environment-as-production",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"enable_webhooks\": \"<boolean>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Marks the specified environment as production. This action effectively swaps the production environment with the specified non-production environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve a language variant",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/items/:item_identifier/variants/:language_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve content of a [language variant](https://kontent.ai/learn/link-to/id/153c924f-ed81-4236-8cfb-7937329654d8) of a content item.\n\nIf the variant contains both the published and draft versions, the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Upsert a language variant",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/items/:item_identifier/variants/:language_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"elements\": [\n    {\n      \"element\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      },\n      \"value\": [\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\",\n          \"renditions\": [\n            {\n              \"id\": \"<uuid>\",\n              \"external_id\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\",\n          \"renditions\": [\n            {\n              \"id\": \"<uuid>\",\n              \"external_id\": \"<string>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"element\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      },\n      \"value\": [\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\",\n          \"renditions\": [\n            {\n              \"id\": \"<uuid>\",\n              \"external_id\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\",\n          \"renditions\": [\n            {\n              \"id\": \"<uuid>\",\n              \"external_id\": \"<string>\"\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"workflow\": {\n    \"workflow_identifier\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\"\n    },\n    \"step_identifier\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\"\n    }\n  },\n  \"item\": {\n    \"id\": \"<uuid>\",\n    \"codename\": \"<string>\",\n    \"external_id\": \"<string>\"\n  },\n  \"language\": {\n    \"id\": \"<uuid>\",\n    \"codename\": \"<string>\",\n    \"external_id\": \"<string>\"\n  },\n  \"last_modified\": \"<dateTime>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Add content to a [language variant](https://kontent.ai/learn/link-to/id/153c924f-ed81-4236-8cfb-7937329654d8) in an active language or update an existing language variant. You cannot update an"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Delete a language variant",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/items/:item_identifier/variants/:language_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Deletes a specific [language variant](https://kontent.ai/learn/link-to/id/153c924f-ed81-4236-8cfb-7937329654d8). If you want to delete all language variants of a content item, see how to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve language variants of an item",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/items/:item_identifier/variants",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a list of [language variants](https://kontent.ai/learn/link-to/id/153c924f-ed81-4236-8cfb-7937329654d8) of a content item.\n\nIf the variant contains both the published and draft versions, the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List language variants by type",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/types/:type_identifier/variants",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines the page of results to retrieve.\n\nTo get the next page of results, check the pagination object in the API response and set the ```x-continuation``` header parameter to the value of the ```continuation_token``` property.",
+                    "key": "x-continuation",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a dynamically paginated list of [language variants](https://kontent.ai/learn/link-to/id/153c924f-ed81-4236-8cfb-7937329654d8) for a specified content type.\n\nIf the variant contains both the published and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List language variants containing components by type",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/types/:type_identifier/components",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines the page of results to retrieve.\n\nTo get the next page of results, check the pagination object in the API response and set the ```x-continuation``` header parameter to the value of the ```continuation_token``` property.",
+                    "key": "x-continuation",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a dynamically paginated list of [language variants](https://kontent.ai/learn/link-to/id/153c924f-ed81-4236-8cfb-7937329654d8) that contain components specified by a [content type](https://kontent.ai/learn/link-to/id/63d076b6-ad30-48ae-b79d-0f3636d67e51).\n\nThe returned language variants may"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List language variants by collection",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/collections/:collection_identifier/variants",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines the page of results to retrieve.\n\nTo get the next page of results, check the pagination object in the API response and set the ```x-continuation``` header parameter to the value of the ```continuation_token``` property.",
+                    "key": "x-continuation",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a dynamically paginated list of [language variants](https://kontent.ai/learn/link-to/id/153c924f-ed81-4236-8cfb-7937329654d8) for a specified collection.\n\nIf the variant contains both the published and draft"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List language variants by space",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/spaces/:space_identifier/variants",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines the page of results to retrieve.\n\nTo get the next page of results, check the pagination object in the API response and set the ```x-continuation``` header parameter to the value of the ```continuation_token``` property.",
+                    "key": "x-continuation",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a dynamically paginated list of [language variants](https://kontent.ai/learn/link-to/id/153c924f-ed81-4236-8cfb-7937329654d8) for a specified [space](https://kontent.ai/learn/link-to/id/91b9506d-44dc-4029-8a7c-862aba001684).\n\nLanguage variants are not directly connected to spaces. Rather,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Create a new version of a language variant",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/items/:item_identifier/variants/:language_identifier/new-version",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Create a new version of a published language variant while keeping the original version published and available via [Delivery API](https://kontent.ai/learn/link-to/id/1db12301-a138-44bb-a06a-bc3e655c098a)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Change the workflow of a language variant",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/items/:item_identifier/variants/:language_identifier/change-workflow",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"workflow_identifier\": {\n    \"id\": \"<uuid>\",\n    \"codename\": \"<string>\"\n  },\n  \"step_identifier\": {\n    \"id\": \"<uuid>\",\n    \"codename\": \"<string>\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Move the specified variant to the specified workflow and workflow step. This is the same as [updating the workflow in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Add a language",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/languages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\",\n  \"codename\": \"<string>\",\n  \"id\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"is_active\": \"<boolean>\",\n  \"is_default\": \"<boolean>\",\n  \"fallback_language\": {\n    \"id\": \"<uuid>\",\n    \"codename\": \"<string>\",\n    \"external_id\": \"<string>\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create new languages in your environment. For each active language, you can create localized content using [language variants](https://kontent.ai/learn/link-to/id/153c924f-ed81-4236-8cfb-7937329654d8)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List languages",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/languages",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines the page of results to retrieve.\n\nTo get the next page of results, check the pagination object in the API response and set the ```x-continuation``` header parameter to the value of the ```continuation_token``` property.",
+                    "key": "x-continuation",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a dynamically paginated list of languages from your environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve a language",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/languages/:language_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a language from your environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Modify a language",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/languages/:language_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"op\": \"<string>\",\n    \"property_name\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Modify languages in your environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve preview configuration",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/preview-configuration",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "View the complete preview URLs configuration for the specified environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Modify preview configuration",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/preview-configuration",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"space_domains\": [\n    {\n      \"space\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\"\n      },\n      \"domain\": \"<string>\"\n    },\n    {\n      \"space\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\"\n      },\n      \"domain\": \"<string>\"\n    }\n  ],\n  \"preview_url_patterns\": [\n    {\n      \"content_type\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      },\n      \"url_patterns\": [\n        {\n          \"url_pattern\": \"<string>\",\n          \"space\": {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\"\n          }\n        },\n        {\n          \"url_pattern\": \"<string>\",\n          \"space\": {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\"\n          }\n        }\n      ]\n    },\n    {\n      \"content_type\": {\n        \"id\": \"<uuid>\",\n        \"codename\": \"<string>\",\n        \"external_id\": \"<string>\"\n      },\n      \"url_patterns\": [\n        {\n          \"url_pattern\": \"<string>\",\n          \"space\": {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\"\n          }\n        },\n        {\n          \"url_pattern\": \"<string>\",\n          \"space\": {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Adjust the preview URLs configured for your environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Publish or schedule a language variant",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/items/:item_identifier/variants/:language_identifier/publish",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"scheduled_to\": \"<dateTime>\",\n  \"display_timezone\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Change the workflow step of the specified language variant to \"Published\" or schedule publishing at the specified time.\n\n* Equivalent to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Cancel scheduled publishing of a language variant",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/items/:item_identifier/variants/:language_identifier/cancel-scheduled-publish",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Cancel scheduling of a language variant.\n\nEquivalent to [canceling scheduled content in the UI](https://kontent.ai/learn/link-to/id/807db2f1-e413-4697-9ae7-6d4f9ad32e58). If the specified language variant is not"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Unpublish or schedule unpublishing of a language variant",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/items/:item_identifier/variants/:language_identifier/unpublish-and-archive",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"scheduled_to\": \"<dateTime>\",\n  \"display_timezone\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Unpublish the specified language variant and change its workflow step to \"Archived\" or schedule these operations.\n\n* Equivalent to the UI"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Cancel scheduled unpublishing of a language variant",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/items/:item_identifier/variants/:language_identifier/cancel-scheduled-unpublish",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Cancel scheduled unpublishing of the specified language variant.\n\n* The scheduled unpublishing date will be removed and the variant will no"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List roles",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/roles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a list of all roles in the specified environment.\n\n\n\n<div class=\"callout callout--info\">\n\nThis endpoint requires [Enterprise plan](https://kontent.ai/pricing) and the [Manage custom"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve a role",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/roles/:role_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve information about a role.\n\n\n\n<div class=\"callout callout--info\">\n\nThis endpoint requires [Enterprise plan](https://kontent.ai/pricing) and the [Manage custom roles](https://kontent.ai/learn/link-to/id/1470ff99-76cc-4071-ae9b-8ae363ee5dd5) permission.</div>\n\n"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Add a space",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/spaces",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"codename\": \"<string>\",\n  \"web_spotlight_root_item\": {\n    \"id\": \"<uuid>\",\n    \"codename\": \"<string>\",\n    \"external_id\": \"<string>\"\n  },\n  \"collections\": [\n    {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a new [space](https://kontent.ai/learn/link-to/id/91b9506d-44dc-4029-8a7c-862aba001684) in your environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List spaces",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/spaces",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a list of [spaces](https://kontent.ai/learn/link-to/id/91b9506d-44dc-4029-8a7c-862aba001684) from your environment"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve a space",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/spaces/:space_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a [space](https://kontent.ai/learn/link-to/id/91b9506d-44dc-4029-8a7c-862aba001684) from your environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Modify a space",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/spaces/:space_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"op\": \"<string>\",\n    \"property_name\": \"<string>\",\n    \"value\": \"<string>\"\n  }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Modify a space in your environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Delete a space",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/spaces/:space_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Delete a space from your environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Add a taxonomy group",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/taxonomies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\",\n  \"terms\": [\n    {\n      \"name\": \"<string>\",\n      \"terms\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/taxonomy_term_78206f4 detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/taxonomy_term_78206f4 detected>\"\n        }\n      ],\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"terms\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/taxonomy_term_78206f4 detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/taxonomy_term_78206f4 detected>\"\n        }\n      ],\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"codename\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"last_modified\": \"<dateTime>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a new taxonomy group."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List taxonomy groups",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/taxonomies",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines the page of results to retrieve.\n\nTo get the next page of results, check the pagination object in the API response and set the ```x-continuation``` header parameter to the value of the ```continuation_token``` property.",
+                    "key": "x-continuation",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a dynamically paginated list of taxonomy groups."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve a taxonomy group",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/taxonomies/:taxonomy_group_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a taxonomy group."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Modify a taxonomy group",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/taxonomies/:taxonomy_group_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "[\n  {\n    \"op\": \"<string>\",\n    \"value\": {\n      \"name\": \"<string>\",\n      \"terms\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/taxonomy_term_78206f4 detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/taxonomy_term_78206f4 detected>\"\n        }\n      ],\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"id\": \"<uuid>\"\n    },\n    \"reference\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    },\n    \"after\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    },\n    \"before\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    }\n  },\n  {\n    \"op\": \"<string>\",\n    \"value\": {\n      \"name\": \"<string>\",\n      \"terms\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/taxonomy_term_78206f4 detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/taxonomy_term_78206f4 detected>\"\n        }\n      ],\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"id\": \"<uuid>\"\n    },\n    \"reference\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    },\n    \"after\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    },\n    \"before\": {\n      \"id\": \"<uuid>\",\n      \"codename\": \"<string>\",\n      \"external_id\": \"<string>\"\n    }\n  }\n]",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Modify the specified taxonomy group and terms using the ```replace```, ```remove```, and ```addInto``` operations."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Delete a taxonomy group",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/taxonomies/:taxonomy_group_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Delete a taxonomy group specified by its internal ID, codename, or external ID.\n\nIf you delete a taxonomy group that is"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Invite a user",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"email\": \"<email>\",\n  \"collection_groups\": [\n    {\n      \"collections\": [\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        }\n      ],\n      \"roles\": [\n        {\n          \"id\": \"<uuid>\",\n          \"languages\": [\n            {\n              \"id\": \"<uuid>\",\n              \"codename\": \"<string>\",\n              \"external_id\": \"<string>\"\n            },\n            {\n              \"id\": \"<uuid>\",\n              \"codename\": \"<string>\",\n              \"external_id\": \"<string>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Invite a new user to your project and assign them a specific role. The user becomes active in the environment"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Change a user's role",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/users/:user_identifier/roles",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"collection_groups\": [\n    {\n      \"collections\": [\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        }\n      ],\n      \"roles\": [\n        {\n          \"id\": \"<uuid>\",\n          \"languages\": [\n            {\n              \"id\": \"<uuid>\",\n              \"codename\": \"<string>\",\n              \"external_id\": \"<string>\"\n            },\n            {\n              \"id\": \"<uuid>\",\n              \"codename\": \"<string>\",\n              \"external_id\": \"<string>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Change the user's role and their access to content based on the user's assignment to roles, collections, and languages.\n\n\n\n<div class=\"callout"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Start content validation",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/validate-async",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Start validating the specified environment's content to check for issues such as: \n\n* Missing objects that are [referenced](https://kontent.ai/learn/link-to/id/39ee23e8-c352-4966-b48d-7b312da3100e) in content"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Check content validation progress",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/validate-async/tasks/:task_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves information about a content validation task by the task's internal ID.\n\n\n\n<div class=\"callout callout--info\">\n\nThis endpoint requires either a [Management API"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List content validation results",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/validate-async/tasks/:task_id/issues",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines the page of results to retrieve.\n\nTo get the next page of results, check the pagination object in the API response and set the ```x-continuation``` header parameter to the value of the ```continuation_token``` property.",
+                    "key": "x-continuation",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves a dynamically paginated list of content validation issues.\n\n\n\n<div class=\"callout callout--info\">\n\nThis endpoint requires either a [Management API key](https://kontent.ai/learn/link-to/id/f1d8684c-2037-4478-a723-e606f075aae4) with the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Add a webhook",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/webhooks-vnext",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"delivery_triggers\": {\n    \"slot\": \"<string>\",\n    \"events\": \"<string>\",\n    \"content_type\": {\n      \"enabled\": \"<boolean>\",\n      \"actions\": [\n        {\n          \"action\": \"<string>\"\n        },\n        {\n          \"action\": \"<string>\"\n        }\n      ],\n      \"filters\": {\n        \"content_types\": [\n          {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\",\n            \"external_id\": \"<string>\"\n          },\n          {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\",\n            \"external_id\": \"<string>\"\n          }\n        ]\n      }\n    },\n    \"asset\": {\n      \"enabled\": \"<boolean>\",\n      \"actions\": [\n        {\n          \"action\": \"<string>\"\n        },\n        {\n          \"action\": \"<string>\"\n        }\n      ]\n    },\n    \"taxonomy\": {\n      \"enabled\": \"<boolean>\",\n      \"filters\": {\n        \"taxonomies\": [\n          {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\",\n            \"external_id\": \"<string>\"\n          },\n          {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\",\n            \"external_id\": \"<string>\"\n          }\n        ]\n      },\n      \"actions\": [\n        {\n          \"action\": \"<string>\"\n        },\n        {\n          \"action\": \"<string>\"\n        }\n      ]\n    },\n    \"language\": {\n      \"enabled\": \"<boolean>\",\n      \"actions\": [\n        {\n          \"action\": \"<string>\"\n        },\n        {\n          \"action\": \"<string>\"\n        }\n      ],\n      \"filters\": {\n        \"languages\": [\n          {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\",\n            \"external_id\": \"<string>\"\n          },\n          {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\",\n            \"external_id\": \"<string>\"\n          }\n        ]\n      }\n    },\n    \"content_item\": {\n      \"enabled\": \"<boolean>\",\n      \"actions\": [\n        {\n          \"action\": \"<string>\",\n          \"transition_to\": [\n            {\n              \"workflow_identifier\": {\n                \"id\": \"<uuid>\",\n                \"codename\": \"<string>\"\n              },\n              \"step_identifier\": {\n                \"id\": \"<uuid>\",\n                \"codename\": \"<string>\"\n              }\n            },\n            {\n              \"workflow_identifier\": {\n                \"id\": \"<uuid>\",\n                \"codename\": \"<string>\"\n              },\n              \"step_identifier\": {\n                \"id\": \"<uuid>\",\n                \"codename\": \"<string>\"\n              }\n            }\n          ]\n        },\n        {\n          \"action\": \"<string>\",\n          \"transition_to\": [\n            {\n              \"workflow_identifier\": {\n                \"id\": \"<uuid>\",\n                \"codename\": \"<string>\"\n              },\n              \"step_identifier\": {\n                \"id\": \"<uuid>\",\n                \"codename\": \"<string>\"\n              }\n            },\n            {\n              \"workflow_identifier\": {\n                \"id\": \"<uuid>\",\n                \"codename\": \"<string>\"\n              },\n              \"step_identifier\": {\n                \"id\": \"<uuid>\",\n                \"codename\": \"<string>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"filters\": {\n        \"collections\": [\n          {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\",\n            \"external_id\": \"<string>\"\n          },\n          {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\",\n            \"external_id\": \"<string>\"\n          }\n        ],\n        \"content_types\": [\n          {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\",\n            \"external_id\": \"<string>\"\n          },\n          {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\",\n            \"external_id\": \"<string>\"\n          }\n        ],\n        \"languages\": [\n          {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\",\n            \"external_id\": \"<string>\"\n          },\n          {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\",\n            \"external_id\": \"<string>\"\n          }\n        ]\n      }\n    }\n  },\n  \"url\": \"<url>\",\n  \"id\": \"<uuid>\",\n  \"enabled\": \"<boolean>\",\n  \"last_modified\": \"<dateTime>\",\n  \"health_status\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Add a webhook to a given environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve webhooks",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/webhooks-vnext",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves webhooks from an environment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve a webhook",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/webhooks-vnext/:webhook_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves a webhook specified by its internal ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Delete a webhook",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/webhooks-vnext/:webhook_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Delete a webhook specified by its internal ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Enable a webhook",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/webhooks-vnext/:webhook_identifier/enable",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Enables a webhook specified by its internal ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Disable a webhook",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/webhooks-vnext/:webhook_identifier/disable",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Disables a webhook specified by its internal ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Add a legacy webhook",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/webhooks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\",\n  \"secret\": \"<string>\",\n  \"triggers\": {\n    \"delivery_api_content_changes\": [\n      {\n        \"operations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"type\": \"<string>\"\n      },\n      {\n        \"operations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"type\": \"<string>\"\n      }\n    ],\n    \"preview_delivery_api_content_changes\": [\n      {\n        \"operations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"type\": \"<string>\"\n      },\n      {\n        \"operations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"type\": \"<string>\"\n      }\n    ],\n    \"workflow_step_changes\": [\n      {\n        \"transitions_to\": [\n          {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\",\n            \"external_id\": \"<string>\"\n          },\n          {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\",\n            \"external_id\": \"<string>\"\n          }\n        ],\n        \"type\": \"<string>\"\n      },\n      {\n        \"transitions_to\": [\n          {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\",\n            \"external_id\": \"<string>\"\n          },\n          {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\",\n            \"external_id\": \"<string>\"\n          }\n        ],\n        \"type\": \"<string>\"\n      }\n    ],\n    \"management_api_content_changes\": [\n      {\n        \"operations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"type\": \"<string>\"\n      },\n      {\n        \"operations\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"type\": \"<string>\"\n      }\n    ]\n  },\n  \"url\": \"<url>\",\n  \"last_modified\": \"<dateTime>\",\n  \"health_status\": \"<string>\",\n  \"id\": \"<uuid>\",\n  \"enabled\": \"<boolean>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Add a legacy webhook to an environment.\n\n\n\n<div class=\"callout callout--info\">\n\nThe legacy webhooks are available only for subscriptions created before December 14,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve legacy webhooks",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/webhooks",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves legacy webhooks from an environment.\n\n\n\n<div class=\"callout callout--info\">\n\nThe legacy webhooks are available only for subscriptions created before December 14, 2023."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve a legacy webhook",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/webhooks/:webhook_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieves a legacy webhook specified by its internal ID.\n\n\n\n<div class=\"callout callout--info\">\n\nThe legacy webhooks are available only for subscriptions created before"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Delete a legacy webhook",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/webhooks/:webhook_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Delete a legacy webhook specified by its internal ID.\n\n\n\n<div class=\"callout callout--info\">\n\nThe legacy webhooks are available only for subscriptions created before"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Enable a legacy webhook",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/webhooks/:webhook_identifier/enable",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Enables a legacy webhook specified by its internal ID.\n\n\n\n<div class=\"callout callout--info\">\n\nThe legacy webhooks are available only for subscriptions created before"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Disable a legacy webhook",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/webhooks/:webhook_identifier/disable",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Disables a legacy webhook specified by its internal ID.\n\n\n\n<div class=\"callout callout--info\">\n\nThe legacy webhooks are available only for subscriptions created before"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Add a workflow",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/workflows",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"<string>\",\n      \"codename\": \"<string>\",\n      \"color\": \"<string>\",\n      \"transitions_to\": [\n        {\n          \"step\": {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\"\n          }\n        }\n      ],\n      \"role_ids\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"codename\": \"<string>\",\n      \"color\": \"<string>\",\n      \"transitions_to\": [\n        {\n          \"step\": {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\"\n          }\n        }\n      ],\n      \"role_ids\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"scopes\": [\n    {\n      \"content_types\": [\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        }\n      ],\n      \"collections\": [\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"content_types\": [\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        }\n      ],\n      \"collections\": [\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"published_step\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"codename\": \"<string>\",\n    \"unpublish_role_ids\": [\n      \"<uuid>\"\n    ],\n    \"create_new_version_role_ids\": [\n      \"<uuid>\"\n    ]\n  },\n  \"archived_step\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"codename\": \"<string>\",\n    \"role_ids\": [\n      \"<uuid>\"\n    ]\n  },\n  \"id\": \"<uuid>\",\n  \"codename\": \"<string>\",\n  \"scheduled_step\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"codename\": \"<string>\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Create a new workflow."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve workflows",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/workflows",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a list of workflows with information about the workflow steps they define."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Update a workflow",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/workflows/:workflow_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"<string>\",\n  \"steps\": [\n    {\n      \"name\": \"<string>\",\n      \"codename\": \"<string>\",\n      \"color\": \"<string>\",\n      \"transitions_to\": [\n        {\n          \"step\": {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\"\n          }\n        }\n      ],\n      \"role_ids\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"id\": \"<uuid>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"codename\": \"<string>\",\n      \"color\": \"<string>\",\n      \"transitions_to\": [\n        {\n          \"step\": {\n            \"id\": \"<uuid>\",\n            \"codename\": \"<string>\"\n          }\n        }\n      ],\n      \"role_ids\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"id\": \"<uuid>\"\n    }\n  ],\n  \"scopes\": [\n    {\n      \"content_types\": [\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        }\n      ],\n      \"collections\": [\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"content_types\": [\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        }\n      ],\n      \"collections\": [\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        },\n        {\n          \"id\": \"<uuid>\",\n          \"codename\": \"<string>\",\n          \"external_id\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"published_step\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"codename\": \"<string>\",\n    \"unpublish_role_ids\": [\n      \"<uuid>\"\n    ],\n    \"create_new_version_role_ids\": [\n      \"<uuid>\"\n    ]\n  },\n  \"archived_step\": {\n    \"id\": \"<uuid>\",\n    \"name\": \"<string>\",\n    \"codename\": \"<string>\",\n    \"role_ids\": [\n      \"<uuid>\"\n    ]\n  },\n  \"codename\": \"<string>\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Update an existing workflow, manage its scope, workflow steps and their transitions, and role permissions. Always make sure that all"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Delete a workflow",
+        "api_call": "https://manage.kontent.ai/v2/projects/:environment_id/workflows/:workflow_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Deletes an unused workflow."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List projects under a subscription",
+        "api_call": "https://manage.kontent.ai/v2/subscriptions/:subscription_id/projects",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines the page of results to retrieve.\n\nTo get the next page of results, check the pagination object in the API response and set the ```x-continuation``` header parameter to the value of the ```continuation_token``` property.",
+                    "key": "x-continuation",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a dynamically paginated list of projects under the specified subscription.\n\n\n\n<div class=\"callout callout--info\">\n\nThis endpoint requires [Enterprise plan](https://kontent.ai/pricing) and the [Subscription"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: List users under a subscription",
+        "api_call": "https://manage.kontent.ai/v2/subscriptions/:subscription_id/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "Determines the page of results to retrieve.\n\nTo get the next page of results, check the pagination object in the API response and set the ```x-continuation``` header parameter to the value of the ```continuation_token``` property.",
+                    "key": "x-continuation",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a dynamically paginated list of users under the specified subscription. Includes the users' assignment to projects, environments, collections, roles,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Retrieve a user",
+        "api_call": "https://manage.kontent.ai/v2/subscriptions/:subscription_id/users/:user_identifier",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve metadata about a specified user under the specified subscription. The metadata includes information about the user's access to [projects](https://kontent.ai/learn/link-to/id/f059ead1-60d3-4c07-95fb-eb37af66e5b5)"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Activate a user in all projects",
+        "api_call": "https://manage.kontent.ai/v2/subscriptions/:subscription_id/users/:user_identifier/activate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Activates the specified user in all projects under the specified subscription.\n\n\n\n<div class=\"callout callout--info\">\n\nThis endpoint requires [Enterprise plan](https://kontent.ai/pricing) and the [Subscription"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Deactivate a user in all projects",
+        "api_call": "https://manage.kontent.ai/v2/subscriptions/:subscription_id/users/:user_identifier/deactivate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Deactivates the specified user in all projects under the specified subscription.\n\n\n\n<div class=\"callout callout--info\">\n\nThis endpoint requires [Enterprise plan](https://kontent.ai/pricing) and the [Subscription"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Initialize content synchronization",
+        "api_call": "https://deliver.kontent.ai/:environment_id/sync/init?system.type=<string>&system.collection=<string>&language=<string>&system.language=<string>",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Initializes synchronization of changes in content items based on the specified parameters. After the initialization, you'll get the ```X-Continuation``` token"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Kontent.ai APIs: Synchronize changes in content items",
+        "api_call": "https://deliver.kontent.ai/:environment_id/sync",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "description": "(Required) Determines which content changes to synchronize next. You get a new ```X-Continuation``` token every time you [initialize a content synchronization](https://kontent.ai/learn/link-to/id/0e5afa8c-be1a-4829-940a-544cf0251258) or [synchronize recent changes](https://kontent.ai/learn/link-to/id/a401637d-a9f9-44c9-a701-30a8f6ea62be).",
+                    "key": "X-Continuation",
+                    "value": "<string>"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a list of delta updates to recently changed content items. The types of items you get is determined by"
+    }
+]

@@ -1,0 +1,4117 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Leverage token info",
+        "api_call": "{{url}}/sapi/v1/blvt/tokenInfo?tokenName=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "value": "{{binance-api-key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Subscribe BLVT",
+        "api_call": "{{url}}/sapi/v1/blvt/subscribe?tokenName=&cost=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Subscription Record",
+        "api_call": "{{url}}/sapi/v1/blvt/subscribe/record?tokenName=&id=&startTime=&endTime=&limit=1000&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Redeem BLVT",
+        "api_call": "{{url}}/sapi/v1/blvt/redeem?tokenName=&amount=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Redemption Record",
+        "api_call": "{{url}}/sapi/v1/blvt/redeem/record?tokenName=&id=&startTime=&endTime=&limit=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get BLVT User Limit Info",
+        "api_call": "{{url}}/sapi/v1/blvt/userLimit?tokenName=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: List All Swap Pools",
+        "api_call": "{{url}}/sapi/v1/bswap/pools",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get liquidity information of a pool (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/bswap/liquidity?poolId=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Add Liquidity (TRADE)",
+        "api_call": "{{url}}/sapi/v1/bswap/liquidityAdd?poolId=&asset=&quantity=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Remove Liquidity (TRADE)",
+        "api_call": "{{url}}/sapi/v1/bswap/liquidityRemove?poolId=&type=&asset=&shareAmount=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Liquidity Operation Record (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/bswap/liquidityOps?operationId=&poolId=&operation=&startTime=&endTime=&limit=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Request Quote (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/bswap/quote?quoteAsset=&baseAsset=&quoteQty=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Swap (TRADE)",
+        "api_call": "{{url}}/sapi/v1/bswap/swap?quoteAsset=&baseAsset=&quoteQty=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Swap History (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/bswap/swap?swapId=&startTime=&endTime=&status=&quoteAsset=&baseAsset=&limit=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Create a Virtual Sub-account(For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/virtualSubAccount?subAccountString=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Sub-account List SAPI(For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/list?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Sub-account List(For Master Account)",
+        "api_call": "{{url}}/wapi/v3/sub-account/list.html?email&status=enabled&page=1&limit=500&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Sub-account Spot Asset Transfer History(For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/sub/transfer/history?fromEmail=&toEmail=&startTime=&endTime=&page=1&limit=500&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Sub-account Spot Asset Transfer(For Master Account)",
+        "api_call": "{{url}}/wapi/v3/sub-account/transfer.html?fromEmail&toEmail&asset&amount=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Sub-account Futures Asset Transfer History(For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/futures/internalTransfer?email&futuresType&startTime&endTime&page=&limit=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Sub-account Futures Asset Transfer(For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/futures/internalTransfer?fromEmail&toEmail&futuresType&asset&amount=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Sub-account Assets(For Master Account)",
+        "api_call": "{{url}}/wapi/v3/sub-account/assets.html?email&symbol&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Sub-account Assets(SAPI) (For Master Account)",
+        "api_call": "{{url}}/sapi/v3/sub-account/assets?email=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-MBX-APIKEY",
+                    "value": "{{binance-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Sub-account Spot Assets Summary (For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/spotSummary?email=&page=&size=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "Get BTC valued asset summary of subaccouts."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Sub-account Deposit Address (For Master Account)",
+        "api_call": "{{url}}/sapi/v1/capital/deposit/subAddress?email&coin&network&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Sub-account Deposit History (For Master Account)",
+        "api_call": "{{url}}/sapi/v1/capital/deposit/subHisrec?email&coin&network&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Sub-account's Status on Margin/Futures(For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/status?email&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Enable Margin for Sub-account (For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/margin/enable?email=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Detail on Sub-account's Margin Account (For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/margin/account?email=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Summary of Sub-account's Margin Account (For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/margin/accountSummary?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Enable Futures for Sub-account (For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/futures/enable?email&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Detail on Sub-account's Futures Account (For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/futures/account?email=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Summary of Sub-account's Futures Account (For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/futures/accountSummary?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Futures Postion-Risk of Sub-account (For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/futures/positionRisk?email=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Futures Transfer for Sub-account\uff08For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/futures/transfer?email=&asset&amount&type&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Margin Transfer for Sub-account\uff08For Master Account",
+        "api_call": "{{url}}/sapi/v1/sub-account/margin/transfer?email=&asset&amount&type&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Transfer to Sub-account of Same Master\uff08For Sub-account\uff09",
+        "api_call": "{{url}}/sapi/v1/sub-account/transfer/subToSub?email=&asset&amount&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Transfer to Master\uff08For Sub-account\uff09",
+        "api_call": "{{url}}/sapi/v1/sub-account/transfer/subToMaster?asset&amount&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Sub-account Transfer History (For Sub-account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/transfer/subUserHistory?asset=&type=&startTime=&endTime=&limit=500&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Universal Transfer (For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/universalTransfer?fromEmail=&toEmail=&fromAccountType=&toAccountType=&asset=&amount=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Universal Transfer History",
+        "api_call": "{{url}}/sapi/v1/sub-account/universalTransfer?fromEmail=&toEmail=&startTime=&endTime=&page=&limit=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Enable Leverage Token for Sub-account (For Master Account)",
+        "api_call": "{{url}}/sapi/v1/sub-account/blvt/enable?email=&enableBlvt=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Create New Listen Key",
+        "api_call": "{{url}}/api/v3/userDataStream",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Renew Listen Key",
+        "api_call": "{{url}}/api/v3/userDataStream?listenKey=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Delete Listen Key",
+        "api_call": "{{url}}/api/v3/userDataStream?listenKey=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Create New Isolated Margin Account Listen Key",
+        "api_call": "{{url}}/sapi/v1/userDataStream/isolated?symbol=BTCUSDT",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Renew Isolated Margin Account Listen Key",
+        "api_call": "{{url}}/sapi/v1/userDataStream/isolated?listenKey=&symbol=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Delete Isolated Margin Account Listen Key",
+        "api_call": "{{url}}/sapi/v1/userDataStream/isolated?listenKey=&symbol",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Create New Listen Key",
+        "api_call": "{{url}}/sapi/v1/userDataStream",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Renew Listen Key",
+        "api_call": "{{url}}/sapi/v1/userDataStream?listenKey=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Delete Listen Key",
+        "api_call": "{{url}}/sapi/v1/userDataStream?listenKey=",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: New Future Account Transfer",
+        "api_call": "{{url}}/sapi/v1/futures/transfer?asset=&amount=&type=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Future Account Transaction History List",
+        "api_call": "{{url}}/sapi/v1/futures/transfer?asset=&startTime&endTime&current=&size=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Borrow For Cross-Collateral (TRADE)",
+        "api_call": "{{url}}/sapi/v1/futures/loan/borrow?coin=&amount=&collateralCoin=&collateralAmount=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "limit: once per second per account"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Cross-Collateral Borrow History (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/futures/loan/borrow/history?coin=&startTime=&endTime=&limit=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Repay For Cross-Collateral (TRADE)",
+        "api_call": "{{url}}/sapi/v1/futures/loan/repay?coin=&collateralCoin=&amount=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "limit: once per second per account"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Cross-Collateral Repayment History (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/futures/loan/repay/history?coin=&startTime=&endTime=&limit=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Cross-Collateral Wallet (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/futures/loan/wallet?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Cross-Collateral Wallet V2 (USER_DATA)",
+        "api_call": "{{url}}/sapi/v2/futures/loan/wallet?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Cross-Collateral Information (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/futures/loan/configs?collateralCoin=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Cross-Collateral Information V2 (USER_DATA)",
+        "api_call": "{{url}}/sapi/v2/futures/loan/configs?loanCoin=&collateralCoin=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Calculate Rate After Adjust Cross-Collateral LTV (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/futures/loan/calcAdjustLevel?collateralCoin=&amount=&direction=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Calculate Rate After Adjust Cross-Collateral LTV V2 (USER_DATA)",
+        "api_call": "{{url}}/sapi/v2/futures/loan/calcAdjustLevel?loanCoin=&collateralCoin=&amount=&direction=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Max Amount for Adjust Cross-Collateral LTV (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/futures/loan/calcMaxAdjustAmount?collateralCoin=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Max Amount for Adjust Cross-Collateral LTV V2 (USER_DATA)",
+        "api_call": "{{url}}/sapi/v2/futures/loan/calcMaxAdjustAmount?loanCoin=&collateralCoin=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Adjust Cross-Collateral LTV (TRADE)",
+        "api_call": "{{url}}/sapi/v1/futures/loan/adjustCollateral?collateralCoin=&amount=&direction=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Adjust Cross-Collateral LTV V2 (TRADE)",
+        "api_call": "{{url}}/sapi/v2/futures/loan/adjustCollateral?loanCoin=&collateralCoin=&amount=&direction=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Adjust Cross-Collateral LTV History (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/futures/loan/adjustCollateral/history?loanCoin=&collateralCoin=&startTime=&endTime=&limit=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Cross-Collateral Liquidation History (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/futures/loan/liquidationHistory?loanCoin=&collateralCoin=&startTime=&endTime=&limit=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Check Collateral Repay Limit (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/futures/loan/collateralRepayLimit?coin=&collateralCoin=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Collateral Repay Quote (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/futures/loan/collateralRepay?coin=&collateralCoin=&amount=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Repay with Collateral (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/futures/loan/collateralRepay?quoteId=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Collateral Repayment Result (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/futures/loan/collateralRepayResult?quoteId=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Cross-Collateral Interest History (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/futures/loan/interestHistory?collateralCoin=&startTime=&endTime=&current=&limit=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: System Status (System)",
+        "api_call": "{{url}}/wapi/v3/systemStatus.html",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: System Status(SAPI) (System)",
+        "api_call": "{{url}}/sapi/v1/system/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: All Coins' Information (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/capital/config/getall?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "value": "{{binance-api-key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Daily Account Snapshot (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/accountSnapshot?type=SPOT&limit=5&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Disable Fast Withdraw Switch (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/account/disableFastWithdrawSwitch?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Enable Fast Withdraw Switch (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/account/enableFastWithdrawSwitch?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Withdraw [SAPI]",
+        "api_call": "{{url}}/sapi/v1/capital/withdraw/apply?coin=&withdrawOrderId=&network=&address=&addressTag=&amount=&transactionFeeFlag=&name=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Withdraw",
+        "api_call": "{{url}}/wapi/v3/withdraw.html?asset=&withdrawOrderId=&network=&address=&addressTag=&amount=&transactionFeeFlag=&name=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Deposit History\uff08supporting network\uff09 (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/capital/deposit/hisrec?coin=BTC&status&startTime&endTime&addressTag=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Deposit History (USER_DATA)",
+        "api_call": "{{url}}/wapi/v3/depositHistory.html?asset=BTC&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Withdraw History (supporting network) (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/capital/withdraw/history?coin=BTC&status=&offset=&limit=100&startTime=&endTime=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Withdraw History (USER_DATA)",
+        "api_call": "{{url}}/wapi/v3/withdrawHistory.html?asset=BTC&status&startTime&endTime&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Deposit Address (supporting network) (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/capital/deposit/address?coin=BTC&network&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Deposit Address (USER_DATA)",
+        "api_call": "{{url}}/wapi/v3/depositAddress.html?asset=BTC&status&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Account Status (USER_DATA)",
+        "api_call": "{{url}}/wapi/v3/accountStatus.html?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Account Status(SAPI) (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/account/status?recvWindow=5000&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "value": "{{binance-api-key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Account API Trading Status (USER_DATA)",
+        "api_call": "{{url}}/wapi/v3/apiTradingStatus.html?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Account API Trading Status(SAPI) (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/account/apiTradingStatus?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-MBX-APIKEY",
+                    "value": "{{binance-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: DustLog (USER_DATA)",
+        "api_call": "{{url}}/wapi/v3/userAssetDribbletLog.html?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: DustLog(SAPI)(USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/asset/dribblet?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-MBX-APIKEY",
+                    "value": "{{binance-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Trade Fee (USER_DATA)",
+        "api_call": "{{url}}/wapi/v3/tradeFee.html?symbol=BTCUSDT&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Trade Fee(SAPI) (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/asset/tradeFee?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "value": "{{binance-api-key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Asset Detail (USER_DATA)",
+        "api_call": "{{url}}/wapi/v3/assetDetail.html?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Asset Detail(SAPI) (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/asset/assetDetail?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-MBX-APIKEY",
+                    "value": "{{binance-api-key}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Dust Transfer (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/asset/dust?asset=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Asset Dividend Record (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/asset/assetDividend?asset&startTime&endTime&limit=20&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: User Universal Transfer",
+        "api_call": "{{url}}/sapi/v1/asset/transfer?type=&asset=&amount=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query User Universal Transfer History",
+        "api_call": "{{url}}/sapi/v1/asset/transfer?type=&startTime=&endTime=&current=&size=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Create Isolated Margin Account (MARGIN)",
+        "api_call": "{{url}}/sapi/v1/margin/isolated/create?base=&quote=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Isolated Margin Account Transfer (MARGIN)",
+        "api_call": "{{url}}/sapi/v1/margin/isolated/transfer?asset=&symbol=&transFrom=&transTo=&amount=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Isolated Margin Account Transfer History (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/isolated/transfer?asset=&symbol=&transFrom=&transTo=&startTime&endTime&current=1&size=10&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Isolated Margin Account Info (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/isolated/account?symbols=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Isolated Margin Pair (MARKET_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/isolated/pair?symbol=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get All Isolated Margin Pairs (MARKET_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/isolated/allPairs?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Margin Account Transfer (MARGIN)",
+        "api_call": "{{url}}/sapi/v1/margin/transfer?asset=BTC&amount&type&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Margin Account Borrow (MARGIN)",
+        "api_call": "{{url}}/sapi/v1/margin/loan?asset=&isIsolated=&symbol=&amount=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Margin Account Repay (MARGIN)",
+        "api_call": "{{url}}/sapi/v1/margin/repay?asset=&isIsolated=&symbol=&amount=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Margin Asset (MARKET_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/asset?asset=BTC&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Margin Pair (MARKET_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/pair?symbol=BTCUSDT&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get All Margin Assets (MARKET_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/allAssets?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get All Margin Pairs (MARKET_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/allPairs?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Margin PriceIndex (MARKET_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/priceIndex?symbol=BTCUSDT&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Margin Account New Order (TRADE)",
+        "api_call": "{{url}}/sapi/v1/margin/order?symbol=&isIsolated=&side=&type=&quantity=&quoteOrderQty=&price=&stopPrice=&newClientOrderId=&icebergQty=&newOrderRespType=&sideEffectType=&timeInForce=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Margin Account Cancel Order (TRADE)",
+        "api_call": "{{url}}/sapi/v1/margin/order?symbol=&isIsolated=&orderId=&origClientOrderId=&newClientOrderId=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Margin Account Cancel all Open Orders on a Symbol",
+        "api_call": "{{url}}/sapi/v1/margin/openOrders?symbol=&isIsolated=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Transfer History (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/transfer?asset=BTCUSDT&type&startTime&endTime&current=1&size=10&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Loan Record (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/loan?asset=&isolatedSymbol=&txId=&startTime=&endTime=&current=1&size=10&archived=false&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Repay Record (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/repay?asset=&isolatedSymbol=&txId=&startTime=&endTime=&current=1&size=10&archived=false&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Interest History (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/interestHistory?asset=&isolatedSymbol=&startTime=&endTime=&current=1&size=10&archived=false&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Force Liquidation Record (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/forceLiquidationRec?startTime=&endTime=&isolatedSymbol=&current=1&size=10&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Margin Account Details (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/account?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Margin Account's Order (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/order?symbol=&isIsolated=&orderId=&origClientOrderId=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Margin Account's Open Order (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/openOrders?symbol=&isIsolated=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Margin Account's All Order (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/allOrders?symbol=&isIsolated=&orderId=&startTime=&endTime=&limit=500&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Margin Account's Trade List (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/myTrades?symbol=&isIsolated=&startTime=&endTime=&fromId=&limit=500&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Max Borrow (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/maxBorrowable?asset=&isolatedSymbol=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Max Transfer-Out Amount (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/maxTransferable?asset=&isolatedSymbol=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Toggle BNB Burn On Spot Trade And Margin Interest (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/bnbBurn?spotBNBBurn=&interestBNBBurn=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get BNB Burn Status (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/bnbBurn?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Margin Interest Rate History (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/margin/interestRateHistory?asset=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Test Connectivity",
+        "api_call": "{{url}}/api/v3/ping",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Test connectivity to the Rest API."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Check Server Time",
+        "api_call": "{{url}}/api/v3/time",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Test connectivity to the Rest API and get the current server time."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Exchange Information",
+        "api_call": "{{url}}/api/v3/exchangeInfo",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Order Book",
+        "api_call": "{{url}}/api/v3/depth?symbol=BTCUSDT&limit=100",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Recent Trades List",
+        "api_call": "{{url}}/api/v3/trades?symbol=BTCUSDT&limit=500",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Old Trade Lookup",
+        "api_call": "{{url}}/api/v3/historicalTrades?symbol=BTCUSDT&limit=500&fromId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "value": "{{binance-api-key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Compressed/Aggregate Trades List",
+        "api_call": "{{url}}/api/v3/aggTrades?symbol=BTCUSDT&limit=500",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Kline/Candlestick Data",
+        "api_call": "{{url}}/api/v3/klines?symbol=BTCUSDT&interval=1m&limit=500",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Current Average Price",
+        "api_call": "{{url}}/api/v3/avgPrice?symbol=BTCUSDT",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: 24hr Ticker Price Change Statistics",
+        "api_call": "{{url}}/api/v3/ticker/24hr?symbol=BTCUSDT",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Symbol Price Ticker",
+        "api_call": "{{url}}/api/v3/ticker/price?symbol=BTCUSDT",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Symbol Order Book Ticker",
+        "api_call": "{{url}}/api/v3/ticker/bookTicker?symbol=BTCUSDT",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Acquiring Algorithm (MARKET_DATA)",
+        "api_call": "{{url}}/sapi/v1/mining/pub/algoList?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Acquiring CoinName (MARKET_DATA)",
+        "api_call": "{{url}}/sapi/v1/mining/pub/coinList?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Request for Detail Miner List (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/mining/worker/detail?algo=&userName=&workerName=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Request for Miner List (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/mining/worker/list?algo=&userName=&pageIndex=&sort=&sortColumn=&workerStatus=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Revenue List (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/mining/payment/list?algo=&userName=&coin=&startDate=&endDate=&pageIndex=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Statistic List (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/mining/statistics/user/status?algo=&userName=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Account List (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/mining/statistics/user/list?algo=&userName=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Earnings List(USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/mining/payment/list?algo=&userName=&coin=&startDate=&endDate=&pageIndex=&pageSize=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Extra Bonus List (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/mining/payment/other?algo=&userName=&coin=&startDate=&endDate=&pageIndex=&PageSize=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Hashrate Resale List (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/mining/hash-transfer/config/details/list?pageIndex=&PageSize=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Hashrate Resale Details (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/mining/hash-transfer/profit/details?configId=&userName=&pageIndex=&PageSize=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Hashrate Resale Request (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/mining/hash-transfer/config?userName=&algo=&startDate=&endDate=&toPoolUser=&hashRate=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Cancel Hashrate Resale configuration",
+        "api_call": "{{url}}/sapi/v1/mining/hash-transfer/config/cancel?configId=&userName=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Flexible Product List (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/lending/daily/product/list?status=ALL&featured=ALL&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "value": "{{binance-api-key}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Left Daily Purchase Quota of Flexible Product (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/lending/daily/userLeftQuota?productId=USDT001&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Purchase Flexible Product (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/lending/daily/purchase?productId=&amount=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Left Daily Redemption Quota of Flexible Product",
+        "api_call": "{{url}}/sapi/v1/lending/daily/userRedemptionQuota?productId=USDT001&type=FAST&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Redeem Flexible Product (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/lending/daily/redeem?productId=USDT001&amount&type&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Flexible Product Position (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/lending/daily/token/position?asset=USDT&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Fixed and Customized Fixed Project List(USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/lending/project/list?asset=USDT&type=REGULAR&status=ALL&isSortAsc=true&sortBy=START_TIME&current=1&size=10&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Purchase Customized Fixed Project (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/lending/customizedFixed/purchase?projectId=&lot=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Customized Fixed Project Position (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/lending/project/position/list?asset=USDT&projectId=&status=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Lending Account (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/lending/union/account?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Purchase Record (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/lending/union/purchaseRecord?lendingType=DAILY&asset&startTime&endTime&current=1&size=10&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Redemption Record (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/lending/union/redemptionRecord?lendingType=DAILY&asset&startTime&endTime&current=1&size=10&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Interest History (USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/lending/union/interestHistory?lendingType=DAILY&asset&startTime&endTime&current=1&size=10&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Change Fixed/Activity Position to Daily Position(USER_DATA)",
+        "api_call": "{{url}}/sapi/v1/lending/positionChanged?projectId=&lot=&positionId=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Test New Order (TRADE)",
+        "api_call": "{{url}}/api/v3/order/test?symbol=BTCUSDT&side=SELL&type=LIMIT&timeInForce=GTC&quantity=0.01&price=9000&newClientOrderId=my_order_id_1&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: New Order",
+        "api_call": "{{url}}/api/v3/order?symbol=BTCUSDT&side=SELL&type=LIMIT&timeInForce=GTC&quantity=0.01&price=9000&newClientOrderId=my_order_id_1&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Cancel Order",
+        "api_call": "{{url}}/api/v3/order?symbol=BTCUSDT&orderId&origClientOrderId&newClientOrderId&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Cancel all Open Orders on a Symbol (TRADE)",
+        "api_call": "{{url}}/api/v3/openOrders?symbol=&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Order (USER_DATA)",
+        "api_call": "{{url}}/api/v3/order?symbol=BTCUSDT&orderId=&origClientOrderId&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Current Open Orders (USER_DATA)",
+        "api_call": "{{url}}/api/v3/openOrders?symbol=BTCUSDT&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: All Orders (USER_DATA)",
+        "api_call": "{{url}}/api/v3/allOrders?symbol=BTCUSDT&orderId&startTime&endTime&limit=500&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: New OCO (TRADE)",
+        "api_call": "{{url}}/api/v3/order/oco?symbol=BTCUSDT&listClientOrderId&side=&quantity=&limitClientOrderId&price&limitIcebergQty&stopClientOrderId&stopPrice&stopLimitPrice&stopIcebergQty&stopLimitTimeInForce&newOrderRespType&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Cancel OCO (TRADE)",
+        "api_call": "{{url}}/api/v3/orderList?symbol=BTCUSDT&orderListId&listClientOrderId&newClientOrderId&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query OCO (USER_DATA)",
+        "api_call": "{{url}}/api/v3/orderList?orderListId&origClientOrderId&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query all OCO (USER_DATA)",
+        "api_call": "{{url}}/api/v3/allOrderList?fromId&startTime&endTime&limit=500&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Query Open OCO (USER_DATA)",
+        "api_call": "{{url}}/api/v3/openOrderList?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Account Information (USER_DATA)",
+        "api_call": "{{url}}/api/v3/account?timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Account Trade List (USER_DATA)",
+        "api_call": "{{url}}/api/v3/myTrades?symbol=BTCUSDT&startTime&endTime&fromId&limit=500&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Detail on Sub-account's Futures Account V2 (For Master Account)",
+        "api_call": "{{url}}/sapi/v2/sub-account/futures/account?email=&futuresType=1&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Summary of Sub-account's Futures Account V2 (For Master Account)",
+        "api_call": "{{url}}/sapi/v2/sub-account/futures/accountSummary?futuresType=&page=1&limit=10&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Binance spot API: Get Futures Postion-Risk of Sub-account V2 (For Master Account)",
+        "api_call": "{{url}}/sapi/v2/sub-account/futures/positionRisk?email=&futuresType=1&timestamp={{timestamp}}&signature={{signature}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                },
+                {
+                    "key": "X-MBX-APIKEY",
+                    "type": "text",
+                    "value": "{{binance-api-key}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
