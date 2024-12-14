@@ -113,7 +113,7 @@
                     <div>
                         <span>
                             <b><i style="font-size: 1.0em;">Last Updated:
-                                2024-12-06 <a href="https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/CHANGELOG.md">&nbsp;&nbsp;&nbsp;&nbsp;[Change Log]</a>
+                                2024-12-06 &nbsp;&nbsp;&nbsp;&nbsp; <a href="https://github.com/ShishirPatil/gorilla/blob/main/berkeley-function-call-leaderboard/CHANGELOG.md">[Change Log]</a>
                             </i></b>
                         </span>
                     </div>
@@ -137,19 +137,17 @@
             </div>
             <p></p>
             <p>
-                FC = native support for function/tool calling.
+                <b>FC</b> = native support for function/tool calling.
+                <b>Prompt</b> = walk-around for function calling, using model's normal text generation capability.
             </p>
             <p>
                 <b>Cost</b> is calculated as an estimate of the cost per 1000 function calls, in USD.
                 <b>Latency</b> is measured in seconds.
-                For <b>Open-Source Models</b>, the cost and latency are calculated when serving with <a
-                    href="https://github.com/vllm-project/vllm">vLLM</a> using 8 V100 GPUs. The formula can be found in
-                the <a href="https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html#cost">blog</a>.
             </p>
             <p>
-                <b>AST Summary</b> is the <b>unweighted</b> average of the four test categories under AST Evaluation.
-                <b>Exec Summary</b> is the <b>unweighted</b> average of the four test categories under Exec Evaluation.
                 <b>Overall Accuracy</b> is the <b>unweighted</b> average of all the sub-categories.
+                For details on score composition, please refer to our <a
+                    href="https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html#leaderboard-composition">blog</a>.
             </p>
             <p>
                 Click on column header to sort. If you would like to add
@@ -157,7 +155,7 @@
                     href="https://discord.gg/grXXvj9Whz">discord</a>.
             </p>
             <p>
-                Models were evaluated using commit <b>d7e52e5</b>. 
+                Models are evaluated using commit <b>d7e52e5</b>. 
                 All the model response we obtained is available <a href="https://github.com/HuanzhiMao/BFCL-Result">here</a>. 
                 To reproduce the results, please checkout our codebase at 
                 <a href="https://github.com/ShishirPatil/gorilla/tree/d7e52e5158cc4feffc6c4999c3c30a4af7bba7e7">this checkpoint</a>.
