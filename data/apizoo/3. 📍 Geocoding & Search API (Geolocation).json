@@ -1,0 +1,481 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "3. \ud83d\udccd Geocoding & Search API (Geolocation): Search address",
+        "api_call": "https://{{geocode-service}}.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?f=pjson&singleLine=1600 Pennsylvania Ave NW, DC",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2",
+                "oauth2": [
+                    {
+                        "key": "clientSecret",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientId",
+                        "value": "{{client_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "tokenType",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "accessToken",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "useBrowser",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "tokenName",
+                        "value": "ArcGIS token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "accessTokenUrl",
+                        "value": "https://www.arcgis.com/sharing/rest/oauth2/token/",
+                        "type": "string"
+                    },
+                    {
+                        "key": "authUrl",
+                        "value": "https://www.arcgis.com/sharing/rest/oauth2/authorize",
+                        "type": "string"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "https://www.arcgis.com/sharing/rest/oauth2/token/",
+                        "type": "string"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addTokenTo",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "3. \ud83d\udccd Geocoding & Search API (Geolocation): Search places (POIs)",
+        "api_call": "https://{{geocode-service}}.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?token={{access_token}}&f=json&singleLine=Grocery%20Store%20redlands%20ca&outFields=*",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "3. \ud83d\udccd Geocoding & Search API (Geolocation): Search Place (POI) locally",
+        "api_call": "https://{{geocode-service}}.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?token={{access_token}}&f=pjson&address=Starbucks&location=-122.4194,37.7749&outfields=PlaceName,Place_addr",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "3. \ud83d\udccd Geocoding & Search API (Geolocation): Search place (POI) by category",
+        "api_call": "https://{{geocode-service}}.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?token={{access_token}}&f=pjson&category=gas station&location=2.34602,48.85880&outfields=PlaceName,Place_addr",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "3. \ud83d\udccd Geocoding & Search API (Geolocation): Search place (POI) globally",
+        "api_call": "https://{{geocode-service}}.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?token={{access_token}}&f=pjson&address=grand canyon",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": []
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "3. \ud83d\udccd Geocoding & Search API (Geolocation): Search places (POI) by extent",
+        "api_call": "https://{{geocode-service}}.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?token={{access_token}}&f=json&category=Nightlife Spot&searchExtent=%7B%20%22spatialReference%22%3A%20%7B%20%22wkid%22%3A%204326%20%7D%2C%20%22xmin%22%3A%20-134.56054687496422%2C%20%22ymin%22%3A%20-57.515822865528726%2C%20%22xmax%22%3A%20134.56054687496422%2C%20%22ymax%22%3A%2057.515822865528726%20%7D",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "3. \ud83d\udccd Geocoding & Search API (Geolocation): \u27a1\ufe0f  findAddressCandidates-spec",
+        "api_call": "https://{{geocode-service}}.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2",
+                "oauth2": [
+                    {
+                        "key": "tokenType",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "accessToken",
+                        "value": "{{access_token}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientSecret",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientId",
+                        "value": "{{client_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "useBrowser",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "tokenName",
+                        "value": "ArcGIS token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "accessTokenUrl",
+                        "value": "https://www.arcgis.com/sharing/rest/oauth2/token/",
+                        "type": "string"
+                    },
+                    {
+                        "key": "authUrl",
+                        "value": "https://www.arcgis.com/sharing/rest/oauth2/authorize",
+                        "type": "string"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "https://www.arcgis.com/sharing/rest/oauth2/token/",
+                        "type": "string"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addTokenTo",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The `findAddressCandidates` operation geocodes one location per request; the input address can be combined into a single input field or"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "3. \ud83d\udccd Geocoding & Search API (Geolocation): Reverse geocoding",
+        "api_call": "https://{{geocode-service}}.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?token={{access_token}}&f=pjson&location=-79.3871,43.6426",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": []
+            }
+        },
+        "functionality": "The `reverseGeocode` operation determines the address at a particular x/y location. You pass the coordinates of a point location to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "3. \ud83d\udccd Geocoding & Search API (Geolocation): \u27a1\ufe0f  reverseGeocode-spec",
+        "api_call": "https://{{geocode-service}}.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "oauth2",
+                "oauth2": [
+                    {
+                        "key": "tokenType",
+                        "value": "",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientSecret",
+                        "value": "{{client_secret}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "clientId",
+                        "value": "{{client_id}}",
+                        "type": "string"
+                    },
+                    {
+                        "key": "useBrowser",
+                        "value": true,
+                        "type": "boolean"
+                    },
+                    {
+                        "key": "tokenName",
+                        "value": "ArcGIS token",
+                        "type": "string"
+                    },
+                    {
+                        "key": "accessTokenUrl",
+                        "value": "https://www.arcgis.com/sharing/rest/oauth2/token/",
+                        "type": "string"
+                    },
+                    {
+                        "key": "authUrl",
+                        "value": "https://www.arcgis.com/sharing/rest/oauth2/authorize",
+                        "type": "string"
+                    },
+                    {
+                        "key": "redirect_uri",
+                        "value": "https://www.arcgis.com/sharing/rest/oauth2/token/",
+                        "type": "string"
+                    },
+                    {
+                        "key": "grant_type",
+                        "value": "authorization_code",
+                        "type": "string"
+                    },
+                    {
+                        "key": "addTokenTo",
+                        "value": "header",
+                        "type": "string"
+                    }
+                ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": []
+            }
+        },
+        "functionality": "The `reverseGeocode` operation determines the address at a particular x/y location. You pass the coordinates of a point location to"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "3. \ud83d\udccd Geocoding & Search API (Geolocation): Geocode a set of addresses",
+        "api_call": "https://{{geocode-service}}.arcgis.com/arcgis/rest/services/World/GeocodeServer/geocodeAddresses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "f",
+                        "value": "pjson",
+                        "type": "text"
+                    },
+                    {
+                        "key": "addresses",
+                        "value": "{\n    \"records\": [\n       {\n        \"attributes\": {\n            \"objectid\": 1,\n            \"address\": \"Buckingham Palace\"\n        }\n        },\n        {\n            \"attributes\": {\n                \"objectid\": 2,\n                \"address\": \"Bernardis Restaurant London\"\n            }\n        },\n        {\n            \"attributes\": {\n                \"objectid\": 3,\n                \"address\": \"58 Brewer Street, London, England\"\n            }\n        }\n    ]\n}  ",
+                        "type": "text"
+                    },
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "text"
+                    }
+                ]
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "3. \ud83d\udccd Geocoding & Search API (Geolocation): \u27a1\ufe0f  geocodeAddresses-spec",
+        "api_call": "https://{{geocode-service}}.arcgis.com/arcgis/rest/services/World/GeocodeServer/geocodeAddresses",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "token",
+                        "value": "{{access_token}}",
+                        "type": "text",
+                        "description": "(Required) You need a valid access token. To learn more, read the collection's documentation.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "f",
+                        "value": "<enum>",
+                        "type": "text",
+                        "description": "(Required) Format of the response: json, pjson, html, ...",
+                        "disabled": true
+                    },
+                    {
+                        "key": "addresses",
+                        "value": "<RecordAddresses>",
+                        "type": "text",
+                        "description": "(Required) A record set representing the addresses to be geocoded. Each record must include an OBJECTID attribute with a unique value as well as values for the address fields supported by the service.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "category",
+                        "value": "<string>",
+                        "type": "text",
+                        "description": "A place or address type that can be used to filter geocodeAddresses results. The parameter supports input of single category values or multiple comma-separated values. See Category filtering for complete details about the category parameter.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "sourceCountry",
+                        "value": "<string>",
+                        "type": "text",
+                        "description": "A value representing the country. When a value is passed for this parameter, all of the addresses in the input table are sent to the specified country to be geocoded. For example, if sourceCountry=USA is passed with a batch request, it is assumed that all of the addresses in the table are in the United States, so only matching addresses in USA are returned. Using this parameter can increase batch geocoding performance when all addresses are within a single country.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "outSR",
+                        "value": "<number>",
+                        "type": "text",
+                        "description": "The spatial reference of the x/y coordinates returned by a geocode request. This is useful for applications using a map with a spatial reference different than that of the geocode service.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "matchOutOfRange",
+                        "value": "<boolean>",
+                        "type": "text",
+                        "description": "A boolean which specifies if StreetAddress matches should be returned even when the input house number is outside of the house number range defined for the input street. Out-of-range matches have Addr_type=StreetAddressExt. The geometry of such matches is a point corresponding to the end of the street segment where the range value is closest to the input house number. If matchOutOfRange is not specified in a request, its value is set to true by default.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "locationType",
+                        "value": "<string>",
+                        "type": "text",
+                        "description": "Specifies if the output geometry of PointAddress and Subaddress matches should be the rooftop point or street entrance location. Valid values are rooftop and street. The default value is rooftop.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "searchExtent",
+                        "value": "<string> |  <Extent>",
+                        "type": "text",
+                        "description": "A set of bounding box coordinates that limit the search area to a specific region. This is especially useful for applications in which a user will search for places and addresses within the current map extent. Helper to get search extent with https://arcgis-js-api-extent-helper.gavinr.com/",
+                        "disabled": true
+                    },
+                    {
+                        "key": "langCode",
+                        "value": "<string>",
+                        "type": "text",
+                        "description": "Sets the language in which reverse-geocoded addresses are returned. Addresses in many countries are available in more than one language; in these cases the langCode parameter can be used to specify which language should be used for addresses returned by the reverseGeocode operation. This is useful for ensuring that addresses are returned in the expected language. For example, a web application could be designed to get the browser language and pass it as the langCode parameter value in a reverseGeocode request.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "preferredLabelValues",
+                        "value": "<string>",
+                        "type": "text",
+                        "description": "Allows simple configuration of output fields returned in a response from the ArcGIS World Geocoding Service by specifying which address component values should be included in output fields. Supports a single value as input. If the parameter is blank or excluded from a request then default address label formats will be used.",
+                        "disabled": true
+                    },
+                    {
+                        "key": "outFields",
+                        "value": "<string>",
+                        "type": "text",
+                        "description": "The list of fields to be returned within the attributes object of the geocodeAddresses response. Descriptions for each of these fields are available in the Service output topic.",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "`geocodeAddresses` operation geocode an entire list of addresses in one request using the geocodeAddresses operation. Geocoding many addresses at once"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "3. \ud83d\udccd Geocoding & Search API (Geolocation): Autocomplete suggestions",
+        "api_call": "https://{{geocode-service}}.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest?token={{access_token}}&f=pjson&text=New Y",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The ArcGIS World Geocoding Service includes a method that allows character-by-character autocomplete suggestions to be generated for user input in"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "3. \ud83d\udccd Geocoding & Search API (Geolocation): \u27a1\ufe0f  suggest-spec",
+        "api_call": "https://{{geocode-service}}.arcgis.com/arcgis/rest/services/World/GeocodeServer/suggest",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "The `suggest` operation allows character-by-character autocomplete suggestions to be generated for user input in a client application. This capability facilitates"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "3. \ud83d\udccd Geocoding & Search API (Geolocation): Geocoder service definition",
+        "api_call": "https://{{geocode-service}}.arcgis.com/arcgis/rest/services/World/GeocodeServer?token={{access_token}}&f=pjson",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

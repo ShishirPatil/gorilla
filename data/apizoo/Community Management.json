@@ -1,0 +1,760 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: 2. Create a share with Company Mention",
+        "api_call": "{{baseUrl}}/shares",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"owner\": \"urn:li:organization:{{organization_id}}\",\n  \"text\": {\n    \"annotations\": [{\n        \"entity\": \"urn:li:organization:1337\",\n        \"length\": 8,\n        \"start\": 6\n    }],\n    \"text\": \"Hello LinkedIn world!\"\n  },\n  \"subject\": \"Test Share Subject\",\n  \"distribution\": {\n    \"linkedInDistributionTarget\": {}\n  },\n  \"content\": {\n    \"contentEntities\": [\n        {\n            \"entityLocation\": \"https://www.example.com\",\n            \"thumbnails\": [\n                {\n                    \"resolvedUrl\": \"https://www.example.com/image.jpg\"\n                }\n            ]\n        }\n    ],\n    \"title\": \"Test Share with Content title\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Mention a company name by using the annotations.\u00a0[Learn more](https://docs.microsoft.com/en-us/linkedin/marketing/integrations/community-management/shares/share-api?tabs=http#share-text-and-mentions)\u00a0by viewing our public documentation.\n\nThis example uses the LinkedIn organization."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: 3. Create a subscription request",
+        "api_call": "{{baseUrl}}/eventSubscriptions/(developerApplication:urn%3Ali%3AdeveloperApplication%3A{{application_id}},user:urn%3Ali%3Aperson%3A{{person_id}},entity:urn%3Ali%3Aorganization%3A{{organization_id}},eventType:ORGANIZATION_SOCIAL_ACTION_NOTIFICATIONS)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Linkedin-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"webhook\": \"https://www.example.com/callback\" \n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "[Create a subscription](https://docs.microsoft.com/linkedin/marketing/integrations/community-management/organizations/organization-social-action-notifications?tabs=http#creating-and-updating-subscriptions)\u00a0record to include the webhook URL where your app will receive notifications. The subscription request will only succeed"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: 4. Retrieve subscription for authenticated members",
+        "api_call": "{{baseUrl}}/eventSubscriptions?q=subscriberAndEventType&eventType=ORGANIZATION_SOCIAL_ACTION_NOTIFICATIONS",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Linkedin-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "Retrieve Subscriptions details such as webhook url and expiration for your application and registered user.\u00a0[Learn more](https://docs.microsoft.com/linkedin/marketing/integrations/community-management/organizations/organization-social-action-notifications?tabs=http#retrieve-subscriptions-by-key)\u00a0by viewing our public documentation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: 5. Retrieve Subscription by Key",
+        "api_call": "{{baseUrl}}/eventSubscriptions/(developerApplication:urn%3Ali%3AdeveloperApplication%3A{{application_id}},user:urn%3Ali%3Aperson%3A{{person_id}},entity:urn%3Ali%3Aorganization%3A{{organization_id}},eventType:ORGANIZATION_SOCIAL_ACTION_NOTIFICATIONS)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "Retrieve all the subscriptions details such as webhook url and expiration for the logged in user.\u00a0[Learn more](https://docs.microsoft.com/linkedin/marketing/integrations/community-management/organizations/organization-social-action-notifications?tabs=http#retrieve-subscriptions-for-an-authenticated-member)\u00a0by viewing our online"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: 6. Remove a Subscription",
+        "api_call": "{{baseUrl}}/eventSubscriptions/(developerApplication:{{application_id}},user:{{person_id}},entity:{{organization_id}},eventType:ORGANIZATION_SOCIAL_ACTION_NOTIFICATIONS)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "[Remove a subscription](https://docs.microsoft.com/linkedin/marketing/integrations/community-management/organizations/organization-social-action-notifications?tabs=http#remove-a-subscription)\u00a0for a your developer application and Organization."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: 2. Create a share with a Company Mention",
+        "api_call": "{{baseUrl}}/shares",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"owner\": \"urn:li:organization:{{organization_id}}\",\n  \"text\": {\n    \"annotations\": [{\n        \"entity\": \"urn:li:organization:1337\",\n        \"length\": 8,\n        \"start\": 6\n    }],\n    \"text\": \"Hello LinkedIn world!\"\n  },\n  \"subject\": \"Test Share Subject\",\n  \"distribution\": {\n    \"linkedInDistributionTarget\": {}\n  },\n  \"content\": {\n    \"contentEntities\": [\n        {\n            \"entityLocation\": \"https://www.example.com\",\n            \"thumbnails\": [\n                {\n                    \"resolvedUrl\": \"https://www.example.com/image.jpg\"\n                }\n            ]\n        }\n    ],\n    \"title\": \"Test Share with Content title\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Mention a company name by using the annotations.\u00a0[Learn more](https://docs.microsoft.com/en-us/linkedin/marketing/integrations/community-management/shares/share-api?tabs=http#share-text-and-mentions)\u00a0by viewing our public documentation.\n\nThis example uses the LinkedIn organization."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: 3. Retrieve Notifications for the authenticated member's organization",
+        "api_call": "{{baseUrl}}/eventSubscriptions?q=subscriberAndEventType&eventType=ORGANIZATION_SOCIAL_ACTION_NOTIFICATIONS",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Linkedin-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "[Learn more](https://docs.microsoft.com/linkedin/marketing/integrations/community-management/organizations/organization-social-action-notifications?tabs=http#pull-organizational-notifications)\u00a0by viewing our public documentation."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Lifetime follower statistics",
+        "api_call": "{{baseUrl}}/organizationalEntityFollowerStatistics?q=organizationalEntity&organizationalEntity=urn%3Ali%3Aorganization%3A77710671",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "Linkedin-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Time-Bound follower statistics",
+        "api_call": "{{baseUrl}}/organizationalEntityFollowerStatistics?q=organizationalEntity&organizationalEntity=urn%3Ali%3Aorganization%3A2414183&timeIntervals.timeGranularityType=DAY&timeIntervals.timeRange.start=1634018799000&timeIntervals.timeRange.end=1634623599000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Time-Bound organization page statistics",
+        "api_call": "{{baseUrl}}/organizationPageStatistics?q=organization&organization=urn%3Ali%3Aorganization%3A2414183&timeIntervals.timeGranularityType=DAY&timeIntervals.timeRange.start=1634018799000&timeIntervals.timeRange.end=1634623599000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version`",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Lifetime Page Statistics",
+        "api_call": "{{baseUrl}}/organizationPageStatistics?q=organization&organization=urn%3Ali%3Aorganization%3A2414183",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Lifetime Share Statistics",
+        "api_call": "{{baseUrl}}/organizationalEntityShareStatistics?q=organizationalEntity&organizationalEntity=urn%3Ali%3Aorganization%3A2414183",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Time Bound Share Statistics",
+        "api_call": "{{baseUrl}}/organizationalEntityShareStatistics?q=organizationalEntity&organizationalEntity=urn%3Ali%3Aorganization%3A2414183&timeIntervals.timeGranularityType=DAY&timeIntervals.timeRange.start=1634018799000&timeIntervals.timeRange.end=1634623599000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "value": "{{insert_token}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text",
+                    "disabled": true
+                },
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Search By Keyword",
+        "api_call": "{{baseUrl}}/peopleTypeahead?q=organizationFollowers&keywords=chris&organization=urn%3Ali%3Aorganization%3A{{organization_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Search By Vanity URL",
+        "api_call": "{{baseUrl}}/vanityUrl?q=vanityUrlAsOrganization&vanityUrl=https%3A//www.linkedin.com/in/vanityName/&organization=urn%3Ali%3Aorganization%3A{{organization_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Batch GET by Administered Org Ids",
+        "api_call": "{{baseUrl}}/organizations?ids=List({{organization_id}},{{organization_id1}})",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Retrieve Organization by ID",
+        "api_call": "{{baseUrl}}/organizations/{{organization_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Find Organization by Vanity Name",
+        "api_call": "{{baseUrl}}/organizations?q=vanityName&vanityName={{vanityName}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Find Organization by Email Domain",
+        "api_call": "{{baseUrl}}/organizations?q=emailDomain&emailDomain={{email_domain}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Retrieve Organization using projection",
+        "api_call": "{{baseUrl}}/organizations/{{organization_id}}?projection=(vanityName,primaryOrganizationType,id)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Lookup by Organization Primary Type",
+        "api_call": "{{baseUrl}}/organizations/{{organization_id}}?projection=(primaryOrganizationType)",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Find Non-Administered Organization",
+        "api_call": "{{baseUrl}}/organizationsLookup?ids=List({{organization_id}},{{organization_id1}})",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Retrieve Organization Follower Count",
+        "api_call": "{{baseUrl}}/networkSizes/urn:li:organization:{{organization_id}}?edgeType=CompanyFollowedByMember",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Find Organization Brand by Vanity Name",
+        "api_call": "{{baseUrl}}/organizationBrands?q=vanityName&vanityName={{vanityName}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Retrieve an Administered Organization Brand",
+        "api_call": "{{baseUrl}}/organizationBrands/{{organizationBrand_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Batch GET on Administered Organization Brands",
+        "api_call": "{{baseUrl}}/organizationBrands?ids=List({{organizationBrand_id}},{{organizationBrand_id1}})",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Batch GET on Non-Administered Organization Brands",
+        "api_call": "{{baseUrl}}/organizationBrandsLookup?ids=List({{organizationBrand_id}},{{organizationBrand_id1}})",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Find Administered Organization Brands by Parent Org",
+        "api_call": "{{baseUrl}}/organizations?q=parentOrganization&parent=urn:li:organization:{{organization_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "LinkedIn-Version",
+                    "value": "{{insert_version}}",
+                    "type": "text"
+                },
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0",
+                    "type": "text",
+                    "disabled": true
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Find a Member's Organization Access Control",
+        "api_call": "{{baseUrl}}/organizationAcls?q=roleAssignee",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0"
+                },
+                {
+                    "key": "Linkedin-Version",
+                    "value": "{{insert_version}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Find Organization Administrators",
+        "api_call": "{{baseUrl}}/organizationAcls?q=organization&organization=urn%3Ali%3Aorganization%3A{{organization_id}}&role=ADMINISTRATOR&state=APPROVED",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0"
+                },
+                {
+                    "key": "Linkedin-Version",
+                    "value": "{{insert_version}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Community Management: Find Organization Access Control",
+        "api_call": "{{baseUrl}}/organizationAcls?q=organization&organization=urn%3Ali%3Aorganization%3A{{organization_id}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "X-Restli-Protocol-Version",
+                    "value": "2.0.0"
+                },
+                {
+                    "key": "Linkedin-Version",
+                    "value": "{{insert_version}}"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

@@ -1,0 +1,717 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Bars",
+        "api_call": "{{HOST}}/v2/stocks/:symbol/bars?start=2020-04-01T0:00:00Z&end=2021-08-26T11:00:00Z&timeframe=1Min",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Trades",
+        "api_call": "{{HOST}}/v2/stocks/:symbol/trades?start=2020-04-01T0:00:00Z&end=2021-08-26T11:00:00Z",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Snapshot",
+        "api_call": "{{HOST}}/v2/stocks/:symbol/snapshot",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Quotes",
+        "api_call": "{{HOST}}/v2/stocks/:symbol/quotes?start=2020-04-01T0:00:00Z&end=2021-08-26T11:00:00Z",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Multi Trades",
+        "api_call": "{{HOST}}/v2/stocks/trades?symbols=AAPL,TSLA&start=2020-04-01T0:00:00Z&end=2021-08-26T11:00:00Z",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Multi Quotes",
+        "api_call": "{{HOST}}/v2/stocks/quotes?symbols=AAPL,TSLA&start=2020-04-01T0:00:00Z&end=2021-08-26T11:00:00Z",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Multi Bars",
+        "api_call": "{{HOST}}/v2/stocks/bars?symbols=AAPL,TSLA&start=2020-04-01T0:00:00Z&end=2021-08-26T11:00:00Z&timeframe=1Min",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Multi Snapshot",
+        "api_call": "{{HOST}}/v2/stocks/snapshots?symbols=AAPL,TSLA",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Latest Trade",
+        "api_call": "{{HOST}}/v2/stocks/:symbol/trades/latest",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Latest Quote",
+        "api_call": "{{HOST}}/v2/stocks/:symbol/quotes/latest",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Meta Conditions",
+        "api_call": "{{HOST}}/v2/meta/conditions/:tickType?tape=A",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Meta Exchanges",
+        "api_call": "{{HOST}}/v2/meta/exchanges",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Trades",
+        "api_call": "{{HOST}}/v1beta1/crypto/:symbol/trades?start=2021-04-01T0:00:00Z",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Trades (v1beta2)",
+        "api_call": "{{HOST}}/v1beta2/crypto/trades?symbols=BTC%2FUSD%2CLTC%2FUSD&start=2022-01-03T00%3A00%3A00Z&end=2022-01-04T00%3A00%3A00Z&limit=1000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Latest Trade",
+        "api_call": "{{HOST}}/v1beta1/crypto/:symbol/trades/latest?exchange=ERSX",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Latest Trade (v1beta2)",
+        "api_call": "{{HOST}}/v1beta2/crypto/latest/trades?symbols=BTC/USD,LTC/USD",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Multi Trades",
+        "api_call": "{{HOST}}/v1beta1/crypto/trades?symbols=BTCUSD,ETHUSD",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Quotes",
+        "api_call": "{{HOST}}/v1beta1/crypto/:symbol/quotes?start=2021-04-01T0:00:00Z",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Quotes (v1beta2)",
+        "api_call": "{{HOST}}/v1beta2/crypto/quotes?symbols=BTC/USD,LTC/USD&start=2022-01-03T00%3A00%3A00Z&end=2022-01-04T00%3A00%3A00Z&limit=1000",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Latest Quote",
+        "api_call": "{{HOST}}/v1beta1/crypto/:symbol/quotes/latest?exchange=ERSX",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Latest Quote (v1beta2)",
+        "api_call": "{{HOST}}/v1beta2/crypto/latest/quotes?symbols=BTC/USD,LTC/USD",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Multi Quotes",
+        "api_call": "{{HOST}}/v1beta1/crypto/quotes?symbols=BTCUSD,ETHUSD",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Bars",
+        "api_call": "{{HOST}}/v1beta1/crypto/:symbol/bars?start=2021-04-01T0:00:00Z&timeframe=1Min",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Bars (v1beta2)",
+        "api_call": "{{HOST}}/v1beta2/crypto/bars?symbols=BTC/USD,LTC/USD&timeframe=1Min&start=2022-01-03T00%3A00%3A00Z&end=2022-01-04T00%3A00%3A00Z&limit=10",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Latest Bars (v1beta2)",
+        "api_call": "{{HOST}}/v1beta2/crypto/latest/bars?symbols=BTC/USD,LTC/USD",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Multi Bars",
+        "api_call": "{{HOST}}/v1beta1/crypto/bars?symbols=BTCUSD,ETHUSD&timeframe=1Min",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Snapshot",
+        "api_call": "{{HOST}}/v1beta1/crypto/:symbol/snapshot?exchange=CBSE",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Snapshot (v1beta2)",
+        "api_call": "{{HOST}}/v1beta2/crypto/snapshots?symbols=BTC/USD,LTC/USD",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Multi Snapshots",
+        "api_call": "{{HOST}}/v1beta1/crypto/snapshots?exchange=CBSE&symbols=BTCUSD,ETHUSD",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Latest XBBO",
+        "api_call": "{{HOST}}/v1beta1/crypto/:symbol/xbbo/latest",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Meta Spreads",
+        "api_call": "{{HOST}}/v1beta1/crypto/meta/spreads",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Apca-Api-Key-Id",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "Apca-Api-Secret-Key",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Latest Orderbooks (v1beta2)",
+        "api_call": "{{HOST}}/v1beta2/crypto/latest/orderbooks?symbols=BTC/USD,LTC/USD",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Market Data v2 API: Get News",
+        "api_call": "{{HOST}}/v1beta1/news",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "APCA-API-KEY-ID",
+                    "value": "{{APCA_API_KEY_ID}}",
+                    "type": "text"
+                },
+                {
+                    "key": "APCA-API-SECRET-KEY",
+                    "value": "{{APCA_API_SECRET_KEY}}",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
