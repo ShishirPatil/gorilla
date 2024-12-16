@@ -1096,6 +1096,8 @@
         </div>
         <div>
           <h2 id="inference">Model Inference Process</h2>
+          <img src="../assets/img/blog_post_13_model_inference_animation.gif" alt="Responsive Image"
+              style="max-width: 100%; height: auto;">
           <h4>Initialization</h4>
           <p> Each entry comes with its own <code>initial_config</code>, which is used to initialize the API backend
             state. For example, a file system backend might start with a set of pre-existing files, and a messaging API
@@ -1145,6 +1147,8 @@
               we do not proceed with them. </li>
           </ol>
           <h4>Note For Multi Turn Missing Function Category</h4>
+          <img src="../assets/img/blog_post_13_FC_vs_prompting_miss_func_handling.png" alt="Responsive Image"
+              style="max-width: 70%; height: auto;">
           <p>
             In this category, one or more functions are held out from the function list provided to the model at the
             beginning; they will be provided in a later turns (never the first turn). For FC models, the added functions
