@@ -80,6 +80,7 @@ api_inference_handler_map = {
     "meetkai/functionary-small-v3.1-FC": FunctionaryHandler,
     "meetkai/functionary-medium-v3.1-FC": FunctionaryHandler,
     "databricks-dbrx-instruct": DatabricksHandler,
+    "command-r-plus-FC": CohereHandler,
     "command-r7b-12-2024-FC": CohereHandler,
     "snowflake/arctic": NvidiaHandler,
     "nvidia/nemotron-4-340b-instruct": NvidiaHandler,

@@ -517,6 +517,12 @@ MODEL_METADATA_MAPPING = {
         "Meta",
         "Meta Llama 3 Community",
     ],
+    "command-r-plus-FC": [
+        "Command-R-Plus (FC)",
+        "https://txt.cohere.com/command-r-plus-microsoft-azure",
+        "Cohere For AI",
+        "cc-by-nc-4.0",
+    ],
     "command-r7b-12-2024-FC": [
         "Command R7B",
         "https://cohere.com/blog/command-r7b",
@@ -775,6 +781,7 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gemini-1.0-pro-002": 0.5,
     "gemini-1.0-pro-002-FC": 0.5,
     "databricks-dbrx-instruct": 2.25,
+    "command-r-plus-FC": 3,
     "command-r7b-12-2024-FC": 0.0375,
     "yi-large-fc": 3,
     "palmyra-x-004": 5,
@@ -839,6 +846,7 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "gemini-1.0-pro-002": 1.5,
     "gemini-1.0-pro-002-FC": 1.5,
     "databricks-dbrx-instruct": 6.75,
+    "command-r-plus-FC": 15,
     "command-r7b-12-2024-FC": 0.15,
     "yi-large-fc": 3,
     "palmyra-x-004": 12,
