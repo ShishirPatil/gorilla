@@ -1,11 +1,11 @@
 from bfcl.model_handler.handler_map import local_inference_handler_map
 
 MODEL_METADATA_MAPPING = {
-    "palmyra-x-004": [
-        "palmyra-x-004 (FC)",
-        "https://writer.com/engineering/actions-with-palmyra-x-004/",
-        "Writer",
-        "Proprietary",
+    "gorilla-openfunctions-v2": [
+        "Gorilla-OpenFunctions-v2 (FC)",
+        "https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html",
+        "Gorilla LLM",
+        "Apache 2.0",
     ],
     "o1-preview-2024-09-12": [
         "o1-preview-2024-09-12 (Prompt)",
@@ -19,14 +19,14 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
-    "gpt-4o-2024-08-06": [
-        "GPT-4o-2024-08-06 (Prompt)",
+    "gpt-4o-2024-11-20": [
+        "gpt-4o-2024-11-20 (Prompt)",
         "https://openai.com/index/hello-gpt-4o/",
         "OpenAI",
         "Proprietary",
     ],
-    "gpt-4o-2024-08-06-FC": [
-        "GPT-4o-2024-08-06 (FC)",
+    "gpt-4o-2024-11-20-FC": [
+        "gpt-4o-2024-11-20 (FC)",
         "https://openai.com/index/hello-gpt-4o/",
         "OpenAI",
         "Proprietary",
@@ -90,12 +90,6 @@ MODEL_METADATA_MAPPING = {
         "https://platform.openai.com/docs/models/gpt-4-and-gpt-4-turbo",
         "OpenAI",
         "Proprietary",
-    ],
-    "gorilla-openfunctions-v2": [
-        "Gorilla-OpenFunctions-v2 (FC)",
-        "https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html",
-        "Gorilla LLM",
-        "Apache 2.0",
     ],
     "claude-3-opus-20240229-FC": [
         "Claude-3-Opus-20240229 (FC)",
@@ -215,6 +209,24 @@ MODEL_METADATA_MAPPING = {
         "Claude-3.5-Sonnet-20241022 (Prompt)",
         "https://www.anthropic.com/news/3-5-models-and-computer-use",
         "Anthropic",
+        "Proprietary",
+    ],
+    "nova-pro-v1.0": [
+        "Amazon-Nova-Pro-v1:0 (FC)",
+        "https://aws.amazon.com/cn/ai/generative-ai/nova/",
+        "Amazon",
+        "Proprietary",
+    ],
+    "nova-lite-v1.0": [
+        "Amazon-Nova-Lite-v1:0 (FC)",
+        "https://aws.amazon.com/cn/ai/generative-ai/nova/",
+        "Amazon",
+        "Proprietary",
+    ],
+    "nova-micro-v1.0": [
+        "Amazon-Nova-Micro-v1:0 (FC)",
+        "https://aws.amazon.com/cn/ai/generative-ai/nova/",
+        "Amazon",
         "Proprietary",
     ],
     "gpt-3.5-turbo-0125-FC": [
@@ -589,27 +601,27 @@ MODEL_METADATA_MAPPING = {
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "MadeAgents/Hammer2.0-7b": [
-        "Hammer2.0-7b (FC)",
-        "https://huggingface.co/MadeAgents/Hammer2.0-7b",
+    "MadeAgents/Hammer2.1-7b": [
+        "Hammer2.1-7b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.1-7b",
         "MadeAgents",
         "cc-by-nc-4.0",
     ],
-    "MadeAgents/Hammer2.0-3b": [
-        "Hammer2.0-3b (FC)",
-        "https://huggingface.co/MadeAgents/Hammer2.0-3b",
+    "MadeAgents/Hammer2.1-3b": [
+        "Hammer2.1-3b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.1-3b",
+        "MadeAgents",
+        "qwen-research",
+    ],
+    "MadeAgents/Hammer2.1-1.5b": [
+        "Hammer2.1-1.5b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.1-1.5b",
         "MadeAgents",
         "cc-by-nc-4.0",
     ],
-    "MadeAgents/Hammer2.0-1.5b": [
-        "Hammer2.0-1.5b (FC)",
-        "https://huggingface.co/MadeAgents/Hammer2.0-1.5b",
-        "MadeAgents",
-        "cc-by-nc-4.0",
-    ],
-    "MadeAgents/Hammer2.0-0.5b": [
-        "Hammer2.0-0.5b (FC)",
-        "https://huggingface.co/MadeAgents/Hammer2.0-0.5b",
+    "MadeAgents/Hammer2.1-0.5b": [
+        "Hammer2.1-0.5b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.1-0.5b",
         "MadeAgents",
         "cc-by-nc-4.0",
     ],
@@ -709,6 +721,18 @@ MODEL_METADATA_MAPPING = {
         "BitAgent",
         "Proprietary",
     ],
+    "palmyra-x-004": [
+        "palmyra-x-004 (FC)",
+        "https://writer.com/engineering/actions-with-palmyra-x-004/",
+        "Writer",
+        "Proprietary",
+    ],
+    "grok-beta": [
+        "Grok-beta (FC)",
+        "https://x.ai/",
+        "xAI",
+        "Proprietary",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
@@ -726,6 +750,9 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-3-5-haiku-20241022": 1,
     "claude-2.1": 8,
     "claude-instant-1.2": 0.8,
+    "nova-pro-v1.0": 0.8,
+    "nova-lite-v1.0": 0.06,
+    "nova-micro-v1.0": 0.035,
     "open-mistral-nemo-2407": 0.3,
     "open-mistral-nemo-2407-FC": 0.3,
     "open-mixtral-8x22b": 2,
@@ -741,8 +768,8 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "o1-mini-2024-09-12": 3,
     "gpt-4o-2024-05-13-FC": 5,
     "gpt-4o-2024-05-13": 5,
-    "gpt-4o-2024-08-06-FC": 2.5,
-    "gpt-4o-2024-08-06": 2.5,
+    "gpt-4o-2024-11-20-FC": 2.5,
+    "gpt-4o-2024-11-20": 2.5,
     "gpt-4o-mini-2024-07-18": 0.15,
     "gpt-4o-mini-2024-07-18-FC": 0.15,
     "gpt-4-1106-preview-FC": 10,
@@ -772,6 +799,7 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus-optimized": 3,
     "yi-large-fc": 3,
     "palmyra-x-004": 5,
+    "grok-beta": 5,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -789,6 +817,9 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-3-5-haiku-20241022": 5,
     "claude-2.1": 24,
     "claude-instant-1.2": 2.4,
+    "nova-pro-v1.0": 3.2,
+    "nova-lite-v1.0": 0.24,
+    "nova-micro-v1.0": 0.14,
     "open-mistral-nemo-2407": 0.3,
     "open-mistral-nemo-2407-FC": 0.3,
     "open-mixtral-8x22b": 6,
@@ -804,8 +835,8 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "o1-mini-2024-09-12": 12,
     "gpt-4o-2024-05-13-FC": 15,
     "gpt-4o-2024-05-13": 15,
-    "gpt-4o-2024-08-06-FC": 10,
-    "gpt-4o-2024-08-06": 10,
+    "gpt-4o-2024-11-20-FC": 10,
+    "gpt-4o-2024-11-20": 10,
     "gpt-4o-mini-2024-07-18": 0.6,
     "gpt-4o-mini-2024-07-18-FC": 0.6,
     "gpt-4-turbo-2024-04-09-FC": 30,
@@ -835,6 +866,7 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "command-r-plus-optimized": 15,
     "yi-large-fc": 3,
     "palmyra-x-004": 12,
+    "grok-beta": 15,
 }
 
 # The latency of the open-source models are hardcoded here.

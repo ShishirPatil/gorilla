@@ -28,7 +28,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         self.client = OpenAI(base_url=f"http://localhost:{VLLM_PORT}/v1", api_key="EMPTY")
 
     @override
-    def inference(self, test_entry: dict, include_input_log: bool, include_state_log: bool):
+    def inference(self, test_entry: dict, include_input_log: bool, exclude_state_log: bool):
         """
         OSS models have a different inference method.
         They needs to spin up a server first and then send requests to it.
@@ -55,7 +55,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         gpu_memory_utilization: float,
         backend: str,
         include_input_log: bool,
-        include_state_log: bool,
+        exclude_state_log: bool,
         update_mode: bool,
         result_dir=RESULT_PATH,
     ):
@@ -192,7 +192,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                 ) as pbar:
 
                     for test_case in test_entries:
-                        future = executor.submit(self._multi_threaded_inference, test_case, include_input_log, include_state_log)
+                        future = executor.submit(self._multi_threaded_inference, test_case, include_input_log, exclude_state_log)
                         futures.append(future)
 
                     for future in futures:
@@ -223,7 +223,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             stderr_thread.join()
             
     @final
-    def _multi_threaded_inference(self, test_case, include_input_log: bool, include_state_log: bool):
+    def _multi_threaded_inference(self, test_case, include_input_log: bool, exclude_state_log: bool):
         """
         This is a wrapper function to make sure that, if an error occurs during inference, the process does not stop.
         """
@@ -231,7 +231,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
 
         try:
             if "multi_turn" in test_case["id"]:
-                model_responses, metadata = self.inference_multi_turn_prompting(test_case, include_input_log, include_state_log)
+                model_responses, metadata = self.inference_multi_turn_prompting(test_case, include_input_log, exclude_state_log)
             else:
                 model_responses, metadata = self.inference_single_turn_prompting(test_case, include_input_log)
         except Exception as e:
@@ -285,6 +285,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         if hasattr(self, "skip_special_tokens"):
             extra_body["skip_special_tokens"] = self.skip_special_tokens
 
+        start_time = time.time()
         if len(extra_body) > 0:
             api_response = self.client.completions.create(
                 model=self.model_name_huggingface,
@@ -300,8 +301,9 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                 prompt=formatted_prompt,
                 max_tokens=leftover_tokens_count,
             )
+        end_time = time.time()
 
-        return api_response
+        return api_response, end_time - start_time
 
     @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:

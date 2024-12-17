@@ -1,5 +1,6 @@
 import json
 import os
+import time
 
 from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
@@ -26,26 +27,29 @@ class OpenAIHandler(BaseHandler):
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
     def decode_ast(self, result, language="Python"):
-        if "FC" not in self.model_name:
-            return default_decode_ast_prompting(result, language)
-        else:
+        if "FC" in self.model_name or self.is_fc_model:
             decoded_output = []
             for invoked_function in result:
                 name = list(invoked_function.keys())[0]
                 params = json.loads(invoked_function[name])
                 decoded_output.append({name: params})
-        return decoded_output
+            return decoded_output
+        else:
+            return default_decode_ast_prompting(result, language)
 
     def decode_execute(self, result):
-        if "FC" not in self.model_name:
-            return default_decode_execute_prompting(result)
+        if "FC" in self.model_name or self.is_fc_model:
+            return convert_to_function_call(result)
         else:
-            function_call = convert_to_function_call(result)
-            return function_call
+            return default_decode_execute_prompting(result)
 
     @retry_with_backoff(RateLimitError)
     def generate_with_backoff(self, **kwargs):
-        return self.client.chat.completions.create(**kwargs)
+        start_time = time.time()
+        api_response = self.client.chat.completions.create(**kwargs)
+        end_time = time.time()
+
+        return api_response, end_time - start_time
 
     #### FC methods ####
 
@@ -55,19 +59,18 @@ class OpenAIHandler(BaseHandler):
         inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
 
         if len(tools) > 0:
-            api_response = self.generate_with_backoff(
+            return self.generate_with_backoff(
                 messages=message,
                 model=self.model_name.replace("-FC", ""),
                 temperature=self.temperature,
                 tools=tools,
             )
         else:
-            api_response = self.generate_with_backoff(
+            return self.generate_with_backoff(
                 messages=message,
                 model=self.model_name.replace("-FC", ""),
                 temperature=self.temperature,
             )
-        return api_response
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         inference_data["message"] = []
@@ -154,19 +157,17 @@ class OpenAIHandler(BaseHandler):
         # These two models have temperature fixed to 1
         # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
         if "o1-preview" in self.model_name or "o1-mini" in self.model_name:
-            api_response = self.generate_with_backoff(
+            return self.generate_with_backoff(
                 messages=inference_data["message"],
                 model=self.model_name,
                 temperature=1,
             )
         else:
-            api_response = self.generate_with_backoff(
+            return self.generate_with_backoff(
                 messages=inference_data["message"],
                 model=self.model_name,
                 temperature=self.temperature,
             )
-
-        return api_response
 
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]

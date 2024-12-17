@@ -32,21 +32,21 @@ class BaseHandler:
         self.temperature = temperature
         self.is_fc_model = False  # Whether the model is a function calling model
 
-    def inference(self, test_entry: dict, include_input_log: bool, include_state_log: bool):
+    def inference(self, test_entry: dict, include_input_log: bool, exclude_state_log: bool):
         # This method is used to retrive model response for each model.
 
         # FC model
         # TODO: Let all models have the is_fc_model attribute and remove the "FC" check
         if "FC" in self.model_name or self.is_fc_model:
             if "multi_turn" in test_entry["id"]:
-                return self.inference_multi_turn_FC(test_entry, include_input_log, include_state_log)
+                return self.inference_multi_turn_FC(test_entry, include_input_log, exclude_state_log)
             else:
                 return self.inference_single_turn_FC(test_entry, include_input_log)
         # Prompting model
         else:
             if "multi_turn" in test_entry["id"]:
                 return self.inference_multi_turn_prompting(
-                    test_entry, include_input_log, include_state_log
+                    test_entry, include_input_log, exclude_state_log
                 )
             else:
                 return self.inference_single_turn_prompting(
@@ -55,7 +55,7 @@ class BaseHandler:
 
     @final
     def inference_multi_turn_FC(
-        self, test_entry: dict, include_input_log: bool, include_state_log: bool
+        self, test_entry: dict, include_input_log: bool, exclude_state_log: bool
     ) -> tuple[list[list], dict]:
         initial_config: dict = test_entry["initial_config"]
         involved_classes: list = test_entry["involved_classes"]
@@ -78,7 +78,7 @@ class BaseHandler:
         force_quit = False  # Whether the model has been forced to quit. If True, this whole entry will be failed.
 
         # Execute no function call, but just to get a reference to all the instances to get the initial state for logging purpose
-        if include_state_log:
+        if not exclude_state_log:
             _, involved_instances = execute_multi_turn_func_call(
                 [],
                 initial_config,
@@ -155,9 +155,7 @@ class BaseHandler:
                 # Add to the current_turn_inference_log at beginning of each step so that we don't need to bother dealing with the break statements
                 current_turn_inference_log[f"step_{count}"] = current_step_inference_log
 
-                start_time = time.time()
-                api_response = self._query_FC(inference_data)
-                query_latency = time.time() - start_time
+                api_response, query_latency = self._query_FC(inference_data)
 
                 # This part of logging is disabled by default because it is too verbose and will make the result file extremely large
                 # It is only useful to see if the inference pipeline is working as expected (eg, does it convert all the inputs correctly)
@@ -267,7 +265,7 @@ class BaseHandler:
             total_output_token_count.append(current_turn_output_token_count)
             total_latency.append(current_turn_latency)
 
-            if include_state_log:
+            if not exclude_state_log:
                 state_log = []
                 for class_name, class_instance in involved_instances.items():
                     if class_name in STATELESS_CLASSES:
@@ -300,7 +298,7 @@ class BaseHandler:
 
     @final
     def inference_multi_turn_prompting(
-        self, test_entry: dict, include_input_log: bool, include_state_log: bool
+        self, test_entry: dict, include_input_log: bool, exclude_state_log: bool
     ) -> tuple[list[list], dict]:
         initial_config: dict = test_entry["initial_config"]
         involved_classes: list = test_entry["involved_classes"]
@@ -323,7 +321,7 @@ class BaseHandler:
         force_quit = False  # Whether the model has been forced to quit. If True, this whole entry will be failed.
 
         # Execute no function call, but just to get a reference to all the instances to get the initial state for logging purpose
-        if include_state_log:
+        if not exclude_state_log:
             _, involved_instances = execute_multi_turn_func_call(
                 [],
                 initial_config,
@@ -397,9 +395,7 @@ class BaseHandler:
                 # Add to the current_turn_inference_log at beginning of each step so that we don't need to bother dealing with the break statements
                 current_turn_inference_log[f"step_{count}"] = current_step_inference_log
 
-                start_time = time.time()
-                api_response = self._query_prompting(inference_data)
-                query_latency = time.time() - start_time
+                api_response, query_latency = self._query_prompting(inference_data)
 
                 # This part of logging is disabled by default because it is too verbose and will make the result file extremely large
                 # It is only useful to see if the inference pipeline is working as expected (eg, does it convert all the inputs correctly)
@@ -509,7 +505,7 @@ class BaseHandler:
             total_output_token_count.append(current_turn_output_token_count)
             total_latency.append(current_turn_latency)
 
-            if include_state_log:
+            if not exclude_state_log:
                 state_log = []
                 for class_name, class_instance in involved_instances.items():
                     if class_name in STATELESS_CLASSES:
@@ -551,9 +547,7 @@ class BaseHandler:
             inference_data, test_entry["question"][0]
         )
 
-        start_time = time.time()
-        api_response = self._query_FC(inference_data)
-        query_latency = time.time() - start_time
+        api_response, query_latency = self._query_FC(inference_data)
 
         # Try parsing the model response
         model_response_data = self._parse_query_response_FC(api_response)
@@ -582,9 +576,7 @@ class BaseHandler:
             inference_data, test_entry["question"][0]
         )
 
-        start_time = time.time()
-        api_response = self._query_prompting(inference_data)
-        query_latency = time.time() - start_time
+        api_response, query_latency = self._query_prompting(inference_data)
 
         # Try parsing the model response
         model_response_data = self._parse_query_response_prompting(api_response)
@@ -605,11 +597,15 @@ class BaseHandler:
         return model_response_data["model_responses"], metadata
 
     def decode_ast(self, result, language="Python"):
-        # This method takes raw model output and convert it to standard AST checker input.
+        """
+        This method takes raw model output (from `_parse_query_response_xxx`) and convert it to standard AST checker input.
+        """
         raise NotImplementedError
 
     def decode_execute(self, result):
-        # This method takes raw model output and convert it to standard execute checker input.
+        """
+        This method takes raw model output (from `_parse_query_response_xxx`) and convert it to standard execute checker input.
+        """
         raise NotImplementedError
 
     @final
@@ -656,28 +652,30 @@ class BaseHandler:
                     for entry in entries:
                         f.write(json.dumps(entry) + "\n")
 
-
     #### FC methods ####
 
     def _query_FC(self, inference_data: dict):
         """
         Call the model API in FC mode to get the response.
-        Return the response object that can be used to feed into the decode method.
+        Return the response object that can be used to feed into the `_parse_query_response_FC` method.
         """
         raise NotImplementedError
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         """
         Preprocess the testset entry before sending it to the model.
-        This includes transforming the input user message into the format expected by the model, and any other necessary preprocessing steps.
+        This might includes transforming the input user message into the format expected by the model, extract out the system prompt (if any), and any other necessary preprocessing steps. Those steps can also be done in the `add_first_turn_message_FC` and `_add_next_turn_user_message_FC` methods, but it's usually cleaner to do it here.
         The inference_data dict is updated in place and returned.
+
+        Note: This method has different signature from its Prompting version.
         """
         raise NotImplementedError
 
     def _compile_tools(self, inference_data: dict, test_entry: dict) -> dict:
         """
-        Compile the tools from the test entry and add them to the inference data.
-        This method is used to prepare the tools for the model query in FC mode.
+        [Only for FC mode]
+        This method is used to prepare/compile the tools from the test entry and add them to the inference data to use for model query in FC mode.
+        Function docs usually need to be transformed to the format expected by the model, done through the `convert_to_tool` function from `model_handler/utils.py`.
         The inference_data dict is updated in place and returned.
         """
         raise NotImplementedError
@@ -703,7 +701,17 @@ class BaseHandler:
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
         """
-        Add the first turn message to the chat history.
+        Add the first turn message to the chat history, in the format that the model expects.
+
+        Args:
+            inference_data (dict): The inference data from previous processing steps.
+            first_turn_message (list[dict]): The first turn message from the test entry. It has variable length. It might contain one or more of the following roles:
+                - "system": The system message. This role will only appear at most once, at the beginning of the first turn. For most entry, this role will not appear.
+                - "user": The user message.
+                - "assistant": The assistant message. For most entry, this role will not appear.
+
+        Returns:
+            inference_data (dict): The updated inference data that will be send to `_query_FC` to call the model API.
         """
         raise NotImplementedError
 
@@ -713,7 +721,7 @@ class BaseHandler:
         """
         [Only for multi-turn]
         Add next turn user message to the chat history for query.
-        user_message is a list of 1 element, which is the user message.
+        user_message is a list of 1 element, which is guaranteed to be a `user` role message.
         """
         raise NotImplementedError
 
@@ -746,9 +754,12 @@ class BaseHandler:
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         """
         Preprocess the testset entry before sending it to the model.
+        This might includes transforming the input user message into the format expected by the model, extract out the system prompt (if any), and any other necessary preprocessing steps. Those steps can also be done in the `add_first_turn_message_prompting` and `_add_next_turn_user_message_prompting` methods, but it's usually cleaner to do it here.
+        The function docs are usually supplied to the prompting models as part of the system prompt, done via the `system_prompt_pre_processing_chat_model` function from `model_handler/utils.py`, unless the model has a different way of handling it.
         Returns a dict that contains all the necessary information for the query method.
-        `tools` and `message` must be included in the returned dict.
         Things like `system_prompt` and `chat_history` are optional, specific to the model.
+
+        Note: This method has different signature from its FC version.
         """
         raise NotImplementedError
 
@@ -764,7 +775,6 @@ class BaseHandler:
                 - model_responses (any): The parsed result that can be directly used as input to the decode method.
                 - input_token (int): The number of tokens used in the input to the model.
                 - output_token (int): The number of tokens generated by the model as output.
-                - tool_call_ids (list[str]): The IDs of the tool calls that are generated by the model. Optional.
                 - Any other metadata that is specific to the model.
         """
         raise NotImplementedError
@@ -773,7 +783,17 @@ class BaseHandler:
         self, inference_data: dict, first_turn_message: list[dict]
     ) -> dict:
         """
-        Add the first turn message to the chat history.
+        Add the first turn message to the chat history, in the format that the model expects.
+
+        Args:
+            inference_data (dict): The inference data from previous processing steps.
+            first_turn_message (list[dict]): The first turn message from the test entry. It has variable length. It might contain one or more of the following roles:
+                - "system": The system message. This role will only appear at most once, at the beginning of the first turn.
+                - "user": The user message.
+                - "assistant": The assistant message. For most entry, this role will not appear.
+
+        Returns:
+            inference_data (dict): The updated inference data that will be send to `_query_prompting` to call the model API.
         """
         raise NotImplementedError
 
@@ -783,7 +803,7 @@ class BaseHandler:
         """
         [Only for multi-turn]
         Add next turn user message to the chat history for query.
-        user_message is a list of 1 element, which is the user message.
+        user_message is a list of 1 element, which is guaranteed to be a `user` role message.
         """
         raise NotImplementedError
 
@@ -800,6 +820,6 @@ class BaseHandler:
     ) -> dict:
         """
         Add the execution results to the chat history to prepare for the next turn of query.
-        Some models may need to add additional information to the chat history, such as tool call IDs.
+        By default, execution results are added back as a `user` role message, as most models don't support the `tool` role in prompting mode.
         """
         raise NotImplementedError
