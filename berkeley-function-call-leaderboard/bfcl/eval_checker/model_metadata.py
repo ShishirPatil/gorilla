@@ -7,8 +7,8 @@ MODEL_METADATA_MAPPING = {
         "Gorilla LLM",
         "Apache 2.0",
     ],
-    "o1-preview-2024-09-12": [
-        "o1-preview-2024-09-12 (Prompt)",
+    "o1-2024-12-17": [
+        "o1-2024-12-17 (Prompt)",
         "https://openai.com/index/introducing-openai-o1-preview/",
         "OpenAI",
         "Proprietary",
@@ -776,7 +776,7 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-small-2402-FC": 1,
     "mistral-small-2402": 1,
     "mistral-tiny-2312": 0.25,
-    "o1-preview-2024-09-12": 15,
+    "o1-2024-12-17": 15,
     "o1-mini-2024-09-12": 3,
     "gpt-4o-2024-05-13-FC": 5,
     "gpt-4o-2024-05-13": 5,
@@ -843,7 +843,7 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-medium-2312": 8.1,
     "mistral-small-2402-FC": 3,
     "mistral-tiny-2312": 0.25,
-    "o1-preview-2024-09-12": 60,
+    "o1-2024-12-17": 60,
     "o1-mini-2024-09-12": 12,
     "gpt-4o-2024-05-13-FC": 15,
     "gpt-4o-2024-05-13": 15,
