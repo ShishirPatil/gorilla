@@ -61,6 +61,8 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |meta-llama/Llama-3.1-{8B,70B}-Instruct-FC 💻| Function Calling|
 |meta-llama/Llama-3.1-{8B,70B}-Instruct 💻| Prompt|
 |meta-llama/Llama-3.2-{1B,3B}-Instruct 💻| Prompt|
+|meta-llama/Llama-3.3-70B-Instruct 💻| Prompt|
+|meta-llama/Llama-3.3-70B-Instruct-FC 💻| Function Calling|
 |deepseek-ai/DeepSeek-V2.5 💻| Function Calling|
 |deepseek-ai/DeepSeek-V2-{Chat-0628,Lite-Chat} 💻| Prompt|
 |deepseek-ai/DeepSeek-Coder-V2-{Instruct-0724,Lite-Instruct} 💻| Function Calling|

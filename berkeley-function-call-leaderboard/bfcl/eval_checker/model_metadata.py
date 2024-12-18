@@ -517,6 +517,18 @@ MODEL_METADATA_MAPPING = {
         "Meta",
         "Meta Llama 3 Community",
     ],
+    "meta-llama/Llama-3.3-70B-Instruct": [
+        "Llama-3.3-70B-Instruct (Prompt)",
+        "https://llama.meta.com/llama3",
+        "Meta",
+        "Meta Llama 3 Community",
+    ],
+    "meta-llama/Llama-3.3-70B-Instruct-FC": [
+        "Llama-3.3-70B-Instruct (FC)",
+        "https://llama.meta.com/llama3",
+        "Meta",
+        "Meta Llama 3 Community",
+    ],
     "command-r-plus-FC": [
         "Command-R-Plus (FC) (Original)",
         "https://txt.cohere.com/command-r-plus-microsoft-azure",
