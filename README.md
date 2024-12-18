@@ -4,12 +4,24 @@
   <img src="https://github.com/ShishirPatil/gorilla/blob/gh-pages/assets/img/logo.png" width="50%" height="50%">
 </div>
 
+<div align="center">
+  
+[![Arxiv](https://img.shields.io/badge/Gorilla_Paper-2305.15334-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334) [![Arxiv](https://img.shields.io/badge/RAFT_Paper-2403.10131-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334) [![Arxiv](https://img.shields.io/badge/GoEX_Paper-2403.10131-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2404.06921) [![Discord](https://img.shields.io/discord/1111172801899012102?label=Discord&logo=discord&logoColor=green&style=flat-square)](https://discord.gg/grXXvj9Whz) [![Gorilla Blog](https://img.shields.io/badge/Blog-gorilla.cs.berkeley.edu-blue?style=flat-square)](https://gorilla.cs.berkeley.edu/blog.html) [![Hugging Face](https://img.shields.io/badge/🤗-gorilla--llm-yellow.svg?style=flat-square)](https://huggingface.co/gorilla-llm)
 
-**🚒  GoEx: A Runtime for executing LLM generated actions like code & API calls** GoEx presents “undo” and “damage confinement” abstractions for mitigating the risk of unintended actions taken in LLM-powered systems. [Release blog](https://gorilla.cs.berkeley.edu/blogs/10_gorilla_exec_engine.html) [Paper](https://arxiv.org/abs/2404.06921).
+</div>
 
-**🎉 Berkeley Function Calling Leaderboard :** How do models stack up for function calling? :dart: Releasing the [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard). Read more in our [Release Blog](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html). 
+`Gorilla` enables LLMs to use tools by invoking APIs. Given a natural language query, Gorilla comes up with the semantically- and syntactically- correct API to invoke. With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (and growing) API calls accurately while reducing hallucination. We also release APIBench, the largest collection of APIs, curated and easy to be trained on! Join us, as we try to expand the largest API store and teach LLMs how to write them! Hop on our Discord, or open a PR, or email us if you would like to have your API incorporated as well.
 
-**:trophy: Gorilla OpenFunctions v2** Sets a new SoTA for open-source LLMs :muscle: On-par with GPT-4 :raised_hands: Supports more languages :ok_hand: [Blog](https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html). 
+
+**🏟️ Agent Arena: Compare LLM agents across models, tools, and frameworks!** Evaluate agent workflows and subcomponents using the extended Bradley-Terry Model, access 2,000+ real-world agent battles. Explore the Prompt Hub for user contributed prompts used for agent evaluations. [[Release Blog]](https://gorilla.cs.berkeley.edu/blogs/11_agent_marketplace.html)
+
+**🚒  GoEx: A Runtime for executing LLM generated actions like code & API calls** GoEx presents “undo” and “damage confinement” abstractions for mitigating the risk of unintended actions taken in LLM-powered systems. [[Release blog]](https://gorilla.cs.berkeley.edu/blogs/10_gorilla_exec_engine.html) [[Paper]](https://arxiv.org/abs/2404.06921).
+
+**📚🦍 RAFT: Fine-Tuning LLMs for Robust Domain-Specific Retrieval-Augmented Generation (RAG)** RAFT (Retrieval-Augmented Fine-Tuning) introduces a novel approach to train LLMs for domain-specific open-book tasks by teaching them to focus on relevant documents while ignoring distractors. Combining fine-tuning and RAG, RAFT improves reasoning with chain-of-thought answers and domain adaptation. Tested on datasets like PubMed, HotpotQA, and Gorilla API Bench, RAFT consistently outperforms existing methods. 
+
+**🎉 Berkeley Function Calling Leaderboard :** How do models stack up for function calling? We include dataset, inference pipeline, and error analytics for **single-turn, multi-turn, non-live, live, parallel function calling** with real-world, executable APIs from Rapid API and stateful APIs. :dart: Releasing the [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard) (Current Version: V3). Read more in [[BFCL V1 Blog]](https://gorilla.cs.berkeley.edu/blogs/8_berkeley_function_calling_leaderboard.html), [[BFCL V2 Blog]](https://gorilla.cs.berkeley.edu/blogs/12_bfcl_v2_live.html), [[BFCL V3 Blog]](https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_live.html).
+
+**:trophy: Gorilla OpenFunctions v2** Sets a new SoTA for open-source LLMs :muscle: On-par with GPT-4 :raised_hands: We trained a model that supports parallel functions (generate multiple functions at a time) and multiple functions (select one or more functions). Java/REST/Python APIs are also supported for the first time with extended data types 📷 [Blog](https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html). 
 
 **:fire: Gorilla OpenFunctions** is a drop-in alternative for function calling! [Release Blog](https://gorilla.cs.berkeley.edu/blogs/4_open_functions.html)
 
@@ -18,15 +30,6 @@
 **:rocket: Try Gorilla in 60s** [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing) 
 
 :computer: Use [Gorilla in your CLI](https://github.com/gorilla-llm/gorilla-cli) with `pip install gorilla-cli`
-
-**:fax: Check out our [blogs](https://gorilla.cs.berkeley.edu/blog.html) for all things tools-use/function-calling!** 
-
-**:newspaper_roll: Check out our paper!** [![arXiv](https://img.shields.io/badge/arXiv-2305.15334-<COLOR>.svg?style=flat-square)](https://arxiv.org/abs/2305.15334)
-
-**:wave: Join our Discord!** [![Discord](https://img.shields.io/discord/1111172801899012102?label=Discord&logo=discord&logoColor=green&style=flat-square)](https://discord.gg/grXXvj9Whz)
-
-
-`Gorilla` enables LLMs to use tools by invoking APIs. Given a natural language query, Gorilla comes up with the semantically- and syntactically- correct API to invoke. With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (and growing) API calls accurately while reducing hallucination. We also release APIBench, the largest collection of APIs, curated and easy to be trained on! Join us, as we try to expand the largest API store and teach LLMs how to write them! Hop on our Discord, or open a PR, or email us if you would like to have your API incorporated as well.
 
 ## News
 - ⏰: [04/01] Introducing cost and latency metrics into [Berkeley function calling leaderboard](https://gorilla.cs.berkeley.edu/leaderboard)!
@@ -49,9 +52,9 @@
 
 ## Get Started 
 
-Inference: Run Gorilla locally [`inference/README.md`](inference/README.md)
+Inference: Run Gorilla locally [`gorilla/inference/README.md`](gorilla/inference/README.md)
 
-Evaluation: We have included prompts and responses for the APIBench with and without retrievers along with the Abstract Syntax Tree (AST) matching evaluation script at [evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval).
+Evaluation: We have included prompts and responses for the APIBench with and without retrievers along with the Abstract Syntax Tree (AST) matching evaluation script at [gorilla/eval](https://github.com/ShishirPatil/gorilla/tree/main/gorilla/eval).
 
 ## Repository Organization
 
@@ -59,13 +62,14 @@ Our repository organization is shown below.
 
   - The `berkeley-function-call-leaderboard` folder contains scripts for evaluating function-calling ability of models.
   - The `data` folder contains all the evaluation APIs `(APIBench)` and the community contributed APIs.
-  - The `eval` folder contains all our evaluation code as well as the Gorilla outputs.
-  - The `inference` folder contains all the inference code for running Gorilla locally.
+  - The `gorilla` folder contains all the replication code for the original Gorilla paper. 
+    - The `gorilla/eval` folder contains all our evaluation code as well as the Gorilla outputs.
+    - The `gorilla/inference` folder contains all the inference code for running Gorilla locally.
   - The `openfunctions` folder contains the inference code for the OpenFunctions model(s).
 
-For our dataset collections, all the 1640 API documentation is in `data/api`. We also include the `APIBench` dataset created by self-instruct in `data/apibench`. For evaluation, we convert this into a LLM-friendly chat format, and the questions are in `eval/eval-data/questions`, and the corresponding responses are in `eval/eval-data/responses`.  We have also included the evaluation scripts are in `eval/eval-scripts`. This would be entirely sufficient to train Gorilla yourself, and reproduce our results. Please see [evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval) for the details on how to use our evaluation pipeline.
+For our dataset collections, all the 1640 API documentation is in `data/api`. We also include the `APIBench` dataset created by self-instruct in `data/apibench`. For evaluation, we convert this into a LLM-friendly chat format, and the questions are in `gorilla/eval/eval-data/questions`, and the corresponding responses are in `gorilla/eval/eval-data/responses`.  We have also included the evaluation scripts are in `gorilla/eval/eval-scripts`. This would be entirely sufficient to train Gorilla yourself, and reproduce our results. Please see [evaluation](https://github.com/ShishirPatil/gorilla/tree/main/eval) for the details on how to use our evaluation pipeline.
 
-Additionally, we have released all the model weights. `gorilla-7b-hf-v0` lets you invoke over 925 Hugging Face APIs. Similarly, `gorilla-7b-tf-v0` and `gorilla-7b-th-v0` have 626 (exhaustive) Tensorflow v2, and 94 (exhaustive) Torch Hub APIs. `gorilla-mpt-7b-hf-v0` and `gorilla-falcon-7b-hf-v0` are Apache 2.0 licensed models (commercially usable) fine-tuned on MPT-7B and Falcon-7B respectively. We will release a model with all three combined with generic chat capability and community contributed APIs as soon as we can scale our serving infrastructure. You can run Gorilla locally from instructions in the `inference/` sub-directory, or we also provide a hosted Gorilla chat completion API (see Colab)! If you have any suggestions or if you run into any issues, please feel free to reach out to us either through Discord or email or raise a Github issue.
+Additionally, we have released all the model weights. `gorilla-7b-hf-v0` lets you invoke over 925 Hugging Face APIs. Similarly, `gorilla-7b-tf-v0` and `gorilla-7b-th-v0` have 626 (exhaustive) Tensorflow v2, and 94 (exhaustive) Torch Hub APIs. `gorilla-mpt-7b-hf-v0` and `gorilla-falcon-7b-hf-v0` are Apache 2.0 licensed models (commercially usable) fine-tuned on MPT-7B and Falcon-7B respectively. We will release a model with all three combined with generic chat capability and community contributed APIs as soon as we can scale our serving infrastructure. You can run Gorilla locally from instructions in the `gorilla/inference/` sub-directory, or we also provide a hosted Gorilla chat completion API (see Colab)! If you have any suggestions or if you run into any issues, please feel free to reach out to us either through Discord or email or raise a Github issue.
 
 ```
 gorilla
