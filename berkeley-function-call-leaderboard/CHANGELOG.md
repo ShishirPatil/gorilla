@@ -2,6 +2,9 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Dec 18, 2024] [#840](https://github.com/ShishirPatil/gorilla/pull/840): Add the following new models to the leaderboard:
+  - `o1-2024-12-17-FC`
+  - `o1-2024-12-17`
 - [Dec 16, 2024] [#837](https://github.com/ShishirPatil/gorilla/pull/837): Add the following new models to the leaderboard:
   - `meta-llama/Llama-3.3-70B-Instruct-FC`
   - `meta-llama/Llama-3.3-70B-Instruct`

@@ -59,18 +59,34 @@ class OpenAIHandler(BaseHandler):
         inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
 
         if len(tools) > 0:
-            return self.generate_with_backoff(
-                messages=message,
-                model=self.model_name.replace("-FC", ""),
-                temperature=self.temperature,
-                tools=tools,
-            )
+            # o1 don't support temperature parameter
+            # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
+            # Also, o1-mini does not support function calling
+            if "o1" in self.model_name:
+                return self.generate_with_backoff(
+                    messages=message,
+                    model=self.model_name.replace("-FC", ""),
+                    tools=tools,
+                )
+            else:
+                return self.generate_with_backoff(
+                    messages=message,
+                    model=self.model_name.replace("-FC", ""),
+                    temperature=self.temperature,
+                    tools=tools,
+                )
         else:
-            return self.generate_with_backoff(
-                messages=message,
-                model=self.model_name.replace("-FC", ""),
-                temperature=self.temperature,
-            )
+            if "o1" in self.model_name:
+                return self.generate_with_backoff(
+                    messages=message,
+                    model=self.model_name.replace("-FC", ""),
+                )
+            else:
+                return self.generate_with_backoff(
+                    messages=message,
+                    model=self.model_name.replace("-FC", ""),
+                    temperature=self.temperature,
+                )
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         inference_data["message"] = []
@@ -154,13 +170,12 @@ class OpenAIHandler(BaseHandler):
     def _query_prompting(self, inference_data: dict):
         inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
 
-        # These two models have temperature fixed to 1
+        # o1 and o1-mini don't support temperature parameter
         # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
-        if "o1-preview" in self.model_name or "o1-mini" in self.model_name:
+        if "o1" in self.model_name:
             return self.generate_with_backoff(
                 messages=inference_data["message"],
                 model=self.model_name,
-                temperature=1,
             )
         else:
             return self.generate_with_backoff(
@@ -178,8 +193,9 @@ class OpenAIHandler(BaseHandler):
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
             test_entry["question"][0], functions, test_category
         )
-        # Special handling for o1-preview and o1-mini as they don't support system prompts yet
-        if "o1-preview" in self.model_name or "o1-mini" in self.model_name:
+        # Special handling for o1-mini as it don't support system prompts yet
+        # o1 is fine with system prompts
+        if "o1-mini" in self.model_name:
             for round_idx in range(len(test_entry["question"])):
                 test_entry["question"][round_idx] = convert_system_prompt_into_user_prompt(
                     test_entry["question"][round_idx]

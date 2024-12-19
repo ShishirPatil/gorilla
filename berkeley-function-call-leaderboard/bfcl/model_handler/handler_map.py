@@ -35,7 +35,9 @@ from bfcl.model_handler.proprietary_model.yi import YiHandler
 # Inference through API calls
 api_inference_handler_map = {
     "gorilla-openfunctions-v2": GorillaHandler,
+    "o1-2024-12-17-FC": OpenAIHandler,
     "o1-2024-12-17": OpenAIHandler,
+    # "o1-mini-2024-09-12-FC": OpenAIHandler,  # o1-mini-2024-09-12 does not support function calling
     "o1-mini-2024-09-12": OpenAIHandler,
     "gpt-4o-2024-11-20": OpenAIHandler,
     "gpt-4o-2024-11-20-FC": OpenAIHandler,
@@ -148,6 +150,7 @@ local_inference_handler_map = {
 # Deprecated/outdated models, no longer on the leaderboard
 outdated_model_handler_map = {
     # "gorilla-openfunctions-v0": GorillaHandler,
+    # "o1-2024-12-17": OpenAIHandler,
     # "gpt-4o-2024-08-06": OpenAIHandler,
     # "gpt-4o-2024-08-06-FC": OpenAIHandler,
     # "gpt-4o-2024-05-13": OpenAIHandler,
