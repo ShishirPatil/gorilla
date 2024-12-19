@@ -703,6 +703,12 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/QwQ-32B-Preview": [
+        "QwQ-32B-Preview (Prompt)",
+        "https://huggingface.co/Qwen/QwQ-32B-Preview",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Team-ACE/ToolACE-8B": [
         "ToolACE-8B (FC)",
         "https://huggingface.co/Team-ACE/ToolACE-8B",

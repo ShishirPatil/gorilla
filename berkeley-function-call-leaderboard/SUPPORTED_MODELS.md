@@ -69,6 +69,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |deepseek-ai/DeepSeek-V2.5 💻| Function Calling|
 |deepseek-ai/DeepSeek-V2-{Chat-0628,Lite-Chat} 💻| Prompt|
 |deepseek-ai/DeepSeek-Coder-V2-{Instruct-0724,Lite-Instruct} 💻| Function Calling|
+|Qwen/QwQ-32B-Preview 💻| Prompt|
 |Qwen/Qwen2.5-{1.5B,7B}-Instruct 💻| Prompt|
 |Qwen/Qwen2-{1.5B,7B}-Instruct 💻| Prompt|
 |Salesforce/xLAM-1b-fc-r 💻| Function Calling|
