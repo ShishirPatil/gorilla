@@ -701,7 +701,7 @@ MODEL_METADATA_MAPPING = {
         "Qwen2.5-3B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct",
         "Qwen",
-        "apache-2.0",
+        "qwen",
     ],
     "Qwen/Qwen2.5-7B-Instruct": [
         "Qwen2.5-7B-Instruct (Prompt)",
@@ -725,7 +725,7 @@ MODEL_METADATA_MAPPING = {
         "Qwen2.5-72B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
         "Qwen",
-        "apache-2.0",
+        "qwen",
     ],
     "Team-ACE/ToolACE-8B": [
         "ToolACE-8B (FC)",
