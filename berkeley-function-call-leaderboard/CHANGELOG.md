@@ -2,6 +2,9 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Dec 19, 2024] [#843](https://github.com/ShishirPatil/gorilla/pull/843): Add the following new models to the leaderboard:
+  - `gemini-2.0-flash-exp-FC`
+  - `gemini-2.0-flash-exp`
 - [Dec 18, 2024] [#840](https://github.com/ShishirPatil/gorilla/pull/840): Add the following new models to the leaderboard:
   - `o1-2024-12-17-FC`
   - `o1-2024-12-17`
