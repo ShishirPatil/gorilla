@@ -536,7 +536,7 @@ MODEL_METADATA_MAPPING = {
         "cc-by-nc-4.0",
     ],
     "command-r7b-12-2024-FC": [
-        "Command R7B",
+        "Command R7B (FC)",
         "https://cohere.com/blog/command-r7b",
         "Cohere",
         "cc-by-nc-4.0"

@@ -5,8 +5,6 @@ import time
 from typing import Any
 
 import cohere
-from tenacity.stop import stop_after_attempt
-
 from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
@@ -15,8 +13,7 @@ from bfcl.model_handler.utils import (
     func_doc_language_specific_pre_processing,
     retry_with_backoff,
 )
-
-USE_COHERE_OPTIMIZATION = os.getenv("USE_COHERE_OPTIMIZATION") == "True"
+from tenacity.stop import stop_after_attempt
 
 
 class CohereHandler(BaseHandler):
