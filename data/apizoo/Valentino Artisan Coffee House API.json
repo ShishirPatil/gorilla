@@ -1,0 +1,136 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Valentino Artisan Coffee House API: Get API status",
+        "api_call": "https://valentinos-coffee.herokuapp.com/status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve the current status of the API"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Valentino Artisan Coffee House API: Get all products",
+        "api_call": "https://valentinos-coffee.herokuapp.com/products",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a paginated list of products, 10 products per page"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Valentino Artisan Coffee House API: Get single product",
+        "api_call": "https://valentinos-coffee.herokuapp.com/products/:productId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "Retrieve a single product by specifying the product ID."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Valentino Artisan Coffee House API: Register a new client",
+        "api_call": "https://valentinos-coffee.herokuapp.com/clients",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"email\": \"{{$randomExampleEmail}}\"\n}"
+            }
+        },
+        "functionality": "Register a new API client by providing an email address"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Valentino Artisan Coffee House API: Create a new order",
+        "api_call": "https://valentinos-coffee.herokuapp.com/orders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"customerName\": \"{{$randomFullName}}\",\n  \"products\": [\n    {\n      \"id\": 2001,\n      \"quantity\": 1\n    },\n    {\n      \"id\": 2002,\n      \"quantity\": 3\n    }\n  ]\n}",
+                "options": {
+                    "raw": {
+                        "headerFamily": "json",
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "Place a new order by providing customer details and ordered products"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Valentino Artisan Coffee House API: Get all orders",
+        "api_call": "https://valentinos-coffee.herokuapp.com/orders",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Valentino Artisan Coffee House API: Get an order by ID",
+        "api_call": "https://valentinos-coffee.herokuapp.com/orders/:orderId",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Accept",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]
