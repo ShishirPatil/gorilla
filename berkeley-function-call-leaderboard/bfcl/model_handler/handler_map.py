@@ -150,7 +150,7 @@ local_inference_handler_map = {
 # Deprecated/outdated models, no longer on the leaderboard
 outdated_model_handler_map = {
     # "gorilla-openfunctions-v0": GorillaHandler,
-    # "o1-2024-12-17": OpenAIHandler,
+    # "o1-preview-2024-09-12": OpenAIHandler,
     # "gpt-4o-2024-08-06": OpenAIHandler,
     # "gpt-4o-2024-08-06-FC": OpenAIHandler,
     # "gpt-4o-2024-05-13": OpenAIHandler,

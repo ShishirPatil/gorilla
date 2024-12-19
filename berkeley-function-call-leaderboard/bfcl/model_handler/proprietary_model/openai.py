@@ -59,7 +59,7 @@ class OpenAIHandler(BaseHandler):
         inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
 
         if len(tools) > 0:
-            # o1 don't support temperature parameter
+            # o1 doesn't support temperature parameter
             # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
             # Also, o1-mini does not support function calling
             if "o1" in self.model_name:
@@ -193,7 +193,7 @@ class OpenAIHandler(BaseHandler):
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
             test_entry["question"][0], functions, test_category
         )
-        # Special handling for o1-mini as it don't support system prompts yet
+        # Special handling for o1-mini as it doesn't support system prompts yet
         # o1 is fine with system prompts
         if "o1-mini" in self.model_name:
             for round_idx in range(len(test_entry["question"])):
