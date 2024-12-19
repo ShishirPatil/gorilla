@@ -16,6 +16,7 @@ from bfcl.utils import (
     write_list_of_dicts_to_file,
 )
 from tqdm import tqdm
+from bfcl.eval_checker.metadata_loader import metadata_loader
 
 
 def api_status_sanity_check_rest():
@@ -246,6 +247,9 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
 def generate_leaderboard_csv(
     leaderboard_table, output_path, eval_models=None, eval_categories=None
 ):
+    # Load metadata at the beginning of the function
+    model_metadata, _, _ = metadata_loader.load_metadata()
+    
     print("📈 Aggregating data to generate leaderboard score table...")
     data_non_live = []
     data_live = []
@@ -326,7 +330,7 @@ def generate_leaderboard_csv(
         data_non_live.append(
             [
                 "N/A",
-                MODEL_METADATA_MAPPING[model_name_escaped][0],
+                model_metadata[model_name_escaped][0],
                 overall_accuracy_non_live["accuracy"],
                 summary_ast_non_live["accuracy"],
                 summary_exec_non_live["accuracy"],
@@ -387,7 +391,7 @@ def generate_leaderboard_csv(
         data_live.append(
             [
                 "N/A",
-                MODEL_METADATA_MAPPING[model_name_escaped][0],
+                model_metadata[model_name_escaped][0],
                 overall_accuracy_live["accuracy"],
                 summary_ast_live["accuracy"],
                 python_simple_ast_live["accuracy"],
@@ -422,7 +426,7 @@ def generate_leaderboard_csv(
         data_multi_turn.append(
             [
                 "N/A",
-                MODEL_METADATA_MAPPING[model_name_escaped][0],
+                model_metadata[model_name_escaped][0],
                 overall_accuracy_multi_turn["accuracy"],
                 multi_turn_base["accuracy"],
                 multi_turn_miss_func["accuracy"],
@@ -448,8 +452,8 @@ def generate_leaderboard_csv(
             [
                 "N/A",
                 total_overall_accuracy["accuracy"],
-                MODEL_METADATA_MAPPING[model_name_escaped][0],
-                MODEL_METADATA_MAPPING[model_name_escaped][1],
+                model_metadata[model_name_escaped][0],
+                model_metadata[model_name_escaped][1],
                 cost,
                 latency_mean,
                 latency_std,
@@ -476,8 +480,8 @@ def generate_leaderboard_csv(
                 multi_turn_long_context["accuracy"],
                 total_relevance["accuracy"],
                 total_irrelevance["accuracy"],
-                MODEL_METADATA_MAPPING[model_name_escaped][2],
-                MODEL_METADATA_MAPPING[model_name_escaped][3],
+                model_metadata[model_name_escaped][2],
+                model_metadata[model_name_escaped][3],
             ]
         )
 
@@ -619,6 +623,7 @@ def generate_leaderboard_csv(
 
 def check_model_category_status(score_path):
     result_path = score_path.replace("score", "result")
+    model_metadata, _, _ = metadata_loader.load_metadata()
 
     leaderboard_categories = [
         "exec_simple",
@@ -643,8 +648,8 @@ def check_model_category_status(score_path):
 
     category_status = {}
 
-    # Check for all models in MODEL_METADATA_MAPPING
-    for model_name in MODEL_METADATA_MAPPING.keys():
+    # Check for all models in metadata
+    for model_name in model_metadata.keys():
         category_status[model_name] = {
             category: {"generated": False, "evaluated": False}
             for category in leaderboard_categories
