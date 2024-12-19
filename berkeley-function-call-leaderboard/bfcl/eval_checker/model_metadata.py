@@ -307,6 +307,18 @@ MODEL_METADATA_MAPPING = {
         "Fireworks",
         "Apache 2.0",
     ],
+    "gemini-exp-1206-FC": [
+        "Gemini-Exp-1206 (FC)",
+        "https://blog.google/feed/gemini-exp-1206/",
+        "Google",
+        "Proprietary",
+    ],
+    "gemini-exp-1206": [
+        "Gemini-Exp-1206 (Prompt)",
+        "https://blog.google/feed/gemini-exp-1206/",
+        "Google",
+        "Proprietary",
+    ],
     "gemini-2.0-flash-exp-FC": [
         "Gemini-2.0-Flash-Exp (FC)",
         "https://deepmind.google/technologies/gemini/flash/",
@@ -801,7 +813,9 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-4-0613-FC": 30,
     "gpt-3.5-turbo-0125": 0.5,
     "gpt-3.5-turbo-0125-FC": 0.5,
-    "gemini-2.0-flash-exp": 0,  # Gemini Experimental models are free
+    "gemini-exp-1206-FC": 0,  # Gemini Experimental models are free
+    "gemini-exp-1206": 0,
+    "gemini-2.0-flash-exp": 0,
     "gemini-2.0-flash-exp-FC": 0,
     "gemini-1.5-pro-002": 1.25,
     "gemini-1.5-pro-002-FC": 1.25,
@@ -869,7 +883,9 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-4-0613-FC": 60,
     "gpt-3.5-turbo-0125": 1.5,
     "gpt-3.5-turbo-0125-FC": 1.5,
-    "gemini-2.0-flash-exp": 0,  # Gemini Experimental models are free
+    "gemini-exp-1206-FC": 0,  # Gemini Experimental models are free
+    "gemini-exp-1206": 0,
+    "gemini-2.0-flash-exp": 0,
     "gemini-2.0-flash-exp-FC": 0,
     "gemini-1.5-pro-002": 5,
     "gemini-1.5-pro-002-FC": 5,
