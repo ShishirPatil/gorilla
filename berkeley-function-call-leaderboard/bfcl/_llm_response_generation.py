@@ -283,12 +283,6 @@ def main(args):
         args.result_dir = RESULT_PATH
 
     for model_name in args.model:
-        if (
-            os.getenv("USE_COHERE_OPTIMIZATION") == "True"
-            and "command-r-plus" in model_name
-        ):
-            model_name = model_name + "-optimized"
-
         test_cases_total = collect_test_cases(
             args,
             model_name,
