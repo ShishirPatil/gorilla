@@ -35,7 +35,9 @@ from bfcl.model_handler.proprietary_model.yi import YiHandler
 # Inference through API calls
 api_inference_handler_map = {
     "gorilla-openfunctions-v2": GorillaHandler,
-    "o1-preview-2024-09-12": OpenAIHandler,
+    "o1-2024-12-17-FC": OpenAIHandler,
+    "o1-2024-12-17": OpenAIHandler,
+    # "o1-mini-2024-09-12-FC": OpenAIHandler,  # o1-mini-2024-09-12 does not support function calling
     "o1-mini-2024-09-12": OpenAIHandler,
     "gpt-4o-2024-11-20": OpenAIHandler,
     "gpt-4o-2024-11-20-FC": OpenAIHandler,
@@ -81,9 +83,7 @@ api_inference_handler_map = {
     "meetkai/functionary-medium-v3.1-FC": FunctionaryHandler,
     "databricks-dbrx-instruct": DatabricksHandler,
     "command-r-plus-FC": CohereHandler,
-    "command-r-plus": CohereHandler,
-    "command-r-plus-FC-optimized": CohereHandler,
-    "command-r-plus-optimized": CohereHandler,
+    "command-r7b-12-2024-FC": CohereHandler,
     "snowflake/arctic": NvidiaHandler,
     "nvidia/nemotron-4-340b-instruct": NvidiaHandler,
     "BitAgent/GoGoAgent": GoGoAgentHandler,
@@ -105,6 +105,8 @@ local_inference_handler_map = {
     "meta-llama/Llama-3.1-70B-Instruct": LlamaHandler,
     "meta-llama/Llama-3.2-1B-Instruct": LlamaHandler,
     "meta-llama/Llama-3.2-3B-Instruct": LlamaHandler,
+    "meta-llama/Llama-3.3-70B-Instruct-FC": LlamaFCHandler,
+    "meta-llama/Llama-3.3-70B-Instruct": LlamaHandler,
     "Salesforce/xLAM-1b-fc-r": SalesforceHandler,
     "Salesforce/xLAM-7b-fc-r": SalesforceHandler,
     "Salesforce/xLAM-7b-r": SalesforceHandler,
@@ -146,6 +148,7 @@ local_inference_handler_map = {
 # Deprecated/outdated models, no longer on the leaderboard
 outdated_model_handler_map = {
     # "gorilla-openfunctions-v0": GorillaHandler,
+    # "o1-preview-2024-09-12": OpenAIHandler,
     # "gpt-4o-2024-08-06": OpenAIHandler,
     # "gpt-4o-2024-08-06-FC": OpenAIHandler,
     # "gpt-4o-2024-05-13": OpenAIHandler,

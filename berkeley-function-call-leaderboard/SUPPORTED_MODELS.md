@@ -24,6 +24,9 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |gpt-4o-2024-11-20 | Prompt|
 |gpt-4o-mini-2024-07-18-FC | Function Calling|
 |gpt-4o-mini-2024-07-18 | Prompt|
+|o1-2024-12-17-FC | Function Calling|
+|o1-2024-12-17 | Prompt|
+|o1-mini-2024-09-12 | Prompt|
 |gemini-1.0-pro-002-FC | Function Calling|
 |gemini-1.0-pro-002 | Prompt|
 |gemini-1.5-pro-{001,002}-FC | Function Calling|
@@ -44,7 +47,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |nova-lite-v1.0| Function Calling|
 |nova-macro-v1.0| Function Calling|
 |command-r-plus-FC | Function Calling|
-|command-r-plus | Prompt|
+|command-r7b-12-2024-FC | Function Calling|
 |databrick-dbrx-instruct | Prompt|
 |firefunction-{v1,v2}-FC | Function Calling|
 |yi-large-fc | Function Calling|
@@ -61,6 +64,8 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |meta-llama/Llama-3.1-{8B,70B}-Instruct-FC 💻| Function Calling|
 |meta-llama/Llama-3.1-{8B,70B}-Instruct 💻| Prompt|
 |meta-llama/Llama-3.2-{1B,3B}-Instruct 💻| Prompt|
+|meta-llama/Llama-3.3-70B-Instruct 💻| Prompt|
+|meta-llama/Llama-3.3-70B-Instruct-FC 💻| Function Calling|
 |deepseek-ai/DeepSeek-V2.5 💻| Function Calling|
 |deepseek-ai/DeepSeek-V2-{Chat-0628,Lite-Chat} 💻| Prompt|
 |deepseek-ai/DeepSeek-Coder-V2-{Instruct-0724,Lite-Instruct} 💻| Function Calling|
