@@ -138,6 +138,8 @@ local_inference_handler_map = {
     "Team-ACE/ToolACE-8B": LlamaHandler,
     "openbmb/MiniCPM3-4B": MiniCPMHandler,
     "openbmb/MiniCPM3-4B-FC": MiniCPMFCHandler,
+    "watt-ai/watt-tool-8B": LlamaHandler,
+    "watt-ai/watt-tool-70B": LlamaHandler,
     "deepseek-ai/DeepSeek-V2.5": DeepseekCoderHandler,
     "deepseek-ai/DeepSeek-Coder-V2-Instruct-0724": DeepseekCoderHandler,
     "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct": DeepseekCoderHandler,

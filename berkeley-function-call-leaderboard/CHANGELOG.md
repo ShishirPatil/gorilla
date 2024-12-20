@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Dec 21, 2024] [#847](https://github.com/ShishirPatil/gorilla/pull/847): Add new model `watt-ai/watt-tool-8B` and `watt-ai/watt-tool-70B` to the leaderboard.
 - [Dec 18, 2024] [#840](https://github.com/ShishirPatil/gorilla/pull/840): Add the following new models to the leaderboard:
   - `o1-2024-12-17-FC`
   - `o1-2024-12-17`

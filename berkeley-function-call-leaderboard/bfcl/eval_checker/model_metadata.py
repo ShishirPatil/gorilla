@@ -721,6 +721,18 @@ MODEL_METADATA_MAPPING = {
         "openbmb",
         "Apache-2.0",
     ],
+    "watt-ai/watt-tool-8B": [
+        "Watt-Tool (FC)",
+        "https://huggingface.co/watt-ai/watt-tool-8B/",
+        "Watt AI Lab",
+        "Apache-2.0",
+    ],
+    "watt-ai/watt-tool-70B": [
+        "Watt-Tool (FC)",
+        "https://huggingface.co/watt-ai/watt-tool-70B/",
+        "Watt AI Lab",
+        "Apache-2.0",
+    ],
     "BitAgent/GoGoAgent": [
         "GoGoAgent",
         "https://gogoagent.ai",
