@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Dec 20, 2024] [](): Update the generation and evaluation pipeline bahavior that, if executable categories are involved, and tho API Keys are not supplied in the `.env` file, those categories will be skipped instead of erroring out. This helps first-time users get a better experience.
 - [Dec 18, 2024] [#840](https://github.com/ShishirPatil/gorilla/pull/840): Add the following new models to the leaderboard:
   - `o1-2024-12-17-FC`
   - `o1-2024-12-17`

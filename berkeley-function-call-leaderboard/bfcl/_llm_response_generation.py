@@ -271,9 +271,12 @@ def main(args):
     if type(args.test_category) is not list:
         args.test_category = [args.test_category]
 
-    all_test_file_paths, all_test_categories, all_test_entries_involved, skipped_categories = (
-        get_involved_test_entries(args.test_category, args.run_ids)
-    )
+    (
+        all_test_file_paths,
+        all_test_categories,
+        all_test_entries_involved,
+        skipped_categories,
+    ) = get_involved_test_entries(args.test_category, args.run_ids)
 
     print(f"Generating results for {args.model}")
     if args.run_ids:
@@ -283,7 +286,9 @@ def main(args):
 
     if len(skipped_categories) > 0:
         print("----------")
-        print(f"❗️ Note: The following executable test category entries will be skipped because they require API Keys to be provided in the .env file: {skipped_categories}.\n Please refer to the README.md 'API Keys for Executable Test Categories' section for details.\n The model response for other categories will still be generated.")
+        print(
+            f"❗️ Note: The following executable test category entries will be skipped because they require API Keys to be provided in the .env file: {skipped_categories}.\n Please refer to the README.md 'API Keys for Executable Test Categories' section for details.\n The model response for other categories will still be generated."
+        )
         print("----------")
 
     # Apply function credential config if any of the test categories are executable

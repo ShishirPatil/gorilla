@@ -633,7 +633,7 @@ def main(model, test_categories, api_sanity_check, result_dir, score_dir):
 
     api_key_supplied = check_api_key_supplied()
     skipped_categories = []
-    
+
     for test_category in all_test_categories[:]:
         # Skip executable test category evaluation if api key is not provided in the .env file
         if is_executable(test_category) and not api_key_supplied:
@@ -658,7 +658,9 @@ def main(model, test_categories, api_sanity_check, result_dir, score_dir):
 
     if len(skipped_categories) > 0:
         print("----------")
-        print(f"❗️ Note: The following executable test category are not evaluated because they require API Keys to be provided in the .env file: {skipped_categories}.\n Please refer to the README.md 'API Keys for Executable Test Categories' section for details.\n The model response for other categories are evaluated.")
+        print(
+            f"❗️ Note: The following executable test category are not evaluated because they require API Keys to be provided in the .env file: {skipped_categories}.\n Please refer to the README.md 'API Keys for Executable Test Categories' section for details.\n The model response for other categories are evaluated."
+        )
         print("----------")
 
     print(
