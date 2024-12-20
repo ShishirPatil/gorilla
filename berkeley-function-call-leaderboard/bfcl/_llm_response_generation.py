@@ -12,7 +12,6 @@ from bfcl.constant import (
     PROJECT_ROOT,
     PROMPT_PATH,
     RESULT_PATH,
-    TEST_COLLECTION_MAPPING,
     TEST_FILE_MAPPING,
     TEST_IDS_TO_GENERATE_PATH,
 )
@@ -20,8 +19,10 @@ from bfcl.eval_checker.eval_runner_helper import load_file
 from bfcl.model_handler.handler_map import HANDLER_MAP
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.utils import (
+    check_api_key_supplied,
     is_executable,
     is_multi_turn,
+    parse_test_category_argument,
     sort_key,
 )
 from tqdm import tqdm
@@ -56,33 +57,6 @@ def get_args():
 def build_handler(model_name, temperature):
     handler = HANDLER_MAP[model_name](model_name, temperature)
     return handler
-
-
-def parse_test_category_argument(test_category_args):
-    test_name_total = set()
-    test_filename_total = set()
-
-    for test_category in test_category_args:
-        if test_category in TEST_COLLECTION_MAPPING:
-            for test_name in TEST_COLLECTION_MAPPING[test_category]:
-                test_name_total.add(test_name)
-                test_filename_total.add(TEST_FILE_MAPPING[test_name])
-        else:
-            test_name_total.add(test_category)
-            test_filename_total.add(TEST_FILE_MAPPING[test_category])
-
-    return sorted(list(test_filename_total)), sorted(list(test_name_total))
-
-
-def check_api_key_supplied() -> bool:
-    """
-    This function checks if the four API Keys needed for the executable categoreis are provided. If not, those categories will be skipped.
-    """
-    ENV_VARS = ("GEOCODE_API_KEY", "RAPID_API_KEY", "OMDB_API_KEY", "EXCHANGERATE_API_KEY")
-    for var in ENV_VARS:
-        if os.getenv(var) == "":
-            return False
-    return True
 
 
 def get_involved_test_entries(test_category_args, run_ids):
@@ -129,6 +103,7 @@ def get_involved_test_entries(test_category_args, run_ids):
         all_test_entries_involved,
         skipped_categories,
     )
+
 
 def collect_test_cases(
     args, model_name, all_test_categories, all_test_file_paths, all_test_entries_involved
@@ -307,7 +282,9 @@ def main(args):
         print(f"Running full test cases for categories: {all_test_categories}.")
 
     if len(skipped_categories) > 0:
-        print(f"❗️❗️ The following test category entries will be skipped because they require API Keys to be provided in the .env file. Please refer to the README.md 'API Keys for Executable Test Categories' section for details. The model response for other categories will still be generated.")
+        print("----------")
+        print(f"❗️ Note: The following executable test category entries will be skipped because they require API Keys to be provided in the .env file: {skipped_categories}.\n Please refer to the README.md 'API Keys for Executable Test Categories' section for details.\n The model response for other categories will still be generated.")
+        print("----------")
 
     # Apply function credential config if any of the test categories are executable
     # We can know for sure that any executable categories will not be included if the API Keys are not supplied.
