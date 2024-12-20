@@ -92,7 +92,7 @@
 {"id": "java_91", "ground_truth": [{"invokemethod007.runIt": {"args": [["suspend", "log"]], "out": ["debugLog"]}}]}
 {"id": "java_92", "ground_truth": [{"ClassFileFinder.findClassFile": {"name": ["com.example.MyClass"], "classPath": ["/usr/local/classes:/home/user/java/libs"]}}]}
 {"id": "java_93", "ground_truth": [{"AbstractJarAgent.runJarAgent": {"options": ["trace log"], "inst": ["appInstrumentation"]}}]}
-{"id": "java_94", "ground_truth": [{"NFILibrary.isMemberReadable": {"symbol": ["getVersion"], "recursive": ["", null]}}]}
+{"id": "java_94", "ground_truth": [{"NFILibrary.isMemberReadable": {"symbol": ["getVersion"], "recursive": ["", "null"]}}]}
 {"id": "java_95", "ground_truth": [{"ExportNodeTest.doGeneric": {"receiver": ["ExportInlinedObject1Instance"], "argument": ["HelloWorld"], "node": ["InlinableNodeInstance"], "library": ["NodeLibraryInstance"]}}]}
 {"id": "java_96", "ground_truth": [{"InstrumentableProcessor.createCallConverter": {"converterMethod": ["convertValue"], "frameParameterName": ["frameVar"], "returnName": ["returnValueCode"]}}]}
 {"id": "java_97", "ground_truth": [{"FlatNodeGenFactory.generateIntrospectionInfo": {"clazz": ["NodeClass"], "inlined": [false]}}]}
