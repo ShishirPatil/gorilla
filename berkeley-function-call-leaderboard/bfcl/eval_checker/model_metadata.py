@@ -685,11 +685,23 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/Qwen2.5-0.5B-Instruct": [
+        "Qwen2.5-0.5B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Qwen/Qwen2.5-1.5B-Instruct": [
         "Qwen2.5-1.5B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
         "Qwen",
         "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-3B-Instruct": [
+        "Qwen2.5-3B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct",
+        "Qwen",
+        "qwen",
     ],
     "Qwen/Qwen2.5-7B-Instruct": [
         "Qwen2.5-7B-Instruct (Prompt)",
@@ -697,11 +709,23 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/Qwen2.5-14B-Instruct": [
+        "Qwen2.5-14B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-14B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-32B-Instruct": [
+        "Qwen2.5-32B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-32B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Qwen/Qwen2.5-72B-Instruct": [
         "Qwen2.5-72B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
         "Qwen",
-        "apache-2.0",
+        "qwen",
     ],
     "Qwen/QwQ-32B-Preview": [
         "QwQ-32B-Preview (Prompt)",

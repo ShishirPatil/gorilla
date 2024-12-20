@@ -2,7 +2,12 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
-- [Dec 19, 2024] [#844](https://github.com/ShishirPatil/gorilla/pull/844): Add new model `Qwen/QwQ-32B-Preview` to the leaderboard.
+- [Dec 20, 2024] [#844](https://github.com/ShishirPatil/gorilla/pull/844): Add new model `Qwen/QwQ-32B-Preview` to the leaderboard.
+- [Dec 20, 2024] [#842](https://github.com/ShishirPatil/gorilla/pull/842): Add the following new models to the leaderboard:
+  - `Qwen/Qwen2.5-0.5B-Instruct`
+  - `Qwen/Qwen2.5-3B-Instruct`
+  - `Qwen/Qwen2.5-14B-Instruct`
+  - `Qwen/Qwen2.5-32B-Instruct`
 - [Dec 18, 2024] [#840](https://github.com/ShishirPatil/gorilla/pull/840): Add the following new models to the leaderboard:
   - `o1-2024-12-17-FC`
   - `o1-2024-12-17`
