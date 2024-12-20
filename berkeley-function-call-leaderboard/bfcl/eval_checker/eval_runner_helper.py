@@ -734,7 +734,7 @@ def check_all_category_present(category_status, eval_models=None, eval_categorie
     return found_issues
 
 
-def update_leaderboard_table_with_score_file(leaderboard_table, score_path: Path) -> None:
+def update_leaderboard_table_with_local_score_file(leaderboard_table, score_path: Path) -> None:
 
     entries = score_path.iterdir()
 
