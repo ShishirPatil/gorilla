@@ -71,11 +71,24 @@ def parse_test_category_argument(test_category_args):
             test_name_total.add(test_category)
             test_filename_total.add(TEST_FILE_MAPPING[test_category])
 
-    return sorted(list(test_name_total)), sorted(list(test_filename_total))
+    return sorted(list(test_filename_total)), sorted(list(test_name_total))
+
+
+def check_api_key_supplied() -> bool:
+    """
+    This function checks if the four API Keys needed for the executable categoreis are provided. If not, those categories will be skipped.
+    """
+    ENV_VARS = ("GEOCODE_API_KEY", "RAPID_API_KEY", "OMDB_API_KEY", "EXCHANGERATE_API_KEY")
+    for var in ENV_VARS:
+        if os.getenv(var) == "":
+            return False
+    return True
 
 
 def get_involved_test_entries(test_category_args, run_ids):
     all_test_file_paths, all_test_categories, all_test_entries_involved = [], [], []
+    api_key_supplied = check_api_key_supplied()
+    skipped_categories = []
     if run_ids:
         with open(TEST_IDS_TO_GENERATE_PATH) as f:
             test_ids_to_generate = json.load(f)
@@ -84,18 +97,38 @@ def get_involved_test_entries(test_category_args, run_ids):
                 continue
             test_file_path = TEST_FILE_MAPPING[category]
             all_test_entries_involved.extend(
-                [entry for entry in load_file(PROMPT_PATH / test_file_path) if entry["id"] in test_ids]
+                [
+                    entry
+                    for entry in load_file(PROMPT_PATH / test_file_path)
+                    if entry["id"] in test_ids
+                ]
             )
-            all_test_categories.append(category)
-            all_test_file_paths.append(test_file_path)
+            # Skip executable test category if api key is not provided in the .env file
+            if is_executable(category) and not api_key_supplied:
+                skipped_categories.append(category)
+            else:
+                all_test_categories.append(category)
+                all_test_file_paths.append(test_file_path)
 
     else:
-        all_test_categories, all_test_file_paths = parse_test_category_argument(test_category_args)
-        for test_category, file_to_open in zip(all_test_categories, all_test_file_paths):
-            all_test_entries_involved.extend(load_file(PROMPT_PATH / file_to_open))
+        all_test_file_paths, all_test_categories = parse_test_category_argument(test_category_args)
+        # Make a copy here since we are removing list elemenets inside the for loop
+        for test_category, file_to_open in zip(
+            all_test_categories[:], all_test_file_paths[:]
+        ):
+            if is_executable(test_category) and not api_key_supplied:
+                all_test_categories.remove(test_category)
+                all_test_file_paths.remove(file_to_open)
+                skipped_categories.append(test_category)
+            else:
+                all_test_entries_involved.extend(load_file(PROMPT_PATH / file_to_open))
 
-    return all_test_file_paths, all_test_categories, all_test_entries_involved
-
+    return (
+        all_test_file_paths,
+        all_test_categories,
+        all_test_entries_involved,
+        skipped_categories,
+    )
 
 def collect_test_cases(
     args, model_name, all_test_categories, all_test_file_paths, all_test_entries_involved
@@ -263,7 +296,7 @@ def main(args):
     if type(args.test_category) is not list:
         args.test_category = [args.test_category]
 
-    all_test_file_paths, all_test_categories, all_test_entries_involved = (
+    all_test_file_paths, all_test_categories, all_test_entries_involved, skipped_categories = (
         get_involved_test_entries(args.test_category, args.run_ids)
     )
 
@@ -273,7 +306,11 @@ def main(args):
     else:
         print(f"Running full test cases for categories: {all_test_categories}.")
 
+    if len(skipped_categories) > 0:
+        print(f"❗️❗️ The following test category entries will be skipped because they require API Keys to be provided in the .env file. Please refer to the README.md 'API Keys for Executable Test Categories' section for details. The model response for other categories will still be generated.")
+
     # Apply function credential config if any of the test categories are executable
+    # We can know for sure that any executable categories will not be included if the API Keys are not supplied.
     if any([is_executable(category) for category in all_test_categories]):
         apply_function_credential_config(input_path=PROMPT_PATH)
 
