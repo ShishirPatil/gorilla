@@ -6,6 +6,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from bfcl._apply_function_credential_config import apply_function_credential_config
+from bfcl.constant import PROMPT_PATH, TEST_FILE_MAPPING
 from bfcl.eval_checker.constant import *
 from bfcl.eval_checker.executable_eval.custom_exception import BadAPIStatusError
 from bfcl.eval_checker.model_metadata import *
@@ -47,7 +48,10 @@ def api_status_sanity_check_rest():
             errors.append((data, status))
 
     if correct_count != len(ground_truth_replaced):
-        raise BadAPIStatusError(errors, f"{len(ground_truth_replaced) - correct_count} / {len(ground_truth_replaced)}")
+        raise BadAPIStatusError(
+            errors,
+            f"{len(ground_truth_replaced) - correct_count} / {len(ground_truth_replaced)}",
+        )
 
 
 def api_status_sanity_check_executable():
@@ -73,7 +77,9 @@ def api_status_sanity_check_executable():
             errors.append((data, status))
 
     if correct_count != len(ground_truth):
-        raise BadAPIStatusError(errors, f"{len(ground_truth) - correct_count} / {len(ground_truth)}")
+        raise BadAPIStatusError(
+            errors, f"{len(ground_truth) - correct_count} / {len(ground_truth)}"
+        )
 
 
 def display_api_status_error(rest_error, executable_error, display_success=False):
@@ -81,18 +87,24 @@ def display_api_status_error(rest_error, executable_error, display_success=False
         if display_success:
             print("🟢 All API Status Test Passed!")
         return None
-    
-    print(f"\n{RED_FONT}{'-' * 18} Executable Categories' Error Bounds Based on API Health Status {'-' * 18}{RESET}\n")
+
+    print(
+        f"\n{RED_FONT}{'-' * 18} Executable Categories' Error Bounds Based on API Health Status {'-' * 18}{RESET}\n"
+    )
 
     if rest_error:
-        print(f"❗️ Warning: Unable to verify health of executable APIs used in executable test category (REST). Please contact API provider.\n")
+        print(
+            f"❗️ Warning: Unable to verify health of executable APIs used in executable test category (REST). Please contact API provider.\n"
+        )
         print(f"{rest_error.error_rate} APIs affected:\n")
         for data, status in rest_error.errors:
             print(f"  - Test Case: {data['ground_truth']}")
             print(f"    Error Type: {status['error_type']}\n")
 
     if executable_error:
-        print(f"❗️ Warning: Unable to verify health of executable APIs used in executable test categories (Non-REST). Please contact API provider.\n")
+        print(
+            f"❗️ Warning: Unable to verify health of executable APIs used in executable test categories (Non-REST). Please contact API provider.\n"
+        )
         print(f"{executable_error.error_rate} APIs affected:\n")
         for data, status in executable_error.errors:
             print(f"  - Test Case: {data['ground_truth'][0]}")
@@ -134,9 +146,14 @@ def calculate_weighted_accuracy(accuracy_dict_list):
     total_count = 0
     total_accuracy = 0
     for accuracy_dict in accuracy_dict_list:
-        total_count += accuracy_dict["total_count"]
-        total_accuracy += accuracy_dict["accuracy"] * accuracy_dict["total_count"]
+        accuracy = accuracy_dict["accuracy"]
+        count = accuracy_dict["total_count"]
+        if accuracy == "N/A":
+            # If a category is not being evaluated, it will still be considered 0 in the overall score calculation.
+            accuracy = 0
 
+        total_count += count
+        total_accuracy += accuracy * count
     if total_count == 0:
         return {"accuracy": 0, "total_count": 0}
 
@@ -147,13 +164,22 @@ def calculate_unweighted_accuracy(accuracy_dict_list):
     total_count = 0
     total_accuracy = 0
     for accuracy_dict in accuracy_dict_list:
-        total_count += accuracy_dict["total_count"]
-        total_accuracy += accuracy_dict["accuracy"]
+        accuracy = accuracy_dict["accuracy"]
+        count = accuracy_dict["total_count"]
+        if accuracy == "N/A":
+            # If a category is not being evaluated, it will still be considered 0 in the overall score calculation.
+            accuracy = 0
+
+        total_count += count
+        total_accuracy += accuracy
 
     if len(accuracy_dict_list) == 0:
         return {"accuracy": 0, "total_count": 0}
 
-    return {"accuracy": total_accuracy / len(accuracy_dict_list), "total_count": total_count}
+    return {
+        "accuracy": total_accuracy / len(accuracy_dict_list),
+        "total_count": total_count,
+    }
 
 
 def record_result(leaderboard_table, model_name, test_category, accuracy, total_count):
@@ -169,7 +195,9 @@ def record_cost_latency(leaderboard_table, model_name, model_output_data):
     def process_data(key, data, output_list):
         # All entries are either a list of list (in multi-turn), or a single value (in single-turn)
         if key in data:
-            if isinstance(data[key], list) and all(isinstance(inner_item, list) for inner_item in data[key]):
+            if isinstance(data[key], list) and all(
+                isinstance(inner_item, list) for inner_item in data[key]
+            ):
                 flattened_list = sum(data[key], [])
                 output_list.extend([item for item in flattened_list if item != 0])
             else:
@@ -242,7 +270,48 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
     return cost, mean_latency, std_latency, percentile_95_latency
 
 
-# TODO: Refactor this function to reduce code duplication
+def get_category_score(test_category: str, score_dict: dict) -> dict:
+    if test_category in score_dict:
+        return score_dict[test_category]
+    else:
+        test_file_path = TEST_FILE_MAPPING[test_category]
+        num_entry = len(load_file(PROMPT_PATH / test_file_path))
+        # If a category is not being evaluated, it needs to be distinguished from the situation where the evaluation score is 0
+        # We use `N/A` to special handle
+        return {"accuracy": "N/A", "total_count": num_entry}
+
+
+def write_score_csv_file(
+    data,
+    file_path: str,
+    header: list,
+    sort_column_index: int,
+    no_conversion_numeric_column_index: list[int] = [],
+) -> None:
+    data.sort(key=lambda x: x[sort_column_index], reverse=True)
+    for i in range(len(data)):
+        # Add the ranking column, start from 0
+        data[i][0] = str(i + 1)
+        for j in range(1, len(data[i])):
+            if type(data[i][j]) == str:
+                continue
+            # Some columns such as Latency and Cost, should not be presented in the percentage format
+            elif j in no_conversion_numeric_column_index:
+                data[i][j] = str(data[i][j])
+            else:
+                # Convert numeric value to percentage format
+                data[i][j] = "{:.2f}%".format(data[i][j] * 100)
+
+    data.insert(0, header)
+
+    with open(file_path, "w") as f:
+        for i, row in enumerate(data):
+            if i < len(data) - 1:
+                f.write(",".join(row) + "\n")
+            else:
+                f.write(",".join(row))
+
+
 def generate_leaderboard_csv(
     leaderboard_table, output_path, eval_models=None, eval_categories=None
 ):
@@ -261,37 +330,25 @@ def generate_leaderboard_csv(
         )
 
         # Non-Live Score
-        python_simple_ast_non_live = value.get("simple", {"accuracy": 0, "total_count": 0})
-        python_multiple_ast_non_live = value.get(
-            "multiple", {"accuracy": 0, "total_count": 0}
-        )
-        python_parallel_ast_non_live = value.get(
-            "parallel", {"accuracy": 0, "total_count": 0}
-        )
-        python_parallel_multiple_ast_non_live = value.get(
-            "parallel_multiple", {"accuracy": 0, "total_count": 0}
-        )
-        python_simple_exec_non_live = value.get(
-            "exec_simple", {"accuracy": 0, "total_count": 0}
-        )
-        python_multiple_exec_non_live = value.get(
-            "exec_multiple", {"accuracy": 0, "total_count": 0}
-        )
-        python_parallel_exec_non_live = value.get(
-            "exec_parallel", {"accuracy": 0, "total_count": 0}
-        )
-        python_parallel_multiple_exec_non_live = value.get(
-            "exec_parallel_multiple", {"accuracy": 0, "total_count": 0}
-        )
-        java_simple_ast_non_live = value.get("java", {"accuracy": 0, "total_count": 0})
-        javascript_simple_ast_non_live = value.get(
-            "javascript", {"accuracy": 0, "total_count": 0}
-        )
-        rest_simple_exec_non_live = value.get("rest", {"accuracy": 0, "total_count": 0})
-        irrelevance_non_live = value.get("irrelevance", {"accuracy": 0, "total_count": 0})
+        python_simple_ast_non_live = get_category_score("simple")
+        python_multiple_ast_non_live = get_category_score("multiple")
+        python_parallel_ast_non_live = get_category_score("parallel")
+        python_parallel_multiple_ast_non_live = get_category_score("parallel_multiple")
+        python_simple_exec_non_live = get_category_score("exec_simple")
+        python_multiple_exec_non_live = get_category_score("exec_multiple")
+        python_parallel_exec_non_live = get_category_score("exec_parallel")
+        python_parallel_multiple_exec_non_live = get_category_score("exec_parallel_multiple")
+        java_simple_ast_non_live = get_category_score("java")
+        javascript_simple_ast_non_live = get_category_score("javascript")
+        rest_simple_exec_non_live = get_category_score("rest")
+        irrelevance_non_live = get_category_score("irrelevance")
 
         simple_ast_non_live = calculate_unweighted_accuracy(
-            [python_simple_ast_non_live, java_simple_ast_non_live, javascript_simple_ast_non_live]
+            [
+                python_simple_ast_non_live,
+                java_simple_ast_non_live,
+                javascript_simple_ast_non_live,
+            ]
         )
         multiple_ast_non_live = python_multiple_ast_non_live
         parallel_ast_non_live = python_parallel_ast_non_live
@@ -304,10 +361,20 @@ def generate_leaderboard_csv(
         parallel_multiple_exec_non_live = python_parallel_multiple_exec_non_live
 
         summary_ast_non_live = calculate_unweighted_accuracy(
-            [simple_ast_non_live, multiple_ast_non_live, parallel_ast_non_live, parallel_multiple_ast_non_live]
+            [
+                simple_ast_non_live,
+                multiple_ast_non_live,
+                parallel_ast_non_live,
+                parallel_multiple_ast_non_live,
+            ]
         )
         summary_exec_non_live = calculate_unweighted_accuracy(
-            [simple_exec_non_live, multiple_exec_non_live, parallel_exec_non_live, parallel_multiple_exec_non_live]
+            [
+                simple_exec_non_live,
+                multiple_exec_non_live,
+                parallel_exec_non_live,
+                parallel_multiple_exec_non_live,
+            ]
         )
         overall_accuracy_non_live = calculate_unweighted_accuracy(
             [
@@ -348,9 +415,7 @@ def generate_leaderboard_csv(
         )
 
         # Live Score
-        python_simple_ast_live = value.get(
-            "live_simple", {"accuracy": 0, "total_count": 0}
-        )
+        python_simple_ast_live = value.get("live_simple", {"accuracy": 0, "total_count": 0})
         python_multiple_ast_live = value.get(
             "live_multiple", {"accuracy": 0, "total_count": 0}
         )
@@ -360,9 +425,7 @@ def generate_leaderboard_csv(
         python_parallel_multiple_ast_live = value.get(
             "live_parallel_multiple", {"accuracy": 0, "total_count": 0}
         )
-        irrelevance_live = value.get(
-            "live_irrelevance", {"accuracy": 0, "total_count": 0}
-        )
+        irrelevance_live = value.get("live_irrelevance", {"accuracy": 0, "total_count": 0})
         relevance_live = value.get("live_relevance", {"accuracy": 0, "total_count": 0})
         summary_ast_live = calculate_weighted_accuracy(
             [
@@ -432,8 +495,12 @@ def generate_leaderboard_csv(
         )
 
         # Total Score
-        single_turn_ast = calculate_unweighted_accuracy([overall_accuracy_live, overall_accuracy_non_live])
-        total_irrelevance = calculate_unweighted_accuracy([irrelevance_non_live, irrelevance_live])
+        single_turn_ast = calculate_unweighted_accuracy(
+            [overall_accuracy_live, overall_accuracy_non_live]
+        )
+        total_irrelevance = calculate_unweighted_accuracy(
+            [irrelevance_non_live, irrelevance_live]
+        )
         total_relevance = relevance_live
 
         total_overall_accuracy = calculate_unweighted_accuracy(
@@ -482,77 +549,37 @@ def generate_leaderboard_csv(
         )
 
     # Write Non-Live Score File
-    data_non_live.sort(key=lambda x: x[2], reverse=True)
-    for i in range(len(data_non_live)):
-        data_non_live[i][0] = str(i + 1)
-        for j in range(2, len(data_non_live[i])):
-            data_non_live[i][j] = "{:.2f}%".format(data_non_live[i][j] * 100)
-
-    data_non_live.insert(0, COLUMNS_NON_LIVE)
-
-    filepath = output_path / "data_non_live.csv"
-    with open(filepath, "w") as f:
-        for i, row in enumerate(data_non_live):
-            if i < len(data_non_live) - 1:
-                f.write(",".join(row) + "\n")
-            else:
-                f.write(",".join(row))
+    write_score_csv_file(
+        data=data_non_live,
+        file_path=output_path / "data_non_live.csv",
+        header=COLUMNS_NON_LIVE,
+        sort_column_index=2,
+    )
 
     # Write Live Score File
-    data_live.sort(key=lambda x: x[2], reverse=True)
-    for i in range(len(data_live)):
-        data_live[i][0] = str(i + 1)
-        for j in range(2, len(data_live[i])):
-            data_live[i][j] = "{:.2f}%".format(data_live[i][j] * 100)
-
-    data_live.insert(0, COLUMNS_LIVE)
-
-    filepath = output_path / "data_live.csv"
-    with open(filepath, "w") as f:
-        for i, row in enumerate(data_live):
-            if i < len(data_live) - 1:
-                f.write(",".join(row) + "\n")
-            else:
-                f.write(",".join(row))
+    write_score_csv_file(
+        data=data_live,
+        file_path=output_path / "data_live.csv",
+        header=COLUMNS_LIVE,
+        sort_column_index=2,
+    )
 
     # Write Multi Turn Score File
-    data_multi_turn.sort(key=lambda x: x[2], reverse=True)
-    for i in range(len(data_multi_turn)):
-        data_multi_turn[i][0] = str(i + 1)
-        for j in range(2, len(data_multi_turn[i])):
-            data_multi_turn[i][j] = "{:.2f}%".format(data_multi_turn[i][j] * 100)
-
-    data_multi_turn.insert(0, COLUMNS_MULTI_TURN)
-
-    filepath = output_path / "data_multi_turn.csv"
-    with open(filepath, "w") as f:
-        for i, row in enumerate(data_multi_turn):
-            if i < len(data_multi_turn) - 1:
-                f.write(",".join(row) + "\n")
-            else:
-                f.write(",".join(row))
+    write_score_csv_file(
+        data=data_multi_turn,
+        file_path=output_path / "data_multi_turn.csv",
+        header=COLUMNS_MULTI_TURN,
+        sort_column_index=2,
+    )
 
     # Write Total Score File
-    data_combined.sort(key=lambda x: x[1], reverse=True)
-    for i in range(len(data_combined)):
-        data_combined[i][0] = str(i + 1)
-        data_combined[i][1] = "{:.2f}%".format(data_combined[i][1] * 100)
-        for j in range(4, 8):
-            data_combined[i][j] = str(data_combined[i][j])
-        for j in range(8, len(data_combined[i]) - 2):
-            data_combined[i][j] = "{:.2f}%".format(data_combined[i][j] * 100)
-        for j in range(len(data_combined[i]) - 2, len(data_combined[i])):
-            data_combined[i][j] = str(data_combined[i][j])
-
-    data_combined.insert(0, COLUMNS_OVERALL)
-
-    filepath = output_path / "data_overall.csv"
-    with open(filepath, "w") as f:
-        for i, row in enumerate(data_combined):
-            if i < len(data_combined) - 1:
-                f.write(",".join(row) + "\n")
-            else:
-                f.write(",".join(row))
+    write_score_csv_file(
+        data=data_combined,
+        file_path=output_path / "data_overall.csv",
+        header=COLUMNS_OVERALL,
+        sort_column_index=1,
+        no_conversion_numeric_column_index=[4, 5, 6, 7],
+    )
 
     # TODO: Update and optimize the logic
     # Check if all categories are present and evaluated for all models
@@ -617,6 +644,7 @@ def generate_leaderboard_csv(
         wandb.finish()
 
 
+# NOT USED
 def check_model_category_status(score_path):
     result_path = score_path.replace("score", "result")
 
@@ -670,6 +698,7 @@ def check_model_category_status(score_path):
     return category_status
 
 
+# NOT USED
 def check_all_category_present(category_status, eval_models=None, eval_categories=None):
     found_issues = False
     first_time = True
@@ -682,20 +711,20 @@ def check_all_category_present(category_status, eval_models=None, eval_categorie
         not_generated = [
             cat
             for cat, status in categories.items()
-            if not status["generated"]
-            and (not eval_categories or cat in eval_categories)
+            if not status["generated"] and (not eval_categories or cat in eval_categories)
         ]
         not_evaluated = [
             cat
             for cat, status in categories.items()
-            if not status["evaluated"]
-            and (not eval_categories or cat in eval_categories)
+            if not status["evaluated"] and (not eval_categories or cat in eval_categories)
         ]
 
         if not_generated or not_evaluated:
             found_issues = True
             if first_time:
-                print(f"We are checking models: {eval_models} and categories: {eval_categories}")
+                print(
+                    f"We are checking models: {eval_models} and categories: {eval_categories}"
+                )
                 print(f"\n{RED_FONT}{'=' * 30} Model Category Status {'=' * 30}{RESET}")
                 first_time = False
 
@@ -734,7 +763,9 @@ def check_all_category_present(category_status, eval_models=None, eval_categorie
     return found_issues
 
 
-def update_leaderboard_table_with_local_score_file(leaderboard_table, score_path: Path) -> None:
+def update_leaderboard_table_with_local_score_file(
+    leaderboard_table, score_path: Path
+) -> None:
 
     entries = score_path.iterdir()
 
