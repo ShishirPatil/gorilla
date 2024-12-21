@@ -481,7 +481,7 @@ def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir
         # Find and process all JSON files in the subdirectory
         for model_result_json in subdir.glob("*.json"):
             test_category = extract_test_category(model_result_json)
-            if test_categories is not None and test_category not in test_categories:
+            if test_category not in test_categories:
                 continue
 
             handler = get_handler(model_name_escaped)
@@ -614,15 +614,8 @@ def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir
         API_STATUS_ERROR_REST, API_STATUS_ERROR_EXECUTABLE, display_success=False
     )
 
-    print(
-        f"🏁 Evaluation completed. See {score_dir / 'data_overall.csv'} for overall evaluation results on BFCL V3."
-    )
-    print(
-        f"See {score_dir / 'data_live.csv'}, {score_dir / 'data_non_live.csv'} and {score_dir / 'data_multi_turn.csv'} for detailed evaluation results on each sub-section categories respectively."
-    )
 
-
-def main(model, test_category, api_sanity_check, result_dir, score_dir):
+def main(model, test_categories, api_sanity_check, result_dir, score_dir):
     if result_dir is None:
         result_dir = RESULT_PATH
     else:
@@ -633,14 +626,23 @@ def main(model, test_category, api_sanity_check, result_dir, score_dir):
     else:
         result_dir = (PROJECT_ROOT / score_dir).resolve()
 
-    test_categories = None
-    if test_category is not None:
-        test_categories = []
-        for category in test_category:
-            if category in TEST_COLLECTION_MAPPING:
-                test_categories.extend(TEST_COLLECTION_MAPPING[category])
+    if type(test_categories) is not list:
+        test_categories = [test_categories]
+
+    _, all_test_categories = parse_test_category_argument(test_categories)
+
+    api_key_supplied = check_api_key_supplied()
+    skipped_categories = []
+
+    for test_category in all_test_categories[:]:
+        # Skip executable test category evaluation if api key is not provided in the .env file
+        if is_executable(test_category) and not api_key_supplied:
+            # We can still run the REST category, since the API keys are baked in the model response. So as long as the model response is generated, we can evaluate.
+            if is_rest(test_category):
+                continue
             else:
-                test_categories.append(category)
+                all_test_categories.remove(test_category)
+                skipped_categories.append(test_category)
 
     model_names = None
     if model is not None:
@@ -651,7 +653,22 @@ def main(model, test_category, api_sanity_check, result_dir, score_dir):
             # We patch it here to avoid confusing the user.
             model_names.append(model_name.replace("/", "_"))
 
-    runner(model_names, test_categories, api_sanity_check, result_dir, score_dir)
+    # Driver function to run the evaluation for all categories involved.
+    runner(model_names, all_test_categories, api_sanity_check, result_dir, score_dir)
+
+    if len(skipped_categories) > 0:
+        print("----------")
+        print(
+            f"❗️ Note: The following executable test category are not evaluated because they require API Keys to be provided in the .env file: {skipped_categories}.\n Please refer to the README.md 'API Keys for Executable Test Categories' section for details.\n The model response for other categories are evaluated."
+        )
+        print("----------")
+
+    print(
+        f"🏁 Evaluation completed. See {score_dir / 'data_overall.csv'} for overall evaluation results on BFCL V3."
+    )
+    print(
+        f"See {score_dir / 'data_live.csv'}, {score_dir / 'data_non_live.csv'} and {score_dir / 'data_multi_turn.csv'} for detailed evaluation results on each sub-section categories respectively."
+    )
 
 
 def get_handler(model_name):
@@ -671,6 +688,7 @@ if __name__ == "__main__":
         "--test-category",
         nargs="+",
         type=str,
+        default="all",
         help="A list of test categories to run the evaluation on",
     )
     parser.add_argument(

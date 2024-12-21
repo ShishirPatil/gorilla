@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 from typing import Union
 
-from bfcl.constant import VERSION_PREFIX
+from bfcl.constant import TEST_COLLECTION_MAPPING, TEST_FILE_MAPPING, VERSION_PREFIX
 
 
 def extract_test_category(input_string: Union[str, Path]) -> str:
@@ -178,3 +178,33 @@ def is_empty_output(decoded_output):
     if len(decoded_output) == 1 and len(decoded_output[0]) == 0:
         return True
     return False
+
+
+def check_api_key_supplied() -> bool:
+    """
+    This function checks if the four API Keys needed for the executable categoreis are provided. If not, those categories will be skipped.
+    """
+    ENV_VARS = ("GEOCODE_API_KEY", "RAPID_API_KEY", "OMDB_API_KEY", "EXCHANGERATE_API_KEY")
+    for var in ENV_VARS:
+        if os.getenv(var) == "":
+            return False
+    return True
+
+
+def parse_test_category_argument(test_category_args):
+    test_name_total = set()
+    test_filename_total = set()
+
+    for test_category in test_category_args:
+        if test_category in TEST_COLLECTION_MAPPING:
+            for test_name in TEST_COLLECTION_MAPPING[test_category]:
+                test_name_total.add(test_name)
+                test_filename_total.add(TEST_FILE_MAPPING[test_name])
+        elif test_category in TEST_FILE_MAPPING:
+            test_name_total.add(test_category)
+            test_filename_total.add(TEST_FILE_MAPPING[test_category])
+        else:
+            # Invalid test category name
+            raise Exception(f"Invalid test category name provided: {test_category}")
+
+    return sorted(list(test_filename_total)), sorted(list(test_name_total))
