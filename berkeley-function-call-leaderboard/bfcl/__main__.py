@@ -88,7 +88,7 @@ def models():
 def generate(
     model: List[str] = typer.Option(
         ["gorilla-openfunctions-v2"], 
-        help="A list of model names to evaluate. Use commas to separate multiple models.",
+        help="A list of model names to generate the llm response. Use commas to separate multiple models.",
         callback=handle_multiple_input
     ),
     test_category: List[str] = typer.Option(
@@ -216,7 +216,7 @@ def evaluate(
         callback=handle_multiple_input
     ),
     test_category: List[str] = typer.Option(
-        None, 
+        ["all"], 
         help="A list of test categories to run the evaluation on.",
         callback=handle_multiple_input
     ),
