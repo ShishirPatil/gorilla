@@ -120,8 +120,8 @@
 {"id": "live_multiple_119-45-4", "ground_truth": [{"version_api.VersionApi.get_version": {}}]}
 {"id": "live_multiple_120-45-5", "ground_truth": [{"version_api.VersionApi.get_version": {}}]}
 {"id": "live_multiple_121-46-0", "ground_truth": [{"get_headway": {"ego_info": [{"position": [{"lateral": 10.5, "longitudinal": 50}], "orientation": [30]}], "lane_info": [{"lane_id": ["L123"], "lane_type": ["regular"]}], "bounding_boxes": [[{"x": [60.2], "y": [12.3]}]]}}]}
-{"id": "live_multiple_122-46-1", "ground_truth": [{"get_time_to_collision": {"ego_velocity": [50], "ego_acceleration": [-2], "leading_object_velocity": [30], "leading_object_acceleration": [-1], "initial_distance": [100]}}]}
-{"id": "live_multiple_123-46-2", "ground_truth": [{"get_time_to_collision": {"ego_velocity": [20], "ego_acceleration": [2], "leading_object_velocity": [15], "leading_object_acceleration": [1], "initial_distance": [50]}}]}
+{"id": "live_multiple_122-46-1", "ground_truth": [{"get_time_to_collision": {"ego_velocity": [50.0], "ego_acceleration": [-2.0], "leading_object_velocity": [30.0], "leading_object_acceleration": [-1.0], "initial_distance": [100.0]}}]}
+{"id": "live_multiple_123-46-2", "ground_truth": [{"get_time_to_collision": {"ego_velocity": [20.0], "ego_acceleration": [2.0], "leading_object_velocity": [15.0], "leading_object_acceleration": [1.0], "initial_distance": [50.0]}}]}
 {"id": "live_multiple_124-47-0", "ground_truth": [{"duck_duck_go": {"query": ["What is LangFuse and how can I use it in my genAI project?"], "format": ["", "json"], "no_redirect": ["", false], "no_html": ["", false], "skip_disambiguation": ["", false]}}]}
 {"id": "live_multiple_125-47-1", "ground_truth": [{"multiply": {"a": [3], "b": [10]}}]}
 {"id": "live_multiple_126-48-0", "ground_truth": [{"analysis_api.AnalysisApi.retrieve_analysis": {"project": ["SUPERFANCY"], "component": ["AB1010CD"], "vulnerability": ["ef903ac-893-f00"]}}]}
@@ -234,8 +234,8 @@
 {"id": "live_multiple_233-105-0", "ground_truth": [{"get_contact_information": {"name": ["Rayson Goh"], "identification_number": ["", null]}}]}
 {"id": "live_multiple_234-106-0", "ground_truth": [{"set_integer": {"name": ["columnCount"], "value": [8]}}]}
 {"id": "live_multiple_235-106-1", "ground_truth": [{"set_integer": {"name": ["columnCount"], "value": [12]}}]}
-{"id": "live_multiple_236-106-2", "ground_truth": [{"set_point": {"x": [2], "y": [3], "z": [4], "point_name": ["pointA"]}}]}
-{"id": "live_multiple_237-106-3", "ground_truth": [{"set_point": {"x": [2], "y": [3], "z": [4], "point_name": ["pointA"]}}]}
+{"id": "live_multiple_236-106-2", "ground_truth": [{"set_point": {"x": [2.0], "y": [3.0], "z": [4.0], "point_name": ["pointA"]}}]}
+{"id": "live_multiple_237-106-3", "ground_truth": [{"set_point": {"x": [2.0], "y": [3.0], "z": [4.0], "point_name": ["pointA"]}}]}
 {"id": "live_multiple_238-106-4", "ground_truth": [{"set_float": {"number_name": ["roomHeight"], "number_value": [4.2]}}]}
 {"id": "live_multiple_239-107-0", "ground_truth": [{"search_web_tool": {"query": ["apple"], "num_results": ["", 3], "source": ["", "text"]}}]}
 {"id": "live_multiple_240-107-1", "ground_truth": [{"search_web_tool": {"query": ["weather in India", "current weather in India", "What's the current weather in India", "What's the current weather in India?"], "num_results": ["", 3], "source": ["", "text"]}}]}
@@ -618,18 +618,18 @@
 {"id": "live_multiple_617-159-10", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Music"], "city": ["Los Angeles, CA"], "date": ["2023-03-10"]}}]}
 {"id": "live_multiple_618-159-11", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Music"], "city": ["London, UK"], "date": ["2023-06-12"]}}]}
 {"id": "live_multiple_619-159-12", "ground_truth": [{"Events_3_FindEvents": {"event_type": ["Theater"], "city": ["Long Beach, CA"], "date": ["2023-03-12"]}}]}
-{"id": "live_multiple_620-160-0", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["Mary"], "amount": [200], "private_visibility": [true]}}]}
+{"id": "live_multiple_620-160-0", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["Mary"], "amount": [200.0], "private_visibility": [true]}}]}
 {"id": "live_multiple_621-160-1", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["debit card"], "amount": [154.0], "receiver": ["landlord@email.com"], "private_visibility": [true]}}]}
-{"id": "live_multiple_622-160-2", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["credit card"], "amount": [29], "receiver": ["Thomas"], "private_visibility": ["", false]}}]}
-{"id": "live_multiple_623-160-3", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["Wilson"], "amount": [42], "private_visibility": [true]}}]}
+{"id": "live_multiple_622-160-2", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["credit card"], "amount": [29.0], "receiver": ["Thomas"], "private_visibility": ["", false]}}]}
+{"id": "live_multiple_623-160-3", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["Wilson"], "amount": [42.0], "private_visibility": [true]}}]}
 {"id": "live_multiple_624-160-4", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["JohnDoe@example.com"], "amount": [150.25], "private_visibility": [true]}}]}
 {"id": "live_multiple_625-160-5", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["debit card"], "amount": [200.0], "receiver": ["amelia@example.com"], "private_visibility": [true]}}]}
-{"id": "live_multiple_626-160-6", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["johndoe@example.com"], "amount": [83], "private_visibility": [true]}}]}
+{"id": "live_multiple_626-160-6", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["johndoe@example.com"], "amount": [83.0], "private_visibility": [true]}}]}
 {"id": "live_multiple_627-160-7", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["app balance"], "amount": [200.0], "receiver": ["Diego"], "private_visibility": [true]}}]}
 {"id": "live_multiple_628-160-8", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["Diego"], "amount": [108.0], "private_visibility": ["", false]}}]}
-{"id": "live_multiple_629-160-9", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["debit card"], "amount": [250], "receiver": ["Rachel"], "private_visibility": [true]}}]}
-{"id": "live_multiple_630-160-10", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["Amelia"], "amount": [15500], "private_visibility": ["", false]}}]}
-{"id": "live_multiple_631-160-11", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["customer@example.com"], "amount": [4500], "private_visibility": ["", false]}}]}
+{"id": "live_multiple_629-160-9", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["debit card"], "amount": [250.0], "receiver": ["Rachel"], "private_visibility": [true]}}]}
+{"id": "live_multiple_630-160-10", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["Amelia"], "amount": [15500.0], "private_visibility": ["", false]}}]}
+{"id": "live_multiple_631-160-11", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["customer@example.com"], "amount": [4500.0], "private_visibility": ["", false]}}]}
 {"id": "live_multiple_632-161-0", "ground_truth": [{"Music_3_LookupMusic": {"artist": ["", "dontcare"], "album": ["Welcome To The Fishbowl"], "genre": ["", "dontcare"], "year": ["2015"]}}]}
 {"id": "live_multiple_633-161-1", "ground_truth": [{"Music_3_LookupMusic": {"artist": ["", "dontcare"], "album": ["", "dontcare"], "genre": ["Rock"], "year": ["2015"]}}]}
 {"id": "live_multiple_634-161-2", "ground_truth": [{"Music_3_LookupMusic": {"artist": ["", "dontcare"], "album": ["", "dontcare"], "genre": ["Country"], "year": ["", "dontcare"]}}]}
@@ -850,12 +850,12 @@
 {"id": "live_multiple_849-179-3", "ground_truth": [{"Restaurants_2_FindRestaurants": {"category": ["Indian"], "location": ["Sunnyvale, CA"], "price_range": ["cheap"], "has_vegetarian_options": ["", false], "has_seating_outdoors": ["", false]}}]}
 {"id": "live_multiple_850-179-4", "ground_truth": [{"Restaurants_2_ReserveRestaurant": {"restaurant_name": ["The French Laundry"], "location": ["Yountville, CA"], "time": ["13:30"], "number_of_seats": [4], "date": ["2023-03-14"]}}]}
 {"id": "live_multiple_851-179-5", "ground_truth": [{"Restaurants_2_FindRestaurants": {"category": ["Japanese"], "location": ["San Francisco, CA"], "price_range": ["", "dontcare"], "has_vegetarian_options": ["", false], "has_seating_outdoors": ["", false]}}]}
-{"id": "live_multiple_852-180-0", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["San Francisco, CA"], "to_city": ["Los Angeles, CA"], "departure_date": ["04/25/2023"], "num_passengers": ["", "1"], "category": ["", "direct"]}}]}
+{"id": "live_multiple_852-180-0", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["San Francisco, CA"], "to_city": ["Los Angeles, CA"], "departure_date": ["04/25/2023"], "num_passengers": ["", 1], "category": ["", "direct"]}}]}
 {"id": "live_multiple_853-180-1", "ground_truth": [{"Buses_3_BuyBusTicket": {"from_city": ["San Francisco, CA"], "to_city": ["Los Angeles, CA"], "departure_date": ["2023-03-07"], "departure_time": ["14:00"], "num_passengers": [2], "additional_luggage": ["", false]}}]}
-{"id": "live_multiple_854-180-2", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["Philadelphia, PA"], "to_city": ["New York City, NY"], "departure_date": ["03/14/2023"], "num_passengers": ["", "1"], "category": ["", "direct"]}}]}
-{"id": "live_multiple_855-180-3", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["Fresno, CA"], "to_city": ["Los Angeles, CA"], "departure_date": ["03/10/2023"], "num_passengers": ["", "1"], "category": ["", "direct"]}}]}
+{"id": "live_multiple_854-180-2", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["Philadelphia, PA"], "to_city": ["New York City, NY"], "departure_date": ["03/14/2023"], "num_passengers": ["", 1], "category": ["", "direct"]}}]}
+{"id": "live_multiple_855-180-3", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["Fresno, CA"], "to_city": ["Los Angeles, CA"], "departure_date": ["03/10/2023"], "num_passengers": ["", 1], "category": ["", "direct"]}}]}
 {"id": "live_multiple_856-180-4", "ground_truth": [{"Buses_3_BuyBusTicket": {"from_city": ["Berkeley, CA"], "to_city": ["Portland, OR"], "departure_date": ["2023-05-15"], "departure_time": ["09:00"], "num_passengers": [2], "additional_luggage": [true]}}]}
-{"id": "live_multiple_857-180-5", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["San Francisco, CA"], "to_city": ["Los Angeles, CA"], "departure_date": ["03/07/2023"], "num_passengers": ["", "1"], "category": ["one-stop"]}}]}
+{"id": "live_multiple_857-180-5", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["San Francisco, CA"], "to_city": ["Los Angeles, CA"], "departure_date": ["03/07/2023"], "num_passengers": ["", 1], "category": ["one-stop"]}}]}
 {"id": "live_multiple_858-180-6", "ground_truth": [{"Buses_3_BuyBusTicket": {"from_city": ["San Francisco, CA"], "to_city": ["Los Angeles, CA"], "departure_date": ["2023-05-15"], "departure_time": ["14:00"], "num_passengers": [4], "additional_luggage": [true]}}]}
 {"id": "live_multiple_859-181-0", "ground_truth": [{"Trains_1_GetTrainTickets": {"_from": ["New York, NY"], "to": ["Washington, DC"], "date_of_journey": ["10/11/2023"], "journey_start_time": ["09:00"], "number_of_adults": [1, ""], "trip_protection": [true], "_class": ["Business"]}}]}
 {"id": "live_multiple_860-181-1", "ground_truth": [{"Trains_1_FindTrains": {"_from": ["San Francisco, CA"], "to": ["Los Angeles, CA"], "date_of_journey": ["2023-04-15"]}}]}
@@ -881,25 +881,25 @@
 {"id": "live_multiple_880-183-5", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["Paris, FR"], "free_entry": ["True"], "category": ["", "dontcare"], "good_for_kids": ["True"]}}]}
 {"id": "live_multiple_881-183-6", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["San Francisco, CA"], "free_entry": ["True"], "category": ["", "dontcare"], "good_for_kids": ["True"]}}]}
 {"id": "live_multiple_882-183-7", "ground_truth": [{"Travel_1_FindAttractions": {"location": ["San Francisco, CA"], "free_entry": ["True"], "category": ["Museum"], "good_for_kids": ["", "dontcare"]}}]}
-{"id": "live_multiple_883-184-0", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["New York, NY"], "to_city": ["Boston, MA"], "departure_date": ["2023-04-20"], "num_passengers": ["", "1"], "category": ["", "direct"]}}]}
-{"id": "live_multiple_884-184-1", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["Anaheim, CA"], "to_city": ["Las Vegas, NV"], "departure_date": ["2023-10-06"], "num_passengers": ["", "1"], "category": ["one-stop"]}}]}
-{"id": "live_multiple_885-184-2", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["New York, NY"], "to_city": ["Boston, MA"], "departure_date": ["2023-05-15"], "num_passengers": ["", "1"], "category": ["", "direct"]}}]}
+{"id": "live_multiple_883-184-0", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["New York, NY"], "to_city": ["Boston, MA"], "departure_date": ["2023-04-20"], "num_passengers": ["", 1], "category": ["", "direct"]}}]}
+{"id": "live_multiple_884-184-1", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["Anaheim, CA"], "to_city": ["Las Vegas, NV"], "departure_date": ["2023-10-06"], "num_passengers": ["", 1], "category": ["one-stop"]}}]}
+{"id": "live_multiple_885-184-2", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["New York, NY"], "to_city": ["Boston, MA"], "departure_date": ["2023-05-15"], "num_passengers": ["", 1], "category": ["", "direct"]}}]}
 {"id": "live_multiple_886-184-3", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["San Francisco, CA"], "to_city": ["Fresno, CA"], "departure_date": ["2023-03-04"], "num_passengers": [2], "category": ["", "direct"]}}]}
-{"id": "live_multiple_887-184-4", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["San Diego, CA"], "to_city": ["Los Angeles, CA"], "departure_date": ["2023-06-15"], "num_passengers": ["4", 4], "category": ["", "direct"]}}]}
-{"id": "live_multiple_888-184-5", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["Los Angeles, CA"], "to_city": ["San Diego, CA"], "departure_date": ["2023-10-01"], "num_passengers": ["", "1"], "category": ["", "direct"]}}]}
+{"id": "live_multiple_887-184-4", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["San Diego, CA"], "to_city": ["Los Angeles, CA"], "departure_date": ["2023-06-15"], "num_passengers": ["", 4], "category": ["", "direct"]}}]}
+{"id": "live_multiple_888-184-5", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["Los Angeles, CA"], "to_city": ["San Diego, CA"], "departure_date": ["2023-10-01"], "num_passengers": ["", 1], "category": ["", "direct"]}}]}
 {"id": "live_multiple_889-184-6", "ground_truth": [{"Buses_3_FindBus": {"from_city": ["Miami, FL"], "to_city": ["Atlanta, GA"], "departure_date": ["2023-04-22"], "num_passengers": [2], "category": ["", "direct"]}}]}
-{"id": "live_multiple_890-185-0", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["Mahmoud"], "amount": [43], "private_visibility": ["", false]}}]}
-{"id": "live_multiple_891-185-1", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["John Doe"], "amount": [250], "private_visibility": [true]}}]}
+{"id": "live_multiple_890-185-0", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["Mahmoud"], "amount": [43.0], "private_visibility": ["", false]}}]}
+{"id": "live_multiple_891-185-1", "ground_truth": [{"Payment_1_RequestPayment": {"receiver": ["John Doe"], "amount": [250.0], "private_visibility": [true]}}]}
 {"id": "live_multiple_892-185-2", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["app balance"], "amount": [100.0], "receiver": ["Mary"], "private_visibility": [true]}}]}
 {"id": "live_multiple_893-185-3", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["debit card"], "amount": [90.0], "receiver": ["Alice"], "private_visibility": ["", false]}}]}
-{"id": "live_multiple_894-185-4", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["debit card"], "amount": [150], "receiver": ["Alice"], "private_visibility": [true]}}]}
+{"id": "live_multiple_894-185-4", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["debit card"], "amount": [150.0], "receiver": ["Alice"], "private_visibility": [true]}}]}
 {"id": "live_multiple_895-185-5", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["credit card"], "amount": [50.0], "receiver": ["Jerry"], "private_visibility": [true]}}]}
 {"id": "live_multiple_896-185-6", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["debit card"], "amount": [50.0], "receiver": ["Margaret"], "private_visibility": [true]}}]}
-{"id": "live_multiple_897-185-7", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["debit card"], "amount": [122], "receiver": ["John"], "private_visibility": ["", false]}}]}
+{"id": "live_multiple_897-185-7", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["debit card"], "amount": [122.0], "receiver": ["John"], "private_visibility": ["", false]}}]}
 {"id": "live_multiple_898-185-8", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["debit card"], "amount": [50.0], "receiver": ["Jamie"], "private_visibility": [true]}}]}
 {"id": "live_multiple_899-185-9", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["app balance"], "amount": [50.0], "receiver": ["Emma"], "private_visibility": [true]}}]}
-{"id": "live_multiple_900-185-10", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["debit card"], "amount": [200], "receiver": ["Alice"], "private_visibility": [true]}}]}
-{"id": "live_multiple_901-185-11", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["app balance"], "amount": [31], "receiver": ["Svetlana"], "private_visibility": ["", false]}}]}
+{"id": "live_multiple_900-185-10", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["debit card"], "amount": [200.0], "receiver": ["Alice"], "private_visibility": [true]}}]}
+{"id": "live_multiple_901-185-11", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["app balance"], "amount": [31.0], "receiver": ["Svetlana"], "private_visibility": ["", false]}}]}
 {"id": "live_multiple_902-185-12", "ground_truth": [{"Payment_1_MakePayment": {"payment_method": ["debit card"], "amount": [25.0], "receiver": ["Alex"], "private_visibility": [true]}}]}
 {"id": "live_multiple_903-186-0", "ground_truth": [{"Trains_1_FindTrains": {"_from": ["Phoenix, AZ"], "to": ["Los Angeles, CA"], "date_of_journey": ["04/25/2023"]}}]}
 {"id": "live_multiple_904-186-1", "ground_truth": [{"Trains_1_FindTrains": {"_from": ["New York, NY"], "to": ["Los Angeles, CA"], "date_of_journey": ["03/04/2023"]}}]}
