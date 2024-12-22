@@ -73,7 +73,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |deepseek-ai/DeepSeek-V2.5 💻| Function Calling|
 |deepseek-ai/DeepSeek-V2-{Chat-0628,Lite-Chat} 💻| Prompt|
 |deepseek-ai/DeepSeek-Coder-V2-{Instruct-0724,Lite-Instruct} 💻| Function Calling|
-|Qwen/Qwen2.5-{1.5B,7B}-Instruct 💻| Prompt|
+|Qwen/Qwen2.5-{0.5B,1.5B,3B,7B,14B,32B,72B}-Instruct 💻| Prompt|
 |Qwen/Qwen2-{1.5B,7B}-Instruct 💻| Prompt|
 |Salesforce/xLAM-1b-fc-r 💻| Function Calling|
 |Salesforce/xLAM-7b-fc-r 💻| Function Calling|
@@ -93,6 +93,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |openbmb/MiniCPM3-4B 💻| Prompt|
 |THUDM/glm-4-9b-chat 💻| Function Calling|
 |Team-ACE/ToolACE-8B 💻| Function Calling|
+|watt-ai/watt-tool-{8B,70B} 💻| Function Calling|
 
 ---
 
