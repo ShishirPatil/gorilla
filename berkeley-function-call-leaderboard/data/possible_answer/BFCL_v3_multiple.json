@@ -127,7 +127,7 @@
 {"id": "multiple_126", "ground_truth": [{"t_test": {"dataset_A": [[12, 24, 36]], "dataset_B": [[15, 30, 45]], "alpha": ["", 0.05]}}]}
 {"id": "multiple_127", "ground_truth": [{"finance.calculate_quarterly_dividend_per_share": {"total_payout": [50000000], "outstanding_shares": [100000000]}}]}
 {"id": "multiple_128", "ground_truth": [{"calculate_return_on_equity": {"net_income": [2000000], "shareholder_equity": [10000000], "dividends_paid": [200000]}}]}
-{"id": "multiple_129", "ground_truth": [{"compound_interest": {"principal": [10000], "annual_rate": [5], "compounding_freq": ["monthly"], "time_in_years": [5]}}]}
+{"id": "multiple_129", "ground_truth": [{"compound_interest": {"principal": [10000], "annual_rate": [5.0], "compounding_freq": ["monthly"], "time_in_years": [5]}}]}
 {"id": "multiple_130", "ground_truth": [{"calculate_cagr": {"initial_value": [2000], "final_value": [3000], "period_in_years": [4]}}]}
 {"id": "multiple_131", "ground_truth": [{"market_performance.get_data": {"indexes": [["S&P 500", "Dow Jones"]], "days": [5], "detailed": ["", false]}}]}
 {"id": "multiple_132", "ground_truth": [{"finance.calculate_future_value": {"initial_investment": [20000], "rate_of_return": [0.08], "years": [5], "contribution": ["", 0]}}]}
