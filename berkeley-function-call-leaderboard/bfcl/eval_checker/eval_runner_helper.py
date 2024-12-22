@@ -420,18 +420,12 @@ def generate_leaderboard_csv(
         )
 
         # Live Score
-        python_simple_ast_live = value.get("live_simple", {"accuracy": 0, "total_count": 0})
-        python_multiple_ast_live = value.get(
-            "live_multiple", {"accuracy": 0, "total_count": 0}
-        )
-        python_parallel_ast_live = value.get(
-            "live_parallel", {"accuracy": 0, "total_count": 0}
-        )
-        python_parallel_multiple_ast_live = value.get(
-            "live_parallel_multiple", {"accuracy": 0, "total_count": 0}
-        )
-        irrelevance_live = value.get("live_irrelevance", {"accuracy": 0, "total_count": 0})
-        relevance_live = value.get("live_relevance", {"accuracy": 0, "total_count": 0})
+        python_simple_ast_live = get_category_score(value, "live_simple")
+        python_multiple_ast_live = get_category_score(value, "live_multiple")
+        python_parallel_ast_live = get_category_score(value, "live_parallel")
+        python_parallel_multiple_ast_live = get_category_score(value, "live_parallel_multiple")
+        irrelevance_live = get_category_score(value, "live_irrelevance")
+        relevance_live = get_category_score(value, "live_relevance")
         summary_ast_live = calculate_weighted_accuracy(
             [
                 python_simple_ast_live,
@@ -469,16 +463,10 @@ def generate_leaderboard_csv(
         )
 
         # Multi-Turn Score
-        multi_turn_base = value.get("multi_turn_base", {"accuracy": 0, "total_count": 0})
-        multi_turn_miss_func = value.get(
-            "multi_turn_miss_func", {"accuracy": 0, "total_count": 0}
-        )
-        multi_turn_miss_param = value.get(
-            "multi_turn_miss_param", {"accuracy": 0, "total_count": 0}
-        )
-        multi_turn_long_context = value.get(
-            "multi_turn_long_context", {"accuracy": 0, "total_count": 0}
-        )
+        multi_turn_base = get_category_score(value, "multi_turn_base")
+        multi_turn_miss_func = get_category_score(value, "multi_turn_miss_func")
+        multi_turn_miss_param = get_category_score(value, "multi_turn_miss_param")
+        multi_turn_long_context = get_category_score(value, "multi_turn_long_context")
         overall_accuracy_multi_turn = calculate_unweighted_accuracy(
             [
                 multi_turn_base,
