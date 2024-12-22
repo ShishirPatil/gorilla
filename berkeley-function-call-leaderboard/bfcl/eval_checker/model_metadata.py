@@ -685,11 +685,23 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/Qwen2.5-0.5B-Instruct": [
+        "Qwen2.5-0.5B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Qwen/Qwen2.5-1.5B-Instruct": [
         "Qwen2.5-1.5B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
         "Qwen",
         "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-3B-Instruct": [
+        "Qwen2.5-3B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct",
+        "Qwen",
+        "qwen",
     ],
     "Qwen/Qwen2.5-7B-Instruct": [
         "Qwen2.5-7B-Instruct (Prompt)",
@@ -697,11 +709,23 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/Qwen2.5-14B-Instruct": [
+        "Qwen2.5-14B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-14B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-32B-Instruct": [
+        "Qwen2.5-32B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-32B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Qwen/Qwen2.5-72B-Instruct": [
         "Qwen2.5-72B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
         "Qwen",
-        "apache-2.0",
+        "qwen",
     ],
     "Team-ACE/ToolACE-8B": [
         "ToolACE-8B (FC)",
@@ -719,6 +743,18 @@ MODEL_METADATA_MAPPING = {
         "MiniCPM3-4B-FC (FC)",
         "https://huggingface.co/openbmb/MiniCPM3-4B",
         "openbmb",
+        "Apache-2.0",
+    ],
+    "watt-ai/watt-tool-8B": [
+        "watt-tool-8B (FC)",
+        "https://huggingface.co/watt-ai/watt-tool-8B/",
+        "Watt AI Lab",
+        "Apache-2.0",
+    ],
+    "watt-ai/watt-tool-70B": [
+        "watt-tool-70B (FC)",
+        "https://huggingface.co/watt-ai/watt-tool-70B/",
+        "Watt AI Lab",
         "Apache-2.0",
     ],
     "BitAgent/GoGoAgent": [
