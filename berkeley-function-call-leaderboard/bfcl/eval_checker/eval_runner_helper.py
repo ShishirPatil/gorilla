@@ -142,7 +142,8 @@ def clean_up_executable_expected_output(prompt_path, categories):
         write_list_of_dicts_to_file(prompt_file, prompt_content)
 
 
-def calculate_weighted_accuracy(accuracy_dict_list):
+def calculate_weighted_accuracy(accuracy_dict_list, display_na_if_category_missing=True):
+    has_na = False
     total_count = 0
     total_accuracy = 0
     for accuracy_dict in accuracy_dict_list:
@@ -151,16 +152,18 @@ def calculate_weighted_accuracy(accuracy_dict_list):
         if accuracy == "N/A":
             # If a category is not being evaluated, it will still be considered 0 in the overall score calculation.
             accuracy = 0
+            has_na = True
 
         total_count += count
         total_accuracy += accuracy * count
-    if total_count == 0:
-        return {"accuracy": 0, "total_count": 0}
+    if has_na and display_na_if_category_missing:
+        return {"accuracy": "N/A", "total_count": total_count}
 
     return {"accuracy": total_accuracy / total_count, "total_count": total_count}
 
 
-def calculate_unweighted_accuracy(accuracy_dict_list):
+def calculate_unweighted_accuracy(accuracy_dict_list, display_na_if_category_missing=True):
+    has_na = False
     total_count = 0
     total_accuracy = 0
     for accuracy_dict in accuracy_dict_list:
@@ -169,12 +172,13 @@ def calculate_unweighted_accuracy(accuracy_dict_list):
         if accuracy == "N/A":
             # If a category is not being evaluated, it will still be considered 0 in the overall score calculation.
             accuracy = 0
+            has_na = True
 
         total_count += count
         total_accuracy += accuracy
 
-    if len(accuracy_dict_list) == 0:
-        return {"accuracy": 0, "total_count": 0}
+    if has_na and display_na_if_category_missing:
+        return {"accuracy": "N/A", "total_count": total_count}
 
     return {
         "accuracy": total_accuracy / len(accuracy_dict_list),
@@ -270,7 +274,7 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
     return cost, mean_latency, std_latency, percentile_95_latency
 
 
-def get_category_score(test_category: str, score_dict: dict) -> dict:
+def get_category_score(score_dict: dict, test_category: str) -> dict:
     if test_category in score_dict:
         return score_dict[test_category]
     else:
@@ -330,18 +334,18 @@ def generate_leaderboard_csv(
         )
 
         # Non-Live Score
-        python_simple_ast_non_live = get_category_score("simple")
-        python_multiple_ast_non_live = get_category_score("multiple")
-        python_parallel_ast_non_live = get_category_score("parallel")
-        python_parallel_multiple_ast_non_live = get_category_score("parallel_multiple")
-        python_simple_exec_non_live = get_category_score("exec_simple")
-        python_multiple_exec_non_live = get_category_score("exec_multiple")
-        python_parallel_exec_non_live = get_category_score("exec_parallel")
-        python_parallel_multiple_exec_non_live = get_category_score("exec_parallel_multiple")
-        java_simple_ast_non_live = get_category_score("java")
-        javascript_simple_ast_non_live = get_category_score("javascript")
-        rest_simple_exec_non_live = get_category_score("rest")
-        irrelevance_non_live = get_category_score("irrelevance")
+        python_simple_ast_non_live = get_category_score(value, "simple")
+        python_multiple_ast_non_live = get_category_score(value, "multiple")
+        python_parallel_ast_non_live = get_category_score(value, "parallel")
+        python_parallel_multiple_ast_non_live = get_category_score(value, "parallel_multiple")
+        python_simple_exec_non_live = get_category_score(value, "exec_simple")
+        python_multiple_exec_non_live = get_category_score(value, "exec_multiple")
+        python_parallel_exec_non_live = get_category_score(value, "exec_parallel")
+        python_parallel_multiple_exec_non_live = get_category_score(value, "exec_parallel_multiple")
+        java_simple_ast_non_live = get_category_score(value, "java")
+        javascript_simple_ast_non_live = get_category_score(value, "javascript")
+        rest_simple_exec_non_live = get_category_score(value, "rest")
+        irrelevance_non_live = get_category_score(value, "irrelevance")
 
         simple_ast_non_live = calculate_unweighted_accuracy(
             [
@@ -387,7 +391,8 @@ def generate_leaderboard_csv(
                 parallel_exec_non_live,
                 parallel_multiple_exec_non_live,
                 irrelevance_non_live,
-            ]
+            ],
+            display_na_if_category_missing=False,
         )
 
         data_non_live.append(
@@ -444,7 +449,8 @@ def generate_leaderboard_csv(
                 python_parallel_multiple_ast_live,
                 irrelevance_live,
                 relevance_live,
-            ]
+            ],
+            display_na_if_category_missing=False,
         )
 
         data_live.append(
@@ -479,7 +485,8 @@ def generate_leaderboard_csv(
                 multi_turn_miss_func,
                 multi_turn_miss_param,
                 multi_turn_long_context,
-            ]
+            ],
+            display_na_if_category_missing=False,
         )
 
         data_multi_turn.append(
@@ -508,7 +515,8 @@ def generate_leaderboard_csv(
                 overall_accuracy_live,
                 overall_accuracy_non_live,
                 overall_accuracy_multi_turn,
-            ]
+            ],
+            display_na_if_category_missing=False,
         )
 
         data_combined.append(

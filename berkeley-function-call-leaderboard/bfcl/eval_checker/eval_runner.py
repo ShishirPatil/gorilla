@@ -645,7 +645,7 @@ def main(model, test_categories, api_sanity_check, result_dir, score_dir):
                 skipped_categories.append(test_category)
 
     model_names = None
-    if model is not None:
+    if model:
         model_names = []
         for model_name in model:
             # Runner takes in the model name that contains "_", instead of "/", for the sake of file path issues.
