@@ -2,6 +2,18 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Dec 22, 2024] [#843](https://github.com/ShishirPatil/gorilla/pull/843): Add the following new models to the leaderboard:
+  - `gemini-2.0-flash-exp-FC`
+  - `gemini-2.0-flash-exp`
+  - `gemini-exp-1206-FC`
+  - `gemini-exp-1206`
+- [Dec 21, 2024] [#848](https://github.com/ShishirPatil/gorilla/pull/848): Improves behavior for generation and evaluation pipeline. When executable categories are involved and API keys are not provided in the `.env` file, instead of throwing an error, the affected categories will now be skipped. This enhancement provides a smoother experience for first-time users.
+- [Dec 21, 2024] [#847](https://github.com/ShishirPatil/gorilla/pull/847): Add new model `watt-ai/watt-tool-8B` and `watt-ai/watt-tool-70B` to the leaderboard.
+- [Dec 20, 2024] [#842](https://github.com/ShishirPatil/gorilla/pull/842): Add the following new models to the leaderboard:
+  - `Qwen/Qwen2.5-0.5B-Instruct`
+  - `Qwen/Qwen2.5-3B-Instruct`
+  - `Qwen/Qwen2.5-14B-Instruct`
+  - `Qwen/Qwen2.5-32B-Instruct`
 - [Dec 18, 2024] [#840](https://github.com/ShishirPatil/gorilla/pull/840): Add the following new models to the leaderboard:
   - `o1-2024-12-17-FC`
   - `o1-2024-12-17`

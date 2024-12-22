@@ -307,6 +307,30 @@ MODEL_METADATA_MAPPING = {
         "Fireworks",
         "Apache 2.0",
     ],
+    "gemini-exp-1206-FC": [
+        "Gemini-Exp-1206 (FC)",
+        "https://blog.google/feed/gemini-exp-1206/",
+        "Google",
+        "Proprietary",
+    ],
+    "gemini-exp-1206": [
+        "Gemini-Exp-1206 (Prompt)",
+        "https://blog.google/feed/gemini-exp-1206/",
+        "Google",
+        "Proprietary",
+    ],
+    "gemini-2.0-flash-exp-FC": [
+        "Gemini-2.0-Flash-Exp (FC)",
+        "https://deepmind.google/technologies/gemini/flash/",
+        "Google",
+        "Proprietary",
+    ],
+    "gemini-2.0-flash-exp": [
+        "Gemini-2.0-Flash-Exp (Prompt)",
+        "https://deepmind.google/technologies/gemini/flash/",
+        "Google",
+        "Proprietary",
+    ],
     "gemini-1.5-pro-002": [
         "Gemini-1.5-Pro-002 (Prompt)",
         "https://deepmind.google/technologies/gemini/pro/",
@@ -383,19 +407,19 @@ MODEL_METADATA_MAPPING = {
         "DeepSeek-V2.5 (FC)",
         "https://huggingface.co/deepseek-ai/DeepSeek-V2.5",
         "DeepSeek",
-        "DeepSeek License"
+        "DeepSeek License",
     ],
     "deepseek-ai/DeepSeek-Coder-V2-Instruct-0724": [
         "DeepSeek-Coder-V2 (FC)",
         "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct-0724",
         "DeepSeek",
-        "DeepSeek License"
+        "DeepSeek License",
     ],
     "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct": [
         "DeepSeek-Coder-V2-Lite-Instruct (FC)",
         "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct",
         "DeepSeek",
-        "DeepSeek License"
+        "DeepSeek License",
     ],
     "deepseek-ai/DeepSeek-V2-Chat-0628": [
         "DeepSeek-V2 (Prompt)",
@@ -545,7 +569,7 @@ MODEL_METADATA_MAPPING = {
         "Command R7B (FC)",
         "https://cohere.com/blog/command-r7b",
         "Cohere",
-        "cc-by-nc-4.0"
+        "cc-by-nc-4.0",
     ],
     "snowflake/arctic": [
         "Snowflake/snowflake-arctic-instruct (Prompt)",
@@ -685,11 +709,23 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/Qwen2.5-0.5B-Instruct": [
+        "Qwen2.5-0.5B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Qwen/Qwen2.5-1.5B-Instruct": [
         "Qwen2.5-1.5B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
         "Qwen",
         "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-3B-Instruct": [
+        "Qwen2.5-3B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct",
+        "Qwen",
+        "qwen",
     ],
     "Qwen/Qwen2.5-7B-Instruct": [
         "Qwen2.5-7B-Instruct (Prompt)",
@@ -697,11 +733,23 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/Qwen2.5-14B-Instruct": [
+        "Qwen2.5-14B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-14B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-32B-Instruct": [
+        "Qwen2.5-32B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-32B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Qwen/Qwen2.5-72B-Instruct": [
         "Qwen2.5-72B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
         "Qwen",
-        "apache-2.0",
+        "qwen",
     ],
     "Team-ACE/ToolACE-8B": [
         "ToolACE-8B (FC)",
@@ -719,6 +767,18 @@ MODEL_METADATA_MAPPING = {
         "MiniCPM3-4B-FC (FC)",
         "https://huggingface.co/openbmb/MiniCPM3-4B",
         "openbmb",
+        "Apache-2.0",
+    ],
+    "watt-ai/watt-tool-8B": [
+        "watt-tool-8B (FC)",
+        "https://huggingface.co/watt-ai/watt-tool-8B/",
+        "Watt AI Lab",
+        "Apache-2.0",
+    ],
+    "watt-ai/watt-tool-70B": [
+        "watt-tool-70B (FC)",
+        "https://huggingface.co/watt-ai/watt-tool-70B/",
+        "Watt AI Lab",
         "Apache-2.0",
     ],
     "BitAgent/GoGoAgent": [
@@ -789,6 +849,10 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-4-0613-FC": 30,
     "gpt-3.5-turbo-0125": 0.5,
     "gpt-3.5-turbo-0125-FC": 0.5,
+    "gemini-exp-1206-FC": 0,  # Gemini Experimental models are free
+    "gemini-exp-1206": 0,
+    "gemini-2.0-flash-exp": 0,
+    "gemini-2.0-flash-exp-FC": 0,
     "gemini-1.5-pro-002": 1.25,
     "gemini-1.5-pro-002-FC": 1.25,
     "gemini-1.5-pro-001": 1.25,
@@ -855,6 +919,10 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-4-0613-FC": 60,
     "gpt-3.5-turbo-0125": 1.5,
     "gpt-3.5-turbo-0125-FC": 1.5,
+    "gemini-exp-1206-FC": 0,  # Gemini Experimental models are free
+    "gemini-exp-1206": 0,
+    "gemini-2.0-flash-exp": 0,
+    "gemini-2.0-flash-exp-FC": 0,
     "gemini-1.5-pro-002": 5,
     "gemini-1.5-pro-002-FC": 5,
     "gemini-1.5-pro-001": 5,
