@@ -149,17 +149,20 @@ def calculate_weighted_accuracy(accuracy_dict_list, display_na_if_category_missi
     for accuracy_dict in accuracy_dict_list:
         accuracy = accuracy_dict["accuracy"]
         count = accuracy_dict["total_count"]
-        if accuracy == "N/A":
-            # If a category is not being evaluated, it will still be considered 0 in the overall score calculation.
-            accuracy = 0
+        if accuracy_dict["display_accuracy"] == "N/A":
             has_na = True
 
         total_count += count
         total_accuracy += accuracy * count
-    if has_na and display_na_if_category_missing:
-        return {"accuracy": "N/A", "total_count": total_count}
 
-    return {"accuracy": total_accuracy / total_count, "total_count": total_count}
+    result = {"accuracy": total_accuracy / total_count, "total_count": total_count}
+
+    if has_na and display_na_if_category_missing:
+        result["display_accuracy"] = "N/A"
+    else:
+        result["display_accuracy"] = result["accuracy"]
+
+    return result
 
 
 def calculate_unweighted_accuracy(accuracy_dict_list, display_na_if_category_missing=True):
@@ -169,22 +172,24 @@ def calculate_unweighted_accuracy(accuracy_dict_list, display_na_if_category_mis
     for accuracy_dict in accuracy_dict_list:
         accuracy = accuracy_dict["accuracy"]
         count = accuracy_dict["total_count"]
-        if accuracy == "N/A":
+        if accuracy_dict["display_accuracy"] == "N/A":
             # If a category is not being evaluated, it will still be considered 0 in the overall score calculation.
-            accuracy = 0
             has_na = True
 
         total_count += count
         total_accuracy += accuracy
 
-    if has_na and display_na_if_category_missing:
-        return {"accuracy": "N/A", "total_count": total_count}
-
-    return {
+    result = {
         "accuracy": total_accuracy / len(accuracy_dict_list),
         "total_count": total_count,
     }
 
+    if has_na and display_na_if_category_missing:
+        result["display_accuracy"] = "N/A"
+    else:
+        result["display_accuracy"] = result["accuracy"]
+
+    return result
 
 def record_result(leaderboard_table, model_name, test_category, accuracy, total_count):
     if model_name not in leaderboard_table:
@@ -276,13 +281,16 @@ def get_cost_letency_info(model_name, cost_data, latency_data):
 
 def get_category_score(score_dict: dict, test_category: str) -> dict:
     if test_category in score_dict:
-        return score_dict[test_category]
+        score = score_dict[test_category]
+        score["display_accuracy"] = score["accuracy"]
+        return score
     else:
         test_file_path = TEST_FILE_MAPPING[test_category]
         num_entry = len(load_file(PROMPT_PATH / test_file_path))
         # If a category is not being evaluated, it needs to be distinguished from the situation where the evaluation score is 0
-        # We use `N/A` to special handle
-        return {"accuracy": "N/A", "total_count": num_entry}
+        # It will still be considered 0 in the overall score calculation though
+        # We use `display_accuracy` to special handle
+        return {"accuracy": 0, "total_count": num_entry, "display_accuracy": "N/A"}
 
 
 def write_score_csv_file(
@@ -399,23 +407,23 @@ def generate_leaderboard_csv(
             [
                 "N/A",
                 MODEL_METADATA_MAPPING[model_name_escaped][0],
-                overall_accuracy_non_live["accuracy"],
-                summary_ast_non_live["accuracy"],
-                summary_exec_non_live["accuracy"],
-                simple_ast_non_live["accuracy"],
-                python_simple_ast_non_live["accuracy"],
-                java_simple_ast_non_live["accuracy"],
-                javascript_simple_ast_non_live["accuracy"],
-                multiple_ast_non_live["accuracy"],
-                parallel_ast_non_live["accuracy"],
-                parallel_multiple_ast_non_live["accuracy"],
-                simple_exec_non_live["accuracy"],
-                python_simple_exec_non_live["accuracy"],
-                rest_simple_exec_non_live["accuracy"],
-                multiple_exec_non_live["accuracy"],
-                parallel_exec_non_live["accuracy"],
-                parallel_multiple_exec_non_live["accuracy"],
-                irrelevance_non_live["accuracy"],
+                overall_accuracy_non_live["display_accuracy"],
+                summary_ast_non_live["display_accuracy"],
+                summary_exec_non_live["display_accuracy"],
+                simple_ast_non_live["display_accuracy"],
+                python_simple_ast_non_live["display_accuracy"],
+                java_simple_ast_non_live["display_accuracy"],
+                javascript_simple_ast_non_live["display_accuracy"],
+                multiple_ast_non_live["display_accuracy"],
+                parallel_ast_non_live["display_accuracy"],
+                parallel_multiple_ast_non_live["display_accuracy"],
+                simple_exec_non_live["display_accuracy"],
+                python_simple_exec_non_live["display_accuracy"],
+                rest_simple_exec_non_live["display_accuracy"],
+                multiple_exec_non_live["display_accuracy"],
+                parallel_exec_non_live["display_accuracy"],
+                parallel_multiple_exec_non_live["display_accuracy"],
+                irrelevance_non_live["display_accuracy"],
             ]
         )
 
@@ -451,14 +459,14 @@ def generate_leaderboard_csv(
             [
                 "N/A",
                 MODEL_METADATA_MAPPING[model_name_escaped][0],
-                overall_accuracy_live["accuracy"],
-                summary_ast_live["accuracy"],
-                python_simple_ast_live["accuracy"],
-                python_multiple_ast_live["accuracy"],
-                python_parallel_ast_live["accuracy"],
-                python_parallel_multiple_ast_live["accuracy"],
-                irrelevance_live["accuracy"],
-                relevance_live["accuracy"],
+                overall_accuracy_live["display_accuracy"],
+                summary_ast_live["display_accuracy"],
+                python_simple_ast_live["display_accuracy"],
+                python_multiple_ast_live["display_accuracy"],
+                python_parallel_ast_live["display_accuracy"],
+                python_parallel_multiple_ast_live["display_accuracy"],
+                irrelevance_live["display_accuracy"],
+                relevance_live["display_accuracy"],
             ]
         )
 
@@ -481,11 +489,11 @@ def generate_leaderboard_csv(
             [
                 "N/A",
                 MODEL_METADATA_MAPPING[model_name_escaped][0],
-                overall_accuracy_multi_turn["accuracy"],
-                multi_turn_base["accuracy"],
-                multi_turn_miss_func["accuracy"],
-                multi_turn_miss_param["accuracy"],
-                multi_turn_long_context["accuracy"],
+                overall_accuracy_multi_turn["display_accuracy"],
+                multi_turn_base["display_accuracy"],
+                multi_turn_miss_func["display_accuracy"],
+                multi_turn_miss_param["display_accuracy"],
+                multi_turn_long_context["display_accuracy"],
             ]
         )
 
@@ -510,35 +518,35 @@ def generate_leaderboard_csv(
         data_combined.append(
             [
                 "N/A",
-                total_overall_accuracy["accuracy"],
+                total_overall_accuracy["display_accuracy"],
                 MODEL_METADATA_MAPPING[model_name_escaped][0],
                 MODEL_METADATA_MAPPING[model_name_escaped][1],
                 cost,
                 latency_mean,
                 latency_std,
                 percentile_95_latency,
-                summary_ast_non_live["accuracy"],
-                simple_ast_non_live["accuracy"],
-                multiple_ast_non_live["accuracy"],
-                parallel_ast_non_live["accuracy"],
-                parallel_multiple_ast_non_live["accuracy"],
-                summary_exec_non_live["accuracy"],
-                simple_exec_non_live["accuracy"],
-                multiple_exec_non_live["accuracy"],
-                parallel_exec_non_live["accuracy"],
-                parallel_multiple_exec_non_live["accuracy"],
-                overall_accuracy_live["accuracy"],
-                python_simple_ast_live["accuracy"],
-                python_multiple_ast_live["accuracy"],
-                python_parallel_ast_live["accuracy"],
-                python_parallel_multiple_ast_live["accuracy"],
-                overall_accuracy_multi_turn["accuracy"],
-                multi_turn_base["accuracy"],
-                multi_turn_miss_func["accuracy"],
-                multi_turn_miss_param["accuracy"],
-                multi_turn_long_context["accuracy"],
-                total_relevance["accuracy"],
-                total_irrelevance["accuracy"],
+                summary_ast_non_live["display_accuracy"],
+                simple_ast_non_live["display_accuracy"],
+                multiple_ast_non_live["display_accuracy"],
+                parallel_ast_non_live["display_accuracy"],
+                parallel_multiple_ast_non_live["display_accuracy"],
+                summary_exec_non_live["display_accuracy"],
+                simple_exec_non_live["display_accuracy"],
+                multiple_exec_non_live["display_accuracy"],
+                parallel_exec_non_live["display_accuracy"],
+                parallel_multiple_exec_non_live["display_accuracy"],
+                overall_accuracy_live["display_accuracy"],
+                python_simple_ast_live["display_accuracy"],
+                python_multiple_ast_live["display_accuracy"],
+                python_parallel_ast_live["display_accuracy"],
+                python_parallel_multiple_ast_live["display_accuracy"],
+                overall_accuracy_multi_turn["display_accuracy"],
+                multi_turn_base["display_accuracy"],
+                multi_turn_miss_func["display_accuracy"],
+                multi_turn_miss_param["display_accuracy"],
+                multi_turn_long_context["display_accuracy"],
+                total_relevance["display_accuracy"],
+                total_irrelevance["display_accuracy"],
                 MODEL_METADATA_MAPPING[model_name_escaped][2],
                 MODEL_METADATA_MAPPING[model_name_escaped][3],
             ]
