@@ -134,10 +134,10 @@
 {"id": "simple_133", "ground_truth": [{"finance.predict_future_value": {"present_value": [5000], "annual_interest_rate": [0.05], "compounding_periods_per_year": [12], "time_years": [3]}}]}
 {"id": "simple_134", "ground_truth": [{"investment.predictProfit": {"investment_amount": [5000], "annual_return": [0.07], "years": [5]}}]}
 {"id": "simple_135", "ground_truth": [{"calculate_return_on_investment": {"purchase_price": [20], "sale_price": [25], "dividend": [2]}}]}
-{"id": "simple_136", "ground_truth": [{"compound_interest": {"principal": [10000], "annual_rate": [5], "compounding_freq": ["monthly"], "time_in_years": [5]}}]}
+{"id": "simple_136", "ground_truth": [{"compound_interest": {"principal": [10000], "annual_rate": [5.0], "compounding_freq": ["monthly"], "time_in_years": [5]}}]}
 {"id": "simple_137", "ground_truth": [{"calculate_stock_return": {"investment_amount": [5000], "annual_growth_rate": [0.06], "holding_period": [5], "dividends": ["", false]}}]}
 {"id": "simple_138", "ground_truth": [{"portfolio_future_value": {"stock": ["X"], "invested_amount": [5000], "expected_annual_return": [0.05], "years": [7]}}]}
-{"id": "simple_139", "ground_truth": [{"estimate_mutual_fund_return": {"yearly_yield": [5], "investment_amount": [2000], "years": [3]}}]}
+{"id": "simple_139", "ground_truth": [{"estimate_mutual_fund_return": {"yearly_yield": [5.0], "investment_amount": [2000], "years": [3]}}]}
 {"id": "simple_140", "ground_truth": [{"calculate_cagr": {"initial_value": [2000], "final_value": [3000], "period_in_years": [4]}}]}
 {"id": "simple_141", "ground_truth": [{"get_metal_price": {"metal": ["Gold", "gold"], "measure": ["ounce"]}}]}
 {"id": "simple_142", "ground_truth": [{"get_stock_price": {"company_name": ["Amazon", "AMZN"], "date": ["2022-03-11"], "exchange": ["NASDAQ", ""]}}]}
