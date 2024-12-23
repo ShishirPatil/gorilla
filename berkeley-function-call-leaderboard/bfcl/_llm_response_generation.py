@@ -16,7 +16,7 @@ from bfcl.constant import (
     TEST_IDS_TO_GENERATE_PATH,
 )
 from bfcl.eval_checker.eval_runner_helper import load_file
-from bfcl.model_handler.handler_map import HANDLER_MAP
+from bfcl.model_handler.handler_loader import HandlerLoader
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.utils import (
     check_api_key_supplied,
@@ -55,8 +55,12 @@ def get_args():
 
 
 def build_handler(model_name, temperature):
-    handler = HANDLER_MAP[model_name](model_name, temperature)
-    return handler
+    """Create a handler instance"""
+    handler_class = HandlerLoader.get_handler_class(model_name)
+    if handler_class is None:
+        raise ValueError(f"No handler found for model: {model_name}")
+
+    return handler_class(model_name, temperature)
 
 
 def get_involved_test_entries(test_category_args, run_ids):

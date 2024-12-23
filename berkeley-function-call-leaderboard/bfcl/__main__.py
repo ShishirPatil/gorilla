@@ -2,6 +2,8 @@ import csv
 from datetime import datetime
 from types import SimpleNamespace
 from typing import List
+import json
+import os
 
 import typer
 from bfcl._llm_response_generation import main as generation_main
@@ -16,6 +18,7 @@ from bfcl.eval_checker.eval_runner import main as evaluation_main
 from bfcl.model_handler.handler_map import HANDLER_MAP
 from dotenv import load_dotenv
 from tabulate import tabulate
+from bfcl.model_handler.handler_loader import HandlerLoader
 
 
 class ExecutionOrderGroup(typer.core.TyperGroup):
@@ -76,8 +79,20 @@ def models():
     """
     List available models.
     """
+    available_models = set(HANDLER_MAP.keys())
+
+    # If a custom handler setting exists, add it to the
+    handler_config_path = os.getenv("BFCL_HANDLER_CONFIG")
+    if handler_config_path and os.path.exists(handler_config_path):
+        try:
+            with open(handler_config_path) as f:
+                handler_config = json.load(f)
+                available_models.update(handler_config.keys())
+        except Exception as e:
+            print(f"Warning: Error loading custom handler config: {str(e)}")
+
     table = tabulate(
-        [[model] for model in HANDLER_MAP.keys()],
+        [[model] for model in sorted(available_models)],
         tablefmt="plain",
         colalign=("left",),
     )
