@@ -180,6 +180,11 @@ The `MODEL_NAME` and `TEST_CATEGORY` options are the same as those used in the [
 
 If in the previous step you stored the model responses in a custom directory, you should specify it using the `--result-dir` flag; path should be relative to the `berkeley-function-call-leaderboard` root folder.
 
+> Note: For unevaluated test categories, they will be marked as `N/A` in the evaluation result csv files.
+> For summary columns (e.g., `Overall Acc`, `Non_Live Overall Acc`, `Live Overall Acc`, and `Multi Turn Overall Acc`), the score reported will treat all unevaluated categories as 0 during calculation.
+
+> For executable categories, if the API Keys are not provided, the evaluation process will skip those categories and treat them as if they were not evaluated.
+
 #### (Optional) API Sanity Check
 
 If any of your test categories involve executable tests (e.g., category name contains `exec` or `rest`), you can set the `--api-sanity-check` flag (or `-c` for short) to have the evaluation process perform a sanity check on all REST API endpoints involved. If any of them are not behaving as expected, you will be alerted in the console; the evaluation process will continue regardless.

@@ -602,7 +602,7 @@ def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir
 
     # This function reads all the score files from local folder and updates the leaderboard table.
     # This is helpful when you only want to run the evaluation for a subset of models and test categories.
-    update_leaderboard_table_with_score_file(LEADERBOARD_TABLE, score_dir)
+    update_leaderboard_table_with_local_score_file(LEADERBOARD_TABLE, score_dir)
     # Write the leaderboard table to a file
     generate_leaderboard_csv(LEADERBOARD_TABLE, score_dir, model_names, test_categories)
 
@@ -645,7 +645,7 @@ def main(model, test_categories, api_sanity_check, result_dir, score_dir):
                 skipped_categories.append(test_category)
 
     model_names = None
-    if model is not None:
+    if model:
         model_names = []
         for model_name in model:
             # Runner takes in the model name that contains "_", instead of "/", for the sake of file path issues.
