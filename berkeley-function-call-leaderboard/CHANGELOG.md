@@ -2,7 +2,23 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
-- [Dec 20, 2024] [#844](https://github.com/ShishirPatil/gorilla/pull/844): Add new model `Qwen/QwQ-32B-Preview` to the leaderboard.
+- [Dec 25, 2024] [#844](https://github.com/ShishirPatil/gorilla/pull/844): Add new model `Qwen/QwQ-32B-Preview` to the leaderboard.
+- [Dec 22, 2024] [#838](https://github.com/ShishirPatil/gorilla/pull/838): Fix parameter type mismatch error in possible answers.
+  - Simple: 2 affected
+  - Multiple: 1 affected
+  - Parallel: 6 affected
+  - Parallel Multiple: 4 affected
+  - Live Simple: 4 affected
+  - Live Multiple: 26 affected
+  - Live Parallel: 2 affected
+- [Dec 22, 2024] [#843](https://github.com/ShishirPatil/gorilla/pull/843): Add the following new models to the leaderboard:
+  - `gemini-2.0-flash-exp-FC`
+  - `gemini-2.0-flash-exp`
+  - `gemini-exp-1206-FC`
+  - `gemini-exp-1206`
+- [Dec 21, 2024] [#849](https://github.com/ShishirPatil/gorilla/pull/849): Use `N/A` in score report for unevaluated categories to distinguish from categories where the model actually scored a 0
+- [Dec 21, 2024] [#848](https://github.com/ShishirPatil/gorilla/pull/848): Improves behavior for generation and evaluation pipeline. When executable categories are involved and API keys are not provided in the `.env` file, instead of throwing an error, the affected categories will now be skipped. This enhancement provides a smoother experience for first-time users.
+- [Dec 21, 2024] [#847](https://github.com/ShishirPatil/gorilla/pull/847): Add new model `watt-ai/watt-tool-8B` and `watt-ai/watt-tool-70B` to the leaderboard.
 - [Dec 20, 2024] [#842](https://github.com/ShishirPatil/gorilla/pull/842): Add the following new models to the leaderboard:
   - `Qwen/Qwen2.5-0.5B-Instruct`
   - `Qwen/Qwen2.5-3B-Instruct`
@@ -19,6 +35,11 @@ All notable changes to the Berkeley Function Calling Leaderboard will be documen
   - `MadeAgents/Hammer2.1-3b`
   - `MadeAgents/Hammer2.1-1.5b`
   - `MadeAgents/Hammer2.1-0.5b`
+- [Dec 11, 2024] [#826](https://github.com/ShishirPatil/gorilla/pull/826), [#829](https://github.com/ShishirPatil/gorilla/pull/829): Fix `enum` type mismatch error in function doc for live categories.
+  - Live Simple: 7 affected
+  - Live Multiple: 176 affected
+  - Live Parallel Multiple: 3 affected
+  - Live Irrelevance: 70 affected
 - [Dec 9, 2024] [#822](https://github.com/ShishirPatil/gorilla/pull/822): Add the following new models to the leaderboard:
   - `gpt-4o-2024-11-20`
   - `gpt-4o-2024-11-20-FC`

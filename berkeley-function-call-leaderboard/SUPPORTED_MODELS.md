@@ -33,6 +33,10 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |gemini-1.5-pro-{001,002} | Prompt|
 |gemini-1.5-flash-{001,002}-FC | Function Calling|
 |gemini-1.5-flash-{001,002} | Prompt|
+|gemini-2.0-flash-exp-FC | Function Calling|
+|gemini-2.0-flash-exp | Prompt|
+|gemini-exp-1206-FC | Function Calling|
+|gemini-exp-1206 | Prompt|
 |open-mixtral-{8x7b,8x22b} | Prompt|
 |open-mixtral-8x22b-FC | Function Calling|
 |open-mistral-nemo-2407 | Prompt|
@@ -90,6 +94,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |openbmb/MiniCPM3-4B 💻| Prompt|
 |THUDM/glm-4-9b-chat 💻| Function Calling|
 |Team-ACE/ToolACE-8B 💻| Function Calling|
+|watt-ai/watt-tool-{8B,70B} 💻| Function Calling|
 
 ---
 
