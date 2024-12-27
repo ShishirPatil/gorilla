@@ -99,7 +99,8 @@ completion = openai.ChatCompletion.create(
 ```
 [OpenFunctions documentation →](/openfunctions/README.md)
 
-### Explore Other Projects
+<details>
+<summary>🔧 Other Quick Starts</summary>
 
 - 📊 **Evaluation & Benchmarking**
   - [Berkeley Function Calling Leaderboard](/berkeley-function-call-leaderboard/README.md): Compare function calling capabilities
@@ -110,6 +111,8 @@ completion = openai.ChatCompletion.create(
   - [GoEx](/goex/README.md): Safe execution of LLM-generated actions
   - [RAFT](/raft/README.md): Fine-tune models for domain-specific tasks
   - [API Store](/data/README.md): Contribute and use APIs
+
+</details>
 
 
 ## Frequently Asked Questions
