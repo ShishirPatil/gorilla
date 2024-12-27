@@ -113,13 +113,10 @@ JS_TYPE_CONVERSION = {
 
 UNDERSCORE_TO_DOT = [
     # TODO: Use the model style to determine this, single source of truth
+    "o1-2024-12-17-FC",
     "gpt-4o-2024-11-20-FC",
-    "gpt-4o-2024-05-13-FC",
     "gpt-4o-mini-2024-07-18-FC",
     "gpt-4-turbo-2024-04-09-FC",
-    "gpt-4-1106-preview-FC",
-    "gpt-4-0125-preview-FC",
-    "gpt-4-0613-FC",
     "gpt-3.5-turbo-0125-FC",
     "claude-3-opus-20240229-FC",
     "claude-3-sonnet-20240229-FC",
@@ -136,6 +133,8 @@ UNDERSCORE_TO_DOT = [
     "mistral-large-2407-FC",
     "mistral-small-2402-FC",
     "mistral-small-2402-FC",
+    "gemini-exp-1206-FC",
+    "gemini-2.0-flash-exp-FC",
     "gemini-1.5-pro-002-FC",
     "gemini-1.5-pro-001-FC",
     "gemini-1.5-flash-002-FC",
@@ -150,7 +149,7 @@ UNDERSCORE_TO_DOT = [
     "NousResearch/Hermes-2-Theta-Llama-3-8B",
     "NousResearch/Hermes-2-Theta-Llama-3-70B",
     "command-r-plus-FC",
-    "command-r-plus-FC-optimized",
+    "command-r7b-12-2024-FC",
     "THUDM/glm-4-9b-chat",
     "ibm-granite/granite-20b-functioncalling",
     "yi-large-fc",
