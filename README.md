@@ -10,49 +10,6 @@
 
 </div>
 
-## About
-
-**Gorilla enables LLMs to use tools by invoking APIs. Given a natural language query, Gorilla comes up with the semantically- and syntactically- correct API to invoke.** 
-
-With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (and growing) API calls accurately while reducing hallucination. We also release APIBench, the largest collection of APIs, curated and easy to be trained on! 
-
-Since our initial release, we've served ~500k requests and witnessed incredible adoption by developers worldwide. The project has expanded to include tools, evaluations, leaderboard, end-to-end finetuning recipes, infrastructure components, and the Gorilla API Store:
-
-| Project | Type | Description |
-|---------|------|-------------|
-| [Gorilla OpenFunctions-V2](openfunctions/) | 🤖 Model | Drop-in alternative for function calling, supporting multiple complex data types and parallel execution |
-| [Berkeley Function Calling Leaderboard (BFCL)](berkeley-function-call-leaderboard/) | 📊 Evaluation<br>🏆 Leaderboard<br>🔧 Function Calling Infra<br>📚 Dataset | Comprehensive evaluation of function-calling capabilities |
-| [Agent Arena](agent-arena/) | 📊 Evaluation<br>🏆 Leaderboard | Compare LLM agents across models, tools, and frameworks |
-| [Gorilla Execution Engine (GoEx)](goex/) | 🔧 Human-in-the-loop Infra | Runtime for executing LLM-generated actions with safety guarantees |
-| [Retrieval-Augmented Fine-tuning (RAFT)](raft/) | 📝 Fine-tuning<br>🤖 Model | Fine-tuning LLMs for robust domain-specific retrieval |
-| [Gorilla CLI](https://github.com/gorilla-llm/gorilla-cli) | 🤖 Model<br>🔧 Local CLI Infra | LLMs for your command-line interface |
-| [Gorilla API Store](apizoo/) | 📚 Dataset | A community-maintained repository of up-to-date API documentation enabling API discovery, model training, and retrieval-based inference |
-
-## Getting Started
-
-### Quick Start
-Try Gorilla in 60 seconds: [![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing)
-
-### Installation Options
-
-1. **CLI Tool**: Get started with command-line interactions
-   ```bash
-   pip install gorilla-cli
-   ```
-
-2. **Local Development**: Clone and run Gorilla locally
-   ```bash
-   git clone https://github.com/ShishirPatil/gorilla.git
-   cd gorilla
-   ```
-
-### Explore Key Features
-
-- 🔍 [Evaluate Models](gorilla/eval/): Run and compare different LLM models
-- 🛠️ [Contribute APIs](data/): Add your APIs to the Gorilla ecosystem
-- 🤖 [Try OpenFunctions](openfunctions/): Experiment with function calling capabilities
-- 🔒 [Use GoEx](goex/): Execute LLM actions safely
-
 ## Latest Updates
 
 - ⏰: [04/01] Introducing cost and latency metrics into [Berkeley function calling leaderboard](https://gorilla.cs.berkeley.edu/leaderboard)!
@@ -74,20 +31,106 @@ Try Gorilla in 60 seconds: [![Colab](https://colab.research.google.com/assets/co
 
 </details>
 
-## Contact & Community
+## About
 
-- 💬 Join our [Discord Community](https://discord.gg/grXXvj9Whz)
-- 📧 Email us at [contact@gorilla.cs.berkeley.edu](mailto:contact@gorilla.cs.berkeley.edu)
-- 🐦 Follow us on [Twitter](https://twitter.com/gorilla_llm)
+**Gorilla enables LLMs to use tools by invoking APIs. Given a natural language query, Gorilla comes up with the semantically- and syntactically- correct API to invoke.** 
 
-### Example Questions?
-- "How do I deploy a container to Kubernetes?"
-- "Can you help me configure an AWS S3 bucket?"
-- "What's the command to create a new GitHub repository?"
+With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (and growing) API calls accurately while reducing hallucination. This repository contains [inference code](/gorilla/inference) for running Gorilla finetuned models, [evaluation code](/gorilla/eval) for reproducing results from our paper, and [APIBench](/data) - the largest collection of APIs, curated and easy to be trained on!
+
+Since our initial release, we've served ~500k requests and witnessed incredible adoption by developers worldwide. The project has expanded to include tools, evaluations, leaderboard, end-to-end finetuning recipes, infrastructure components, and the Gorilla API Store:
+
+| Project | Type | Description |
+|---------|------|-------------|
+| [Gorilla OpenFunctions-V2](openfunctions/) | 🤖 Model | Drop-in alternative for function calling, supporting multiple complex data types and parallel execution |
+| [Berkeley Function Calling Leaderboard (BFCL)](berkeley-function-call-leaderboard/) | 📊 Evaluation<br>🏆 Leaderboard<br>🔧 Function Calling Infra<br>📚 Dataset | Comprehensive evaluation of function-calling capabilities |
+| [Agent Arena](agent-arena/) | 📊 Evaluation<br>🏆 Leaderboard | Compare LLM agents across models, tools, and frameworks |
+| [Gorilla Execution Engine (GoEx)](goex/) | 🔧 Infra | Runtime for executing LLM-generated actions with safety guarantees |
+| [Retrieval-Augmented Fine-tuning (RAFT)](raft/) | 📝 Fine-tuning<br>🤖 Model | Fine-tuning LLMs for robust domain-specific retrieval |
+| [Gorilla CLI](https://github.com/gorilla-llm/gorilla-cli) | 🤖 Model<br>🔧 Local CLI Infra | LLMs for your command-line interface |
+| [Gorilla API Zoo](apizoo/) | 📚 Dataset | A community-maintained repository of up-to-date API documentation enabling API discovery, model training, and retrieval-based inference |
+
+## Getting Started
+
+### Quick Start
+Try Gorilla in your browser:
+- 🚀 [Gorilla Demo](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing): Try the base Gorilla model
+- 🎯 [OpenFunctions Demo](https://gorilla.cs.berkeley.edu/leaderboard.html#api-explorer): Experiment with function calling
+- 🌐 [Gradio Web UI](https://huggingface.co/spaces/gorilla-llm/gorilla-demo/): Interactive web interface
+- 📊 [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard): Compare function calling capabilities
+
+### Installation Options
+
+1. **Gorilla CLI** - Fastest way to get started
+```bash
+pip install gorilla-cli
+gorilla "How do I create a new GitHub repository?"
+```
+[Learn more about Gorilla CLI →](https://github.com/gorilla-llm/gorilla-cli)
+
+2. **Run Gorilla Locally**
+```bash
+git clone https://github.com/ShishirPatil/gorilla.git
+cd gorilla/inference
+```
+[Detailed local setup instructions →](/gorilla/inference/README.md)
+
+3. **Use OpenFunctions**
+```python
+import openai
+
+openai.api_key = "EMPTY"
+openai.api_base = "http://luigi.millennium.berkeley.edu:8000/v1"
+
+# Define your functions
+functions = [{
+    "name": "get_current_weather",
+    "description": "Get weather in a location",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "location": {"type": "string"},
+            "unit": {"type": "string", "enum": ["celsius", "fahrenheit"]}
+        },
+        "required": ["location"]
+    }
+}]
+
+# Make API call
+completion = openai.ChatCompletion.create(
+    model="gorilla-openfunctions-v2",
+    messages=[{"role": "user", "content": "What's the weather in San Francisco?"}],
+    functions=functions
+)
+```
+[OpenFunctions documentation →](/openfunctions/README.md)
+
+### Explore Other Components
+
+- 📊 **Evaluation & Benchmarking**
+  - [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard): Compare function calling capabilities
+  - [Agent Arena](/agent-arena/README.md): Evaluate agent workflows
+  - [Gorilla Paper Evaluation Scripts](/gorilla/eval/README.md): Run your own evaluations
+
+- 🛠️ **Development Tools**
+  - [GoEx](/goex/README.md): Safe execution of LLM-generated actions
+  - [RAFT](/raft/README.md): Fine-tune models for domain-specific tasks
+  - [API Store](/data/README.md): Contribute and use APIs
+
+
+## Frequently Asked Questions
+Visit our [FAQ](docs/FAQ.md) for answers to common questions.
+
+## Project Roadmap
+View our [Roadmap](docs/ROADMAP.md) for upcoming features and milestones.
 
 ## License
 
 Gorilla is Apache 2.0 licensed, making it suitable for both academic and commercial use.
+
+## Contact
+
+- 💬 Join our [Discord Community](https://discord.gg/grXXvj9Whz)
+- 🐦 Follow us on [X](https://x.com/shishirpatil_)
 
 ## Citation
 
