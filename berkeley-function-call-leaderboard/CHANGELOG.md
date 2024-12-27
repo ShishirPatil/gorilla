@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Dec 27, 2024] [#854](https://github.com/ShishirPatil/gorilla/pull/854): Fix `UNDERSCORE_TO_DOT` for locally-hosted models for correct function name mapping during evaluation.
 - [Dec 22, 2024] [#838](https://github.com/ShishirPatil/gorilla/pull/838): Fix parameter type mismatch error in possible answers.
   - Simple: 2 affected
   - Multiple: 1 affected
