@@ -16,10 +16,6 @@
 - :rocket: [03/15] RAFT: Adapting Language Model to Domain Specific RAG is live! [[MSFT-Meta blog](https://techcommunity.microsoft.com/t5/ai-ai-platform-blog/bg-p/AIPlatformBlog)] [[Berkeley Blog](https://gorilla.cs.berkeley.edu/blogs/9_raft.html)]
 - :trophy: [02/26] [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard) is live!
 - :dart: [02/25] [OpenFunctions v2](https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html) sets new SoTA for open-source LLMs!
-
-<details>
-<summary>Older Updates</summary>
-
 - :fire: [11/16] Excited to release [Gorilla OpenFunctions](https://gorilla.cs.berkeley.edu/blogs/4_open_functions.html)
 - 💻 [06/29] Released [gorilla-cli](https://github.com/gorilla-llm/gorilla-cli), LLMs for your CLI!
 - 🟢 [06/06] Released Commercially usable, Apache 2.0 licensed Gorilla models
@@ -29,7 +25,6 @@
 - :fire: [05/27] We released the APIZoo contribution guide for community API contributions!
 - :fire: [05/25] We release the APIBench dataset and the evaluation code of Gorilla!
 
-</details>
 
 ## About
 
@@ -104,10 +99,10 @@ completion = openai.ChatCompletion.create(
 ```
 [OpenFunctions documentation →](/openfunctions/README.md)
 
-### Explore Other Components
+### Explore Other Projects
 
 - 📊 **Evaluation & Benchmarking**
-  - [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard): Compare function calling capabilities
+  - [Berkeley Function Calling Leaderboard](/berkeley-function-call-leaderboard/README.md): Compare function calling capabilities
   - [Agent Arena](/agent-arena/README.md): Evaluate agent workflows
   - [Gorilla Paper Evaluation Scripts](/gorilla/eval/README.md): Run your own evaluations
 
