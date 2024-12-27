@@ -34,15 +34,15 @@ With Gorilla, we are the first to demonstrate how to use LLMs to invoke 1,600+ (
 
 Since our initial release, we've served ~500k requests and witnessed incredible adoption by developers worldwide. The project has expanded to include tools, evaluations, leaderboard, end-to-end finetuning recipes, infrastructure components, and the Gorilla API Store:
 
-| Project | Type | Description |
-|---------|------|-------------|
-| [Gorilla OpenFunctions-V2](openfunctions/) | 🤖 Model | Drop-in alternative for function calling, supporting multiple complex data types and parallel execution |
-| [Berkeley Function Calling Leaderboard (BFCL)](berkeley-function-call-leaderboard/) | 📊 Evaluation<br>🏆 Leaderboard<br>🔧 Function Calling Infra<br>📚 Dataset | Comprehensive evaluation of function-calling capabilities |
-| [Agent Arena](agent-arena/) | 📊 Evaluation<br>🏆 Leaderboard | Compare LLM agents across models, tools, and frameworks |
-| [Gorilla Execution Engine (GoEx)](goex/) | 🔧 Infra | Runtime for executing LLM-generated actions with safety guarantees |
-| [Retrieval-Augmented Fine-tuning (RAFT)](raft/) | 📝 Fine-tuning<br>🤖 Model | Fine-tuning LLMs for robust domain-specific retrieval |
-| [Gorilla CLI](https://github.com/gorilla-llm/gorilla-cli) | 🤖 Model<br>🔧 Local CLI Infra | LLMs for your command-line interface |
-| [Gorilla API Zoo](apizoo/) | 📚 Dataset | A community-maintained repository of up-to-date API documentation enabling API discovery, model training, and retrieval-based inference |
+| Project | Type | Description (click to expand) |
+|---------|------|---------------------------|
+| [Gorilla OpenFunctions-V2](openfunctions/) | 🤖 Model | <details><summary>Drop-in alternative for function calling, supporting multiple complex data types and parallel execution</summary>• Multiple & parallel function execution with OpenAI-compatible endpoints<br>• Support for Python, Java, JavaScript, and REST APIs<br>• Complex data type handling including lists, tuples, dicts<br>• State-of-the-art performance for open-source models</details> |
+| [Berkeley Function Calling Leaderboard (BFCL)](berkeley-function-call-leaderboard/) | 📊 Evaluation<br>🏆 Leaderboard<br>🔧 Function Calling Infra<br>📚 Dataset | <details><summary>Comprehensive evaluation of function-calling capabilities</summary>• Real-time model comparisons with cost and latency metrics<br>• Interactive API explorer for testing and validation<br>• Standardized evaluation suite for function calling<br>• Community-driven benchmarking platform</details> |
+| [Agent Arena](agent-arena/) | 📊 Evaluation<br>🏆 Leaderboard | <details><summary>Compare LLM agents across models, tools, and frameworks</summary>• Head-to-head agent comparisons with ELO rating system<br>• Framework compatibility testing (LangChain, AutoGPT)<br>• Community-driven evaluation platform<br>• Real-world task performance metrics</details> |
+| [Gorilla Execution Engine (GoEx)](goex/) | 🔧 Infra | <details><summary>Runtime for executing LLM-generated actions with safety guarantees</summary>• Safe execution of LLM actions with rollback capabilities<br>• Multi-service authentication (Gmail, Slack, GitHub)<br>• Sandboxed execution environment<br>• Real-time monitoring and logging</details> |
+| [Retrieval-Augmented Fine-tuning (RAFT)](raft/) | 📝 Fine-tuning<br>🤖 Model | <details><summary>Fine-tuning LLMs for robust domain-specific retrieval</summary>• Automated dataset generation from documents<br>• Domain-specific question-answer pair creation<br>• Support for multiple document types (PDF, JSON, TXT)<br>• Customizable retrieval augmentation</details> |
+| [Gorilla CLI](https://github.com/gorilla-llm/gorilla-cli) | 🤖 Model<br>🔧 Local CLI Infra | <details><summary>LLMs for your command-line interface</summary>• Native CLI integration with local execution<br>• Multiple API support and command suggestions<br>• Easy installation and usage<br>• Secure local processing</details> |
+| [Gorilla API Zoo](apizoo/) | 📚 Dataset | <details><summary>A community-maintained repository of up-to-date API documentation</summary>• 1,600+ curated APIs with version tracking<br>• Community contribution platform<br>• Training data generation capabilities<br>• Multiple framework support</details> |
 
 ## Getting Started
 
