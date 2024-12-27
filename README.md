@@ -58,7 +58,7 @@ Try Gorilla in your browser:
 1. **Gorilla CLI** - Fastest way to get started
 ```bash
 pip install gorilla-cli
-gorilla "How do I create a new GitHub repository?"
+gorilla generate 100 random characters into a file called test.txt
 ```
 [Learn more about Gorilla CLI →](https://github.com/gorilla-llm/gorilla-cli)
 
