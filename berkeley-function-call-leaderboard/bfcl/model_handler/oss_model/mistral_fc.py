@@ -173,30 +173,22 @@ class MistralFCHandler(OSSHandler):
                 # If it's the last message and there's a system message, include it
                 if idx == len(loop_messages) - 1 and system_message:
                     formatted_prompt += (
-                        f"[INST]{system_message}\n\n{message["content"]}[/INST]"
+                        f"[INST]{system_message}\n\n{message['content']}[/INST]"
                     )
                 else:
-                    formatted_prompt += f"[INST]{message["content"]}[/INST]"
+                    formatted_prompt += f"[INST]{message['content']}[/INST]"
 
             elif role == "assistant":
-                formatted_prompt += f"{message["content"]}{eos_token}"
+                formatted_prompt += f"{message['content']}{eos_token}"
 
             elif role == "tool":
-                content = message.get("content", "")
-                call_id = message.get("tool_call_id")
-                if not call_id or not isinstance(call_id, str) or len(call_id) != 9:
-                    raise Exception(
-                        "Tool call IDs should be alphanumeric strings with length 9!"
-                    )
-                tool_results = {"content": content, "call_id": call_id}
-                tool_results_str = (
+                tool_results = {
+                    "content": message["content"],
+                    "call_id": message["tool_call_id"],
+                }
+                formatted_prompt += (
                     f"[TOOL_RESULTS]{json.dumps(tool_results)}[/TOOL_RESULTS]"
                 )
-                formatted_prompt += tool_results_str
-
-            elif role == "tool":
-                tool_results = {"content": message["content"], "call_id": message["tool_call_id"]}
-                formatted_prompt += f"[TOOL_RESULTS]{json.dumps(tool_results)}[/TOOL_RESULTS]"
 
         formatted_prompt += eos_token
         return formatted_prompt
