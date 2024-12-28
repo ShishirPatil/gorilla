@@ -1,7 +1,8 @@
+import json
+
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
 from bfcl.model_handler.utils import func_doc_language_specific_pre_processing
-
-import json
+from overrides import override
 
 
 class MistralFCHandler(OSSHandler):
@@ -52,6 +53,7 @@ class MistralFCHandler(OSSHandler):
         result_str = "[AVAILABLE_TOOLS][" + ", ".join(func_docs) + "][/AVAILABLE_TOOLS]"
         return result_str
 
+    @override
     def _format_prompt(self, messages, function):
         """
         "bos_token": "<s>"
@@ -193,6 +195,7 @@ class MistralFCHandler(OSSHandler):
         formatted_prompt += eos_token
         return formatted_prompt
 
+    @override
     def _pre_query_processing_prompting(self, test_entry: dict) -> dict:
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
@@ -202,6 +205,7 @@ class MistralFCHandler(OSSHandler):
 
         return {"message": [], "function": functions}
 
+    @override
     def _add_execution_results_prompting(
         self, inference_data: dict, execution_results: list[str], model_response_data: dict
     ) -> dict:
