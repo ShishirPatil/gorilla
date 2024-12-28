@@ -116,10 +116,42 @@ completion = openai.ChatCompletion.create(
 
 
 ## Frequently Asked Questions
-Visit our [FAQ](docs/FAQ.md) for answers to common questions.
+1. I would like to use Gorilla commercially. Is there going to be an Apache 2.0 licensed version?
+
+Yes! We now have models that you can use commercially without any obligations.
+
+
+2. Can we use Gorilla with other tools like Langchain etc?
+
+Absolutely! You've highlighted a great aspect of our tools. Gorilla is  an  end-to-end model, specifically tailored to serve correct API calls (tools) without requiring any additional coding. It's designed to work as part of a wider ecosystem and can be flexibly integrated within agentic frameworks and other tools.
+
+Langchain, is a versatile developer tool. Its "agents" can efficiently swap in any LLM, Gorilla included, making it a highly adaptable solution for various needs.
+
+The beauty of these tools truly shines when they collaborate, complementing each other's strengths and capabilities to create an even more powerful and comprehensive solution. This is where your contribution can make a difference. We enthusiastically welcome any inputs to further refine and enhance these tools. 
+
+Check out our blog on [How to Use Gorilla: A Step-by-Step Walkthrough](https://gorilla.cs.berkeley.edu/blogs/5_how_to_gorilla.html) to see all the different ways you can integrate Gorilla in your projects.
 
 ## Project Roadmap
-View our [Roadmap](docs/ROADMAP.md) for upcoming features and milestones.
+In the immediate future, we plan to release the following:
+
+- [ ] BFCL metrics to evaluate contamination 
+- [ ] BFCL systems metrics including cost and latency
+- [ ] BFCL update with "live" data and user-votes
+- [ ] Openfunctions-v3 model to support more languages and multi-turn capability 
+- [x] Agent Arena to compare LLM agents across models, tools, and frameworks
+- [x] Gorilla Execution Engine (GoEx) - Runtime for executing LLM-generated actions with safety guarantees [Apr 12, 2024] [[Tweet](https://x.com/shishirpatil_/status/1778485140257452375)]
+- [x] Berkeley Function Calling leaderboard (BFCL) for evaluating tool-calling/function-calling models [Feb 26, 2024]
+- [x] Openfunctions-v2 with more languages (Java, JS, Python), relevance detection [Feb 26, 2024]
+- [x] API Zoo Index for easy access to all APIs [Feb 16, 2024]
+- [x] Openfunctions-v1, Apache 2.0, with parallel and multiple function calling [Nov 16, 2023]
+- [x] Openfunctions-v0, Apache 2.0 function calling model [Nov 16, 2023]
+- [X] Release a commercially usable, Apache 2.0 licensed Gorilla model [Jun 5, 2023] 
+- [X] Release weights for all APIs from APIBench [May 28, 2023]
+- [X] Run Gorilla LLM locally [May 28, 2023]
+- [X] Release weights for HF model APIs [May 27, 2023]
+- [X] Hosted Gorilla LLM chat for HF model APIs [May 27, 2023]
+- [X] Opening up the APIZoo for contributions from community
+- [X] Dataset and Eval Code
 
 ## License
 
