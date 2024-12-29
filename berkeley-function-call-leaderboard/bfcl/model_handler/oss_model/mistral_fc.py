@@ -1,13 +1,32 @@
 import json
+import random
+import string
 
 from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
-from bfcl.model_handler.utils import func_doc_language_specific_pre_processing
+from bfcl.model_handler.utils import (
+    convert_to_function_call,
+    func_doc_language_specific_pre_processing,
+)
 from overrides import override
 
 
 class MistralFCHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
+
+    @override
+    def decode_ast(self, result, language="Python"):
+        # The input is already a list of dictionaries, so no need to decode
+        # `[{func1:{param1:val1,...}},{func2:{param2:val2,...}}]`
+        if type(result) != list:
+            return []
+        return result
+
+    @override
+    def decode_execute(self, result):
+        if type(result) != list:
+            return []
+        return convert_to_function_call(result)
 
     @staticmethod
     def _construct_func_doc(functions):
@@ -181,6 +200,8 @@ class MistralFCHandler(OSSHandler):
                     formatted_prompt += f"[INST]{message['content']}[/INST]"
 
             elif role == "assistant":
+                # There is no need to further special handle the tool calls messages
+                # They are already correctly formatted in the `_parse_query_response_prompting` method, including the tool call id and the `[TOOL_CALLS]` tag
                 formatted_prompt += f"{message['content']}{eos_token}"
 
             elif role == "tool":
@@ -220,4 +241,60 @@ class MistralFCHandler(OSSHandler):
                 }
             )
 
+        return inference_data
+
+    @staticmethod
+    def generate_random_string() -> str:
+        """Generates a random string of alphanumeric characters of length 9."""
+        characters = string.ascii_letters + string.digits
+        random_string = "".join(random.choices(characters, k=9))
+        return random_string
+
+    @override
+    def _parse_query_response_prompting(self, api_response: any) -> dict:
+        model_responses = api_response.choices[0].text
+        tool_call_ids = []
+        """
+        Mistral models require a tool_call_id, which should be 9 randomly-generated alphanumeric characters, and assigned to the id key of the tool call dictionary.
+        Source: https://huggingface.co/docs/transformers/main/chat_templating#advanced-tool-use--function-calling
+        
+        "[{\"name\": \"math.factorial\", \"arguments\": {\"number\": 5}}, {\"name\": \"math.factorial\", \"arguments\": {\"number\": 10}}, {\"name\": \"math.factorial\", \"arguments\": {\"number\": 15}}]"
+        """
+        try:
+            model_responses = json.loads(model_responses)
+            for model_response in model_responses:
+                tool_call_id = self.generate_random_string()
+                model_response["id"] = tool_call_id
+                tool_call_ids.append(tool_call_id)
+
+            # We prepare the model responses here because it's easier to do it here than in the `_format_prompt` method
+            # The `[TOOL_CALLS]` tag is added here, as required by the chat template
+            model_responses_message_for_chat_history = (
+                f"[TOOL_CALLS]{json.dumps(model_responses)}"
+            )
+
+            model_responses = [
+                {item["name"]: item["arguments"]} for item in model_responses
+            ]
+        except json.JSONDecodeError:
+            model_responses_message_for_chat_history = model_responses
+
+        return {
+            "model_responses": model_responses,
+            "model_responses_message_for_chat_history": model_responses_message_for_chat_history,
+            "tool_call_ids": tool_call_ids,
+            "input_token": api_response.usage.prompt_tokens,
+            "output_token": api_response.usage.completion_tokens,
+        }
+
+    @override
+    def _add_assistant_message_prompting(
+        self, inference_data: dict, model_response_data: dict
+    ) -> dict:
+        inference_data["message"].append(
+            {
+                "role": "assistant",
+                "content": model_response_data["model_responses_message_for_chat_history"],
+            }
+        )
         return inference_data
