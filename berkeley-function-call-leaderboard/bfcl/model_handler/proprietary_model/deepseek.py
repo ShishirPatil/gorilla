@@ -41,10 +41,16 @@ class DeepSeekAPIHandler(OpenAIHandler):
         tools = inference_data["tools"]
         inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
 
-        return self.generate_with_backoff(
-            # The model name is always "deepseek-chat", as per https://api-docs.deepseek.com/quick_start/pricing
-            # Note: Currently, it points to `DeepSeek-V3`
-            model="deepseek-chat",
-            messages=message,
-            tools=tools,
-        )
+        if len(tools) > 0:
+            return self.generate_with_backoff(
+                # The model name is always "deepseek-chat", as per https://api-docs.deepseek.com/quick_start/pricing
+                # Note: Currently, it points to `DeepSeek-V3`
+                model="deepseek-chat",
+                messages=message,
+                tools=tools,
+            )
+        else:
+            return self.generate_with_backoff(
+                model="deepseek-chat",
+                messages=message,
+            )
