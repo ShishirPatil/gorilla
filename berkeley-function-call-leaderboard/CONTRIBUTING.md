@@ -28,7 +28,7 @@ berkeley-function-call-leaderboard/
 │   │   │   ├── llama_fc.py           # Example: LLaMA (FC mode)
 │   │   │   ├── deepseek_coder.py     # Example: DeepSeek Coder
 │   │   │   ├── ...
-│   │   ├── proprietary_model/    # Handlers for API-based models
+│   │   ├── api_inference/    # Handlers for API-based models
 │   │   │   ├── openai.py             # Example: OpenAI models
 │   │   │   ├── claude.py             # Example: Claude models
 │   │   │   ├── ...
