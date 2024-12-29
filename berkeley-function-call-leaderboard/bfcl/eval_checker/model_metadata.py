@@ -157,6 +157,12 @@ MODEL_METADATA_MAPPING = {
         "Mistral AI",
         "Proprietary",
     ],
+    "mistralai/Ministral-8B-Instruct-2410": [
+        "Ministral-8B-Instruct-2410 (FC)",
+        "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410",
+        "Mistral AI",
+        "Mistral AI Research License",
+    ],
     "claude-3-sonnet-20240229-FC": [
         "Claude-3-Sonnet-20240229 (FC)",
         "https://www.anthropic.com/news/claude-3-family",

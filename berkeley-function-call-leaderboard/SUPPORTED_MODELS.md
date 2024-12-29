@@ -64,6 +64,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |palmyra-x-004 | Function Calling|
 |BitAgent/GoGoAgent | Prompt|
 |google/gemma-2-{2b,9b,27b}-it 💻| Prompt|
+|mistralai/Ministral-8B-Instruct-2410 💻| Function Calling|
 |meta-llama/Meta-Llama-3-{8B,70B}-Instruct 💻| Prompt|
 |meta-llama/Llama-3.1-{8B,70B}-Instruct-FC 💻| Function Calling|
 |meta-llama/Llama-3.1-{8B,70B}-Instruct 💻| Prompt|
