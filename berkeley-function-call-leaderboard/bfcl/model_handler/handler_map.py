@@ -16,6 +16,7 @@ from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
 from bfcl.model_handler.proprietary_model.claude import ClaudeHandler
 from bfcl.model_handler.proprietary_model.cohere import CohereHandler
 from bfcl.model_handler.proprietary_model.databricks import DatabricksHandler
+from bfcl.model_handler.proprietary_model.deepseek import DeepSeekAPIHandler
 from bfcl.model_handler.proprietary_model.fireworks import FireworksHandler
 from bfcl.model_handler.proprietary_model.functionary import FunctionaryHandler
 from bfcl.model_handler.proprietary_model.gemini import GeminiHandler
@@ -35,6 +36,7 @@ from bfcl.model_handler.proprietary_model.yi import YiHandler
 # Inference through API calls
 api_inference_handler_map = {
     "gorilla-openfunctions-v2": GorillaHandler,
+    "DeepSeek-V3": DeepSeekAPIHandler,
     "o1-2024-12-17-FC": OpenAIHandler,
     "o1-2024-12-17": OpenAIHandler,
     # "o1-mini-2024-09-12-FC": OpenAIHandler,  # o1-mini-2024-09-12 does not support function calling
