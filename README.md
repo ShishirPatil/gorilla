@@ -11,6 +11,9 @@
 </div>
 
 ## Latest Updates
+> 📢 Check out our detailed [Berkeley Function Calling Leaderboard changelog](/berkeley-function-call-leaderboard/CHANGELOG.md) (Last updated: ![Last Updated](https://img.shields.io/github/last-commit/ShishirPatil/gorilla?path=berkeley-function-call-leaderboard/CHANGELOG.md)) for the latest dataset / model updates to the Berkeley Function Calling Leaderboard!
+
+
 - 🎯 [10/04] Introducing the Agent Arena by Gorilla X LMSYS Chatbot Arena! Compare different agents in tasks like search, finance, RAG, and beyond. Explore which models and tools work best for specific tasks through our novel ranking system and community-driven prompt hub. [[Blog](https://gorilla.cs.berkeley.edu/blogs/14_agent_arena.html)] [[Arena](http://agent-arena.com)] [[Leaderboard](http://agent-arena.com/leaderboard)] [[Dataset](https://github.com/ShishirPatil/gorilla/tree/main/agent-arena#evaluation-directory)] [[Tweet](https://x.com/shishirpatil_/status/1841876885757977044)]
 
 - 📣 [09/21] Announcing BFCL V3 - Evaluating multi-turn and multi-step function calling capabilities! New state-based evaluation system tests models on handling complex workflows, sequential functions, and service states. [[Blog](https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html)] [[Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html)] [[Code](https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard)] [[Tweet](https://x.com/shishirpatil_/status/1837205152132153803)]
