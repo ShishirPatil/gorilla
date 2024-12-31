@@ -11,8 +11,13 @@
 </div>
 
 ## Latest Updates
+- 🎯 [10/04] Introducing the Agent Arena by Gorilla X LMSYS Chatbot Arena! Compare different agents in tasks like search, finance, RAG, and beyond. Explore which models and tools work best for specific tasks through our novel ranking system and community-driven prompt hub. [[Blog](https://gorilla.cs.berkeley.edu/blogs/14_agent_arena.html)] [[Arena](http://agent-arena.com)] [[Leaderboard](http://agent-arena.com/leaderboard)] [[Dataset](https://github.com/ShishirPatil/gorilla/tree/main/agent-arena#evaluation-directory)] [[Tweet](https://x.com/shishirpatil_/status/1841876885757977044)]
 
-- ⏰: [04/01] Introducing cost and latency metrics into [Berkeley function calling leaderboard](https://gorilla.cs.berkeley.edu/leaderboard)!
+- 📣 [09/21] Announcing BFCL V3 - Evaluating multi-turn and multi-step function calling capabilities! New state-based evaluation system tests models on handling complex workflows, sequential functions, and service states. [[Blog](https://gorilla.cs.berkeley.edu/blogs/13_bfcl_v3_multi_turn.html)] [[Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html)] [[Code](https://github.com/ShishirPatil/gorilla/tree/main/berkeley-function-call-leaderboard)] [[Tweet](https://x.com/shishirpatil_/status/1837205152132153803)]
+
+- 🚀 [08/20] Released BFCL V2 • Live! The Berkeley Function-Calling Leaderboard now features enterprise-contributed data and real-world scenarios. [[Blog](https://gorilla.cs.berkeley.edu/blogs/12_bfcl_v2_live.html)] [[Live Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard_live.html)] [[V2 Categories Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard.html)] [[Tweet](https://x.com/shishirpatil_/status/1825577931697233999)]
+
+- ⏰ [04/01] Introducing cost and latency metrics into [Berkeley function calling leaderboard](https://gorilla.cs.berkeley.edu/leaderboard)!
 - :rocket: [03/15] RAFT: Adapting Language Model to Domain Specific RAG is live! [[MSFT-Meta blog](https://techcommunity.microsoft.com/t5/ai-ai-platform-blog/bg-p/AIPlatformBlog)] [[Berkeley Blog](https://gorilla.cs.berkeley.edu/blogs/9_raft.html)]
 - :trophy: [02/26] [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard) is live!
 - :dart: [02/25] [OpenFunctions v2](https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html) sets new SoTA for open-source LLMs!
