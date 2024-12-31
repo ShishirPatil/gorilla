@@ -59,9 +59,10 @@ Since our initial release, we've served ~500k requests and witnessed incredible 
 
 ### Quick Start
 Try Gorilla in your browser:
-- 🚀 [Gorilla Demo](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing): Try the base Gorilla model
-- 🎯 [OpenFunctions Demo](https://gorilla.cs.berkeley.edu/leaderboard.html#api-explorer): Experiment with function calling
+- 🚀 [Gorilla Colab Demo](https://colab.research.google.com/drive/1DEBPsccVLF_aUnmD0FwPeHFrtdC0QIUP?usp=sharing): Try the base Gorilla model
 - 🌐 [Gorilla Gradio Demo](https://huggingface.co/spaces/gorilla-llm/gorilla-demo/): Interactive web interface
+- 🔥 [OpenFunctions Colab Demo](https://colab.research.google.com/drive/16M5J2H9F8YQora_W2PDnp120slZH-Mqd?usp=sharing): Try the latest OpenFunctions model
+- 🎯 [OpenFunctions Website Demo](https://gorilla.cs.berkeley.edu/leaderboard.html#api-explorer): Experiment with function calling
 - 📊 [Berkeley Function Calling Leaderboard](https://gorilla.cs.berkeley.edu/leaderboard): Compare function calling capabilities
 
 ### Installation Options
