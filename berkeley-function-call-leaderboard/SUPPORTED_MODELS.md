@@ -10,6 +10,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |Model | Type |
 |---|---|
 |gorilla-openfunctions-v2 | Function Calling|
+|DeepSeek-V3 | Function Calling|
 |claude-3-opus-20240229-FC | Function Calling |
 |claude-3-opus-20240229 | Prompt |
 |claude-3-5-sonnet-20241022-FC | Function Calling |
@@ -64,6 +65,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |palmyra-x-004 | Function Calling|
 |BitAgent/GoGoAgent | Prompt|
 |google/gemma-2-{2b,9b,27b}-it 💻| Prompt|
+|mistralai/Ministral-8B-Instruct-2410 💻| Function Calling|
 |meta-llama/Meta-Llama-3-{8B,70B}-Instruct 💻| Prompt|
 |meta-llama/Llama-3.1-{8B,70B}-Instruct-FC 💻| Function Calling|
 |meta-llama/Llama-3.1-{8B,70B}-Instruct 💻| Prompt|

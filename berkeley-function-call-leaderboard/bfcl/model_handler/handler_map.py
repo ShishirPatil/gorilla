@@ -10,12 +10,14 @@ from bfcl.model_handler.oss_model.llama import LlamaHandler
 from bfcl.model_handler.oss_model.llama_fc import LlamaFCHandler
 from bfcl.model_handler.oss_model.minicpm import MiniCPMHandler
 from bfcl.model_handler.oss_model.minicpm_fc import MiniCPMFCHandler
+from bfcl.model_handler.oss_model.mistral_fc import MistralFCHandler
 from bfcl.model_handler.oss_model.phi import PhiHandler
 from bfcl.model_handler.oss_model.qwen import QwenHandler
 from bfcl.model_handler.oss_model.salesforce import SalesforceHandler
 from bfcl.model_handler.proprietary_model.claude import ClaudeHandler
 from bfcl.model_handler.proprietary_model.cohere import CohereHandler
 from bfcl.model_handler.proprietary_model.databricks import DatabricksHandler
+from bfcl.model_handler.proprietary_model.deepseek import DeepSeekAPIHandler
 from bfcl.model_handler.proprietary_model.fireworks import FireworksHandler
 from bfcl.model_handler.proprietary_model.functionary import FunctionaryHandler
 from bfcl.model_handler.proprietary_model.gemini import GeminiHandler
@@ -35,6 +37,7 @@ from bfcl.model_handler.proprietary_model.yi import YiHandler
 # Inference through API calls
 api_inference_handler_map = {
     "gorilla-openfunctions-v2": GorillaHandler,
+    "DeepSeek-V3": DeepSeekAPIHandler,
     "o1-2024-12-17-FC": OpenAIHandler,
     "o1-2024-12-17": OpenAIHandler,
     # "o1-mini-2024-09-12-FC": OpenAIHandler,  # o1-mini-2024-09-12 does not support function calling
@@ -116,6 +119,7 @@ local_inference_handler_map = {
     "Salesforce/xLAM-7b-r": SalesforceHandler,
     "Salesforce/xLAM-8x22b-r": SalesforceHandler,
     "Salesforce/xLAM-8x7b-r": SalesforceHandler,
+    "mistralai/Ministral-8B-Instruct-2410": MistralFCHandler,
     "microsoft/Phi-3-mini-4k-instruct": PhiHandler,
     "microsoft/Phi-3-mini-128k-instruct": PhiHandler,
     "microsoft/Phi-3-small-8k-instruct": PhiHandler,
