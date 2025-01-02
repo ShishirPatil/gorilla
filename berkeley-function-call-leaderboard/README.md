@@ -155,6 +155,19 @@ bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --backend {vllm|s
 - Choose your backend using `--backend vllm` or `--backend sglang`. The default backend is `vllm`.
 - Control GPU usage by adjusting `--num-gpus` (default `1`, relevant for multi-GPU tensor parallelism) and `--gpu-memory-utilization` (default `0.9`), which can help avoid out-of-memory errors.
 
+##### For Pre-existing OpenAI-compatible Endpoints:
+If you have a server already running (e.g., vLLM in a SLURM cluster), you can bypass the vLLM/sglang setup:
+```bash
+bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --skip-vllm
+```
+The command will bypass the endpoint setup and use the endpoint specified by the VLLM_ENDPOINT and VLLM_PORT environment variables which can be specified in the .env file:
+
+```bash
+VLLM_ENDPOINT=custom.host.com
+VLLM_PORT=8000
+```
+
+
 #### (Alternate) Script Execution for Generation
 
 For those who prefer using script execution instead of the CLI, you can run the following command:
