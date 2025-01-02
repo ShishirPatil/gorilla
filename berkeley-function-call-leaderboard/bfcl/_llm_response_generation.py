@@ -50,6 +50,13 @@ def get_args():
     parser.add_argument("--result-dir", default=None, type=str)
     parser.add_argument("--run-ids", action="store_true", default=False)
     parser.add_argument("--allow-overwrite", "-o", action="store_true", default=False)
+    # Add the new skip_vllm argument
+    parser.add_argument(
+        "--skip-vllm",
+        action="store_true",
+        default=False,
+        help="Skip vLLM server setup and use existing endpoint specified by VLLM_ENDPOINT and VLLM_PORT environment variables."
+    )
     args = parser.parse_args()
     return args
 
@@ -232,6 +239,7 @@ def generate_results(args, model_name, test_cases_total):
             num_gpus=args.num_gpus,
             gpu_memory_utilization=args.gpu_memory_utilization,
             backend=args.backend,
+            skip_vllm=args.skip_vllm,
             include_input_log=args.include_input_log,
             exclude_state_log=args.exclude_state_log,
             result_dir=args.result_dir,

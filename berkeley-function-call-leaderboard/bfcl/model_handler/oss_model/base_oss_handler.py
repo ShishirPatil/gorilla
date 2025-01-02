@@ -22,13 +22,11 @@ from tqdm import tqdm
 
 
 class OSSHandler(BaseHandler, EnforceOverrides):
-    def __init__(self, model_name, temperature, dtype="bfloat16", skip_vllm=False) -> None:
+    def __init__(self, model_name, temperature, dtype="bfloat16") -> None:
         super().__init__(model_name, temperature)
         self.model_name_huggingface = model_name
         self.model_style = ModelStyle.OSSMODEL
         self.dtype = dtype
-        self.skip_vllm = skip_vllm
-        
         # Read from env vars with fallbacks
         vllm_host = os.getenv('VLLM_ENDPOINT', 'localhost')
         vllm_port = os.getenv('VLLM_PORT', VLLM_PORT)
@@ -63,6 +61,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         num_gpus: int,
         gpu_memory_utilization: float,
         backend: str,
+        skip_vllm: bool,
         include_input_log: bool,
         exclude_state_log: bool,
         update_mode: bool,
@@ -88,7 +87,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         print(f"Max context length: {self.max_context_length}")
 
         process = None
-        if not self.skip_vllm:
+        if not skip_vllm:
             if backend == "vllm":
                 process = subprocess.Popen(
                     [
@@ -163,7 +162,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
             stderr_thread.start()
 
         try:
-            if not self.skip_vllm:
+            if not skip_vllm:
                 # Wait for the server to be ready
                 server_ready = False
                 while not server_ready:
