@@ -113,6 +113,11 @@ def generate(
     num_threads: int = typer.Option(1, help="The number of threads to use."),
     gpu_memory_utilization: float = typer.Option(0.9, help="The GPU memory utilization."),
     backend: str = typer.Option("vllm", help="The backend to use for the model."),
+    skip_vllm: bool = typer.Option(
+        False,
+        "--skip-vllm",
+        help="Skip vLLM server setup and use existing endpoint specified by VLLM_ENDPOINT and VLLM_PORT environment variables.",
+    ),
     result_dir: str = typer.Option(
         RESULT_PATH,
         "--result-dir",
@@ -144,6 +149,7 @@ def generate(
         num_threads=num_threads,
         gpu_memory_utilization=gpu_memory_utilization,
         backend=backend,
+        skip_vllm=skip_vllm,
         result_dir=result_dir,
         allow_overwrite=allow_overwrite,
         run_ids=run_ids,

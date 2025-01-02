@@ -1,10 +1,11 @@
 import subprocess
 import threading
 import time
+import os
 from concurrent.futures import ThreadPoolExecutor
 
 import requests
-from bfcl.constant import RESULT_PATH, VERSION_PREFIX
+from bfcl.constant import RESULT_PATH
 from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.oss_model.constant import VLLM_PORT
@@ -19,13 +20,21 @@ from overrides import EnforceOverrides, final, override
 from tqdm import tqdm
 
 
+
 class OSSHandler(BaseHandler, EnforceOverrides):
-    def __init__(self, model_name, temperature, dtype="bfloat16") -> None:
+    def __init__(self, model_name, temperature, dtype="bfloat16", skip_vllm=False) -> None:
         super().__init__(model_name, temperature)
         self.model_name_huggingface = model_name
         self.model_style = ModelStyle.OSSMODEL
         self.dtype = dtype
-        self.client = OpenAI(base_url=f"http://localhost:{VLLM_PORT}/v1", api_key="EMPTY")
+        self.skip_vllm = skip_vllm
+        
+        # Read from env vars with fallbacks
+        vllm_host = os.getenv('VLLM_ENDPOINT', 'localhost')
+        vllm_port = os.getenv('VLLM_PORT', VLLM_PORT)
+        
+        base_url = f"http://{vllm_host}:{vllm_port}/v1"
+        self.client = OpenAI(base_url=base_url, api_key="EMPTY")
 
     @override
     def inference(self, test_entry: dict, include_input_log: bool, exclude_state_log: bool):
@@ -78,149 +87,142 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                 )
         print(f"Max context length: {self.max_context_length}")
 
-        if backend == "vllm":
-            process = subprocess.Popen(
-                [
-                    "vllm",
-                    "serve",
-                    str(self.model_name_huggingface),
-                    "--port",
-                    str(VLLM_PORT),
-                    "--dtype",
-                    str(self.dtype),
-                    "--tensor-parallel-size",
-                    str(num_gpus),
-                    "--gpu-memory-utilization",
-                    str(gpu_memory_utilization),
-                    "--trust-remote-code",
-                ],
-                stdout=subprocess.PIPE,  # Capture stdout
-                stderr=subprocess.PIPE,  # Capture stderr
-                text=True,  # To get the output as text instead of bytes
+        process = None
+        if not self.skip_vllm:
+            if backend == "vllm":
+                process = subprocess.Popen(
+                    [
+                        "vllm",
+                        "serve",
+                        str(self.model_name_huggingface),
+                        "--port",
+                        str(VLLM_PORT),
+                        "--dtype",
+                        str(self.dtype),
+                        "--tensor-parallel-size",
+                        str(num_gpus),
+                        "--gpu-memory-utilization",
+                        str(gpu_memory_utilization),
+                        "--trust-remote-code",
+                    ],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True,
+                )
+            elif backend == "sglang":
+                try:
+                    import flashinfer
+                    backend_choice = "flashinfer"
+                except ImportError:
+                    backend_choice = "triton"
+
+                process = subprocess.Popen(
+                    [
+                        "python",
+                        "-m",
+                        "sglang.launch_server",
+                        "--model-path",
+                        str(self.model_name_huggingface),
+                        "--port",
+                        str(VLLM_PORT),
+                        "--dtype",
+                        str(self.dtype),
+                        "--tp",
+                        str(num_gpus),
+                        "--mem-fraction-static",
+                        str(gpu_memory_utilization),
+                        "--attention-backend",
+                        str(backend_choice),
+                        "--trust-remote-code",
+                    ],
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True,
+                )
+            else:
+                raise ValueError(f"Backend {backend} is not supported.")
+
+            stop_event = threading.Event()
+
+            def log_subprocess_output(pipe, stop_event):
+                for line in iter(pipe.readline, ""):
+                    if stop_event.is_set():
+                        break
+                    else:
+                        print(line, end="")
+                pipe.close()
+                print("server log tracking thread stopped successfully.")
+
+            stdout_thread = threading.Thread(
+                target=log_subprocess_output, args=(process.stdout, stop_event)
             )
-        elif backend == "sglang":
-            # Check if the flashinfer package is installed to determine the backend
-            try:
-                import flashinfer
-                backend_choice = "flashinfer"
-            except ImportError as e:
-                backend_choice = "triton"
-                pass
-
-            process = subprocess.Popen(
-                [
-                    "python",
-                    "-m",
-                    "sglang.launch_server",
-                    "--model-path",
-                    str(self.model_name_huggingface),
-                    "--port",
-                    str(VLLM_PORT),
-                    "--dtype",
-                    str(self.dtype),
-                    "--tp",
-                    str(num_gpus),
-                    "--mem-fraction-static",
-                    str(gpu_memory_utilization),
-                    "--attention-backend",
-                    str(backend_choice),
-                    "--trust-remote-code",
-                ],
-                stdout=subprocess.PIPE,  # Capture stdout
-                stderr=subprocess.PIPE,  # Capture stderr
-                text=True,  # To get the output as text instead of bytes
+            stderr_thread = threading.Thread(
+                target=log_subprocess_output, args=(process.stderr, stop_event)
             )
-        else:
-            raise ValueError(f"Backend {backend} is not supported.")
-
-        stop_event = (
-            threading.Event()
-        )  # Event to signal threads to stop; no need to see logs after server is ready
-
-        def log_subprocess_output(pipe, stop_event):
-            # Read lines until stop event is set
-            for line in iter(pipe.readline, ""):
-                if stop_event.is_set():
-                    break
-                else:
-                    print(line, end="")
-            pipe.close()
-            print("server log tracking thread stopped successfully.")
-
-        # Start threads to read and print stdout and stderr
-        stdout_thread = threading.Thread(
-            target=log_subprocess_output, args=(process.stdout, stop_event)
-        )
-        stderr_thread = threading.Thread(
-            target=log_subprocess_output, args=(process.stderr, stop_event)
-        )
-        stdout_thread.start()
-        stderr_thread.start()
+            stdout_thread.start()
+            stderr_thread.start()
 
         try:
-            # Wait for the server to be ready
-            server_ready = False
-            while not server_ready:
-                # Check if the process has terminated unexpectedly
-                if process.poll() is not None:
-                    # Output the captured logs
-                    stdout, stderr = process.communicate()
-                    print(stdout)
-                    print(stderr)
-                    raise Exception(
-                        f"Subprocess terminated unexpectedly with code {process.returncode}"
-                    )
-                try:
-                    # Make a simple request to check if the server is up
-                    response = requests.get(f"http://localhost:{VLLM_PORT}/v1/models")
-                    if response.status_code == 200:
-                        server_ready = True
-                        print("server is ready!")
-                except requests.exceptions.ConnectionError:
-                    # If the connection is not ready, wait and try again
-                    time.sleep(1)
+            if not self.skip_vllm:
+                # Wait for the server to be ready
+                server_ready = False
+                while not server_ready:
+                    if process.poll() is not None:
+                        stdout, stderr = process.communicate()
+                        print(stdout)
+                        print(stderr)
+                        raise Exception(
+                            f"Subprocess terminated unexpectedly with code {process.returncode}"
+                        )
+                    try:
+                        response = requests.get(f"{self.client.base_url}/models")
+                        if response.status_code == 200:
+                            server_ready = True
+                            print("server is ready!")
+                    except requests.exceptions.ConnectionError:
+                        time.sleep(1)
 
-            # Signal threads to stop reading output
-            stop_event.set()
+                stop_event.set()
 
-            # Once the server is ready, make the completion requests
+            # Process test entries
             futures = []
             with ThreadPoolExecutor(max_workers=100) as executor:
                 with tqdm(
                     total=len(test_entries),
                     desc=f"Generating results for {self.model_name}",
                 ) as pbar:
-
                     for test_case in test_entries:
-                        future = executor.submit(self._multi_threaded_inference, test_case, include_input_log, exclude_state_log)
+                        future = executor.submit(
+                            self._multi_threaded_inference,
+                            test_case,
+                            include_input_log,
+                            exclude_state_log
+                        )
                         futures.append(future)
 
                     for future in futures:
-                        # This will wait for the task to complete, so that we are always writing in order
                         result = future.result()
                         self.write(result, result_dir, update_mode=update_mode)
                         pbar.update()
-
 
         except Exception as e:
             raise e
 
         finally:
-            # Ensure the server process is terminated properly
-            process.terminate()
-            try:
-                # Wait for the process to terminate fully
-                process.wait(timeout=15)
-                print("Process terminated successfully.")
-            except subprocess.TimeoutExpired:
-                process.kill()
-                process.wait()  # Wait again to ensure it's fully terminated
-                print("Process killed.")
+            if process is not None:
+                process.terminate()
+                try:
+                    process.wait(timeout=15)
+                    print("Process terminated successfully.")
+                except subprocess.TimeoutExpired:
+                    process.kill()
+                    process.wait()
+                    print("Process killed.")
 
-            # Wait for the output threads to finish
-            stop_event.set()
-            stdout_thread.join()
-            stderr_thread.join()
+                stop_event.set()
+                stdout_thread.join()
+                stderr_thread.join()
+
             
     @final
     def _multi_threaded_inference(self, test_case, include_input_log: bool, exclude_state_log: bool):
