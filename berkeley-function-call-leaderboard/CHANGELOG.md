@@ -2,6 +2,8 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Jan 3, 2025] [#864](https://github.com/ShishirPatil/gorilla/pull/864): Add support for pre-existing completion endpoints, allowing users to skip the local vLLM/SGLang server setup (using the `--skip-server-setup` flag) and point the generation pipeline to an existing OpenAI-compatible endpoint via `VLLM_ENDPOINT` and `VLLM_PORT`.
+- [Jan 3, 2025] [#859](https://github.com/ShishirPatil/gorilla/pull/859): Rename directories: `proprietary_model` -> `api_inference`, `oss_model` -> `local_inference` for better clarity.
 - [Dec 29, 2024] [#857](https://github.com/ShishirPatil/gorilla/pull/857): Add new model `DeepSeek-V3` to the leaderboard.
 - [Dec 29, 2024] [#855](https://github.com/ShishirPatil/gorilla/pull/855): Add new model `mistralai/Ministral-8B-Instruct-2410` to the leaderboard.
 - [Dec 22, 2024] [#838](https://github.com/ShishirPatil/gorilla/pull/838): Fix parameter type mismatch error in possible answers.
