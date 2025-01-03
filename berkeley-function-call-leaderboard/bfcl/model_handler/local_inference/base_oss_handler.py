@@ -8,7 +8,7 @@ import requests
 from bfcl.constant import RESULT_PATH
 from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.model_style import ModelStyle
-from bfcl.model_handler.oss_model.constant import VLLM_PORT
+from bfcl.model_handler.local_inference.constant import VLLM_PORT
 from bfcl.model_handler.utils import (
     default_decode_ast_prompting,
     default_decode_execute_prompting,
