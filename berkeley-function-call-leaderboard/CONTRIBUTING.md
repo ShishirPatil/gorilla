@@ -23,12 +23,12 @@ berkeley-function-call-leaderboard/
 │   │   ├── executable_eval/      # Evaluation by execution
 │   │   ├── multi_turn_eval/      # Multi-turn evaluation
 │   ├── model_handler/            # All model-specific handlers
-│   │   ├── oss_model/            # Handlers for locally-hosted models
+│   │   ├── local_inference/            # Handlers for locally-hosted models
 │   │   │   ├── base_oss_handler.py   # Base handler for OSS models
 │   │   │   ├── llama_fc.py           # Example: LLaMA (FC mode)
 │   │   │   ├── deepseek_coder.py     # Example: DeepSeek Coder
 │   │   │   ├── ...
-│   │   ├── proprietary_model/    # Handlers for API-based models
+│   │   ├── api_inference/    # Handlers for API-based models
 │   │   │   ├── openai.py             # Example: OpenAI models
 │   │   │   ├── claude.py             # Example: Claude models
 │   │   │   ├── ...
@@ -46,7 +46,7 @@ To add a new model, focus primarily on the `model_handler` directory. You do not
 ## Where to Begin
 
 - **Base Handler:** Start by reviewing `bfcl/model_handler/base_handler.py`. All model handlers inherit from this base class. The `inference_single_turn` and `inference_multi_turn` methods defined there are helpful for understanding the model response generation pipeline. The `base_handler.py` contains many useful details in the docstrings of each abstract method, so be sure to review them.
-  - If your model is hosted locally, you should also look at `bfcl/model_handler/oss_model/base_oss_handler.py`.
+  - If your model is hosted locally, you should also look at `bfcl/model_handler/local_inference/base_oss_handler.py`.
 - **Reference Handlers:** Checkout some of the existing model handlers (such as `openai.py`, `claude.py`, etc); you can likely reuse some of the existing code if your new model outputs in a similar format.
   - If your model is OpenAI-compatible, the `openai.py` handler will be helpful (and you might be able to just use it as is).
   - If your model is locally hosted, the `llama_fc.py` handler or the `deepseek_coder.py` handler can be good starting points.

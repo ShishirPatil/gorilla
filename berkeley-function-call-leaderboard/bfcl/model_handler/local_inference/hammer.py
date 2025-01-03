@@ -1,6 +1,6 @@
 import json
 
-from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
+from bfcl.model_handler.local_inference.base_oss_handler import OSSHandler
 from bfcl.model_handler.utils import (
     convert_system_prompt_into_user_prompt,
     func_doc_language_specific_pre_processing,

@@ -2,7 +2,7 @@ import os
 import re
 import time
 
-from bfcl.model_handler.proprietary_model.openai import OpenAIHandler
+from bfcl.model_handler.api_inference.openai import OpenAIHandler
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     ast_parse,
