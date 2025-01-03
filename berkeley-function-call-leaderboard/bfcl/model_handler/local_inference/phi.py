@@ -1,4 +1,4 @@
-from bfcl.model_handler.oss_model.base_oss_handler import OSSHandler
+from bfcl.model_handler.local_inference.base_oss_handler import OSSHandler
 from bfcl.model_handler.utils import (
     combine_consecutive_user_prompts,
     convert_system_prompt_into_user_prompt,

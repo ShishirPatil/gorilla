@@ -16,6 +16,7 @@
       - [Output and Logging](#output-and-logging)
       - [For API-based Models](#for-api-based-models)
       - [For Locally-hosted OSS Models](#for-locally-hosted-oss-models)
+        - [For Pre-existing OpenAI-compatible Endpoints](#for-pre-existing-openai-compatible-endpoints)
       - [(Alternate) Script Execution for Generation](#alternate-script-execution-for-generation)
     - [Evaluating Generated Responses](#evaluating-generated-responses)
       - [(Optional) API Sanity Check](#optional-api-sanity-check)
@@ -155,6 +156,21 @@ bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --backend {vllm|s
 - Choose your backend using `--backend vllm` or `--backend sglang`. The default backend is `vllm`.
 - Control GPU usage by adjusting `--num-gpus` (default `1`, relevant for multi-GPU tensor parallelism) and `--gpu-memory-utilization` (default `0.9`), which can help avoid out-of-memory errors.
 
+##### For Pre-existing OpenAI-compatible Endpoints
+
+If you have a server already running (e.g., vLLM in a SLURM cluster), you can bypass the vLLM/sglang setup phase and directly generate responses by using the `--skip-server-setup` flag:
+
+```bash
+bfcl generate --model MODEL_NAME --test-category TEST_CATEGORY --skip-server-setup
+```
+
+In addition, you should specify the endpoint and port used by the server. By default, the endpoint is `localhost` and the port is `1053`. These can be overridden by the `VLLM_ENDPOINT` and `VLLM_PORT` environment variables in the `.env` file:
+
+```bash
+VLLM_ENDPOINT=localhost
+VLLM_PORT=1053
+```
+
 #### (Alternate) Script Execution for Generation
 
 For those who prefer using script execution instead of the CLI, you can run the following command:
@@ -228,7 +244,7 @@ When specifying multiple models or test categories, separate them with **spaces*
 
 We welcome contributions! To add a new model:
 
-1. Review `bfcl/model_handler/base_handler.py` and/or `bfcl/model_handler/oss_model/base_oss_handler.py` (if your model is hosted locally).
+1. Review `bfcl/model_handler/base_handler.py` and/or `bfcl/model_handler/local_inference/base_oss_handler.py` (if your model is hosted locally).
 2. Implement a new handler class for your model.
 3. Update `bfcl/model_handler/handler_map.py` and `bfcl/eval_checker/model_metadata.py`.
 4. Submit a Pull Request.
