@@ -138,13 +138,25 @@ def sort_key(entry):
 
 
 def is_function_calling_format_output(decoded_output):
-    # Ensure the output is a list of dictionaries
-    if type(decoded_output) == list:
-        for item in decoded_output:
-            if type(item) != dict:
-                return False
-        return True
-    return False
+    """
+    Ensure the output is a list of dictionaries of the form:
+    `[{func1: {param1: val1, param2: val2, ...}}, {func2: {param1: val1, param2: val2, ...}}, ...]`
+    Sometimes the model handler's `decode_ast` method will return successfully, but the output is not in the correct format, and that will mess up the downstream evaluation that expects this format.
+    This is especially the case when the model doesn't predict any function calls, and the output is an human-readable string.
+    Note: Empty list `[]` is considered the correct format in this check.
+    """
+    if type(decoded_output) != list:
+        return False
+    for item in decoded_output:
+        if type(item) != dict:
+            return False
+        # Check for `{func1: {param1: val1, param2: val2, ...}}`, should only have one key-value pair
+        if len(item) != 1:
+            return False
+        # Check for `{param1: val1, param2: val2, ...}`; the parameter-value pairs should be a dictionary
+        if type(list(item.values())[0]) != dict:
+            return False
+    return True
 
 
 def is_executable_format_output(decoded_output):
