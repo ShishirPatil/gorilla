@@ -150,8 +150,10 @@ def is_function_calling_format_output(decoded_output):
     for item in decoded_output:
         if type(item) != dict:
             return False
+        # Check for `{func1: {param1: val1, param2: val2, ...}}`, should only have one key-value pair
         if len(item) != 1:
             return False
+        # Check for `{param1: val1, param2: val2, ...}`; the parameter-value pairs should be a dictionary
         if type(list(item.values())[0]) != dict:
             return False
     return True
