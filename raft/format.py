@@ -183,7 +183,7 @@ class JsonlDatasetExporter(DatasetExporter):
     """
 
     def export(self, ds: Dataset, output_path: str):
-        ds.to_json(append_extension(output_path, "jsonl"))
+        ds.to_json(append_extension(output_path, "jsonl"), force_ascii=False)
 
 
 class ParquetDatasetExporter(DatasetExporter):
@@ -202,6 +202,9 @@ def main():
 
     log_setup()
     args = get_args()
+
+    # print("NhanNam27", args.input)
+
     input_type = args.input_type
 
     # datasets except json when loading jsonl files

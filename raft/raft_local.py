@@ -8,7 +8,11 @@ import os, shutil
 from math import ceil
 from datasets import Dataset, concatenate_datasets
 from transformers import pipeline, AutoTokenizer, AutoModelForSeq2SeqLM, AutoModelForQuestionAnswering
+from langchain_together import ChatTogether
+from langchain_core.prompts import ChatPromptTemplate
 import torch
+import requests
+import time
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("huggingface_script")
@@ -18,6 +22,19 @@ DocType = Literal["api", "pdf", "json", "txt"]
 
 # Every N chunks, save a checkpoint
 N = 15
+
+model = ChatTogether(
+    model="meta-llama/Llama-3.2-90B-Vision-Instruct-Turbo",
+    temperature=0.4,
+    max_tokens=1280,
+)
+
+PROMPT_TEMPLATE = """
+Bạn đang đóng vai trò là một nhân viên hỗ trợ giải đáp thắc mắc của mọi người về quy chế thi của cuộc thi tiếng Anh VSTEP. Hãy nhận biết và trả lời cho câu hỏi: "{question}" bằng cách chỉ dựa vào các đoạn thông tin được trích dẫn dưới đây, không sử dụng thông tin nào khác bên ngoài và hãy trả lời thật đầy đủ và chính xác các thông tin bằng cách diễn giải câu hỏi lại một cách tự nhiên nhất bằng tiếng Việt, bỏ đi những từ ngữ không rõ ràng hoặc không cần thiết, không cần nhắc lại và diễn giải câu hỏi, hãy đưa ra câu trả lời một cách trực tiếp, nếu nội dung bên dưới không đủ để trả lời câu hỏi, hãy đưa ra lời từ chối trả lời một cách lịch sự và khéo léo nếu bạn không thể trả lời:
+
+"{context}"
+
+"""
 
 def get_args() -> argparse.Namespace:
     """
@@ -84,52 +101,132 @@ def get_chunks(file_path: str, doctype: DocType = "pdf", chunk_size: int = 512) 
             
     return chunks
 
+def get_chunks_from_rag() -> list[str]:
+    """
+    Retrieves the chunks from the RAG dataset.
+    """
+    chunks = []
+
+    logger.info(f"Retrieving chunks from RAG API")
+    
+    flask_api_url = os.getenv("RAG_API_URL") + "/get_chunks"
+    
+    try:
+        response = requests.get(flask_api_url)
+        chunks = response.json()
+
+        if not chunks:
+            raise ValueError("No chunks retrieved from RAG API")
+        
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Error retrieving chunks from RAG API: {e}")
+
+        
+    # print("Nhan is here", chunks)
+
+    return chunks
+
 def generate_instructions_hf(chunk: str, x: int = 5, model_name: str = "t5-small") -> list[str]:
     """
     Uses a Hugging Face model to generate `x` questions based on the given text chunk, utilizing the GPU if available.
     """
     # Load the Hugging Face model and tokenizer for question generation
-    tokenizer = AutoTokenizer.from_pretrained(model_name)
-    model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+    # tokenizer = AutoTokenizer.from_pretrained(model_name)
+    # model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
     # Move model to GPU if available
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    model.to(device)
+    # device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    # model.to(device)
 
-    input_text = f"Generate questions based on the following text: {chunk}"
-    inputs = tokenizer(input_text, return_tensors="pt", truncation=True, padding="longest").to(device)
+    # input_text = f"Hãy cho tôi các câu hỏi dựa vào đoạn nội dung sau. Mỗi câu hỏi nên ở 1 dòng riêng biệt, bắt đầu với 1 con số thể hiện số thứ tự của câu hỏi đó: {chunk}. Ví dụ về cấu trúc câu hỏi như sau: 1. Câu hỏi 1 2. Câu hỏi 2 3. Câu hỏi 3 4. Câu hỏi 4 5. Câu hỏi 5"
 
-    outputs = model.generate(
-        inputs.input_ids, 
-        max_length=64, 
-        num_beams=x,  # Using beam search with `x` beams
-        num_return_sequences=x  # Returning `x` sequences
-    )
+    ### Create input text
+    open_sentence = f"Hãy tạo {x} câu hỏi dựa vào đoạn nội dung sau. "
+    format_sentence = f"Mỗi câu hỏi nên nằm trên một dòng riêng biệt, bắt đầu bằng một con số và dấu chấm, như ví dụ sau:\n"
+    
+    for i in range(1, x + 1):
+        format_sentence += f"{i}. Câu hỏi {i}\n"
 
-    questions = [tokenizer.decode(output, skip_special_tokens=True) for output in outputs]
+    chunk_context = f"\nĐoạn nội dung: {chunk}"
+
+    input_text = open_sentence + format_sentence + chunk_context
+
+    # inputs = tokenizer(input_text, return_tensors="pt", truncation=True, padding="longest").to(device)
+
+    # outputs = model.generate(
+    #     inputs.input_ids, 
+    #     max_length=64, 
+    #     num_beams=x,  # Using beam search with `x` beams
+    #     num_return_sequences=x  # Returning `x` sequences
+    # )
+
+    # print("Nhan is here - question")
+    outputs = model.invoke(input_text).content
+
+    lines = outputs.split("\n")
+
+    questions = []
+
+    for line in lines:
+        if line and line.strip().startswith(tuple(f"{i}." for i in range(1, x + 1))):
+            questions.append(line.strip()[3:])
+
+    # questions = [tokenizer.decode(output, skip_special_tokens=True) for output in outputs]
     
     return questions
+
+def generate_instructions_hf_with_rate_limit(chunk, x, retry_attempts=5):
+    for attempt in range(retry_attempts):
+        try:
+            return generate_instructions_hf(chunk, x)
+        except Exception as e:
+            if "429" in str(e):
+                wait_time = 2 ** attempt  # Exponential backoff
+                time.sleep(wait_time)
+            else:
+                raise e
+    raise Exception("Failed after retries due to rate limiting.")
 
 def generate_label_hf(question: str, context: str, model_name: str = "deepset/roberta-base-squad2") -> str:
     """
     Uses a Hugging Face model to generate an answer to the given question based on the context, utilizing the GPU if available.
     """
     # Load the Hugging Face model and tokenizer for question-answering
-    question_answering_pipeline = pipeline("question-answering", model=model_name, device=0 if torch.cuda.is_available() else -1)
+    # question_answering_pipeline = pipeline("question-answering", model=model_name, device=0 if torch.cuda.is_available() else -1)
     
-    result = question_answering_pipeline(question=question, context=context)
+    # result = question_answering_pipeline(question=question, context=context)
     
-    return result['answer']
+    # return result['answer']
+
+    prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
+
+    prompt = prompt_template.format(context=context, question=question)
+
+    # print("Nhan is here - answer")
+    return model.invoke(prompt).content
+
+def generate_label_hf_with_rate_limit(question: str, context: str, retry_attempts=5):
+    for attempt in range(retry_attempts):
+        try:
+            return generate_label_hf(question, context)
+        except Exception as e:
+            if "429" in str(e):
+                wait_time = 2 ** attempt  # Exponential backoff
+                time.sleep(wait_time)
+            else:
+                raise e
+    raise Exception("Failed after retries due to rate limiting.")
 
 def add_chunk_to_dataset(
     chunks: list[str], 
     chunk: str, 
     doctype: DocType = "api", 
-    x: int = 5, 
+    x: int = 5,
     num_distract: int = 3, 
     p: float = 0.8,
     model_name_qg: str = "t5-small",
     model_name_qa: str = "deepset/roberta-base-squad2"
+    # model_name_qa: str = "meta-llama/Llama-3.2-90B-Vision-Instruct-Turbo"
 ) -> None:
     """
     Given a chunk, create {Q, A, D} triplets and add them to the dataset using Hugging Face models.
@@ -138,7 +235,7 @@ def add_chunk_to_dataset(
     i = chunks.index(chunk)
     
     # Use the Hugging Face model to generate questions
-    qs = generate_instructions_hf(chunk, x, model_name=model_name_qg)
+    qs = generate_instructions_hf_with_rate_limit(chunk, x)
     for q in qs:
         datapt = {
             "id": None,
@@ -173,7 +270,7 @@ def add_chunk_to_dataset(
         datapt["oracle_context"] = chunk
 
         # Add the answer generated by the Hugging Face model
-        datapt["cot_answer"] = generate_label_hf(q, chunk, model_name=model_name_qa)
+        datapt["cot_answer"] = generate_label_hf_with_rate_limit(q, chunk)
 
         # Construct model instruction
         context = ""
@@ -220,7 +317,8 @@ def main():
     NUM_DISTRACT_DOCS = args.distractors
 
     # Split the document into chunks
-    chunks = get_chunks(args.datapath, args.doctype, CHUNK_SIZE)
+    # chunks = get_chunks(args.datapath, args.doctype, CHUNK_SIZE)
+    chunks = get_chunks_from_rag()
 
     ds = None
 
