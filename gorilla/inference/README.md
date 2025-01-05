@@ -76,7 +76,7 @@ python3 gorilla_eval.py --model-path path/to/gorilla-7b-hf-v0
 ----answer-file path/to/answers.jsonl
 ```
 
-You could use your own questions and get Gorilla responses. We also provide a set of [questions](https://github.com/ShishirPatil/gorilla/tree/main/eval/eval-data/questions/huggingface) that we used for evaluation.
+You could use your own questions and get Gorilla responses. We also provide a set of [questions](https://github.com/ShishirPatil/gorilla/tree/main/gorilla/eval/eval-data/questions/huggingface) that we used for evaluation.
 
 ### 3. Local Inference of Quantized Models
 
