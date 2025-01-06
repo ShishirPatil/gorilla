@@ -181,7 +181,7 @@
 {"id": "live_simple_180-105-0", "ground_truth": [{"get_service_id": {"service_id": [2], "province_id": [1], "rating": [4.0]}}]}
 {"id": "live_simple_181-106-0", "ground_truth": [{"get_service_id": {"service_id": [2], "province_id": ["", 1], "district_name": ["Chatuchak"], "rating": [4.5]}}]}
 {"id": "live_simple_182-107-0", "ground_truth": [{"get_service_providers": {"service_id": [2], "province_id": [1], "district_name": ["Khlong Sam Wa"], "sub_district_name": ["Sai Kong"], "rating": [4.5]}}]}
-{"id": "live_simple_183-108-0", "ground_truth": [{"getDataForProfessional": {"rating": [2.0], "province_id": [1], "districts_name": ["", "All districts", "Bangkok"], "service_id": [1]}}]}
+{"id": "live_simple_183-108-0", "ground_truth": [{"getDataForProfessional": {"avg_rating": [2.0], "province_id": [1], "districts_name": ["", "All districts", "Bangkok"], "service_id": [1]}}]}
 {"id": "live_simple_184-109-0", "ground_truth": [{"getDataForProfessional": {"service_id": [1], "province_id": [1], "district_name": ["", null], "rating": [4.0]}}]}
 {"id": "live_simple_185-110-0", "ground_truth": [{"get_service_providers": {"service_id": [2], "province_id": [3], "district_name": ["", null], "sub_district_name": ["", null], "rating": [4.5], "start_available_date": ["2023-09-30"]}}]}
 {"id": "live_simple_186-111-0", "ground_truth": [{"get_service_providers": {"service_id": [2], "province_id": [3], "district_name": ["", null], "sub_district_name": ["", null], "rating": [4.5], "start_available_date": ["2024-03-12 16:00:00"], "end_available_date": ["2024-03-12 18:00:00"]}}]}
