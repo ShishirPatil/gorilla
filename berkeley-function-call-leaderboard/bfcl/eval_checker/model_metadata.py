@@ -811,9 +811,9 @@ MODEL_METADATA_MAPPING = {
         "xAI",
         "Proprietary",
     ],
-    "Haha-7B": [
+    "ZJared/Haha-7B": [
         "Haha-7B",
-        "https://www.modelscope.cn/models/z17828079650/Haha-7B",
+        "https://huggingface.co/ZJared/Haha-7B",
         "TeleAI",
         "Apache 2.0",
     ],
