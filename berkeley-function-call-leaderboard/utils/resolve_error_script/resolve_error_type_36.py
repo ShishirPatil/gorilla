@@ -54,6 +54,7 @@ test_categories_total, test_filename_total = parse_test_category_argument(["sing
 for test_category, file_path in zip(test_categories_total, test_filename_total):
     if is_java(test_category) or is_js(test_category):
         continue
+    file_path = "BFCL_v3_" + file_path + ".json"
     dataset_data = load_file(PROMPT_PATH / file_path)
     cleaned = []
     for test_entry in dataset_data:
