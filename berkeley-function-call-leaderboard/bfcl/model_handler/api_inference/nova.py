@@ -6,6 +6,7 @@ from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
+    combine_consecutive_user_prompts,
     convert_to_function_call,
     convert_to_tool,
     extract_system_prompt,
@@ -74,6 +75,11 @@ class NovaHandler(BaseHandler):
         return api_response, end_time - start_time
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
+        for round_idx in range(len(test_entry["question"])):
+            test_entry["question"][round_idx] = combine_consecutive_user_prompts(
+                test_entry["question"][round_idx]
+            )
+
         inference_data["message"] = []
 
         system_prompt = extract_system_prompt(test_entry["question"][0])
