@@ -811,6 +811,12 @@ MODEL_METADATA_MAPPING = {
         "xAI",
         "Proprietary",
     ],
+    "ZJared/Haha-7B": [
+        "Haha-7B",
+        "https://huggingface.co/ZJared/Haha-7B",
+        "TeleAI",
+        "Apache 2.0",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
