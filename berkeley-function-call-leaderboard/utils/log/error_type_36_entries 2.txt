@@ -1,3 +1,0 @@
-live_irrelevance_655-207-0,/ true,/ boolean,/ <class 'bool'>,/ <class 'str'>
-live_irrelevance_712-236-0,/ Group A,/ integer,/ <class 'int'>,/ <class 'str'>
-live_multiple_911-190-0,/ Group A,/ integer,/ <class 'int'>,/ <class 'str'>

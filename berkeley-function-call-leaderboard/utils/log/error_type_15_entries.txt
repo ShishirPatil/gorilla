@@ -59,6 +59,7 @@ irrelevance_105,/ resolution
 irrelevance_106,/ parameters_needed
 irrelevance_109,/ season
 irrelevance_110,/ unit
+irrelevance_111,/ availability
 irrelevance_112,/ locale
 irrelevance_114,/ limit
 irrelevance_117,/ unit
@@ -75,6 +76,7 @@ irrelevance_144,/ chapter
 irrelevance_146,/ historical_context
 irrelevance_147,/ ratio
 irrelevance_152,/ material
+irrelevance_153,/ brand_preference
 irrelevance_160,/ minimum_visits
 irrelevance_162,/ country
 irrelevance_166,/ duration
@@ -112,9 +114,12 @@ live_irrelevance_3-0-3,/ proxies
 live_irrelevance_4-0-4,/ cert
 live_irrelevance_5-0-5,/ cookies
 live_irrelevance_6-0-6,/ cert
+live_irrelevance_7-0-7,/ cookies
 live_irrelevance_8-0-8,/ proxies
 live_irrelevance_9-0-9,/ proxies
 live_irrelevance_286-68-0,/ versionStart
+live_multiple_305-131-4,/ location
+live_multiple_305-131-4,/ location
 live_multiple_503-149-0,/ number_of_tickets
 multiple_3,/ rounding
 multiple_3,/ rounding
@@ -125,6 +130,7 @@ multiple_13,/ sales_units_increase_percentage
 multiple_14,/ inflation_rate
 multiple_15,/ month
 multiple_15,/ month
+multiple_19,/ count
 multiple_23,/ stats_fields
 multiple_25,/ region
 multiple_25,/ region
@@ -293,6 +299,7 @@ multiple_148,/ timezone
 multiple_148,/ market
 multiple_149,/ system
 multiple_150,/ constant
+multiple_150,/ weight
 multiple_150,/ rating
 multiple_151,/ sub_topics
 multiple_152,/ event_type
@@ -458,6 +465,7 @@ parallel_multiple_3,/ tolerance
 parallel_multiple_12,/ permeability
 parallel_multiple_13,/ round_to
 parallel_multiple_13,/ unit
+parallel_multiple_15,/ rating
 parallel_multiple_26,/ starting_balance
 parallel_multiple_28,/ optional_param
 parallel_multiple_33,/ openNow
@@ -782,6 +790,7 @@ simple_254,/ event_type
 simple_256,/ background
 simple_257,/ standard
 simple_258,/ lightness
+simple_260,/ exclusion
 simple_261,/ color
 simple_262,/ dominant_color
 simple_263,/ detail
