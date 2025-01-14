@@ -12,7 +12,7 @@ from bfcl.model_handler.utils import (
     func_doc_language_specific_pre_processing,
     retry_with_backoff,
 )
-
+from tenacity import RetryCallState
 
 class NovaHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:
@@ -38,6 +38,9 @@ class NovaHandler(BaseHandler):
 
     @staticmethod
     def retry_condition(retry_state):
+        # print(type(retry_state))
+        if type(retry_state) is not RetryCallState:
+            return False
         if "(ThrottlingException)" in str(retry_state.outcome.exception()):
             return True
         return False
@@ -67,10 +70,9 @@ class NovaHandler(BaseHandler):
             "system_prompt": system_prompt,
         }
 
-        start_time = time.time()
         if len(tools) > 0:
             # toolConfig requires minimum number of 1 item.
-            api_response = self.generate_with_backoff(
+            return self.generate_with_backoff(
                 modelId=f"us.amazon.{self.model_name.replace('.', ':')}",
                 messages=message,
                 system=system_prompt,
@@ -78,15 +80,12 @@ class NovaHandler(BaseHandler):
                 toolConfig={"tools": tools},
             )
         else:
-            api_response = self.generate_with_backoff(
+            return self.generate_with_backoff(
                 modelId=f"us.amazon.{self.model_name.replace('.', ':')}",
                 messages=message,
                 system=system_prompt,
                 inferenceConfig={"temperature": self.temperature},
             )
-        end_time = time.time()
-
-        return api_response, end_time - start_time
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         inference_data["message"] = []
