@@ -13,8 +13,8 @@ from bfcl.model_handler.parser.java_parser import parse_java_function_call
 from bfcl.model_handler.parser.js_parser import parse_javascript_function_call
 from tenacity import (
     retry,
+    retry_if_exception_message,
     retry_if_exception_type,
-    retry_if_result,
     wait_random_exponential,
 )
 
@@ -730,7 +730,7 @@ def decoded_output_to_execution_list(decoded_output):
 
 def retry_with_backoff(
     error_type: Optional[Type[Exception]] = None,
-    retry_condition: Optional[Callable[[any], bool]] = None,
+    error_message_pattern: Optional[str] = None,
     min_wait: int = 6,
     max_wait: int = 120,
     **kwargs,
@@ -739,14 +739,14 @@ def retry_with_backoff(
     Decorator to retry a function with exponential backoff based on specified error types or result conditions.
 
     Note:
-        At least one of `error_type` or `retry_condition` must be provided.
-        If both `error_type` and `retry_condition` are provided, the retry will occur if either condition is met.
+        At least one of `error_type` or `error_message_pattern` must be provided.
+        If both `error_type` and `error_message_pattern` are provided, the retry will occur if either condition is met.
 
     Args:
         error_type (Type[Exception], optional): The exception type to retry on.
-        retry_condition (Callable[[any], bool], optional):
-            A callable that takes the function's result and returns True if a retry should occur.
-            This is useful when the user wants to retry based on the exception message or result,
+        error_message_pattern (str, optional):
+            A regex pattern to match against the exception message to retry on.
+            This is useful when the user wants to retry based on the exception message,
             especially if the exception raised is too broad.
         min_wait (int, optional): Minimum wait time in seconds for the backoff.
         max_wait (int, optional): Maximum wait time in seconds for the backoff.
@@ -761,8 +761,8 @@ def retry_with_backoff(
         conditions = []
         if error_type is not None:
             conditions.append(retry_if_exception_type(error_type))
-        if retry_condition is not None:
-            conditions.append(retry_if_result(retry_condition))
+        if error_message_pattern is not None:
+            conditions.append(retry_if_exception_message(match=error_message_pattern))
 
         if not conditions:
             raise ValueError("Either error_type or retry_condition must be provided.")

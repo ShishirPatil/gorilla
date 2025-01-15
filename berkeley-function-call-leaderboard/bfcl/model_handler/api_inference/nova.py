@@ -36,16 +36,7 @@ class NovaHandler(BaseHandler):
             return []
         return convert_to_function_call(result)
 
-    @staticmethod
-    def retry_condition(retry_state):
-        # print(type(retry_state))
-        if type(retry_state) is not RetryCallState:
-            return False
-        if "(ThrottlingException)" in str(retry_state.outcome.exception()):
-            return True
-        return False
-
-    @retry_with_backoff(retry_condition=retry_condition)
+    @retry_with_backoff(error_message_pattern=r".*\(ThrottlingException\).*")
     def generate_with_backoff(self, **kwargs):
         start_time = time.time()
         api_response = self.client.converse(**kwargs)
