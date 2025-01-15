@@ -101,7 +101,7 @@ class CohereHandler(BaseHandler):
         }
         return metadata, latency
 
-    @retry_with_backoff(Exception, stop=stop_after_attempt(5), reraise=True)
+    @retry_with_backoff(error_type=Exception, stop=stop_after_attempt(5), reraise=True)
     def generate_with_backoff(
         self,
         messages: list,

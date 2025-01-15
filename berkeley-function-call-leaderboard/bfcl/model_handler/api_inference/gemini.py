@@ -72,7 +72,7 @@ class GeminiHandler(BaseHandler):
                     )
             return func_call_list
 
-    @retry_with_backoff(ResourceExhausted)
+    @retry_with_backoff(error_type=ResourceExhausted)
     def generate_with_backoff(self, client, **kwargs):
         start_time = time.time()
         api_response = client.generate_content(**kwargs)

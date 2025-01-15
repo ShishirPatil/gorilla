@@ -18,7 +18,7 @@ class DeepSeekAPIHandler(OpenAIHandler):
             base_url="https://api.deepseek.com", api_key=os.getenv("DEEPSEEK_API_KEY")
         )
 
-    @retry_with_backoff(RateLimitError)
+    @retry_with_backoff(error_type=RateLimitError)
     def generate_with_backoff(self, **kwargs):
         """
         Per the DeepSeek API documentation:

@@ -70,7 +70,7 @@ class ClaudeHandler(BaseHandler):
             function_call = convert_to_function_call(result)
             return function_call
 
-    @retry_with_backoff(RateLimitError)
+    @retry_with_backoff(error_type=RateLimitError)
     def generate_with_backoff(self, **kwargs):
         start_time = time.time()
         api_response = self.client.beta.prompt_caching.messages.create(**kwargs)
