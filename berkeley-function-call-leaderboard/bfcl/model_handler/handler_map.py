@@ -157,6 +157,7 @@ local_inference_handler_map = {
     "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct": DeepseekCoderHandler,
     "deepseek-ai/DeepSeek-V2-Chat-0628": DeepseekHandler,
     "deepseek-ai/DeepSeek-V2-Lite-Chat": DeepseekHandler,
+    "ZJared/Haha-7B": QwenHandler,
 }
 
 # Deprecated/outdated models, no longer on the leaderboard

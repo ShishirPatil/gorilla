@@ -2,14 +2,21 @@ import ast
 import builtins
 import copy
 import json
-import os
+import operator
 import re
+from functools import reduce
+from typing import Callable, Optional, Type
 
 from bfcl.model_handler.constant import DEFAULT_SYSTEM_PROMPT, GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.parser.java_parser import parse_java_function_call
 from bfcl.model_handler.parser.js_parser import parse_javascript_function_call
-from tenacity import retry, retry_if_exception_type, wait_random_exponential
+from tenacity import (
+    retry,
+    retry_if_exception_message,
+    retry_if_exception_type,
+    wait_random_exponential,
+)
 
 
 def _cast_to_openai_type(properties, mapping):
@@ -721,27 +728,60 @@ def decoded_output_to_execution_list(decoded_output):
     return execution_list
 
 
-def retry_with_backoff(error_type, min_wait=6, max_wait=120, **kwargs):
+def retry_with_backoff(
+    error_type: Optional[Type[Exception]] = None,
+    error_message_pattern: Optional[str] = None,
+    min_wait: int = 6,
+    max_wait: int = 120,
+    **kwargs,
+) -> Callable:
     """
-    General decorator to retry with backoff for a specific error type.
+    Decorator to retry a function with exponential backoff based on specified error types or result conditions.
 
-    :param error_type: The exception type to retry on.
-    :param min_wait: Minimum wait time for the backoff.
-    :param max_wait: Maximum wait time for the backoff.
+    Note:
+        At least one of `error_type` or `error_message_pattern` must be provided.
+        If both `error_type` and `error_message_pattern` are provided, the retry will occur if either condition is met.
+
+    Args:
+        error_type (Type[Exception], optional): The exception type to retry on.
+        error_message_pattern (str, optional):
+            A regex pattern to match against the exception message to retry on.
+            This is useful when the user wants to retry based on the exception message,
+            especially if the exception raised is too broad.
+        min_wait (int, optional): Minimum wait time in seconds for the backoff.
+        max_wait (int, optional): Maximum wait time in seconds for the backoff.
+        **kwargs: Additional keyword arguments for the `tenacity.retry` decorator, such as `stop`, `reraise`, etc.
+
+    Returns:
+        Callable: The decorated function with retry logic applied.
     """
 
-    def decorator(func):
+    def decorator(func: Callable) -> Callable:
+        # Collect retry conditions based on provided parameters
+        conditions = []
+        if error_type is not None:
+            conditions.append(retry_if_exception_type(error_type))
+        if error_message_pattern is not None:
+            conditions.append(retry_if_exception_message(match=error_message_pattern))
+
+        if not conditions:
+            raise ValueError("Either error_type or retry_condition must be provided.")
+
+        # Combine all conditions using logical OR
+        retry_policy = reduce(operator.or_, conditions)
+
         @retry(
             wait=wait_random_exponential(min=min_wait, max=max_wait),
-            retry=retry_if_exception_type(error_type),
+            retry=retry_policy,
             before_sleep=lambda retry_state: print(
-                f"Attempt {retry_state.attempt_number} failed. Sleeping for {float(round(retry_state.next_action.sleep, 2))} seconds before retrying..."
+                f"Attempt {retry_state.attempt_number} failed. "
+                f"Sleeping for {retry_state.next_action.sleep:.2f} seconds before retrying... "
                 f"Error: {retry_state.outcome.exception()}"
             ),
             **kwargs,
         )
-        def wrapped(*args, **kwargs):
-            return func(*args, **kwargs)
+        def wrapped(*args, **inner_kwargs):
+            return func(*args, **inner_kwargs)
 
         return wrapped
 
