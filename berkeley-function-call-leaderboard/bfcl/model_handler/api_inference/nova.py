@@ -10,8 +10,8 @@ from bfcl.model_handler.utils import (
     convert_to_tool,
     extract_system_prompt,
     func_doc_language_specific_pre_processing,
+    retry_with_backoff,
 )
-
 
 class NovaHandler(BaseHandler):
     def __init__(self, model_name, temperature) -> None:
@@ -35,6 +35,14 @@ class NovaHandler(BaseHandler):
             return []
         return convert_to_function_call(result)
 
+    @retry_with_backoff(error_message_pattern=r".*\(ThrottlingException\).*")
+    def generate_with_backoff(self, **kwargs):
+        start_time = time.time()
+        api_response = self.client.converse(**kwargs)
+        end_time = time.time()
+
+        return api_response, end_time - start_time
+
     #### FC methods ####
 
     def _query_FC(self, inference_data: dict):
@@ -52,10 +60,9 @@ class NovaHandler(BaseHandler):
             "system_prompt": system_prompt,
         }
 
-        start_time = time.time()
         if len(tools) > 0:
             # toolConfig requires minimum number of 1 item.
-            api_response = self.client.converse(
+            return self.generate_with_backoff(
                 modelId=f"us.amazon.{self.model_name.replace('.', ':')}",
                 messages=message,
                 system=system_prompt,
@@ -63,15 +70,12 @@ class NovaHandler(BaseHandler):
                 toolConfig={"tools": tools},
             )
         else:
-            api_response = self.client.converse(
+            return self.generate_with_backoff(
                 modelId=f"us.amazon.{self.model_name.replace('.', ':')}",
                 messages=message,
                 system=system_prompt,
                 inferenceConfig={"temperature": self.temperature},
             )
-        end_time = time.time()
-
-        return api_response, end_time - start_time
 
     def _pre_query_processing_FC(self, inference_data: dict, test_entry: dict) -> dict:
         inference_data["message"] = []
