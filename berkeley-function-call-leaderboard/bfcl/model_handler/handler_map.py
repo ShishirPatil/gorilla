@@ -15,6 +15,7 @@ from bfcl.model_handler.api_inference.nvidia import NvidiaHandler
 from bfcl.model_handler.api_inference.openai import OpenAIHandler
 from bfcl.model_handler.api_inference.writer import WriterHandler
 from bfcl.model_handler.api_inference.yi import YiHandler
+from bfcl.model_handler.local_inference.bielik import BielikHandler
 from bfcl.model_handler.local_inference.deepseek import DeepseekHandler
 from bfcl.model_handler.local_inference.deepseek_coder import DeepseekCoderHandler
 from bfcl.model_handler.local_inference.gemma import GemmaHandler
@@ -158,6 +159,7 @@ local_inference_handler_map = {
     "deepseek-ai/DeepSeek-V2-Chat-0628": DeepseekHandler,
     "deepseek-ai/DeepSeek-V2-Lite-Chat": DeepseekHandler,
     "ZJared/Haha-7B": QwenHandler,
+    "speakleash/Bielik-11B-v2.3-Instruct": BielikHandler
 }
 
 # Deprecated/outdated models, no longer on the leaderboard

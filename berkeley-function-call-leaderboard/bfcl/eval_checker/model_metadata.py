@@ -817,6 +817,12 @@ MODEL_METADATA_MAPPING = {
         "TeleAI",
         "Apache 2.0",
     ],
+    "speakleash/Bielik-11B-v2.3-Instruct": [
+        "Bielik-11B-v2.3-Instruct",
+        "https://huggingface.co/speakleash/Bielik-11B-v2.3-Instruct",
+        "SpeakLeash & ACK Cyfronet AGH",
+        "Apache 2.0",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
