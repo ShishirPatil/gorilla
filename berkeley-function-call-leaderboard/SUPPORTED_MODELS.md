@@ -97,6 +97,8 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |Team-ACE/ToolACE-8B 💻| Function Calling|
 |watt-ai/watt-tool-{8B,70B} 💻| Function Calling|
 |ZJared/Haha-7B 💻| Prompt|
+|Qwen/QwQ-32B-Preview 💻| Prompt|
+|NovaSky-AI/Sky-T1-32B-Preview 💻| Prompt|
 
 ---
 
