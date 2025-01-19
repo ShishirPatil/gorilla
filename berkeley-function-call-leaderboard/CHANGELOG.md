@@ -2,6 +2,9 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Jan 18, 2025] [#888](https://github.com/ShishirPatil/gorilla/pull/888): Add the following new models to the leaderboard:
+  - `NovaSky-AI/Sky-T1-32B-Preview`
+  - `Qwen/QwQ-32B-Preview`
 - [Jan 12, 2025] [#881](https://github.com/ShishirPatil/gorilla/pull/881): Fix Nova handler for consecutive user prompt issue.
 - [Jan 11, 2025] : Add new model `ZJared/Haha-7B` to the leaderboard.
 - [Jan 4, 2025] [#865](https://github.com/ShishirPatil/gorilla/pull/865): Fix a copy-paste issue in `live_parallel_multiple_9-8-0` that caused a misalignment between the question and the possible answer.
