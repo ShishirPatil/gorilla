@@ -159,7 +159,9 @@ local_inference_handler_map = {
     "deepseek-ai/DeepSeek-V2-Chat-0628": DeepseekHandler,
     "deepseek-ai/DeepSeek-V2-Lite-Chat": DeepseekHandler,
     "ZJared/Haha-7B": QwenHandler,
-    "speakleash/Bielik-11B-v2.3-Instruct": BielikHandler
+    "speakleash/Bielik-11B-v2.3-Instruct": BielikHandler,
+    "NovaSky-AI/Sky-T1-32B-Preview": QwenHandler,
+    "Qwen/QwQ-32B-Preview": QwenHandler,
 }
 
 # Deprecated/outdated models, no longer on the leaderboard

@@ -823,6 +823,18 @@ MODEL_METADATA_MAPPING = {
         "SpeakLeash & ACK Cyfronet AGH",
         "Apache 2.0",
     ],
+    "NovaSky-AI/Sky-T1-32B-Preview": [
+        "Sky-T1-32B-Preview (Prompt)",
+        "https://huggingface.co/NovaSky-AI/Sky-T1-32B-Preview",
+        "NovaSky-AI",
+        "apache-2.0",
+    ],
+    "Qwen/QwQ-32B-Preview": [
+        "QwQ-32B-Preview (Prompt)",
+        "https://huggingface.co/Qwen/QwQ-32B-Preview",
+        "Qwen",
+        "apache-2.0",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
