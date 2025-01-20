@@ -818,7 +818,7 @@ MODEL_METADATA_MAPPING = {
         "Apache 2.0",
     ],
     "speakleash/Bielik-11B-v2.3-Instruct": [
-        "Bielik-11B-v2.3-Instruct",
+        "Bielik-11B-v2.3-Instruct (Prompt)",
         "https://huggingface.co/speakleash/Bielik-11B-v2.3-Instruct",
         "SpeakLeash & ACK Cyfronet AGH",
         "Apache 2.0",
