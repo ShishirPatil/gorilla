@@ -138,13 +138,5 @@ class WebSearchAPI:
             else:
                 raise ValueError(f"Unsupported mode: {mode}")
 
-        except requests.exceptions.Timeout:
-            return {"error": f"Timeout occurred while fetching {url}"}
-        except requests.exceptions.ConnectionError:
-            return {"error": f"Connection error occurred while fetching {url}"}
-        except requests.exceptions.HTTPError as e:
-            return {"error": f"HTTP error occurred while fetching {url}: {str(e)}"}
-        except requests.exceptions.RequestException as e:
-            return {"error": f"An error occurred while fetching {url}: {str(e)}"}
-        except ValueError as e:
+        except Exception as e:
             return {"error": str(e)}
