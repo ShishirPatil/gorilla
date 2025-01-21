@@ -6,13 +6,15 @@ from duckduckgo_search import DDGS
 
 class WebSearchAPI:
 
-    @staticmethod
-    def duckduckgo_search(keywords: str, region: str = "wt-wt"):
+    def duckduckgo_search(
+        self, keywords: str, max_results: int = 10, region: str = "wt-wt"
+    ) -> list:
         """
         This function searches DuckDuckGo for the provided keywords and region.
 
         Args:
             keywords (str): The keywords to search for.
+            max_results (int, optional): The maximum number of search results to return. Defaults to 10.
             region (str, optional): The region to search in. Defaults to "wt-wt". Possible values include:
                 - xa-ar for Arabia
                 - xa-en for Arabia (en)
@@ -90,12 +92,11 @@ class WebSearchAPI:
             - 'body' (str): A brief description or snippet from the search result.
         """
         try:
-            return DDGS().text(keywords=keywords, region=region)
+            return DDGS().text(keywords=keywords, region=region, max_results=max_results)
         except Exception as e:
             return {"error": str(e)}
 
-    @staticmethod
-    def fetch(url: str, mode: str = "raw") -> str:
+    def fetch(self, url: str, mode: str = "raw") -> str:
         """
         This function retrieves content from the provided URL and processes it based on the selected mode.
 

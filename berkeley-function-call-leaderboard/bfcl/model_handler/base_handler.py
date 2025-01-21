@@ -14,7 +14,13 @@ from bfcl.model_handler.constant import (
     MAXIMUM_STEP_LIMIT,
 )
 from bfcl.model_handler.model_style import ModelStyle
-from bfcl.utils import load_file, make_json_serializable, sort_key
+from bfcl.utils import (
+    is_agentic,
+    is_multi_turn,
+    load_file,
+    make_json_serializable,
+    sort_key,
+)
 from overrides import final
 
 
@@ -38,13 +44,13 @@ class BaseHandler:
         # FC model
         # TODO: Let all models have the is_fc_model attribute and remove the "FC" check
         if "FC" in self.model_name or self.is_fc_model:
-            if "multi_turn" in test_entry["id"]:
+            if is_multi_turn(test_entry["id"]) or is_agentic(test_entry["id"]):
                 return self.inference_multi_turn_FC(test_entry, include_input_log, exclude_state_log)
             else:
                 return self.inference_single_turn_FC(test_entry, include_input_log)
         # Prompting model
         else:
-            if "multi_turn" in test_entry["id"]:
+            if is_multi_turn(test_entry["id"]) or is_agentic(test_entry["id"]):
                 return self.inference_multi_turn_prompting(
                     test_entry, include_input_log, exclude_state_log
                 )
