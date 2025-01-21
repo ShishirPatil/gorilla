@@ -72,6 +72,9 @@ TEST_COLLECTION_MAPPING = {
         "multi_turn_long_context",
         "web_search",
     ],
+    "agentic": [
+        "web_search",
+    ],
     "multi_turn": [
         "multi_turn_base",
         "multi_turn_miss_func",

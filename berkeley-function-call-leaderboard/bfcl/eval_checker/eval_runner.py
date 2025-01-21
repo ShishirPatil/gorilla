@@ -11,6 +11,7 @@ from bfcl.constant import (
     TEST_FILE_MAPPING,
     VERSION_PREFIX,
 )
+from bfcl.eval_checker.agentic_eval.agentic_checker import agentic_checker
 from bfcl.eval_checker.ast_eval.ast_checker import ast_checker
 from bfcl.eval_checker.eval_runner_helper import *
 from bfcl.eval_checker.executable_eval.custom_exception import BadAPIStatusError
@@ -31,6 +32,129 @@ from tqdm import tqdm
 # A dictionary to store the evaluation scores.
 # Key is model name, value is a dictionary with keys as test category and values as a dictionary with accuracy and total count
 LEADERBOARD_TABLE = {}
+
+
+def agentic_runner(
+    handler, model_result, prompt, possible_answer, model_name, test_category, score_dir
+):
+    assert (
+        len(model_result) == len(prompt) == len(possible_answer)
+    ), f"The length of the model result ({len(model_result)}) does not match the length of the prompt ({len(prompt)}) or possible answer ({len(possible_answer)}). Please check the input files for completeness."
+
+    result = []
+    correct_count = 0
+    for i in range(len(model_result)):
+        index: str = model_result[i]["id"]
+        # Model result is stored as a list of list of model responses. Each inner list represents a turn.
+        # In this case, the outer list only contains one element, as there should only be one turn.
+        model_result_list: list[list] = model_result[i]["result"]
+        possible_answer_item: list[str] = possible_answer[i]["ground_truth"]
+        test_entry: dict = prompt[i]
+
+        # Remove the function doc from the score file for better readability; they are repeated and way too long
+        if "function" in test_entry:
+            del test_entry["function"]
+
+        if type(model_result_list) != list or len(model_result_list) != 1:
+            result.append(
+                {
+                    "id": index,
+                    "model_name": model_name,
+                    "test_category": test_category,
+                    "valid": False,
+                    "error": {
+                        "error_message": [
+                            "Error during inference phase. Model did not output a list of model responses."
+                        ],
+                        "error_type": "agentic:inference_error",
+                    },
+                    "prompt": test_entry,
+                    "model_result": model_result_list,
+                    "possible_answer": possible_answer_item,
+                }
+            )
+
+        # Try decoding the model results into executable function calls
+        # Note: We only care about the last non-function-call message, which should fail to get decoded.
+        # We don't care about the function calls in the middle of the conversation.
+        # We only check if the expected answer is mentioned in the last message.
+        # decode_execute returns a list of strings
+        model_result_list_decoded: list[list[str]] = []
+        last_unsuccessful_decoding_message = None
+
+        for model_result_item in model_result_list[0]:
+            # model_result_item is per step
+            try:
+                decoded_result: list[str] = handler.decode_execute(model_result_item)
+                if is_empty_execute_response(decoded_result):
+                    last_unsuccessful_decoding_message = model_result_item
+                    continue
+
+                model_result_list_decoded.append(decoded_result)
+
+            except Exception as e:
+                last_unsuccessful_decoding_message = model_result_item
+                continue
+
+        if (
+            not last_unsuccessful_decoding_message
+            or type(last_unsuccessful_decoding_message) != str
+        ):
+            result.append(
+                {
+                    "id": index,
+                    "model_name": model_name,
+                    "test_category": test_category,
+                    "valid": False,
+                    "error": {
+                        "error_message": [
+                            "Cannot find the last chat message that is not a function call."
+                        ],
+                        "error_type": "agentic:no_last_message",
+                    },
+                    "prompt": test_entry,
+                    "model_result": model_result_list,
+                    "model_result_decoded": model_result_list_decoded,
+                    "possible_answer": possible_answer_item,
+                }
+            )
+
+        # Check if the model output contains the expected answer
+        accuracy_checker_result = agentic_checker(
+            last_unsuccessful_decoding_message,
+            possible_answer_item,
+        )
+
+        if not accuracy_checker_result["valid"]:
+            temp = {}
+            temp["id"] = index
+            temp["model_name"] = model_name
+            temp["test_category"] = test_category
+            temp["valid"] = accuracy_checker_result.pop("valid")
+            temp["error"] = accuracy_checker_result
+            temp["prompt"] = test_entry
+            temp["model_result_raw"] = model_result_list
+            temp["model_result_decoded"] = model_result_list_decoded
+            temp["possible_answer"] = possible_answer_item
+            temp["inference_log"] = model_result[i].get("inference_log", "")
+            result.append(temp)
+        else:
+            correct_count += 1
+
+    accuracy = correct_count / len(model_result)
+    result.insert(
+        0,
+        {
+            "accuracy": accuracy,
+            "correct_count": correct_count,
+            "total_count": len(model_result),
+        },
+    )
+    output_file_name = f"{VERSION_PREFIX}_{test_category}_score.json"
+    output_file_dir = score_dir / model_name
+    write_list_of_dicts_to_file(output_file_name, result, output_file_dir)
+
+    return accuracy, len(model_result)
 
 
 def multi_turn_runner(
@@ -174,13 +298,14 @@ def executable_file_runner(
     result = []
     correct_count = 0
     for i in tqdm(range(len(model_result)), desc="Running tests"):
+        index: str = model_result[i]["id"]
         raw_result = model_result[i]["result"]
         try:
             decoded_result = handler.decode_execute(raw_result)
         except Exception as e:
             result.append(
                 {
-                    "id": i + 1,
+                    "id": index,
                     "model_name": model_name,
                     "test_category": test_category,
                     "valid": False,
@@ -197,7 +322,7 @@ def executable_file_runner(
             if not is_rest_format_output(decoded_result):
                 result.append(
                     {
-                        "id": i + 1,
+                        "id": index,
                         "model_name": model_name,
                         "test_category": test_category,
                         "valid": False,
@@ -218,7 +343,7 @@ def executable_file_runner(
             if not is_executable_format_output(decoded_result):
                 result.append(
                     {
-                        "id": i + 1,
+                        "id": index,
                         "model_name": model_name,
                         "test_category": test_category,
                         "valid": False,
@@ -242,7 +367,7 @@ def executable_file_runner(
             correct_count += 1
         else:
             temp = {}
-            temp["id"] = i + 1
+            temp["id"] = index
             temp["model_name"] = model_name
             temp["test_category"] = test_category
             temp["valid"] = checker_result["valid"]
@@ -281,6 +406,7 @@ def relevance_file_runner(
     result = []
     correct_count = 0
     for i in range(len(model_result)):
+        index: str = model_result[i]["id"]
         model_result_item = model_result[i]["result"]
         contain_func_call = False
         decoded_result = None
@@ -309,7 +435,7 @@ def relevance_file_runner(
             correct_count += 1
         else:
             temp = {}
-            temp["id"] = i + 1
+            temp["id"] = index
             temp["model_name"] = model_name
             temp["test_category"] = test_category
             temp["valid"] = success
@@ -362,6 +488,7 @@ def ast_file_runner(
     result = []
     correct_count = 0
     for i in range(len(model_result)):
+        index: str = model_result[i]["id"]
         model_result_item = model_result[i]["result"]
         prompt_item = prompt[i]["function"]
         possible_answer_item = possible_answer[i]["ground_truth"]
@@ -372,7 +499,7 @@ def ast_file_runner(
         except Exception as e:
             result.append(
                 {
-                    "id": i + 1,
+                    "id": index,
                     "model_name": model_name,
                     "test_category": test_category,
                     "valid": False,
@@ -389,7 +516,7 @@ def ast_file_runner(
         if not decoder_output_valid:
             result.append(
                 {
-                    "id": i + 1,
+                    "id": index,
                     "model_name": model_name,
                     "test_category": test_category,
                     "valid": False,
@@ -418,7 +545,7 @@ def ast_file_runner(
             correct_count += 1
         else:
             temp = {}
-            temp["id"] = i + 1
+            temp["id"] = index
             temp["model_name"] = model_name
             temp["test_category"] = test_category
             temp["valid"] = checker_result["valid"]
@@ -571,6 +698,20 @@ def runner(model_names, test_categories, api_sanity_check, result_dir, score_dir
 
             if is_multi_turn(test_category):
                 accuracy, total_count = multi_turn_runner(
+                    handler,
+                    model_result,
+                    prompt,
+                    possible_answer,
+                    model_name,
+                    test_category,
+                    score_dir,
+                )
+                record_result(
+                    LEADERBOARD_TABLE, model_name, test_category, accuracy, total_count
+                )
+                print(f"✅ Test completed: {test_category}. 🎯 Accuracy: {accuracy}")
+            elif is_agentic(test_category):
+                accuracy, total_count = agentic_runner(
                     handler,
                     model_result,
                     prompt,
