@@ -817,6 +817,12 @@ MODEL_METADATA_MAPPING = {
         "TeleAI",
         "Apache 2.0",
     ],
+    "speakleash/Bielik-11B-v2.3-Instruct": [
+        "Bielik-11B-v2.3-Instruct (Prompt)",
+        "https://huggingface.co/speakleash/Bielik-11B-v2.3-Instruct",
+        "SpeakLeash & ACK Cyfronet AGH",
+        "Apache 2.0",
+    ],
     "NovaSky-AI/Sky-T1-32B-Preview": [
         "Sky-T1-32B-Preview (Prompt)",
         "https://huggingface.co/NovaSky-AI/Sky-T1-32B-Preview",

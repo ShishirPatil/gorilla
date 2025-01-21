@@ -15,6 +15,7 @@ from bfcl.model_handler.api_inference.nvidia import NvidiaHandler
 from bfcl.model_handler.api_inference.openai import OpenAIHandler
 from bfcl.model_handler.api_inference.writer import WriterHandler
 from bfcl.model_handler.api_inference.yi import YiHandler
+from bfcl.model_handler.local_inference.bielik import BielikHandler
 from bfcl.model_handler.local_inference.deepseek import DeepseekHandler
 from bfcl.model_handler.local_inference.deepseek_coder import DeepseekCoderHandler
 from bfcl.model_handler.local_inference.gemma import GemmaHandler
@@ -29,6 +30,7 @@ from bfcl.model_handler.local_inference.minicpm import MiniCPMHandler
 from bfcl.model_handler.local_inference.minicpm_fc import MiniCPMFCHandler
 from bfcl.model_handler.local_inference.mistral_fc import MistralFCHandler
 from bfcl.model_handler.local_inference.phi import PhiHandler
+from bfcl.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
 from bfcl.model_handler.local_inference.qwen import QwenHandler
 from bfcl.model_handler.local_inference.salesforce import SalesforceHandler
 
@@ -158,6 +160,7 @@ local_inference_handler_map = {
     "deepseek-ai/DeepSeek-V2-Chat-0628": DeepseekHandler,
     "deepseek-ai/DeepSeek-V2-Lite-Chat": DeepseekHandler,
     "ZJared/Haha-7B": QwenHandler,
+    "speakleash/Bielik-11B-v2.3-Instruct": BielikHandler,
     "NovaSky-AI/Sky-T1-32B-Preview": QwenHandler,
     "Qwen/QwQ-32B-Preview": QwenHandler,
 }
