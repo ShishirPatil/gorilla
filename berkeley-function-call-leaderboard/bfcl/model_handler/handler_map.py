@@ -30,6 +30,7 @@ from bfcl.model_handler.local_inference.minicpm import MiniCPMHandler
 from bfcl.model_handler.local_inference.minicpm_fc import MiniCPMFCHandler
 from bfcl.model_handler.local_inference.mistral_fc import MistralFCHandler
 from bfcl.model_handler.local_inference.phi import PhiHandler
+from bfcl.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
 from bfcl.model_handler.local_inference.qwen import QwenHandler
 from bfcl.model_handler.local_inference.salesforce import SalesforceHandler
 
