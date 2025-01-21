@@ -96,7 +96,7 @@ class WebSearchAPI:
         except Exception as e:
             return {"error": str(e)}
 
-    def fetch(self, url: str, mode: str = "raw") -> str:
+    def fetch_url_content(self, url: str, mode: str = "raw") -> str:
         """
         This function retrieves content from the provided URL and processes it based on the selected mode.
 
@@ -105,7 +105,7 @@ class WebSearchAPI:
             mode (str, optional): The mode to process the fetched content. Defaults to "raw".
                 Supported modes are:
                     - "raw": Returns the raw HTML content.
-                    - "markdown": Converts HTML content to Markdown format, using html2text.
+                    - "markdown": Converts raw HTML content to Markdown format for better readability, using html2text.
                     - "truncate": Extracts and cleans text by removing scripts, styles, and extraneous whitespace.
         """
         try:
@@ -140,6 +140,7 @@ class WebSearchAPI:
             # Process the response based on the mode
             if mode == "raw":
                 return {"content": response.text}
+
             elif mode == "markdown":
                 converter = html2text.HTML2Text()
                 markdown = converter.handle(response.text)
