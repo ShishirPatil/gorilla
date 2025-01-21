@@ -32,6 +32,10 @@ def find_file_with_suffix(folder_path: Path, suffix: str) -> Path:
     raise FileNotFoundError(f"No JSON file found with suffix: {suffix}")
 
 
+def is_agentic(test_category):
+    return "web_search" in test_category
+
+
 def is_multi_turn(test_category):
     return "multi_turn" in test_category
 

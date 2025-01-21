@@ -42,6 +42,8 @@ TEST_FILE_MAPPING = {
     "multi_turn_miss_param": f"{VERSION_PREFIX}_multi_turn_miss_param.json",
     "multi_turn_long_context": f"{VERSION_PREFIX}_multi_turn_long_context.json",
     "multi_turn_composite": f"{VERSION_PREFIX}_multi_turn_composite.json",
+    # Agentic Datasets
+    "web_search": f"{VERSION_PREFIX}_web_search.json",
 }
 
 TEST_COLLECTION_MAPPING = {
@@ -68,6 +70,7 @@ TEST_COLLECTION_MAPPING = {
         "multi_turn_miss_func",
         "multi_turn_miss_param",
         "multi_turn_long_context",
+        "web_search",
     ],
     "multi_turn": [
         "multi_turn_base",
@@ -186,6 +189,8 @@ MULTI_TURN_FUNC_DOC_FILE_MAPPING = {
     "TradingBot": "trading_bot.json",
     "TravelAPI": "travel_booking.json",
     "VehicleControlAPI": "vehicle_control.json",
+    # The following classes are not part of the multi-turn categories suite, but they share the same evaluation pipeline for simplicity
+    "WebSearchAPI": "web_search.json",
 }
 
 

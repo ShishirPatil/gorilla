@@ -13,11 +13,14 @@ CLASS_FILE_PATH_MAPPING = {
     "TradingBot": "bfcl.eval_checker.multi_turn_eval.func_source_code.trading_bot",
     "TravelAPI": "bfcl.eval_checker.multi_turn_eval.func_source_code.travel_booking",
     "VehicleControlAPI": "bfcl.eval_checker.multi_turn_eval.func_source_code.vehicle_control",
+    # The following classes are not part of the multi-turn categories suite, but they share the same evaluation pipeline for simplicity
+    "WebSearchAPI": "bfcl.eval_checker.multi_turn_eval.func_source_code.web_search",
 }
 
 # These classes are stateless and do not require any initial configuration
 STATELESS_CLASSES = [
     "MathAPI",
+    "WebSearchAPI",
 ]
 
 

@@ -57,7 +57,7 @@ class BaseHandler:
     def inference_multi_turn_FC(
         self, test_entry: dict, include_input_log: bool, exclude_state_log: bool
     ) -> tuple[list[list], dict]:
-        initial_config: dict = test_entry["initial_config"]
+        initial_config: dict = test_entry.get("initial_config", {})
         involved_classes: list = test_entry["involved_classes"]
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
@@ -300,7 +300,7 @@ class BaseHandler:
     def inference_multi_turn_prompting(
         self, test_entry: dict, include_input_log: bool, exclude_state_log: bool
     ) -> tuple[list[list], dict]:
-        initial_config: dict = test_entry["initial_config"]
+        initial_config: dict = test_entry.get("initial_config", {})
         involved_classes: list = test_entry["involved_classes"]
         test_entry_id: str = test_entry["id"]
         test_category: str = test_entry_id.rsplit("_", 1)[0]
