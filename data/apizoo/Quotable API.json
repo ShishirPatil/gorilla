@@ -1,0 +1,123 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Quotable API: Get Random Quote",
+        "api_call": "https://api.quotable.io/random",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a single random quote. This method provides several filter params that can be used to get a random quote"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Quotable API: Get Random Quotes",
+        "api_call": "https://api.quotable.io/quotes/random",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get one or more random quotes. By default it will fetch a single random quote. The number of random quotes"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Quotable API: Get Quote By ID",
+        "api_call": "https://api.quotable.io/quotes/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Quotable API: List Quotes",
+        "api_call": "https://api.quotable.io/quotes",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get all quotes that match the given params. When called with no parameters, this will return a paginated list of"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Quotable API: List Authors",
+        "api_call": "https://api.quotable.io/authors",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Gets a paginated list of all authors. By default, authors are sorted alphabetically in acending order."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Quotable API: Get Author By ID",
+        "api_call": "https://api.quotable.io/authors/:id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a single author by `_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Quotable API: Get Author By Slug",
+        "api_call": "https://api.quotable.io/authors/slug/:slug",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a single author by `_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Quotable API: List Tags",
+        "api_call": "https://api.quotable.io/tags",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Get a list of all supported tags"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Quotable API: Search Authors",
+        "api_call": "https://api.quotable.io/search/authors?matchThreshold=2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Quotable API: Search Quotes",
+        "api_call": "https://api.quotable.io/search/quotes/",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Quotable API: Get Document Counts",
+        "api_call": "https://api.quotable.io/info/count",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Returns an object containing the document count for each collection."
+    }
+]
