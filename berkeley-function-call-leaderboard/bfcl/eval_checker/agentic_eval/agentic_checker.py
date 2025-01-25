@@ -11,6 +11,10 @@ def agentic_checker(model_response: str, possible_answer_list: list[str]) -> dic
     standardized_possible_answer_list = [
         standardize_string(possible_answer) for possible_answer in possible_answer_list
     ]
+    # Sometimes the model response is a list of one string
+    if type(model_response) is list:
+        model_response = model_response[0]
+        
     standardized_model_response = standardize_string(model_response)
     for possible_answer in standardized_possible_answer_list:
         if possible_answer in standardized_model_response:

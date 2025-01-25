@@ -1,3 +1,5 @@
+import time
+
 import html2text
 import requests
 from bs4 import BeautifulSoup
@@ -92,7 +94,11 @@ class WebSearchAPI:
             - 'body' (str): A brief description or snippet from the search result.
         """
         try:
-            return DDGS().text(keywords=keywords, region=region, max_results=max_results)
+            # Sleep for 1 second to avoid rate limiting
+            time.sleep(1)
+            result = DDGS().text(keywords=keywords, region=region, max_results=max_results)
+            return result
+
         except Exception as e:
             return {"error": str(e)}
 
@@ -109,6 +115,7 @@ class WebSearchAPI:
                     - "truncate": Extracts and cleans text by removing scripts, styles, and extraneous whitespace.
         """
         try:
+            print("Fetching URL: ", url)
             if not url.startswith(("http://", "https://")):
                 raise ValueError(f"Invalid URL: {url}")
 
@@ -134,9 +141,8 @@ class WebSearchAPI:
                 "Sec-Fetch-User": "?1",
                 "Sec-Fetch-Dest": "document",
             }
-            response = requests.get(url, headers=headers)
+            response = requests.get(url, headers=headers, timeout=20, allow_redirects=True)
             response.raise_for_status()
-
             # Process the response based on the mode
             if mode == "raw":
                 return {"content": response.text}
