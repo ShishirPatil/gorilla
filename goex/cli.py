@@ -10,7 +10,7 @@ from authorizations.scripts.authorization_utils import authorize_service
 from main import ExecutionEngine, PythonAPIExecutor
 
 from exec_engine.utils import SQL_Type, Filesystem_Type
-from exec_engine.db_manager import MySQLManager, SQLiteManager
+from exec_engine.db_manager import MySQLManager, SQLiteManager, PostgreSQLManager
 from dotenv import load_dotenv
 import questionary
 
@@ -213,6 +213,8 @@ def db_callback(prompt, generate_mode):
             db_manager = MySQLManager(config, docker_sandbox=engine.docker_sandbox)
         elif db_type == 'sqlite':
             db_manager = SQLiteManager(config, docker_sandbox=engine.docker_sandbox)
+        elif db_type == 'postgresql':
+            db_manager = PostgreSQLManager(config, docker_sandbox=engine.docker_sandbox)
     except Exception as e:
         print(f"Error during {db_type} Manager Init: {e}")
         return
