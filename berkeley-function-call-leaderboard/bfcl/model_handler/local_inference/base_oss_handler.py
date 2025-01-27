@@ -1,20 +1,21 @@
+import os
 import subprocess
 import threading
 import time
-import os
 from concurrent.futures import ThreadPoolExecutor
 
 import requests
 from bfcl.constant import RESULT_PATH
 from bfcl.model_handler.base_handler import BaseHandler
-from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.local_inference.constant import VLLM_PORT
+from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
     default_decode_ast_prompting,
     default_decode_execute_prompting,
     func_doc_language_specific_pre_processing,
     system_prompt_pre_processing_chat_model,
 )
+from bfcl.utils import is_agentic, is_multi_turn
 from openai import OpenAI
 from overrides import EnforceOverrides, final, override
 from tqdm import tqdm
@@ -240,7 +241,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
         assert type(test_case["function"]) is list
 
         try:
-            if "multi_turn" in test_case["id"]:
+            if is_multi_turn(test_case["id"]) or is_agentic(test_case["id"]):
                 model_responses, metadata = self.inference_multi_turn_prompting(
                     test_case, include_input_log, exclude_state_log
                 )
@@ -313,6 +314,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                 temperature=self.temperature,
                 prompt=formatted_prompt,
                 max_tokens=leftover_tokens_count,
+                timeout=3600,
                 extra_body=extra_body,
             )
         else:
@@ -321,6 +323,7 @@ class OSSHandler(BaseHandler, EnforceOverrides):
                 temperature=self.temperature,
                 prompt=formatted_prompt,
                 max_tokens=leftover_tokens_count,
+                timeout=3600,
             )
         end_time = time.time()
 
