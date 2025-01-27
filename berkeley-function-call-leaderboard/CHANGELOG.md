@@ -2,6 +2,7 @@
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
 
+- [Jan 27, 2025] [#895](https://github.com/ShishirPatil/gorilla/pull/895): Fix minor typo in default system prompt for prompting models.
 - [Jan 20, 2025] [#887](https://github.com/ShishirPatil/gorilla/pull/887): Add new model `speakleash/Bielik-11B-v2.3-Instruct` to the leaderboard.
 - [Jan 18, 2025] [#888](https://github.com/ShishirPatil/gorilla/pull/888): Add the following new models to the leaderboard:
   - `NovaSky-AI/Sky-T1-32B-Preview`
