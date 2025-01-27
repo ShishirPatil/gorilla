@@ -6,26 +6,17 @@ from bfcl.model_handler.utils import func_doc_language_specific_pre_processing
 from overrides import override
 
 
-def load_falcon3_template():
-    """Load the Falcon3 chat template from file."""
-    template_path ="/home/ubuntu/other_apps/gorilla/berkeley-function-call-leaderboard/template.j2"
-
-    with open(template_path, 'r') as f:
-        return f.read()
-
-
 class Falcon3FCHandler(OSSHandler):
     def __init__(self, model_name, temperature) -> None:
         super().__init__(model_name, temperature)
         self.model_name_huggingface = model_name.replace("-FC", "")
-        self.bos_token_id = 11  # From model config
-        self.eos_token_id = 11  # From model config
+        self.bos_token_id = 11
+        self.eos_token_id = 11
 
     @override
     def _format_prompt(self, messages, function):
         """Format the prompt according to Falcon 3's chat template."""
         tokenizer = self.tokenizer
-        tokenizer.chat_template = load_falcon3_template()
         formatted_prompt = tokenizer.apply_chat_template(
             messages,
             tools=function,
@@ -41,16 +32,13 @@ class Falcon3FCHandler(OSSHandler):
             if "<tool_call>" not in result:
                 return []
 
-            # Extract content between <tool_call> tags
             tool_calls_str = result.split("<tool_call>")[1].split("</tool_call>")[0].strip()
 
             if tool_calls_str.startswith("```") and tool_calls_str.endswith("```"):
-                # Handle markdown-formatted response
                 tool_calls_str = tool_calls_str.strip("```").strip()
                 if tool_calls_str.startswith("json"):
                     tool_calls_str = tool_calls_str[4:].strip()
 
-            # Parse the JSON array of tool calls
             tool_calls = json.loads(tool_calls_str)
             if not isinstance(tool_calls, list):
                 tool_calls = [tool_calls]
@@ -73,11 +61,9 @@ class Falcon3FCHandler(OSSHandler):
             if "<tool_call>" not in result:
                 return []
 
-            # Extract content between <tool_call> tags
             tool_calls_str = result.split("<tool_call>")[1].split("</tool_call>")[0].strip()
 
             if tool_calls_str.startswith("```") and tool_calls_str.endswith("```"):
-                # Handle markdown-formatted response
                 tool_calls_str = tool_calls_str.strip("```").strip()
                 if tool_calls_str.startswith("json"):
                     tool_calls_str = tool_calls_str[4:].strip()
@@ -103,8 +89,6 @@ class Falcon3FCHandler(OSSHandler):
         functions: list = test_entry["function"]
         test_category: str = test_entry["id"].rsplit("_", 1)[0]
 
-        # Process function documentation
         functions = func_doc_language_specific_pre_processing(functions, test_category)
 
-        # Return processed data
         return {"message": [], "function": functions}
