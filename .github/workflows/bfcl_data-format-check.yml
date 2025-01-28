@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [ main ]
     paths:
-      - 'berkeley-function-call-leaderboard/data/**/*.json'  # Only run when JSON files in data directory change
+      - 'berkeley-function-call-leaderboard/data/**/*.json'
 
 jobs:
   check-data-format:
@@ -23,84 +23,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install jsonschema
 
-      - name: Create schema validation script
-        run: |
-          cat > validate_data.py << 'EOF'
-          import json
-          import sys
-          import os
-          from jsonschema import validate
-          from glob import glob
-          
-          # Print current working directory and list files for debugging
-          print(f"Current working directory: {os.getcwd()}")
-          print("Contents of current directory:", os.listdir())
-          
-          schema = {
-              "type": "object",
-              "required": ["id", "question", "initial_config", "path", "involved_classes"],
-              "properties": {
-                  "id": {"type": "string"},
-                  "question": {
-                      "type": "array",
-                      "items": {
-                          "type": "array",
-                          "items": {
-                              "type": "object",
-                              "required": ["role", "content"],
-                              "properties": {
-                                  "role": {"type": "string"},
-                                  "content": {"type": "string"}
-                              }
-                          }
-                      }
-                  },
-                  "initial_config": {"type": "object"},
-                  "path": {
-                      "type": "array",
-                      "items": {"type": "string"}
-                  },
-                  "involved_classes": {
-                      "type": "array",
-                      "items": {"type": "string"}
-                  }
-              }
-          }
-
-          def validate_file(filepath):
-              print(f"Validating file: {filepath}")  # Debug print
-              with open(filepath, 'r') as f:
-                  for line_num, line in enumerate(f, 1):
-                      try:
-                          data = json.loads(line.strip())
-                          validate(instance=data, schema=schema)
-                      except Exception as e:
-                          print(f"Error in file {filepath} at line {line_num}:")
-                          print(f"Line content: {line.strip()}")
-                          print(f"Error: {str(e)}")
-                          return False
-              return True
-
-          # Find all multi-turn files
-          pattern = "berkeley-function-call-leaderboard/data/*multi_turn*.json"
-          files = glob(pattern)
-          print(f"Found files matching pattern '{pattern}': {files}")  # Debug print
-          
-          if not files:
-              print("No files found! Check the path and pattern.")
-              sys.exit(1)
-
-          success = True
-          for filepath in files:
-              if not validate_file(filepath):
-                  success = False
-
-          sys.exit(0 if success else 1)
-          EOF
-
       - name: Run format validation
         id: validate
-        run: python validate_data.py
+        run: python berkeley-function-call-leaderboard/scripts/validate_data_format.py
+
+      - name: Process validation results
+        id: process_results
+        if: always()
+        run: |
+          if [ -f validation_results.json ]; then
+            echo "VALIDATION_RESULTS<<EOF" >> $GITHUB_ENV
+            echo "$(cat validation_results.json)" >> $GITHUB_ENV
+            echo "EOF" >> $GITHUB_ENV
+          fi
 
       - name: Comment on PR with results
         if: github.event_name == 'pull_request'
@@ -110,22 +45,17 @@ jobs:
           body: |
             ## BFCL Data Format Check Results
             
-            ${{ steps.validate.outcome == 'success' && '✅ Passed: All data files are correctly formatted.' || '❌ Failed: Data format validation failed. Please check the workflow logs for details.' }}
+            ${{ fromJson(env.VALIDATION_RESULTS).all_success && '✅ All data files are correctly formatted.' || '❌ Data format validation failed.' }}
             
-            ${{ steps.validate.outcome != 'success' && '### How to fix:
-            1. Review the workflow logs to see which files failed validation
-            2. Ensure all data entries follow the required format:
-               ```json
-               {
-                 "id": "string",
-                 "question": [[{"role": "string", "content": "string"}]],
-                 "initial_config": {},
-                 "path": ["string"],
-                 "involved_classes": ["string"]
-               }
-               ```
+            ${{ !fromJson(env.VALIDATION_RESULTS).all_success && '### Failed Validations:' || '' }}
+            ${{ !fromJson(env.VALIDATION_RESULTS).all_success && join(fromJson(env.VALIDATION_RESULTS).results.*.errors, '
+            ') || '' }}
+            
+            ${{ !fromJson(env.VALIDATION_RESULTS).all_success && '### How to fix:
+            1. Review the errors above for each failed file
+            2. Ensure all data entries follow the required format for their respective types
             3. Update the files and push the changes' || '' }}
 
       - name: Fail if validation failed
-        if: steps.validate.outcome != 'success'
+        if: fromJson(env.VALIDATION_RESULTS).all_success != true
         run: exit 1
