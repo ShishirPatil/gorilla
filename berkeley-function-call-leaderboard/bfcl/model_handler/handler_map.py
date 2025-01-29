@@ -33,6 +33,7 @@ from bfcl.model_handler.local_inference.phi import PhiHandler
 from bfcl.model_handler.local_inference.quick_testing_oss import QuickTestingOSSHandler
 from bfcl.model_handler.local_inference.qwen import QwenHandler
 from bfcl.model_handler.local_inference.salesforce import SalesforceHandler
+from bfcl.model_handler.local_inference.falcon_fc import Falcon3FCHandler
 
 # TODO: Add meta-llama/Llama-3.1-405B-Instruct
 
@@ -163,6 +164,10 @@ local_inference_handler_map = {
     "speakleash/Bielik-11B-v2.3-Instruct": BielikHandler,
     "NovaSky-AI/Sky-T1-32B-Preview": QwenHandler,
     "Qwen/QwQ-32B-Preview": QwenHandler,
+    "tiiuae/Falcon3-10B-Instruct-FC": Falcon3FCHandler,
+    "tiiuae/Falcon3-7B-Instruct-FC": Falcon3FCHandler,
+    "tiiuae/Falcon3-3B-Instruct-FC": Falcon3FCHandler,
+    "tiiuae/Falcon3-1B-Instruct-FC": Falcon3FCHandler,
 }
 
 # Deprecated/outdated models, no longer on the leaderboard
