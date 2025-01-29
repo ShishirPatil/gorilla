@@ -307,12 +307,18 @@ def validate_file_against_schema(filepath: str, schema: Dict, errors: List[str])
                     data = json.loads(line.strip())
                     validate(instance=data, schema=schema)
                 except json.JSONDecodeError as e:
-                    errors.append(f"Line {line_num}: JSON decode error - {str(e)}")
+                    error_msg = f"Line {line_num}: JSON decode error - {str(e)}"
+                    print(f"❌ {error_msg}")
+                    errors.append(error_msg)
                 except Exception as e:
-                    errors.append(f"Line {line_num}: Validation error - {str(e)}")
+                    error_msg = f"Line {line_num}: Validation error - {str(e)}"
+                    print(f"❌ {error_msg}")
+                    errors.append(error_msg)
         return len(errors) == 0, errors
     except Exception as e:
-        errors.append(f"File read error - {str(e)}")
+        error_msg = f"File read error - {str(e)}"
+        print(f"❌ {error_msg}")
+        errors.append(error_msg)
         return False, errors
 
 def main():
@@ -356,31 +362,52 @@ def main():
                         "errors": errors
                     }
                     
-                    if not success:
+                    if success:
+                        print(f"✅ Validation successful")
+                    else:
+                        print(f"❌ Validation failed with {len(errors)} errors")
                         all_success = False
                 else:
-                    print(f"Warning: Validation for {file_type.value} not yet implemented")
+                    error_msg = f"Validation not implemented for {file_type.value}"
+                    print(f"❌ {error_msg}")
                     validation_results[filepath] = {
                         "success": False,
                         "file_type": file_type.value,
-                        "errors": ["Validation not implemented for this file type"]
+                        "errors": [error_msg]
                     }
                     all_success = False
                     
             except ValueError as e:
+                error_msg = str(e)
+                print(f"❌ {error_msg}")
                 validation_results[filepath] = {
                     "success": False,
                     "file_type": "unknown",
-                    "errors": [str(e)]
+                    "errors": [error_msg]
                 }
                 all_success = False
     
     # Write results to a JSON file for the workflow to use
+    results = {
+        "all_success": all_success,
+        "results": validation_results
+    }
+    
     with open("validation_results.json", "w") as f:
-        json.dump({
-            "all_success": all_success,
-            "results": validation_results
-        }, f, indent=2)
+        json.dump(results, f, indent=2)
+    
+    # Print summary
+    print("\n=== Validation Summary ===")
+    print(f"Total files checked: {len(validation_results)}")
+    failed_files = [f for f, r in validation_results.items() if not r["success"]]
+    if failed_files:
+        print(f"\nFailed validations ({len(failed_files)}):")
+        for failed_file in failed_files:
+            print(f"\n{failed_file}:")
+            for error in validation_results[failed_file]["errors"]:
+                print(f"  - {error}")
+    else:
+        print("\n✅ All files passed validation!")
     
     return 0 if all_success else 1
 
