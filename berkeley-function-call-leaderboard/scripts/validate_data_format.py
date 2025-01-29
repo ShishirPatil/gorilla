@@ -11,17 +11,34 @@ class FileType(Enum):
     LIVE_SIMPLE = "live_simple"
     LIVE_MULTIPLE = "live_multiple"
     LIVE_PARALLEL = "live_parallel"
+    LIVE_RELEVANCE = "live_relevance"
+    LIVE_IRRELEVANCE = "live_irrelevance"
     SIMPLE = "simple"
+    MULTIPLE = "multiple"
     PARALLEL = "parallel"
     JAVASCRIPT = "javascript"
+    JAVA = "java"
+    SQL = "sql"
+    REST = "rest"
     EXEC = "exec"
+    CHATABLE = "chatable"
+    IRRELEVANCE = "irrelevance"
 
 def get_file_type(filepath: str) -> FileType:
     """Determine the file type based on filename."""
     filename = os.path.basename(filepath)
+    
+    # Special cases for live variants
+    if "live_" in filename:
+        for file_type in FileType:
+            if f"live_{file_type.value}" in filename:
+                return file_type
+    
+    # General case
     for file_type in FileType:
         if file_type.value in filename:
             return file_type
+            
     raise ValueError(f"Unknown file type for file: {filepath}")
 
 def validate_base_schema(data: Dict) -> None:
@@ -321,12 +338,49 @@ def validate_file_against_schema(filepath: str, schema: Dict, errors: List[str])
         errors.append(error_msg)
         return False, errors
 
+def validate_sql_format(filepath: str) -> Tuple[bool, List[str]]:
+    """Validates SQL format data files."""
+    errors = []
+    schema = {
+        "type": "object",
+        "required": ["id", "question", "function"],
+        "properties": {
+            "id": {"type": "string"},
+            "question": {
+                "type": "array",
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": ["role", "content"],
+                        "properties": {
+                            "role": {"type": "string"},
+                            "content": {"type": "string"}
+                        }
+                    }
+                }
+            },
+            "function": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "required": ["name", "description", "parameters"],
+                    "properties": {
+                        "name": {"type": "string"},
+                        "description": {"type": "string"},
+                        "parameters": {"type": "object"}
+                    }
+                }
+            }
+        }
+    }
+    return validate_file_against_schema(filepath, schema, errors)
+
 def main():
     """Main function to run all validation checks."""
     validation_results = {}
     all_success = True
     
-    # Define patterns for all file types
     patterns = [
         "berkeley-function-call-leaderboard/data/BFCL_v3_*.json"
     ]
@@ -348,10 +402,18 @@ def main():
                     FileType.LIVE_SIMPLE: validate_live_simple_format,
                     FileType.LIVE_MULTIPLE: validate_live_multiple_format,
                     FileType.LIVE_PARALLEL: validate_parallel_format,
+                    FileType.LIVE_RELEVANCE: validate_simple_format,  # Using simple format for now
+                    FileType.LIVE_IRRELEVANCE: validate_simple_format,  # Using simple format for now
                     FileType.SIMPLE: validate_simple_format,
+                    FileType.MULTIPLE: validate_simple_format,  # Using simple format for now
                     FileType.PARALLEL: validate_parallel_format,
                     FileType.JAVASCRIPT: validate_javascript_format,
-                    FileType.EXEC: validate_exec_format
+                    FileType.JAVA: validate_simple_format,  # Using simple format for now
+                    FileType.SQL: validate_sql_format,
+                    FileType.REST: validate_simple_format,  # Using simple format for now
+                    FileType.EXEC: validate_exec_format,
+                    FileType.CHATABLE: validate_simple_format,  # Using simple format for now
+                    FileType.IRRELEVANCE: validate_simple_format  # Using simple format for now
                 }
                 
                 if file_type in validation_functions:
