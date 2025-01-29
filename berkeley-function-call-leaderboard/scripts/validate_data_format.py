@@ -479,7 +479,7 @@ def main():
             for error in validation_results[failed_file]["errors"]:
                 print(f"  - {error}")
     else:
-        print("\n✅ All files passed validation!")
+        print("\n✅ No errors found! All files passed validation!")
     
     return 0 if all_success else 1
 
