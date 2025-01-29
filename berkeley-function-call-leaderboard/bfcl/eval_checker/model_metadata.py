@@ -835,6 +835,30 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "tiiuae/Falcon3-1B-Instruct-FC": [
+        "Falcon3-1B-Instruct (FC)",
+        "https://huggingface.co/tiiuae/Falcon3-1B-Instruct",
+        "TII UAE",
+        "falcon-llm-license",
+    ],
+    "tiiuae/Falcon3-3B-Instruct-FC": [
+        "Falcon3-3B-Instruct (FC)",
+        "https://huggingface.co/tiiuae/Falcon3-3B-Instruct",
+        "TII UAE",
+        "falcon-llm-license",
+    ],
+    "tiiuae/Falcon3-7B-Instruct-FC": [
+        "Falcon3-7B-Instruct (FC)",
+        "https://huggingface.co/tiiuae/Falcon3-7B-Instruct",
+        "TII UAE",
+        "falcon-llm-license",
+    ],
+    "tiiuae/Falcon3-10B-Instruct-FC": [
+        "Falcon3-10B-Instruct (FC)",
+        "https://huggingface.co/tiiuae/Falcon3-10B-Instruct",
+        "TII UAE",
+        "falcon-llm-license",
+    ],
 }
 
 INPUT_PRICE_PER_MILLION_TOKEN = {
