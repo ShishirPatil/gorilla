@@ -45,8 +45,10 @@ jobs:
           body: |
             ## BFCL Data Format Check Results
             
-            ${{ fromJson(env.VALIDATION_RESULTS).all_success && '✅ All data files are correctly formatted.' || '❌ Data format validation failed.' }}
+            ${{ fromJson(env.VALIDATION_RESULTS).all_success && '✅ All data files are correctly formatted!' || '❌ Data format validation failed!' }}
             
+            ### Summary
+            - Total files checked: ${{ fromJson(env.VALIDATION_RESULTS).results | length }}
             ${{ !fromJson(env.VALIDATION_RESULTS).all_success && '### Failed Validations:' || '' }}
             ${{ !fromJson(env.VALIDATION_RESULTS).all_success && join(fromJson(env.VALIDATION_RESULTS).results.*.errors, '
             ') || '' }}
