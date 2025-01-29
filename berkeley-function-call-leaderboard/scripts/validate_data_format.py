@@ -349,14 +349,11 @@ def validate_sql_format(filepath: str) -> Tuple[bool, List[str]]:
             "question": {
                 "type": "array",
                 "items": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "required": ["role", "content"],
-                        "properties": {
-                            "role": {"type": "string"},
-                            "content": {"type": "string"}
-                        }
+                    "type": "object",
+                    "required": ["role", "content"],
+                    "properties": {
+                        "role": {"type": "string"},
+                        "content": {"type": "string"}
                     }
                 }
             },
@@ -372,6 +369,19 @@ def validate_sql_format(filepath: str) -> Tuple[bool, List[str]]:
                     }
                 }
             }
+        }
+    }
+    return validate_file_against_schema(filepath, schema, errors)
+
+def validate_chatable_format(filepath: str) -> Tuple[bool, List[str]]:
+    """Validates chatable format data files."""
+    errors = []
+    schema = {
+        "type": "object",
+        "required": ["question", "function"],
+        "properties": {
+            "question": {"type": "string"},
+            "function": {"type": "string"}
         }
     }
     return validate_file_against_schema(filepath, schema, errors)
@@ -402,18 +412,18 @@ def main():
                     FileType.LIVE_SIMPLE: validate_live_simple_format,
                     FileType.LIVE_MULTIPLE: validate_live_multiple_format,
                     FileType.LIVE_PARALLEL: validate_parallel_format,
-                    FileType.LIVE_RELEVANCE: validate_simple_format,  # Using simple format for now
-                    FileType.LIVE_IRRELEVANCE: validate_simple_format,  # Using simple format for now
+                    FileType.LIVE_RELEVANCE: validate_simple_format,
+                    FileType.LIVE_IRRELEVANCE: validate_simple_format,
                     FileType.SIMPLE: validate_simple_format,
-                    FileType.MULTIPLE: validate_simple_format,  # Using simple format for now
+                    FileType.MULTIPLE: validate_simple_format,
                     FileType.PARALLEL: validate_parallel_format,
                     FileType.JAVASCRIPT: validate_javascript_format,
-                    FileType.JAVA: validate_simple_format,  # Using simple format for now
+                    FileType.JAVA: validate_simple_format,
                     FileType.SQL: validate_sql_format,
-                    FileType.REST: validate_simple_format,  # Using simple format for now
+                    FileType.REST: validate_simple_format,
                     FileType.EXEC: validate_exec_format,
-                    FileType.CHATABLE: validate_simple_format,  # Using simple format for now
-                    FileType.IRRELEVANCE: validate_simple_format  # Using simple format for now
+                    FileType.CHATABLE: validate_chatable_format,
+                    FileType.IRRELEVANCE: validate_simple_format
                 }
                 
                 if file_type in validation_functions:
