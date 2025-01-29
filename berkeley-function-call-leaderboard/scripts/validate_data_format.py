@@ -184,6 +184,120 @@ def validate_javascript_format(filepath: str) -> Tuple[bool, List[str]]:
     }
     return validate_file_against_schema(filepath, schema, errors)
 
+def validate_exec_format(filepath: str) -> Tuple[bool, List[str]]:
+    """Validates exec format data files."""
+    errors = []
+    schema = {
+        "type": "object",
+        "required": ["id", "question", "function"],
+        "properties": {
+            "id": {"type": "string"},
+            "question": {
+                "type": "array",
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": ["role", "content"],
+                        "properties": {
+                            "role": {"type": "string"},
+                            "content": {"type": "string"}
+                        }
+                    }
+                }
+            },
+            "function": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "required": ["name", "description", "parameters"],
+                    "properties": {
+                        "name": {"type": "string"},
+                        "description": {"type": "string"},
+                        "parameters": {"type": "object"}
+                    }
+                }
+            }
+        }
+    }
+    return validate_file_against_schema(filepath, schema, errors)
+
+def validate_live_multiple_format(filepath: str) -> Tuple[bool, List[str]]:
+    """Validates live multiple format data files."""
+    errors = []
+    schema = {
+        "type": "object",
+        "required": ["id", "question", "function"],
+        "properties": {
+            "id": {"type": "string"},
+            "question": {
+                "type": "array",
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": ["role", "content"],
+                        "properties": {
+                            "role": {"type": "string"},
+                            "content": {"type": "string"}
+                        }
+                    }
+                }
+            },
+            "function": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "required": ["name", "description", "parameters"],
+                    "properties": {
+                        "name": {"type": "string"},
+                        "description": {"type": "string"},
+                        "parameters": {"type": "object"}
+                    }
+                }
+            }
+        }
+    }
+    return validate_file_against_schema(filepath, schema, errors)
+
+def validate_simple_format(filepath: str) -> Tuple[bool, List[str]]:
+    """Validates simple format data files."""
+    errors = []
+    schema = {
+        "type": "object",
+        "required": ["id", "question", "function"],
+        "properties": {
+            "id": {"type": "string"},
+            "question": {
+                "type": "array",
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "required": ["role", "content"],
+                        "properties": {
+                            "role": {"type": "string"},
+                            "content": {"type": "string"}
+                        }
+                    }
+                }
+            },
+            "function": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "required": ["name", "description", "parameters"],
+                    "properties": {
+                        "name": {"type": "string"},
+                        "description": {"type": "string"},
+                        "parameters": {"type": "object"}
+                    }
+                }
+            }
+        }
+    }
+    return validate_file_against_schema(filepath, schema, errors)
+
 def validate_file_against_schema(filepath: str, schema: Dict, errors: List[str]) -> Tuple[bool, List[str]]:
     """Helper function to validate a file against a given schema."""
     try:
@@ -222,27 +336,35 @@ def main():
                 file_type = get_file_type(filepath)
                 print(f"\nValidating {file_type.value} file: {filepath}")
                 
-                if file_type == FileType.MULTI_TURN:
-                    success, errors = validate_multi_turn_format(filepath)
-                elif file_type == FileType.LIVE_SIMPLE:
-                    success, errors = validate_live_simple_format(filepath)
-                elif file_type == FileType.LIVE_PARALLEL:
-                    success, errors = validate_parallel_format(filepath)
-                elif file_type == FileType.PARALLEL:
-                    success, errors = validate_parallel_format(filepath)
-                elif file_type == FileType.JAVASCRIPT:
-                    success, errors = validate_javascript_format(filepath)
-                else:
-                    print(f"Warning: Validation for {file_type.value} not yet implemented")
-                    continue
-                
-                validation_results[filepath] = {
-                    "success": success,
-                    "file_type": file_type.value,
-                    "errors": errors
+                # Map file types to their validation functions
+                validation_functions = {
+                    FileType.MULTI_TURN: validate_multi_turn_format,
+                    FileType.LIVE_SIMPLE: validate_live_simple_format,
+                    FileType.LIVE_MULTIPLE: validate_live_multiple_format,
+                    FileType.LIVE_PARALLEL: validate_parallel_format,
+                    FileType.SIMPLE: validate_simple_format,
+                    FileType.PARALLEL: validate_parallel_format,
+                    FileType.JAVASCRIPT: validate_javascript_format,
+                    FileType.EXEC: validate_exec_format
                 }
                 
-                if not success:
+                if file_type in validation_functions:
+                    success, errors = validation_functions[file_type](filepath)
+                    validation_results[filepath] = {
+                        "success": success,
+                        "file_type": file_type.value,
+                        "errors": errors
+                    }
+                    
+                    if not success:
+                        all_success = False
+                else:
+                    print(f"Warning: Validation for {file_type.value} not yet implemented")
+                    validation_results[filepath] = {
+                        "success": False,
+                        "file_type": file_type.value,
+                        "errors": ["Validation not implemented for this file type"]
+                    }
                     all_success = False
                     
             except ValueError as e:
