@@ -93,13 +93,16 @@ def convert_to_tool(functions, mapping, model_style):
             item["inputSchema"] = {"json": item["parameters"]}
             del item["parameters"]
 
-        if model_style == ModelStyle.Google:
-            # Remove fields that are not supported by Gemini.
+        if model_style in [
+            ModelStyle.Google,
+            ModelStyle.WRITER,
+        ]:
+            # Remove fields that are not supported by Gemini or Palmyra.
             # No `optional` field in function schema.
             if "optional" in item["parameters"]:
                 del item["parameters"]["optional"]
             for params in item["parameters"]["properties"].values():
-                # No `default` field in Google's schema.
+                # No `default` field in Google or Palmyra's schema.
                 if "default" in params:
                     params["description"] += f" Default is: {str(params['default'])}."
                     del params["default"]
@@ -129,8 +132,12 @@ def convert_to_tool(functions, mapping, model_style):
                         "description"
                     ] += f" Additional properties: {str(params['additionalProperties'])}."
                     del params["additionalProperties"]
-                # Only `enum` field when the type is `string`.
-                if "enum" in params and params["type"] != "string":
+                # For Gemini, only `enum` field when the type is `string`.
+                # For Palmyra, `enum` field is not supported.
+                if "enum" in params and (
+                    model_style == ModelStyle.WRITER
+                    or (model_style == ModelStyle.Google and params["type"] != "string")
+                ):
                     params["description"] += f" Enum values: {str(params['enum'])}."
                     del params["enum"]
 
