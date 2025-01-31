@@ -1,0 +1,3831 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Link Token - Payroll Income",
+        "api_call": "https://{{env_url}}/link/token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"user_token\": \"{{user_token}}\",\n  \"client_name\": \"Insert Client name here\",\n  \"country_codes\": [\"US\"],\n  \"language\": \"en\",\n  \"user\": {\n    \"client_user_id\": \"unique_user_id\"\n  },\n  \"products\": [\"income_verification\"],\n  \"income_verification\": {\n      \"income_source_types\": [\"payroll\"],\n      \"payroll_income\": {\n          \"flow_types\": [\"digital\", \"document\"]\n      }\n  }\n}"
+            }
+        },
+        "functionality": "Creates a link token with options. The link token can then be used to initialize Plaid Link."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Link Token - Bank Income",
+        "api_call": "https://{{env_url}}/link/token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"user_token\": \"{{user_token}}\",\n  \"client_name\": \"Insert Client name here\",\n  \"country_codes\": [\"US\"],\n  \"language\": \"en\",\n  \"user\": {\n    \"client_user_id\": \"unique_user_id\"\n  },\n  \"products\": [\"income_verification\"],\n  \"income_verification\": {\n      \"income_source_types\": [\"bank\"],\n      \"bank_income\": {\n          \"days_requested\": 365\n      }\n  }\n}"
+            }
+        },
+        "functionality": "Creates a link token with options. The link token can then be used to initialize Plaid Link."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Link Token",
+        "api_call": "https://{{env_url}}/link/token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"client_name\": \"Insert Client name here\",\n  \"country_codes\": [\"US\"],\n  \"language\": \"en\",\n  \"user\": {\n    \"client_user_id\": \"unique_user_id\"\n  },\n    \"products\": [\"auth\"]\n}"
+            }
+        },
+        "functionality": "Creates a link token with options. The link token can then be used to initialize Plaid Link."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Link Token - Update Mode",
+        "api_call": "https://{{env_url}}/link/token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n  \"client_name\": \"Insert Client name here\",\n  \"country_codes\": [\"US\"],\n  \"language\": \"en\",\n  \"user\": {\n    \"client_user_id\": \"unique_user_id\"\n  },\n  \"access_token\": \"ENTER_ACCESS_TOKEN_HERE\"\n}"
+            }
+        },
+        "functionality": "Creates a link token with options. The link token can then be used to initialize Plaid Link."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Link Token - Identity Verification",
+        "api_call": "https://{{env_url}}/link/token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"client_name\": \"Insert Client name here\",\n  \"country_codes\": [\"US\"],\n  \"language\": \"en\",\n  \"user\": {\n    \"client_user_id\": \"unique_user_id\"\n  },\n  \"products\": [\"identity_verification\"],\n  \"identity_verification\": {\n    \"template_id\": \"paste in the template_id from the Integration button on the Identity Verification Dashboard\"\n  }\n}"
+            }
+        },
+        "functionality": "Creates a link token with options. The link token can then be used to initialize Plaid Link."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Link Token - Payment Initiation",
+        "api_call": "https://{{env_url}}/link/token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n  \"client_name\": \"Insert Client name here\",\n  \"country_codes\": [\"GB\"],\n  \"language\": \"en\",\n  \"user\": {\n    \"client_user_id\": \"unique_user_id\"\n  },\n  \"products\": [\"payment_initiation\"],\n  \"payment_initiation\": {\n    \"payment_id\": \"{{payment_id}}\"\n  }\n}"
+            }
+        },
+        "functionality": "Creates a link token with options. The link token can then be used to initialize Plaid Link."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get existing Link Token",
+        "api_call": "https://{{env_url}}/link/token/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"link_token\": \"{{link_token}}\"\n}"
+            }
+        },
+        "functionality": "The `/link/token/get` endpoint gets information about a previously-created `link_token` using the\n`/link/token/create` endpoint. It can be useful for debugging purposes."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Item [Sandbox Only]",
+        "api_call": "https://{{env_url}}/sandbox/public_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"institution_id\": \"ins_20\",\n  \"initial_products\": [\"transactions\"],\n  \"options\": {\n    \"webhook\": \"https://www.plaid.com/webhook\"\n  }\n}"
+            }
+        },
+        "functionality": "Creates an `Item` in the `sandbox` environment. You will get back a `public_token` and a `request_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Item Custom [Sandbox Only]",
+        "api_call": "https://{{env_url}}/sandbox/public_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"institution_id\": \"ins_20\",\n  \"initial_products\": [\"transactions\"],\n  \"options\": {\n    \"webhook\": \"https://www.genericwebhookurl.com/webhook\",\n    \"override_username\": \"user_custom\",\n    \"override_password\": \"{\\\"force_error\\\": \\\"USER_SETUP_REQUIRED\\\"}\"\n  }\n}"
+            }
+        },
+        "functionality": "Creates an `Item` in the `sandbox` environment. You will get back a `public_token` and a `request_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Exchange Token",
+        "api_call": "https://{{env_url}}/item/public_token/exchange",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"public_token\": \"{{public_token}}\"\n}"
+            }
+        },
+        "functionality": "Goes through the exchange token process where the `public_token` is exchanged for an `access_token`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve Item",
+        "api_call": "https://{{env_url}}/item/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n\t\"access_token\": \"{{access_token}}\"\n}"
+            }
+        },
+        "functionality": "This endpoint allows you to retrieve information about an `Item`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve an Item's Accounts",
+        "api_call": "https://{{env_url}}/accounts/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n\t\"access_token\": \"{{access_token}}\"\n}"
+            }
+        },
+        "functionality": "This endpoint allows you to retrieve all available `Account`s associated with an `Item`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Rotate Access Token",
+        "api_call": "https://{{env_url}}/item/access_token/invalidate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n\t\"access_token\": \"{{access_token}}\"\n}"
+            }
+        },
+        "functionality": "By default, the `access_token` associated with an `Item` does not expire and should be stored in a persistent, secure manner."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Update an Item's Webhook",
+        "api_call": "https://{{env_url}}/item/webhook/update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"access_token\": \"{{access_token}}\",\n    \"webhook\": \"ENTER_WEBHOOK_URL_HERE\"\n }"
+            }
+        },
+        "functionality": "This endpoint allows you to update the webhook url for an `Item`. This request triggers a `WEBHOOK_UPDATE_ACKNOWLEDGED` [webhook](https://plaid.com/docs/api/#item-webhooks)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Simulate ITEM_LOGIN_REQUIRED [Sandbox only]",
+        "api_call": "https://{{env_url}}/sandbox/item/reset_login",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n\t\"access_token\": \"{{access_token}}\"\n}"
+            }
+        },
+        "functionality": "An `Item` may transition into an error state in response to changes made by the user or financial institution. The"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Remove Item",
+        "api_call": "https://{{env_url}}/item/remove",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"access_token\": \"{{access_token}}\"\n}"
+            }
+        },
+        "functionality": "This endpoint allows you to remove an `Item` using its `access_token`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Simulate automated deposit verification [Sandbox only]",
+        "api_call": "https://{{env_url}}/sandbox/item/set_verification_status",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\"client_id\": \"{{client_id}}\",\n\"secret\": \"{{secret_key}}\",\n\"access_token\": {{access_token}},\n\"account_id\": \"\",\n\"verification_status\": \"automatically_verified\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create a Sandbox test Item and processor token",
+        "api_call": "https://{{env_url}}/sandbox/processor_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n    \"institution_id\": \"ins_3\",\n    \"options\": {\n        \"override_username\": \"user_good\",\n        \"override_password\": \"pass_good\"\n    }\n}"
+            }
+        },
+        "functionality": "Use the `/sandbox/processor_token/create` endpoint to create a valid `processor_token` for an arbitrary institution ID and test credentials. The created `processor_token`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create processor token (for Development / Production)",
+        "api_call": "https://{{env_url}}/processor/token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n    \"access_token\": \"{{access_token}}\",\n    \"account_id\": \"{{account_id}}\",\n    \"processor\": \"dwolla\"\n}"
+            }
+        },
+        "functionality": "Used to create a token suitable for sending to one of Plaid's partners to enable integrations. Note that Stripe partnerships"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Stripe bank account token",
+        "api_call": "https://{{env_url}}/processor/stripe/bank_account_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n    \"access_token\": \"{{access_token}}\",\n    \"account_id\": \"{{account_id}}\"\n}"
+            }
+        },
+        "functionality": "Used to create a token suitable for sending to Stripe to enable Plaid-Stripe integrations."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Auth public token [Sandbox Only]",
+        "api_call": "https://{{env_url}}/sandbox/public_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"institution_id\": \"ins_20\",\n  \"initial_products\": [\"auth\"],\n  \"options\": {\n    \"webhook\": \"https://www.genericwebhookurl.com/webhook\"\n  }\n}"
+            }
+        },
+        "functionality": "Creates an `Item` in the `sandbox` environment. You will get back a `public_token` and a `request_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Exchange public token for access token",
+        "api_call": "https://{{env_url}}/item/public_token/exchange",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"public_token\": \"{{public_token}}\"\n}"
+            }
+        },
+        "functionality": "Goes through the exchange token process where the `public_token` is exchanged for an `access_token`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve Auth data (account + routing number)",
+        "api_call": "https://{{env_url}}/auth/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n\t\"access_token\": \"{{access_token}}\"\n}"
+            }
+        },
+        "functionality": "The `/auth/get` endpoint allows you to retrieve the bank account and routing numbers associated with an Item\u2019s checking and savings"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Auth + Balance public token [Sandbox Only]",
+        "api_call": "https://{{env_url}}/sandbox/public_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"institution_id\": \"ins_20\",\n  \"initial_products\": [\"auth\"],\n  \"options\": {\n    \"webhook\": \"https://www.genericwebhookurl.com/webhook\"\n  }\n}"
+            }
+        },
+        "functionality": "Creates an `Item` in the `sandbox` environment. You will get back a `public_token` and a `request_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Exchange public token for access token",
+        "api_call": "https://{{env_url}}/item/public_token/exchange",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"public_token\": \"{{public_token}}\"\n}"
+            }
+        },
+        "functionality": "Goes through the exchange token process where the `public_token` is exchanged for an `access_token`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve Balance",
+        "api_call": "https://{{env_url}}/accounts/balance/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"access_token\": \"{{access_token}}\"\n}"
+            }
+        },
+        "functionality": "The `/accounts/balance/get` endpoint returns the real-time balance for each of an `Item`\u2019s accounts. It can be used for existing `Item`s"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Identity public token [Sandbox only]",
+        "api_call": "https://{{env_url}}/sandbox/public_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"institution_id\": \"ins_20\",\n  \"initial_products\": [\"identity\"],\n  \"options\": {\n    \"webhook\": \"https://www.genericwebhookurl.com/webhook\"\n  }\n}"
+            }
+        },
+        "functionality": "Creates an `Item` in the `sandbox` environment. You will get back a `public_token` and a `request_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Exchange public token for access token",
+        "api_call": "https://{{env_url}}/item/public_token/exchange",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"public_token\": \"{{public_token}}\"\n}"
+            }
+        },
+        "functionality": "Goes through the exchange token process where the `public_token` is exchanged for an `access_token`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve Identity",
+        "api_call": "https://{{env_url}}/identity/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"access_token\": \"{{access_token}}\"\n}"
+            }
+        },
+        "functionality": "The `/identity/get` endpoint allows you to retrieve various account holder information on file with the financial institution, including names, emails,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Match Identity",
+        "api_call": "https://{{env_url}}/identity/match",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"access_token\": \"{{access_token}}\",\n  \"user\": {\n       \"phone_number\": \"+1-111-222-3333\",\n       \"legal_name\": \"Alerta Charleson\",\n       \"email_address\": \"accountholder1@example.com\",\n   \"address\": {\n            \"city\": \"San Matias\",\n            \"country\": \"US\",\n            \"postal_code\": \"93405\",\n            \"region\": \"CA\",\n            \"street\": \"2493 Leisure Ln.\"\n      }\n    }\n}"
+            }
+        },
+        "functionality": "The `/identity/get` endpoint allows you to retrieve various account holder information on file with the financial institution, including names, emails,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Transactions public token [Sandbox Only]",
+        "api_call": "https://{{env_url}}/sandbox/public_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"institution_id\": \"ins_20\",\n  \"initial_products\": [\"transactions\"],\n  \"options\": {\n    \"webhook\": \"https://www.genericwebhookurl.com/webhook\"\n  }\n}"
+            }
+        },
+        "functionality": "Creates an `Item` in the `sandbox` environment. You will get back a `public_token` and a `request_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Exchange public token for access token",
+        "api_call": "https://{{env_url}}/item/public_token/exchange",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"public_token\": \"{{public_token}}\"\n}"
+            }
+        },
+        "functionality": "Goes through the exchange token process where the `public_token` is exchanged for an `access_token`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve Transactions By Incremental Updates",
+        "api_call": "https://{{env_url}}/transactions/sync",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"access_token\": \"{{access_token}}\",\n  \"count\": 500\n}"
+            }
+        },
+        "functionality": "_(replaces `/transactions/get` and its associated webhooks for most common use-cases)_\n\nThe `/transactions/sync` endpoint allows developers to subscribe to all transactions associated"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve Transactions by Date Range",
+        "api_call": "https://{{env_url}}/transactions/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"access_token\": \"{{access_token}}\",\n  \"start_date\": \"2023-04-14\",\n  \"end_date\": \"2024-04-17\",\n  \"options\": {\n    \"include_personal_finance_category\": true\n  } \n}"
+            }
+        },
+        "functionality": "The `/transactions/get` endpoint allows developers to receive user-authorized transaction data for credit and depository-type Accounts. Transaction data is standardized across"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve recurring transaction streams",
+        "api_call": "https://{{env_url}}/transactions/recurring/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"access_token\": \"{{access_token}}\",\n  \"account_ids\": [\"ACCOUNT_ID_GOES_HERE\"],\n  \"options\": {\n    \"include_personal_finance_category\": true\n  } \n}"
+            }
+        },
+        "functionality": "The `/transactions/get` endpoint allows developers to receive user-authorized transaction data for credit and depository-type Accounts. Transaction data is standardized across"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Force refresh Transactions",
+        "api_call": "https://{{env_url}}/transactions/refresh",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"access_token\": \"{{access_token}}\"\n}"
+            }
+        },
+        "functionality": "`/transactions/refresh` is an optional endpoint for users of the Transactions product. It initiates an on-demand extraction to fetch the newest"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve Legacy Categories",
+        "api_call": "https://{{env_url}}/categories/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{}"
+            }
+        },
+        "functionality": "This endpoint allows you to get to get detailed information on categories returned by Plaid. This endpoint does not require"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Assets public token [Sandbox only]",
+        "api_call": "https://{{env_url}}/sandbox/public_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"institution_id\": \"ins_20\",\n  \"initial_products\": [\"assets\"],\n  \"options\": {\n    \"webhook\": \"https://www.genericwebhookurl.com/webhook\"\n  }\n}"
+            }
+        },
+        "functionality": "Creates an `Item` in the `sandbox` environment. You will get back a `public_token` and a `request_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Exchange public token for access token",
+        "api_call": "https://{{env_url}}/item/public_token/exchange",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"public_token\": \"{{public_token}}\"\n}"
+            }
+        },
+        "functionality": "Goes through the exchange token process where the `public_token` is exchanged for an `access_token`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Asset Report",
+        "api_call": "https://{{env_url}}/asset_report/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"client_id\": \"{{client_id}}\",\n   \"secret\": \"{{secret_key}}\",\n   \"access_tokens\": [\"{{access_token}}\"],\n   \"days_requested\": 30,\n   \"options\": {\n      \"client_report_id\": \"ENTER_CLIENT_REPORT_ID_HERE\",\n      \"webhook\": \"https://www.example.com/webhook\",\n      \"user\": {\n        \"client_user_id\": \"ENTER_USER_ID_HERE\",\n        \"first_name\": \"ENTER_FIRST_NAME_HERE\",\n        \"middle_name\": \"ENTER_MIDDLE_NAME_HERE\",\n        \"last_name\": \"ENTER_LAST_NAME_HERE\",\n        \"ssn\": \"111-22-1234\",\n        \"phone_number\": \"1-415-867-5309\",\n        \"email\": \"ENTER_EMAIL_HERE\"\n      }\n   }\n }"
+            }
+        },
+        "functionality": "With your desired `access_tokens` in hand, all you need to do to create an Asset Report is to call the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve an Asset Report (JSON)",
+        "api_call": "https://{{env_url}}/asset_report/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"client_id\": \"{{client_id}}\",\n   \"secret\": \"{{secret_key}}\",\n   \"asset_report_token\": \"{{asset_report_token}}\"\n}"
+            }
+        },
+        "functionality": "You can retrieve your Asset Report in multiple formats (PDF and JSON), determined by the endpoint you call.\n\nJSON: `/asset_report/get` "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve an Asset Report (PDF)",
+        "api_call": "https://{{env_url}}/asset_report/pdf/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"client_id\": \"{{client_id}}\",\n   \"secret\": \"{{secret_key}}\",\n   \"asset_report_token\": \"{{asset_report_token}}\"\n}"
+            }
+        },
+        "functionality": "You can retrieve your Asset Report in multiple formats (PDF and JSON), determined by the endpoint you call.\n\nJSON: `/asset_report/get` "
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Audit Copy",
+        "api_call": "https://{{env_url}}/asset_report/audit_copy/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"client_id\": \"{{client_id}}\",\n   \"secret\": \"{{secret_key}}\",\n   \"asset_report_token\": \"{{asset_report_token}}\",\n   \"auditor_id\": \"ENTER_AUDITOR_ID_HERE\"\n}"
+            }
+        },
+        "functionality": "Plaid can provide an **Audit Copy** of any Asset Report directly to a participating third party on your behalf. \n\nAn"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Remove Asset Report",
+        "api_call": "https://{{env_url}}/asset_report/remove",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"client_id\": \"{{client_id}}\",\n   \"secret\": \"{{secret_key}}\",\n   \"asset_report_token\": \"{{asset_report_token}}\"\n}"
+            }
+        },
+        "functionality": "The `/asset_report/remove` endpoint allows you to remove an Asset Report. Removing an Asset Report invalidates its `asset_report_token`, meaning you will"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Remove Audit Copy ",
+        "api_call": "https://{{env_url}}/asset_report/audit_copy/remove",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"client_id\": \"{{client_id}}\",\n   \"secret\": \"{{secret_key}}\",\n   \"audit_copy_token\": \"ENTER_AUDIT_COPY_TOKEN_HERE\"\n}"
+            }
+        },
+        "functionality": "The `/asset_report/audit_copy/remove` endpoint allows you to remove an Audit Copy. Removing an Audit Copy invalidates the `audit_copy_token` associated with it,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Refresh Asset Report ",
+        "api_call": "https://{{env_url}}/asset_report/refresh",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"client_id\": \"{{client_id}}\",\n   \"secret\": \"{{secret_key}}\",\n   \"asset_report_token\": \"{{asset_report_token}}\",\n   \"days_requested\": 30,\n   \"options\": {\n      \"client_report_id\": \"ENTER_CLIENT_REPORT_ID_HERE\",\n      \"webhook\": \"https://www.example.com/webhook\",\n      \"user\": {\n        \"client_user_id\": \"ENTER_USER_ID_HERE\",\n        \"first_name\": \"ENTER_FIRST_NAME_HERE\",\n        \"middle_name\": \"ENTER_MIDDLE_NAME_HERE\",\n        \"last_name\": \"ENTER_LAST_NAME_HERE\",\n        \"ssn\": \"111-22-1234\",\n        \"phone_number\": \"1-415-867-5309\",\n        \"email\": \"ENTER_EMAIL_HERE\"\n      }\n   }\n }"
+            }
+        },
+        "functionality": "Create a new Asset Report based on the old one, but with the most recent data available from the financial"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Liabilities public token [Sandbox only]",
+        "api_call": "https://{{env_url}}/sandbox/public_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"institution_id\": \"ins_19\",\n  \"initial_products\": [\"liabilities\"],\n  \"options\": {\n    \"webhook\": \"https://www.genericwebhookurl.com/webhook\"\n  }\n}"
+            }
+        },
+        "functionality": "Creates an `Item` in the `sandbox` environment. You will get back a `public_token` and a `request_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Exchange public token for access token",
+        "api_call": "https://{{env_url}}/item/public_token/exchange",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"public_token\": \"{{public_token}}\"\n}"
+            }
+        },
+        "functionality": "Goes through the exchange token process where the `public_token` is exchanged for an `access_token`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve Liabilities",
+        "api_call": "https://{{env_url}}/liabilities/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n\t\"access_token\": \"{{access_token}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Investments public token [Sandbox only]",
+        "api_call": "https://{{env_url}}/sandbox/public_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"institution_id\": \"ins_119423\",\n  \"initial_products\": [\"investments\"],\n  \"options\": {\n    \"webhook\": \"https://www.genericwebhookurl.com/webhook\"\n  }\n}"
+            }
+        },
+        "functionality": "Creates an `Item` in the `sandbox` environment. You will get back a `public_token` and a `request_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Exchange public token for access token",
+        "api_call": "https://{{env_url}}/item/public_token/exchange",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"public_token\": \"{{public_token}}\"\n}"
+            }
+        },
+        "functionality": "Goes through the exchange token process where the `public_token` is exchanged for an `access_token`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve Investments Holdings",
+        "api_call": "https://{{env_url}}/investments/holdings/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n\t\"access_token\": \"{{access_token}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve Investments Transactions",
+        "api_call": "https://{{env_url}}/investments/transactions/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"access_token\": \"{{access_token}}\",\n  \"start_date\": \"2019-01-01\",\n  \"end_date\": \"2021-01-01\" \n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Initialize User Token for Bank Income [Sandbox Only]",
+        "api_call": "https://{{env_url}}/sandbox/public_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"user_token\": \"{{user_token}}\",\n  \"institution_id\": \"ins_20\",\n  \"initial_products\": [\"income_verification\"],\n  \"options\": {\n    \"webhook\": \"https://www.genericwebhookurl.com/webhook\",\n    \"override_username\": \"user_bank_income\",\n    \"override_password\": \"{}\",\n    \"income_verification\": {\n      \"income_source_types\": [\"bank\"],\n      \"bank_income\": {\n          \"days_requested\": 180\n        }\n    }\n  }\n}"
+            }
+        },
+        "functionality": "Creates an `Item` in the `sandbox` environment. You will get back a `public_token` and a `request_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve Bank Income as a PDF",
+        "api_call": "https://{{env_url}}/credit/bank_income/pdf/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"user_token\": \"{{user_token}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Refresh Bank Income data",
+        "api_call": "https://{{env_url}}/credit/bank_income/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"user_token\": \"{{user_token}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve Bank Income",
+        "api_call": "https://{{env_url}}/credit/bank_income/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"user_token\": \"{{user_token}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Initialize User Token for Document Income [Sandbox Only]",
+        "api_call": "https://{{env_url}}/sandbox/public_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"user_token\": \"{{user_token}}\",\n  \"institution_id\": \"ins_90\",\n  \"initial_products\": [\"income_verification\"],\n  \"options\": {\n    \"webhook\": \"https://www.genericwebhookurl.com/webhook\"\n  }\n}"
+            }
+        },
+        "functionality": "Creates an `Item` in the `sandbox` environment. You will get back a `public_token` and a `request_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve parsed data from uploaded bank statements",
+        "api_call": "https://{{env_url}}/credit/bank_income/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"user_token\": \"{{user_token}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Enable or disable document parsing or fraud risk detection",
+        "api_call": "https://{{env_url}}/credit/payroll_income/parsing_config/update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"user_token\": \"{{user_token}}\",\n  \"parsing_config\": [\"fraud_risk\"]\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Detect potentially fraudulent uploaded income documents",
+        "api_call": "https://{{env_url}}/credit/payroll_income/risk_signals/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"user_token\": \"{{user_token}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Initialize User Token for Payroll Income [Sandbox Only]",
+        "api_call": "https://{{env_url}}/sandbox/public_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"user_token\": \"{{user_token}}\",\n  \"institution_id\": \"ins_90\",\n  \"initial_products\": [\"income_verification\"],\n  \"options\": {\n    \"webhook\": \"https://www.genericwebhookurl.com/webhook\"\n  }\n}"
+            }
+        },
+        "functionality": "Creates an `Item` in the `sandbox` environment. You will get back a `public_token` and a `request_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve Payroll Income",
+        "api_call": "https://{{env_url}}/credit/payroll_income/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"user_token\": \"{{user_token}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: (Start here) Create User Token",
+        "api_call": "https://{{env_url}}/user/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"client_user_id\": \"unique_user_id\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Enable or disable webhook notifications for a user",
+        "api_call": "https://{{env_url}}/credit/bank_income/webhook/update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"user_token\": \"{{user_token}}\",\n  \"enable_webhooks\": false\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Fire Income webhook [Sandbox only]",
+        "api_call": "https://{{env_url}}/sandbox/income/fire_webhook",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"user_token\": \"{{user_token}}\",\n  \"item_id\" : \"ITEM_ID_GOES_HERE\",\n  \"webhook\": \"https://webhook.com/\",\n  \"verification_status\": \"VERIFICATION_STATUS_PROCESSING_COMPLETE\"\n\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Transfer public token [Sandbox only]",
+        "api_call": "https://{{env_url}}/sandbox/public_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"institution_id\": \"ins_19\",\n  \"initial_products\": [\"transfer\"],\n  \"options\": {\n    \"webhook\": \"https://www.genericwebhookurl.com/webhook\"\n  }\n}"
+            }
+        },
+        "functionality": "Creates an `Item` in the `sandbox` environment. You will get back a `public_token` and a `request_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Exchange public token for access token",
+        "api_call": "https://{{env_url}}/item/public_token/exchange",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"public_token\": \"{{public_token}}\"\n}"
+            }
+        },
+        "functionality": "Goes through the exchange token process where the `public_token` is exchanged for an `access_token`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve an Item's Accounts",
+        "api_call": "https://{{env_url}}/accounts/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n\t\"access_token\": \"{{access_token}}\"\n}"
+            }
+        },
+        "functionality": "This endpoint allows you to retrieve all available `Account`s associated with an `Item`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Authorize a transfer",
+        "api_call": "https://{{env_url}}/transfer/authorization/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"access_token\": \"{{access_token}}\",\n    \"account_id\": \"{{account_id}}\",\n    \"type\": \"debit\",\n    \"network\": \"ach\",\n    \"ach_class\": \"ppd\",\n    \"amount\": \"0.50\",\n    \"user\": {\n        \"legal_name\": \"Anna Charleston\"\n    }\n}"
+            }
+        },
+        "functionality": "Use the `/transfer/authorization/create` endpoint to determine transfer failure risk."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Initiate a transfer",
+        "api_call": "https://{{env_url}}/transfer/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"access_token\": \"{{access_token}}\",\n    \"account_id\": \"{{account_id}}\",\n    \"authorization_id\": \"{{authorization_id}}\",\n    \"description\": \"test\"\n}"
+            }
+        },
+        "functionality": "Use the `/transfer/create` endpoint to initiate a new transfer."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get a transfer",
+        "api_call": "https://{{env_url}}/transfer/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"transfer_id\": \"ENTER_TRANSFER_ID_HERE\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List transfers",
+        "api_call": "https://{{env_url}}/transfer/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"start_date\": \"2017-01-01\",\n    \"end_date\": \"2019-05-10\",\n    \"count\": 25,\n    \"offset\": 0\n}"
+            }
+        },
+        "functionality": "Use the `/transfer/list` endpoint to see a list of all your transfers and their statuses. Results are paginated; use the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Cancel a transfer",
+        "api_call": "https://{{env_url}}/transfer/cancel",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"transfer_id\": \"{{transfer_id}}\"\n}"
+            }
+        },
+        "functionality": "Use the `/transfer/cancel` endpoint to cancel a transfer.  A transfer is eligible for cancelation if the `cancellable` property returned"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List transfer events",
+        "api_call": "https://{{env_url}}/transfer/event/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"start_date\": \"2022-01-01T12:00:27.87Z\",\n    \"end_date\": \"2023-01-01T12:00:27.87Z\",\n    \"transfer_type\": \"credit\",\n    \"event_types\": [\n        \"pending\",\n        \"posted\"\n    ],\n    \"count\": 25,\n    \"offset\": 0\n}"
+            }
+        },
+        "functionality": "Use the `/transfer/event/list` endpoint to get a list of transfer events based on specified filter criteria."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Sync transfer events",
+        "api_call": "https://{{env_url}}/transfer/event/sync",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"after_id\": 0,\n    \"count\": 25\n}"
+            }
+        },
+        "functionality": "`/transfer/event/sync` allows you to request up to the next 25 transfer events that happened after a specific `event_id`. Use the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Simulate a transfer event in Sandbox",
+        "api_call": "https://{{env_url}}/sandbox/transfer/simulate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n    \"transfer_id\": \"{{transfer_id}}\",\n    \"event_type\": \"failed\",\n    \"failure_reason\": {\n        \"ach_return_code\": \"R02\",\n        \"description\": \"account closed\"\n    }\n}"
+            }
+        },
+        "functionality": "Use the `/sandbox/transfer/simulate` endpoint to simulate a transfer event in the Sandbox environment.  Note that while an event will"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get a sweep",
+        "api_call": "https://{{env_url}}/transfer/sweep/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n  \"sweep_id\": \"SWEEP_ID_GOES_HERE\"\n}"
+            }
+        },
+        "functionality": "Use the `/sandbox/transfer/simulate` endpoint to simulate a transfer event in the Sandbox environment.  Note that while an event will"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Simulate a sweep in Sandbox",
+        "api_call": "https://{{env_url}}/sandbox/transfer/sweep/simulate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\"\n}"
+            }
+        },
+        "functionality": "Use the `/sandbox/transfer/simulate` endpoint to simulate a transfer event in the Sandbox environment.  Note that while an event will"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List transfer sweeps",
+        "api_call": "https://{{env_url}}/transfer/sweep/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \t\"client_id\": \"{{client_id}}\",\n\t  \"secret\": \"{{secret_key}}\",\n    \"start_date\": \"2019-12-06T22:35:49Z\",\n    \"end_date\": \"2019-12-12T22:35:49Z\",\n    \"count\": 5,\n    \"offset\": 0\n}"
+            }
+        },
+        "functionality": "Use the `/sandbox/transfer/simulate` endpoint to simulate a transfer event in the Sandbox environment.  Note that while an event will"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Transfer intent",
+        "api_call": "https://{{env_url}}/transfer/intent/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"client_id\": \"{{client_id}}\",\n   \"secret\": \"{{secret_key}}\",\n   \"account_id\": \"3gE5gnRzNyfXpBK5wEEKcymJ5albGVUqg77gr\",\n   \"mode\": \"PAYMENT\",\n   \"amount\": \"12.34\",\n   \"description\": \"Foobar\",\n   \"ach_class\": \"ppd\",\n   \"origination_account_id\": \"1111-1111-1111-1111\",\n   \"user\": {\n     \"legal_name\": \"FirstName LastName\"\n   }\n }"
+            }
+        },
+        "functionality": "Use the `/transfer/authorization/create` endpoint to determine transfer failure risk."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get existing Transfer intent",
+        "api_call": "https://{{env_url}}/transfer/intent/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"client_id\": \"{{client_id}}\",\n   \"secret\": \"{{secret_key}}\",\n   \"transfer_intent_id\": \"460cbe92-2dcc-8eae-5ad6-b37d0ec90fd9\"\n }"
+            }
+        },
+        "functionality": "Use the `/transfer/authorization/create` endpoint to determine transfer failure risk."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get Transfer Metrics",
+        "api_call": "https://{{env_url}}/transfer/metrics/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"client_id\": \"{{client_id}}\",\n   \"secret\": \"{{secret_key}}\"\n }"
+            }
+        },
+        "functionality": "Use the `/transfer/authorization/create` endpoint to determine transfer failure risk."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get Transfer configuration and limits",
+        "api_call": "https://{{env_url}}/transfer/configuration/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"client_id\": \"{{client_id}}\",\n   \"secret\": \"{{secret_key}}\"\n }"
+            }
+        },
+        "functionality": "Use the `/transfer/authorization/create` endpoint to determine transfer failure risk."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create recurring transfer",
+        "api_call": "https://{{env_url}}/transfer/recurring/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"client_id\": {{client_id}},\n   \"secret\": {{secret}},\n   \"access_token\": \"{{access_token}}\",\n   \"account_id\": \"{{account_id}}\",\n   \"type\": \"credit\",\n   \"network\": \"ach\",\n   \"amount\": \"12.34\",\n   \"ach_class\": \"ppd\",\n   \"idempotency_key\": \"12345\",\n   \"description\": \"payment\",\n   \"schedule\": {\n     \"start_date\": \"2022-10-01\",\n     \"end_date\": \"2023-10-01\",\n     \"interval_unit\": \"week\",\n     \"interval_count\": 1,\n     \"interval_execution_day\": 5\n   }\n }"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get recurring transfer",
+        "api_call": "https://{{env_url}}/transfer/recurring/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"client_id\": {{client_id}},\n   \"secret\": {{secret}},\n   \"recurring_transfer_id\": \"RECURRING_TRANSFER_ID_GOES_HERE\"\n }"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List recurring transfers",
+        "api_call": "https://{{env_url}}/transfer/recurring/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"client_id\": {{client_id}},\n   \"secret\": {{secret}}\n }"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Cancel recurring transfer",
+        "api_call": "https://{{env_url}}/transfer/recurring/cancel",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n   \"client_id\": {{client_id}},\n   \"secret\": {{secret}},\n   \"recurring_transfer_id\": \"ID_GOES_HERE\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Make a Ledger deposit",
+        "api_call": "https://{{env_url}}/transfer/ledger/deposit",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"amount\": \"1.00\",\n    \"idempotency_key\": \"R8Z0eD5lc8C2jTLcolDQ\",\n    \"network\": \"ach\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Make a Ledger withdrawal",
+        "api_call": "https://{{env_url}}/transfer/ledger/withdraw",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"amount\": \"1.00\",\n    \"idempotency_key\": \"R8Z0eD5lc8C2jTLcolDQ\",\n    \"network\": \"ach\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get a Ledger balance",
+        "api_call": "https://{{env_url}}/transfer/ledger/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: (Platform Payments) Move funds between Ledgers",
+        "api_call": "https://{{env_url}}/transfer/ledger/distribute",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"amount\": \"12.34\",\n    \"from_client_id\": \"originators-client-id-goes-here\",\n    \"to_client_id\": \"{{client_id}}\",\n    \"idempotency_key\": \"randomly-generated-key-goes-here\",\n    \"description\": \"monthly platform fee\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: (Sandbox) Simulate a ledger deposit",
+        "api_call": "https://{{env_url}}/sandbox/transfer/ledger/deposit/simulate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"sweep_id\": \"SWEEP_ID_GOES_HERE\",\n    \"event_type\": \"sweep.posted\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: (Sandbox) Simulate a ledger withdrawal",
+        "api_call": "https://{{env_url}}/sandbox/transfer/ledger/withdraw/simulate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"sweep_id\": \"SWEEP_ID_GOES_HERE\",\n    \"event_type\": \"sweep.posted\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: (Sandbox) Simulate converting pending balance to available balance",
+        "api_call": "https://{{env_url}}/sandbox/transfer/ledger/simulate_available",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create a refund",
+        "api_call": "https://{{env_url}}/transfer/refund/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret}}\",\n  \"transfer_id\": \"TRANSFER_ID_GOES_HERE\",\n  \"amount\": \"12.34\",\n  \"idempotency_key\": \"VEK2ea3X6LKywsc8J6pg\"\n }"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get a refund",
+        "api_call": "https://{{env_url}}/transfer/refund/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret}}\",\n  \"refund_id\": \"REFUND_ID_GOES_HERE\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Cancel a refund",
+        "api_call": "https://{{env_url}}/transfer/refund/cancel",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret}}\",\n  \"refund_id\": \"REFUND_ID_GOES_HERE\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: (Sandbox) Simulate a refund event",
+        "api_call": "https://{{env_url}}/sandbox/transfer/refund/simulate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret}}\",\n  \"refund_id\": \"REFUND_ID_GOES_HERE\",\n  \"event_type\": \"refund.posted\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create an originator",
+        "api_call": "https://{{env_url}}//transfer/originator/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"company_name\": \"Jane's Ceramics\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get an orginator",
+        "api_call": "https://{{env_url}}/transfer/originator/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"originator_client_id\": \"{{originator_client_id}}\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List originators",
+        "api_call": "https://{{env_url}}/transfer/originator/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"company_name\": \"Jane's Ceramics\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Change the funding account for an originator",
+        "api_call": "https://{{env_url}}/transfer/originator/funding_account/update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"originator_client_id\": \"{{originator_client_id}}\",\n    \"funding_account\": {\n      \"access_token\": \"{{access_token}}\",\n      \"account_id\": \"{{account_id}}\"\n    }\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create an originator onboarding questionnaire",
+        "api_call": "https://{{env_url}}/transfer/questionnaire/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"originator_client_id\": \"{{originator_client_id}}\",\n    \"redirect_uri\": \"http://www.yourcompanyswebsite.com/questionnaire_completed/\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Submit diligence information you collected about an originator",
+        "api_call": "https://{{env_url}}/transfer/diligence/submit",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": {{client_id}},\n  \"secret\": {{secret_key}},\n  \"originator_client_id\": {{originator_client_id}},\n  \"originator_diligence\": {\n      \"address\": {\n          \"city\":         \"San Francisco\",\n          \"country_code\": \"US\",\n          \"postal_code\":  \"95302\",\n          \"region\":       \"San Francisco\",\n          \"street\":       \"1 A street\"\n      },\n      \"dba\": \"Jane's Ceramics\",\n      \"credit_usage_configuration\": {\n          \"expected_average_amount\": \"10.00\",\n          \"expected_frequency\":      \"once_per_week\",\n          \"expected_highest_amount\": \"100.00\",\n          \"expected_monthly_amount\": \"1000.00\",\n          \"sec_codes\":               [\"ccd\", \"ppd\"]\n      },\n      \"debit_usage_configuration\": {\n          \"expected_average_amount\": \"10.00\",\n          \"expected_frequency\":      \"once_per_week\",\n          \"expected_highest_amount\": \"100.00\",\n          \"expected_monthly_amount\": \"1000.00\",\n          \"sec_codes\":               [\"ccd\", \"ppd\"]\n      },\n      \"funding_account\": {\n        \"access_token\": \"{{access_token}}\",\n        \"account_id\": \"{{account_id}}\"\n      },\n      \"naics_code\": \"327110\",\n      \"tax_id\":     \"123456789\",\n      \"website\":    \"www.janesceramicsshoppe.com\"\n  }\n}\n"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Upload a document showing your due diligence performed on the originator",
+        "api_call": "https://{{env_url}}/transfer/diligence/document/upload",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                },
+                {
+                    "key": "PLAID-CLIENT-ID",
+                    "value": "{{client_id}}",
+                    "type": "text"
+                },
+                {
+                    "key": "PLAID-SECRET",
+                    "value": "{{secret_key}}",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "purpose",
+                        "value": "DUE_DILIGENCE",
+                        "type": "text"
+                    },
+                    {
+                        "key": "originator_client_id",
+                        "value": "{{orginator_client_id}}",
+                        "type": "text"
+                    },
+                    {
+                        "key": "file",
+                        "description": "A document showing your due diligence on the originator, in PDF, DOCX, or DOC format. The results of the due diligence and the artifacts or research supporting it should be combined into a single file.",
+                        "type": "file",
+                        "value": null
+                    }
+                ]
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create a test clock",
+        "api_call": "https://{{env_url}}/sandbox/transfer/test_clock/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Advance a test clock",
+        "api_call": "https://{{env_url}}/sandbox/transfer/test_clock/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"test_clock_id\": \"{{test_clock_id}}\",\n    \"new_virtual_time\": \"2023-10-02T15:04:05Z\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get a test clock",
+        "api_call": "https://{{env_url}}/sandbox/transfer/test_clock/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"test_clock_id\": \"{{test_clock_id}}\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List test clocks",
+        "api_call": "https://{{env_url}}/sandbox/transfer/test_clock/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: See if an Item supports real-time payments",
+        "api_call": "https://{{env_url}}/transfer/capabilities/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"access_token\": \"{{access_token}}\",\n    \"account_id\": \"{{account_id}}\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Migrate A/R number pair to Transfer (account manager must enable)",
+        "api_call": "https://{{env_url}}/transfer/migrate_account",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"account_number\": \"100000000\",\n    \"routing_number\": \"121122676\",\n    \"account_type\": \"checking\"\n}"
+            }
+        },
+        "functionality": "The `/transfer/get` fetches information about the transfer corresponding to the given `transfer_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Auth public token for use with Signal [Sandbox only]",
+        "api_call": "https://{{env_url}}/sandbox/public_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"institution_id\": \"ins_20\",\n  \"initial_products\": [\"auth\"],\n  \"options\": {\n    \"webhook\": \"https://www.genericwebhookurl.com/webhook\"\n  }\n}"
+            }
+        },
+        "functionality": "Creates an `Item` in the `sandbox` environment. You will get back a `public_token` and a `request_id`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Exchange public token for access token",
+        "api_call": "https://{{env_url}}/item/public_token/exchange",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"public_token\": \"{{public_token}}\"\n}"
+            }
+        },
+        "functionality": "Goes through the exchange token process where the `public_token` is exchanged for an `access_token`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: (Optional) Initialize an existing Auth Item with Signal",
+        "api_call": "https://{{env_url}}/signal/prepare",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"access_token\": \"{{access_token}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve account id to use with Signal",
+        "api_call": "https://{{env_url}}/accounts/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n\t\"access_token\": \"{{access_token}}\"\n}"
+            }
+        },
+        "functionality": "This endpoint allows you to retrieve all available `Account`s associated with an `Item`."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Evaluate a planned ACH transaction",
+        "api_call": "https://{{env_url}}/signal/evaluate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"access_token\": \"{{access_token}}\",\n  \"account_id\": \"{{account_id}}\",\n  \"client_transaction_id\": \"your_unique_identifier_goes_here\",\n  \"amount\": 100.12\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Report whether you initiated an ACH transaction",
+        "api_call": "https://{{env_url}}/signal/decision/report",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"client_transaction_id\": \"{{client_transaction_id}}\",\n  \"initiated\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Report an ACH return",
+        "api_call": "https://{{env_url}}/signal/return/report",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"client_transaction_id\": \"{{client_transaction_id}}\",\n  \"return_code\": \"R16\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Search Institution by Name",
+        "api_call": "https://{{env_url}}/institutions/search",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"query\": \"delta schools\",\n    \"country_codes\": [\"US\"],\n    \"products\": [\"auth\"]\n }"
+            }
+        },
+        "functionality": "The `/institutions/search` endpoint makes it easy to stay up-to-date with supported institutions and help your users quickly find their institutions."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Search Institution by ID",
+        "api_call": "https://{{env_url}}/institutions/get_by_id",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"institution_id\": \"ins_1\",\n    \"country_codes\": [\"US\"],\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve Insitution List",
+        "api_call": "https://{{env_url}}/institutions/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\":\"{{secret_key}}\",\n\t\"count\": 200,\n\t\"offset\": 0,\n  \"country_codes\": [\"US\"]\n}"
+            }
+        },
+        "functionality": "To see a full list of supported institutions across all products, use the `/institutions/get` and `/institutions/search` endpoints.  \n<br />\nUse"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Fire Webhook [Sandbox Only]",
+        "api_call": "https://{{env_url}}/sandbox/item/fire_webhook",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n\t\"access_token\": \"{{access_token}}\",\n\t\"webhook_code\": \"DEFAULT_UPDATE\"\n}"
+            }
+        },
+        "functionality": "Fire sandbox webhook for item"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get Webhook Verification Key",
+        "api_call": "https://{{env_url}}/webhook_verification_key/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "name": "Content-Type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n\t\"key_id\": \"ENTER_KEY_ID_HERE\"\n}"
+            }
+        },
+        "functionality": "Get Webhook Verification Key"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Payment Recipient",
+        "api_call": "https://{{env_url}}/payment_initiation/recipient/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"name\": \"Wonder Wallet\",\n  \"iban\": \"GB29NWBK60161331926819\",\n  \"address\": {\n    \"street\": [\n      \"96 Guild Street\",\n      \"9th Floor\"\n    ],\n    \"city\": \"London\",\n    \"postal_code\": \"SE14 8JW\",\n    \"country\": \"GB\"\n  }\n}"
+            }
+        },
+        "functionality": "In the sandbox environment, you can use the `/payment_initiation/recipient/create` endpoint to generate recipients. Programmatic recipient creation in the development and"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Payment",
+        "api_call": "https://{{env_url}}/payment_initiation/payment/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"recipient_id\": \"{{recipient_id}}\",\n  \"reference\": \"Test Funding\",\n  \"amount\": {\n    \"currency\": \"GBP\",\n    \"value\": 100.00\n  }\n}"
+            }
+        },
+        "functionality": "Create and configure a payment by specifying a `recipient_id`, `reference`, `amount`, and `currency` to create a Plaid payment resource. The"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Link Token - Payment Initiation",
+        "api_call": "https://{{env_url}}/link/token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n  \"client_name\": \"Insert Client name here\",\n  \"country_codes\": [\"GB\"],\n  \"language\": \"en\",\n  \"user\": {\n    \"client_user_id\": \"unique_user_id\"\n  },\n  \"products\": [\"payment_initiation\"],\n  \"payment_initiation\": {\n    \"payment_id\": \"{{payment_id}}\"\n  }\n}"
+            }
+        },
+        "functionality": "Creates a link token with options. The `payment_id` from `Create Payment` is passed with the creation of the link token."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get Payment",
+        "api_call": "https://{{env_url}}/payment_initiation/payment/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"payment_id\": \"{{payment_id}}\"\n}"
+            }
+        },
+        "functionality": "The endpoint `payment_initiation/payment/get` takes a `payment_id` and returns all of the payment details for a previously created payment."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List Payments",
+        "api_call": "https://{{env_url}}/payment_initiation/payment/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"count\": 5\n}"
+            }
+        },
+        "functionality": "The endpoint `payment_initiation/payment/get` list payment details for all of your previously created payments.\n\nThis endpoint accepts `count` and `cursor` as optional"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get Payment Recipient",
+        "api_call": "https://{{env_url}}/payment_initiation/recipient/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"recipient_id\": \"{{recipient_id}}\"\n}"
+            }
+        },
+        "functionality": "The `/payment_initiation/recipient/get` endpoint allows you to retrieve all of the details for a recipient that you have created."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List Payment Recipients",
+        "api_call": "https://{{env_url}}/payment_initiation/recipient/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\"\n}"
+            }
+        },
+        "functionality": "The `/payment_initiation/recipient/list` endpoint allows you to retrieve details for all recipients that you have created."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Payment Consent",
+        "api_call": "https://{{env_url}}/payment_initiation/consent/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"recipient_id\": \"{{recipient_id}}\",\n    \"reference\": \"Test recurring\",\n    \"scopes\": [\n        \"ME_TO_ME\"\n    ],\n    \"constraints\": {\n        \"max_payment_amount\": {\n            \"currency\": \"GBP\",\n            \"value\": 10\n        },\n        \"periodic_amounts\": [\n            {\n                \"amount\": {\n                    \"currency\": \"GBP\",\n                    \"value\": 50\n                },\n                \"alignment\": \"CALENDAR\",\n                \"interval\": \"MONTH\"\n            },\n            {\n                \"amount\": {\n                    \"currency\": \"GBP\",\n                    \"value\": 130\n                },\n                \"alignment\": \"CONSENT\",\n                \"interval\": \"YEAR\"\n            }\n        ]\n    }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get Payment Consent",
+        "api_call": "https://{{env_url}}/payment_initiation/consent/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"consent_id\": \"{{payment_consent_id}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Revoke Payment Consent",
+        "api_call": "https://{{env_url}}/payment_initiation/consent/revoke",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"consent_id\": \"{{payment_consent_id}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Execute Consent Based Payment",
+        "api_call": "https://{{env_url}}/payment_initiation/consent/payment/execute",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"consent_id\": \"{{payment_consent_id}}\",\n    \"amount\": {\n        \"currency\": \"GBP\",\n        \"value\": 3\n    },\n    \"idempotency_key\": \"{{$randomUUID}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create a Sandbox test Item and processor token",
+        "api_call": "https://{{env_url}}/sandbox/processor_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n    \"institution_id\": \"ins_19\",\n    \"options\": {\n        \"override_username\": \"user_good\",\n        \"override_password\": \"pass_good\"\n    }\n}"
+            }
+        },
+        "functionality": "Use the `/sandbox/processor_token/create` endpoint to create a valid `processor_token` for an arbitrary institution ID and test credentials. The created `processor_token`"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create processor token (for Development / Production)",
+        "api_call": "https://{{env_url}}/processor/token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n    \"access_token\": \"{{access_token}}\",\n    \"account_id\": \"{{account_id}}\",\n    \"processor\": \"dwolla\"\n}"
+            }
+        },
+        "functionality": "Used to create a token suitable for sending to one of Plaid's partners to enable integrations. Note that Stripe partnerships"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Stripe bank account token",
+        "api_call": "https://{{env_url}}/processor/stripe/bank_account_token/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n    \"access_token\": \"{{access_token}}\",\n    \"account_id\": \"{{account_id}}\"\n}"
+            }
+        },
+        "functionality": "Used to create a token suitable for sending to Stripe to enable Plaid-Stripe integrations."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get Auth data",
+        "api_call": "https://{{env_url}}/processor/auth/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n\t\"processor_token\": \"{{processor_token}}\"\n}"
+            }
+        },
+        "functionality": "The `/processor/auth/get` endpoint returns the bank account and bank identification number (such as the routing number, for US accounts), for"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get Identity data",
+        "api_call": "https://{{env_url}}/processor/identity/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n\t\"processor_token\": \"{{processor_token}}\"\n}"
+            }
+        },
+        "functionality": "The `/processor/identity/get` endpoint allows you to retrieve various account holder information on file with the financial institution, including names, emails,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Match Identity data",
+        "api_call": "https://{{env_url}}/processor/identity/match",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n\t\"processor_token\": \"{{processor_token}}\",\n    \"user\": {\n       \"phone_number\": \"+1-111-222-3333\",\n       \"legal_name\": \"Alerta Charleson\",\n       \"email_address\": \"accountholder1@example.com\",\n   \"address\": {\n            \"city\": \"San Matias\",\n            \"country\": \"US\",\n            \"postal_code\": \"93405\",\n            \"region\": \"CA\",\n            \"street\": \"2493 Leisure Ln.\"\n      }\n    }\n}"
+            }
+        },
+        "functionality": "The `/processor/identity/get` endpoint allows you to retrieve various account holder information on file with the financial institution, including names, emails,"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get Balance data",
+        "api_call": "https://{{env_url}}/processor/balance/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n\t\"processor_token\": \"{{processor_token}}\"\n}"
+            }
+        },
+        "functionality": "The `/processor/balance/get` endpoint returns the real-time balance for each of an Item's accounts. While other endpoints may return a balance"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Evaluate a planned ACH transaction",
+        "api_call": "https://{{env_url}}/processor/signal/evaluate",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"processor_token\": \"{{processor_token}}\",\n  \"account_id\": \"{{account_id}}\",\n  \"client_transaction_id\": \"your_unique_identifier_goes_here\",\n  \"amount\": 100.12\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Report whether you initiated an ACH transaction",
+        "api_call": "https://{{env_url}}/processor/signal/decision/report",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"processor_token\": \"{{processor_token}}\",\n  \"client_transaction_id\": \"{{client_transaction_id}}\",\n  \"initiated\": true\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Report an ACH return",
+        "api_call": "https://{{env_url}}/processor/signal/return/report",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"processor_token\": \"{{processor_token}}\",\n  \"client_transaction_id\": \"{{client_transaction_id}}\",\n  \"return_code\": \"R16\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: (Optional) Initialize an existing Auth Item with Signal",
+        "api_call": "https://{{env_url}}/processor/signal/prepare",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"processor_token\": \"{{processor_token}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve Transactions By Incremental Updates",
+        "api_call": "https://{{env_url}}/processor/transactions/sync",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"processor_token\": \"{{processor_token}}\",\n  \"count\": 5\n}"
+            }
+        },
+        "functionality": "_(replaces `/transactions/get` and its associated webhooks for most common use-cases)_\n\nThe `/transactions/sync` endpoint allows developers to subscribe to all transactions associated"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve Transactions by Date Range",
+        "api_call": "https://{{env_url}}/transactions/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"access_token\": \"{{access_token}}\",\n  \"start_date\": \"2023-04-14\",\n  \"end_date\": \"2024-04-17\",\n  \"options\": {\n    \"include_personal_finance_category\": true\n  } \n}"
+            }
+        },
+        "functionality": "The `/transactions/get` endpoint allows developers to receive user-authorized transaction data for credit and depository-type Accounts. Transaction data is standardized across"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve recurring transaction streams",
+        "api_call": "https://{{env_url}}/processor/transactions/recurring/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"processor_token\": \"{{processor_token}}\"\n}"
+            }
+        },
+        "functionality": "The `/transactions/get` endpoint allows developers to receive user-authorized transaction data for credit and depository-type Accounts. Transaction data is standardized across"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Force refresh Transactions",
+        "api_call": "https://{{env_url}}/processor/transactions/refresh",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"processor_token\": \"{{processor_token}}\"\n}"
+            }
+        },
+        "functionality": "`/transactions/refresh` is an optional endpoint for users of the Transactions product. It initiates an on-demand extraction to fetch the newest"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get account data",
+        "api_call": "https://{{env_url}}/processor/accounts/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"client_id\": \"{{client_id}}\",\n\t\"secret\": \"{{secret_key}}\",\n\t\"processor_token\": \"{{processor_token}}\"\n}"
+            }
+        },
+        "functionality": "The `/processor/auth/get` endpoint returns the bank account and bank identification number (such as the routing number, for US accounts), for"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Update an Item's Webhook",
+        "api_call": "https://{{env_url}}/processor/token/webhook/update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n    \"client_id\": \"{{client_id}}\",\n    \"secret\": \"{{secret_key}}\",\n    \"processor_token\": \"{{processor_token}}\",\n    \"webhook\": \"ENTER_WEBHOOK_URL_HERE\"\n }"
+            }
+        },
+        "functionality": "This endpoint allows you to update the webhook url for an `Item`. This request triggers a `WEBHOOK_UPDATE_ACKNOWLEDGED` [webhook](https://plaid.com/docs/api/#item-webhooks)."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create a new Identity Verification",
+        "api_call": "https://{{env_url}}/identity_verification/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"template_id\": \"flwtmp_cSX5fHG7CtzxCU\",\n  \"gave_consent\": true,\n  \"is_shareable\": true,\n  \"user\": {\n    \"client_user_id\": \"your-db-id-3b24114\",\n    \"email_address\": \"user@example.com\",\n    \"phone_number\": \"+19876543212\",\n    \"date_of_birth\": \"1975-01-18\",\n    \"name\": {\n      \"given_name\": \"Leslie\",\n      \"family_name\": \"Knope\"\n    },\n    \"address\": {\n      \"street\": \"123 Main St.\",\n      \"street2\": \"Unit 42\",\n      \"city\": \"Pawnee\",\n      \"region\": \"IN\",\n      \"postal_code\": \"46001\",\n      \"country\": \"US\"\n    },\n    \"id_number\": {\n      \"value\": \"123456789\",\n      \"type\": \"us_ssn\"\n    }\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve an Identity Verification",
+        "api_call": "https://{{env_url}}/identity_verification/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"identity_verification_id\": \"{{identity_verification_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List Identity Verifications",
+        "api_call": "https://{{env_url}}/identity_verification/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"template_id\": \"flwtmp_cSX5fHG7CtzxCU\",\n  \"client_user_id\": \"{{client_user_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retry an Identity Verification",
+        "api_call": "https://{{env_url}}/identity_verification/retry",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"client_user_id\": \"{{client_user_id}}\",\n  \"template_id\": \"flwtmp_cSX5fHG7CtzxCU\",\n  \"strategy\": \"reset\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List Individual Watchlist Screening Programs",
+        "api_call": "https://{{env_url}}/watchlist_screening/individual/program/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get Individual Watchlist Screening Program",
+        "api_call": "https://{{env_url}}/watchlist_screening/individual/program/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"watchlist_program_id\": \"prg_eLWRUt7T8H6WQ1\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create a Watchlist Screening for an Individual",
+        "api_call": "https://{{env_url}}/watchlist_screening/individual/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"search_terms\": {\n    \"watchlist_program_id\": \"prg_eLWRUt7T8H6WQ1\",\n    \"legal_name\": \"Aleksey Potemkin\",\n    \"country\": \"US\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get an Individual Watchlist Screening",
+        "api_call": "https://{{env_url}}/watchlist_screening/individual/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"watchlist_screening_id\": \"{{watchlist_screening_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Update Individual Watchlist Screening",
+        "api_call": "https://{{env_url}}/watchlist_screening/individual/update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"watchlist_screening_id\": \"{{watchlist_screening_id}}\",\n  \"status\": \"cleared\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List History for Individual Watchlist Screenings",
+        "api_call": "https://{{env_url}}/watchlist_screening/individual/history/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"watchlist_screening_id\": \"{{watchlist_screening_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List Individual Watchlist Screenings",
+        "api_call": "https://{{env_url}}/watchlist_screening/individual/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"watchlist_program_id\": \"prg_eLWRUt7T8H6WQ1\",\n  \"status\": \"cleared\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List Hits for Individual Watchlist Screening",
+        "api_call": "https://{{env_url}}/watchlist_screening/individual/hit/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"watchlist_screening_id\": \"{{watchlist_screening_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create a Review for an Individual Watchlist Screening",
+        "api_call": "https://{{env_url}}/watchlist_screening/individual/review/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"watchlist_screening_id\": \"{{watchlist_screening_id}}\",\n  \"confirmed_hits\": [\"{{watchlist_screening_hit_id}}\"],\n  \"dismissed_hits\": []\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List Reviews for Individual Watchlist Screenings",
+        "api_call": "https://{{env_url}}/watchlist_screening/individual/review/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"watchlist_screening_id\": \"{{watchlist_screening_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List Entity Watchlist Screening Programs",
+        "api_call": "https://{{env_url}}/watchlist_screening/entity/program/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get Entity Watchlist Screening Program",
+        "api_call": "https://{{env_url}}/watchlist_screening/entity/program/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"entity_watchlist_program_id\": \"entprg_4LcepLXWLsKgmm\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create a Watchlist Screening for an Entity",
+        "api_call": "https://{{env_url}}/watchlist_screening/entity/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"search_terms\": {\n    \"entity_watchlist_program_id\": \"entprg_4LcepLXWLsKgmm\",\n    \"legal_name\": \"Al-Qaida\",\n    \"email\": \"user@example.com\",\n    \"country\": \"US\",\n    \"phone_number\": \"+14025671234\",\n    \"url\": \"http://cognitohq.com\"\n  }\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get an Entity Screening",
+        "api_call": "https://{{env_url}}/watchlist_screening/entity/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"entity_watchlist_screening_id\": \"{{entity_watchlist_screening_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Update an Entity Screening",
+        "api_call": "https://{{env_url}}/watchlist_screening/entity/update",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"entity_watchlist_screening_id\": \"{{entity_watchlist_screening_id}}\",\n  \"status\": \"cleared\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List History for Entity Watchlist Screenings",
+        "api_call": "https://{{env_url}}/watchlist_screening/entity/history/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"entity_watchlist_screening_id\": \"{{entity_watchlist_screening_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List Entity Watchlist Screenings",
+        "api_call": "https://{{env_url}}/watchlist_screening/entity/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"entity_watchlist_program_id\": \"entprg_4LcepLXWLsKgmm\",\n  \"status\": \"cleared\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List Hits for Entity Watchlist Screenings",
+        "api_call": "https://{{env_url}}/watchlist_screening/entity/hit/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"entity_watchlist_screening_id\": \"{{entity_watchlist_screening_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create a Review for an Entity Watchlist Screening",
+        "api_call": "https://{{env_url}}/watchlist_screening/entity/review/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"entity_watchlist_screening_id\": \"{{entity_watchlist_screening_id}}\",\n  \"confirmed_hits\": [\"{{entity_watchlist_screening_hit_id}}\"],\n  \"dismissed_hits\": []\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List Reviews for Entity Watchlist Screenings",
+        "api_call": "https://{{env_url}}/watchlist_screening/entity/review/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"entity_watchlist_screening_id\": \"{{entity_watchlist_screening_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List dashboard users",
+        "api_call": "https://{{env_url}}/dashboard_user/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Retrieve a dashboard user",
+        "api_call": "https://{{env_url}}/dashboard_user/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"dashboard_user_id\": \"{{dashboard_user_id}}\"\n}",
+                "options": {
+                    "raw": {
+                        "language": "json"
+                    }
+                }
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Enrich transactions",
+        "api_call": "https://{{env_url}}/transactions/enrich",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"account_type\": \"credit\",\n  \"transactions\": [\n    {\n      \"id\": \"6135818adda16500147e7c1d\",\n      \"description\": \"PURCHASE WM SUPERCENTER #1700\",\n      \"amount\": 72.10,\n      \"direction\": \"OUTFLOW\",\n      \"iso_currency_code\": \"USD\",\n      \"location\": {\n        \"city\": \"Poway\",\n        \"region\": \"CA\"\n      },\n      \"mcc\": \"5310\",\n      \"date_posted\": \"2022-07-05\"\n    },\n    {\n      \"id\": \"3958434bhde9384bcmeo3401\",\n      \"description\": \"DD DOORDASH BURGERKIN 855-123-4567 CA\",\n      \"amount\": 28.34,\n      \"direction\": \"OUTFLOW\",\n      \"iso_currency_code\": \"USD\"\n    }\n  ]\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create an end customer",
+        "api_call": "https://{{env_url}}//partner/customer/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"address\": {\n        \"city\": \"City of Industry\",\n        \"country_code\": \"US\",\n        \"postal_code\": \"91744\",\n        \"region\": \"CA\",\n        \"street\": \"1 Main St.\"\n    },\n    \"application_name\": \"Wonderwallet\",\n    \"company_name\": \"Wonderful Solutions\",\n    \"is_bank_addendum_completed\": true,\n    \"is_diligence_attested\": true,\n    \"legal_entity_name\": \"Wonderful Solutions, LLC\",\n    \"products\": [\"transactions\"],\n    \"website\": \"www.example.com\",\n    \"redirect_uris\": [\"https://www.example.com/oauth.html\"],\n    \"assets_under_management\": {\n      \"amount\": 10000,\n      \"iso_currency_code\": \"USD\"\n    }\n    \n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get the status of an end customer",
+        "api_call": "https://{{env_url}}/partner/customer/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"end_customer_client_id\": \"{{end_customer_client_id}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get OAuth registration status for an end customer",
+        "api_call": "https://{{env_url}}/partner/customer/oauth_institutions/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"end_customer_client_id\": \"{{end_customer_client_id}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Enable an end customer in Production",
+        "api_call": "https://{{env_url}}/partner/customer/enable",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"end_customer_client_id\": \"{{end_customer_client_id}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Remove an end customer",
+        "api_call": "https://{{env_url}}/partner/customer/remove",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"end_customer_client_id\": \"{{end_customer_client_id}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: List statements",
+        "api_call": "https://{{env_url}}/statements/list",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"access_token\": \"{{access_token}}\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Download a statement PDF",
+        "api_call": "https://{{env_url}}/statements/download",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"access_token\": \"{{access_token}}\",\n  \"statement_id\": \"STATEMENT_ID_GOES_HERE\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Beacon user",
+        "api_call": "https://{{env_url}}/beacon/user/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"program_id\": \"PROGRAM_ID_GOES_HERE\",\n  \"user\": {\n    \"email_address\": \"user@example.com\",\n    \"date_of_birth\": \"1975-01-18\",\n    \"name\": {\n      \"given_name\": \"Leslie\",\n      \"family_name\": \"Knope\"\n    },\n    \"address\": {\n      \"street\": \"123 Main St.\",\n      \"street2\": \"Unit 42\",\n      \"city\": \"Pawnee\",\n      \"region\": \"IN\",\n      \"postal_code\": \"46001\",\n      \"country\": \"US\"\n    }\n  },\n  \"report\": {\n    \"type\": \"first_party\",\n    \"fraud_date\": \"2023-05-29\"\n  }\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Get Beacon user",
+        "api_call": "https://{{env_url}}/beacon/user/get",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"beacon_user_id\": \"BEACON_USER_ID_GOES_HERE\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Plaid API Endpoints: Create Beacon fraud report",
+        "api_call": "https://{{env_url}}/beacon/report/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n  \"client_id\": \"{{client_id}}\",\n  \"secret\": \"{{secret_key}}\",\n  \"beacon_user_id\": \"BEACON_USER_ID_GOES_HERE\",\n  \"type\": \"first_party\",\n  \"fraud_date\": \"2023-05-29\"\n}"
+            }
+        },
+        "functionality": "NO DESC IN POSTMAN"
+    }
+]

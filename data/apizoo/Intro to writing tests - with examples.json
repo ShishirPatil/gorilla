@@ -1,0 +1,462 @@
+[
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: pm.test",
+        "api_call": "https://postman-echo.com/get?foo1=bar1&foo2=bar2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "In the Postman app, review the tests written under the **Tests** tab in the request builder on the top. Send"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: pm.expect and pm.response",
+        "api_call": "https://postman-echo.com/get?foo1=bar1&foo2=bar2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Within the second parameter of the `pm.test()` function, you can use either `pm.response()` or `pm.expect()` to make your assertions. \n\nUnder"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Status",
+        "api_call": "https://postman-echo.com/get?foo1=bar1&foo2=bar2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This test is to validate the response status code. This SNIPPET is also available on the right sidebar under `Status"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Performance",
+        "api_call": "https://postman-echo.com/put",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "This is expected to be sent back as part of response body."
+            }
+        },
+        "functionality": "This test is to validate the response time. This SNIPPET is also available on the right sidebar under `Response time"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Data type",
+        "api_call": "https://postman-echo.com/patch",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "This is expected to be sent back as part of response body."
+            }
+        },
+        "functionality": "This test is to validate the content type of the returned content. This SNIPPET is also available on the right"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Functional",
+        "api_call": "https://postman-echo.com/post",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "someHash",
+                        "type": "text",
+                        "value": "7654321"
+                    },
+                    {
+                        "key": "secondHash",
+                        "type": "text",
+                        "value": "987654321asdfgh"
+                    }
+                ]
+            }
+        },
+        "functionality": "This test is written to validate the server performed a function as expected."
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Functional2",
+        "api_call": "https://postman-echo.com/delete",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+                "mode": "raw",
+                "raw": "This is expected to be sent back as part of response body."
+            }
+        },
+        "functionality": "Another example of bundling several assertions within a single test, and also of bundling several tests within a try-catch code"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: JSON schema v4 validation",
+        "api_call": "https://postman-echo.com/get?foo1=bar1&foo2=bar2",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "A schema is simply a declaration describing the structure of data. Some teams use a specific schema and would like"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: SQL injection security check",
+        "api_call": "https://postman-echo.com/post",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [],
+            "body": {
+                "mode": "urlencoded",
+                "urlencoded": [
+                    {
+                        "key": "customerName",
+                        "value": "' or '1'='1",
+                        "description": " String query = \"SELECT account_balance FROM user_data WHERE user_name = \"\n   + request.getParameter(\"customerName\");",
+                        "type": "text"
+                    },
+                    {
+                        "key": "anotherAttack",
+                        "value": "' or 1=1; drop table myTable; --",
+                        "description": "Probably best not to do this one in production, or at all, except for demonstration purposes",
+                        "type": "text",
+                        "disabled": true
+                    }
+                ]
+            }
+        },
+        "functionality": "Hackers can attack your web server by injecting malicious strings as a request parameter. If your server is not handling"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Bitcoin exchange rate",
+        "api_call": "https://api.coindesk.com/v1/bpi/currentprice.json",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "CoinDesk provides a simple API to make its [Bitcoin Price Index (BPI)](https://www.coindesk.com/price/) data programmatically available to others. Data is returned"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Echo the exchange rate",
+        "api_call": "https://postman-echo.com/get?foo1={{bitcoinRate}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This request will use information saved to a variable in a previous request.\n\nYou can send the request to view this"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Fetch a list of items",
+        "api_call": "http://localhost:3002/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "Bearer {{example_api_key}}"
+                },
+                {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "A `GET` to the `/items` endpoint allows your application to fetch a list of all items.\n\nLook under **Examples** to view"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Create a new item",
+        "api_call": "http://localhost:3002/items",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "Bearer {{example_api_key}}"
+                },
+                {
+                    "key": "Content-type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "formdata",
+                "formdata": [
+                    {
+                        "key": "name",
+                        "type": "text",
+                        "value": "kabocha"
+                    },
+                    {
+                        "key": "price",
+                        "type": "text",
+                        "value": "0.89"
+                    },
+                    {
+                        "key": "unit",
+                        "type": "text",
+                        "value": "lb"
+                    },
+                    {
+                        "key": "currency",
+                        "type": "text",
+                        "value": "USD"
+                    }
+                ]
+            }
+        },
+        "functionality": "A `POST` to the `/items` endpoint allows your application to create a new item. A successful response will return an"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Verify new item exists",
+        "api_call": "http://localhost:3002/items/{{itemId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "Bearer {{example_api_key}}"
+                },
+                {
+                    "key": "Content-type",
+                    "type": "text",
+                    "value": "application/json"
+                }
+            ]
+        },
+        "functionality": "A `GET` to the `/items/:itemId` endpoint allows your application to retrieve details about the specified item.\n\nLook under **Examples** to view"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Add item to cart",
+        "api_call": "http://localhost:3002/{{memberId}}/cart",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "Bearer {{example_api_key}}"
+                },
+                {
+                    "key": "Content-type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "A `POST` to the `/:memberId/cart` endpoint allows your application to add an item to the specified member's cart. \n\nLook under"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Delete item from cart",
+        "api_call": "http://localhost:3002/{{memberId}}/cart/{{itemId}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "Bearer {{example_api_key}}"
+                },
+                {
+                    "key": "Content-type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": ""
+            }
+        },
+        "functionality": "A `DELETE` to the `/:memberId/cart/:itemId` endpoint allows your application to delete an item to the specified member's cart.\n\nLook under **Examples**"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Verify item removed",
+        "api_call": "http://localhost:3002/{{memberId}}/cart",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Authorization",
+                    "type": "text",
+                    "value": "Bearer {{example_api_key}}"
+                },
+                {
+                    "key": "Content-type",
+                    "value": "application/json",
+                    "type": "text"
+                }
+            ]
+        },
+        "functionality": "A `GET` to the `:memberId/cart` endpoint allows you to retrieve a list of all items in the specified member's cart.\n\nLook"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Create User",
+        "api_call": "http://localhost:3001/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"username\": \"user\",\n\t\"password\": \"password\",\n\t\"extra\": \"blerg\"\n}"
+            }
+        },
+        "functionality": "The body must have `username`, `password` and `extra`. It returns `id_token` and `access_token` which are signed with the secret located"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Create Session",
+        "api_call": "http://localhost:3001/sessions/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"username\": \"user\",\n\t\"password\": \"password\"\n}"
+            }
+        },
+        "functionality": "The body must have `username` and `password`. It returns `id_token` and `access_token` are signed with the secret located at the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Protected Random Quote",
+        "api_call": "http://localhost:3001/api/protected/random-quote",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                },
+                {
+                    "key": "Authorization",
+                    "value": "Bearer {{jwt_token}}",
+                    "description": "Replace {{jwt_token}} with your JWT token."
+                }
+            ]
+        },
+        "functionality": "It returns a String with a Random quote from Chuck Norris. It requires authentication. \n\nThe JWT - `access_token` must be"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Delete user",
+        "api_call": "http://localhost:3001/users",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"username\": \"user\",\n\t\"password\": \"password\",\n\t\"extra\": \"blerg\"\n}"
+            }
+        },
+        "functionality": "The body must have `username`, `password` and `extra`. It returns `id_token` and `access_token` which are signed with the secret located"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Delete session",
+        "api_call": "http://localhost:3001/sessions/create",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "auth": {
+                "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [
+                {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                }
+            ],
+            "body": {
+                "mode": "raw",
+                "raw": "{\n\t\"username\": \"user\",\n\t\"password\": \"password\"\n}"
+            }
+        },
+        "functionality": "The body must have `username` and `password`. It returns `id_token` and `access_token` are signed with the secret located at the"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Mocked endpoint",
+        "api_call": "https://c54c22f8-1b5e-4f00-8865-684319b1105b.mock.pstmn.io/bitcoin",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "Instead of making a request to the [Coindesk API](https://www.coindesk.com/api/), this request relies on a [Postman mock endpoint](https://www.getpostman.com/docs/v6/postman/mock_servers/intro_to_mock_servers) to return a"
+    },
+    {
+        "user_name": "opatothan",
+        "api_name": "Intro to writing tests - with examples: Echo the exchange rate",
+        "api_call": "https://postman-echo.com/get?foo1={{bitcoinRate}}",
+        "api_version": "NO VERSION IN POSTMAN",
+        "api_arguments": {
+            "method": "GET",
+            "header": []
+        },
+        "functionality": "This request will use information saved to a variable in a previous request."
+    }
+]
