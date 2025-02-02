@@ -100,6 +100,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |speakleash/Bielik-11B-v2.3-Instruct 💻| Prompt|
 |Qwen/QwQ-32B-Preview 💻| Prompt|
 |NovaSky-AI/Sky-T1-32B-Preview 💻| Prompt|
+|tiiuae/Falcon3-{1B,3B,7B,10B}-Instruct 💻| Function Calling|
 
 ---
 

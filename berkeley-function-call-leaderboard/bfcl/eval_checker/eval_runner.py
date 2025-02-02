@@ -174,13 +174,14 @@ def executable_file_runner(
     result = []
     correct_count = 0
     for i in tqdm(range(len(model_result)), desc="Running tests"):
+        index: str = model_result[i]["id"]
         raw_result = model_result[i]["result"]
         try:
             decoded_result = handler.decode_execute(raw_result)
         except Exception as e:
             result.append(
                 {
-                    "id": i + 1,
+                    "id": index,
                     "model_name": model_name,
                     "test_category": test_category,
                     "valid": False,
@@ -197,7 +198,7 @@ def executable_file_runner(
             if not is_rest_format_output(decoded_result):
                 result.append(
                     {
-                        "id": i + 1,
+                        "id": index,
                         "model_name": model_name,
                         "test_category": test_category,
                         "valid": False,
@@ -218,7 +219,7 @@ def executable_file_runner(
             if not is_executable_format_output(decoded_result):
                 result.append(
                     {
-                        "id": i + 1,
+                        "id": index,
                         "model_name": model_name,
                         "test_category": test_category,
                         "valid": False,
@@ -242,7 +243,7 @@ def executable_file_runner(
             correct_count += 1
         else:
             temp = {}
-            temp["id"] = i + 1
+            temp["id"] = index
             temp["model_name"] = model_name
             temp["test_category"] = test_category
             temp["valid"] = checker_result["valid"]
@@ -281,6 +282,7 @@ def relevance_file_runner(
     result = []
     correct_count = 0
     for i in range(len(model_result)):
+        index: str = model_result[i]["id"]
         model_result_item = model_result[i]["result"]
         contain_func_call = False
         decoded_result = None
@@ -309,7 +311,7 @@ def relevance_file_runner(
             correct_count += 1
         else:
             temp = {}
-            temp["id"] = i + 1
+            temp["id"] = index
             temp["model_name"] = model_name
             temp["test_category"] = test_category
             temp["valid"] = success
@@ -362,6 +364,7 @@ def ast_file_runner(
     result = []
     correct_count = 0
     for i in range(len(model_result)):
+        index: str = model_result[i]["id"]
         model_result_item = model_result[i]["result"]
         prompt_item = prompt[i]["function"]
         possible_answer_item = possible_answer[i]["ground_truth"]
@@ -372,7 +375,7 @@ def ast_file_runner(
         except Exception as e:
             result.append(
                 {
-                    "id": i + 1,
+                    "id": index,
                     "model_name": model_name,
                     "test_category": test_category,
                     "valid": False,
@@ -389,7 +392,7 @@ def ast_file_runner(
         if not decoder_output_valid:
             result.append(
                 {
-                    "id": i + 1,
+                    "id": index,
                     "model_name": model_name,
                     "test_category": test_category,
                     "valid": False,
@@ -418,7 +421,7 @@ def ast_file_runner(
             correct_count += 1
         else:
             temp = {}
-            temp["id"] = i + 1
+            temp["id"] = index
             temp["model_name"] = model_name
             temp["test_category"] = test_category
             temp["valid"] = checker_result["valid"]
