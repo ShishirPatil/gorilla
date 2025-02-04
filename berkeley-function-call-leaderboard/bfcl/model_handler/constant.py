@@ -1,13 +1,13 @@
 MAXIMUM_STEP_LIMIT = 20
 
 DEFAULT_SYSTEM_PROMPT_WITHOUT_FUNC_DOC = """You are an expert in composing functions. You are given a question and a set of possible functions. Based on the question, you will need to make one or more function/tool calls to achieve the purpose.
-If none of the function can be used, point it out. If the given question lacks the parameters required by the function, also point it out.
+If none of the functions can be used, point it out. If the given question lacks the parameters required by the function, also point it out.
 You should only return the function calls in your response.
 
 If you decide to invoke any of the function(s), you MUST put it in the format of [func_name1(params_name1=params_value1, params_name2=params_value2...), func_name2(params)]
 You SHOULD NOT include any other text in the response.
 
-At each turn, your should try your best to complete the tasks requested by the user within the current turn. Continue to output functions to call until you have fulfilled the user's request to the best of your ability. Once you have no more functions to call, the system will consider the current turn complete and proceed to the next turn or task.
+At each turn, you should try your best to complete the tasks requested by the user within the current turn. Continue to output functions to call until you have fulfilled the user's request to the best of your ability. Once you have no more functions to call, the system will consider the current turn complete and proceed to the next turn or task.
 """
 
 DEFAULT_SYSTEM_PROMPT = (
@@ -112,13 +112,12 @@ JS_TYPE_CONVERSION = {
 }
 
 UNDERSCORE_TO_DOT = [
-    "gpt-4o-2024-08-06-FC",
-    "gpt-4o-2024-05-13-FC",
+    # TODO: Use the model style to determine this, single source of truth
+    "DeepSeek-V3",
+    "o1-2024-12-17-FC",
+    "gpt-4o-2024-11-20-FC",
     "gpt-4o-mini-2024-07-18-FC",
     "gpt-4-turbo-2024-04-09-FC",
-    "gpt-4-1106-preview-FC",
-    "gpt-4-0125-preview-FC",
-    "gpt-4-0613-FC",
     "gpt-3.5-turbo-0125-FC",
     "claude-3-opus-20240229-FC",
     "claude-3-sonnet-20240229-FC",
@@ -126,12 +125,17 @@ UNDERSCORE_TO_DOT = [
     "claude-3-5-sonnet-20241022-FC",
     "claude-3-haiku-20240307-FC",
     "claude-3-5-haiku-20241022-FC",
+    "nova-pro-v1.0",
+    "nova-lite-v1.0",
+    "nova-micro-v1.0",
     "open-mistral-nemo-2407-FC",
     "open-mixtral-8x22b-FC",
     "mistral-large-2407-FC",
     "mistral-large-2407-FC",
     "mistral-small-2402-FC",
     "mistral-small-2402-FC",
+    "gemini-exp-1206-FC",
+    "gemini-2.0-flash-exp-FC",
     "gemini-1.5-pro-002-FC",
     "gemini-1.5-pro-001-FC",
     "gemini-1.5-flash-002-FC",
@@ -146,9 +150,10 @@ UNDERSCORE_TO_DOT = [
     "NousResearch/Hermes-2-Theta-Llama-3-8B",
     "NousResearch/Hermes-2-Theta-Llama-3-70B",
     "command-r-plus-FC",
-    "command-r-plus-FC-optimized",
+    "command-r7b-12-2024-FC",
     "THUDM/glm-4-9b-chat",
     "ibm-granite/granite-20b-functioncalling",
     "yi-large-fc",
     "openbmb/MiniCPM3-4B-FC",
+    "grok-beta",
 ]

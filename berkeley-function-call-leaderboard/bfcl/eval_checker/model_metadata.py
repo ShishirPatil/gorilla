@@ -1,15 +1,27 @@
 from bfcl.model_handler.handler_map import local_inference_handler_map
 
 MODEL_METADATA_MAPPING = {
-    "palmyra-x-004": [
-        "palmyra-x-004 (FC)",
-        "https://writer.com/engineering/actions-with-palmyra-x-004/",
-        "Writer",
+    "gorilla-openfunctions-v2": [
+        "Gorilla-OpenFunctions-v2 (FC)",
+        "https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html",
+        "Gorilla LLM",
+        "Apache 2.0",
+    ],
+    "DeepSeek-V3": [
+        "DeepSeek-V3 (FC)",
+        "https://api-docs.deepseek.com/news/news1226",
+        "DeepSeek",
+        "DeepSeek License",
+    ],
+    "o1-2024-12-17-FC": [
+        "o1-2024-12-17 (FC)",
+        "https://openai.com/o1/",
+        "OpenAI",
         "Proprietary",
     ],
-    "o1-preview-2024-09-12": [
-        "o1-preview-2024-09-12 (Prompt)",
-        "https://openai.com/index/introducing-openai-o1-preview/",
+    "o1-2024-12-17": [
+        "o1-2024-12-17 (Prompt)",
+        "https://openai.com/o1/",
         "OpenAI",
         "Proprietary",
     ],
@@ -19,14 +31,14 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
-    "gpt-4o-2024-08-06": [
-        "GPT-4o-2024-08-06 (Prompt)",
+    "gpt-4o-2024-11-20": [
+        "gpt-4o-2024-11-20 (Prompt)",
         "https://openai.com/index/hello-gpt-4o/",
         "OpenAI",
         "Proprietary",
     ],
-    "gpt-4o-2024-08-06-FC": [
-        "GPT-4o-2024-08-06 (FC)",
+    "gpt-4o-2024-11-20-FC": [
+        "gpt-4o-2024-11-20 (FC)",
         "https://openai.com/index/hello-gpt-4o/",
         "OpenAI",
         "Proprietary",
@@ -91,12 +103,6 @@ MODEL_METADATA_MAPPING = {
         "OpenAI",
         "Proprietary",
     ],
-    "gorilla-openfunctions-v2": [
-        "Gorilla-OpenFunctions-v2 (FC)",
-        "https://gorilla.cs.berkeley.edu/blogs/7_open_functions_v2.html",
-        "Gorilla LLM",
-        "Apache 2.0",
-    ],
     "claude-3-opus-20240229-FC": [
         "Claude-3-Opus-20240229 (FC)",
         "https://www.anthropic.com/news/claude-3-family",
@@ -157,6 +163,12 @@ MODEL_METADATA_MAPPING = {
         "Mistral AI",
         "Proprietary",
     ],
+    "mistralai/Ministral-8B-Instruct-2410": [
+        "Ministral-8B-Instruct-2410 (FC)",
+        "https://huggingface.co/mistralai/Ministral-8B-Instruct-2410",
+        "Mistral AI",
+        "Mistral AI Research License",
+    ],
     "claude-3-sonnet-20240229-FC": [
         "Claude-3-Sonnet-20240229 (FC)",
         "https://www.anthropic.com/news/claude-3-family",
@@ -215,6 +227,24 @@ MODEL_METADATA_MAPPING = {
         "Claude-3.5-Sonnet-20241022 (Prompt)",
         "https://www.anthropic.com/news/3-5-models-and-computer-use",
         "Anthropic",
+        "Proprietary",
+    ],
+    "nova-pro-v1.0": [
+        "Amazon-Nova-Pro-v1:0 (FC)",
+        "https://aws.amazon.com/cn/ai/generative-ai/nova/",
+        "Amazon",
+        "Proprietary",
+    ],
+    "nova-lite-v1.0": [
+        "Amazon-Nova-Lite-v1:0 (FC)",
+        "https://aws.amazon.com/cn/ai/generative-ai/nova/",
+        "Amazon",
+        "Proprietary",
+    ],
+    "nova-micro-v1.0": [
+        "Amazon-Nova-Micro-v1:0 (FC)",
+        "https://aws.amazon.com/cn/ai/generative-ai/nova/",
+        "Amazon",
         "Proprietary",
     ],
     "gpt-3.5-turbo-0125-FC": [
@@ -288,6 +318,30 @@ MODEL_METADATA_MAPPING = {
         "https://huggingface.co/fireworks-ai/firefunction-v2",
         "Fireworks",
         "Apache 2.0",
+    ],
+    "gemini-exp-1206-FC": [
+        "Gemini-Exp-1206 (FC)",
+        "https://blog.google/feed/gemini-exp-1206/",
+        "Google",
+        "Proprietary",
+    ],
+    "gemini-exp-1206": [
+        "Gemini-Exp-1206 (Prompt)",
+        "https://blog.google/feed/gemini-exp-1206/",
+        "Google",
+        "Proprietary",
+    ],
+    "gemini-2.0-flash-exp-FC": [
+        "Gemini-2.0-Flash-Exp (FC)",
+        "https://deepmind.google/technologies/gemini/flash/",
+        "Google",
+        "Proprietary",
+    ],
+    "gemini-2.0-flash-exp": [
+        "Gemini-2.0-Flash-Exp (Prompt)",
+        "https://deepmind.google/technologies/gemini/flash/",
+        "Google",
+        "Proprietary",
     ],
     "gemini-1.5-pro-002": [
         "Gemini-1.5-Pro-002 (Prompt)",
@@ -365,19 +419,19 @@ MODEL_METADATA_MAPPING = {
         "DeepSeek-V2.5 (FC)",
         "https://huggingface.co/deepseek-ai/DeepSeek-V2.5",
         "DeepSeek",
-        "DeepSeek License"
+        "DeepSeek License",
     ],
     "deepseek-ai/DeepSeek-Coder-V2-Instruct-0724": [
         "DeepSeek-Coder-V2 (FC)",
         "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct-0724",
         "DeepSeek",
-        "DeepSeek License"
+        "DeepSeek License",
     ],
     "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct": [
         "DeepSeek-Coder-V2-Lite-Instruct (FC)",
         "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct",
         "DeepSeek",
-        "DeepSeek License"
+        "DeepSeek License",
     ],
     "deepseek-ai/DeepSeek-V2-Chat-0628": [
         "DeepSeek-V2 (Prompt)",
@@ -505,28 +559,28 @@ MODEL_METADATA_MAPPING = {
         "Meta",
         "Meta Llama 3 Community",
     ],
+    "meta-llama/Llama-3.3-70B-Instruct": [
+        "Llama-3.3-70B-Instruct (Prompt)",
+        "https://llama.meta.com/llama3",
+        "Meta",
+        "Meta Llama 3 Community",
+    ],
+    "meta-llama/Llama-3.3-70B-Instruct-FC": [
+        "Llama-3.3-70B-Instruct (FC)",
+        "https://llama.meta.com/llama3",
+        "Meta",
+        "Meta Llama 3 Community",
+    ],
     "command-r-plus-FC": [
-        "Command-R-Plus (FC) (Original)",
+        "Command-R-Plus (FC)",
         "https://txt.cohere.com/command-r-plus-microsoft-azure",
         "Cohere For AI",
         "cc-by-nc-4.0",
     ],
-    "command-r-plus": [
-        "Command-R-Plus (Prompt) (Original)",
-        "https://txt.cohere.com/command-r-plus-microsoft-azure",
-        "Cohere For AI",
-        "cc-by-nc-4.0",
-    ],
-    "command-r-plus-FC-optimized": [
-        "Command-R-Plus (FC) (Optimized)",
-        "https://txt.cohere.com/command-r-plus-microsoft-azure",
-        "Cohere For AI",
-        "cc-by-nc-4.0",
-    ],
-    "command-r-plus-optimized": [
-        "Command-R-Plus (Prompt) (Optimized)",
-        "https://txt.cohere.com/command-r-plus-microsoft-azure",
-        "Cohere For AI",
+    "command-r7b-12-2024-FC": [
+        "Command R7B (FC)",
+        "https://cohere.com/blog/command-r7b",
+        "Cohere",
         "cc-by-nc-4.0",
     ],
     "snowflake/arctic": [
@@ -589,27 +643,27 @@ MODEL_METADATA_MAPPING = {
         "Salesforce",
         "cc-by-nc-4.0",
     ],
-    "MadeAgents/Hammer2.0-7b": [
-        "Hammer2.0-7b (FC)",
-        "https://huggingface.co/MadeAgents/Hammer2.0-7b",
+    "MadeAgents/Hammer2.1-7b": [
+        "Hammer2.1-7b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.1-7b",
         "MadeAgents",
         "cc-by-nc-4.0",
     ],
-    "MadeAgents/Hammer2.0-3b": [
-        "Hammer2.0-3b (FC)",
-        "https://huggingface.co/MadeAgents/Hammer2.0-3b",
+    "MadeAgents/Hammer2.1-3b": [
+        "Hammer2.1-3b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.1-3b",
+        "MadeAgents",
+        "qwen-research",
+    ],
+    "MadeAgents/Hammer2.1-1.5b": [
+        "Hammer2.1-1.5b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.1-1.5b",
         "MadeAgents",
         "cc-by-nc-4.0",
     ],
-    "MadeAgents/Hammer2.0-1.5b": [
-        "Hammer2.0-1.5b (FC)",
-        "https://huggingface.co/MadeAgents/Hammer2.0-1.5b",
-        "MadeAgents",
-        "cc-by-nc-4.0",
-    ],
-    "MadeAgents/Hammer2.0-0.5b": [
-        "Hammer2.0-0.5b (FC)",
-        "https://huggingface.co/MadeAgents/Hammer2.0-0.5b",
+    "MadeAgents/Hammer2.1-0.5b": [
+        "Hammer2.1-0.5b (FC)",
+        "https://huggingface.co/MadeAgents/Hammer2.1-0.5b",
         "MadeAgents",
         "cc-by-nc-4.0",
     ],
@@ -667,11 +721,23 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/Qwen2.5-0.5B-Instruct": [
+        "Qwen2.5-0.5B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-0.5B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Qwen/Qwen2.5-1.5B-Instruct": [
         "Qwen2.5-1.5B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
         "Qwen",
         "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-3B-Instruct": [
+        "Qwen2.5-3B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-3B-Instruct",
+        "Qwen",
+        "qwen",
     ],
     "Qwen/Qwen2.5-7B-Instruct": [
         "Qwen2.5-7B-Instruct (Prompt)",
@@ -679,11 +745,23 @@ MODEL_METADATA_MAPPING = {
         "Qwen",
         "apache-2.0",
     ],
+    "Qwen/Qwen2.5-14B-Instruct": [
+        "Qwen2.5-14B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-14B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
+    "Qwen/Qwen2.5-32B-Instruct": [
+        "Qwen2.5-32B-Instruct (Prompt)",
+        "https://huggingface.co/Qwen/Qwen2.5-32B-Instruct",
+        "Qwen",
+        "apache-2.0",
+    ],
     "Qwen/Qwen2.5-72B-Instruct": [
         "Qwen2.5-72B-Instruct (Prompt)",
         "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
         "Qwen",
-        "apache-2.0",
+        "qwen",
     ],
     "Team-ACE/ToolACE-8B": [
         "ToolACE-8B (FC)",
@@ -703,11 +781,83 @@ MODEL_METADATA_MAPPING = {
         "openbmb",
         "Apache-2.0",
     ],
+    "watt-ai/watt-tool-8B": [
+        "watt-tool-8B (FC)",
+        "https://huggingface.co/watt-ai/watt-tool-8B/",
+        "Watt AI Lab",
+        "Apache-2.0",
+    ],
+    "watt-ai/watt-tool-70B": [
+        "watt-tool-70B (FC)",
+        "https://huggingface.co/watt-ai/watt-tool-70B/",
+        "Watt AI Lab",
+        "Apache-2.0",
+    ],
     "BitAgent/GoGoAgent": [
         "GoGoAgent",
         "https://gogoagent.ai",
         "BitAgent",
         "Proprietary",
+    ],
+    "palmyra-x-004": [
+        "palmyra-x-004 (FC)",
+        "https://writer.com/engineering/actions-with-palmyra-x-004/",
+        "Writer",
+        "Proprietary",
+    ],
+    "grok-beta": [
+        "Grok-beta (FC)",
+        "https://x.ai/",
+        "xAI",
+        "Proprietary",
+    ],
+    "ZJared/Haha-7B": [
+        "Haha-7B",
+        "https://huggingface.co/ZJared/Haha-7B",
+        "TeleAI",
+        "Apache 2.0",
+    ],
+    "speakleash/Bielik-11B-v2.3-Instruct": [
+        "Bielik-11B-v2.3-Instruct (Prompt)",
+        "https://huggingface.co/speakleash/Bielik-11B-v2.3-Instruct",
+        "SpeakLeash & ACK Cyfronet AGH",
+        "Apache 2.0",
+    ],
+    "NovaSky-AI/Sky-T1-32B-Preview": [
+        "Sky-T1-32B-Preview (Prompt)",
+        "https://huggingface.co/NovaSky-AI/Sky-T1-32B-Preview",
+        "NovaSky-AI",
+        "apache-2.0",
+    ],
+    "Qwen/QwQ-32B-Preview": [
+        "QwQ-32B-Preview (Prompt)",
+        "https://huggingface.co/Qwen/QwQ-32B-Preview",
+        "Qwen",
+        "apache-2.0",
+    ],
+    "tiiuae/Falcon3-1B-Instruct-FC": [
+        "Falcon3-1B-Instruct (FC)",
+        "https://huggingface.co/tiiuae/Falcon3-1B-Instruct",
+        "TII UAE",
+        "falcon-llm-license",
+    ],
+    "tiiuae/Falcon3-3B-Instruct-FC": [
+        "Falcon3-3B-Instruct (FC)",
+        "https://huggingface.co/tiiuae/Falcon3-3B-Instruct",
+        "TII UAE",
+        "falcon-llm-license",
+    ],
+    "tiiuae/Falcon3-7B-Instruct-FC": [
+        "Falcon3-7B-Instruct (FC)",
+        "https://huggingface.co/tiiuae/Falcon3-7B-Instruct",
+        "TII UAE",
+        "falcon-llm-license",
+    ],
+    "tiiuae/Falcon3-10B-Instruct-FC": [
+        "Falcon3-10B-Instruct (FC)",
+        "https://huggingface.co/tiiuae/Falcon3-10B-Instruct",
+        "TII UAE",
+        "falcon-llm-license",
     ],
 }
 
@@ -726,6 +876,9 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-3-5-haiku-20241022": 1,
     "claude-2.1": 8,
     "claude-instant-1.2": 0.8,
+    "nova-pro-v1.0": 0.8,
+    "nova-lite-v1.0": 0.06,
+    "nova-micro-v1.0": 0.035,
     "open-mistral-nemo-2407": 0.3,
     "open-mistral-nemo-2407-FC": 0.3,
     "open-mixtral-8x22b": 2,
@@ -737,12 +890,13 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-small-2402-FC": 1,
     "mistral-small-2402": 1,
     "mistral-tiny-2312": 0.25,
-    "o1-preview-2024-09-12": 15,
+    "o1-2024-12-17-FC": 15,
+    "o1-2024-12-17": 15,
     "o1-mini-2024-09-12": 3,
     "gpt-4o-2024-05-13-FC": 5,
     "gpt-4o-2024-05-13": 5,
-    "gpt-4o-2024-08-06-FC": 2.5,
-    "gpt-4o-2024-08-06": 2.5,
+    "gpt-4o-2024-11-20-FC": 2.5,
+    "gpt-4o-2024-11-20": 2.5,
     "gpt-4o-mini-2024-07-18": 0.15,
     "gpt-4o-mini-2024-07-18-FC": 0.15,
     "gpt-4-1106-preview-FC": 10,
@@ -755,6 +909,10 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-4-0613-FC": 30,
     "gpt-3.5-turbo-0125": 0.5,
     "gpt-3.5-turbo-0125-FC": 0.5,
+    "gemini-exp-1206-FC": 0,  # Gemini Experimental models are free
+    "gemini-exp-1206": 0,
+    "gemini-2.0-flash-exp": 0,
+    "gemini-2.0-flash-exp-FC": 0,
     "gemini-1.5-pro-002": 1.25,
     "gemini-1.5-pro-002-FC": 1.25,
     "gemini-1.5-pro-001": 1.25,
@@ -767,11 +925,10 @@ INPUT_PRICE_PER_MILLION_TOKEN = {
     "gemini-1.0-pro-002-FC": 0.5,
     "databricks-dbrx-instruct": 2.25,
     "command-r-plus-FC": 3,
-    "command-r-plus": 3,
-    "command-r-plus-FC-optimized": 3,
-    "command-r-plus-optimized": 3,
+    "command-r7b-12-2024-FC": 0.0375,
     "yi-large-fc": 3,
     "palmyra-x-004": 5,
+    "grok-beta": 5,
 }
 
 OUTPUT_PRICE_PER_MILLION_TOKEN = {
@@ -789,6 +946,9 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "claude-3-5-haiku-20241022": 5,
     "claude-2.1": 24,
     "claude-instant-1.2": 2.4,
+    "nova-pro-v1.0": 3.2,
+    "nova-lite-v1.0": 0.24,
+    "nova-micro-v1.0": 0.14,
     "open-mistral-nemo-2407": 0.3,
     "open-mistral-nemo-2407-FC": 0.3,
     "open-mixtral-8x22b": 6,
@@ -800,12 +960,13 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "mistral-medium-2312": 8.1,
     "mistral-small-2402-FC": 3,
     "mistral-tiny-2312": 0.25,
-    "o1-preview-2024-09-12": 60,
+    "o1-2024-12-17-FC": 60,
+    "o1-2024-12-17": 60,
     "o1-mini-2024-09-12": 12,
     "gpt-4o-2024-05-13-FC": 15,
     "gpt-4o-2024-05-13": 15,
-    "gpt-4o-2024-08-06-FC": 10,
-    "gpt-4o-2024-08-06": 10,
+    "gpt-4o-2024-11-20-FC": 10,
+    "gpt-4o-2024-11-20": 10,
     "gpt-4o-mini-2024-07-18": 0.6,
     "gpt-4o-mini-2024-07-18-FC": 0.6,
     "gpt-4-turbo-2024-04-09-FC": 30,
@@ -818,6 +979,10 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "gpt-4-0613-FC": 60,
     "gpt-3.5-turbo-0125": 1.5,
     "gpt-3.5-turbo-0125-FC": 1.5,
+    "gemini-exp-1206-FC": 0,  # Gemini Experimental models are free
+    "gemini-exp-1206": 0,
+    "gemini-2.0-flash-exp": 0,
+    "gemini-2.0-flash-exp-FC": 0,
     "gemini-1.5-pro-002": 5,
     "gemini-1.5-pro-002-FC": 5,
     "gemini-1.5-pro-001": 5,
@@ -830,11 +995,10 @@ OUTPUT_PRICE_PER_MILLION_TOKEN = {
     "gemini-1.0-pro-002-FC": 1.5,
     "databricks-dbrx-instruct": 6.75,
     "command-r-plus-FC": 15,
-    "command-r-plus": 15,
-    "command-r-plus-FC-optimized": 15,
-    "command-r-plus-optimized": 15,
+    "command-r7b-12-2024-FC": 0.15,
     "yi-large-fc": 3,
     "palmyra-x-004": 12,
+    "grok-beta": 15,
 }
 
 # The latency of the open-source models are hardcoded here.
@@ -846,6 +1010,7 @@ OSS_LATENCY = {}
 NO_COST_MODELS = list(local_inference_handler_map.keys())
 # The following models will also have no cost, even though they are queries through the API.
 NO_COST_MODELS += [
+    "DeepSeek-V3",
     "Nexusflow-Raven-v2",
     "firefunction-v1-FC",
     "firefunction-v2-FC",
