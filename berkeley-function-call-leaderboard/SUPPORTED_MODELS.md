@@ -10,7 +10,7 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |Model | Type |
 |---|---|
 |gorilla-openfunctions-v2 | Function Calling|
-|DeepSeek-V3 | Function Calling|
+|DeepSeek-V3-FC | Function Calling|
 |claude-3-opus-20240229-FC | Function Calling |
 |claude-3-opus-20240229 | Prompt |
 |claude-3-5-sonnet-20241022-FC | Function Calling |

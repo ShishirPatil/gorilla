@@ -40,7 +40,8 @@ from bfcl.model_handler.local_inference.falcon_fc import Falcon3FCHandler
 # Inference through API calls
 api_inference_handler_map = {
     "gorilla-openfunctions-v2": GorillaHandler,
-    "DeepSeek-V3": DeepSeekAPIHandler,
+    "DeepSeek-R1": DeepSeekAPIHandler,
+    "DeepSeek-V3-FC": DeepSeekAPIHandler,
     "o1-2024-12-17-FC": OpenAIHandler,
     "o1-2024-12-17": OpenAIHandler,
     # "o1-mini-2024-09-12-FC": OpenAIHandler,  # o1-mini-2024-09-12 does not support function calling
