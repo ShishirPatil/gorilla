@@ -1,6 +1,10 @@
 # Changelog
 
 All notable changes to the Berkeley Function Calling Leaderboard will be documented in this file.
+- [Feb 5, 2025] [#900](https://github.com/ShishirPatil/gorilla/pull/900): Add the following new models to the leaderboard:
+  - `uiuc-convai/CALM-8B`
+  - `uiuc-convai/CALM-70B`
+  - `uiuc-convai/CALM-405B`
 
 - [Feb 2, 2025] [#898](https://github.com/ShishirPatil/gorilla/pull/898): Add the following new models to the leaderboard:
   - `o3-mini-2025-01-31-FC`
