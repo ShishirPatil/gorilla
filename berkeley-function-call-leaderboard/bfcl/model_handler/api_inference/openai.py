@@ -6,8 +6,6 @@ from bfcl.model_handler.base_handler import BaseHandler
 from bfcl.model_handler.constant import GORILLA_TO_OPENAPI
 from bfcl.model_handler.model_style import ModelStyle
 from bfcl.model_handler.utils import (
-    combine_consecutive_user_prompts,
-    convert_system_prompt_into_user_prompt,
     convert_to_function_call,
     convert_to_tool,
     default_decode_ast_prompting,
@@ -59,10 +57,9 @@ class OpenAIHandler(BaseHandler):
         inference_data["inference_input_log"] = {"message": repr(message), "tools": tools}
 
         if len(tools) > 0:
-            # o1 doesn't support temperature parameter
+            # Reasoning models don't support temperature parameter
             # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
-            # Also, o1-mini does not support function calling
-            if "o1" in self.model_name:
+            if "o1" in self.model_name or "o3-mini" in self.model_name:
                 return self.generate_with_backoff(
                     messages=message,
                     model=self.model_name.replace("-FC", ""),
@@ -76,7 +73,7 @@ class OpenAIHandler(BaseHandler):
                     tools=tools,
                 )
         else:
-            if "o1" in self.model_name:
+            if "o1" in self.model_name or "o3-mini" in self.model_name:
                 return self.generate_with_backoff(
                     messages=message,
                     model=self.model_name.replace("-FC", ""),
@@ -170,9 +167,9 @@ class OpenAIHandler(BaseHandler):
     def _query_prompting(self, inference_data: dict):
         inference_data["inference_input_log"] = {"message": repr(inference_data["message"])}
 
-        # o1 and o1-mini don't support temperature parameter
+        # OpenAI reasoning models don't support temperature parameter
         # Beta limitation: https://platform.openai.com/docs/guides/reasoning/beta-limitations
-        if "o1" in self.model_name:
+        if "o1" in self.model_name or "o3-mini" in self.model_name:
             return self.generate_with_backoff(
                 messages=inference_data["message"],
                 model=self.model_name,
@@ -193,16 +190,6 @@ class OpenAIHandler(BaseHandler):
         test_entry["question"][0] = system_prompt_pre_processing_chat_model(
             test_entry["question"][0], functions, test_category
         )
-        # Special handling for o1-mini as it doesn't support system prompts yet
-        # o1 is fine with system prompts
-        if "o1-mini" in self.model_name:
-            for round_idx in range(len(test_entry["question"])):
-                test_entry["question"][round_idx] = convert_system_prompt_into_user_prompt(
-                    test_entry["question"][round_idx]
-                )
-                test_entry["question"][round_idx] = combine_consecutive_user_prompts(
-                    test_entry["question"][round_idx]
-                )
 
         return {"message": []}
 
