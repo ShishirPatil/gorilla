@@ -115,6 +115,7 @@ UNDERSCORE_TO_DOT = [
     # TODO: Use the model style to determine this, single source of truth
     "DeepSeek-V3-FC",
     "o1-2024-12-17-FC",
+    "o3-mini-2025-01-31-FC",
     "gpt-4o-2024-11-20-FC",
     "gpt-4o-mini-2024-07-18-FC",
     "gpt-4-turbo-2024-04-09-FC",
