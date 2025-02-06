@@ -136,7 +136,7 @@ UNDERSCORE_TO_DOT = [
     "mistral-small-2402-FC",
     "mistral-small-2402-FC",
     "gemini-2.0-flash-001-FC",
-    "gemini-2.0-flash-exp-FC",
+    "gemini-2.0-pro-exp-02-05-FC",
     "gemini-1.5-pro-002-FC",
     "gemini-1.5-pro-001-FC",
     "gemini-1.5-flash-002-FC",
