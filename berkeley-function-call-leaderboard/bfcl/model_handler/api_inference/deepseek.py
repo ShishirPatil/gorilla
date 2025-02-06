@@ -43,38 +43,58 @@ class DeepSeekAPIHandler(OpenAIHandler):
         # This will need to be updated if newer models are released.
         if "DeepSeek-V3" in self.model_name:
             api_model_name = "deepseek-chat"
-        elif "DeepSeek-R1" in self.model_name:
-            api_model_name = "deepseek-reasoner"
         else:
-            raise ValueError(f"Model name {self.model_name} not supported by DeepSeek API")
+            raise ValueError(f"Model name {self.model_name} not yet supported in this method")
 
         if len(tools) > 0:
             return self.generate_with_backoff(
                 model=api_model_name,
                 messages=message,
                 tools=tools,
+                temperature=self.temperature,
             )
         else:
             return self.generate_with_backoff(
                 model=api_model_name,
                 messages=message,
+                temperature=self.temperature,
             )
 
     @override
     def _query_prompting(self, inference_data: dict):
+        """
+        This method is intended to be used by the `DeepSeek-R1` models. If used for other models, you will need to modify the code accordingly.
+        
+        Reasoning models don't support temperature parameter
+        https://api-docs.deepseek.com/guides/reasoning_model
+        
+        `DeepSeek-R1` should use `deepseek-reasoner` as the model name in the API
+        https://api-docs.deepseek.com/quick_start/pricing
+        """
         message: list[dict] = inference_data["message"]
         inference_data["inference_input_log"] = {"message": repr(message)}
 
-        # Source https://api-docs.deepseek.com/quick_start/pricing
-        # This will need to be updated if newer models are released.
-        if "DeepSeek-V3" in self.model_name:
-            api_model_name = "deepseek-chat"
-        elif "DeepSeek-R1" in self.model_name:
+        if "DeepSeek-R1" in self.model_name:
             api_model_name = "deepseek-reasoner"
         else:
-            raise ValueError(f"Model name {self.model_name} not supported by DeepSeek API")
+            raise ValueError(f"Model name {self.model_name} not yet supported in this method")
 
         return self.generate_with_backoff(
             model=api_model_name,
             messages=message,
         )
+        
+    @override
+    def _parse_query_response_prompting(self, api_response: any) -> dict:
+        response_data = {
+            "model_responses": api_response.choices[0].message.content,
+            "model_responses_message_for_chat_history": api_response.choices[0].message,
+            "input_token": api_response.usage.prompt_tokens,
+            "output_token": api_response.usage.completion_tokens,
+        }
+        
+        # Include reasoning_content only if it exists
+        if hasattr(api_response.choices[0].message, "reasoning_content"):
+            response_data["model_responses_reasoning_content"] = api_response.choices[0].message.reasoning_content
+        
+        return response_data
