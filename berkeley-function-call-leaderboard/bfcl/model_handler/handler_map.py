@@ -75,6 +75,8 @@ api_inference_handler_map = {
     "firefunction-v1-FC": FireworksHandler,
     "firefunction-v2-FC": FireworksHandler,
     "Nexusflow-Raven-v2": NexusHandler,
+    "gemini-2.0-flash-lite-preview-02-05-FC": GeminiHandler,
+    "gemini-2.0-flash-lite-preview-02-05": GeminiHandler,
     "gemini-2.0-flash-001-FC": GeminiHandler,
     "gemini-2.0-flash-001": GeminiHandler,
     "gemini-2.0-pro-exp-02-05": GeminiHandler,

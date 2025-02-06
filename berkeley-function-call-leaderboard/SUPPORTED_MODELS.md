@@ -39,6 +39,8 @@ Below is a comprehensive table of models supported for running leaderboard evalu
 |gemini-2.0-pro-exp-02-05 | Prompt|
 |gemini-2.0-flash-001-FC | Function Calling|
 |gemini-2.0-flash-001 | Prompt|
+|gemini-2.0-flash-lite-preview-02-05-FC | Function Calling|
+|gemini-2.0-flash-lite-preview-02-05 | Prompt|
 |open-mixtral-{8x7b,8x22b} | Prompt|
 |open-mixtral-8x22b-FC | Function Calling|
 |open-mistral-nemo-2407 | Prompt|
