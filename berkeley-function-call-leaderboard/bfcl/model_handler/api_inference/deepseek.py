@@ -1,3 +1,4 @@
+import json
 import os
 import time
 
@@ -16,7 +17,8 @@ class DeepSeekAPIHandler(OpenAIHandler):
             base_url="https://api.deepseek.com", api_key=os.getenv("DEEPSEEK_API_KEY")
         )
 
-    @retry_with_backoff(error_type=RateLimitError)
+    # The deepseek API is unstable at the moment, and will frequently give empty responses, so retry on JSONDecodeError is necessary
+    @retry_with_backoff(error_type=[RateLimitError, json.JSONDecodeError])
     def generate_with_backoff(self, **kwargs):
         """
         Per the DeepSeek API documentation:
