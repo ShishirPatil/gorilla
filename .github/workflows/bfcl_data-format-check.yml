@@ -33,9 +33,24 @@ jobs:
         run: |
           if [ -f validation_results.json ]; then
             echo "VALIDATION_RESULTS<<EOF" >> $GITHUB_ENV
-            echo "$(cat validation_results.json)" >> $GITHUB_ENV
+            # Added change: directly appending file contents
+            cat validation_results.json >> $GITHUB_ENV
             echo "EOF" >> $GITHUB_ENV
           fi
+
+      # New step: Calculate the total files checked using jq
+      - name: Get total files checked
+        id: file_count
+        if: always()
+        run: |
+          # Check if the file exists and use jq to compute the length
+          if [ -f validation_results.json ]; then
+            total_files=$(jq '.results | length' validation_results.json)
+          else
+            total_files=0
+          fi
+          # Output the computed length so it can be used in later steps
+          echo "total_files=$total_files" >> $GITHUB_OUTPUT
 
       - name: Comment on PR with results
         if: github.event_name == 'pull_request'
@@ -48,7 +63,7 @@ jobs:
             ${{ fromJson(env.VALIDATION_RESULTS).all_success && '✅ All data files are correctly formatted!' || '❌ Data format validation failed!' }}
             
             ### Summary
-            - Total files checked: ${{ fromJson(env.VALIDATION_RESULTS).results | length }}
+            - Total files checked: ${{ steps.file_count.outputs.total_files }}
             ${{ !fromJson(env.VALIDATION_RESULTS).all_success && '### Failed Validations:' || '' }}
             ${{ !fromJson(env.VALIDATION_RESULTS).all_success && join(fromJson(env.VALIDATION_RESULTS).results.*.errors, '
             ') || '' }}
