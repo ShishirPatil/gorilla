@@ -32,24 +32,22 @@ jobs:
         if: always()
         run: |
           if [ -f validation_results.json ]; then
-            echo "VALIDATION_RESULTS<<EOF" >> $GITHUB_ENV
-            # Added change: directly appending file contents
-            cat validation_results.json >> $GITHUB_ENV
-            echo "EOF" >> $GITHUB_ENV
+            # Changed from $GITHUB_ENV to $GITHUB_OUTPUT and using a unique delimiter (EOF_RESULTS)
+            echo "results<<EOF_RESULTS" >> $GITHUB_OUTPUT
+            cat validation_results.json >> $GITHUB_OUTPUT
+            echo "EOF_RESULTS" >> $GITHUB_OUTPUT
           fi
 
-      # New step: Calculate the total files checked using jq
       - name: Get total files checked
         id: file_count
         if: always()
         run: |
-          # Check if the file exists and use jq to compute the length
+          # Using jq to calculate the total files from validation_results.json
           if [ -f validation_results.json ]; then
             total_files=$(jq '.results | length' validation_results.json)
           else
             total_files=0
           fi
-          # Output the computed length so it can be used in later steps
           echo "total_files=$total_files" >> $GITHUB_OUTPUT
 
       - name: Comment on PR with results
@@ -60,19 +58,19 @@ jobs:
           body: |
             ## BFCL Data Format Check Results
             
-            ${{ fromJson(env.VALIDATION_RESULTS).all_success && '✅ All data files are correctly formatted!' || '❌ Data format validation failed!' }}
+            ${{ fromJson(steps.process_results.outputs.results).all_success && '✅ All data files are correctly formatted!' || '❌ Data format validation failed!' }}
             
             ### Summary
             - Total files checked: ${{ steps.file_count.outputs.total_files }}
-            ${{ !fromJson(env.VALIDATION_RESULTS).all_success && '### Failed Validations:' || '' }}
-            ${{ !fromJson(env.VALIDATION_RESULTS).all_success && join(fromJson(env.VALIDATION_RESULTS).results.*.errors, '
+            ${{ !fromJson(steps.process_results.outputs.results).all_success && '### Failed Validations:' || '' }}
+            ${{ !fromJson(steps.process_results.outputs.results).all_success && join(fromJson(steps.process_results.outputs.results).results.*.errors, '
             ') || '' }}
             
-            ${{ !fromJson(env.VALIDATION_RESULTS).all_success && '### How to fix:
+            ${{ !fromJson(steps.process_results.outputs.results).all_success && '### How to fix:
             1. Review the errors above for each failed file
             2. Ensure all data entries follow the required format for their respective types
             3. Update the files and push the changes' || '' }}
 
       - name: Fail if validation failed
-        if: fromJson(env.VALIDATION_RESULTS).all_success != true
+        if: fromJson(steps.process_results.outputs.results).all_success != true
         run: exit 1
