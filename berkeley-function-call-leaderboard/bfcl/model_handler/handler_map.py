@@ -76,10 +76,12 @@ api_inference_handler_map = {
     "firefunction-v1-FC": FireworksHandler,
     "firefunction-v2-FC": FireworksHandler,
     "Nexusflow-Raven-v2": NexusHandler,
-    "gemini-exp-1206-FC": GeminiHandler,
-    "gemini-exp-1206": GeminiHandler,
-    "gemini-2.0-flash-exp": GeminiHandler,
-    "gemini-2.0-flash-exp-FC": GeminiHandler,
+    "gemini-2.0-flash-lite-preview-02-05-FC": GeminiHandler,
+    "gemini-2.0-flash-lite-preview-02-05": GeminiHandler,
+    "gemini-2.0-flash-001-FC": GeminiHandler,
+    "gemini-2.0-flash-001": GeminiHandler,
+    "gemini-2.0-pro-exp-02-05-FC": GeminiHandler,
+    "gemini-2.0-pro-exp-02-05": GeminiHandler,
     "gemini-1.5-pro-002": GeminiHandler,
     "gemini-1.5-pro-002-FC": GeminiHandler,
     "gemini-1.5-pro-001": GeminiHandler,
@@ -169,6 +171,9 @@ local_inference_handler_map = {
     "tiiuae/Falcon3-7B-Instruct-FC": Falcon3FCHandler,
     "tiiuae/Falcon3-3B-Instruct-FC": Falcon3FCHandler,
     "tiiuae/Falcon3-1B-Instruct-FC": Falcon3FCHandler,
+    "uiuc-convai/CALM-8B": LlamaHandler,
+    "uiuc-convai/CALM-70B": LlamaHandler,
+    "uiuc-convai/CALM-405B": LlamaHandler
 }
 
 # Deprecated/outdated models, no longer on the leaderboard
