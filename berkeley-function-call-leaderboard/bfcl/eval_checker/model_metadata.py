@@ -886,20 +886,20 @@ MODEL_METADATA_MAPPING = {
     "uiuc-convai/CALM-8B": [
         "CALM-8B",
         "https://huggingface.co/uiuc-convai/CALM-8B",
-        "UIUC + Oumi"
-        "Meta Llama 3 Community"
+        "UIUC + Oumi",
+        "Meta Llama 3 Community",
     ],
     "uiuc-convai/CALM-70B": [
         "CALM-8B",
         "https://huggingface.co/uiuc-convai/CALM-70B",
-        "UIUC + Oumi"
-        "Meta Llama 3 Community"
+        "UIUC + Oumi",
+        "Meta Llama 3 Community",
     ],
     "uiuc-convai/CALM-405B": [
         "CALM-8B",
         "https://huggingface.co/uiuc-convai/CALM-405B",
-        "UIUC + Oumi"
-        "Meta Llama 3 Community"
+        "UIUC + Oumi",
+        "Meta Llama 3 Community",
     ]
 }
 
